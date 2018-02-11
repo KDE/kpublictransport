@@ -1,0 +1,10 @@
+*.kdev4
+*~
+*.rej
+*.orig
+*.out
+CMakeLists.txt.user
+callgrind.*
+heaptrack.*
+*.qmlc
+*.fail
