@@ -1,2 +1,5 @@
+add_executable(departurequery departurequery.cpp departurequery.qrc)
+target_link_libraries(departurequery KPublicTransport Qt5::Quick)
+
 add_executable(journeyquery journeyquery.cpp journeyquery.qrc)
 target_link_libraries(journeyquery KPublicTransport Qt5::Quick)
