@@ -29,7 +29,11 @@ ecm_qt_declare_logging_category(kpublictransport_srcs HEADER logging.h IDENTIFIE
 
 add_library(KPublicTransport ${kpublictransport_srcs})
 generate_export_header(KPublicTransport BASE_NAME KPublicTransport)
-
+set_target_properties(KPublicTransport PROPERTIES
+    VERSION ${KPUBLICTRANSPORT_VERSION_STRING}
+    SOVERSION ${KPUBLICTRANSPORT_SOVERSION}
+    EXPORT_NAME KPublicTransport
+)
 target_include_directories(KPublicTransport PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
 target_link_libraries(KPublicTransport
     PUBLIC
@@ -73,4 +77,16 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     RELATIVE datatypes
 )
 
+install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES org_kde_kpublictransport.categories DESTINATION ${KDE_INSTALL_CONFDIR})
+install(FILES
+    ${KPublicTransport_FORWARDING_HEADERS}
+    ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport
+)
+install(FILES
+    ${KPublicTransport_HEADERS}
+    ${KPublicTransport_Datatypes_HEADERS}
+    ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kpublictransport
+)
