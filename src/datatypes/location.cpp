@@ -214,8 +214,9 @@ static QString applyTransliterations(const QString &s)
 bool Location::isSame(const Location &lhs, const Location &rhs)
 {
     // ids
-    for (auto it = lhs.identifiers().constBegin(); it != lhs.identifiers().constEnd(); ++it) {
-        if (rhs.identifier(it.key()) == it.value() && !it.value().isEmpty()) {
+    const auto lhsIds = lhs.identifiers();
+    for (auto it = lhsIds.constBegin(); it != lhsIds.constEnd(); ++it) {
+        if (!it.value().isEmpty() && rhs.identifier(it.key()) == it.value()) {
             return true;
         }
     }
@@ -259,7 +260,8 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     Location l(lhs);
 
     // merge identifiers
-    for (auto it = rhs.identifiers().constBegin(); it != rhs.identifiers().constEnd(); ++it) {
+    const auto rhsIds = rhs.identifiers();
+    for (auto it = rhsIds.constBegin(); it != rhsIds.constEnd(); ++it) {
         if (lhs.identifier(it.key()).isEmpty()) {
             l.setIdentifier(it.key(), it.value());
         }
