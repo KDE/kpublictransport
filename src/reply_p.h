@@ -27,7 +27,11 @@ namespace KPublicTransport {
 class ReplyPrivate
 {
 public:
+    ReplyPrivate() = default;
+    ReplyPrivate(const ReplyPrivate&) = delete;
     virtual ~ReplyPrivate() = default;
+    ReplyPrivate& operator=(const ReplyPrivate&) = delete;
+
     virtual void finalizeResult() = 0;
 
     void emitFinishedIfDone(Reply *q);
