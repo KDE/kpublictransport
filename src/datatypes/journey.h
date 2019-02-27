@@ -144,6 +144,11 @@ public:
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
     static JourneySection merge(const JourneySection &lhs, const JourneySection &rhs);
+
+    /** Serializes one journey section to JSON. */
+    static QJsonObject toJson(const JourneySection &section);
+    /** Serializes a vector of journey sections to JSON. */
+    static QJsonArray toJson(const std::vector<JourneySection> &journeys);
 };
 
 class JourneyPrivate;
@@ -183,6 +188,11 @@ public:
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
     static Journey merge(const Journey &lhs, const Journey &rhs);
+
+    /** Serializes one journey object to JSON. */
+    static QJsonObject toJson(const Journey &journey);
+    /** Serializes a vector of journey objects to JSON. */
+    static QJsonArray toJson(const std::vector<Journey> &journeys);
 
 private:
     QVariantList sectionsVariant() const;

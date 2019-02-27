@@ -18,6 +18,7 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
+import Qt.labs.platform 1.0 as Platform
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
 
@@ -28,6 +29,24 @@ Kirigami.ApplicationWindow {
     height: 800
 
     pageStack.initialPage: journyQueryPage
+
+    globalDrawer: Kirigami.GlobalDrawer {
+        actions: [
+            Kirigami.Action {
+                text: i18n("Save...")
+                iconName: "document-save"
+                onTriggered: fileDialog.open();
+            }
+        ]
+    }
+
+    Platform.FileDialog {
+        id: fileDialog
+        title: i18n("Save Journey Data")
+        fileMode: Platform.FileDialog.SaveFile
+        nameFilters: ["JSON files (*.json)"]
+        onAccepted: _queryMgr.saveTo(fileDialog.file);
+    }
 
     ListModel {
         id: exampleModel

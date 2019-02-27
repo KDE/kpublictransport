@@ -28,6 +28,9 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QLocale>
 #include <QNetworkAccessManager>
 #include <QUrl>
@@ -67,14 +70,14 @@ public:
             emit loadingChanged();
 
             if (reply->error() == JourneyReply::NoError) {
-                const auto &res = reply->result();
+                m_journeys = reply->takeResult();
                 QVariantList l;
-                l.reserve(res.size());
-                std::transform(res.begin(), res.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
+                l.reserve(m_journeys.size());
+                std::transform(m_journeys.begin(), m_journeys.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
                 engine->rootContext()->setContextProperty(QStringLiteral("_journeys"), l);
 
                 QStringList journeyTitles;
-                for (const auto &journey : res) {
+                for (const auto &journey : m_journeys) {
                     const QString t = QLocale().toString(journey.scheduledDepartureTime(), QLocale::ShortFormat) + QLatin1String(" (") +
                         QString::number(journey.duration()/60) + QLatin1String("min) - ") + QString::number(journey.numberOfChanges()) + QLatin1String(" change(s)");
                     journeyTitles.push_back(t);
@@ -93,6 +96,16 @@ public:
         ptMgr.setAllowInsecureBackends(insecure);
     }
 
+    Q_INVOKABLE void saveTo(const QUrl &fileName)
+    {
+        QFile f(fileName.toLocalFile());
+        if (!f.open(QFile::WriteOnly)) {
+            qWarning() << f.errorString() << fileName;
+            return;
+        }
+        f.write(QJsonDocument(Journey::toJson(m_journeys)).toJson());
+    }
+
     bool loading() const { return m_loading; }
     QString errorMessage() const { return m_errorMsg; }
 
@@ -105,6 +118,7 @@ Q_SIGNALS:
 private:
     QNetworkAccessManager nam;
     Manager ptMgr;
+    std::vector<Journey> m_journeys;
     QString m_errorMsg;
     bool m_loading = false;
 };

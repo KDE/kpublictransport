@@ -290,11 +290,13 @@ QJsonObject Location::toJson(const Location &loc)
         obj.insert(QLatin1String("timezone"), QString::fromUtf8(loc.timeZone().id()));
     }
 
-    QJsonObject ids;
-    for (auto it = loc.d->ids.begin(); it != loc.d->ids.end(); ++it) {
-        ids.insert(it.key(), it.value());
+    if (!loc.d->ids.isEmpty()) {
+        QJsonObject ids;
+        for (auto it = loc.d->ids.begin(); it != loc.d->ids.end(); ++it) {
+            ids.insert(it.key(), it.value());
+        }
+        obj.insert(QLatin1String("identifier"), ids);
     }
-    obj.insert(QLatin1String("identifier"), ids);
 
     return obj;
 }

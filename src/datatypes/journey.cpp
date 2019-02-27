@@ -16,6 +16,7 @@
 */
 
 #include "journey.h"
+#include "json.h"
 #include "datatypes_p.h"
 
 #include <QVariant>
@@ -267,6 +268,22 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     return res;
 }
 
+QJsonObject JourneySection::toJson(const JourneySection &section)
+{
+    auto obj = Json::toJson(section);
+    obj.insert(QStringLiteral("from"), Location::toJson(section.from()));
+    obj.insert(QStringLiteral("to"), Location::toJson(section.to()));
+    if (section.mode() == PublicTransport) {
+        obj.insert(QStringLiteral("route"), Route::toJson(section.route()));
+    }
+    return obj;
+}
+
+QJsonArray JourneySection::toJson(const std::vector<JourneySection> &sections)
+{
+    return Json::toJson(sections);
+}
+
 
 KPUBLICTRANSPORT_MAKE_GADGET(Journey)
 
@@ -344,6 +361,18 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
     Journey res;
     res.setSections(std::move(sections));
     return res;
+}
+
+QJsonObject Journey::toJson(const Journey &journey)
+{
+    QJsonObject obj;
+    obj.insert(QStringLiteral("sections"), JourneySection::toJson(journey.sections()));
+    return obj;
+}
+
+QJsonArray Journey::toJson(const std::vector<Journey> &journeys)
+{
+    return Json::toJson(journeys);
 }
 
 #include "moc_journey.cpp"
