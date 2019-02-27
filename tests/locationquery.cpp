@@ -74,6 +74,7 @@ public:
                 m_errorMsg = reply->errorString();
                 emit errorMessageChanged();
             }
+            reply->deleteLater();
         });
     }
 
