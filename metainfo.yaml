@@ -1,0 +1,20 @@
+maintainer: vkrause
+description: Public transport data querying API
+tier: 1
+type: functional
+platforms:
+    - name: Linux
+    - name: FreeBSD
+    - name: Windows
+    - name: MacOSX
+    - name: Android
+portingAid: false
+deprecated: false
+release: true
+libraries:
+ - qmake: KPublicTransport
+   cmake: KPublicTransport
+cmakename: KPublicTransport
+
+public_lib: true
+group: kdepim
