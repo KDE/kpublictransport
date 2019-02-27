@@ -27,6 +27,9 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QNetworkAccessManager>
 #include <QUrl>
 
@@ -64,15 +67,11 @@ public:
             emit loadingChanged();
 
             if (reply->error() == DepartureReply::NoError) {
-                const auto res = reply->takeResult();
+                m_departures = reply->takeResult();
                 QVariantList l;
-                l.reserve(res.size());
-                std::transform(res.begin(), res.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
+                l.reserve(m_departures.size());
+                std::transform(m_departures.begin(), m_departures.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
                 engine->rootContext()->setContextProperty(QStringLiteral("_departures"), l);
-
-                for (const auto &departure : res) {
-                    qDebug() << departure.stopPoint().name() << departure.route().line().name() << departure.route().direction() << departure.scheduledDepartureTime();
-                }
             } else {
                 m_errorMsg = reply->errorString();
                 emit errorMessageChanged();
@@ -84,6 +83,16 @@ public:
     Q_INVOKABLE void setAllowInsecure(bool insecure)
     {
         ptMgr.setAllowInsecureBackends(insecure);
+    }
+
+    Q_INVOKABLE void saveTo(const QUrl &fileName)
+    {
+        QFile f(fileName.toLocalFile());
+        if (!f.open(QFile::WriteOnly)) {
+            qWarning() << f.errorString() << fileName;
+            return;
+        }
+        f.write(QJsonDocument(Departure::toJson(m_departures)).toJson());
     }
 
     bool loading() const { return m_loading; }
@@ -98,6 +107,7 @@ Q_SIGNALS:
 private:
     QNetworkAccessManager nam;
     Manager ptMgr;
+    std::vector<Departure> m_departures;
     QString m_errorMsg;
     bool m_loading = false;
 };

@@ -208,6 +208,11 @@ QJsonObject Departure::toJson(const Departure &dep)
     return obj;
 }
 
+QJsonArray Departure::toJson(const std::vector<Departure> &deps)
+{
+    return Json::toJson(deps);
+}
+
 Departure Departure::fromJson(const QJsonObject &obj)
 {
     auto dep = Json::fromJson<Departure>(obj);

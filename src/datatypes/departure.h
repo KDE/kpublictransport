@@ -107,6 +107,8 @@ public:
 
     /** Serializes one object to JSON. */
     static QJsonObject toJson(const Departure &dep);
+    /** Serializes a vector of departure objects to JSON. */
+    static QJsonArray toJson(const std::vector<Departure> &deps);
     /** Deserialize an object from JSON. */
     static Departure fromJson(const QJsonObject &obj);
 };
