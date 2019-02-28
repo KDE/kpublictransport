@@ -18,6 +18,7 @@
 #include "journey.h"
 #include "json.h"
 #include "datatypes_p.h"
+#include "mergeutil_p.h"
 
 #include <QVariant>
 
@@ -248,15 +249,15 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
 
 JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySection &rhs)
 {
+    using namespace MergeUtil;
     auto res = lhs;
-    if (!res.expectedDepartureTime().isValid()) {
-        res.setExpectedDepartureTime(rhs.expectedDepartureTime());
-    }
+    res.setScheduledDepartureTime(mergeDateTime(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
+    res.setExpectedDepartureTime(mergeDateTime(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
+    res.setScheduledArrivalTime(mergeDateTime(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
+    res.setExpectedArrivalTime(mergeDateTime(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
+
     if (res.expectedDeparturePlatform().isEmpty()) {
         res.setExpectedDeparturePlatform(rhs.expectedDeparturePlatform());
-    }
-    if (!res.expectedArrivalTime().isValid()) {
-        res.setExpectedArrivalTime(rhs.expectedArrivalTime());
     }
     if (res.expectedArrivalPlatform().isEmpty()) {
         res.setExpectedArrivalPlatform(rhs.expectedArrivalPlatform());
