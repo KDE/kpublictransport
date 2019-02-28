@@ -1,0 +1,19 @@
+{
+    "route": {
+        "direction": "Erkner",
+        "line": {
+            "mode": 8,
+            "name": "RE 3111"
+        }
+    },
+    "scheduledDepartureTime": "2018-01-23T18:51:00",
+    "scheduledPlatform": "12",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8011160"
+        },
+        "latitude": 52.52558898925781,
+        "longitude": 13.369548797607422,
+        "name": "Berlin Hbf"
+    }
+}

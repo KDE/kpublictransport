@@ -170,7 +170,13 @@ bool Departure::isSame(const Departure &lhs, const Departure &rhs)
         return false;
     }
 
-    return Route::isSame(lhs.route(), rhs.route());
+    if (Route::isSame(lhs.route(), rhs.route())) {
+        return true;
+    }
+
+    // if the route didn't match exactly, same time and same platform is likely the same train
+    return Location::isSameName(lhs.route().direction(), rhs.route().direction())
+        && lhs.scheduledPlatform() == rhs.scheduledPlatform() && !lhs.scheduledPlatform().isEmpty();
 }
 
 Departure Departure::merge(const Departure &lhs, const Departure &rhs)

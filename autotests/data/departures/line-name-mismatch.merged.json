@@ -1,0 +1,22 @@
+{
+    "route": {
+        "direction": "S Erkner Bhf",
+        "line": {
+            "color": "#e20613",
+            "mode": 8,
+            "name": "RE 3111",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledDepartureTime": "2018-01-23T18:51:00",
+    "scheduledPlatform": "12",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8011160",
+            "vbb": "900003201"
+        },
+        "latitude": 52.525848388671875,
+        "longitude": 13.368927955627441,
+        "name": "S+U Berlin Hauptbahnhof"
+    }
+}

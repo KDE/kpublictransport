@@ -1,0 +1,23 @@
+{
+    "expectedDepartureTime": "2018-01-28T18:43:00",
+    "expectedPlatform": "4",
+    "route": {
+        "direction": "Köln Hauptbahnhof",
+        "line": {
+            "color": "#ab0020",
+            "mode": 9,
+            "name": "ICE 950",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledDepartureTime": "2018-01-28T18:33:00",
+    "scheduledPlatform": "13 D - G",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8011160"
+        },
+        "latitude": 52.52558898925781,
+        "longitude": 13.369548797607422,
+        "name": "Berlin Hauptbahnhof"
+    }
+}
