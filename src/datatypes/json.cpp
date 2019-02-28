@@ -24,6 +24,8 @@
 #include <QTimeZone>
 #include <QVariant>
 
+#include <cmath>
+
 using namespace KPublicTransport;
 
 static QJsonValue variantToJson(const QVariant &v)
@@ -36,7 +38,13 @@ static QJsonValue variantToJson(const QVariant &v)
         }
         case QMetaType::Double:
         case QMetaType::Float:
-            return v.toDouble();
+        {
+            auto d = v.toDouble();
+            if (std::isnan(d)) {
+                return QJsonValue::Null;
+            }
+            return d;
+        }
         case QMetaType::Int:
             return v.toInt();
         case QVariant::DateTime:
