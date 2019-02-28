@@ -295,15 +295,15 @@ QJsonObject Location::toJson(const Location &loc)
 {
     auto obj = Json::toJson(loc);
     if (loc.timeZone().isValid()) {
-        obj.insert(QLatin1String("timezone"), QString::fromUtf8(loc.timeZone().id()));
+        obj.insert(QStringLiteral("timezone"), QString::fromUtf8(loc.timeZone().id()));
     }
 
     if (!loc.d->ids.isEmpty()) {
         QJsonObject ids;
-        for (auto it = loc.d->ids.begin(); it != loc.d->ids.end(); ++it) {
+        for (auto it = loc.d->ids.constBegin(); it != loc.d->ids.constEnd(); ++it) {
             ids.insert(it.key(), it.value());
         }
-        obj.insert(QLatin1String("identifier"), ids);
+        obj.insert(QStringLiteral("identifier"), ids);
     }
 
     return obj;
