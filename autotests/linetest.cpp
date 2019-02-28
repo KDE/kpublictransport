@@ -35,11 +35,15 @@ private Q_SLOTS:
         QTest::addColumn<QString>("rhsName");
 
         QTest::newRow("identical") << s("S") << s("7") << s("S") << s("7");
-        QTest::newRow("mode empty") << s("") << s("S7") << s("") << s("S7");
-        QTest::newRow("mode only") << s("R") << s("") << s("R") << s("");
+        QTest::newRow("mode empty") << QString() << s("S7") << QString() << s("S7");
+        QTest::newRow("mode only") << s("R") << QString() << s("R") << QString();
 
-        // TODO
-        //QTest::newRow("space") << s("") << s("S7") << s("") << s("S 7");
+        QTest::newRow("space") << QString() << s("S7") << QString() << s("S 7");
+        QTest::newRow("mode vs name") << s("RER") << s("A") << QString() << s("RER A");
+        QTest::newRow("case folding") << s("RER") << s("A") << s("Rer") << s("A");
+
+        QTest::newRow("missing mode") << s("Train") << s("A") << QString() << s("A");
+        QTest::newRow("line vs train") << QString() << s("S7") << QString() << s("S 7 (Train no.123465)");
     }
 
     void testLineCompare()
@@ -55,6 +59,34 @@ private Q_SLOTS:
         r.setModeString(rhsModeName);
         r.setName(rhsName);
         QVERIFY(Line::isSame(l, r));
+        QVERIFY(Line::isSame(r, l));
+    }
+
+    void testLineCompareNegative_data()
+    {
+        QTest::addColumn<QString>("lhsModeName");
+        QTest::addColumn<QString>("lhsName");
+        QTest::addColumn<QString>("rhsModeName");
+        QTest::addColumn<QString>("rhsName");
+
+        QTest::newRow("mismatch") << s("S") << s("7") << s("S") << s("5");
+        QTest::newRow("non-separated prefix") << QString() << s("S7") << QString() << s("S75");
+    }
+
+    void testLineCompareNegative()
+    {
+        QFETCH(QString, lhsModeName);
+        QFETCH(QString, lhsName);
+        QFETCH(QString, rhsModeName);
+        QFETCH(QString, rhsName);
+
+        Line l, r;
+        l.setModeString(lhsModeName);
+        l.setName(lhsName);
+        r.setModeString(rhsModeName);
+        r.setName(rhsName);
+        QVERIFY(!Line::isSame(l, r));
+        QVERIFY(!Line::isSame(r, l));
     }
 };
 

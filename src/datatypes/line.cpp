@@ -45,13 +45,33 @@ public:
 
 static bool isSameLineName(const QString &lhs, const QString &rhs)
 {
-    if (lhs.size() == rhs.size()) {
-        return lhs.compare(rhs, Qt::CaseInsensitive) == 0;
+    auto lIt = lhs.begin();
+    auto rIt = rhs.begin();
+    while (lIt != lhs.end() && rIt != rhs.end()) {
+        // ignore spaces etc.
+        if (!(*lIt).isLetter() && !(*lIt).isDigit()) {
+            ++lIt;
+            continue;
+        }
+        if (!(*rIt).isLetter() && !(*rIt).isDigit()) {
+            ++rIt;
+            continue;
+        }
+
+        if ((*lIt).toCaseFolded() != (*rIt).toCaseFolded()) {
+            return false;
+        }
+
+        ++lIt;
+        ++rIt;
     }
-    if (lhs.size() < rhs.size()) {
-        return rhs.endsWith(QLatin1Char(' ') + lhs, Qt::CaseInsensitive);
+
+    if (lIt == lhs.end() && rIt == rhs.end()) { // both inputs fully consumed, and no mismatch found
+        return true;
     }
-    return lhs.endsWith(QLatin1Char(' ') + rhs, Qt::CaseInsensitive);
+
+    // one input is prefix of the other, that is ok if there's a separator
+    return (lIt != lhs.end() && (*lIt).isSpace()) || (rIt != rhs.end() && (*rIt).isSpace());
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Line)
@@ -123,7 +143,11 @@ void Line::setModeString(const QString &modeString)
 
 bool Line::isSame(const Line &lhs, const Line &rhs)
 {
-    return isSameLineName(lhs.name(), rhs.name()) && (lhs.mode() == rhs.mode() || lhs.mode() == Unknown || rhs.mode() == Unknown);
+    if (lhs.mode() != rhs.mode() && lhs.mode() != Unknown && rhs.mode() != Unknown) {
+        return false;
+    }
+
+    return isSameLineName(lhs.name(), rhs.name()) || isSameLineName(lhs.modeString() + lhs.name(), rhs.name()) || isSameLineName(lhs.name(), rhs.modeString() + rhs.name());
 }
 
 Line Line::merge(const Line &lhs, const Line &rhs)
