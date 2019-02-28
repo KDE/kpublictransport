@@ -46,7 +46,7 @@ public:
 
 private:
     friend class Manager;
-    explicit DepartureReply(const DepartureRequest &req);
+    explicit DepartureReply(const DepartureRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
     void addResult(std::vector<Departure> &&res);

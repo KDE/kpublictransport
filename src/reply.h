@@ -57,7 +57,7 @@ Q_SIGNALS:
     void finished();
 
 protected:
-    explicit Reply(ReplyPrivate *dd);
+    explicit Reply(ReplyPrivate *dd, QObject *parent);
     std::unique_ptr<ReplyPrivate> d_ptr;
 
     friend class AbstractBackend;

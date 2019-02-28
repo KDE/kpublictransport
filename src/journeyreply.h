@@ -45,7 +45,7 @@ public:
 
 private:
     friend class Manager;
-    explicit JourneyReply(const JourneyRequest &req);
+    explicit JourneyReply(const JourneyRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
     void addResult(std::vector<Journey> &&res);

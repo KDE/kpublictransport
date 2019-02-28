@@ -66,8 +66,8 @@ void LocationReplyPrivate::finalizeResult()
     }
 }
 
-LocationReply::LocationReply(const LocationRequest &req)
-    : Reply(new LocationReplyPrivate)
+LocationReply::LocationReply(const LocationRequest &req, QObject *parent)
+    : Reply(new LocationReplyPrivate, parent)
 {
     Q_D(LocationReply);
     d->request = req;

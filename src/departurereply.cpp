@@ -76,8 +76,8 @@ void DepartureReplyPrivate::finalizeResult()
     }
 }
 
-DepartureReply::DepartureReply(const DepartureRequest &req)
-    : Reply(new DepartureReplyPrivate)
+DepartureReply::DepartureReply(const DepartureRequest &req, QObject *parent)
+    : Reply(new DepartureReplyPrivate, parent)
 {
     Q_D(DepartureReply);
     d->request = req;

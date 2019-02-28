@@ -28,8 +28,9 @@ void ReplyPrivate::emitFinishedIfDone(Reply *q)
     }
 }
 
-Reply::Reply(ReplyPrivate *dd)
-    : d_ptr(dd)
+Reply::Reply(ReplyPrivate *dd, QObject *parent)
+    : QObject(parent)
+    , d_ptr(dd)
 {
 }
 

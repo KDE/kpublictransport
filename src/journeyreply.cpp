@@ -102,8 +102,8 @@ void JourneyReplyPrivate::postProcessJourneys()
     }
 }
 
-JourneyReply::JourneyReply(const JourneyRequest &req)
-    : Reply(new JourneyReplyPrivate)
+JourneyReply::JourneyReply(const JourneyRequest &req, QObject *parent)
+    : Reply(new JourneyReplyPrivate, parent)
 {
     Q_D(JourneyReply);
     d->request = req;

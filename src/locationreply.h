@@ -46,7 +46,7 @@ public:
 
 private:
     friend class Manager;
-    explicit LocationReply(const LocationRequest &req);
+    explicit LocationReply(const LocationRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
     void addResult(std::vector<Location> &&res);
