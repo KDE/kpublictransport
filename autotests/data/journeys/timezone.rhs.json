@@ -1,0 +1,29 @@
+{
+    "sections": [
+        {
+            "from": {
+                "identifier": {
+                    "ibnr": "8503016"
+                },
+                "name": "Zürich Flughafen"
+            },
+            "mode": 1,
+            "route": {
+                "direction": "Genève-Aéroport",
+                "line": {
+                    "mode": 9,
+                    "name": "IC 722"
+                }
+            },
+            "scheduledArrivalTime": "2018-09-28T19:28:00",
+            "scheduledDeparturePlatform": "4",
+            "scheduledDepartureTime": "2018-09-28T18:18:00",
+            "to": {
+                "identifier": {
+                    "ibnr": "8507000"
+                },
+                "name": "Bern (Bern)"
+            }
+        }
+    ]
+}

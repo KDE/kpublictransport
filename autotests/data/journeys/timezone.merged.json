@@ -1,0 +1,43 @@
+{
+    "sections": [
+        {
+            "from": {
+                "identifier": {
+                    "ibnr": "8503016"
+                },
+                "latitude": 47.45037841796875,
+                "longitude": 8.562378883361816,
+                "name": "Zürich Flughafen",
+                "timezone": "Europe/Zurich"
+            },
+            "mode": 1,
+            "route": {
+                "direction": "Genève-Aéroport",
+                "line": {
+                    "color": "#ff0000",
+                    "mode": 9,
+                    "name": "IC 722",
+                    "textColor": "#f2f2f2"
+                }
+            },
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Zurich",
+                "value": "2018-09-28T19:28:00+02:00"
+            },
+            "scheduledDeparturePlatform": "4",
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Zurich",
+                "value": "2018-09-28T18:18:00+02:00"
+            },
+            "to": {
+                "identifier": {
+                    "ibnr": "8507000"
+                },
+                "latitude": 46.94881820678711,
+                "longitude": 7.4391188621521,
+                "name": "Bern (Bern)",
+                "timezone": "Europe/Zurich"
+            }
+        }
+    ]
+}
