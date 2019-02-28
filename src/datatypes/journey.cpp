@@ -284,6 +284,20 @@ QJsonArray JourneySection::toJson(const std::vector<JourneySection> &sections)
     return Json::toJson(sections);
 }
 
+JourneySection JourneySection::fromJson(const QJsonObject &obj)
+{
+    auto section = Json::fromJson<JourneySection>(obj);
+    section.setFrom(Location::fromJson(obj.value(QLatin1String("from")).toObject()));
+    section.setTo(Location::fromJson(obj.value(QLatin1String("to")).toObject()));
+    section.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
+    return section;
+}
+
+std::vector<JourneySection> JourneySection::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<JourneySection>(array);
+}
+
 
 KPUBLICTRANSPORT_MAKE_GADGET(Journey)
 
@@ -373,6 +387,13 @@ QJsonObject Journey::toJson(const Journey &journey)
 QJsonArray Journey::toJson(const std::vector<Journey> &journeys)
 {
     return Json::toJson(journeys);
+}
+
+Journey KPublicTransport::Journey::fromJson(const QJsonObject &obj)
+{
+    Journey j;
+    j.setSections(JourneySection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    return j;
 }
 
 #include "moc_journey.cpp"

@@ -148,7 +148,11 @@ public:
     /** Serializes one journey section to JSON. */
     static QJsonObject toJson(const JourneySection &section);
     /** Serializes a vector of journey sections to JSON. */
-    static QJsonArray toJson(const std::vector<JourneySection> &journeys);
+    static QJsonArray toJson(const std::vector<JourneySection> &sections);
+    /** Deserialize an object from JSON. */
+    static JourneySection fromJson(const QJsonObject &obj);
+    /** Deserialize a vector of journey sections from JSON. */
+    static std::vector<JourneySection> fromJson(const QJsonArray &array);
 };
 
 class JourneyPrivate;
@@ -193,6 +197,8 @@ public:
     static QJsonObject toJson(const Journey &journey);
     /** Serializes a vector of journey objects to JSON. */
     static QJsonArray toJson(const std::vector<Journey> &journeys);
+    /** Deserialize an object from JSON. */
+    static Journey fromJson(const QJsonObject &obj);
 
 private:
     QVariantList sectionsVariant() const;
