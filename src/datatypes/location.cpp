@@ -267,7 +267,15 @@ Location Location::merge(const Location &lhs, const Location &rhs)
         }
     }
 
-    return lhs;
+    if (!lhs.hasCoordinate()) {
+        l.setCoordinate(rhs.latitude(), rhs.longitude());
+    }
+
+    if (!lhs.timeZone().isValid()) {
+        l.setTimeZone(rhs.timeZone());
+    }
+
+    return l;
 }
 
 // see https://en.wikipedia.org/wiki/Haversine_formula
