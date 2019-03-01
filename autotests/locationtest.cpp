@@ -73,6 +73,7 @@ private Q_SLOTS:
         l.setName(lhs);
         r.setName(rhs);
         QVERIFY(Location::isSame(l, r));
+        QVERIFY(Location::isSame(r, l));
     }
 };
 
