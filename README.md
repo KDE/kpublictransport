@@ -9,12 +9,20 @@ public transport journey queries.
 
 This largely follows the concepts and naming conventions used by [Navitia](https://navitia.io).
 
+The key elements are:
+
+* KPublicTransport::Journey
+* KPublicTransport::Departure
+
 ## Supported Operations
 
 * Location searches: retrieve stop information based on name or geo coordinates.
 * Arrival/departure queries: retrieve base schedule and if available realtime information
   about upcoming arrivals and departures at a stop.
 * Journey queries: obtain ways to get from A to B.
+
+All operations can be started from KPublicTransport::Manager with an API similar to
+QNetworkAccessManager.
 
 ## Backends
 

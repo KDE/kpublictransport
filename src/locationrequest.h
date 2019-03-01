@@ -26,7 +26,9 @@ namespace KPublicTransport {
 
 class LocationRequestPrivate;
 
-/** Describes a location search. */
+/** Describes a location search.
+ *  Either a geo coordinate or a name must be specified as search criteria.
+ */
 class KPUBLICTRANSPORT_EXPORT LocationRequest
 {
 public:
@@ -36,19 +38,22 @@ public:
     ~LocationRequest();
     LocationRequest& operator=(const LocationRequest&);
 
+    /** Latitude of the location to search. */
     float latitude() const;
+    /** Longitude of the location to search. */
     float longitude() const;
     /** Search by geo coordinate. */
     void setCoordinate(float lat, float lon);
     /** Returns true if a valid geo coordinate has been set. */
     bool hasCoordinate() const;
 
+    /** The name of the location to search. */
     QString name() const;
     /** Search by name or name fragment. */
     void setName(const QString &name);
     // TODO select full name or name fragment mode for auto-completion
 
-    // unique string representation used for caching results
+    /** Unique string representation used for caching results. */
     QString cacheKey() const;
 
 private:

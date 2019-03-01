@@ -29,18 +29,23 @@ namespace KPublicTransport {
 class JourneyRequestPrivate;
 class Location;
 
-/** Describes a journey search. */
+/** Describes a journey search.
+ *  By default journeys departing now are searched.
+ */
 class KPUBLICTRANSPORT_EXPORT JourneyRequest
 {
 public:
     JourneyRequest();
+    /** Search a journey from @p from to @p to. */
     JourneyRequest(const Location &from, const Location &to);
     JourneyRequest(JourneyRequest&&) noexcept;
     JourneyRequest(const JourneyRequest &);
     ~JourneyRequest();
     JourneyRequest& operator=(const JourneyRequest&);
 
+    /** The starting point of the journey search. */
     Location from() const;
+    /** The journey destination. */
     Location to() const;
 
     /** Date/time at which the journey should start/end. */
@@ -49,8 +54,15 @@ public:
         Arrival, ///< dateTime() represents the desired arriva time.
         Departure ///< dateTime() represents the desired departure time.
     };
+    /** Returns whether to search for journeys starting or ending at the given time. */
     DateTimeMode dateTimeMode() const;
+    /** Set the desired departure time.
+     *  This is mutually exclusive to setting a desired arrival time.
+     */
     void setDeparutreTime(const QDateTime &dt);
+    /** Sets the desired arrival time.
+     *  This is mutually exclusive to setting a desired departure time.
+     */
     void setArrivalTime(const QDateTime &dt);
 
 private:

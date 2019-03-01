@@ -29,11 +29,14 @@ namespace KPublicTransport {
 class DepartureRequestPrivate;
 class Location;
 
-/** Describes a departure search. */
+/** Describes an arrival or departure search.
+ *  By default this search departures starting now, from the given Location.
+ */
 class KPUBLICTRANSPORT_EXPORT DepartureRequest
 {
 public:
     DepartureRequest();
+    /** Search for arrival/departures to/from @p stop. */
     explicit DepartureRequest(const Location &stop);
     DepartureRequest(DepartureRequest&&) noexcept;
     DepartureRequest(const DepartureRequest&);
@@ -45,14 +48,17 @@ public:
 
     /** Date/time at which the search should start. */
     QDateTime dateTime() const;
+    /** Set the starting time for the search. */
     void setDateTime(const QDateTime &dt);
 
     /** Query departures or arrivals? */
     enum Mode {
-        QueryArrival,
-        QueryDeparture
+        QueryArrival, ///< Search for arrivals.
+        QueryDeparture ///< Search for departures.
     };
+    /** Returns whether to search for arrivals or departures. */
     Mode mode() const;
+    /** Set whether to search for arrivals or departures. */
     void setMode(Mode mode);
 
 private:

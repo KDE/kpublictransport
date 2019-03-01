@@ -24,6 +24,9 @@
 
 class QNetworkAccessManager;
 
+/** Query operations and data types for accessing realtime public transport information
+ *  from online services.
+ */
 namespace KPublicTransport {
 
 class DepartureReply;
