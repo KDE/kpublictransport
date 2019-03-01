@@ -44,6 +44,9 @@ private Q_SLOTS:
 
         QTest::newRow("missing mode") << s("Train") << s("A") << QString() << s("A");
         QTest::newRow("line vs train") << QString() << s("S7") << QString() << s("S 7 (Train no.123465)");
+
+        QTest::newRow("prefix") << s("R") << s("123") << s("R") << QString();
+        QTest::newRow("suffix") << QString() << s("Bus X7") << QString() << s("X7");
     }
 
     void testLineCompare()
@@ -71,6 +74,7 @@ private Q_SLOTS:
 
         QTest::newRow("mismatch") << s("S") << s("7") << s("S") << s("5");
         QTest::newRow("non-separated prefix") << QString() << s("S7") << QString() << s("S75");
+        QTest::newRow("non-separated suffix") << QString() << s("7") << QString() << s("S47");
     }
 
     void testLineCompareNegative()

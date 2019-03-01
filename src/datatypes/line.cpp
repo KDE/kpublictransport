@@ -43,11 +43,12 @@ public:
 
 }
 
-static bool isSameLineName(const QString &lhs, const QString &rhs)
+template <typename Iter>
+static bool isSameLineName(const Iter &lBegin, const Iter &lEnd, const Iter &rBegin, const Iter &rEnd)
 {
-    auto lIt = lhs.begin();
-    auto rIt = rhs.begin();
-    while (lIt != lhs.end() && rIt != rhs.end()) {
+    auto lIt = lBegin;
+    auto rIt = rBegin;
+    while (lIt != lEnd && rIt != rEnd) {
         // ignore spaces etc.
         if (!(*lIt).isLetter() && !(*lIt).isDigit()) {
             ++lIt;
@@ -66,12 +67,18 @@ static bool isSameLineName(const QString &lhs, const QString &rhs)
         ++rIt;
     }
 
-    if (lIt == lhs.end() && rIt == rhs.end()) { // both inputs fully consumed, and no mismatch found
+    if (lIt == lEnd && rIt == rEnd) { // both inputs fully consumed, and no mismatch found
         return true;
     }
 
     // one input is prefix of the other, that is ok if there's a separator
-    return (lIt != lhs.end() && (*lIt).isSpace()) || (rIt != rhs.end() && (*rIt).isSpace());
+    return (lIt != lEnd && (*lIt).isSpace()) || (rIt != rEnd && (*rIt).isSpace());
+}
+
+static bool isSameLineName(const QString &lhs, const QString &rhs)
+{
+    return isSameLineName(lhs.begin(), lhs.end(), rhs.begin(), rhs.end())
+        || isSameLineName(lhs.rbegin(), lhs.rend(), rhs.rbegin(), rhs.rend());
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Line)
@@ -147,7 +154,11 @@ bool Line::isSame(const Line &lhs, const Line &rhs)
         return false;
     }
 
-    return isSameLineName(lhs.name(), rhs.name()) || isSameLineName(lhs.modeString() + lhs.name(), rhs.name()) || isSameLineName(lhs.name(), rhs.modeString() + rhs.name());
+    // ### not really the most efficient way of doing this...
+    return isSameLineName(lhs.name(), rhs.name())
+        || isSameLineName(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), rhs.name())
+        || isSameLineName(lhs.name(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed())
+        || isSameLineName(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed());
 }
 
 Line Line::merge(const Line &lhs, const Line &rhs)
