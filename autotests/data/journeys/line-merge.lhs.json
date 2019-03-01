@@ -1,0 +1,23 @@
+{
+    "sections": [
+        {
+            "from": {
+                "name": "Zürich Flughafen"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Genève-Aéroport",
+                "line": {
+                    "mode": "Train",
+                    "name": "IC1"
+                }
+            },
+            "scheduledArrivalTime": "2018-09-28T19:28:00",
+            "scheduledDeparturePlatform": "4",
+            "scheduledDepartureTime": "2018-09-28T18:18:00",
+            "to": {
+                "name": "Bern"
+            }
+        }
+    ]
+}

@@ -238,13 +238,23 @@ bool JourneySection::arrivalPlatformChanged() const
 
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
-    return lhs.d->mode == rhs.d->mode
-        && lhs.d->scheduledDepartureTime == rhs.d->scheduledDepartureTime
-        && lhs.d->scheduledArrivalTime == rhs.d->scheduledArrivalTime
-        && Location::isSame(lhs.d->from, rhs.d->from)
-        && Location::isSame(lhs.d->to, rhs.d->to)
-        && Route::isSame(lhs.d->route, rhs.d->route);
-        // ### platforms relevant?
+    if (lhs.d->mode != rhs.d->mode
+        || lhs.d->scheduledDepartureTime != rhs.d->scheduledDepartureTime
+        || lhs.d->scheduledArrivalTime != rhs.d->scheduledArrivalTime
+        || !Location::isSame(lhs.d->from, rhs.d->from)
+        || !Location::isSame(lhs.d->to, rhs.d->to))
+    {
+        return false;
+    }
+
+    if (Route::isSame(lhs.d->route, rhs.d->route)) {
+        return true;
+    }
+
+    // if the route didn't match exactly, same time and same platform is likely the same train
+    return Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction())
+        && lhs.scheduledDeparturePlatform() == rhs.scheduledDeparturePlatform()
+        && !lhs.scheduledDeparturePlatform().isEmpty();
 }
 
 JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySection &rhs)
