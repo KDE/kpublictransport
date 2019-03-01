@@ -19,6 +19,7 @@
 
 #include "datatypes_p.h"
 #include "json.h"
+#include "mergeutil_p.h"
 
 #include <QDebug>
 #include <QHash>
@@ -270,6 +271,8 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     if (!lhs.hasCoordinate()) {
         l.setCoordinate(rhs.latitude(), rhs.longitude());
     }
+
+    l.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
 
     if (!lhs.timeZone().isValid()) {
         l.setTimeZone(rhs.timeZone());

@@ -18,6 +18,7 @@
 #include "mergeutil_p.h"
 
 #include <QDateTime>
+#include <QString>
 
 using namespace KPublicTransport;
 
@@ -36,4 +37,9 @@ QDateTime MergeUtil::mergeDateTime(const QDateTime &lhs, const QDateTime &rhs)
         return rhs;
     }
     return lhs;
+}
+
+QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
+{
+    return lhs.size() < rhs.size() ? rhs : lhs;
 }

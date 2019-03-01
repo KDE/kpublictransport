@@ -19,13 +19,18 @@
 #define KPUBLICTRANSPORT_MERGEUTIL_P_H
 
 class QDateTime;
+class QString;
 
 namespace KPublicTransport {
 
 /** Utilities for merging objects. */
 namespace MergeUtil
 {
+    /** Assumes lhs == rhs if both sides are valid, and prefers values with timezone information. */
     QDateTime mergeDateTime(const QDateTime &lhs, const QDateTime &rhs);
+
+    /** Takes the longer input string. */
+    QString mergeString(const QString &lhs, const QString &rhs);
 }
 
 }

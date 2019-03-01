@@ -75,6 +75,35 @@ private Q_SLOTS:
         QVERIFY(Location::isSame(l, r));
         QVERIFY(Location::isSame(r, l));
     }
+
+    void testLocationNameMerge_data()
+    {
+        QTest::addColumn<QString>("lhs");
+        QTest::addColumn<QString>("rhs");
+        QTest::addColumn<QString>("result");
+
+        QTest::newRow("identical") << s("Berlin Hbf") << s("Berlin Hbf") << s("Berlin Hbf");
+        QTest::newRow("abbreviation") << s("Berlin Hbf") << s("Berlin Hauptbahnhof") << s("Berlin Hauptbahnhof");
+
+        // TODO stuff that doesn't work as good as it could be yet
+        //QTest::newRow("all caps") << s("BERLIN") << s("Berlin") << s("Berlin");
+        //QTest::newRow("unicode") << s("København H") << s("Koebenhavn H") << s("København H");
+        //QTest::newRow("redundancy") << s("Bern (Bern)") << s("Bern") << s("Bern");
+    }
+
+    void testLocationNameMerge()
+    {
+        QFETCH(QString, lhs);
+        QFETCH(QString, rhs);
+        QFETCH(QString, result);
+
+        Location l, r;
+        l.setName(lhs);
+        r.setName(rhs);
+
+        QCOMPARE(Location::merge(l, r).name(), result);
+        QCOMPARE(Location::merge(r, l).name(), result);
+    }
 };
 
 QTEST_GUILESS_MAIN(LocationTest)
