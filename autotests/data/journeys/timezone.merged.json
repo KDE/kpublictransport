@@ -10,12 +10,12 @@
                 "name": "Zürich Flughafen",
                 "timezone": "Europe/Zurich"
             },
-            "mode": 1,
+            "mode": "PublicTransport",
             "route": {
                 "direction": "Genève-Aéroport",
                 "line": {
                     "color": "#ff0000",
-                    "mode": 9,
+                    "mode": "LongDistanceTrain",
                     "name": "IC 722",
                     "textColor": "#f2f2f2"
                 }

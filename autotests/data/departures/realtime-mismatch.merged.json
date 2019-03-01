@@ -5,7 +5,7 @@
         "direction": "Köln Hauptbahnhof",
         "line": {
             "color": "#ab0020",
-            "mode": 9,
+            "mode": "LongDistanceTrain",
             "name": "ICE 950",
             "textColor": "#ffffff"
         }

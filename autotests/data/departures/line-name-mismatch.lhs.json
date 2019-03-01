@@ -2,7 +2,7 @@
     "route": {
         "direction": "Erkner",
         "line": {
-            "mode": 8,
+            "mode": "LocalTrain",
             "name": "RE 3111"
         }
     },

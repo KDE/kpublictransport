@@ -81,6 +81,13 @@ QJsonObject Json::toJson(const QMetaObject *mo, const void *elem)
             continue;
         }
 
+        if (prop.isEnumType()) {
+            const auto key = prop.readOnGadget(elem).toInt();
+            const auto value = prop.enumerator().valueToKey(key);
+            obj.insert(QString::fromUtf8(prop.name()), QString::fromUtf8(value));
+            continue;
+        }
+
         const auto v = variantToJson(prop.readOnGadget(elem));
         if (!v.isNull()) {
             obj.insert(QString::fromUtf8(prop.name()), v);
@@ -129,6 +136,12 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
 
         const auto prop = mo->property(idx);
         if (!prop.isStored()) {
+            continue;
+        }
+
+        if (prop.isEnumType() && it.value().isString()) {
+            const auto key = prop.enumerator().keyToValue(it.value().toString().toUtf8().constData());
+            prop.writeOnGadget(elem, key);
             continue;
         }
 

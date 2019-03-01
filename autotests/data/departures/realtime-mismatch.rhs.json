@@ -4,7 +4,7 @@
     "route": {
         "direction": "Köln Hauptbahnhof",
         "line": {
-            "mode": 9,
+            "mode": "LongDistanceTrain",
             "name": "ICE 950"
         }
     },

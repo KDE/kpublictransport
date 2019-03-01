@@ -7,11 +7,11 @@
                 },
                 "name": "Zürich Flughafen"
             },
-            "mode": 1,
+            "mode": "PublicTransport",
             "route": {
                 "direction": "Genève-Aéroport",
                 "line": {
-                    "mode": 9,
+                    "mode": "LongDistanceTrain",
                     "name": "IC 722"
                 }
             },
