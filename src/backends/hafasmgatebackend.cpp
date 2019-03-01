@@ -86,7 +86,7 @@ bool HafasMgateBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager 
     if (!locReply) {
         return false;
     }
-    QObject::connect(locReply, &QNetworkReply::finished, [this, reply, locReply, locReq, nam]() {
+    QObject::connect(locReply, &QNetworkReply::finished, reply, [this, reply, locReply, locReq, nam]() {
         switch (locReply->error()) {
             case QNetworkReply::NoError:
             {
@@ -151,7 +151,7 @@ bool HafasMgateBackend::queryJourney(JourneyReply *reply, const QString &fromId,
         addError(reply, Reply::NotFoundError, {});
         return false;
     }
-    QObject::connect(locReply, &QNetworkReply::finished, [this, fromId, reply, locReply, locReq, nam]() {
+    QObject::connect(locReply, &QNetworkReply::finished, reply, [this, fromId, reply, locReply, locReq, nam]() {
         switch (locReply->error()) {
             case QNetworkReply::NoError:
             {
@@ -230,7 +230,7 @@ bool HafasMgateBackend::queryJourney(JourneyReply *reply, const QString &fromId,
     }
 
     auto netReply = postRequest(tripSearch, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, [netReply, reply, this]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
@@ -290,7 +290,7 @@ bool HafasMgateBackend::queryDeparture(DepartureReply *reply, QNetworkAccessMana
     if (!locReply) {
         return false;
     }
-    QObject::connect(locReply, &QNetworkReply::finished, [this, reply, locReply, locReq, nam]() {
+    QObject::connect(locReply, &QNetworkReply::finished, reply, [this, reply, locReply, locReq, nam]() {
         qDebug() << locReply->request().url();
         switch (locReply->error()) {
             case QNetworkReply::NoError:
@@ -350,7 +350,7 @@ void HafasMgateBackend::queryDeparture(DepartureReply *reply, const QString &loc
     }
 
     auto netReply = postRequest(stationBoard, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, [netReply, reply, this]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         qDebug() << netReply->request().url();
         switch (netReply->error()) {
             case QNetworkReply::NoError:
@@ -383,7 +383,7 @@ bool HafasMgateBackend::queryLocation(LocationReply *reply, QNetworkAccessManage
         return false;
     }
 
-    QObject::connect(netReply, &QNetworkReply::finished, [netReply, reply, this]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         qDebug() << netReply->request().url();
         switch (netReply->error()) {
             case QNetworkReply::NoError:

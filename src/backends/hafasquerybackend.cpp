@@ -65,7 +65,7 @@ bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessMana
     qDebug() << url;
 
     auto netReply = nam->get(QNetworkRequest(url));
-    QObject::connect(netReply, &QNetworkReply::finished, [this, netReply, reply]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         qDebug() << netReply->request().url();
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());

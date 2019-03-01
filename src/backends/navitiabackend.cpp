@@ -77,7 +77,7 @@ bool NavitiaBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *na
 
     qCDebug(Log) << "GET:" << url;
     auto netReply = nam->get(netReq);
-    QObject::connect(netReply, &QNetworkReply::finished, [reply, netReply] {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [reply, netReply] {
         switch (netReply->error()) {
             case QNetworkReply::NoError:
                 addResult(reply, NavitiaParser::parseJourneys(netReply->readAll()));
@@ -129,7 +129,7 @@ bool NavitiaBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager
     if (!locReply) {
         return false;
     }
-    QObject::connect(locReply, &QNetworkReply::finished, [this, reply, locReply, locReq, nam]() {
+    QObject::connect(locReply, &QNetworkReply::finished, reply, [this, reply, locReply, locReq, nam]() {
         qDebug() << locReply->request().url();
         switch (locReply->error()) {
             case QNetworkReply::NoError:
@@ -182,7 +182,7 @@ void NavitiaBackend::queryDeparture(DepartureReply *reply, const Location &loc, 
 
     qCDebug(Log) << "GET:" << url;
     auto netReply = nam->get(netReq);
-    QObject::connect(netReply, &QNetworkReply::finished, [netReply, reply] {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply] {
         switch (netReply->error()) {
             case QNetworkReply::NoError:
                 addResult(reply, NavitiaParser::parseDepartures(netReply->readAll()));
@@ -207,7 +207,7 @@ bool NavitiaBackend::queryLocation(LocationReply *reply, QNetworkAccessManager *
         return false;
     }
 
-    QObject::connect(netReply, &QNetworkReply::finished, [this, netReply, reply] {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         qDebug() << netReply->request().url() << netReply->errorString();
         switch (netReply->error()) {
             case QNetworkReply::NoError:
