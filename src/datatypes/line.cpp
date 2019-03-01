@@ -19,6 +19,7 @@
 #include "location.h"
 #include "datatypes_p.h"
 #include "json.h"
+#include "mergeutil_p.h"
 
 #include <QColor>
 #include <QDebug>
@@ -164,6 +165,11 @@ bool Line::isSame(const Line &lhs, const Line &rhs)
 Line Line::merge(const Line &lhs, const Line &rhs)
 {
     Line l(lhs);
+
+    // TODO this needs to deal with duplication between mode and name!
+    l.setModeString(MergeUtil::mergeString(lhs.modeString(), rhs.modeString()));
+    l.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
+
     if (!l.color().isValid() && rhs.color().isValid()) {
         l.setColor(rhs.color());
     }
@@ -223,6 +229,7 @@ Route Route::merge(const Route &lhs, const Route &rhs)
 {
     Route r(lhs);
     r.setLine(Line::merge(lhs.line(), rhs.line()));
+    r.setDirection(MergeUtil::mergeString(lhs.direction(), rhs.direction()));
     return r;
 }
 

@@ -92,6 +92,45 @@ private Q_SLOTS:
         QVERIFY(!Line::isSame(l, r));
         QVERIFY(!Line::isSame(r, l));
     }
+
+    void testLineNameMerge_data()
+    {
+        QTest::addColumn<QString>("lhsModeName");
+        QTest::addColumn<QString>("lhsName");
+        QTest::addColumn<QString>("rhsModeName");
+        QTest::addColumn<QString>("rhsName");
+        QTest::addColumn<QString>("resModeName");
+        QTest::addColumn<QString>("resName");
+
+        QTest::newRow("identical") << s("S") << s("7") << s("S") << s("7") << s("S") << s("7");
+        QTest::newRow("space") << QString() << s("S7") << QString() << s("S 7") << QString() << s("S 7");
+        QTest::newRow("line vs vehicle") << QString() << s("RB 14") << QString() << s("RB 12345") << QString() << s("RB 12345");
+    }
+
+    void testLineNameMerge()
+    {
+        QFETCH(QString, lhsModeName);
+        QFETCH(QString, lhsName);
+        QFETCH(QString, rhsModeName);
+        QFETCH(QString, rhsName);
+        QFETCH(QString, resModeName);
+        QFETCH(QString, resName);
+
+        Line l, r;
+        l.setModeString(lhsModeName);
+        l.setName(lhsName);
+        r.setModeString(rhsModeName);
+        r.setName(rhsName);
+
+        const auto mergeL2R = Line::merge(l, r);
+        QCOMPARE(mergeL2R.modeString(), resModeName);
+        QCOMPARE(mergeL2R.name(), resName);
+
+        const auto mergeR2L = Line::merge(r, l);
+        QCOMPARE(mergeR2L.modeString(), resModeName);
+        QCOMPARE(mergeR2L.name(), resName);
+    }
+
 };
 
 QTEST_GUILESS_MAIN(LineTest)
