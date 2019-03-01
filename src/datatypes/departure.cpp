@@ -18,6 +18,7 @@
 #include "departure.h"
 #include "datatypes_p.h"
 #include "json.h"
+#include "mergeutil_p.h"
 
 #include <QDateTime>
 
@@ -182,18 +183,13 @@ bool Departure::isSame(const Departure &lhs, const Departure &rhs)
 Departure Departure::merge(const Departure &lhs, const Departure &rhs)
 {
     auto dep = lhs;
-    if (!dep.scheduledDepartureTime().isValid() && rhs.scheduledDepartureTime().isValid()) {
-        dep.setScheduledDepartureTime(rhs.scheduledDepartureTime());
-    }
-    if (!dep.hasExpectedDepartureTime() && rhs.hasExpectedDepartureTime()) {
-        dep.setExpectedDepartureTime(rhs.expectedDepartureTime());
-    }
-    if (!dep.scheduledArrivalTime().isValid() && rhs.scheduledArrivalTime().isValid()) {
-        dep.setScheduledArrivalTime(rhs.scheduledArrivalTime());
-    }
-    if (!dep.hasExpectedArrivalTime() && rhs.hasExpectedArrivalTime()) {
-        dep.setExpectedArrivalTime(rhs.expectedArrivalTime());
-    }
+
+    using namespace MergeUtil;
+    dep.setScheduledDepartureTime(mergeDateTime(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
+    dep.setExpectedDepartureTime(mergeDateTime(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
+    dep.setScheduledArrivalTime(mergeDateTime(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
+    dep.setExpectedArrivalTime(mergeDateTime(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
+
     if (dep.scheduledPlatform().isEmpty() && !rhs.scheduledPlatform().isEmpty()) {
         dep.setScheduledPlatform(rhs.scheduledPlatform());
     }

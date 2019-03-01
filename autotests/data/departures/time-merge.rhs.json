@@ -1,0 +1,24 @@
+{
+    "expectedDepartureTime": {
+        "timezone": "Europe/Berlin",
+        "value": "2018-02-10T19:02:00+01:00"
+    },
+    "route": {
+        "direction": "U Rudow",
+        "line": {
+            "color": "#a61680",
+            "mode": "Bus",
+            "name": "X7",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledDepartureTime": "2018-02-10T19:02:00",
+    "stopPoint": {
+        "identifier": {
+            "vbb": "900260024"
+        },
+        "latitude": 52.389041900634766,
+        "longitude": 13.519524574279785,
+        "name": "Flughafen Schönefeld Terminal (Airport)"
+    }
+}
