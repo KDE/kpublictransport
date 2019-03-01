@@ -62,10 +62,14 @@ private Q_SLOTS:
         QVERIFY(Journey::isSame(rhs, lhs));
 
         const auto mergedL2R = Journey::merge(lhs, rhs);
-        qDebug().noquote() << QJsonDocument(Journey::toJson(mergedL2R)).toJson();
+        if (Journey::toJson(mergedL2R) != expected.object()) {
+            qDebug().noquote() << QJsonDocument(Journey::toJson(mergedL2R)).toJson();
+        }
         QCOMPARE(QJsonDocument(Journey::toJson(mergedL2R)), expected);
         const auto mergedR2L = Journey::merge(rhs, lhs);
-        qDebug().noquote() << QJsonDocument(Journey::toJson(mergedR2L)).toJson();
+        if (Journey::toJson(mergedR2L) != expected.object()) {
+            qDebug().noquote() << QJsonDocument(Journey::toJson(mergedR2L)).toJson();
+        }
         QCOMPARE(QJsonDocument(Journey::toJson(mergedR2L)), expected);
     }
 };

@@ -63,10 +63,14 @@ private Q_SLOTS:
 
         // TODO: merging is not yet properly symmetric
         const auto mergedL2R = Departure::merge(lhs, rhs);
-        qDebug().noquote() << QJsonDocument(Departure::toJson(mergedL2R)).toJson();
+        if (Departure::toJson(mergedL2R) != expected.object()) {
+            qDebug().noquote() << QJsonDocument(Departure::toJson(mergedL2R)).toJson();
+        }
         //QCOMPARE(QJsonDocument(Departure::toJson(mergedL2R)), expected);
         const auto mergedR2L = Departure::merge(rhs, lhs);
-        qDebug().noquote() << QJsonDocument(Departure::toJson(mergedR2L)).toJson();
+        if (Departure::toJson(mergedR2L) != expected.object()) {
+            qDebug().noquote() << QJsonDocument(Departure::toJson(mergedR2L)).toJson();
+        }
         //QCOMPARE(QJsonDocument(Departure::toJson(mergedR2L)), expected);
     }
 };
