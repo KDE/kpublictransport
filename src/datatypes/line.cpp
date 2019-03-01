@@ -149,9 +149,25 @@ void Line::setModeString(const QString &modeString)
     d->modeString = modeString;
 }
 
+static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
+{
+    if (lhs == rhs || lhs == Line::Unknown || rhs == Line::Unknown) {
+        return true;
+    }
+
+    if (lhs == Line::Train) {
+        return rhs == Line::LocalTrain || rhs == Line::LongDistanceTrain;
+    }
+    if (rhs == Line::Train) {
+        return lhs == Line::LocalTrain || lhs == Line::LongDistanceTrain;
+    }
+
+    return false;
+}
+
 bool Line::isSame(const Line &lhs, const Line &rhs)
 {
-    if (lhs.mode() != rhs.mode() && lhs.mode() != Unknown && rhs.mode() != Unknown) {
+    if (!isCompatibleMode(lhs.mode(), rhs.mode())) {
         return false;
     }
 
@@ -176,7 +192,7 @@ Line Line::merge(const Line &lhs, const Line &rhs)
     if (!l.textColor().isValid() && rhs.textColor().isValid()) {
         l.setTextColor(rhs.textColor());
     }
-    if (l.mode() == Unknown) {
+    if (l.mode() == Unknown || (l.mode() == Train && rhs.mode() != Unknown)) {
         l.setMode(rhs.mode());
     }
     return l;

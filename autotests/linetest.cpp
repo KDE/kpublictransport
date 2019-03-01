@@ -131,6 +131,33 @@ private Q_SLOTS:
         QCOMPARE(mergeR2L.name(), resName);
     }
 
+    void testLineModeMerge_data()
+    {
+        QTest::addColumn<Line::Mode>("lhsMode");
+        QTest::addColumn<Line::Mode>("rhsMode");
+        QTest::addColumn<Line::Mode>("mergedMode");
+
+        QTest::newRow("identical") << Line::Train << Line::Train << Line::Train;
+        QTest::newRow("local train") << Line::LocalTrain << Line::Train << Line::LocalTrain;
+        QTest::newRow("long distance train") << Line::LongDistanceTrain << Line::Train << Line::LongDistanceTrain;
+        QTest::newRow("one unknown") << Line::Unknown << Line::Train << Line::Train;
+    }
+
+    void testLineModeMerge()
+    {
+        QFETCH(Line::Mode, lhsMode);
+        QFETCH(Line::Mode, rhsMode);
+        QFETCH(Line::Mode, mergedMode);
+
+        Line l, r;
+        l.setMode(lhsMode);
+        r.setMode(rhsMode);
+
+        QVERIFY(Line::isSame(l, r));
+        QVERIFY(Line::isSame(r, l));
+        QCOMPARE(Line::merge(l, r).mode(), mergedMode);
+        QCOMPARE(Line::merge(r, l).mode(), mergedMode);
+    }
 };
 
 QTEST_GUILESS_MAIN(LineTest)
