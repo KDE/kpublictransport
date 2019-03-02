@@ -36,8 +36,9 @@ class KPUBLICTRANSPORT_EXPORT Location
     KPUBLICTRANSPORT_GADGET(Location)
     /** Human-readable name of the location. */
     Q_PROPERTY(QString name READ name WRITE setName)
-
+    /** Latitude of the location, in degree, NaN if unknown. */
     Q_PROPERTY(float latitude READ latitude WRITE setLatitude)
+    /** Longitude of the location, in degree, NaN if unknown. */
     Q_PROPERTY(float longitude READ longitude WRITE setLongitude)
 
     // TODO: type, id, address

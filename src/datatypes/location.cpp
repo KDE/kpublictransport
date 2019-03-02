@@ -214,6 +214,12 @@ static QString applyTransliterations(const QString &s)
 
 bool Location::isSame(const Location &lhs, const Location &rhs)
 {
+    const auto dist = Location::distance(lhs.latitude(), lhs.longitude(), rhs.latitude(), rhs.longitude());
+    // further than 1km apart is certainly not the same
+    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist > 1000) {
+        return false;
+    }
+
     // ids
     const auto lhsIds = lhs.identifiers();
     for (auto it = lhsIds.constBegin(); it != lhsIds.constEnd(); ++it) {
@@ -227,8 +233,8 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return true;
     }
 
-    // coordinates: anything less than 10m apart is assumed to be the same
-    if (lhs.hasCoordinate() && rhs.hasCoordinate() && distance(lhs.latitude(), lhs.longitude(), rhs.latitude(), rhs.longitude()) < 10) {
+    // anything less than 10m apart is assumed to be the same
+    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < 10) {
         return true;
     }
 
@@ -256,6 +262,18 @@ bool Location::isSameName(const QString &lhs, const QString &rhs)
     return lhsNormalized == rhsNormalized;
 }
 
+static float mergeCoordinate(float lhs, float rhs)
+{
+    if (std::isnan(lhs)) {
+        return rhs;
+    }
+    if (std::isnan(rhs)) {
+        return lhs;
+    }
+
+    return (lhs + rhs) / 2.0;
+}
+
 Location Location::merge(const Location &lhs, const Location &rhs)
 {
     Location l(lhs);
@@ -277,6 +295,9 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     if (!lhs.timeZone().isValid()) {
         l.setTimeZone(rhs.timeZone());
     }
+
+    l.setLatitude(mergeCoordinate(lhs.latitude(), rhs.latitude()));
+    l.setLongitude(mergeCoordinate(lhs.longitude(), rhs.longitude()));
 
     return l;
 }

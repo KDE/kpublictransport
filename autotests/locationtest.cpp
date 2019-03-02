@@ -104,6 +104,30 @@ private Q_SLOTS:
         QCOMPARE(Location::merge(l, r).name(), result);
         QCOMPARE(Location::merge(r, l).name(), result);
     }
+
+    void testCoordinates()
+    {
+        Location l, r;
+        l.setName(QStringLiteral("Berlin"));
+        r.setName(QStringLiteral("Berlin"));
+
+        l.setCoordinate(52.555, 13.555);
+        QVERIFY(Location::isSame(l, r));
+        QVERIFY(Location::isSame(r, l));
+
+        r.setCoordinate(52.557, 13.557);
+        QVERIFY(Location::isSame(l, r));
+        QVERIFY(Location::isSame(r, l));
+
+        QVERIFY(std::abs(Location::merge(l, r).latitude() - 52.556) < 0.001);
+        QVERIFY(std::abs(Location::merge(r, l).latitude() - 52.556) < 0.001);
+        QVERIFY(std::abs(Location::merge(l, r).longitude() - 13.556) < 0.001);
+        QVERIFY(std::abs(Location::merge(r, l).longitude() - 13.556) < 0.001);
+
+        r.setCoordinate(-52.5, 135.5);
+        QVERIFY(!Location::isSame(l, r));
+        QVERIFY(!Location::isSame(r, l));
+    }
 };
 
 QTEST_GUILESS_MAIN(LocationTest)
