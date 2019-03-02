@@ -27,7 +27,10 @@ namespace KPublicTransport {
 namespace MergeUtil
 {
     /** Assumes lhs == rhs if both sides are valid, and prefers values with timezone information. */
-    QDateTime mergeDateTime(const QDateTime &lhs, const QDateTime &rhs);
+    QDateTime mergeDateTimeEqual(const QDateTime &lhs, const QDateTime &rhs);
+
+    /** Takes the later time if both sides are valid, and tries to preserve timezone information. */
+    QDateTime mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs);
 
     /** Takes the longer input string. */
     QString mergeString(const QString &lhs, const QString &rhs);

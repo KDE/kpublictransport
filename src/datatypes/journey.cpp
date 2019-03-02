@@ -261,10 +261,10 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 {
     using namespace MergeUtil;
     auto res = lhs;
-    res.setScheduledDepartureTime(mergeDateTime(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
-    res.setExpectedDepartureTime(mergeDateTime(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
-    res.setScheduledArrivalTime(mergeDateTime(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
-    res.setExpectedArrivalTime(mergeDateTime(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
+    res.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
+    res.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
+    res.setScheduledArrivalTime(mergeDateTimeEqual(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
+    res.setExpectedArrivalTime(mergeDateTimeMax(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
 
     if (res.expectedDeparturePlatform().isEmpty()) {
         res.setExpectedDeparturePlatform(rhs.expectedDeparturePlatform());

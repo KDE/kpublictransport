@@ -19,10 +19,11 @@
 
 #include <QDateTime>
 #include <QString>
+#include <QTimeZone>
 
 using namespace KPublicTransport;
 
-QDateTime MergeUtil::mergeDateTime(const QDateTime &lhs, const QDateTime &rhs)
+QDateTime MergeUtil::mergeDateTimeEqual(const QDateTime &lhs, const QDateTime &rhs)
 {
     // if only one side is valid, prefer that one
     if (!lhs.isValid()) {
@@ -37,6 +38,29 @@ QDateTime MergeUtil::mergeDateTime(const QDateTime &lhs, const QDateTime &rhs)
         return rhs;
     }
     return lhs;
+}
+
+QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs)
+{
+    // if only one side is valid, prefer that one
+    if (!lhs.isValid()) {
+        return rhs;
+    }
+    if (!rhs.isValid()) {
+        return lhs;
+    }
+
+    auto dt = std::max(lhs, rhs);
+    if (dt.timeSpec() == Qt::TimeZone) {
+        return dt;
+    }
+
+    if (lhs.timeSpec() == Qt::TimeZone) {
+        dt.setTimeZone(lhs.timeZone());
+    } else if (rhs.timeSpec() == Qt::TimeZone) {
+        dt.setTimeZone(rhs.timeZone());
+    }
+    return dt;
 }
 
 QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)

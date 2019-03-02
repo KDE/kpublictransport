@@ -185,10 +185,10 @@ Departure Departure::merge(const Departure &lhs, const Departure &rhs)
     auto dep = lhs;
 
     using namespace MergeUtil;
-    dep.setScheduledDepartureTime(mergeDateTime(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
-    dep.setExpectedDepartureTime(mergeDateTime(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
-    dep.setScheduledArrivalTime(mergeDateTime(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
-    dep.setExpectedArrivalTime(mergeDateTime(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
+    dep.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
+    dep.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
+    dep.setScheduledArrivalTime(mergeDateTimeEqual(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
+    dep.setExpectedArrivalTime(mergeDateTimeMax(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
 
     if (dep.scheduledPlatform().isEmpty() && !rhs.scheduledPlatform().isEmpty()) {
         dep.setScheduledPlatform(rhs.scheduledPlatform());
