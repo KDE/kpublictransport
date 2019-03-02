@@ -369,23 +369,56 @@ int Journey::numberOfChanges() const
 
 bool Journey::isSame(const Journey &lhs, const Journey &rhs)
 {
-    // ### we can make this more clever by ignoring transit elements for example
-    // doing that will need changes below too!
-    if (lhs.sections().size() != rhs.sections().size()) {
-        return false;
+    auto lIt = lhs.sections().begin();
+    auto rIt = rhs.sections().begin();
+
+    while (lIt != lhs.sections().end() || rIt != rhs.sections().end()) {
+        // ignore non-transport sections
+        if (lIt != lhs.sections().end() && (*lIt).mode() != JourneySection::PublicTransport) {
+            ++lIt;
+            continue;
+        }
+        if (rIt != rhs.sections().end() && (*rIt).mode() != JourneySection::PublicTransport) {
+            ++rIt;
+            continue;
+        }
+
+        if (lIt == lhs.sections().end() || rIt == rhs.sections().end()) {
+            return false;
+        }
+
+        if (!JourneySection::isSame(*lIt, *rIt)) {
+            return false;
+        }
+
+        ++lIt;
+        ++rIt;
     }
-    return std::equal(lhs.sections().begin(), lhs.sections().end(), rhs.sections().begin(), [](const auto &lhs, const auto &rhs) {
-        return JourneySection::isSame(lhs, rhs);
-    });
+
+    Q_ASSERT(lIt == lhs.sections().end() && rIt == rhs.sections().end());
+    return true;
 }
 
 Journey Journey::merge(const Journey &lhs, const Journey &rhs)
 {
-    // ### see above
     std::vector<JourneySection> sections;
-    sections.reserve(lhs.sections().size());
-    for (auto lit = lhs.sections().begin(), rit = rhs.sections().begin(); lit != lhs.sections().end(); ++lit, ++rit) {
-        sections.push_back(JourneySection::merge(*lit, *rit));
+    sections.reserve(lhs.sections().size() + rhs.sections().size());
+    std::copy(lhs.sections().begin(), lhs.sections().end(), std::back_inserter(sections));
+    std::copy(rhs.sections().begin(), rhs.sections().end(), std::back_inserter(sections));
+    std::sort(sections.begin(), sections.end(), [](const auto &lSec, const auto &rSec) {
+        return lSec.scheduledDepartureTime() < rSec.scheduledDepartureTime();
+    });
+
+    for (auto it = sections.begin(); it != sections.end(); ++it) {
+        const auto nextIt = it + 1;
+        if (nextIt == sections.end()) {
+            break;
+        }
+
+        if (JourneySection::isSame(*it, *nextIt)) {
+            *it = JourneySection::merge(*it, *nextIt);
+            sections.erase(nextIt);
+        }
     }
 
     Journey res;

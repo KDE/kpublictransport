@@ -1,0 +1,62 @@
+{
+    "sections": [
+        {
+            "from": {
+                "identifier": {
+                    "ibnr": "8503016"
+                },
+                "latitude": 47.45037841796875,
+                "longitude": 8.5623779296875,
+                "name": "Zürich Flughafen"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Brig",
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "IC 824"
+                }
+            },
+            "scheduledArrivalTime": "2019-03-02T18:02:00",
+            "scheduledDeparturePlatform": "3",
+            "scheduledDepartureTime": "2019-03-02T15:46:00",
+            "to": {
+                "identifier": {
+                    "ibnr": "8501605"
+                },
+                "latitude": 46.29402542114258,
+                "longitude": 7.881444931030273,
+                "name": "Visp"
+            }
+        },
+        {
+            "from": {
+                "identifier": {
+                    "ibnr": "8501605"
+                },
+                "latitude": 46.29402542114258,
+                "longitude": 7.881444931030273,
+                "name": "Visp"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Zermatt",
+                "line": {
+                    "mode": "LocalTrain",
+                    "name": "R 257"
+                }
+            },
+            "scheduledArrivalTime": "2019-03-02T18:54:00",
+            "scheduledDeparturePlatform": "3",
+            "scheduledDepartureTime": "2019-03-02T18:08:00",
+            "to": {
+                "identifier": {
+                    "ibnr": "8501687"
+                },
+                "latitude": 46.099334716796875,
+                "longitude": 7.781926155090332,
+                "name": "Randa"
+            }
+        }
+    ]
+}
