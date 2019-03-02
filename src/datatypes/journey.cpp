@@ -276,6 +276,9 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     res.setTo(Location::merge(lhs.to(), rhs.to()));
     res.setRoute(Route::merge(lhs.route(), rhs.route()));
 
+    res.setScheduledDeparturePlatform(mergeString(lhs.scheduledDeparturePlatform(), rhs.scheduledDeparturePlatform()));
+    res.setScheduledArrivalPlatform(mergeString(lhs.scheduledArrivalPlatform(), rhs.scheduledArrivalPlatform()));
+
     return res;
 }
 
