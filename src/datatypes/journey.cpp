@@ -285,8 +285,10 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 QJsonObject JourneySection::toJson(const JourneySection &section)
 {
     auto obj = Json::toJson(section);
-    obj.insert(QStringLiteral("from"), Location::toJson(section.from()));
-    obj.insert(QStringLiteral("to"), Location::toJson(section.to()));
+    if (section.mode() != Waiting) {
+        obj.insert(QStringLiteral("from"), Location::toJson(section.from()));
+        obj.insert(QStringLiteral("to"), Location::toJson(section.to()));
+    }
     if (section.mode() == PublicTransport) {
         obj.insert(QStringLiteral("route"), Route::toJson(section.route()));
     }
