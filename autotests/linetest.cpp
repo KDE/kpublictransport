@@ -105,6 +105,8 @@ private Q_SLOTS:
         QTest::newRow("identical") << s("S") << s("7") << s("S") << s("7") << s("S") << s("7");
         QTest::newRow("space") << QString() << s("S7") << QString() << s("S 7") << QString() << s("S 7");
         QTest::newRow("line vs vehicle") << QString() << s("RB 14") << QString() << s("RB 12345") << QString() << s("RB 12345");
+
+        QTest::newRow("mode vs name") << s("Bus") << s("X7") << QString() << s("Bus X7") << s("Bus") << s("X7");
     }
 
     void testLineNameMerge()

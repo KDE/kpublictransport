@@ -182,9 +182,11 @@ Line Line::merge(const Line &lhs, const Line &rhs)
 {
     Line l(lhs);
 
-    // TODO this needs to deal with duplication between mode and name!
     l.setModeString(MergeUtil::mergeString(lhs.modeString(), rhs.modeString()));
     l.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
+    if (l.name().startsWith(l.modeString(), Qt::CaseInsensitive)) {
+        l.setName(l.name().midRef(l.modeString().size()).trimmed().toString());
+    }
 
     if (!l.color().isValid() && rhs.color().isValid()) {
         l.setColor(rhs.color());
