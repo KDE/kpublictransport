@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_JSON_H
-#define KPUBLICTRANSPORT_JSON_H
+#ifndef KPUBLICTRANSPORT_JSON_P_H
+#define KPUBLICTRANSPORT_JSON_P_H
 
 #include <QJsonArray>
 #include <QJsonObject>
@@ -69,4 +69,4 @@ namespace Json
 
 }
 
-#endif // KPUBLICTRANSPORT_JSON_H
+#endif // KPUBLICTRANSPORT_JSON_P_H

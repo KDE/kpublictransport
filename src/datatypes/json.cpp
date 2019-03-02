@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "json.h"
+#include "json_p.h"
 
 #include <QColor>
 #include <QDateTime>

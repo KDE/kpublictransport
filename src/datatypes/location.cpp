@@ -18,7 +18,7 @@
 #include "location.h"
 
 #include "datatypes_p.h"
-#include "json.h"
+#include "json_p.h"
 #include "mergeutil_p.h"
 
 #include <QDebug>
