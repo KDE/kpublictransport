@@ -62,7 +62,7 @@ public:
         depReq.setMode(queryArrival ? DepartureRequest::QueryArrival : DepartureRequest::QueryDeparture);
 
         auto reply = ptMgr.queryDeparture(depReq);
-        QObject::connect(reply, &DepartureReply::finished, [reply, this]{
+        QObject::connect(reply, &DepartureReply::finished, this, [reply, this]{
             m_loading = false;
             emit loadingChanged();
 

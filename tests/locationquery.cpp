@@ -56,7 +56,7 @@ public:
         req.setName(name);
 
         auto reply = ptMgr.queryLocation(req);
-        QObject::connect(reply, &LocationReply::finished, [reply, this]{
+        QObject::connect(reply, &LocationReply::finished, this, [reply, this]{
             m_loading = false;
             emit loadingChanged();
 
