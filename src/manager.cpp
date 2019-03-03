@@ -47,7 +47,7 @@ static inline void initResources() {
 namespace KPublicTransport {
 class ManagerPrivate {
 public:
-    QNetworkAccessManager* nam();
+    QNetworkAccessManager* nam(QObject *parent);
     void loadNetworks();
     std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename T> std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
@@ -58,10 +58,10 @@ public:
 };
 }
 
-QNetworkAccessManager* ManagerPrivate::nam()
+QNetworkAccessManager* ManagerPrivate::nam(QObject *parent)
 {
     if (!m_nam) {
-        m_nam = new QNetworkAccessManager;
+        m_nam = new QNetworkAccessManager(parent);
     }
     return m_nam;
 }
@@ -145,8 +145,9 @@ template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwor
     return backend;
 }
 
-Manager::Manager() :
-    d(new ManagerPrivate)
+Manager::Manager(QObject *parent)
+    : QObject(parent)
+    , d(new ManagerPrivate)
 {
     initResources();
     d->loadNetworks();
@@ -154,12 +155,10 @@ Manager::Manager() :
     Cache::expire();
 }
 
-Manager::Manager(Manager&&) noexcept = default;
 Manager::~Manager() = default;
 
 void Manager::setNetworkAccessManager(QNetworkAccessManager *nam)
 {
-    // TODO delete d->nam if we created it ourselves
     d->m_nam = nam;
 }
 
@@ -170,7 +169,7 @@ void Manager::setAllowInsecureBackends(bool insecure)
 
 JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
 {
-    auto reply = new JourneyReply(req);
+    auto reply = new JourneyReply(req, const_cast<Manager*>(this));
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (backend->isLocationExcluded(req.from()) && backend->isLocationExcluded(req.to())) {
@@ -181,7 +180,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
-        if (backend->queryJourney(reply, d->nam())) {
+        if (backend->queryJourney(reply, d->nam(const_cast<Manager*>(this)))) {
             ++pendingOps;
         }
     }
@@ -191,7 +190,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
 
 DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
 {
-    auto reply = new DepartureReply(req);
+    auto reply = new DepartureReply(req, const_cast<Manager*>(this));
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (backend->isLocationExcluded(req.stop())) {
@@ -202,7 +201,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
-        if (backend->queryDeparture(reply, d->nam())) {
+        if (backend->queryDeparture(reply, d->nam(const_cast<Manager*>(this)))) {
             ++pendingOps;
         }
     }
@@ -212,7 +211,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
 
 LocationReply* Manager::queryLocation(const LocationRequest &req) const
 {
-    auto reply = new LocationReply(req);
+    auto reply = new LocationReply(req, const_cast<Manager*>(this));
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {
@@ -235,7 +234,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 break;
             case CacheHitType::Miss:
                 qCDebug(Log) << "Cache miss for backend" << backend->backendId();
-                if (backend->queryLocation(reply, d->nam())) {
+                if (backend->queryLocation(reply, d->nam(const_cast<Manager*>(this)))) {
                     ++pendingOps;
                 }
                 break;

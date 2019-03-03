@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <QObject>
+
 #include <memory>
 
 class QNetworkAccessManager;
@@ -37,13 +39,16 @@ class LocationReply;
 class LocationRequest;
 class ManagerPrivate;
 
-/** Entry point for starting public transport queries. */
-class KPUBLICTRANSPORT_EXPORT Manager
+/** Entry point for starting public transport queries.
+ *
+ *  Queries return reply objects, you are responsible for deleting those,
+ *  typically by calling deleteLater() on them after having retrieved their
+ *  result (similar to how QNetworkAccessManager works).
+ */
+class KPUBLICTRANSPORT_EXPORT Manager : public QObject
 {
 public:
-    Manager();
-    Manager(Manager&&) noexcept;
-    Manager(const Manager&) = delete;
+    explicit Manager(QObject *parent = nullptr);
     ~Manager();
 
     /** Set the network access manager to use for network operations.
