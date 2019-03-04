@@ -75,6 +75,10 @@ public:
 
     /** Compute the distance between two geo coordinates, in meters. */
     static int distance(float lat1, float lon1, float lat2, float lon2);
+    /** Computes the distance in meters between two locations.
+     *  Returns MAX_INT if one of the arguments as no coordinates set.
+     */
+    static int distance(const Location &lhs, const Location &rhs);
 
     /** Serializes one Location object to JSON. */
     static QJsonObject toJson(const Location &loc);

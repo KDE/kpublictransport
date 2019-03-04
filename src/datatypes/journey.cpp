@@ -20,6 +20,7 @@
 #include "datatypes_p.h"
 #include "mergeutil_p.h"
 
+#include <QDebug>
 #include <QVariant>
 
 using namespace KPublicTransport;
@@ -240,21 +241,30 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
 {
     if (lhs.d->mode != rhs.d->mode
         || lhs.d->scheduledDepartureTime != rhs.d->scheduledDepartureTime
-        || lhs.d->scheduledArrivalTime != rhs.d->scheduledArrivalTime
-        || !Location::isSame(lhs.d->from, rhs.d->from)
-        || !Location::isSame(lhs.d->to, rhs.d->to))
+        || lhs.d->scheduledArrivalTime != rhs.d->scheduledArrivalTime)
     {
         return false;
     }
 
-    if (Route::isSame(lhs.d->route, rhs.d->route)) {
+    const auto sameFrom = Location::isSame(lhs.d->from, rhs.d->from);
+    const auto sameTo = Location::isSame(lhs.d->to, rhs.d->to);
+    const auto sameRoute = Route::isSame(lhs.d->route, rhs.d->route);
+    if (sameFrom && sameTo && sameRoute) {
         return true;
     }
 
     // if the route didn't match exactly, same time and same platform is likely the same train
-    return Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction())
+    if (sameFrom && sameTo &&Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction())
         && lhs.scheduledDeparturePlatform() == rhs.scheduledDeparturePlatform()
-        && !lhs.scheduledDeparturePlatform().isEmpty();
+        && !lhs.scheduledDeparturePlatform().isEmpty())
+    {
+        return true;
+    }
+
+    // if the route matches, and to/from are reasonably close, consider this the same as well
+    const auto fromDist = Location::distance(lhs.from(), rhs.from());
+    const auto toDist = Location::distance(lhs.to(), rhs.to());
+    return sameRoute && (sameFrom || fromDist < 200) && (sameTo || toDist < 200);
 }
 
 JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySection &rhs)
