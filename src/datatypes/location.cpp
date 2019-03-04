@@ -249,8 +249,12 @@ bool Location::isSameName(const QString &lhs, const QString &rhs)
     // first try with stripping diacritics
     auto lhsNormalized = lhsNameFragments;
     std::for_each(lhsNormalized.begin(), lhsNormalized.end(), stripDiacritics);
+    std::sort(lhsNormalized.begin(), lhsNormalized.end());
+    lhsNormalized.erase(std::unique(lhsNormalized.begin(), lhsNormalized.end()), lhsNormalized.end());
     auto rhsNormalized = rhsNameFragments;
     std::for_each(rhsNormalized.begin(), rhsNormalized.end(), stripDiacritics);
+    std::sort(rhsNormalized.begin(), rhsNormalized.end());
+    rhsNormalized.erase(std::unique(rhsNormalized.begin(), rhsNormalized.end()), rhsNormalized.end());
 
     if (lhsNormalized == rhsNormalized) {
         return true;

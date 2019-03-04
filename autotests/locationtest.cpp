@@ -53,6 +53,7 @@ private Q_SLOTS:
         QTest::newRow("station3") << s("Berlin Schönefeld Flughafen Bhf") << s("Berlin Schönefeld Flughafen");
 
         QTest::newRow("duplicates1") << s("Paris Gare de Lyon (Paris)") << s("Paris Gare de Lyon");
+        QTest::newRow("duplicates2") << s("Gare de Saint-Rémy les Chevreuse (Saint-Rémy-lès-Chevreuse)") << s("St-Rémy-lès-Chevreuse (Saint-Rémy-lès-Chevreuse)");
 
         QTest::newRow("normalization1") << s("Boissy-St-Léger (Boissy-Saint-Léger)") << s("Boissy St Léger");
 
