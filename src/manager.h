@@ -47,6 +47,7 @@ class ManagerPrivate;
  */
 class KPUBLICTRANSPORT_EXPORT Manager : public QObject
 {
+    Q_OBJECT
 public:
     explicit Manager(QObject *parent = nullptr);
     ~Manager();
