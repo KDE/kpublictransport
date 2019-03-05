@@ -334,6 +334,6 @@ QDateTime HafasMgateParser::parseDateTime(const QString &date, const QString &ti
         dayOffset = time.leftRef(time.size() - 6).toInt();
     }
 
-    const auto dt = QDateTime::fromString(date + time.rightRef(6), QLatin1String("yyyyMMddhhmmss"));
+    const auto dt = QDateTime::fromString(date + time.rightRef(6), QStringLiteral("yyyyMMddhhmmss"));
     return dt.addDays(dayOffset);
 }

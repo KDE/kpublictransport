@@ -46,9 +46,9 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
             case QXmlStreamReader::StartElement:
                 if (reader.name() == QLatin1String("St")) {
                     stopPoint.setName(reader.attributes().value(QLatin1String("name")).toString());
-                    stopPoint.setIdentifier(QLatin1String("ibnr"), reader.attributes().value(QLatin1String("evaId")).toString());
+                    stopPoint.setIdentifier(QStringLiteral("ibnr"), reader.attributes().value(QLatin1String("evaId")).toString());
                 } else if (reader.name() == QLatin1String("Journey")) {
-                    auto dt = QDateTime::fromString(reader.attributes().value(QLatin1String("fpDate")) + reader.attributes().value(QLatin1String("fpTime")), QLatin1String("dd.MM.yyhh:mm"));
+                    auto dt = QDateTime::fromString(reader.attributes().value(QLatin1String("fpDate")) + reader.attributes().value(QLatin1String("fpTime")), QStringLiteral("dd.MM.yyhh:mm"));
                     if (dt.date().year() < 2000) {
                         dt = dt.addYears(100);
                     }

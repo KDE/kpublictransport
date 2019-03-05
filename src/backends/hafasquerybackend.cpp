@@ -53,14 +53,14 @@ bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessMana
     url.setPath(url.path() + QLatin1String("/stboard.exe/en")); // dn/nn?
 
     QUrlQuery query;
-    query.addQueryItem(QLatin1String("boardType"), request.mode() == DepartureRequest::QueryDeparture ? QLatin1String("dep") : QLatin1String("arr"));
-    query.addQueryItem(QLatin1String("disableEquivs"), QLatin1String("0"));
-    query.addQueryItem(QLatin1String("maxJourneys"), QLatin1String("12"));
-    query.addQueryItem(QLatin1String("input"), stationId);
-    query.addQueryItem(QLatin1String("date"), request.dateTime().date().toString(QLatin1String("dd.MM.yy")));
-    query.addQueryItem(QLatin1String("time"), request.dateTime().time().toString(QLatin1String("hh:mm")));
-    query.addQueryItem(QLatin1String("L"), QLatin1String("vs_java3"));
-    query.addQueryItem(QLatin1String("start"), QLatin1String("yes"));
+    query.addQueryItem(QStringLiteral("boardType"), request.mode() == DepartureRequest::QueryDeparture ? QStringLiteral("dep") : QStringLiteral("arr"));
+    query.addQueryItem(QStringLiteral("disableEquivs"), QStringLiteral("0"));
+    query.addQueryItem(QStringLiteral("maxJourneys"), QStringLiteral("12"));
+    query.addQueryItem(QStringLiteral("input"), stationId);
+    query.addQueryItem(QStringLiteral("date"), request.dateTime().date().toString(QStringLiteral("dd.MM.yy")));
+    query.addQueryItem(QStringLiteral("time"), request.dateTime().time().toString(QStringLiteral("hh:mm")));
+    query.addQueryItem(QStringLiteral("L"), QStringLiteral("vs_java3"));
+    query.addQueryItem(QStringLiteral("start"), QStringLiteral("yes"));
     url.setQuery(query);
     qDebug() << url;
 

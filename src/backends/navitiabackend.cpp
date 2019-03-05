@@ -139,7 +139,7 @@ bool NavitiaBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager
                 if (!res.empty()) {
                     queryDeparture(reply, res[0], nam);
                 } else {
-                    addError(reply, Reply::NotFoundError, QLatin1String("Location query found no results."));
+                    addError(reply, Reply::NotFoundError, QStringLiteral("Location query found no results."));
                 }
                 break;
             }
