@@ -166,8 +166,8 @@ void Departure::setStopPoint(const Location &stopPoint)
 
 bool Departure::isSame(const Departure &lhs, const Departure &rhs)
 {
-    if ((lhs.scheduledDepartureTime().isValid() && lhs.scheduledDepartureTime() != rhs.scheduledDepartureTime()) ||
-        (lhs.scheduledArrivalTime().isValid() && lhs.scheduledArrivalTime() != rhs.scheduledArrivalTime())) {
+    if ((lhs.scheduledDepartureTime().isValid() && !MergeUtil::isSameTime(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime())) ||
+        (lhs.scheduledArrivalTime().isValid() && !MergeUtil::isSameTime(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()))) {
         return false;
     }
 

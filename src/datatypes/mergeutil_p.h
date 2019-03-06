@@ -26,6 +26,15 @@ namespace KPublicTransport {
 /** Utilities for merging objects. */
 namespace MergeUtil
 {
+    /** Compare the two given times.
+     *  Additionally to equal comparison as done by QDateTime, this also considers
+     *  The case of comparing a time with timezone and one specified in local time *at the destination*
+     *  without timezone. Ie. this assumes that the two times you are comparing are for the same location.
+     */
+    bool isSameTime(const QDateTime &lhs, const QDateTime &rhs);
+    /** Same as the above, just for lessThan comparison. */
+    bool isBefore(const QDateTime &lhs, const QDateTime &rhs);
+
     /** Assumes lhs == rhs if both sides are valid, and prefers values with timezone information. */
     QDateTime mergeDateTimeEqual(const QDateTime &lhs, const QDateTime &rhs);
 

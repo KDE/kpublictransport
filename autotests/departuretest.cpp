@@ -38,6 +38,11 @@ private:
     }
 
 private Q_SLOTS:
+    void initTestCase()
+    {
+        qputenv("TZ", "Europe/Helsinki"); // something exotic, ie. something not used in the test data
+    }
+
     void testDepartureMerge_data()
     {
         QTest::addColumn<QString>("baseName");

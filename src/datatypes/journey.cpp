@@ -240,8 +240,8 @@ bool JourneySection::arrivalPlatformChanged() const
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
     if (lhs.d->mode != rhs.d->mode
-        || lhs.d->scheduledDepartureTime != rhs.d->scheduledDepartureTime
-        || lhs.d->scheduledArrivalTime != rhs.d->scheduledArrivalTime)
+        || !MergeUtil::isSameTime(lhs.d->scheduledDepartureTime, rhs.d->scheduledDepartureTime)
+        || !MergeUtil::isSameTime(lhs.d->scheduledArrivalTime, rhs.d->scheduledArrivalTime))
     {
         return false;
     }
@@ -254,7 +254,7 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
     }
 
     // if the route didn't match exactly, same time and same platform is likely the same train
-    if (sameFrom && sameTo &&Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction())
+    if (sameFrom && sameTo && Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction())
         && lhs.scheduledDeparturePlatform() == rhs.scheduledDeparturePlatform()
         && !lhs.scheduledDeparturePlatform().isEmpty())
     {
@@ -416,7 +416,7 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
     std::copy(lhs.sections().begin(), lhs.sections().end(), std::back_inserter(sections));
     std::copy(rhs.sections().begin(), rhs.sections().end(), std::back_inserter(sections));
     std::sort(sections.begin(), sections.end(), [](const auto &lSec, const auto &rSec) {
-        return lSec.scheduledDepartureTime() < rSec.scheduledDepartureTime();
+        return MergeUtil::isBefore(lSec.scheduledDepartureTime(), rSec.scheduledDepartureTime());
     });
 
     for (auto it = sections.begin(); it != sections.end(); ++it) {

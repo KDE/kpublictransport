@@ -18,10 +18,43 @@
 #include "mergeutil_p.h"
 
 #include <QDateTime>
+#include <QDebug>
 #include <QString>
 #include <QTimeZone>
 
 using namespace KPublicTransport;
+
+bool MergeUtil::isSameTime(const QDateTime& lhs, const QDateTime& rhs)
+{
+    if (lhs.timeSpec() == Qt::LocalTime && rhs.timeSpec() == Qt::TimeZone) {
+        auto dt = lhs;
+        dt.setTimeZone(rhs.timeZone());
+        return dt == rhs;
+    }
+    if (lhs.timeSpec() == Qt::TimeZone && rhs.timeSpec() == Qt::LocalTime) {
+        auto dt = rhs;
+        dt.setTimeZone(lhs.timeZone());
+        return dt == lhs;
+    }
+
+    return lhs == rhs;
+}
+
+bool MergeUtil::isBefore(const QDateTime& lhs, const QDateTime& rhs)
+{
+    if (lhs.timeSpec() == Qt::LocalTime && rhs.timeSpec() == Qt::TimeZone) {
+        auto dt = lhs;
+        dt.setTimeZone(rhs.timeZone());
+        return dt < rhs;
+    }
+    if (lhs.timeSpec() == Qt::TimeZone && rhs.timeSpec() == Qt::LocalTime) {
+        auto dt = rhs;
+        dt.setTimeZone(lhs.timeZone());
+        return lhs < dt;
+    }
+
+    return lhs < rhs;
+}
 
 QDateTime MergeUtil::mergeDateTimeEqual(const QDateTime &lhs, const QDateTime &rhs)
 {
@@ -50,7 +83,7 @@ QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs
         return lhs;
     }
 
-    auto dt = std::max(lhs, rhs);
+    auto dt = isBefore(lhs, rhs) ? rhs : lhs;
     if (dt.timeSpec() == Qt::TimeZone) {
         return dt;
     }
