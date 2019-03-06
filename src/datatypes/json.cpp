@@ -55,8 +55,8 @@ static QJsonValue variantToJson(const QVariant &v)
             }
             if (dt.timeSpec() == Qt::TimeZone) {
                 QJsonObject dtObj;
-                dtObj.insert(QLatin1String("value"), dt.toString(Qt::ISODate));
-                dtObj.insert(QLatin1String("timezone"), QString::fromUtf8(dt.timeZone().id()));
+                dtObj.insert(QStringLiteral("value"), dt.toString(Qt::ISODate));
+                dtObj.insert(QStringLiteral("timezone"), QString::fromUtf8(dt.timeZone().id()));
                 return dtObj;
             }
             return v.toDateTime().toString(Qt::ISODate);

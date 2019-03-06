@@ -254,7 +254,7 @@ Route Route::merge(const Route &lhs, const Route &rhs)
 QJsonObject Route::toJson(const Route &r)
 {
     auto obj = Json::toJson(r);
-    obj.insert(QLatin1String("line"), Line::toJson(r.line()));
+    obj.insert(QStringLiteral("line"), Line::toJson(r.line()));
     return obj;
 }
 

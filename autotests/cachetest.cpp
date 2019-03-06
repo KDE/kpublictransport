@@ -47,17 +47,17 @@ private Q_SLOTS:
         auto entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Miss);
 
-        Cache::addNegativeLocationCacheEntry(QLatin1String("unittest"), req.cacheKey());
+        Cache::addNegativeLocationCacheEntry(QStringLiteral("unittest"), req.cacheKey());
         entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Negative);
 
         Location loc;
-        loc.setName(QLatin1String("Randa"));
+        loc.setName(QStringLiteral("Randa"));
         loc.setCoordinate(7.6, 46.1);
-        loc.setIdentifier(QLatin1String("uic"), QLatin1String("85xxxxx"));
+        loc.setIdentifier(QStringLiteral("uic"), QStringLiteral("85xxxxx"));
 
-        Cache::addLocationCacheEntry(QLatin1String("unittest"), req.cacheKey(), {loc});
-        entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
+        Cache::addLocationCacheEntry(QStringLiteral("unittest"), req.cacheKey(), {loc});
+        entry = Cache::lookupLocation(QStringLiteral("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Positive);
         QCOMPARE(entry.data.size(), 1);
         QCOMPARE(entry.data[0].name(), loc.name());
@@ -79,7 +79,7 @@ private Q_SLOTS:
         }
         {
             LocationRequest req;
-            req.setName(QLatin1String("Randa"));
+            req.setName(QStringLiteral("Randa"));
             QCOMPARE(req.cacheKey(), QLatin1String("nanxnan_randa"));
         }
     }
