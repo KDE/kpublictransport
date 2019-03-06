@@ -77,6 +77,7 @@ public:
                 engine->rootContext()->setContextProperty(QStringLiteral("_journeys"), l);
 
                 QStringList journeyTitles;
+                journeyTitles.reserve(m_journeys.size());
                 for (const auto &journey : m_journeys) {
                     const QString t = QLocale().toString(journey.scheduledDepartureTime(), QLocale::ShortFormat) + QLatin1String(" (") +
                         QString::number(journey.duration()/60) + QLatin1String("min) - ") + QString::number(journey.numberOfChanges()) + QLatin1String(" change(s)");
