@@ -98,5 +98,10 @@ QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs
 
 QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
 {
+    // ### this is deterministic, but not necessarily ideal
+    // we could prefer mixed case over all caps, unicode over transliterated, etc
+    if (lhs.size() == rhs.size()) {
+        return lhs < rhs ? lhs : rhs;
+    }
     return lhs.size() < rhs.size() ? rhs : lhs;
 }

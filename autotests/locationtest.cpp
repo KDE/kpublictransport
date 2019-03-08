@@ -86,6 +86,7 @@ private Q_SLOTS:
 
         QTest::newRow("identical") << s("Berlin Hbf") << s("Berlin Hbf") << s("Berlin Hbf");
         QTest::newRow("abbreviation") << s("Berlin Hbf") << s("Berlin Hauptbahnhof") << s("Berlin Hauptbahnhof");
+        QTest::newRow("separators") << s("Châtelet les Halles (Paris)") << s("Châtelet-les-Halles (Paris)") << s("Châtelet les Halles (Paris)");
 
         // TODO stuff that doesn't work as good as it could be yet
         //QTest::newRow("all caps") << s("BERLIN") << s("Berlin") << s("Berlin");
