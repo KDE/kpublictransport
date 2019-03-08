@@ -42,7 +42,7 @@ static QDateTime parseDateTime(const QJsonValue &v, const QTimeZone &tz)
 struct {
     const char *name;
     Line::Mode mode;
-} static const navitia_phyiscal_modes[] = {
+} static const navitia_physical_modes[] = {
     { "Air", Line::Air },
     { "Boat", Line::Boat },
     { "Bus", Line::Bus },
@@ -67,7 +67,7 @@ static Line::Mode parsePhysicalMode(const QString &mode)
     if (!modeStr.startsWith("physical_mode:")) {
         return Line::Unknown;
     }
-    for (auto it = std::begin(navitia_phyiscal_modes); it != std::end(navitia_phyiscal_modes); ++it) {
+    for (auto it = std::begin(navitia_physical_modes); it != std::end(navitia_physical_modes); ++it) {
         if (strcmp(modeStr.constData() + 14, it->name) == 0) {
             return it->mode;
         }

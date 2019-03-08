@@ -173,7 +173,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (backend->isLocationExcluded(req.from()) && backend->isLocationExcluded(req.to())) {
-            qCDebug(Log) << "Skiping backend based on location filter:" << backend->backendId();
+            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
         if (!backend->isSecure() && !d->m_allowInsecure) {
@@ -194,7 +194,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (backend->isLocationExcluded(req.stop())) {
-            qCDebug(Log) << "Skiping backend based on location filter:" << backend->backendId();
+            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
         if (!backend->isSecure() && !d->m_allowInsecure) {
@@ -215,7 +215,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {
-            qCDebug(Log) << "Skiping backend based on location filter:" << backend->backendId();
+            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
         if (!backend->isSecure() && !d->m_allowInsecure) {

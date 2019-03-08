@@ -39,7 +39,7 @@ public:
     AbstractBackend();
     virtual ~AbstractBackend();
 
-    /** Identifer for this backend.
+    /** Identifier for this backend.
      *  Use e.g. for distinguishing backend-specific cache locations etc.
      */
     QString backendId() const;
