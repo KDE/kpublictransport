@@ -29,7 +29,7 @@ using namespace KPublicTransport;
 namespace KPublicTransport {
 class LinePrivate : public QSharedData {
 public:
-    Line::Mode mode;
+    Line::Mode mode = Line::Unknown;
     QString modeString;
     QString name;
     QColor color;
