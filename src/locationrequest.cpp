@@ -87,7 +87,7 @@ QString LocationRequest::cacheKey() const
     if (hasCoordinate()) {
         return QString::number((int)(latitude() * 1000000)) + QLatin1Char('x') + QString::number((int)(longitude() * 1000000))
             + QLatin1Char('_') + normalizedName;
-    } else {
-        return QLatin1String("nanxnan_") + normalizedName;
     }
+
+    return QLatin1String("nanxnan_") + normalizedName;
 }

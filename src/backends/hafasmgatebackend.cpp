@@ -73,7 +73,7 @@ bool HafasMgateBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager 
             addError(reply, Reply::NotFoundError, {});
             return false;
         case CacheHitType::Positive:
-            if (cacheEntry.data.size() >= 1) {
+            if (!cacheEntry.data.empty()) {
                 return queryJourney(reply, cacheEntry.data[0].identifier(locationIdentifierType()), nam);
             }
             break;
@@ -137,7 +137,7 @@ bool HafasMgateBackend::queryJourney(JourneyReply *reply, const QString &fromId,
             addError(reply, Reply::NotFoundError, {});
             return false;
         case CacheHitType::Positive:
-            if (cacheEntry.data.size() >= 1) {
+            if (!cacheEntry.data.empty()) {
                 return queryJourney(reply, fromId, cacheEntry.data[0].identifier(locationIdentifierType()), nam);
             }
             break;
@@ -277,7 +277,7 @@ bool HafasMgateBackend::queryDeparture(DepartureReply *reply, QNetworkAccessMana
             addError(reply, Reply::NotFoundError, {});
             return false;
         case CacheHitType::Positive:
-            if (cacheEntry.data.size() >= 1) {
+            if (!cacheEntry.data.empty()) {
                 queryDeparture(reply, cacheEntry.data[0].identifier(locationIdentifierType()), nam);
                 return true;
             }
