@@ -54,6 +54,17 @@ void JourneyReplyPrivate::finalizeResult()
     });
 }
 
+static QDateTime firstTransportDeparture(const Journey &jny)
+{
+    for (const auto &section : jny.sections()) {
+        if (section.mode() == JourneySection::PublicTransport) {
+            return section.scheduledDepartureTime();
+        }
+    }
+
+    return jny.scheduledDepartureTime();
+}
+
 void JourneyReplyPrivate::postProcessJourneys()
 {
     // try to fill gaps in timezone data
@@ -82,13 +93,13 @@ void JourneyReplyPrivate::postProcessJourneys()
         journey.setSections(std::move(sections));
     }
 
-    // sort and merge results
+    // sort and merge results, aligned by first transport departure
     std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
+        return firstTransportDeparture(lhs) < firstTransportDeparture(rhs);
     });
     for (auto it = journeys.begin(); it != journeys.end(); ++it) {
         for (auto mergeIt = it + 1; mergeIt != journeys.end();) {
-            if ((*it).scheduledDepartureTime() != (*mergeIt).scheduledDepartureTime()) {
+            if (firstTransportDeparture(*it) != firstTransportDeparture(*mergeIt)) {
                 break;
             }
 
