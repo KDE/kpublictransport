@@ -239,32 +239,41 @@ bool JourneySection::arrivalPlatformChanged() const
 
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
-    if (lhs.d->mode != rhs.d->mode
-        || !MergeUtil::isSameTime(lhs.d->scheduledDepartureTime, rhs.d->scheduledDepartureTime)
-        || !MergeUtil::isSameTime(lhs.d->scheduledArrivalTime, rhs.d->scheduledArrivalTime))
-    {
+    if (lhs.d->mode != rhs.d->mode) {
         return false;
     }
 
+    // we have N criteria to compare here, with 3 possible results:
+    // - equal
+    // - similar-ish, unknwon, or at least not conflicting
+    // - conflicting
+    // A single conflict results in a negative result, at least N - 1 equal comparisons lead to
+    // in a positive result.
+    enum { Equal = 1, Compatible = 0, Conflict = -1000 };
+    int result = 0;
+
+    const auto depTimeDist = MergeUtil::distance(lhs.d->scheduledDepartureTime, rhs.d->scheduledDepartureTime);
+    result += depTimeDist < 60 ? Equal : depTimeDist <= 60 ? Compatible : Conflict;
+    const auto arrTimeDist = MergeUtil::distance(lhs.d->scheduledArrivalTime, rhs.d->scheduledArrivalTime);
+    result += arrTimeDist < 60 ? Equal : depTimeDist <= 60 ? Compatible : Conflict;
+
     const auto sameFrom = Location::isSame(lhs.d->from, rhs.d->from);
-    const auto sameTo = Location::isSame(lhs.d->to, rhs.d->to);
-    const auto sameRoute = Route::isSame(lhs.d->route, rhs.d->route);
-    if (sameFrom && sameTo && sameRoute) {
-        return true;
-    }
-
-    // if the route didn't match exactly, same time and same platform is likely the same train
-    if (sameFrom && sameTo && Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction())
-        && lhs.scheduledDeparturePlatform() == rhs.scheduledDeparturePlatform()
-        && !lhs.scheduledDeparturePlatform().isEmpty())
-    {
-        return true;
-    }
-
-    // if the route matches, and to/from are reasonably close, consider this the same as well
     const auto fromDist = Location::distance(lhs.from(), rhs.from());
+    result += sameFrom ? Equal : fromDist < 200 ? Compatible : Conflict;
+
+    const auto sameTo = Location::isSame(lhs.d->to, rhs.d->to);
     const auto toDist = Location::distance(lhs.to(), rhs.to());
-    return sameRoute && (sameFrom || fromDist < 200) && (sameTo || toDist < 200);
+    result += sameTo ? Equal : toDist < 200 ? Compatible : Conflict;
+
+    const auto sameRoute = Route::isSame(lhs.d->route, rhs.d->route);
+    const auto sameDir = Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction());
+    result += sameRoute ? Equal : sameDir ? Compatible : Conflict;
+
+    if (!lhs.scheduledDeparturePlatform().isEmpty() && !rhs.scheduledDeparturePlatform().isEmpty()) {
+        result += lhs.scheduledDeparturePlatform() == rhs.scheduledDeparturePlatform() ? Equal : Conflict;
+    }
+
+    return result >= 4;
 }
 
 JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySection &rhs)

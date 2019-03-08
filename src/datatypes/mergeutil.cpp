@@ -24,20 +24,20 @@
 
 using namespace KPublicTransport;
 
-bool MergeUtil::isSameTime(const QDateTime& lhs, const QDateTime& rhs)
+int MergeUtil::distance(const QDateTime& lhs, const QDateTime& rhs)
 {
     if (lhs.timeSpec() == Qt::LocalTime && rhs.timeSpec() == Qt::TimeZone) {
         auto dt = lhs;
         dt.setTimeZone(rhs.timeZone());
-        return dt == rhs;
+        return std::abs(dt.secsTo(rhs));
     }
     if (lhs.timeSpec() == Qt::TimeZone && rhs.timeSpec() == Qt::LocalTime) {
         auto dt = rhs;
         dt.setTimeZone(lhs.timeZone());
-        return dt == lhs;
+        return std::abs(dt.secsTo(lhs));
     }
 
-    return lhs == rhs;
+    return std::abs(lhs.secsTo(rhs));
 }
 
 bool MergeUtil::isBefore(const QDateTime& lhs, const QDateTime& rhs)
