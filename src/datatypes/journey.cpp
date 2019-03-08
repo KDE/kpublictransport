@@ -437,7 +437,7 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
             break;
         }
 
-        if (JourneySection::isSame(*it, *nextIt)) {
+        if (JourneySection::isSame(*it, *nextIt) || ((*it).mode() == (*nextIt).mode() && (*it).mode() != JourneySection::PublicTransport)) {
             *it = JourneySection::merge(*it, *nextIt);
             sections.erase(nextIt);
         }
