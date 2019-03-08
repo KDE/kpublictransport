@@ -425,6 +425,9 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
     std::copy(lhs.sections().begin(), lhs.sections().end(), std::back_inserter(sections));
     std::copy(rhs.sections().begin(), rhs.sections().end(), std::back_inserter(sections));
     std::sort(sections.begin(), sections.end(), [](const auto &lSec, const auto &rSec) {
+        if (MergeUtil::distance(lSec.scheduledDepartureTime(), rSec.scheduledDepartureTime()) == 0) {
+            return lSec.mode() < rSec.mode();
+        }
         return MergeUtil::isBefore(lSec.scheduledDepartureTime(), rSec.scheduledDepartureTime());
     });
 
