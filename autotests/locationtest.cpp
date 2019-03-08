@@ -47,6 +47,7 @@ private Q_SLOTS:
         QTest::newRow("extras1") << s("S+U Berlin Hbf") << s("Berlin Hauptbahnhof");
         QTest::newRow("extras2") << s("Berlin Schönefeld Flughafen (S)") << s("S Berlin Schönefeld Flughafen");
         QTest::newRow("extras3") << s("Paris Gare de Lyon RER") << s("Paris Gare de Lyon");
+        QTest::newRow("extras4") << s("Paris-Gare-de-Lyon RER (Paris)") << s("Gare de Lyon RER A (Paris)");
 
         QTest::newRow("station1") << s("Boissy-St-Léger") << s("Gare de Boissy-St-Léger");
         QTest::newRow("station2") << s("Flughafen Wien") << s("Flughafen Wien Bahnhof");

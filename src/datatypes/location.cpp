@@ -134,9 +134,7 @@ struct {
     { "gare", nullptr },
     { "hbf", "hauptbahnhof" },
     { "rer", nullptr },
-    { "s", nullptr },
     { "st", "saint" },
-    { "u", nullptr }
 };
 
 static QStringList splitAndNormalizeName(const QString &name)
@@ -145,6 +143,13 @@ static QStringList splitAndNormalizeName(const QString &name)
     auto l = name.split(splitRegExp, QString::SkipEmptyParts);
 
     for (auto it = l.begin(); it != l.end();) {
+        // ignore single-letter fragments, with the exception of the 'H' used in Denmark
+        // this seem to be mostly transport mode abbreviations (such as 'S' and 'U' in Germany)
+        if ((*it).size() == 1) {
+            it = l.erase(it);
+            continue;
+        }
+
         *it = (*it).toCaseFolded();
         const auto b = (*it).toUtf8();
         const auto entry = std::lower_bound(std::begin(name_normalization_map), std::end(name_normalization_map), b.constData(), [](const auto &lhs, const auto rhs) {
