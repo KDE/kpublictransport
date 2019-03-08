@@ -1,0 +1,142 @@
+{
+    "sections": [
+        {
+            "from": {
+                "latitude": 49.00423812866211,
+                "longitude": 2.5702035427093506,
+                "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
+                "timezone": "Europe/Paris"
+            },
+            "mode": "Walking",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T11:29:00+01:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T11:27:03+01:00"
+            },
+            "to": {
+                "latitude": 49.00360870361328,
+                "longitude": 2.571047067642212,
+                "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
+                "timezone": "Europe/Paris"
+            }
+        },
+        {
+            "from": {
+                "latitude": 49.00360870361328,
+                "longitude": 2.571047067642212,
+                "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
+                "timezone": "Europe/Paris"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "St-Rémy-lès-Chevreuse (Saint-Rémy-lès-Chevreuse)",
+                "line": {
+                    "color": "#427dbd",
+                    "mode": "RapidTransit",
+                    "modeString": "RER",
+                    "name": "B"
+                }
+            },
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:08:00+01:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T11:29:00+01:00"
+            },
+            "to": {
+                "latitude": 48.85979461669922,
+                "longitude": 2.348088026046753,
+                "name": "Châtelet-les-Halles (Paris)",
+                "timezone": "Europe/Paris"
+            }
+        },
+        {
+            "from": {
+                "latitude": 48.85979461669922,
+                "longitude": 2.348088026046753,
+                "name": "Châtelet-les-Halles (Paris)",
+                "timezone": "Europe/Paris"
+            },
+            "mode": "Transfer",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:08:00+01:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:08:00+01:00"
+            },
+            "to": {
+                "latitude": 48.85979461669922,
+                "longitude": 2.348088026046753,
+                "name": "Châtelet-les-Halles (Paris)",
+                "timezone": "Europe/Paris"
+            }
+        },
+        {
+            "mode": "Waiting",
+            "scheduledArrivalTime": "2019-03-03T12:14:00",
+            "scheduledDepartureTime": "2019-03-03T12:08:00"
+        },
+        {
+            "from": {
+                "latitude": 48.85979461669922,
+                "longitude": 2.348088026046753,
+                "name": "Châtelet-les-Halles (Paris)",
+                "timezone": "Europe/Paris"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Boissy-St-Léger (Boissy-Saint-Léger)",
+                "line": {
+                    "color": "#d1302f",
+                    "mode": "RapidTransit",
+                    "modeString": "RER",
+                    "name": "A"
+                }
+            },
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:15:00+01:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:14:00+01:00"
+            },
+            "to": {
+                "latitude": 48.84471893310547,
+                "longitude": 2.3718199729919434,
+                "name": "Paris-Gare-de-Lyon RER (Paris)",
+                "timezone": "Europe/Paris"
+            }
+        },
+        {
+            "from": {
+                "latitude": 48.84471893310547,
+                "longitude": 2.3718199729919434,
+                "name": "Paris-Gare-de-Lyon RER (Paris)",
+                "timezone": "Europe/Paris"
+            },
+            "mode": "Walking",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:23:31+01:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Paris",
+                "value": "2019-03-03T12:15:00+01:00"
+            },
+            "to": {
+                "latitude": 48.84407043457031,
+                "longitude": 2.3772740364074707,
+                "name": "20 Rue de Chalon (Paris)",
+                "timezone": "Europe/Paris"
+            }
+        }
+    ]
+}

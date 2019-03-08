@@ -178,6 +178,20 @@ bool Line::isSame(const Line &lhs, const Line &rhs)
         || isSameLineName(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed());
 }
 
+static QColor mergeColor(const QColor &lhs, const QColor &rhs)
+{
+    if (!lhs.isValid()) {
+        return rhs;
+    }
+    if (!rhs.isValid()) {
+        return lhs;
+    }
+
+    const auto lh = lhs.hue(), ls = lhs.saturation(), lv = lhs.value();
+    const auto rh = rhs.hue(), rs = rhs.saturation(), rv = rhs.value();
+    return std::tie(ls, lv, lh) < std::tie(rs, rv, rh) ? rhs : lhs;
+}
+
 Line Line::merge(const Line &lhs, const Line &rhs)
 {
     Line l(lhs);
@@ -188,9 +202,7 @@ Line Line::merge(const Line &lhs, const Line &rhs)
         l.setName(l.name().midRef(l.modeString().size()).trimmed().toString());
     }
 
-    if (!l.color().isValid() && rhs.color().isValid()) {
-        l.setColor(rhs.color());
-    }
+    l.setColor(mergeColor(lhs.color(), rhs.color()));
     if (!l.textColor().isValid() && rhs.textColor().isValid()) {
         l.setTextColor(rhs.textColor());
     }
