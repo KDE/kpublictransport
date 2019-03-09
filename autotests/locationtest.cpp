@@ -65,6 +65,8 @@ private Q_SLOTS:
         QTest::newRow("diacritic1") << s("Berlin Flughafen Schonefeld") << s("Berlin Flughafen Schönefeld");
         QTest::newRow("diacritic2") << s("Berlin Flughafen Schoenefeld") << s("Berlin Flughafen Schönefeld");
         QTest::newRow("diacritic3") << s("København H") << s("Koebenhavn H");
+
+        QTest::newRow("prefix1") << s("Zürich Flughafen") << s("Zürich Flughafen (Kloten)");
     }
 
     void testLocationNameCompare()

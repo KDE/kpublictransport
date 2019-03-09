@@ -248,6 +248,11 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
 
 bool Location::isSameName(const QString &lhs, const QString &rhs)
 {
+    // simple prefix test, before we do the expensive fragment-based comparison below
+    if (lhs.startsWith(rhs, Qt::CaseInsensitive) || rhs.startsWith(lhs, Qt::CaseSensitive)) {
+        return true;
+    }
+
     const auto lhsNameFragments = splitAndNormalizeName(lhs);
     const auto rhsNameFragments = splitAndNormalizeName(rhs);
 
