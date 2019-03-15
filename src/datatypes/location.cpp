@@ -170,16 +170,23 @@ static QStringList splitAndNormalizeName(const QString &name)
     return l;
 }
 
-static void stripDiacritics(QString &s)
+static QString stripDiacritics(const QString &s)
 {
+    QString res;
+    res.reserve(s.size());
+
     // if the character has a canonical decomposition use that and skip the combining diacritic markers following it
     // see https://en.wikipedia.org/wiki/Unicode_equivalence
     // see https://en.wikipedia.org/wiki/Combining_character
-    for (auto &c : s) {
+    for (const auto &c : s) {
         if (c.decompositionTag() == QChar::Canonical) {
-            c = c.decomposition().at(0);
+            res.push_back(c.decomposition().at(0));
+        } else {
+            res.push_back(c);
         }
     }
+
+    return res;
 }
 
 // keep this ordered (see https://en.wikipedia.org/wiki/List_of_Unicode_characters)
@@ -257,12 +264,15 @@ bool Location::isSameName(const QString &lhs, const QString &rhs)
     const auto rhsNameFragments = splitAndNormalizeName(rhs);
 
     // first try with stripping diacritics
-    auto lhsNormalized = lhsNameFragments;
-    std::for_each(lhsNormalized.begin(), lhsNormalized.end(), stripDiacritics);
+    std::vector<QString> lhsNormalized;
+    lhsNormalized.reserve(lhsNameFragments.size());
+    std::transform(lhsNameFragments.begin(), lhsNameFragments.end(), std::back_inserter(lhsNormalized), stripDiacritics);
     std::sort(lhsNormalized.begin(), lhsNormalized.end());
     lhsNormalized.erase(std::unique(lhsNormalized.begin(), lhsNormalized.end()), lhsNormalized.end());
-    auto rhsNormalized = rhsNameFragments;
-    std::for_each(rhsNormalized.begin(), rhsNormalized.end(), stripDiacritics);
+
+    std::vector<QString> rhsNormalized;
+    rhsNormalized.reserve(rhsNameFragments.size());
+    std::transform(rhsNameFragments.begin(), rhsNameFragments.end(), std::back_inserter(rhsNormalized), stripDiacritics);
     std::sort(rhsNormalized.begin(), rhsNormalized.end());
     rhsNormalized.erase(std::unique(rhsNormalized.begin(), rhsNormalized.end()), rhsNormalized.end());
 
@@ -271,8 +281,10 @@ bool Location::isSameName(const QString &lhs, const QString &rhs)
     }
 
     // if that didn't help, try to apply alternative transliterations of diacritics
-    std::transform(lhsNameFragments.begin(), lhsNameFragments.end(), lhsNormalized.begin(), applyTransliterations);
-    std::transform(rhsNameFragments.begin(), rhsNameFragments.end(), rhsNormalized.begin(), applyTransliterations);
+    lhsNormalized.clear();
+    std::transform(lhsNameFragments.begin(), lhsNameFragments.end(), std::back_inserter(lhsNormalized), applyTransliterations);
+    rhsNormalized.clear();
+    std::transform(rhsNameFragments.begin(), rhsNameFragments.end(), std::back_inserter(rhsNormalized), applyTransliterations);
     return lhsNormalized == rhsNormalized;
 }
 
