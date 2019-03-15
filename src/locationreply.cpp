@@ -58,10 +58,7 @@ void LocationReplyPrivate::finalizeResult()
         // for name based search, sort by Levenshtein distance or similar metric
         // TODO so far this only sorts for matching or not matching
         std::stable_sort(locations.begin(), locations.end(), [this](const auto &lhs, const auto &rhs) {
-            if (Location::isSameName(request.name(), lhs.name()) && !Location::isSameName(request.name(), rhs.name())) {
-                return true;
-            }
-            return false;
+            return Location::isSameName(request.name(), lhs.name()) && !Location::isSameName(request.name(), rhs.name());
         });
     }
 }

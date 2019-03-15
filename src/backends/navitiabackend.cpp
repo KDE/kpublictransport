@@ -116,7 +116,7 @@ bool NavitiaBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager
             addError(reply, Reply::NotFoundError, {});
             return false;
         case CacheHitType::Positive:
-            if (cacheEntry.data.size() >= 1) {
+            if (!cacheEntry.data.empty()) {
                 queryDeparture(reply, cacheEntry.data[0], nam);
                 return true;
             }
