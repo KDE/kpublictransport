@@ -65,6 +65,14 @@ static QDateTime firstTransportDeparture(const Journey &jny)
     return jny.scheduledDepartureTime();
 }
 
+static bool isPointlessSection(const JourneySection &section)
+{
+    if (section.mode() == JourneySection::Walking) {
+        return section.duration() < 60;
+    }
+    return false;
+}
+
 void JourneyReplyPrivate::postProcessJourneys()
 {
     // try to fill gaps in timezone data
@@ -110,6 +118,13 @@ void JourneyReplyPrivate::postProcessJourneys()
                 ++mergeIt;
             }
         }
+    }
+
+    // remove pointless sections such as 0-length walks
+    for (auto &journey : journeys) {
+        auto sections = journey.takeSections();
+        sections.erase(std::remove_if(sections.begin(), sections.end(), isPointlessSection), sections.end());
+        journey.setSections(std::move(sections));
     }
 }
 
