@@ -117,6 +117,10 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
     const auto opts = obj.value(QLatin1String("options")).toObject();
     for (auto it = opts.begin(); it != opts.end(); ++it) {
         const auto idx = mo->indexOfProperty(it.key().toUtf8().constData());
+        if (idx < 0) {
+            qCWarning(Log) << "Unknown backend setting:" << it.key();
+            continue;
+        }
         const auto mp = mo->property(idx);
         if (it.value().isObject()) {
             mp.writeOnGadget(backend, it.value().toObject());
