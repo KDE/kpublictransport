@@ -41,6 +41,7 @@ target_link_libraries(KPublicTransport
         Qt5::Gui
     PRIVATE
         Qt5::Network
+        ZLIB::ZLIB
 )
 
 ecm_generate_headers(KPublicTransport_FORWARDING_HEADERS

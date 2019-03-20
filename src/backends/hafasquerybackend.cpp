@@ -21,6 +21,9 @@
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
+#include <KPublicTransport/Journey>
+#include <KPublicTransport/JourneyReply>
+#include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
@@ -114,6 +117,7 @@ bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessMana
     auto netReply = nam->get(QNetworkRequest(url));
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         qDebug() << netReply->request().url();
+        netReply->deleteLater();
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
             qCDebug(Log) << reply->error() << reply->errorString();
@@ -122,7 +126,70 @@ bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessMana
         auto res = m_parser.parseStationBoardResponse(netReply->readAll(), reply->request().mode() == DepartureRequest::QueryArrival);
         // TODO error handling
         addResult(reply, std::move(res));
+    });
+
+    return true;
+}
+
+QString HafasQueryBackend::locationId(const Location &loc) const
+{
+    const auto id = loc.identifier(m_locationIdentifierType);
+    if (!id.isEmpty()) {
+        return QLatin1String("A=1@L=") + id;
+    }
+
+    if (loc.hasCoordinate()) {
+        return QLatin1String("A=1@X=") + QString::number((int)(loc.longitude() * 1000000)) + QLatin1String("@Y=") + QString::number((int)(loc.latitude() * 1000000));
+    }
+
+    if (!loc.name().isEmpty()) {
+        return QLatin1String("A=1@G=") + loc.name();
+    }
+
+    return {};
+}
+
+bool HafasQueryBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const
+{
+    init();
+
+    const auto request = reply->request();
+    const auto fromId = locationId(request.from());
+    const auto toId = locationId(request.to());
+    if (fromId.isEmpty() || toId.isEmpty()) {
+        return false;
+    }
+
+    QUrl url(m_endpoint);
+    url.setPath(url.path() + QLatin1String("/query.exe/en"));
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0ID"), fromId);
+    query.addQueryItem(QStringLiteral("REQ0JourneyStopsZ0ID"), toId);
+    query.addQueryItem(QStringLiteral("REQ0JourneyDate"), request.dateTime().date().toString(QStringLiteral("dd.MM.yy")));
+    query.addQueryItem(QStringLiteral("REQ0JourneyTime"), request.dateTime().time().toString(QStringLiteral("hh:mm")));
+    query.addQueryItem(QStringLiteral("REQ0HafasSearchForw"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("REQ0JourneyProduct_prod_list_1"), QStringLiteral("1111111111"));
+    // no idea what this stuff does, but it seems necessary...
+    query.addQueryItem(QStringLiteral("start"), QStringLiteral("Suchen"));
+    query.addQueryItem(QStringLiteral("h2g-direct"), QStringLiteral("11"));
+    query.addQueryItem(QStringLiteral("clientType"), QStringLiteral("ANDROID"));
+
+    url.setQuery(query);
+    qDebug() << url;
+
+    auto netReply = nam->get(QNetworkRequest(url));
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        qDebug() << netReply->request().url();
         netReply->deleteLater();
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, netReply->errorString());
+            qCDebug(Log) << reply->error() << reply->errorString();
+            return;
+        }
+
+        auto res = m_parser.parseQueryResponse(netReply->readAll());
+        // TODO error handling
+        addResult(reply, std::move(res));
     });
 
     return true;

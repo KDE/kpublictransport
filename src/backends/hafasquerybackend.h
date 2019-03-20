@@ -38,9 +38,12 @@ public:
     bool isSecure() const override;
     bool queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const override;
     bool queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const override;
+    bool queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     void init() const;
+    QString locationId(const Location &loc) const;
+
     QString m_endpoint;
     QString m_locationIdentifierType;
     mutable HafasQueryParser m_parser;

@@ -16,8 +16,10 @@
 */
 
 #include "hafasqueryparser.h"
+#include "logging.h"
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 
 #include <QDateTime>
@@ -26,6 +28,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QXmlStreamReader>
+
+#include <zlib.h>
 
 using namespace KPublicTransport;
 
@@ -126,4 +130,43 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
     }
 
     return res;
+}
+
+std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data)
+{
+    // yes, this is gzip compressed rather than using the HTTP compression transparently...
+    QByteArray rawData;
+    z_stream stream;
+    unsigned char buffer[1024];
+
+    stream.zalloc = nullptr;
+    stream.zfree = nullptr;
+    stream.opaque = nullptr;
+    stream.avail_in = data.size();
+    stream.next_in = reinterpret_cast<unsigned char*>(const_cast<char*>(data.data()));
+
+    auto ret = inflateInit2(&stream, 15 + 32); // see docs, the magic numbers enable gzip decoding
+    if (ret != Z_OK) {
+        qCWarning(Log) << "Failed to initialize zlib stream.";
+        return {};
+    }
+
+    do {
+        stream.avail_out = sizeof(buffer);
+        stream.next_out = buffer;
+
+        ret = inflate(&stream, Z_NO_FLUSH);
+        if (ret != Z_OK && ret != Z_STREAM_END) {
+            qCWarning(Log) << "Zlib decoding failed!" << ret;
+            break;
+        }
+
+        rawData.append(reinterpret_cast<char*>(buffer), sizeof(buffer) - stream.avail_out);
+    } while (stream.avail_out == 0);
+    inflateEnd(&stream);
+
+    // TODO
+    qDebug() << rawData;
+
+    return {};
 }

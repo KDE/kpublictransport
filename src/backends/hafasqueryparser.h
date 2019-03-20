@@ -27,6 +27,7 @@ class QByteArray;
 namespace KPublicTransport {
 
 class Departure;
+class Journey;
 class Location;
 
 /** Parse for Hafas "query.exe" variant XML responses. */
@@ -37,6 +38,7 @@ public:
 
     std::vector<Departure> parseStationBoardResponse(const QByteArray &data, bool isArrival);
     std::vector<Location> parseGetStopResponse(const QByteArray &data);
+    std::vector<Journey> parseQueryResponse(const QByteArray &data);
 
 private:
     QString m_locationIdentifierType;
