@@ -22,6 +22,8 @@
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/LocationReply>
+#include <KPublicTransport/LocationRequest>
 
 #include <QDateTime>
 #include <QDebug>
@@ -44,6 +46,43 @@ void HafasQueryBackend::init() const
 bool HafasQueryBackend::isSecure() const
 {
     return m_endpoint.startsWith(QLatin1String("https://"));
+}
+
+bool HafasQueryBackend::queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const
+{
+    init();
+
+    const auto request = reply->request();
+    if (request.name().isEmpty()) {
+        return false; // TODO queries by coordinate
+    }
+
+    QUrl url(m_endpoint);
+    url.setPath(url.path() + QLatin1String("/ajax-getstop.exe/en"));
+
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("getstop"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0A"), QStringLiteral("255"));
+    query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0G"), request.name()); // TODO apps are seen to append '?' here
+    query.addQueryItem(QStringLiteral("REQ0JourneyStopsB"), QStringLiteral("12")); // TODO max results
+    url.setQuery(query);
+
+    auto netReply = nam->get(QNetworkRequest(url));
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        netReply->deleteLater();
+        qDebug() << netReply->request().url();
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, netReply->errorString());
+            qCDebug(Log) << reply->error() << reply->errorString();
+            return;
+        }
+
+        auto res = m_parser.parseGetStopResponse(netReply->readAll());
+        // TODO error handling
+        addResult(reply, std::move(res));
+    });
+
+    return true;
 }
 
 bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const

@@ -34,7 +34,9 @@ class HafasQueryBackend : public AbstractBackend
 public:
     HafasQueryBackend();
     ~HafasQueryBackend();
+
     bool isSecure() const override;
+    bool queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const override;
     bool queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const override;
 
 private:

@@ -18,9 +18,13 @@
 #include "hafasqueryparser.h"
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Location>
 
 #include <QDateTime>
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QXmlStreamReader>
 
 using namespace KPublicTransport;
@@ -94,6 +98,31 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
             default:
                 break;
         }
+    }
+
+    return res;
+}
+
+std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &data)
+{
+    // remove garbage around JSON payload
+    const auto startIdx = data.indexOf('{');
+    const auto endIdx = data.lastIndexOf('}');
+    const auto jsonData = data.mid(startIdx, endIdx - startIdx + 1);
+
+    const auto doc = QJsonDocument::fromJson(jsonData);
+    //qDebug().noquote() << doc.toJson();
+    const auto suggestions = doc.object().value(QLatin1String("suggestions")).toArray();
+    std::vector<Location> res;
+    res.reserve(suggestions.size());
+    for (const auto &suggestion : suggestions) {
+        const auto obj = suggestion.toObject();
+        Location loc;
+        loc.setIdentifier(m_locationIdentifierType, obj.value(QLatin1String("extId")).toString());
+        loc.setName(obj.value(QLatin1String("value")).toString());
+        loc.setLatitude(obj.value(QLatin1String("ycoord")).toString().toInt() / 1000000.0);
+        loc.setLongitude(obj.value(QLatin1String("xcoord")).toString().toInt() / 1000000.0);
+        res.push_back(loc);
     }
 
     return res;
