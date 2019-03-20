@@ -1,6 +1,7 @@
 {
     "type": "hafas_query",
     "options": {
-        "endpoint": "http://railteam.hafas.eu/bin/"
+        "endpoint": "http://railteam.hafas.eu/bin/",
+        "locationIdentifierType": "ibnr"
     }
 }

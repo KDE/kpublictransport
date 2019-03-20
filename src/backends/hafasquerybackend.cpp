@@ -34,6 +34,12 @@
 using namespace KPublicTransport;
 
 HafasQueryBackend::HafasQueryBackend() = default;
+HafasQueryBackend::~HafasQueryBackend() = default;
+
+void HafasQueryBackend::init() const
+{
+    m_parser.setLocationIdentifierType(m_locationIdentifierType);
+}
 
 bool HafasQueryBackend::isSecure() const
 {
@@ -42,8 +48,10 @@ bool HafasQueryBackend::isSecure() const
 
 bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const
 {
+    init();
+
     const auto request = reply->request();
-    const auto stationId = request.stop().identifier(QLatin1String("ibnr")); // only seems to exist with IBNR so far? if that turns out to be wrong, do the same as in the mgate backend
+    const auto stationId = request.stop().identifier(m_locationIdentifierType);
     if (stationId.isEmpty()) {
         // TODO support location queries like in the mgate variant
         return false;

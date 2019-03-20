@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_HAFASQUERYPARSER_H
 #define KPUBLICTRANSPORT_HAFASQUERYPARSER_H
 
+#include <QString>
+
 #include <vector>
 
 class QByteArray;
@@ -30,7 +32,12 @@ class Departure;
 class HafasQueryParser
 {
 public:
+    void setLocationIdentifierType(const QString &idType);
+
     std::vector<Departure> parseStationBoardResponse(const QByteArray &data, bool isArrival);
+
+private:
+    QString m_locationIdentifierType;
 };
 
 }

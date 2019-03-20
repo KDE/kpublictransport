@@ -28,13 +28,19 @@ class HafasQueryBackend : public AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
+    /** Identifier type used for stations. Default is backendId(). */
+    Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
+
 public:
     HafasQueryBackend();
+    ~HafasQueryBackend();
     bool isSecure() const override;
     bool queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    void init() const;
     QString m_endpoint;
+    QString m_locationIdentifierType;
     mutable HafasQueryParser m_parser;
 };
 

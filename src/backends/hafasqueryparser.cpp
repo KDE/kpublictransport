@@ -25,6 +25,11 @@
 
 using namespace KPublicTransport;
 
+void HafasQueryParser::setLocationIdentifierType(const QString &idType)
+{
+    m_locationIdentifierType = idType;
+}
+
 std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteArray &data, bool isArrival)
 {
     qDebug().noquote() << data;
@@ -46,7 +51,7 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
             case QXmlStreamReader::StartElement:
                 if (reader.name() == QLatin1String("St")) {
                     stopPoint.setName(reader.attributes().value(QLatin1String("name")).toString());
-                    stopPoint.setIdentifier(QStringLiteral("ibnr"), reader.attributes().value(QLatin1String("evaId")).toString());
+                    stopPoint.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("evaId")).toString());
                 } else if (reader.name() == QLatin1String("Journey")) {
                     auto dt = QDateTime::fromString(reader.attributes().value(QLatin1String("fpDate")) + reader.attributes().value(QLatin1String("fpTime")), QStringLiteral("dd.MM.yyhh:mm"));
                     if (dt.date().year() < 2000) {
