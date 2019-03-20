@@ -1,0 +1,10 @@
+{
+    "type": "hafas_query",
+    "options": {
+        "endpoint": "https://www.rmv.de/auskunft/bin/jp/",
+        "locationIdentifierType": "rmv"
+    },
+    "filter": {
+        "geo": [ [ 8.306, 50.9957 ], [ 10.219, 50.6698 ], [ 9.0166, 49.3629 ], [ 8.2507, 49.4933 ], [ 7.638, 50.1679 ] ]
+    }
+}
