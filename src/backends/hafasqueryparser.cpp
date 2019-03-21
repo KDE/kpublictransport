@@ -16,6 +16,7 @@
 */
 
 #include "hafasqueryparser.h"
+#include "hafasjourneyresponse_p.h"
 #include "logging.h"
 
 #include <KPublicTransport/Departure>
@@ -132,9 +133,8 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
     return res;
 }
 
-std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data)
+static QByteArray gzipDecompress(const QByteArray &data)
 {
-    // yes, this is gzip compressed rather than using the HTTP compression transparently...
     QByteArray rawData;
     z_stream stream;
     unsigned char buffer[1024];
@@ -165,8 +165,157 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
     } while (stream.avail_out == 0);
     inflateEnd(&stream);
 
-    // TODO
-    qDebug() << rawData;
+    return rawData;
+}
 
+std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data)
+{
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+#warning Hafas binary response parsing not implemented on big endian architectures!
+    Q_UNUSED(data);
     return {};
+#endif
+
+    // yes, this is gzip compressed rather than using the HTTP compression transparently...
+    const auto rawData = gzipDecompress(data);
+
+    if (rawData.size() < (int)sizeof(HafasJourneyResponseHeader)) {
+        qCWarning(Log) << "Response too small for header structure.";
+        return {};
+    }
+    const auto header = reinterpret_cast<const HafasJourneyResponseHeader*>(rawData.constData());
+    qDebug() << header->version << header->numJourneys;
+
+    if (rawData.size() < (int)(sizeof(HafasJourneyResponseExtendedHeader) + header->extendedHeaderOffset)) {
+        qCWarning(Log) << "Response too short for extended header structure.";
+        return {};
+    }
+    const auto extHeader = reinterpret_cast<const HafasJourneyResponseExtendedHeader*>(rawData.constData() + header->extendedHeaderOffset);
+    if (extHeader->length < (int)sizeof(HafasJourneyResponseExtendedHeader)) {
+        qCWarning(Log) << "Extended header is shorter than expected" << extHeader->length;
+        return {};
+    }
+    if (extHeader->errorCode != 0) {
+        qCDebug(Log) << "Journey query returned error" << extHeader->errorCode;
+        return {};
+    }
+
+    const auto detailsHeader = reinterpret_cast<const HafasJourneyResponseDetailsHeader*>(rawData.constData() + extHeader->detailsOffset);
+    qDebug() << "details header:" << detailsHeader->version;
+
+    HafasJourneyResponseStringTable stringTable(rawData, header->stringTableOffset, extHeader->encodingStr);
+    QDate baseDate(1979, 12, 31);
+    baseDate = baseDate.addDays(header->date);
+
+    std::vector<Journey> journeys;
+    journeys.reserve(header->numJourneys);
+    for (int journeyIdx = 0; journeyIdx < header->numJourneys; ++journeyIdx) {
+        const auto journeyInfo = reinterpret_cast<const HafasJourneyResponseJourney*>(rawData.constData() + sizeof(HafasJourneyResponseHeader) + journeyIdx * sizeof(HafasJourneyResponseJourney));
+        qDebug() << "section count: " << journeyInfo->numSections;
+
+        const auto journeyDetailsOffset = *reinterpret_cast<const uint16_t*>(rawData.constData()
+            + extHeader->detailsOffset
+            + detailsHeader->journeyDetailsIndexOffset
+            + journeyIdx * sizeof(uint16_t));
+
+        std::vector<JourneySection> sections;
+        sections.reserve(journeyInfo->numSections);
+        for (int sectionIdx = 0; sectionIdx < journeyInfo->numSections; ++sectionIdx) {
+            const auto sectionInfo = reinterpret_cast<const HafasJourneyResponseSection*>(rawData.constData()
+                + sizeof(HafasJourneyResponseHeader)
+                + journeyInfo->sectionsOffset
+                + sectionIdx * sizeof(HafasJourneyResponseSection));
+            qDebug() << stringTable.lookup(sectionInfo->lineNameStr) << sectionInfo->type;
+
+            Location from;
+            const auto fromInfo = reinterpret_cast<const HafasJourneyResponseStation*>(rawData.constData()
+                + header->stationTableOffset
+                + sectionInfo->departureStationIdx * sizeof(HafasJourneyResponseStation));
+            from.setName(stringTable.lookup(fromInfo->nameStr));
+            from.setLatitude(fromInfo->latitude / 1000000);
+            from.setLongitude(fromInfo->longitude / 1000000);
+            from.setIdentifier(m_locationIdentifierType, QString::number(fromInfo->id));
+
+            Location to;
+            const auto toInfo = reinterpret_cast<const HafasJourneyResponseStation*>(rawData.constData()
+                + header->stationTableOffset
+                + sectionInfo->arrivalStationIdx * sizeof(HafasJourneyResponseStation));
+            to.setName(stringTable.lookup(toInfo->nameStr));
+            to.setLatitude(toInfo->latitude / 1000000);
+            to.setLongitude(toInfo->longitude / 1000000);
+            to.setIdentifier(m_locationIdentifierType, QString::number(toInfo->id));
+
+            JourneySection section;
+            section.setFrom(from);
+            section.setTo(to);
+
+            // TODO this needs support for crossing midnight (hour goes above 24 it seems?)
+            section.setScheduledDepartureTime(QDateTime(baseDate, QTime(sectionInfo->scheduledDepartureTime / 100, sectionInfo->scheduledDepartureTime % 100)));
+            section.setScheduledArrivalTime(QDateTime(baseDate, QTime(sectionInfo->scheduledArrivalTime/ 100, sectionInfo->scheduledArrivalTime% 100)));
+
+            const auto journeyAttrIndex = *reinterpret_cast<const uint16_t*>(rawData.constData()
+                + extHeader->journeyAttributesIndexOffset + journeyIdx * sizeof(uint16_t));
+            auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
+                    + extHeader->attributesOffset
+                    + journeyAttrIndex * sizeof(HafasJourneyResponseAttribute));
+            while (attr->keyStr > 0) {
+                qDebug() << "journey attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
+                ++attr;
+            }
+
+            if (sectionInfo->type == HafasJourneyResponseSectionMode::PublicTransport) {
+                Line line;
+                line.setName(stringTable.lookup(sectionInfo->lineNameStr));
+
+                Route route;
+                route.setLine(line);
+
+                auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
+                    + extHeader->attributesOffset
+                    + sectionInfo->sectionAttributeIndex * sizeof(HafasJourneyResponseAttribute));
+                while (attr->keyStr > 0) {
+                    qDebug() << "section attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
+                    const auto key = stringTable.lookup(attr->keyStr);
+                    if (key == QLatin1String("Direction")) {
+                        route.setDirection(stringTable.lookup(attr->valueStr));
+                    }
+                    ++attr;
+                }
+
+                section.setRoute(route);
+                section.setMode(JourneySection::PublicTransport);
+                section.setScheduledDeparturePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr));
+                section.setScheduledArrivalPlatform(stringTable.lookup(sectionInfo->scheduledArrivalPlatformStr));
+
+                // TODO this is still producing non-sense
+                const auto sectionDetail = reinterpret_cast<const HafasJourneyResponseSectionDetail*>(rawData.constData()
+                    + extHeader->detailsOffset
+                    + journeyDetailsOffset
+                    + detailsHeader->sectionDetailsOffset
+                    + detailsHeader->sectionDetailsSize * sectionIdx);
+                qDebug() << "section detail" << sectionDetail->expectedDepartureTime << sectionDetail->expectedArrivalTime << sectionDetail->expectedArrivalPlatformStr <<  sectionDetail->expectedDeparturePlatformStr;
+                section.setExpectedDeparturePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr));
+                section.setExpectedArrivalPlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr));
+
+                // TODO this needs support for crossing midnight (see above)
+                // TODO 0xffff here means not known
+                section.setExpectedDepartureTime(QDateTime(baseDate, QTime(sectionDetail->expectedDepartureTime / 100, sectionDetail->expectedDepartureTime % 100)));
+                section.setExpectedArrivalTime(QDateTime(baseDate, QTime(sectionDetail->expectedArrivalTime / 100, sectionDetail->expectedArrivalTime % 100)));
+            } else if (sectionInfo->type == HafasJourneyResponseSectionMode::Walk) {
+                section.setMode(JourneySection::Walking);
+            } else if (sectionInfo->type == HafasJourneyResponseSectionMode::Transfer1 || sectionInfo->type == HafasJourneyResponseSectionMode::Transfer2) {
+                section.setMode(JourneySection::Transfer);
+            } else {
+                qCWarning(Log) << "Unknown section mode:" << sectionInfo->type;
+            }
+
+            sections.push_back(section);
+        }
+
+        Journey journey;
+        journey.setSections(std::move(sections));
+        journeys.push_back(journey);
+    }
+
+    return journeys;
 }
