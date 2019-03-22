@@ -46,8 +46,6 @@ public:
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
-    QNetworkReply* postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const;
-
     QString m_endpoint;
     QString m_coverage;
     QString m_auth;

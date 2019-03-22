@@ -150,11 +150,35 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
 
 bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    auto netReply = postLocationQuery(req, nam);
-    if (!netReply) {
+    QUrl url;
+    url.setScheme(QStringLiteral("https"));
+    url.setHost(m_endpoint);
+
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
+    query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0"));
+    query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
+    // TODO count
+
+    if (req.hasCoordinate()) {
+        url.setPath(
+            QStringLiteral("/v1/coord/") + QString::number(req.longitude()) + QLatin1Char(';') + QString::number(req.latitude()) +
+            QStringLiteral("/places_nearby")
+        );
+        // TODO distance
+    } else if (!req.name().isEmpty()) {
+        url.setPath(QStringLiteral("/v1/places"));
+        query.addQueryItem(QStringLiteral("q"), req.name());
+    } else {
         return false;
     }
 
+    url.setQuery(query);
+    QNetworkRequest netReq(url);
+    netReq.setRawHeader("Authorization", m_auth.toUtf8());
+
+    qCDebug(Log) << "GET:" << url;
+    auto netReply = nam->get(netReq);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         qDebug() << netReply->request().url() << netReply->errorString();
         switch (netReply->error()) {
@@ -183,37 +207,4 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     });
 
     return true;
-}
-
-QNetworkReply* NavitiaBackend::postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const
-{
-    QUrl url;
-    url.setScheme(QStringLiteral("https"));
-    url.setHost(m_endpoint);
-
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
-    query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0"));
-    query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
-    // TODO count
-
-    if (req.hasCoordinate()) {
-        url.setPath(
-            QStringLiteral("/v1/coord/") + QString::number(req.longitude()) + QLatin1Char(';') + QString::number(req.latitude()) +
-            QStringLiteral("/places_nearby")
-        );
-        // TODO distance
-    } else if (!req.name().isEmpty()) {
-        url.setPath(QStringLiteral("/v1/places"));
-        query.addQueryItem(QStringLiteral("q"), req.name());
-    } else {
-        return nullptr;
-    }
-
-    url.setQuery(query);
-    QNetworkRequest netReq(url);
-    netReq.setRawHeader("Authorization", m_auth.toUtf8());
-
-    qCDebug(Log) << "GET:" << url;
-    return nam->get(netReq);
 }
