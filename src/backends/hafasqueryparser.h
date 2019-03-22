@@ -18,8 +18,11 @@
 #ifndef KPUBLICTRANSPORT_HAFASQUERYPARSER_H
 #define KPUBLICTRANSPORT_HAFASQUERYPARSER_H
 
+#include <KPublicTransport/Line>
+
 #include <QString>
 
+#include <unordered_map>
 #include <vector>
 
 class QByteArray;
@@ -34,6 +37,7 @@ class Location;
 class HafasQueryParser
 {
 public:
+    HafasQueryParser(const std::unordered_map<int, Line::Mode> &modeMap);
     void setLocationIdentifierType(const QString &idType);
 
     std::vector<Departure> parseStationBoardResponse(const QByteArray &data, bool isArrival);
@@ -42,6 +46,7 @@ public:
 
 private:
     QString m_locationIdentifierType;
+    const std::unordered_map<int, Line::Mode> &m_lineModeMap;
 };
 
 }

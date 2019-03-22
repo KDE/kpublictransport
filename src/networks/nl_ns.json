@@ -2,6 +2,17 @@
     "type": "hafas_query",
     "options": {
         "endpoint": "https://hafas.bene-system.com/bin/",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "8": "LocalTrain",
+            "16": "RapidTransit",
+            "32": "Bus",
+            "64": "Ferry",
+            "128": "Metro",
+            "256": "Tramway"
+        },
         "locationIdentifierType": "ibnr"
     },
     "filter": {

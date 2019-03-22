@@ -2,6 +2,17 @@
     "type": "hafas_query",
     "options": {
         "endpoint": "http://fahrplan.sbb.ch/bin/",
+         "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "8": "LocalTrain",
+            "16": "Ferry",
+            "32": "RapidTransit",
+            "64": "Bus",
+            "256": "LocalTrain",
+            "512": "Tramway"
+        },
         "locationIdentifierType": "ibnr"
     },
     "filter": {

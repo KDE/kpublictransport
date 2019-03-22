@@ -2,6 +2,15 @@
     "type": "hafas_query",
     "options": {
         "endpoint": "https://www.rmv.de/auskunft/bin/jp/",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "8": "RapidTransit",
+            "16": "Metro",
+            "32": "Tramway",
+            "64": "Bus"
+        },
         "locationIdentifierType": "rmv"
     },
     "filter": {

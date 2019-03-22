@@ -34,6 +34,11 @@
 
 using namespace KPublicTransport;
 
+HafasQueryParser::HafasQueryParser(const std::unordered_map<int, Line::Mode> &modeMap)
+    : m_lineModeMap(modeMap)
+{
+}
+
 void HafasQueryParser::setLocationIdentifierType(const QString &idType)
 {
     m_locationIdentifierType = idType;
@@ -92,7 +97,17 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
                         const auto idx = prod.indexOf(QLatin1Char('#'));
                         line.setName(prod.left(idx).toString().simplified());
                     }
-                    // TODO line mode (class attribute, or second part of prod attribute)
+
+                    if (reader.attributes().hasAttribute(QLatin1String("class"))) {
+                        const auto cls = reader.attributes().value(QLatin1String("class")).toInt();
+                        const auto lineModeIt = m_lineModeMap.find(cls);
+                        if (lineModeIt != m_lineModeMap.end()) {
+                            line.setMode((*lineModeIt).second);
+                        } else {
+                            qCDebug(Log) << "Encountered unknown line type:" << cls << line.name();
+                        }
+                    }
+                    // TODO line mode from second part of prod attribute, if class not set
                     route.setLine(line);
                     dep.setRoute(route);
 
@@ -277,11 +292,9 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
             }
 
             if (sectionInfo->type == HafasJourneyResponseSectionMode::PublicTransport) {
+                Route route;
                 Line line;
                 line.setName(stringTable.lookup(sectionInfo->lineNameStr));
-
-                Route route;
-                route.setLine(line);
 
                 auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
                     + extHeader->attributesOffset
@@ -291,10 +304,19 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                     const auto key = stringTable.lookup(attr->keyStr);
                     if (key == QLatin1String("Direction")) {
                         route.setDirection(stringTable.lookup(attr->valueStr));
+                    } else if (key == QLatin1String("Class")) {
+                        const auto cls = stringTable.lookup(attr->valueStr).toInt();
+                        const auto lineModeIt = m_lineModeMap.find(cls);
+                        if (lineModeIt != m_lineModeMap.end()) {
+                            line.setMode((*lineModeIt).second);
+                        } else {
+                            qCDebug(Log) << "Encountered unknown line type:" << cls << line.name();
+                        }
                     }
                     ++attr;
                 }
 
+                route.setLine(line);
                 section.setRoute(route);
                 section.setMode(JourneySection::PublicTransport);
                 section.setScheduledDeparturePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr));

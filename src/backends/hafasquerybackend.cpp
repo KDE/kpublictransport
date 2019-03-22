@@ -38,7 +38,11 @@
 
 using namespace KPublicTransport;
 
-HafasQueryBackend::HafasQueryBackend() = default;
+HafasQueryBackend::HafasQueryBackend()
+    : m_parser(m_lineModeMap)
+{
+}
+
 HafasQueryBackend::~HafasQueryBackend() = default;
 
 void HafasQueryBackend::init() const
