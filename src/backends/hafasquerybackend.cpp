@@ -167,7 +167,7 @@ bool HafasQueryBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager 
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsZ0ID"), toId);
     query.addQueryItem(QStringLiteral("REQ0JourneyDate"), request.dateTime().date().toString(QStringLiteral("dd.MM.yy")));
     query.addQueryItem(QStringLiteral("REQ0JourneyTime"), request.dateTime().time().toString(QStringLiteral("hh:mm")));
-    query.addQueryItem(QStringLiteral("REQ0HafasSearchForw"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("REQ0HafasSearchForw"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("1") : QStringLiteral("0"));
     query.addQueryItem(QStringLiteral("REQ0JourneyProduct_prod_list_1"), QStringLiteral("1111111111"));
     // no idea what this stuff does, but it seems necessary...
     query.addQueryItem(QStringLiteral("start"), QStringLiteral("Suchen"));
