@@ -45,6 +45,12 @@ bool NavitiaBackend::isSecure() const
     return true; // https is hardcoded below
 }
 
+bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
+{
+    Q_UNUSED(type);
+    return !loc.hasCoordinate();
+}
+
 bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
@@ -97,67 +103,10 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
 bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    if (req.stop().hasCoordinate()) {
-        queryDeparture(reply, req.stop(), nam);
-        return true;
-    }
-
-    // missing location information to query directly
-    LocationRequest locReq;
-    locReq.setName(req.stop().name());
-    // TODO set max result = 1
-
-    // check if this location query is cached already
-    const auto cacheEntry = Cache::lookupLocation(backendId(), locReq.cacheKey());
-    switch (cacheEntry.type) {
-        case CacheHitType::Negative:
-            addError(reply, Reply::NotFoundError, {});
-            return false;
-        case CacheHitType::Positive:
-            if (!cacheEntry.data.empty()) {
-                queryDeparture(reply, cacheEntry.data[0], nam);
-                return true;
-            }
-            break;
-        case CacheHitType::Miss:
-            break;
-    }
-
-   const auto locReply = postLocationQuery(locReq, nam);
-    if (!locReply) {
+    if (!req.stop().hasCoordinate()) {
         return false;
     }
-    QObject::connect(locReply, &QNetworkReply::finished, reply, [this, reply, locReply, locReq, nam]() {
-        qDebug() << locReply->request().url();
-        switch (locReply->error()) {
-            case QNetworkReply::NoError:
-            {
-                const auto res = NavitiaParser::parsePlaces(locReply->readAll());
-                Cache::addLocationCacheEntry(backendId(), locReq.cacheKey(), res);
-                if (!res.empty()) {
-                    queryDeparture(reply, res[0], nam);
-                } else {
-                    addError(reply, Reply::NotFoundError, QStringLiteral("Location query found no results."));
-                }
-                break;
-            }
-            case QNetworkReply::ContentNotFoundError:
-                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(locReply->readAll()));
-                Cache::addNegativeLocationCacheEntry(backendId(), locReq.cacheKey());
-                break;
-            default:
-                addError(reply, Reply::NetworkError, locReply->errorString());
-                break;
-        }
-        locReply->deleteLater();
-    });
-
-    return true;
-}
-
-void NavitiaBackend::queryDeparture(DepartureReply *reply, const Location &loc, QNetworkAccessManager *nam) const
-{
-    const auto req = reply->request();
+    const auto loc = req.stop();
 
     QUrl url;
     url.setScheme(QStringLiteral("https"));
@@ -195,6 +144,8 @@ void NavitiaBackend::queryDeparture(DepartureReply *reply, const Location &loc, 
         }
         netReply->deleteLater();
     });
+
+    return true;
 }
 
 bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const

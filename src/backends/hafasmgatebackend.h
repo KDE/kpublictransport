@@ -51,6 +51,7 @@ class HafasMgateBackend : public AbstractBackend
 public:
     HafasMgateBackend();
     bool isSecure() const override;
+    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     bool queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const override;
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
@@ -58,7 +59,6 @@ public:
 private:
     QNetworkReply* postRequest(const QJsonObject &svcReq, QNetworkAccessManager *nam) const;
     QNetworkReply* postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const;
-    void queryDeparture(DepartureReply *reply, const QString &locationId, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
     void setMicMacSalt(const QString &salt);

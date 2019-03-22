@@ -40,12 +40,12 @@ public:
     NavitiaBackend();
 
     bool isSecure() const override;
+    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     bool queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const override;
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
-    void queryDeparture(DepartureReply *reply, const Location &loc, QNetworkAccessManager *nam) const;
     QNetworkReply* postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const;
 
     QString m_endpoint;
