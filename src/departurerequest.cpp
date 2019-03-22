@@ -54,6 +54,12 @@ Location DepartureRequest::stop() const
     return d->stop;
 }
 
+void DepartureRequest::setStop(const Location &stop)
+{
+    d.detach();
+    d->stop = stop;
+}
+
 QDateTime DepartureRequest::dateTime() const
 {
     if (!d->dateTime.isValid()) {

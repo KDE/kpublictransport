@@ -45,6 +45,8 @@ public:
 
     /** The location at which to look for departures. */
     Location stop() const;
+    /** Sets the location at which to look for departures/arrivals. */
+    void setStop(const Location &stop);
 
     /** Date/time at which the search should start. */
     QDateTime dateTime() const;
