@@ -56,9 +56,21 @@ Location JourneyRequest::from() const
     return d->from;
 }
 
+void JourneyRequest::setFrom(const Location &from)
+{
+    d.detach();
+    d->from = from;
+}
+
 Location JourneyRequest::to() const
 {
     return d->to;
+}
+
+void JourneyRequest::setTo(const Location &to)
+{
+    d.detach();
+    d->to = to;
 }
 
 QDateTime JourneyRequest::dateTime() const

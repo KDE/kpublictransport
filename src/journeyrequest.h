@@ -45,8 +45,12 @@ public:
 
     /** The starting point of the journey search. */
     Location from() const;
+    /** Set the starting point for the journey. */
+    void setFrom(const Location &from);
     /** The journey destination. */
     Location to() const;
+    /** Set the destination of the journey. */
+    void setTo(const Location &to);
 
     /** Date/time at which the journey should start/end. */
     QDateTime dateTime() const;
