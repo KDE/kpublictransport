@@ -168,6 +168,20 @@ static QByteArray gzipDecompress(const QByteArray &data)
     return rawData;
 }
 
+static QDateTime parseDateTime(const QDate &baseDate, uint16_t time)
+{
+    if (time == 0xffff) { // value is unset
+        return {};
+    }
+
+    const auto days = time / 2400;
+    const auto hours = (time / 100) % 24;
+    const auto mins = time % 100;
+
+    auto dt = QDateTime(baseDate, QTime(hours, mins));
+    return dt.addDays(days);
+}
+
 std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data)
 {
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
@@ -249,9 +263,8 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
             section.setFrom(from);
             section.setTo(to);
 
-            // TODO this needs support for crossing midnight (hour goes above 24 it seems?)
-            section.setScheduledDepartureTime(QDateTime(baseDate, QTime(sectionInfo->scheduledDepartureTime / 100, sectionInfo->scheduledDepartureTime % 100)));
-            section.setScheduledArrivalTime(QDateTime(baseDate, QTime(sectionInfo->scheduledArrivalTime/ 100, sectionInfo->scheduledArrivalTime% 100)));
+            section.setScheduledDepartureTime(parseDateTime(baseDate, sectionInfo->scheduledDepartureTime));
+            section.setScheduledArrivalTime(parseDateTime(baseDate, sectionInfo->scheduledArrivalTime));
 
             const auto journeyAttrIndex = *reinterpret_cast<const uint16_t*>(rawData.constData()
                 + extHeader->journeyAttributesIndexOffset + journeyIdx * sizeof(uint16_t));
@@ -287,20 +300,17 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                 section.setScheduledDeparturePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr));
                 section.setScheduledArrivalPlatform(stringTable.lookup(sectionInfo->scheduledArrivalPlatformStr));
 
-                // TODO this is still producing non-sense
                 const auto sectionDetail = reinterpret_cast<const HafasJourneyResponseSectionDetail*>(rawData.constData()
                     + extHeader->detailsOffset
                     + journeyDetailsOffset
                     + detailsHeader->sectionDetailsOffset
                     + detailsHeader->sectionDetailsSize * sectionIdx);
-                qDebug() << "section detail" << sectionDetail->expectedDepartureTime << sectionDetail->expectedArrivalTime << sectionDetail->expectedArrivalPlatformStr <<  sectionDetail->expectedDeparturePlatformStr;
+                qDebug() << "section detail" << sectionDetail->expectedArrivalPlatformStr <<  sectionDetail->expectedDeparturePlatformStr;
                 section.setExpectedDeparturePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr));
                 section.setExpectedArrivalPlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr));
 
-                // TODO this needs support for crossing midnight (see above)
-                // TODO 0xffff here means not known
-                section.setExpectedDepartureTime(QDateTime(baseDate, QTime(sectionDetail->expectedDepartureTime / 100, sectionDetail->expectedDepartureTime % 100)));
-                section.setExpectedArrivalTime(QDateTime(baseDate, QTime(sectionDetail->expectedArrivalTime / 100, sectionDetail->expectedArrivalTime % 100)));
+                section.setExpectedDepartureTime(parseDateTime(baseDate, sectionDetail->expectedDepartureTime));
+                section.setExpectedArrivalTime(parseDateTime(baseDate, sectionDetail->expectedArrivalTime));
             } else if (sectionInfo->type == HafasJourneyResponseSectionMode::Walk) {
                 section.setMode(JourneySection::Walking);
             } else if (sectionInfo->type == HafasJourneyResponseSectionMode::Transfer1 || sectionInfo->type == HafasJourneyResponseSectionMode::Transfer2) {
