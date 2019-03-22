@@ -31,13 +31,12 @@
 
 using namespace KPublicTransport;
 
-HafasMgateParser::HafasMgateParser() = default;
-HafasMgateParser::~HafasMgateParser() = default;
-
-void HafasMgateParser::setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap)
+HafasMgateParser::HafasMgateParser(const std::unordered_map<int, Line::Mode>& lineModeMap)
+    : m_lineModeMap(lineModeMap)
 {
-    m_lineModeMap = std::move(modeMap);
 }
+
+HafasMgateParser::~HafasMgateParser() = default;
 
 void HafasMgateParser::setLocationIdentifierType(const QString &idType)
 {

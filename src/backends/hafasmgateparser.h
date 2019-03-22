@@ -47,9 +47,8 @@ struct Ico {
 class KPUBLICTRANSPORT_EXPORT HafasMgateParser
 {
 public:
-    HafasMgateParser();
+    HafasMgateParser(const std::unordered_map<int, Line::Mode> &lineModeMap);
     ~HafasMgateParser();
-    void setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap);
     void setLocationIdentifierType(const QString &idType);
 
     std::vector<Departure> parseDepartures(const QByteArray &data) const;
@@ -69,7 +68,7 @@ private:
     std::vector<Journey> parseTripSearch(const QJsonObject &obj) const;
     bool parseError(const QJsonObject &obj) const;
 
-    std::unordered_map<int, Line::Mode> m_lineModeMap;
+    const std::unordered_map<int, Line::Mode> &m_lineModeMap;
     QString m_locIdType;
     mutable QString m_errorMsg;
     mutable Reply::Error m_error = Reply::NoError;

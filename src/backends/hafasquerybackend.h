@@ -18,19 +18,15 @@
 #ifndef KPUBLICTRANSPORT_HAFASQUERYBACKEND_H
 #define KPUBLICTRANSPORT_HAFASQUERYBACKEND_H
 
-#include "abstractbackend.h"
+#include "hafasbackend.h"
 #include "hafasqueryparser.h"
 
 namespace KPublicTransport {
 
 /** Backends for the Hafas "query.exe" based providers. */
-class HafasQueryBackend : public AbstractBackend
+class HafasQueryBackend : public HafasBackend
 {
     Q_GADGET
-    Q_PROPERTY(QString endpoint MEMBER m_endpoint)
-    /** Identifier type used for stations. Default is backendId(). */
-    Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
-
 public:
     HafasQueryBackend();
     ~HafasQueryBackend();
@@ -45,8 +41,6 @@ private:
     void init() const;
     QString locationId(const Location &loc) const;
 
-    QString m_endpoint;
-    QString m_locationIdentifierType;
     mutable HafasQueryParser m_parser;
 };
 

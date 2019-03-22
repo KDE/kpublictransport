@@ -44,7 +44,10 @@
 
 using namespace KPublicTransport;
 
-HafasMgateBackend::HafasMgateBackend() = default;
+HafasMgateBackend::HafasMgateBackend()
+    : m_parser(m_lineModeMap)
+{
+}
 
 bool HafasMgateBackend::isSecure() const
 {
@@ -357,22 +360,4 @@ void HafasMgateBackend::setMicMacSalt(const QString &salt)
 void HafasMgateBackend::setChecksumSalt(const QString &salt)
 {
     m_checksumSalt = QByteArray::fromHex(salt.toUtf8());
-}
-
-void HafasMgateBackend::setLineModeMap(const QJsonObject& obj)
-{
-    const auto idx = Line::staticMetaObject.indexOfEnumerator("Mode");
-    Q_ASSERT(idx >= 0);
-    const auto me = Line::staticMetaObject.enumerator(idx);
-
-    std::unordered_map<int, Line::Mode> modeMap;
-    for (auto it = obj.begin(); it != obj.end(); ++it) {
-        modeMap[it.key().toInt()] = static_cast<Line::Mode>(me.keyToValue(it.value().toString().toUtf8().constData()));
-    }
-    m_parser.setLineModeMap(std::move(modeMap));
-}
-
-QString HafasMgateBackend::locationIdentifierType() const
-{
-    return m_locationIdentifierType.isEmpty() ? backendId() : m_locationIdentifierType;
 }

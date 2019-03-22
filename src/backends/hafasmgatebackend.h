@@ -18,7 +18,7 @@
 #ifndef KPUBLICTRANSPORT_HAFASMGATEBACKEND_H
 #define KPUBLICTRANSPORT_HAFASMGATEBACKEND_H
 
-#include "abstractbackend.h"
+#include "hafasbackend.h"
 #include "hafasmgateparser.h"
 
 #include <QString>
@@ -31,10 +31,9 @@ namespace KPublicTransport {
 class LocationRequest;
 
 /** Backend for the Hafas mgate.exe interface. */
-class HafasMgateBackend : public AbstractBackend
+class HafasMgateBackend : public HafasBackend
 {
     Q_GADGET
-    Q_PROPERTY(QString endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString aid MEMBER m_aid)
     Q_PROPERTY(QString clientId MEMBER m_clientId)
     Q_PROPERTY(QString clientType MEMBER m_clientType)
@@ -45,9 +44,6 @@ class HafasMgateBackend : public AbstractBackend
     Q_PROPERTY(QString micMacSalt WRITE setMicMacSalt)
     /** Salt for the request checksum parameter, hex-encoded. */
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
-    Q_PROPERTY(QJsonObject lineModeMap WRITE setLineModeMap)
-    /** Identifier type used for stations. Default is backendId(). */
-    Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
 public:
     HafasMgateBackend();
     bool isSecure() const override;
@@ -63,12 +59,9 @@ private:
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
-    void setLineModeMap(const QJsonObject &obj);
-    QString locationIdentifierType() const;
 
     mutable HafasMgateParser m_parser;
 
-    QString m_endpoint;
     QString m_aid;
     QString m_clientId;
     QString m_clientType;
@@ -77,7 +70,6 @@ private:
     QString m_version;
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
-    QString m_locationIdentifierType;
 };
 
 }

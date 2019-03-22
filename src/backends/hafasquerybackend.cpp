@@ -43,7 +43,7 @@ HafasQueryBackend::~HafasQueryBackend() = default;
 
 void HafasQueryBackend::init() const
 {
-    m_parser.setLocationIdentifierType(m_locationIdentifierType);
+    m_parser.setLocationIdentifierType(locationIdentifierType());
 }
 
 bool HafasQueryBackend::isSecure() const
@@ -55,9 +55,9 @@ bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) 
 {
     switch (type) {
         case QueryType::Departure:
-            return loc.identifier(m_locationIdentifierType).isEmpty();
+            return loc.identifier(locationIdentifierType()).isEmpty();
         case QueryType::Journey:
-            return loc.identifier(m_locationIdentifierType).isEmpty() && !loc.hasCoordinate();
+            return loc.identifier(locationIdentifierType()).isEmpty() && !loc.hasCoordinate();
     }
     return false;
 }
@@ -101,7 +101,7 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
 {
     init();
 
-    const auto stationId = request.stop().identifier(m_locationIdentifierType);
+    const auto stationId = request.stop().identifier(locationIdentifierType());
     if (stationId.isEmpty()) {
         qCDebug(Log) << "no station identifier found for departure stop" << backendId();
         return false;
@@ -141,7 +141,7 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
 
 QString HafasQueryBackend::locationId(const Location &loc) const
 {
-    const auto id = loc.identifier(m_locationIdentifierType);
+    const auto id = loc.identifier(locationIdentifierType());
     if (!id.isEmpty()) {
         return QLatin1String("A=1@L=") + id;
     }
