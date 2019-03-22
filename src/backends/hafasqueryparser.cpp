@@ -232,8 +232,8 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                 + header->stationTableOffset
                 + sectionInfo->departureStationIdx * sizeof(HafasJourneyResponseStation));
             from.setName(stringTable.lookup(fromInfo->nameStr));
-            from.setLatitude(fromInfo->latitude / 1000000);
-            from.setLongitude(fromInfo->longitude / 1000000);
+            from.setLatitude(fromInfo->latitude / 1000000.0);
+            from.setLongitude(fromInfo->longitude / 1000000.0);
             from.setIdentifier(m_locationIdentifierType, QString::number(fromInfo->id));
 
             Location to;
@@ -241,8 +241,8 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                 + header->stationTableOffset
                 + sectionInfo->arrivalStationIdx * sizeof(HafasJourneyResponseStation));
             to.setName(stringTable.lookup(toInfo->nameStr));
-            to.setLatitude(toInfo->latitude / 1000000);
-            to.setLongitude(toInfo->longitude / 1000000);
+            to.setLatitude(toInfo->latitude / 1000000.0);
+            to.setLongitude(toInfo->longitude / 1000000.0);
             to.setIdentifier(m_locationIdentifierType, QString::number(toInfo->id));
 
             JourneySection section;
