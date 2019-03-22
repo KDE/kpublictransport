@@ -229,6 +229,56 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
+
+        // resolve locations if needed
+        if (backend->needsLocationQuery(req.from(), AbstractBackend::QueryType::Journey)) {
+            ++pendingOps;
+            LocationRequest fromReq;
+            fromReq.setCoordinate(req.from().latitude(), req.from().longitude());
+            fromReq.setName(req.from().name());
+            d->resolveLocation(fromReq, backend, this, [reply, &backend, this](const Location &loc) {
+                const auto fromLoc = Location::merge(reply->request().from(), loc);
+                auto jnyRequest = reply->request();
+                jnyRequest.setFrom(fromLoc);
+
+                if (backend->needsLocationQuery(jnyRequest.to(), AbstractBackend::QueryType::Journey)) {
+                    LocationRequest toReq;
+                    toReq.setCoordinate(jnyRequest.to().latitude(), jnyRequest.to().longitude());
+                    toReq.setName(jnyRequest.to().name());
+                    d->resolveLocation(toReq, backend, this, [jnyRequest, reply, &backend, this](const Location &loc) {
+                        auto jnyReq = jnyRequest;
+                        const auto toLoc = Location::merge(jnyRequest.to(), loc);
+                        jnyReq.setTo(toLoc);
+                        if (!backend->queryJourney(jnyReq, reply, d->nam(const_cast<Manager*>(this)))) {
+                            reply->addError(Reply::NotFoundError, {});
+                        }
+                    });
+
+                    return;
+                }
+
+                if (!backend->queryJourney(jnyRequest, reply, d->nam(const_cast<Manager*>(this)))) {
+                    reply->addError(Reply::NotFoundError, {});
+                }
+            });
+            continue;
+        }
+        if (backend->needsLocationQuery(req.to(), AbstractBackend::QueryType::Journey)) {
+            ++pendingOps;
+            LocationRequest toReq;
+            toReq.setCoordinate(req.to().latitude(), req.to().longitude());
+            toReq.setName(req.to().name());
+            d->resolveLocation(toReq, backend, this, [reply, &backend, this](const Location &loc) {
+                const auto toLoc = Location::merge(reply->request().to(), loc);
+                auto jnyRequest = reply->request();
+                jnyRequest.setTo(toLoc);
+                if (!backend->queryJourney(jnyRequest, reply, d->nam(const_cast<Manager*>(this)))) {
+                    reply->addError(Reply::NotFoundError, {});
+                }
+            });
+            continue;
+        }
+
         if (backend->queryJourney(req, reply, d->nam(const_cast<Manager*>(this)))) {
             ++pendingOps;
         }
