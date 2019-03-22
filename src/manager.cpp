@@ -159,15 +159,16 @@ template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwor
 void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const Manager *mgr, const std::function<void(const Location&)> &callback)
 {
     // check if this location query is cached already
+    auto q = const_cast<Manager*>(mgr);
     const auto cacheEntry = Cache::lookupLocation(backend->backendId(), locReq.cacheKey());
     switch (cacheEntry.type) {
         case CacheHitType::Negative:
-            QTimer::singleShot(0, [callback]() { callback({}); });
+            QTimer::singleShot(0, q, [callback]() { callback({}); });
             return;
         case CacheHitType::Positive:
             if (!cacheEntry.data.empty()) {
                 const auto loc = cacheEntry.data[0];
-                QTimer::singleShot(0, [callback, loc]() { callback(loc); });
+                QTimer::singleShot(0, q, [callback, loc]() { callback(loc); });
                 return;
             }
             break;
@@ -176,14 +177,13 @@ void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const std::u
     }
 
     // actually do the location query
-    auto q = const_cast<Manager*>(mgr);
     auto locReply = new LocationReply(locReq, q);
     if (backend->queryLocation(locReq, locReply, nam(q))) {
         locReply->setPendingOps(1);
     } else {
         locReply->setPendingOps(0);
     }
-    QObject::connect(locReply, &Reply::finished, q, [callback, locReply, q]() {
+    QObject::connect(locReply, &Reply::finished, q, [callback, locReply]() {
         locReply->deleteLater();
         if (locReply->result().empty()) {
             callback({});
