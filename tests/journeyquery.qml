@@ -264,6 +264,10 @@ Kirigami.ApplicationWindow {
                     text: "Allow insecure backends"
                     onToggled: _queryMgr.setAllowInsecure(checked)
                 }
+                QQC2.CheckBox {
+                    id: searchDirection
+                    text: checked ? "Time is arrival" : "Time is departure"
+                }
                 QQC2.ComboBox {
                     id: exampleSelector
                     Layout.fillWidth: true
@@ -305,15 +309,15 @@ Kirigami.ApplicationWindow {
                 RowLayout {
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.findJourney(fromName.text, fromLat.text, fromLon.text, toName.text, toLat.text, toLon.text);
+                        onClicked: _queryMgr.findJourney(fromName.text, fromLat.text, fromLon.text, toName.text, toLat.text, toLon.text, searchDirection.checked);
                     }
                     QQC2.Button {
                         text: "Query Name"
-                        onClicked: _queryMgr.findJourney(fromName.text, NaN, NaN, toName.text, NaN, NaN);
+                        onClicked: _queryMgr.findJourney(fromName.text, NaN, NaN, toName.text, NaN, NaN, searchDirection.checked);
                     }
                     QQC2.Button {
                         text: "Query Coord"
-                        onClicked: _queryMgr.findJourney("", fromLat.text, fromLon.text, "", toLat.text, toLon.text);
+                        onClicked: _queryMgr.findJourney("", fromLat.text, fromLon.text, "", toLat.text, toLon.text, searchDirection.checked);
                     }
                     QQC2.Button {
                         text: "Clear"

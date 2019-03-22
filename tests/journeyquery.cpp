@@ -49,7 +49,7 @@ public:
         ptMgr.setNetworkAccessManager(&nam);
     }
 
-    Q_INVOKABLE void findJourney(const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon)
+    Q_INVOKABLE void findJourney(const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
     {
         engine->rootContext()->setContextProperty(QStringLiteral("_journeys"), QVariantList());
         m_loading = true;
@@ -64,7 +64,12 @@ public:
         to.setName(toName);
         to.setCoordinate(toLat, toLon);
 
-        auto reply = ptMgr.queryJourney({from, to});
+        JourneyRequest request(from, to);
+        if (direction) {
+            request.setArrivalTime(QDateTime::currentDateTime().addSecs(2 * 3600));
+        }
+
+        auto reply = ptMgr.queryJourney(request);
         QObject::connect(reply, &JourneyReply::finished, this, [reply, this]{
             m_loading = false;
             emit loadingChanged();
