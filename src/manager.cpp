@@ -184,7 +184,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
-        if (backend->queryJourney(reply, d->nam(const_cast<Manager*>(this)))) {
+        if (backend->queryJourney(req, reply, d->nam(const_cast<Manager*>(this)))) {
             ++pendingOps;
         }
     }
@@ -205,7 +205,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
-        if (backend->queryDeparture(reply, d->nam(const_cast<Manager*>(this)))) {
+        if (backend->queryDeparture(req, reply, d->nam(const_cast<Manager*>(this)))) {
             ++pendingOps;
         }
     }
@@ -238,7 +238,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 break;
             case CacheHitType::Miss:
                 qCDebug(Log) << "Cache miss for backend" << backend->backendId();
-                if (backend->queryLocation(reply, d->nam(const_cast<Manager*>(this)))) {
+                if (backend->queryLocation(req, reply, d->nam(const_cast<Manager*>(this)))) {
                     ++pendingOps;
                 }
                 break;

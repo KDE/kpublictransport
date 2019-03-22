@@ -27,9 +27,12 @@ class QNetworkAccessManager;
 namespace KPublicTransport {
 
 class DepartureReply;
+class DepartureRequest;
 class JourneyReply;
+class JourneyRequest;
 class Location;
 class LocationReply;
+class LocationRequest;
 
 /** Abstract base class for transport provider backends. */
 class AbstractBackend
@@ -57,17 +60,17 @@ public:
     /** Perform a journey query.
      *  @return @c true if performing an async operation, @c false otherwise.
      */
-    virtual bool queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const;
+    virtual bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const;
 
     /** Perform a departure query.
      *  @return @c true if performing an async operation, @c false otherwise.
      */
-    virtual bool queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const;
+    virtual bool queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const;
 
     /** Perform a location query.
      *  @return @c true if performing an async operation, @c false otherwise.
      */
-    virtual bool queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const;
+    virtual bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const;
 
 protected:
     /** Helper function to call non-public Reply API. */

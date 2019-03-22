@@ -51,11 +51,9 @@ bool HafasMgateBackend::isSecure() const
     return m_endpoint.startsWith(QLatin1String("https"));
 }
 
-bool HafasMgateBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const
+bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     m_parser.setLocationIdentifierType(locationIdentifierType());
-    const auto request = reply->request();
-
     const auto fromId = request.from().identifier(locationIdentifierType());
     if (!fromId.isEmpty()) {
         return queryJourney(reply, fromId, nam);
@@ -253,10 +251,9 @@ bool HafasMgateBackend::queryJourney(JourneyReply *reply, const QString &fromId,
     return true;
 }
 
-bool HafasMgateBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const
+bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     m_parser.setLocationIdentifierType(locationIdentifierType());
-    const auto request = reply->request();
 
     const auto id = request.stop().identifier(locationIdentifierType());
     if (!id.isEmpty()) {
@@ -373,11 +370,9 @@ void HafasMgateBackend::queryDeparture(DepartureReply *reply, const QString &loc
     });
 }
 
-bool HafasMgateBackend::queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const
+bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     m_parser.setLocationIdentifierType(locationIdentifierType());
-
-    const auto req = reply->request();
     const auto netReply = postLocationQuery(req, nam);
     if (!netReply) {
         return false;

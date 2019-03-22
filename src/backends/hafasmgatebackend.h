@@ -51,9 +51,9 @@ class HafasMgateBackend : public AbstractBackend
 public:
     HafasMgateBackend();
     bool isSecure() const override;
-    bool queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const override;
+    bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    bool queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const override;
+    bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     QNetworkReply* postRequest(const QJsonObject &svcReq, QNetworkAccessManager *nam) const;

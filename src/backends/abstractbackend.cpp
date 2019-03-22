@@ -60,22 +60,25 @@ bool AbstractBackend::isSecure() const
     return false;
 }
 
-bool AbstractBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const
+bool AbstractBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
+    Q_UNUSED(request);
     Q_UNUSED(reply);
     Q_UNUSED(nam);
     return false;
 }
 
-bool AbstractBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const
+bool AbstractBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    Q_UNUSED(request);
     Q_UNUSED(reply);
     Q_UNUSED(nam);
     return false;
 }
 
-bool AbstractBackend::queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const
+bool AbstractBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    Q_UNUSED(request);
     Q_UNUSED(reply);
     Q_UNUSED(nam);
     return false;

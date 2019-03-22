@@ -45,9 +45,8 @@ bool NavitiaBackend::isSecure() const
     return true; // https is hardcoded below
 }
 
-bool NavitiaBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const
+bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto req = reply->request();
     if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
         return false;
     }
@@ -96,9 +95,8 @@ bool NavitiaBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *na
     return true;
 }
 
-bool NavitiaBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const
+bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto req = reply->request();
     if (req.stop().hasCoordinate()) {
         queryDeparture(reply, req.stop(), nam);
         return true;
@@ -199,9 +197,8 @@ void NavitiaBackend::queryDeparture(DepartureReply *reply, const Location &loc, 
     });
 }
 
-bool NavitiaBackend::queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const
+bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto req = reply->request();
     auto netReply = postLocationQuery(req, nam);
     if (!netReply) {
         return false;

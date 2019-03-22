@@ -51,11 +51,9 @@ bool HafasQueryBackend::isSecure() const
     return m_endpoint.startsWith(QLatin1String("https://"));
 }
 
-bool HafasQueryBackend::queryLocation(LocationReply *reply, QNetworkAccessManager *nam) const
+bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     init();
-
-    const auto request = reply->request();
     if (request.name().isEmpty()) {
         return false; // TODO queries by coordinate
     }
@@ -88,11 +86,10 @@ bool HafasQueryBackend::queryLocation(LocationReply *reply, QNetworkAccessManage
     return true;
 }
 
-bool HafasQueryBackend::queryDeparture(DepartureReply *reply, QNetworkAccessManager *nam) const
+bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     init();
 
-    const auto request = reply->request();
     const auto stationId = request.stop().identifier(m_locationIdentifierType);
     if (stationId.isEmpty()) {
         // TODO support location queries like in the mgate variant
@@ -149,11 +146,10 @@ QString HafasQueryBackend::locationId(const Location &loc) const
     return {};
 }
 
-bool HafasQueryBackend::queryJourney(JourneyReply *reply, QNetworkAccessManager *nam) const
+bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     init();
 
-    const auto request = reply->request();
     const auto fromId = locationId(request.from());
     const auto toId = locationId(request.to());
     if (fromId.isEmpty() || toId.isEmpty()) {
