@@ -37,6 +37,9 @@
 #include <QJsonObject>
 #include <QMetaProperty>
 #include <QNetworkAccessManager>
+#include <QTimer>
+
+#include <functional>
 
 using namespace KPublicTransport;
 
@@ -51,6 +54,8 @@ public:
     void loadNetworks();
     std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename T> std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
+
+    void resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const Manager *mgr, const std::function<void(const Location &loc)> &callback);
 
     QNetworkAccessManager *m_nam = nullptr;
     std::vector<std::unique_ptr<AbstractBackend>> m_backends;
@@ -149,6 +154,46 @@ template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwor
     return backend;
 }
 
+// IMPORTANT callback must not be called directly, but only via queued invocation,
+// our callers rely on that to not mess up sync/async response handling
+void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const Manager *mgr, const std::function<void(const Location&)> &callback)
+{
+    // check if this location query is cached already
+    const auto cacheEntry = Cache::lookupLocation(backend->backendId(), locReq.cacheKey());
+    switch (cacheEntry.type) {
+        case CacheHitType::Negative:
+            QTimer::singleShot(0, [callback]() { callback({}); });
+            return;
+        case CacheHitType::Positive:
+            if (!cacheEntry.data.empty()) {
+                const auto loc = cacheEntry.data[0];
+                QTimer::singleShot(0, [callback, loc]() { callback(loc); });
+                return;
+            }
+            break;
+        case CacheHitType::Miss:
+            break;
+    }
+
+    // actually do the location query
+    auto q = const_cast<Manager*>(mgr);
+    auto locReply = new LocationReply(locReq, q);
+    if (backend->queryLocation(locReq, locReply, nam(q))) {
+        locReply->setPendingOps(1);
+    } else {
+        locReply->setPendingOps(0);
+    }
+    QObject::connect(locReply, &Reply::finished, q, [callback, locReply, q]() {
+        locReply->deleteLater();
+        if (locReply->result().empty()) {
+            callback({});
+        } else {
+            callback(locReply->result()[0]);
+        }
+    });
+}
+
+
 Manager::Manager(QObject *parent)
     : QObject(parent)
     , d(new ManagerPrivate)
@@ -205,6 +250,25 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
+
+        // check if we first need to resolve the location first
+        if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
+            qCDebug(Log) << "Backend needs location query first:" << backend->backendId();
+            ++pendingOps;
+            LocationRequest locReq;
+            locReq.setCoordinate(req.stop().latitude(), req.stop().longitude());
+            locReq.setName(req.stop().name());
+            d->resolveLocation(locReq, backend, this, [reply, &backend, this](const Location &loc) {
+                const auto depLoc = Location::merge(reply->request().stop(), loc);
+                auto depRequest = reply->request();
+                depRequest.setStop(depLoc);
+                if (!backend->queryDeparture(depRequest, reply, d->nam(const_cast<Manager*>(this)))) {
+                    reply->addError(Reply::NotFoundError, {});
+                }
+            });
+            continue;
+        }
+
         if (backend->queryDeparture(req, reply, d->nam(const_cast<Manager*>(this)))) {
             ++pendingOps;
         }

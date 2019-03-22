@@ -57,6 +57,18 @@ public:
     /** Returns @c true if this backend uses transport encryption. */
     virtual bool isSecure() const;
 
+    /** Type of query.
+     *  @see needsLocationQuery
+     */
+    enum class QueryType {
+        Departure,
+        Journey
+    };
+    /** Returns whether or not a location query has to be performed for the given
+     *  Location before doing departure or journey queries for it.
+     */
+    virtual bool needsLocationQuery(const Location &loc, QueryType type) const;
+
     /** Perform a journey query.
      *  @return @c true if performing an async operation, @c false otherwise.
      */

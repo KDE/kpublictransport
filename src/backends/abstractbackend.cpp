@@ -60,6 +60,13 @@ bool AbstractBackend::isSecure() const
     return false;
 }
 
+bool AbstractBackend::needsLocationQuery(const Location &loc, QueryType type) const
+{
+    Q_UNUSED(loc);
+    Q_UNUSED(type);
+    return false;
+}
+
 bool AbstractBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     Q_UNUSED(request);

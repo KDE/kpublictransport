@@ -51,6 +51,17 @@ bool HafasQueryBackend::isSecure() const
     return m_endpoint.startsWith(QLatin1String("https://"));
 }
 
+bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) const
+{
+    switch (type) {
+        case QueryType::Departure:
+            return loc.identifier(m_locationIdentifierType).isEmpty();
+        case QueryType::Journey:
+            return loc.identifier(m_locationIdentifierType).isEmpty() && !loc.hasCoordinate();
+    }
+    return false;
+}
+
 bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     init();
@@ -92,7 +103,7 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
 
     const auto stationId = request.stop().identifier(m_locationIdentifierType);
     if (stationId.isEmpty()) {
-        // TODO support location queries like in the mgate variant
+        qCDebug(Log) << "no station identifier found for departure stop" << backendId();
         return false;
     }
 

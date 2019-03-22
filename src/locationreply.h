@@ -46,6 +46,7 @@ public:
 
 private:
     friend class Manager;
+    friend class ManagerPrivate;
     explicit LocationReply(const LocationRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;

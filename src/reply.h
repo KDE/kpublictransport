@@ -64,6 +64,7 @@ protected:
     void addError(Error error, const QString &errorMsg);
 
     friend class Manager;
+    friend class ManagerPrivate;
     void setPendingOps(int ops);
 };
 
