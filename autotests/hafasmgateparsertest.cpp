@@ -26,7 +26,7 @@
 
 using namespace KPublicTransport;
 
-class HafasParserTest : public QObject
+class HafasMgateParserTest : public QObject
 {
     Q_OBJECT
 private:
@@ -73,6 +73,6 @@ private Q_SLOTS:
     }
 };
 
-QTEST_GUILESS_MAIN(HafasParserTest)
+QTEST_GUILESS_MAIN(HafasMgateParserTest)
 
-#include "hafasparsertest.moc"
+#include "hafasmgateparsertest.moc"

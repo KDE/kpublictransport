@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_HAFASQUERYPARSER_H
 #define KPUBLICTRANSPORT_HAFASQUERYPARSER_H
 
+#include "kpublictransport_export.h"
+
 #include <KPublicTransport/Line>
 
 #include <QString>
@@ -33,8 +35,10 @@ class Departure;
 class Journey;
 class Location;
 
-/** Parse for Hafas "query.exe" variant XML responses. */
-class HafasQueryParser
+/** Parse for Hafas "query.exe" variant XML responses.
+ *  @internal only exported for unit tests.
+ */
+class KPUBLICTRANSPORT_EXPORT HafasQueryParser
 {
 public:
     HafasQueryParser(const std::unordered_map<int, Line::Mode> &modeMap);
