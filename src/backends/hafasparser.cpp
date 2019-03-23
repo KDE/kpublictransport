@@ -16,10 +16,12 @@
 */
 
 #include "hafasparser.h"
+#include "logging.h"
 
 using namespace KPublicTransport;
 
-HafasParser::HafasParser()
+HafasParser::HafasParser(const std::unordered_map<int, Line::Mode> &modeMap)
+    : m_lineModeMap(modeMap)
 {
 }
 
@@ -39,4 +41,34 @@ void HafasParser::clearErrorState()
 {
     m_error = Reply::NoError;
     m_errorMsg.clear();
+}
+
+Line::Mode HafasParser::parseLineMode(const QString &modeId) const
+{
+    bool ok = false;
+    const auto modeNum = modeId.toInt(&ok);
+    if (!ok) {
+        return Line::Unknown;
+    }
+    return parseLineMode(modeNum);
+}
+
+Line::Mode HafasParser::parseLineMode(const QStringRef &modeId) const
+{
+    bool ok = false;
+    const auto modeNum = modeId.toInt(&ok);
+    if (!ok) {
+        return Line::Unknown;
+    }
+    return parseLineMode(modeNum);
+}
+
+Line::Mode HafasParser::parseLineMode(int modeId) const
+{
+    const auto lineModeIt = m_lineModeMap.find(modeId);
+    if (lineModeIt != m_lineModeMap.end()) {
+        return (*lineModeIt).second;
+    }
+    qCDebug(Log) << "Encountered unknown line type:" << modeId;
+    return Line::Unknown;
 }

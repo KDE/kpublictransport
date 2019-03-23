@@ -32,7 +32,7 @@
 using namespace KPublicTransport;
 
 HafasMgateParser::HafasMgateParser(const std::unordered_map<int, Line::Mode>& lineModeMap)
-    : m_lineModeMap(lineModeMap)
+    : HafasParser(lineModeMap)
 {
 }
 
@@ -87,14 +87,7 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
         const auto prodObj = prodV.toObject();
         Line line;
         line.setName(prodObj.value(QLatin1String("name")).toString());
-
-        const auto prodCode = prodObj.value(QLatin1String("cls")).toInt();
-        const auto lineModeIt = m_lineModeMap.find(prodCode);
-        if (lineModeIt != m_lineModeMap.end()) {
-            line.setMode((*lineModeIt).second);
-        } else {
-            qCDebug(Log) << "Encountered unknown line type:" << prodCode << line.name();
-        }
+        line.setMode(parseLineMode(prodObj.value(QLatin1String("cls")).toInt()));
 
         const auto icoIdx = prodObj.value(QLatin1String("icoX")).toInt();
         if ((unsigned int)icoIdx < icos.size()) {

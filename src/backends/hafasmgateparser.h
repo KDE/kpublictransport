@@ -66,7 +66,6 @@ private:
     std::vector<Journey> parseTripSearch(const QJsonObject &obj) const;
     bool parseError(const QJsonObject &obj) const;
 
-    const std::unordered_map<int, Line::Mode> &m_lineModeMap;
     QString m_locIdType;
 };
 

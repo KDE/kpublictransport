@@ -51,7 +51,6 @@ public:
 
 private:
     QString m_locationIdentifierType;
-    const std::unordered_map<int, Line::Mode> &m_lineModeMap;
 };
 
 }

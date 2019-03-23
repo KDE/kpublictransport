@@ -35,7 +35,7 @@
 using namespace KPublicTransport;
 
 HafasQueryParser::HafasQueryParser(const std::unordered_map<int, Line::Mode> &modeMap)
-    : m_lineModeMap(modeMap)
+    : HafasParser(modeMap)
 {
 }
 
@@ -99,15 +99,7 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
                         line.setName(prod.left(idx).toString().simplified());
                     }
 
-                    if (reader.attributes().hasAttribute(QLatin1String("class"))) {
-                        const auto cls = reader.attributes().value(QLatin1String("class")).toInt();
-                        const auto lineModeIt = m_lineModeMap.find(cls);
-                        if (lineModeIt != m_lineModeMap.end()) {
-                            line.setMode((*lineModeIt).second);
-                        } else {
-                            qCDebug(Log) << "Encountered unknown line type:" << cls << line.name();
-                        }
-                    }
+                    line.setMode(parseLineMode(reader.attributes().value(QLatin1String("class"))));
                     // TODO line mode from second part of prod attribute, if class not set
                     route.setLine(line);
                     dep.setRoute(route);
@@ -311,13 +303,7 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                     if (key == QLatin1String("Direction")) {
                         route.setDirection(stringTable.lookup(attr->valueStr));
                     } else if (key == QLatin1String("Class")) {
-                        const auto cls = stringTable.lookup(attr->valueStr).toInt();
-                        const auto lineModeIt = m_lineModeMap.find(cls);
-                        if (lineModeIt != m_lineModeMap.end()) {
-                            line.setMode((*lineModeIt).second);
-                        } else {
-                            qCDebug(Log) << "Encountered unknown line type:" << cls << line.name();
-                        }
+                        line.setMode(parseLineMode(stringTable.lookup(attr->valueStr)));
                     }
                     ++attr;
                 }

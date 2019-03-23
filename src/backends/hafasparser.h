@@ -20,9 +20,12 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
 
 #include <QString>
+
+#include <unordered_map>
 
 namespace KPublicTransport {
 
@@ -36,10 +39,13 @@ public:
     QString errorMessage() const;
 
 protected:
-    HafasParser();
+    HafasParser(const std::unordered_map<int, Line::Mode> &modeMap);
     ~HafasParser();
 
     void clearErrorState();
+    Line::Mode parseLineMode(const QString &modeId) const;
+    Line::Mode parseLineMode(const QStringRef &modeId) const;
+    Line::Mode parseLineMode(int modeId) const;
 
 protected:
     mutable QString m_errorMsg;
@@ -47,7 +53,7 @@ protected:
 
 private:
     Q_DISABLE_COPY(HafasParser)
-
+    const std::unordered_map<int, Line::Mode> &m_lineModeMap;
 };
 
 }
