@@ -104,6 +104,9 @@ bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationRe
 bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     init();
+    if (!m_departureQuerySupported) {
+        return false;
+    }
 
     const auto stationId = request.stop().identifier(locationIdentifierType());
     if (stationId.isEmpty()) {

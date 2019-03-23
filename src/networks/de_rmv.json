@@ -1,6 +1,7 @@
 {
     "type": "hafas_query",
     "options": {
+        "departureQuerySupported": false,
         "endpoint": "https://www.rmv.de/auskunft/bin/jp/",
         "lineModeMap": {
             "1": "LongDistanceTrain",
