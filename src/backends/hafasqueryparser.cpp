@@ -46,6 +46,7 @@ void HafasQueryParser::setLocationIdentifierType(const QString &idType)
 
 std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteArray &data, bool isArrival)
 {
+    clearErrorState();
     qDebug().noquote() << data;
     std::vector<Departure> res;
 
@@ -125,6 +126,8 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
 
 std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &data)
 {
+    clearErrorState();
+
     // remove garbage around JSON payload
     const auto startIdx = data.indexOf('{');
     const auto endIdx = data.lastIndexOf('}');
@@ -204,6 +207,7 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
     Q_UNUSED(data);
     return {};
 #endif
+    clearErrorState();
 
     // yes, this is gzip compressed rather than using the HTTP compression transparently...
     const auto rawData = gzipDecompress(data);
@@ -226,6 +230,8 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
     }
     if (extHeader->errorCode != 0) {
         qCDebug(Log) << "Journey query returned error" << extHeader->errorCode;
+        // TODO we could distinguish between not found and service errors here
+        m_error = Reply::NotFoundError;
         return {};
     }
 

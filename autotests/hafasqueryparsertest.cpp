@@ -47,7 +47,7 @@ private Q_SLOTS:
         HafasQueryParser p(modeMap);
         const auto res = p.parseQueryResponse(readFile(SOURCE_DIR "/data/hafas/journey-binary-error.bin.gz"));
         QVERIFY(res.empty());
-//         QCOMPARE(p.error(), Reply::NotFoundError);
+        QCOMPARE(p.error(), Reply::NotFoundError);
     }
 };
 

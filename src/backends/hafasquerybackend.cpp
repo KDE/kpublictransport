@@ -94,8 +94,12 @@ bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationRe
         }
 
         auto res = m_parser.parseGetStopResponse(netReply->readAll());
-        // TODO error handling
-        addResult(reply, std::move(res));
+        if (m_parser.error() != Reply::NoError) {
+            addError(reply, m_parser.error(), m_parser.errorMessage());
+            qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
+        } else {
+            addResult(reply, std::move(res));
+        }
     });
 
     return true;
@@ -139,8 +143,12 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
             return;
         }
         auto res = m_parser.parseStationBoardResponse(netReply->readAll(), reply->request().mode() == DepartureRequest::QueryArrival);
-        // TODO error handling
-        addResult(reply, std::move(res));
+        if (m_parser.error() != Reply::NoError) {
+            addError(reply, m_parser.error(), m_parser.errorMessage());
+            qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
+        } else {
+            addResult(reply, std::move(res));
+        }
     });
 
     return true;
@@ -202,7 +210,12 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
         }
 
         auto res = m_parser.parseQueryResponse(netReply->readAll());
-        // TODO error handling
+        if (m_parser.error() != Reply::NoError) {
+            addError(reply, m_parser.error(), m_parser.errorMessage());
+            qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
+        } else {
+            addResult(reply, std::move(res));
+        }
         addResult(reply, std::move(res));
     });
 

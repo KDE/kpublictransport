@@ -312,16 +312,6 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     return res;
 }
 
-Reply::Error HafasMgateParser::error() const
-{
-    return m_error;
-}
-
-QString HafasMgateParser::errorMessage() const
-{
-    return m_errorMsg;
-}
-
 QDateTime HafasMgateParser::parseDateTime(const QString &date, const QString &time)
 {
     if (date.isEmpty() || time.isEmpty()) {

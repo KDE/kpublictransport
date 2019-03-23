@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_HAFASMGATEPARSER_H
 
 #include "kpublictransport_export.h"
+#include "hafasparser.h"
 
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
@@ -44,7 +45,7 @@ struct Ico {
 /** Hafas response parser.
  *  @internal exported for unit tests only
  */
-class KPUBLICTRANSPORT_EXPORT HafasMgateParser
+class KPUBLICTRANSPORT_EXPORT HafasMgateParser : public HafasParser
 {
 public:
     HafasMgateParser(const std::unordered_map<int, Line::Mode> &lineModeMap);
@@ -54,9 +55,6 @@ public:
     std::vector<Departure> parseDepartures(const QByteArray &data) const;
     std::vector<Location> parseLocations(const QByteArray &data) const;
     std::vector<Journey> parseJourneys(const QByteArray &data) const;
-
-    Reply::Error error() const;
-    QString errorMessage() const;
 
     static QDateTime parseDateTime(const QString &date, const QString &time);
 
@@ -70,8 +68,6 @@ private:
 
     const std::unordered_map<int, Line::Mode> &m_lineModeMap;
     QString m_locIdType;
-    mutable QString m_errorMsg;
-    mutable Reply::Error m_error = Reply::NoError;
 };
 
 }
