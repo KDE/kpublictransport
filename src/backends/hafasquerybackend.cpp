@@ -216,7 +216,6 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
         } else {
             addResult(reply, std::move(res));
         }
-        addResult(reply, std::move(res));
     });
 
     return true;
