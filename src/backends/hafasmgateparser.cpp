@@ -31,11 +31,7 @@
 
 using namespace KPublicTransport;
 
-HafasMgateParser::HafasMgateParser(const std::unordered_map<int, Line::Mode>& lineModeMap)
-    : HafasParser(lineModeMap)
-{
-}
-
+HafasMgateParser::HafasMgateParser() = default;
 HafasMgateParser::~HafasMgateParser() = default;
 
 static std::vector<Ico> parseIcos(const QJsonArray &icoL)

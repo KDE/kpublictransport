@@ -48,7 +48,7 @@ struct Ico {
 class KPUBLICTRANSPORT_EXPORT HafasMgateParser : public HafasParser
 {
 public:
-    HafasMgateParser(const std::unordered_map<int, Line::Mode> &lineModeMap);
+    HafasMgateParser();
     ~HafasMgateParser();
 
     std::vector<Departure> parseDepartures(const QByteArray &data) const;

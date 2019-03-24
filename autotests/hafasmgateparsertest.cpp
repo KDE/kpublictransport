@@ -45,8 +45,7 @@ private Q_SLOTS:
 
     void testParseDepartureError()
     {
-        std::unordered_map<int, Line::Mode> modeMap;
-        HafasMgateParser p(modeMap);
+        HafasMgateParser p;
         const auto res = p.parseDepartures(readFile(SOURCE_DIR "/data/hafas/stationboard-error-response.json"));
         QVERIFY(res.empty());
         QCOMPARE(p.error(), Reply::NotFoundError);

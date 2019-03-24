@@ -44,14 +44,13 @@
 
 using namespace KPublicTransport;
 
-HafasMgateBackend::HafasMgateBackend()
-    : m_parser(m_lineModeMap)
-{
-}
+HafasMgateBackend::HafasMgateBackend() = default;
+HafasMgateBackend::~HafasMgateBackend() = default;
 
 void HafasMgateBackend::init()
 {
     m_parser.setLocationIdentifierType(locationIdentifierType());
+    m_parser.setLineModeMap(std::move(m_lineModeMap));
 }
 
 bool HafasMgateBackend::isSecure() const

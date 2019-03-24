@@ -20,16 +20,17 @@
 
 using namespace KPublicTransport;
 
-HafasParser::HafasParser(const std::unordered_map<int, Line::Mode> &modeMap)
-    : m_lineModeMap(modeMap)
-{
-}
-
+HafasParser::HafasParser() = default;
 HafasParser::~HafasParser() = default;
 
 void HafasParser::setLocationIdentifierType(const QString &idType)
 {
     m_locationIdentifierType = idType;
+}
+
+void HafasParser::setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap)
+{
+    m_lineModeMap = std::move(modeMap);
 }
 
 Reply::Error HafasParser::error() const

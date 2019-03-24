@@ -43,8 +43,7 @@ private Q_SLOTS:
 
     void testParseJourneyError()
     {
-        std::unordered_map<int, Line::Mode> modeMap;
-        HafasQueryParser p(modeMap);
+        HafasQueryParser p;
         const auto res = p.parseQueryResponse(readFile(SOURCE_DIR "/data/hafas/journey-binary-error.bin.gz"));
         QVERIFY(res.empty());
         QCOMPARE(p.error(), Reply::NotFoundError);

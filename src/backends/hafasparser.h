@@ -36,12 +36,13 @@ class KPUBLICTRANSPORT_EXPORT HafasParser
 {
 public:
     void setLocationIdentifierType(const QString &idType);
+    void setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap);
 
     Reply::Error error() const;
     QString errorMessage() const;
 
 protected:
-    HafasParser(const std::unordered_map<int, Line::Mode> &modeMap);
+    HafasParser();
     ~HafasParser();
 
     void clearErrorState();
@@ -56,7 +57,7 @@ protected:
 
 private:
     Q_DISABLE_COPY(HafasParser)
-    const std::unordered_map<int, Line::Mode> &m_lineModeMap;
+    std::unordered_map<int, Line::Mode> m_lineModeMap;
 };
 
 }

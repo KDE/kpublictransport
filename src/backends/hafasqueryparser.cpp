@@ -34,10 +34,8 @@
 
 using namespace KPublicTransport;
 
-HafasQueryParser::HafasQueryParser(const std::unordered_map<int, Line::Mode> &modeMap)
-    : HafasParser(modeMap)
-{
-}
+HafasQueryParser::HafasQueryParser() = default;
+HafasQueryParser::~HafasQueryParser() = default;
 
 std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteArray &data, bool isArrival)
 {

@@ -38,16 +38,13 @@
 
 using namespace KPublicTransport;
 
-HafasQueryBackend::HafasQueryBackend()
-    : m_parser(m_lineModeMap)
-{
-}
-
+HafasQueryBackend::HafasQueryBackend() = default;
 HafasQueryBackend::~HafasQueryBackend() = default;
 
 void HafasQueryBackend::init()
 {
     m_parser.setLocationIdentifierType(locationIdentifierType());
+    m_parser.setLineModeMap(std::move(m_lineModeMap));
 }
 
 bool HafasQueryBackend::isSecure() const
