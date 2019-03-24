@@ -66,10 +66,17 @@ bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) 
 
 bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (request.name().isEmpty()) {
-        return false; // TODO queries by coordinate
+    if (request.hasCoordinate()) {
+        return queryLocationByCoordinate(request, reply, nam);
     }
+    if (!request.name().isEmpty()) {
+        return queryLocationByName(request, reply, nam);
+    }
+    return false;
+}
 
+bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
+{
     QUrl url(m_endpoint);
     url.setPath(url.path() + QLatin1String("/ajax-getstop.exe/en"));
 
@@ -101,6 +108,41 @@ bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationRe
         }
     });
 
+    return true;
+}
+
+bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
+{
+    QUrl url(m_endpoint);
+    url.setPath(url.path() + QLatin1String("/query.exe/eny"));
+
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("performLocating"), QStringLiteral("2"));
+    query.addQueryItem(QStringLiteral("tpl"), QStringLiteral("stop2json"));
+    query.addQueryItem(QStringLiteral("look_x"), QString::number((int)(request.longitude() * 1000000)));
+    query.addQueryItem(QStringLiteral("look_y"), QString::number((int)(request.latitude() * 1000000)));
+    query.addQueryItem(QStringLiteral("look_maxdist"), QStringLiteral("5000")); // TODO max dist
+    query.addQueryItem(QStringLiteral("look_maxno"), QStringLiteral("12")); // TODO max results
+    url.setQuery(query);
+    auto netReply = nam->get(QNetworkRequest(url));
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        netReply->deleteLater();
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, netReply->errorString());
+            qCDebug(Log) << reply->error() << reply->errorString();
+            return;
+        }
+        qDebug() << netReply->request().url();
+        auto res = m_parser.parseQueryLocationResponse(netReply->readAll());
+        if (m_parser.error() != Reply::NoError) {
+            Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
+            addError(reply, m_parser.error(), m_parser.errorMessage());
+            qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
+        } else {
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
+            addResult(reply, std::move(res));
+        }
+    });
     return true;
 }
 
@@ -205,7 +247,7 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
             return;
         }
 
-        auto res = m_parser.parseQueryResponse(netReply->readAll());
+        auto res = m_parser.parseQueryJourneyResponse(netReply->readAll());
         if (m_parser.error() != Reply::NoError) {
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();

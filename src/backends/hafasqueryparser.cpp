@@ -136,6 +136,27 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
     return res;
 }
 
+std::vector<Location> HafasQueryParser::parseQueryLocationResponse(const QByteArray &data)
+{
+    clearErrorState();
+
+    const auto doc = QJsonDocument::fromJson(data);
+    //qDebug().noquote() << doc.toJson();
+    const auto stops = doc.object().value(QLatin1String("stops")).toArray();
+    std::vector<Location> res;
+    res.reserve(stops.size());
+    for (const auto &stop : stops) {
+        const auto obj = stop.toObject();
+        Location loc;
+        loc.setIdentifier(m_locationIdentifierType, obj.value(QLatin1String("extId")).toString());
+        loc.setName(obj.value(QLatin1String("name")).toString());
+        loc.setLatitude(obj.value(QLatin1String("y")).toString().toInt() / 1000000.0);
+        loc.setLongitude(obj.value(QLatin1String("x")).toString().toInt() / 1000000.0);
+        res.push_back(loc);
+    }
+    return res;
+}
+
 static QByteArray gzipDecompress(const QByteArray &data)
 {
     QByteArray rawData;
@@ -202,7 +223,7 @@ static QString normalizePlatform(const QString &s)
     return s;
 }
 
-std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data)
+std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArray &data)
 {
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
 #warning Hafas binary response parsing not implemented on big endian architectures!

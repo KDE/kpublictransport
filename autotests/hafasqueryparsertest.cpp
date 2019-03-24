@@ -18,9 +18,12 @@
 #include "backends/hafasqueryparser.h"
 
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Location>
 
 #include <QFile>
 #include <QTest>
+
+#define s(x) QStringLiteral(x)
 
 using namespace KPublicTransport;
 
@@ -44,9 +47,24 @@ private Q_SLOTS:
     void testParseJourneyError()
     {
         HafasQueryParser p;
-        const auto res = p.parseQueryResponse(readFile(SOURCE_DIR "/data/hafas/journey-binary-error.bin.gz"));
+        const auto res = p.parseQueryJourneyResponse(readFile(SOURCE_DIR "/data/hafas/journey-binary-error.bin.gz"));
         QVERIFY(res.empty());
         QCOMPARE(p.error(), Reply::NotFoundError);
+    }
+
+    void testParseLocationByCoordinateResponse()
+    {
+        HafasQueryParser p;
+        p.setLocationIdentifierType(s("testId"));
+        const auto res = p.parseQueryLocationResponse(readFile(SOURCE_DIR "/data/hafas/query-location-response.json"));
+        QCOMPARE(res.size(), 1);
+        QCOMPARE(p.error(), Reply::NoError);
+
+        const auto loc = res[0];
+        QCOMPARE(loc.name(), s("Frankfurt (Main) Hauptbahnhof"));
+        QCOMPARE(loc.identifier(s("testId")), s("3000010"));
+        QCOMPARE((int)loc.latitude(), 50);
+        QCOMPARE((int)loc.longitude(), 8);
     }
 };
 

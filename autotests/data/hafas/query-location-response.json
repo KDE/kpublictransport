@@ -1,0 +1,18 @@
+{
+    "error": "0",
+    "numberofstops": "1",
+    "prods": "",
+    "stops": [
+        {
+            "dist": "18",
+            "extId": "3000010",
+            "name": "Frankfurt (Main) Hauptbahnhof",
+            "planId": "1553254838",
+            "prodclass": "255",
+            "puic": "80",
+            "urlname": "Frankfurt%20(Main)%20Hauptbahnhof",
+            "x": "8662662",
+            "y": "50106817"
+        }
+    ]
+}

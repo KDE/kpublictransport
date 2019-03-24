@@ -47,7 +47,8 @@ public:
 
     std::vector<Departure> parseStationBoardResponse(const QByteArray &data, bool isArrival);
     std::vector<Location> parseGetStopResponse(const QByteArray &data);
-    std::vector<Journey> parseQueryResponse(const QByteArray &data);
+    std::vector<Location> parseQueryLocationResponse(const QByteArray &data);
+    std::vector<Journey> parseQueryJourneyResponse(const QByteArray &data);
 };
 
 }

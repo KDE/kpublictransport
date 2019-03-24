@@ -40,6 +40,9 @@ public:
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    bool queryLocationByName(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const;
+    bool queryLocationByCoordinate(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const;
+
     QString locationId(const Location &loc) const;
 
     mutable HafasQueryParser m_parser;
