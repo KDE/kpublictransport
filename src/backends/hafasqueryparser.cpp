@@ -311,7 +311,10 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                     qDebug() << "section attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
                     const auto key = stringTable.lookup(attr->keyStr);
                     if (key == QLatin1String("Direction")) {
-                        route.setDirection(stringTable.lookup(attr->valueStr));
+                        const auto dir = stringTable.lookup(attr->valueStr);
+                        if (dir != QLatin1String("---")) {
+                            route.setDirection(dir.trimmed());
+                        }
                     } else if (key == QLatin1String("Class")) {
                         line.setMode(parseLineMode(stringTable.lookup(attr->valueStr)));
                     }
