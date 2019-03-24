@@ -185,6 +185,23 @@ static QDateTime parseDateTime(const QDate &baseDate, uint16_t time)
     return dt.addDays(days);
 }
 
+const char *platform_prefixes[] = { "pl.", "bstg." };
+
+static QString normalizePlatform(const QString &s)
+{
+    if (s.isEmpty() || s == QLatin1String("---")) {
+        return {};
+    }
+
+    for (const auto prefix : platform_prefixes) {
+        if (s.startsWith(QLatin1String(prefix), Qt::CaseInsensitive)) {
+            return s.mid(strlen(prefix)).trimmed();
+        }
+    }
+
+    return s;
+}
+
 std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data)
 {
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
@@ -285,7 +302,7 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
             if (sectionInfo->type == HafasJourneyResponseSectionMode::PublicTransport) {
                 Route route;
                 Line line;
-                line.setName(stringTable.lookup(sectionInfo->lineNameStr));
+                line.setName(stringTable.lookup(sectionInfo->lineNameStr).trimmed());
 
                 auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
                     + extHeader->attributesOffset
@@ -304,8 +321,8 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                 route.setLine(line);
                 section.setRoute(route);
                 section.setMode(JourneySection::PublicTransport);
-                section.setScheduledDeparturePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr));
-                section.setScheduledArrivalPlatform(stringTable.lookup(sectionInfo->scheduledArrivalPlatformStr));
+                section.setScheduledDeparturePlatform(normalizePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr)));
+                section.setScheduledArrivalPlatform(normalizePlatform(stringTable.lookup(sectionInfo->scheduledArrivalPlatformStr)));
 
                 const auto sectionDetail = reinterpret_cast<const HafasJourneyResponseSectionDetail*>(rawData.constData()
                     + extHeader->detailsOffset
@@ -313,8 +330,8 @@ std::vector<Journey> HafasQueryParser::parseQueryResponse(const QByteArray &data
                     + detailsHeader->sectionDetailsOffset
                     + detailsHeader->sectionDetailsSize * sectionIdx);
                 qDebug() << "section detail" << sectionDetail->expectedArrivalPlatformStr <<  sectionDetail->expectedDeparturePlatformStr;
-                section.setExpectedDeparturePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr));
-                section.setExpectedArrivalPlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr));
+                section.setExpectedDeparturePlatform(normalizePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr)));
+                section.setExpectedArrivalPlatform(normalizePlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr)));
 
                 section.setExpectedDepartureTime(parseDateTime(baseDate, sectionDetail->expectedDepartureTime));
                 section.setExpectedArrivalTime(parseDateTime(baseDate, sectionDetail->expectedArrivalTime));
