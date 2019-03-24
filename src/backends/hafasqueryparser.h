@@ -43,14 +43,10 @@ class KPUBLICTRANSPORT_EXPORT HafasQueryParser : public HafasParser
 {
 public:
     HafasQueryParser(const std::unordered_map<int, Line::Mode> &modeMap);
-    void setLocationIdentifierType(const QString &idType);
 
     std::vector<Departure> parseStationBoardResponse(const QByteArray &data, bool isArrival);
     std::vector<Location> parseGetStopResponse(const QByteArray &data);
     std::vector<Journey> parseQueryResponse(const QByteArray &data);
-
-private:
-    QString m_locationIdentifierType;
 };
 
 }

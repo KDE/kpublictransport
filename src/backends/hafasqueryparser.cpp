@@ -39,11 +39,6 @@ HafasQueryParser::HafasQueryParser(const std::unordered_map<int, Line::Mode> &mo
 {
 }
 
-void HafasQueryParser::setLocationIdentifierType(const QString &idType)
-{
-    m_locationIdentifierType = idType;
-}
-
 std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteArray &data, bool isArrival)
 {
     clearErrorState();

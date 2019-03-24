@@ -35,6 +35,8 @@ namespace KPublicTransport {
 class KPUBLICTRANSPORT_EXPORT HafasParser
 {
 public:
+    void setLocationIdentifierType(const QString &idType);
+
     Reply::Error error() const;
     QString errorMessage() const;
 
@@ -48,6 +50,7 @@ protected:
     Line::Mode parseLineMode(int modeId) const;
 
 protected:
+    QString m_locationIdentifierType;
     mutable QString m_errorMsg;
     mutable Reply::Error m_error = Reply::NoError;
 

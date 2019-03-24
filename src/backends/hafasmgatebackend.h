@@ -46,6 +46,7 @@ class HafasMgateBackend : public HafasBackend
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
 public:
     HafasMgateBackend();
+    void init() override;
     bool isSecure() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;

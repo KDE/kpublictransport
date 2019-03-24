@@ -91,6 +91,7 @@ void ManagerPrivate::loadNetworks()
         auto net = loadNetwork(doc.object());
         if (net) {
             net->setBackendId(it.fileInfo().baseName());
+            net->init();
             m_backends.push_back(std::move(net));
         } else {
             qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();

@@ -27,6 +27,11 @@ HafasParser::HafasParser(const std::unordered_map<int, Line::Mode> &modeMap)
 
 HafasParser::~HafasParser() = default;
 
+void HafasParser::setLocationIdentifierType(const QString &idType)
+{
+    m_locationIdentifierType = idType;
+}
+
 Reply::Error HafasParser::error() const
 {
     return m_error;

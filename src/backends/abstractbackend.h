@@ -54,6 +54,9 @@ public:
     bool isCoordinateExcluded(float lat, float lon) const;
     void setGeoFilter(const QPolygonF &poly);
 
+    /** Called after all settings have been set on this backend. */
+    virtual void init();
+
     /** Returns @c true if this backend uses transport encryption. */
     virtual bool isSecure() const;
 

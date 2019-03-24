@@ -55,6 +55,10 @@ void AbstractBackend::setGeoFilter(const QPolygonF &poly)
     m_geoFilter = poly;
 }
 
+void AbstractBackend::init()
+{
+}
+
 bool AbstractBackend::isSecure() const
 {
     return false;

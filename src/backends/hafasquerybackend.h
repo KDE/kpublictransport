@@ -32,6 +32,7 @@ public:
     HafasQueryBackend();
     ~HafasQueryBackend();
 
+    void init() override;
     bool isSecure() const override;
     bool needsLocationQuery(const Location &loc, QueryType type) const override;
     bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
@@ -39,7 +40,6 @@ public:
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
-    void init() const;
     QString locationId(const Location &loc) const;
 
     mutable HafasQueryParser m_parser;

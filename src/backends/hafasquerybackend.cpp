@@ -45,7 +45,7 @@ HafasQueryBackend::HafasQueryBackend()
 
 HafasQueryBackend::~HafasQueryBackend() = default;
 
-void HafasQueryBackend::init() const
+void HafasQueryBackend::init()
 {
     m_parser.setLocationIdentifierType(locationIdentifierType());
 }
@@ -68,7 +68,6 @@ bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) 
 
 bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    init();
     if (request.name().isEmpty()) {
         return false; // TODO queries by coordinate
     }
@@ -107,7 +106,6 @@ bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationRe
 
 bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    init();
     if (!m_departureQuerySupported) {
         return false;
     }
@@ -174,8 +172,6 @@ QString HafasQueryBackend::locationId(const Location &loc) const
 
 bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    init();
-
     const auto fromId = locationId(request.from());
     const auto toId = locationId(request.to());
     if (fromId.isEmpty() || toId.isEmpty()) {
