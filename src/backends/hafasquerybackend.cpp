@@ -16,6 +16,7 @@
 */
 
 #include "hafasquerybackend.h"
+#include "cache.h"
 #include "logging.h"
 
 #include <KPublicTransport/Departure>
@@ -91,9 +92,11 @@ bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationRe
 
         auto res = m_parser.parseGetStopResponse(netReply->readAll());
         if (m_parser.error() != Reply::NoError) {
+            Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
         } else {
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
             addResult(reply, std::move(res));
         }
     });
