@@ -27,6 +27,7 @@
 #include <KPublicTransport/Location>
 
 #include "backends/cache.h"
+#include "backends/efabackend.h"
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
 #include "backends/navitiabackend.h"
@@ -112,6 +113,9 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
     }
     if (type == QLatin1String("hafas_query")) {
         return loadNetwork<HafasQueryBackend>(obj);
+    }
+    if (type == QLatin1String("efa")) {
+        return loadNetwork<EfaBackend>(obj);
     }
 
     qCWarning(Log) << "Unknown backend type:" << type;
