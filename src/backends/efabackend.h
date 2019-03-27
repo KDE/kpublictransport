@@ -36,7 +36,9 @@ public:
     ~EfaBackend();
 
     bool isSecure() const override;
+    bool needsLocationQuery(const Location  &loc, AbstractBackend::QueryType type) const override;
     bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    bool queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     QString locationIdentifierType() const;

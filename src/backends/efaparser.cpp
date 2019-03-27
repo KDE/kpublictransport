@@ -17,8 +17,10 @@
 
 #include "efaparser.h"
 
+#include <KPublicTransport/Departure>
 #include <KPublicTransport/Location>
 
+#include <QDateTime>
 #include <QDebug>
 #include <QXmlStreamReader>
 
@@ -52,5 +54,93 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
             reader.readNext();
         }
     }
+    return res;
+}
+
+static QDateTime parseDmDateTime(QXmlStreamReader &reader)
+{
+    QDateTime dt;
+    while (!reader.atEnd()) {
+        reader.readNext();
+        const auto token = reader.tokenType();
+        if (token == QXmlStreamReader::EndElement) {
+            break;
+        }
+        if (token != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdDate")) {
+            QDate d(
+                reader.attributes().value(QLatin1String("year")).toInt(),
+                reader.attributes().value(QLatin1String("month")).toInt(),
+                reader.attributes().value(QLatin1String("day")).toInt());
+            dt.setDate(d);
+            reader.skipCurrentElement();
+        } else if (reader.name() == QLatin1String("itdTime")) {
+            QTime t(
+                reader.attributes().value(QLatin1String("hour")).toInt(),
+                reader.attributes().value(QLatin1String("minute")).toInt(), 0);
+            dt.setTime(t);
+            reader.skipCurrentElement();
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+
+    return dt;
+}
+
+static Departure parseDmDeparture(QXmlStreamReader &reader)
+{
+    Departure dep;
+    dep.setScheduledPlatform(reader.attributes().value(QLatin1String("platformName")).toString());
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        const auto token = reader.tokenType();
+        if (token == QXmlStreamReader::EndElement) {
+            break;
+        }
+        if (token != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdServingLine")) {
+            Line line;
+            line.setName(reader.attributes().value(QLatin1String("number")).toString());
+            Route route;
+            route.setDirection(reader.attributes().value(QLatin1String("direction")).toString());
+            route.setLine(line);
+            dep.setRoute(route);
+            reader.skipCurrentElement();
+        } else if (reader.name() == QLatin1String("itdDateTime")) {
+            dep.setScheduledDepartureTime(parseDmDateTime(reader));
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+
+    return dep;
+}
+
+std::vector<Departure> EfaParser::parseDmResponse(const QByteArray &data) const
+{
+    //qDebug().noquote() << data;
+    std::vector<Departure> res;
+    QXmlStreamReader reader(data);
+    while (!reader.atEnd()) {
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            reader.readNext();
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdDeparture")) {
+            res.push_back(parseDmDeparture(reader));
+        } else {
+            reader.readNext();
+        }
+    }
+
     return res;
 }

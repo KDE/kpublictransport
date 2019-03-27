@@ -19,6 +19,9 @@
 #include "efaparser.h"
 #include "logging.h"
 
+#include <KPublicTransport/Departure>
+#include <KPublicTransport/DepartureReply>
+#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
@@ -37,6 +40,12 @@ EfaBackend::~EfaBackend() = default;
 bool EfaBackend::isSecure() const
 {
     return m_endpoint.startsWith(QLatin1String("https"));
+}
+
+bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
+{
+    Q_UNUSED(type);
+    return loc.identifier(locationIdentifierType()).isEmpty();
 }
 
 bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *reply, QNetworkAccessManager *nam) const
@@ -71,6 +80,51 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         p.setLocationIdentifierType(locationIdentifierType());
         // TODO handle parser and response errors
         addResult(reply, p.parseStopFinderResponse(netReply->readAll()));
+    });
+
+    return true;
+}
+
+bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+{
+    const auto stopId = request.stop().identifier(locationIdentifierType());
+    if (stopId.isEmpty()) {
+        return false;
+    }
+
+    QUrl url(m_endpoint);
+    url.setPath(url.path() + QLatin1String("XML_DM_REQUEST"));
+
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
+    query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("stop"));
+    query.addQueryItem(QStringLiteral("name_dm"), stopId);
+    query.addQueryItem(QStringLiteral("itdDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
+    query.addQueryItem(QStringLiteral("itdTime"), request.dateTime().time().toString(QStringLiteral("hhmm")));
+    query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("limit"), QStringLiteral("12")); // TODO
+
+    // not exactly sure what these do, but without this the result is missing departure times
+    query.addQueryItem(QStringLiteral("mode"), QStringLiteral("direct"));
+    query.addQueryItem(QStringLiteral("ptOptionsActive"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("merge_dep"), QStringLiteral("1"));
+
+    url.setQuery(query);
+
+    auto netReply = nam->get(QNetworkRequest(url));
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
+        netReply->deleteLater();
+        if (netReply->error() != QNetworkReply::NoError) {
+            qCDebug(Log) << netReply->url() << netReply->errorString();
+            addError(reply, Reply::NetworkError, netReply->errorString());
+            return;
+        }
+        qDebug() << netReply->url();
+        EfaParser p;
+        p.setLocationIdentifierType(locationIdentifierType());
+        // TODO handle parser and response errors
+        addResult(reply, p.parseDmResponse(netReply->readAll()));
     });
 
     return true;
