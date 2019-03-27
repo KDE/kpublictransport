@@ -24,6 +24,11 @@
 
 using namespace KPublicTransport;
 
+void EfaParser::setLocationIdentifierType(const QString& locationIdentifierType)
+{
+    m_locationIdentifierType = locationIdentifierType;
+}
+
 std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data) const
 {
     qDebug() << data;
@@ -39,7 +44,7 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
             Location loc;
             loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
             loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
-            loc.setIdentifier(QStringLiteral("EFA_TODO"), reader.attributes().value(QLatin1String("stateless")).toString());
+            loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
             loc.setName(reader.readElementText(QXmlStreamReader::SkipChildElements));
             res.push_back(loc);
             // TODO this is incomplete regarding itdOdvAssignedStops, and regarding the id handling

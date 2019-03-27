@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_EFAPARSER_H
 #define KPUBLICTRANSPORT_EFAPARSER_H
 
+#include <QString>
+
 #include <vector>
 
 class QByteArray;
@@ -30,7 +32,12 @@ class Location;
 class EfaParser
 {
 public:
+    void setLocationIdentifierType(const  QString &locationIdentifierType);
+
     std::vector<Location> parseStopFinderResponse(const QByteArray &data) const;
+
+private:
+    QString m_locationIdentifierType;
 };
 
 }

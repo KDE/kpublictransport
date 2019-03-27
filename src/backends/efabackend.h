@@ -26,7 +26,10 @@ namespace KPublicTransport {
 class EfaBackend : public AbstractBackend
 {
     Q_GADGET
+    /** Base URL for EFA API calls. */
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
+    /** Identifier type used for stations. Default is backendId(). */
+    Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
 
 public:
     EfaBackend();
@@ -36,7 +39,10 @@ public:
     bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    QString locationIdentifierType() const;
+
     QString m_endpoint;
+    QString m_locationIdentifierType;
 };
 
 }

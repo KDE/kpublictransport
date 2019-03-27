@@ -68,9 +68,15 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         }
         qDebug() << netReply->url();
         EfaParser p;
+        p.setLocationIdentifierType(locationIdentifierType());
         // TODO handle parser and response errors
         addResult(reply, p.parseStopFinderResponse(netReply->readAll()));
     });
 
     return true;
+}
+
+QString EfaBackend::locationIdentifierType() const
+{
+    return m_locationIdentifierType.isEmpty() ? backendId() : m_locationIdentifierType;
 }
