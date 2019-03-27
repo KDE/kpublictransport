@@ -52,7 +52,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("locationServiceActive"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
-    query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("any"));
+    query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("stop"));
     query.addQueryItem(QStringLiteral("name_sf"), request.name());
     query.addQueryItem(QStringLiteral("anyObjFilter_sf"), QStringLiteral("2")); // bitfield, "2" is the flag for stops
     query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));

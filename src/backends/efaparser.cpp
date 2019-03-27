@@ -31,7 +31,7 @@ void EfaParser::setLocationIdentifierType(const QString& locationIdentifierType)
 
 std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data) const
 {
-    qDebug() << data;
+    //qDebug().noquote() << data;
     std::vector<Location> res;
     QXmlStreamReader reader(data);
     while (!reader.atEnd()) {
@@ -40,14 +40,14 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
             continue;
         }
 
-        if (reader.name() == QLatin1String("odvNameElem") && reader.attributes().hasAttribute(QLatin1String("id"))) {
+        if (reader.name() == QLatin1String("odvNameElem") && reader.attributes().hasAttribute(QLatin1String("stateless"))) {
             Location loc;
             loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
             loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
             loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
             loc.setName(reader.readElementText(QXmlStreamReader::SkipChildElements));
             res.push_back(loc);
-            // TODO this is incomplete regarding itdOdvAssignedStops, and regarding the id handling
+            // TODO anything to be done with itdOdvAssignedStops?
         } else {
             reader.readNext();
         }
