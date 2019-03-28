@@ -18,6 +18,7 @@
 #include "efaparser.h"
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 
 #include <QDateTime>
@@ -57,7 +58,7 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
     return res;
 }
 
-static QDateTime parseDmDateTime(QXmlStreamReader &reader)
+static QDateTime parseDateTime(QXmlStreamReader &reader)
 {
     QDateTime dt;
     while (!reader.atEnd()) {
@@ -76,16 +77,13 @@ static QDateTime parseDmDateTime(QXmlStreamReader &reader)
                 reader.attributes().value(QLatin1String("month")).toInt(),
                 reader.attributes().value(QLatin1String("day")).toInt());
             dt.setDate(d);
-            reader.skipCurrentElement();
         } else if (reader.name() == QLatin1String("itdTime")) {
             QTime t(
                 reader.attributes().value(QLatin1String("hour")).toInt(),
                 reader.attributes().value(QLatin1String("minute")).toInt(), 0);
             dt.setTime(t);
-            reader.skipCurrentElement();
-        } else {
-            reader.skipCurrentElement();
         }
+        reader.skipCurrentElement();
     }
 
     return dt;
@@ -115,7 +113,7 @@ static Departure parseDmDeparture(QXmlStreamReader &reader)
             dep.setRoute(route);
             reader.skipCurrentElement();
         } else if (reader.name() == QLatin1String("itdDateTime")) {
-            dep.setScheduledDepartureTime(parseDmDateTime(reader));
+            dep.setScheduledDepartureTime(parseDateTime(reader));
         } else {
             reader.skipCurrentElement();
         }
@@ -142,5 +140,152 @@ std::vector<Departure> EfaParser::parseDmResponse(const QByteArray &data) const
         }
     }
 
+    return res;
+}
+
+static void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section)
+{
+    Location loc;
+    loc.setName(reader.attributes().value(QLatin1String("name")).toString());
+    loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
+    loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
+    // TODO loc.setIdentifier();stopID
+
+    section.setFrom(loc);
+    // ### are those the correct ones? there's also just "platform"
+    section.setScheduledDeparturePlatform(reader.attributes().value(QLatin1String("plannedPlatformName")).toString());
+    section.setExpectedDeparturePlatform(reader.attributes().value(QLatin1String("platformName")).toString());
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        const auto token = reader.tokenType();
+        if (token == QXmlStreamReader::EndElement) {
+            break;
+        }
+        if (token != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdDateTime")) {
+            section.setScheduledDepartureTime(parseDateTime(reader));
+        } else if (reader.name() == QLatin1String("itdDateTimeTarget")) {
+            section.setExpectedDepartureTime(parseDateTime(reader));
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+}
+
+static void parseTripArrival(QXmlStreamReader &reader, JourneySection &section)
+{
+    Location loc;
+    loc.setName(reader.attributes().value(QLatin1String("name")).toString());
+    loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
+    loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
+    // TODO loc.setIdentifier();stopID
+
+    section.setTo(loc);
+    // ### are those the correct ones? there's also just "platform"
+    section.setScheduledArrivalPlatform(reader.attributes().value(QLatin1String("plannedPlatformName")).toString());
+    section.setExpectedArrivalPlatform(reader.attributes().value(QLatin1String("platformName")).toString());
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        const auto token = reader.tokenType();
+        if (token == QXmlStreamReader::EndElement) {
+            break;
+        }
+        if (token != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdDateTime")) {
+            section.setScheduledArrivalTime(parseDateTime(reader));
+        } else if (reader.name() == QLatin1String("itdDateTimeTarget")) {
+            section.setExpectedArrivalTime(parseDateTime(reader));
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+}
+
+static JourneySection parseTripPartialRoute(QXmlStreamReader &reader)
+{
+    JourneySection section;
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        const auto token = reader.tokenType();
+        if (token == QXmlStreamReader::EndElement) {
+            break;
+        }
+        if (token != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdPoint")) {
+            const auto type = reader.attributes().value(QLatin1String("usage"));
+            if (type == QLatin1String("departure")) {
+                parseTripDeparture(reader, section);
+            } else if (type == QLatin1String("arrival")) {
+                parseTripArrival(reader, section);
+            }
+        } else if (reader.name() == QLatin1String("itdMeansOfTransport")) {
+            Line line;
+            line.setName(reader.attributes().value(QLatin1String("shortname")).toString());
+            line.setModeString(reader.attributes().value(QLatin1String("productName")).toString());
+            Route route;
+            route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
+            route.setLine(line);
+            section.setRoute(route);
+            section.setMode(JourneySection::PublicTransport);
+            reader.skipCurrentElement();
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+
+    return section;
+}
+
+static Journey parseTripRoute(QXmlStreamReader &reader)
+{
+    Journey journey;
+    std::vector<JourneySection> sections;
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        const auto token = reader.tokenType();
+        if (token == QXmlStreamReader::EndElement && reader.name() == QLatin1String("itdRoute")) {
+            break;
+        }
+        if (token != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdPartialRoute")) {
+            sections.push_back(parseTripPartialRoute(reader));
+        }
+    }
+
+    journey.setSections(std::move(sections));
+    return journey;
+}
+
+std::vector<Journey> EfaParser::parseTripResponse(const QByteArray &data) const
+{
+    //qDebug().noquote() << data;
+    std::vector<Journey> res;
+    QXmlStreamReader reader(data);
+    while (!reader.atEnd()) {
+        reader.readNext();
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("itdRoute")) {
+            res.push_back(parseTripRoute(reader));
+        }
+    }
     return res;
 }

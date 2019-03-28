@@ -22,6 +22,9 @@
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
+#include <KPublicTransport/Journey>
+#include <KPublicTransport/JourneyReply>
+#include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
@@ -59,7 +62,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     url.setPath(url.path() + QLatin1String("XML_STOPFINDER_REQUEST"));
 
     QUrlQuery query;
-    query.addQueryItem(QStringLiteral("locationServiceActive"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
     query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("stop"));
     query.addQueryItem(QStringLiteral("name_sf"), request.name());
@@ -125,6 +128,61 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
         p.setLocationIdentifierType(locationIdentifierType());
         // TODO handle parser and response errors
         addResult(reply, p.parseDmResponse(netReply->readAll()));
+    });
+
+    return true;
+}
+
+bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
+{
+    // TODO direct coordinate queries seem to be possible too
+    const auto fromId = request.from().identifier(locationIdentifierType());
+    const auto toId = request.to().identifier(locationIdentifierType());
+    if (fromId.isEmpty() || toId.isEmpty()) {
+        return false;
+    }
+
+    QUrl url(m_endpoint);
+    url.setPath(url.path() + QLatin1String("XML_TRIP_REQUEST2"));
+
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
+    query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
+    query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
+
+    // TODO also observerd:
+    //    type_origin:             coord
+    //    name_origin:             52.500000:13.500000:WGS84[...]
+    query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("stop"));
+    query.addQueryItem(QStringLiteral("name_origin"), fromId);
+    query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("stop"));
+    query.addQueryItem(QStringLiteral("name_destination"), toId);
+
+    query.addQueryItem(QStringLiteral("itdDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
+    query.addQueryItem(QStringLiteral("itdTime"), request.dateTime().time().toString(QStringLiteral("hhmm")));
+    query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
+
+    query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QStringLiteral("12")); // TODO
+
+    // saves several 100kb due to not encoding that path coordinates (which we don't even need) as XML
+    query.addQueryItem(QStringLiteral("coordListOutputFormat"), QStringLiteral("STRING"));
+
+    url.setQuery(query);
+
+    auto netReply = nam->get(QNetworkRequest(url));
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
+        netReply->deleteLater();
+        if (netReply->error() != QNetworkReply::NoError) {
+            qCDebug(Log) << netReply->url() << netReply->errorString();
+            addError(reply, Reply::NetworkError, netReply->errorString());
+            return;
+        }
+        qDebug() << netReply->url();
+        EfaParser p;
+        p.setLocationIdentifierType(locationIdentifierType());
+        // TODO handle parser and response errors
+        addResult(reply, p.parseTripResponse(netReply->readAll()));
     });
 
     return true;

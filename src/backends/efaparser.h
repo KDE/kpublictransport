@@ -27,6 +27,7 @@ class QByteArray;
 namespace KPublicTransport {
 
 class Departure;
+class Journey;
 class Location;
 
 /** Parser for responses from EFA services. */
@@ -37,6 +38,7 @@ public:
 
     std::vector<Location> parseStopFinderResponse(const QByteArray &data) const;
     std::vector<Departure> parseDmResponse(const QByteArray &data) const;
+    std::vector<Journey> parseTripResponse(const QByteArray &data) const;
 
 private:
     QString m_locationIdentifierType;
