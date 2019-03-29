@@ -23,11 +23,13 @@
 #include <vector>
 
 class QByteArray;
+class QXmlStreamReader;
 
 namespace KPublicTransport {
 
 class Departure;
 class Journey;
+class JourneySection;
 class Location;
 
 /** Parser for responses from EFA services. */
@@ -41,6 +43,11 @@ public:
     std::vector<Journey> parseTripResponse(const QByteArray &data) const;
 
 private:
+    void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const;
+    void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
+    JourneySection parseTripPartialRoute(QXmlStreamReader &reader) const;
+    Journey parseTripRoute(QXmlStreamReader &reader) const;
+
     QString m_locationIdentifierType;
 };
 

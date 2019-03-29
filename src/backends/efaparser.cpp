@@ -143,13 +143,13 @@ std::vector<Departure> EfaParser::parseDmResponse(const QByteArray &data) const
     return res;
 }
 
-static void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section)
+void EfaParser::parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const
 {
     Location loc;
     loc.setName(reader.attributes().value(QLatin1String("name")).toString());
     loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
     loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
-    // TODO loc.setIdentifier();stopID
+    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
 
     section.setFrom(loc);
     // ### are those the correct ones? there's also just "platform"
@@ -176,13 +176,13 @@ static void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section
     }
 }
 
-static void parseTripArrival(QXmlStreamReader &reader, JourneySection &section)
+void EfaParser::parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const
 {
     Location loc;
     loc.setName(reader.attributes().value(QLatin1String("name")).toString());
     loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
     loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
-    // TODO loc.setIdentifier();stopID
+    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
 
     section.setTo(loc);
     // ### are those the correct ones? there's also just "platform"
@@ -209,7 +209,7 @@ static void parseTripArrival(QXmlStreamReader &reader, JourneySection &section)
     }
 }
 
-static JourneySection parseTripPartialRoute(QXmlStreamReader &reader)
+JourneySection EfaParser::parseTripPartialRoute(QXmlStreamReader &reader) const
 {
     JourneySection section;
 
@@ -248,7 +248,7 @@ static JourneySection parseTripPartialRoute(QXmlStreamReader &reader)
     return section;
 }
 
-static Journey parseTripRoute(QXmlStreamReader &reader)
+Journey EfaParser::parseTripRoute(QXmlStreamReader &reader) const
 {
     Journey journey;
     std::vector<JourneySection> sections;
