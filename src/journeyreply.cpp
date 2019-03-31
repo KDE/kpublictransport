@@ -126,6 +126,10 @@ void JourneyReplyPrivate::postProcessJourneys()
         sections.erase(std::remove_if(sections.begin(), sections.end(), isPointlessSection), sections.end());
         journey.setSections(std::move(sections));
     }
+    // remove empty journeys
+    journeys.erase(std::remove_if(journeys.begin(), journeys.end(), [](const auto &journey) {
+        return journey.sections().empty();
+    }), journeys.end());
 }
 
 JourneyReply::JourneyReply(const JourneyRequest &req, QObject *parent)
