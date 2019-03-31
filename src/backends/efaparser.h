@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_EFAPARSER_H
 #define KPUBLICTRANSPORT_EFAPARSER_H
 
+#include <KPublicTransport/Reply>
+
 #include <QString>
 
 #include <vector>
@@ -42,6 +44,9 @@ public:
     std::vector<Departure> parseDmResponse(const QByteArray &data) const;
     std::vector<Journey> parseTripResponse(const QByteArray &data) const;
 
+    Reply::Error error() const;
+    QString errorMessage() const;
+
 private:
     void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const;
     void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
@@ -49,6 +54,8 @@ private:
     Journey parseTripRoute(QXmlStreamReader &reader) const;
 
     QString m_locationIdentifierType;
+    mutable QString m_errorMsg;
+    mutable Reply::Error m_error = Reply::NoError;
 };
 
 }

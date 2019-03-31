@@ -32,6 +32,16 @@ void EfaParser::setLocationIdentifierType(const QString& locationIdentifierType)
     m_locationIdentifierType = locationIdentifierType;
 }
 
+Reply::Error EfaParser::error() const
+{
+    return m_error;
+}
+
+QString EfaParser::errorMessage() const
+{
+    return m_errorMsg;
+}
+
 std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data) const
 {
     //qDebug().noquote() << data;

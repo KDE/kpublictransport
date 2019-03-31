@@ -81,8 +81,13 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         qDebug() << netReply->url();
         EfaParser p;
         p.setLocationIdentifierType(locationIdentifierType());
-        // TODO handle parser and response errors
-        addResult(reply, p.parseStopFinderResponse(netReply->readAll()));
+        auto res = p.parseStopFinderResponse(netReply->readAll());
+        if (p.error() != Reply::NoError) {
+            addError(reply, p.error(), p.errorMessage());
+            qCDebug(Log) << p.error() << p.errorMessage();
+        } else {
+            addResult(reply, std::move(res));
+        }
     });
 
     return true;
@@ -126,8 +131,13 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
         qDebug() << netReply->url();
         EfaParser p;
         p.setLocationIdentifierType(locationIdentifierType());
-        // TODO handle parser and response errors
-        addResult(reply, p.parseDmResponse(netReply->readAll()));
+        auto res = p.parseDmResponse(netReply->readAll());
+        if (p.error() != Reply::NoError) {
+            addError(reply, p.error(), p.errorMessage());
+            qCDebug(Log) << p.error() << p.errorMessage();
+        } else {
+            addResult(reply, std::move(res));
+        }
     });
 
     return true;
@@ -181,8 +191,13 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         qDebug() << netReply->url();
         EfaParser p;
         p.setLocationIdentifierType(locationIdentifierType());
-        // TODO handle parser and response errors
-        addResult(reply, p.parseTripResponse(netReply->readAll()));
+        auto res = p.parseTripResponse(netReply->readAll());
+        if (p.error() != Reply::NoError) {
+            addError(reply, p.error(), p.errorMessage());
+            qCDebug(Log) << p.error() << p.errorMessage();
+        } else {
+            addResult(reply, std::move(res));
+        }
     });
 
     return true;
