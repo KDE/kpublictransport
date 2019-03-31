@@ -17,6 +17,7 @@
 
 #include "efabackend.h"
 #include "efaparser.h"
+#include "cache.h"
 #include "logging.h"
 
 #include <KPublicTransport/Departure>
@@ -83,9 +84,11 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         p.setLocationIdentifierType(locationIdentifierType());
         auto res = p.parseStopFinderResponse(netReply->readAll());
         if (p.error() != Reply::NoError) {
+            Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
             addError(reply, p.error(), p.errorMessage());
             qCDebug(Log) << p.error() << p.errorMessage();
         } else {
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
             addResult(reply, std::move(res));
         }
     });
