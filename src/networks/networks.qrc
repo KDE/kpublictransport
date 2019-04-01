@@ -16,11 +16,11 @@
         <file>uk_traveline.json</file>
 
         <!-- local providers -->
-        <file>de_bvg.json</file>
-        <file>de_insa.json</file>
-        <file>de_rmv.json</file>
-        <file>de_sh.json</file>
-        <file>de_vbb.json</file>
-        <file>de_vgn.json</file>
+        <file>de_bb_vbb.json</file>
+        <file>de_be_bvg.json</file>
+        <file>de_by_vgn.json</file>
+        <file>de_he_rmv.json</file>
+        <file>de_sh_sh.json</file>
+        <file>de_st_insa.json</file>
     </qresource>
 </RCC>
