@@ -69,6 +69,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     query.addQueryItem(QStringLiteral("name_sf"), request.name());
     query.addQueryItem(QStringLiteral("anyObjFilter_sf"), QStringLiteral("2")); // bitfield, "2" is the flag for stops
     query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    query.addQueryItem(QStringLiteral("anyMaxSizeHitList"), QStringLiteral("12")); // TODO
     url.setQuery(query);
 
     auto netReply = nam->get(QNetworkRequest(url));
