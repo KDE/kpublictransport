@@ -60,7 +60,11 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
                 loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
             }
             loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
+            const auto objName = reader.attributes().value(QLatin1String("objectName"));
             loc.setName(reader.readElementText(QXmlStreamReader::SkipChildElements));
+            if (loc.name().isEmpty()) {
+                loc.setName(objName.toString());
+            }
             res.push_back(loc);
             // TODO anything to be done with itdOdvAssignedStops?
         } else {
