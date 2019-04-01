@@ -27,6 +27,7 @@ set(kpublictransport_srcs
     datatypes/line.cpp
     datatypes/location.cpp
     datatypes/mergeutil.cpp
+    datatypes/platformutils.cpp
 
     networks/networks.qrc
 )

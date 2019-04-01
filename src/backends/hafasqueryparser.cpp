@@ -206,23 +206,6 @@ static QDateTime parseDateTime(const QDate &baseDate, uint16_t time)
     return dt.addDays(days);
 }
 
-const char *platform_prefixes[] = { "pl.", "bstg." };
-
-static QString normalizePlatform(const QString &s)
-{
-    if (s.isEmpty() || s == QLatin1String("---")) {
-        return {};
-    }
-
-    for (const auto prefix : platform_prefixes) {
-        if (s.startsWith(QLatin1String(prefix), Qt::CaseInsensitive)) {
-            return s.mid(strlen(prefix)).trimmed();
-        }
-    }
-
-    return s;
-}
-
 std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArray &data)
 {
 #if Q_BYTE_ORDER == Q_BIG_ENDIAN
@@ -345,8 +328,8 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                 route.setLine(line);
                 section.setRoute(route);
                 section.setMode(JourneySection::PublicTransport);
-                section.setScheduledDeparturePlatform(normalizePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr)));
-                section.setScheduledArrivalPlatform(normalizePlatform(stringTable.lookup(sectionInfo->scheduledArrivalPlatformStr)));
+                section.setScheduledDeparturePlatform(stringTable.lookup(sectionInfo->scheduledDeparturePlatformStr));
+                section.setScheduledArrivalPlatform(stringTable.lookup(sectionInfo->scheduledArrivalPlatformStr));
 
                 const auto sectionDetail = reinterpret_cast<const HafasJourneyResponseSectionDetail*>(rawData.constData()
                     + extHeader->detailsOffset
@@ -354,8 +337,8 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                     + detailsHeader->sectionDetailsOffset
                     + detailsHeader->sectionDetailsSize * sectionIdx);
                 qDebug() << "section detail" << sectionDetail->expectedArrivalPlatformStr <<  sectionDetail->expectedDeparturePlatformStr;
-                section.setExpectedDeparturePlatform(normalizePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr)));
-                section.setExpectedArrivalPlatform(normalizePlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr)));
+                section.setExpectedDeparturePlatform(stringTable.lookup(sectionDetail->expectedDeparturePlatformStr));
+                section.setExpectedArrivalPlatform(stringTable.lookup(sectionDetail->expectedArrivalPlatformStr));
 
                 section.setExpectedDepartureTime(parseDateTime(baseDate, sectionDetail->expectedDepartureTime));
                 section.setExpectedArrivalTime(parseDateTime(baseDate, sectionDetail->expectedArrivalTime));

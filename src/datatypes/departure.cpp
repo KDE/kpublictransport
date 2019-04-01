@@ -19,6 +19,7 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
+#include "platformutils_p.h"
 
 #include <QDateTime>
 
@@ -118,7 +119,7 @@ QString Departure::scheduledPlatform() const
 void Departure::setScheduledPlatform(const QString &platform)
 {
     d.detach();
-    d->scheduledPlatform = platform;
+    d->scheduledPlatform = PlatformUtils::normalizePlatform(platform);
 }
 
 QString Departure::expectedPlatform() const
@@ -129,7 +130,7 @@ QString Departure::expectedPlatform() const
 void Departure::setExpectedPlatform(const QString &platform)
 {
     d.detach();
-    d->expectedPlatform = platform;
+    d->expectedPlatform = PlatformUtils::normalizePlatform(platform);
 }
 
 bool Departure::hasExpectedPlatform() const
@@ -139,7 +140,7 @@ bool Departure::hasExpectedPlatform() const
 
 bool Departure::platformChanged() const
 {
-    return hasExpectedPlatform() && d->expectedPlatform != d->scheduledPlatform;
+    return PlatformUtils::platformChanged(d->scheduledPlatform, d->expectedPlatform);
 }
 
 Route Departure::route() const

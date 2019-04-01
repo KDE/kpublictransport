@@ -4,6 +4,8 @@ ecm_add_test(locationtest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(linetest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(departuretest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(journeytest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
+ecm_add_test(platformtest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
+
 ecm_add_test(navitiaparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(hafasmgateparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(hafasqueryparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)

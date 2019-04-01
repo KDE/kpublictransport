@@ -19,6 +19,7 @@
 #include "json_p.h"
 #include "datatypes_p.h"
 #include "mergeutil_p.h"
+#include "platformutils_p.h"
 
 #include <QDebug>
 #include <QVariant>
@@ -181,7 +182,7 @@ QString JourneySection::scheduledDeparturePlatform() const
 void JourneySection::setScheduledDeparturePlatform(const QString &platform)
 {
     d.detach();
-    d->scheduledDeparturePlatform = platform;
+    d->scheduledDeparturePlatform = PlatformUtils::normalizePlatform(platform);
 }
 
 QString JourneySection::expectedDeparturePlatform() const
@@ -192,7 +193,7 @@ QString JourneySection::expectedDeparturePlatform() const
 void JourneySection::setExpectedDeparturePlatform(const QString &platform)
 {
     d.detach();
-    d->expectedDeparturePlatform = platform;
+    d->expectedDeparturePlatform = PlatformUtils::normalizePlatform(platform);
 }
 
 bool JourneySection::hasExpectedDeparturePlatform() const
@@ -202,7 +203,7 @@ bool JourneySection::hasExpectedDeparturePlatform() const
 
 bool JourneySection::departurePlatformChanged() const
 {
-    return hasExpectedDeparturePlatform() && d->expectedDeparturePlatform != d->scheduledDeparturePlatform;
+    return PlatformUtils::platformChanged(d->scheduledDeparturePlatform, d->expectedDeparturePlatform);
 }
 
 QString JourneySection::scheduledArrivalPlatform() const
@@ -213,7 +214,7 @@ QString JourneySection::scheduledArrivalPlatform() const
 void JourneySection::setScheduledArrivalPlatform(const QString &platform)
 {
     d.detach();
-    d->scheduledArrivalPlatform = platform;
+    d->scheduledArrivalPlatform = PlatformUtils::normalizePlatform(platform);
 }
 
 QString JourneySection::expectedArrivalPlatform() const
@@ -224,7 +225,7 @@ QString JourneySection::expectedArrivalPlatform() const
 void JourneySection::setExpectedArrivalPlatform(const QString &platform)
 {
     d.detach();
-    d->expectedArrivalPlatform = platform;
+    d->expectedArrivalPlatform = PlatformUtils::normalizePlatform(platform);
 }
 
 bool JourneySection::hasExpectedArrivalPlatform() const
@@ -234,7 +235,7 @@ bool JourneySection::hasExpectedArrivalPlatform() const
 
 bool JourneySection::arrivalPlatformChanged() const
 {
-    return hasExpectedArrivalPlatform() && d->scheduledArrivalPlatform != d->expectedArrivalPlatform;
+    return PlatformUtils::platformChanged(d->scheduledArrivalPlatform, d->expectedArrivalPlatform);
 }
 
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
