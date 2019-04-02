@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>departurequery.qml</file>
+        <file>TestLocationsModel.qml</file>
     </qresource>
 </RCC>

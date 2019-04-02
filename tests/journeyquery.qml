@@ -48,93 +48,7 @@ Kirigami.ApplicationWindow {
         onAccepted: _queryMgr.saveTo(fileDialog.file);
     }
 
-    ListModel {
-        id: exampleModel
-        ListElement {
-            name: "CDG -> Gare de Lyon"
-            fromName: "Paris Charles de Gaulle"
-            fromLon: 2.57110
-            fromLat: 49.00406
-            toName: "Paris Gare de Lyon"
-            toLon: 2.37708
-            toLat: 48.84388
-        }
-        ListElement {
-            name: "ZRH -> Randa"
-            fromName: "Zürich Flughafen"
-            fromLon: 8.56275
-            fromLat: 47.45050
-            toName: "Randa"
-            toLon: 7.78315
-            toLat:  46.09901
-        }
-        ListElement {
-            name: "Gare de Midi -> Fosdem"
-            fromName: "Brussels Gare du Midi"
-            fromLon: 4.33620
-            fromLat: 50.83588
-            toName: "ULB"
-            toLon: 4.38116
-            toLat: 50.81360
-        }
-        ListElement {
-            name: "VIE -> Akademy 2018 Accomodation"
-            fromName: "Wien Flughafen"
-            fromLon: 16.56312
-            fromLat: 48.12083
-            toName: "Wien Hauptbahnhof"
-            toLon: 16.37859
-            toLat: 48.18282
-        }
-        ListElement {
-            name: "Akademy 2018 BBQ -> Accomodation"
-            fromLon: 16.43191
-            fromLat: 48.21612
-            toLon: 16.37859
-            toLat: 48.18282
-        }
-        ListElement {
-            name: "LEI -> Akademy 2017 Accomodation"
-            fromLon: -2.37251
-            fromLat: 36.84774
-            toLon: -2.44788
-            toLat: 36.83731
-        }
-        ListElement {
-            name: "Akademy 2017 Venue -> Accomodation"
-            fromLon: -2.40377
-            fromLat: 36.82784
-            toLon: -2.44788
-            toLat: 36.83731
-        }
-        ListElement {
-            name: "TXL -> Akademy 2016"
-            fromName: "Berlin Flughafen Tegel"
-            fromLon: 13.29281
-            fromLat: 52.55420
-            toName: "Berlin Alexanderplatz"
-            toLon: 13.41644
-            toLat: 52.52068
-        }
-        ListElement {
-            name: "SXF -> Akademy 2016"
-            fromName: "Berlin Flughafen Schönefeld"
-            fromLon: 13.51870
-            fromLat: 52.38841
-            toName: "Berlin Alexanderplatz"
-            toLon: 13.41644
-            toLat: 52.52068
-        }
-        ListElement {
-            name: "Brno central station -> Akademy 2014 venue"
-            fromName: "Brno central station"
-            fromLon: 16.61287
-            fromLat: 49.19069
-            toName: ""
-            toLon: 16.57564
-            toLat: 49.22462
-        }
-    }
+    TestLocationsModel { id: exampleModel }
 
     function displayDuration(dur)
     {
@@ -269,21 +183,20 @@ Kirigami.ApplicationWindow {
                     text: checked ? "Time is arrival" : "Time is departure"
                 }
                 QQC2.ComboBox {
-                    id: exampleSelector
+                    id: fromSelector
                     Layout.fillWidth: true
                     model: exampleModel
-                    textRole: "name"
+                    textRole: "label"
                     onCurrentIndexChanged: {
                         var obj = exampleModel.get(currentIndex);
-                        fromName.text = obj.fromName
-                        fromLon.text = obj.fromLon
-                        fromLat.text = obj.fromLat
-                        toName.text = obj.toName
-                        toLon.text = obj.toLon
-                        toLat.text = obj.toLat
+                        fromName.text = obj.name == undefined ? obj.label : obj.name;
+                        fromLon.text = obj.lon;
+                        fromLat.text = obj.lat;
+                        if (toSelector.currentIndex == currentIndex) {
+                            toSelector.currentIndex = (currentIndex + 1) % count;
+                        }
                     }
                 }
-
                 RowLayout {
                     QQC2.TextField {
                         id: fromName
@@ -293,6 +206,22 @@ Kirigami.ApplicationWindow {
                     }
                     QQC2.TextField {
                         id: fromLat
+                    }
+                }
+
+                QQC2.ComboBox {
+                    id: toSelector
+                    Layout.fillWidth: true
+                    model: exampleModel
+                    textRole: "label"
+                    onCurrentIndexChanged: {
+                        var obj = exampleModel.get(currentIndex);
+                        toName.text = obj.name == undefined ? obj.label : obj.name;
+                        toLon.text = obj.lon;
+                        toLat.text = obj.lat;
+                        if (fromSelector.currentIndex == currentIndex) {
+                            fromSelector.currentIndex = (currentIndex - 1 + count) % count;
+                        }
                     }
                 }
                 RowLayout {
