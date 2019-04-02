@@ -217,9 +217,9 @@ void EfaParser::parseTripDeparture(QXmlStreamReader &reader, JourneySection &sec
         }
 
         if (reader.name() == QLatin1String("itdDateTime")) {
-            section.setScheduledDepartureTime(parseDateTime(reader));
-        } else if (reader.name() == QLatin1String("itdDateTimeTarget")) {
             section.setExpectedDepartureTime(parseDateTime(reader));
+        } else if (reader.name() == QLatin1String("itdDateTimeTarget")) {
+            section.setScheduledDepartureTime(parseDateTime(reader));
         } else {
             reader.skipCurrentElement();
         }
@@ -250,9 +250,9 @@ void EfaParser::parseTripArrival(QXmlStreamReader &reader, JourneySection &secti
         }
 
         if (reader.name() == QLatin1String("itdDateTime")) {
-            section.setScheduledArrivalTime(parseDateTime(reader));
-        } else if (reader.name() == QLatin1String("itdDateTimeTarget")) {
             section.setExpectedArrivalTime(parseDateTime(reader));
+        } else if (reader.name() == QLatin1String("itdDateTimeTarget")) {
+            section.setScheduledArrivalTime(parseDateTime(reader));
         } else {
             reader.skipCurrentElement();
         }
