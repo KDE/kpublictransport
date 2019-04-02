@@ -1,0 +1,25 @@
+{
+    "type": "hafas_mgate",
+    "options": {
+        "endpoint": "https://reseplanerare.resrobot.se/bin/mgate.exe",
+        "aid": "h5o3n7f4t2m8l9x1",
+        "clientId": "SAMTRAFIKEN",
+        "clientType": "AND",
+        "version": "1.18",
+        "lineModeMap": {
+            "1": "Air",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "8": "Bus",
+            "16": "RapidTransit",
+            "32": "Metro",
+            "64": "Tramway",
+            "128": "Bus",
+            "256": "Ferry",
+            "512": "Taxi"
+        }
+    },
+    "filter": {
+        "geo": [  [ 9.6488, 58.4882 ], [ 14.5504, 69.8817 ], [ 27.2476, 68.2913 ], [ 16.8708, 54.5773 ], [ 12.7514, 54.6556 ] ]
+    }
+}

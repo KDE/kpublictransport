@@ -1,0 +1,18 @@
+{
+    "type": "hafas_query",
+    "options": {
+        "endpoint": "http://mobil.rozklad-pkp.pl/bin/",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "8": "RapidTransit",
+            "16": "Bus",
+            "32": "Bus",
+            "64": "Ferry"
+        }
+    },
+    "ßfilter": {
+        "geo": [ [ 13.5596, 54.3948 ], [ 14.8372, 50.3015 ], [ 23.0239, 48.5807 ], [ 25.5789, 52.1787 ], [ 22.007, 55.6724 ] ]
+    }
+}
