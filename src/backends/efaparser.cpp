@@ -16,6 +16,7 @@
 */
 
 #include "efaparser.h"
+#include "logging.h"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
@@ -135,6 +136,7 @@ static Line::Mode motTypeToLineMode(int mot)
         case 18: return Line::Train; // "Rail shuttle"
         case 19: return Line::Bus; // "Peoples bus" / "Bürgerbus"
     }
+    qCDebug(Log) << "Unknown means ot transport: " << mot;
     return Line::Unknown;
 }
 
