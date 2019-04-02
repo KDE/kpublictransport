@@ -36,6 +36,12 @@ public:
 
 void LocationReplyPrivate::finalizeResult()
 {
+    if (locations.empty()) {
+        return;
+    }
+    error = Reply::NoError;
+    errorMsg.clear();
+
     // merge all duplicates, as there is no natural order for name searches this is done in O(n²) for now
     for (auto it = locations.begin(); it != locations.end(); ++it) {
         for (auto mergeIt = it + 1; mergeIt != locations.end();) {
