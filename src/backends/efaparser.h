@@ -48,6 +48,7 @@ public:
     QString errorMessage() const;
 
 private:
+    Departure parseDmDeparture(QXmlStreamReader &reader) const;
     void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const;
     void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
     JourneySection parseTripPartialRoute(QXmlStreamReader &reader) const;

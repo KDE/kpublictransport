@@ -140,10 +140,18 @@ static Line::Mode motTypeToLineMode(int mot)
     return Line::Unknown;
 }
 
-static Departure parseDmDeparture(QXmlStreamReader &reader)
+Departure EfaParser::parseDmDeparture(QXmlStreamReader &reader) const
 {
     Departure dep;
     dep.setScheduledPlatform(reader.attributes().value(QLatin1String("platformName")).toString());
+    Location stop;
+    stop.setName(reader.attributes().value(QLatin1String("stopName")).toString());
+    if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
+        stop.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
+        stop.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
+    }
+    stop.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
+    dep.setStopPoint(stop);
 
     while (!reader.atEnd()) {
         reader.readNext();
