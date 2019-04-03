@@ -54,8 +54,7 @@ bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryT
 
 bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO support query by coordinate
-    if (request.name().isEmpty()) {
+    if (request.name().isEmpty() && !request.hasCoordinate()) {
         return false;
     }
 
@@ -65,10 +64,17 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
-    query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("stop"));
-    query.addQueryItem(QStringLiteral("name_sf"), request.name());
-    query.addQueryItem(QStringLiteral("anyObjFilter_sf"), QStringLiteral("2")); // bitfield, "2" is the flag for stops
     query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+
+    if (request.hasCoordinate()) {
+        query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("coord"));
+        query.addQueryItem(QStringLiteral("name_sf"), QString::number(request.longitude()) + QLatin1Char(':') + QString::number(request.latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+    } else {
+        query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("stop"));
+        query.addQueryItem(QStringLiteral("name_sf"), request.name());
+    }
+
+    query.addQueryItem(QStringLiteral("anyObjFilter_sf"), QStringLiteral("2")); // bitfield, "2" is the flag for stops
     query.addQueryItem(QStringLiteral("anyMaxSizeHitList"), QStringLiteral("12")); // TODO
     url.setQuery(query);
 

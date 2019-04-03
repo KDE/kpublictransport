@@ -54,20 +54,16 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
             continue;
         }
 
-        if (reader.name() == QLatin1String("odvNameElem") && reader.attributes().hasAttribute(QLatin1String("stateless"))) {
+        if (reader.name() == QLatin1String("itdOdvAssignedStop") && reader.attributes().hasAttribute(QLatin1String("stopID"))) {
             Location loc;
             if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
                 loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
                 loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
             }
-            loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
-            const auto objName = reader.attributes().value(QLatin1String("objectName"));
-            loc.setName(reader.readElementText(QXmlStreamReader::SkipChildElements));
-            if (loc.name().isEmpty()) {
-                loc.setName(objName.toString());
-            }
+            loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
+            loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
             res.push_back(loc);
-            // TODO anything to be done with itdOdvAssignedStops?
+            reader.skipCurrentElement();
         } else {
             reader.readNext();
         }
