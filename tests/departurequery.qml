@@ -168,22 +168,28 @@ Kirigami.ApplicationWindow {
                         Layout.fillWidth: true
                         id: nameQuery
                     }
-                    QQC2.Button {
-                        text: "Query"
-                        onClicked: _queryMgr.queryDeparture(nameQuery.text, NaN, NaN, arrivalBox.checked);
+                    QQC2.TextField {
+                        id: lonQuery
+                        Layout.preferredWidth: 100
+                    }
+                    QQC2.TextField {
+                        id: latQuery
+                        Layout.preferredWidth: 100
                     }
                 }
 
                 RowLayout {
                     Layout.fillWidth: true
-                    QQC2.TextField {
-                        id: lonQuery
-                    }
-                    QQC2.TextField {
-                        id: latQuery
-                    }
                     QQC2.Button {
                         text: "Query"
+                        onClicked: _queryMgr.queryDeparture(nameQuery.text, latQuery.text, lonQuery.text, arrivalBox.checked);
+                    }
+                    QQC2.Button {
+                        text: "Query Name"
+                        onClicked: _queryMgr.queryDeparture(nameQuery.text, NaN, NaN, arrivalBox.checked);
+                    }
+                    QQC2.Button {
+                        text: "Query Coord"
                         onClicked: _queryMgr.queryDeparture("", latQuery.text, lonQuery.text, arrivalBox.checked);
 
                     }
