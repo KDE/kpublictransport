@@ -24,9 +24,8 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
 
 find_package(Qt5 5.10 REQUIRED COMPONENTS Test Quick Widgets)
 find_package(ZLIB REQUIRED)
-
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
-
+add_definitions(-DQT_NO_FOREACH)
 add_subdirectory(src)
 add_subdirectory(autotests)
 add_subdirectory(tests)
