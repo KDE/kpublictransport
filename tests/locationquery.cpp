@@ -26,7 +26,6 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
-#include <QNetworkAccessManager>
 #include <QUrl>
 
 using namespace KPublicTransport;
@@ -37,11 +36,6 @@ class QueryManager : public QObject
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
 public:
-    QueryManager()
-    {
-        ptMgr.setNetworkAccessManager(&nam);
-    }
-
     Q_INVOKABLE void queryLocation(double lat, double lon, const QString &name)
     {
         qDebug() << lat << lon << name;
@@ -93,7 +87,6 @@ Q_SIGNALS:
     void errorMessageChanged();
 
 private:
-    QNetworkAccessManager nam;
     Manager ptMgr;
     QString m_errorMsg;
     bool m_loading = false;

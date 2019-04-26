@@ -54,6 +54,7 @@ public:
 
     /** Set the network access manager to use for network operations.
      *  If not set, an instance is created internally.
+     *  Ownership is not transferred.
      */
     void setNetworkAccessManager(QNetworkAccessManager *nam);
 

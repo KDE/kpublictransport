@@ -38,6 +38,7 @@
 #include <QJsonObject>
 #include <QMetaProperty>
 #include <QNetworkAccessManager>
+#include <QStandardPaths>
 #include <QTimer>
 
 #include <functional>
@@ -68,6 +69,9 @@ QNetworkAccessManager* ManagerPrivate::nam(QObject *parent)
 {
     if (!m_nam) {
         m_nam = new QNetworkAccessManager(parent);
+        m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+        m_nam->setStrictTransportSecurityEnabled(true);
+        m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/hsts/"));
     }
     return m_nam;
 }
@@ -213,6 +217,14 @@ Manager::~Manager() = default;
 
 void Manager::setNetworkAccessManager(QNetworkAccessManager *nam)
 {
+    if (d->m_nam == nam) {
+        return;
+    }
+
+    if (d->m_nam->parent() == this) {
+        delete d->m_nam;
+    }
+
     d->m_nam = nam;
 }
 

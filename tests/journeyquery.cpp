@@ -32,7 +32,6 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QLocale>
-#include <QNetworkAccessManager>
 #include <QUrl>
 
 
@@ -44,11 +43,6 @@ class QueryManager : public QObject
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
 public:
-    QueryManager()
-    {
-        ptMgr.setNetworkAccessManager(&nam);
-    }
-
     Q_INVOKABLE void findJourney(const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
     {
         engine->rootContext()->setContextProperty(QStringLiteral("_journeys"), QVariantList());
@@ -122,7 +116,6 @@ Q_SIGNALS:
     void errorMessageChanged();
 
 private:
-    QNetworkAccessManager nam;
     Manager ptMgr;
     std::vector<Journey> m_journeys;
     QString m_errorMsg;

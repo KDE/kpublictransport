@@ -30,7 +30,6 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QNetworkAccessManager>
 #include <QUrl>
 
 using namespace KPublicTransport;
@@ -41,11 +40,6 @@ class QueryManager : public QObject
     Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
 public:
-    QueryManager()
-    {
-        ptMgr.setNetworkAccessManager(&nam);
-    }
-
     Q_INVOKABLE void queryDeparture(const QString &name, double fromLat, double fromLon, bool queryArrival)
     {
         engine->rootContext()->setContextProperty(QStringLiteral("_departures"), QVariantList());
@@ -105,7 +99,6 @@ Q_SIGNALS:
     void errorMessageChanged();
 
 private:
-    QNetworkAccessManager nam;
     Manager ptMgr;
     std::vector<Departure> m_departures;
     QString m_errorMsg;
