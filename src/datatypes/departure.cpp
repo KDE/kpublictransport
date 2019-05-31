@@ -22,6 +22,7 @@
 #include "platformutils_p.h"
 
 #include <QDateTime>
+#include <QDebug>
 
 using namespace KPublicTransport;
 
@@ -167,18 +168,31 @@ void Departure::setStopPoint(const Location &stopPoint)
 
 bool Departure::isSame(const Departure &lhs, const Departure &rhs)
 {
-    if ((lhs.scheduledDepartureTime().isValid() && MergeUtil::distance(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()) >= 60) ||
-        (lhs.scheduledArrivalTime().isValid() && MergeUtil::distance(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()) >= 60)) {
+    // same time is mandatory
+    const auto departureTimeMatch = lhs.scheduledDepartureTime().isValid()
+        && rhs.scheduledDepartureTime().isValid()
+        && MergeUtil::distance(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()) < 60;
+    const auto arrivalTimeMatch = lhs.scheduledArrivalTime().isValid()
+        && rhs.scheduledArrivalTime().isValid()
+        && MergeUtil::distance(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()) < 60;
+    if (!departureTimeMatch && !arrivalTimeMatch) {
         return false;
     }
 
+    // same route would be sufficient, if that's not the case, look for other hints
+    // this might be the same below
     if (Route::isSame(lhs.route(), rhs.route())) {
         return true;
     }
 
-    // if the route didn't match exactly, same time and same platform is likely the same train
-    return Location::isSameName(lhs.route().direction(), rhs.route().direction())
-        && lhs.scheduledPlatform() == rhs.scheduledPlatform() && !lhs.scheduledPlatform().isEmpty();
+    // different platform can't be the same train
+    if (!lhs.scheduledPlatform().isEmpty() && !rhs.scheduledPlatform().isEmpty() && lhs.scheduledPlatform() != rhs.scheduledPlatform()) {
+        return false;
+    }
+
+    // same destination and departure time is likely the same route after all
+    // TODO we should check for conflicting line names or train types here maybe?
+    return Location::isSameName(lhs.route().direction(), rhs.route().direction());
 }
 
 Departure Departure::merge(const Departure &lhs, const Departure &rhs)

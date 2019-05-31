@@ -1,0 +1,19 @@
+{
+    "route": {
+        "direction": "BERGAMO (Bergamo)",
+        "line": {
+            "color": "#e40314",
+            "mode": "Train",
+            "modeString": "Train",
+            "name": "RE_2",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledArrivalTime": "2019-05-30T21:05:00",
+    "scheduledDepartureTime": "2019-05-30T21:05:00",
+    "stopPoint": {
+        "latitude": 45.48518753051758,
+        "longitude": 9.202954292297363,
+        "name": "MILANO CENTRALE (Milano)"
+    }
+}

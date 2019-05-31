@@ -1,0 +1,22 @@
+{
+    "route": {
+        "direction": "BERGAMO (Bergamo)",
+        "line": {
+            "color": "#e40314",
+            "mode": "LocalTrain",
+            "modeString": "Train",
+            "name": "R 2637",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledArrivalTime": "2019-05-30T21:05:00",
+    "scheduledDepartureTime": "2019-05-30T21:05:00",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8300046"
+        },
+        "latitude": 45.486167907714844,
+        "longitude": 9.20389175415039,
+        "name": "MILANO CENTRALE (Milano)"
+    }
+}
