@@ -61,6 +61,13 @@ ListModel {
     ListElement { label: "Toulouse-Blagnac Airport"; lat: 43.6301; lon: 1.37546 }
     ListElement { label: "Toulouse-Matabiau"; lat: 43.6114; lon: 1.45394 }
     ListElement { label: "PIM Sprint Venue (Toulouse)"; name: "Toulouse Jean Jaures"; lat: 43.6054; lon: 1.4489 }
+    ListElement { label: "Avignon Centre"; lat: 43.9419; lon: 4.80552 }
 
     ListElement { label: "Hagfors flygplats"; lat: 60.0262; lon: 13.582 }
+
+    ListElement { label: "Milano Centrale"; lat: 45.4863466378704; lon: 9.20452826501544 }
+    ListElement { label: "Milano Porta Garibaldi"; lat: 45.4849263704046; lon: 9.18768320503651 }
+    ListElement { label: "Malpensa Aeroporto"; lat: 45.6279397021696; lon: 8.71101861371495 }
+    ListElement { label: "Milano Bicocca"; lat: 45.51466; lon: 9.20529 }
+    ListElement { label: "Akademy 2019"; name: "Universitia Biocca Scienza"; lat: 45.51362; lon: 9.21116 }
 }
