@@ -79,6 +79,7 @@ public:
     void setArrivalTime(const QDateTime &dt);
 
 private:
+    friend class AbstractBackend;
     friend class JourneyReply;
     friend class Manager;
     Q_DECL_HIDDEN JourneyRequestContext context(const AbstractBackend *backend) const;

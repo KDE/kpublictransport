@@ -42,7 +42,7 @@ NavitiaBackend::NavitiaBackend() = default;
 
 AbstractBackend::Capabilities NavitiaBackend::capabilities() const
 {
-    return Secure; // https is hardcoded below
+    return Secure | CanQueryNextJourney | CanQueryPreviousJourney; // https is hardcoded below
 }
 
 bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -57,25 +57,27 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
         return false;
     }
 
-    QUrl url;
-    url.setScheme(QStringLiteral("https"));
-    url.setHost(m_endpoint);
-    url.setPath(QStringLiteral("/v1") +
-        (m_coverage.isEmpty() ? QString() : (QStringLiteral("/coverage/") + m_coverage)) +
-        QStringLiteral("/journeys"));
+    QUrl url = journeyContext(req).value<QUrl>();
+    if (!url.isValid()) {
+        url.setHost(m_endpoint);
+        url.setPath(QStringLiteral("/v1") +
+            (m_coverage.isEmpty() ? QString() : (QStringLiteral("/coverage/") + m_coverage)) +
+            QStringLiteral("/journeys"));
 
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("from"), QString::number(req.from().longitude()) + QLatin1Char(';') + QString::number(req.from().latitude()));
-    query.addQueryItem(QStringLiteral("to"), QString::number(req.to().longitude()) + QLatin1Char(';') + QString::number(req.to().latitude()));
-    if (req.dateTime().isValid()) {
-        query.addQueryItem(QStringLiteral("datetime"), req.dateTime().toString(QStringLiteral("yyyyMMddThhmmss")));
-        query.addQueryItem(QStringLiteral("datetime_represents"), req.dateTimeMode() == JourneyRequest::Arrival ? QStringLiteral("arrival") : QStringLiteral("departure"));
+        QUrlQuery query;
+        query.addQueryItem(QStringLiteral("from"), QString::number(req.from().longitude()) + QLatin1Char(';') + QString::number(req.from().latitude()));
+        query.addQueryItem(QStringLiteral("to"), QString::number(req.to().longitude()) + QLatin1Char(';') + QString::number(req.to().latitude()));
+        if (req.dateTime().isValid()) {
+            query.addQueryItem(QStringLiteral("datetime"), req.dateTime().toString(QStringLiteral("yyyyMMddThhmmss")));
+            query.addQueryItem(QStringLiteral("datetime_represents"), req.dateTimeMode() == JourneyRequest::Arrival ? QStringLiteral("arrival") : QStringLiteral("departure"));
+        }
+
+        // TODO: disable reply parts we don't care about
+        query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true")); // ### seems to have no effect?
+        query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0")); // ### also has no effect?
+        url.setQuery(query);
     }
-
-    // TODO: disable reply parts we don't care about
-    query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true")); // ### seems to have no effect?
-    query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0")); // ### also has no effect?
-    url.setQuery(query);
+    url.setScheme(QStringLiteral("https")); // force https in any case
 
     QNetworkRequest netReq(url);
     netReq.setRawHeader("Authorization", m_auth.toUtf8());

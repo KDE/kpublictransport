@@ -16,8 +16,10 @@
 */
 
 #include "abstractbackend.h"
+#include "../journeyrequestcontext_p.h"
 
 #include <KPublicTransport/JourneyReply>
+#include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>
 
 #include <QDebug>
@@ -94,6 +96,11 @@ bool AbstractBackend::queryLocation(const LocationRequest &request, LocationRepl
     Q_UNUSED(reply);
     Q_UNUSED(nam);
     return false;
+}
+
+QVariant AbstractBackend::journeyContext(const JourneyRequest &request) const
+{
+    return request.context(this).backendData;
 }
 
 void AbstractBackend::setNextJourneyContext(JourneyReply *reply, const QVariant &data) const

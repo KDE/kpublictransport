@@ -110,6 +110,7 @@ protected:
         reply->addError(error, errorMsg);
     }
 
+    QVariant journeyContext(const JourneyRequest &request) const;
     void setNextJourneyContext(JourneyReply *reply, const QVariant &data) const;
     void setPreviousJourneyContext(JourneyReply *reply, const QVariant &data) const;
 
