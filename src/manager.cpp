@@ -220,9 +220,9 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
         LocationRequest fromReq;
         fromReq.setCoordinate(req.from().latitude(), req.from().longitude());
         fromReq.setName(req.from().name());
-        resolveLocation(fromReq, backend, [reply, backend, this](const Location &loc) {
-            const auto fromLoc = Location::merge(reply->request().from(), loc);
-            auto jnyRequest = reply->request();
+        resolveLocation(fromReq, backend, [reply, backend, req, this](const Location &loc) {
+            auto jnyRequest = req;
+            const auto fromLoc = Location::merge(jnyRequest.from(), loc);
             jnyRequest.setFrom(fromLoc);
 
             if (backend->needsLocationQuery(jnyRequest.to(), AbstractBackend::QueryType::Journey)) {
