@@ -49,7 +49,7 @@ public:
     ~HafasMgateBackend();
 
     void init() override;
-    bool isSecure() const override;
+    Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     bool queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const override;

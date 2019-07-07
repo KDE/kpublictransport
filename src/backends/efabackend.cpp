@@ -41,9 +41,9 @@ using namespace KPublicTransport;
 EfaBackend::EfaBackend() = default;
 EfaBackend::~EfaBackend() = default;
 
-bool EfaBackend::isSecure() const
+AbstractBackend::Capabilities EfaBackend::capabilities() const
 {
-    return m_endpoint.startsWith(QLatin1String("https"));
+    return m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability;
 }
 
 bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const

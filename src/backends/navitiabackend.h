@@ -39,7 +39,7 @@ class NavitiaBackend : public AbstractBackend
 public:
     NavitiaBackend();
 
-    bool isSecure() const override;
+    Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     bool queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const override;

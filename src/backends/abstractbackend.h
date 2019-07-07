@@ -20,6 +20,7 @@
 
 #include "reply.h"
 
+#include <QFlags>
 #include <QPolygonF>
 
 class QNetworkAccessManager;
@@ -57,8 +58,18 @@ public:
     /** Called after all settings have been set on this backend. */
     virtual void init();
 
-    /** Returns @c true if this backend uses transport encryption. */
-    virtual bool isSecure() const;
+    enum Capability {
+        NoCapability = 0,
+        Secure = 1, ///< uses transport encryption
+        CanQueryNextJourney = 2, ///< supports querying for later journeys
+        CanQueryPreviousJourney = 4, ///< supports query for earlier journeys
+    };
+    Q_DECLARE_FLAGS(Capabilities, Capability)
+
+    /** Returns the capabilities of this backend. */
+    virtual Capabilities capabilities() const;
+    /** Checks if this backend has @p capability. */
+    inline bool hasCapability(Capability capability) const { return capabilities() & capability; };
 
     /** Type of query.
      *  @see needsLocationQuery
@@ -106,5 +117,7 @@ private:
 };
 
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::AbstractBackend::Capabilities)
 
 #endif // KPUBLICTRANSPORT_ABSTRACTBACKEND_H

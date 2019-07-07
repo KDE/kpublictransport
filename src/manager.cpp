@@ -242,7 +242,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
-        if (!backend->isSecure() && !d->m_allowInsecure) {
+        if (!backend->hasCapability(AbstractBackend::Secure) && !d->m_allowInsecure) {
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
@@ -313,7 +313,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
-        if (!backend->isSecure() && !d->m_allowInsecure) {
+        if (!backend->hasCapability(AbstractBackend::Secure) && !d->m_allowInsecure) {
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
@@ -353,7 +353,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
             qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
-        if (!backend->isSecure() && !d->m_allowInsecure) {
+        if (!backend->hasCapability(AbstractBackend::Secure) && !d->m_allowInsecure) {
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }

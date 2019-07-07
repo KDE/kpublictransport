@@ -40,9 +40,9 @@ using namespace KPublicTransport;
 
 NavitiaBackend::NavitiaBackend() = default;
 
-bool NavitiaBackend::isSecure() const
+AbstractBackend::Capabilities NavitiaBackend::capabilities() const
 {
-    return true; // https is hardcoded below
+    return Secure; // https is hardcoded below
 }
 
 bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const

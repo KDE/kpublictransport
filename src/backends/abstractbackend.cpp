@@ -59,9 +59,9 @@ void AbstractBackend::init()
 {
 }
 
-bool AbstractBackend::isSecure() const
+AbstractBackend::Capabilities AbstractBackend::capabilities() const
 {
-    return false;
+    return NoCapability;
 }
 
 bool AbstractBackend::needsLocationQuery(const Location &loc, QueryType type) const

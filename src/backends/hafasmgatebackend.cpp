@@ -53,9 +53,9 @@ void HafasMgateBackend::init()
     m_parser.setLineModeMap(std::move(m_lineModeMap));
 }
 
-bool HafasMgateBackend::isSecure() const
+AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 {
-    return m_endpoint.startsWith(QLatin1String("https"));
+    return m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability;
 }
 
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
