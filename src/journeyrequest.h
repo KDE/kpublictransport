@@ -22,11 +22,16 @@
 
 #include <QSharedDataPointer>
 
+#include <vector>
+
 class QDateTime;
 
 namespace KPublicTransport {
 
+class AbstractBackend;
+class JourneyReply;
 class JourneyRequestPrivate;
+class JourneyRequestContext;
 class Location;
 
 /** Describes a journey search.
@@ -73,6 +78,11 @@ public:
     void setArrivalTime(const QDateTime &dt);
 
 private:
+    friend class JourneyReply;
+    Q_DECL_HIDDEN JourneyRequestContext context(const AbstractBackend *backend) const;
+    Q_DECL_HIDDEN const std::vector<JourneyRequestContext>& contexts() const;
+    Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, JourneyRequestContext &&context);
+
     QExplicitlySharedDataPointer<JourneyRequestPrivate> d;
 };
 

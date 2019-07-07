@@ -16,11 +16,14 @@
 */
 
 #include "journeyrequest.h"
+#include "journeyrequestcontext_p.h"
 
 #include <KPublicTransport/Location>
 
 #include <QDateTime>
 #include <QSharedData>
+
+#include <unordered_map>
 
 using namespace KPublicTransport;
 
@@ -31,6 +34,7 @@ public:
     Location to;
     QDateTime dateTime;
     JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
+    std::vector<JourneyRequestContext> contexts;
 };
 }
 
@@ -103,4 +107,32 @@ void JourneyRequest::setArrivalTime(const QDateTime &dt)
     d.detach();
     d->dateTime = dt;
     d->dateTimeMode = Arrival;
+}
+
+JourneyRequestContext JourneyRequest::context(const AbstractBackend *backend) const
+{
+    const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
+    if (it != d->contexts.end() && (*it).backend == backend) {
+        return *it;
+    }
+
+    JourneyRequestContext context;
+    context.backend = backend;
+    return context;
+}
+
+const std::vector<JourneyRequestContext>& JourneyRequest::contexts() const
+{
+    return d->contexts;
+}
+
+void JourneyRequest::setContext(const AbstractBackend *backend, JourneyRequestContext &&context)
+{
+    d.detach();
+    const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
+    if (it != d->contexts.end() && (*it).backend == backend) {
+        (*it) = std::move(context);
+    } else {
+        d->contexts.insert(it, std::move(context));
+    }
 }
