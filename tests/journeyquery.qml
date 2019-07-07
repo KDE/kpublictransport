@@ -266,7 +266,7 @@ Kirigami.ApplicationWindow {
                         id: prevQueryButton
                         icon.name: "go-previous"
                         enabled: _queryMgr.model.canQueryPrevious
-                        onClicked: _queryMgr.model.queryPrevious
+                        onClicked: _queryMgr.model.queryPrevious()
                     }
                     QQC2.ComboBox {
                         id: journeySelector
@@ -278,7 +278,7 @@ Kirigami.ApplicationWindow {
                         id: nextQueryButton
                         icon.name: "go-next"
                         enabled: _queryMgr.model.canQueryNext
-                        onClicked: _queryMgr.model.queryNext
+                        onClicked: _queryMgr.model.queryNext()
                     }
                 }
 

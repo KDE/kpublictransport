@@ -112,7 +112,33 @@ bool JourneyQueryModel::canQueryNext() const
 
 void JourneyQueryModel::queryNext()
 {
-    // TODO
+    if (!canQueryNext()) {
+        qCWarning(Log) << "Cannot query next journeys";
+        return;
+    }
+
+    d->loading = true;
+    emit loadingChanged();
+    emit canQueryPrevNextChanged();
+
+    auto reply = d->mgr->queryJourney(d->nextRequest);
+    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
+        d->loading = false;
+        emit loadingChanged();
+        if (reply->error() == KPublicTransport::JourneyReply::NoError) {
+            beginResetModel();
+            // TODO properly merge results
+            d->journeys.insert(d->journeys.end(), reply->result().begin(), reply->result().end());
+            d->nextRequest = reply->nextRequest();
+            endResetModel();
+        } else {
+            d->errorMessage = reply->errorString();
+            d->nextRequest = {};
+            emit errorMessageChanged();
+        }
+        reply->deleteLater();
+        emit canQueryPrevNextChanged();
+    });
 }
 
 bool JourneyQueryModel::canQueryPrevious() const
@@ -122,6 +148,11 @@ bool JourneyQueryModel::canQueryPrevious() const
 
 void JourneyQueryModel::queryPrevious()
 {
+    if (!canQueryPrevious()) {
+        qCWarning(Log) << "Cannot query previous journeys";
+        return;
+    }
+
     // TODO
 }
 
