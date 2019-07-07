@@ -18,6 +18,7 @@
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
+#include <KPublicTransport/JourneyQueryModel>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Manager>
@@ -29,28 +30,46 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QFile>
+#include <QIdentityProxyModel>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QLocale>
 #include <QUrl>
 
-
 using namespace KPublicTransport;
+
+class JourneyQueryProxyModel : public QIdentityProxyModel
+{
+public:
+    JourneyQueryProxyModel(QObject *parent) : QIdentityProxyModel(parent) {}
+    QVariant data(const QModelIndex &index, int role) const override
+    {
+        if (role == Qt::DisplayRole) {
+            const auto j = index.data(JourneyQueryModel::JourneyRole).value<Journey>();
+            return QString(QLocale().toString(j.scheduledDepartureTime(), QLocale::ShortFormat) + QLatin1String(" (") +
+                QString::number(j.duration()/60) + QLatin1String("min) - ") + QString::number(j.numberOfChanges()) + QLatin1String(" change(s)"));
+        }
+        return QIdentityProxyModel::data(index, role);
+    }
+};
 
 class QueryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
-    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
+    Q_PROPERTY(QAbstractItemModel* model MEMBER journeyQueryModel CONSTANT)
+    Q_PROPERTY(QAbstractItemModel* titleModel MEMBER journeyProxyModel CONSTANT)
 public:
+    QueryManager(QObject *parent = nullptr)
+        : QObject(parent)
+        , journeyQueryModel(new JourneyQueryModel(this))
+        , journeyProxyModel(new JourneyQueryProxyModel(this))
+    {
+        journeyQueryModel->setManager(&ptMgr);
+        journeyProxyModel->setSourceModel(journeyQueryModel);
+    }
+
     Q_INVOKABLE void findJourney(const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
     {
-        engine->rootContext()->setContextProperty(QStringLiteral("_journeys"), QVariantList());
-        m_loading = true;
-        emit loadingChanged();
-        m_errorMsg.clear();
-        emit errorMessageChanged();
-
         Location from;
         from.setName(fromName);
         from.setCoordinate(fromLat, fromLon);
@@ -63,32 +82,7 @@ public:
             request.setArrivalTime(QDateTime::currentDateTime().addSecs(2 * 3600));
         }
 
-        auto reply = ptMgr.queryJourney(request);
-        QObject::connect(reply, &JourneyReply::finished, this, [reply, this]{
-            m_loading = false;
-            emit loadingChanged();
-
-            if (reply->error() == JourneyReply::NoError) {
-                m_journeys = reply->takeResult();
-                QVariantList l;
-                l.reserve(m_journeys.size());
-                std::transform(m_journeys.begin(), m_journeys.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
-                engine->rootContext()->setContextProperty(QStringLiteral("_journeys"), l);
-
-                QStringList journeyTitles;
-                journeyTitles.reserve(m_journeys.size());
-                for (const auto &journey : m_journeys) {
-                    const QString t = QLocale().toString(journey.scheduledDepartureTime(), QLocale::ShortFormat) + QLatin1String(" (") +
-                        QString::number(journey.duration()/60) + QLatin1String("min) - ") + QString::number(journey.numberOfChanges()) + QLatin1String(" change(s)");
-                    journeyTitles.push_back(t);
-                }
-                engine->rootContext()->setContextProperty(QStringLiteral("_journeyTitles"), journeyTitles);
-            } else {
-                m_errorMsg = reply->errorString();
-                emit errorMessageChanged();
-            }
-            reply->deleteLater();
-        });
+        journeyQueryModel->setJourneyRequest(request);
     }
 
     Q_INVOKABLE void setAllowInsecure(bool insecure)
@@ -103,23 +97,13 @@ public:
             qWarning() << f.errorString() << fileName;
             return;
         }
-        f.write(QJsonDocument(Journey::toJson(m_journeys)).toJson());
+        f.write(QJsonDocument(Journey::toJson(journeyQueryModel->journeys())).toJson());
     }
-
-    bool loading() const { return m_loading; }
-    QString errorMessage() const { return m_errorMsg; }
-
-    QQmlEngine *engine = nullptr;
-
-Q_SIGNALS:
-    void loadingChanged();
-    void errorMessageChanged();
 
 private:
     Manager ptMgr;
-    std::vector<Journey> m_journeys;
-    QString m_errorMsg;
-    bool m_loading = false;
+    JourneyQueryModel *journeyQueryModel;
+    JourneyQueryProxyModel *journeyProxyModel;
 };
 
 int main(int argc, char **argv)
@@ -137,7 +121,6 @@ int main(int argc, char **argv)
 
     QueryManager mgr;
     QQmlApplicationEngine engine;
-    mgr.engine = &engine;
     engine.rootContext()->setContextProperty(QStringLiteral("_queryMgr"), &mgr);
     engine.load(QStringLiteral("qrc:/journeyquery.qml"));
     return app.exec();

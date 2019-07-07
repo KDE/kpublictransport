@@ -261,28 +261,43 @@ Kirigami.ApplicationWindow {
                     }
                 }
 
-                QQC2.ComboBox {
-                    id: journeySelector
-                    Layout.fillWidth: true
-                    model: _journeyTitles
+                RowLayout {
+                    QQC2.ToolButton {
+                        id: prevQueryButton
+                        icon.name: "go-previous"
+                        enabled: _queryMgr.model.canQueryPrevious
+                        onClicked: _queryMgr.model.queryPrevious
+                    }
+                    QQC2.ComboBox {
+                        id: journeySelector
+                        Layout.fillWidth: true
+                        model: _queryMgr.titleModel
+                        textRole: "display"
+                    }
+                    QQC2.ToolButton {
+                        id: nextQueryButton
+                        icon.name: "go-next"
+                        enabled: _queryMgr.model.canQueryNext
+                        onClicked: _queryMgr.model.queryNext
+                    }
                 }
 
                 ListView {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    model: _journeys[journeySelector.currentIndex].sections
+                    model: _queryMgr.model.data(_queryMgr.model.index(journeySelector.currentIndex, 0), 256).sections
                     clip: true
                     delegate: journeyDelegate
 
                     QQC2.BusyIndicator {
                         anchors.centerIn: parent
-                        running: _queryMgr.loading
+                        running: _queryMgr.model.loading
                     }
 
                     QQC2.Label {
                         anchors.centerIn: parent
                         width: parent.width
-                        text: _queryMgr.errorMessage
+                        text: _queryMgr.model.errorMessage
                         color: Kirigami.Theme.negativeTextColor
                         wrapMode: Text.Wrap
                     }

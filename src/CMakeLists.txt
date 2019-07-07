@@ -29,6 +29,8 @@ set(kpublictransport_srcs
     datatypes/mergeutil.cpp
     datatypes/platformutils.cpp
 
+    models/journeyquerymodel.cpp
+
     networks/networks.qrc
 )
 ecm_qt_declare_logging_category(kpublictransport_srcs HEADER logging.h IDENTIFIER KPublicTransport::Log CATEGORY_NAME org.kde.kpublictransport)
@@ -83,17 +85,26 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     REQUIRED_HEADERS KPublicTransport_Datatypes_HEADERS
     RELATIVE datatypes
 )
+ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
+    HEADER_NAMES
+        JourneyQueryModel
+    PREFIX KPublicTransport
+    REQUIRED_HEADERS KPublicTransport_Models_HEADERS
+    RELATIVE models
+)
 
 install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES org_kde_kpublictransport.categories DESTINATION ${KDE_INSTALL_CONFDIR})
 install(FILES
     ${KPublicTransport_FORWARDING_HEADERS}
     ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
+    ${KPublicTransport_Models_FORWARDING_HEADERS}
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport
 )
 install(FILES
     ${KPublicTransport_HEADERS}
     ${KPublicTransport_Datatypes_HEADERS}
+    ${KPublicTransport_Models_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kpublictransport
 )
