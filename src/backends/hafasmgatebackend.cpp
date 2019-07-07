@@ -122,7 +122,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
             {
                 auto res = m_parser.parseJourneys(netReply->readAll());
                 if (m_parser.error() == Reply::NoError) {
-                    addResult(reply, std::move(res));
+                    addResult(reply, this, std::move(res));
                 } else {
                     addError(reply, m_parser.error(), m_parser.errorMessage());
                 }

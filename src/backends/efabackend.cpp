@@ -206,7 +206,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
             addError(reply, p.error(), p.errorMessage());
             qCDebug(Log) << p.error() << p.errorMessage();
         } else {
-            addResult(reply, std::move(res));
+            addResult(reply, this, std::move(res));
         }
     });
 

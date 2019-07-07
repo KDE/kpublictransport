@@ -18,6 +18,7 @@
 #include "journeyreply.h"
 #include "reply_p.h"
 #include "journeyrequest.h"
+#include "journeyrequestcontext_p.h"
 #include "logging.h"
 
 #include <KPublicTransport/Journey>
@@ -35,6 +36,8 @@ public:
     void postProcessJourneys();
 
     JourneyRequest request;
+    JourneyRequest nextRequest;
+    JourneyRequest prevRequest;
     std::vector<Journey> journeys;
 };
 }
@@ -137,6 +140,8 @@ JourneyReply::JourneyReply(const JourneyRequest &req, QObject *parent)
 {
     Q_D(JourneyReply);
     d->request = req;
+    d->nextRequest = req;
+    d->prevRequest = req;
 }
 
 JourneyReply::~JourneyReply() = default;
@@ -161,17 +166,38 @@ std::vector<Journey>&& JourneyReply::takeResult()
 
 JourneyRequest JourneyReply::nextRequest() const
 {
-    return {}; // TODO
+    Q_D(const JourneyReply);
+    if (d->nextRequest.contexts().empty()) {
+        return {};
+    }
+    return d->nextRequest;
 }
 
 JourneyRequest JourneyReply::previousRequest() const
 {
-    return {}; // TODO
+    Q_D(const JourneyReply);
+    if (d->prevRequest.contexts().empty()) {
+        return {};
+    }
+    return d->prevRequest;
 }
 
-void JourneyReply::addResult(std::vector<Journey> &&res)
+void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey> &&res)
 {
     Q_D(JourneyReply);
+    // update context for next/prev requests
+    // do this first, before res gets moved from below
+    if (d->request.dateTimeMode() == JourneyRequest::Departure && !res.empty()) {
+        // we create a context for later queries here in any case, since we can emulate that generically without backend support
+        auto context = d->nextRequest.context(backend);
+        context.type = JourneyRequestContext::Next;
+        for (const auto &jny : res) {
+            context.dateTime = std::max(context.dateTime, jny.scheduledDepartureTime());
+        }
+        d->nextRequest.setContext(backend, std::move(context));
+    }
+
+    // update result
     if (d->journeys.empty()) {
         d->journeys = std::move(res);
     } else {

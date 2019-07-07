@@ -82,10 +82,10 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
     qCDebug(Log) << "GET:" << url;
     auto netReply = nam->get(netReq);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [reply, netReply] {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply] {
         switch (netReply->error()) {
             case QNetworkReply::NoError:
-                addResult(reply, NavitiaParser::parseJourneys(netReply->readAll()));
+                addResult(reply, this, NavitiaParser::parseJourneys(netReply->readAll()));
                 break;
             case QNetworkReply::ContentNotFoundError:
                 addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(netReply->readAll()));

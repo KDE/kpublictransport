@@ -57,7 +57,7 @@ private:
     explicit JourneyReply(const JourneyRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    void addResult(std::vector<Journey> &&res);
+    void addResult(const AbstractBackend *backend, std::vector<Journey> &&res);
 
     Q_DECLARE_PRIVATE(JourneyReply)
 };
