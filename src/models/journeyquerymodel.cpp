@@ -220,7 +220,25 @@ void JourneyQueryModel::queryPrevious()
         return;
     }
 
-    // TODO
+    d->m_loading = true;
+    emit loadingChanged();
+    emit canQueryPrevNextChanged();
+
+    auto reply = d->mgr->queryJourney(d->m_prevRequest);
+    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
+        d->m_loading = false;
+        emit loadingChanged();
+        if (reply->error() == KPublicTransport::JourneyReply::NoError) {
+            d->mergeResults(this, std::move(reply->takeResult()));
+            d->m_prevRequest = reply->previousRequest();
+        } else {
+            d->m_errorMessage = reply->errorString();
+            d->m_prevRequest = {};
+            emit errorMessageChanged();
+        }
+        reply->deleteLater();
+        emit canQueryPrevNextChanged();
+    });
 }
 
 int JourneyQueryModel::rowCount(const QModelIndex& parent) const
