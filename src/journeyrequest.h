@@ -33,6 +33,7 @@ class JourneyReply;
 class JourneyRequestPrivate;
 class JourneyRequestContext;
 class Location;
+class Manager;
 
 /** Describes a journey search.
  *  By default journeys departing now are searched.
@@ -79,6 +80,7 @@ public:
 
 private:
     friend class JourneyReply;
+    friend class Manager;
     Q_DECL_HIDDEN JourneyRequestContext context(const AbstractBackend *backend) const;
     Q_DECL_HIDDEN const std::vector<JourneyRequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, JourneyRequestContext &&context);
