@@ -207,3 +207,21 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
     d->pendingOps--;
     d->emitFinishedIfDone(this);
 }
+
+void JourneyReply::setNextContext(const AbstractBackend *backend, const QVariant &data)
+{
+    Q_D(JourneyReply);
+    auto context = d->nextRequest.context(backend);
+    context.type = JourneyRequestContext::Next;
+    context.backendData = data;
+    d->nextRequest.setContext(backend, std::move(context));
+}
+
+void JourneyReply::setPreviousContext(const AbstractBackend *backend, const QVariant &data)
+{
+    Q_D(JourneyReply);
+    auto context = d->prevRequest.context(backend);
+    context.type = JourneyRequestContext::Previous;
+    context.backendData = data;
+    d->prevRequest.setContext(backend, std::move(context));
+}

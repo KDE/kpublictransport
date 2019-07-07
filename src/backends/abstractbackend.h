@@ -110,6 +110,9 @@ protected:
         reply->addError(error, errorMsg);
     }
 
+    void setNextJourneyContext(JourneyReply *reply, const QVariant &data) const;
+    void setPreviousJourneyContext(JourneyReply *reply, const QVariant &data) const;
+
 private:
     Q_DISABLE_COPY(AbstractBackend)
     QString m_backendId;
