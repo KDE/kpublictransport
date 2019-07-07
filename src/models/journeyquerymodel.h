@@ -92,6 +92,7 @@ Q_SIGNALS:
     void canQueryPrevNextChanged();
 
 private:
+    friend class JourneyQueryModelPrivate;
     std::unique_ptr<JourneyQueryModelPrivate> d;
 };
 

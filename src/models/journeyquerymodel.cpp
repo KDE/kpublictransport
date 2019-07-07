@@ -33,15 +33,82 @@ class JourneyQueryModelPrivate
 public:
     Manager *mgr = nullptr;
 
-    std::vector<Journey> journeys;
+    void mergeResults(JourneyQueryModel *q, std::vector<Journey> &&res);
 
-    JourneyRequest nextRequest;
-    JourneyRequest prevRequest;
+    std::vector<Journey> m_journeys;
 
-    QString errorMessage;
-    bool loading = false;
+    JourneyRequest m_nextRequest;
+    JourneyRequest m_prevRequest;
+
+    QString m_errorMessage;
+    bool m_loading = false;
 };
 }
+
+// TODO share with JourneyReply
+static QDateTime firstTransportDeparture(const Journey &jny)
+{
+    for (const auto &section : jny.sections()) {
+        if (section.mode() == JourneySection::PublicTransport) {
+            return section.scheduledDepartureTime();
+        }
+    }
+
+    return jny.scheduledDepartureTime();
+}
+
+void JourneyQueryModelPrivate::mergeResults(JourneyQueryModel *q, std::vector<Journey> &&res)
+{
+    Q_ASSERT(!m_journeys.empty());
+    auto result = std::move(res);
+    if (result.empty()) {
+        return;
+    }
+
+    // sort and merge results, aligned by first transport departure
+    std::sort(result.begin(), result.end(), [](const auto &lhs, const auto &rhs) {
+        return firstTransportDeparture(lhs) < firstTransportDeparture(rhs);
+    });
+
+    auto jnyIt = m_journeys.begin();
+    auto resIt = result.begin();
+
+    q->beginResetModel(); // TODO
+    while (true) {
+        if (resIt == result.end()) {
+            break;
+        }
+
+        if (jnyIt == m_journeys.end()) {
+            m_journeys.insert(jnyIt, resIt, result.end());
+            break;
+        }
+
+        if (firstTransportDeparture(*resIt) < firstTransportDeparture(*jnyIt)) {
+//             q->beginInsertRows();
+            jnyIt = m_journeys.insert(jnyIt, *resIt);
+            ++resIt;
+//             q->endInsertRows();
+            continue;
+        }
+
+        if (firstTransportDeparture(*jnyIt) < firstTransportDeparture(*resIt)) {
+            ++jnyIt;
+            continue;
+        }
+
+        if (Journey::isSame(*jnyIt, *resIt)) {
+            *jnyIt = Journey::merge(*jnyIt, *resIt);
+            ++resIt;
+//             emit q->dataChanged();
+        } else {
+            ++jnyIt;
+        }
+    }
+
+    q->endResetModel();
+}
+
 
 JourneyQueryModel::JourneyQueryModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -63,31 +130,31 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
         return;
     }
 
-    d->errorMessage.clear();
+    d->m_errorMessage.clear();
     emit errorMessageChanged();
-    d->loading = true;
+    d->m_loading = true;
     emit loadingChanged();
     emit canQueryPrevNextChanged();
-    if (!d->journeys.empty()) {
+    if (!d->m_journeys.empty()) {
         beginResetModel();
-        d->journeys.clear();
+        d->m_journeys.clear();
         endResetModel();
     }
-    d->nextRequest = {};
-    d->prevRequest = {};
+    d->m_nextRequest = {};
+    d->m_prevRequest = {};
 
     auto reply = d->mgr->queryJourney(req);
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
-        d->loading = false;
+        d->m_loading = false;
         emit loadingChanged();
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             beginResetModel();
-            d->journeys = reply->takeResult();
-            d->nextRequest = reply->nextRequest();
-            d->prevRequest = reply->previousRequest();
+            d->m_journeys = reply->takeResult();
+            d->m_nextRequest = reply->nextRequest();
+            d->m_prevRequest = reply->previousRequest();
             endResetModel();
         } else {
-            d->errorMessage = reply->errorString();
+            d->m_errorMessage = reply->errorString();
             emit errorMessageChanged();
         }
         reply->deleteLater();
@@ -97,17 +164,17 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
 
 bool JourneyQueryModel::isLoading() const
 {
-    return d->loading;
+    return d->m_loading;
 }
 
 QString JourneyQueryModel::errorMessage() const
 {
-    return d->errorMessage;
+    return d->m_errorMessage;
 }
 
 bool JourneyQueryModel::canQueryNext() const
 {
-    return !d->loading && !d->journeys.empty() && !d->nextRequest.isEmpty();
+    return !d->m_loading && !d->m_journeys.empty() && !d->m_nextRequest.isEmpty();
 }
 
 void JourneyQueryModel::queryNext()
@@ -117,23 +184,22 @@ void JourneyQueryModel::queryNext()
         return;
     }
 
-    d->loading = true;
+    d->m_loading = true;
     emit loadingChanged();
     emit canQueryPrevNextChanged();
 
-    auto reply = d->mgr->queryJourney(d->nextRequest);
+    auto reply = d->mgr->queryJourney(d->m_nextRequest);
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
-        d->loading = false;
+        d->m_loading = false;
         emit loadingChanged();
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             beginResetModel();
-            // TODO properly merge results
-            d->journeys.insert(d->journeys.end(), reply->result().begin(), reply->result().end());
-            d->nextRequest = reply->nextRequest();
+            d->mergeResults(this, std::move(reply->takeResult()));
+            d->m_nextRequest = reply->nextRequest();
             endResetModel();
         } else {
-            d->errorMessage = reply->errorString();
-            d->nextRequest = {};
+            d->m_errorMessage = reply->errorString();
+            d->m_nextRequest = {};
             emit errorMessageChanged();
         }
         reply->deleteLater();
@@ -143,7 +209,7 @@ void JourneyQueryModel::queryNext()
 
 bool JourneyQueryModel::canQueryPrevious() const
 {
-    return !d->loading && !d->journeys.empty() && !d->prevRequest.isEmpty();
+    return !d->m_loading && !d->m_journeys.empty() && !d->m_prevRequest.isEmpty();
 }
 
 void JourneyQueryModel::queryPrevious()
@@ -161,7 +227,7 @@ int JourneyQueryModel::rowCount(const QModelIndex& parent) const
     if (parent.isValid()) {
         return 0;
     }
-    return d->journeys.size();
+    return d->m_journeys.size();
 }
 
 QVariant JourneyQueryModel::data(const QModelIndex& index, int role) const
@@ -172,7 +238,7 @@ QVariant JourneyQueryModel::data(const QModelIndex& index, int role) const
 
     switch (role) {
         case JourneyRole:
-            return QVariant::fromValue(d->journeys[index.row()]);
+            return QVariant::fromValue(d->m_journeys[index.row()]);
     }
 
     return {};
@@ -187,5 +253,5 @@ QHash<int, QByteArray> JourneyQueryModel::roleNames() const
 
 const std::vector<Journey>& JourneyQueryModel::journeys() const
 {
-    return d->journeys;
+    return d->m_journeys;
 }
