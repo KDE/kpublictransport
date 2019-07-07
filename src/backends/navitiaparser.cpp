@@ -30,6 +30,9 @@
 
 using namespace KPublicTransport;
 
+NavitiaParser::NavitiaParser() = default;
+NavitiaParser::~NavitiaParser() = default;
+
 static QDateTime parseDateTime(const QJsonValue &v, const QTimeZone &tz)
 {
     auto dt = QDateTime::fromString(v.toString(), QStringLiteral("yyyyMMddTHHmmss"));
@@ -178,6 +181,7 @@ std::vector<Journey> NavitiaParser::parseJourneys(const QByteArray &data)
         res.push_back(parseJourney(v.toObject()));
     }
 
+    parseLinks(topObj.value(QLatin1String("links")).toArray());
     return res;
 }
 
@@ -272,4 +276,17 @@ QString NavitiaParser::parseErrorMessage(const QByteArray &data)
 
     // id field contains error enum, might also be useful
     return errorObj.value(QLatin1String("message")).toString();
+}
+
+void NavitiaParser::parseLinks(const QJsonArray &links)
+{
+    for (const auto &v : links) {
+        const auto link = v.toObject();
+        const auto rel = link.value(QLatin1String("rel")).toString();
+        if (rel == QLatin1String("next")) {
+            nextLink = QUrl(link.value(QLatin1String("href")).toString());
+        } else if (rel == QLatin1String("prev")) {
+            prevLink = QUrl(link.value(QLatin1String("href")).toString());
+        }
+    }
 }

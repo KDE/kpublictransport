@@ -20,9 +20,12 @@
 
 #include "kpublictransport_export.h"
 
+#include <QUrl>
+
 #include <vector>
 
 class QByteArray;
+class QJsonArray;
 class QString;
 
 namespace KPublicTransport {
@@ -34,15 +37,25 @@ class Location;
 /** Navitia REST response parser.
  *  @internal exported for unit tests only
  */
-namespace NavitiaParser
+class KPUBLICTRANSPORT_EXPORT NavitiaParser
 {
-    KPUBLICTRANSPORT_EXPORT std::vector<Journey> parseJourneys(const QByteArray &data);
-    KPUBLICTRANSPORT_EXPORT std::vector<Departure> parseDepartures(const QByteArray &data);
-    std::vector<Location> parsePlacesNearby(const QByteArray &data);
-    std::vector<Location> parsePlaces(const QByteArray &data);
+public:
+    explicit NavitiaParser();
+    ~NavitiaParser();
 
-    QString parseErrorMessage(const QByteArray &data);
-}
+    std::vector<Journey> parseJourneys(const QByteArray &data);
+    static std::vector<Departure> parseDepartures(const QByteArray &data);
+    static std::vector<Location> parsePlacesNearby(const QByteArray &data);
+    static std::vector<Location> parsePlaces(const QByteArray &data);
+
+    static QString parseErrorMessage(const QByteArray &data);
+
+    QUrl nextLink;
+    QUrl prevLink;
+
+private:
+    void parseLinks(const QJsonArray &links);
+};
 
 }
 

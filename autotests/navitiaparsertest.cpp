@@ -43,7 +43,8 @@ private Q_SLOTS:
 
     void testParseJourneys()
     {
-        const auto res = KPublicTransport::NavitiaParser::parseJourneys(readFile(SOURCE_DIR "/data/navitia/journey-response.json"));
+        KPublicTransport::NavitiaParser parser;
+        const auto res = parser.parseJourneys(readFile(SOURCE_DIR "/data/navitia/journey-response.json"));
         QCOMPARE(res.size(), 4);
 
         {
@@ -132,6 +133,9 @@ private Q_SLOTS:
             QCOMPARE(sec.route().line().mode(), KPublicTransport::Line::Bus);
             QCOMPARE(sec.route().line().modeString(), QStringLiteral("Bus"));
         }
+
+        QVERIFY(parser.nextLink.isValid());
+        QVERIFY(parser.prevLink.isValid());
     }
 
     void testParseDepartures()
