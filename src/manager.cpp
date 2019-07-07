@@ -52,23 +52,24 @@ static inline void initResources() {
 namespace KPublicTransport {
 class ManagerPrivate {
 public:
-    QNetworkAccessManager* nam(QObject *parent);
+    QNetworkAccessManager* nam();
     void loadNetworks();
     std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename T> std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
-    void resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const Manager *mgr, const std::function<void(const Location &loc)> &callback);
+    void resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const std::function<void(const Location &loc)> &callback);
 
+    Manager *q = nullptr;
     QNetworkAccessManager *m_nam = nullptr;
     std::vector<std::unique_ptr<AbstractBackend>> m_backends;
     bool m_allowInsecure = false;
 };
 }
 
-QNetworkAccessManager* ManagerPrivate::nam(QObject *parent)
+QNetworkAccessManager* ManagerPrivate::nam()
 {
     if (!m_nam) {
-        m_nam = new QNetworkAccessManager(parent);
+        m_nam = new QNetworkAccessManager(q);
         m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
         m_nam->setStrictTransportSecurityEnabled(true);
         m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/hsts/"));
@@ -165,10 +166,9 @@ template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwor
 
 // IMPORTANT callback must not be called directly, but only via queued invocation,
 // our callers rely on that to not mess up sync/async response handling
-void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const Manager *mgr, const std::function<void(const Location&)> &callback)
+void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const std::unique_ptr<AbstractBackend> &backend, const std::function<void(const Location&)> &callback)
 {
     // check if this location query is cached already
-    auto q = const_cast<Manager*>(mgr);
     const auto cacheEntry = Cache::lookupLocation(backend->backendId(), locReq.cacheKey());
     switch (cacheEntry.type) {
         case CacheHitType::Negative:
@@ -187,7 +187,7 @@ void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const std::u
 
     // actually do the location query
     auto locReply = new LocationReply(locReq, q);
-    if (backend->queryLocation(locReq, locReply, nam(q))) {
+    if (backend->queryLocation(locReq, locReply, nam())) {
         locReply->setPendingOps(1);
     } else {
         locReply->setPendingOps(0);
@@ -208,6 +208,7 @@ Manager::Manager(QObject *parent)
     , d(new ManagerPrivate)
 {
     initResources();
+    d->q = this;
     d->loadNetworks();
 
     Cache::expire();
@@ -253,7 +254,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             LocationRequest fromReq;
             fromReq.setCoordinate(req.from().latitude(), req.from().longitude());
             fromReq.setName(req.from().name());
-            d->resolveLocation(fromReq, backend, this, [reply, &backend, this](const Location &loc) {
+            d->resolveLocation(fromReq, backend, [reply, &backend, this](const Location &loc) {
                 const auto fromLoc = Location::merge(reply->request().from(), loc);
                 auto jnyRequest = reply->request();
                 jnyRequest.setFrom(fromLoc);
@@ -262,11 +263,11 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
                     LocationRequest toReq;
                     toReq.setCoordinate(jnyRequest.to().latitude(), jnyRequest.to().longitude());
                     toReq.setName(jnyRequest.to().name());
-                    d->resolveLocation(toReq, backend, this, [jnyRequest, reply, &backend, this](const Location &loc) {
+                    d->resolveLocation(toReq, backend, [jnyRequest, reply, &backend, this](const Location &loc) {
                         auto jnyReq = jnyRequest;
                         const auto toLoc = Location::merge(jnyRequest.to(), loc);
                         jnyReq.setTo(toLoc);
-                        if (!backend->queryJourney(jnyReq, reply, d->nam(const_cast<Manager*>(this)))) {
+                        if (!backend->queryJourney(jnyReq, reply, d->nam())) {
                             reply->addError(Reply::NotFoundError, {});
                         }
                     });
@@ -274,7 +275,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
                     return;
                 }
 
-                if (!backend->queryJourney(jnyRequest, reply, d->nam(const_cast<Manager*>(this)))) {
+                if (!backend->queryJourney(jnyRequest, reply, d->nam())) {
                     reply->addError(Reply::NotFoundError, {});
                 }
             });
@@ -285,18 +286,18 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             LocationRequest toReq;
             toReq.setCoordinate(req.to().latitude(), req.to().longitude());
             toReq.setName(req.to().name());
-            d->resolveLocation(toReq, backend, this, [reply, &backend, this](const Location &loc) {
+            d->resolveLocation(toReq, backend, [reply, &backend, this](const Location &loc) {
                 const auto toLoc = Location::merge(reply->request().to(), loc);
                 auto jnyRequest = reply->request();
                 jnyRequest.setTo(toLoc);
-                if (!backend->queryJourney(jnyRequest, reply, d->nam(const_cast<Manager*>(this)))) {
+                if (!backend->queryJourney(jnyRequest, reply, d->nam())) {
                     reply->addError(Reply::NotFoundError, {});
                 }
             });
             continue;
         }
 
-        if (backend->queryJourney(req, reply, d->nam(const_cast<Manager*>(this)))) {
+        if (backend->queryJourney(req, reply, d->nam())) {
             ++pendingOps;
         }
     }
@@ -325,18 +326,18 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             LocationRequest locReq;
             locReq.setCoordinate(req.stop().latitude(), req.stop().longitude());
             locReq.setName(req.stop().name());
-            d->resolveLocation(locReq, backend, this, [reply, &backend, this](const Location &loc) {
+            d->resolveLocation(locReq, backend, [reply, &backend, this](const Location &loc) {
                 const auto depLoc = Location::merge(reply->request().stop(), loc);
                 auto depRequest = reply->request();
                 depRequest.setStop(depLoc);
-                if (!backend->queryDeparture(depRequest, reply, d->nam(const_cast<Manager*>(this)))) {
+                if (!backend->queryDeparture(depRequest, reply, d->nam())) {
                     reply->addError(Reply::NotFoundError, {});
                 }
             });
             continue;
         }
 
-        if (backend->queryDeparture(req, reply, d->nam(const_cast<Manager*>(this)))) {
+        if (backend->queryDeparture(req, reply, d->nam())) {
             ++pendingOps;
         }
     }
@@ -369,7 +370,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 break;
             case CacheHitType::Miss:
                 qCDebug(Log) << "Cache miss for backend" << backend->backendId();
-                if (backend->queryLocation(req, reply, d->nam(const_cast<Manager*>(this)))) {
+                if (backend->queryLocation(req, reply, d->nam())) {
                     ++pendingOps;
                 }
                 break;
