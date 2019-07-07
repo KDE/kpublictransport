@@ -34,6 +34,10 @@ public:
     Manager *mgr = nullptr;
 
     std::vector<Journey> journeys;
+
+    JourneyRequest nextRequest;
+    JourneyRequest prevRequest;
+
     QString errorMessage;
     bool loading = false;
 };
@@ -69,6 +73,8 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
         d->journeys.clear();
         endResetModel();
     }
+    d->nextRequest = {};
+    d->prevRequest = {};
 
     auto reply = d->mgr->queryJourney(req);
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
@@ -77,6 +83,8 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             beginResetModel();
             d->journeys = reply->takeResult();
+            d->nextRequest = reply->nextRequest();
+            d->prevRequest = reply->previousRequest();
             endResetModel();
         } else {
             d->errorMessage = reply->errorString();
@@ -99,7 +107,7 @@ QString JourneyQueryModel::errorMessage() const
 
 bool JourneyQueryModel::canQueryNext() const
 {
-    return !d->loading && !d->journeys.empty() && true; // TODO
+    return !d->loading && !d->journeys.empty() && !d->nextRequest.isEmpty();
 }
 
 void JourneyQueryModel::queryNext()
@@ -109,7 +117,7 @@ void JourneyQueryModel::queryNext()
 
 bool JourneyQueryModel::canQueryPrevious() const
 {
-    return !d->loading && !d->journeys.empty() && false; // TODO
+    return !d->loading && !d->journeys.empty() && !d->prevRequest.isEmpty();
 }
 
 void JourneyQueryModel::queryPrevious()

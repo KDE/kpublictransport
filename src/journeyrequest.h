@@ -43,6 +43,9 @@ public:
     ~JourneyRequest();
     JourneyRequest& operator=(const JourneyRequest&);
 
+    /** Returns @c true if this is a default-constructed object without any request parameters. */
+    bool isEmpty() const;
+
     /** The starting point of the journey search. */
     Location from() const;
     /** Set the starting point for the journey. */

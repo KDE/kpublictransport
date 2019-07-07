@@ -54,6 +54,9 @@ public:
     void setCoordinate(float latitude, float longitude);
     bool hasCoordinate() const;
 
+    /** Returns @c true if this is an default-constructed location object not specifying any location. */
+    bool isEmpty() const;
+
     /** The timezone this location is in, if known. */
     QTimeZone timeZone() const;
     void setTimeZone(const QTimeZone &tz);

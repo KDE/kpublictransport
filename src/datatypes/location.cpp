@@ -93,6 +93,11 @@ bool Location::hasCoordinate() const
     return !std::isnan(d->latitude) && !std::isnan(d->longitude);
 }
 
+bool Location::isEmpty() const
+{
+    return !hasCoordinate() && d->name.isEmpty() && d->ids.isEmpty();
+}
+
 QTimeZone Location::timeZone() const
 {
     return d->timeZone;

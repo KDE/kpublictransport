@@ -159,6 +159,16 @@ std::vector<Journey>&& JourneyReply::takeResult()
     return std::move(d->journeys);
 }
 
+JourneyRequest JourneyReply::nextRequest() const
+{
+    return {}; // TODO
+}
+
+JourneyRequest JourneyReply::previousRequest() const
+{
+    return {}; // TODO
+}
+
 void JourneyReply::addResult(std::vector<Journey> &&res)
 {
     Q_D(JourneyReply);

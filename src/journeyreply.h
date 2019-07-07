@@ -43,6 +43,15 @@ public:
     /** Returns the retrieved journeys for moving elsewhere. */
     std::vector<Journey>&& takeResult();
 
+    /** Returns a request object for querying journeys following the ones returned by this reply.
+     *  The returned request is empty if querying later journeys is not possible/supported.
+     */
+    JourneyRequest nextRequest() const;
+    /** Returns a request object for querying journeys preceeding the ones returned by this reply.
+     *  The returned request is empty if querying earlier journeys is not possible/supported.
+     */
+    JourneyRequest previousRequest() const;
+
 private:
     friend class Manager;
     explicit JourneyReply(const JourneyRequest &req, QObject *parent = nullptr);
