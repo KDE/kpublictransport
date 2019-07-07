@@ -73,22 +73,25 @@ void JourneyQueryModelPrivate::mergeResults(JourneyQueryModel *q, std::vector<Jo
     auto jnyIt = m_journeys.begin();
     auto resIt = result.begin();
 
-    q->beginResetModel(); // TODO
     while (true) {
         if (resIt == result.end()) {
             break;
         }
 
         if (jnyIt == m_journeys.end()) {
+            const auto row = std::distance(m_journeys.begin(), jnyIt);
+            q->beginInsertRows({}, row, row + std::distance(resIt, result.end()) - 1);
             m_journeys.insert(jnyIt, resIt, result.end());
+            q->endInsertRows();
             break;
         }
 
         if (firstTransportDeparture(*resIt) < firstTransportDeparture(*jnyIt)) {
-//             q->beginInsertRows();
+            const auto row = std::distance(m_journeys.begin(), jnyIt);
+            q->beginInsertRows({}, row, row);
             jnyIt = m_journeys.insert(jnyIt, *resIt);
             ++resIt;
-//             q->endInsertRows();
+            q->endInsertRows();
             continue;
         }
 
@@ -100,13 +103,13 @@ void JourneyQueryModelPrivate::mergeResults(JourneyQueryModel *q, std::vector<Jo
         if (Journey::isSame(*jnyIt, *resIt)) {
             *jnyIt = Journey::merge(*jnyIt, *resIt);
             ++resIt;
-//             emit q->dataChanged();
+            const auto row = std::distance(m_journeys.begin(), jnyIt);
+            const auto idx = q->index(row, 0);
+            emit q->dataChanged(idx, idx);
         } else {
             ++jnyIt;
         }
     }
-
-    q->endResetModel();
 }
 
 
@@ -193,10 +196,8 @@ void JourneyQueryModel::queryNext()
         d->m_loading = false;
         emit loadingChanged();
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
-            beginResetModel();
             d->mergeResults(this, std::move(reply->takeResult()));
             d->m_nextRequest = reply->nextRequest();
-            endResetModel();
         } else {
             d->m_errorMessage = reply->errorString();
             d->m_nextRequest = {};
