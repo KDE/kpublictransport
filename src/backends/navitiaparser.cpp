@@ -17,6 +17,7 @@
 
 #include "navitiaparser.h"
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
@@ -182,6 +183,7 @@ std::vector<Journey> NavitiaParser::parseJourneys(const QByteArray &data)
     }
 
     parseLinks(topObj.value(QLatin1String("links")).toArray());
+    parseAttributions(topObj.value(QLatin1String("feed_publishers")).toArray());
     return res;
 }
 
@@ -288,5 +290,18 @@ void NavitiaParser::parseLinks(const QJsonArray &links)
         } else if (rel == QLatin1String("prev")) {
             prevLink = QUrl(link.value(QLatin1String("href")).toString());
         }
+    }
+}
+
+void NavitiaParser::parseAttributions(const QJsonArray& feeds)
+{
+    for (const auto &v : feeds) {
+        const auto feed = v.toObject();
+        Attribution attr;
+        attr.setName(feed.value(QLatin1String("name")).toString());
+        attr.setUrl(QUrl(feed.value(QLatin1String("url")).toString()));
+        attr.setLicense(feed.value(QLatin1String("license")).toString());
+        // TODO map known licenses to spdx links
+        attributions.push_back(std::move(attr));
     }
 }

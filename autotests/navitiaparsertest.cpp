@@ -15,6 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
@@ -136,6 +137,14 @@ private Q_SLOTS:
 
         QVERIFY(parser.nextLink.isValid());
         QVERIFY(parser.prevLink.isValid());
+
+        QCOMPARE(parser.attributions.size(), 2);
+        const auto &attr = parser.attributions.at(0);
+        QCOMPARE(attr.name(), QStringLiteral("openstreetmap"));
+        QCOMPARE(attr.license(), QStringLiteral("ODbL"));
+        QEXPECT_FAIL("", "not implemented yet", Continue);
+        QCOMPARE(attr.licenseUrl().host(), QStringLiteral("spdx.org"));
+        QCOMPARE(attr.url().host(), QStringLiteral("www.openstreetmap.org"));
     }
 
     void testParseDepartures()

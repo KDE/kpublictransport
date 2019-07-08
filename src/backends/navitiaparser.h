@@ -30,6 +30,7 @@ class QString;
 
 namespace KPublicTransport {
 
+class Attribution;
 class Departure;
 class Journey;
 class Location;
@@ -53,8 +54,11 @@ public:
     QUrl nextLink;
     QUrl prevLink;
 
+    std::vector<Attribution> attributions;
+
 private:
     void parseLinks(const QJsonArray &links);
+    void parseAttributions(const QJsonArray &feeds);
 };
 
 }

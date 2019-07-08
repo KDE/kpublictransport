@@ -22,6 +22,7 @@ set(kpublictransport_srcs
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
 
+    datatypes/attribution.cpp
     datatypes/departure.cpp
     datatypes/journey.cpp
     datatypes/json.cpp
@@ -77,6 +78,7 @@ ecm_generate_headers(KPublicTransport_Backends_FORWARDING_HEADERS
 )
 ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     HEADER_NAMES
+        Attribution
         Datatypes
         Departure
         Journey
