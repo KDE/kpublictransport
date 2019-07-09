@@ -29,6 +29,7 @@ template <typename T> static inline typename std::unique_ptr<T>::pointer qGetPtr
 namespace KPublicTransport {
 
 class AbstractBackend;
+class Attribution;
 class Manager;
 class ReplyPrivate;
 
@@ -52,6 +53,11 @@ public:
     /** Textual error message. */
     QString errorString() const;
 
+    /** Returns the attributions for the provided data. */
+    const std::vector<Attribution>& attributions() const;
+    /** Returns the attributions for the provided data for moving them elsewhere. */
+    std::vector<Attribution>&& takeAttributions();
+
 Q_SIGNALS:
     /** Emitted whenever the journey search has been completed. */
     void finished();
@@ -62,6 +68,7 @@ protected:
 
     friend class AbstractBackend;
     void addError(Error error, const QString &errorMsg);
+    void addAttributions(std::vector<Attribution> &&attributions);
 
     friend class Manager;
     friend class ManagerPrivate;

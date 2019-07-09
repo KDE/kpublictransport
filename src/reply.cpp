@@ -63,3 +63,23 @@ void Reply::setPendingOps(int ops)
         QMetaObject::invokeMethod(this, &Reply::finished, Qt::QueuedConnection);
     }
 }
+
+const std::vector<Attribution>& Reply::attributions() const
+{
+    return d_ptr->attributions;
+}
+
+std::vector<Attribution>&& Reply::takeAttributions()
+{
+    return std::move(d_ptr->attributions);
+}
+
+void Reply::addAttributions(std::vector<Attribution>&& attributions)
+{
+    if (d_ptr->attributions.empty()) {
+        d_ptr->attributions = std::move(attributions);
+    } else {
+        // TODO remove duplicates
+        d_ptr->attributions.insert(d_ptr->attributions.end(), attributions.begin(), attributions.end());
+    }
+}

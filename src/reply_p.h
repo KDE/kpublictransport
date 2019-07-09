@@ -20,7 +20,11 @@
 
 #include "reply.h"
 
+#include <KPublicTransport/Attribution>
+
 #include <QString>
+
+#include <vector>
 
 namespace KPublicTransport {
 
@@ -36,6 +40,7 @@ public:
 
     void emitFinishedIfDone(Reply *q);
 
+    std::vector<Attribution> attributions;
     QString errorMsg;
     Reply::Error error = Reply::NoError;
     int pendingOps = -1;

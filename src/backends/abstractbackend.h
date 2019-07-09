@@ -27,6 +27,7 @@ class QNetworkAccessManager;
 
 namespace KPublicTransport {
 
+class Attribution;
 class DepartureReply;
 class DepartureRequest;
 class JourneyReply;
@@ -109,6 +110,8 @@ protected:
     {
         reply->addError(error, errorMsg);
     }
+
+    static void addAttributions(Reply *reply, std::vector<Attribution> &&attributions);
 
     QVariant journeyContext(const JourneyRequest &request) const;
     void setNextJourneyContext(JourneyReply *reply, const QVariant &data) const;

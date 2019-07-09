@@ -96,6 +96,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 if (parser.prevLink.isValid()) {
                     setPreviousJourneyContext(reply, parser.prevLink);
                 }
+                addAttributions(reply, std::move(parser.attributions));
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
@@ -146,6 +147,7 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
             {
                 NavitiaParser p;
                 addResult(reply, p.parseDepartures(netReply->readAll()));
+                addAttributions(reply, std::move(p.attributions));
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
@@ -207,6 +209,7 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
                 }
                 Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
                 addResult(reply, std::move(res));
+                addAttributions(reply, std::move(p.attributions));
                 break;
             }
             case QNetworkReply::ContentNotFoundError:

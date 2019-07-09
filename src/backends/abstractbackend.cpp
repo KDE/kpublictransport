@@ -112,3 +112,8 @@ void AbstractBackend::setPreviousJourneyContext(JourneyReply *reply, const QVari
 {
     reply->setPreviousContext(this, data);
 }
+
+void AbstractBackend::addAttributions(Reply *reply, std::vector<Attribution> &&attributions)
+{
+    reply->addAttributions(std::move(attributions));
+}
