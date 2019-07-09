@@ -66,17 +66,17 @@ Kirigami.ApplicationWindow {
 
         ListView {
             model: aboutSheet.attributions
-            delegate: ColumnLayout {
-                Kirigami.Separator {}
-                QQC2.Label {
-                    text: "Data provider: <a href=\"" + modelData.url + "\">" + modelData.name + "</a>"
-                    onLinkActivated: Qt.openUrlExternally(link)
+            delegate: Kirigami.AbstractListItem {
+                contentItem: ColumnLayout {
+                    QQC2.Label {
+                        text: "Data provider: <a href=\"" + modelData.url + "\">" + modelData.name + "</a>"
+                        onLinkActivated: Qt.openUrlExternally(link)
+                    }
+                    QQC2.Label {
+                        text: "License: <a href=\"" + modelData.licenseUrl + "\">" + modelData.license + "</a>"
+                        onLinkActivated: Qt.openUrlExternally(link)
+                    }
                 }
-                QQC2.Label {
-                    text: "License: <a href=\"" + modelData.licenseUrl + "\">" + modelData.license + "</a>"
-                    onLinkActivated: Qt.openUrlExternally(link)
-                }
-                Kirigami.Separator {}
             }
         }
     }
