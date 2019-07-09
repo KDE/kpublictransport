@@ -143,8 +143,11 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply] {
         switch (netReply->error()) {
             case QNetworkReply::NoError:
-                addResult(reply, NavitiaParser::parseDepartures(netReply->readAll()));
+            {
+                NavitiaParser p;
+                addResult(reply, p.parseDepartures(netReply->readAll()));
                 break;
+            }
             case QNetworkReply::ContentNotFoundError:
                 addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(netReply->readAll()));
                 break;
@@ -196,10 +199,11 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
             case QNetworkReply::NoError:
             {
                 std::vector<Location> res;
+                NavitiaParser p;
                 if (reply->request().hasCoordinate()) {
-                    res = NavitiaParser::parsePlacesNearby(netReply->readAll());
+                    res = p.parsePlacesNearby(netReply->readAll());
                 } else {
-                    res = NavitiaParser::parsePlaces(netReply->readAll());
+                    res = p.parsePlaces(netReply->readAll());
                 }
                 Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
                 addResult(reply, std::move(res));

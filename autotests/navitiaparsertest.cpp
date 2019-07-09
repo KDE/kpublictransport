@@ -149,7 +149,8 @@ private Q_SLOTS:
 
     void testParseDepartures()
     {
-        const auto res = KPublicTransport::NavitiaParser::parseDepartures(readFile(SOURCE_DIR "/data/navitia/departure-response.json"));
+        KPublicTransport::NavitiaParser parser;
+        const auto res = parser.parseDepartures(readFile(SOURCE_DIR "/data/navitia/departure-response.json"));
         QCOMPARE(res.size(), 10);
 
         {
@@ -177,6 +178,14 @@ private Q_SLOTS:
             QCOMPARE(departure.route().line().name(), QStringLiteral("D"));
             QCOMPARE(departure.route().line().color(), QColor(0x5E, 0x96, 0x20));
         }
+
+        QCOMPARE(parser.attributions.size(), 2);
+        const auto &attr = parser.attributions.at(0);
+        QCOMPARE(attr.name(), QStringLiteral("openstreetmap"));
+        QCOMPARE(attr.license(), QStringLiteral("ODbL"));
+        QEXPECT_FAIL("", "not implemented yet", Continue);
+        QCOMPARE(attr.licenseUrl().host(), QStringLiteral("spdx.org"));
+        QCOMPARE(attr.url().host(), QStringLiteral("www.openstreetmap.org"));
     }
 };
 

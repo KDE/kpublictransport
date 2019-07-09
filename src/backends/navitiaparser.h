@@ -45,9 +45,9 @@ public:
     ~NavitiaParser();
 
     std::vector<Journey> parseJourneys(const QByteArray &data);
-    static std::vector<Departure> parseDepartures(const QByteArray &data);
-    static std::vector<Location> parsePlacesNearby(const QByteArray &data);
-    static std::vector<Location> parsePlaces(const QByteArray &data);
+    std::vector<Departure> parseDepartures(const QByteArray &data);
+    std::vector<Location> parsePlacesNearby(const QByteArray &data);
+    std::vector<Location> parsePlaces(const QByteArray &data);
 
     static QString parseErrorMessage(const QByteArray &data);
 

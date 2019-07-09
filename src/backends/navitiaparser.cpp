@@ -238,6 +238,7 @@ std::vector<Departure> NavitiaParser::parseDepartures(const QByteArray &data)
         res.push_back(parseDeparture(v.toObject()));
     }
 
+    parseAttributions(topObj.value(QLatin1String("feed_publishers")).toArray());
     return res;
 }
 
@@ -253,6 +254,7 @@ std::vector<Location> NavitiaParser::parsePlacesNearby(const QByteArray &data)
         res.push_back(parseWrappedLocation(v.toObject()));
     }
 
+    parseAttributions(topObj.value(QLatin1String("feed_publishers")).toArray());
     return res;
 }
 
@@ -268,6 +270,7 @@ std::vector<Location> NavitiaParser::parsePlaces(const QByteArray &data)
         res.push_back(parseWrappedLocation(v.toObject()));
     }
 
+    parseAttributions(topObj.value(QLatin1String("feed_publishers")).toArray());
     return res;
 }
 
