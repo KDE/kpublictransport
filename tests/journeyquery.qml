@@ -36,6 +36,12 @@ Kirigami.ApplicationWindow {
                 text: i18n("Save...")
                 iconName: "document-save"
                 onTriggered: fileDialog.open();
+            },
+            Kirigami.Action {
+                iconName: "help-about-symbolic"
+                text: i18n("Data Sources")
+                enabled: _queryMgr.model.attributions.length > 0
+                onTriggered: aboutSheet.sheetOpen = true;
             }
         ]
     }
@@ -49,6 +55,31 @@ Kirigami.ApplicationWindow {
     }
 
     TestLocationsModel { id: exampleModel }
+
+    Kirigami.OverlaySheet {
+        id: aboutSheet
+        property var attributions: _queryMgr.model.attributions
+
+        header: Kirigami.Heading {
+            text: "Data Providers"
+        }
+
+        ListView {
+            model: aboutSheet.attributions
+            delegate: ColumnLayout {
+                Kirigami.Separator {}
+                QQC2.Label {
+                    text: "Data provider: <a href=\"" + modelData.url + "\">" + modelData.name + "</a>"
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+                QQC2.Label {
+                    text: "License: <a href=\"" + modelData.licenseUrl + "\">" + modelData.license + "</a>"
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+                Kirigami.Separator {}
+            }
+        }
+    }
 
     function displayDuration(dur)
     {

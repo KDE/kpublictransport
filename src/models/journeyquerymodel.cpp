@@ -18,6 +18,7 @@
 #include "journeyquerymodel.h"
 #include "logging.h"
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -40,6 +41,7 @@ public:
     JourneyRequest m_nextRequest;
     JourneyRequest m_prevRequest;
 
+    std::vector<Attribution> m_attributions;
     QString m_errorMessage;
     bool m_loading = false;
 };
@@ -145,6 +147,8 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
     }
     d->m_nextRequest = {};
     d->m_prevRequest = {};
+    d->m_attributions.clear();
+    emit attributionsChanged();
 
     auto reply = d->mgr->queryJourney(req);
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
@@ -155,6 +159,8 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
             d->m_journeys = reply->takeResult();
             d->m_nextRequest = reply->nextRequest();
             d->m_prevRequest = reply->previousRequest();
+            d->m_attributions = std::move(reply->takeAttributions());
+            emit attributionsChanged();
             endResetModel();
         } else {
             d->m_errorMessage = reply->errorString();
@@ -198,6 +204,7 @@ void JourneyQueryModel::queryNext()
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             d->mergeResults(this, std::move(reply->takeResult()));
             d->m_nextRequest = reply->nextRequest();
+            // TODO check if there are new attributions
         } else {
             d->m_errorMessage = reply->errorString();
             d->m_nextRequest = {};
@@ -231,6 +238,7 @@ void JourneyQueryModel::queryPrevious()
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             d->mergeResults(this, std::move(reply->takeResult()));
             d->m_prevRequest = reply->previousRequest();
+            // TODO check if there are new attributions
         } else {
             d->m_errorMessage = reply->errorString();
             d->m_prevRequest = {};
@@ -273,4 +281,12 @@ QHash<int, QByteArray> JourneyQueryModel::roleNames() const
 const std::vector<Journey>& JourneyQueryModel::journeys() const
 {
     return d->m_journeys;
+}
+
+QVariantList JourneyQueryModel::attributionsVariant() const
+{
+    QVariantList l;
+    l.reserve(d->m_attributions.size());
+    std::transform(d->m_attributions.begin(), d->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });
+    return l;
 }

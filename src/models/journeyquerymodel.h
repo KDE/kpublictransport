@@ -51,6 +51,9 @@ class KPUBLICTRANSPORT_EXPORT JourneyQueryModel : public QAbstractListModel
     /** Whether querying for earlier journey is possible. */
     Q_PROPERTY(bool canQueryPrevious READ canQueryPrevious NOTIFY canQueryPrevNextChanged)
 
+    /** Attributions for the provided data. */
+    Q_PROPERTY(QVariantList attributions READ attributionsVariant NOTIFY attributionsChanged)
+
 public:
     explicit JourneyQueryModel(QObject *parent = nullptr);
     ~JourneyQueryModel();
@@ -90,8 +93,11 @@ Q_SIGNALS:
     void loadingChanged();
     void errorMessageChanged();
     void canQueryPrevNextChanged();
+    void attributionsChanged();
 
 private:
+    Q_DECL_HIDDEN QVariantList attributionsVariant() const;
+
     friend class JourneyQueryModelPrivate;
     std::unique_ptr<JourneyQueryModelPrivate> d;
 };
