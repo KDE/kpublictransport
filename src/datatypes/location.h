@@ -35,22 +35,15 @@ class KPUBLICTRANSPORT_EXPORT Location
 {
     KPUBLICTRANSPORT_GADGET(Location)
     /** Human-readable name of the location. */
-    Q_PROPERTY(QString name READ name WRITE setName)
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
     /** Latitude of the location, in degree, NaN if unknown. */
-    Q_PROPERTY(float latitude READ latitude WRITE setLatitude)
+    KPUBLICTRANSPORT_PROPERTY(float, latitude, setLatitude)
     /** Longitude of the location, in degree, NaN if unknown. */
-    Q_PROPERTY(float longitude READ longitude WRITE setLongitude)
+    KPUBLICTRANSPORT_PROPERTY(float, longitude, setLongitude)
 
     // TODO: type, id, address
 
 public:
-    QString name() const;
-    void setName(const QString &name);
-
-    float latitude() const;
-    void setLatitude(float latitude);
-    float longitude() const;
-    void setLongitude(float longitude);
     void setCoordinate(float latitude, float longitude);
     bool hasCoordinate() const;
 
@@ -79,7 +72,7 @@ public:
     /** Compute the distance between two geo coordinates, in meters. */
     static int distance(float lat1, float lon1, float lat2, float lon2);
     /** Computes the distance in meters between two locations.
-     *  Returns MAX_INT if one of the arguments as no coordinates set.
+     *  Returns MAX_INT if one of the arguments has no coordinates set.
      */
     static int distance(const Location &lhs, const Location &rhs);
 

@@ -47,39 +47,9 @@ public:
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Location)
-
-QString Location::name() const
-{
-    return d->name;
-}
-
-void Location::setName(const QString &name)
-{
-    d.detach();
-    d->name = name;
-}
-
-float Location::latitude() const
-{
-    return d->latitude;
-}
-
-void Location::setLatitude(float latitude)
-{
-    d.detach();
-    d->latitude = latitude;
-}
-
-float Location::longitude() const
-{
-    return d->longitude;
-}
-
-void Location::setLongitude(float longitude)
-{
-    d.detach();
-    d->longitude = longitude;
-}
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, latitude, setLatitude)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, longitude, setLongitude)
 
 void Location::setCoordinate(float latitude, float longitude)
 {

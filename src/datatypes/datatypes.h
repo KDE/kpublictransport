@@ -23,6 +23,18 @@
 #include <QMetaType>
 #include <QSharedDataPointer>
 
+#include <type_traits>
+
+namespace KPublicTransport {
+namespace Internal {
+template <typename T>
+struct parameter_type
+{
+    using type = typename std::conditional<std::is_fundamental<T>::value, T, const T&>::type;
+};
+}
+}
+
 #define KPUBLICTRANSPORT_GADGET(Class) \
     Q_GADGET \
 public: \
@@ -34,5 +46,12 @@ public: \
     Class& operator=(const Class&); \
 private: \
     QExplicitlySharedDataPointer<Class ## Private> d;
+
+#define KPUBLICTRANSPORT_PROPERTY(Type, Getter, Setter) \
+public: \
+    Q_PROPERTY(Type Getter READ Getter WRITE Setter) \
+    Type Getter() const; \
+    void Setter(KPublicTransport::Internal::parameter_type<Type>::type value); \
+
 
 #endif
