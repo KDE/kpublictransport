@@ -302,7 +302,9 @@ void NavitiaParser::parseAttributions(const QJsonArray& feeds)
         const auto feed = v.toObject();
         Attribution attr;
         attr.setName(feed.value(QLatin1String("name")).toString());
-        attr.setUrl(QUrl(feed.value(QLatin1String("url")).toString()));
+        QUrl url(feed.value(QLatin1String("url")).toString());
+        url.setScheme(QStringLiteral("https")); // missing in a few cases
+        attr.setUrl(url);
         attr.setLicense(feed.value(QLatin1String("license")).toString());
         // TODO map known licenses to spdx links
         attributions.push_back(std::move(attr));
