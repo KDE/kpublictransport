@@ -76,9 +76,12 @@ private Q_SLOTS:
             QCOMPARE(sec.from().name(), QStringLiteral("Aéroport CDG 2 TGV (Le Mesnil-Amelot)"));
             QCOMPARE(sec.from().latitude(), 49.0047f);
             QCOMPARE(sec.from().timeZone().id(), "Europe/Paris");
+            QCOMPARE(sec.from().locality(), QStringLiteral("Le Mesnil-Amelot"));
             QCOMPARE(sec.to().name(), QStringLiteral("Châtelet les Halles (Paris)"));
             QCOMPARE(sec.to().longitude(), 2.34701f);
             QCOMPARE(sec.to().timeZone().id(), "Europe/Paris");
+            QCOMPARE(sec.to().locality(), QStringLiteral("Paris"));
+            QCOMPARE(sec.to().postalCode(), QStringLiteral("75001"));
             QCOMPARE(sec.route().line().name(), QStringLiteral("B"));
             QCOMPARE(sec.route().line().mode(), KPublicTransport::Line::RapidTransit);
             QCOMPARE(sec.route().line().modeString(), QStringLiteral("RER"));

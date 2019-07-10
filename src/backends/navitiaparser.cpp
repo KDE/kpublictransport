@@ -80,6 +80,17 @@ static Line::Mode parsePhysicalMode(const QString &mode)
     return Line::Unknown;
 }
 
+static void parseAdminRegion(Location &loc, const QJsonObject &ar)
+{
+    const auto level = ar.value(QLatin1String("level")).toInt();
+    if (level == 8) {
+        loc.setLocality(ar.value(QLatin1String("name")).toString());
+    }
+    else if (level == 10) {
+        loc.setPostalCode(ar.value(QLatin1String("zip_code")).toString());
+    }
+}
+
 static Location parseLocation(const QJsonObject &obj)
 {
     Location loc;
@@ -95,6 +106,11 @@ static Location parseLocation(const QJsonObject &obj)
     }
     if (!tz.isEmpty()) {
         loc.setTimeZone(QTimeZone(tz.toUtf8()));
+    }
+
+    const auto ars = obj.value(QLatin1String("administrative_regions")).toArray();
+    for (const auto &ar : ars) {
+        parseAdminRegion(loc, ar.toObject());
     }
 
     return loc;

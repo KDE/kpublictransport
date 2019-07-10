@@ -172,7 +172,7 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
-    query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0"));
+    query.addQueryItem(QStringLiteral("depth"), QStringLiteral("1")); // 1 so administrative region elements are included
     query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
     // TODO count
 

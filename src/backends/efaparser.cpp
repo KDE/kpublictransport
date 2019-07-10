@@ -62,6 +62,7 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
             }
             loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
             loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
+            loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
             res.push_back(loc);
             reader.skipCurrentElement();
         } else {
