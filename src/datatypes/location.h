@@ -41,7 +41,18 @@ class KPUBLICTRANSPORT_EXPORT Location
     /** Longitude of the location, in degree, NaN if unknown. */
     KPUBLICTRANSPORT_PROPERTY(float, longitude, setLongitude)
 
-    // TODO: type, id, address
+    /** Street address of the location, if known. */
+    KPUBLICTRANSPORT_PROPERTY(QString, streetAddress, setStreetAddress)
+    /** Postal code of the location, if known. */
+    KPUBLICTRANSPORT_PROPERTY(QString, postalCode, setPostalCode)
+    /** Locality/city of the location, if known. */
+    KPUBLICTRANSPORT_PROPERTY(QString, locality, setLocality)
+    /** Region (as in ISO 3166-2) of the location, if known. */
+    KPUBLICTRANSPORT_PROPERTY(QString, region, setRegion)
+    /** Country of the location as ISO 3166-1 alpha 2 code, if known. */
+    KPUBLICTRANSPORT_PROPERTY(QString, country, setCountry)
+
+    // TODO: type, id
 
 public:
     void setCoordinate(float latitude, float longitude);

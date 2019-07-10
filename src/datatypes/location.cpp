@@ -42,6 +42,12 @@ public:
     float longitude = NAN;
     QTimeZone timeZone;
     QHash<QString, QString> ids;
+
+    QString streetAddress;
+    QString postalCode;
+    QString locality;
+    QString region;
+    QString country;
 };
 
 }
@@ -50,6 +56,11 @@ KPUBLICTRANSPORT_MAKE_GADGET(Location)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, latitude, setLatitude)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, longitude, setLongitude)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, streetAddress, setStreetAddress)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, region, setRegion)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, country, setCountry)
 
 void Location::setCoordinate(float latitude, float longitude)
 {
@@ -220,6 +231,8 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return true;
     }
 
+    // TODO consider the address properties here?
+
     // anything less than 10m apart is assumed to be the same
     if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < 10) {
         return true;
@@ -299,6 +312,12 @@ Location Location::merge(const Location &lhs, const Location &rhs)
 
     l.setLatitude(mergeCoordinate(lhs.latitude(), rhs.latitude()));
     l.setLongitude(mergeCoordinate(lhs.longitude(), rhs.longitude()));
+
+    l.setStreetAddress(MergeUtil::mergeString(lhs.streetAddress(), rhs.streetAddress()));
+    l.setPostalCode(MergeUtil::mergeString(lhs.postalCode(), rhs.postalCode()));
+    l.setLocality(MergeUtil::mergeString(lhs.locality(), rhs.locality()));
+    l.setRegion(MergeUtil::mergeString(lhs.region(), rhs.region()));
+    l.setCountry(MergeUtil::mergeString(lhs.country(), rhs.country()));
 
     return l;
 }
