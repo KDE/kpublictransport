@@ -32,17 +32,38 @@ Kirigami.ApplicationWindow {
     TestLocationsModel { id: exampleModel }
     Component {
         id: locationDelegate
-        Kirigami.AbstractListItem {
-             ColumnLayout {
-                 id: delegateLayout
+        Kirigami.SwipeListItem {
+            actions: [
+                Kirigami.Action {
+                    iconName: "map-symbolic"
+                    text: "View on map"
+                    onTriggered: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + modelData.latitude + "/" + modelData.longitude)
+                }
+            ]
+            contentItem: ColumnLayout {
+                id: delegateLayout
                 Layout.fillWidth: true
                 QQC2.Label {
                     text: modelData.name
                 }
                 QQC2.Label {
-                    text: modelData.latitude + " " + modelData.longitude
+                    text: modelData.streetAddress
+                    visible: modelData.streetAddress.length > 0
                 }
-
+                QQC2.Label {
+                    text: "ZIP: " + modelData.postalCode + " City: " + modelData.locality
+                    visible: modelData.postalCode.length > 0 || modelData.locality.length > 0
+                }
+                QQC2.Label {
+                    text: "Region: " + modelData.region + " Country: " + modelData.country
+                    visible: modelData.region.length > 0 || modelData.country.length > 0
+                }
+                QQC2.Label {
+                    text: "Lat: " + modelData.latitude + " Lon: " + modelData.longitude
+                }
+                QQC2.Label {
+                    text: "Identifiers: " + _queryMgr.locationIds(modelData)
+                }
             }
         }
     }

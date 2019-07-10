@@ -72,6 +72,18 @@ public:
         });
     }
 
+    Q_INVOKABLE QString locationIds(const QVariant &v)
+    {
+        const auto loc = v.value<Location>();
+        const auto ids = loc.identifiers();
+        QStringList l;
+        l.reserve(ids.size());
+        for (auto it = ids.begin(); it != ids.end(); ++it) {
+            l.push_back(it.key() + QLatin1String(": ") + it.value());
+        }
+        return l.join(QLatin1String(", "));
+    }
+
     Q_INVOKABLE void setAllowInsecure(bool insecure)
     {
         ptMgr.setAllowInsecureBackends(insecure);
