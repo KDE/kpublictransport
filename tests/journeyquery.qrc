@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>journeyquery.qml</file>
+        <file>AttributionSheet.qml</file>
         <file>TestLocationsModel.qml</file>
     </qresource>
 </RCC>

@@ -55,31 +55,7 @@ Kirigami.ApplicationWindow {
     }
 
     TestLocationsModel { id: exampleModel }
-
-    Kirigami.OverlaySheet {
-        id: aboutSheet
-        property var attributions: _queryMgr.model.attributions
-
-        header: Kirigami.Heading {
-            text: "Data Providers"
-        }
-
-        ListView {
-            model: aboutSheet.attributions
-            delegate: Kirigami.AbstractListItem {
-                contentItem: ColumnLayout {
-                    QQC2.Label {
-                        text: "Data provider: <a href=\"" + modelData.url + "\">" + modelData.name + "</a>"
-                        onLinkActivated: Qt.openUrlExternally(link)
-                    }
-                    QQC2.Label {
-                        text: "License: <a href=\"" + modelData.licenseUrl + "\">" + modelData.license + "</a>"
-                        onLinkActivated: Qt.openUrlExternally(link)
-                    }
-                }
-            }
-        }
-    }
+    AttributionSheet { id: aboutSheet }
 
     function displayDuration(dur)
     {
