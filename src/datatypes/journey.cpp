@@ -384,7 +384,7 @@ int Journey::duration() const
 
 int Journey::numberOfChanges() const
 {
-    return std::count_if(d->sections.begin(), d->sections.end(), [](const auto &section) { return section.mode() == JourneySection::PublicTransport; });
+    return std::max(std::count_if(d->sections.begin(), d->sections.end(), [](const auto &section) { return section.mode() == JourneySection::PublicTransport; }) - 1, 0);
 }
 
 bool Journey::isSame(const Journey &lhs, const Journey &rhs)
