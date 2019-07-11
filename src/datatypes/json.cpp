@@ -22,6 +22,7 @@
 #include <QMetaObject>
 #include <QMetaProperty>
 #include <QTimeZone>
+#include <QUrl>
 #include <QVariant>
 
 #include <cmath>
@@ -60,6 +61,11 @@ static QJsonValue variantToJson(const QVariant &v)
                 return dtObj;
             }
             return v.toDateTime().toString(Qt::ISODate);
+        }
+        case QVariant::Url:
+        {
+            const auto url = v.toUrl();
+            return url.isValid() ? url.toString() : QJsonValue();
         }
     }
 
@@ -117,6 +123,8 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
             }
             return QDateTime::fromString(v.toString(), Qt::ISODate);
         }
+        case QVariant::Url:
+            return QUrl(v.toString());
     }
 
     if (mt == qMetaTypeId<QColor>()) {
