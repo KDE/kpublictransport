@@ -402,6 +402,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                 break;
             case CacheHitType::Positive:
                 qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+                reply->addAttributions(std::move(cache.attributions));
                 reply->addResult(std::move(cache.data));
                 break;
             case CacheHitType::Miss:
