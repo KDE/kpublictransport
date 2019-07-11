@@ -30,6 +30,22 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: locationQueryPage
 
     TestLocationsModel { id: exampleModel }
+    AttributionSheet {
+        id: aboutSheet
+        attributions: _attributions
+    }
+
+    globalDrawer: Kirigami.GlobalDrawer {
+        actions: [
+            Kirigami.Action {
+                iconName: "help-about-symbolic"
+                text: i18n("Data Sources")
+                enabled: _attributions.length > 0
+                onTriggered: aboutSheet.sheetOpen = true;
+            }
+        ]
+    }
+
     Component {
         id: locationDelegate
         Kirigami.SwipeListItem {

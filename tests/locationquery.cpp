@@ -15,6 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
@@ -61,9 +62,11 @@ public:
                 std::transform(res.begin(), res.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
                 engine->rootContext()->setContextProperty(QStringLiteral("_locations"), l);
 
-                for (const auto &loc : res) {
-                    qDebug() << loc.name() << loc.latitude() << loc.longitude() << loc.identifiers();
-                }
+                QVariantList attrs;
+                attrs.reserve(reply->attributions().size());
+                std::transform(reply->attributions().begin(), reply->attributions().end(), std::back_inserter(attrs), [](const auto &attr) { return QVariant::fromValue(attr); });
+                engine->rootContext()->setContextProperty(QStringLiteral("_attributions"), attrs);
+
             } else {
                 m_errorMsg = reply->errorString();
                 emit errorMessageChanged();
