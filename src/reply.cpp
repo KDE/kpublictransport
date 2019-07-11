@@ -18,6 +18,8 @@
 #include "reply.h"
 #include "reply_p.h"
 
+#include <QUrl>
+
 using namespace KPublicTransport;
 
 void ReplyPrivate::emitFinishedIfDone(Reply *q)
@@ -75,12 +77,30 @@ std::vector<Attribution>&& Reply::takeAttributions()
     return std::move(d_ptr->attributions);
 }
 
+bool multiLessThan() { return false; }
+template<typename T, typename... Args>
+bool multiLessThan(const T &first, const T &second, Args... next)
+{
+    if (first != second) {
+        return first < second;
+    } else {
+        return multiLessThan(next...);
+    }
+}
+
 void Reply::addAttributions(std::vector<Attribution>&& attributions)
 {
     if (d_ptr->attributions.empty()) {
         d_ptr->attributions = std::move(attributions);
     } else {
-        // TODO remove duplicates
         d_ptr->attributions.insert(d_ptr->attributions.end(), attributions.begin(), attributions.end());
     }
+
+    // remove duplicates
+    std::sort(d_ptr->attributions.begin(), d_ptr->attributions.end(), [](const auto &lhs, const auto &rhs) {
+        return multiLessThan(lhs.name(), rhs.name(), lhs.license(), rhs.license(), lhs.url(), rhs.url(), lhs.licenseUrl(), rhs.licenseUrl());
+    });
+    d_ptr->attributions.erase(std::unique(d_ptr->attributions.begin(), d_ptr->attributions.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.name() == rhs.name() && lhs.url() == rhs.url() && lhs.license() == rhs.license() && lhs.licenseUrl() == rhs.licenseUrl();
+    }), d_ptr->attributions.end());
 }
