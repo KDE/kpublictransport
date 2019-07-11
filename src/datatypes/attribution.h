@@ -19,10 +19,12 @@
 #define KPUBLICTRANSPORT_ATTRIBUTION_H
 
 #include "kpublictransport_export.h"
+#include "datatypes.h"
 
-#include <QExplicitlySharedDataPointer>
-#include <QMetaType>
+#include <vector>
 
+class QJsonArray;
+class QJsonObject;
 class QString;
 class QUrl;
 
@@ -36,36 +38,25 @@ class AttributionPrivate;
  */
 class KPUBLICTRANSPORT_EXPORT Attribution
 {
-    Q_GADGET
+    KPUBLICTRANSPORT_GADGET(Attribution)
     /** Name of the entity providing the data. */
-    Q_PROPERTY(QString name READ name WRITE setName)
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
     /** Link to the entity providing the data. */
-    Q_PROPERTY(QUrl url READ url WRITE setUrl)
+    KPUBLICTRANSPORT_PROPERTY(QUrl, url, setUrl)
     /** Name of the license for the provided data. */
-    Q_PROPERTY(QString license READ license WRITE setLicense)
+    KPUBLICTRANSPORT_PROPERTY(QString, license, setLicense)
     /** Link to the license or terms and conditions text. */
-    Q_PROPERTY(QUrl licenseUrl READ licenseUrl WRITE setLicenseUrl)
+    KPUBLICTRANSPORT_PROPERTY(QUrl, licenseUrl, setLicenseUrl)
 
 public:
-    explicit Attribution();
-    Attribution(const Attribution&);
-    ~Attribution();
-    Attribution& operator=(const Attribution&);
-
-    QString name() const;
-    void setName(const QString &name);
-
-    QUrl url() const;
-    void setUrl(const QUrl &url);
-
-    QString license() const;
-    void setLicense(const QString &license);
-
-    QUrl licenseUrl() const;
-    void setLicenseUrl(const QUrl &url);
-
-private:
-    QExplicitlySharedDataPointer<AttributionPrivate> d;
+    /** Serializes one Attribution object to JSON. */
+    static QJsonObject toJson(const Attribution &attr);
+    /** Serializes an array of Attribution objects to JSON. */
+    static QJsonArray toJson(const std::vector<Attribution> &attrs);
+    /** Deserialize an Attribution object from JSON. */
+    static Attribution fromJson(const QJsonObject &obj);
+    /** Dezerializes an array of Attribution objects from JSON. */
+    static std::vector<Attribution> fromJson(const QJsonArray &a);
 };
 
 }

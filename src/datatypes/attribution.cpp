@@ -16,6 +16,8 @@
 */
 
 #include "attribution.h"
+#include "datatypes_p.h"
+#include "json_p.h"
 
 #include <QString>
 #include <QUrl>
@@ -33,56 +35,30 @@ public:
 };
 }
 
-Attribution::Attribution()
-    : d(new AttributionPrivate)
-{}
+KPUBLICTRANSPORT_MAKE_GADGET(Attribution)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QUrl, url, setUrl)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QString, license, setLicense)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QUrl, licenseUrl, setLicenseUrl)
 
-Attribution::Attribution(const Attribution&) = default;
-Attribution::~Attribution() = default;
-Attribution& Attribution::operator=(const Attribution&) = default;
-
-QString Attribution::name() const
+std::vector<Attribution> Attribution::fromJson(const QJsonArray &a)
 {
-    return d->name;
+    return Json::fromJson<Attribution>(a);
 }
 
-void Attribution::setName(const QString &name)
+Attribution Attribution::fromJson(const QJsonObject &obj)
 {
-    d.detach();
-    d->name = name;
+    return Json::fromJson<Attribution>(obj);
 }
 
-QUrl Attribution::url() const
+QJsonArray Attribution::toJson(const std::vector<Attribution> &attrs)
 {
-    return d->url;
+    return Json::toJson(attrs);
 }
 
-void Attribution::setUrl(const QUrl &url)
+QJsonObject Attribution::toJson(const Attribution &attr)
 {
-    d.detach();
-    d->url = url;
-}
-
-QString Attribution::license() const
-{
-    return d->license;
-}
-
-void Attribution::setLicense(const QString &license)
-{
-    d.detach();
-    d->license = license;
-}
-
-QUrl Attribution::licenseUrl() const
-{
-    return d->licenseUrl;
-}
-
-void Attribution::setLicenseUrl(const QUrl &url)
-{
-    d.detach();
-    d->licenseUrl = url;
+    return Json::toJson(attr);
 }
 
 #include "moc_attribution.cpp"
