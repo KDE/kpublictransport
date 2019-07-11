@@ -95,7 +95,7 @@ JourneyRequest::DateTimeMode JourneyRequest::dateTimeMode() const
     return d->dateTimeMode;
 }
 
-void JourneyRequest::setDeparutreTime(const QDateTime &dt)
+void JourneyRequest::setDepartureTime(const QDateTime &dt)
 {
     d.detach();
     d->dateTime = dt;

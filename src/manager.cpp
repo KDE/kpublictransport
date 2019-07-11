@@ -327,7 +327,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             // backend doesn't support this, let's try to emulate
             if (context.type == JourneyRequestContext::Next && req.dateTimeMode() == JourneyRequest::Departure) {
                 auto r = req;
-                r.setDeparutreTime(context.dateTime);
+                r.setDepartureTime(context.dateTime);
                 if (d->queryJourney(context.backend, r, reply)) {
                     ++pendingOps;
                     continue;

@@ -72,7 +72,7 @@ public:
     /** Set the desired departure time.
      *  This is mutually exclusive to setting a desired arrival time.
      */
-    void setDeparutreTime(const QDateTime &dt);
+    void setDepartureTime(const QDateTime &dt);
     /** Sets the desired arrival time.
      *  This is mutually exclusive to setting a desired departure time.
      */
