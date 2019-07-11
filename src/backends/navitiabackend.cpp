@@ -207,7 +207,7 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
                 } else {
                     res = p.parsePlaces(netReply->readAll());
                 }
-                Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
+                Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, p.attributions);
                 addResult(reply, std::move(res));
                 addAttributions(reply, std::move(p.attributions));
                 break;

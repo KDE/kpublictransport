@@ -56,7 +56,12 @@ private Q_SLOTS:
         loc.setCoordinate(7.6, 46.1);
         loc.setIdentifier(QStringLiteral("uic"), QStringLiteral("85xxxxx"));
 
-        Cache::addLocationCacheEntry(QStringLiteral("unittest"), req.cacheKey(), {loc});
+        Attribution attr;
+        attr.setName(QStringLiteral("KDE"));
+        attr.setLicense(QStringLiteral("LGPL"));
+        attr.setUrl(QUrl(QStringLiteral("https://www.kde.org")));
+
+        Cache::addLocationCacheEntry(QStringLiteral("unittest"), req.cacheKey(), {loc}, {attr});
         entry = Cache::lookupLocation(QStringLiteral("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Positive);
         QCOMPARE(entry.data.size(), 1);
@@ -66,6 +71,10 @@ private Q_SLOTS:
         QCOMPARE(entry.data[0].identifiers().size(), 1);
         QCOMPARE(entry.data[0].identifier(QLatin1String("uic")), QLatin1String("85xxxxx"));
         QCOMPARE(entry.data[0].timeZone().isValid(), false);
+        QCOMPARE(entry.attributions.size(), 1);
+        QCOMPARE(entry.attributions[0].name(), QLatin1String("KDE"));
+        QCOMPARE(entry.attributions[0].license(), QLatin1String("LGPL"));
+        QCOMPARE(entry.attributions[0].url().toString(), QLatin1String("https://www.kde.org"));
 
         Cache::expire();
     }

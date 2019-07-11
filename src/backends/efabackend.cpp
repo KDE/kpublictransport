@@ -95,7 +95,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
             addError(reply, p.error(), p.errorMessage());
             qCDebug(Log) << p.error() << p.errorMessage();
         } else {
-            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
         }
     });

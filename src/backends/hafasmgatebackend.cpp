@@ -210,7 +210,7 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
             {
                 auto res = m_parser.parseLocations(netReply->readAll());
                 if (m_parser.error() == Reply::NoError) {
-                    Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
+                    Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
                     addResult(reply, std::move(res));
                 } else {
                     Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());

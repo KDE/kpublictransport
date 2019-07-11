@@ -103,7 +103,7 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
         } else {
-            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
         }
     });
@@ -139,7 +139,7 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
         } else {
-            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res);
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
         }
     });

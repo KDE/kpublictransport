@@ -20,12 +20,15 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Attribution>
+
 #include <vector>
 
 class QString;
 
 namespace KPublicTransport {
 
+class Attribution;
 class Location;
 
 enum class CacheHitType {
@@ -44,6 +47,7 @@ template <typename T> struct CacheEntry
     CacheEntry& operator=(const CacheEntry&) = delete;
 
     std::vector<T> data;
+    std::vector<Attribution> attributions;
     CacheHitType type = CacheHitType::Miss;
 };
 
@@ -52,8 +56,8 @@ template <typename T> struct CacheEntry
  */
 namespace Cache
 {
-    /** Add data to the cache. */
-    KPUBLICTRANSPORT_EXPORT void addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data);
+    /** Add data and corresponding attribution information to the cache. */
+    KPUBLICTRANSPORT_EXPORT void addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attributions);
     /** Add negative cache entry for location queries, ie. remember a result could not be found. */
     KPUBLICTRANSPORT_EXPORT void addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey);
     /** Perform cache lookuip for location results. */
