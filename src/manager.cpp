@@ -252,7 +252,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
         LocationRequest toReq;
         toReq.setCoordinate(req.to().latitude(), req.to().longitude());
         toReq.setName(req.to().name());
-        resolveLocation(toReq, backend, [reply, &backend, this](const Location &loc) {
+        resolveLocation(toReq, backend, [reply, backend, this](const Location &loc) {
             const auto toLoc = Location::merge(reply->request().to(), loc);
             auto jnyRequest = reply->request();
             jnyRequest.setTo(toLoc);
