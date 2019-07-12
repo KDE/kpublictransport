@@ -116,9 +116,6 @@ int main(int argc, char **argv)
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
 
-    qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
-    qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
-
     QueryManager mgr;
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("_queryMgr"), &mgr);

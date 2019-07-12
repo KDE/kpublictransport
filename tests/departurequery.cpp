@@ -115,8 +115,6 @@ int main(int argc, char **argv)
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
 
-    qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
-
     QueryManager mgr;
     QQmlApplicationEngine engine;
     mgr.engine = &engine;
