@@ -1,3 +1,5 @@
+add_subdirectory(qmlplugin)
+
 set(kpublictransport_srcs
     departurereply.cpp
     departurerequest.cpp
