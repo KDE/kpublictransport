@@ -53,7 +53,6 @@ ListModel {
     ListElement { label: "Copenhagen Central"; lat: 55.67238; lon: 12.56489 }
     ListElement { label: "Frankfurt (Main) Hauptbahnhof"; lat: 50.106944; lon: 8.6625 }
     ListElement { label: "Amsterdam Schiphol Airport"; lat: 52.309; lon: 4.7611 }
-    ListElement { label: "Milano Centrale"; lat: 45.4871; lon: 9.20486 }
 
     ListElement { label: "Leipzig Hauptbahnhof"; lat: 51.3455; lon: 12.3821 }
     ListElement { label: "Privacy Sprint Venue (Leipzig)"; name: "Leipzig, Lindenauer Markt"; lat: 51.3346; lon: 12.3249 }
@@ -70,4 +69,8 @@ ListModel {
     ListElement { label: "Malpensa Aeroporto"; lat: 45.6279397021696; lon: 8.71101861371495 }
     ListElement { label: "Milano Bicocca"; lat: 45.51466; lon: 9.20529 }
     ListElement { label: "Akademy 2019"; name: "Universitia Biocca Scienza"; lat: 45.51362; lon: 9.21116 }
+
+    ListElement { label: "Nürnberg Flughafen"; lat: 49.49400; lon: 11.07854 }
+    ListElement { label: "Nürnberg Hauptbahnhof"; lat: 49.44553; lon: 11.08228 }
+    ListElement { label: "SUSE office Nürnberg"; name: "Nürnberg Maxtor"; lat: 49.45960; lon: 11.08203 }
 }
