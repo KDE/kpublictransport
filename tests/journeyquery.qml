@@ -57,6 +57,51 @@ Kirigami.ApplicationWindow {
     TestLocationsModel { id: exampleModel }
     AttributionSheet { id: aboutSheet }
 
+    Kirigami.OverlaySheet {
+        id: locationDetailsSheet
+        property var location
+
+        header: Kirigami.Heading {
+            text: "Location Details"
+        }
+
+        ColumnLayout {
+            QQC2.Label {
+                text: "Name: " + locationDetailsSheet.location.name
+            }
+            QQC2.Label {
+                text: "Street:" + locationDetailsSheet.location.streetAddress
+            }
+            QQC2.Label {
+                text: "ZIP: " + locationDetailsSheet.location.postalCode
+            }
+            QQC2.Label {
+                text: "City: " + locationDetailsSheet.location.locality
+            }
+            QQC2.Label {
+                text: "Region: " + locationDetailsSheet.location.region
+            }
+            QQC2.Label {
+                text: "Country: " + locationDetailsSheet.location.country
+            }
+            QQC2.Label {
+                text: "Lat: " + locationDetailsSheet.location.latitude
+            }
+            QQC2.Label {
+                text: "Lon: " + locationDetailsSheet.location.longitude
+            }
+            QQC2.Label {
+                text: "Identifiers: " + _queryMgr.locationIds(locationDetailsSheet.location)
+            }
+            QQC2.ToolButton {
+                icon.name: "map-symbolic"
+                text: "View on map"
+                onClicked: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + locationDetailsSheet.location.latitude + "/" + locationDetailsSheet.location.longitude)
+            }
+        }
+    }
+
+
     function displayDuration(dur)
     {
         if (dur < 60)
@@ -118,7 +163,11 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     RowLayout {
                         QQC2.Label {
-                            text: "From: " + modelData.from.name + " Platform: " + modelData.scheduledDeparturePlatform
+                            text: "From: <a href=\"#from\">" + modelData.from.name + "</a> Platform: " + modelData.scheduledDeparturePlatform
+                            onLinkActivated: {
+                                locationDetailsSheet.location = modelData.from;
+                                locationDetailsSheet.sheetOpen = true;
+                            }
                         }
                         QQC2.Label {
                             text: modelData.expectedDeparturePlatform
@@ -153,7 +202,11 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "To: " + modelData.to.name + " Platform: " + modelData.scheduledArrivalPlatform
+                            text: "To: <a href=\"#to\">" + modelData.to.name + "</a> Platform: " + modelData.scheduledArrivalPlatform
+                            onLinkActivated: {
+                                locationDetailsSheet.location = modelData.to;
+                                locationDetailsSheet.sheetOpen = true;
+                            }
                         }
                         QQC2.Label {
                             text: modelData.expectedArrivalPlatform
