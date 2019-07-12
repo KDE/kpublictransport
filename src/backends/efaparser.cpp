@@ -240,6 +240,7 @@ void EfaParser::parseTripArrival(QXmlStreamReader &reader, JourneySection &secti
     loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
     loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
     loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
+    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
 
     section.setTo(loc);
     // ### are those the correct ones? there's also just "platform"
