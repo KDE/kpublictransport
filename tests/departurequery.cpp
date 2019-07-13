@@ -95,6 +95,18 @@ public:
         f.write(QJsonDocument(Departure::toJson(m_departures)).toJson());
     }
 
+    Q_INVOKABLE QString locationIds(const QVariant &v)
+    {
+        const auto loc = v.value<Location>();
+        const auto ids = loc.identifiers();
+        QStringList l;
+        l.reserve(ids.size());
+        for (auto it = ids.begin(); it != ids.end(); ++it) {
+            l.push_back(it.key() + QLatin1String(": ") + it.value());
+        }
+        return l.join(QLatin1String(", "));
+    }
+
     bool loading() const { return m_loading; }
     QString errorMessage() const { return m_errorMsg; }
 
