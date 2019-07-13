@@ -64,6 +64,7 @@ public:
     Manager *q = nullptr;
     QNetworkAccessManager *m_nam = nullptr;
     std::vector<std::unique_ptr<AbstractBackend>> m_backends;
+    std::vector<Attribution> m_attributions;
     bool m_allowInsecure = false;
 };
 }
@@ -100,6 +101,9 @@ void ManagerPrivate::loadNetworks()
         if (net) {
             net->setBackendId(it.fileInfo().baseName());
             net->init();
+            if (!net->attribution().isEmpty()) {
+                m_attributions.push_back(net->attribution());
+            }
             m_backends.push_back(std::move(net));
         } else {
             qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();
@@ -423,4 +427,17 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     }
     reply->setPendingOps(pendingOps);
     return reply;
+}
+
+const std::vector<Attribution>& Manager::attributions() const
+{
+    return d->m_attributions;
+}
+
+QVariantList Manager::attributionsVariant() const
+{
+    QVariantList l;
+    l.reserve(d->m_attributions.size());
+    std::transform(d->m_attributions.begin(), d->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });
+    return l;
 }

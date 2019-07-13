@@ -39,9 +39,20 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("Data Sources")
+                text: i18n("Current Data Sources")
                 enabled: _queryMgr.model.attributions.length > 0
-                onTriggered: aboutSheet.sheetOpen = true;
+                onTriggered: {
+                    aboutSheet.attributions = Qt.binding(function() { return _queryMgr.model.attributions; });
+                    aboutSheet.sheetOpen = true;
+                }
+            },
+            Kirigami.Action {
+                iconName: "help-about-symbolic"
+                text: i18n("All Data Sources")
+                onTriggered: {
+                    aboutSheet.attributions = Qt.binding(function() { return _queryMgr.manager.attributions; });
+                    aboutSheet.sheetOpen = true;
+                }
             }
         ]
     }

@@ -31,6 +31,7 @@ class QNetworkAccessManager;
  */
 namespace KPublicTransport {
 
+class Attribution;
 class DepartureReply;
 class DepartureRequest;
 class JourneyReply;
@@ -48,6 +49,9 @@ class ManagerPrivate;
 class KPUBLICTRANSPORT_EXPORT Manager : public QObject
 {
     Q_OBJECT
+    /** QML-compatible access to attributions(). */
+    Q_PROPERTY(QVariantList attributions READ attributionsVariant NOTIFY attributionsChanged)
+
 public:
     explicit Manager(QObject *parent = nullptr);
     ~Manager();
@@ -72,7 +76,17 @@ public:
     /** Query location information based on coordinates or (parts of) the name. */
     LocationReply* queryLocation(const LocationRequest &req) const;
 
+    /** Returns all static attribution information, as well as all dynamic ones
+     *  found in the cache or accumulated during the lifetime of this instance.
+     */
+    const std::vector<Attribution>& attributions() const;
+
+Q_SIGNALS:
+    void attributionsChanged();
+
 private:
+    Q_DECL_HIDDEN QVariantList attributionsVariant() const;
+
     std::unique_ptr<ManagerPrivate> d;
 };
 

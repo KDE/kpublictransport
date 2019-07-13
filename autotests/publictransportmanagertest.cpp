@@ -15,6 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Manager>
@@ -53,6 +54,12 @@ private Q_SLOTS:
         QVERIFY(spy.wait(100));
         QCOMPARE(spy.size(), 1);
         delete reply;
+    }
+
+    void testAttributions()
+    {
+        Manager mgr;
+        QVERIFY(mgr.attributions().size() > 0);
     }
 };
 

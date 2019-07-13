@@ -22,7 +22,7 @@ import org.kde.kirigami 2.0 as Kirigami
 
 Kirigami.OverlaySheet {
     id: aboutSheet
-    property var attributions: _queryMgr.model.attributions
+    property var attributions
 
     header: Kirigami.Heading {
         text: "Data Providers"

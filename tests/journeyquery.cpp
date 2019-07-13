@@ -58,6 +58,7 @@ class QueryManager : public QObject
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel* model MEMBER journeyQueryModel CONSTANT)
     Q_PROPERTY(QAbstractItemModel* titleModel MEMBER journeyProxyModel CONSTANT)
+    Q_PROPERTY(QObject* manager READ manager CONSTANT)
 public:
     QueryManager(QObject *parent = nullptr)
         : QObject(parent)
@@ -111,6 +112,8 @@ public:
         }
         return l.join(QLatin1String(", "));
     }
+
+    QObject* manager() { return &ptMgr; }
 
 private:
     Manager ptMgr;
