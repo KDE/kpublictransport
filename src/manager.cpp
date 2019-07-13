@@ -24,6 +24,7 @@
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "logging.h"
+#include "datatypes/attributionutil_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -110,6 +111,7 @@ void ManagerPrivate::loadNetworks()
         }
     }
 
+    AttributionUtil::sort(m_attributions);
     qCDebug(Log) << m_backends.size() << "public transport network configurations loaded";
 }
 

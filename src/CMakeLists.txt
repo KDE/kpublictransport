@@ -25,6 +25,7 @@ set(kpublictransport_srcs
     backends/navitiaparser.cpp
 
     datatypes/attribution.cpp
+    datatypes/attributionutil.cpp
     datatypes/departure.cpp
     datatypes/journey.cpp
     datatypes/json.cpp
