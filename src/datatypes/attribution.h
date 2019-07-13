@@ -48,9 +48,14 @@ class KPUBLICTRANSPORT_EXPORT Attribution
     /** Link to the license or terms and conditions text. */
     KPUBLICTRANSPORT_PROPERTY(QUrl, licenseUrl, setLicenseUrl)
 
+    /** @c true if there is license information for this attribution object. */
+    Q_PROPERTY(bool hasLicense READ hasLicense STORED false)
+
 public:
     /** Returns @c true if this is an empty or default-constructed Attribution object. */
     bool isEmpty() const;
+
+    bool hasLicense() const;
 
     /** Serializes one Attribution object to JSON. */
     static QJsonObject toJson(const Attribution &attr);

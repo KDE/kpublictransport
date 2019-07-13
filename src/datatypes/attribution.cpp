@@ -46,6 +46,11 @@ bool Attribution::isEmpty() const
     return d->name.isEmpty() && d->license.isEmpty();
 }
 
+bool Attribution::hasLicense() const
+{
+    return !d->license.isEmpty() || !d->licenseUrl.isEmpty();
+}
+
 std::vector<Attribution> Attribution::fromJson(const QJsonArray &a)
 {
     return Json::fromJson<Attribution>(a);
