@@ -43,6 +43,20 @@ QString EfaParser::errorMessage() const
     return m_errorMsg;
 }
 
+Location EfaParser::parseItdOdvAssignedStop(QXmlStreamReader &reader) const
+{
+    Location loc;
+    if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
+        loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
+        loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
+    }
+    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
+    loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
+    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
+    reader.skipCurrentElement();
+    return loc;
+}
+
 std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data) const
 {
     //qDebug().noquote() << data;
@@ -55,16 +69,7 @@ std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data)
         }
 
         if (reader.name() == QLatin1String("itdOdvAssignedStop") && reader.attributes().hasAttribute(QLatin1String("stopID"))) {
-            Location loc;
-            if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
-                loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
-                loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
-            }
-            loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
-            loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
-            loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
-            res.push_back(loc);
-            reader.skipCurrentElement();
+            res.push_back(parseItdOdvAssignedStop(reader));
         } else {
             reader.readNext();
         }
@@ -141,13 +146,20 @@ Departure EfaParser::parseDmDeparture(QXmlStreamReader &reader) const
 {
     Departure dep;
     dep.setScheduledPlatform(reader.attributes().value(QLatin1String("platformName")).toString());
+
     Location stop;
+    const auto stopId = reader.attributes().value(QLatin1String("stopID")).toString();
+    const auto stopIt = m_locations.find(stopId);
+    if (stopIt != m_locations.end()) {
+        stop = stopIt.value();
+    }
+
     stop.setName(reader.attributes().value(QLatin1String("stopName")).toString());
     if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
         stop.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
         stop.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
     }
-    stop.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
+    stop.setIdentifier(m_locationIdentifierType, stopId);
     dep.setStopPoint(stop);
 
     while (!reader.atEnd()) {
@@ -190,7 +202,10 @@ std::vector<Departure> EfaParser::parseDmResponse(const QByteArray &data) const
             continue;
         }
 
-        if (reader.name() == QLatin1String("itdDeparture")) {
+        if (reader.name() == QLatin1String("itdOdvAssignedStop") && reader.attributes().hasAttribute(QLatin1String("stopID"))) {
+            const auto loc = parseItdOdvAssignedStop(reader);
+            m_locations[loc.identifier(m_locationIdentifierType)] = loc;
+        } else if (reader.name() == QLatin1String("itdDeparture")) {
             res.push_back(parseDmDeparture(reader));
         } else {
             reader.readNext();

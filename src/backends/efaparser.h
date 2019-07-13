@@ -20,6 +20,7 @@
 
 #include <KPublicTransport/Reply>
 
+#include <QHash>
 #include <QString>
 
 #include <vector>
@@ -48,6 +49,7 @@ public:
     QString errorMessage() const;
 
 private:
+    Location parseItdOdvAssignedStop(QXmlStreamReader &reader) const;
     Departure parseDmDeparture(QXmlStreamReader &reader) const;
     void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const;
     void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
@@ -57,6 +59,7 @@ private:
     QString m_locationIdentifierType;
     mutable QString m_errorMsg;
     mutable Reply::Error m_error = Reply::NoError;
+    mutable QHash<QString, Location> m_locations;
 };
 
 }
