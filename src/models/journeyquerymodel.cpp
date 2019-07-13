@@ -283,6 +283,11 @@ const std::vector<Journey>& JourneyQueryModel::journeys() const
     return d->m_journeys;
 }
 
+const std::vector<Attribution>& JourneyQueryModel::attributions() const
+{
+    return d->m_attributions;
+}
+
 QVariantList JourneyQueryModel::attributionsVariant() const
 {
     QVariantList l;

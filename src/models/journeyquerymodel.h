@@ -27,6 +27,7 @@
 
 namespace KPublicTransport {
 
+class Attribution;
 class Journey;
 class JourneyQueryModelPrivate;
 class JourneyRequest;
@@ -88,6 +89,8 @@ public:
 
     /** The current model content. */
     const std::vector<Journey>& journeys() const;
+    /** The attribution information for the current model content. */
+    const std::vector<Attribution>& attributions() const;
 
 Q_SIGNALS:
     void loadingChanged();
