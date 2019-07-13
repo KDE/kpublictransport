@@ -117,3 +117,13 @@ void AbstractBackend::addAttributions(Reply *reply, std::vector<Attribution> &&a
 {
     reply->addAttributions(std::move(attributions));
 }
+
+Attribution AbstractBackend::attribution() const
+{
+    return m_attribution;
+}
+
+void AbstractBackend::setAttribution(const Attribution &attr)
+{
+    m_attribution = attr;
+}

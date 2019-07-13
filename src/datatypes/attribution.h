@@ -49,6 +49,9 @@ class KPUBLICTRANSPORT_EXPORT Attribution
     KPUBLICTRANSPORT_PROPERTY(QUrl, licenseUrl, setLicenseUrl)
 
 public:
+    /** Returns @c true if this is an empty or default-constructed Attribution object. */
+    bool isEmpty() const;
+
     /** Serializes one Attribution object to JSON. */
     static QJsonObject toJson(const Attribution &attr);
     /** Serializes an array of Attribution objects to JSON. */

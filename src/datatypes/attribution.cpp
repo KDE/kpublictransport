@@ -41,6 +41,11 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QUrl, url, setUrl)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QString, license, setLicense)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Attribution, QUrl, licenseUrl, setLicenseUrl)
 
+bool Attribution::isEmpty() const
+{
+    return d->name.isEmpty() && d->license.isEmpty();
+}
+
 std::vector<Attribution> Attribution::fromJson(const QJsonArray &a)
 {
     return Json::fromJson<Attribution>(a);

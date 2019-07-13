@@ -20,6 +20,8 @@
 
 #include "reply.h"
 
+#include <KPublicTransport/Attribution>
+
 #include <QFlags>
 #include <QPolygonF>
 
@@ -27,7 +29,6 @@ class QNetworkAccessManager;
 
 namespace KPublicTransport {
 
-class Attribution;
 class DepartureReply;
 class DepartureRequest;
 class JourneyReply;
@@ -71,6 +72,11 @@ public:
     virtual Capabilities capabilities() const;
     /** Checks if this backend has @p capability. */
     inline bool hasCapability(Capability capability) const { return capabilities() & capability; };
+
+    /** Returns the static attribution information for this backend. */
+    Attribution attribution() const;
+    /** Sets the static attribution information for this backend. */
+    void setAttribution(const Attribution &attr);
 
     /** Type of query.
      *  @see needsLocationQuery
@@ -121,6 +127,7 @@ private:
     Q_DISABLE_COPY(AbstractBackend)
     QString m_backendId;
     QPolygonF m_geoFilter;
+    Attribution m_attribution;
 };
 
 }

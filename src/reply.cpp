@@ -104,3 +104,12 @@ void Reply::addAttributions(std::vector<Attribution>&& attributions)
         return lhs.name() == rhs.name() && lhs.url() == rhs.url() && lhs.license() == rhs.license() && lhs.licenseUrl() == rhs.licenseUrl();
     }), d_ptr->attributions.end());
 }
+
+void Reply::addAttribution(const Attribution &attr)
+{
+    if (attr.isEmpty()) {
+        return;
+    }
+    // TODO technically we need to de-duplicate here, but practically this is only used for static attributions which are unique
+    d_ptr->attributions.push_back(attr);
+}

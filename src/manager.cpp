@@ -157,6 +157,10 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         }
         backend->setGeoFilter(poly);
     }
+
+    const auto attrObj = obj.value(QLatin1String("attribution")).toObject();
+    const auto attr = Attribution::fromJson(attrObj);
+    backend->setAttribution(attr);
 }
 
 template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &obj)
@@ -214,6 +218,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
         qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
         return false;
     }
+    reply->addAttribution(backend->attribution());
 
     // resolve locations if needed
     if (backend->needsLocationQuery(req.from(), AbstractBackend::QueryType::Journey)) {
@@ -245,6 +250,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
                 reply->addError(Reply::NotFoundError, {});
             }
         });
+
         return true;
     }
 
@@ -354,6 +360,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
+        reply->addAttribution(backend->attribution());
 
         // check if we first need to resolve the location first
         if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
@@ -394,6 +401,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
             qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
             continue;
         }
+        reply->addAttribution(backend->attribution());
 
         auto cache = Cache::lookupLocation(backend->backendId(), req.cacheKey());
         switch (cache.type) {

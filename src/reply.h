@@ -63,16 +63,17 @@ Q_SIGNALS:
     void finished();
 
 protected:
-    explicit Reply(ReplyPrivate *dd, QObject *parent);
+    Q_DECL_HIDDEN explicit Reply(ReplyPrivate *dd, QObject *parent);
     std::unique_ptr<ReplyPrivate> d_ptr;
 
     friend class AbstractBackend;
-    void addError(Error error, const QString &errorMsg);
-    void addAttributions(std::vector<Attribution> &&attributions);
+    Q_DECL_HIDDEN void addError(Error error, const QString &errorMsg);
+    Q_DECL_HIDDEN void addAttributions(std::vector<Attribution> &&attributions);
 
     friend class Manager;
     friend class ManagerPrivate;
-    void setPendingOps(int ops);
+    Q_DECL_HIDDEN void setPendingOps(int ops);
+    Q_DECL_HIDDEN void addAttribution(const Attribution &attr);
 };
 
 }

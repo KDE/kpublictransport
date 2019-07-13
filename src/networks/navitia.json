@@ -3,5 +3,9 @@
     "options": {
         "endpoint": "api.navitia.io",
         "authorization": "48ed1733-d3f0-445a-9210-9fb36e20a8a3"
+    },
+    "attribution": {
+        "name": "© navitia.io",
+        "url": "https://www.navitia.io/"
     }
 }
