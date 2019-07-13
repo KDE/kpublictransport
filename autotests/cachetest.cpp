@@ -76,6 +76,11 @@ private Q_SLOTS:
         QCOMPARE(entry.attributions[0].license(), QLatin1String("LGPL"));
         QCOMPARE(entry.attributions[0].url().toString(), QLatin1String("https://www.kde.org"));
 
+        std::vector<Attribution> cachedAttrs;
+        Cache::allCachedAttributions(cachedAttrs);
+        QCOMPARE(cachedAttrs.size(), 1);
+        QCOMPARE(cachedAttrs[0].name(), attr.name());
+
         Cache::expire();
     }
 

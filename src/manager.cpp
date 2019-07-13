@@ -62,11 +62,14 @@ public:
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
 
+    void readCachedAttributions();
+
     Manager *q = nullptr;
     QNetworkAccessManager *m_nam = nullptr;
     std::vector<std::unique_ptr<AbstractBackend>> m_backends;
     std::vector<Attribution> m_attributions;
     bool m_allowInsecure = false;
+    bool m_hasReadCachedAttributions = false;
 };
 }
 
@@ -278,6 +281,16 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     return backend->queryJourney(req, reply, nam());
 }
 
+void ManagerPrivate::readCachedAttributions()
+{
+    if (m_hasReadCachedAttributions) {
+        return;
+    }
+
+    Cache::allCachedAttributions(m_attributions);
+    m_hasReadCachedAttributions = true;
+}
+
 
 Manager::Manager(QObject *parent)
     : QObject(parent)
@@ -433,11 +446,13 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
 
 const std::vector<Attribution>& Manager::attributions() const
 {
+    d->readCachedAttributions();
     return d->m_attributions;
 }
 
 QVariantList Manager::attributionsVariant() const
 {
+    d->readCachedAttributions();
     QVariantList l;
     l.reserve(d->m_attributions.size());
     std::transform(d->m_attributions.begin(), d->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });

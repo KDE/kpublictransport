@@ -28,7 +28,6 @@ class QString;
 
 namespace KPublicTransport {
 
-class Attribution;
 class Location;
 
 enum class CacheHitType {
@@ -60,8 +59,13 @@ namespace Cache
     KPUBLICTRANSPORT_EXPORT void addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attributions);
     /** Add negative cache entry for location queries, ie. remember a result could not be found. */
     KPUBLICTRANSPORT_EXPORT void addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey);
-    /** Perform cache lookuip for location results. */
+    /** Perform cache lookup for location results. */
     KPUBLICTRANSPORT_EXPORT CacheEntry<Location> lookupLocation(const QString &backendId, const QString &cacheKey);
+
+    /** Returns all cached attribution information.
+     *  The result is inserted in the assumed to be sorted @p attrs and deduplicated.
+     */
+    KPUBLICTRANSPORT_EXPORT void allCachedAttributions(std::vector<Attribution> &attrs);
 
     /** Expire old cache entries. */
     void KPUBLICTRANSPORT_EXPORT expire();

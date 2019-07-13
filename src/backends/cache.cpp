@@ -17,6 +17,7 @@
 
 #include "cache.h"
 #include "logging.h"
+#include "datatypes/attributionutil_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -42,16 +43,26 @@ static QString cachePath(const QString &backendId, const QString &contentType)
     return cacheBasePath() + backendId + QLatin1Char('/') + contentType + QLatin1Char('/');
 }
 
+static QString locationExtension()
+{
+    return QStringLiteral(".json");
+}
+
+static QString attributionExtension()
+{
+    return QStringLiteral(".attribution");
+}
+
 void Cache::addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attribution)
 {
     const auto dir = cachePath(backendId, QStringLiteral("location"));
     QDir().mkpath(dir);
-    QFile f(dir + cacheKey + QLatin1String(".json"));
+    QFile f(dir + cacheKey + locationExtension());
     f.open(QFile::WriteOnly | QFile::Truncate);
     f.write(QJsonDocument(Location::toJson(data)).toJson());
 
     if (!attribution.empty()) {
-        QFile f(dir + cacheKey + QLatin1String(".attribution"));
+        QFile f(dir + cacheKey + attributionExtension());
         f.open(QFile::WriteOnly | QFile::Truncate);
         f.write(QJsonDocument(Attribution::toJson(attribution)).toJson());
     }
@@ -61,7 +72,7 @@ void Cache::addNegativeLocationCacheEntry(const QString &backendId, const QStrin
 {
     const auto dir = cachePath(backendId, QStringLiteral("location"));
     QDir().mkpath(dir);
-    QFile f(dir + cacheKey + QLatin1String(".json"));
+    QFile f(dir + cacheKey + locationExtension());
     f.open(QFile::WriteOnly | QFile::Truncate);
     // empty file is used as indicator for a negative hit
 }
@@ -71,7 +82,7 @@ CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QStri
     CacheEntry<Location> entry;
 
     const auto dir = cachePath(backendId, QStringLiteral("location"));
-    QFile f (dir + cacheKey + QLatin1String(".json"));
+    QFile f (dir + cacheKey + locationExtension());
     if (!f.open(QFile::ReadOnly)) {
         entry.type = CacheHitType::Miss;
         return entry;
@@ -85,7 +96,7 @@ CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QStri
     entry.type = CacheHitType::Positive;
     entry.data = Location::fromJson(QJsonDocument::fromJson(f.readAll()).array());
 
-    QFile attrFile (dir + cacheKey + QLatin1String(".attribution"));
+    QFile attrFile (dir + cacheKey + attributionExtension());
     if (attrFile.open(QFile::ReadOnly)) {
         entry.attributions = Attribution::fromJson(QJsonDocument::fromJson(attrFile.readAll()).array());
     }
@@ -118,4 +129,16 @@ static void expireRecursive(const QString &path)
 void Cache::expire()
 {
     expireRecursive(cacheBasePath());
+}
+
+void Cache::allCachedAttributions(std::vector<Attribution> &attrs)
+{
+    QDirIterator it(cacheBasePath(), {QLatin1Char('*') + attributionExtension()}, QDir::Files | QDir::NoSymLinks, QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        it.next();
+        QFile f(it.filePath());
+        f.open(QFile::ReadOnly);
+        auto cached = Attribution::fromJson(QJsonDocument::fromJson(f.readAll()).array());
+        AttributionUtil::merge(attrs, std::move(cached));
+    }
 }
