@@ -60,6 +60,7 @@ Kirigami.ApplicationWindow {
         id: aboutSheet
         attributions: _attributions
     }
+    LocationDetailsSheet { id: locationDetailsSheet }
 
     Component {
         id: departureDelegate
@@ -125,7 +126,11 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "From: " + modelData.stopPoint.name
+                            text: "From: <a href=\"#from\">" + modelData.stopPoint.name + "</a>"
+                            onLinkActivated: {
+                                locationDetailsSheet.location = modelData.stopPoint;
+                                locationDetailsSheet.sheetOpen = true;
+                            }
                         }
                         QQC2.Label {
                             visible: modelData.scheduledPlatform != ""

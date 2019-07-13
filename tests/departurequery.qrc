@@ -2,6 +2,7 @@
     <qresource prefix="/">
         <file>departurequery.qml</file>
         <file>AttributionSheet.qml</file>
+        <file>LocationDetailsSheet.qml</file>
         <file>TestLocationsModel.qml</file>
     </qresource>
 </RCC>

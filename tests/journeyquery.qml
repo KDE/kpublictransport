@@ -56,51 +56,7 @@ Kirigami.ApplicationWindow {
 
     TestLocationsModel { id: exampleModel }
     AttributionSheet { id: aboutSheet }
-
-    Kirigami.OverlaySheet {
-        id: locationDetailsSheet
-        property var location
-
-        header: Kirigami.Heading {
-            text: "Location Details"
-        }
-
-        ColumnLayout {
-            QQC2.Label {
-                text: "Name: " + locationDetailsSheet.location.name
-            }
-            QQC2.Label {
-                text: "Street:" + locationDetailsSheet.location.streetAddress
-            }
-            QQC2.Label {
-                text: "ZIP: " + locationDetailsSheet.location.postalCode
-            }
-            QQC2.Label {
-                text: "City: " + locationDetailsSheet.location.locality
-            }
-            QQC2.Label {
-                text: "Region: " + locationDetailsSheet.location.region
-            }
-            QQC2.Label {
-                text: "Country: " + locationDetailsSheet.location.country
-            }
-            QQC2.Label {
-                text: "Lat: " + locationDetailsSheet.location.latitude
-            }
-            QQC2.Label {
-                text: "Lon: " + locationDetailsSheet.location.longitude
-            }
-            QQC2.Label {
-                text: "Identifiers: " + _queryMgr.locationIds(locationDetailsSheet.location)
-            }
-            QQC2.ToolButton {
-                icon.name: "map-symbolic"
-                text: "View on map"
-                onClicked: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + locationDetailsSheet.location.latitude + "/" + locationDetailsSheet.location.longitude)
-            }
-        }
-    }
-
+    LocationDetailsSheet { id:locationDetailsSheet }
 
     function displayDuration(dur)
     {
