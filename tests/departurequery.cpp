@@ -15,6 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
@@ -66,6 +67,11 @@ public:
                 l.reserve(m_departures.size());
                 std::transform(m_departures.begin(), m_departures.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
                 engine->rootContext()->setContextProperty(QStringLiteral("_departures"), l);
+
+                QVariantList attrs;
+                attrs.reserve(reply->attributions().size());
+                std::transform(reply->attributions().begin(), reply->attributions().end(), std::back_inserter(attrs), [](const auto &attr) { return QVariant::fromValue(attr); });
+                engine->rootContext()->setContextProperty(QStringLiteral("_attributions"), attrs);
             } else {
                 m_errorMsg = reply->errorString();
                 emit errorMessageChanged();

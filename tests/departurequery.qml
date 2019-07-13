@@ -37,6 +37,12 @@ Kirigami.ApplicationWindow {
                 text: i18n("Save...")
                 iconName: "document-save"
                 onTriggered: fileDialog.open();
+            },
+            Kirigami.Action {
+                iconName: "help-about-symbolic"
+                text: i18n("Data Sources")
+                enabled: _attributions.length > 0
+                onTriggered: aboutSheet.sheetOpen = true;
             }
         ]
     }
@@ -50,6 +56,11 @@ Kirigami.ApplicationWindow {
     }
 
     TestLocationsModel { id: exampleModel }
+    AttributionSheet {
+        id: aboutSheet
+        attributions: _attributions
+    }
+
     Component {
         id: departureDelegate
         Kirigami.AbstractListItem {
