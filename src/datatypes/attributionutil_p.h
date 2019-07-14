@@ -32,6 +32,7 @@ namespace AttributionUtil
 
     /** @p left is assumed to be sorted already. */
     void merge(std::vector<Attribution> &left, std::vector<Attribution> &&right);
+    void merge(std::vector<Attribution> &left, const std::vector<Attribution> &right);
     void merge(std::vector<Attribution> &left, const Attribution &right);
     void merge(Attribution &left, const Attribution &right);
 }

@@ -50,6 +50,13 @@ void AttributionUtil::merge(std::vector<Attribution> &left, std::vector<Attribut
     }
 }
 
+void AttributionUtil::merge(std::vector<Attribution> &left, const std::vector<Attribution> &right)
+{
+    for (const auto &a : right) {
+        merge(left, a);
+    }
+}
+
 void AttributionUtil::merge(std::vector<Attribution> &left, const Attribution &right)
 {
     if (right.isEmpty()) {

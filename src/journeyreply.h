@@ -53,7 +53,7 @@ public:
     JourneyRequest previousRequest() const;
 
 private:
-    friend class Manager;
+    friend class ManagerPrivate;
     explicit JourneyReply(const JourneyRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;

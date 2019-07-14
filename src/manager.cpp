@@ -62,6 +62,8 @@ public:
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
 
+    template <typename RepT, typename ReqT> RepT* makeReply(const ReqT &request);
+
     void readCachedAttributions();
 
     Manager *q = nullptr;
@@ -291,6 +293,17 @@ void ManagerPrivate::readCachedAttributions()
     m_hasReadCachedAttributions = true;
 }
 
+template<typename RepT, typename ReqT>
+RepT* ManagerPrivate::makeReply(const ReqT &request)
+{
+    auto reply = new RepT(request, q);
+    QObject::connect(reply, &Reply::finished, q, [this, reply]() {
+        AttributionUtil::merge(m_attributions, reply->attributions());
+    });
+    return reply;
+}
+
+
 
 Manager::Manager(QObject *parent)
     : QObject(parent)
@@ -325,7 +338,7 @@ void Manager::setAllowInsecureBackends(bool insecure)
 
 JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
 {
-    auto reply = new JourneyReply(req, const_cast<Manager*>(this));
+    auto reply = d->makeReply<JourneyReply>(req);
     int pendingOps = 0;
 
     // first time/direct query
@@ -368,7 +381,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
 
 DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
 {
-    auto reply = new DepartureReply(req, const_cast<Manager*>(this));
+    auto reply = d->makeReply<DepartureReply>(req);
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (backend->isLocationExcluded(req.stop())) {
@@ -409,7 +422,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
 
 LocationReply* Manager::queryLocation(const LocationRequest &req) const
 {
-    auto reply = new LocationReply(req, const_cast<Manager*>(this));
+    auto reply = d->makeReply<LocationReply>(req);
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
         if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {
