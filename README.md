@@ -35,6 +35,6 @@ relies on Open Data. Support for proprietary/vendor-specific APIs exists too tho
 When using the data retrieved by this library you need to comply with the license
 terms of the backends this is coming from, in particular https://www.navitia.io/api-term-of-use.
 
-Support for aggregating license/copyright information from the backends and making this
-available for display has not been implemented yet, so you are on your own at this point
-in ensuring you comply with those terms.
+Attribution information that need to be displayed in an appropriate place in the
+application using this are provided globally via KPublicTransport::Manager::attributions()
+as well as more fine-grained per query reply via KPublicTransport::Reply::attributions().
