@@ -18,14 +18,17 @@
 #include "hafasparser.h"
 #include "logging.h"
 
+#include <KPublicTransport/Location>
+
 using namespace KPublicTransport;
 
 HafasParser::HafasParser() = default;
 HafasParser::~HafasParser() = default;
 
-void HafasParser::setLocationIdentifierType(const QString &idType)
+void HafasParser::setLocationIdentifierTypes(const QString &idType, const QString &standardIdType)
 {
     m_locationIdentifierType = idType;
+    m_standardLocationIdentifierType = standardIdType;
 }
 
 void HafasParser::setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap)
@@ -77,4 +80,22 @@ Line::Mode HafasParser::parseLineMode(int modeId) const
     }
     qCDebug(Log) << "Encountered unknown line type:" << modeId;
     return Line::Unknown;
+}
+
+void HafasParser::setLocationIdentifier(Location &loc, const QString &id) const
+{
+    if (m_standardLocationIdentifierType.isEmpty() || !isUicStationId(id)) {
+        loc.setIdentifier(m_locationIdentifierType, id);
+    } else {
+        loc.setIdentifier(m_standardLocationIdentifierType, id);
+    }
+}
+
+bool HafasParser::isUicStationId(const QString &id)
+{
+    if (id.size() != 7 || std::any_of(id.begin(), id.end(), [](QChar c) { return !c.isDigit(); })) {
+        return false;
+    }
+
+    return id.at(0) != QLatin1Char('0');
 }

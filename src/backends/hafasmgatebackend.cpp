@@ -49,7 +49,7 @@ HafasMgateBackend::~HafasMgateBackend() = default;
 
 void HafasMgateBackend::init()
 {
-    m_parser.setLocationIdentifierType(locationIdentifierType());
+    m_parser.setLocationIdentifierTypes(locationIdentifierType(), standardLocationIdentifierType());
     m_parser.setLineModeMap(std::move(m_lineModeMap));
 }
 
@@ -61,13 +61,13 @@ AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
-    return loc.identifier(locationIdentifierType()).isEmpty();
+    return locationIdentifier(loc).isEmpty();
 }
 
 bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto fromId = request.from().identifier(locationIdentifierType());
-    const auto toId = request.to().identifier(locationIdentifierType());
+    const auto fromId = locationIdentifier(request.from());
+    const auto toId = locationIdentifier(request.to());
     if (fromId.isEmpty() || toId.isEmpty()) {
         return false;
     }
@@ -141,7 +141,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
 
 bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto locationId = request.stop().identifier(locationIdentifierType());
+    const auto locationId = locationIdentifier(request.stop());
     if (locationId.isEmpty()) {
         return false;
     }

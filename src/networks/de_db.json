@@ -21,7 +21,8 @@
             "256": "Tramway",
             "512": "Taxi"
         },
-        "locationIdentifierType": "ibnr"
+        "locationIdentifierType": "db",
+        "standardLocationIdentifierType": "ibnr"
     },
     "filter": {
         "geo": [ [ 37.8068, 82.97 ], [ 35.3039, 33.9542 ], [ -14.3375, 34.7885 ], [ -36.3425, 86.3072 ] ]

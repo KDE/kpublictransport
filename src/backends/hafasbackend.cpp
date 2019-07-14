@@ -17,6 +17,8 @@
 
 #include "hafasbackend.h"
 
+#include <KPublicTransport/Location>
+
 #include <QJsonObject>
 #include <QMetaEnum>
 
@@ -35,4 +37,18 @@ void HafasBackend::setLineModeMap(const QJsonObject& obj)
 QString HafasBackend::locationIdentifierType() const
 {
     return m_locationIdentifierType.isEmpty() ? backendId() : m_locationIdentifierType;
+}
+
+QString HafasBackend::standardLocationIdentifierType() const
+{
+    return m_standardLocationIdentifierType;
+}
+
+QString HafasBackend::locationIdentifier(const Location &loc) const
+{
+    const auto id = loc.identifier(locationIdentifierType());
+    if (!id.isEmpty()) {
+        return id;
+    }
+    return loc.identifier(standardLocationIdentifierType());
 }

@@ -29,13 +29,15 @@
 
 namespace KPublicTransport {
 
+class Location;
+
 /** Common base for the various Hafas response parsers.
  *  @internal only exported for unit tests
  */
 class KPUBLICTRANSPORT_EXPORT HafasParser
 {
 public:
-    void setLocationIdentifierType(const QString &idType);
+    void setLocationIdentifierTypes(const QString &idType, const QString &standardIdType = {});
     void setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap);
 
     Reply::Error error() const;
@@ -50,13 +52,18 @@ protected:
     Line::Mode parseLineMode(const QStringRef &modeId) const;
     Line::Mode parseLineMode(int modeId) const;
 
+    void setLocationIdentifier(Location &loc, const QString &id) const;
+
 protected:
-    QString m_locationIdentifierType;
     mutable QString m_errorMsg;
     mutable Reply::Error m_error = Reply::NoError;
 
 private:
     Q_DISABLE_COPY(HafasParser)
+    static bool isUicStationId(const QString &id);
+
+    QString m_locationIdentifierType;
+    QString m_standardLocationIdentifierType;
     std::unordered_map<int, Line::Mode> m_lineModeMap;
 };
 

@@ -13,7 +13,8 @@
             "256": "LocalTrain",
             "512": "Tramway"
         },
-        "locationIdentifierType": "ibnr"
+        "locationIdentifierType": "sbb",
+        "standardLocationIdentifierType": "ibnr"
     },
     "filter": {
         "geo": [ [ 5.865, 45.912 ], [ 10.432, 45.704 ], [ 10.532, 47.851 ], [ 6.381, 47.773 ] ]

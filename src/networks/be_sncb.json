@@ -10,12 +10,14 @@
             "1": "LongDistanceTrain",
             "4": "LongDistanceTrain",
             "16": "RapidTransit",
+            "32": "Bus",
             "64": "RapidTransit",
             "256": "Metro",
             "512": "Bus",
             "1024": "Tramway"
         },
-        "locationIdentifierType": "uic"
+        "locationIdentifierType": "sncb",
+        "standardLocationIdentifierType": "uic"
     },
     "filter": {
         "geo": [ [ 1.797, 51.1 ], [ 5.55, 49.124 ], [ 6.598, 50.464 ], [ 5.154, 51.837 ] ]

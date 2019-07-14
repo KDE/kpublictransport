@@ -55,7 +55,7 @@ private Q_SLOTS:
     void testParseLocationByCoordinateResponse()
     {
         HafasQueryParser p;
-        p.setLocationIdentifierType(s("testId"));
+        p.setLocationIdentifierTypes(s("testId"));
         const auto res = p.parseQueryLocationResponse(readFile(SOURCE_DIR "/data/hafas/query-location-response.json"));
         QCOMPARE(res.size(), 1);
         QCOMPARE(p.error(), Reply::NoError);

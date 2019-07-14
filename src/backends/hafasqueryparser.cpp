@@ -59,7 +59,7 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
             case QXmlStreamReader::StartElement:
                 if (reader.name() == QLatin1String("St")) {
                     stopPoint.setName(reader.attributes().value(QLatin1String("name")).toString());
-                    stopPoint.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("evaId")).toString());
+                    setLocationIdentifier(stopPoint, reader.attributes().value(QLatin1String("evaId")).toString());
                 } else if (reader.name() == QLatin1String("Journey")) {
                     auto dt = QDateTime::fromString(reader.attributes().value(QLatin1String("fpDate")) + reader.attributes().value(QLatin1String("fpTime")), QStringLiteral("dd.MM.yyhh:mm"));
                     if (dt.date().year() < 2000) {
@@ -126,7 +126,7 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
     for (const auto &suggestion : suggestions) {
         const auto obj = suggestion.toObject();
         Location loc;
-        loc.setIdentifier(m_locationIdentifierType, obj.value(QLatin1String("extId")).toString());
+        setLocationIdentifier(loc, obj.value(QLatin1String("extId")).toString());
         loc.setName(obj.value(QLatin1String("value")).toString());
         loc.setLatitude(obj.value(QLatin1String("ycoord")).toString().toInt() / 1000000.0);
         loc.setLongitude(obj.value(QLatin1String("xcoord")).toString().toInt() / 1000000.0);
@@ -148,7 +148,7 @@ std::vector<Location> HafasQueryParser::parseQueryLocationResponse(const QByteAr
     for (const auto &stop : stops) {
         const auto obj = stop.toObject();
         Location loc;
-        loc.setIdentifier(m_locationIdentifierType, obj.value(QLatin1String("extId")).toString());
+        setLocationIdentifier(loc, obj.value(QLatin1String("extId")).toString());
         loc.setName(obj.value(QLatin1String("name")).toString());
         loc.setLatitude(obj.value(QLatin1String("y")).toString().toInt() / 1000000.0);
         loc.setLongitude(obj.value(QLatin1String("x")).toString().toInt() / 1000000.0);
@@ -275,7 +275,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
             from.setName(stringTable.lookup(fromInfo->nameStr));
             from.setLatitude(fromInfo->latitude / 1000000.0);
             from.setLongitude(fromInfo->longitude / 1000000.0);
-            from.setIdentifier(m_locationIdentifierType, QString::number(fromInfo->id));
+            setLocationIdentifier(from, QString::number(fromInfo->id));
 
             Location to;
             const auto toInfo = reinterpret_cast<const HafasJourneyResponseStation*>(rawData.constData()
@@ -284,7 +284,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
             to.setName(stringTable.lookup(toInfo->nameStr));
             to.setLatitude(toInfo->latitude / 1000000.0);
             to.setLongitude(toInfo->longitude / 1000000.0);
-            to.setIdentifier(m_locationIdentifierType, QString::number(toInfo->id));
+            setLocationIdentifier(to, QString::number(toInfo->id));
 
             JourneySection section;
             section.setFrom(from);

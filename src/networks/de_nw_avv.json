@@ -15,8 +15,10 @@
             "32": "Metro",
             "64": "Tramway",
             "128": "Bus",
-            "256": "Bus"
-        }
+            "256": "Bus",
+            "512": "RapidTransit"
+        },
+        "standardLocationIdentifierType": "ibnr"
     },
     "filter": {
         "geo": [ [ 5.8488, 51.1879 ], [ 5.8194, 50.7024 ], [ 6.3442, 50.5655 ], [ 6.5723, 51.1912 ] ]

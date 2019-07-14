@@ -34,15 +34,21 @@ class HafasBackend : public AbstractBackend
     Q_PROPERTY(QJsonObject lineModeMap WRITE setLineModeMap)
     /** Identifier type used for stations. Default is backendId(). */
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
+    /** Standard location Identifier type ("ibnr" or "uic"), if supported by the backend. */
+    Q_PROPERTY(QString standardLocationIdentifierType MEMBER m_standardLocationIdentifierType)
 
 protected:
     QString locationIdentifierType() const;
+    QString standardLocationIdentifierType() const;
+    QString locationIdentifier(const Location &loc) const;
+
     QString m_endpoint;
     std::unordered_map<int, Line::Mode> m_lineModeMap;
 
 private:
     void setLineModeMap(const QJsonObject &obj);
     QString m_locationIdentifierType;
+    QString m_standardLocationIdentifierType;
 };
 
 }
