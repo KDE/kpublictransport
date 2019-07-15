@@ -20,7 +20,7 @@
 #include "departurerequest.h"
 #include "journeyreply.h"
 #include "journeyrequest.h"
-#include "journeyrequestcontext_p.h"
+#include "requestcontext_p.h"
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "logging.h"
@@ -353,8 +353,8 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     } else {
         for (const auto &context : req.contexts()) {
             // backend supports this itself
-            if ((context.type == JourneyRequestContext::Next && context.backend->hasCapability(AbstractBackend::CanQueryNextJourney))
-              ||(context.type == JourneyRequestContext::Previous && context.backend->hasCapability(AbstractBackend::CanQueryPreviousJourney)))
+            if ((context.type == RequestContext::Next && context.backend->hasCapability(AbstractBackend::CanQueryNextJourney))
+              ||(context.type == RequestContext::Previous && context.backend->hasCapability(AbstractBackend::CanQueryPreviousJourney)))
             {
                 if (d->queryJourney(context.backend, req, reply)) {
                     ++pendingOps;
@@ -363,14 +363,14 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
             }
 
             // backend doesn't support this, let's try to emulate
-            if (context.type == JourneyRequestContext::Next && req.dateTimeMode() == JourneyRequest::Departure) {
+            if (context.type == RequestContext::Next && req.dateTimeMode() == JourneyRequest::Departure) {
                 auto r = req;
                 r.setDepartureTime(context.dateTime);
                 if (d->queryJourney(context.backend, r, reply)) {
                     ++pendingOps;
                     continue;
                 }
-            } else if (context.type == JourneyRequestContext::Previous && req.dateTimeMode() == JourneyRequest::Departure) {
+            } else if (context.type == RequestContext::Previous && req.dateTimeMode() == JourneyRequest::Departure) {
                 auto r = req;
                 r.setArrivalTime(context.dateTime);
                 if (d->queryJourney(context.backend, r, reply)) {

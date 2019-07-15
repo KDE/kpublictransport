@@ -15,14 +15,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "journeyrequestcontext_p.h"
+#include "requestcontext_p.h"
 
 using namespace KPublicTransport;
 
-JourneyRequestContext::JourneyRequestContext() = default;
-JourneyRequestContext::~JourneyRequestContext() = default;
+RequestContext::RequestContext() = default;
+RequestContext::~RequestContext() = default;
 
-bool JourneyRequestContext::operator<(const AbstractBackend *other) const
+bool RequestContext::operator<(const AbstractBackend *other) const
 {
     return backend < other;
 }

@@ -5,11 +5,11 @@ set(kpublictransport_srcs
     departurerequest.cpp
     journeyreply.cpp
     journeyrequest.cpp
-    journeyrequestcontext.cpp
     locationreply.cpp
     locationrequest.cpp
     manager.cpp
     reply.cpp
+    requestcontext.cpp
 
     backends/abstractbackend.cpp
     backends/cache.cpp

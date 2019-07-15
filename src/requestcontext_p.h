@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_JOURNEYREQUESTCONTEXT_P_H
-#define KPUBLICTRANSPORT_JOURNEYREQUESTCONTEXT_P_H
+#ifndef KPUBLICTRANSPORT_REQUESTCONTEXT_P_H
+#define KPUBLICTRANSPORT_REQUESTCONTEXT_P_H
 
 #include <QDateTime>
 #include <QVariant>
@@ -26,21 +26,21 @@ namespace KPublicTransport {
 class AbstractBackend;
 
 /** Backend-specific request information. */
-class JourneyRequestContext
+class RequestContext
 {
 public:
-    explicit JourneyRequestContext();
-    ~JourneyRequestContext();
+    explicit RequestContext();
+    ~RequestContext();
     bool operator<(const AbstractBackend *other) const;
 
     const AbstractBackend *backend = nullptr;
 
-    enum QueryType {
+    enum RequestType {
         Normal,
         Next,
         Previous
     };
-    QueryType type = Normal;
+    RequestType type = Normal;
     // for departure/next this is the time of the last previously found departure time
     // for departure/previous this is the first previously found departure time
     // for arrival/next this is the last previously found arrival time
@@ -51,4 +51,4 @@ public:
 
 }
 
-#endif // KPUBLICTRANSPORT_JOURNEYREQUESTCONTEXT_P_H
+#endif // KPUBLICTRANSPORT_REQUESTCONTEXT_P_H

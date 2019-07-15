@@ -18,7 +18,7 @@
 #include "journeyreply.h"
 #include "reply_p.h"
 #include "journeyrequest.h"
-#include "journeyrequestcontext_p.h"
+#include "requestcontext_p.h"
 #include "logging.h"
 
 #include <KPublicTransport/Journey>
@@ -190,14 +190,14 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
     if (d->request.dateTimeMode() == JourneyRequest::Departure && !res.empty()) {
         // we create a context for later queries here in any case, since we can emulate that generically without backend support
         auto context = d->nextRequest.context(backend);
-        context.type = JourneyRequestContext::Next;
+        context.type = RequestContext::Next;
         for (const auto &jny : res) {
             context.dateTime = std::max(context.dateTime, jny.scheduledDepartureTime());
         }
         d->nextRequest.setContext(backend, std::move(context));
 
         context = d->prevRequest.context(backend);
-        context.type = JourneyRequestContext::Previous;
+        context.type = RequestContext::Previous;
         context.dateTime = res[0].scheduledDepartureTime(); // "invalid" is the minimum...
         for (const auto &jny : res) {
             context.dateTime = std::min(context.dateTime, jny.scheduledDepartureTime());
@@ -220,7 +220,7 @@ void JourneyReply::setNextContext(const AbstractBackend *backend, const QVariant
 {
     Q_D(JourneyReply);
     auto context = d->nextRequest.context(backend);
-    context.type = JourneyRequestContext::Next;
+    context.type = RequestContext::Next;
     context.backendData = data;
     d->nextRequest.setContext(backend, std::move(context));
 }
@@ -229,7 +229,7 @@ void JourneyReply::setPreviousContext(const AbstractBackend *backend, const QVar
 {
     Q_D(JourneyReply);
     auto context = d->prevRequest.context(backend);
-    context.type = JourneyRequestContext::Previous;
+    context.type = RequestContext::Previous;
     context.backendData = data;
     d->prevRequest.setContext(backend, std::move(context));
 }

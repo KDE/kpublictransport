@@ -16,7 +16,7 @@
 */
 
 #include "journeyrequest.h"
-#include "journeyrequestcontext_p.h"
+#include "requestcontext_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -34,7 +34,7 @@ public:
     Location to;
     QDateTime dateTime;
     JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
-    std::vector<JourneyRequestContext> contexts;
+    std::vector<RequestContext> contexts;
 };
 }
 
@@ -109,24 +109,24 @@ void JourneyRequest::setArrivalTime(const QDateTime &dt)
     d->dateTimeMode = Arrival;
 }
 
-JourneyRequestContext JourneyRequest::context(const AbstractBackend *backend) const
+RequestContext JourneyRequest::context(const AbstractBackend *backend) const
 {
     const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
     if (it != d->contexts.end() && (*it).backend == backend) {
         return *it;
     }
 
-    JourneyRequestContext context;
+    RequestContext context;
     context.backend = backend;
     return context;
 }
 
-const std::vector<JourneyRequestContext>& JourneyRequest::contexts() const
+const std::vector<RequestContext>& JourneyRequest::contexts() const
 {
     return d->contexts;
 }
 
-void JourneyRequest::setContext(const AbstractBackend *backend, JourneyRequestContext &&context)
+void JourneyRequest::setContext(const AbstractBackend *backend, RequestContext &&context)
 {
     d.detach();
     const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);

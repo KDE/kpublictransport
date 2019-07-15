@@ -16,7 +16,7 @@
 */
 
 #include "abstractbackend.h"
-#include "../journeyrequestcontext_p.h"
+#include "../requestcontext_p.h"
 
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
