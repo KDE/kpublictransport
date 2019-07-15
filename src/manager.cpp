@@ -370,8 +370,14 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
                     ++pendingOps;
                     continue;
                 }
+            } else if (context.type == JourneyRequestContext::Previous && req.dateTimeMode() == JourneyRequest::Departure) {
+                auto r = req;
+                r.setArrivalTime(context.dateTime);
+                if (d->queryJourney(context.backend, r, reply)) {
+                    ++pendingOps;
+                    continue;
+                }
             }
-            // TODO support previous arrival
         }
     }
 

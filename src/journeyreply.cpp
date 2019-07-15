@@ -195,6 +195,14 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
             context.dateTime = std::max(context.dateTime, jny.scheduledDepartureTime());
         }
         d->nextRequest.setContext(backend, std::move(context));
+
+        context = d->prevRequest.context(backend);
+        context.type = JourneyRequestContext::Previous;
+        context.dateTime = res[0].scheduledDepartureTime(); // "invalid" is the minimum...
+        for (const auto &jny : res) {
+            context.dateTime = std::min(context.dateTime, jny.scheduledDepartureTime());
+        }
+        d->prevRequest.setContext(backend, std::move(context));
     }
 
     // update result
