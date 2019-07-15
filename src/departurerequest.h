@@ -22,12 +22,16 @@
 
 #include <QSharedDataPointer>
 
+#include <vector>
+
 class QDateTime;
 
 namespace KPublicTransport {
 
+class AbstractBackend;
 class DepartureRequestPrivate;
 class Location;
+class RequestContext;
 
 /** Describes an arrival or departure search.
  *  By default this search departures starting now, from the given Location.
@@ -64,6 +68,13 @@ public:
     void setMode(Mode mode);
 
 private:
+    friend class AbstractBackend;
+    friend class DepartureReply;
+    friend class Manager;
+    Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
+    Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
+    Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);
+
     QExplicitlySharedDataPointer<DepartureRequestPrivate> d;
 };
 }

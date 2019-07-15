@@ -16,6 +16,7 @@
 */
 
 #include "departurerequest.h"
+#include "requestcontext_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -30,6 +31,7 @@ public:
     Location stop;
     QDateTime dateTime;
     DepartureRequest::Mode mode = DepartureRequest::QueryDeparture;
+    std::vector<RequestContext> contexts;
 };
 }
 
@@ -83,4 +85,32 @@ void DepartureRequest::setMode(DepartureRequest::Mode mode)
 {
     d.detach();
     d->mode = mode;
+}
+
+RequestContext DepartureRequest::context(const AbstractBackend *backend) const
+{
+    const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
+    if (it != d->contexts.end() && (*it).backend == backend) {
+        return *it;
+    }
+
+    RequestContext context;
+    context.backend = backend;
+    return context;
+}
+
+const std::vector<RequestContext>& DepartureRequest::contexts() const
+{
+    return d->contexts;
+}
+
+void DepartureRequest::setContext(const AbstractBackend *backend, RequestContext &&context)
+{
+    d.detach();
+    const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
+    if (it != d->contexts.end() && (*it).backend == backend) {
+        (*it) = std::move(context);
+    } else {
+        d->contexts.insert(it, std::move(context));
+    }
 }
