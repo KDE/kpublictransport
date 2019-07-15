@@ -209,6 +209,16 @@ Kirigami.ApplicationWindow {
                         onClicked: _queryMgr.queryDeparture("", latQuery.text, lonQuery.text, arrivalBox.checked);
 
                     }
+                    QQC2.Button {
+                        text: "Earlier"
+                        enabled: _queryMgr.model.canQueryPrevious
+                        onClicked: _queryMgr.model.queryPrevious()
+                    }
+                    QQC2.Button {
+                        text: "Later"
+                        enabled: _queryMgr.model.canQueryNext
+                        onClicked: _queryMgr.model.queryNext()
+                    }
                 }
 
                 ListView {
