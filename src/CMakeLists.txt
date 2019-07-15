@@ -34,6 +34,7 @@ set(kpublictransport_srcs
     datatypes/mergeutil.cpp
     datatypes/platformutils.cpp
 
+    models/departurequerymodel.cpp
     models/journeyquerymodel.cpp
 
     networks/networks.qrc
@@ -93,6 +94,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
 )
 ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     HEADER_NAMES
+        DepartureQueryModel
         JourneyQueryModel
     PREFIX KPublicTransport
     REQUIRED_HEADERS KPublicTransport_Models_HEADERS

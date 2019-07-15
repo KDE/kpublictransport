@@ -19,6 +19,7 @@
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
+#include <KPublicTransport/DepartureQueryModel>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Manager>
 
@@ -38,17 +39,15 @@ using namespace KPublicTransport;
 class QueryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
-    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
+    Q_PROPERTY(QAbstractItemModel* model READ departureQueryModel CONSTANT)
 public:
+    QueryManager()
+    {
+        model.setManager(&ptMgr);
+    }
+
     Q_INVOKABLE void queryDeparture(const QString &name, double fromLat, double fromLon, bool queryArrival)
     {
-        engine->rootContext()->setContextProperty(QStringLiteral("_departures"), QVariantList());
-        m_loading = true;
-        emit loadingChanged();
-        m_errorMsg.clear();
-        emit errorMessageChanged();
-
         Location from;
         from.setCoordinate(fromLat, fromLon);
         from.setName(name);
@@ -56,28 +55,7 @@ public:
         DepartureRequest depReq(from);
         depReq.setMode(queryArrival ? DepartureRequest::QueryArrival : DepartureRequest::QueryDeparture);
 
-        auto reply = ptMgr.queryDeparture(depReq);
-        QObject::connect(reply, &DepartureReply::finished, this, [reply, this]{
-            m_loading = false;
-            emit loadingChanged();
-
-            if (reply->error() == DepartureReply::NoError) {
-                m_departures = reply->takeResult();
-                QVariantList l;
-                l.reserve(m_departures.size());
-                std::transform(m_departures.begin(), m_departures.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
-                engine->rootContext()->setContextProperty(QStringLiteral("_departures"), l);
-
-                QVariantList attrs;
-                attrs.reserve(reply->attributions().size());
-                std::transform(reply->attributions().begin(), reply->attributions().end(), std::back_inserter(attrs), [](const auto &attr) { return QVariant::fromValue(attr); });
-                engine->rootContext()->setContextProperty(QStringLiteral("_attributions"), attrs);
-            } else {
-                m_errorMsg = reply->errorString();
-                emit errorMessageChanged();
-            }
-            reply->deleteLater();
-        });
+        model.setRequest(depReq);
     }
 
     Q_INVOKABLE void setAllowInsecure(bool insecure)
@@ -92,7 +70,7 @@ public:
             qWarning() << f.errorString() << fileName;
             return;
         }
-        f.write(QJsonDocument(Departure::toJson(m_departures)).toJson());
+        f.write(QJsonDocument(Departure::toJson(model.departures())).toJson());
     }
 
     Q_INVOKABLE QString locationIds(const QVariant &v)
@@ -107,20 +85,14 @@ public:
         return l.join(QLatin1String(", "));
     }
 
-    bool loading() const { return m_loading; }
-    QString errorMessage() const { return m_errorMsg; }
-
-    QQmlEngine *engine = nullptr;
-
-Q_SIGNALS:
-    void loadingChanged();
-    void errorMessageChanged();
+    QAbstractItemModel* departureQueryModel()
+    {
+        return &model;
+    }
 
 private:
     Manager ptMgr;
-    std::vector<Departure> m_departures;
-    QString m_errorMsg;
-    bool m_loading = false;
+    DepartureQueryModel model;
 };
 
 int main(int argc, char **argv)
@@ -135,7 +107,6 @@ int main(int argc, char **argv)
 
     QueryManager mgr;
     QQmlApplicationEngine engine;
-    mgr.engine = &engine;
     engine.rootContext()->setContextProperty(QStringLiteral("_queryMgr"), &mgr);
     engine.load(QStringLiteral("qrc:/departurequery.qml"));
     return app.exec();

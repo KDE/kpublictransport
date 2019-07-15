@@ -47,6 +47,9 @@ public:
     ~DepartureRequest();
     DepartureRequest& operator=(const DepartureRequest&);
 
+    /** Returns @c true if this is a default-constructed object without any request parameters. */
+    bool isEmpty() const;
+
     /** The location at which to look for departures. */
     Location stop() const;
     /** Sets the location at which to look for departures/arrivals. */

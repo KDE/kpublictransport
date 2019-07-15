@@ -58,7 +58,7 @@ Kirigami.ApplicationWindow {
     TestLocationsModel { id: exampleModel }
     AttributionSheet {
         id: aboutSheet
-        attributions: _attributions
+        attributions: _queryMgr.model.attributions
     }
     LocationDetailsSheet { id: locationDetailsSheet }
 
@@ -71,13 +71,13 @@ Kirigami.ApplicationWindow {
                 Rectangle {
                     id: colorBar
                     width: Kirigami.Units.largeSpacing
-                    color: modelData.route.line.hasColor ? modelData.route.line.color : "transparent"
+                    color: departure.route.line.hasColor ? departure.route.line.color : "transparent"
                     Layout.fillHeight: true
                 }
 
                 QQC2.Label {
                     text: {
-                        switch (modelData.route.line.mode) {
+                        switch (departure.route.line.mode) {
                             case Line.Air: return "✈️";
                             case Line.Boat: return "🛥️";
                             case Line.Bus: return "🚍";
@@ -104,43 +104,43 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     QQC2.Label {
                         Layout.fillWidth: true
-                        text: modelData.route.line.modeString + " " + modelData.route.line.name + " to " + modelData.route.direction
+                        text: departure.route.line.modeString + " " + departure.route.line.name + " to " + departure.route.direction
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "Arrival: " + modelData.scheduledArrivalTime.toTimeString()
+                            text: "Arrival: " + departure.scheduledArrivalTime.toTimeString()
                         }
                         QQC2.Label {
-                            text: (modelData.arrivalDelay >= 0 ? "+" : "") + modelData.arrivalDelay
-                            color: modelData.arrivalDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
-                            visible: modelData.hasExpectedArrivalTime
+                            text: (departure.arrivalDelay >= 0 ? "+" : "") + departure.arrivalDelay
+                            color: departure.arrivalDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
+                            visible: departure.hasExpectedArrivalTime
                         }
                         QQC2.Label {
-                            text: "Departure: " + modelData.scheduledDepartureTime.toTimeString()
+                            text: "Departure: " + departure.scheduledDepartureTime.toTimeString()
                         }
                         QQC2.Label {
-                            text: (modelData.departureDelay >= 0 ? "+" : "") + modelData.departureDelay
-                            color: modelData.departureDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
-                            visible: modelData.hasExpectedDepartureTime
+                            text: (departure.departureDelay >= 0 ? "+" : "") + departure.departureDelay
+                            color: departure.departureDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
+                            visible: departure.hasExpectedDepartureTime
                         }
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "From: <a href=\"#from\">" + modelData.stopPoint.name + "</a>"
+                            text: "From: <a href=\"#from\">" + departure.stopPoint.name + "</a>"
                             onLinkActivated: {
-                                locationDetailsSheet.location = modelData.stopPoint;
+                                locationDetailsSheet.location = departure.stopPoint;
                                 locationDetailsSheet.sheetOpen = true;
                             }
                         }
                         QQC2.Label {
-                            visible: modelData.scheduledPlatform != ""
-                            text: "Platform: " + modelData.scheduledPlatform + (platformChange.visible ? " -> " : "")
-                            color: (!platformChange.visible && modelData.hasExpectedPlatform) ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.textColor
+                            visible: departure.scheduledPlatform != ""
+                            text: "Platform: " + departure.scheduledPlatform + (platformChange.visible ? " -> " : "")
+                            color: (!platformChange.visible && departure.hasExpectedPlatform) ? Kirigami.Theme.positiveTextColor : Kirigami.Theme.textColor
                         }
                         QQC2.Label {
                             id: platformChange
-                            text: modelData.expectedPlatform
-                            visible: modelData.hasExpectedPlatform && modelData.scheduledPlatform != modelData.expectedPlatform
+                            text: departure.expectedPlatform
+                            visible: departure.hasExpectedPlatform && departure.scheduledPlatform != departure.expectedPlatform
                             color: Kirigami.Theme.negativeTextColor
                         }
                     }
@@ -214,19 +214,19 @@ Kirigami.ApplicationWindow {
                 ListView {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    model: _departures
+                    model: _queryMgr.model
                     clip: true
                     delegate: departureDelegate
 
                     QQC2.BusyIndicator {
                         anchors.centerIn: parent
-                        running: _queryMgr.loading
+                        running: _queryMgr.model.loading
                     }
 
                     QQC2.Label {
                         anchors.centerIn: parent
                         width: parent.width
-                        text: _queryMgr.errorMessage
+                        text: _queryMgr.model.errorMessage
                         color: Kirigami.Theme.negativeTextColor
                         wrapMode: Text.Wrap
                     }
