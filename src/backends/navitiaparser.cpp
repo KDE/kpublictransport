@@ -254,6 +254,7 @@ std::vector<Departure> NavitiaParser::parseDepartures(const QByteArray &data)
         res.push_back(parseDeparture(v.toObject()));
     }
 
+    parseLinks(topObj.value(QLatin1String("links")).toArray());
     parseAttributions(topObj.value(QLatin1String("feed_publishers")).toArray());
     return res;
 }

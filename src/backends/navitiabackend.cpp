@@ -141,12 +141,18 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
 
     qCDebug(Log) << "GET:" << url;
     auto netReply = nam->get(netReq);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply] {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
                 NavitiaParser p;
                 addResult(reply, p.parseDepartures(netReply->readAll()));
+                if (p.nextLink.isValid()) {
+                    setNextRequestContext(reply, p.nextLink);
+                }
+                if (p.prevLink.isValid()) {
+                    setPreviousRequestContext(reply, p.prevLink);
+                }
                 addAttributions(reply, std::move(p.attributions));
                 break;
             }
