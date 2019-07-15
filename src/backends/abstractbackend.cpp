@@ -16,7 +16,6 @@
 */
 
 #include "abstractbackend.h"
-#include "../requestcontext_p.h"
 
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -96,21 +95,6 @@ bool AbstractBackend::queryLocation(const LocationRequest &request, LocationRepl
     Q_UNUSED(reply);
     Q_UNUSED(nam);
     return false;
-}
-
-QVariant AbstractBackend::journeyContext(const JourneyRequest &request) const
-{
-    return request.context(this).backendData;
-}
-
-void AbstractBackend::setNextJourneyContext(JourneyReply *reply, const QVariant &data) const
-{
-    reply->setNextContext(this, data);
-}
-
-void AbstractBackend::setPreviousJourneyContext(JourneyReply *reply, const QVariant &data) const
-{
-    reply->setPreviousContext(this, data);
 }
 
 void AbstractBackend::addAttributions(Reply *reply, std::vector<Attribution> &&attributions)

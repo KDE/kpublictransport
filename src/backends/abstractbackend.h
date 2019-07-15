@@ -19,11 +19,13 @@
 #define KPUBLICTRANSPORT_ABSTRACTBACKEND_H
 
 #include "reply.h"
+#include "requestcontext_p.h"
 
 #include <KPublicTransport/Attribution>
 
 #include <QFlags>
 #include <QPolygonF>
+#include <QVariant>
 
 class QNetworkAccessManager;
 
@@ -119,9 +121,19 @@ protected:
 
     static void addAttributions(Reply *reply, std::vector<Attribution> &&attributions);
 
-    QVariant journeyContext(const JourneyRequest &request) const;
-    void setNextJourneyContext(JourneyReply *reply, const QVariant &data) const;
-    void setPreviousJourneyContext(JourneyReply *reply, const QVariant &data) const;
+    template <typename ReqT> inline QVariant requestContext(const ReqT &request) const
+    {
+        return request.context(this).backendData;
+    }
+
+    template <typename RepT> inline void setNextRequestContext(RepT *reply, const QVariant &data) const
+    {
+        reply->setNextContext(this, data);
+    }
+    template <typename RepT> inline void setPreviousRequestContext(RepT *reply, const QVariant &data) const
+    {
+        reply->setPreviousContext(this, data);
+    }
 
 private:
     Q_DISABLE_COPY(AbstractBackend)

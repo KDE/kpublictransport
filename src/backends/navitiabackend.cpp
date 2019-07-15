@@ -57,7 +57,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
         return false;
     }
 
-    QUrl url = journeyContext(req).value<QUrl>();
+    QUrl url = requestContext(req).value<QUrl>();
     if (!url.isValid()) {
         url.setHost(m_endpoint);
         url.setPath(QStringLiteral("/v1") +
@@ -91,10 +91,10 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 NavitiaParser parser;
                 addResult(reply, this, parser.parseJourneys(netReply->readAll()));
                 if (parser.nextLink.isValid()) {
-                    setNextJourneyContext(reply, parser.nextLink);
+                    setNextRequestContext(reply, parser.nextLink);
                 }
                 if (parser.prevLink.isValid()) {
-                    setPreviousJourneyContext(reply, parser.prevLink);
+                    setPreviousRequestContext(reply, parser.prevLink);
                 }
                 addAttributions(reply, std::move(parser.attributions));
                 break;
