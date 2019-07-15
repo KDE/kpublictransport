@@ -146,7 +146,7 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
             addError(reply, p.error(), p.errorMessage());
             qCDebug(Log) << p.error() << p.errorMessage();
         } else {
-            addResult(reply, std::move(res));
+            addResult(reply, this, std::move(res));
         }
     });
 

@@ -67,6 +67,8 @@ public:
         Secure = 1, ///< uses transport encryption
         CanQueryNextJourney = 2, ///< supports querying for later journeys
         CanQueryPreviousJourney = 4, ///< supports query for earlier journeys
+        CanQueryNextDeparture = 8, ///< supports querying for later departures
+        CanQueryPreviousDeparture = 16, ///< supports query for earlier departures
     };
     Q_DECLARE_FLAGS(Capabilities, Capability)
 

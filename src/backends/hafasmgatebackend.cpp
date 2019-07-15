@@ -181,7 +181,7 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
                     addError(reply, m_parser.error(), m_parser.errorMessage());
                     qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
                 } else {
-                    addResult(reply, std::move(result));
+                    addResult(reply, this, std::move(result));
                 }
                 break;
             }

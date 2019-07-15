@@ -187,7 +187,7 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
         } else {
-            addResult(reply, std::move(res));
+            addResult(reply, this, std::move(res));
         }
     });
 

@@ -84,6 +84,8 @@ DepartureReply::DepartureReply(const DepartureRequest &req, QObject *parent)
 {
     Q_D(DepartureReply);
     d->request = req;
+    d->nextRequest = req;
+    d->prevRequest = req;
 }
 
 DepartureReply::~DepartureReply() = default;
@@ -106,9 +108,21 @@ std::vector<Departure>&& DepartureReply::takeResult()
     return std::move(d->result);
 }
 
-void DepartureReply::addResult(std::vector<Departure> &&res)
+void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Departure> &&res)
 {
     Q_D(DepartureReply);
+    // update context for next/prev requests
+    // do this first, before res gets moved from below
+    if (d->request.mode() == DepartureRequest::QueryDeparture && !res.empty()) {
+        // we create a context for later queries here in any case, since we can emulate that generically without backend support
+        auto context = d->nextRequest.context(backend);
+        context.type = RequestContext::Next;
+        for (const auto &dep : res) {
+            context.dateTime = std::max(context.dateTime, dep.scheduledDepartureTime());
+        }
+        d->nextRequest.setContext(backend, std::move(context));
+    }
+
     if (d->result.empty()) {
         d->result = std::move(res);
     } else {

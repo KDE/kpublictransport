@@ -58,7 +58,7 @@ private:
     explicit DepartureReply(const DepartureRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    void addResult(std::vector<Departure> &&res);
+    void addResult(const AbstractBackend *backend, std::vector<Departure> &&res);
 
     Q_DECL_HIDDEN void setNextContext(const AbstractBackend *backend, const QVariant &data);
     Q_DECL_HIDDEN void setPreviousContext(const AbstractBackend *backend, const QVariant &data);

@@ -146,7 +146,7 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
             case QNetworkReply::NoError:
             {
                 NavitiaParser p;
-                addResult(reply, p.parseDepartures(netReply->readAll()));
+                addResult(reply, this, p.parseDepartures(netReply->readAll()));
                 if (p.nextLink.isValid()) {
                     setNextRequestContext(reply, p.nextLink);
                 }

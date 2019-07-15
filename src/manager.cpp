@@ -61,6 +61,7 @@ public:
 
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
+    bool queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply);
 
     template <typename RepT, typename ReqT> RepT* makeReply(const ReqT &request);
 
@@ -283,6 +284,38 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     return backend->queryJourney(req, reply, nam());
 }
 
+bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply)
+{
+    if (backend->isLocationExcluded(req.stop())) {
+        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
+        return false;
+    }
+    if (!backend->hasCapability(AbstractBackend::Secure) && !m_allowInsecure) {
+        qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
+        return false;
+    }
+    reply->addAttribution(backend->attribution());
+
+    // check if we first need to resolve the location first
+    if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
+        qCDebug(Log) << "Backend needs location query first:" << backend->backendId();
+        LocationRequest locReq;
+        locReq.setCoordinate(req.stop().latitude(), req.stop().longitude());
+        locReq.setName(req.stop().name());
+        resolveLocation(locReq, backend, [reply, backend, this](const Location &loc) {
+            const auto depLoc = Location::merge(reply->request().stop(), loc);
+            auto depRequest = reply->request();
+            depRequest.setStop(depLoc);
+            if (!backend->queryDeparture(depRequest, reply, nam())) {
+                reply->addError(Reply::NotFoundError, {});
+            }
+        });
+        return true;
+    }
+
+    return backend->queryDeparture(req, reply, nam());
+}
+
 void ManagerPrivate::readCachedAttributions()
 {
     if (m_hasReadCachedAttributions) {
@@ -389,39 +422,40 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
 {
     auto reply = d->makeReply<DepartureReply>(req);
     int pendingOps = 0;
-    for (const auto &backend : d->m_backends) {
-        if (backend->isLocationExcluded(req.stop())) {
-            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
-            continue;
-        }
-        if (!backend->hasCapability(AbstractBackend::Secure) && !d->m_allowInsecure) {
-            qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
-            continue;
-        }
-        reply->addAttribution(backend->attribution());
 
-        // check if we first need to resolve the location first
-        if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
-            qCDebug(Log) << "Backend needs location query first:" << backend->backendId();
-            ++pendingOps;
-            LocationRequest locReq;
-            locReq.setCoordinate(req.stop().latitude(), req.stop().longitude());
-            locReq.setName(req.stop().name());
-            d->resolveLocation(locReq, backend.get(), [reply, &backend, this](const Location &loc) {
-                const auto depLoc = Location::merge(reply->request().stop(), loc);
-                auto depRequest = reply->request();
-                depRequest.setStop(depLoc);
-                if (!backend->queryDeparture(depRequest, reply, d->nam())) {
-                    reply->addError(Reply::NotFoundError, {});
+    // first time/direct query
+    if (req.contexts().empty()) {
+        for (const auto &backend : d->m_backends) {
+            if (d->queryDeparture(backend.get(), req, reply)) {
+                ++pendingOps;
+            }
+        }
+
+    // subsequent earlier/later query
+    } else {
+        for (const auto &context : req.contexts()) {
+            // backend supports this itself
+            if ((context.type == RequestContext::Next && context.backend->hasCapability(AbstractBackend::CanQueryNextDeparture))
+              ||(context.type == RequestContext::Previous && context.backend->hasCapability(AbstractBackend::CanQueryPreviousDeparture)))
+            {
+                if (d->queryDeparture(context.backend, req, reply)) {
+                    ++pendingOps;
+                    continue;
                 }
-            });
-            continue;
-        }
+            }
 
-        if (backend->queryDeparture(req, reply, d->nam())) {
-            ++pendingOps;
+            // backend doesn't support this, let's try to emulate
+            if (context.type == RequestContext::Next && req.mode() == DepartureRequest::QueryDeparture) {
+                auto r = req;
+                r.setDateTime(context.dateTime);
+                if (d->queryDeparture(context.backend, r, reply)) {
+                    ++pendingOps;
+                    continue;
+                }
+            }
         }
     }
+
     reply->setPendingOps(pendingOps);
     return reply;
 }
