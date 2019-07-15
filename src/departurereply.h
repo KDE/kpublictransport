@@ -44,12 +44,24 @@ public:
     /** Returns the found arrival or departure information for moving elsewhere. */
     std::vector<Departure>&& takeResult();
 
+    /** Returns a request object for querying departures following the ones returned by this reply.
+     *  The returned request is empty if querying later departures is not possible/supported.
+     */
+    DepartureRequest nextRequest() const;
+    /** Returns a request object for querying departures preceeding the ones returned by this reply.
+     *  The returned request is empty if querying earlier departures is not possible/supported.
+     */
+    DepartureRequest previousRequest() const;
+
 private:
     friend class ManagerPrivate;
     explicit DepartureReply(const DepartureRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
     void addResult(std::vector<Departure> &&res);
+
+    Q_DECL_HIDDEN void setNextContext(const AbstractBackend *backend, const QVariant &data);
+    Q_DECL_HIDDEN void setPreviousContext(const AbstractBackend *backend, const QVariant &data);
 
     Q_DECLARE_PRIVATE(DepartureReply)
 };

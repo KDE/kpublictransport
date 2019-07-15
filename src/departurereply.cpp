@@ -16,9 +16,10 @@
 */
 
 #include "departurereply.h"
-#include "reply_p.h"
 #include "departurerequest.h"
 #include "logging.h"
+#include "reply_p.h"
+#include "requestcontext_p.h"
 
 #include <KPublicTransport/Departure>
 
@@ -32,6 +33,8 @@ public:
     void finalizeResult() override;
 
     DepartureRequest request;
+    DepartureRequest nextRequest;
+    DepartureRequest prevRequest;
     std::vector<Departure> result;
 };
 }
@@ -114,4 +117,40 @@ void DepartureReply::addResult(std::vector<Departure> &&res)
 
     d->pendingOps--;
     d->emitFinishedIfDone(this);
+}
+
+DepartureRequest DepartureReply::nextRequest() const
+{
+    Q_D(const DepartureReply);
+    if (d->nextRequest.contexts().empty()) {
+        return {};
+    }
+    return d->nextRequest;
+}
+
+DepartureRequest DepartureReply::previousRequest() const
+{
+    Q_D(const DepartureReply);
+    if (d->prevRequest.contexts().empty()) {
+        return {};
+    }
+    return d->prevRequest;
+}
+
+void DepartureReply::setNextContext(const AbstractBackend *backend, const QVariant &data)
+{
+    Q_D(DepartureReply);
+    auto context = d->nextRequest.context(backend);
+    context.type = RequestContext::Next;
+    context.backendData = data;
+    d->nextRequest.setContext(backend, std::move(context));
+}
+
+void DepartureReply::setPreviousContext(const AbstractBackend *backend, const QVariant &data)
+{
+    Q_D(DepartureReply);
+    auto context = d->prevRequest.context(backend);
+    context.type = RequestContext::Previous;
+    context.backendData = data;
+    d->prevRequest.setContext(backend, std::move(context));
 }
