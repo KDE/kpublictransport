@@ -108,7 +108,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
 
         req.insert(QStringLiteral("outDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
         req.insert(QStringLiteral("outTime"), request.dateTime().time().toString(QStringLiteral("hhmmss")));
-        req.insert(QStringLiteral("outFrwd"), true);
+        req.insert(QStringLiteral("outFrwd"), request.dateTimeMode() == JourneyRequest::Departure);
 
         tripSearch.insert(QStringLiteral("cfg"), cfg);
         tripSearch.insert(QStringLiteral("meth"), QLatin1String("TripSearch"));
