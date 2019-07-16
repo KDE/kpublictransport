@@ -20,6 +20,7 @@
 
 #include "kpublictransport_export.h"
 
+#include <QMetaType>
 #include <QSharedDataPointer>
 
 #include <vector>
@@ -83,5 +84,7 @@ private:
     QExplicitlySharedDataPointer<DepartureRequestPrivate> d;
 };
 }
+
+Q_DECLARE_METATYPE(KPublicTransport::DepartureRequest)
 
 #endif // KPUBLICTRANSPORT_DEPARTUREREQUEST_H

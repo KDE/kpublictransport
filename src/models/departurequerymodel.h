@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/DepartureRequest>
+
 #include <QAbstractListModel>
 
 #include <memory>
@@ -43,6 +45,12 @@ class KPUBLICTRANSPORT_EXPORT DepartureQueryModel : public QAbstractListModel
 {
     Q_OBJECT
 
+    /** Sets the KPublicTransport::Manager instance. Necessary for this to work at all. */
+    Q_PROPERTY(KPublicTransport::Manager* manager READ manager WRITE setManager NOTIFY managerChanged)
+
+    /** Specify the actual departure query. */
+    Q_PROPERTY(KPublicTransport::DepartureRequest request READ request WRITE setRequest NOTIFY requestChanged)
+
     /** @c true if there is still an ongoing network operation. */
     Q_PROPERTY(bool loading READ isLoading NOTIFY loadingChanged)
     /** Contains the error message if all backends failed to provide a result. */
@@ -60,9 +68,10 @@ public:
     explicit DepartureQueryModel(QObject *parent = nullptr);
     ~DepartureQueryModel();
 
-    /** Sets the KPublicTransport::Manager instance. Necessary for this to work at all. */
+    Manager* manager() const;
     void setManager(Manager *mgr);
-    /** Specify the actual departure query. */
+
+    DepartureRequest request() const;
     void setRequest(const DepartureRequest &req);
 
     bool isLoading() const;
@@ -94,6 +103,8 @@ public:
     const std::vector<Attribution>& attributions() const;
 
 Q_SIGNALS:
+    void managerChanged();
+    void requestChanged();
     void loadingChanged();
     void errorMessageChanged();
     void canQueryPrevNextChanged();

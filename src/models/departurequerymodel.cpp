@@ -21,7 +21,6 @@
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Manager>
 
 #include <QDateTime>
@@ -35,10 +34,12 @@ class DepartureQueryModelPrivate
 public:
     Manager *mgr = nullptr;
 
+    void queryDeparture(DepartureQueryModel *q);
     void mergeResults(DepartureQueryModel *q, std::vector<Departure> &&res);
 
     std::vector<Departure> m_departures;
 
+    DepartureRequest m_request;
     DepartureRequest m_nextRequest;
     DepartureRequest m_prevRequest;
 
@@ -46,6 +47,44 @@ public:
     QString m_errorMessage;
     bool m_loading = false;
 };
+}
+
+void DepartureQueryModelPrivate::queryDeparture(DepartureQueryModel *q)
+{
+    m_errorMessage.clear();
+    emit q->errorMessageChanged();
+    m_loading = true;
+    emit q->loadingChanged();
+    emit q->canQueryPrevNextChanged();
+    if (!m_departures.empty()) {
+        q->beginResetModel();
+        m_departures.clear();
+        q->endResetModel();
+    }
+    m_nextRequest = {};
+    m_prevRequest = {};
+    m_attributions.clear();
+    emit q->attributionsChanged();
+
+    auto reply = mgr->queryDeparture(m_request);
+    QObject::connect(reply, &KPublicTransport::DepartureReply::finished, q, [reply, q, this]{
+        m_loading = false;
+        emit q->loadingChanged();
+        if (reply->error() == KPublicTransport::DepartureReply::NoError) {
+            q->beginResetModel();
+            m_departures = reply->takeResult();
+            m_nextRequest = reply->nextRequest();
+            m_prevRequest = reply->previousRequest();
+            m_attributions = std::move(reply->takeAttributions());
+            emit q->attributionsChanged();
+            q->endResetModel();
+        } else {
+            m_errorMessage = reply->errorString();
+            emit q->errorMessageChanged();
+        }
+        reply->deleteLater();
+        emit q->canQueryPrevNextChanged();
+    });
 }
 
 void DepartureQueryModelPrivate::mergeResults(DepartureQueryModel *q, std::vector<Departure> &&res)
@@ -113,52 +152,36 @@ DepartureQueryModel::DepartureQueryModel(QObject *parent)
 
 DepartureQueryModel::~DepartureQueryModel() = default;
 
+Manager* DepartureQueryModel::manager() const
+{
+    return d->mgr;
+}
+
 void DepartureQueryModel::setManager(Manager *mgr)
 {
+    if (d->mgr == mgr) {
+        return;
+    }
+
     d->mgr = mgr;
+    emit managerChanged();
+    if (d->mgr && !d->m_request.isEmpty()) {
+        d->queryDeparture(this);
+    }
+}
+
+DepartureRequest DepartureQueryModel::request() const
+{
+    return d->m_request;
 }
 
 void DepartureQueryModel::setRequest(const DepartureRequest &req)
 {
-    if (!d->mgr) {
-        qCWarning(Log) << "No KPublicTransport::Manager set!";
-        return;
+    d->m_request = req;
+    emit requestChanged();
+    if (d->mgr && !req.isEmpty()) {
+        d->queryDeparture(this);
     }
-
-    d->m_errorMessage.clear();
-    emit errorMessageChanged();
-    d->m_loading = true;
-    emit loadingChanged();
-    emit canQueryPrevNextChanged();
-    if (!d->m_departures.empty()) {
-        beginResetModel();
-        d->m_departures.clear();
-        endResetModel();
-    }
-    d->m_nextRequest = {};
-    d->m_prevRequest = {};
-    d->m_attributions.clear();
-    emit attributionsChanged();
-
-    auto reply = d->mgr->queryDeparture(req);
-    QObject::connect(reply, &KPublicTransport::DepartureReply::finished, this, [reply, this]{
-        d->m_loading = false;
-        emit loadingChanged();
-        if (reply->error() == KPublicTransport::DepartureReply::NoError) {
-            beginResetModel();
-            d->m_departures = reply->takeResult();
-            d->m_nextRequest = reply->nextRequest();
-            d->m_prevRequest = reply->previousRequest();
-            d->m_attributions = std::move(reply->takeAttributions());
-            emit attributionsChanged();
-            endResetModel();
-        } else {
-            d->m_errorMessage = reply->errorString();
-            emit errorMessageChanged();
-        }
-        reply->deleteLater();
-        emit canQueryPrevNextChanged();
-    });
 }
 
 bool DepartureQueryModel::isLoading() const
@@ -285,3 +308,5 @@ QVariantList DepartureQueryModel::attributionsVariant() const
     std::transform(d->m_attributions.begin(), d->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });
     return l;
 }
+
+#include "moc_departurequerymodel.moc"

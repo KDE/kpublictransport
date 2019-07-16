@@ -19,11 +19,16 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
-#include <KPublicTransport/Line>
+#include <KPublicTransport/DepartureQueryModel>
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Line>
+#include <KPublicTransport/Manager>
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
+    qmlRegisterUncreatableType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
+
+    qmlRegisterType<KPublicTransport::DepartureQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
 }
