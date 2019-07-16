@@ -24,6 +24,7 @@
 #include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Manager>
 
+#include <QDateTime>
 #include <QDebug>
 
 using namespace KPublicTransport;
@@ -49,7 +50,58 @@ public:
 
 void DepartureQueryModelPrivate::mergeResults(DepartureQueryModel *q, std::vector<Departure> &&res)
 {
-    // TODO
+    Q_ASSERT(!m_departures.empty());
+    auto result = std::move(res);
+    if (result.empty()) {
+        return;
+    }
+
+    // sort and merge results, aligned by first transport departure
+    // TODO this is actually wrong for arrivals!
+    std::sort(result.begin(), result.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
+    });
+
+    auto depIt = m_departures.begin();
+    auto resIt = result.begin();
+
+    while (true) {
+        if (resIt == result.end()) {
+            break;
+        }
+
+        if (depIt == m_departures.end()) {
+            const auto row = std::distance(m_departures.begin(), depIt);
+            q->beginInsertRows({}, row, row + std::distance(resIt, result.end()) - 1);
+            m_departures.insert(depIt, resIt, result.end());
+            q->endInsertRows();
+            break;
+        }
+
+        if ((*resIt).scheduledDepartureTime() < (*depIt).scheduledDepartureTime()) {
+            const auto row = std::distance(m_departures.begin(), depIt);
+            q->beginInsertRows({}, row, row);
+            depIt = m_departures.insert(depIt, *resIt);
+            ++resIt;
+            q->endInsertRows();
+            continue;
+        }
+
+        if ((*depIt).scheduledDepartureTime() < (*resIt).scheduledDepartureTime()) {
+            ++depIt;
+            continue;
+        }
+
+        if (Departure::isSame(*depIt, *resIt)) {
+            *depIt = Departure::merge(*depIt, *resIt);
+            ++resIt;
+            const auto row = std::distance(m_departures.begin(), depIt);
+            const auto idx = q->index(row, 0);
+            emit q->dataChanged(idx, idx);
+        } else {
+            ++depIt;
+        }
+    }
 }
 
 
