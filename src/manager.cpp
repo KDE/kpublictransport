@@ -270,9 +270,9 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
         LocationRequest toReq;
         toReq.setCoordinate(req.to().latitude(), req.to().longitude());
         toReq.setName(req.to().name());
-        resolveLocation(toReq, backend, [reply, backend, this](const Location &loc) {
-            const auto toLoc = Location::merge(reply->request().to(), loc);
-            auto jnyRequest = reply->request();
+        resolveLocation(toReq, backend, [req, toReq, reply, backend, this](const Location &loc) {
+            const auto toLoc = Location::merge(req.to(), loc);
+            auto jnyRequest = req;
             jnyRequest.setTo(toLoc);
             if (!backend->queryJourney(jnyRequest, reply, nam())) {
                 reply->addError(Reply::NotFoundError, {});
@@ -302,9 +302,9 @@ bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const Depart
         LocationRequest locReq;
         locReq.setCoordinate(req.stop().latitude(), req.stop().longitude());
         locReq.setName(req.stop().name());
-        resolveLocation(locReq, backend, [reply, backend, this](const Location &loc) {
-            const auto depLoc = Location::merge(reply->request().stop(), loc);
-            auto depRequest = reply->request();
+        resolveLocation(locReq, backend, [reply, req, backend, this](const Location &loc) {
+            const auto depLoc = Location::merge(req.stop(), loc);
+            auto depRequest = req;
             depRequest.setStop(depLoc);
             if (!backend->queryDeparture(depRequest, reply, nam())) {
                 reply->addError(Reply::NotFoundError, {});
