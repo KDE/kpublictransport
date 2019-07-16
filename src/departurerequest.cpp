@@ -119,3 +119,8 @@ void DepartureRequest::setContext(const AbstractBackend *backend, RequestContext
         d->contexts.insert(it, std::move(context));
     }
 }
+
+void DepartureRequest::purgeLoops(const DepartureRequest &baseRequest)
+{
+    RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
+}

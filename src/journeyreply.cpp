@@ -55,6 +55,9 @@ void JourneyReplyPrivate::finalizeResult()
     std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
     });
+
+    nextRequest.purgeLoops(request);
+    prevRequest.purgeLoops(request);
 }
 
 static QDateTime firstTransportDeparture(const Journey &jny)

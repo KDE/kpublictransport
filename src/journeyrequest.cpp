@@ -136,3 +136,8 @@ void JourneyRequest::setContext(const AbstractBackend *backend, RequestContext &
         d->contexts.insert(it, std::move(context));
     }
 }
+
+void JourneyRequest::purgeLoops(const JourneyRequest &baseRequest)
+{
+    RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
+}

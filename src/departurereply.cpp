@@ -77,6 +77,9 @@ void DepartureReplyPrivate::finalizeResult()
             }
         }
     }
+
+    nextRequest.purgeLoops(request);
+    prevRequest.purgeLoops(request);
 }
 
 DepartureReply::DepartureReply(const DepartureRequest &req, QObject *parent)

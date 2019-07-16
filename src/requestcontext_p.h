@@ -31,7 +31,13 @@ class RequestContext
 public:
     explicit RequestContext();
     ~RequestContext();
+    bool operator==(const RequestContext &other) const;
     bool operator<(const AbstractBackend *other) const;
+
+    /** Removes all contexts from @p contexts that already exist in @p baseContexts.
+     *  Both vectors are assumed to be sorted by backend pointer.
+     */
+    static void purgeLoops(std::vector<RequestContext> &contexts, const std::vector<RequestContext> &baseContexts);
 
     const AbstractBackend *backend = nullptr;
 
