@@ -19,12 +19,9 @@
 #define KPUBLICTRANSPORT_REPLY_H
 
 #include "kpublictransport_export.h"
+#include "internal_impl.h"
 
 #include <QObject>
-
-#include <memory>
-
-template <typename T> static inline typename std::unique_ptr<T>::pointer qGetPtrHelper(const std::unique_ptr<T> &p) { return p.get(); }
 
 namespace KPublicTransport {
 

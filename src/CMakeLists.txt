@@ -114,5 +114,6 @@ install(FILES
     ${KPublicTransport_Datatypes_HEADERS}
     ${KPublicTransport_Models_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
+    internal_impl.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kpublictransport
 )
