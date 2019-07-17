@@ -16,6 +16,7 @@
 */
 
 #include "journeyquerymodel.h"
+#include "abstractquerymodel_p.h"
 #include "logging.h"
 
 #include <KPublicTransport/Attribution>
@@ -29,21 +30,17 @@
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
-class JourneyQueryModelPrivate
+class JourneyQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
-    Manager *mgr = nullptr;
-
-    void mergeResults(JourneyQueryModel *q, std::vector<Journey> &&res);
+    void mergeResults(std::vector<Journey> &&res);
 
     std::vector<Journey> m_journeys;
 
     JourneyRequest m_nextRequest;
     JourneyRequest m_prevRequest;
 
-    std::vector<Attribution> m_attributions;
-    QString m_errorMessage;
-    bool m_loading = false;
+    Q_DECLARE_PUBLIC(JourneyQueryModel)
 };
 }
 
@@ -59,8 +56,9 @@ static QDateTime firstTransportDeparture(const Journey &jny)
     return jny.scheduledDepartureTime();
 }
 
-void JourneyQueryModelPrivate::mergeResults(JourneyQueryModel *q, std::vector<Journey> &&res)
+void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&res)
 {
+    Q_Q(JourneyQueryModel);
     Q_ASSERT(!m_journeys.empty());
     auto result = std::move(res);
     if (result.empty()) {
@@ -116,30 +114,22 @@ void JourneyQueryModelPrivate::mergeResults(JourneyQueryModel *q, std::vector<Jo
 
 
 JourneyQueryModel::JourneyQueryModel(QObject *parent)
-    : QAbstractListModel(parent)
-    , d(new JourneyQueryModelPrivate)
+    : AbstractQueryModel(new JourneyQueryModelPrivate, parent)
 {
+    connect(this, &AbstractQueryModel::loadingChanged, this, &JourneyQueryModel::canQueryPrevNextChanged);
 }
 
 JourneyQueryModel::~JourneyQueryModel() = default;
 
-void JourneyQueryModel::setManager(Manager *mgr)
-{
-    d->mgr = mgr;
-}
-
 void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
 {
-    if (!d->mgr) {
+    Q_D(JourneyQueryModel);
+    if (!d->m_manager) {
         qCWarning(Log) << "No KPublicTransport::Manager set!";
         return;
     }
 
-    d->m_errorMessage.clear();
-    emit errorMessageChanged();
-    d->m_loading = true;
-    emit loadingChanged();
-    emit canQueryPrevNextChanged();
+    d->resetForNewRequest();
     if (!d->m_journeys.empty()) {
         beginResetModel();
         d->m_journeys.clear();
@@ -147,110 +137,86 @@ void JourneyQueryModel::setJourneyRequest(const JourneyRequest &req)
     }
     d->m_nextRequest = {};
     d->m_prevRequest = {};
-    d->m_attributions.clear();
-    emit attributionsChanged();
 
-    auto reply = d->mgr->queryJourney(req);
-    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
-        d->m_loading = false;
-        emit loadingChanged();
+    auto reply = d->m_manager->queryJourney(req);
+    d->monitorReply(reply);
+    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this] {
+        Q_D(JourneyQueryModel);
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             beginResetModel();
             d->m_journeys = reply->takeResult();
             d->m_nextRequest = reply->nextRequest();
             d->m_prevRequest = reply->previousRequest();
-            d->m_attributions = std::move(reply->takeAttributions());
-            emit attributionsChanged();
             endResetModel();
-        } else {
-            d->m_errorMessage = reply->errorString();
-            emit errorMessageChanged();
         }
-        reply->deleteLater();
         emit canQueryPrevNextChanged();
+        reply->deleteLater();
     });
-}
-
-bool JourneyQueryModel::isLoading() const
-{
-    return d->m_loading;
-}
-
-QString JourneyQueryModel::errorMessage() const
-{
-    return d->m_errorMessage;
 }
 
 bool JourneyQueryModel::canQueryNext() const
 {
+    Q_D(const JourneyQueryModel);
     return !d->m_loading && !d->m_journeys.empty() && !d->m_nextRequest.isEmpty();
 }
 
 void JourneyQueryModel::queryNext()
 {
+    Q_D(JourneyQueryModel);
     if (!canQueryNext()) {
         qCWarning(Log) << "Cannot query next journeys";
         return;
     }
 
-    d->m_loading = true;
-    emit loadingChanged();
-    emit canQueryPrevNextChanged();
-
-    auto reply = d->mgr->queryJourney(d->m_nextRequest);
-    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
-        d->m_loading = false;
-        emit loadingChanged();
+    d->setLoading(true);
+    auto reply = d->m_manager->queryJourney(d->m_nextRequest);
+    d->monitorReply(reply);
+    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this] {
+        Q_D(JourneyQueryModel);
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
-            d->mergeResults(this, std::move(reply->takeResult()));
+            d->mergeResults(std::move(reply->takeResult()));
             d->m_nextRequest = reply->nextRequest();
-            // TODO check if there are new attributions
         } else {
-            d->m_errorMessage = reply->errorString();
             d->m_nextRequest = {};
-            emit errorMessageChanged();
         }
-        reply->deleteLater();
         emit canQueryPrevNextChanged();
+        reply->deleteLater();
     });
 }
 
 bool JourneyQueryModel::canQueryPrevious() const
 {
+    Q_D(const JourneyQueryModel);
     return !d->m_loading && !d->m_journeys.empty() && !d->m_prevRequest.isEmpty();
 }
 
 void JourneyQueryModel::queryPrevious()
 {
+    Q_D(JourneyQueryModel);
     if (!canQueryPrevious()) {
         qCWarning(Log) << "Cannot query previous journeys";
         return;
     }
 
-    d->m_loading = true;
-    emit loadingChanged();
-    emit canQueryPrevNextChanged();
-
-    auto reply = d->mgr->queryJourney(d->m_prevRequest);
-    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this]{
-        d->m_loading = false;
-        emit loadingChanged();
+    d->setLoading(true);
+    auto reply = d->m_manager->queryJourney(d->m_prevRequest);
+    d->monitorReply(reply);
+    QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this] {
+        Q_D(JourneyQueryModel);
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
-            d->mergeResults(this, std::move(reply->takeResult()));
+            d->mergeResults(std::move(reply->takeResult()));
             d->m_prevRequest = reply->previousRequest();
-            // TODO check if there are new attributions
         } else {
-            d->m_errorMessage = reply->errorString();
             d->m_prevRequest = {};
-            emit errorMessageChanged();
         }
-        reply->deleteLater();
         emit canQueryPrevNextChanged();
+        reply->deleteLater();
     });
 }
 
 int JourneyQueryModel::rowCount(const QModelIndex& parent) const
 {
+    Q_D(const JourneyQueryModel);
     if (parent.isValid()) {
         return 0;
     }
@@ -259,6 +225,7 @@ int JourneyQueryModel::rowCount(const QModelIndex& parent) const
 
 QVariant JourneyQueryModel::data(const QModelIndex& index, int role) const
 {
+    Q_D(const JourneyQueryModel);
     if (!index.isValid()) {
         return {};
     }
@@ -280,18 +247,6 @@ QHash<int, QByteArray> JourneyQueryModel::roleNames() const
 
 const std::vector<Journey>& JourneyQueryModel::journeys() const
 {
+    Q_D(const JourneyQueryModel);
     return d->m_journeys;
-}
-
-const std::vector<Attribution>& JourneyQueryModel::attributions() const
-{
-    return d->m_attributions;
-}
-
-QVariantList JourneyQueryModel::attributionsVariant() const
-{
-    QVariantList l;
-    l.reserve(d->m_attributions.size());
-    std::transform(d->m_attributions.begin(), d->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });
-    return l;
 }

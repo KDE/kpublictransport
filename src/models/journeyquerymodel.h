@@ -19,19 +19,13 @@
 #define KPUBLICTRANSPORT_JOURNEYQUERYMODEL_H
 
 #include "kpublictransport_export.h"
-
-#include <QAbstractListModel>
-
-#include <memory>
-#include <vector>
+#include "abstractquerymodel.h"
 
 namespace KPublicTransport {
 
-class Attribution;
 class Journey;
 class JourneyQueryModelPrivate;
 class JourneyRequest;
-class Manager;
 
 /**
  * Model representing journey query results.
@@ -39,33 +33,20 @@ class Manager;
  * backends, including merging them, as well as providing a way to search
  * for earlier/later journeys for the initial request.
  */
-class KPUBLICTRANSPORT_EXPORT JourneyQueryModel : public QAbstractListModel
+class KPUBLICTRANSPORT_EXPORT JourneyQueryModel : public AbstractQueryModel
 {
     Q_OBJECT
-    /** @c true if there is still an ongoing network operation. */
-    Q_PROPERTY(bool loading READ isLoading NOTIFY loadingChanged)
-    /** Contains the error message if all backends failed to provide a result. */
-    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
-
     /** Whether querying for later journeys is possible. */
     Q_PROPERTY(bool canQueryNext READ canQueryNext NOTIFY canQueryPrevNextChanged)
     /** Whether querying for earlier journey is possible. */
     Q_PROPERTY(bool canQueryPrevious READ canQueryPrevious NOTIFY canQueryPrevNextChanged)
 
-    /** Attributions for the provided data. */
-    Q_PROPERTY(QVariantList attributions READ attributionsVariant NOTIFY attributionsChanged)
-
 public:
     explicit JourneyQueryModel(QObject *parent = nullptr);
     ~JourneyQueryModel();
 
-    /** Sets the KPublicTransport::Manager instance. Necessary for this to work at all. */
-    void setManager(Manager *mgr);
     /** Specify the actual journey query. */
     void setJourneyRequest(const JourneyRequest &req);
-
-    bool isLoading() const;
-    QString errorMessage() const;
 
     bool canQueryNext() const;
     /** Search for later journeys.
@@ -89,20 +70,13 @@ public:
 
     /** The current model content. */
     const std::vector<Journey>& journeys() const;
-    /** The attribution information for the current model content. */
-    const std::vector<Attribution>& attributions() const;
 
 Q_SIGNALS:
-    void loadingChanged();
-    void errorMessageChanged();
     void canQueryPrevNextChanged();
-    void attributionsChanged();
 
 private:
-    Q_DECL_HIDDEN QVariantList attributionsVariant() const;
-
     friend class JourneyQueryModelPrivate;
-    std::unique_ptr<JourneyQueryModelPrivate> d;
+    Q_DECLARE_PRIVATE(JourneyQueryModel)
 };
 
 }
