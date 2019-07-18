@@ -285,6 +285,9 @@ void EfaParser::parseTripArrival(QXmlStreamReader &reader, JourneySection &secti
 JourneySection EfaParser::parseTripPartialRoute(QXmlStreamReader &reader) const
 {
     JourneySection section;
+    if (reader.attributes().value(QLatin1String("type")) == QLatin1String("IT")) {
+        section.setMode(JourneySection::Walking);
+    }
 
     while (!reader.atEnd()) {
         reader.readNext();
@@ -312,7 +315,9 @@ JourneySection EfaParser::parseTripPartialRoute(QXmlStreamReader &reader) const
             route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
             route.setLine(line);
             section.setRoute(route);
-            section.setMode(JourneySection::PublicTransport);
+            if (section.mode() != JourneySection::Walking) {
+                section.setMode(JourneySection::PublicTransport);
+            }
             reader.skipCurrentElement();
         } else {
             reader.skipCurrentElement();
