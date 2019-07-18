@@ -21,11 +21,12 @@
 #include "kpublictransport_export.h"
 #include "abstractquerymodel.h"
 
+#include <KPublicTransport/JourneyRequest>
+
 namespace KPublicTransport {
 
 class Journey;
 class JourneyQueryModelPrivate;
-class JourneyRequest;
 
 /**
  * Model representing journey query results.
@@ -36,6 +37,10 @@ class JourneyRequest;
 class KPUBLICTRANSPORT_EXPORT JourneyQueryModel : public AbstractQueryModel
 {
     Q_OBJECT
+
+    /** Specify the requested journey. */
+    Q_PROPERTY(KPublicTransport::JourneyRequest request READ request WRITE setRequest NOTIFY requestChanged)
+
     /** Whether querying for later journeys is possible. */
     Q_PROPERTY(bool canQueryNext READ canQueryNext NOTIFY canQueryPrevNextChanged)
     /** Whether querying for earlier journey is possible. */
@@ -45,8 +50,9 @@ public:
     explicit JourneyQueryModel(QObject *parent = nullptr);
     ~JourneyQueryModel();
 
+    JourneyRequest request() const;
     /** Specify the actual journey query. */
-    void setJourneyRequest(const JourneyRequest &req);
+    void setRequest(const JourneyRequest &req);
 
     bool canQueryNext() const;
     /** Search for later journeys.
@@ -72,6 +78,7 @@ public:
     const std::vector<Journey>& journeys() const;
 
 Q_SIGNALS:
+    void requestChanged();
     void canQueryPrevNextChanged();
 
 private:

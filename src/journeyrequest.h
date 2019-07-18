@@ -20,6 +20,7 @@
 
 #include "kpublictransport_export.h"
 
+#include <QMetaType>
 #include <QSharedDataPointer>
 
 #include <vector>
@@ -92,5 +93,7 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(KPublicTransport::JourneyRequest)
 
 #endif // KPUBLICTRANSPORT_JOURNEYREQUEST_H

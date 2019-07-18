@@ -21,6 +21,7 @@
 
 #include <KPublicTransport/DepartureQueryModel>
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/JourneyQueryModel>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Manager>
 
@@ -31,4 +32,5 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
 
     qmlRegisterType<KPublicTransport::DepartureQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
+    qmlRegisterType<KPublicTransport::JourneyQueryModel>("org.kde.kpublictransport", 1, 0, "JourneyQueryModel");
 }

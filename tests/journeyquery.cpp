@@ -83,7 +83,7 @@ public:
             request.setArrivalTime(QDateTime::currentDateTime().addSecs(2 * 3600));
         }
 
-        journeyQueryModel->setJourneyRequest(request);
+        journeyQueryModel->setRequest(request);
     }
 
     Q_INVOKABLE void setAllowInsecure(bool insecure)
