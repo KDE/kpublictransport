@@ -83,70 +83,20 @@ static bool isSameLineName(const QString &lhs, const QString &rhs)
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Line)
-
-QString Line::name() const
-{
-    return d->name;
-}
-
-void Line::setName(const QString &name)
-{
-    d.detach();
-    d->name = name;
-}
-
-QColor Line::color() const
-{
-    return d->color;
-}
-
-void Line::setColor(const QColor &color)
-{
-    d.detach();
-    d->color = color;
-}
+KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QColor, color, setColor)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QColor, textColor, setTextColor)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Line, Line::Mode, mode, setMode)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, modeString, setModeString)
 
 bool Line::hasColor() const
 {
     return d->color.isValid();
 }
 
-QColor Line::textColor() const
-{
-    return d->textColor;
-}
-
-void Line::setTextColor(const QColor &textColor)
-{
-    d.detach();
-    d->textColor = textColor;
-}
-
 bool Line::hasTextColor() const
 {
     return d->textColor.isValid();
-}
-
-Line::Mode Line::mode() const
-{
-    return d->mode;
-}
-
-void Line::setMode(Line::Mode mode)
-{
-    d.detach();
-    d->mode = mode;
-}
-
-QString Line::modeString() const
-{
-    return d->modeString;
-}
-
-void Line::setModeString(const QString &modeString)
-{
-    d.detach();
-    d->modeString = modeString;
 }
 
 static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
@@ -226,28 +176,8 @@ Line Line::fromJson(const QJsonObject &obj)
 
 
 KPUBLICTRANSPORT_MAKE_GADGET(Route)
-
-Line Route::line() const
-{
-    return d->line;
-}
-
-void Route::setLine(const Line &line)
-{
-    d.detach();
-    d->line = line;
-}
-
-QString Route::direction() const
-{
-    return d->direction;
-}
-
-void Route::setDirection(const QString &direction)
-{
-    d.detach();
-    d->direction = direction;
-}
+KPUBLICTRANSPORT_MAKE_PROPERTY(Route, Line, line, setLine)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Route, QString, direction, setDirection)
 
 bool Route::isSame(const Route &lhs, const Route &rhs)
 {

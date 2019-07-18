@@ -28,34 +28,8 @@ class LinePrivate;
 class KPUBLICTRANSPORT_EXPORT Line
 {
     KPUBLICTRANSPORT_GADGET(Line)
-    /** Name of the line. */
-    Q_PROPERTY(QString name READ name WRITE setName)
-    /** Color of the line. */
-    Q_PROPERTY(QColor color READ color WRITE setColor)
-    /** @c true if a line color is set. */
-    Q_PROPERTY(bool hasColor READ hasColor STORED false)
-    /** Text color to use on top of the line color. */
-    Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor)
-    /** @c true if a text color is set. */
-    Q_PROPERTY(bool hasTextColor READ hasTextColor STORED false)
-    /** Type of transport. */
-    Q_PROPERTY(Mode mode READ mode WRITE setMode)
-    /** Human readable representation of the type of transport.
-     *  This is not necessarily a simple 1:1 mapping from mode, but can contain
-     *  e.g. a product name.
-     */
-    Q_PROPERTY(QString modeString READ modeString WRITE setModeString)
 
 public:
-    QString name() const;
-    void setName(const QString &name);
-    QColor color() const;
-    void setColor(const QColor &color);
-    bool hasColor() const;
-    QColor textColor() const;
-    void setTextColor(const QColor &textColor);
-    bool hasTextColor() const;
-
     enum Mode { // ### direct copy from Navitia, we maybe can reduce that a bit
         Unknown,
         Air,
@@ -76,10 +50,28 @@ public:
         Tramway,
     };
     Q_ENUM(Mode)
-    Mode mode() const;
-    void setMode(Mode mode);
-    QString modeString() const;
-    void setModeString(const QString &modeString);
+
+    /** Name of the line. */
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+    /** Color of the line. */
+    KPUBLICTRANSPORT_PROPERTY(QColor, color, setColor)
+    /** @c true if a line color is set. */
+    Q_PROPERTY(bool hasColor READ hasColor STORED false)
+    /** Text color to use on top of the line color. */
+    KPUBLICTRANSPORT_PROPERTY(QColor, textColor, setTextColor)
+    /** @c true if a text color is set. */
+    Q_PROPERTY(bool hasTextColor READ hasTextColor STORED false)
+    /** Type of transport. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Line::Mode, mode, setMode)
+    /** Human readable representation of the type of transport.
+     *  This is not necessarily a simple 1:1 mapping from mode, but can contain
+     *  e.g. a product name.
+     */
+    KPUBLICTRANSPORT_PROPERTY(QString, modeString, setModeString)
+
+public:
+    bool hasColor() const;
+    bool hasTextColor() const;
 
     /** Checks if to instances refer to the same line (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Line &lhs, const Line &rhs);
@@ -102,16 +94,11 @@ class KPUBLICTRANSPORT_EXPORT Route
 {
     KPUBLICTRANSPORT_GADGET(Route)
     /** Line this route belongs to. */
-    Q_PROPERTY(KPublicTransport::Line line READ line WRITE setLine)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Line, line, setLine)
     /** Direction of the route. */
-    Q_PROPERTY(QString direction READ direction WRITE setDirection)
+    KPUBLICTRANSPORT_PROPERTY(QString, direction, setDirection)
 
 public:
-    Line line() const;
-    void setLine(const Line &line);
-    QString direction() const;
-    void setDirection(const QString &direction);
-
     /** Checks if to instances refer to the same route (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Route &lhs, const Route &rhs);
 

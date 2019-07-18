@@ -30,7 +30,7 @@ namespace Internal {
 template <typename T>
 struct parameter_type
 {
-    using type = typename std::conditional<std::is_fundamental<T>::value, T, const T&>::type;
+    using type = typename std::conditional<std::is_fundamental<T>::value || std::is_enum<T>::value, T, const T&>::type;
 };
 }
 }
