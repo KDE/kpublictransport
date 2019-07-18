@@ -20,6 +20,7 @@
 #include "logging.h"
 #include "reply_p.h"
 #include "requestcontext_p.h"
+#include "datatypes/departureutil_p.h"
 
 #include <KPublicTransport/Departure>
 
@@ -47,26 +48,14 @@ void DepartureReplyPrivate::finalizeResult()
     error = Reply::NoError;
     errorMsg.clear();
 
-    if (request.mode() == DepartureRequest::QueryDeparture) {
-        std::sort(result.begin(), result.end(), [](const auto &lhs, const auto &rhs) {
-            return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
-        });
-    } else {
-        std::sort(result.begin(), result.end(), [](const auto &lhs, const auto &rhs) {
-            return lhs.scheduledArrivalTime() < rhs.scheduledArrivalTime();
-        });
-    }
+    std::sort(result.begin(), result.end(), [this](const auto &lhs, const auto &rhs) {
+            return DepartureUtil::timeLessThan(request, lhs, rhs);
+    });
 
     for (auto it = result.begin(); it != result.end(); ++it) {
         for (auto mergeIt = it + 1; mergeIt != result.end();) {
-            if (request.mode() == DepartureRequest::QueryDeparture) {
-                if ((*it).scheduledDepartureTime() != (*mergeIt).scheduledDepartureTime()) {
-                    break;
-                }
-            } else {
-                if ((*it).scheduledArrivalTime() != (*mergeIt).scheduledArrivalTime()) {
-                    break;
-                }
+            if (!DepartureUtil::timeEqual(request, (*it), (*mergeIt))) {
+                break;
             }
 
             if (Departure::isSame(*it, *mergeIt)) {

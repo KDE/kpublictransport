@@ -18,6 +18,7 @@
 #include "departurequerymodel.h"
 #include "abstractquerymodel_p.h"
 #include "logging.h"
+#include "datatypes/departureutil_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Departure>
@@ -88,9 +89,8 @@ void DepartureQueryModelPrivate::mergeResults(std::vector<Departure> &&res)
     }
 
     // sort and merge results, aligned by first transport departure
-    // TODO this is actually wrong for arrivals!
-    std::sort(result.begin(), result.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
+    std::sort(result.begin(), result.end(), [this](const auto &lhs, const auto &rhs) {
+        return DepartureUtil::timeLessThan(m_request, lhs, rhs);
     });
 
     auto depIt = m_departures.begin();
@@ -109,7 +109,7 @@ void DepartureQueryModelPrivate::mergeResults(std::vector<Departure> &&res)
             break;
         }
 
-        if ((*resIt).scheduledDepartureTime() < (*depIt).scheduledDepartureTime()) {
+        if (DepartureUtil::timeLessThan(m_request, (*resIt), (*depIt))) {
             const auto row = std::distance(m_departures.begin(), depIt);
             q->beginInsertRows({}, row, row);
             depIt = m_departures.insert(depIt, *resIt);
@@ -118,7 +118,7 @@ void DepartureQueryModelPrivate::mergeResults(std::vector<Departure> &&res)
             continue;
         }
 
-        if ((*depIt).scheduledDepartureTime() < (*resIt).scheduledDepartureTime()) {
+        if (DepartureUtil::timeLessThan(m_request, (*depIt), (*resIt))) {
             ++depIt;
             continue;
         }

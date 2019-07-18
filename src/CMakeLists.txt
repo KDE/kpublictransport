@@ -27,6 +27,7 @@ set(kpublictransport_srcs
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
     datatypes/departure.cpp
+    datatypes/departureutil.cpp
     datatypes/journey.cpp
     datatypes/json.cpp
     datatypes/line.cpp
