@@ -32,6 +32,12 @@ void ReplyPrivate::emitFinishedIfDone(Reply *q)
     }
 }
 
+void ReplyPrivate::emitUpdated(Reply *q)
+{
+    shouldClearError = true;
+    emit q->updated();
+}
+
 Reply::Reply(ReplyPrivate *dd, QObject *parent)
     : QObject(parent)
     , d_ptr(dd)
@@ -42,11 +48,17 @@ Reply::~Reply() = default;
 
 Reply::Error Reply::error() const
 {
+    if (d_ptr->shouldClearError) {
+        return Reply::NoError;
+    }
     return d_ptr->error;
 }
 
 QString Reply::errorString() const
 {
+    if (d_ptr->shouldClearError) {
+        return {};
+    }
     return d_ptr->errorMsg;
 }
 

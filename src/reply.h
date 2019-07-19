@@ -56,8 +56,14 @@ public:
     std::vector<Attribution>&& takeAttributions();
 
 Q_SIGNALS:
-    /** Emitted whenever the journey search has been completed. */
+    /** Emitted whenever the corresponding search has been completed. */
     void finished();
+    /** Emitted whenever new results are available, even before the search has been completed.
+     *  @note At this point no guarantees about the result apply, sorting/merging/etc might not have been applied yet
+     *  and not all properties of the reply might be valid. Avoid the usage of this in general, unless you write
+     *  dynamically updating models that need very quick results at the expensve of incompleteness.
+     */
+    void updated();
 
 protected:
     Q_DECL_HIDDEN explicit Reply(ReplyPrivate *dd, QObject *parent);

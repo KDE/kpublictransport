@@ -68,14 +68,14 @@ void DepartureQueryModelPrivate::queryDeparture()
     monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::DepartureReply::finished, q, [reply, q, this]{
         if (reply->error() == KPublicTransport::DepartureReply::NoError) {
-            q->beginResetModel();
-            m_departures = reply->takeResult();
             m_nextRequest = reply->nextRequest();
             m_prevRequest = reply->previousRequest();
-            q->endResetModel();
+            emit q->canQueryPrevNextChanged();
         }
         reply->deleteLater();
-        emit q->canQueryPrevNextChanged();
+    });
+    QObject::connect(reply, &KPublicTransport::DepartureReply::updated,q, [reply, this]() {
+        mergeResults(reply->takeResult());
     });
 }
 
@@ -156,13 +156,16 @@ void DepartureQueryModel::queryNext()
     QObject::connect(reply, &KPublicTransport::DepartureReply::finished, this, [reply, this] {
         Q_D(DepartureQueryModel);
         if (reply->error() == KPublicTransport::DepartureReply::NoError) {
-            d->mergeResults(std::move(reply->takeResult()));
             d->m_nextRequest = reply->nextRequest();
         } else {
             d->m_nextRequest = {};
         }
         emit canQueryPrevNextChanged();
         reply->deleteLater();
+    });
+    QObject::connect(reply, &KPublicTransport::DepartureReply::updated, this, [reply, this]() {
+        Q_D(DepartureQueryModel);
+        d->mergeResults(reply->takeResult());
     });
 }
 
@@ -186,13 +189,16 @@ void DepartureQueryModel::queryPrevious()
     QObject::connect(reply, &KPublicTransport::DepartureReply::finished, this, [reply, this] {
         Q_D(DepartureQueryModel);
         if (reply->error() == KPublicTransport::DepartureReply::NoError) {
-            d->mergeResults(std::move(reply->takeResult()));
             d->m_prevRequest = reply->previousRequest();
         } else {
             d->m_prevRequest = {};
         }
         emit canQueryPrevNextChanged();
         reply->deleteLater();
+    });
+    QObject::connect(reply, &KPublicTransport::DepartureReply::updated, this, [reply, this]() {
+        Q_D(DepartureQueryModel);
+        d->mergeResults(reply->takeResult());
     });
 }
 

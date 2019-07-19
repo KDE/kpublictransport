@@ -38,12 +38,14 @@ public:
 
     virtual void finalizeResult() = 0;
 
+    void emitUpdated(Reply *q);
     void emitFinishedIfDone(Reply *q);
 
     std::vector<Attribution> attributions;
     QString errorMsg;
     Reply::Error error = Reply::NoError;
     int pendingOps = -1;
+    bool shouldClearError = false; // if we got valid results from one backend, we ignore errors from others
 };
 
 }

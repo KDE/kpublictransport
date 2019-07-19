@@ -122,6 +122,7 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Depar
     }
 
     d->pendingOps--;
+    d->emitUpdated(this);
     d->emitFinishedIfDone(this);
 }
 
