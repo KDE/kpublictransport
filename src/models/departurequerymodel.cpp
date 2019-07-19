@@ -35,7 +35,7 @@ class DepartureQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void queryDeparture();
-    void mergeResults(std::vector<Departure> &&res);
+    void mergeResults(const std::vector<Departure> &newDepartures);
 
     std::vector<Departure> m_departures;
 
@@ -79,59 +79,35 @@ void DepartureQueryModelPrivate::queryDeparture()
     });
 }
 
-void DepartureQueryModelPrivate::mergeResults(std::vector<Departure> &&res)
+void DepartureQueryModelPrivate::mergeResults(const std::vector<Departure> &newDepartures)
 {
     Q_Q(DepartureQueryModel);
-    Q_ASSERT(!m_departures.empty());
-    auto result = std::move(res);
-    if (result.empty()) {
-        return;
-    }
+    for (const auto &dep : newDepartures) {
+        auto it = std::lower_bound(m_departures.begin(), m_departures.end(), dep, [this](const auto &lhs, const auto &rhs) {
+            return DepartureUtil::timeLessThan(m_request, lhs, rhs);
+        });
 
-    // sort and merge results, aligned by first transport departure
-    std::sort(result.begin(), result.end(), [this](const auto &lhs, const auto &rhs) {
-        return DepartureUtil::timeLessThan(m_request, lhs, rhs);
-    });
-
-    auto depIt = m_departures.begin();
-    auto resIt = result.begin();
-
-    while (true) {
-        if (resIt == result.end()) {
-            break;
+        bool found = false;
+        while (it != m_departures.end() && DepartureUtil::timeEqual(m_request, dep, *it)) {
+            if (Departure::isSame(dep, *it)) {
+                *it = Departure::merge(*it, dep);
+                found = true;
+                const auto row = std::distance(m_departures.begin(), it);
+                const auto idx = q->index(row, 0);
+                emit q->dataChanged(idx, idx);
+                break;
+            } else {
+                ++it;
+            }
         }
-
-        if (depIt == m_departures.end()) {
-            const auto row = std::distance(m_departures.begin(), depIt);
-            q->beginInsertRows({}, row, row + std::distance(resIt, result.end()) - 1);
-            m_departures.insert(depIt, resIt, result.end());
-            q->endInsertRows();
-            break;
-        }
-
-        if (DepartureUtil::timeLessThan(m_request, (*resIt), (*depIt))) {
-            const auto row = std::distance(m_departures.begin(), depIt);
-            q->beginInsertRows({}, row, row);
-            depIt = m_departures.insert(depIt, *resIt);
-            ++resIt;
-            q->endInsertRows();
+        if (found) {
             continue;
         }
 
-        if (DepartureUtil::timeLessThan(m_request, (*depIt), (*resIt))) {
-            ++depIt;
-            continue;
-        }
-
-        if (Departure::isSame(*depIt, *resIt)) {
-            *depIt = Departure::merge(*depIt, *resIt);
-            ++resIt;
-            const auto row = std::distance(m_departures.begin(), depIt);
-            const auto idx = q->index(row, 0);
-            emit q->dataChanged(idx, idx);
-        } else {
-            ++depIt;
-        }
+        const auto row = std::distance(m_departures.begin(), it);
+        q->beginInsertRows({}, row, row);
+        m_departures.insert(it, dep);
+        q->endInsertRows();
     }
 }
 
