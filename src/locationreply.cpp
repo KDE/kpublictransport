@@ -22,6 +22,8 @@
 
 #include <KPublicTransport/Location>
 
+#include <QDebug>
+
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -41,6 +43,17 @@ void LocationReplyPrivate::finalizeResult()
     }
     error = Reply::NoError;
     errorMsg.clear();
+
+    // remove implausible results
+    for (auto it = locations.begin(); it != locations.end();) {
+        // we sometimes seem to get bogus places in Antartica
+        if ((*it).hasCoordinate() && (*it).latitude() < -65.0) {
+            qCDebug(Log) << "Dropping location in Antarctica" << (*it).name() << (*it).latitude() << (*it).longitude();
+            it = locations.erase(it);
+            continue;
+        }
+        ++it;
+    }
 
     // merge all duplicates, as there is no natural order for name searches this is done in O(n²) for now
     for (auto it = locations.begin(); it != locations.end(); ++it) {
