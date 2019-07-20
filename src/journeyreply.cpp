@@ -33,31 +33,13 @@ namespace KPublicTransport {
 class JourneyReplyPrivate : public ReplyPrivate {
 public:
     void finalizeResult() override;
-    void postProcessJourneys();
+    static void postProcessJourneys(std::vector<Journey> &journeys);
 
     JourneyRequest request;
     JourneyRequest nextRequest;
     JourneyRequest prevRequest;
     std::vector<Journey> journeys;
 };
-}
-
-void JourneyReplyPrivate::finalizeResult()
-{
-    if (journeys.empty()) {
-        return;
-    }
-
-    error = Reply::NoError;
-    errorMsg.clear();
-
-    postProcessJourneys();
-    std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
-    });
-
-    nextRequest.purgeLoops(request);
-    prevRequest.purgeLoops(request);
 }
 
 static QDateTime firstTransportDeparture(const Journey &jny)
@@ -71,6 +53,43 @@ static QDateTime firstTransportDeparture(const Journey &jny)
     return jny.scheduledDepartureTime();
 }
 
+void JourneyReplyPrivate::finalizeResult()
+{
+    if (journeys.empty()) {
+        return;
+    }
+
+    error = Reply::NoError;
+    errorMsg.clear();
+
+    // merge results, aligned by first transport departure
+    std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
+        return firstTransportDeparture(lhs) < firstTransportDeparture(rhs);
+    });
+    for (auto it = journeys.begin(); it != journeys.end(); ++it) {
+        for (auto mergeIt = it + 1; mergeIt != journeys.end();) {
+            if (firstTransportDeparture(*it) != firstTransportDeparture(*mergeIt)) {
+                break;
+            }
+
+            if (Journey::isSame(*it, *mergeIt)) {
+                *it = Journey::merge(*it, *mergeIt);
+                mergeIt = journeys.erase(mergeIt);
+            } else {
+                ++mergeIt;
+            }
+        }
+    }
+
+    // sort by departure time for display
+    std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
+    });
+
+    nextRequest.purgeLoops(request);
+    prevRequest.purgeLoops(request);
+}
+
 static bool isPointlessSection(const JourneySection &section)
 {
     if (section.mode() == JourneySection::Walking) {
@@ -79,7 +98,7 @@ static bool isPointlessSection(const JourneySection &section)
     return false;
 }
 
-void JourneyReplyPrivate::postProcessJourneys()
+void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
 {
     // try to fill gaps in timezone data
     for (auto &journey : journeys) {
@@ -105,25 +124,6 @@ void JourneyReplyPrivate::postProcessJourneys()
             }
         }
         journey.setSections(std::move(sections));
-    }
-
-    // sort and merge results, aligned by first transport departure
-    std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
-        return firstTransportDeparture(lhs) < firstTransportDeparture(rhs);
-    });
-    for (auto it = journeys.begin(); it != journeys.end(); ++it) {
-        for (auto mergeIt = it + 1; mergeIt != journeys.end();) {
-            if (firstTransportDeparture(*it) != firstTransportDeparture(*mergeIt)) {
-                break;
-            }
-
-            if (Journey::isSame(*it, *mergeIt)) {
-                *it = Journey::merge(*it, *mergeIt);
-                mergeIt = journeys.erase(mergeIt);
-            } else {
-                ++mergeIt;
-            }
-        }
     }
 
     // remove pointless sections such as 0-length walks
@@ -188,6 +188,8 @@ JourneyRequest JourneyReply::previousRequest() const
 void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey> &&res)
 {
     Q_D(JourneyReply);
+    d->postProcessJourneys(res);
+
     // update context for next/prev requests
     // do this first, before res gets moved from below
     if (d->request.dateTimeMode() == JourneyRequest::Departure && !res.empty()) {
