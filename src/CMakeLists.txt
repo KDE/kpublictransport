@@ -105,7 +105,7 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
 )
 
 install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES org_kde_kpublictransport.categories DESTINATION ${KDE_INSTALL_CONFDIR})
+install(FILES org_kde_kpublictransport.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
 install(FILES
     ${KPublicTransport_FORWARDING_HEADERS}
     ${KPublicTransport_Datatypes_FORWARDING_HEADERS}

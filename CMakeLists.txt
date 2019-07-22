@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(KPublicTransport VERSION 0.0.1)
 
-find_package(ECM 5.38 REQUIRED NO_MODULE)
+find_package(ECM 5.59 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
