@@ -38,22 +38,22 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     Q_PROPERTY(Mode mode READ mode WRITE setMode)
 
     /** Planned departure time. */
-    Q_PROPERTY(QDateTime scheduledDepartureTime READ scheduledDepartureTime WRITE setScheduledDepartureTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
     /** Actual departure time, if available.
      *  Set to invalid to indicate real-time data is not available.
      */
-    Q_PROPERTY(QDateTime expectedDepartureTime READ expectedDepartureTime WRITE setExpectedDepartureTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, expectedDepartureTime, setExpectedDepartureTime)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedDepartureTime READ hasExpectedDepartureTime STORED false)
     /** Difference to schedule in minutes. */
     Q_PROPERTY(int departureDelay READ departureDelay STORED false)
 
     /** Planned arrival time. */
-    Q_PROPERTY(QDateTime scheduledArrivalTime READ scheduledArrivalTime WRITE setScheduledArrivalTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
     /** Actual arrival time, if available.
      *  Set to invalid to indicate real-time data is not available.
      */
-    Q_PROPERTY(QDateTime expectedArrivalTime READ expectedArrivalTime WRITE setExpectedArrivalTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, expectedArrivalTime, setExpectedArrivalTime)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedArrivalTime READ hasExpectedArrivalTime STORED false)
     /** Difference to schedule in minutes. */
@@ -63,25 +63,25 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     Q_PROPERTY(int duration READ duration STORED false)
 
     /** Departure location of this segment. */
-    Q_PROPERTY(KPublicTransport::Location from READ from WRITE setFrom)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, from, setFrom)
     /** Arrival location of this segment. */
-    Q_PROPERTY(KPublicTransport::Location to READ to WRITE setTo)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, to, setTo)
     /** Route to take on this segment. */
-    Q_PROPERTY(KPublicTransport::Route route READ route WRITE setRoute)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Route, route, setRoute)
 
     /** Planned departure platform. */
-    Q_PROPERTY(QString scheduledDeparturePlatform READ scheduledDeparturePlatform WRITE setScheduledDeparturePlatform)
+    KPUBLICTRANSPORT_PROPERTY(QString, scheduledDeparturePlatform, setScheduledDeparturePlatform)
     /** Actual departure platform, in case real-time information are available. */
-    Q_PROPERTY(QString expectedDeparturePlatform READ expectedDeparturePlatform WRITE setExpectedDeparturePlatform)
+    KPUBLICTRANSPORT_PROPERTY(QString, expectedDeparturePlatform, setExpectedDeparturePlatform)
     /** @c true if real-time platform information are available. */
     Q_PROPERTY(bool hasExpectedDeparturePlatform READ hasExpectedDeparturePlatform STORED false)
     /** @c true if we have real-time platform information and the platform changed. */
     Q_PROPERTY(bool departurePlatformChanged READ departurePlatformChanged STORED false)
 
     /** Planned arrival platform. */
-    Q_PROPERTY(QString scheduledArrivalPlatform READ scheduledArrivalPlatform WRITE setScheduledArrivalPlatform)
+    KPUBLICTRANSPORT_PROPERTY(QString, scheduledArrivalPlatform, setScheduledArrivalPlatform)
     /** Actual arrival platform, in case real-time information are available. */
-    Q_PROPERTY(QString expectedArrivalPlatform READ expectedArrivalPlatform WRITE setExpectedArrivalPlatform)
+    KPUBLICTRANSPORT_PROPERTY(QString, expectedArrivalPlatform, setExpectedArrivalPlatform)
     /** @c true if real-time platform information are available. */
     Q_PROPERTY(bool hasExpectedArrivalPlatform READ hasExpectedArrivalPlatform STORED false)
     /** @c true if we have real-time platform information and the platform changed. */
@@ -100,40 +100,15 @@ public:
     Mode mode() const;
     void setMode(Mode mode);
 
-    QDateTime scheduledDepartureTime() const;
-    void setScheduledDepartureTime(const QDateTime &dt);
-    QDateTime expectedDepartureTime() const;
-    void setExpectedDepartureTime(const QDateTime &dt);
     bool hasExpectedDepartureTime() const;
     int departureDelay() const;
-
-    QDateTime scheduledArrivalTime() const;
-    void setScheduledArrivalTime(const QDateTime &dt);
-    QDateTime expectedArrivalTime() const;
-    void setExpectedArrivalTime(const QDateTime &dt);
     bool hasExpectedArrivalTime() const;
     int arrivalDelay() const;
 
     int duration() const;
 
-    Location from() const;
-    void setFrom(const Location &from);
-    Location to() const;
-    void setTo(const Location &to);
-    Route route() const;
-    void setRoute(const Route &route);
-
-    QString scheduledDeparturePlatform() const;
-    void setScheduledDeparturePlatform(const QString &platform);
-    QString expectedDeparturePlatform() const;
-    void setExpectedDeparturePlatform(const QString &platform);
     bool hasExpectedDeparturePlatform() const;
     bool departurePlatformChanged() const;
-
-    QString scheduledArrivalPlatform() const;
-    void setScheduledArrivalPlatform(const QString &platform);
-    QString expectedArrivalPlatform() const;
-    void setExpectedArrivalPlatform(const QString &platform);
     bool hasExpectedArrivalPlatform() const;
     bool arrivalPlatformChanged() const;
 

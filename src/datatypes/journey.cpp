@@ -54,39 +54,14 @@ public:
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(JourneySection)
-
-JourneySection::Mode JourneySection::mode() const
-{
-    return d->mode;
-}
-
-void JourneySection::setMode(JourneySection::Mode mode)
-{
-    d.detach();
-    d->mode = mode;
-}
-
-QDateTime JourneySection::scheduledDepartureTime() const
-{
-    return d->scheduledDepartureTime;
-}
-
-void JourneySection::setScheduledDepartureTime(const QDateTime &dt)
-{
-    d.detach();
-    d->scheduledDepartureTime = dt;
-}
-
-QDateTime JourneySection::expectedDepartureTime() const
-{
-    return d->expectedDepartureTime;
-}
-
-void JourneySection::setExpectedDepartureTime(const QDateTime &dt)
-{
-    d.detach();
-    d->expectedDepartureTime = dt;
-}
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, JourneySection::Mode, mode, setMode)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, expectedDepartureTime, setExpectedDepartureTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, expectedArrivalTime, setExpectedArrivalTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, from, setFrom)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, to, setTo)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -99,28 +74,6 @@ int JourneySection::departureDelay() const
         return d->scheduledDepartureTime.secsTo(d->expectedDepartureTime) / 60;
     }
     return 0;
-}
-
-QDateTime JourneySection::scheduledArrivalTime() const
-{
-    return d->scheduledArrivalTime;
-}
-
-void JourneySection::setScheduledArrivalTime(const QDateTime &dt)
-{
-    d.detach();
-    d->scheduledArrivalTime = dt;
-}
-
-QDateTime JourneySection::expectedArrivalTime() const
-{
-    return d->expectedArrivalTime;
-}
-
-void JourneySection::setExpectedArrivalTime(const QDateTime &dt)
-{
-    d.detach();
-    d->expectedArrivalTime = dt;
 }
 
 bool JourneySection::hasExpectedArrivalTime() const
@@ -139,39 +92,6 @@ int JourneySection::arrivalDelay() const
 int JourneySection::duration() const
 {
     return d->scheduledDepartureTime.secsTo(d->scheduledArrivalTime);
-}
-
-Location JourneySection::from() const
-{
-    return d->from;
-}
-
-void JourneySection::setFrom(const Location &from)
-{
-    d.detach();
-    d->from = from;
-}
-
-Location JourneySection::to() const
-{
-    return d->to;
-}
-
-void JourneySection::setTo(const Location &to)
-{
-    d.detach();
-    d->to = to;
-}
-
-Route JourneySection::route() const
-{
-    return d->route;
-}
-
-void JourneySection::setRoute(const Route &route)
-{
-    d.detach();
-    d->route = route;
 }
 
 QString JourneySection::scheduledDeparturePlatform() const

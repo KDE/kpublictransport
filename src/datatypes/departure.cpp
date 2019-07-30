@@ -41,28 +41,12 @@ public:
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Departure)
-
-QDateTime Departure::scheduledArrivalTime() const
-{
-    return d->scheduledArrivalTime;
-}
-
-void Departure::setScheduledArrivalTime(const QDateTime &scheduledTime)
-{
-    d.detach();
-    d->scheduledArrivalTime = scheduledTime;
-}
-
-QDateTime Departure::expectedArrivalTime() const
-{
-    return d->expectedArrivalTime;
-}
-
-void Departure::setExpectedArrivalTime(const QDateTime &expectedTime)
-{
-    d.detach();
-    d->expectedArrivalTime = expectedTime;
-}
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, expectedArrivalTime, setExpectedArrivalTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, expectedDepartureTime, setExpectedDepartureTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Route, route, setRoute)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Location, stopPoint, setStopPoint)
 
 bool Departure::hasExpectedArrivalTime() const
 {
@@ -75,28 +59,6 @@ int Departure::arrivalDelay() const
         return d->scheduledArrivalTime.secsTo(d->expectedArrivalTime) / 60;
     }
     return 0;
-}
-
-QDateTime Departure::scheduledDepartureTime() const
-{
-    return d->scheduledDepartureTime;
-}
-
-void Departure::setScheduledDepartureTime(const QDateTime &scheduledTime)
-{
-    d.detach();
-    d->scheduledDepartureTime = scheduledTime;
-}
-
-QDateTime Departure::expectedDepartureTime() const
-{
-    return d->expectedDepartureTime;
-}
-
-void Departure::setExpectedDepartureTime(const QDateTime &expectedTime)
-{
-    d.detach();
-    d->expectedDepartureTime = expectedTime;
 }
 
 bool Departure::hasExpectedDepartureTime() const
@@ -142,28 +104,6 @@ bool Departure::hasExpectedPlatform() const
 bool Departure::platformChanged() const
 {
     return PlatformUtils::platformChanged(d->scheduledPlatform, d->expectedPlatform);
-}
-
-Route Departure::route() const
-{
-    return d->route;
-}
-
-void Departure::setRoute(const Route &route)
-{
-    d.detach();
-    d->route = route;
-}
-
-Location Departure::stopPoint() const
-{
-    return d->stopPoint;
-}
-
-void Departure::setStopPoint(const Location &stopPoint)
-{
-    d.detach();
-    d->stopPoint = stopPoint;
 }
 
 bool Departure::isSame(const Departure &lhs, const Departure &rhs)

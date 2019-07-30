@@ -34,68 +34,49 @@ class KPUBLICTRANSPORT_EXPORT Departure
     KPUBLICTRANSPORT_GADGET(Departure)
 
     /** Planned arrival time. */
-    Q_PROPERTY(QDateTime scheduledArrivalTime READ scheduledArrivalTime WRITE setScheduledArrivalTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
     /** Actual arrival time, if available.
      *  Set to invalid to indicate real-time data is not available.
      */
-    Q_PROPERTY(QDateTime expectedArrivalTime READ expectedArrivalTime WRITE setExpectedArrivalTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, expectedArrivalTime, setExpectedArrivalTime)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedArrivalTime READ hasExpectedArrivalTime STORED false)
     /** Difference to schedule in minutes. */
     Q_PROPERTY(int arrivalDelay READ arrivalDelay STORED false)
 
     /** Planned departure time. */
-    Q_PROPERTY(QDateTime scheduledDepartureTime READ scheduledDepartureTime WRITE setScheduledDepartureTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
     /** Actual departure time, if available.
      *  Set to invalid to indicate real-time data is not available.
      */
-    Q_PROPERTY(QDateTime expectedDepartureTime READ expectedDepartureTime WRITE setExpectedDepartureTime)
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, expectedDepartureTime, setExpectedDepartureTime)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedDepartureTime READ hasExpectedDepartureTime STORED false)
     /** Difference to schedule in minutes. */
     Q_PROPERTY(int departureDelay READ departureDelay STORED false)
 
     /** Planned departure platform. */
-    Q_PROPERTY(QString scheduledPlatform READ scheduledPlatform WRITE setScheduledPlatform)
+    KPUBLICTRANSPORT_PROPERTY(QString, scheduledPlatform, setScheduledPlatform)
     /** Actual departure platform, in case real-time information are available. */
-    Q_PROPERTY(QString expectedPlatform READ expectedPlatform WRITE setExpectedPlatform)
+    KPUBLICTRANSPORT_PROPERTY(QString, expectedPlatform, setExpectedPlatform)
     /** @c true if real-time platform information are available. */
     Q_PROPERTY(bool hasExpectedPlatform READ hasExpectedPlatform STORED false)
     /** @c true if we have real-time platform information and the platform changed. */
     Q_PROPERTY(bool platformChanged READ platformChanged STORED false)
 
     /** The departing route. */
-    Q_PROPERTY(KPublicTransport::Route route READ route WRITE setRoute)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Route, route, setRoute)
 
     /** The stop point of this departure. */
-    Q_PROPERTY(KPublicTransport::Location stopPoint READ stopPoint WRITE setStopPoint)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, stopPoint, setStopPoint)
 
 public:
-    QDateTime scheduledArrivalTime() const;
-    void setScheduledArrivalTime(const QDateTime &scheduledTime);
-    QDateTime expectedArrivalTime() const;
-    void setExpectedArrivalTime(const QDateTime &expectedTime);
     bool hasExpectedArrivalTime() const;
     int arrivalDelay() const;
-
-    QDateTime scheduledDepartureTime() const;
-    void setScheduledDepartureTime(const QDateTime &scheduledTime);
-    QDateTime expectedDepartureTime() const;
-    void setExpectedDepartureTime(const QDateTime &expectedTime);
     bool hasExpectedDepartureTime() const;
     int departureDelay() const;
-
-    QString scheduledPlatform() const;
-    void setScheduledPlatform(const QString &platform);
-    QString expectedPlatform() const;
-    void setExpectedPlatform(const QString &platform);
     bool hasExpectedPlatform() const;
     bool platformChanged() const;
-
-    Route route() const;
-    void setRoute(const Route &route);
-    Location stopPoint() const;
-    void setStopPoint(const Location &stopPoint);
 
     /** Checks if to instances refer to the same departure (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Departure &lhs, const Departure &rhs);
