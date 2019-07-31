@@ -1,1 +1,4 @@
 EXCLUDE_PATTERNS += */backends/*
+PREDEFINED += \
+    KPUBLICTRANSPORT_EXPORT="" \
+    KPUBLICTRANSPORT_PROPERTY(type,name,setter)="Q_PROPERTY(type name READ name WRITE setter)"
