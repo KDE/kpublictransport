@@ -68,20 +68,18 @@ static std::vector<QString> parseRemarks(const QJsonArray &remL)
 static QString parseMessageList(const QJsonObject &obj, const std::vector<QString> &remarks)
 {
     const auto msgL = obj.value(QLatin1String("msgL")).toArray();
-    QString note;
+    QStringList notes;
     for (const auto &msgV : msgL) {
         const auto msgObj = msgV.toObject();
         const auto rem = remarks[msgObj.value(QLatin1String("remX")).toInt()];
         if (rem.isEmpty()) {
             continue;
         }
-        if (note.isEmpty()) {
-            note = rem;
-        } else {
-            note += QLatin1Char('\n') + rem;
+        if (!notes.contains(rem)) {
+            notes.push_back(rem);
         }
     }
-    return note;
+    return notes.join(QLatin1Char('\n'));
 }
 
 std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) const
