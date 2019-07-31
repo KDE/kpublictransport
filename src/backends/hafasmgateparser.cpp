@@ -54,6 +54,36 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     return icos;
 }
 
+static std::vector<QString> parseRemarks(const QJsonArray &remL)
+{
+    std::vector<QString> rems;
+    rems.reserve(remL.size());
+    for (const auto &remV : remL) {
+        const auto remObj = remV.toObject();
+        rems.push_back(remObj.value(QLatin1String("txtN")).toString());
+    }
+    return rems;
+}
+
+static QString parseMessageList(const QJsonObject &obj, const std::vector<QString> &remarks)
+{
+    const auto msgL = obj.value(QLatin1String("msgL")).toArray();
+    QString note;
+    for (const auto &msgV : msgL) {
+        const auto msgObj = msgV.toObject();
+        const auto rem = remarks[msgObj.value(QLatin1String("remX")).toInt()];
+        if (rem.isEmpty()) {
+            continue;
+        }
+        if (note.isEmpty()) {
+            note = rem;
+        } else {
+            note += QLatin1Char('\n') + rem;
+        }
+    }
+    return note;
+}
+
 std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) const
 {
     std::vector<Location> locs;
@@ -98,6 +128,7 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
     const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
+    const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
 
     std::vector<Departure> res;
     const auto jnyL = obj.value(QLatin1String("jnyL")).toArray();
@@ -136,6 +167,8 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
         if ((unsigned int)locIdx < locs.size()) {
             dep.setStopPoint(locs[locIdx]);
         }
+
+        dep.setNote(parseMessageList(jnyObj, remarks));
 
         res.push_back(dep);
     }
@@ -228,6 +261,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
     const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
+    const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
 
     std::vector<Journey> res;
     const auto outConL = obj.value(QLatin1String("outConL")).toArray();
@@ -256,6 +290,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
             }
             section.setScheduledDeparturePlatform(dep.value(QLatin1String("dPlatfS")).toString());
             section.setExpectedDeparturePlatform(dep.value(QLatin1String("dPlatfR")).toString());
+            if (dep.value(QLatin1String("dCncl")).toBool()) {
+                section.setDisruptionEffect(Disruption::NoService);
+            }
 
             const auto arr = secObj.value(QLatin1String("arr")).toObject();
             section.setScheduledArrivalTime(parseDateTime(dateStr, arr.value(QLatin1String("aTimeS")).toString()));
@@ -266,6 +303,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
             }
             section.setScheduledArrivalPlatform(dep.value(QLatin1String("aPlatfS")).toString());
             section.setExpectedArrivalPlatform(dep.value(QLatin1String("aPlatfR")).toString());
+            if (dep.value(QLatin1String("aCncl")).toBool()) {
+                section.setDisruptionEffect(Disruption::NoService);
+            }
 
             const auto typeStr = secObj.value(QLatin1String("type")).toString();
             if (typeStr == QLatin1String("JNY")) {
@@ -279,6 +319,12 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                     route.setLine(lines[lineIdx]);
                 }
                 section.setRoute(route);
+
+                if (jnyObj.value(QLatin1String("isCncl")).toBool()) {
+                    section.setDisruptionEffect(Disruption::NoService);
+                }
+
+                section.setNote(parseMessageList(jnyObj, remarks));
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
             } else if (typeStr == QLatin1String("TRSF")) {

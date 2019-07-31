@@ -82,6 +82,10 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
                     dep.setScheduledPlatform(reader.attributes().value(QLatin1String("platform")).toString());
                     dep.setExpectedPlatform(reader.attributes().value(QLatin1String("newpl")).toString());
 
+                    if (reader.attributes().value(QLatin1String("delay")) == QLatin1String("cancel")) {
+                        dep.setDisruptionEffect(Disruption::NoService);
+                    }
+
                     Route route;
                     route.setDirection(reader.attributes().value(QLatin1String("targetLoc")).toString());
                     Line line;
