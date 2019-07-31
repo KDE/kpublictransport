@@ -1,6 +1,7 @@
 {
     "sections": [
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 47.45050048828125,
                 "longitude": 8.562749862670898,
@@ -24,6 +25,7 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "identifier": {
                     "ibnr": "8503016"
@@ -63,6 +65,7 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 46.29402160644531,
                 "longitude": 7.881449222564697,
@@ -86,11 +89,13 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "mode": "Waiting",
             "scheduledArrivalTime": "2019-03-02T18:08:00",
             "scheduledDepartureTime": "2019-03-02T18:02:00"
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "identifier": {
                     "ibnr": "8501605"
@@ -129,6 +134,7 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 46.09992980957031,
                 "longitude": 7.781458854675293,

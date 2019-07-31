@@ -1,6 +1,7 @@
 {
     "sections": [
         {
+            "disruptionEffect": "NoService",
             "from": {
                 "name": "Zürich Flughafen"
             },

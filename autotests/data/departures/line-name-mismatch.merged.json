@@ -1,4 +1,5 @@
 {
+    "disruptionEffect": "NormalService",
     "route": {
         "direction": "S Erkner Bhf",
         "line": {

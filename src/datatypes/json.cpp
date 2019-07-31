@@ -19,6 +19,7 @@
 
 #include <QColor>
 #include <QDateTime>
+#include <QDebug>
 #include <QMetaObject>
 #include <QMetaProperty>
 #include <QTimeZone>
@@ -87,10 +88,13 @@ QJsonObject Json::toJson(const QMetaObject *mo, const void *elem)
             continue;
         }
 
-        if (prop.isEnumType()) {
+        if (prop.isEnumType()) { // enums defined in this QMO
             const auto key = prop.readOnGadget(elem).toInt();
             const auto value = prop.enumerator().valueToKey(key);
             obj.insert(QString::fromUtf8(prop.name()), QString::fromUtf8(value));
+            continue;
+        } else if (QMetaType::typeFlags(prop.userType()) & QMetaType::IsEnumeration) { // external enums
+            obj.insert(QString::fromUtf8(prop.name()), prop.readOnGadget(elem).toString());
             continue;
         }
 
@@ -147,9 +151,20 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
             continue;
         }
 
-        if (prop.isEnumType() && it.value().isString()) {
+        if (prop.isEnumType() && it.value().isString()) { // internal enums in this QMO
             const auto key = prop.enumerator().keyToValue(it.value().toString().toUtf8().constData());
             prop.writeOnGadget(elem, key);
+            continue;
+        }
+        if ((QMetaType::typeFlags(prop.userType()) & QMetaType::IsEnumeration) && it.value().isString()) { // external enums
+            const QMetaType mt(prop.type());
+            const auto mo = mt.metaObject();
+            const auto enumIdx = mo->indexOfEnumerator(prop.typeName() + strlen(mo->className()) + 2);
+            const auto me = mo->enumerator(enumIdx);
+            auto valueData = mt.create();
+            *reinterpret_cast<int*>(valueData) = me.keyToValue(it.value().toString().toUtf8().constData());
+            QVariant value(prop.userType(), valueData);
+            prop.writeOnGadget(elem, value);
             continue;
         }
 

@@ -1,6 +1,7 @@
 {
     "sections": [
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "identifier": {
                     "ibnr": "8503016"

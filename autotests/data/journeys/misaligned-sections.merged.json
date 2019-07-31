@@ -1,6 +1,7 @@
 {
     "sections": [
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 49.00423812866211,
                 "longitude": 2.5702035427093506,
@@ -24,6 +25,7 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 49.004150390625,
                 "longitude": 2.5708179473876953,
@@ -57,6 +59,7 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 48.860809326171875,
                 "longitude": 2.347550392150879,
@@ -80,11 +83,13 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "mode": "Waiting",
             "scheduledArrivalTime": "2019-03-03T12:14:00",
             "scheduledDepartureTime": "2019-03-03T12:08:00"
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 48.860809326171875,
                 "longitude": 2.347550392150879,
@@ -118,6 +123,7 @@
             }
         },
         {
+            "disruptionEffect": "NormalService",
             "from": {
                 "latitude": 48.84442901611328,
                 "longitude": 2.37253999710083,

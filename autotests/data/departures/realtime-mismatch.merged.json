@@ -1,4 +1,5 @@
 {
+    "disruptionEffect": "NormalService",
     "expectedDepartureTime": "2018-01-28T18:43:00",
     "expectedPlatform": "4",
     "route": {
