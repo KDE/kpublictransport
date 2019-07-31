@@ -25,6 +25,7 @@
 #include "locationrequest.h"
 #include "logging.h"
 #include "datatypes/attributionutil_p.h"
+#include "datatypes/disruption.h"
 
 #include <KPublicTransport/Location>
 
@@ -343,6 +344,7 @@ Manager::Manager(QObject *parent)
     , d(new ManagerPrivate)
 {
     initResources();
+    qRegisterMetaType<Disruption::Effect>();
     d->q = this;
     d->loadNetworks();
 

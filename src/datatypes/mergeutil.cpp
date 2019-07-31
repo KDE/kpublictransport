@@ -105,3 +105,22 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
     }
     return lhs.size() < rhs.size() ? rhs : lhs;
 }
+
+QString MergeUtil::mergeNote(const QString &lhs, const QString &rhs)
+{
+    if (lhs.isEmpty()) {
+        return rhs;
+    }
+    if (rhs.isEmpty()) {
+        return lhs;
+    }
+
+    auto res = lhs.split(QLatin1Char('\n'));
+    const auto rl = rhs.split(QLatin1Char('\n'));
+    for (const auto &r : rl) {
+        if (!res.contains(r)) {
+            res.push_back(r);
+        }
+    }
+    return res.join(QLatin1Char('\n'));
+}

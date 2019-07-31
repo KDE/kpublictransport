@@ -29,6 +29,7 @@ using namespace KPublicTransport;
 namespace KPublicTransport {
 class DeparturePrivate : public QSharedData {
 public:
+    Disruption::Effect disruptionEffect = Disruption::NormalService;
     QDateTime scheduledArrivalTime;
     QDateTime expectedArrivalTime;
     QDateTime scheduledDepartureTime;
@@ -37,6 +38,7 @@ public:
     QString expectedPlatform;
     Route route;
     Location stopPoint;
+    QString note;
 };
 }
 
@@ -47,6 +49,8 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, scheduledDepartureTime, set
 KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, expectedDepartureTime, setExpectedDepartureTime)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Location, stopPoint, setStopPoint)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Disruption::Effect, disruptionEffect, setDisruptionEffect)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QString, note, setNote)
 
 bool Departure::hasExpectedArrivalTime() const
 {
@@ -154,6 +158,8 @@ Departure Departure::merge(const Departure &lhs, const Departure &rhs)
 
     dep.setRoute(Route::merge(lhs.route(), rhs.route()));
     dep.setStopPoint(Location::merge(lhs.stopPoint(), rhs.stopPoint()));
+    dep.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
+    dep.setNote(MergeUtil::mergeNote(lhs.note(), rhs.note()));
     return dep;
 }
 

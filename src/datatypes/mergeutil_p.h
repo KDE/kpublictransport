@@ -43,6 +43,9 @@ namespace MergeUtil
 
     /** Takes the longer input string. */
     QString mergeString(const QString &lhs, const QString &rhs);
+
+    /** Merge two notes. */
+    QString mergeNote(const QString &lhs, const QString &rhs);
 }
 
 }

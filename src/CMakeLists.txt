@@ -28,6 +28,7 @@ set(kpublictransport_srcs
     datatypes/attributionutil.cpp
     datatypes/departure.cpp
     datatypes/departureutil.cpp
+    datatypes/disruption.cpp
     datatypes/journey.cpp
     datatypes/json.cpp
     datatypes/line.cpp
@@ -87,6 +88,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Attribution
         Datatypes
         Departure
+        Disruption
         Journey
         Line
         Location

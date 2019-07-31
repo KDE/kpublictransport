@@ -81,6 +81,7 @@ Kirigami.ApplicationWindow {
     Component {
         id: journeyDelegate
         Kirigami.AbstractListItem {
+            enabled: modelData.disruptionEffect != Disruption.NoService
             RowLayout {
                 id: topLayout
 
@@ -190,6 +191,11 @@ Kirigami.ApplicationWindow {
                             color: modelData.arrivalDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
                             visible: modelData.hasExpectedArrivalTime
                         }
+                    }
+                    QQC2.Label {
+                        text: modelData.note
+                        visible: modelData.note.length > 0
+                        font.italic: true
                     }
                 }
             }

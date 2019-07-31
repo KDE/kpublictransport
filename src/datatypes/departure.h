@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_DEPARTURE_H
 
 #include "datatypes.h"
+#include "disruption.h"
 #include "line.h"
 #include "location.h"
 
@@ -69,6 +70,11 @@ class KPUBLICTRANSPORT_EXPORT Departure
 
     /** The stop point of this departure. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, stopPoint, setStopPoint)
+
+    /** Disruption effect on this arrival or departure, if any. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
+    /** General human-readable notes on this service, e.g. details about a disruption. */
+    KPUBLICTRANSPORT_PROPERTY(QString, note, setNote)
 
 public:
     bool hasExpectedArrivalTime() const;

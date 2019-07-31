@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_JOURNEY_H
 
 #include "datatypes.h"
+#include "disruption.h"
 #include "line.h"
 #include "location.h"
 
@@ -86,6 +87,11 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     Q_PROPERTY(bool hasExpectedArrivalPlatform READ hasExpectedArrivalPlatform STORED false)
     /** @c true if we have real-time platform information and the platform changed. */
     Q_PROPERTY(bool arrivalPlatformChanged READ arrivalPlatformChanged STORED false)
+
+    /** Disruption effect on this section, if any. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
+    /** General human-readable notes on this service, e.g. details about a disruption. */
+    KPUBLICTRANSPORT_PROPERTY(QString, note, setNote)
 
 public:
     /** Mode of transport. */

@@ -65,6 +65,7 @@ Kirigami.ApplicationWindow {
     Component {
         id: departureDelegate
         Kirigami.AbstractListItem {
+            enabled: departure.disruptionEffect != Disruption.NoService
             RowLayout {
                 id: delegateLayout
 
@@ -143,6 +144,11 @@ Kirigami.ApplicationWindow {
                             visible: departure.hasExpectedPlatform && departure.scheduledPlatform != departure.expectedPlatform
                             color: Kirigami.Theme.negativeTextColor
                         }
+                    }
+                    QQC2.Label {
+                        text: departure.note
+                        visible: departure.note.length > 0
+                        font.italic: true
                     }
                 }
             }

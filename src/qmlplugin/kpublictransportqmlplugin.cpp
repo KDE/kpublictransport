@@ -27,6 +27,8 @@
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
+    qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
+
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
     qmlRegisterUncreatableType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});

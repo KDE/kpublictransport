@@ -43,6 +43,8 @@ public:
     QString expectedDeparturePlatform;
     QString scheduledArrivalPlatform;
     QString expectedArrivalPlatform;
+    Disruption::Effect disruptionEffect = Disruption::NormalService;
+    QString note;
 };
 
 class JourneyPrivate : public QSharedData
@@ -62,6 +64,8 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, expectedArrivalTime, s
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, from, setFrom)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, to, setTo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEffect, setDisruptionEffect)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QString, note, setNote)
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -218,6 +222,9 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
     res.setScheduledDeparturePlatform(mergeString(lhs.scheduledDeparturePlatform(), rhs.scheduledDeparturePlatform()));
     res.setScheduledArrivalPlatform(mergeString(lhs.scheduledArrivalPlatform(), rhs.scheduledArrivalPlatform()));
+
+    res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
+    res.setNote(MergeUtil::mergeNote(lhs.note(), rhs.note()));
 
     return res;
 }
