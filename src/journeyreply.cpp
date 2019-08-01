@@ -92,7 +92,7 @@ void JourneyReplyPrivate::finalizeResult()
 
 static bool isPointlessSection(const JourneySection &section)
 {
-    if (section.mode() == JourneySection::Walking) {
+    if (section.mode() == JourneySection::Walking || section.mode() == JourneySection::Waiting) {
         return section.duration() < 60;
     }
     return false;
