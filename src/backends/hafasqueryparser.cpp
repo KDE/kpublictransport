@@ -372,6 +372,23 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
             sections.push_back(section);
         }
 
+        auto disruptionOffset = *reinterpret_cast<const uint16_t*>(rawData.constData() + extHeader->disruptionTableOffset + 2 + journeyIdx * 2);
+        qDebug() << "disruption offset:" << disruptionOffset;
+        while (disruptionOffset) {
+            const auto disruption = reinterpret_cast<const HafasJourneyResponseDisruption*>(rawData.constData() + extHeader->disruptionTableOffset + disruptionOffset);
+            disruptionOffset = disruption->nextOffset;
+            qDebug() << stringTable.lookup(disruption->idStr) << stringTable.lookup(disruption->titleStr) << stringTable.lookup(disruption->messageStr)
+                << stringTable.lookup(disruption->startStr) << stringTable.lookup(disruption->endStr) << disruption->bitmask << disruption->section;
+
+            auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
+                + extHeader->attributesOffset
+                + disruption->disruptionAttributeIndex * sizeof(HafasJourneyResponseAttribute));
+            while (attr->keyStr > 0) {
+                qDebug() << "disruption attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
+                ++attr;
+            }
+        }
+
         Journey journey;
         journey.setSections(std::move(sections));
         journeys.push_back(journey);

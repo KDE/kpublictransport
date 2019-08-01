@@ -72,7 +72,7 @@ struct HafasJourneyResponseExtendedHeader
     // error code for the journey query, 0 means success
     uint16_t errorCode;
     uint16_t padding2;
-    uint32_t disruptionOffset;
+    uint32_t disruptionTableOffset;
     uint8_t padding3[8];
     // string table index for the name of the encoding used in the string table
     uint16_t encodingStr;
@@ -181,6 +181,27 @@ struct HafasJourneyResponseAttribute
 };
 static_assert(sizeof(HafasJourneyResponseAttribute) == 4, "size of attribute structure is wrong");
 static_assert(alignof(HafasJourneyResponseAttribute) == 1, "broken alignment for binary response struct");
+
+// disruption table entry
+struct HafasJourneyResponseDisruption
+{
+    uint16_t padding1;
+    // index of the affected section
+    uint16_t section;
+    uint16_t bitmask;
+    // indexes into string table
+    uint16_t startStr;
+    uint16_t endStr;
+    uint16_t idStr;
+    uint16_t titleStr;
+    uint16_t messageStr;
+    // offset from start of disruption table to the next element
+    uint16_t nextOffset;
+    // index into attribute table
+    uint16_t disruptionAttributeIndex;
+
+};
+static_assert(alignof(HafasJourneyResponseDisruption) == 1, "broken alignment for binary response struct");
 
 #pragma pack(pop)
 
