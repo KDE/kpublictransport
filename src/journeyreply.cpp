@@ -98,6 +98,18 @@ static bool isPointlessSection(const JourneySection &section)
     return false;
 }
 
+static bool isImplausibleSection(const JourneySection &section)
+{
+    if (section.mode() == JourneySection::Transfer) {
+        const auto distance = Location::distance(section.from(), section.to());
+        if (section.duration() > 0 && (distance / section.duration()) > 100) {
+            qCDebug(Log) << "discarding journey based on insane transfer speed:" << (distance / section.duration()) << "m/s";
+            return true;
+        }
+    }
+    return false;
+}
+
 void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
 {
     // try to fill gaps in timezone data
@@ -132,9 +144,9 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
         sections.erase(std::remove_if(sections.begin(), sections.end(), isPointlessSection), sections.end());
         journey.setSections(std::move(sections));
     }
-    // remove empty journeys
+    // remove empty or implausible journeys
     journeys.erase(std::remove_if(journeys.begin(), journeys.end(), [](const auto &journey) {
-        return journey.sections().empty();
+        return journey.sections().empty() || std::any_of(journey.sections().begin(), journey.sections().end(), isImplausibleSection);
     }), journeys.end());
 }
 
