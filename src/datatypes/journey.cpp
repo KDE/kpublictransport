@@ -314,6 +314,15 @@ int Journey::numberOfChanges() const
     return std::max(0, static_cast<int>(std::count_if(d->sections.begin(), d->sections.end(), [](const auto &section) { return section.mode() == JourneySection::PublicTransport; }) - 1));
 }
 
+Disruption::Effect Journey::disruptionEffect() const
+{
+    Disruption::Effect effect = Disruption::NormalService;
+    for (const auto &sec : d->sections) {
+        effect = std::max(effect, sec.disruptionEffect());
+    }
+    return effect;
+}
+
 bool Journey::isSame(const Journey &lhs, const Journey &rhs)
 {
     auto lIt = lhs.sections().begin();

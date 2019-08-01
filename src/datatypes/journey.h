@@ -152,6 +152,8 @@ class KPUBLICTRANSPORT_EXPORT Journey
     Q_PROPERTY(int duration READ duration STORED false)
     /** Number of changes on this journey. */
     Q_PROPERTY(int numberOfChanges READ numberOfChanges STORED false)
+    /** Worst disruption effect of any of the journey sections. */
+    Q_PROPERTY(KPublicTransport::Disruption::Effect disruptionEffect READ disruptionEffect STORED false)
 
 public:
     /** The journey sections. */
@@ -165,6 +167,7 @@ public:
     QDateTime scheduledArrivalTime() const;
     int duration() const;
     int numberOfChanges() const;
+    Disruption::Effect disruptionEffect() const;
 
     /** Checks if two instances refer to the same journey (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Journey &lhs, const Journey &rhs);
