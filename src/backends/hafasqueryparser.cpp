@@ -329,6 +329,21 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                     ++attr;
                 }
 
+                const auto *commentPtr = reinterpret_cast<const uint16_t*>(rawData.constBegin() + header->commentTableOffset + sectionInfo->commentIdx);
+                const auto commentCount = *commentPtr;
+                QStringList notes;
+                for (int i = 0; i < commentCount; ++i) {
+                    ++commentPtr;
+                    // format: XX - <human readable comment>, where XX is two character code for the comment
+                    const auto note = stringTable.lookup(*commentPtr);
+                    if (note.size() > 5 && note.midRef(2, 3) == QLatin1String(" - ")) {
+                        notes.push_back(note.mid(5));
+                    } else {
+                        notes.push_back(note);
+                    }
+                }
+                section.setNote(notes.join(QLatin1Char('\n')));
+
                 route.setLine(line);
                 section.setRoute(route);
                 section.setMode(JourneySection::PublicTransport);
