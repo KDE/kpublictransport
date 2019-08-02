@@ -193,8 +193,9 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     QQC2.Label {
-                        text: modelData.note
-                        visible: modelData.note.length > 0
+                        text: modelData.notes.join("<br/>")
+                        textFormat: Text.RichText
+                        visible: modelData.notes.length > 0
                         font.italic: true
                     }
                 }

@@ -20,6 +20,7 @@
 
 class QDateTime;
 class QString;
+class QStringList;
 
 namespace KPublicTransport {
 
@@ -44,8 +45,10 @@ namespace MergeUtil
     /** Takes the longer input string. */
     QString mergeString(const QString &lhs, const QString &rhs);
 
+    /** Normalize a note string. */
+    QString normalizeNote(const QString &note);
     /** Merge two notes. */
-    QString mergeNote(const QString &lhs, const QString &rhs);
+    QStringList mergeNotes(const QStringList &lhs, const QStringList &rhs);
 }
 
 }

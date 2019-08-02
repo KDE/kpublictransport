@@ -44,7 +44,7 @@ public:
     QString scheduledArrivalPlatform;
     QString expectedArrivalPlatform;
     Disruption::Effect disruptionEffect = Disruption::NormalService;
-    QString note;
+    QStringList notes;
 };
 
 class JourneyPrivate : public QSharedData
@@ -65,7 +65,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, from, setFrom)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, to, setTo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEffect, setDisruptionEffect)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QString, note, setNote)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -162,6 +162,22 @@ bool JourneySection::arrivalPlatformChanged() const
     return PlatformUtils::platformChanged(d->scheduledArrivalPlatform, d->expectedArrivalPlatform);
 }
 
+void JourneySection::addNote(const QString &note)
+{
+    const auto n = MergeUtil::normalizeNote(note);
+    if (!d->notes.contains(n)) {
+        d.detach();
+        d->notes.push_back(n);
+    }
+}
+
+void JourneySection::addNotes(const QStringList &notes)
+{
+    for (const auto &n : notes) {
+        addNote(n);
+    }
+}
+
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
     if (lhs.d->mode != rhs.d->mode) {
@@ -224,7 +240,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     res.setScheduledArrivalPlatform(mergeString(lhs.scheduledArrivalPlatform(), rhs.scheduledArrivalPlatform()));
 
     res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
-    res.setNote(MergeUtil::mergeNote(lhs.note(), rhs.note()));
+    res.setNotes(MergeUtil::mergeNotes(lhs.notes(), rhs.notes()));
 
     return res;
 }

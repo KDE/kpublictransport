@@ -74,7 +74,7 @@ class KPUBLICTRANSPORT_EXPORT Departure
     /** Disruption effect on this arrival or departure, if any. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
     /** General human-readable notes on this service, e.g. details about a disruption. */
-    KPUBLICTRANSPORT_PROPERTY(QString, note, setNote)
+    KPUBLICTRANSPORT_PROPERTY(QStringList, notes, setNotes)
 
 public:
     bool hasExpectedArrivalTime() const;
@@ -83,6 +83,10 @@ public:
     int departureDelay() const;
     bool hasExpectedPlatform() const;
     bool platformChanged() const;
+
+    /** Adds a note. This will check for duplicates and normalize the notes. */
+    void addNote(const QString &note);
+    void addNotes(const QStringList &notes);
 
     /** Checks if to instances refer to the same departure (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Departure &lhs, const Departure &rhs);

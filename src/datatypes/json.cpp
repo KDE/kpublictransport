@@ -75,6 +75,17 @@ static QJsonValue variantToJson(const QVariant &v)
         return c.isValid() ? v.value<QColor>().name() : QJsonValue();;
     }
 
+    if (v.canConvert<QVariantList>()) {
+        const auto l = v.toList();
+        if (l.isEmpty()) {
+            return {};
+        }
+
+        QJsonArray a;
+        std::transform(l.begin(), l.end(), std::back_inserter(a), variantToJson);
+        return a;
+    }
+
     return {};
 }
 
@@ -129,6 +140,16 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
         }
         case QVariant::Url:
             return QUrl(v.toString());
+        case QVariant::StringList:
+        {
+            const auto a = v.toArray();
+            QStringList l;
+            l.reserve(a.size());
+            for (const auto &av : a) {
+                l.push_back(av.toString());
+            }
+            return l;
+        }
     }
 
     if (mt == qMetaTypeId<QColor>()) {

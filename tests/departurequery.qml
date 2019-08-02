@@ -146,9 +146,10 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     QQC2.Label {
-                        text: departure.note
-                        visible: departure.note.length > 0
+                        text: departure.notes.join("<br/>")
+                        visible: departure.notes.length > 0
                         font.italic: true
+                        textFormat: Text.RichText
                     }
                 }
             }

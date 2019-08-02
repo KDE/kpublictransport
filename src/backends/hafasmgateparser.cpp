@@ -65,7 +65,7 @@ static std::vector<QString> parseRemarks(const QJsonArray &remL)
     return rems;
 }
 
-static QString parseMessageList(const QJsonObject &obj, const std::vector<QString> &remarks)
+static QStringList parseMessageList(const QJsonObject &obj, const std::vector<QString> &remarks)
 {
     const auto msgL = obj.value(QLatin1String("msgL")).toArray();
     QStringList notes;
@@ -75,11 +75,9 @@ static QString parseMessageList(const QJsonObject &obj, const std::vector<QStrin
         if (rem.isEmpty()) {
             continue;
         }
-        if (!notes.contains(rem)) {
-            notes.push_back(rem);
-        }
+        notes.push_back(rem);
     }
-    return notes.join(QLatin1Char('\n'));
+    return notes;
 }
 
 std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) const
@@ -166,7 +164,7 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
             dep.setStopPoint(locs[locIdx]);
         }
 
-        dep.setNote(parseMessageList(jnyObj, remarks));
+        dep.addNotes(parseMessageList(jnyObj, remarks));
 
         res.push_back(dep);
     }
@@ -322,7 +320,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                     section.setDisruptionEffect(Disruption::NoService);
                 }
 
-                section.setNote(parseMessageList(jnyObj, remarks));
+                section.addNotes(parseMessageList(jnyObj, remarks));
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
             } else if (typeStr == QLatin1String("TRSF")) {

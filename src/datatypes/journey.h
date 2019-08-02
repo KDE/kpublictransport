@@ -91,7 +91,7 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     /** Disruption effect on this section, if any. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
     /** General human-readable notes on this service, e.g. details about a disruption. */
-    KPUBLICTRANSPORT_PROPERTY(QString, note, setNote)
+    KPUBLICTRANSPORT_PROPERTY(QStringList, notes, setNotes)
 
 public:
     /** Mode of transport. */
@@ -117,6 +117,10 @@ public:
     bool departurePlatformChanged() const;
     bool hasExpectedArrivalPlatform() const;
     bool arrivalPlatformChanged() const;
+
+    /** Adds a note. This will check for duplicates and normalize the notes. */
+    void addNote(const QString &note);
+    void addNotes(const QStringList &notes);
 
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
     static bool isSame(const JourneySection &lhs, const JourneySection &rhs);

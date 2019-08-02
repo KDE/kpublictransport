@@ -38,7 +38,7 @@ public:
     QString expectedPlatform;
     Route route;
     Location stopPoint;
-    QString note;
+    QStringList notes;
 };
 }
 
@@ -50,7 +50,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, expectedDepartureTime, setE
 KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Location, stopPoint, setStopPoint)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Disruption::Effect, disruptionEffect, setDisruptionEffect)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QString, note, setNote)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QStringList, notes, setNotes)
 
 bool Departure::hasExpectedArrivalTime() const
 {
@@ -110,6 +110,22 @@ bool Departure::platformChanged() const
     return PlatformUtils::platformChanged(d->scheduledPlatform, d->expectedPlatform);
 }
 
+void Departure::addNote(const QString &note)
+{
+    const auto n = MergeUtil::normalizeNote(note);
+    if (!d->notes.contains(n)) {
+        d.detach();
+        d->notes.push_back(n);
+    }
+}
+
+void Departure::addNotes(const QStringList &notes)
+{
+    for (const auto &n : notes) {
+        addNote(n);
+    }
+}
+
 bool Departure::isSame(const Departure &lhs, const Departure &rhs)
 {
     // same time is mandatory
@@ -159,7 +175,7 @@ Departure Departure::merge(const Departure &lhs, const Departure &rhs)
     dep.setRoute(Route::merge(lhs.route(), rhs.route()));
     dep.setStopPoint(Location::merge(lhs.stopPoint(), rhs.stopPoint()));
     dep.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
-    dep.setNote(MergeUtil::mergeNote(lhs.note(), rhs.note()));
+    dep.setNotes(MergeUtil::mergeNotes(lhs.notes(), rhs.notes()));
     return dep;
 }
 
