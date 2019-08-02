@@ -174,13 +174,31 @@ static_assert(sizeof(HafasJourneyResponseStation) == 14, "size of station struct
 static_assert(alignof(HafasJourneyResponseStation) == 1, "broken alignment for binary response struct");
 
 // attribute table entries: pair if string table indexes
+// can be iterated until atEnd() returns @c true
 struct HafasJourneyResponseAttribute
 {
     uint16_t keyStr;
     uint16_t valueStr;
+
+    inline bool atEnd() const { return keyStr == 0; }
 };
 static_assert(sizeof(HafasJourneyResponseAttribute) == 4, "size of attribute structure is wrong");
 static_assert(alignof(HafasJourneyResponseAttribute) == 1, "broken alignment for binary response struct");
+
+struct HafasJourneyResponseDisruption;
+// disruption table
+struct HafasJourneyResponseDisruptionTable
+{
+    uint16_t padding1; // version?
+    // followed by one uint16_t for each journey, containing the offset of the first HafasJourneyResponseDisruption entry for that journey
+
+    /** First disruption entry for journey @p journeyIdx, or @c nullptr if none present. */
+    inline const HafasJourneyResponseDisruption* firstDisruptionForJourney(uint16_t journeyIdx) const {
+        const auto offset = *reinterpret_cast<const uint16_t*>(reinterpret_cast<const char*>(this) + sizeof(HafasJourneyResponseDisruptionTable) + journeyIdx * sizeof(uint16_t));
+        return offset ? reinterpret_cast<const HafasJourneyResponseDisruption*>(reinterpret_cast<const char*>(this) + offset) : nullptr;
+    }
+};
+static_assert(alignof(HafasJourneyResponseDisruptionTable) == 1, "broken alignment for binary response struct");
 
 // disruption table entry
 struct HafasJourneyResponseDisruption
@@ -200,6 +218,11 @@ struct HafasJourneyResponseDisruption
     // index into attribute table
     uint16_t disruptionAttributeIndex;
 
+    /** Next disruption entry in the current disruption list. */
+    inline const HafasJourneyResponseDisruption* next(const HafasJourneyResponseDisruptionTable *disruptionTable) const
+    {
+        return nextOffset ? reinterpret_cast<const HafasJourneyResponseDisruption*>(reinterpret_cast<const char*>(disruptionTable) + nextOffset) : nullptr;
+    }
 };
 static_assert(alignof(HafasJourneyResponseDisruption) == 1, "broken alignment for binary response struct");
 
@@ -225,6 +248,21 @@ private:
     const char *m_data;
     QTextCodec* m_codec;
 };
+
+namespace HafasJourneyResponse {
+/** Returns the attribute at @p attributeIdx. */
+inline const HafasJourneyResponseAttribute* attribute(const char *data, const HafasJourneyResponseExtendedHeader *extHeader, uint16_t attributeIdx)
+{
+    return reinterpret_cast<const HafasJourneyResponseAttribute*>(data + extHeader->attributesOffset + attributeIdx * sizeof(HafasJourneyResponseAttribute));
+}
+
+/** Returns the disruption table. */
+inline const HafasJourneyResponseDisruptionTable* disruptionTable(const char *data, const HafasJourneyResponseExtendedHeader *extHeader)
+{
+    return reinterpret_cast<const HafasJourneyResponseDisruptionTable*>(data + extHeader->disruptionTableOffset);
+}
+
+}
 
 }
 

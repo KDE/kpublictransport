@@ -299,10 +299,8 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
 
             const auto journeyAttrIndex = *reinterpret_cast<const uint16_t*>(rawData.constData()
                 + extHeader->journeyAttributesIndexOffset + journeyIdx * sizeof(uint16_t));
-            auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
-                    + extHeader->attributesOffset
-                    + journeyAttrIndex * sizeof(HafasJourneyResponseAttribute));
-            while (attr->keyStr > 0) {
+            auto attr = HafasJourneyResponse::attribute(rawData.constData(), extHeader, journeyAttrIndex);
+            while (!attr->atEnd()) {
                 qDebug() << "journey attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
                 ++attr;
             }
@@ -312,10 +310,8 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                 Line line;
                 line.setName(stringTable.lookup(sectionInfo->lineNameStr).trimmed());
 
-                auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
-                    + extHeader->attributesOffset
-                    + sectionInfo->sectionAttributeIndex * sizeof(HafasJourneyResponseAttribute));
-                while (attr->keyStr > 0) {
+                auto attr = HafasJourneyResponse::attribute(rawData.constData(), extHeader, sectionInfo->sectionAttributeIndex);
+                while (!attr->atEnd()) {
                     qDebug() << "section attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
                     const auto key = stringTable.lookup(attr->keyStr);
                     if (key == QLatin1String("Direction")) {
@@ -372,21 +368,19 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
             sections.push_back(section);
         }
 
-        auto disruptionOffset = *reinterpret_cast<const uint16_t*>(rawData.constData() + extHeader->disruptionTableOffset + 2 + journeyIdx * 2);
-        qDebug() << "disruption offset:" << disruptionOffset;
-        while (disruptionOffset) {
-            const auto disruption = reinterpret_cast<const HafasJourneyResponseDisruption*>(rawData.constData() + extHeader->disruptionTableOffset + disruptionOffset);
-            disruptionOffset = disruption->nextOffset;
-            qDebug() << stringTable.lookup(disruption->idStr) << stringTable.lookup(disruption->titleStr) << stringTable.lookup(disruption->messageStr)
+        const auto disruptionTable = HafasJourneyResponse::disruptionTable(rawData.constData(), extHeader);
+        auto disruption = disruptionTable->firstDisruptionForJourney(journeyIdx);
+        while (disruption) {
+            qDebug() << "disruption" << stringTable.lookup(disruption->idStr) << stringTable.lookup(disruption->titleStr) << stringTable.lookup(disruption->messageStr)
                 << stringTable.lookup(disruption->startStr) << stringTable.lookup(disruption->endStr) << disruption->bitmask << disruption->section;
 
-            auto attr = reinterpret_cast<const HafasJourneyResponseAttribute*>(rawData.constData()
-                + extHeader->attributesOffset
-                + disruption->disruptionAttributeIndex * sizeof(HafasJourneyResponseAttribute));
-            while (attr->keyStr > 0) {
+            auto attr = HafasJourneyResponse::attribute(rawData.constData(), extHeader, disruption->disruptionAttributeIndex);
+            while (!attr->atEnd()) {
                 qDebug() << "disruption attr" << stringTable.lookup(attr->keyStr) << stringTable.lookup(attr->valueStr);
                 ++attr;
             }
+
+            disruption = disruption->next(disruptionTable);
         }
 
         Journey journey;
