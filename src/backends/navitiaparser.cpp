@@ -24,7 +24,6 @@
 
 #include <QColor>
 #include <QDebug>
-#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QTimeZone>
@@ -123,10 +122,13 @@ static Location parseWrappedLocation(const QJsonObject &obj)
     return loc;
 }
 
-static JourneySection parseJourneySection(const QJsonObject &obj)
+JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
 {
-    const auto displayInfo = obj.value(QLatin1String("display_informations")).toObject();
+    JourneySection section;
+    section.setFrom(parseWrappedLocation(obj.value(QLatin1String("from")).toObject()));
+    section.setTo(parseWrappedLocation(obj.value(QLatin1String("to")).toObject()));
 
+    const auto displayInfo = obj.value(QLatin1String("display_informations")).toObject();
     Line line;
     line.setName(displayInfo.value(QLatin1String("label")).toString());
     line.setColor(QColor(QLatin1Char('#') + displayInfo.value(QLatin1String("color")).toString()));
@@ -135,20 +137,22 @@ static JourneySection parseJourneySection(const QJsonObject &obj)
     const auto links = obj.value(QLatin1String("links")).toArray();
     for (const auto &v : links) {
         const auto link = v.toObject();
-        if (link.value(QLatin1String("type")).toString() != QLatin1String("physical_mode")) {
-            continue;
+        const auto type = link.value(QLatin1String("type")).toString();
+        if (type == QLatin1String("physical_mode")) {
+            line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
+        } else if (type == QLatin1String("disruption")) {
+            const auto id = link.value(QLatin1String("id")).toString();
+            const auto disruption = findDisruption(id);
+            if (disruption.value(QLatin1String("severity")).toObject().value(QLatin1String("effect")).toString() == QLatin1String("NO_SERVICE")) {
+                section.setDisruptionEffect(Disruption::NoService);
+            }
+            // TODO parse disruption messages
         }
-        line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
-        break;
     }
 
     Route route;
     route.setDirection(displayInfo.value(QLatin1String("direction")).toString());
     route.setLine(line);
-
-    JourneySection section;
-    section.setFrom(parseWrappedLocation(obj.value(QLatin1String("from")).toObject()));
-    section.setTo(parseWrappedLocation(obj.value(QLatin1String("to")).toObject()));
     section.setRoute(route);
 
     section.setScheduledDepartureTime(parseDateTime(obj.value(QLatin1String("base_departure_date_time")), section.from().timeZone()));
@@ -172,7 +176,7 @@ static JourneySection parseJourneySection(const QJsonObject &obj)
     return section;
 }
 
-static Journey parseJourney(const QJsonObject &obj)
+Journey NavitiaParser::parseJourney(const QJsonObject &obj) const
 {
     Journey journey;
 
@@ -189,6 +193,7 @@ static Journey parseJourney(const QJsonObject &obj)
 std::vector<Journey> NavitiaParser::parseJourneys(const QByteArray &data)
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
+    m_disruptions = topObj.value(QLatin1String("disruptions")).toArray();
     const auto journeys = topObj.value(QLatin1String("journeys")).toArray();
 
     std::vector<Journey> res;
@@ -245,6 +250,7 @@ static Departure parseDeparture(const QJsonObject &obj)
 std::vector<Departure> NavitiaParser::parseDepartures(const QByteArray &data)
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
+    m_disruptions = topObj.value(QLatin1String("disruptions")).toArray();
     const auto departures = topObj.value(QLatin1String("departures")).toArray();
 
     std::vector<Departure> res;
@@ -328,4 +334,15 @@ void NavitiaParser::parseAttributions(const QJsonArray& feeds)
         // TODO map known licenses to spdx links
         attributions.push_back(std::move(attr));
     }
+}
+
+QJsonObject NavitiaParser::findDisruption(const QString &id) const
+{
+    for (const auto &v : m_disruptions) {
+        const auto disruption = v.toObject();
+        if (disruption.value(QLatin1String("uri")).toString() == id) {
+            return disruption;
+        }
+    }
+    return {};
 }

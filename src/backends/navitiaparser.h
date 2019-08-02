@@ -20,12 +20,12 @@
 
 #include "kpublictransport_export.h"
 
+#include <QJsonArray>
 #include <QUrl>
 
 #include <vector>
 
 class QByteArray;
-class QJsonArray;
 class QString;
 
 namespace KPublicTransport {
@@ -33,6 +33,7 @@ namespace KPublicTransport {
 class Attribution;
 class Departure;
 class Journey;
+class JourneySection;
 class Location;
 
 /** Navitia REST response parser.
@@ -59,6 +60,11 @@ public:
 private:
     void parseLinks(const QJsonArray &links);
     void parseAttributions(const QJsonArray &feeds);
+    QJsonObject findDisruption(const QString &id) const;
+    JourneySection parseJourneySection(const QJsonObject &obj) const;
+    Journey parseJourney(const QJsonObject &obj) const;
+
+    QJsonArray m_disruptions;
 };
 
 }
