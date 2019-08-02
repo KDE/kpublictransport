@@ -102,7 +102,7 @@ static bool isImplausibleSection(const JourneySection &section)
 {
     if (section.mode() == JourneySection::Transfer) {
         const auto distance = Location::distance(section.from(), section.to());
-        if (section.duration() > 0 && (distance / section.duration()) > 100) {
+        if (section.duration() > 0 && (distance / section.duration()) > 30) {
             qCDebug(Log) << "discarding journey based on insane transfer speed:" << (distance / section.duration()) << "m/s";
             return true;
         }
