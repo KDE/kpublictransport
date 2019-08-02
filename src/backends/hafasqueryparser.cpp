@@ -371,6 +371,8 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
         while (disruption) {
             qDebug() << "disruption" << stringTable.lookup(disruption->idStr) << stringTable.lookup(disruption->titleStr) << stringTable.lookup(disruption->messageStr)
                 << stringTable.lookup(disruption->startStr) << stringTable.lookup(disruption->endStr) << disruption->bitmask << disruption->section;
+            sections[disruption->section].addNote(stringTable.lookup(disruption->titleStr));
+            sections[disruption->section].addNote(stringTable.lookup(disruption->messageStr));
 
             auto attr = HafasJourneyResponse::attribute(rawData.constData(), extHeader, disruption->disruptionAttributeIndex);
             while (!attr->atEnd()) {
