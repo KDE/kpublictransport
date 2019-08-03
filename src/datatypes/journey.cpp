@@ -19,6 +19,7 @@
 #include "json_p.h"
 #include "datatypes_p.h"
 #include "mergeutil_p.h"
+#include "notesutil_p.h"
 #include "platformutils_p.h"
 
 #include <QDebug>
@@ -164,10 +165,11 @@ bool JourneySection::arrivalPlatformChanged() const
 
 void JourneySection::addNote(const QString &note)
 {
-    const auto n = MergeUtil::normalizeNote(note);
-    if (!d->notes.contains(n)) {
+    const auto n = NotesUtil::normalizeNote(note);
+    const auto idx = NotesUtil::needsAdding(d->notes, n);
+    if (idx >= 0) {
         d.detach();
-        d->notes.push_back(n);
+        NotesUtil::performAdd(d->notes, n, idx);
     }
 }
 
@@ -240,7 +242,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     res.setScheduledArrivalPlatform(mergeString(lhs.scheduledArrivalPlatform(), rhs.scheduledArrivalPlatform()));
 
     res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
-    res.setNotes(MergeUtil::mergeNotes(lhs.notes(), rhs.notes()));
+    res.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
 
     return res;
 }

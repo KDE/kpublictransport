@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../src/datatypes/mergeutil.cpp"
+#include "../src/datatypes/notesutil.cpp"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
@@ -44,12 +44,34 @@ private Q_SLOTS:
         QCOMPARE(dep.notes(), dep2.notes());
     }
 
+    void testAddNotes_data()
+    {
+        QTest::addColumn<QStringList>("in");
+        QTest::addColumn<QStringList>("res");
+
+        QTest::newRow("empty") << QStringList() << QStringList();
+        QTest::newRow("one") << QStringList({s("line1")}) << QStringList({s("line1")});
+        QTest::newRow("two") << QStringList({s("line1"), s("line2")}) << QStringList({s("line1"), s("line2")});
+        QTest::newRow("double") << QStringList({s("line1"), s("line2"), s("line1")}) << QStringList({s("line1"), s("line2")});
+        QTest::newRow("substring first") << QStringList({s("note"), s("line2"), s("note - detail")}) << QStringList({s("note - detail"), s("line2")});
+        QTest::newRow("substring second") << QStringList({s("note - detail"), s("line2"), s("note")}) << QStringList({s("note - detail"), s("line2")});
+    }
+
     void testAddNotes()
     {
+        QFETCH(QStringList, in);
+        QFETCH(QStringList, res);
+
         JourneySection sec;
-        sec.addNote(s("line1"));
-        sec.addNotes({s("line2"), s("line1")});
-        QCOMPARE(sec.notes(), QStringList({s("line1"), s("line2")}));
+        sec.addNotes(in);
+        QCOMPARE(sec.notes(), res);
+        sec.addNotes(in);
+        QCOMPARE(sec.notes(), res);
+
+        Departure dep;
+        for (const auto &note : in)
+            dep.addNote(note);
+        QCOMPARE(dep.notes(), res);
     }
 
     void testNotesMerge()
@@ -78,7 +100,7 @@ private Q_SLOTS:
     {
         QFETCH(QString, in);
         QFETCH(QString, out);
-        QCOMPARE(MergeUtil::normalizeNote(in), out);
+        QCOMPARE(NotesUtil::normalizeNote(in), out);
     }
 
     void testRichText_data()
@@ -95,7 +117,7 @@ private Q_SLOTS:
     {
         QFETCH(QString, in);
         QFETCH(QString, out);
-        QCOMPARE(MergeUtil::normalizeNote(in), out);
+        QCOMPARE(NotesUtil::normalizeNote(in), out);
     }
 };
 

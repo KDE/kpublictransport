@@ -19,6 +19,7 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
+#include "notesutil_p.h"
 #include "platformutils_p.h"
 
 #include <QDateTime>
@@ -112,10 +113,11 @@ bool Departure::platformChanged() const
 
 void Departure::addNote(const QString &note)
 {
-    const auto n = MergeUtil::normalizeNote(note);
-    if (!d->notes.contains(n)) {
+    const auto n = NotesUtil::normalizeNote(note);
+    const auto idx = NotesUtil::needsAdding(d->notes, n);
+    if (idx >= 0) {
         d.detach();
-        d->notes.push_back(n);
+        NotesUtil::performAdd(d->notes, n, idx);
     }
 }
 
@@ -175,7 +177,7 @@ Departure Departure::merge(const Departure &lhs, const Departure &rhs)
     dep.setRoute(Route::merge(lhs.route(), rhs.route()));
     dep.setStopPoint(Location::merge(lhs.stopPoint(), rhs.stopPoint()));
     dep.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
-    dep.setNotes(MergeUtil::mergeNotes(lhs.notes(), rhs.notes()));
+    dep.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
     return dep;
 }
 

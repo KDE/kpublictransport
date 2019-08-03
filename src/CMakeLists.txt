@@ -34,6 +34,7 @@ set(kpublictransport_srcs
     datatypes/line.cpp
     datatypes/location.cpp
     datatypes/mergeutil.cpp
+    datatypes/notesutil.cpp
     datatypes/platformutils.cpp
 
     models/abstractquerymodel.cpp

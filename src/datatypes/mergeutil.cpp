@@ -19,9 +19,7 @@
 
 #include <QDateTime>
 #include <QDebug>
-#include <QRegularExpression>
 #include <QString>
-#include <QStringList>
 #include <QTimeZone>
 #include <QUrl>
 
@@ -107,41 +105,4 @@ QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
         return lhs < rhs ? lhs : rhs;
     }
     return lhs.size() < rhs.size() ? rhs : lhs;
-}
-
-QString MergeUtil::normalizeNote(const QString &note)
-{
-    auto n = note;
-    n.replace(QLatin1String("  "), QLatin1String(" "));
-
-    if (!note.contains(QLatin1String("href"))) { // only mess with rich text if this isn't marked up already
-        static QRegularExpression linkRegExp(QStringLiteral("(?:https?://)?(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:?/[^ \"<>]+)?"));
-        const auto match = linkRegExp.match(n);
-        if (match.hasMatch()) {
-            n.replace(match.capturedStart(), match.capturedLength(), QLatin1String("<a href=\"")
-                + (match.capturedRef().startsWith(QLatin1String("http")) ? QString() : QLatin1String("https://"))
-                + match.capturedRef().toString()
-                + QLatin1String("\">") + match.capturedRef() + QLatin1String("</a>"));
-        }
-    }
-
-    return n.trimmed();
-}
-
-QStringList MergeUtil::mergeNotes(const QStringList &lhs, const QStringList &rhs)
-{
-    if (lhs.isEmpty()) {
-        return rhs;
-    }
-    if (rhs.isEmpty()) {
-        return lhs;
-    }
-
-    auto res = lhs;
-    for (const auto &r : rhs) {
-        if (!res.contains(r)) {
-            res.push_back(r);
-        }
-    }
-    return res;
 }
