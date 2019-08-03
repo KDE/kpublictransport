@@ -183,6 +183,8 @@ Departure EfaParser::parseDmDeparture(QXmlStreamReader &reader) const
             reader.skipCurrentElement();
         } else if (reader.name() == QLatin1String("itdDateTime")) {
             dep.setScheduledDepartureTime(parseDateTime(reader));
+        } else if (reader.name() == QLatin1String("itdInfoLinkList")) {
+            dep.addNotes(parseInfoLink(reader));
         } else {
             reader.skipCurrentElement();
         }
