@@ -319,6 +319,8 @@ JourneySection EfaParser::parseTripPartialRoute(QXmlStreamReader &reader) const
                 section.setMode(JourneySection::PublicTransport);
             }
             reader.skipCurrentElement();
+        } else if (reader.name() == QLatin1String("infoLink")) {
+            section.addNotes(parseInfoLink(reader));
         } else {
             reader.skipCurrentElement();
         }
@@ -367,4 +369,29 @@ std::vector<Journey> EfaParser::parseTripResponse(const QByteArray &data) const
         }
     }
     return res;
+}
+
+QStringList EfaParser::parseInfoLink(QXmlStreamReader &reader) const
+{
+    int depth = 1;
+    QStringList l;
+    while (!reader.atEnd() && depth > 0) {
+        reader.readNext();
+        switch (reader.tokenType()) {
+            case QXmlStreamReader::StartElement:
+                ++depth;
+                if (reader.name() == QLatin1String("infoLinkText") || reader.name() == QLatin1String("subtitle")
+                 || reader.name() == QLatin1String("wmlText") || reader.name() == QLatin1String("htmlText"))
+                {
+                    l.push_back(reader.readElementText());
+                }
+                break;
+            case QXmlStreamReader::EndElement:
+                --depth;
+                break;
+            default:
+                break;
+        }
+    }
+    return l;
 }

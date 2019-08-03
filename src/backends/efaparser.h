@@ -55,6 +55,7 @@ private:
     void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
     JourneySection parseTripPartialRoute(QXmlStreamReader &reader) const;
     Journey parseTripRoute(QXmlStreamReader &reader) const;
+    QStringList parseInfoLink(QXmlStreamReader &reader) const;
 
     QString m_locationIdentifierType;
     mutable QString m_errorMsg;
