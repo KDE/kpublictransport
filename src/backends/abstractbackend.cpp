@@ -133,7 +133,7 @@ void AbstractBackend::logRequest(const char *typeName, const QJsonObject &reques
     const QString baseFile = logDir() + QDateTime::currentDateTime().toString(QStringLiteral("yyyyMMddThhmmss.zzz")) + QLatin1Char('-') + QLatin1String(typeName);
 
     if (!postData.isEmpty()) {
-        QFile dataFile(baseFile + QLatin1String("-post-data"));
+        QFile dataFile(baseFile + QLatin1String("-3-post-data"));
         if (!dataFile.open(QFile::WriteOnly)) {
             qCWarning(Log) << "could not open" << dataFile.fileName() << dataFile.errorString();
             return;
@@ -141,12 +141,13 @@ void AbstractBackend::logRequest(const char *typeName, const QJsonObject &reques
         dataFile.write(postData);
     }
 
-    QFile httpFile(baseFile + QLatin1String("-http-request"));
+    QFile httpFile(baseFile + QLatin1String("-2-http-request.txt"));
     if (!httpFile.open(QFile::WriteOnly)) {
         qCWarning(Log) << "could not open" << httpFile.fileName() << httpFile.error();
         return;
     }
     httpFile.write(netRequest.url().toString().toUtf8());
+    httpFile.write("\n");
     const auto headers = netRequest.rawHeaderList();
     for (const auto &header : headers) {
         httpFile.write(header);
@@ -155,7 +156,7 @@ void AbstractBackend::logRequest(const char *typeName, const QJsonObject &reques
         httpFile.write("\n");
     }
 
-    QFile reqFile(baseFile + QLatin1String("-request"));
+    QFile reqFile(baseFile + QLatin1String("-1-request.json"));
     if (!reqFile.open(QFile::WriteOnly)) {
         qCWarning(Log) << "could not open" << reqFile.fileName() << reqFile.error();
         return;
@@ -168,7 +169,7 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
     const QString baseFile = logDir() + QDateTime::currentDateTime().toString(QStringLiteral("yyyyMMddThhmmss.zzz")) + QLatin1Char('-') + QLatin1String(typeName);
 
     if (!data.isEmpty()) {
-        QFile dataFile(baseFile + QLatin1String("-reply-data"));
+        QFile dataFile(baseFile + QLatin1String("-5-reply-data"));
         if (!dataFile.open(QFile::WriteOnly)) {
             qCWarning(Log) << "could not open" << dataFile.fileName() << dataFile.errorString();
             return;
@@ -176,11 +177,15 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
         dataFile.write(data);
     }
 
-    QFile httpFile(baseFile + QLatin1String("-http-reply"));
+    QFile httpFile(baseFile + QLatin1String("-4-http-reply.txt"));
     if (!httpFile.open(QFile::WriteOnly)) {
         qCWarning(Log) << "could not open" << httpFile.fileName() << httpFile.error();
         return;
     }
+    httpFile.write(netReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString().toUtf8());
+    httpFile.write(" ");
+    httpFile.write(netReply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString().toUtf8());
+    httpFile.write("\n");
     const auto headers = netReply->rawHeaderPairs();
     for (const auto &header : headers) {
         httpFile.write(header.first);
