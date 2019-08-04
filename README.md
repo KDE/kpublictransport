@@ -38,3 +38,10 @@ terms of the backends this is coming from, in particular https://www.navitia.io/
 Attribution information that need to be displayed in an appropriate place in the
 application using this are provided globally via KPublicTransport::Manager::attributions()
 as well as more fine-grained per query reply via KPublicTransport::Reply::attributions().
+
+## Development
+
+Setting the `KPUBLICTRANSPORT_LOG_DIR` environment variable will result in all network operations
+being logged there, grouped by backend, and including the full network traffic. This is useful for
+example to capture rare scenarios not parsed correctly yet, or for exploring what additional information
+is available that KPublicTransport does not expose yet.
