@@ -169,7 +169,15 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
     const QString baseFile = logDir() + QDateTime::currentDateTime().toString(QStringLiteral("yyyyMMddThhmmss.zzz")) + QLatin1Char('-') + QLatin1String(typeName);
 
     if (!data.isEmpty()) {
-        QFile dataFile(baseFile + QLatin1String("-5-reply-data"));
+        const auto contentType = netReply->header(QNetworkRequest::ContentTypeHeader).toString();
+        QString ext;
+        if (contentType == QLatin1String("application/json") || data.startsWith("{")) {
+            ext = QStringLiteral(".json");
+        } else if (contentType == QLatin1String("application/xml") || data.startsWith("<")) {
+            ext = QStringLiteral(".xml");
+        }
+
+        QFile dataFile(baseFile + QLatin1String("-5-reply-data") + ext);
         if (!dataFile.open(QFile::WriteOnly)) {
             qCWarning(Log) << "could not open" << dataFile.fileName() << dataFile.errorString();
             return;
