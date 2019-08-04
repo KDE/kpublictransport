@@ -16,6 +16,7 @@
 */
 
 #include "locationrequest.h"
+#include "datatypes/json_p.h"
 
 #include <QSharedData>
 
@@ -90,4 +91,9 @@ QString LocationRequest::cacheKey() const
     }
 
     return QLatin1String("nanxnan_") + normalizedName;
+}
+
+QJsonObject LocationRequest::toJson(const LocationRequest &req)
+{
+    return Json::toJson(req);
 }

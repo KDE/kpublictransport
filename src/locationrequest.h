@@ -64,6 +64,9 @@ public:
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
 
+    ///@cond internal
+    static QJsonObject toJson(const LocationRequest &req);
+    ///@endcond
 private:
     QExplicitlySharedDataPointer<LocationRequestPrivate> d;
 };

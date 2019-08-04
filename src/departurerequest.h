@@ -78,6 +78,9 @@ public:
     /** Set whether to search for arrivals or departures. */
     void setMode(Mode mode);
 
+    ///@cond internal
+    static QJsonObject toJson(const DepartureRequest &req);
+    ///@endcond
 private:
     friend class AbstractBackend;
     friend class DepartureReply;

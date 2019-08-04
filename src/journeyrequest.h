@@ -87,6 +87,9 @@ public:
      */
     void setArrivalTime(const QDateTime &dt);
 
+    ///@cond internal
+    static QJsonObject toJson(const JourneyRequest &req);
+    ///@endcond
 private:
     friend class AbstractBackend;
     friend class JourneyReply;

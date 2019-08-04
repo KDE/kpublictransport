@@ -17,6 +17,7 @@
 
 #include "departurerequest.h"
 #include "requestcontext_p.h"
+#include "datatypes/json_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -123,6 +124,13 @@ void DepartureRequest::setContext(const AbstractBackend *backend, RequestContext
 void DepartureRequest::purgeLoops(const DepartureRequest &baseRequest)
 {
     RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
+}
+
+QJsonObject DepartureRequest::toJson(const DepartureRequest &req)
+{
+    auto obj = Json::toJson(req);
+    obj.insert(QStringLiteral("stop"), Location::toJson(req.stop()));
+    return obj;
 }
 
 #include "moc_departurerequest.cpp"

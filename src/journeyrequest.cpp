@@ -17,6 +17,7 @@
 
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
+#include "datatypes/json_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -140,6 +141,14 @@ void JourneyRequest::setContext(const AbstractBackend *backend, RequestContext &
 void JourneyRequest::purgeLoops(const JourneyRequest &baseRequest)
 {
     RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
+}
+
+QJsonObject JourneyRequest::toJson(const KPublicTransport::JourneyRequest &req)
+{
+    auto obj = Json::toJson(req);
+    obj.insert(QStringLiteral("from"), Location::toJson(req.from()));
+    obj.insert(QStringLiteral("to"), Location::toJson(req.to()));
+    return obj;
 }
 
 #include "moc_journeyrequest.cpp"
