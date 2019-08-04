@@ -16,12 +16,16 @@
 */
 
 #include "abstractbackend.h"
+#include "logging.h"
 
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>
 
 #include <QDebug>
+#include <QDir>
+#include <QJsonDocument>
+#include <QNetworkReply>
 #include <QPolygonF>
 
 using namespace KPublicTransport;
@@ -110,4 +114,78 @@ Attribution AbstractBackend::attribution() const
 void AbstractBackend::setAttribution(const Attribution &attr)
 {
     m_attribution = attr;
+}
+
+bool AbstractBackend::isLoggingEnabled() const
+{
+    return qEnvironmentVariableIsSet("KPUBLICTRANSPORT_LOG_DIR");
+}
+
+QString AbstractBackend::logDir() const
+{
+    const QString dir = qEnvironmentVariable("KPUBLICTRANSPORT_LOG_DIR") + QLatin1Char('/') + m_backendId + QLatin1Char('/');
+    QDir().mkpath(dir);
+    return dir;
+}
+
+void AbstractBackend::logRequest(const char *typeName, const QJsonObject &requestData, const QNetworkRequest &netRequest, const QByteArray &postData) const
+{
+    const QString baseFile = logDir() + QDateTime::currentDateTime().toString(QStringLiteral("yyyyMMddThhmmss.zzz")) + QLatin1Char('-') + QLatin1String(typeName);
+
+    if (!postData.isEmpty()) {
+        QFile dataFile(baseFile + QLatin1String("-post-data"));
+        if (!dataFile.open(QFile::WriteOnly)) {
+            qCWarning(Log) << "could not open" << dataFile.fileName() << dataFile.errorString();
+            return;
+        }
+        dataFile.write(postData);
+    }
+
+    QFile httpFile(baseFile + QLatin1String("-http-request"));
+    if (!httpFile.open(QFile::WriteOnly)) {
+        qCWarning(Log) << "could not open" << httpFile.fileName() << httpFile.error();
+        return;
+    }
+    httpFile.write(netRequest.url().toString().toUtf8());
+    const auto headers = netRequest.rawHeaderList();
+    for (const auto &header : headers) {
+        httpFile.write(header);
+        httpFile.write(": ");
+        httpFile.write(netRequest.rawHeader(header));
+        httpFile.write("\n");
+    }
+
+    QFile reqFile(baseFile + QLatin1String("-request"));
+    if (!reqFile.open(QFile::WriteOnly)) {
+        qCWarning(Log) << "could not open" << reqFile.fileName() << reqFile.error();
+        return;
+    }
+    reqFile.write(QJsonDocument(requestData).toJson());
+}
+
+void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, const QByteArray &data) const
+{
+    const QString baseFile = logDir() + QDateTime::currentDateTime().toString(QStringLiteral("yyyyMMddThhmmss.zzz")) + QLatin1Char('-') + QLatin1String(typeName);
+
+    if (!data.isEmpty()) {
+        QFile dataFile(baseFile + QLatin1String("-reply-data"));
+        if (!dataFile.open(QFile::WriteOnly)) {
+            qCWarning(Log) << "could not open" << dataFile.fileName() << dataFile.errorString();
+            return;
+        }
+        dataFile.write(data);
+    }
+
+    QFile httpFile(baseFile + QLatin1String("-http-reply"));
+    if (!httpFile.open(QFile::WriteOnly)) {
+        qCWarning(Log) << "could not open" << httpFile.fileName() << httpFile.error();
+        return;
+    }
+    const auto headers = netReply->rawHeaderPairs();
+    for (const auto &header : headers) {
+        httpFile.write(header.first);
+        httpFile.write(": ");
+        httpFile.write(header.second);
+        httpFile.write("\n");
+    }
 }

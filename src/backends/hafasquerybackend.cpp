@@ -87,17 +87,22 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsB"), QStringLiteral("12")); // TODO max results
     url.setQuery(query);
 
-    auto netReply = nam->get(QNetworkRequest(url));
+    const QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
         netReply->deleteLater();
         qDebug() << netReply->request().url();
+
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
             qCDebug(Log) << reply->error() << reply->errorString();
             return;
         }
 
-        auto res = m_parser.parseGetStopResponse(netReply->readAll());
+        auto res = m_parser.parseGetStopResponse(data);
         if (m_parser.error() != Reply::NoError) {
             Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
             addError(reply, m_parser.error(), m_parser.errorMessage());
@@ -124,16 +129,22 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     query.addQueryItem(QStringLiteral("look_maxdist"), QStringLiteral("5000")); // TODO max dist
     query.addQueryItem(QStringLiteral("look_maxno"), QStringLiteral("12")); // TODO max results
     url.setQuery(query);
-    auto netReply = nam->get(QNetworkRequest(url));
+
+    const QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
             qCDebug(Log) << reply->error() << reply->errorString();
             return;
         }
         qDebug() << netReply->request().url();
-        auto res = m_parser.parseQueryLocationResponse(netReply->readAll());
+        auto res = m_parser.parseQueryLocationResponse(data);
         if (m_parser.error() != Reply::NoError) {
             Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
             addError(reply, m_parser.error(), m_parser.errorMessage());
@@ -171,18 +182,22 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
     query.addQueryItem(QStringLiteral("L"), QStringLiteral("vs_java3"));
     query.addQueryItem(QStringLiteral("start"), QStringLiteral("yes"));
     url.setQuery(query);
-    qDebug() << url;
 
-    auto netReply = nam->get(QNetworkRequest(url));
+    const QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         qDebug() << netReply->request().url();
         netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
             qCDebug(Log) << reply->error() << reply->errorString();
             return;
         }
-        auto res = m_parser.parseStationBoardResponse(netReply->readAll(), reply->request().mode() == DepartureRequest::QueryArrival);
+        auto res = m_parser.parseStationBoardResponse(data, reply->request().mode() == DepartureRequest::QueryArrival);
         if (m_parser.error() != Reply::NoError) {
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
@@ -235,19 +250,23 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
     query.addQueryItem(QStringLiteral("clientType"), QStringLiteral("ANDROID"));
 
     url.setQuery(query);
-    qDebug() << url;
 
-    auto netReply = nam->get(QNetworkRequest(url));
+    const QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         qDebug() << netReply->request().url();
         netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
             qCDebug(Log) << reply->error() << reply->errorString();
             return;
         }
 
-        auto res = m_parser.parseQueryJourneyResponse(netReply->readAll());
+        auto res = m_parser.parseQueryJourneyResponse(data);
         if (m_parser.error() != Reply::NoError) {
             addError(reply, m_parser.error(), m_parser.errorMessage());
             qCDebug(Log) << m_parser.error() << m_parser.errorMessage();

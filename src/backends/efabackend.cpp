@@ -78,9 +78,14 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     query.addQueryItem(QStringLiteral("anyMaxSizeHitList"), QStringLiteral("12")); // TODO
     url.setQuery(query);
 
-    auto netReply = nam->get(QNetworkRequest(url));
+    QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         if (netReply->error() != QNetworkReply::NoError) {
             qCDebug(Log) << netReply->url() << netReply->errorString();
             addError(reply, Reply::NetworkError, netReply->errorString());
@@ -89,7 +94,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         qDebug() << netReply->url();
         EfaParser p;
         p.setLocationIdentifierType(locationIdentifierType());
-        auto res = p.parseStopFinderResponse(netReply->readAll());
+        auto res = p.parseStopFinderResponse(data);
         if (p.error() != Reply::NoError) {
             Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
             addError(reply, p.error(), p.errorMessage());
@@ -130,9 +135,14 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
 
     url.setQuery(query);
 
-    auto netReply = nam->get(QNetworkRequest(url));
+    QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         if (netReply->error() != QNetworkReply::NoError) {
             qCDebug(Log) << netReply->url() << netReply->errorString();
             addError(reply, Reply::NetworkError, netReply->errorString());
@@ -141,7 +151,7 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
         qDebug() << netReply->url();
         EfaParser p;
         p.setLocationIdentifierType(locationIdentifierType());
-        auto res = p.parseDmResponse(netReply->readAll());
+        auto res = p.parseDmResponse(data);
         if (p.error() != Reply::NoError) {
             addError(reply, p.error(), p.errorMessage());
             qCDebug(Log) << p.error() << p.errorMessage();
@@ -190,9 +200,14 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
 
     url.setQuery(query);
 
-    auto netReply = nam->get(QNetworkRequest(url));
+    QNetworkRequest netRequest(url);
+    logRequest(request, netRequest);
+    auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         if (netReply->error() != QNetworkReply::NoError) {
             qCDebug(Log) << netReply->url() << netReply->errorString();
             addError(reply, Reply::NetworkError, netReply->errorString());
@@ -201,7 +216,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         qDebug() << netReply->url();
         EfaParser p;
         p.setLocationIdentifierType(locationIdentifierType());
-        auto res = p.parseTripResponse(netReply->readAll());
+        auto res = p.parseTripResponse(data);
         if (p.error() != Reply::NoError) {
             addError(reply, p.error(), p.errorMessage());
             qCDebug(Log) << p.error() << p.errorMessage();

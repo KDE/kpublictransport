@@ -81,15 +81,17 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
     QNetworkRequest netReq(url);
     netReq.setRawHeader("Authorization", m_auth.toUtf8());
-
-    qCDebug(Log) << "GET:" << url;
+    logRequest(req, netReq);
     auto netReply = nam->get(netReq);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply] {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
                 NavitiaParser parser;
-                addResult(reply, this, parser.parseJourneys(netReply->readAll()));
+                addResult(reply, this, parser.parseJourneys(data));
                 if (parser.nextLink.isValid()) {
                     setNextRequestContext(reply, parser.nextLink);
                 }
@@ -100,7 +102,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(netReply->readAll()));
+                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 break;
             default:
                 addError(reply, Reply::NetworkError, netReply->errorString());
@@ -138,15 +140,17 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
 
     QNetworkRequest netReq(url);
     netReq.setRawHeader("Authorization", m_auth.toUtf8());
-
-    qCDebug(Log) << "GET:" << url;
+    logRequest(req, netReq);
     auto netReply = nam->get(netReq);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
                 NavitiaParser p;
-                addResult(reply, this, p.parseDepartures(netReply->readAll()));
+                addResult(reply, this, p.parseDepartures(data));
                 if (p.nextLink.isValid()) {
                     setNextRequestContext(reply, p.nextLink);
                 }
@@ -157,7 +161,7 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(netReply->readAll()));
+                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 break;
             default:
                 addError(reply, Reply::NetworkError, netReply->errorString());
@@ -198,20 +202,21 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     url.setQuery(query);
     QNetworkRequest netReq(url);
     netReq.setRawHeader("Authorization", m_auth.toUtf8());
-
-    qCDebug(Log) << "GET:" << url;
+    logRequest(req, netReq);
     auto netReply = nam->get(netReq);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
-        qDebug() << netReply->request().url() << netReply->errorString();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
                 std::vector<Location> res;
                 NavitiaParser p;
                 if (reply->request().hasCoordinate()) {
-                    res = p.parsePlacesNearby(netReply->readAll());
+                    res = p.parsePlacesNearby(data);
                 } else {
-                    res = p.parsePlaces(netReply->readAll());
+                    res = p.parsePlaces(data);
                 }
                 Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, p.attributions);
                 addResult(reply, std::move(res));
@@ -219,7 +224,7 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(netReply->readAll()));
+                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
                 break;
             default:

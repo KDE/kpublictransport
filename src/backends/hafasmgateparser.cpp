@@ -235,7 +235,6 @@ std::vector<Location> HafasMgateParser::parseLocations(const QByteArray &data) c
 std::vector<Journey> HafasMgateParser::parseJourneys(const QByteArray &data) const
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
-//     qDebug().noquote() << QJsonDocument(topObj).toJson();
     const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
 
     for (const auto &v : svcResL) {

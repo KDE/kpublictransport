@@ -24,10 +24,13 @@
 #include <KPublicTransport/Attribution>
 
 #include <QFlags>
+#include <QJsonObject>
 #include <QPolygonF>
 #include <QVariant>
 
 class QNetworkAccessManager;
+class QNetworkReply;
+class QNetworkRequest;
 
 namespace KPublicTransport {
 
@@ -137,8 +140,33 @@ protected:
         reply->setPreviousContext(this, data);
     }
 
+    template <typename ReqT>
+    void logRequest(const ReqT &request, const QNetworkRequest &netRequest, const QByteArray &postData = {}) const
+    {
+        if (!isLoggingEnabled()) {
+            return;
+        }
+
+        logRequest(ReqT::staticMetaObject.className() + 18, ReqT::toJson(request), netRequest, postData);
+    }
+
+    template <typename RepT>
+    void logReply(RepT *reply, QNetworkReply *netReply, const QByteArray &data) const
+    {
+        if (!isLoggingEnabled()) {
+            return;
+        }
+
+        logReply(reply->metaObject()->className() + 18, netReply, data);
+    }
+
 private:
     Q_DISABLE_COPY(AbstractBackend)
+    bool isLoggingEnabled() const;
+    QString logDir() const;
+    void logRequest(const char *typeName, const QJsonObject &requestData, const QNetworkRequest &netRequest, const QByteArray &postData) const;
+    void logReply(const char *typeName, QNetworkReply *netReply, const QByteArray &data) const;
+
     QString m_backendId;
     QPolygonF m_geoFilter;
     Attribution m_attribution;

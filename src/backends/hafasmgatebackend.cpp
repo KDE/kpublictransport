@@ -115,12 +115,18 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         tripSearch.insert(QStringLiteral("req"), req);
     }
 
-    auto netReply = postRequest(tripSearch, nam);
+    QByteArray postData;
+    const auto netRequest = makePostRequest(tripSearch, postData);
+    logRequest(request, netRequest, postData);
+    auto netReply = nam->post(netRequest, postData);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
-                auto res = m_parser.parseJourneys(netReply->readAll());
+                auto res = m_parser.parseJourneys(data);
                 if (m_parser.error() == Reply::NoError) {
                     addResult(reply, this, std::move(res));
                 } else {
@@ -170,13 +176,19 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
         stationBoard.insert(QStringLiteral("req"), req);
     }
 
-    auto netReply = postRequest(stationBoard, nam);
+    QByteArray postData;
+    const auto netRequest = makePostRequest(stationBoard, postData);
+    logRequest(request, netRequest, postData);
+    auto netReply = nam->post(netRequest, postData);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
         qDebug() << netReply->request().url();
+
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
-                auto result = m_parser.parseDepartures(netReply->readAll());
+                auto result = m_parser.parseDepartures(data);
                 if (m_parser.error() != Reply::NoError) {
                     addError(reply, m_parser.error(), m_parser.errorMessage());
                     qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
@@ -205,10 +217,13 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
 
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         qDebug() << netReply->request().url();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
         switch (netReply->error()) {
             case QNetworkReply::NoError:
             {
-                auto res = m_parser.parseLocations(netReply->readAll());
+                auto res = m_parser.parseLocations(data);
                 if (m_parser.error() == Reply::NoError) {
                     Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
                     addResult(reply, std::move(res));
@@ -229,7 +244,7 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
     return true;
 }
 
-QNetworkReply* HafasMgateBackend::postRequest(const QJsonObject &svcReq, QNetworkAccessManager *nam) const
+QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QByteArray &postData) const
 {
     QJsonObject top;
     {
@@ -270,12 +285,12 @@ QNetworkReply* HafasMgateBackend::postRequest(const QJsonObject &svcReq, QNetwor
     }
     top.insert(QStringLiteral("ver"), m_version);
 
-    const auto content = QJsonDocument(top).toJson(QJsonDocument::Compact);
+    postData = QJsonDocument(top).toJson(QJsonDocument::Compact);
     QUrl url(m_endpoint);
     QUrlQuery query;
     if (!m_micMacSalt.isEmpty()) {
         QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData(content);
+        md5.addData(postData);
         const auto mic = md5.result().toHex();
         query.addQueryItem(QStringLiteral("mic"), QString::fromLatin1(mic));
 
@@ -287,7 +302,7 @@ QNetworkReply* HafasMgateBackend::postRequest(const QJsonObject &svcReq, QNetwor
     }
     if (!m_checksumSalt.isEmpty()) {
         QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData(content);
+        md5.addData(postData);
         md5.addData(m_checksumSalt);
         query.addQueryItem(QStringLiteral("checksum"), QString::fromLatin1(md5.result().toHex()));
     }
@@ -295,9 +310,7 @@ QNetworkReply* HafasMgateBackend::postRequest(const QJsonObject &svcReq, QNetwor
 
     auto netReq = QNetworkRequest(url);
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, QLatin1String("application/json"));
-    qCDebug(Log) << netReq.url();
-    //qCDebug(Log).noquote() << QJsonDocument(top).toJson();
-    return nam->post(netReq, content);
+    return netReq;
 }
 
 QNetworkReply* HafasMgateBackend::postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const
@@ -350,7 +363,10 @@ QNetworkReply* HafasMgateBackend::postLocationQuery(const LocationRequest &req, 
         return nullptr;
     }
 
-    return postRequest(methodObj, nam);
+    QByteArray postData;
+    const auto netRequest = makePostRequest(methodObj, postData);
+    logRequest(req, netRequest, postData);
+    return nam->post(netRequest, postData);
 }
 
 void HafasMgateBackend::setMicMacSalt(const QString &salt)

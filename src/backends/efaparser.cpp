@@ -59,7 +59,6 @@ Location EfaParser::parseItdOdvAssignedStop(QXmlStreamReader &reader) const
 
 std::vector<Location> EfaParser::parseStopFinderResponse(const QByteArray &data) const
 {
-    //qDebug().noquote() << data;
     std::vector<Location> res;
     QXmlStreamReader reader(data);
     while (!reader.atEnd()) {
@@ -195,7 +194,6 @@ Departure EfaParser::parseDmDeparture(QXmlStreamReader &reader) const
 
 std::vector<Departure> EfaParser::parseDmResponse(const QByteArray &data) const
 {
-    //qDebug().noquote() << data;
     std::vector<Departure> res;
     QXmlStreamReader reader(data);
     while (!reader.atEnd()) {
