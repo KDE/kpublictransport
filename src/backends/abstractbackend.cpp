@@ -175,6 +175,8 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
             ext = QStringLiteral(".json");
         } else if (contentType == QLatin1String("application/xml") || data.startsWith("<")) {
             ext = QStringLiteral(".xml");
+        } else if (data.startsWith("\x1f\x8b")) {
+            ext = QStringLiteral(".gz");
         }
 
         QFile dataFile(baseFile + QLatin1String("-5-reply-data") + ext);
