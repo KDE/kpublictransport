@@ -39,6 +39,11 @@ class RequestContext;
  */
 class KPUBLICTRANSPORT_EXPORT DepartureRequest
 {
+    Q_GADGET
+    Q_PROPERTY(KPublicTransport::Location stop READ stop WRITE setStop)
+    Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
+    Q_PROPERTY(Mode mode READ mode WRITE setMode)
+
 public:
     DepartureRequest();
     /** Search for arrival/departures to/from @p stop. */
@@ -66,6 +71,8 @@ public:
         QueryArrival, ///< Search for arrivals.
         QueryDeparture ///< Search for departures.
     };
+    Q_ENUM(Mode)
+
     /** Returns whether to search for arrivals or departures. */
     Mode mode() const;
     /** Set whether to search for arrivals or departures. */

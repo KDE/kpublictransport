@@ -21,6 +21,9 @@
 #include "kpublictransport_export.h"
 
 #include <QSharedDataPointer>
+#include <qobjectdefs.h>
+
+class QJsonObject;
 
 namespace KPublicTransport {
 
@@ -31,6 +34,11 @@ class LocationRequestPrivate;
  */
 class KPUBLICTRANSPORT_EXPORT LocationRequest
 {
+    Q_GADGET
+    Q_PROPERTY(float latitude READ latitude)
+    Q_PROPERTY(float longitude READ longitude)
+    Q_PROPERTY(QString name READ name WRITE setName)
+
 public:
     LocationRequest();
     LocationRequest(LocationRequest&&) noexcept;

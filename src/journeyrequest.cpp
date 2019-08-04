@@ -141,3 +141,5 @@ void JourneyRequest::purgeLoops(const JourneyRequest &baseRequest)
 {
     RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
 }
+
+#include "moc_journeyrequest.cpp"

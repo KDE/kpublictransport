@@ -41,6 +41,12 @@ class RequestContext;
  */
 class KPUBLICTRANSPORT_EXPORT JourneyRequest
 {
+    Q_GADGET
+    Q_PROPERTY(KPublicTransport::Location from READ from WRITE setFrom)
+    Q_PROPERTY(KPublicTransport::Location to READ to WRITE setTo)
+    Q_PROPERTY(QDateTime dateTime READ dateTime)
+    Q_PROPERTY(DateTimeMode dateTimeMode READ dateTimeMode)
+
 public:
     JourneyRequest();
     /** Search a journey from @p from to @p to. */
@@ -68,6 +74,8 @@ public:
         Arrival, ///< dateTime() represents the desired arriva time.
         Departure ///< dateTime() represents the desired departure time.
     };
+    Q_ENUM(DateTimeMode)
+
     /** Returns whether to search for journeys starting or ending at the given time. */
     DateTimeMode dateTimeMode() const;
     /** Set the desired departure time.

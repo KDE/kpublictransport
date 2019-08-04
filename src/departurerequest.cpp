@@ -124,3 +124,5 @@ void DepartureRequest::purgeLoops(const DepartureRequest &baseRequest)
 {
     RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
 }
+
+#include "moc_departurerequest.cpp"
