@@ -66,6 +66,7 @@ Q_SIGNALS:
     void updated();
 
 protected:
+    ///@cond internal
     Q_DECL_HIDDEN explicit Reply(ReplyPrivate *dd, QObject *parent);
     std::unique_ptr<ReplyPrivate> d_ptr;
 
@@ -77,6 +78,7 @@ protected:
     friend class ManagerPrivate;
     Q_DECL_HIDDEN void setPendingOps(int ops);
     Q_DECL_HIDDEN void addAttribution(const Attribution &attr);
+    ///@endcond
 };
 
 }
