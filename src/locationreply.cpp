@@ -44,17 +44,6 @@ void LocationReplyPrivate::finalizeResult()
     error = Reply::NoError;
     errorMsg.clear();
 
-    // remove implausible results
-    for (auto it = locations.begin(); it != locations.end();) {
-        // we sometimes seem to get bogus places in Antartica
-        if ((*it).hasCoordinate() && (*it).latitude() < -65.0) {
-            qCDebug(Log) << "Dropping location in Antarctica" << (*it).name() << (*it).latitude() << (*it).longitude();
-            it = locations.erase(it);
-            continue;
-        }
-        ++it;
-    }
-
     // merge all duplicates, as there is no natural order for name searches this is done in O(n²) for now
     for (auto it = locations.begin(); it != locations.end(); ++it) {
         for (auto mergeIt = it + 1; mergeIt != locations.end();) {
@@ -112,10 +101,24 @@ std::vector<Location>&& LocationReply::takeResult()
 void LocationReply::addResult(std::vector<Location> &&res)
 {
     Q_D(LocationReply);
-    if (d->locations.empty()) {
-        d->locations = std::move(res);
-    } else {
-        d->locations.insert(d->locations.end(), res.begin(), res.end());
+    // remove implausible results
+    for (auto it = res.begin(); it != res.end();) {
+        // we sometimes seem to get bogus places in Antartica
+        if ((*it).hasCoordinate() && (*it).latitude() < -65.0) {
+            qCDebug(Log) << "Dropping location in Antarctica" << (*it).name() << (*it).latitude() << (*it).longitude();
+            it = res.erase(it);
+            continue;
+        }
+        ++it;
+    }
+
+    if (!res.empty()) {
+        if (d->locations.empty()) {
+            d->locations = std::move(res);
+        } else {
+            d->locations.insert(d->locations.end(), res.begin(), res.end());
+        }
+        d->emitUpdated(this);
     }
 
     d->pendingOps--;

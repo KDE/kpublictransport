@@ -211,10 +211,13 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
     }
 
     // update result
-    if (d->journeys.empty()) {
-        d->journeys = std::move(res);
-    } else {
-        d->journeys.insert(d->journeys.end(), res.begin(), res.end());
+    if (!res.empty()) {
+        if (d->journeys.empty()) {
+            d->journeys = std::move(res);
+        } else {
+            d->journeys.insert(d->journeys.end(), res.begin(), res.end());
+        }
+        d->emitUpdated(this);
     }
 
     d->pendingOps--;
