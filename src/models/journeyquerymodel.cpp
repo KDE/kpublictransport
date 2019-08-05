@@ -35,7 +35,7 @@ class JourneyQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void queryJourney();
-    void mergeResults(std::vector<Journey> &&res);
+    void mergeResults(const std::vector<Journey> &newJourneys);
 
     std::vector<Journey> m_journeys;
 
@@ -68,67 +68,44 @@ void JourneyQueryModelPrivate::queryJourney()
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, q, [reply, this] {
         Q_Q(JourneyQueryModel);
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
-            q->beginResetModel();
-            m_journeys = reply->takeResult();
             m_nextRequest = reply->nextRequest();
             m_prevRequest = reply->previousRequest();
-            q->endResetModel();
+            emit q->canQueryPrevNextChanged();
         }
-        emit q->canQueryPrevNextChanged();
         reply->deleteLater();
+    });
+    QObject::connect(reply, &KPublicTransport::JourneyReply::updated, q, [reply, this]() {
+        mergeResults(reply->takeResult());
     });
 }
 
-void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&res)
+void JourneyQueryModelPrivate::mergeResults(const std::vector<Journey> &newJourneys)
 {
     Q_Q(JourneyQueryModel);
-    Q_ASSERT(!m_journeys.empty());
-    auto result = std::move(res);
-    if (result.empty()) {
-        return;
-    }
+    for (const auto &jny : newJourneys) {
+        auto it = std::lower_bound(m_journeys.begin(), m_journeys.end(), jny, JourneyUtil::firstTransportDepartureLessThan);
 
-    // sort and merge results, aligned by first transport departure
-    std::sort(result.begin(), result.end(), JourneyUtil::firstTransportDepartureLessThan);
-    auto jnyIt = m_journeys.begin();
-    auto resIt = result.begin();
-
-    while (true) {
-        if (resIt == result.end()) {
-            break;
+        bool found = false;
+        while (it != m_journeys.end() && JourneyUtil::firstTransportDepartureEqual(jny, *it)) {
+            if (Journey::isSame(jny, *it)) {
+                *it = Journey::merge(*it, jny);
+                found = true;
+                const auto row = std::distance(m_journeys.begin(), it);
+                const auto idx = q->index(row, 0);
+                emit q->dataChanged(idx, idx);
+                break;
+            } else {
+                ++it;
+            }
         }
-
-        if (jnyIt == m_journeys.end()) {
-            const auto row = std::distance(m_journeys.begin(), jnyIt);
-            q->beginInsertRows({}, row, row + std::distance(resIt, result.end()) - 1);
-            m_journeys.insert(jnyIt, resIt, result.end());
-            q->endInsertRows();
-            break;
-        }
-
-        if (JourneyUtil::firstTransportDepartureLessThan(*resIt, *jnyIt)) {
-            const auto row = std::distance(m_journeys.begin(), jnyIt);
-            q->beginInsertRows({}, row, row);
-            jnyIt = m_journeys.insert(jnyIt, *resIt);
-            ++resIt;
-            q->endInsertRows();
+        if (found) {
             continue;
         }
 
-        if (JourneyUtil::firstTransportDepartureLessThan(*jnyIt, *resIt)) {
-            ++jnyIt;
-            continue;
-        }
-
-        if (Journey::isSame(*jnyIt, *resIt)) {
-            *jnyIt = Journey::merge(*jnyIt, *resIt);
-            ++resIt;
-            const auto row = std::distance(m_journeys.begin(), jnyIt);
-            const auto idx = q->index(row, 0);
-            emit q->dataChanged(idx, idx);
-        } else {
-            ++jnyIt;
-        }
+        const auto row = std::distance(m_journeys.begin(), it);
+        q->beginInsertRows({}, row, row);
+        m_journeys.insert(it, jny);
+        q->endInsertRows();
     }
 }
 
@@ -177,13 +154,16 @@ void JourneyQueryModel::queryNext()
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this] {
         Q_D(JourneyQueryModel);
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
-            d->mergeResults(std::move(reply->takeResult()));
             d->m_nextRequest = reply->nextRequest();
         } else {
             d->m_nextRequest = {};
         }
         emit canQueryPrevNextChanged();
         reply->deleteLater();
+    });
+    QObject::connect(reply, &KPublicTransport::JourneyReply::updated, this, [reply, this]() {
+        Q_D(JourneyQueryModel);
+        d->mergeResults(reply->takeResult());
     });
 }
 
@@ -207,13 +187,16 @@ void JourneyQueryModel::queryPrevious()
     QObject::connect(reply, &KPublicTransport::JourneyReply::finished, this, [reply, this] {
         Q_D(JourneyQueryModel);
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
-            d->mergeResults(std::move(reply->takeResult()));
             d->m_prevRequest = reply->previousRequest();
         } else {
             d->m_prevRequest = {};
         }
         emit canQueryPrevNextChanged();
         reply->deleteLater();
+    });
+    QObject::connect(reply, &KPublicTransport::JourneyReply::updated, this, [reply, this]() {
+        Q_D(JourneyQueryModel);
+        d->mergeResults(reply->takeResult());
     });
 }
 
