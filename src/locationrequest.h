@@ -20,8 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <QMetaType>
 #include <QSharedDataPointer>
-#include <qobjectdefs.h>
 
 class QJsonObject;
 
@@ -45,6 +45,9 @@ public:
     LocationRequest(const LocationRequest&);
     ~LocationRequest();
     LocationRequest& operator=(const LocationRequest&);
+
+    /** Returns @c true if this is a default-constructed object without any request parameters. */
+    bool isEmpty() const;
 
     /** Latitude of the location to search. */
     float latitude() const;
@@ -72,5 +75,7 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(KPublicTransport::LocationRequest)
 
 #endif // KPUBLICTRANSPORT_LOCATIONREQUEST_H
