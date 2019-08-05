@@ -167,8 +167,8 @@ struct HafasJourneyResponseStation
     uint16_t nameStr;
     uint32_t id;
     // geo coordinates * 1000000
-    uint32_t longitude;
-    uint32_t latitude;
+    int32_t longitude;
+    int32_t latitude;
 };
 static_assert(sizeof(HafasJourneyResponseStation) == 14, "size of station structure is wrong");
 static_assert(alignof(HafasJourneyResponseStation) == 1, "broken alignment for binary response struct");
