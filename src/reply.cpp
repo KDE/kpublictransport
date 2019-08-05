@@ -35,7 +35,8 @@ void ReplyPrivate::emitFinishedIfDone(Reply *q)
 void ReplyPrivate::emitUpdated(Reply *q)
 {
     shouldClearError = true;
-    emit q->updated();
+    // delayed, as this is trigged from immediate cache lookup in Manager, when signals are not yet connected
+    QMetaObject::invokeMethod(q, &Reply::updated, Qt::QueuedConnection);
 }
 
 Reply::Reply(ReplyPrivate *dd, QObject *parent)
