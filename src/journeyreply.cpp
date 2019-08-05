@@ -94,6 +94,10 @@ static bool isImplausibleSection(const JourneySection &section)
             qCDebug(Log) << "discarding journey based on insane transfer speed:" << (distance / section.duration()) << "m/s";
             return true;
         }
+        if (distance > 100000) {
+            qCDebug(Log) << "discarding journey with insane transfer distance:" << distance << "m" << section.from().name() << section.to().name();
+            return true;
+        }
     }
     return false;
 }
