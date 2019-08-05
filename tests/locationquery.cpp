@@ -19,6 +19,7 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/LocationQueryModel>
 #include <KPublicTransport/Manager>
 
 #include <QQmlApplicationEngine>
@@ -34,45 +35,17 @@ using namespace KPublicTransport;
 class QueryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool loading READ loading NOTIFY loadingChanged)
-    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorMessageChanged)
+    Q_PROPERTY(QAbstractItemModel* model READ queryModel CONSTANT)
+
 public:
+    QueryManager(QObject *parent = nullptr) : QObject(parent) { m_model.setManager(&ptMgr); }
+
     Q_INVOKABLE void queryLocation(double lat, double lon, const QString &name)
     {
-        qDebug() << lat << lon << name;
-        engine->rootContext()->setContextProperty(QStringLiteral("_locations"), QVariantList());
-        m_loading = true;
-        emit loadingChanged();
-        m_errorMsg.clear();
-        emit errorMessageChanged();
-
         LocationRequest req;
         req.setCoordinate(lat, lon);
         req.setName(name);
-
-        auto reply = ptMgr.queryLocation(req);
-        QObject::connect(reply, &LocationReply::finished, this, [reply, this]{
-            m_loading = false;
-            emit loadingChanged();
-
-            if (reply->error() == LocationReply::NoError) {
-                const auto &res = reply->result();
-                QVariantList l;
-                l.reserve(res.size());
-                std::transform(res.begin(), res.end(), std::back_inserter(l), [](const auto &journey) { return QVariant::fromValue(journey); });
-                engine->rootContext()->setContextProperty(QStringLiteral("_locations"), l);
-
-                QVariantList attrs;
-                attrs.reserve(reply->attributions().size());
-                std::transform(reply->attributions().begin(), reply->attributions().end(), std::back_inserter(attrs), [](const auto &attr) { return QVariant::fromValue(attr); });
-                engine->rootContext()->setContextProperty(QStringLiteral("_attributions"), attrs);
-
-            } else {
-                m_errorMsg = reply->errorString();
-                emit errorMessageChanged();
-            }
-            reply->deleteLater();
-        });
+        m_model.setRequest(req);
     }
 
     Q_INVOKABLE QString locationIds(const QVariant &v)
@@ -92,19 +65,11 @@ public:
         ptMgr.setAllowInsecureBackends(insecure);
     }
 
-    bool loading() const { return m_loading; }
-    QString errorMessage() const { return m_errorMsg; }
-
-    QQmlEngine *engine = nullptr;
-
-Q_SIGNALS:
-    void loadingChanged();
-    void errorMessageChanged();
+    QAbstractItemModel *queryModel() { return &m_model; }
 
 private:
     Manager ptMgr;
-    QString m_errorMsg;
-    bool m_loading = false;
+    LocationQueryModel m_model;
 };
 
 int main(int argc, char **argv)
@@ -119,7 +84,6 @@ int main(int argc, char **argv)
 
     QueryManager mgr;
     QQmlApplicationEngine engine;
-    mgr.engine = &engine;
     engine.rootContext()->setContextProperty(QStringLiteral("_queryMgr"), &mgr);
     engine.load(QStringLiteral("qrc:/locationquery.qml"));
     return app.exec();

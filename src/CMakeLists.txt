@@ -41,6 +41,7 @@ set(kpublictransport_srcs
     models/abstractquerymodel.cpp
     models/departurequerymodel.cpp
     models/journeyquerymodel.cpp
+    models/locationquerymodel.cpp
 
     networks/networks.qrc
 )
@@ -103,6 +104,7 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
         AbstractQueryModel
         DepartureQueryModel
         JourneyQueryModel
+        LocationQueryModel
     PREFIX KPublicTransport
     REQUIRED_HEADERS KPublicTransport_Models_HEADERS
     RELATIVE models
