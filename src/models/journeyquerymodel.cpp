@@ -18,6 +18,7 @@
 #include "journeyquerymodel.h"
 #include "abstractquerymodel_p.h"
 #include "logging.h"
+#include "../datatypes/journeyutil_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
@@ -78,18 +79,6 @@ void JourneyQueryModelPrivate::queryJourney()
     });
 }
 
-// TODO share with JourneyReply
-static QDateTime firstTransportDeparture(const Journey &jny)
-{
-    for (const auto &section : jny.sections()) {
-        if (section.mode() == JourneySection::PublicTransport) {
-            return section.scheduledDepartureTime();
-        }
-    }
-
-    return jny.scheduledDepartureTime();
-}
-
 void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&res)
 {
     Q_Q(JourneyQueryModel);
@@ -100,10 +89,7 @@ void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&res)
     }
 
     // sort and merge results, aligned by first transport departure
-    std::sort(result.begin(), result.end(), [](const auto &lhs, const auto &rhs) {
-        return firstTransportDeparture(lhs) < firstTransportDeparture(rhs);
-    });
-
+    std::sort(result.begin(), result.end(), JourneyUtil::firstTransportDepartureLessThan);
     auto jnyIt = m_journeys.begin();
     auto resIt = result.begin();
 
@@ -120,7 +106,7 @@ void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&res)
             break;
         }
 
-        if (firstTransportDeparture(*resIt) < firstTransportDeparture(*jnyIt)) {
+        if (JourneyUtil::firstTransportDepartureLessThan(*resIt, *jnyIt)) {
             const auto row = std::distance(m_journeys.begin(), jnyIt);
             q->beginInsertRows({}, row, row);
             jnyIt = m_journeys.insert(jnyIt, *resIt);
@@ -129,7 +115,7 @@ void JourneyQueryModelPrivate::mergeResults(std::vector<Journey> &&res)
             continue;
         }
 
-        if (firstTransportDeparture(*jnyIt) < firstTransportDeparture(*resIt)) {
+        if (JourneyUtil::firstTransportDepartureLessThan(*jnyIt, *resIt)) {
             ++jnyIt;
             continue;
         }

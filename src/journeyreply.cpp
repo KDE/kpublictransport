@@ -20,6 +20,7 @@
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "logging.h"
+#include "datatypes/journeyutil_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -42,17 +43,6 @@ public:
 };
 }
 
-static QDateTime firstTransportDeparture(const Journey &jny)
-{
-    for (const auto &section : jny.sections()) {
-        if (section.mode() == JourneySection::PublicTransport) {
-            return section.scheduledDepartureTime();
-        }
-    }
-
-    return jny.scheduledDepartureTime();
-}
-
 void JourneyReplyPrivate::finalizeResult()
 {
     if (journeys.empty()) {
@@ -63,12 +53,10 @@ void JourneyReplyPrivate::finalizeResult()
     errorMsg.clear();
 
     // merge results, aligned by first transport departure
-    std::sort(journeys.begin(), journeys.end(), [](const auto &lhs, const auto &rhs) {
-        return firstTransportDeparture(lhs) < firstTransportDeparture(rhs);
-    });
+    std::sort(journeys.begin(), journeys.end(), JourneyUtil::firstTransportDepartureLessThan);
     for (auto it = journeys.begin(); it != journeys.end(); ++it) {
         for (auto mergeIt = it + 1; mergeIt != journeys.end();) {
-            if (firstTransportDeparture(*it) != firstTransportDeparture(*mergeIt)) {
+            if (!JourneyUtil::firstTransportDepartureEqual(*it, *mergeIt)) {
                 break;
             }
 
