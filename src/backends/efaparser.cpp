@@ -310,7 +310,12 @@ JourneySection EfaParser::parseTripPartialRoute(QXmlStreamReader &reader) const
         } else if (reader.name() == QLatin1String("itdMeansOfTransport")) {
             Line line;
             line.setName(reader.attributes().value(QLatin1String("shortname")).toString());
-            line.setModeString(reader.attributes().value(QLatin1String("productName")).toString());
+            const auto prodName = reader.attributes().value(QLatin1String("productName"));
+            if (prodName == QLatin1String("Fussweg")) {
+                section.setMode(JourneySection::Walking);
+            } else {
+                line.setModeString(prodName.toString());
+            }
             line.setMode(motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
             Route route;
             route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
