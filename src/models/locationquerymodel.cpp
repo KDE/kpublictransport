@@ -18,6 +18,7 @@
 #include "locationquerymodel.h"
 #include "abstractquerymodel_p.h"
 #include "logging.h"
+#include "../datatypes/locationutil_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Location>
@@ -68,8 +69,12 @@ void LocationQueryModelPrivate::queryLocations()
 void LocationQueryModelPrivate::mergeResults(const std::vector<Location> &newLocations)
 {
     Q_Q(LocationQueryModel);
-    // TODO for coordinate-based searches we can use a distance-based order here, for name-based we need some form of order too
+
     for (const auto &loc : newLocations) {
+        // lacking an actual useful ordering, we need to do a full search for merging
+        // LocationUtil::sortLessThan provides an order, but proximity there does not imply
+        // always all merge candidates are nearby unfortunately (e.g. in cases of native
+        // language vs. English spelling in case of name searches).
         bool found = false;
         for (auto it = m_locations.begin(); it != m_locations.end(); ++it) {
             if (Location::isSame(*it, loc)) {
@@ -85,9 +90,13 @@ void LocationQueryModelPrivate::mergeResults(const std::vector<Location> &newLoc
             continue;
         }
 
-        const auto row = m_locations.size();
+        auto it = std::lower_bound(m_locations.begin(), m_locations.end(), loc, [this](const auto &lhs, const auto &rhs) {
+            return LocationUtil::sortLessThan(m_request, lhs, rhs);
+        });
+
+        const auto row = std::distance(m_locations.begin(), it);
         q->beginInsertRows({}, row, row);
-        m_locations.push_back(loc);
+        m_locations.insert(it, loc);
         q->endInsertRows();
     }
 }

@@ -18,6 +18,7 @@
 #include "locationreply.h"
 #include "reply_p.h"
 #include "locationrequest.h"
+#include "datatypes/locationutil_p.h"
 #include "logging.h"
 
 #include <KPublicTransport/Location>
@@ -56,19 +57,9 @@ void LocationReplyPrivate::finalizeResult()
         }
     }
 
-    // when searching by geo coordinate, sort by distance
-    if (request.hasCoordinate()) {
-        std::sort(locations.begin(), locations.end(), [this](const auto &lhs, const auto &rhs) {
-            return Location::distance(request.latitude(), request.longitude(), lhs.latitude(), lhs.longitude())
-                 < Location::distance(request.latitude(), request.longitude(), rhs.latitude(), rhs.longitude());
-        });
-    } else {
-        // for name based search, sort by Levenshtein distance or similar metric
-        // TODO so far this only sorts for matching or not matching
-        std::stable_sort(locations.begin(), locations.end(), [this](const auto &lhs, const auto &rhs) {
-            return Location::isSameName(request.name(), lhs.name()) && !Location::isSameName(request.name(), rhs.name());
-        });
-    }
+    std::sort(locations.begin(), locations.end(), [this](const auto &lhs, const auto &rhs) {
+        return LocationUtil::sortLessThan(request, lhs, rhs);
+    });
 }
 
 LocationReply::LocationReply(const LocationRequest &req, QObject *parent)
