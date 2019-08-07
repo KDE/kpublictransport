@@ -10,7 +10,8 @@
             "8": "RapidTransit",
             "16": "Metro",
             "32": "Tramway",
-            "64": "Bus"
+            "64": "Bus",
+            "128": "Bus"
         },
         "locationIdentifierType": "rmv"
     },
