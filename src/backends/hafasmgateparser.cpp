@@ -296,9 +296,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
             if ((unsigned int)locIdx < locs.size()) {
                 section.setTo(locs[locIdx]);
             }
-            section.setScheduledArrivalPlatform(dep.value(QLatin1String("aPlatfS")).toString());
-            section.setExpectedArrivalPlatform(dep.value(QLatin1String("aPlatfR")).toString());
-            if (dep.value(QLatin1String("aCncl")).toBool()) {
+            section.setScheduledArrivalPlatform(arr.value(QLatin1String("aPlatfS")).toString());
+            section.setExpectedArrivalPlatform(arr.value(QLatin1String("aPlatfR")).toString());
+            if (arr.value(QLatin1String("aCncl")).toBool()) {
                 section.setDisruptionEffect(Disruption::NoService);
             }
 
