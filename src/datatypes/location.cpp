@@ -220,10 +220,20 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
 
     // ids
     const auto lhsIds = lhs.identifiers();
+    bool foundEqualId = false;
     for (auto it = lhsIds.constBegin(); it != lhsIds.constEnd(); ++it) {
-        if (!it.value().isEmpty() && rhs.identifier(it.key()) == it.value()) {
-            return true;
+        const auto rhsId = rhs.identifier(it.key());
+        if (it.value().isEmpty() || rhsId.isEmpty()) {
+            continue;
         }
+        if (it.value() != rhsId) {
+            return false;
+        } else if (it.value() == rhsId) {
+            foundEqualId = true;
+        }
+    }
+    if (foundEqualId) {
+        return true;
     }
 
     // name

@@ -133,6 +133,35 @@ private Q_SLOTS:
         QVERIFY(!Location::isSame(l, r));
         QVERIFY(!Location::isSame(r, l));
     }
+
+    void testLocationIdentifierCompare()
+    {
+        Location l, r;
+        l.setIdentifier(QStringLiteral("ibnr"), QStringLiteral("8012345"));
+        r.setIdentifier(QStringLiteral("ibnr"), QStringLiteral("8054321"));
+        QVERIFY(!Location::isSame(l, r));
+        QVERIFY(!Location::isSame(r, l));
+        QVERIFY(Location::isSame(l, l));
+
+        l.setIdentifier(QStringLiteral("db"), QStringLiteral("12345"));
+        r.setIdentifier(QStringLiteral("db"), QStringLiteral("12345"));
+        QVERIFY(!Location::isSame(l, r));
+        QVERIFY(!Location::isSame(r, l));
+        QVERIFY(Location::isSame(l, l));
+
+        l.setIdentifier(QStringLiteral("sncf"), QStringLiteral("FRABC"));
+        QVERIFY(!Location::isSame(l, r));
+        QVERIFY(!Location::isSame(r, l));
+        QVERIFY(Location::isSame(l, l));
+
+        Location l2, r2;
+        l2.setName(QStringLiteral("Brussels Gare de Midi"));
+        l2.setName(QStringLiteral("Brussels Gare de Midi"));
+        l2.setIdentifier(QStringLiteral("vendor1"), QStringLiteral("12345"));
+        r2.setIdentifier(QStringLiteral("vendor2"), QStringLiteral("54321"));
+        QVERIFY(Location::isSame(l2, r2));
+        QVERIFY(Location::isSame(r2, l2));
+    }
 };
 
 QTEST_GUILESS_MAIN(LocationTest)
