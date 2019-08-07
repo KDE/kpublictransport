@@ -84,11 +84,10 @@ Line::Mode HafasParser::parseLineMode(int modeId) const
 
 void HafasParser::setLocationIdentifier(Location &loc, const QString &id) const
 {
-    if (m_standardLocationIdentifierType.isEmpty() || !isUicStationId(id)) {
-        loc.setIdentifier(m_locationIdentifierType, id);
-    } else {
+    if (!m_standardLocationIdentifierType.isEmpty() && isUicStationId(id)) {
         loc.setIdentifier(m_standardLocationIdentifierType, id);
     }
+    loc.setIdentifier(m_locationIdentifierType, id);
 }
 
 bool HafasParser::isUicStationId(const QString &id)
