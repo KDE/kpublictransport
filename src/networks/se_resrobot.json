@@ -4,7 +4,7 @@
         "endpoint": "https://reseplanerare.resrobot.se/bin/mgate.exe",
         "aid": "h5o3n7f4t2m8l9x1",
         "clientId": "SAMTRAFIKEN",
-        "clientType": "AND",
+        "clientType": "WEB",
         "version": "1.18",
         "lineModeMap": {
             "1": "Air",

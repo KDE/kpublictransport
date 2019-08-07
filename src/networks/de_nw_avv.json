@@ -4,7 +4,7 @@
         "endpoint": "https://auskunft.avv.de/bin/mgate.exe",
         "aid": "4vV1AcH3N511icH",
         "clientId": "AVV_AACHEN",
-        "clientType": "AND",
+        "clientType": "WEB",
         "version": "1.16",
         "lineModeMap": {
             "1": "LocalTrain",
