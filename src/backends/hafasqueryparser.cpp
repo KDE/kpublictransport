@@ -129,8 +129,12 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
     res.reserve(suggestions.size());
     for (const auto &suggestion : suggestions) {
         const auto obj = suggestion.toObject();
+        const auto extId = obj.value(QLatin1String("extId")).toString();
+        if (extId.isEmpty()) {
+            continue; // not a stop/station
+        }
         Location loc;
-        setLocationIdentifier(loc, obj.value(QLatin1String("extId")).toString());
+        setLocationIdentifier(loc, extId);
         loc.setName(obj.value(QLatin1String("value")).toString());
         loc.setLatitude(obj.value(QLatin1String("ycoord")).toString().toInt() / 1000000.0);
         loc.setLongitude(obj.value(QLatin1String("xcoord")).toString().toInt() / 1000000.0);
