@@ -142,6 +142,8 @@ QVariant LocationQueryModel::data(const QModelIndex &index, int role) const
     }
 
     switch (role) {
+        case Qt::DisplayRole:
+            return d->m_locations[index.row()].name();
         case LocationRole:
             return QVariant::fromValue(d->m_locations[index.row()]);
     }

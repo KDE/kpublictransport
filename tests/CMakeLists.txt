@@ -6,3 +6,6 @@ target_link_libraries(journeyquery KPublicTransport Qt5::Quick Qt5::Widgets)
 
 add_executable(locationquery locationquery.cpp locationquery.qrc)
 target_link_libraries(locationquery KPublicTransport Qt5::Quick Qt5::Widgets)
+
+add_executable(locationcompleter locationcompleter.cpp)
+target_link_libraries(locationcompleter KPublicTransport Qt5::Widgets)
