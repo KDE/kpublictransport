@@ -117,9 +117,7 @@ static void expireRecursive(const QString &path)
                 qCDebug(Log) << "removing empty cache directory" << it.fileName();
                 QDir(path).rmdir(it.filePath());
             }
-        }
-
-        if (it.fileInfo().lastModified().addDays(30) < now) {
+        } else if (it.fileInfo().lastModified().addDays(30) < now) {
             qCDebug(Log) << "removing expired cache entry" << it.fileName();
             QDir(path).remove(it.filePath());
         }
