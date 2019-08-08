@@ -154,6 +154,8 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         const auto mp = mo->property(idx);
         if (it.value().isObject()) {
             mp.writeOnGadget(backend, it.value().toObject());
+        } else if (it.value().isArray()) {
+            mp.writeOnGadget(backend, it.value().toArray());
         } else {
             mp.writeOnGadget(backend, it.value().toVariant());
         }

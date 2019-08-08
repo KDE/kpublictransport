@@ -39,6 +39,7 @@ class KPUBLICTRANSPORT_EXPORT HafasParser
 public:
     void setLocationIdentifierTypes(const QString &idType, const QString &standardIdType = {});
     void setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap);
+    void setStandardLocationIdentfierCountries(std::vector<uint8_t> &&uicCountryCodes);
 
     Reply::Error error() const;
     QString errorMessage() const;
@@ -60,11 +61,12 @@ protected:
 
 private:
     Q_DISABLE_COPY(HafasParser)
-    static bool isUicStationId(const QString &id);
+    bool isUicStationId(const QString &id) const;
 
     QString m_locationIdentifierType;
     QString m_standardLocationIdentifierType;
     std::unordered_map<int, Line::Mode> m_lineModeMap;
+    std::vector<uint8_t> m_uicCountryCodes;
 };
 
 }

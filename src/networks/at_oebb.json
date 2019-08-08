@@ -19,7 +19,8 @@
             "512": "Tramway"
         },
         "locationIdentifierType": "oebb",
-        "standardLocationIdentifierType": "ibnr"
+        "standardLocationIdentifierType": "ibnr",
+        "standardLocationIdentifierCountries": [ 51, 54, 53, 55, 56, 70, 71, 74, 76, 80, 81, 82, 83, 84, 85, 86, 87, 88 ]
     },
     "filter": {
         "geo": [ [ 9.145, 47.724 ], [ 17.052, 49.537 ], [ 17.325, 46.267 ], [ 9.622, 46.492 ] ]

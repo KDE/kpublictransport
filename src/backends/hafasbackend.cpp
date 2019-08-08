@@ -19,6 +19,7 @@
 
 #include <KPublicTransport/Location>
 
+#include <QJsonArray>
 #include <QJsonObject>
 #include <QMetaEnum>
 
@@ -51,4 +52,11 @@ QString HafasBackend::locationIdentifier(const Location &loc) const
         return id;
     }
     return loc.identifier(standardLocationIdentifierType());
+}
+
+void HafasBackend::setStandardLocationIdentifierCountries(const QJsonArray &a)
+{
+    m_uicCountryCodes.reserve(a.size());
+    std::transform(a.begin(), a.end(), std::back_inserter(m_uicCountryCodes), [](const auto &v) { return v.toInt(); });
+    std::sort(m_uicCountryCodes.begin(), m_uicCountryCodes.end());
 }

@@ -17,7 +17,8 @@
             "1024": "Tramway"
         },
         "locationIdentifierType": "sncb",
-        "standardLocationIdentifierType": "uic"
+        "standardLocationIdentifierType": "uic",
+        "standardLocationIdentifierCountries": [ 88 ]
     },
     "filter": {
         "geo": [ [ 1.797, 51.1 ], [ 5.55, 49.124 ], [ 6.598, 50.464 ], [ 5.154, 51.837 ] ]

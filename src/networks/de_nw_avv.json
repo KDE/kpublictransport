@@ -18,7 +18,8 @@
             "256": "Bus",
             "512": "RapidTransit"
         },
-        "standardLocationIdentifierType": "ibnr"
+        "standardLocationIdentifierType": "ibnr",
+        "standardLocationIdentifierCountries": [ 84 ]
     },
     "filter": {
         "geo": [ [ 5.8488, 51.1879 ], [ 5.8194, 50.7024 ], [ 6.3442, 50.5655 ], [ 6.5723, 51.1912 ] ]
