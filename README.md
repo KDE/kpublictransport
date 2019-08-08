@@ -1,6 +1,6 @@
 # KPublicTransport
 
-A library for access realtime public transport data and for performing
+A library for accessing realtime public transport data and for performing
 public transport journey queries.
 
 !! Before using this, please read the compliance section below !!
