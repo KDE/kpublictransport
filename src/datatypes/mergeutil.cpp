@@ -25,53 +25,50 @@
 
 using namespace KPublicTransport;
 
-int MergeUtil::distance(const QDateTime& lhs, const QDateTime& rhs)
+static QDateTime applyTimeZone(QDateTime dt, const QDateTime &refDt)
 {
-    if (lhs.timeSpec() == Qt::LocalTime && rhs.timeSpec() == Qt::TimeZone) {
-        auto dt = lhs;
-        dt.setTimeZone(rhs.timeZone());
-        return std::abs(dt.secsTo(rhs));
-    }
-    if (lhs.timeSpec() == Qt::TimeZone && rhs.timeSpec() == Qt::LocalTime) {
-        auto dt = rhs;
-        dt.setTimeZone(lhs.timeZone());
-        return std::abs(dt.secsTo(lhs));
+    if (dt.timeSpec() != Qt::LocalTime) {
+        return dt;
     }
 
-    return std::abs(lhs.secsTo(rhs));
+    if (refDt.timeSpec() == Qt::TimeZone) {
+        dt.setTimeZone(refDt.timeZone());
+    } else if (refDt.timeSpec() == Qt::OffsetFromUTC) {
+        dt.setOffsetFromUtc(refDt.offsetFromUtc());
+    }
+
+    return dt;
+}
+
+int MergeUtil::distance(const QDateTime& lhs, const QDateTime& rhs)
+{
+    const auto ldt = applyTimeZone(lhs, rhs);
+    const auto rdt = applyTimeZone(rhs, lhs);
+    return std::abs(ldt.secsTo(rdt));
 }
 
 bool MergeUtil::isBefore(const QDateTime& lhs, const QDateTime& rhs)
 {
-    if (lhs.timeSpec() == Qt::LocalTime && rhs.timeSpec() == Qt::TimeZone) {
-        auto dt = lhs;
-        dt.setTimeZone(rhs.timeZone());
-        return dt < rhs;
-    }
-    if (lhs.timeSpec() == Qt::TimeZone && rhs.timeSpec() == Qt::LocalTime) {
-        auto dt = rhs;
-        dt.setTimeZone(lhs.timeZone());
-        return lhs < dt;
-    }
-
-    return lhs < rhs;
+    const auto ldt = applyTimeZone(lhs, rhs);
+    const auto rdt = applyTimeZone(rhs, lhs);
+    return ldt < rdt;
 }
 
 QDateTime MergeUtil::mergeDateTimeEqual(const QDateTime &lhs, const QDateTime &rhs)
 {
-    // if only one side is valid, prefer that one
-    if (!lhs.isValid()) {
-        return rhs;
-    }
-    if (!rhs.isValid()) {
+    // anything is better than invalid, timezone is best
+    if (!rhs.isValid() || lhs.timeSpec() == Qt::TimeZone) {
         return lhs;
     }
-
-    // if one side has tz, prefer that
-    if (lhs.timeSpec() != Qt::TimeZone && rhs.timeSpec() == Qt::TimeZone) {
+    if (!lhs.isValid() || rhs.timeSpec() == Qt::TimeZone) {
         return rhs;
     }
-    return lhs;
+
+    // UTC offset it better than local time
+    if (lhs.timeSpec() == Qt::OffsetFromUTC || rhs.timeSpec() == Qt::LocalTime) {
+        return lhs;
+    }
+    return rhs;
 }
 
 QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs)
@@ -89,11 +86,24 @@ QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs
         return dt;
     }
 
+    // recover timezone of we can
     if (lhs.timeSpec() == Qt::TimeZone) {
         dt.setTimeZone(lhs.timeZone());
+        return dt;
     } else if (rhs.timeSpec() == Qt::TimeZone) {
         dt.setTimeZone(rhs.timeZone());
+        return dt;
     }
+
+    // recover UTC offset if we can
+    if (dt.timeSpec() == Qt::OffsetFromUTC) {
+        return dt;
+    } else if (lhs.timeSpec() == Qt::OffsetFromUTC) {
+        dt.setOffsetFromUtc(lhs.offsetFromUtc());
+    } else if (rhs.timeSpec() == Qt::OffsetFromUTC) {
+        dt.setOffsetFromUtc(rhs.offsetFromUtc());
+    }
+
     return dt;
 }
 
