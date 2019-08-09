@@ -19,6 +19,7 @@
 #include <KPublicTransport/HafasMgateParser>
 
 #include <QFile>
+#include <QJsonValue>
 #include <QTest>
 #include <QTimeZone>
 
@@ -56,19 +57,23 @@ private Q_SLOTS:
     {
         QTest::addColumn<QString>("date");
         QTest::addColumn<QString>("time");
+        QTest::addColumn<QJsonValue>("tzOffset");
         QTest::addColumn<QDateTime>("dt");
 
-        QTest::newRow("empty") << QString() << QString() << QDateTime();
-        QTest::newRow("same day") << s("20190105") << s("142100") << QDateTime({2019, 1, 5}, {14, 21});
-        QTest::newRow("next day") << s("20190105") << s("01142100") << QDateTime({2019, 1, 6}, {14, 21});
+        QTest::newRow("empty") << QString() << QString() << QJsonValue() << QDateTime();
+        QTest::newRow("same day") << s("20190105") << s("142100") << QJsonValue() << QDateTime({2019, 1, 5}, {14, 21});
+        QTest::newRow("next day") << s("20190105") << s("01142100") << QJsonValue() << QDateTime({2019, 1, 6}, {14, 21});
+        QTest::newRow("same day offset") << s("20190105") << s("142100") << QJsonValue(120) << QDateTime({2019, 1, 5}, {14, 21}, Qt::OffsetFromUTC, 7200);
+        QTest::newRow("next day offset") << s("20190105") << s("01142100") << QJsonValue(-120) << QDateTime({2019, 1, 6}, {14, 21}, Qt::OffsetFromUTC, -7200);
     }
 
     void parseDateTime()
     {
         QFETCH(QString, date);
         QFETCH(QString, time);
+        QFETCH(QJsonValue, tzOffset);
         QFETCH(QDateTime, dt);
-        QCOMPARE(HafasMgateParser::parseDateTime(date, time), dt);
+        QCOMPARE(HafasMgateParser::parseDateTime(date, QJsonValue(time), tzOffset), dt);
     }
 };
 

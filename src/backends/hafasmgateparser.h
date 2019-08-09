@@ -30,6 +30,7 @@
 #include <QColor>
 
 class QByteArray;
+class QJsonValue;
 
 namespace KPublicTransport {
 
@@ -55,7 +56,7 @@ public:
     std::vector<Location> parseLocations(const QByteArray &data) const;
     std::vector<Journey> parseJourneys(const QByteArray &data) const;
 
-    static QDateTime parseDateTime(const QString &date, const QString &time);
+    static QDateTime parseDateTime(const QString &date, const QJsonValue &time, const QJsonValue &tzOffset);
 
 private:
     Q_DISABLE_COPY(HafasMgateParser)
