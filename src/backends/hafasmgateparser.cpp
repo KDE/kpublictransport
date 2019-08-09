@@ -71,7 +71,12 @@ static QStringList parseMessageList(const QJsonObject &obj, const std::vector<QS
     QStringList notes;
     for (const auto &msgV : msgL) {
         const auto msgObj = msgV.toObject();
-        const auto rem = remarks[msgObj.value(QLatin1String("remX")).toInt()];
+        const auto remX = msgObj.value(QLatin1String("remX")).toInt();
+        if (static_cast<size_t>(remX) >= remarks.size()) {
+            qCDebug(Log) << "Invalid remark index:" << remX;
+            continue;
+        }
+        const auto rem = remarks[remX];
         if (rem.isEmpty()) {
             continue;
         }
