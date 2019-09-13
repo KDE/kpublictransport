@@ -22,7 +22,7 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfigVersion.cmake"
 )
 
-find_package(Qt5 5.10 REQUIRED COMPONENTS Test Quick Widgets)
+find_package(Qt5 5.11 REQUIRED COMPONENTS Test Quick Widgets)
 find_package(ZLIB REQUIRED)
 if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
    add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
