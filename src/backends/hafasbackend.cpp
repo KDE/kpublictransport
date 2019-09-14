@@ -27,9 +27,7 @@ using namespace KPublicTransport;
 
 void HafasBackend::setLineModeMap(const QJsonObject& obj)
 {
-    const auto idx = Line::staticMetaObject.indexOfEnumerator("Mode");
-    Q_ASSERT(idx >= 0);
-    const auto me = Line::staticMetaObject.enumerator(idx);
+    const auto me = QMetaEnum::fromType<Line::Mode>();
     for (auto it = obj.begin(); it != obj.end(); ++it) {
         m_lineModeMap[it.key().toInt()] = static_cast<Line::Mode>(me.keyToValue(it.value().toString().toUtf8().constData()));
     }
