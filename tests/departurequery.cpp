@@ -39,14 +39,8 @@ using namespace KPublicTransport;
 class QueryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel* model READ departureQueryModel CONSTANT)
 public:
-    QueryManager()
-    {
-        model.setManager(&ptMgr);
-    }
-
-    Q_INVOKABLE void queryDeparture(const QString &name, double fromLat, double fromLon, bool queryArrival)
+    Q_INVOKABLE void queryDeparture(QObject *model, const QString &name, double fromLat, double fromLon, bool queryArrival)
     {
         Location from;
         from.setCoordinate(fromLat, fromLon);
@@ -55,22 +49,17 @@ public:
         DepartureRequest depReq(from);
         depReq.setMode(queryArrival ? DepartureRequest::QueryArrival : DepartureRequest::QueryDeparture);
 
-        model.setRequest(depReq);
+        qobject_cast<DepartureQueryModel*>(model)->setRequest(depReq);
     }
 
-    Q_INVOKABLE void setAllowInsecure(bool insecure)
-    {
-        ptMgr.setAllowInsecureBackends(insecure);
-    }
-
-    Q_INVOKABLE void saveTo(const QUrl &fileName)
+    Q_INVOKABLE void saveTo(QObject *model, const QUrl &fileName)
     {
         QFile f(fileName.toLocalFile());
         if (!f.open(QFile::WriteOnly)) {
             qWarning() << f.errorString() << fileName;
             return;
         }
-        f.write(QJsonDocument(Departure::toJson(model.departures())).toJson());
+        f.write(QJsonDocument(Departure::toJson(qobject_cast<DepartureQueryModel*>(model)->departures())).toJson());
     }
 
     Q_INVOKABLE QString locationIds(const QVariant &v)
@@ -84,15 +73,6 @@ public:
         }
         return l.join(QLatin1String(", "));
     }
-
-    QAbstractItemModel* departureQueryModel()
-    {
-        return &model;
-    }
-
-private:
-    Manager ptMgr;
-    DepartureQueryModel model;
 };
 
 int main(int argc, char **argv)

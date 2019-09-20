@@ -51,6 +51,8 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
     Q_OBJECT
     /** QML-compatible access to attributions(). */
     Q_PROPERTY(QVariantList attributions READ attributionsVariant NOTIFY attributionsChanged)
+    /** Allow usage of insecure backends (default: off). */
+    Q_PROPERTY(bool allowInsecureBackends READ allowInsecureBackends WRITE setAllowInsecureBackends NOTIFY configurationChanged)
 
 public:
     explicit Manager(QObject *parent = nullptr);
@@ -62,6 +64,8 @@ public:
      */
     void setNetworkAccessManager(QNetworkAccessManager *nam);
 
+    /** Returns whether access to insecure backends is allowed. */
+    bool allowInsecureBackends() const;
     /** Allow usage of insecure backends, that is services not using
      *  transport encryption.
      */
@@ -83,6 +87,7 @@ public:
 
 Q_SIGNALS:
     void attributionsChanged();
+    void configurationChanged();
 
 private:
     Q_DECL_HIDDEN QVariantList attributionsVariant() const;

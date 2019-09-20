@@ -41,7 +41,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 iconName: "help-about-symbolic"
                 text: i18n("Data Sources")
-                enabled: _attributions.length > 0
+                enabled: departureModel.attributions.length > 0
                 onTriggered: aboutSheet.sheetOpen = true;
             }
         ]
@@ -52,15 +52,24 @@ Kirigami.ApplicationWindow {
         title: i18n("Save Departure Data")
         fileMode: Platform.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
-        onAccepted: _queryMgr.saveTo(fileDialog.file);
+        onAccepted: _queryMgr.saveTo(departureModel, fileDialog.file);
     }
 
     TestLocationsModel { id: exampleModel }
     AttributionSheet {
         id: aboutSheet
-        attributions: _queryMgr.model.attributions
+        attributions: departureModel.attributions
     }
     LocationDetailsSheet { id: locationDetailsSheet }
+
+    Manager {
+        id: ptMgr;
+    }
+
+    DepartureQueryModel {
+        id: departureModel
+        manager: ptMgr
+    }
 
     Component {
         id: departureDelegate
@@ -169,7 +178,7 @@ Kirigami.ApplicationWindow {
 
                 QQC2.CheckBox {
                     text: "Allow insecure backends"
-                    onToggled: _queryMgr.setAllowInsecure(checked)
+                    onToggled: ptMgr.setAllowInsecure(checked)
                 }
 
                 QQC2.ComboBox {
@@ -205,45 +214,45 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.queryDeparture(nameQuery.text, latQuery.text, lonQuery.text, arrivalBox.checked);
+                        onClicked: _queryMgr.queryDeparture(departureModel, nameQuery.text, latQuery.text, lonQuery.text, arrivalBox.checked);
                     }
                     QQC2.Button {
                         text: "Query Name"
-                        onClicked: _queryMgr.queryDeparture(nameQuery.text, NaN, NaN, arrivalBox.checked);
+                        onClicked: _queryMgr.queryDeparture(departureModel, nameQuery.text, NaN, NaN, arrivalBox.checked);
                     }
                     QQC2.Button {
                         text: "Query Coord"
-                        onClicked: _queryMgr.queryDeparture("", latQuery.text, lonQuery.text, arrivalBox.checked);
+                        onClicked: _queryMgr.queryDeparture(departureModel, "", latQuery.text, lonQuery.text, arrivalBox.checked);
 
                     }
                     QQC2.Button {
                         text: "Earlier"
-                        enabled: _queryMgr.model.canQueryPrevious
-                        onClicked: _queryMgr.model.queryPrevious()
+                        enabled: departureModel.canQueryPrevious
+                        onClicked: departureModel.queryPrevious()
                     }
                     QQC2.Button {
                         text: "Later"
-                        enabled: _queryMgr.model.canQueryNext
-                        onClicked: _queryMgr.model.queryNext()
+                        enabled: departureModel.canQueryNext
+                        onClicked: departureModel.queryNext()
                     }
                 }
 
                 ListView {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    model: _queryMgr.model
+                    model: departureModel
                     clip: true
                     delegate: departureDelegate
 
                     QQC2.BusyIndicator {
                         anchors.centerIn: parent
-                        running: _queryMgr.model.loading
+                        running: departureModel.loading
                     }
 
                     QQC2.Label {
                         anchors.centerIn: parent
                         width: parent.width
-                        text: _queryMgr.model.errorMessage
+                        text: departureModel.errorMessage
                         color: Kirigami.Theme.negativeTextColor
                         wrapMode: Text.Wrap
                     }

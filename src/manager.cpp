@@ -368,9 +368,18 @@ void Manager::setNetworkAccessManager(QNetworkAccessManager *nam)
     d->m_nam = nam;
 }
 
+bool Manager::allowInsecureBackends() const
+{
+    return d->m_allowInsecure;
+}
+
 void Manager::setAllowInsecureBackends(bool insecure)
 {
+    if (d->m_allowInsecure != insecure) {
+        return;
+    }
     d->m_allowInsecure = insecure;
+    emit configurationChanged();
 }
 
 JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
