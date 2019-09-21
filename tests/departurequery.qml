@@ -214,16 +214,36 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.queryDeparture(departureModel, nameQuery.text, latQuery.text, lonQuery.text, arrivalBox.checked);
+                        onClicked: {
+                            var stop = departureModel.request.stop;
+                            stop.latitude = latQuery.text;
+                            stop.longitude = lonQuery.text;
+                            stop.name = nameQuery.text;
+                            departureModel.request.stop = stop;
+                            departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                        }
                     }
                     QQC2.Button {
                         text: "Query Name"
-                        onClicked: _queryMgr.queryDeparture(departureModel, nameQuery.text, NaN, NaN, arrivalBox.checked);
+                        onClicked: {
+                            var stop = departureModel.request.stop;
+                            stop.latitude = NaN;
+                            stop.longitude = NaN;
+                            stop.name = nameQuery.text;
+                            departureModel.request.stop = stop;
+                            departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                        }
                     }
                     QQC2.Button {
                         text: "Query Coord"
-                        onClicked: _queryMgr.queryDeparture(departureModel, "", latQuery.text, lonQuery.text, arrivalBox.checked);
-
+                        onClicked: {
+                            var stop = departureModel.request.stop;
+                            stop.latitude = latQuery.text;
+                            stop.longitude = lonQuery.text;
+                            stop.name = "";
+                            departureModel.request.stop = stop;
+                            departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                        }
                     }
                     QQC2.Button {
                         text: "Earlier"

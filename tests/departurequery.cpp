@@ -40,18 +40,6 @@ class QueryManager : public QObject
 {
     Q_OBJECT
 public:
-    Q_INVOKABLE void queryDeparture(QObject *model, const QString &name, double fromLat, double fromLon, bool queryArrival)
-    {
-        Location from;
-        from.setCoordinate(fromLat, fromLon);
-        from.setName(name);
-
-        DepartureRequest depReq(from);
-        depReq.setMode(queryArrival ? DepartureRequest::QueryArrival : DepartureRequest::QueryDeparture);
-
-        qobject_cast<DepartureQueryModel*>(model)->setRequest(depReq);
-    }
-
     Q_INVOKABLE void saveTo(QObject *model, const QUrl &fileName)
     {
         QFile f(fileName.toLocalFile());
