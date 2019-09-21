@@ -24,8 +24,11 @@
 #include <KPublicTransport/Reply>
 
 #include <QDebug>
+#include <QTimer>
 
 using namespace KPublicTransport;
+
+AbstractQueryModelPrivate::~AbstractQueryModelPrivate() = default;
 
 void AbstractQueryModelPrivate::setLoading(bool l)
 {
@@ -66,6 +69,19 @@ void AbstractQueryModelPrivate::resetForNewRequest()
     emit q_ptr->attributionsChanged();
 }
 
+void AbstractQueryModelPrivate::query()
+{
+    if (m_pendingQuery || !m_manager) {
+        return;
+    }
+
+    m_pendingQuery = true;
+    QTimer::singleShot(0, q_ptr, [this]() {
+        m_pendingQuery = false;
+        doQuery();
+    });
+}
+
 
 AbstractQueryModel::AbstractQueryModel(AbstractQueryModelPrivate* dd, QObject* parent)
     : QAbstractListModel(parent)
@@ -89,6 +105,7 @@ void AbstractQueryModel::setManager(Manager *mgr)
 
     d_ptr->m_manager = mgr;
     emit managerChanged();
+    d_ptr->query();
 }
 
 bool AbstractQueryModel::isLoading() const

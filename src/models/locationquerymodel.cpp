@@ -33,7 +33,7 @@ namespace KPublicTransport {
 class LocationQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
-    void queryLocations();
+    void doQuery() override;
     void mergeResults(const std::vector<Location> &newLocations);
 
     std::vector<Location> m_locations;
@@ -44,7 +44,7 @@ public:
 };
 }
 
-void LocationQueryModelPrivate::queryLocations()
+void LocationQueryModelPrivate::doQuery()
 {
     Q_Q(LocationQueryModel);
     if (!m_manager || m_request.isEmpty()) {
@@ -106,7 +106,6 @@ LocationQueryModel::LocationQueryModel(QObject* parent)
     : AbstractQueryModel(new LocationQueryModelPrivate, parent)
 {
     Q_D(LocationQueryModel);
-    connect(this, &AbstractQueryModel::managerChanged, this, [d]() { d->queryLocations(); });
 }
 
 LocationQueryModel::~LocationQueryModel() = default;
@@ -122,7 +121,7 @@ void LocationQueryModel::setRequest(const LocationRequest &req)
     Q_D(LocationQueryModel);
     d->m_request = req;
     emit requestChanged();
-    d->queryLocations();
+    d->query();
 }
 
 int LocationQueryModel::rowCount(const QModelIndex &parent) const

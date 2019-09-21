@@ -34,7 +34,7 @@ namespace KPublicTransport {
 class DepartureQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
-    void queryDeparture();
+    void doQuery() override;
     void mergeResults(const std::vector<Departure> &newDepartures);
 
     std::vector<Departure> m_departures;
@@ -47,7 +47,7 @@ public:
 };
 }
 
-void DepartureQueryModelPrivate::queryDeparture()
+void DepartureQueryModelPrivate::doQuery()
 {
     Q_Q(DepartureQueryModel);
     if (!m_manager || m_request.isEmpty()) {
@@ -116,7 +116,6 @@ DepartureQueryModel::DepartureQueryModel(QObject *parent)
     : AbstractQueryModel(new DepartureQueryModelPrivate, parent)
 {
     Q_D(DepartureQueryModel);
-    connect(this, &AbstractQueryModel::managerChanged, this, [d]() { d->queryDeparture(); });
     connect(this, &AbstractQueryModel::loadingChanged, this, &DepartureQueryModel::canQueryPrevNextChanged);
 }
 
@@ -133,7 +132,7 @@ void DepartureQueryModel::setRequest(const DepartureRequest &req)
     Q_D(DepartureQueryModel);
     d->m_request = req;
     emit requestChanged();
-    d->queryDeparture();
+    d->query();
 }
 
 bool DepartureQueryModel::canQueryNext() const

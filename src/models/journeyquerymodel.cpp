@@ -34,7 +34,7 @@ namespace KPublicTransport {
 class JourneyQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
-    void queryJourney();
+    void doQuery() override;
     void mergeResults(const std::vector<Journey> &newJourneys);
 
     std::vector<Journey> m_journeys;
@@ -47,7 +47,7 @@ public:
 };
 }
 
-void JourneyQueryModelPrivate::queryJourney()
+void JourneyQueryModelPrivate::doQuery()
 {
     Q_Q(JourneyQueryModel);
     if (!m_manager || m_request.isEmpty()) {
@@ -114,7 +114,6 @@ JourneyQueryModel::JourneyQueryModel(QObject *parent)
     : AbstractQueryModel(new JourneyQueryModelPrivate, parent)
 {
     Q_D(JourneyQueryModel);
-    connect(this, &AbstractQueryModel::managerChanged, this, [d]() { d->queryJourney(); });
     connect(this, &AbstractQueryModel::loadingChanged, this, &JourneyQueryModel::canQueryPrevNextChanged);
 }
 
@@ -131,7 +130,7 @@ void JourneyQueryModel::setRequest(const JourneyRequest &req)
     Q_D(JourneyQueryModel);
     d->m_request = req;
     emit requestChanged();
-    d->queryJourney();
+    d->query();
 }
 
 bool JourneyQueryModel::canQueryNext() const
