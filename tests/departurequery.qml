@@ -178,7 +178,7 @@ Kirigami.ApplicationWindow {
 
                 QQC2.CheckBox {
                     text: "Allow insecure backends"
-                    onToggled: ptMgr.setAllowInsecure(checked)
+                    onToggled: ptMgr.allowInsecureBackends = checked
                 }
 
                 QQC2.ComboBox {

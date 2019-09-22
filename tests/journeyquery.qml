@@ -31,6 +31,20 @@ Kirigami.ApplicationWindow {
 
     pageStack.initialPage: journyQueryPage
 
+    Manager {
+        id: ptMgr;
+    }
+
+    JourneyQueryModel {
+        id: journeyModel
+        manager: ptMgr
+    }
+
+    JourneyTitleModel {
+        id: titleModel
+        sourceModel: journeyModel
+    }
+
     globalDrawer: Kirigami.GlobalDrawer {
         actions: [
             Kirigami.Action {
@@ -41,9 +55,9 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 iconName: "help-about-symbolic"
                 text: i18n("Current Data Sources")
-                enabled: _queryMgr.model.attributions.length > 0
+                enabled: journeyModel.attributions.length > 0
                 onTriggered: {
-                    aboutSheet.attributions = Qt.binding(function() { return _queryMgr.model.attributions; });
+                    aboutSheet.attributions = Qt.binding(function() { return journeyModel.attributions; });
                     aboutSheet.sheetOpen = true;
                 }
             },
@@ -51,7 +65,7 @@ Kirigami.ApplicationWindow {
                 iconName: "help-about-symbolic"
                 text: i18n("All Data Sources")
                 onTriggered: {
-                    aboutSheet.attributions = Qt.binding(function() { return _queryMgr.manager.attributions; });
+                    aboutSheet.attributions = Qt.binding(function() { return ptMgr.attributions; });
                     aboutSheet.sheetOpen = true;
                 }
             }
@@ -63,17 +77,12 @@ Kirigami.ApplicationWindow {
         title: i18n("Save Journey Data")
         fileMode: Platform.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
-        onAccepted: _queryMgr.saveTo(fileDialog.file);
+        onAccepted: _queryMgr.saveTo(journeyModel, fileDialog.file);
     }
 
     TestLocationsModel { id: exampleModel }
     AttributionSheet { id: aboutSheet }
     LocationDetailsSheet { id:locationDetailsSheet }
-
-    JourneyTitleModel {
-        id: titleModel
-        sourceModel: _queryMgr.model
-    }
 
     function displayDuration(dur)
     {
@@ -216,7 +225,7 @@ Kirigami.ApplicationWindow {
                 anchors.fill: parent
                 QQC2.CheckBox {
                     text: "Allow insecure backends"
-                    onToggled: _queryMgr.setAllowInsecure(checked)
+                    onToggled: ptMgr.allowInsecureBackends = checked
                 }
                 QQC2.CheckBox {
                     id: searchDirection
@@ -278,15 +287,15 @@ Kirigami.ApplicationWindow {
                 RowLayout {
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.findJourney(fromName.text, fromLat.text, fromLon.text, toName.text, toLat.text, toLon.text, searchDirection.checked);
+                        onClicked: _queryMgr.findJourney(journeyModel, fromName.text, fromLat.text, fromLon.text, toName.text, toLat.text, toLon.text, searchDirection.checked);
                     }
                     QQC2.Button {
                         text: "Query Name"
-                        onClicked: _queryMgr.findJourney(fromName.text, NaN, NaN, toName.text, NaN, NaN, searchDirection.checked);
+                        onClicked: _queryMgr.findJourney(journeyModel, fromName.text, NaN, NaN, toName.text, NaN, NaN, searchDirection.checked);
                     }
                     QQC2.Button {
                         text: "Query Coord"
-                        onClicked: _queryMgr.findJourney("", fromLat.text, fromLon.text, "", toLat.text, toLon.text, searchDirection.checked);
+                        onClicked: _queryMgr.findJourney(journeyModel, "", fromLat.text, fromLon.text, "", toLat.text, toLon.text, searchDirection.checked);
                     }
                     QQC2.Button {
                         text: "Clear"
@@ -305,8 +314,8 @@ Kirigami.ApplicationWindow {
                     QQC2.ToolButton {
                         id: prevQueryButton
                         icon.name: "go-previous"
-                        enabled: _queryMgr.model.canQueryPrevious
-                        onClicked: _queryMgr.model.queryPrevious()
+                        enabled: journeyModel.canQueryPrevious
+                        onClicked: journeyModel.queryPrevious()
                     }
                     QQC2.ComboBox {
                         id: journeySelector
@@ -317,27 +326,27 @@ Kirigami.ApplicationWindow {
                     QQC2.ToolButton {
                         id: nextQueryButton
                         icon.name: "go-next"
-                        enabled: _queryMgr.model.canQueryNext
-                        onClicked: _queryMgr.model.queryNext()
+                        enabled: journeyModel.canQueryNext
+                        onClicked: journeyModel.queryNext()
                     }
                 }
 
                 ListView {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    model: _queryMgr.model.data(_queryMgr.model.index(journeySelector.currentIndex, 0), 256).sections
+                    model: journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256).sections
                     clip: true
                     delegate: journeyDelegate
 
                     QQC2.BusyIndicator {
                         anchors.centerIn: parent
-                        running: _queryMgr.model.loading
+                        running: journeyModel.loading
                     }
 
                     QQC2.Label {
                         anchors.centerIn: parent
                         width: parent.width
-                        text: _queryMgr.model.errorMessage
+                        text: journeyModel.errorMessage
                         color: Kirigami.Theme.negativeTextColor
                         wrapMode: Text.Wrap
                     }

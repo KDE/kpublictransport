@@ -57,17 +57,13 @@ public:
 class QueryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel* model MEMBER journeyQueryModel CONSTANT)
-    Q_PROPERTY(QObject* manager READ manager CONSTANT)
 public:
     QueryManager(QObject *parent = nullptr)
         : QObject(parent)
-        , journeyQueryModel(new JourneyQueryModel(this))
     {
-        journeyQueryModel->setManager(&ptMgr);
     }
 
-    Q_INVOKABLE void findJourney(const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
+    Q_INVOKABLE void findJourney(QObject *model, const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
     {
         Location from;
         from.setName(fromName);
@@ -81,22 +77,17 @@ public:
             request.setArrivalTime(QDateTime::currentDateTime().addSecs(2 * 3600));
         }
 
-        journeyQueryModel->setRequest(request);
+        qobject_cast<JourneyQueryModel*>(model)->setRequest(request);
     }
 
-    Q_INVOKABLE void setAllowInsecure(bool insecure)
-    {
-        ptMgr.setAllowInsecureBackends(insecure);
-    }
-
-    Q_INVOKABLE void saveTo(const QUrl &fileName)
+    Q_INVOKABLE void saveTo(QObject *model, const QUrl &fileName)
     {
         QFile f(fileName.toLocalFile());
         if (!f.open(QFile::WriteOnly)) {
             qWarning() << f.errorString() << fileName;
             return;
         }
-        f.write(QJsonDocument(Journey::toJson(journeyQueryModel->journeys())).toJson());
+        f.write(QJsonDocument(Journey::toJson(qobject_cast<JourneyQueryModel*>(model)->journeys())).toJson());
     }
 
     Q_INVOKABLE QString locationIds(const QVariant &v)
@@ -110,12 +101,6 @@ public:
         }
         return l.join(QLatin1String(", "));
     }
-
-    QObject* manager() { return &ptMgr; }
-
-private:
-    Manager ptMgr;
-    JourneyQueryModel *journeyQueryModel;
 };
 
 int main(int argc, char **argv)
