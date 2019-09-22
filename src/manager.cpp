@@ -375,7 +375,7 @@ bool Manager::allowInsecureBackends() const
 
 void Manager::setAllowInsecureBackends(bool insecure)
 {
-    if (d->m_allowInsecure != insecure) {
+    if (d->m_allowInsecure == insecure) {
         return;
     }
     d->m_allowInsecure = insecure;
