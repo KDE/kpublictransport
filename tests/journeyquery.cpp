@@ -40,8 +40,9 @@ using namespace KPublicTransport;
 
 class JourneyQueryProxyModel : public QIdentityProxyModel
 {
+    Q_OBJECT
 public:
-    JourneyQueryProxyModel(QObject *parent) : QIdentityProxyModel(parent) {}
+    JourneyQueryProxyModel(QObject *parent = nullptr) : QIdentityProxyModel(parent) {}
     QVariant data(const QModelIndex &index, int role) const override
     {
         if (role == Qt::DisplayRole) {
@@ -57,16 +58,13 @@ class QueryManager : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QAbstractItemModel* model MEMBER journeyQueryModel CONSTANT)
-    Q_PROPERTY(QAbstractItemModel* titleModel MEMBER journeyProxyModel CONSTANT)
     Q_PROPERTY(QObject* manager READ manager CONSTANT)
 public:
     QueryManager(QObject *parent = nullptr)
         : QObject(parent)
         , journeyQueryModel(new JourneyQueryModel(this))
-        , journeyProxyModel(new JourneyQueryProxyModel(this))
     {
         journeyQueryModel->setManager(&ptMgr);
-        journeyProxyModel->setSourceModel(journeyQueryModel);
     }
 
     Q_INVOKABLE void findJourney(const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
@@ -118,7 +116,6 @@ public:
 private:
     Manager ptMgr;
     JourneyQueryModel *journeyQueryModel;
-    JourneyQueryProxyModel *journeyProxyModel;
 };
 
 int main(int argc, char **argv)
@@ -130,6 +127,8 @@ int main(int argc, char **argv)
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
+
+    qmlRegisterType<JourneyQueryProxyModel>("org.kde.example", 1, 0, "JourneyTitleModel");
 
     QueryManager mgr;
     QQmlApplicationEngine engine;

@@ -21,6 +21,7 @@ import QtQuick.Controls 2.1 as QQC2
 import Qt.labs.platform 1.0 as Platform
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
+import org.kde.example 1.0
 
 Kirigami.ApplicationWindow {
     title: "Journey Query"
@@ -68,6 +69,11 @@ Kirigami.ApplicationWindow {
     TestLocationsModel { id: exampleModel }
     AttributionSheet { id: aboutSheet }
     LocationDetailsSheet { id:locationDetailsSheet }
+
+    JourneyTitleModel {
+        id: titleModel
+        sourceModel: _queryMgr.model
+    }
 
     function displayDuration(dur)
     {
@@ -305,7 +311,7 @@ Kirigami.ApplicationWindow {
                     QQC2.ComboBox {
                         id: journeySelector
                         Layout.fillWidth: true
-                        model: _queryMgr.titleModel
+                        model: titleModel
                         textRole: "display"
                     }
                     QQC2.ToolButton {
