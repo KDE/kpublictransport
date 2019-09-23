@@ -44,8 +44,8 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     Q_GADGET
     Q_PROPERTY(KPublicTransport::Location from READ from WRITE setFrom)
     Q_PROPERTY(KPublicTransport::Location to READ to WRITE setTo)
-    Q_PROPERTY(QDateTime dateTime READ dateTime)
-    Q_PROPERTY(DateTimeMode dateTimeMode READ dateTimeMode)
+    Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
+    Q_PROPERTY(DateTimeMode dateTimeMode READ dateTimeMode WRITE setDateTimeMode)
 
 public:
     JourneyRequest();
@@ -70,6 +70,8 @@ public:
 
     /** Date/time at which the journey should start/end. */
     QDateTime dateTime() const;
+    /** Sets the date/time at which the journey should start/end. */
+    void setDateTime(const QDateTime &dt);
     enum DateTimeMode {
         Arrival, ///< dateTime() represents the desired arriva time.
         Departure ///< dateTime() represents the desired departure time.
@@ -78,6 +80,8 @@ public:
 
     /** Returns whether to search for journeys starting or ending at the given time. */
     DateTimeMode dateTimeMode() const;
+    /** Sets whether to search for journeys starting or ending at the given time. */
+    void setDateTimeMode(DateTimeMode mode);
     /** Set the desired departure time.
      *  This is mutually exclusive to setting a desired arrival time.
      */

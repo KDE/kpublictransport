@@ -22,6 +22,7 @@
 #include <KPublicTransport/Location>
 
 #include <QDateTime>
+#include <QDebug>
 #include <QSharedData>
 
 #include <unordered_map>
@@ -91,9 +92,21 @@ QDateTime JourneyRequest::dateTime() const
     return d->dateTime;
 }
 
+void JourneyRequest::setDateTime(const QDateTime& dt)
+{
+    d.detach();
+    d->dateTime = dt;
+}
+
 JourneyRequest::DateTimeMode JourneyRequest::dateTimeMode() const
 {
     return d->dateTimeMode;
+}
+
+void JourneyRequest::setDateTimeMode(JourneyRequest::DateTimeMode mode)
+{
+    d.detach();
+    d->dateTimeMode = mode;
 }
 
 void JourneyRequest::setDepartureTime(const QDateTime &dt)

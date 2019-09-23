@@ -287,15 +287,54 @@ Kirigami.ApplicationWindow {
                 RowLayout {
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.findJourney(journeyModel, fromName.text, fromLat.text, fromLon.text, toName.text, toLat.text, toLon.text, searchDirection.checked);
+                        onClicked: {
+                            var from = journeyModel.request.from;
+                            from.name = fromName.text;
+                            from.latitude = fromLat.text;
+                            from.longitude = fromLon.text;
+                            journeyModel.request.from = from;
+                            var to = journeyModel.request.to;
+                            to.name = toName.text;
+                            to.latitude = toLat.text;
+                            to.longitude = toLon.text;
+                            journeyModel.request.to = to;
+                            journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
+                            journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                        }
                     }
                     QQC2.Button {
                         text: "Query Name"
-                        onClicked: _queryMgr.findJourney(journeyModel, fromName.text, NaN, NaN, toName.text, NaN, NaN, searchDirection.checked);
+                        onClicked: {
+                            var from = journeyModel.request.from;
+                            from.name = fromName.text;
+                            from.latitude = NaN;
+                            from.longitude = NaN;
+                            journeyModel.request.from = from;
+                            var to = journeyModel.request.to;
+                            to.name = toName.text;
+                            to.latitude = NaN;
+                            to.longitude = NaN;
+                            journeyModel.request.to = to;
+                            journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
+                            journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                        }
                     }
                     QQC2.Button {
                         text: "Query Coord"
-                        onClicked: _queryMgr.findJourney(journeyModel, "", fromLat.text, fromLon.text, "", toLat.text, toLon.text, searchDirection.checked);
+                        onClicked: {
+                            var from = journeyModel.request.from;
+                            from.name = "";
+                            from.latitude = fromLat.text;
+                            from.longitude = fromLon.text;
+                            journeyModel.request.from = from;
+                            var to = journeyModel.request.to;
+                            to.name = "";
+                            to.latitude = toLat.text;
+                            to.longitude = toLon.text;
+                            journeyModel.request.to = to;
+                            journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
+                            journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                        }
                     }
                     QQC2.Button {
                         text: "Clear"

@@ -63,23 +63,6 @@ public:
     {
     }
 
-    Q_INVOKABLE void findJourney(QObject *model, const QString &fromName, double fromLat, double fromLon, const QString &toName, double toLat, double toLon, bool direction)
-    {
-        Location from;
-        from.setName(fromName);
-        from.setCoordinate(fromLat, fromLon);
-        Location to;
-        to.setName(toName);
-        to.setCoordinate(toLat, toLon);
-
-        JourneyRequest request(from, to);
-        if (direction) {
-            request.setArrivalTime(QDateTime::currentDateTime().addSecs(2 * 3600));
-        }
-
-        qobject_cast<JourneyQueryModel*>(model)->setRequest(request);
-    }
-
     Q_INVOKABLE void saveTo(QObject *model, const QUrl &fileName)
     {
         QFile f(fileName.toLocalFile());
