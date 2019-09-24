@@ -26,6 +26,7 @@
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/LocationQueryModel>
+#include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
@@ -37,6 +38,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
 
     qmlRegisterUncreatableType<KPublicTransport::DepartureRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneyRequest>("org.kde.kpublictransport", 1, 0, "JourneyRequest", {});
+    qmlRegisterUncreatableType<KPublicTransport::LocationRequest>("org.kde.kpublictransport", 1, 0, "LocationRequest", {});
 
     qmlRegisterType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager");
     qmlRegisterType<KPublicTransport::DepartureQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");

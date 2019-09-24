@@ -53,9 +53,21 @@ float LocationRequest::latitude() const
     return d->lat;
 }
 
+void LocationRequest::setLatitude(float lat)
+{
+    d.detach();
+    d->lat = lat;
+}
+
 float LocationRequest::longitude() const
 {
     return d->lon;
+}
+
+void LocationRequest::setLongitude(float lon)
+{
+    d.detach();
+    d->lon = lon;
 }
 
 void LocationRequest::setCoordinate(float lat, float lon)

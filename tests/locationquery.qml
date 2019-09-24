@@ -19,6 +19,7 @@ import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kpublictransport 1.0
 
 Kirigami.ApplicationWindow {
     title: "Location Query"
@@ -29,10 +30,18 @@ Kirigami.ApplicationWindow {
 
     pageStack.initialPage: locationQueryPage
 
+    Manager {
+        id: ptMgr
+    }
+    LocationQueryModel {
+        id: locationModel
+        manager: ptMgr
+    }
+
     TestLocationsModel { id: exampleModel }
     AttributionSheet {
         id: aboutSheet
-        attributions: _queryMgr.model.attributions
+        attributions: locationModel.attributions
     }
 
     globalDrawer: Kirigami.GlobalDrawer {
@@ -40,7 +49,7 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 iconName: "help-about-symbolic"
                 text: i18n("Data Sources")
-                enabled: _queryMgr.model.attributions.length > 0
+                enabled: locationModel.attributions.length > 0
                 onTriggered: aboutSheet.sheetOpen = true;
             }
         ]
@@ -92,7 +101,7 @@ Kirigami.ApplicationWindow {
 
                 QQC2.CheckBox {
                     text: "Allow insecure backends"
-                    onToggled: _queryMgr.setAllowInsecure(checked)
+                    onToggled: ptMgr.allowInsecureBackends = checked
                 }
 
                 QQC2.ComboBox {
@@ -116,7 +125,11 @@ Kirigami.ApplicationWindow {
                     }
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.queryLocation(NaN, NaN, nameQuery.text);
+                        onClicked: {
+                            locationModel.request.latitude = NaN;
+                            locationModel.request.longitude = NaN;
+                            locationModel.request.name = nameQuery.text;
+                        }
                     }
                 }
 
@@ -130,26 +143,30 @@ Kirigami.ApplicationWindow {
                     }
                     QQC2.Button {
                         text: "Query"
-                        onClicked: _queryMgr.queryLocation(latQuery.text, lonQuery.text, null);
+                        onClicked: {
+                            locationModel.request.latitude = latQuery.text;
+                            locationModel.request.longitude = lonQuery.text;
+                            locationModel.request.name = "";
+                        }
                     }
                 }
 
                 ListView {
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    model: _queryMgr.model
+                    model: locationModel
                     clip: true
                     delegate: locationDelegate
 
                     QQC2.BusyIndicator {
                         anchors.centerIn: parent
-                        running: _queryMgr.model.loading
+                        running: locationModel.loading
                     }
 
                     QQC2.Label {
                         anchors.centerIn: parent
                         width: parent.width
-                        text: _queryMgr.model.errorMessage
+                        text: locationModel.errorMessage
                         color: Kirigami.Theme.negativeTextColor
                         wrapMode: Text.Wrap
                     }

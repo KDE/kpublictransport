@@ -15,12 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Location>
-#include <KPublicTransport/LocationReply>
-#include <KPublicTransport/LocationRequest>
-#include <KPublicTransport/LocationQueryModel>
-#include <KPublicTransport/Manager>
 
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -35,18 +30,8 @@ using namespace KPublicTransport;
 class QueryManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QAbstractItemModel* model READ queryModel CONSTANT)
-
 public:
-    QueryManager(QObject *parent = nullptr) : QObject(parent) { m_model.setManager(&ptMgr); }
-
-    Q_INVOKABLE void queryLocation(double lat, double lon, const QString &name)
-    {
-        LocationRequest req;
-        req.setCoordinate(lat, lon);
-        req.setName(name);
-        m_model.setRequest(req);
-    }
+    QueryManager(QObject *parent = nullptr) : QObject(parent) {}
 
     Q_INVOKABLE QString locationIds(const QVariant &v)
     {
@@ -59,17 +44,6 @@ public:
         }
         return l.join(QLatin1String(", "));
     }
-
-    Q_INVOKABLE void setAllowInsecure(bool insecure)
-    {
-        ptMgr.setAllowInsecureBackends(insecure);
-    }
-
-    QAbstractItemModel *queryModel() { return &m_model; }
-
-private:
-    Manager ptMgr;
-    LocationQueryModel m_model;
 };
 
 int main(int argc, char **argv)

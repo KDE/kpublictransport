@@ -35,8 +35,8 @@ class LocationRequestPrivate;
 class KPUBLICTRANSPORT_EXPORT LocationRequest
 {
     Q_GADGET
-    Q_PROPERTY(float latitude READ latitude)
-    Q_PROPERTY(float longitude READ longitude)
+    Q_PROPERTY(float latitude READ latitude WRITE setLatitude)
+    Q_PROPERTY(float longitude READ longitude WRITE setLongitude)
     Q_PROPERTY(QString name READ name WRITE setName)
 
 public:
@@ -51,8 +51,12 @@ public:
 
     /** Latitude of the location to search. */
     float latitude() const;
+    /** Sets the latitude of the location to search. */
+    void setLatitude(float lat);
     /** Longitude of the location to search. */
     float longitude() const;
+    /** Sets the longitude of the location to search. */
+    void setLongitude(float lon);
     /** Search by geo coordinate. */
     void setCoordinate(float lat, float lon);
     /** Returns true if a valid geo coordinate has been set. */
