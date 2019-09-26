@@ -15,26 +15,15 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <KPublicTransport/Journey>
-#include <KPublicTransport/JourneyReply>
-#include <KPublicTransport/JourneyRequest>
-#include <KPublicTransport/JourneyQueryModel>
-#include <KPublicTransport/Line>
-#include <KPublicTransport/Location>
-#include <KPublicTransport/Manager>
+#include "exampleutil.h"
 
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
 #include <QApplication>
 #include <QDateTime>
-#include <QDebug>
-#include <QFile>
 #include <QIdentityProxyModel>
-#include <QJsonArray>
-#include <QJsonDocument>
 #include <QLocale>
-#include <QUrl>
 
 using namespace KPublicTransport;
 
@@ -54,38 +43,6 @@ public:
     }
 };
 
-class QueryManager : public QObject
-{
-    Q_OBJECT
-public:
-    QueryManager(QObject *parent = nullptr)
-        : QObject(parent)
-    {
-    }
-
-    Q_INVOKABLE void saveTo(QObject *model, const QUrl &fileName)
-    {
-        QFile f(fileName.toLocalFile());
-        if (!f.open(QFile::WriteOnly)) {
-            qWarning() << f.errorString() << fileName;
-            return;
-        }
-        f.write(QJsonDocument(Journey::toJson(qobject_cast<JourneyQueryModel*>(model)->journeys())).toJson());
-    }
-
-    Q_INVOKABLE QString locationIds(const QVariant &v)
-    {
-        const auto loc = v.value<Location>();
-        const auto ids = loc.identifiers();
-        QStringList l;
-        l.reserve(ids.size());
-        for (auto it = ids.begin(); it != ids.end(); ++it) {
-            l.push_back(it.key() + QLatin1String(": ") + it.value());
-        }
-        return l.join(QLatin1String(", "));
-    }
-};
-
 int main(int argc, char **argv)
 {
     QCoreApplication::setApplicationName(QStringLiteral("journeyquery"));
@@ -97,12 +54,14 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
 
     qmlRegisterType<JourneyQueryProxyModel>("org.kde.example", 1, 0, "JourneyTitleModel");
+    qmlRegisterSingletonType<ExampleUtil>("org.kde.example", 1, 0, "ExampleUtil", [](QQmlEngine*, QJSEngine*) -> QObject*{
+        return new ExampleUtil;
+    });
 
-    QueryManager mgr;
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty(QStringLiteral("_queryMgr"), &mgr);
     engine.load(QStringLiteral("qrc:/journeyquery.qml"));
     return app.exec();
 }
 
 #include "journeyquery.moc"
+#include "moc_exampleutil.cpp"

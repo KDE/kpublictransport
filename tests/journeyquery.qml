@@ -77,7 +77,7 @@ Kirigami.ApplicationWindow {
         title: i18n("Save Journey Data")
         fileMode: Platform.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
-        onAccepted: _queryMgr.saveTo(journeyModel, fileDialog.file);
+        onAccepted: ExampleUtil.saveTo(journeyModel, fileDialog.file);
     }
 
     TestLocationsModel { id: exampleModel }

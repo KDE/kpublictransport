@@ -19,6 +19,7 @@ import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import org.kde.kirigami 2.0 as Kirigami
+import org.kde.example 1.0
 
 Kirigami.OverlaySheet {
     id: locationDetailsSheet
@@ -54,7 +55,7 @@ Kirigami.OverlaySheet {
             text: "Lon: " + locationDetailsSheet.location.longitude
         }
         QQC2.Label {
-            text: "Identifiers: " + _queryMgr.locationIds(locationDetailsSheet.location)
+            text: "Identifiers: " + ExampleUtil.locationIds(locationDetailsSheet.location)
         }
         QQC2.ToolButton {
             icon.name: "map-symbolic"

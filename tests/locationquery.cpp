@@ -15,36 +15,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <KPublicTransport/Location>
+#include "exampleutil.h"
 
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
 #include <QApplication>
-#include <QDateTime>
-#include <QDebug>
-#include <QUrl>
 
 using namespace KPublicTransport;
-
-class QueryManager : public QObject
-{
-    Q_OBJECT
-public:
-    QueryManager(QObject *parent = nullptr) : QObject(parent) {}
-
-    Q_INVOKABLE QString locationIds(const QVariant &v)
-    {
-        const auto loc = v.value<Location>();
-        const auto ids = loc.identifiers();
-        QStringList l;
-        l.reserve(ids.size());
-        for (auto it = ids.begin(); it != ids.end(); ++it) {
-            l.push_back(it.key() + QLatin1String(": ") + it.value());
-        }
-        return l.join(QLatin1String(", "));
-    }
-};
 
 int main(int argc, char **argv)
 {
@@ -56,11 +34,13 @@ int main(int argc, char **argv)
     QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
 
-    QueryManager mgr;
+    qmlRegisterSingletonType<ExampleUtil>("org.kde.example", 1, 0, "ExampleUtil", [](QQmlEngine*, QJSEngine*) -> QObject*{
+        return new ExampleUtil;
+    });
+
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty(QStringLiteral("_queryMgr"), &mgr);
     engine.load(QStringLiteral("qrc:/locationquery.qml"));
     return app.exec();
 }
 
-#include "locationquery.moc"
+#include "moc_exampleutil.cpp"

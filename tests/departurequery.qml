@@ -21,6 +21,7 @@ import QtQuick.Controls 2.1 as QQC2
 import Qt.labs.platform 1.0 as Platform
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
+import org.kde.example 1.0
 
 Kirigami.ApplicationWindow {
     title: "Departure Query"
@@ -52,7 +53,7 @@ Kirigami.ApplicationWindow {
         title: i18n("Save Departure Data")
         fileMode: Platform.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
-        onAccepted: _queryMgr.saveTo(departureModel, fileDialog.file);
+        onAccepted: ExampleUtil.saveTo(departureModel, fileDialog.file);
     }
 
     TestLocationsModel { id: exampleModel }

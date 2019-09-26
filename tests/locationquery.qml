@@ -20,6 +20,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
+import org.kde.example 1.0
 
 Kirigami.ApplicationWindow {
     title: "Location Query"
@@ -87,7 +88,7 @@ Kirigami.ApplicationWindow {
                     text: "Lat: " + location.latitude + " Lon: " + location.longitude
                 }
                 QQC2.Label {
-                    text: "Identifiers: " + _queryMgr.locationIds(location)
+                    text: "Identifiers: " + ExampleUtil.locationIds(location)
                 }
             }
         }
