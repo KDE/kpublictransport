@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_REPLY_P_H
 
 #include "reply.h"
+#include "pointer_helper_p.h"
 
 #include <KPublicTransport/Attribution>
 

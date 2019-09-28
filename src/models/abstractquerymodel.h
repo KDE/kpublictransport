@@ -19,10 +19,10 @@
 #define KPUBLICTRANSPORT_ABSTRACTQUERYMODEL_H
 
 #include "kpublictransport_export.h"
-#include "internal_impl.h"
 
 #include <QAbstractListModel>
 
+#include <memory>
 #include <vector>
 
 namespace KPublicTransport {

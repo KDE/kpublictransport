@@ -19,9 +19,10 @@
 #define KPUBLICTRANSPORT_REPLY_H
 
 #include "kpublictransport_export.h"
-#include "internal_impl.h"
 
 #include <QObject>
+
+#include <memory>
 
 namespace KPublicTransport {
 

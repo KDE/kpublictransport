@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_INTERNAL_IMPL_H
-#define KPUBLICTRANSPORT_INTERNAL_IMPL_H
+#ifndef KPUBLICTRANSPORT_POINTER_HELPER_P_H
+#define KPUBLICTRANSPORT_POINTER_HELPER_P_H
 
 #include <qglobal.h>
 #include <memory>
