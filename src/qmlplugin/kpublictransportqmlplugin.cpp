@@ -31,6 +31,8 @@
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
+    qRegisterMetaType<KPublicTransport::Location>();
+
     qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
 
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
