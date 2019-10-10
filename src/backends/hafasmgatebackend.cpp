@@ -90,13 +90,6 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         depLoc.insert(QStringLiteral("type"), QLatin1String("S"));
         depLocL.push_back(depLoc);
 
-        QJsonArray jnyFltrL;
-        QJsonObject jnyFltr;
-        jnyFltr.insert(QStringLiteral("mode"), QLatin1String("BIT"));
-        jnyFltr.insert(QStringLiteral("type"), QLatin1String("PROD"));
-        jnyFltr.insert(QStringLiteral("value"), QLatin1String("1111111001"));
-        jnyFltrL.push_back(jnyFltr);
-
         QJsonObject req;
         req.insert(QStringLiteral("arrLocL"), arrLocL);
         req.insert(QStringLiteral("depLocL"), depLocL);
@@ -105,7 +98,6 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         req.insert(QStringLiteral("getIST"), false);
         req.insert(QStringLiteral("getPasslist"), true); // ???
         req.insert(QStringLiteral("getPolyline"), false);
-        req.insert(QStringLiteral("jnyFltrL"), jnyFltrL);
 
         req.insert(QStringLiteral("outDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
         req.insert(QStringLiteral("outTime"), request.dateTime().time().toString(QStringLiteral("hhmmss")));
