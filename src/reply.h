@@ -62,7 +62,7 @@ Q_SIGNALS:
     /** Emitted whenever new results are available, even before the search has been completed.
      *  @note At this point no guarantees about the result apply, sorting/merging/etc might not have been applied yet
      *  and not all properties of the reply might be valid. Avoid the usage of this in general, unless you write
-     *  dynamically updating models that need very quick results at the expensve of incompleteness.
+     *  dynamically updating models that need very quick results at the expensive of incompleteness.
      */
     void updated();
 

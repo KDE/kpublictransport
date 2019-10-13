@@ -94,7 +94,7 @@ void LocationReply::addResult(std::vector<Location> &&res)
     Q_D(LocationReply);
     // remove implausible results
     for (auto it = res.begin(); it != res.end();) {
-        // we sometimes seem to get bogus places in Antartica
+        // we sometimes seem to get bogus places in Antarctica
         if ((*it).hasCoordinate() && (*it).latitude() < -65.0) {
             qCDebug(Log) << "Dropping location in Antarctica" << (*it).name() << (*it).latitude() << (*it).longitude();
             it = res.erase(it);

@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_LOCATIONUTIL_H
-#define KPUBLICTRANSPORT_LOCATIONUTIL_H
+#ifndef KPUBLICTRANSPORT_LOCATIONUTIL_P_H
+#define KPUBLICTRANSPORT_LOCATIONUTIL_P_H
 
 namespace KPublicTransport {
 
@@ -32,4 +32,4 @@ namespace LocationUtil
 
 }
 
-#endif // KPUBLICTRANSPORT_LOCATIONUTIL_H
+#endif // KPUBLICTRANSPORT_LOCATIONUTIL_P_H

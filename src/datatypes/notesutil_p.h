@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_NOTESUTIL_H
-#define KPUBLICTRANSPORT_NOTESUTIL_H
+#ifndef KPUBLICTRANSPORT_NOTESUTIL_P_H
+#define KPUBLICTRANSPORT_NOTESUTIL_P_H
 
 class QString;
 class QStringList;
@@ -41,4 +41,4 @@ namespace NotesUtil
 
 }
 
-#endif // KPUBLICTRANSPORT_NOTESUTIL_H
+#endif // KPUBLICTRANSPORT_NOTESUTIL_P_H

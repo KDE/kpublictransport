@@ -108,7 +108,7 @@ bool HafasParser::isUicStationId(const QString &id) const
         return std::binary_search(m_uicCountryCodes.begin(), m_uicCountryCodes.end(), countryCode);
     }
 
-    // if no UIC country codes are explicilty allowd, insist on the right length
+    // if no UIC country codes are explicitly allowed, insist on the right length
     return id.size() == 7 && id.at(0) != QLatin1Char('0');
 }
 

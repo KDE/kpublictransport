@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_JOURNEYUTIL_H
-#define KPUBLICTRANSPORT_JOURNEYUTIL_H
+#ifndef KPUBLICTRANSPORT_JOURNEYUTIL_P_H
+#define KPUBLICTRANSPORT_JOURNEYUTIL_P_H
 
 class QDateTime;
 
@@ -40,4 +40,4 @@ namespace JourneyUtil
 
 }
 
-#endif // KPUBLICTRANSPORT_JOURNEYUTIL_H
+#endif // KPUBLICTRANSPORT_JOURNEYUTIL_P_H

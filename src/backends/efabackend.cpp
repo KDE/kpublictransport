@@ -181,7 +181,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
 
-    // TODO also observerd:
+    // TODO also observed:
     //    type_origin:             coord
     //    name_origin:             52.500000:13.500000:WGS84[...]
     query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("stop"));

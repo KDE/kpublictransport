@@ -48,7 +48,7 @@ public:
      *  The returned request is empty if querying later departures is not possible/supported.
      */
     DepartureRequest nextRequest() const;
-    /** Returns a request object for querying departures preceeding the ones returned by this reply.
+    /** Returns a request object for querying departures preceding the ones returned by this reply.
      *  The returned request is empty if querying earlier departures is not possible/supported.
      */
     DepartureRequest previousRequest() const;
