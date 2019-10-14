@@ -105,7 +105,6 @@ void LocationQueryModelPrivate::mergeResults(const std::vector<Location> &newLoc
 LocationQueryModel::LocationQueryModel(QObject* parent)
     : AbstractQueryModel(new LocationQueryModelPrivate, parent)
 {
-    Q_D(LocationQueryModel);
 }
 
 LocationQueryModel::~LocationQueryModel() = default;

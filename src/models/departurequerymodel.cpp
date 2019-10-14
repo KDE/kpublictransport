@@ -115,7 +115,6 @@ void DepartureQueryModelPrivate::mergeResults(const std::vector<Departure> &newD
 DepartureQueryModel::DepartureQueryModel(QObject *parent)
     : AbstractQueryModel(new DepartureQueryModelPrivate, parent)
 {
-    Q_D(DepartureQueryModel);
     connect(this, &AbstractQueryModel::loadingChanged, this, &DepartureQueryModel::canQueryPrevNextChanged);
 }
 

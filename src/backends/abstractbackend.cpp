@@ -196,7 +196,7 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
     httpFile.write(" ");
     httpFile.write(netReply->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toString().toUtf8());
     httpFile.write("\n");
-    const auto headers = netReply->rawHeaderPairs();
+    const auto &headers = netReply->rawHeaderPairs();
     for (const auto &header : headers) {
         httpFile.write(header.first);
         httpFile.write(": ");

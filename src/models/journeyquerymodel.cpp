@@ -113,7 +113,6 @@ void JourneyQueryModelPrivate::mergeResults(const std::vector<Journey> &newJourn
 JourneyQueryModel::JourneyQueryModel(QObject *parent)
     : AbstractQueryModel(new JourneyQueryModelPrivate, parent)
 {
-    Q_D(JourneyQueryModel);
     connect(this, &AbstractQueryModel::loadingChanged, this, &JourneyQueryModel::canQueryPrevNextChanged);
 }
 
