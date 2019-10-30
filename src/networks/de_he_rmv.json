@@ -14,7 +14,7 @@
             "128": "Bus"
         },
         "locationIdentifierType": "rmv",
-        "standardLocationIdentifier": "ibnr",
+        "standardLocationIdentifierType": "ibnr",
         "standardLocationIdentifierCountries": [ 54, 55, 81 ]
     },
     "filter": {
