@@ -16,6 +16,7 @@
 */
 
 #include "json_p.h"
+#include "logging.h"
 
 #include <QColor>
 #include <QDateTime>
@@ -180,10 +181,24 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
         if ((QMetaType::typeFlags(prop.userType()) & QMetaType::IsEnumeration) && it.value().isString()) { // external enums
             const QMetaType mt(prop.type());
             const auto mo = mt.metaObject();
+            if (!mo) {
+                qCWarning(Log) << "No meta object found for enum type:" << prop.type();
+                continue;
+            }
             const auto enumIdx = mo->indexOfEnumerator(prop.typeName() + strlen(mo->className()) + 2);
+            if (enumIdx < 0) {
+                qCWarning(Log) << "Could not find QMetaEnum for" << prop.type();
+                continue;
+            }
             const auto me = mo->enumerator(enumIdx);
+            bool success = false;
+            const auto numValue = me.keyToValue(it.value().toString().toUtf8().constData(), &success);
+            if (!success) {
+                qCWarning(Log) << "Unknown enum value" << it.value().toString() << "for" << prop.type();
+                continue;
+            }
             auto valueData = mt.create();
-            *reinterpret_cast<int*>(valueData) = me.keyToValue(it.value().toString().toUtf8().constData());
+            *reinterpret_cast<int*>(valueData) = numValue;
             QVariant value(prop.userType(), valueData);
             prop.writeOnGadget(elem, value);
             continue;
