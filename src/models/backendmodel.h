@@ -45,14 +45,17 @@ public:
         NameRole = Qt::DisplayRole,
         DescriptionRole = Qt::UserRole,
         IdentifierRole,
-        SecureRole
+        SecureRole,
+        ItemEnabledRole,
+        BackendEnabledRole
     };
 
     Manager* manager() const;
     void setManager(Manager *mgr);
 
-    int rowCount(const QModelIndex& parent = {}) const override;
-    QVariant data(const QModelIndex& index, int role) const override;
+    int rowCount(const QModelIndex &parent = {}) const override;
+    QVariant data(const QModelIndex &index, int role) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
     QHash<int, QByteArray> roleNames() const override;
 
 Q_SIGNALS:

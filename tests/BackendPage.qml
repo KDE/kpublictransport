@@ -35,6 +35,8 @@ Kirigami.ScrollablePage {
         id: backendDelegate
         Kirigami.AbstractListItem {
             highlighted: false
+            enabled: model.itemEnabled
+
             GridLayout {
                 columns: 3
                 rows: 2
@@ -51,6 +53,7 @@ Kirigami.ScrollablePage {
                 }
                 QQC2.Switch {
                     id: toggle
+                    checked: model.backendEnabled
                     Layout.rowSpan: 2
                 }
                 QQC2.Label {

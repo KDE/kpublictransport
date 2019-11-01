@@ -51,11 +51,14 @@ void BackendModel::setManager(Manager *mgr)
 
     beginResetModel();
     d->mgr = mgr;
+    connect(mgr, &Manager::configurationChanged, this, [this]() {
+        emit dataChanged(index(0, 0), index(rowCount() - 1, 0));
+    });
     endResetModel();
     emit managerChanged();
 }
 
-int BackendModel::rowCount(const QModelIndex& parent) const
+int BackendModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid() || !d->mgr) {
         return 0;
@@ -63,7 +66,7 @@ int BackendModel::rowCount(const QModelIndex& parent) const
     return d->mgr->backends().size();
 }
 
-QVariant BackendModel::data(const QModelIndex& index, int role) const
+QVariant BackendModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || !d->mgr) {
         return {};
@@ -79,9 +82,31 @@ QVariant BackendModel::data(const QModelIndex& index, int role) const
             return backend.identifier();
         case SecureRole:
             return backend.isSecure();
+        case ItemEnabledRole:
+            return backend.isSecure() || d->mgr->allowInsecureBackends();
+        case BackendEnabledRole:
+            if (!backend.isSecure() && !d->mgr->allowInsecureBackends()) {
+                return false;
+            }
+            return true; // TODO
     }
 
     return {};
+}
+
+Qt::ItemFlags BackendModel::flags(const QModelIndex &index) const
+{
+    auto f = QAbstractListModel::flags(index);
+    if (!d->mgr || !index.isValid()) {
+        return f;
+    }
+
+    const auto &backend = d->mgr->backends()[index.row()];
+    if (!d->mgr->allowInsecureBackends() && !backend.isSecure()) {
+        return f & ~Qt::ItemIsEnabled;
+    }
+
+    return f;
 }
 
 QHash<int, QByteArray> BackendModel::roleNames() const
@@ -91,5 +116,7 @@ QHash<int, QByteArray> BackendModel::roleNames() const
     names.insert(DescriptionRole, "description");
     names.insert(IdentifierRole, "identifier");
     names.insert(SecureRole, "isSecure");
+    names.insert(ItemEnabledRole, "itemEnabled");
+    names.insert(BackendEnabledRole, "backendEnabled");
     return names;
 }
