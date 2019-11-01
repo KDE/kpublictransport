@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "World-wide Free Software and Open Data transport data provider.",
+        "Name": "Navitia"
+    },
     "type": "navitia",
     "options": {
         "endpoint": "api.navitia.io",

@@ -26,6 +26,7 @@ set(kpublictransport_srcs
 
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
+    datatypes/backend.cpp
     datatypes/departure.cpp
     datatypes/departureutil.cpp
     datatypes/disruption.cpp
@@ -40,6 +41,7 @@ set(kpublictransport_srcs
     datatypes/platformutils.cpp
 
     models/abstractquerymodel.cpp
+    models/backendmodel.cpp
     models/departurequerymodel.cpp
     models/journeyquerymodel.cpp
     models/locationquerymodel.cpp
@@ -90,6 +92,7 @@ ecm_generate_headers(KPublicTransport_Backends_FORWARDING_HEADERS
 ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     HEADER_NAMES
         Attribution
+        Backend
         Datatypes
         Departure
         Disruption
@@ -103,6 +106,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
 ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     HEADER_NAMES
         AbstractQueryModel
+        BackendModel
         DepartureQueryModel
         JourneyQueryModel
         LocationQueryModel

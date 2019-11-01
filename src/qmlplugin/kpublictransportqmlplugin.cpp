@@ -19,6 +19,7 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
+#include <KPublicTransport/BackendModel>
 #include <KPublicTransport/DepartureQueryModel>
 #include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
@@ -46,4 +47,5 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterType<KPublicTransport::DepartureQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
     qmlRegisterType<KPublicTransport::JourneyQueryModel>("org.kde.kpublictransport", 1, 0, "JourneyQueryModel");
     qmlRegisterType<KPublicTransport::LocationQueryModel>("org.kde.kpublictransport", 1, 0, "LocationQueryModel");
+    qmlRegisterType<KPublicTransport::BackendModel>("org.kde.kpublictransport", 1, 0, "BackendModel");
 }

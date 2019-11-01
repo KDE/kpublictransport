@@ -25,6 +25,7 @@
 #include "locationrequest.h"
 #include "logging.h"
 #include "datatypes/attributionutil_p.h"
+#include "datatypes/backend.h"
 #include "datatypes/disruption.h"
 
 #include <KPublicTransport/Location>
@@ -72,6 +73,7 @@ public:
     QNetworkAccessManager *m_nam = nullptr;
     std::vector<std::unique_ptr<AbstractBackend>> m_backends;
     std::vector<Attribution> m_attributions;
+    std::vector<Backend> m_backendMetaData;
     bool m_allowInsecure = false;
     bool m_hasReadCachedAttributions = false;
 };
@@ -87,6 +89,22 @@ QNetworkAccessManager* ManagerPrivate::nam()
     }
     return m_nam;
 }
+
+static QString translatedValue(const QJsonObject &obj, const QString &key)
+{
+    auto languageWithCountry = QLocale().name();
+    auto it = obj.constFind(key + QLatin1Char('[') + languageWithCountry + QLatin1Char(']'));
+    if (it != obj.constEnd()) {
+        return it.value().toString();
+    }
+    const auto language = languageWithCountry.midRef(0, languageWithCountry.indexOf(QLatin1Char('_')));
+    it = obj.constFind(key + QLatin1Char('[') + language + QLatin1Char(']'));
+    if (it != obj.constEnd()) {
+        return it.value().toString();
+    }
+    return obj.value(key).toString();
+}
+
 
 void ManagerPrivate::loadNetworks()
 {
@@ -112,6 +130,15 @@ void ManagerPrivate::loadNetworks()
             if (!net->attribution().isEmpty()) {
                 m_attributions.push_back(net->attribution());
             }
+
+            Backend metaData;
+            metaData.setIdentifier(net->backendId());
+            const auto jsonMetaData = doc.object().value(QLatin1String("KPlugin")).toObject();
+            metaData.setName(translatedValue(jsonMetaData, QStringLiteral("Name")));
+            metaData.setDescription(translatedValue(jsonMetaData, QStringLiteral("Description")));
+            metaData.setIsSecure(net->capabilities() & AbstractBackend::Secure);
+
+            m_backendMetaData.push_back(std::move(metaData));
             m_backends.push_back(std::move(net));
         } else {
             qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();
@@ -523,4 +550,9 @@ QVariantList Manager::attributionsVariant() const
     l.reserve(d->m_attributions.size());
     std::transform(d->m_attributions.begin(), d->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });
     return l;
+}
+
+const std::vector<Backend>& Manager::backends() const
+{
+    return d->m_backendMetaData;
 }

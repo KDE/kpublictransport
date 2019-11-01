@@ -32,6 +32,7 @@ class QNetworkAccessManager;
 namespace KPublicTransport {
 
 class Attribution;
+class Backend;
 class DepartureReply;
 class DepartureRequest;
 class JourneyReply;
@@ -84,6 +85,9 @@ public:
      *  found in the cache or accumulated during the lifetime of this instance.
      */
     const std::vector<Attribution>& attributions() const;
+
+    /** Returns information about all available backends. */
+    const std::vector<Backend>& backends() const;
 
 Q_SIGNALS:
     void attributionsChanged();

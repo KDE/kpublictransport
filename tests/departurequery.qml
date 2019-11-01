@@ -44,6 +44,11 @@ Kirigami.ApplicationWindow {
                 text: i18n("Data Sources")
                 enabled: departureModel.attributions.length > 0
                 onTriggered: aboutSheet.sheetOpen = true;
+            },
+            Kirigami.Action {
+                iconName: "settings-configure"
+                text: "Backends"
+                onTriggered: pageStack.push(backendPage)
             }
         ]
     }
@@ -163,6 +168,13 @@ Kirigami.ApplicationWindow {
                     }
                 }
             }
+        }
+    }
+
+    Component {
+        id: backendPage
+        BackendPage {
+            publicTransportManager: ptMgr
         }
     }
 
