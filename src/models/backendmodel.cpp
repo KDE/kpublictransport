@@ -20,6 +20,8 @@
 #include <KPublicTransport/Backend>
 #include <KPublicTransport/Manager>
 
+#include <QDebug>
+
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -88,10 +90,29 @@ QVariant BackendModel::data(const QModelIndex &index, int role) const
             if (!backend.isSecure() && !d->mgr->allowInsecureBackends()) {
                 return false;
             }
-            return true; // TODO
+            return d->mgr->isBackendEnabled(backend.identifier());
+        case Qt::CheckStateRole:
+            if (!backend.isSecure() && !d->mgr->allowInsecureBackends()) {
+                return Qt::Unchecked;
+            }
+            return d->mgr->isBackendEnabled(backend.identifier()) ? Qt::Checked : Qt::Unchecked;
     }
 
     return {};
+}
+
+bool BackendModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    const auto &backend = d->mgr->backends()[index.row()];
+    switch (role) {
+        case BackendModel::BackendEnabledRole:
+            d->mgr->setBackendEnabled(backend.identifier(), value.toBool());
+            return true;
+        case Qt::CheckStateRole:
+            d->mgr->setBackendEnabled(backend.identifier(), value.toInt() == Qt::Checked);
+            return true;
+    }
+    return false;
 }
 
 Qt::ItemFlags BackendModel::flags(const QModelIndex &index) const
@@ -100,6 +121,7 @@ Qt::ItemFlags BackendModel::flags(const QModelIndex &index) const
     if (!d->mgr || !index.isValid()) {
         return f;
     }
+    f |= Qt::ItemIsUserCheckable;
 
     const auto &backend = d->mgr->backends()[index.row()];
     if (!d->mgr->allowInsecureBackends() && !backend.isSecure()) {

@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "German national railway, covers local and long-distance services in Germany and neighbouring countries.",
+        "Name": "Deutsche Bahn"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",

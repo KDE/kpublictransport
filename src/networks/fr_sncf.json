@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "French national railway.",
+        "Name": "SNCF"
+    },
     "type": "navitia",
     "options": {
         "endpoint": "api.sncf.com",

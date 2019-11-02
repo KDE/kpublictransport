@@ -89,6 +89,13 @@ public:
     /** Returns information about all available backends. */
     const std::vector<Backend>& backends() const;
 
+    /** Returns whether the use of the backend with a given identifier is enabled. */
+    bool isBackendEnabled(const QString &backendId) const;
+    /** Sets whether the backend with the given identifier should be used.
+     *  @note If allowInsecureBackends() is @c false, this has precedence.
+     */
+    void setBackendEnabled(const QString &backendId, bool enabled);
+
 Q_SIGNALS:
     void attributionsChanged();
     void configurationChanged();

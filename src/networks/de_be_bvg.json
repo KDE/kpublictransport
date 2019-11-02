@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport operator in Berlin, Germany.",
+        "Name": "Berliner Verkehrsbetriebe (BVG)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://bvg-apps.hafas.de/bin/mgate.exe",

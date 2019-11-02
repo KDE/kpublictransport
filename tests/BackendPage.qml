@@ -55,6 +55,7 @@ Kirigami.ScrollablePage {
                     id: toggle
                     checked: model.backendEnabled
                     Layout.rowSpan: 2
+                    onToggled: model.backendEnabled = checked;
                 }
                 QQC2.Label {
                     Layout.columnSpan: 2
@@ -63,7 +64,10 @@ Kirigami.ScrollablePage {
                 }
             }
 
-            onClicked: toggle.toggle()
+            onClicked: {
+                toggle.toggle(); // does not trigger the signal handler for toggled...
+                model.backendEnabled = toggle.checked;
+            }
         }
     }
 

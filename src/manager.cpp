@@ -49,6 +49,10 @@
 
 using namespace KPublicTransport;
 
+enum {
+    DefaultBackendState = true
+};
+
 static inline void initResources() {
     Q_INIT_RESOURCE(networks);
 }
@@ -74,6 +78,11 @@ public:
     std::vector<std::unique_ptr<AbstractBackend>> m_backends;
     std::vector<Attribution> m_attributions;
     std::vector<Backend> m_backendMetaData;
+
+    // we store both explicitly to have a third state, backends with the enabled state being the "default" (whatever that might eventually be)
+    QStringList m_enabledBackends;
+    QStringList m_disabledBackends;
+
     bool m_allowInsecure = false;
     bool m_hasReadCachedAttributions = false;
 };
@@ -555,4 +564,44 @@ QVariantList Manager::attributionsVariant() const
 const std::vector<Backend>& Manager::backends() const
 {
     return d->m_backendMetaData;
+}
+
+bool Manager::isBackendEnabled(const QString &backendId) const
+{
+    if (std::binary_search(d->m_disabledBackends.cbegin(), d->m_disabledBackends.cend(), backendId)) {
+        return false;
+    }
+    if (std::binary_search(d->m_enabledBackends.cbegin(), d->m_enabledBackends.cend(), backendId)) {
+        return true;
+    }
+
+    return DefaultBackendState;
+}
+
+static void sortedInsert(QStringList &l, const QString &value)
+{
+    const auto it = std::lower_bound(l.begin(), l.end(), value);
+    if (it == l.end() || (*it) != value) {
+        l.insert(it, value);
+    }
+}
+
+static void sortedRemove(QStringList &l, const QString &value)
+{
+    const auto it = std::lower_bound(l.begin(), l.end(), value);
+    if (it != l.end() && (*it) == value) {
+        l.erase(it);
+    }
+}
+
+void Manager::setBackendEnabled(const QString &backendId, bool enabled)
+{
+    if (enabled) {
+        sortedInsert(d->m_enabledBackends, backendId);
+        sortedRemove(d->m_disabledBackends, backendId);
+    } else {
+        sortedRemove(d->m_enabledBackends, backendId);
+        sortedInsert(d->m_disabledBackends, backendId);
+    }
+    emit configurationChanged();
 }

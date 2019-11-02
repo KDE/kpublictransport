@@ -68,6 +68,28 @@ private Q_SLOTS:
             QVERIFY(idx.data(BackendModel::ItemEnabledRole).toBool());
             QVERIFY(idx.data(BackendModel::BackendEnabledRole).toBool());
         }
+
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("navitia")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), true);
+        for (auto i = 0; i < model.rowCount(); ++i) {
+            const auto idx = model.index(i, 0);
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("navitia")) {
+                model.setData(idx, Qt::Unchecked, Qt::CheckStateRole);
+                model.setData(idx, true, BackendModel::BackendEnabledRole);
+
+                QCOMPARE(idx.data(Qt::CheckStateRole).toInt(), Qt::Checked);
+                QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), true);
+            }
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("fr_sncf")) {
+                model.setData(idx, false, BackendModel::BackendEnabledRole);
+
+                QCOMPARE(idx.data(Qt::CheckStateRole).toInt(), Qt::Unchecked);
+                QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), false);
+            }
+        }
+        QCOMPARE(dataChangedSpy.size(), 4);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("navitia")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), false);
     }
 };
 
