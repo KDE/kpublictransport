@@ -90,6 +90,17 @@ private Q_SLOTS:
         QCOMPARE(dataChangedSpy.size(), 4);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("navitia")), true);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), false);
+
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("navitia")));
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("fr_sncf")));
+        mgr.setBackendEnabled(QStringLiteral("navitia"), true);
+        mgr.setBackendEnabled(QStringLiteral("fr_sncf"), false);
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("navitia")));
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("fr_sncf")));
+        mgr.setBackendEnabled(QStringLiteral("navitia"), false);
+        mgr.setBackendEnabled(QStringLiteral("fr_sncf"), true);
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("navitia")));
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("fr_sncf")));
     }
 };
 

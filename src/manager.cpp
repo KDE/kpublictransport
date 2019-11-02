@@ -605,3 +605,29 @@ void Manager::setBackendEnabled(const QString &backendId, bool enabled)
     }
     emit configurationChanged();
 }
+
+QStringList Manager::enabledBackends() const
+{
+    return d->m_enabledBackends;
+}
+
+void Manager::setEnabledBackends(const QStringList &backendIds)
+{
+    QSignalBlocker blocker(this); // no change signals during settings restore
+    for (const auto &backendId : backendIds) {
+        setBackendEnabled(backendId, true);
+    }
+}
+
+QStringList Manager::disabledBackends() const
+{
+    return d->m_disabledBackends;
+}
+
+void Manager::setDisabledBackends(const QStringList &backendIds)
+{
+    QSignalBlocker blocker(this); // no change signals during settings restore
+    for (const auto &backendId : backendIds) {
+        setBackendEnabled(backendId, false);
+    }
+}

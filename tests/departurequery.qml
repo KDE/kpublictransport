@@ -19,6 +19,7 @@ import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import Qt.labs.platform 1.0 as Platform
+import Qt.labs.settings 1.0
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
 import org.kde.example 1.0
@@ -70,6 +71,13 @@ Kirigami.ApplicationWindow {
 
     Manager {
         id: ptMgr;
+    }
+
+    Settings {
+        id: settings
+        property alias allowInsecureBackends: ptMgr.allowInsecureBackends
+        property alias enabledBackends: ptMgr.enabledBackends
+        property alias disabledBackends: ptMgr.disabledBackends
     }
 
     DepartureQueryModel {
@@ -191,6 +199,7 @@ Kirigami.ApplicationWindow {
 
                 QQC2.CheckBox {
                     text: "Allow insecure backends"
+                    checked: ptMgr.allowInsecureBackends
                     onToggled: ptMgr.allowInsecureBackends = checked
                 }
 

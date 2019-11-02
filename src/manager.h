@@ -55,6 +55,11 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
     /** Allow usage of insecure backends (default: off). */
     Q_PROPERTY(bool allowInsecureBackends READ allowInsecureBackends WRITE setAllowInsecureBackends NOTIFY configurationChanged)
 
+    /** @see enabledBackends() */
+    Q_PROPERTY(QStringList enabledBackends READ enabledBackends WRITE setEnabledBackends NOTIFY configurationChanged)
+    /** @see disabledBackends() */
+    Q_PROPERTY(QStringList disabledBackends READ disabledBackends WRITE setDisabledBackends NOTIFY configurationChanged)
+
 public:
     explicit Manager(QObject *parent = nullptr);
     ~Manager();
@@ -95,6 +100,23 @@ public:
      *  @note If allowInsecureBackends() is @c false, this has precedence.
      */
     void setBackendEnabled(const QString &backendId, bool enabled);
+
+    /** Returns the identifiers of explicitly enabled backends.
+     *  Use this for persisting the settings, not for checking for enabled backends.
+     */
+    QStringList enabledBackends() const;
+    /** Sets the explicitly enabled backends.
+     *  Use for restoring persisted settings.
+     */
+    void setEnabledBackends(const QStringList &backendIds);
+    /** Returns the identifiers of explicitly disabled backends.
+     *  Use this for persisting settings, not for checking for disabled backends.
+     */
+    QStringList disabledBackends() const;
+    /** Sets the explicitly disabled backends.
+     *  Use for restoring persisted settings.
+     */
+    void setDisabledBackends(const QStringList &backendIds);
 
 Q_SIGNALS:
     void attributionsChanged();
