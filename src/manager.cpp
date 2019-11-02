@@ -65,6 +65,8 @@ public:
     std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename T> std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
+    bool shouldSkipBackend(const AbstractBackend *backend) const;
+
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
     bool queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply);
@@ -221,6 +223,15 @@ template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwor
     return backend;
 }
 
+bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend) const
+{
+    if (!backend->hasCapability(AbstractBackend::Secure) && !m_allowInsecure) {
+        qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
+        return true;
+    }
+    return !q->isBackendEnabled(backend->backendId());
+}
+
 // IMPORTANT callback must not be called directly, but only via queued invocation,
 // our callers rely on that to not mess up sync/async response handling
 void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location&)> &callback)
@@ -261,12 +272,11 @@ void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const Abstra
 
 bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyRequest &req, JourneyReply *reply)
 {
-    if (backend->isLocationExcluded(req.from()) && backend->isLocationExcluded(req.to())) {
-        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
+    if (shouldSkipBackend(backend)) {
         return false;
     }
-    if (!backend->hasCapability(AbstractBackend::Secure) && !m_allowInsecure) {
-        qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
+    if (backend->isLocationExcluded(req.from()) && backend->isLocationExcluded(req.to())) {
+        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
         return false;
     }
     reply->addAttribution(backend->attribution());
@@ -325,12 +335,11 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
 bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply)
 {
-    if (backend->isLocationExcluded(req.stop())) {
-        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
+    if (shouldSkipBackend(backend)) {
         return false;
     }
-    if (!backend->hasCapability(AbstractBackend::Secure) && !m_allowInsecure) {
-        qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
+    if (backend->isLocationExcluded(req.stop())) {
+        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
         return false;
     }
     reply->addAttribution(backend->attribution());
@@ -514,12 +523,11 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     auto reply = d->makeReply<LocationReply>(req);
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
-        if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {
-            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
+        if (d->shouldSkipBackend(backend.get())) {
             continue;
         }
-        if (!backend->hasCapability(AbstractBackend::Secure) && !d->m_allowInsecure) {
-            qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
+        if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {
+            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
         reply->addAttribution(backend->attribution());
