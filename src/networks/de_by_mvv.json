@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in and around Munich, Germany.",
+        "Name": "Münchener Verkehrs- und Tarifverbund (MVV)"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://efa.mvv-muenchen.de/mobile/"

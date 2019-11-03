@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in and around Stuttgart, Germany.",
+        "Name": "Verkehrs- und Tarifverbund Stuttgart (VVS)"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://www2.vvs.de/vvs/"

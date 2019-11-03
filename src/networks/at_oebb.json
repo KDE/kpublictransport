@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Austrian national railway.",
+        "Name": "Österreichische Bundesbahnen (ÖBB)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "http://fahrplan.oebb.at/bin/mgate.exe",

@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Joint service of European national railway operators.",
+        "Name": "Railteam"
+    },
     "type": "hafas_query",
     "options": {
         "endpoint": "http://railteam.hafas.eu/bin/",

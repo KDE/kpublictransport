@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Belgian national railway.",
+        "Name": "National Railway Company of Belgium (NMBS/SNCB)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",

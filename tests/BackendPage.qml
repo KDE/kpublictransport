@@ -42,7 +42,7 @@ Kirigami.ScrollablePage {
                 rows: 2
 
                 QQC2.Label {
-                    text: model.name + " (" + model.identifier + ")"
+                    text: model.name
                     Layout.fillWidth: true
                 }
                 Kirigami.Icon {
@@ -61,6 +61,7 @@ Kirigami.ScrollablePage {
                     Layout.columnSpan: 2
                     Layout.fillWidth: true
                     text: model.description
+                    font.italic: true
                 }
             }
 

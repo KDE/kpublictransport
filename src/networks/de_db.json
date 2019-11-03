@@ -1,7 +1,7 @@
 {
     "KPlugin": {
         "Description": "German national railway, covers local and long-distance services in Germany and neighbouring countries.",
-        "Name": "Deutsche Bahn"
+        "Name": "Deutsche Bahn (DB)"
     },
     "filter": {
         "geo": [

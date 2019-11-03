@@ -1,7 +1,7 @@
 {
     "KPlugin": {
         "Description": "French national railway.",
-        "Name": "SNCF"
+        "Name": "Société Nationale des Chemins de Fer français (SNCF)"
     },
     "filter": {
         "geo": [

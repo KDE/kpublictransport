@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local and national transport in Ireland.",
+        "Name": "Transport For Ireland"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://www.journeyplanner.transportforireland.ie/nta/"

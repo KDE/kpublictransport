@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Polish national railway.",
+        "Name": "Polskie Koleje Państwowe (PKP)"
+    },
     "type": "hafas_query",
     "options": {
         "endpoint": "http://mobil.rozklad-pkp.pl/bin/",

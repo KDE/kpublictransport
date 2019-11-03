@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in New South Wales, Australia.",
+        "Name": "Transport for NSW"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://transportnsw.info/web/"

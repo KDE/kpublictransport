@@ -51,9 +51,8 @@ private Q_SLOTS:
             const auto idx = model.index(i, 0);
             QVERIFY(!idx.data(BackendModel::IdentifierRole).toString().isEmpty());
             QCOMPARE(idx.data(BackendModel::SecureRole).type(), QVariant::Bool);
-            // TODO data not present yet everywhere
-//             QVERIFY(!idx.data(BackendModel::NameRole).toString().isEmpty());
-//             QVERIFY(!idx.data(BackendModel::DescriptionRole).toString().isEmpty());
+            QVERIFY(!idx.data(BackendModel::NameRole).toString().isEmpty());
+            QVERIFY(!idx.data(BackendModel::DescriptionRole).toString().isEmpty());
             QCOMPARE(idx.data(BackendModel::SecureRole), idx.data(BackendModel::ItemEnabledRole));
             if (!idx.data(BackendModel::SecureRole).toBool()) {
                 QVERIFY(!idx.data(BackendModel::BackendEnabledRole).toBool());

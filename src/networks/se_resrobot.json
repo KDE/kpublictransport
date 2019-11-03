@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Public transport information for Sweden.",
+        "Name": "Resrobot"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://reseplanerare.resrobot.se/bin/mgate.exe",

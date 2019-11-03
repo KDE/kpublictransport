@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in and around Nuremberg, Germany.",
+        "Name": "Verkehrsverbund Großraum Nürnberg (VGN)"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://efa.vgn.de/vgn/"

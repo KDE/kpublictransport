@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in Sachsen-Anhalt, Germany.",
+        "Name": "Nahverkehrsservice Sachsen-Anhalt (INSA)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://reiseauskunft.insa.de/bin/mgate.exe",

@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in and around Hannover, Germany.",
+        "Name": "Großraum-Verkehr Hannover (GVH)"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://app.efa.de/mdv_server/app_gvh/"

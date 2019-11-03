@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in the Rhein-Ruhr area, Germany.",
+        "Name": "Verkehrsverbund Rhein-Ruhr (VRR)"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://efa.vrr.de/standard/"

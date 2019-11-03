@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "UK public transport information.",
+        "Name": "Traveline"
+    },
     "type": "efa",
     "options": {
         "endpoint": "https://nationaljourneyplanner.travelinesw.com/swe/"

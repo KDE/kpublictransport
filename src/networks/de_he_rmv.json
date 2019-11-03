@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in the Rhein-Main area, Germany.",
+        "Name": "Rhein-Main-Verkehrsverbund (RMV)"
+    },
     "type": "hafas_query",
     "options": {
         "departureQuerySupported": false,

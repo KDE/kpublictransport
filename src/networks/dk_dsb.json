@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Danish national railway.",
+        "Name": "Danske Statsbaner (DSB)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "http://mobilapps.rejseplanen.dk/bin/iphone.exe",

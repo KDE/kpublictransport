@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in the Berlin and Brandenburg regions of Germany.",
+        "Name": "Verkehrsverbund Berlin-Brandenburg (VBB)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://fahrinfo.vbb.de/bin/mgate.exe",

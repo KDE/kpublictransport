@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in and around Aachen, Germany.",
+        "Name": "Aachener Verkehrsverbund (AVV)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://auskunft.avv.de/bin/mgate.exe",

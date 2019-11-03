@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Local transport in Schleswig-Holstein, Germany.",
+        "Name": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)"
+    },
     "type": "hafas_mgate",
     "options": {
         "endpoint": "https://nah.sh.hafas.de/bin/mgate.exe",

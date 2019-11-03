@@ -1,4 +1,8 @@
 {
+    "KPlugin": {
+        "Description": "Dutch national railway.",
+        "Name": "Nederlandse Spoorwegen (NS)"
+    },
     "type": "hafas_query",
     "options": {
         "endpoint": "https://hafas.bene-system.com/bin/",
