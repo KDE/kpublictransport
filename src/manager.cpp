@@ -66,6 +66,7 @@ public:
     template <typename T> std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
     bool shouldSkipBackend(const AbstractBackend *backend) const;
+    template <typename RequestT> bool shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const;
 
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
@@ -232,6 +233,16 @@ bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend) const
     return !q->isBackendEnabled(backend->backendId());
 }
 
+template <typename RequestT>
+bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const
+{
+    if (!req.backendIds().isEmpty() && !req.backendIds().contains(backend->backendId())) {
+        qCDebug(Log) << "Skipping backend" << backend->backendId() << "due to explicit request";
+        return true;
+    }
+    return shouldSkipBackend(backend);
+}
+
 // IMPORTANT callback must not be called directly, but only via queued invocation,
 // our callers rely on that to not mess up sync/async response handling
 void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location&)> &callback)
@@ -335,7 +346,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
 bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply)
 {
-    if (shouldSkipBackend(backend)) {
+    if (shouldSkipBackend(backend, req)) {
         return false;
     }
     if (backend->isLocationExcluded(req.stop())) {
