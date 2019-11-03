@@ -43,6 +43,7 @@ class KPUBLICTRANSPORT_EXPORT DepartureRequest
     Q_PROPERTY(KPublicTransport::Location stop READ stop WRITE setStop)
     Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
     Q_PROPERTY(Mode mode READ mode WRITE setMode)
+    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
 
 public:
     DepartureRequest();
@@ -77,6 +78,16 @@ public:
     Mode mode() const;
     /** Set whether to search for arrivals or departures. */
     void setMode(Mode mode);
+
+    /** Identifiers of the backends that should be queried.
+     *  @see setBackendIds()
+     */
+    QStringList backendIds() const;
+    /** Set identifiers of backends that should be queried.
+     *  Settings this is only needed when you want explicit control over this, leaving
+     *  this empty picks suitable backends automatically.
+     */
+    void setBackendIds(const QStringList &backendIds);
 
     ///@cond internal
     static QJsonObject toJson(const DepartureRequest &req);

@@ -203,6 +203,22 @@ Kirigami.ApplicationWindow {
                     onToggled: ptMgr.allowInsecureBackends = checked
                 }
 
+                RowLayout {
+                    QQC2.CheckBox {
+                        id: backendBox
+                        text: "Select Backend:"
+                    }
+                    QQC2.ComboBox {
+                        id: backendSelector
+                        Layout.fillWidth: true
+                        textRole: "identifier"
+                        model: BackendModel {
+                            manager: ptMgr
+                        }
+                        enabled: backendBox.checked
+                    }
+                }
+
                 QQC2.ComboBox {
                     id: exampleSelector
                     Layout.fillWidth: true
@@ -243,6 +259,7 @@ Kirigami.ApplicationWindow {
                             stop.name = nameQuery.text;
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                            departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                     QQC2.Button {
@@ -254,6 +271,7 @@ Kirigami.ApplicationWindow {
                             stop.name = nameQuery.text;
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                            departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                     QQC2.Button {
@@ -265,6 +283,7 @@ Kirigami.ApplicationWindow {
                             stop.name = "";
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                            departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                     QQC2.Button {

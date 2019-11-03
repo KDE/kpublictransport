@@ -33,6 +33,7 @@ public:
     QDateTime dateTime;
     DepartureRequest::Mode mode = DepartureRequest::QueryDeparture;
     std::vector<RequestContext> contexts;
+    QStringList backendIds;
 };
 }
 
@@ -131,6 +132,17 @@ QJsonObject DepartureRequest::toJson(const DepartureRequest &req)
     auto obj = Json::toJson(req);
     obj.insert(QStringLiteral("stop"), Location::toJson(req.stop()));
     return obj;
+}
+
+QStringList DepartureRequest::backendIds() const
+{
+    return d->backendIds;
+}
+
+void DepartureRequest::setBackendIds(const QStringList &backendIds)
+{
+    d.detach();
+    d->backendIds = backendIds;
 }
 
 #include "moc_departurerequest.cpp"
