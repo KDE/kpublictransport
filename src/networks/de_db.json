@@ -3,33 +3,69 @@
         "Description": "German national railway, covers local and long-distance services in Germany and neighbouring countries.",
         "Name": "Deutsche Bahn"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                37.8068,
+                82.97
+            ],
+            [
+                35.3039,
+                33.9542
+            ],
+            [
+                -14.3375,
+                34.7885
+            ],
+            [
+                -36.3425,
+                86.3072
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
         "aid": "n91dB8Z77MLdoR0K",
+        "checksumSalt": "6264493855566A34304B356676787766",
         "clientId": "DB",
+        "clientName": "DB Navigator",
         "clientType": "AND",
         "clientVersion": "16040000",
-        "clientName": "DB Navigator",
-        "version": "1.14",
-        "checksumSalt": "6264493855566A34304B356676787766",
+        "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Bus",
-            "64": "Ferry",
             "128": "Metro",
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
             "256": "Tramway",
-            "512": "Taxi"
+            "32": "Bus",
+            "4": "LocalTrain",
+            "512": "Taxi",
+            "64": "Ferry",
+            "8": "LocalTrain"
         },
         "locationIdentifierType": "db",
+        "standardLocationIdentifierCountries": [
+            51,
+            53,
+            54,
+            55,
+            56,
+            70,
+            71,
+            74,
+            76,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88
+        ],
         "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 51, 53, 54, 55, 56, 70, 71, 74, 76, 80, 81, 82, 83, 84, 85, 86, 87, 88 ]
+        "version": "1.14"
     },
-    "filter": {
-        "geo": [ [ 37.8068, 82.97 ], [ 35.3039, 33.9542 ], [ -14.3375, 34.7885 ], [ -36.3425, 86.3072 ] ]
-    }
+    "type": "hafas_mgate"
 }
