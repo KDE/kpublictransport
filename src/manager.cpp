@@ -65,7 +65,6 @@ public:
     std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename T> std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
-    bool shouldSkipBackend(const AbstractBackend *backend) const;
     template <typename RequestT> bool shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const;
 
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
@@ -88,6 +87,9 @@ public:
 
     bool m_allowInsecure = false;
     bool m_hasReadCachedAttributions = false;
+
+private:
+    bool shouldSkipBackend(const AbstractBackend *backend) const;
 };
 }
 
@@ -283,7 +285,7 @@ void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const Abstra
 
 bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyRequest &req, JourneyReply *reply)
 {
-    if (shouldSkipBackend(backend)) {
+    if (shouldSkipBackend(backend, req)) {
         return false;
     }
     if (backend->isLocationExcluded(req.from()) && backend->isLocationExcluded(req.to())) {
@@ -534,7 +536,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     auto reply = d->makeReply<LocationReply>(req);
     int pendingOps = 0;
     for (const auto &backend : d->m_backends) {
-        if (d->shouldSkipBackend(backend.get())) {
+        if (d->shouldSkipBackend(backend.get(), req)) {
             continue;
         }
         if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {

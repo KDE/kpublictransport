@@ -46,6 +46,7 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     Q_PROPERTY(KPublicTransport::Location to READ to WRITE setTo)
     Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
     Q_PROPERTY(DateTimeMode dateTimeMode READ dateTimeMode WRITE setDateTimeMode)
+    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
 
 public:
     JourneyRequest();
@@ -90,6 +91,16 @@ public:
      *  This is mutually exclusive to setting a desired departure time.
      */
     void setArrivalTime(const QDateTime &dt);
+
+    /** Identifiers of the backends that should be queried.
+     *  @see setBackendIds()
+     */
+    QStringList backendIds() const;
+    /** Set identifiers of backends that should be queried.
+     *  Settings this is only needed when you want explicit control over this, leaving
+     *  this empty picks suitable backends automatically.
+     */
+    void setBackendIds(const QStringList &backendIds);
 
     ///@cond internal
     static QJsonObject toJson(const JourneyRequest &req);

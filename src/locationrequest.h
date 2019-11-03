@@ -38,6 +38,7 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
     Q_PROPERTY(float latitude READ latitude WRITE setLatitude)
     Q_PROPERTY(float longitude READ longitude WRITE setLongitude)
     Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
 
 public:
     LocationRequest();
@@ -70,6 +71,16 @@ public:
 
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
+
+    /** Identifiers of the backends that should be queried.
+     *  @see setBackendIds()
+     */
+    QStringList backendIds() const;
+    /** Set identifiers of backends that should be queried.
+     *  Settings this is only needed when you want explicit control over this, leaving
+     *  this empty picks suitable backends automatically.
+     */
+    void setBackendIds(const QStringList &backendIds);
 
     ///@cond internal
     static QJsonObject toJson(const LocationRequest &req);

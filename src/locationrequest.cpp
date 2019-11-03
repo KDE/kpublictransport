@@ -19,6 +19,7 @@
 #include "datatypes/json_p.h"
 
 #include <QSharedData>
+#include <QStringList>
 
 #include <cmath>
 
@@ -30,6 +31,7 @@ public:
     QString name;
     float lat = NAN;
     float lon = NAN;
+    QStringList backendIds;
 };
 }
 
@@ -113,4 +115,15 @@ QString LocationRequest::cacheKey() const
 QJsonObject LocationRequest::toJson(const LocationRequest &req)
 {
     return Json::toJson(req);
+}
+
+QStringList LocationRequest::backendIds() const
+{
+    return d->backendIds;
+}
+
+void LocationRequest::setBackendIds(const QStringList &backendIds)
+{
+    d.detach();
+    d->backendIds = backendIds;
 }

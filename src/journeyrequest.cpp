@@ -37,6 +37,7 @@ public:
     QDateTime dateTime;
     JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
     std::vector<RequestContext> contexts;
+    QStringList backendIds;
 };
 }
 
@@ -162,6 +163,17 @@ QJsonObject JourneyRequest::toJson(const KPublicTransport::JourneyRequest &req)
     obj.insert(QStringLiteral("from"), Location::toJson(req.from()));
     obj.insert(QStringLiteral("to"), Location::toJson(req.to()));
     return obj;
+}
+
+QStringList JourneyRequest::backendIds() const
+{
+    return d->backendIds;
+}
+
+void JourneyRequest::setBackendIds(const QStringList &backendIds)
+{
+    d.detach();
+    d->backendIds = backendIds;
 }
 
 #include "moc_journeyrequest.cpp"
