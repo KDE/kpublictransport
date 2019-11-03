@@ -18,6 +18,7 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
+import Qt.labs.settings 1.0
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
 import org.kde.example 1.0
@@ -34,6 +35,13 @@ Kirigami.ApplicationWindow {
     Manager {
         id: ptMgr
     }
+    Settings {
+        id: settings
+        property alias allowInsecureBackends: ptMgr.allowInsecureBackends
+        property alias enabledBackends: ptMgr.enabledBackends
+        property alias disabledBackends: ptMgr.disabledBackends
+    }
+
     LocationQueryModel {
         id: locationModel
         manager: ptMgr
@@ -52,6 +60,11 @@ Kirigami.ApplicationWindow {
                 text: i18n("Data Sources")
                 enabled: locationModel.attributions.length > 0
                 onTriggered: aboutSheet.sheetOpen = true;
+            },
+            Kirigami.Action {
+                iconName: "settings-configure"
+                text: "Backends"
+                onTriggered: pageStack.push(backendPage)
             }
         ]
     }
@@ -95,6 +108,13 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
+        id: backendPage
+        BackendPage {
+            publicTransportManager: ptMgr
+        }
+    }
+
+    Component {
         id: locationQueryPage
         Kirigami.Page {
             ColumnLayout {
@@ -102,7 +122,24 @@ Kirigami.ApplicationWindow {
 
                 QQC2.CheckBox {
                     text: "Allow insecure backends"
+                    checked: ptMgr.allowInsecureBackends
                     onToggled: ptMgr.allowInsecureBackends = checked
+                }
+
+                RowLayout {
+                    QQC2.CheckBox {
+                        id: backendBox
+                        text: "Select Backend:"
+                    }
+                    QQC2.ComboBox {
+                        id: backendSelector
+                        Layout.fillWidth: true
+                        textRole: "identifier"
+                        model: BackendModel {
+                            manager: ptMgr
+                        }
+                        enabled: backendBox.checked
+                    }
                 }
 
                 QQC2.ComboBox {
@@ -130,6 +167,7 @@ Kirigami.ApplicationWindow {
                             locationModel.request.latitude = NaN;
                             locationModel.request.longitude = NaN;
                             locationModel.request.name = nameQuery.text;
+                            locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                 }
@@ -148,6 +186,7 @@ Kirigami.ApplicationWindow {
                             locationModel.request.latitude = latQuery.text;
                             locationModel.request.longitude = lonQuery.text;
                             locationModel.request.name = "";
+                            locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                 }

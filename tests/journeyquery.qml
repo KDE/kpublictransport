@@ -19,6 +19,7 @@ import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import Qt.labs.platform 1.0 as Platform
+import Qt.labs.settings 1.0
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0
 import org.kde.example 1.0
@@ -33,6 +34,12 @@ Kirigami.ApplicationWindow {
 
     Manager {
         id: ptMgr;
+    }
+    Settings {
+        id: settings
+        property alias allowInsecureBackends: ptMgr.allowInsecureBackends
+        property alias enabledBackends: ptMgr.enabledBackends
+        property alias disabledBackends: ptMgr.disabledBackends
     }
 
     JourneyQueryModel {
@@ -68,6 +75,11 @@ Kirigami.ApplicationWindow {
                     aboutSheet.attributions = Qt.binding(function() { return ptMgr.attributions; });
                     aboutSheet.sheetOpen = true;
                 }
+            },
+            Kirigami.Action {
+                iconName: "settings-configure"
+                text: "Backends"
+                onTriggered: pageStack.push(backendPage)
             }
         ]
     }
@@ -219,18 +231,44 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
+        id: backendPage
+        BackendPage {
+            publicTransportManager: ptMgr
+        }
+    }
+
+    Component {
         id: journyQueryPage
         Kirigami.Page {
             ColumnLayout {
                 anchors.fill: parent
                 QQC2.CheckBox {
-                    text: "Allow insecure backends"
-                    onToggled: ptMgr.allowInsecureBackends = checked
-                }
-                QQC2.CheckBox {
                     id: searchDirection
                     text: checked ? "Time is arrival" : "Time is departure"
                 }
+
+                QQC2.CheckBox {
+                    text: "Allow insecure backends"
+                    checked: ptMgr.allowInsecureBackends
+                    onToggled: ptMgr.allowInsecureBackends = checked
+                }
+
+                RowLayout {
+                    QQC2.CheckBox {
+                        id: backendBox
+                        text: "Select Backend:"
+                    }
+                    QQC2.ComboBox {
+                        id: backendSelector
+                        Layout.fillWidth: true
+                        textRole: "identifier"
+                        model: BackendModel {
+                            manager: ptMgr
+                        }
+                        enabled: backendBox.checked
+                    }
+                }
+
                 QQC2.ComboBox {
                     id: fromSelector
                     Layout.fillWidth: true
@@ -300,6 +338,7 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.to = to;
                             journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                            journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                     QQC2.Button {
@@ -317,6 +356,7 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.to = to;
                             journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                            journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                     QQC2.Button {
@@ -334,6 +374,7 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.to = to;
                             journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                            journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                         }
                     }
                     QQC2.Button {
