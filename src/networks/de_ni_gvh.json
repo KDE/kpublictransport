@@ -3,11 +3,32 @@
         "Description": "Local transport in and around Hannover, Germany.",
         "Name": "Großraum-Verkehr Hannover (GVH)"
     },
-    "type": "efa",
+    "filter": {
+        "geo": [
+            [
+                6.8558,
+                53.8848
+            ],
+            [
+                6.6065,
+                52.0076
+            ],
+            [
+                10.7129,
+                51.0397
+            ],
+            [
+                11.6759,
+                53.1955
+            ],
+            [
+                9.6178,
+                53.9532
+            ]
+        ]
+    },
     "options": {
         "endpoint": "https://app.efa.de/mdv_server/app_gvh/"
     },
-    "filter": {
-        "geo": [ [ 6.8558, 53.8848 ], [ 6.6065, 52.0076 ], [ 10.7129, 51.0397 ], [ 11.6759, 53.1955 ], [ 9.6178, 53.9532 ] ]
-    }
+    "type": "efa"
 }

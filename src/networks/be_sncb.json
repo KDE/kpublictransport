@@ -3,28 +3,47 @@
         "Description": "Belgian national railway.",
         "Name": "National Railway Company of Belgium (NMBS/SNCB)"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                1.797,
+                51.1
+            ],
+            [
+                5.55,
+                49.124
+            ],
+            [
+                6.598,
+                50.464
+            ],
+            [
+                5.154,
+                51.837
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
         "aid": "sncb-mobi",
         "clientId": "SNCB",
         "clientType": "AND",
-        "version": "1.14",
+        "endpoint": "http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "4": "LongDistanceTrain",
+            "1024": "Tramway",
             "16": "RapidTransit",
-            "32": "Bus",
-            "64": "RapidTransit",
             "256": "Metro",
+            "32": "Bus",
+            "4": "LongDistanceTrain",
             "512": "Bus",
-            "1024": "Tramway"
+            "64": "RapidTransit"
         },
         "locationIdentifierType": "sncb",
+        "standardLocationIdentifierCountries": [
+            88
+        ],
         "standardLocationIdentifierType": "uic",
-        "standardLocationIdentifierCountries": [ 88 ]
+        "version": "1.14"
     },
-    "filter": {
-        "geo": [ [ 1.797, 51.1 ], [ 5.55, 49.124 ], [ 6.598, 50.464 ], [ 5.154, 51.837 ] ]
-    }
+    "type": "hafas_mgate"
 }

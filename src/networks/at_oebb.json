@@ -3,30 +3,66 @@
         "Description": "Austrian national railway.",
         "Name": "Österreichische Bundesbahnen (ÖBB)"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                9.145,
+                47.724
+            ],
+            [
+                17.052,
+                49.537
+            ],
+            [
+                17.325,
+                46.267
+            ],
+            [
+                9.622,
+                46.492
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "http://fahrplan.oebb.at/bin/mgate.exe",
         "aid": "OWDL4fE4ixNiPBBm",
         "clientId": "OEBB",
         "clientType": "AND",
-        "version": "1.14",
+        "endpoint": "http://fahrplan.oebb.at/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LongDistanceTrain",
-            "8": "Train",
-            "16": "LocalTrain",
-            "32": "RapidTransit",
-            "64": "Bus",
             "128": "Ferry",
+            "16": "LocalTrain",
+            "2": "LongDistanceTrain",
             "256": "Metro",
-            "512": "Tramway"
+            "32": "RapidTransit",
+            "4": "LongDistanceTrain",
+            "512": "Tramway",
+            "64": "Bus",
+            "8": "Train"
         },
         "locationIdentifierType": "oebb",
+        "standardLocationIdentifierCountries": [
+            51,
+            54,
+            53,
+            55,
+            56,
+            70,
+            71,
+            74,
+            76,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88
+        ],
         "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 51, 54, 53, 55, 56, 70, 71, 74, 76, 80, 81, 82, 83, 84, 85, 86, 87, 88 ]
+        "version": "1.14"
     },
-    "filter": {
-        "geo": [ [ 9.145, 47.724 ], [ 17.052, 49.537 ], [ 17.325, 46.267 ], [ 9.622, 46.492 ] ]
-    }
+    "type": "hafas_mgate"
 }

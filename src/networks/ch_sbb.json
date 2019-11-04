@@ -3,25 +3,61 @@
         "Description": "Swiss national railway.",
         "Name": "Swiss Federal Railways (SBB/CFF/FFS)"
     },
-    "type": "hafas_query",
+    "filter": {
+        "geo": [
+            [
+                5.865,
+                45.912
+            ],
+            [
+                10.432,
+                45.704
+            ],
+            [
+                10.532,
+                47.851
+            ],
+            [
+                6.381,
+                47.773
+            ]
+        ]
+    },
     "options": {
         "endpoint": "http://fahrplan.sbb.ch/bin/",
-         "lineModeMap": {
+        "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "LocalTrain",
             "16": "Ferry",
-            "32": "RapidTransit",
-            "64": "Bus",
+            "2": "LongDistanceTrain",
             "256": "LocalTrain",
-            "512": "Tramway"
+            "32": "RapidTransit",
+            "4": "LocalTrain",
+            "512": "Tramway",
+            "64": "Bus",
+            "8": "LocalTrain"
         },
         "locationIdentifierType": "sbb",
-        "standardLocationIdentifierType": "uic",
-        "standardLocationIdentifierCountries": [ 51, 54, 53, 55, 56, 70, 71, 74, 76, 80, 81, 82, 83, 84, 85, 86, 87, 88 ]
+        "standardLocationIdentifierCountries": [
+            51,
+            54,
+            53,
+            55,
+            56,
+            70,
+            71,
+            74,
+            76,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88
+        ],
+        "standardLocationIdentifierType": "uic"
     },
-    "filter": {
-        "geo": [ [ 5.865, 45.912 ], [ 10.432, 45.704 ], [ 10.532, 47.851 ], [ 6.381, 47.773 ] ]
-    }
+    "type": "hafas_query"
 }

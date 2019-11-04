@@ -3,11 +3,28 @@
         "Description": "Local transport in and around Munich, Germany.",
         "Name": "Münchener Verkehrs- und Tarifverbund (MVV)"
     },
-    "type": "efa",
+    "filter": {
+        "geo": [
+            [
+                10.7372,
+                48.5128
+            ],
+            [
+                11.1456,
+                47.7161
+            ],
+            [
+                12.6185,
+                48.1111
+            ],
+            [
+                12.0896,
+                48.8074
+            ]
+        ]
+    },
     "options": {
         "endpoint": "https://efa.mvv-muenchen.de/mobile/"
     },
-    "filter": {
-        "geo": [ [ 10.7372, 48.5128 ], [ 11.1456, 47.7161 ], [ 12.6185, 48.1111 ], [ 12.0896, 48.8074 ] ]
-    }
+    "type": "efa"
 }

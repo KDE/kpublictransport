@@ -3,30 +3,47 @@
         "Description": "Danish national railway.",
         "Name": "Danske Statsbaner (DSB)"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                8.01,
+                54.536
+            ],
+            [
+                12.4214,
+                54.237
+            ],
+            [
+                13.89,
+                57.646
+            ],
+            [
+                7.85,
+                58.036
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "http://mobilapps.rejseplanen.dk/bin/iphone.exe",
         "aid": "irkmpm9mdznstenr-android",
         "clientId": "DK",
         "clientType": "AND",
-        "version": "1.14",
+        "endpoint": "http://mobilapps.rejseplanen.dk/bin/iphone.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Bus",
-            "64": "Bus",
+            "1024": "Tramway",
             "128": "Bus",
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
             "256": "Ferry",
+            "32": "Bus",
+            "4": "LocalTrain",
             "512": "Metro",
-            "1024": "Tramway"
+            "64": "Bus",
+            "8": "LocalTrain"
         },
         "locationIdentifierType": "dsb",
-        "standardLocationIdentifierType": "uic"
+        "standardLocationIdentifierType": "uic",
+        "version": "1.14"
     },
-    "filter": {
-        "geo": [ [ 8.01, 54.536 ], [ 12.4214, 54.237 ], [ 13.89, 57.646 ], [ 7.85, 58.036 ] ]
-    }
+    "type": "hafas_mgate"
 }

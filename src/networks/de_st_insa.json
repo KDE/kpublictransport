@@ -3,28 +3,58 @@
         "Description": "Local transport in Sachsen-Anhalt, Germany.",
         "Name": "Nahverkehrsservice Sachsen-Anhalt (INSA)"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                10.659,
+                52.8566
+            ],
+            [
+                11.9562,
+                53.1108
+            ],
+            [
+                13.325,
+                51.768
+            ],
+            [
+                12.1387,
+                50.8555
+            ],
+            [
+                10.515,
+                51.3965
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "https://reiseauskunft.insa.de/bin/mgate.exe",
         "aid": "nasa-apps",
         "clientId": "NASA",
         "clientType": "AND",
-        "version": "1.15",
+        "endpoint": "https://reiseauskunft.insa.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "LocalTrain",
+            "128": "Taxi",
             "16": "RapidTransit",
+            "2": "LongDistanceTrain",
             "32": "Tramway",
+            "4": "LocalTrain",
             "64": "Bus",
-            "128": "Taxi"
+            "8": "LocalTrain"
         },
         "locationIdentifierType": "insa",
+        "standardLocationIdentifierCountries": [
+            51,
+            54,
+            55,
+            80,
+            84,
+            87,
+            81,
+            88
+        ],
         "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 51, 54, 55, 80, 84, 87, 81, 88 ]
+        "version": "1.15"
     },
-    "filter": {
-        "geo": [ [ 10.659, 52.8566 ], [ 11.9562, 53.1108 ], [ 13.325, 51.768 ], [ 12.1387, 50.8555 ], [ 10.515, 51.3965 ] ]
-    }
+    "type": "hafas_mgate"
 }

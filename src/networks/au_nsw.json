@@ -3,11 +3,28 @@
         "Description": "Local transport in New South Wales, Australia.",
         "Name": "Transport for NSW"
     },
-    "type": "efa",
+    "filter": {
+        "geo": [
+            [
+                140.8182,
+                -28.7755
+            ],
+            [
+                154.2714,
+                -27.9933
+            ],
+            [
+                151.0906,
+                -39.5172
+            ],
+            [
+                140.766,
+                -34.2506
+            ]
+        ]
+    },
     "options": {
         "endpoint": "https://transportnsw.info/web/"
     },
-    "filter": {
-        "geo": [ [ 140.8182, -28.7755 ], [ 154.2714, -27.9933 ], [ 151.0906, -39.5172 ], [ 140.766, -34.2506 ] ]
-    }
+    "type": "efa"
 }

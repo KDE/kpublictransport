@@ -3,25 +3,61 @@
         "Description": "Joint service of European national railway operators.",
         "Name": "Railteam"
     },
-    "type": "hafas_query",
+    "filter": {
+        "geo": [
+            [
+                37.8068,
+                82.97
+            ],
+            [
+                35.3039,
+                33.9542
+            ],
+            [
+                -14.3375,
+                34.7885
+            ],
+            [
+                -36.3425,
+                86.3072
+            ]
+        ]
+    },
     "options": {
         "endpoint": "http://railteam.hafas.eu/bin/",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Bus",
-            "64": "Ferry",
             "128": "Metro",
-            "256": "Tramway"
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
+            "256": "Tramway",
+            "32": "Bus",
+            "4": "LocalTrain",
+            "64": "Ferry",
+            "8": "LocalTrain"
         },
         "locationIdentifierType": "rt",
-        "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 51, 53, 54, 55, 56, 70, 71, 74, 76, 80, 81, 82, 83, 84, 85, 86, 87, 88 ]
+        "standardLocationIdentifierCountries": [
+            51,
+            53,
+            54,
+            55,
+            56,
+            70,
+            71,
+            74,
+            76,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88
+        ],
+        "standardLocationIdentifierType": "ibnr"
     },
-    "filter": {
-        "geo": [ [ 37.8068, 82.97 ], [ 35.3039, 33.9542 ], [ -14.3375, 34.7885 ], [ -36.3425, 86.3072 ] ]
-    }
+    "type": "hafas_query"
 }

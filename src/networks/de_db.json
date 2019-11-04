@@ -1,6 +1,13 @@
 {
     "KPlugin": {
         "Description": "German national railway, covers local and long-distance services in Germany and neighbouring countries.",
+        "Description[ca]": "Ferrocarrils nacionals alemanys, efectua serveis locals i de llarga distància a Alemanya i països veïns.",
+        "Description[en_GB]": "German national railway, covers local and long-distance services in Germany and neighbouring countries.",
+        "Description[es]": "Compañía ferroviaria alemana que proporciona servicios locales y de larga distancia en Alemania y en los países vecinos.",
+        "Description[pt]": "Caminhos de ferro nacionais da Alemanha, cobrindo os serviços locais e de longa distância na Alemanha e nos países vizinhos.",
+        "Description[sv]": "Tysk statsjärnväg, täcker lokala och långdistanstrafik i Tyskland och angränsande länder.",
+        "Description[uk]": "Німецька державна залізниця. Маршрути у Німеччині та сусідніх країнах.",
+        "Description[x-test]": "xxGerman national railway, covers local and long-distance services in Germany and neighbouring countries.xx",
         "Name": "Deutsche Bahn (DB)"
     },
     "filter": {

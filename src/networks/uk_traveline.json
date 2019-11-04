@@ -3,11 +3,32 @@
         "Description": "UK public transport information.",
         "Name": "Traveline"
     },
-    "type": "efa",
+    "filter": {
+        "geo": [
+            [
+                -5.8119,
+                48.9979
+            ],
+            [
+                2.8961,
+                51.4747
+            ],
+            [
+                -0.9625,
+                61.5647
+            ],
+            [
+                -12.1344,
+                55.6115
+            ],
+            [
+                -6.0466,
+                53.58664
+            ]
+        ]
+    },
     "options": {
         "endpoint": "https://nationaljourneyplanner.travelinesw.com/swe/"
     },
-    "filter": {
-        "geo": [ [ -5.8119, 48.9979 ], [ 2.8961, 51.4747 ], [ -0.9625, 61.5647 ], [ -12.1344, 55.6115 ], [ -6.0466, 53.58664 ] ]
-    }
+    "type": "efa"
 }

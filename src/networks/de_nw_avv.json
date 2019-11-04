@@ -3,29 +3,48 @@
         "Description": "Local transport in and around Aachen, Germany.",
         "Name": "Aachener Verkehrsverbund (AVV)"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                5.8488,
+                51.1879
+            ],
+            [
+                5.8194,
+                50.7024
+            ],
+            [
+                6.3442,
+                50.5655
+            ],
+            [
+                6.5723,
+                51.1912
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "https://auskunft.avv.de/bin/mgate.exe",
         "aid": "4vV1AcH3N511icH",
         "clientId": "AVV_AACHEN",
         "clientType": "WEB",
-        "version": "1.16",
+        "endpoint": "https://auskunft.avv.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LocalTrain",
-            "2": "LongDistanceTrain",
-            "4": "LongDistanceTrain",
-            "8": "Bus",
-            "16": "RapidTransit",
-            "32": "Metro",
-            "64": "Tramway",
             "128": "Bus",
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
             "256": "Bus",
-            "512": "RapidTransit"
+            "32": "Metro",
+            "4": "LongDistanceTrain",
+            "512": "RapidTransit",
+            "64": "Tramway",
+            "8": "Bus"
         },
+        "standardLocationIdentifierCountries": [
+            84
+        ],
         "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 84 ]
+        "version": "1.16"
     },
-    "filter": {
-        "geo": [ [ 5.8488, 51.1879 ], [ 5.8194, 50.7024 ], [ 6.3442, 50.5655 ], [ 6.5723, 51.1912 ] ]
-    }
+    "type": "hafas_mgate"
 }

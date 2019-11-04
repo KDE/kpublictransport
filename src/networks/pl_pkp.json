@@ -3,23 +3,63 @@
         "Description": "Polish national railway.",
         "Name": "Polskie Koleje Państwowe (PKP)"
     },
-    "type": "hafas_query",
+    "filter": {
+        "geo": [
+            [
+                13.5596,
+                54.3948
+            ],
+            [
+                14.8372,
+                50.3015
+            ],
+            [
+                23.0239,
+                48.5807
+            ],
+            [
+                25.5789,
+                52.1787
+            ],
+            [
+                22.007,
+                55.6724
+            ]
+        ]
+    },
     "options": {
         "endpoint": "http://mobil.rozklad-pkp.pl/bin/",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "RapidTransit",
             "16": "Bus",
+            "2": "LongDistanceTrain",
             "32": "Bus",
-            "64": "Ferry"
+            "4": "LocalTrain",
+            "64": "Ferry",
+            "8": "RapidTransit"
         },
         "locationIdentifierType": "pkp",
-        "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 51, 53, 54, 55, 56, 70, 71, 74, 76, 80, 81, 82, 83, 84, 85, 86, 87, 88 ]
+        "standardLocationIdentifierCountries": [
+            51,
+            53,
+            54,
+            55,
+            56,
+            70,
+            71,
+            74,
+            76,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88
+        ],
+        "standardLocationIdentifierType": "ibnr"
     },
-    "filter": {
-        "geo": [ [ 13.5596, 54.3948 ], [ 14.8372, 50.3015 ], [ 23.0239, 48.5807 ], [ 25.5789, 52.1787 ], [ 22.007, 55.6724 ] ]
-    }
+    "type": "hafas_query"
 }

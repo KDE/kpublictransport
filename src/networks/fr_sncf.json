@@ -1,6 +1,13 @@
 {
     "KPlugin": {
         "Description": "French national railway.",
+        "Description[ca]": "Ferrocarrils nacionals francesos.",
+        "Description[en_GB]": "French national railway.",
+        "Description[es]": "Compañía ferroviaria francesa.",
+        "Description[pt]": "Caminhos de ferro nacionais da França.",
+        "Description[sv]": "Franska statsjärnvägen.",
+        "Description[uk]": "Французька державна залізниця.",
+        "Description[x-test]": "xxFrench national railway.xx",
         "Name": "Société Nationale des Chemins de Fer français (SNCF)"
     },
     "filter": {

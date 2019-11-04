@@ -3,25 +3,50 @@
         "Description": "Local transport in the Rhein-Main area, Germany.",
         "Name": "Rhein-Main-Verkehrsverbund (RMV)"
     },
-    "type": "hafas_query",
+    "filter": {
+        "geo": [
+            [
+                8.306,
+                50.9957
+            ],
+            [
+                10.219,
+                50.6698
+            ],
+            [
+                9.0166,
+                49.3629
+            ],
+            [
+                8.2507,
+                49.4933
+            ],
+            [
+                7.638,
+                50.1679
+            ]
+        ]
+    },
     "options": {
         "departureQuerySupported": false,
         "endpoint": "https://www.rmv.de/auskunft/bin/jp/",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LocalTrain",
-            "8": "RapidTransit",
+            "128": "Bus",
             "16": "Metro",
+            "2": "LongDistanceTrain",
             "32": "Tramway",
+            "4": "LocalTrain",
             "64": "Bus",
-            "128": "Bus"
+            "8": "RapidTransit"
         },
         "locationIdentifierType": "rmv",
-        "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 54, 55, 81 ]
+        "standardLocationIdentifierCountries": [
+            54,
+            55,
+            81
+        ],
+        "standardLocationIdentifierType": "ibnr"
     },
-    "filter": {
-        "geo": [ [ 8.306, 50.9957 ], [ 10.219, 50.6698 ], [ 9.0166, 49.3629 ], [ 8.2507, 49.4933 ], [ 7.638, 50.1679 ] ]
-    }
+    "type": "hafas_query"
 }

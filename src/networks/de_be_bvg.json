@@ -1,7 +1,22 @@
 {
     "KPlugin": {
         "Description": "Local transport operator in Berlin, Germany.",
-        "Name": "Berliner Verkehrsbetriebe (BVG)"
+        "Description[ca]": "Operador de transport local a Berlin, Alemanya.",
+        "Description[en_GB]": "Local transport operator in Berlin, Germany.",
+        "Description[es]": "Operador de transporte local de Berlín, Alemania.",
+        "Description[pt]": "Operador de transportes locais em Berlim, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i Berlin, Tyskland.",
+        "Description[uk]": "Місцевий транспортний оператор у Берліні, Німеччина.",
+        "Description[x-test]": "xxLocal transport operator in Berlin, Germany.xx",
+        "Name": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[ca]": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[en_GB]": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[es]": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[pt]": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[sv]": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[uk]": "Berliner Verkehrsbetriebe (BVG)",
+        "Name[x-test]": "xxBerliner Verkehrsbetriebe (BVG)xx",
+        "Name[zh_TW]": "Berliner Verkehrsbetriebe (BVG)"
     },
     "filter": {
         "geo": [

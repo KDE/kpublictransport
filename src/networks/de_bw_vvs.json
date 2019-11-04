@@ -3,11 +3,28 @@
         "Description": "Local transport in and around Stuttgart, Germany.",
         "Name": "Verkehrs- und Tarifverbund Stuttgart (VVS)"
     },
-    "type": "efa",
+    "filter": {
+        "geo": [
+            [
+                8.7321,
+                49.0652
+            ],
+            [
+                9.7062,
+                48.9949
+            ],
+            [
+                9.6861,
+                48.2417
+            ],
+            [
+                8.4509,
+                48.2551
+            ]
+        ]
+    },
     "options": {
         "endpoint": "https://www2.vvs.de/vvs/"
     },
-    "filter": {
-        "geo": [ [ 8.7321, 49.0652 ], [ 9.7062, 48.9949 ], [ 9.6861, 48.2417 ], [ 8.4509, 48.2551 ] ]
-    }
+    "type": "efa"
 }

@@ -3,30 +3,60 @@
         "Description": "Local transport in Schleswig-Holstein, Germany.",
         "Name": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)"
     },
-    "type": "hafas_mgate",
+    "filter": {
+        "geo": [
+            [
+                8.3615,
+                55.0988
+            ],
+            [
+                11.4217,
+                54.5122
+            ],
+            [
+                10.8384,
+                53.2737
+            ],
+            [
+                9.828,
+                53.407
+            ],
+            [
+                8.0388,
+                54.4111
+            ]
+        ]
+    },
     "options": {
-        "endpoint": "https://nah.sh.hafas.de/bin/mgate.exe",
         "aid": "r0Ot9FLFNAFxijLW",
         "clientId": "NAHSH",
         "clientType": "AND",
-        "version": "1.18",
+        "endpoint": "https://nah.sh.hafas.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "LongDistanceTrain",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Bus",
-            "64": "Ferry",
             "128": "Metro",
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
             "256": "Tramway",
-            "512": "Taxi"
+            "32": "Bus",
+            "4": "LongDistanceTrain",
+            "512": "Taxi",
+            "64": "Ferry",
+            "8": "LocalTrain"
         },
         "locationIdentifierType": "sh",
+        "standardLocationIdentifierCountries": [
+            51,
+            54,
+            55,
+            80,
+            84,
+            87,
+            81,
+            88
+        ],
         "standardLocationIdentifierType": "ibnr",
-        "standardLocationIdentifierCountries": [ 51, 54, 55, 80, 84, 87, 81, 88 ]
+        "version": "1.18"
     },
-    "filter": {
-        "geo": [ [ 8.3615, 55.0988 ], [ 11.4217, 54.5122 ], [ 10.8384, 53.2737 ], [ 9.828, 53.407 ], [ 8.0388, 54.4111 ] ]
-    }
+    "type": "hafas_mgate"
 }

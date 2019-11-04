@@ -3,11 +3,28 @@
         "Description": "Local and national transport in Ireland.",
         "Name": "Transport For Ireland"
     },
-    "type": "efa",
+    "filter": {
+        "geo": [
+            [
+                -8.0224,
+                56.4896
+            ],
+            [
+                -5.4934,
+                53.4652
+            ],
+            [
+                -7.6834,
+                49.3197
+            ],
+            [
+                -12.8979,
+                52.0573
+            ]
+        ]
+    },
     "options": {
         "endpoint": "https://www.journeyplanner.transportforireland.ie/nta/"
     },
-    "filter": {
-        "geo": [ [ -8.0224, 56.4896 ], [ -5.4934, 53.4652 ], [ -7.6834, 49.3197 ], [ -12.8979, 52.0573 ] ]
-    }
+    "type": "efa"
 }
