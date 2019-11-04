@@ -179,7 +179,7 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
             continue;
         }
         if ((QMetaType::typeFlags(prop.userType()) & QMetaType::IsEnumeration) && it.value().isString()) { // external enums
-            const QMetaType mt(prop.type());
+            const QMetaType mt(prop.userType());
             const auto mo = mt.metaObject();
             if (!mo) {
                 qCWarning(Log) << "No meta object found for enum type:" << prop.type();
