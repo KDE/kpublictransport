@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Rhein-Ruhr area, Germany.",
-        "Name": "Verkehrsverbund Rhein-Ruhr (VRR)"
+        "Description[ca]": "Transport local a l'àrea de Rhein-Ruhr, Alemanya.",
+        "Description[nl]": "Lokaal transport in het gebied Rhein-Ruhr, Duitsland.",
+        "Description[pt]": "Transportes locais na área de Rhein-Ruhr, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i Rhein-Ruhr-området, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у регіоні Рейн-Рур, Німеччина.",
+        "Description[x-test]": "xxLocal transport in the Rhein-Ruhr area, Germany.xx",
+        "Name": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[ca]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[nl]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[pt]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[sv]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[uk]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[x-test]": "xxVerkehrsverbund Rhein-Ruhr (VRR)xx"
     },
     "filter": {
         "geo": [

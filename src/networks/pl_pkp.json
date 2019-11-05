@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Polish national railway.",
-        "Name": "Polskie Koleje Państwowe (PKP)"
+        "Description[ca]": "Ferrocarrils nacionals polonesos.",
+        "Description[nl]": "Poolse nationale spoorweg.",
+        "Description[pt]": "Caminhos de ferro nacionais da Polónia.",
+        "Description[sv]": "Polsk statsjärnväg.",
+        "Description[uk]": "Польська державна залізниця.",
+        "Description[x-test]": "xxPolish national railway.xx",
+        "Name": "Polskie Koleje Państwowe (PKP)",
+        "Name[ca]": "Polskie Koleje Państwowe (PKP)",
+        "Name[nl]": "Polskie Koleje Państwowe (PKP)",
+        "Name[pt]": "Polskie Koleje Państwowe (PKP)",
+        "Name[sv]": "Polskie Koleje Państwowe (PKP)",
+        "Name[uk]": "Polskie Koleje Państwowe (PKP)",
+        "Name[x-test]": "xxPolskie Koleje Państwowe (PKP)xx"
     },
     "filter": {
         "geo": [

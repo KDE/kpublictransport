@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Berlin and Brandenburg regions of Germany.",
-        "Name": "Verkehrsverbund Berlin-Brandenburg (VBB)"
+        "Description[ca]": "Transport local a les regions de Berlin i Brandenburg d'Alemanya.",
+        "Description[nl]": "Lokaal transport in de regio's Berlijn en Brandenburg in Duitsland.",
+        "Description[pt]": "Transportes locais nas regiões de Berlim e Branderburgo, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i Berlin- och Brandenburg-områdena i Tyskland.",
+        "Description[uk]": "Місцевий транспорт у регіонах Берлін та Бранденбург, Німеччина.",
+        "Description[x-test]": "xxLocal transport in the Berlin and Brandenburg regions of Germany.xx",
+        "Name": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[ca]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[nl]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[pt]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[sv]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[uk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[x-test]": "xxVerkehrsverbund Berlin-Brandenburg (VBB)xx"
     },
     "filter": {
         "geo": [

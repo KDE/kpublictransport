@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Dutch national railway.",
-        "Name": "Nederlandse Spoorwegen (NS)"
+        "Description[ca]": "Ferrocarrils nacionals danesos.",
+        "Description[nl]": "Nederlandse nationale spoorweg.",
+        "Description[pt]": "Caminhos de ferro nacionais da Holanda.",
+        "Description[sv]": "Holländsk statsjärnväg.",
+        "Description[uk]": "Нідерландська державна залізниця.",
+        "Description[x-test]": "xxDutch national railway.xx",
+        "Name": "Nederlandse Spoorwegen (NS)",
+        "Name[ca]": "Nederlandse Spoorwegen (NS)",
+        "Name[nl]": "Nederlandse Spoorwegen (NS)",
+        "Name[pt]": "Nederlandse Spoorwegen (NS)",
+        "Name[sv]": "Nederlandse Spoorwegen (NS)",
+        "Name[uk]": "Nederlandse Spoorwegen (NS)",
+        "Name[x-test]": "xxNederlandse Spoorwegen (NS)xx"
     },
     "filter": {
         "geo": [

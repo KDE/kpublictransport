@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Munich, Germany.",
-        "Name": "Münchener Verkehrs- und Tarifverbund (MVV)"
+        "Description[ca]": "Transport local a Munich i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om München, Duitsland.",
+        "Description[pt]": "Transportes locais na região de Munique, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i och omkring München, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у Мюнхені і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Munich, Germany.xx",
+        "Name": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[ca]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[nl]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[pt]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[sv]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[uk]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[x-test]": "xxMünchener Verkehrs- und Tarifverbund (MVV)xx"
     },
     "filter": {
         "geo": [

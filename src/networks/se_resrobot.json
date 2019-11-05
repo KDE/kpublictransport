@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Public transport information for Sweden.",
-        "Name": "Resrobot"
+        "Description[ca]": "Informació de transport públic a Suècia.",
+        "Description[nl]": "Informatie over openbaar vervoer in Zweden.",
+        "Description[pt]": "Informação de transportes públicos da Suécia.",
+        "Description[sv]": "Information om kollektivtrafik i Sverige.",
+        "Description[uk]": "Дані щодо громадського транспорту у Швеції.",
+        "Description[x-test]": "xxPublic transport information for Sweden.xx",
+        "Name": "Resrobot",
+        "Name[ca]": "Resrobot",
+        "Name[nl]": "Resrobot",
+        "Name[pt]": "Resrobot",
+        "Name[sv]": "Resrobot",
+        "Name[uk]": "Resrobot",
+        "Name[x-test]": "xxResrobotxx"
     },
     "filter": {
         "geo": [

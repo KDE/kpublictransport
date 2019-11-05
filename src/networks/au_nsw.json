@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in New South Wales, Australia.",
-        "Name": "Transport for NSW"
+        "Description[ca]": "Transport local a Nova Gal·les del Sud, Austràlia.",
+        "Description[nl]": "Lokaal transport in New South Wales, Australië.",
+        "Description[pt]": "Transportes locais na Nova Gales do Sul, Austrália.",
+        "Description[sv]": "Lokal transportoperatör i Nya Sydwales, Australien.",
+        "Description[uk]": "Місцевий транспорт у Новому Південному Уельсі, Австралія.",
+        "Description[x-test]": "xxLocal transport in New South Wales, Australia.xx",
+        "Name": "Transport for NSW",
+        "Name[ca]": "Transport per NSW",
+        "Name[nl]": "Transport for NSW",
+        "Name[pt]": "Transporte para a NSW",
+        "Name[sv]": "Transport for NSW",
+        "Name[uk]": "Транспорт у Новому Південному Уельсі",
+        "Name[x-test]": "xxTransport for NSWxx"
     },
     "filter": {
         "geo": [

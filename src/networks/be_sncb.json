@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Belgian national railway.",
-        "Name": "National Railway Company of Belgium (NMBS/SNCB)"
+        "Description[ca]": "Ferrocarrils nacionals belgues.",
+        "Description[nl]": "Belgische nationale spoorweg.",
+        "Description[pt]": "Caminhos de ferro nacionais da Bélgica.",
+        "Description[sv]": "Belgisk statsjärnväg.",
+        "Description[uk]": "Бельгійська державна залізниця.",
+        "Description[x-test]": "xxBelgian national railway.xx",
+        "Name": "National Railway Company of Belgium (NMBS/SNCB)",
+        "Name[ca]": "Companyia Nacional de Ferrocarrils de Bèlgica (NMBS/SNCB)",
+        "Name[nl]": "National Railway Company of Belgium (NMBS/SNCB)",
+        "Name[pt]": "Companhia Nacional de Caminhos de Ferro da Bélgica (NMBS/SNCB)",
+        "Name[sv]": "Belgiens statsjärnvägsbolag (NMBS/SNCB)",
+        "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)",
+        "Name[x-test]": "xxNational Railway Company of Belgium (NMBS/SNCB)xx"
     },
     "filter": {
         "geo": [

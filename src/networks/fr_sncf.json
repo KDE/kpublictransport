@@ -4,11 +4,18 @@
         "Description[ca]": "Ferrocarrils nacionals francesos.",
         "Description[en_GB]": "French national railway.",
         "Description[es]": "Compañía ferroviaria francesa.",
+        "Description[nl]": "Franse nationale spoorweg.",
         "Description[pt]": "Caminhos de ferro nacionais da França.",
         "Description[sv]": "Franska statsjärnvägen.",
         "Description[uk]": "Французька державна залізниця.",
         "Description[x-test]": "xxFrench national railway.xx",
-        "Name": "Société Nationale des Chemins de Fer français (SNCF)"
+        "Name": "Société Nationale des Chemins de Fer français (SNCF)",
+        "Name[ca]": "Société Nationale des Chemins de Fer français (SNCF)",
+        "Name[nl]": "Société Nationale des Chemins de Fer français (SNCF)",
+        "Name[pt]": "Société Nationale des Chemins de Fer français (SNCF)",
+        "Name[sv]": "Société Nationale des Chemins de Fer français (SNCF)",
+        "Name[uk]": "Société Nationale des Chemins de Fer français (SNCF)",
+        "Name[x-test]": "xxSociété Nationale des Chemins de Fer français (SNCF)xx"
     },
     "filter": {
         "geo": [

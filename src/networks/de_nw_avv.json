@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Aachen, Germany.",
-        "Name": "Aachener Verkehrsverbund (AVV)"
+        "Description[ca]": "Transport local a Aachen i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om Aken, Duitsland.",
+        "Description[pt]": "Transportes locais na região de Aachen, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i och omkring Aachen, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у Аахені і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Aachen, Germany.xx",
+        "Name": "Aachener Verkehrsverbund (AVV)",
+        "Name[ca]": "Aachener Verkehrsverbund (AVV)",
+        "Name[nl]": "Aachener Verkehrsverbund (AVV)",
+        "Name[pt]": "Aachener Verkehrsverbund (AVV)",
+        "Name[sv]": "Aachener Verkehrsverbund (AVV)",
+        "Name[uk]": "Aachener Verkehrsverbund (AVV)",
+        "Name[x-test]": "xxAachener Verkehrsverbund (AVV)xx"
     },
     "filter": {
         "geo": [

@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Nuremberg, Germany.",
-        "Name": "Verkehrsverbund Großraum Nürnberg (VGN)"
+        "Description[ca]": "Transport local a Nuremberg i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om Neurenberg, Duitsland.",
+        "Description[pt]": "Transportes locais na região de Nuremberga, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i och omkring Nuremberg, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у Нюрнберзі та околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Nuremberg, Germany.xx",
+        "Name": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[ca]": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[nl]": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[pt]": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[sv]": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[uk]": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[x-test]": "xxVerkehrsverbund Großraum Nürnberg (VGN)xx"
     },
     "filter": {
         "geo": [

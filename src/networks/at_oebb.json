@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Austrian national railway.",
-        "Name": "Österreichische Bundesbahnen (ÖBB)"
+        "Description[ca]": "Ferrocarrils nacionals austríacs.",
+        "Description[nl]": "Oostenrijkse nationale spoorweg.",
+        "Description[pt]": "Caminhos de ferro nacionais da Áustria.",
+        "Description[sv]": "Österrikisk statsjärnväg.",
+        "Description[uk]": "Австрійська державна залізниця.",
+        "Description[x-test]": "xxAustrian national railway.xx",
+        "Name": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[ca]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[nl]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[pt]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[sv]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[uk]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[x-test]": "xxÖsterreichische Bundesbahnen (ÖBB)xx"
     },
     "filter": {
         "geo": [

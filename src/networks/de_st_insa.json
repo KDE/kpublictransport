@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in Sachsen-Anhalt, Germany.",
-        "Name": "Nahverkehrsservice Sachsen-Anhalt (INSA)"
+        "Description[ca]": "Transport local a Sachsen-Anhalt, Alemanya.",
+        "Description[nl]": "Lokaal transport in Sachsen-Anhalt, Duitsland.",
+        "Description[pt]": "Transportes locais e nacionais em Sachsen-Anhalt, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i Sachsen-Anhalt, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у регіоні Саксонія-Ангальт, Німеччина.",
+        "Description[x-test]": "xxLocal transport in Sachsen-Anhalt, Germany.xx",
+        "Name": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[ca]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[nl]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[pt]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[sv]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[uk]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
+        "Name[x-test]": "xxNahverkehrsservice Sachsen-Anhalt (INSA)xx"
     },
     "filter": {
         "geo": [

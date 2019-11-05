@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Hannover, Germany.",
-        "Name": "Großraum-Verkehr Hannover (GVH)"
+        "Description[ca]": "Transport local a Hannover i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om Hannover, Duitsland.",
+        "Description[pt]": "Transportes locais na região de Hanôver, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i och omkring Hannover, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у Ганновері і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Hannover, Germany.xx",
+        "Name": "Großraum-Verkehr Hannover (GVH)",
+        "Name[ca]": "Großraum-Verkehr Hannover (GVH)",
+        "Name[nl]": "Großraum-Verkehr Hannover (GVH)",
+        "Name[pt]": "Großraum-Verkehr Hannover (GVH)",
+        "Name[sv]": "Großraum-Verkehr Hannover (GVH)",
+        "Name[uk]": "Großraum-Verkehr Hannover (GVH)",
+        "Name[x-test]": "xxGroßraum-Verkehr Hannover (GVH)xx"
     },
     "filter": {
         "geo": [
