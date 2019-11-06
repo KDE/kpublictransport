@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Austrian national railway.",
         "Description[ca]": "Ferrocarrils nacionals austríacs.",
+        "Description[cs]": "Rakouské národní železnice.",
         "Description[nl]": "Oostenrijkse nationale spoorweg.",
         "Description[pt]": "Caminhos de ferro nacionais da Áustria.",
         "Description[sv]": "Österrikisk statsjärnväg.",
@@ -9,8 +10,10 @@
         "Description[x-test]": "xxAustrian national railway.xx",
         "Name": "Österreichische Bundesbahnen (ÖBB)",
         "Name[ca]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[cs]": "Österreichische Bundesbahnen (ÖBB)",
         "Name[nl]": "Österreichische Bundesbahnen (ÖBB)",
         "Name[pt]": "Österreichische Bundesbahnen (ÖBB)",
+        "Name[sk]": "Österreichische Bundesbahnen (ÖBB)",
         "Name[sv]": "Österreichische Bundesbahnen (ÖBB)",
         "Name[uk]": "Österreichische Bundesbahnen (ÖBB)",
         "Name[x-test]": "xxÖsterreichische Bundesbahnen (ÖBB)xx"
