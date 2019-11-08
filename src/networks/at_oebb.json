@@ -42,7 +42,7 @@
         "aid": "OWDL4fE4ixNiPBBm",
         "clientId": "OEBB",
         "clientType": "AND",
-        "endpoint": "http://fahrplan.oebb.at/bin/mgate.exe",
+        "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "128": "Ferry",

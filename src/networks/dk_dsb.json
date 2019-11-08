@@ -41,7 +41,7 @@
         "aid": "irkmpm9mdznstenr-android",
         "clientId": "DK",
         "clientType": "AND",
-        "endpoint": "http://mobilapps.rejseplanen.dk/bin/iphone.exe",
+        "endpoint": "https://mobilapps.rejseplanen.dk/bin/iphone.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "1024": "Tramway",
