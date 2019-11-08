@@ -159,6 +159,13 @@ void ManagerPrivate::loadNetworks()
         }
     }
 
+    std::stable_sort(m_backends.begin(), m_backends.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs->backendId() < rhs->backendId();
+    });
+    std::stable_sort(m_backendMetaData.begin(), m_backendMetaData.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.identifier() < rhs.identifier();
+    });
+
     AttributionUtil::sort(m_attributions);
     qCDebug(Log) << m_backends.size() << "public transport network configurations loaded";
 }
