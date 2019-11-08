@@ -91,6 +91,14 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
     locs.reserve(locL.size());
     for (const auto &locV : locL) {
         const auto locObj = locV.toObject();
+
+        // resolve references to the master location
+        const auto masterIdx = locObj.value(QLatin1String("mMastLocX")).toInt(-1);
+        if (masterIdx >= 0 && masterIdx < (int)locs.size()) {
+            locs.push_back(locs[masterIdx]);
+            continue;
+        }
+
         Location loc;
         loc.setName(locObj.value(QLatin1String("name")).toString());
         setLocationIdentifier(loc, locObj.value(QLatin1String("extId")).toString());
