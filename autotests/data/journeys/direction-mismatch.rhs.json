@@ -1,0 +1,31 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NoService",
+            "from": {
+                "identifier": { "vbb": "900020202" },
+                "latitude": 52.53431701660156,
+                "longitude": 13.328701972961426,
+                "name": "S Beusselstrasse (Berlin)"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Ringbahn S 41",
+                "line": {
+                    "color": "#009154",
+                    "mode": "RapidTransit",
+                    "name": "S41",
+                    "textColor": "#ffffff"
+                }
+            },
+            "scheduledArrivalTime": "2019-11-07T17:21:00",
+            "scheduledDepartureTime": "2019-11-07T17:03:00",
+            "to": {
+                "identifier": { "vbb": "900110012" },
+                "latitude": 52.52419662475586,
+                "longitude": 13.464887619018555,
+                "name": "S Storkower Str. (Berlin)"
+            }
+        }
+    ]
+}

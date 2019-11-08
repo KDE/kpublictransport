@@ -210,7 +210,8 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
 
     const auto sameRoute = Route::isSame(lhs.d->route, rhs.d->route);
     const auto sameDir = Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction());
-    result += sameRoute ? Equal : sameDir ? Compatible : Conflict;
+    const auto sameLine = Line::isSame(lhs.d->route.line(), rhs.d->route.line());
+    result += sameRoute ? Equal : (sameDir || sameLine) ? Compatible : Conflict;
 
     if (!lhs.scheduledDeparturePlatform().isEmpty() && !rhs.scheduledDeparturePlatform().isEmpty()) {
         result += lhs.scheduledDeparturePlatform() == rhs.scheduledDeparturePlatform() ? Equal : Conflict;

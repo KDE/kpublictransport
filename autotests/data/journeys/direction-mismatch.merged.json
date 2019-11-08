@@ -1,0 +1,48 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NoService",
+            "expectedArrivalPlatform": "1",
+            "expectedArrivalTime": "2019-11-07T17:21:00",
+            "expectedDeparturePlatform": "1",
+            "expectedDepartureTime": "2019-11-07T17:03:00",
+            "from": {
+                "identifier": {
+                    "db": "8089118",
+                    "ibnr": "8089118",
+                    "vbb": "900020202"
+                },
+                "latitude": 52.53433609008789,
+                "locality": "Berlin",
+                "longitude": 13.32893180847168,
+                "name": "S Beusselstrasse (Berlin)"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Berlin Südkreuz (S)",
+                "line": {
+                    "color": "#009154",
+                    "mode": "RapidTransit",
+                    "modeString": "S-Bahn",
+                    "name": "S 41",
+                    "textColor": "#ffffff"
+                }
+            },
+            "scheduledArrivalPlatform": "1",
+            "scheduledArrivalTime": "2019-11-07T17:21:00+01:00",
+            "scheduledDeparturePlatform": "1",
+            "scheduledDepartureTime": "2019-11-07T17:03:00+01:00",
+            "to": {
+                "identifier": {
+                    "db": "8089041",
+                    "ibnr": "8089041",
+                    "vbb": "900110012"
+                },
+                "latitude": 52.52403259277344,
+                "locality": "Berlin",
+                "longitude": 13.46466064453125,
+                "name": "S Storkower Str. (Berlin)"
+            }
+        }
+    ]
+}
