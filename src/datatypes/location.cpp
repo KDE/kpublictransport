@@ -121,6 +121,7 @@ struct {
     { "hbf", "hauptbahnhof" },
     { "rer", nullptr },
     { "st", "saint" },
+    { "str", "strasse" },
 };
 
 static QStringList splitAndNormalizeName(const QString &name)
@@ -180,10 +181,11 @@ struct {
     ushort key;
     const char* replacement;
 } static const transliteration_map[] = {
+    { u'ß', "ss" },
     { u'ä', "ae" },
     { u'ö', "oe" },
     { u'ø', "oe" },
-    { u'ü', "ue" }
+    { u'ü', "ue" },
 };
 
 static QString applyTransliterations(const QString &s)

@@ -43,6 +43,9 @@ private Q_SLOTS:
 
         QTest::newRow("abbreviations1") << s("Berlin Hbf") << s("Berlin Hauptbahnhof");
         QTest::newRow("abbreviations2") << s("Amsterdam Cs") << s("Amsterdam Centraal");
+        QTest::newRow("abbreviations3") << s("Berlin Friedrich Straße") << s("Berlin Friedrich Str.");
+
+        QTest::newRow("inline abbreviation1") << s("Berlin Friedrichstr.") << s("Berlin Friedrichstrasse");
 
         QTest::newRow("extras1") << s("S+U Berlin Hbf") << s("Berlin Hauptbahnhof");
         QTest::newRow("extras2") << s("Berlin Schönefeld Flughafen (S)") << s("S Berlin Schönefeld Flughafen");
@@ -67,6 +70,8 @@ private Q_SLOTS:
         QTest::newRow("diacritic3") << s("København H") << s("Koebenhavn H");
 
         QTest::newRow("prefix1") << s("Zürich Flughafen") << s("Zürich Flughafen (Kloten)");
+
+        QTest::newRow("unicode1") << s("Berlin Friedrichstraße") << s("Berlin Friedrichstrasse");
     }
 
     void testLocationNameCompare()
@@ -76,6 +81,8 @@ private Q_SLOTS:
         Location l, r;
         l.setName(lhs);
         r.setName(rhs);
+
+        QEXPECT_FAIL("inline abbreviation1", "not implemented yet", Abort);
         QVERIFY(Location::isSame(l, r));
         QVERIFY(Location::isSame(r, l));
     }
