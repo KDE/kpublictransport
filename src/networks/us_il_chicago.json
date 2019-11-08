@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in and around Chicago, Illinois, United States.",
+        "Name": "Regional Transport Authority Chicago"
+    },
+    "filter": {
+        "geo": [ [ -88.1822, 42.4918 ], [ -87.022, 42.4961 ], [ -87.03944, 41.4141 ], [ -88.204, 41.4141 ] ]
+    },
+    "options": {
+        "endpoint": "https://tripplanner.rtachicago.com/ccg3/"
+    },
+    "type": "efa"
+}
