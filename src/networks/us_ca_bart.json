@@ -4,7 +4,24 @@
         "Name": "Bay Area Rapid Transit (BART)"
     },
     "filter": {
-        "geo": [ [ -123.2738, 38.3441 ], [ -121.4227, 38.3572 ], [ -121.3184, 36.4604 ], [ -122.8045, 36.4083 ] ]
+        "geo": [
+            [
+                -123.2738,
+                38.3441
+            ],
+            [
+                -121.4227,
+                38.3572
+            ],
+            [
+                -121.3184,
+                36.4604
+            ],
+            [
+                -122.8045,
+                36.4083
+            ]
+        ]
     },
     "options": {
         "aid": "kEwHkFUCIL500dym",
@@ -12,12 +29,12 @@
         "clientType": "WEB",
         "endpoint": "https://planner.bart.gov/bin/mgate.exe",
         "lineModeMap": {
-            "4": "Tramway",
-            "8": "LocalTrain",
-            "32": "Bus",
-            "64": "Ferry",
             "128": "RapidTransit",
-            "256": "Tramway"
+            "256": "Tramway",
+            "32": "Bus",
+            "4": "Tramway",
+            "64": "Ferry",
+            "8": "LocalTrain"
         },
         "version": "1.18"
     },
