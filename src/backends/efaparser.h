@@ -50,6 +50,8 @@ public:
 
 private:
     Location parseItdOdvAssignedStop(QXmlStreamReader &reader) const;
+    Location parseOdvNameElem(QXmlStreamReader &reader) const;
+
     Departure parseDmDeparture(QXmlStreamReader &reader) const;
     void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const;
     void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
