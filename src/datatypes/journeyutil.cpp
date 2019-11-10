@@ -20,6 +20,7 @@
 #include <KPublicTransport/Journey>
 
 #include <QDateTime>
+#include <QTimeZone>
 
 using namespace KPublicTransport;
 
@@ -42,4 +43,25 @@ bool JourneyUtil::firstTransportDepartureLessThan(const Journey &lhs, const Jour
 bool JourneyUtil::firstTransportDepartureEqual(const Journey &lhs, const Journey &rhs)
 {
     return firstTransportDeparture(lhs) == firstTransportDeparture(rhs);
+}
+
+static QDateTime applyTimeZone(QDateTime dt, const QTimeZone &tz)
+{
+    if (!dt.isValid() || dt.timeSpec() != Qt::LocalTime) {
+        return dt;
+    }
+    dt.setTimeZone(tz);
+    return dt;
+}
+
+void JourneyUtil::applyTimeZone(Journey &jny, const QTimeZone &tz)
+{
+    auto sections = std::move(jny.takeSections());
+    for (auto &sec : sections) {
+        sec.setScheduledDepartureTime(applyTimeZone(sec.scheduledDepartureTime(), tz));
+        sec.setExpectedDepartureTime(applyTimeZone(sec.expectedDepartureTime(), tz));
+        sec.setScheduledArrivalTime(applyTimeZone(sec.scheduledArrivalTime(), tz));
+        sec.setExpectedArrivalTime(applyTimeZone(sec.expectedArrivalTime(), tz));
+    }
+    jny.setSections(std::move(sections));
 }

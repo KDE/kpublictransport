@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_DEPARTUREUTIL_P_H
 #define KPUBLICTRANSPORT_DEPARTUREUTIL_P_H
 
+class QTimeZone;
+
 namespace KPublicTransport {
 
 class Departure;
@@ -29,6 +31,9 @@ namespace DepartureUtil
     /** Request specific time-based sorting/comparison. */
     bool timeLessThan(const DepartureRequest &req, const Departure &lhs, const Departure &rhs);
     bool timeEqual(const DepartureRequest &req, const Departure &lhs, const Departure &rhs);
+
+    /** Reinterpret all floating times as times with the given timezone. */
+    void applyTimeZone(Departure &dep, const QTimeZone &tz);
 }
 
 }

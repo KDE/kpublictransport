@@ -99,8 +99,12 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         req.insert(QStringLiteral("getPasslist"), true); // ???
         req.insert(QStringLiteral("getPolyline"), false);
 
-        req.insert(QStringLiteral("outDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
-        req.insert(QStringLiteral("outTime"), request.dateTime().time().toString(QStringLiteral("hhmmss")));
+        QDateTime dt = request.dateTime();
+        if (timeZone().isValid()) {
+            dt = dt.toTimeZone(timeZone());
+        }
+        req.insert(QStringLiteral("outDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
+        req.insert(QStringLiteral("outTime"), dt.time().toString(QStringLiteral("hhmmss")));
         req.insert(QStringLiteral("outFrwd"), request.dateTimeMode() == JourneyRequest::Departure);
 
         tripSearch.insert(QStringLiteral("cfg"), cfg);
@@ -150,8 +154,13 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
         QJsonObject cfg;
         cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
 
+        QDateTime dt = request.dateTime();
+        if (timeZone().isValid()) {
+            dt = dt.toTimeZone(timeZone());
+        }
+
         QJsonObject req;
-        req.insert(QStringLiteral("date"), request.dateTime().toString(QStringLiteral("yyyyMMdd")));
+        req.insert(QStringLiteral("date"), dt.toString(QStringLiteral("yyyyMMdd")));
         req.insert(QStringLiteral("maxJny"), 12);
         req.insert(QStringLiteral("stbFltrEquiv"), true);
 
@@ -161,7 +170,7 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
         stbLoc.insert(QStringLiteral("type"), QLatin1String("S"));
 
         req.insert(QStringLiteral("stbLoc"), stbLoc);
-        req.insert(QStringLiteral("time"), request.dateTime().toString(QStringLiteral("hhmmss")));
+        req.insert(QStringLiteral("time"), dt.toString(QStringLiteral("hhmmss")));
         req.insert(QStringLiteral("type"), request.mode() == DepartureRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
 
         stationBoard.insert(QStringLiteral("cfg"), cfg);

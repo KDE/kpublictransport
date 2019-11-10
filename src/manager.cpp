@@ -44,6 +44,7 @@
 #include <QNetworkAccessManager>
 #include <QStandardPaths>
 #include <QTimer>
+#include <QTimeZone>
 
 #include <functional>
 
@@ -224,6 +225,11 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
     const auto attrObj = obj.value(QLatin1String("attribution")).toObject();
     const auto attr = Attribution::fromJson(attrObj);
     backend->setAttribution(attr);
+
+    const auto tzId = obj.value(QLatin1String("timezone")).toString();
+    if (!tzId.isEmpty()) {
+        backend->setTimeZone(QTimeZone(tzId.toUtf8()));
+    }
 }
 
 template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &obj)

@@ -20,6 +20,7 @@
 #include "logging.h"
 #include "reply_p.h"
 #include "requestcontext_p.h"
+#include "backends/abstractbackend.h"
 #include "datatypes/departureutil_p.h"
 
 #include <KPublicTransport/Departure>
@@ -113,6 +114,13 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Depar
             context.dateTime = std::max(context.dateTime, dep.scheduledDepartureTime());
         }
         d->nextRequest.setContext(backend, std::move(context));
+    }
+
+    // if this is a backend with a static timezone, apply this to the result
+    if (backend->timeZone().isValid()) {
+        for (auto &dep : res) {
+            DepartureUtil::applyTimeZone(dep, backend->timeZone());
+        }
     }
 
     if (d->result.empty()) {

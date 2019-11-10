@@ -26,6 +26,7 @@
 #include <QFlags>
 #include <QJsonObject>
 #include <QPolygonF>
+#include <QTimeZone>
 #include <QVariant>
 
 class QNetworkAccessManager;
@@ -61,6 +62,12 @@ public:
     /** Same as the above but just checking one specific geo coordinate. */
     bool isCoordinateExcluded(float lat, float lon) const;
     void setGeoFilter(const QPolygonF &poly);
+
+    /** Static timezone for all times used by and provided by the backend.
+     *  Set to invalid if the backend supports multiple timezones.
+     */
+    QTimeZone timeZone() const;
+    void setTimeZone(const QTimeZone &tz);
 
     /** Called after all settings have been set on this backend. */
     virtual void init();
@@ -170,6 +177,7 @@ private:
     QString m_backendId;
     QPolygonF m_geoFilter;
     Attribution m_attribution;
+    QTimeZone m_timeZone;
 };
 
 }

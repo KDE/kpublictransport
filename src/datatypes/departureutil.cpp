@@ -21,6 +21,7 @@
 #include <KPublicTransport/DepartureRequest>
 
 #include <QDateTime>
+#include <QTimeZone>
 
 using namespace KPublicTransport;
 
@@ -42,3 +43,19 @@ bool DepartureUtil::timeEqual(const DepartureRequest &req, const Departure &lhs,
     }
 }
 
+static QDateTime applyTimeZone(QDateTime dt, const QTimeZone &tz)
+{
+    if (!dt.isValid() || dt.timeSpec() != Qt::LocalTime) {
+        return dt;
+    }
+    dt.setTimeZone(tz);
+    return dt;
+}
+
+void DepartureUtil::applyTimeZone(Departure &dep, const QTimeZone &tz)
+{
+    dep.setScheduledDepartureTime(applyTimeZone(dep.scheduledDepartureTime(), tz));
+    dep.setExpectedDepartureTime(applyTimeZone(dep.expectedDepartureTime(), tz));
+    dep.setScheduledArrivalTime(applyTimeZone(dep.scheduledArrivalTime(), tz));
+    dep.setExpectedArrivalTime(applyTimeZone(dep.expectedArrivalTime(), tz));
+}

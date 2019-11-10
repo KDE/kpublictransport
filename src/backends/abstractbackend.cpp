@@ -61,6 +61,16 @@ void AbstractBackend::setGeoFilter(const QPolygonF &poly)
     m_geoFilter = poly;
 }
 
+QTimeZone AbstractBackend::timeZone() const
+{
+    return m_timeZone;
+}
+
+void AbstractBackend::setTimeZone(const QTimeZone &tz)
+{
+    m_timeZone = tz;
+}
+
 void AbstractBackend::init()
 {
 }

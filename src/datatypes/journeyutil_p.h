@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_JOURNEYUTIL_P_H
 
 class QDateTime;
+class QTimeZone;
 
 namespace KPublicTransport {
 
@@ -36,6 +37,9 @@ namespace JourneyUtil
     bool firstTransportDepartureLessThan(const Journey &lhs, const Journey &rhs);
     /** Equal comparison on first transport departure time. */
     bool firstTransportDepartureEqual(const Journey &lhs, const Journey &rhs);
+
+    /** Reinterpret all floating times as times with the given timezone. */
+    void applyTimeZone(Journey &jny, const QTimeZone &tz);
 }
 
 }

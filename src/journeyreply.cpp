@@ -20,6 +20,7 @@
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "logging.h"
+#include "backends/abstractbackend.h"
 #include "datatypes/journeyutil_p.h"
 
 #include <KPublicTransport/Journey>
@@ -212,6 +213,13 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
             context.dateTime = std::min(context.dateTime, jny.scheduledArrivalTime());
         }
         d->prevRequest.setContext(backend, std::move(context));
+    }
+
+    // if this is a backend with a static timezone, apply this to the result
+    if (backend->timeZone().isValid()) {
+        for (auto &jny : res) {
+            JourneyUtil::applyTimeZone(jny, backend->timeZone());
+        }
     }
 
     // update result
