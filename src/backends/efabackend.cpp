@@ -118,13 +118,18 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
     QUrl url(m_endpoint);
     url.setPath(url.path() + QLatin1String("XML_DM_REQUEST"));
 
+    QDateTime dt = request.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
     query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
     query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("stop"));
     query.addQueryItem(QStringLiteral("name_dm"), stopId);
-    query.addQueryItem(QStringLiteral("itdDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
-    query.addQueryItem(QStringLiteral("itdTime"), request.dateTime().time().toString(QStringLiteral("hhmm")));
+    query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
+    query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
     query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("limit"), QStringLiteral("12")); // TODO
 
@@ -189,8 +194,12 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("stop"));
     query.addQueryItem(QStringLiteral("name_destination"), toId);
 
-    query.addQueryItem(QStringLiteral("itdDate"), request.dateTime().date().toString(QStringLiteral("yyyyMMdd")));
-    query.addQueryItem(QStringLiteral("itdTime"), request.dateTime().time().toString(QStringLiteral("hhmm")));
+    QDateTime dt = request.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+    query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
+    query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
     query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
 
     query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QStringLiteral("12")); // TODO
