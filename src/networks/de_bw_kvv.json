@@ -1,7 +1,18 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Karlsruhe, Germany.",
-        "Name": "Karlsruher Verkehrsverbund (KVV)"
+        "Description[ca]": "Transport local a Karlsruhe i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om Karlsruhe, Duitsland.",
+        "Description[pt]": "Transportes locais na região de Karlsruhe, Alemanha.",
+        "Description[uk]": "Місцевий транспорт у Карлсруе і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Karlsruhe, Germany.xx",
+        "Name": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[ca]": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[es]": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[nl]": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[pt]": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[uk]": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[x-test]": "xxKarlsruher Verkehrsverbund (KVV)xx"
     },
     "filter": {
         "geo": [

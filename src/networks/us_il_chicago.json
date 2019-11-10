@@ -1,7 +1,18 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Chicago, Illinois, United States.",
-        "Name": "Regional Transport Authority Chicago"
+        "Description[ca]": "Transport local a Chicago i rodalies, Illinois, Estats Units.",
+        "Description[nl]": "Lokaal transport in en om Chicago, Illinois, Verenigde Staten.",
+        "Description[pt]": "Transportes locais na região de Chicago, Illinois, Estados Unidos.",
+        "Description[uk]": "Місцевий транспорт у Чикаго і околицях, Іллінойс, США.",
+        "Description[x-test]": "xxLocal transport in and around Chicago, Illinois, United States.xx",
+        "Name": "Regional Transport Authority Chicago",
+        "Name[ca]": "Regional Transport Authority Chicago",
+        "Name[es]": "Regional Transport Authority Chicago",
+        "Name[nl]": "Regional Transport Authority Chicago",
+        "Name[pt]": "Autoridade Regional de Transportes de Chicago",
+        "Name[uk]": "Регіональна транспортна служба Чикаго",
+        "Name[x-test]": "xxRegional Transport Authority Chicagoxx"
     },
     "filter": {
         "geo": [

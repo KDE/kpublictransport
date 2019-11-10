@@ -1,7 +1,18 @@
 {
     "KPlugin": {
         "Description": "Local transport in the bay area in California, United States.",
-        "Name": "Bay Area Rapid Transit (BART)"
+        "Description[ca]": "Transport local a l'àrea de la badia a California, Estats Units.",
+        "Description[nl]": "Lokaal transport in de bay area in California, Verenigde Staten.",
+        "Description[pt]": "Transportes locais na região da baía da Califórnia, Estados Unidos.",
+        "Description[uk]": "Місцевий транспорт у регіоні затоки, Каліфорнія, США.",
+        "Description[x-test]": "xxLocal transport in the bay area in California, United States.xx",
+        "Name": "Bay Area Rapid Transit (BART)",
+        "Name[ca]": "Bay Area Rapid Transit (BART)",
+        "Name[es]": "Bay Area Rapid Transit (BART)",
+        "Name[nl]": "Bay Area Rapid Transit (BART)",
+        "Name[pt]": "Bay Area Rapid Transit (BART)",
+        "Name[uk]": "Bay Area Rapid Transit (BART)",
+        "Name[x-test]": "xxBay Area Rapid Transit (BART)xx"
     },
     "filter": {
         "geo": [
