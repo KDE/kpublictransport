@@ -385,11 +385,12 @@ QStringList EfaParser::parseInfoLink(QXmlStreamReader &reader) const
         reader.readNext();
         switch (reader.tokenType()) {
             case QXmlStreamReader::StartElement:
-                ++depth;
                 if (reader.name() == QLatin1String("infoLinkText") || reader.name() == QLatin1String("subtitle")
                  || reader.name() == QLatin1String("wmlText") || reader.name() == QLatin1String("htmlText"))
                 {
                     l.push_back(reader.readElementText());
+                } else {
+                    ++depth;
                 }
                 break;
             case QXmlStreamReader::EndElement:
