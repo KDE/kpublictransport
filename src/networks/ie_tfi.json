@@ -38,5 +38,6 @@
     "options": {
         "endpoint": "https://www.journeyplanner.transportforireland.ie/nta/"
     },
+    "timezone": "Europe/Dublin",
     "type": "efa"
 }
