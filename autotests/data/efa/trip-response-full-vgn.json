@@ -1,0 +1,85 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalPlatform": "",
+                "expectedArrivalTime": "2019-11-11T21:49:00",
+                "expectedDeparturePlatform": "",
+                "expectedDepartureTime": "2019-11-11T21:36:00",
+                "from": {
+                    "identifier": {
+                        "testid": "3001391"
+                    },
+                    "latitude": 49.493961334228516,
+                    "locality": "Nürnberg",
+                    "longitude": 11.078630447387695,
+                    "name": "Nürnberg Flughafen"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Construction works somewhere - further infos on some random website"
+                ],
+                "route": {
+                    "direction": "Nürnberg Röthenbach",
+                    "line": {
+                        "mode": "Metro",
+                        "modeString": "U-Bahn",
+                        "name": "U2"
+                    }
+                },
+                "scheduledArrivalPlatform": "",
+                "scheduledArrivalTime": "2019-11-11T21:49:00",
+                "scheduledDeparturePlatform": "",
+                "scheduledDepartureTime": "2019-11-11T21:36:00",
+                "to": {
+                    "identifier": {
+                        "testid": "3000510"
+                    },
+                    "latitude": 49.44636917114258,
+                    "locality": "Nürnberg",
+                    "longitude": 11.081809997558594,
+                    "name": "Nürnberg Hbf"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalPlatform": "",
+                "expectedArrivalTime": "2019-11-11T22:09:00",
+                "expectedDeparturePlatform": "",
+                "expectedDepartureTime": "2019-11-11T22:00:00",
+                "from": {
+                    "identifier": {
+                        "testid": "3000510"
+                    },
+                    "latitude": 49.44636917114258,
+                    "locality": "Nürnberg",
+                    "longitude": 11.081809997558594,
+                    "name": "Nürnberg Hbf"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "Nürnberg Langwasser Süd",
+                    "line": {
+                        "mode": "Metro",
+                        "modeString": "U-Bahn",
+                        "name": "U1"
+                    }
+                },
+                "scheduledArrivalPlatform": "",
+                "scheduledArrivalTime": "2019-11-11T22:09:00",
+                "scheduledDeparturePlatform": "",
+                "scheduledDepartureTime": "2019-11-11T22:00:00",
+                "to": {
+                    "identifier": {
+                        "testid": "3001502"
+                    },
+                    "latitude": 49.41585922241211,
+                    "locality": "Nürnberg",
+                    "longitude": 11.114060401916504,
+                    "name": "Nürnberg Messe"
+                }
+            }
+        ]
+    }
+]

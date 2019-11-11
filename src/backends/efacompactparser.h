@@ -36,6 +36,9 @@ private:
     Location parseCompactSf(QXmlStreamReader &reader) const;
     Departure parseCompactDp(QXmlStreamReader &reader) const;
     Route parseCompactRoute(QXmlStreamReader &reader) const;
+    Journey parseCompactTp(QXmlStreamReader &reader) const;
+    JourneySection parseTripSection(QXmlStreamReader &reader) const;
+    void parseTripSectionHalf(QXmlStreamReader &reader, JourneySection &section) const;
 };
 
 }

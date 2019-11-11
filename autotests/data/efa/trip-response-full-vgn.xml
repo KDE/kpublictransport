@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest language="de" lengthUnit="METER" sessionID="0" virtDir="vgnExt">
+  <itdTripRequest requestID="0">
+    <itdMessage type="warning" module="BROKER" code="-10015" subType="itp-monomodal">itp</itdMessage>
+    <itdAddress name="" street="" place="" addressExt1="" addressExt2=""/>
+    <itdOdv type="any" usage="origin" anyObjFilter="0">
+      <itdOdvPlace state="identified" method="itp">
+        <odvPlaceElem omc="9564000" placeID="1" value="9564000:1" span="0" type="remote" mainPlace="1" stateless="placeID:9564000:1" x="11.08295" y="49.44540" mapName="WGS84[DD.ddddd]">Nürnberg</odvPlaceElem>
+        <odvPlaceInput/>
+      </itdOdvPlace>
+      <itdOdvName state="identified" method="itp">
+        <odvNameElem selected="0" matchQuality="100000" x="11.07863" y="49.49396" mapName="WGS84[DD.ddddd]" id="3001391" omc="9564000" placeID="1" anyType="stop" anyTypeSort="2" locality="Nürnberg" objectName="Flughafen" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="" stateless="3001391" gid="de:09564:1391" tariffArea="" tariffAreaName="" tariffLayer1="A,2,2+T,3,3+T,4,4+T,5,5+T,6,6+T,7,7+T,8,8+T,9,9+T,10,10+T" tariffLayer2="K,A,2,3,4,5,6,7,8,9,10"><itdMapItemList><itdMapItem text="" type="SM"><itdImage src="vgn/2_Flughafen.pdf" size="193"/></itdMapItem><itdMapItem text="" type="SM"><itdImage src="vgn/1_N_Flughafen.pdf" size="120"/></itdMapItem></itdMapItemList>Nürnberg, Flughafen</odvNameElem>
+        <odvNameInput>3001391</odvNameInput>
+      </itdOdvName>
+      <itdOdvAssignedStops select="0">
+        <itdOdvAssignedStop stopID="3001391" x="11.07863" y="49.49396" mapName="WGS84[DD.ddddd]" value="3001391:Flughafen" place="Nürnberg" nameWithPlace="Nürnberg Flughafen" distanceTime="0" isTransferStop="0" vm="100" gid="de:09564:1391">Flughafen</itdOdvAssignedStop>
+      </itdOdvAssignedStops>
+    </itdOdv>
+    <itdOdv type="any" usage="destination" anyObjFilter="0">
+      <itdOdvPlace state="identified" method="itp">
+        <odvPlaceElem omc="9564000" placeID="1" value="9564000:1" span="0" type="remote" mainPlace="1" stateless="placeID:9564000:1" x="11.08295" y="49.44540" mapName="WGS84[DD.ddddd]">Nürnberg</odvPlaceElem>
+        <odvPlaceInput/>
+      </itdOdvPlace>
+      <itdOdvName state="identified" method="itp">
+        <odvNameElem selected="0" matchQuality="100000" x="11.11406" y="49.41586" mapName="WGS84[DD.ddddd]" id="3001502" omc="9564000" placeID="1" anyType="stop" anyTypeSort="2" locality="Nürnberg" objectName="Messe" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="" stateless="3001502" gid="de:09564:1502" tariffArea="" tariffAreaName="" tariffLayer1="A,2,2+T,3,3+T,4,4+T,5,5+T,6,6+T,7,7+T,8,8+T,9,9+T,10,10+T" tariffLayer2="K,A,2,3,4,5,6,7,8,9,10"><itdMapItemList><itdMapItem text="" type="SM"><itdImage src="vgn/2_Messe.pdf" size="195"/></itdMapItem></itdMapItemList>Nürnberg, Messe</odvNameElem>
+        <odvNameInput>3001502</odvNameInput>
+      </itdOdvName>
+      <itdOdvAssignedStops select="0">
+        <itdOdvAssignedStop stopID="3001502" x="11.11406" y="49.41586" mapName="WGS84[DD.ddddd]" value="3001502:Messe" place="Nürnberg" nameWithPlace="Nürnberg Messe" distanceTime="0" isTransferStop="0" vm="100" gid="de:09564:1502">Messe</itdOdvAssignedStop>
+      </itdOdvAssignedStops>
+    </itdOdv>
+    <itdOdv type="unknown" usage="via" anyObjFilter="0">
+      <itdOdvPlace state="empty">
+        <odvPlaceElem/>
+      </itdOdvPlace>
+      <itdOdvName state="empty">
+        <odvNameElem/>
+      </itdOdvName>
+    </itdOdv>
+    <itdAddOdvSeq/>
+    <itdTripDateTime deparr="dep" ttpFrom="20181209" ttpTo="20191214">
+      <itdDateTime ttpFrom="20181209" ttpTo="20191214">
+        <itdDate weekday="2" year="2019" month="11" day="11"/>
+        <itdTime hour="21" minute="41"/>
+      </itdDateTime>
+      <itdDateRange>...</itdDateRange>
+    </itdTripDateTime>
+    <itdTripOptions userDefined="0">...</itdTripOptions>
+    <itdItinerary>
+      <itdRouteList>
+        <itdRoute active="1" selected="1" changes="1" distance="0" optValue="0" routeIndex="1" routeTripIndex="1" alternative="0" print="0" delete="0" searchMode="1" cTime="20191111214152171" method="itp" vehicleTime="22" idx="12" publicDuration="00:33">
+          <itdMapItemList>
+            <itdMapItem text="" type="RM">
+              <itdImage src="FILELOAD?Filename=VGN_5DC9C7900.pdf"/>
+            </itdMapItem>
+          </itdMapItemList>
+          <itdPartialRouteList>
+            <itdPartialRoute type="PT" active="1" timeMinute="13" bookingCode="S0R0T0PR0" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+              <itdPoint stopID="3001391" area="11" platform="2" gid="de:09564:1391" pointGid="de:09564:1391:11:2" name="Nürnberg Flughafen" nameWO="Flughafen" place="Nürnberg" platformName="" plannedPlatformName="" usage="departure" x="11.07863" y="49.49396" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" locality="Nürnberg" georef="1000781355:24:MRCV:100">
+                <itdMapItemList>...</itdMapItemList>
+                <itdDateTime>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="21" minute="36"/>
+                </itdDateTime>
+                <itdDateTimeTarget>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="21" minute="36"/>
+                </itdDateTimeTarget>
+              </itdPoint>
+              <itdPoint stopID="3000510" area="10" platform="3" gid="de:09564:510" pointGid="de:09564:510:11:U2" name="Nürnberg Hbf" nameWO="Nürnberg Hbf" place="Nürnberg" platformName="" plannedPlatformName="" usage="arrival" x="11.08181" y="49.44637" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" locality="Nürnberg" georef="1000778326:34:MRCV:100">
+                <itdMapItemList>.. </itdMapItemList>
+                <itdDateTime>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="21" minute="49"/>
+                </itdDateTime>
+                <itdDateTimeTarget>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="21" minute="49"/>
+                </itdDateTimeTarget>
+              </itdPoint>
+              <itdMeansOfTransport name="U-Bahn U2" shortname="U2" symbol="U2" type="1" motType="2" productName="U-Bahn" productId="6" destination="Nürnberg Röthenbach" network="vgn" TTB="1" STT="1" ROP="1" destID="3001970" spTr="" stateless="vgn:11002: :R:j19" tC="14247">
+                <motDivaParams line="11002" project="j19" direction="R" supplement=" " network="vgn"/>
+                <itdRouteDescText> Flughafen - Hauptbahnhof - Plärrer - Röthenbach </itdRouteDescText>
+                <itdOperator>
+                  <code>VA</code>
+                  <name>VAG</name>
+                  <publicCode>VAG</publicCode>
+                </itdOperator>
+              </itdMeansOfTransport>
+              <itdFootPathInfo position="AFTER" duration="2" dTM="20"/>
+              <infoLink>
+                <paramList/>
+                <infoLinkText>Construction works somewhere</infoLinkText>
+                <infoLinkURL>/6dcc1022-383b-7051-0e07-32df77aa7d8e</infoLinkURL>
+                <infoLinkImage/>
+                <infoText>
+                  <content/>
+                  <subtitle>Construction works somewhere - further infos on some random website</subtitle>
+                  <subject/>
+                  <additionalText/>
+                  <image/>
+                  <outputClientText>
+                    <htmlText/>
+                    <wmlText>Construction works somewhere - further infos on some random website</wmlText>
+                    <smsText>Construction works somewhere - further infos on some random website</smsText>
+                    <speechText/>
+                  </outputClientText>
+                </infoText>
+              </infoLink>
+              <itdStopSeq>...</itdStopSeq>
+              <itdPathCoordinates>
+                <coordEllipsoid>WGS84</coordEllipsoid>
+                <coordType>GEO_DECIMAL</coordType>
+                <itdCoordinateString decimal="." cs="," ts="&amp;#x20;" format="x,y">...</itdCoordinateString>
+                <itdCoordinateReductionList/>
+              </itdPathCoordinates>
+              <itdITPathDescription altitudeDiffUp="" altitudeDiffDown="">...</itdITPathDescription>
+              <itdInterchangePathCoordinates>
+                <itdPathCoordinates>
+                  <coordEllipsoid>WGS84</coordEllipsoid>
+                  <coordType>GEO_DECIMAL</coordType>
+                  <itdCoordinateString decimal="." cs="," ts="&amp;#x20;" format="x,y">...</itdCoordinateString>
+                  <itdCoordinateReductionList/>
+                </itdPathCoordinates>
+              </itdInterchangePathCoordinates>
+            </itdPartialRoute>
+            <itdPartialRoute type="PT" active="1" timeMinute="9" bookingCode="S0R0T0PR1" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+              <itdPoint stopID="3000510" area="11" platform="2" gid="de:09564:510" pointGid="de:09564:510:11:U1_2" name="Nürnberg Hbf" nameWO="Nürnberg Hbf" place="Nürnberg" platformName="" plannedPlatformName="" usage="departure" x="11.08181" y="49.44637" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" locality="Nürnberg" georef="1000821189:4:WG10:100">
+                <itdMapItemList>...</itdMapItemList>
+                <itdDateTime>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="22" minute="0"/>
+                </itdDateTime>
+                <itdDateTimeTarget>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="22" minute="0"/>
+                </itdDateTimeTarget>
+              </itdPoint>
+              <itdPoint stopID="3001502" area="11" platform="2" gid="de:09564:1502" pointGid="de:09564:1502:11:2" name="Nürnberg Messe" nameWO="Messe" place="Nürnberg" platformName="" plannedPlatformName="" usage="arrival" x="11.11406" y="49.41586" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" locality="Nürnberg" georef="1000782100:13:WG10:100">
+                <itdMapItemList>...</itdMapItemList>
+                <itdDateTime>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="22" minute="9"/>
+                </itdDateTime>
+                <itdDateTimeTarget>
+                  <itdDate year="2019" month="11" day="11" weekday="2"/>
+                  <itdTime hour="22" minute="9"/>
+                </itdDateTimeTarget>
+              </itdPoint>
+              <itdMeansOfTransport name="U-Bahn U1" shortname="U1" symbol="U1" type="1" motType="2" productName="U-Bahn" productId="6" destination="Nürnberg Langwasser Süd" network="vgn" TTB="1" STT="1" ROP="1" destID="3001507" spTr="" stateless="vgn:11001: :H:j19" tC="9482">
+                <motDivaParams line="11001" project="j19" direction="H" supplement=" " network="vgn"/>
+                <itdRouteDescText>Fürth Hardhöhe - Nürnberg Plärrer - Hauptbahnhof - Langwasser Süd</itdRouteDescText>
+                <itdOperator>
+                  <code>VI</code>
+                  <name>VAG / infra fuerth</name>
+                  <publicCode>VAGI</publicCode>
+                </itdOperator>
+              </itdMeansOfTransport>
+              <itdStopSeq>...</itdStopSeq>
+              <itdPathCoordinates>
+                <coordEllipsoid>WGS84</coordEllipsoid>
+                <coordType>GEO_DECIMAL</coordType>
+                <itdCoordinateString decimal="." cs="," ts="&amp;#x20;" format="x,y">...</itdCoordinateString>
+                <itdCoordinateReductionList/>
+              </itdPathCoordinates>
+            </itdPartialRoute>
+          </itdPartialRouteList>
+          <itdFare cFEPR="1">...</itdFare>
+          <itdInfoTextList/>
+          <itdResTL RVB="00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000"/>
+          <seqRoutes>
+            <seqRoute publicDuration="00:33">1-2</seqRoute>
+          </seqRoutes>
+        </itdRoute>
+      </itdRouteList>
+    </itdItinerary>
+  </itdTripRequest>
+</itdRequest>

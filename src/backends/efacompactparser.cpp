@@ -218,6 +218,99 @@ std::vector<Departure> EfaCompactParser::parseDmResponse(const QByteArray &data)
     return res;
 }
 
+void EfaCompactParser::parseTripSectionHalf(QXmlStreamReader &reader, JourneySection &section) const
+{
+    Location loc;
+    std::pair<QDateTime, QDateTime> dts;
+
+    bool isArr = true;
+    while (!reader.atEnd()) {
+        reader.readNext();
+        if (reader.tokenType() == QXmlStreamReader::EndElement && reader.name() == QLatin1String("p")) {
+            break;
+        }
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("n") && loc.name().isEmpty()) {
+            loc.setName(reader.readElementText());
+        } else if (reader.name() == QLatin1String("de")) {
+            loc.setName(reader.readElementText());
+        } else if (reader.name() == QLatin1String("u")) {
+            isArr = reader.readElementText() == QLatin1String("arrival");
+        } else if (reader.name() == QLatin1String("st")) {
+            dts = parseCompactTimePair(reader);
+        } else if (reader.name() == QLatin1String("id")) {
+            loc.setIdentifier(m_locationIdentifierType, reader.readElementText());
+        } else if (reader.name() == QLatin1String("pc")) {
+            loc.setLocality(reader.readElementText());
+        } else if (reader.name() == QLatin1String("c")) {
+            parseCompactCoordinate(reader, loc);
+        }
+        // TODO platform?
+    }
+
+    if (isArr) {
+        section.setTo(loc);
+        section.setScheduledArrivalTime(dts.first);
+        section.setExpectedArrivalTime(dts.second);
+    } else {
+        section.setFrom(loc);
+        section.setScheduledDepartureTime(dts.first);
+        section.setExpectedDepartureTime(dts.second);
+    }
+}
+
+JourneySection EfaCompactParser::parseTripSection(QXmlStreamReader &reader) const
+{
+    JourneySection section;
+    section.setMode(JourneySection::PublicTransport);
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        if (reader.tokenType() == QXmlStreamReader::EndElement && reader.name() == QLatin1String("l")) {
+            break;
+        }
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("p")) {
+            parseTripSectionHalf(reader, section);
+        } else if (reader.name() == QLatin1String("m")) {
+            // TODO <m> also contains transfer/walk/etc elements?
+            // TODO we get the wrong mode type here, for trips <co> rather than <ty> matters?
+            section.setRoute(parseCompactRoute(reader));
+        }
+        // TODO realtime flag, interchange tag, notes
+    }
+    return section;
+}
+
+Journey EfaCompactParser::parseCompactTp(QXmlStreamReader &reader) const
+{
+    Journey jny;
+    std::vector<JourneySection> sections;
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        if (reader.tokenType() == QXmlStreamReader::EndElement && reader.name() == QLatin1String("tp")) {
+            break;
+        }
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            continue;
+        }
+
+        if (reader.name() == QLatin1String("l")) {
+            sections.push_back(parseTripSection(reader));
+        }
+    }
+
+    jny.setSections(std::move(sections));
+    return jny;
+}
+
 std::vector<Journey> EfaCompactParser::parseTripResponse(const QByteArray &data) const
 {
     //qDebug().noquote() << data;
@@ -229,7 +322,12 @@ std::vector<Journey> EfaCompactParser::parseTripResponse(const QByteArray &data)
             continue;
         }
 
-        // TODO
+        if (reader.name() == QLatin1String("tp")) {
+            res.push_back(parseCompactTp(reader));
+        } else {
+            reader.readNext();
+        }
     }
+
     return res;
 }

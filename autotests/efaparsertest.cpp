@@ -19,6 +19,7 @@
 #include "backends/efaxmlparser.h"
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 
 #include <QFile>
@@ -173,6 +174,67 @@ private Q_SLOTS:
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
     }
+
+    void testParseTrips_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("vgn-departures")
+            << s(SOURCE_DIR "/data/efa/trip-response-full-vgn.xml")
+            << s(SOURCE_DIR "/data/efa/trip-response-full-vgn.json");
+    }
+
+    void testParseTrips()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        KPublicTransport::EfaXmlParser parser;
+        parser.setLocationIdentifierType(s("testid"));
+
+        const auto res = parser.parseTripResponse(readFile(inFileName));
+        const auto jsonRes = Journey::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
+
+    void testParseCompactTrips_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("by-departures")
+            << s(SOURCE_DIR "/data/efa/trip-response-compact-by.xml")
+            << s(SOURCE_DIR "/data/efa/trip-response-compact-by.json");
+    }
+
+    void testParseCompactTrips()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        KPublicTransport::EfaCompactParser parser;
+        parser.setLocationIdentifierType(s("testid"));
+
+        const auto res = parser.parseTripResponse(readFile(inFileName));
+        const auto jsonRes = Journey::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
+
 };
 
 QTEST_GUILESS_MAIN(EfaParserTest)
