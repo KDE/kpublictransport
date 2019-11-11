@@ -15,7 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "backends/efaparser.h"
+#include "backends/efacompactparser.h"
+#include "backends/efaxmlparser.h"
 
 #include <KPublicTransport/Location>
 
@@ -68,7 +69,7 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
 
-        KPublicTransport::EfaParser parser;
+        KPublicTransport::EfaXmlParser parser;
         parser.setLocationIdentifierType(s("testid"));
 
         const auto res = parser.parseStopFinderResponse(readFile(inFileName));
@@ -82,7 +83,6 @@ private Q_SLOTS:
         QCOMPARE(jsonRes, ref);
     }
 
-#if 0
     void testParseCompactLocation_data()
     {
         QTest::addColumn<QString>("inFileName");
@@ -111,7 +111,6 @@ private Q_SLOTS:
         }
         QCOMPARE(jsonRes, ref);
     }
-#endif
 };
 
 QTEST_GUILESS_MAIN(EfaParserTest)

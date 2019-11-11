@@ -16,7 +16,8 @@
 */
 
 #include "efabackend.h"
-#include "efaparser.h"
+#include "efacompactparser.h"
+#include "efaxmlparser.h"
 #include "cache.h"
 #include "logging.h"
 
@@ -92,7 +93,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
             return;
         }
         qDebug() << netReply->url();
-        EfaParser p;
+        EfaXmlParser p;
         p.setLocationIdentifierType(locationIdentifierType());
         auto res = p.parseStopFinderResponse(data);
         if (p.error() != Reply::NoError) {
@@ -154,7 +155,7 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
             return;
         }
         qDebug() << netReply->url();
-        EfaParser p;
+        EfaXmlParser p;
         p.setLocationIdentifierType(locationIdentifierType());
         auto res = p.parseDmResponse(data);
         if (p.error() != Reply::NoError) {
@@ -223,7 +224,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
             return;
         }
         qDebug() << netReply->url();
-        EfaParser p;
+        EfaXmlParser p;
         p.setLocationIdentifierType(locationIdentifierType());
         auto res = p.parseTripResponse(data);
         if (p.error() != Reply::NoError) {

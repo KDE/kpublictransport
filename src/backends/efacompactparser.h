@@ -15,45 +15,28 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_EFAPARSER_H
-#define KPUBLICTRANSPORT_EFAPARSER_H
+#ifndef KPUBLICTRANSPORT_EFACOMPACTPARSER_H
+#define KPUBLICTRANSPORT_EFACOMPACTPARSER_H
 
-#include "kpublictransport_export.h"
-
-#include <KPublicTransport/Reply>
-
-#include <QHash>
-#include <QString>
-
-#include <vector>
-
-class QByteArray;
-class QXmlStreamReader;
+#include "efaparser.h"
 
 namespace KPublicTransport {
 
-class Departure;
-class Journey;
-class JourneySection;
-class Location;
-
-/** Base class for parsers for responses from EFA services.
- *  @internal just exported for unit tests
+/** Parser for compact XML responses from EFA services.
+ * @internal just exported for unit tests
  */
-class KPUBLICTRANSPORT_EXPORT EfaParser
+class KPUBLICTRANSPORT_EXPORT EfaCompactParser : public EfaParser
 {
 public:
-    void setLocationIdentifierType(const  QString &locationIdentifierType);
+    std::vector<Location> parseStopFinderResponse(const QByteArray &data) const;
+    std::vector<Departure> parseDmResponse(const QByteArray &data) const;
+    std::vector<Journey> parseTripResponse(const QByteArray &data) const;
 
-    Reply::Error error() const;
-    QString errorMessage() const;
-
-protected:
-    QString m_locationIdentifierType;
-    mutable QString m_errorMsg;
-    mutable Reply::Error m_error = Reply::NoError;
+private:
+    Location parseCompactSf(QXmlStreamReader &reader) const;
+    Departure parseCompactDp(QXmlStreamReader &reader) const;
 };
 
 }
 
-#endif // KPUBLICTRANSPORT_EFAPARSER_H
+#endif // KPUBLICTRANSPORT_EFACOMPACTPARSER_H
