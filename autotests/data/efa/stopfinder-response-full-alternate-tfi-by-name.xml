@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest language="en" lengthUnit="METER" sessionID="0" virtDir="nta">
+  <itdVersionInfo>
+    <ptKernel>
+      <appVersion>...</appVersion>
+      <dataFormat>...</dataFormat>
+      <dataBuild>...</dataBuild>
+    </ptKernel>
+  </itdVersionInfo>
+  <itdStopFinderRequest requestID="0">
+    <itdOdv type="stop" usage="sf" anyObjFilter="2">
+      <itdOdvPlace state="empty">
+        <odvPlaceElem/>
+      </itdOdvPlace>
+      <itdOdvName state="identified" method="itp">
+        <odvNameElem selected="0" matchQuality="0" x="-8.45808" y="51.90191" mapName="WGS84[DD.ddddd]" stopID="51026193" value="51026193:1" isTransferStop="0" stateless="51026193">Cork Kent</odvNameElem>
+        <odvNameInput>Cork Kent</odvNameInput>
+      </itdOdvName>
+      <genAttrList>
+        <genAttrElem>
+          <name>anyObjFilter</name>
+          <value>STOP</value>
+        </genAttrElem>
+      </genAttrList>
+    </itdOdv>
+    <itdDateTime ttpFrom="20190901" ttpTo="20191221">
+      <itdDate weekday="1" year="2019" month="11" day="10"/>
+      <itdTime hour="13" minute="19"/>
+    </itdDateTime>
+  </itdStopFinderRequest>
+</itdRequest>

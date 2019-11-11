@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest language="de" lengthUnit="METER" sessionID="0" client="" virtDir="vgnExt">
+  <itdStopFinderRequest requestID="0">
+    <itdOdv type="coord" usage="sf" anyObjFilter="2" buildNiveau="-1">
+      <itdOdvPlace state="identified">
+        <odvPlaceElem omc="9564000" placeID="1500000000" value="9564000:1500000000" span="0" type="remote" mainPlace="0" stateless="placeID:9564000:1500000000">Nürnberg</odvPlaceElem>
+        <odvPlaceInput/>
+      </itdOdvPlace>
+      <itdOdvName state="identified">
+        <odvNameElem selected="0" matchQuality="0" x="11.07850" y="49.49401" mapName="WGS84[DD.ddddd]" value="11.07850:49.49401:WGS84[DD.ddddd]:Flughafen" stateless="coord:11.07850:49.49401:WGS84[DD.ddddd]:Flughafen">Flughafen</odvNameElem>
+        <odvNameInput>11.0785:49.494:WGS84[DD.ddddd]</odvNameInput>
+      </itdOdvName>
+      <itdOdvAssignedStops select="0">
+        <itdOdvAssignedStop stopID="3001391" x="11.07900" y="49.49382" mapName="WGS84[DD.ddddd]" value="3001391:Flughafen" place="Nürnberg" nameWithPlace="Nürnberg Flughafen" distance="73" distanceTime="1" isTransferStop="0" vm="100" gid="de:09564:1391">Flughafen</itdOdvAssignedStop>
+        <itdOdvAssignedStop stopID="3001396" x="11.08311" y="49.49288" mapName="WGS84[DD.ddddd]" value="3001396:Cargo-Zentrum" place="Nürnberg" nameWithPlace="Nürnberg Cargo-Zentrum" distance="376" distanceTime="5" isTransferStop="0" vm="100" gid="de:09564:1396">Cargo-Zentrum</itdOdvAssignedStop>
+        <itdOdvAssignedStop stopID="3001400" x="11.07125" y="49.49362" mapName="WGS84[DD.ddddd]" value="3001400:Luftamt Nordbayern" place="Nürnberg" nameWithPlace="Nürnberg Luftamt Nordbayern" distance="611" distanceTime="9" isTransferStop="0" vm="100" gid="de:09564:1400">Luftamt Nordbayern</itdOdvAssignedStop>
+      </itdOdvAssignedStops>
+      <genAttrList>
+        <genAttrElem>
+          <name>anyObjFilter</name>
+          <value>STOP</value>
+        </genAttrElem>
+      </genAttrList>
+    </itdOdv>
+    <itdDateTime ttpFrom="20181209" ttpTo="20191214">
+      <itdDate weekday="1" year="2019" month="11" day="10"/>
+      <itdTime hour="14" minute="25"/>
+    </itdDateTime>
+  </itdStopFinderRequest>
+</itdRequest>

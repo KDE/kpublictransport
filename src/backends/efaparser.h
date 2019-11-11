@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_EFAPARSER_H
 #define KPUBLICTRANSPORT_EFAPARSER_H
 
+#include "kpublictransport_export.h"
+
 #include <KPublicTransport/Reply>
 
 #include <QHash>
@@ -35,8 +37,10 @@ class Journey;
 class JourneySection;
 class Location;
 
-/** Parser for responses from EFA services. */
-class EfaParser
+/** Parser for responses from EFA services.
+ *  @internal just exported for unit tests
+ */
+class KPUBLICTRANSPORT_EXPORT EfaParser
 {
 public:
     void setLocationIdentifierType(const  QString &locationIdentifierType);

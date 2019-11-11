@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<efa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <now>2019-11-11T19:07:29</now>
+  <pas>
+    <pa>
+      <n>requestID</n>
+      <v>0</v>
+    </pa>
+    <pa>
+      <n>sessionID</n>
+      <v>0</v>
+    </pa>
+    <pa>
+      <n>serverID</n>
+      <v>...</v>
+    </pa>
+  </pas>
+  <sf>
+    <p>
+      <n>Hauptbahnhof</n>
+      <u>sf</u>
+      <ty>stop</ty>
+      <r>
+        <id>80001152</id>
+        <gid>de:09663:177</gid>
+        <stateless>80001152</stateless>
+        <omc>9663000</omc>
+        <pc>Würzburg</pc>
+        <pid>1</pid>
+        <c>9.93578,49.80180</c>
+      </r>
+      <qal>0</qal>
+    </p>
+  </sf>
+</efa>
+

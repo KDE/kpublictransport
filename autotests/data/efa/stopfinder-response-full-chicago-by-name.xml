@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<itdRequest language="en" lengthUnit="FEET" sessionID="0" serverID="efa1" virtDir="ccg3">
+  <itdVersionInfo>
+    <ptKernel>
+      <appVersion>...</appVersion>
+      <dataFormat>...</dataFormat>
+      <dataBuild>...</dataBuild>
+    </ptKernel>
+  </itdVersionInfo>
+  <itdStopFinderRequest requestID="0">
+    <itdOdv type="any" usage="sf" anyObjFilter="2">
+      <itdOdvPlace state="identified" method="itp">
+        <odvPlaceElem omc="92016000" placeID="1" value="92016000:1" span="0" type="remote" mainPlace="1" stateless="placeID:92016000:1">Chicago</odvPlaceElem>
+        <odvPlaceInput/>
+      </itdOdvPlace>
+      <itdOdvName state="identified" method="itp">
+        <odvNameElem x="-87.88292" y="41.98919" mapName="WGS84[DD.ddddd]" id="10120152" omc="92016000" placeID="1" anyType="stop" locality="Chicago" objectName="O'hare Airport Kiss-N-Fly" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="" stateless="10120152" gid="">O'hare Airport Kiss-N-Fly Chicago</odvNameElem>
+        <odvNameInput>O'Hare Airport</odvNameInput>
+      </itdOdvName>
+      <itdOdvAssignedStops select="0">
+        <itdOdvAssignedStop stopID="10120152" x="-87.88292" y="41.98919" mapName="WGS84[DD.ddddd]" value="10120152:O'hare Airport Kiss-N-Fly" place="Chicago" nameWithPlace="O'hare Airport Kiss-N-Fly, Chicago" distanceTime="0" isTransferStop="0" vm="100" gid="">O'hare Airport Kiss-N-Fly</itdOdvAssignedStop>
+      </itdOdvAssignedStops>
+    </itdOdv>
+    <itdDateTime ttpFrom="20181101" ttpTo="20191231">
+      <itdDate weekday="1" year="2019" month="11" day="10"/>
+      <itdTime hour="6" minute="56"/>
+    </itdDateTime>
+  </itdStopFinderRequest>
+</itdRequest>
+
