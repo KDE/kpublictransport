@@ -1,0 +1,11 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in Bavaria, Germany.",
+        "Name": "Bayern Fahrplan"
+    },
+    "options": {
+        "compactXmlRepsonse": true,
+        "endpoint": "https://mobile.defas-fgi.de/beg/"
+    },
+    "type": "efa"
+}

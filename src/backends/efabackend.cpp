@@ -93,13 +93,12 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
             return;
         }
         qDebug() << netReply->url();
-        EfaXmlParser p;
-        p.setLocationIdentifierType(locationIdentifierType());
-        auto res = p.parseStopFinderResponse(data);
-        if (p.error() != Reply::NoError) {
+        auto p = make_parser();
+        auto res = p->parseStopFinderResponse(data);
+        if (p->error() != Reply::NoError) {
             Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
-            addError(reply, p.error(), p.errorMessage());
-            qCDebug(Log) << p.error() << p.errorMessage();
+            addError(reply, p->error(), p->errorMessage());
+            qCDebug(Log) << p->error() << p->errorMessage();
         } else {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
@@ -155,12 +154,11 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
             return;
         }
         qDebug() << netReply->url();
-        EfaXmlParser p;
-        p.setLocationIdentifierType(locationIdentifierType());
-        auto res = p.parseDmResponse(data);
-        if (p.error() != Reply::NoError) {
-            addError(reply, p.error(), p.errorMessage());
-            qCDebug(Log) << p.error() << p.errorMessage();
+        auto p = make_parser();
+        auto res = p->parseDmResponse(data);
+        if (p->error() != Reply::NoError) {
+            addError(reply, p->error(), p->errorMessage());
+            qCDebug(Log) << p->error() << p->errorMessage();
         } else {
             addResult(reply, this, std::move(res));
         }
@@ -224,12 +222,11 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
             return;
         }
         qDebug() << netReply->url();
-        EfaXmlParser p;
-        p.setLocationIdentifierType(locationIdentifierType());
-        auto res = p.parseTripResponse(data);
-        if (p.error() != Reply::NoError) {
-            addError(reply, p.error(), p.errorMessage());
-            qCDebug(Log) << p.error() << p.errorMessage();
+        auto p = make_parser();
+        auto res = p->parseTripResponse(data);
+        if (p->error() != Reply::NoError) {
+            addError(reply, p->error(), p->errorMessage());
+            qCDebug(Log) << p->error() << p->errorMessage();
         } else {
             addResult(reply, this, std::move(res));
         }
@@ -241,4 +238,16 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
 QString EfaBackend::locationIdentifierType() const
 {
     return m_locationIdentifierType.isEmpty() ? backendId() : m_locationIdentifierType;
+}
+
+std::unique_ptr<EfaParser> EfaBackend::make_parser() const
+{
+    std::unique_ptr<EfaParser> p;
+    if (m_compactXmlResponse) {
+        p = std::make_unique<EfaCompactParser>();
+    } else {
+        p = std::make_unique<EfaXmlParser>();
+    }
+    p->setLocationIdentifierType(locationIdentifierType());
+    return p;
 }

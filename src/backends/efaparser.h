@@ -43,10 +43,16 @@ class Location;
 class KPUBLICTRANSPORT_EXPORT EfaParser
 {
 public:
+    virtual ~EfaParser();
+
     void setLocationIdentifierType(const  QString &locationIdentifierType);
 
     Reply::Error error() const;
     QString errorMessage() const;
+
+    virtual std::vector<Location> parseStopFinderResponse(const QByteArray &data) const = 0;
+    virtual std::vector<Departure> parseDmResponse(const QByteArray &data) const = 0;
+    virtual std::vector<Journey> parseTripResponse(const QByteArray &data) const = 0;
 
 protected:
     QString m_locationIdentifierType;

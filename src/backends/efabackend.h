@@ -20,7 +20,11 @@
 
 #include "abstractbackend.h"
 
+#include <memory>
+
 namespace KPublicTransport {
+
+class EfaParser;
 
 /** Backend for EFA public transport systems. */
 class EfaBackend : public AbstractBackend
@@ -30,6 +34,8 @@ class EfaBackend : public AbstractBackend
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
     /** Identifier type used for stations. Default is backendId(). */
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
+    /** Backend is using compact XML responses. */
+    Q_PROPERTY(bool compactXmlRepsonse MEMBER  m_compactXmlResponse)
 
 public:
     EfaBackend();
@@ -43,9 +49,11 @@ public:
 
 private:
     QString locationIdentifierType() const;
+    std::unique_ptr<EfaParser> make_parser() const;
 
     QString m_endpoint;
     QString m_locationIdentifierType;
+    bool m_compactXmlResponse = false;
 };
 
 }

@@ -19,6 +19,8 @@
 
 using namespace KPublicTransport;
 
+EfaParser::~EfaParser() = default;
+
 void EfaParser::setLocationIdentifierType(const QString& locationIdentifierType)
 {
     m_locationIdentifierType = locationIdentifierType;

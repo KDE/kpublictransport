@@ -28,9 +28,9 @@ namespace KPublicTransport {
 class KPUBLICTRANSPORT_EXPORT EfaXmlParser : public EfaParser
 {
 public:
-    std::vector<Location> parseStopFinderResponse(const QByteArray &data) const;
-    std::vector<Departure> parseDmResponse(const QByteArray &data) const;
-    std::vector<Journey> parseTripResponse(const QByteArray &data) const;
+    std::vector<Location> parseStopFinderResponse(const QByteArray &data) const override;
+    std::vector<Departure> parseDmResponse(const QByteArray &data) const override;
+    std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
 
 private:
     Location parseItdOdvAssignedStop(QXmlStreamReader &reader) const;
