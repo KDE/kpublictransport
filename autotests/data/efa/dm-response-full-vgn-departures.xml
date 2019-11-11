@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest language="de" lengthUnit="METER" sessionID="0" virtDir="vgnExt">
+  <itdDepartureMonitorRequest requestID="0">
+    <itdOdv type="any" usage="dm" anyObjFilter="0">
+      <itdOdvPlace state="identified" method="itp">
+        <odvPlaceElem omc="9564000" placeID="1" value="9564000:1" span="0" type="remote" mainPlace="1" stateless="placeID:9564000:1" x="11.08295" y="49.44540" mapName="WGS84[DD.ddddd]">Nürnberg</odvPlaceElem>
+        <odvPlaceInput/>
+      </itdOdvPlace>
+      <itdOdvName state="identified" method="itp">
+        <odvNameElem selected="0" matchQuality="100000" x="11.07863" y="49.49396" mapName="WGS84[DD.ddddd]" id="3001391" omc="9564000" placeID="1" anyType="stop" anyTypeSort="2" locality="Nürnberg" objectName="Flughafen" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="" stateless="3001391" gid="de:09564:1391" tariffArea="" tariffAreaName="" tariffLayer1="A,2,2+T,3,3+T,4,4+T,5,5+T,6,6+T,7,7+T,8,8+T,9,9+T,10,10+T" tariffLayer2="K,A,2,3,4,5,6,7,8,9,10"><itdMapItemList><itdMapItem text="" type="SM"><itdImage src="vgn/2_Flughafen.pdf" size="193"/></itdMapItem><itdMapItem text="" type="SM"><itdImage src="vgn/1_N_Flughafen.pdf" size="120"/></itdMapItem></itdMapItemList>Nürnberg, Flughafen</odvNameElem>
+        <odvNameInput>3001391</odvNameInput>
+      </itdOdvName>
+      <itdOdvAssignedStops select="0">
+        <itdOdvAssignedStop stopID="3001391" x="11.07863" y="49.49396" mapName="WGS84[DD.ddddd]" value="3001391:Flughafen" place="Nürnberg" nameWithPlace="Nürnberg Flughafen" distanceTime="0" isTransferStop="0" vm="100" gid="de:09564:1391">Flughafen</itdOdvAssignedStop>
+      </itdOdvAssignedStops>
+    </itdOdv>
+    <itdDateTime ttpFrom="20181209" ttpTo="20191214">
+      <itdDate weekday="2" year="2019" month="11" day="11"/>
+      <itdTime hour="20" minute="0"/>
+    </itdDateTime>
+    <itdDMDateTime deparr="dep"/>
+    <itdDateRange>...</itdDateRange>
+    <itdTripOptions>...</itdTripOptions>
+    <itdServingLines>...</itdServingLines>
+    <itdDepartureList>
+      <itdDeparture stopID="3001391" x="11.07908" y="49.49388" mapName="WGS84[DD.ddddd]" area="11" platform="2" gid="de:09564:1391" pointGid="de:09564:1391:11:2" platformName="" stopName="Nürnberg Flughafen" nameWO="Flughafen" countdown="2">
+        <itdDateTime>
+          <itdDate year="2019" month="11" day="11" weekday="2"/>
+          <itdTime hour="20" minute="2" ap=""/>
+        </itdDateTime>
+        <itdServingLine key="14289" code="1" number="U2" symbol="U2" motType="2" productId="6" realtime="0" direction="Nürnberg Röthenbach" directionFrom="Nürnberg Flughafen" destID="3001970" stateless="vgn:11002: :R:j19">
+          <itdNoTrain name="U-Bahn"/>
+          <motDivaParams line="11002" project="j19" direction="R" supplement=" " network="vgn"/>
+          <itdRouteDescText> Flughafen - Hauptbahnhof - Plärrer - Röthenbach </itdRouteDescText>
+          <itdOperator>
+            <code>VA</code>
+            <name>VAG</name>
+          </itdOperator>
+        </itdServingLine>
+      </itdDeparture>
+      <itdDeparture stopID="3001391" x="11.07893" y="49.49386" mapName="WGS84[DD.ddddd]" area="3" platform="6" gid="de:09564:1391" pointGid="de:09564:1391:3:6" platformName="" stopName="Nürnberg Flughafen" nameWO="Flughafen" countdown="5">
+        <itdDateTime>
+          <itdDate year="2019" month="11" day="11" weekday="2"/>
+          <itdTime hour="20" minute="5" ap=""/>
+        </itdDateTime>
+        <itdServingLine key="119" code="3" number="30" symbol="30" motType="5" productId="8" realtime="0" direction="Erlangen Hugenottenpl." directionFrom="Nürnberg, Nordostbahnhof" destID="3003171" stateless="vgn:13030: :H:j19">
+          <itdNoTrain name="Stadtbus"/>
+          <motDivaParams line="13030" project="j19" direction="H" supplement=" " network="vgn"/>
+          <itdRouteDescText>Nürnberg Nordostbahnhof - Flughafen - Am Wegfeld -  Erlangen Arcaden - Hugenottenplatz</itdRouteDescText>
+          <itdOperator>
+            <code>VE</code>
+            <name>VAG / ESTW</name>
+          </itdOperator>
+        </itdServingLine>
+        <itdInfoLinkList>
+          <itdLineInfoList>
+            <infoLink>
+              <paramList/>
+              <infoLinkText>Delays due to disruption</infoLinkText>
+              <infoLinkURL>/0042a685-4bed-dacd-ea2c-c0f3cc8fd0b7</infoLinkURL>
+              <infoLinkImage/>
+              <infoText>
+                <content/>
+                <subtitle>Delays due to disruption - find further details on random website</subtitle>
+                <subject/>
+                <additionalText/>
+                <image/>
+                <outputClientText>
+                  <htmlText/>
+                  <wmlText>Delays due to disruption - find further details on random website</wmlText>
+                  <smsText>Delays due to disruption - find further details on random website</smsText>
+                  <speechText/>
+                </outputClientText>
+              </infoText>
+            </infoLink>
+            <infoLink>
+              <paramList/>
+              <infoLinkText>Constructions works at the airport</infoLinkText>
+              <infoLinkURL>/0a1892e4-a0c9-9240-78e6-9228f256b11b</infoLinkURL>
+              <infoLinkImage/>
+              <infoText>
+                <content/>
+                <subtitle>Constructions works at the airport - find further details on random website</subtitle>
+                <subject/>
+                <additionalText/>
+                <image/>
+                <outputClientText>
+                  <htmlText/>
+                  <wmlText>Constructions works at the airport - find further details on random website</wmlText>
+                  <smsText>Constructions works at the airport - find further details on random website</smsText>
+                  <speechText/>
+                </outputClientText>
+              </infoText>
+            </infoLink>
+          </itdLineInfoList>
+        </itdInfoLinkList>
+      </itdDeparture>
+    </itdDepartureList>
+  </itdDepartureMonitorRequest>
+</itdRequest>

@@ -20,6 +20,7 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
 
 #include <QHash>
@@ -55,6 +56,12 @@ public:
     virtual std::vector<Journey> parseTripResponse(const QByteArray &data) const = 0;
 
 protected:
+    /** convert "means of transport" type id to Line::Mode
+     * so far this seems to be identical in all installations, if that eventually changes
+     * this needs a similar configuration as Hafas uses.
+     */
+    static Line::Mode motTypeToLineMode(int mot);
+
     QString m_locationIdentifierType;
     mutable QString m_errorMsg;
     mutable Reply::Error m_error = Reply::NoError;

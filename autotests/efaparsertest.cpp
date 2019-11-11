@@ -18,6 +18,7 @@
 #include "backends/efacompactparser.h"
 #include "backends/efaxmlparser.h"
 
+#include <KPublicTransport/Departure>
 #include <KPublicTransport/Location>
 
 #include <QFile>
@@ -46,6 +47,7 @@ private Q_SLOTS:
     void initTestCase()
     {
         qputenv("TZ", "UTC");
+        qRegisterMetaType<Disruption::Effect>();
     }
 
     void testParseLocation_data()
@@ -109,6 +111,66 @@ private Q_SLOTS:
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
         }
+        QCOMPARE(jsonRes, ref);
+    }
+
+    void testParseDepartures_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("vgn-departures")
+            << s(SOURCE_DIR "/data/efa/dm-response-full-vgn-departures.xml")
+            << s(SOURCE_DIR "/data/efa/dm-response-full-vgn-departures.json");
+    }
+
+    void testParseDepartures()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        KPublicTransport::EfaXmlParser parser;
+        parser.setLocationIdentifierType(s("testid"));
+
+        const auto res = parser.parseDmResponse(readFile(inFileName));
+        const auto jsonRes = Departure::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
+
+    void testParseCompactDepartures_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("by-departures")
+            << s(SOURCE_DIR "/data/efa/dm-response-compact-by-departures.xml")
+            << s(SOURCE_DIR "/data/efa/dm-response-compact-by-departures.json");
+    }
+
+    void testParseCompactDepartures()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        KPublicTransport::EfaCompactParser parser;
+        parser.setLocationIdentifierType(s("testid"));
+
+        const auto res = parser.parseDmResponse(readFile(inFileName));
+        const auto jsonRes = Departure::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
     }
 };

@@ -1,0 +1,48 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Nürnberg Röthenbach",
+            "line": {
+                "mode": "Metro",
+                "name": "U2"
+            }
+        },
+        "scheduledDepartureTime": "2019-11-11T20:02:00",
+        "scheduledPlatform": "",
+        "stopPoint": {
+            "identifier": {
+                "testid": "3001391"
+            },
+            "latitude": 49.49388122558594,
+            "locality": "Nürnberg",
+            "longitude": 11.079079627990723,
+            "name": "Nürnberg Flughafen"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "notes": [
+            "Delays due to disruption - find further details on random website",
+            "Constructions works at the airport - find further details on random website"
+        ],
+        "route": {
+            "direction": "Erlangen Hugenottenpl.",
+            "line": {
+                "mode": "Bus",
+                "name": "30"
+            }
+        },
+        "scheduledDepartureTime": "2019-11-11T20:05:00",
+        "scheduledPlatform": "",
+        "stopPoint": {
+            "identifier": {
+                "testid": "3001391"
+            },
+            "latitude": 49.493858337402344,
+            "locality": "Nürnberg",
+            "longitude": 11.078929901123047,
+            "name": "Nürnberg Flughafen"
+        }
+    }
+]

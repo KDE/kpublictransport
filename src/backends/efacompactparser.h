@@ -35,6 +35,7 @@ public:
 private:
     Location parseCompactSf(QXmlStreamReader &reader) const;
     Departure parseCompactDp(QXmlStreamReader &reader) const;
+    Route parseCompactRoute(QXmlStreamReader &reader) const;
 };
 
 }
