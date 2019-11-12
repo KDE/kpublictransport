@@ -189,6 +189,7 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
 {
     Location loc;
     std::pair<QDateTime, QDateTime> dts;
+    QString platform;
 
     bool isArr = true;
     while (reader.readNextSibling()) {
@@ -207,10 +208,11 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
                     loc.setIdentifier(m_locationIdentifierType, subReader.readElementText());
                 } else if (subReader.name() == QLatin1String("pc")) {
                     loc.setLocality(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("pl")) {
+                    platform = subReader.readElementText();
                 } else if (subReader.name() == QLatin1String("c")) {
                     parseCompactCoordinate(subReader.readElementText(), loc);
                 }
-                // TODO platform?
             }
         }
 
@@ -220,10 +222,12 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
         section.setTo(loc);
         section.setScheduledArrivalTime(dts.first);
         section.setExpectedArrivalTime(dts.second);
+        section.setExpectedArrivalPlatform(platform);
     } else {
         section.setFrom(loc);
         section.setScheduledDepartureTime(dts.first);
         section.setExpectedDepartureTime(dts.second);
+        section.setExpectedDeparturePlatform(platform);
     }
 }
 
