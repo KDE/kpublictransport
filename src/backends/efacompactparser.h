@@ -37,7 +37,6 @@ public:
 private:
     Location parseCompactSf(ScopedXmlStreamReader &&reader) const;
     Departure parseCompactDp(ScopedXmlStreamReader &&reader) const;
-    Route parseCompactRoute(ScopedXmlStreamReader &&reader) const;
     Journey parseCompactTp(ScopedXmlStreamReader &&reader) const;
     JourneySection parseTripSection(ScopedXmlStreamReader &&reader) const;
     void parseTripSectionHalf(ScopedXmlStreamReader &&reader, JourneySection &section) const;

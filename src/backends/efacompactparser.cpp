@@ -112,27 +112,6 @@ QStringList EfaCompactParser::parseNotes(ScopedXmlStreamReader &&reader) const
     return ns;
 }
 
-Route EfaCompactParser::parseCompactRoute(ScopedXmlStreamReader &&reader) const
-{
-    Route route;
-    Line line;
-
-    while (reader.readNextSibling()) {
-        if (reader.name() == QLatin1String("des")) {
-            route.setDirection(reader.readElementText());
-        } else if (reader.name() == QLatin1String("nu")) {
-            line.setName(reader.readElementText());
-        } else if (reader.name() == QLatin1String("n")) {
-            line.setModeString(reader.readElementText());
-        } else if (reader.name() == QLatin1String("ty")) {
-            line.setMode(motTypeToLineMode(reader.readElementText().toInt()));
-        }
-    }
-
-    route.setLine(line);
-    return route;
-}
-
 Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
 {
     Departure dep;
@@ -150,7 +129,22 @@ Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
             dep.setScheduledDepartureTime(st.first);
             dep.setExpectedDepartureTime(st.second);
         } else if (reader.name() == QLatin1String("m")) {
-            dep.setRoute(parseCompactRoute(reader.subReader()));
+            Route route;
+            Line line;
+            auto subReader = reader.subReader();
+            while (subReader.readNextSibling()) {
+                if (subReader.name() == QLatin1String("des")) {
+                    route.setDirection(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("nu")) {
+                    line.setName(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("n")) {
+                    line.setModeString(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("ty")) {
+                    line.setMode(motTypeToLineMode(subReader.readElementText().toInt()));
+                }
+            }
+            route.setLine(line);
+            dep.setRoute(route);
         } else if (reader.name() == QLatin1String("r")) {
             auto subReader = reader.subReader();
             while (subReader.readNextSibling()) {
@@ -240,9 +234,23 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
         if (reader.name() == QLatin1String("p")) {
             parseTripSectionHalf(reader.subReader(), section);
         } else if (reader.name() == QLatin1String("m")) {
-            // TODO <m> also contains transfer/walk/etc elements?
-            // TODO we get the wrong mode type here, for trips <co> rather than <ty> matters?
-            section.setRoute(parseCompactRoute(reader.subReader()));
+            Route route;
+            Line line;
+            auto subReader = reader.subReader();
+            while (subReader.readNextSibling()) {
+                if (subReader.name() == QLatin1String("des")) {
+                    route.setDirection(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("nu")) {
+                    line.setName(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("n")) {
+                    line.setModeString(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("co")) {
+                    // TODO <m> also contains transfer/walk/etc elements?
+                    line.setMode(motTypeToLineMode(subReader.readElementText().toInt()));
+                }
+            }
+            route.setLine(line);
+            section.setRoute(route);
         } else if (reader.name() == QLatin1String("ns")) {
             section.setNotes(parseNotes(reader.subReader()));
         }

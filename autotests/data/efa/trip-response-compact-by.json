@@ -21,7 +21,7 @@
                 "route": {
                     "direction": "Röthenbach",
                     "line": {
-                        "mode": "RapidTransit",
+                        "mode": "Metro",
                         "modeString": "U-Bahn U2",
                         "name": "U2"
                     }
@@ -55,7 +55,7 @@
                 "route": {
                     "direction": "Langwasser Süd",
                     "line": {
-                        "mode": "RapidTransit",
+                        "mode": "Metro",
                         "modeString": "U-Bahn U1",
                         "name": "U1"
                     }
