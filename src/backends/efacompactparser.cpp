@@ -244,13 +244,27 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                     line.setName(subReader.readElementText());
                 } else if (subReader.name() == QLatin1String("n")) {
                     line.setModeString(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("ty")) {
+                    const auto secType = subReader.readElementText().toInt();
+                    switch (secType) {
+                        case 99:
+                        case 100:
+                            section.setMode(JourneySection::Walking);
+                            break;
+                        case 98:
+                        case 105:
+                            section.setMode(JourneySection::Transfer);
+                            break;
+                    }
                 } else if (subReader.name() == QLatin1String("co")) {
-                    // TODO <m> also contains transfer/walk/etc elements?
                     line.setMode(motTypeToLineMode(subReader.readElementText().toInt()));
                 }
             }
-            route.setLine(line);
-            section.setRoute(route);
+
+            if (section.mode() == JourneySection::PublicTransport) {
+                route.setLine(line);
+                section.setRoute(route);
+            }
         } else if (reader.name() == QLatin1String("ns")) {
             section.setNotes(parseNotes(reader.subReader()));
         } else if (reader.name() == QLatin1String("realtime")) {
