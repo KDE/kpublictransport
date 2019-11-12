@@ -2,6 +2,10 @@
     {
         "disruptionEffect": "NormalService",
         "expectedDepartureTime": "2019-11-11T20:34:00",
+        "notes": [
+            "Notarzteinsatz am Gleis.",
+            "No accessibility on train."
+        ],
         "route": {
             "direction": "München Hbf",
             "line": {

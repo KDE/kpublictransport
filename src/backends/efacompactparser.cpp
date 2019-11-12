@@ -101,6 +101,17 @@ static std::pair<QDateTime, QDateTime> parseCompactTimePair(ScopedXmlStreamReade
     return std::make_pair(scheduledDt, expectedDt);
 }
 
+QStringList EfaCompactParser::parseNotes(ScopedXmlStreamReader &&reader) const
+{
+    QStringList ns;
+    while (reader.readNextElement()) {
+        if (reader.name() == QLatin1String("tx")) {
+            ns.push_back(reader.readElementText());
+        }
+    }
+    return ns;
+}
+
 Route EfaCompactParser::parseCompactRoute(ScopedXmlStreamReader &&reader) const
 {
     Route route;
@@ -145,7 +156,7 @@ Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
         else if (reader.name() == QLatin1String("c")) {
             parseCompactCoordinate(reader.readElementText(), loc);
         } else if (reader.name() == QLatin1String("ns")) {
-            // TODO parse notes list
+            dep.setNotes(parseNotes(reader.subReader()));
         }
     }
 
@@ -221,8 +232,10 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
             // TODO <m> also contains transfer/walk/etc elements?
             // TODO we get the wrong mode type here, for trips <co> rather than <ty> matters?
             section.setRoute(parseCompactRoute(reader.subReader()));
+        } else if (reader.name() == QLatin1String("ns")) {
+            section.setNotes(parseNotes(reader.subReader()));
         }
-        // TODO realtime flag, interchange tag, notes
+        // TODO realtime flag, interchange tag
     }
     return section;
 }

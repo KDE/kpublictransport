@@ -15,6 +15,9 @@
                     "name": "Nürnberg Flughafen"
                 },
                 "mode": "PublicTransport",
+                "notes": [
+                     "Some construction works. More info on some website."
+                ],
                 "route": {
                     "direction": "Röthenbach",
                     "line": {
