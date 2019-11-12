@@ -22,6 +22,8 @@
 
 namespace KPublicTransport {
 
+class ScopedXmlStreamReader;
+
 /** Parser for compact XML responses from EFA services.
  * @internal just exported for unit tests
  */
@@ -33,12 +35,12 @@ public:
     std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
 
 private:
-    Location parseCompactSf(QXmlStreamReader &reader) const;
-    Departure parseCompactDp(QXmlStreamReader &reader) const;
-    Route parseCompactRoute(QXmlStreamReader &reader) const;
-    Journey parseCompactTp(QXmlStreamReader &reader) const;
-    JourneySection parseTripSection(QXmlStreamReader &reader) const;
-    void parseTripSectionHalf(QXmlStreamReader &reader, JourneySection &section) const;
+    Location parseCompactSf(ScopedXmlStreamReader &&reader) const;
+    Departure parseCompactDp(ScopedXmlStreamReader &&reader) const;
+    Route parseCompactRoute(ScopedXmlStreamReader &&reader) const;
+    Journey parseCompactTp(ScopedXmlStreamReader &&reader) const;
+    JourneySection parseTripSection(ScopedXmlStreamReader &&reader) const;
+    void parseTripSectionHalf(ScopedXmlStreamReader &&reader, JourneySection &section) const;
 };
 
 }

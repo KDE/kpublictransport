@@ -17,6 +17,7 @@
 
 #include "efacompactparser.h"
 #include "logging.h"
+#include "scopedxmlstreamreader.h"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
@@ -28,46 +29,37 @@
 
 using namespace KPublicTransport;
 
-static void parseCompactCoordinate(QXmlStreamReader &reader, Location &loc)
+static void parseCompactCoordinate(const QString &text, Location &loc)
 {
-    const auto coords = reader.readElementText().split(QLatin1Char(','));
+    const auto coords = text.split(QLatin1Char(','));
     if (coords.size() == 2) {
         loc.setLatitude(coords[1].toFloat());
         loc.setLongitude(coords[0].toFloat());
     }
 }
 
-Location EfaCompactParser::parseCompactSf(QXmlStreamReader &reader) const
+Location EfaCompactParser::parseCompactSf(ScopedXmlStreamReader &&reader) const
 {
     Location loc;
-    int depth = 1;
-    while (!reader.atEnd() && depth >= 1) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement) {
-            --depth;
-            continue;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
 
+    while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("n")) {
             loc.setName(reader.readElementText());
-        } else if (reader.name() == QLatin1String("id")) {
-            loc.setIdentifier(m_locationIdentifierType, reader.readElementText());
         } else if (reader.name() == QLatin1String("ty")) {
             if (reader.readElementText() != QLatin1String("stop")) {
-                reader.skipCurrentElement();
                 return {};
             }
         } else if (reader.name() == QLatin1String("r")) {
-            ++depth;
-        } else if (reader.name() == QLatin1String("c")) {
-            parseCompactCoordinate(reader, loc);
-        } else if (reader.name() == QLatin1String("pc")) {
-            loc.setLocality(reader.readElementText());
-        } else {
-            reader.skipCurrentElement();
+            auto sub = reader.subReader();
+            while (sub.readNextSibling()) {
+                if (sub.name() == QLatin1String("c")) {
+                    parseCompactCoordinate(sub.readElementText(), loc);
+                } else if (sub.name() == QLatin1String("id")) {
+                    loc.setIdentifier(m_locationIdentifierType, sub.readElementText());
+                } else if (sub.name() == QLatin1String("pc")) {
+                    loc.setLocality(sub.readElementText());
+                }
+            }
         }
     }
 
@@ -77,38 +69,24 @@ Location EfaCompactParser::parseCompactSf(QXmlStreamReader &reader) const
 std::vector<Location> EfaCompactParser::parseStopFinderResponse(const QByteArray &data) const
 {
     std::vector<Location> res;
-    QXmlStreamReader reader(data);
-    while (!reader.atEnd()) {
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            reader.readNext();
-            continue;
-        }
-
+    QXmlStreamReader xsr(data);
+    ScopedXmlStreamReader reader(xsr);
+    while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("p")) {
-            const auto l = parseCompactSf(reader);
+            const auto l = parseCompactSf(reader.subReader());
             if (!l.isEmpty()) {
                 res.push_back(l);
             }
-        } else {
-            reader.readNext();
         }
     }
     return res;
 }
 
-static std::pair<QDateTime, QDateTime> parseCompactTimePair(QXmlStreamReader &reader)
+static std::pair<QDateTime, QDateTime> parseCompactTimePair(ScopedXmlStreamReader &&reader)
 {
     QDateTime scheduledDt, expectedDt;
 
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement) {
-            break;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("da")) {
             scheduledDt.setDate(QDate::fromString(reader.readElementText(), QStringLiteral("yyyyMMdd")));
         } else if (reader.name() == QLatin1String("t")) {
@@ -117,28 +95,18 @@ static std::pair<QDateTime, QDateTime> parseCompactTimePair(QXmlStreamReader &re
             expectedDt.setDate(QDate::fromString(reader.readElementText(), QStringLiteral("yyyyMMdd")));
         } else if (reader.name() == QLatin1String("rt")) {
             expectedDt.setTime(QTime::fromString(reader.readElementText(), QStringLiteral("hhmm")));
-        } else {
-            reader.skipCurrentElement();
         }
     }
 
     return std::make_pair(scheduledDt, expectedDt);
 }
 
-Route EfaCompactParser::parseCompactRoute(QXmlStreamReader &reader) const
+Route EfaCompactParser::parseCompactRoute(ScopedXmlStreamReader &&reader) const
 {
     Route route;
     Line line;
 
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement) {
-            break;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("des")) {
             route.setDirection(reader.readElementText());
         } else if (reader.name() == QLatin1String("nu")) {
@@ -147,8 +115,6 @@ Route EfaCompactParser::parseCompactRoute(QXmlStreamReader &reader) const
             line.setModeString(reader.readElementText());
         } else if (reader.name() == QLatin1String("ty")) {
             line.setMode(motTypeToLineMode(reader.readElementText().toInt()));
-        } else {
-            reader.skipCurrentElement();
         }
     }
 
@@ -156,19 +122,11 @@ Route EfaCompactParser::parseCompactRoute(QXmlStreamReader &reader) const
     return route;
 }
 
-Departure EfaCompactParser::parseCompactDp(QXmlStreamReader &reader) const
+Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
 {
     Departure dep;
     Location loc;
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement) {
-            break;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("n")) {
             loc.setName(reader.readElementText());
         } else if (reader.name() == QLatin1String("rts")) {
@@ -177,20 +135,17 @@ Departure EfaCompactParser::parseCompactDp(QXmlStreamReader &reader) const
                 dep.setDisruptionEffect(Disruption::NoService);
             }
         } else if (reader.name() == QLatin1String("st")) {
-            const auto st = parseCompactTimePair(reader);
+            const auto st = parseCompactTimePair(reader.subReader());
             dep.setScheduledDepartureTime(st.first);
             dep.setExpectedDepartureTime(st.second);
         } else if (reader.name() == QLatin1String("m")) {
-            dep.setRoute(parseCompactRoute(reader));
+            dep.setRoute(parseCompactRoute(reader.subReader()));
         }
         // TODO <r><id></id><pl></pl></r>
         else if (reader.name() == QLatin1String("c")) {
-            parseCompactCoordinate(reader, loc);
+            parseCompactCoordinate(reader.readElementText(), loc);
         } else if (reader.name() == QLatin1String("ns")) {
             // TODO parse notes list
-            reader.skipCurrentElement();
-        } else {
-            reader.skipCurrentElement();
         }
     }
 
@@ -201,38 +156,24 @@ Departure EfaCompactParser::parseCompactDp(QXmlStreamReader &reader) const
 std::vector<Departure> EfaCompactParser::parseDmResponse(const QByteArray &data) const
 {
     std::vector<Departure> res;
-    QXmlStreamReader reader(data);
-    while (!reader.atEnd()) {
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            reader.readNext();
-            continue;
-        }
-
+    QXmlStreamReader xsr(data);
+    ScopedXmlStreamReader reader(xsr);
+    while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("dp")) {
-            res.push_back(parseCompactDp(reader));
-        } else {
-            reader.readNext();
+            res.push_back(parseCompactDp(reader.subReader()));
         }
     }
 
     return res;
 }
 
-void EfaCompactParser::parseTripSectionHalf(QXmlStreamReader &reader, JourneySection &section) const
+void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, JourneySection &section) const
 {
     Location loc;
     std::pair<QDateTime, QDateTime> dts;
 
     bool isArr = true;
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement && reader.name() == QLatin1String("p")) {
-            break;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("n") && loc.name().isEmpty()) {
             loc.setName(reader.readElementText());
         } else if (reader.name() == QLatin1String("de")) {
@@ -240,15 +181,21 @@ void EfaCompactParser::parseTripSectionHalf(QXmlStreamReader &reader, JourneySec
         } else if (reader.name() == QLatin1String("u")) {
             isArr = reader.readElementText() == QLatin1String("arrival");
         } else if (reader.name() == QLatin1String("st")) {
-            dts = parseCompactTimePair(reader);
-        } else if (reader.name() == QLatin1String("id")) {
-            loc.setIdentifier(m_locationIdentifierType, reader.readElementText());
-        } else if (reader.name() == QLatin1String("pc")) {
-            loc.setLocality(reader.readElementText());
-        } else if (reader.name() == QLatin1String("c")) {
-            parseCompactCoordinate(reader, loc);
+            dts = parseCompactTimePair(reader.subReader());
+        } else if (reader.name() == QLatin1String("r")) {
+            ScopedXmlStreamReader subReader(reader.subReader());
+            while (subReader.readNextSibling()) {
+                if (subReader.name() == QLatin1String("id")) {
+                    loc.setIdentifier(m_locationIdentifierType, subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("pc")) {
+                    loc.setLocality(subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("c")) {
+                    parseCompactCoordinate(subReader.readElementText(), loc);
+                }
+                // TODO platform?
+            }
         }
-        // TODO platform?
+
     }
 
     if (isArr) {
@@ -262,48 +209,32 @@ void EfaCompactParser::parseTripSectionHalf(QXmlStreamReader &reader, JourneySec
     }
 }
 
-JourneySection EfaCompactParser::parseTripSection(QXmlStreamReader &reader) const
+JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader) const
 {
     JourneySection section;
     section.setMode(JourneySection::PublicTransport);
 
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement && reader.name() == QLatin1String("l")) {
-            break;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("p")) {
-            parseTripSectionHalf(reader, section);
+            parseTripSectionHalf(reader.subReader(), section);
         } else if (reader.name() == QLatin1String("m")) {
             // TODO <m> also contains transfer/walk/etc elements?
             // TODO we get the wrong mode type here, for trips <co> rather than <ty> matters?
-            section.setRoute(parseCompactRoute(reader));
+            section.setRoute(parseCompactRoute(reader.subReader()));
         }
         // TODO realtime flag, interchange tag, notes
     }
     return section;
 }
 
-Journey EfaCompactParser::parseCompactTp(QXmlStreamReader &reader) const
+Journey EfaCompactParser::parseCompactTp(ScopedXmlStreamReader &&reader) const
 {
     Journey jny;
     std::vector<JourneySection> sections;
 
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() == QXmlStreamReader::EndElement && reader.name() == QLatin1String("tp")) {
-            break;
-        }
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("l")) {
-            sections.push_back(parseTripSection(reader));
+            sections.push_back(parseTripSection(reader.subReader()));
         }
     }
 
@@ -315,17 +246,11 @@ std::vector<Journey> EfaCompactParser::parseTripResponse(const QByteArray &data)
 {
     //qDebug().noquote() << data;
     std::vector<Journey> res;
-    QXmlStreamReader reader(data);
-    while (!reader.atEnd()) {
-        reader.readNext();
-        if (reader.tokenType() != QXmlStreamReader::StartElement) {
-            continue;
-        }
-
+    QXmlStreamReader xsr(data);
+    ScopedXmlStreamReader reader(xsr);
+    while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("tp")) {
-            res.push_back(parseCompactTp(reader));
-        } else {
-            reader.readNext();
+            res.push_back(parseCompactTp(reader.subReader()));
         }
     }
 

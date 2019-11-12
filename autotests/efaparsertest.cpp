@@ -180,7 +180,7 @@ private Q_SLOTS:
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("refFileName");
 
-        QTest::newRow("vgn-departures")
+        QTest::newRow("vgn-trip")
             << s(SOURCE_DIR "/data/efa/trip-response-full-vgn.xml")
             << s(SOURCE_DIR "/data/efa/trip-response-full-vgn.json");
     }
@@ -210,7 +210,7 @@ private Q_SLOTS:
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("refFileName");
 
-        QTest::newRow("by-departures")
+        QTest::newRow("by-trip")
             << s(SOURCE_DIR "/data/efa/trip-response-compact-by.xml")
             << s(SOURCE_DIR "/data/efa/trip-response-compact-by.json");
     }

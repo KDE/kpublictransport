@@ -25,6 +25,7 @@ set(kpublictransport_srcs
     backends/hafasqueryparser.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
+    backends/scopedxmlstreamreader.cpp
 
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
