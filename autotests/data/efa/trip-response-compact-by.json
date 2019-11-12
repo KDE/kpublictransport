@@ -40,8 +40,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2019-11-11T21:59:00",
-                "expectedDepartureTime": "2019-11-11T21:50:00",
                 "from": {
                     "identifier": {
                         "testid": "80001020"

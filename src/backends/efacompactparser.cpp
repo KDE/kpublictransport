@@ -253,8 +253,13 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
             section.setRoute(route);
         } else if (reader.name() == QLatin1String("ns")) {
             section.setNotes(parseNotes(reader.subReader()));
+        } else if (reader.name() == QLatin1String("realtime")) {
+            if (reader.readElementText() == QLatin1String("0")) { // expected time fields are set in all cases
+                section.setExpectedArrivalTime({});
+                section.setExpectedDepartureTime({});
+            }
         }
-        // TODO realtime flag, interchange tag
+        // TODO interchange tag - should we turn this into transfer sections?
     }
     return section;
 }
