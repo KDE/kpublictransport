@@ -151,9 +151,16 @@ Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
             dep.setExpectedDepartureTime(st.second);
         } else if (reader.name() == QLatin1String("m")) {
             dep.setRoute(parseCompactRoute(reader.subReader()));
-        }
-        // TODO <r><id></id><pl></pl></r>
-        else if (reader.name() == QLatin1String("c")) {
+        } else if (reader.name() == QLatin1String("r")) {
+            auto subReader = reader.subReader();
+            while (subReader.readNextSibling()) {
+                if (subReader.name() == QLatin1String("id")) {
+                    loc.setIdentifier(m_locationIdentifierType, subReader.readElementText());
+                } else if (subReader.name() == QLatin1String("pl")) {
+                    dep.setScheduledPlatform(subReader.readElementText());
+                }
+            }
+        } else if (reader.name() == QLatin1String("c")) {
             parseCompactCoordinate(reader.readElementText(), loc);
         } else if (reader.name() == QLatin1String("ns")) {
             dep.setNotes(parseNotes(reader.subReader()));
