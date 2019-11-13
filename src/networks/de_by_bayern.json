@@ -1,7 +1,15 @@
 {
     "KPlugin": {
         "Description": "Local transport in Bavaria, Germany.",
-        "Name": "Bayern Fahrplan"
+        "Description[pt]": "Transportes locais na região da Baviera, Alemanha.",
+        "Description[sv]": "Lokal transportoperatör i Bayern, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у Баварії, Німеччина.",
+        "Description[x-test]": "xxLocal transport in Bavaria, Germany.xx",
+        "Name": "Bayern Fahrplan",
+        "Name[pt]": "Bayern Fahrplan",
+        "Name[sv]": "Bayern Fahrplan",
+        "Name[uk]": "Bayern Fahrplan",
+        "Name[x-test]": "xxBayern Fahrplanxx"
     },
     "filter": {
         "geo": [
