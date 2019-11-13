@@ -22,6 +22,8 @@
 
 namespace KPublicTransport {
 
+class ScopedXmlStreamReader;
+
 /** Parser for full XML responses from EFA services.
  *  @internal only exported for unit tests
  */
@@ -33,17 +35,17 @@ public:
     std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
 
 private:
-    Location parseItdOdvAssignedStop(QXmlStreamReader &reader) const;
-    Location parseOdvNameElem(QXmlStreamReader &reader) const;
+    Location parseItdOdvAssignedStop(const ScopedXmlStreamReader &reader) const;
+    Location parseOdvNameElem(ScopedXmlStreamReader &reader) const;
 
-    Departure parseDmDeparture(QXmlStreamReader &reader) const;
-    void parseTripDeparture(QXmlStreamReader &reader, JourneySection &section) const;
-    void parseTripArrival(QXmlStreamReader &reader, JourneySection &section) const;
-    Departure parseCompactDp(QXmlStreamReader &reader) const;
+    Departure parseDmDeparture(ScopedXmlStreamReader &&reader) const;
+    void parseTripDeparture(ScopedXmlStreamReader &&reader, JourneySection &section) const;
+    void parseTripArrival(ScopedXmlStreamReader &&reader, JourneySection &section) const;
+    Departure parseCompactDp(ScopedXmlStreamReader &&reader) const;
 
-    JourneySection parseTripPartialRoute(QXmlStreamReader &reader) const;
-    Journey parseTripRoute(QXmlStreamReader &reader) const;
-    QStringList parseInfoLink(QXmlStreamReader &reader) const;
+    JourneySection parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
+    Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;
+    QStringList parseInfoLink(ScopedXmlStreamReader &&reader) const;
 
     mutable QHash<QString, Location> m_locations;
 };
