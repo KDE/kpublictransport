@@ -51,7 +51,7 @@ void HafasQueryBackend::init()
 
 AbstractBackend::Capabilities HafasQueryBackend::capabilities() const
 {
-    return m_endpoint.startsWith(QLatin1String("https://")) ? Secure : NoCapability;
+    return (m_endpoint.startsWith(QLatin1String("https://")) ? Secure : NoCapability) | CanQueryArrivals;
 }
 
 bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) const

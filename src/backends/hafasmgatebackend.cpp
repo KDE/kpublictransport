@@ -56,7 +56,7 @@ void HafasMgateBackend::init()
 
 AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 {
-    return m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability;
+    return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability) | CanQueryArrivals;
 }
 
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const

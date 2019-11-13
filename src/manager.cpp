@@ -364,6 +364,10 @@ bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const Depart
     if (shouldSkipBackend(backend, req)) {
         return false;
     }
+    if (req.mode() == DepartureRequest::QueryArrival && (backend->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
+        qCDebug(Log) << "Skipping backend due to not supporting arrival queries:" << backend->backendId();
+        return false;
+    }
     if (backend->isLocationExcluded(req.stop())) {
         qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
         return false;

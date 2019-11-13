@@ -79,6 +79,7 @@ public:
         CanQueryPreviousJourney = 4, ///< supports query for earlier journeys
         CanQueryNextDeparture = 8, ///< supports querying for later departures
         CanQueryPreviousDeparture = 16, ///< supports query for earlier departures
+        CanQueryArrivals = 32, ///< supports querying arrivals at a given location
     };
     Q_DECLARE_FLAGS(Capabilities, Capability)
 

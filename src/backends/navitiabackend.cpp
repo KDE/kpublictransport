@@ -42,7 +42,7 @@ NavitiaBackend::NavitiaBackend() = default;
 
 AbstractBackend::Capabilities NavitiaBackend::capabilities() const
 {
-    return Secure | CanQueryNextJourney | CanQueryPreviousJourney; // https is hardcoded below
+    return Secure | CanQueryNextJourney | CanQueryPreviousJourney | CanQueryArrivals; // https is hardcoded below
 }
 
 bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
