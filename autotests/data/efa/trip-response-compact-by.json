@@ -22,7 +22,7 @@
                     "direction": "Röthenbach",
                     "line": {
                         "mode": "Metro",
-                        "modeString": "U-Bahn U2",
+                        "modeString": "U-Bahn",
                         "name": "U2"
                     }
                 },
@@ -54,7 +54,7 @@
                     "direction": "Langwasser Süd",
                     "line": {
                         "mode": "Metro",
-                        "modeString": "U-Bahn U1",
+                        "modeString": "U-Bahn",
                         "name": "U1"
                     }
                 },

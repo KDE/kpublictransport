@@ -261,6 +261,13 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                 }
             }
 
+            // fix messed up mode name values
+            if (line.modeString().startsWith(line.name() + QLatin1Char(' '))) {
+                line.setModeString(line.modeString().mid(line.name().size() + 1));
+            } else if (line.modeString().endsWith(QLatin1Char(' ') + line.name())) {
+                line.setModeString(line.modeString().left(line.modeString().size() - line.name().size() - 1));
+            }
+
             if (section.mode() == JourneySection::PublicTransport) {
                 route.setLine(line);
                 section.setRoute(route);
