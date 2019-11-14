@@ -50,7 +50,7 @@ AbstractBackend::Capabilities EfaBackend::capabilities() const
 bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
-    return loc.identifier(locationIdentifierType()).isEmpty();
+    return !loc.hasCoordinate() && loc.identifier(locationIdentifierType()).isEmpty();
 }
 
 bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *reply, QNetworkAccessManager *nam) const
@@ -111,7 +111,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
 bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     const auto stopId = request.stop().identifier(locationIdentifierType());
-    if (stopId.isEmpty()) {
+    if (stopId.isEmpty() && !request.stop().hasCoordinate()) {
         return false;
     }
 
@@ -126,8 +126,13 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
     query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
-    query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("stop"));
-    query.addQueryItem(QStringLiteral("name_dm"), stopId);
+    if (stopId.isEmpty()) {
+        query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("coord"));
+        query.addQueryItem(QStringLiteral("name_dm"), QString::number(request.stop().longitude()) + QLatin1Char(':') + QString::number(request.stop().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+    } else {
+        query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("stop"));
+        query.addQueryItem(QStringLiteral("name_dm"), stopId);
+    }
     query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
     query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
     query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
@@ -169,10 +174,9 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
 
 bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO direct coordinate queries seem to be possible too
     const auto fromId = request.from().identifier(locationIdentifierType());
     const auto toId = request.to().identifier(locationIdentifierType());
-    if (fromId.isEmpty() || toId.isEmpty()) {
+    if ((fromId.isEmpty() && !request.from().hasCoordinate()) || (toId.isEmpty() && !request.to().hasCoordinate())) {
         return false;
     }
 
@@ -185,13 +189,20 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
 
-    // TODO also observed:
-    //    type_origin:             coord
-    //    name_origin:             52.500000:13.500000:WGS84[...]
-    query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("stop"));
-    query.addQueryItem(QStringLiteral("name_origin"), fromId);
-    query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("stop"));
-    query.addQueryItem(QStringLiteral("name_destination"), toId);
+    if (fromId.isEmpty()) {
+        query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("coord"));
+        query.addQueryItem(QStringLiteral("name_origin"), QString::number(request.from().longitude()) + QLatin1Char(':') + QString::number(request.from().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+    } else {
+        query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("stop"));
+        query.addQueryItem(QStringLiteral("name_origin"), fromId);
+    }
+    if (toId.isEmpty()) {
+        query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("coord"));
+        query.addQueryItem(QStringLiteral("name_destination"), QString::number(request.to().longitude()) + QLatin1Char(':') + QString::number(request.to().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+    } else {
+        query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("stop"));
+        query.addQueryItem(QStringLiteral("name_destination"), toId);
+    }
 
     QDateTime dt = request.dateTime();
     if (timeZone().isValid()) {
