@@ -222,12 +222,12 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
         section.setTo(loc);
         section.setScheduledArrivalTime(dts.first);
         section.setExpectedArrivalTime(dts.second);
-        section.setExpectedArrivalPlatform(platform);
+        section.setScheduledArrivalPlatform(platform);
     } else {
         section.setFrom(loc);
         section.setScheduledDepartureTime(dts.first);
         section.setExpectedDepartureTime(dts.second);
-        section.setExpectedDeparturePlatform(platform);
+        section.setScheduledDeparturePlatform(platform);
     }
 }
 
