@@ -116,9 +116,12 @@ Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
 {
     Departure dep;
     Location loc;
+    bool clearRealtime = false;
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("n")) {
             loc.setName(reader.readElementText());
+        } else if (reader.name() == QLatin1String("realtime")) {
+            clearRealtime = reader.readElementText() == QLatin1String("0");
         } else if (reader.name() == QLatin1String("rts")) {
             const auto rts = reader.readElementText();
             if (rts == QLatin1String("TRIP_CANCELLED")) {
@@ -162,6 +165,9 @@ Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
     }
 
     dep.setStopPoint(loc);
+    if (clearRealtime) {
+        dep.setExpectedDepartureTime({});
+    }
     return dep;
 }
 
