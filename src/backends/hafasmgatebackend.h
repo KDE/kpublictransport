@@ -44,6 +44,8 @@ class HafasMgateBackend : public HafasBackend
     Q_PROPERTY(QString micMacSalt WRITE setMicMacSalt)
     /** Salt for the request checksum parameter, hex-encoded. */
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
+    /** Additional authentication parameters, passed verbatim to the backend. */
+    Q_PROPERTY(QJsonObject extraAuthParams MEMBER m_extraAuthParams)
 public:
     HafasMgateBackend();
     ~HafasMgateBackend();
@@ -73,6 +75,7 @@ private:
     QString m_version;
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
+    QJsonObject m_extraAuthParams;
 };
 
 }

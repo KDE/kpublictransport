@@ -253,6 +253,9 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
         QJsonObject auth;
         auth.insert(QStringLiteral("aid"), m_aid);
         auth.insert(QStringLiteral("type"), QLatin1String("AID"));
+        for (auto it = m_extraAuthParams.begin(); it != m_extraAuthParams.end(); ++it) {
+            auth.insert(it.key(), it.value());
+        }
         top.insert(QStringLiteral("auth"), auth);
     }
     {
