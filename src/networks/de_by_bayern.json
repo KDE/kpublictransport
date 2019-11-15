@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Local transport in Bavaria, Germany.",
         "Description[ca]": "Transport local a Baviera, Alemanya.",
+        "Description[cs]": "Místní doprava v Bavorsku, Německo.",
         "Description[nl]": "Lokaal transport in Beieren, Duitsland.",
         "Description[pt]": "Transportes locais na região da Baviera, Alemanha.",
         "Description[sv]": "Lokal transportoperatör i Bayern, Tyskland.",
@@ -9,6 +10,7 @@
         "Description[x-test]": "xxLocal transport in Bavaria, Germany.xx",
         "Name": "Bayern Fahrplan",
         "Name[ca]": "Bayern Fahrplan",
+        "Name[cs]": "Bayern Fahrplan",
         "Name[nl]": "Bayern Fahrplan",
         "Name[pt]": "Bayern Fahrplan",
         "Name[sv]": "Bayern Fahrplan",
