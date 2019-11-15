@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Description": "Regional transport in Styria, Austria.",
+        "Name": "Verkehrsverbund Steiermark (VVSt)"
+    },
+    "filter": {
+        "geo": [ [ 13.4446, 47.7198 ], [ 16.1595, 47.8887 ], [ 16.1309, 46.6204 ], [ 13.8844, 46.5981 ] ]
+    },
+    "options": {
+        "compactXmlRepsonse": true,
+        "endpoint": "http://appefa10.verbundlinie.at/android/"
+    },
+    "timezone": "Austria/Vienna",
+    "type": "efa"
+}

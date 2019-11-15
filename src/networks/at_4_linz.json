@@ -1,0 +1,14 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in and around Linz, Austria.",
+        "Name": "Linz AG"
+    },
+    "filter": {
+        "geo": [ [ 14.1792, 48.3923 ], [ 14.4991, 48.41236 ], [ 14.5091, 48.179 ], [ 14.1892, 48.1257 ] ]
+    },
+    "options": {
+        "endpoint": "https://www.linzag.at/linz2/"
+    },
+    "timezone": "Austria/Vienna",
+    "type": "efa"
+}

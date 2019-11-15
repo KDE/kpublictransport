@@ -2388,7 +2388,7 @@
       </flags>
       <renderer-v2 type="singleSymbol" enableorderby="0" symbollevels="0" forceraster="0">
         <symbols>
-          <symbol alpha="0.5" type="fill" name="0" clip_to_extent="1">
+          <symbol alpha="0.25" type="fill" name="0" clip_to_extent="1">
             <layer class="SimpleFill" locked="0" enabled="1" pass="0">
               <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"/>
               <prop k="color" v="213,180,60,255"/>

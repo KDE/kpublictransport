@@ -1,0 +1,29 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Luxembourg.",
+        "Name": "Mobilitéitszentral"
+    },
+    "filter": {
+        "geo": [ [ 5.7234, 50.2093 ], [ 6.5341, 50.1182 ], [ 6.4621, 49.3772 ], [ 5.6922, 49.4688 ] ]
+    },
+    "options": {
+        "aid": "Aqf9kNqJLjxFx6vv",
+        "clientId": "CDT",
+        "clientType": "AND",
+        "endpoint": "https://travelplanner.mobiliteit.lu/hafas/mgate.exe",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "16": "LocalTrain",
+            "32": "Bus",
+            "64": "Bus",
+            "128": "Bus",
+            "256": "Bus",
+            "512": "Bus",
+            "1024": "Bus"
+        },
+        "version": "1.18"
+    },
+    "type": "hafas_mgate"
+}
