@@ -24,7 +24,8 @@
         "Name[sk]": "Aachener Verkehrsverbund (AVV)",
         "Name[sv]": "Aachener Verkehrsverbund (AVV)",
         "Name[uk]": "Aachener Verkehrsverbund (AVV)",
-        "Name[x-test]": "xxAachener Verkehrsverbund (AVV)xx"
+        "Name[x-test]": "xxAachener Verkehrsverbund (AVV)xx",
+        "Name[zh_TW]": "Aachener Verkehrsverbund (AVV)"
     },
     "filter": {
         "geo": [

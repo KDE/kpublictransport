@@ -21,7 +21,8 @@
         "Name[pt_BR]": "Karlsruher Verkehrsverbund (KVV)",
         "Name[sv]": "Karlsruher Verkehrsverbund (KVV)",
         "Name[uk]": "Karlsruher Verkehrsverbund (KVV)",
-        "Name[x-test]": "xxKarlsruher Verkehrsverbund (KVV)xx"
+        "Name[x-test]": "xxKarlsruher Verkehrsverbund (KVV)xx",
+        "Name[zh_TW]": "Karlsruher Verkehrsverbund (KVV)"
     },
     "filter": {
         "geo": [

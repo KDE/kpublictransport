@@ -24,7 +24,8 @@
         "Name[sk]": "Deutsche Bahn (DB)",
         "Name[sv]": "Deutsche Bahn (DB)",
         "Name[uk]": "Deutsche Bahn (DB)",
-        "Name[x-test]": "xxDeutsche Bahn (DB)xx"
+        "Name[x-test]": "xxDeutsche Bahn (DB)xx",
+        "Name[zh_TW]": "Deutsche Bahn (DB)"
     },
     "filter": {
         "geo": [

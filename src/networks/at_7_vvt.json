@@ -4,7 +4,24 @@
         "Name": "Verkehrsverbund Tirol (VVT)"
     },
     "filter": {
-        "geo": [ [ 13.0081, 46.6172 ], [ 12.5874, 47.7814 ], [ 10.1625, 47.5524 ], [ 10.0635, 46.8041 ] ]
+        "geo": [
+            [
+                13.0081,
+                46.6172
+            ],
+            [
+                12.5874,
+                47.7814
+            ],
+            [
+                10.1625,
+                47.5524
+            ],
+            [
+                10.0635,
+                46.8041
+            ]
+        ]
     },
     "options": {
         "aid": "hf7mcf9bv3nv8g5f",
@@ -18,17 +35,17 @@
         },
         "lineModeMap": {
             "1": "Train",
-            "2": "RapidTransit",
-            "4": "Metro",
-            "16": "Tramway",
-            "32": "LocalTrain",
-            "64": "Bus",
-            "128": "Bus",
-            "256": "Tramway",
-            "512": "Ferry",
             "1024": "Taxi",
+            "128": "Bus",
+            "16": "Tramway",
+            "2": "RapidTransit",
             "2048": "Bus",
-            "4096": "LocalTrain"
+            "256": "Tramway",
+            "32": "LocalTrain",
+            "4": "Metro",
+            "4096": "LocalTrain",
+            "512": "Ferry",
+            "64": "Bus"
         },
         "locationIdentifierType": "vao",
         "version": "1.18"
