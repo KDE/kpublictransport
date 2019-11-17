@@ -1,7 +1,17 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Linz, Austria.",
-        "Name": "Linz AG"
+        "Description[nl]": "Lokaal transport in en om Linz, Oostenrijk.",
+        "Description[pt]": "Transportes locais na região de Linz, Áustria.",
+        "Description[sv]": "Lokal transportoperatör i och omkring Linz, Österrike.",
+        "Description[uk]": "Місцевий транспорт у Лінці і околицях, Австрія.",
+        "Description[x-test]": "xxLocal transport in and around Linz, Austria.xx",
+        "Name": "Linz AG",
+        "Name[nl]": "Linz AG",
+        "Name[pt]": "Linz AG",
+        "Name[sv]": "Linz AG",
+        "Name[uk]": "Linz AG",
+        "Name[x-test]": "xxLinz AGxx"
     },
     "filter": {
         "geo": [

@@ -1,7 +1,17 @@
 {
     "KPlugin": {
         "Description": "Regional transport in Styria, Austria.",
-        "Name": "Verkehrsverbund Steiermark (VVSt)"
+        "Description[nl]": "Regionaal transport in Styria, Oostenrijk.",
+        "Description[pt]": "Transportes regionais em Styria, Áustria.",
+        "Description[sv]": "Lokal transportoperatör i Styria, Österrike.",
+        "Description[uk]": "Місцевий транспорт у Штирії, Австрія.",
+        "Description[x-test]": "xxRegional transport in Styria, Austria.xx",
+        "Name": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[nl]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[pt]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[sv]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[uk]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[x-test]": "xxVerkehrsverbund Steiermark (VVSt)xx"
     },
     "filter": {
         "geo": [
