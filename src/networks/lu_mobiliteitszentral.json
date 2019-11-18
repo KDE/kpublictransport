@@ -1,12 +1,18 @@
 {
     "KPlugin": {
         "Description": "Public transport in Luxembourg.",
+        "Description[ca]": "Transport públic a Luxemburg.",
+        "Description[en_GB]": "Public transport in Luxembourg.",
+        "Description[es]": "Transporte público de Luxemburgo.",
         "Description[nl]": "Openbaar vervoer in Luxemburg.",
         "Description[pt]": "Transportes públicos no Luxemburgo.",
         "Description[sv]": "Kollektivtrafik i Luxemburg.",
         "Description[uk]": "Дані щодо громадського транспорту у Люксембурзі.",
         "Description[x-test]": "xxPublic transport in Luxembourg.xx",
         "Name": "Mobilitéitszentral",
+        "Name[ca]": "Mobilitéitszentral",
+        "Name[en_GB]": "Mobilitéitszentral",
+        "Name[es]": "Mobilitéitszentral",
         "Name[nl]": "Mobilitéitszentral",
         "Name[pt]": "Mobilitéitszentral",
         "Name[sv]": "Mobilitéitszentral",

@@ -1,12 +1,18 @@
 {
     "KPlugin": {
         "Description": "Regional public transport in Salzburg, Austria.",
+        "Description[ca]": "Transport públic regional a Salzburg, Àustria.",
+        "Description[en_GB]": "Regional public transport in Salzburg, Austria.",
+        "Description[es]": "Transporte público regional de Salzburgo, Austria.",
         "Description[nl]": "Regionaal openbaar transport in Salzburg, Oostenrijk.",
         "Description[pt]": "Transportes públicos regionais em Salzburgo, Áustria.",
         "Description[sv]": "Lokal kollektivtrafik i Salzburg, Österrike.",
         "Description[uk]": "Місцевий транспорт у Зальцбурзі, Австралія.",
         "Description[x-test]": "xxRegional public transport in Salzburg, Austria.xx",
         "Name": "Salzburger Verkehrsverbund (SVV)",
+        "Name[ca]": "Salzburger Verkehrsverbund (SVV)",
+        "Name[en_GB]": "Salzburger Verkehrsverbund (SVV)",
+        "Name[es]": "Salzburger Verkehrsverbund (SVV)",
         "Name[nl]": "Salzburger Verkehrsverbund (SVV)",
         "Name[pt]": "Salzburger Verkehrsverbund (SVV)",
         "Name[sv]": "Salzburger Verkehrsverbund (SVV)",

@@ -1,12 +1,18 @@
 {
     "KPlugin": {
         "Description": "Regional public transport in Tyrol, Austria.",
+        "Description[ca]": "Transport públic regional al Tirol, Àustria.",
+        "Description[en_GB]": "Regional public transport in Tyrol, Austria.",
+        "Description[es]": "Trasporte público regional de Tirol, Austria.",
         "Description[nl]": "Regionaal transport in Tyrol, Oostenrijk.",
         "Description[pt]": "Transportes públicos regionais em Tirol, Áustria.",
         "Description[sv]": "Lokal kollektivtrafik i Tyrolen, Österrike.",
         "Description[uk]": "Місцевий транспорт у Тіролі, Австрія.",
         "Description[x-test]": "xxRegional public transport in Tyrol, Austria.xx",
         "Name": "Verkehrsverbund Tirol (VVT)",
+        "Name[ca]": "Verkehrsverbund Tirol (VVT)",
+        "Name[en_GB]": "Verkehrsverbund Tirol (VVT)",
+        "Name[es]": "Verkehrsverbund Tirol (VVT)",
         "Name[nl]": "Verkehrsverbund Tirol (VVT)",
         "Name[pt]": "Verkehrsverbund Tirol (VVT)",
         "Name[sv]": "Verkehrsverbund Tirol (VVT)",

@@ -1,12 +1,18 @@
 {
     "KPlugin": {
         "Description": "Regional transport in Styria, Austria.",
+        "Description[ca]": "Transport públic regional a Estíria, Àustria.",
+        "Description[en_GB]": "Regional transport in Styria, Austria.",
+        "Description[es]": "Transporte regional de Estiria, Austria.",
         "Description[nl]": "Regionaal transport in Styria, Oostenrijk.",
         "Description[pt]": "Transportes regionais em Styria, Áustria.",
         "Description[sv]": "Lokal transportoperatör i Styria, Österrike.",
         "Description[uk]": "Місцевий транспорт у Штирії, Австрія.",
         "Description[x-test]": "xxRegional transport in Styria, Austria.xx",
         "Name": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[ca]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[en_GB]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[es]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[nl]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[pt]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[sv]": "Verkehrsverbund Steiermark (VVSt)",

@@ -1,12 +1,18 @@
 {
     "KPlugin": {
         "Description": "Regional public transport in Vorarlberg, Austria.",
+        "Description[ca]": "Transport públic regional a Vorarlberg, Àustria.",
+        "Description[en_GB]": "Regional public transport in Vorarlberg, Austria.",
+        "Description[es]": "Trasporte público regional de Vorarlberg, Austria.",
         "Description[nl]": "Regionaal openbaar transport in Vorarlberg, Oostenrijk.",
         "Description[pt]": "Transportes públicos regionais em Vorarlberg, Áustria.",
         "Description[sv]": "Lokal kollektivtrafik i Vorarlberg, Österrike.",
         "Description[uk]": "Місцевий транспорт у Форарльберзі, Австралія.",
         "Description[x-test]": "xxRegional public transport in Vorarlberg, Austria.xx",
         "Name": "Verkehrsverbund Vorarlberg (VVV)",
+        "Name[ca]": "Verkehrsverbund Vorarlberg (VVV)",
+        "Name[en_GB]": "Verkehrsverbund Vorarlberg (VVV)",
+        "Name[es]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[nl]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[pt]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[sv]": "Verkehrsverbund Vorarlberg (VVV)",

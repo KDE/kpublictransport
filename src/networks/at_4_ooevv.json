@@ -1,12 +1,18 @@
 {
     "KPlugin": {
         "Description": "Regional public transport in Upper Austria.",
+        "Description[ca]": "Transport públic regional a l'alta Àustria.",
+        "Description[en_GB]": "Regional public transport in Upper Austria.",
+        "Description[es]": "Trasporte público regional de Alta Austria.",
         "Description[nl]": "Regionaal transport in het Boven Oostenrijk.",
         "Description[pt]": "Transportes públicos regionais no Norte da Áustria.",
         "Description[sv]": "Lokal kollektivtrafik i Oberösterreich.",
         "Description[uk]": "Дані щодо громадського транспорту у Верхній Австрії.",
         "Description[x-test]": "xxRegional public transport in Upper Austria.xx",
         "Name": "Oberösterreichischer Verkehrsverbund (OÖVV)",
+        "Name[ca]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
+        "Name[en_GB]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
+        "Name[es]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
         "Name[nl]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
         "Name[pt]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
         "Name[sv]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
