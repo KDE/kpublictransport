@@ -30,5 +30,12 @@ bool LocationUtil::sortLessThan(const LocationRequest &request, const Location &
     }
     // for name based search, sort by Levenshtein distance or similar metric
     // TODO so far this only sorts for matching or not matching
-    return Location::isSameName(request.name(), lhs.name()) && !Location::isSameName(request.name(), rhs.name());
+    const auto lhsSame = Location::isSameName(request.name(), lhs.name());
+    const auto rhsSame = Location::isSameName(request.name(), rhs.name());
+
+    if (lhsSame == rhsSame) {
+        return lhs.name().compare(rhs.name(), Qt::CaseInsensitive) < 0;
+    }
+
+    return lhsSame && !rhsSame;
 }
