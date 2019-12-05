@@ -178,14 +178,14 @@ static QString stripDiacritics(const QString &s)
 
 // keep this ordered (see https://en.wikipedia.org/wiki/List_of_Unicode_characters)
 struct {
-    QChar key;
+    ushort key;
     const char* replacement;
 } static const transliteration_map[] = {
-    { 'ß', "ss" },
-    { 'ä', "ae" },
-    { 'ö', "oe" },
-    { 'ø', "oe" },
-    { 'ü', "ue" },
+    { 0x00DF, "ss" }, // ß
+    { 0x00E4, "ae" }, // ä
+    { 0x00F6, "oe" }, // ö
+    { 0x00F8, "oe" }, // ø
+    { 0x00FC, "ue" }, // ü
 };
 
 static QString applyTransliterations(const QString &s)
@@ -197,7 +197,7 @@ static QString applyTransliterations(const QString &s)
         const auto it = std::lower_bound(std::begin(transliteration_map), std::end(transliteration_map), c, [](const auto &lhs, const auto rhs) {
             return QChar(lhs.key) < rhs;
         });
-        if (it != std::end(transliteration_map) && (*it).key == c) {
+        if (it != std::end(transliteration_map) && QChar((*it).key) == c) {
             res += QString::fromUtf8((*it).replacement);
             continue;
         }
