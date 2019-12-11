@@ -55,6 +55,7 @@ ListModel {
     ListElement { label: "Amsterdam Schiphol Airport"; lat: 52.309; lon: 4.7611 }
 
     ListElement { label: "Leipzig Hauptbahnhof"; lat: 51.3455; lon: 12.3821 }
+    ListElement { label: "Leipzig Messe"; lat: 51.39737; lon: 12.39528 }
     ListElement { label: "Privacy Sprint Venue (Leipzig)"; name: "Leipzig, Lindenauer Markt"; lat: 51.3346; lon: 12.3249 }
 
     ListElement { label: "Toulouse-Blagnac Airport"; lat: 43.6301; lon: 1.37546 }
@@ -73,4 +74,7 @@ ListModel {
     ListElement { label: "Nürnberg Flughafen"; lat: 49.49400; lon: 11.07854 }
     ListElement { label: "Nürnberg Hauptbahnhof"; lat: 49.44553; lon: 11.08228 }
     ListElement { label: "SUSE office Nürnberg"; name: "Nürnberg Maxtor"; lat: 49.45960; lon: 11.08203 }
+
+    ListElement { label: "Barcelona Sants"; lat: 41.37910; lon: 2.13983 }
+    ListElement { label: "Strasbourg Gare Centrale"; lat: 48.58507; lon: 7.73368 }
 }
