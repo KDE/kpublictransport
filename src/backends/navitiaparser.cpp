@@ -230,6 +230,9 @@ static Departure parseDeparture(const QJsonObject &obj)
 
     Route route;
     route.setDirection(displayInfo.value(QLatin1String("direction")).toString());
+    const auto routeObj = obj.value(QLatin1String("route")).toObject();
+    const auto destObj = routeObj.value(QLatin1String("direction")).toObject();
+    route.setDestination(parseWrappedLocation(destObj));
     route.setLine(line);
 
     Departure departure;

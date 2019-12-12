@@ -167,6 +167,9 @@ private Q_SLOTS:
             QCOMPARE(departure.route().line().mode(), KPublicTransport::Line::Bus);
             QCOMPARE(departure.route().line().name(), QStringLiteral("65"));
             QCOMPARE(departure.route().line().color(), QColor(0x00, 0x8b, 0x5a));
+            QVERIFY(!departure.route().destination().isEmpty());
+            QVERIFY(departure.route().destination().hasCoordinate());
+            QCOMPARE(departure.route().direction(), departure.route().destination().name());
         }
 
         {
@@ -180,6 +183,9 @@ private Q_SLOTS:
             QCOMPARE(departure.route().line().modeString(), QStringLiteral("RER"));
             QCOMPARE(departure.route().line().name(), QStringLiteral("D"));
             QCOMPARE(departure.route().line().color(), QColor(0x5E, 0x96, 0x20));
+            QVERIFY(!departure.route().destination().isEmpty());
+            QVERIFY(departure.route().destination().hasCoordinate());
+            QCOMPARE(departure.route().destination().name(), QStringLiteral("Gare de Goussainville (Goussainville)"));
         }
 
         QCOMPARE(parser.attributions.size(), 2);
