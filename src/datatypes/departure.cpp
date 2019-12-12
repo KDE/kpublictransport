@@ -154,7 +154,8 @@ bool Departure::isSame(const Departure &lhs, const Departure &rhs)
 
     // same destination and departure time is likely the same route after all
     // TODO we should check for conflicting line names or train types here maybe?
-    return Location::isSameName(lhs.route().direction(), rhs.route().direction());
+    return (!lhs.route().destination().isEmpty() && !rhs.route().destination().isEmpty() && Location::isSame(lhs.route().destination(), rhs.route().destination()))
+        || Location::isSameName(lhs.route().direction(), rhs.route().direction());
 }
 
 Departure Departure::merge(const Departure &lhs, const Departure &rhs)

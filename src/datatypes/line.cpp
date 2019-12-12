@@ -40,6 +40,7 @@ class RoutePrivate : public QSharedData {
 public:
     Line line;
     QString direction;
+    Location destination;
 };
 
 }
@@ -177,12 +178,28 @@ Line Line::fromJson(const QJsonObject &obj)
 
 KPUBLICTRANSPORT_MAKE_GADGET(Route)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Route, Line, line, setLine)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Route, QString, direction, setDirection)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Route, Location, destination, setDestination)
+
+QString Route::direction() const
+{
+    if (d->direction.isEmpty() && !d->destination.isEmpty()) {
+        return d->destination.name();
+    }
+    return d->direction;
+}
+
+void Route::setDirection(const QString &value)
+{
+    d.detach();
+    d->direction = value;
+}
 
 bool Route::isSame(const Route &lhs, const Route &rhs)
 {
-    return Location::isSameName(lhs.direction(), rhs.direction()) &&
-        Line::isSame(lhs.line(), rhs.line());
+    const auto matchingDirection = (!lhs.destination().isEmpty() && !rhs.destination().isEmpty() && Location::isSame(lhs.destination(), rhs.destination()))
+        || Location::isSameName(lhs.direction(), rhs.direction());
+
+    return matchingDirection && Line::isSame(lhs.line(), rhs.line());
 }
 
 Route Route::merge(const Route &lhs, const Route &rhs)
@@ -190,6 +207,7 @@ Route Route::merge(const Route &lhs, const Route &rhs)
     Route r(lhs);
     r.setLine(Line::merge(lhs.line(), rhs.line()));
     r.setDirection(MergeUtil::mergeString(lhs.direction(), rhs.direction()));
+    r.setDestination(Location::merge(lhs.destination(), rhs.destination()));
     return r;
 }
 
@@ -197,6 +215,9 @@ QJsonObject Route::toJson(const Route &r)
 {
     auto obj = Json::toJson(r);
     obj.insert(QStringLiteral("line"), Line::toJson(r.line()));
+    if (!r.destination().isEmpty()) {
+        obj.insert(QStringLiteral("destination"), Location::toJson(r.destination()));
+    }
     return obj;
 }
 
@@ -204,6 +225,7 @@ Route Route::fromJson(const QJsonObject &obj)
 {
     auto r = Json::fromJson<Route>(obj);
     r.setLine(Line::fromJson(obj.value(QLatin1String("line")).toObject()));
+    r.setDestination(Location::fromJson(obj.value(QLatin1String("destination")).toObject()));
     return r;
 }
 

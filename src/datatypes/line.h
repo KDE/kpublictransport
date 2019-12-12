@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_LINE_H
 
 #include "datatypes.h"
+#include "location.h"
 
 namespace KPublicTransport {
 
@@ -95,8 +96,17 @@ class KPUBLICTRANSPORT_EXPORT Route
     KPUBLICTRANSPORT_GADGET(Route)
     /** Line this route belongs to. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Line, line, setLine)
-    /** Direction of the route. */
+    /** Direction of the route.
+     *  The direction of the the route is what is displayed on front of a train for example.
+     *  For directional lines it matches the destination. For circular lines there is no destination
+     *  however, the direction is then clockwise" for example.
+     */
     KPUBLICTRANSPORT_PROPERTY(QString, direction, setDirection)
+    /** Destination of the route.
+     *  If this is set it should match the direction of the line. Circular lines for example do
+     *  not have a destination location though.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, destination, setDestination)
 
 public:
     /** Checks if to instances refer to the same route (which does not necessarily mean they are exactly equal). */
