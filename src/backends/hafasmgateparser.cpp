@@ -147,15 +147,13 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
         const auto jnyObj = jny.toObject();
         const auto stbStop = jnyObj.value(QLatin1String("stbStop")).toObject();
 
+        Departure dep;
         Route route;
         route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
-        const auto lineIdx = jnyObj.value(QLatin1String("prodX")).toInt();
-        if ((unsigned int)lineIdx < lines.size()) {
+        const auto lineIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
+        if (lineIdx >= 0 && (unsigned int)lineIdx < lines.size()) {
             route.setLine(lines[lineIdx]);
         }
-
-        Departure dep;
-        dep.setRoute(route);
 
         const auto dateStr = jnyObj.value(QLatin1String("date")).toString();
         dep.setScheduledDepartureTime(parseDateTime(dateStr, stbStop.value(QLatin1String("dTimeS")), stbStop.value(QLatin1String("dTZOffset"))));
@@ -172,13 +170,26 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
             dep.setExpectedPlatform(stbStop.value(QLatin1String("aPlatfR")).toString());
         }
 
-        const auto locIdx = stbStop.value(QLatin1String("locX")).toInt();
-        if ((unsigned int)locIdx < locs.size()) {
-            dep.setStopPoint(locs[locIdx]);
+        const auto startLocIdx = stbStop.value(QLatin1String("locX")).toInt(-1);
+        if (startLocIdx >= 0 && (unsigned int)startLocIdx < locs.size()) {
+            dep.setStopPoint(locs[startLocIdx]);
+        }
+
+        const auto stopL = jnyObj.value(QLatin1String("stopL")).toArray();
+        bool foundLoop = false; // check for loops, circular lines have no destination
+        for (int i = 1; i < stopL.size() && !foundLoop; ++i) {
+            const auto locX = stopL.at(i).toObject().value(QLatin1String("locX")).toInt(-1);
+            if (locX == startLocIdx) {
+                foundLoop = true;
+            }
+        }
+        const auto destLocX = stopL.last().toObject().value(QLatin1String("locX")).toInt(-1);
+        if (!foundLoop && destLocX >= 0 && (unsigned int)destLocX < locs.size() && startLocIdx != destLocX) {
+            route.setDestination(locs[destLocX]);
         }
 
         dep.addNotes(parseMessageList(jnyObj, remarks));
-
+        dep.setRoute(route);
         res.push_back(dep);
     }
 

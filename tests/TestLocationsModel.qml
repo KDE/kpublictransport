@@ -40,6 +40,7 @@ ListModel {
     ListElement { label: "Berlin Flughafen Tegel"; lat: 52.55420; lon: 13.29281 }
     ListElement { label: "Berlin Flughafen Schönefeld"; lat: 52.38841; lon: 13.51870 }
     ListElement { label: "Akademy 2016 Venue (Berlin)"; name: "Berlin Alexanderplatz"; lat: 52.52068; lon: 13.41644 }
+    ListElement { label: "Berlin Südkreuz"; lat: 52.47577; lon: 13.36535 }
 
     ListElement { label: "Brno central station"; lat: 49.19069; lon: 16.61287 }
     ListElement { label: "Akademy 2014 Venue (Brno)"; name: "?"; lat: 49.22462; lon: 16.57564 }
