@@ -25,21 +25,27 @@
 
 using namespace KPublicTransport;
 
+static QDateTime clipSeconds(QDateTime dt)
+{
+    dt.setTime({dt.time().hour(), dt.time().minute()});
+    return dt;
+}
+
 bool DepartureUtil::timeLessThan(const DepartureRequest &req, const Departure &lhs, const Departure &rhs)
 {
     if (req.mode() == DepartureRequest::QueryDeparture) {
-        return lhs.scheduledDepartureTime() < rhs.scheduledDepartureTime();
+        return clipSeconds(lhs.scheduledDepartureTime()) < clipSeconds(rhs.scheduledDepartureTime());
     } else {
-        return lhs.scheduledArrivalTime() < rhs.scheduledArrivalTime();
+        return clipSeconds(lhs.scheduledArrivalTime()) < clipSeconds(rhs.scheduledArrivalTime());
     }
 }
 
 bool DepartureUtil::timeEqual(const DepartureRequest &req, const Departure &lhs, const Departure &rhs)
 {
     if (req.mode() == DepartureRequest::QueryDeparture) {
-        return lhs.scheduledDepartureTime() == rhs.scheduledDepartureTime();
+        return clipSeconds(lhs.scheduledDepartureTime()) == clipSeconds(rhs.scheduledDepartureTime());
     } else {
-        return lhs.scheduledArrivalTime() == rhs.scheduledArrivalTime();
+        return clipSeconds(lhs.scheduledArrivalTime()) == clipSeconds(rhs.scheduledArrivalTime());
     }
 }
 

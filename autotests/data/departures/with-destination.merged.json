@@ -1,0 +1,36 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2019-12-12T18:41:00+01:00",
+    "route": {
+        "destination": {
+            "identifier": {
+                "db": "8089070",
+                "ibnr": "8089070"
+            },
+            "latitude": 52.387489318847656,
+            "longitude": 13.396203994750977,
+            "name": "S Lichtenrade (Berlin)",
+            "timezone": "Europe/Berlin"
+        },
+        "direction": "S Lichtenrade (Berlin)",
+        "line": {
+            "color": "#00b300",
+            "mode": "RapidTransit",
+            "modeString": "Train",
+            "name": "S 2",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledArrivalTime": "2019-12-12T18:39:18",
+    "scheduledDepartureTime": "2019-12-12T18:39:00+01:00",
+    "scheduledPlatform": "1",
+    "stopPoint": {
+        "identifier": {
+            "db": "8089073",
+            "ibnr": "8089073"
+        },
+        "latitude": 52.475799560546875,
+        "longitude": 13.365361213684082,
+        "name": "S Südkreuz Bhf (Berlin)"
+    }
+}

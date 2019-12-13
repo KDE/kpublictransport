@@ -1,0 +1,31 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2019-12-12T18:41:00+01:00",
+    "route": {
+        "destination": {
+            "identifier": {
+                "db": "8089070",
+                "ibnr": "8089070"
+            },
+            "latitude": 52.387298583984375,
+            "longitude": 13.396175384521484,
+            "name": "Berlin-Lichtenrade"
+        },
+        "direction": "Berlin-Lichtenrade",
+        "line": {
+            "mode": "RapidTransit",
+            "name": "S 2"
+        }
+    },
+    "scheduledDepartureTime": "2019-12-12T18:39:00+01:00",
+    "scheduledPlatform": "1",
+    "stopPoint": {
+        "identifier": {
+            "db": "8089073",
+            "ibnr": "8089073"
+        },
+        "latitude": 52.476131439208984,
+        "longitude": 13.365143775939941,
+        "name": "Berlin Südkreuz (S)"
+    }
+}
