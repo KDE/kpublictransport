@@ -47,7 +47,7 @@ public:
 void LocationQueryModelPrivate::doQuery()
 {
     Q_Q(LocationQueryModel);
-    if (!m_manager || m_request.isEmpty()) {
+    if (!m_manager || !m_request.isValid()) {
         return;
     }
 

@@ -43,6 +43,7 @@ public:
         NoError, ///< Nothing went wrong.
         NetworkError, ///< Error during network operations.
         NotFoundError, ///< The requested journey/departure/place could not be found.
+        InvalidRequest, ///< Incomplete or otherwise invalid request.
         UnknownError ///< Anything else.
     };
 

@@ -58,9 +58,9 @@ JourneyRequest::JourneyRequest(const JourneyRequest&) = default;
 JourneyRequest::~JourneyRequest() = default;
 JourneyRequest& JourneyRequest::operator=(const JourneyRequest&) = default;
 
-bool JourneyRequest::isEmpty() const
+bool JourneyRequest::isValid() const
 {
-    return d->to.isEmpty() && d->from.isEmpty();
+    return !d->to.isEmpty() && !d->from.isEmpty();
 }
 
 Location JourneyRequest::from() const

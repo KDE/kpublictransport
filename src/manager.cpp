@@ -462,6 +462,12 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     auto reply = d->makeReply<JourneyReply>(req);
     int pendingOps = 0;
 
+    // validate input
+    if (!req.isValid()) {
+        reply->addError(Reply::InvalidRequest, {});
+        return reply;
+    }
+
     // first time/direct query
     if (req.contexts().empty()) {
         for (const auto &backend : d->m_backends) {
@@ -511,6 +517,12 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
     auto reply = d->makeReply<DepartureReply>(req);
     int pendingOps = 0;
 
+    // validate input
+    if (!req.isValid()) {
+        reply->addError(Reply::InvalidRequest, {});
+        return reply;
+    }
+
     // first time/direct query
     if (req.contexts().empty()) {
         for (const auto &backend : d->m_backends) {
@@ -552,6 +564,13 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
 {
     auto reply = d->makeReply<LocationReply>(req);
     int pendingOps = 0;
+
+    // validate input
+    if (!req.isValid()) {
+        reply->addError(Reply::InvalidRequest, {});
+        return reply;
+    }
+
     for (const auto &backend : d->m_backends) {
         if (d->shouldSkipBackend(backend.get(), req)) {
             continue;

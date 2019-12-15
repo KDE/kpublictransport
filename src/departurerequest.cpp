@@ -53,9 +53,9 @@ DepartureRequest::DepartureRequest(const DepartureRequest&) = default;
 DepartureRequest::~DepartureRequest() = default;
 DepartureRequest& DepartureRequest::operator=(const DepartureRequest&) = default;
 
-bool DepartureRequest::isEmpty() const
+bool DepartureRequest::isValid() const
 {
-    return d->stop.isEmpty();
+    return !d->stop.isEmpty();
 }
 
 Location DepartureRequest::stop() const

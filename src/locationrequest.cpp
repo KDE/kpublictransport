@@ -45,9 +45,9 @@ LocationRequest::LocationRequest(const LocationRequest&) = default;
 LocationRequest::~LocationRequest() = default;
 LocationRequest& LocationRequest::operator=(const LocationRequest&) = default;
 
-bool LocationRequest::isEmpty() const
+bool LocationRequest::isValid() const
 {
-    return !hasCoordinate() && d->name.isEmpty();
+    return hasCoordinate() || !d->name.isEmpty();
 }
 
 float LocationRequest::latitude() const

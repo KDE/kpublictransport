@@ -21,6 +21,9 @@
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/JourneyReply>
+#include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/LocationReply>
+#include <KPublicTransport/Location>
 
 #include <QSignalSpy>
 #include <QTest>
@@ -36,13 +39,44 @@ private Q_SLOTS:
         qputenv("TZ", "UTC");
     }
 
-    void testQueryJourney()
+    void testQueryLocation()
     {
         Manager mgr;
-        auto reply = mgr.queryJourney({});
+        auto reply = mgr.queryLocation({});
+        QVERIFY(reply);
         QSignalSpy spy(reply, &Reply::finished);
         QVERIFY(spy.wait(100));
         QCOMPARE(spy.size(), 1);
+        QCOMPARE(reply->error(), Reply::InvalidRequest);
+        delete reply;
+    }
+
+    void testInvalidQueryJourney_data()
+    {
+        QTest::addColumn<JourneyRequest>("request");
+        QTest::newRow("empty") << JourneyRequest();
+
+        Location loc;
+        loc.setCoordinate(52.0, 13.0);
+        JourneyRequest req;
+        req.setFrom(loc);
+        QTest::newRow("only from") << req;
+
+        req.setFrom({});
+        req.setTo(loc);
+        QTest::newRow("only to") << req;
+    }
+
+    void testInvalidQueryJourney()
+    {
+        QFETCH(JourneyRequest, request);
+        Manager mgr;
+        auto reply = mgr.queryJourney(request);
+        QVERIFY(reply);
+        QSignalSpy spy(reply, &Reply::finished);
+        QVERIFY(spy.wait(100));
+        QCOMPARE(spy.size(), 1);
+        QCOMPARE(reply->error(), Reply::InvalidRequest);
         delete reply;
     }
 
@@ -50,9 +84,11 @@ private Q_SLOTS:
     {
         Manager mgr;
         auto reply = mgr.queryDeparture({});
+        QVERIFY(reply);
         QSignalSpy spy(reply, &Reply::finished);
         QVERIFY(spy.wait(100));
         QCOMPARE(spy.size(), 1);
+        QCOMPARE(reply->error(), Reply::InvalidRequest);
         delete reply;
     }
 

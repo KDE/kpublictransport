@@ -57,8 +57,8 @@ public:
     ~JourneyRequest();
     JourneyRequest& operator=(const JourneyRequest&);
 
-    /** Returns @c true if this is a default-constructed object without any request parameters. */
-    bool isEmpty() const;
+    /** Returns @c true if this is a valid request, that is, it has enough parameters set to perform a query. */
+    bool isValid() const;
 
     /** The starting point of the journey search. */
     Location from() const;

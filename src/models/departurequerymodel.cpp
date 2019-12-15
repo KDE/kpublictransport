@@ -50,7 +50,7 @@ public:
 void DepartureQueryModelPrivate::doQuery()
 {
     Q_Q(DepartureQueryModel);
-    if (!m_manager || m_request.isEmpty()) {
+    if (!m_manager || !m_request.isValid()) {
         return;
     }
 
@@ -137,7 +137,7 @@ void DepartureQueryModel::setRequest(const DepartureRequest &req)
 bool DepartureQueryModel::canQueryNext() const
 {
     Q_D(const DepartureQueryModel);
-    return !d->m_loading && !d->m_departures.empty() && !d->m_nextRequest.isEmpty();
+    return !d->m_loading && !d->m_departures.empty() && d->m_nextRequest.isValid();
 }
 
 void DepartureQueryModel::queryNext()
@@ -170,7 +170,7 @@ void DepartureQueryModel::queryNext()
 bool DepartureQueryModel::canQueryPrevious() const
 {
     Q_D(const DepartureQueryModel);
-    return !d->m_loading && !d->m_departures.empty() && !d->m_prevRequest.isEmpty();
+    return !d->m_loading && !d->m_departures.empty() && d->m_prevRequest.isValid();
 }
 
 void DepartureQueryModel::queryPrevious()

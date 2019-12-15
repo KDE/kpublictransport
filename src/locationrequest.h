@@ -47,8 +47,8 @@ public:
     ~LocationRequest();
     LocationRequest& operator=(const LocationRequest&);
 
-    /** Returns @c true if this is a default-constructed object without any request parameters. */
-    bool isEmpty() const;
+    /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
+    bool isValid() const;
 
     /** Latitude of the location to search. */
     float latitude() const;

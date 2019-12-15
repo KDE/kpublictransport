@@ -50,7 +50,7 @@ public:
 void JourneyQueryModelPrivate::doQuery()
 {
     Q_Q(JourneyQueryModel);
-    if (!m_manager || m_request.isEmpty()) {
+    if (!m_manager || !m_request.isValid()) {
         return;
     }
 
@@ -135,7 +135,7 @@ void JourneyQueryModel::setRequest(const JourneyRequest &req)
 bool JourneyQueryModel::canQueryNext() const
 {
     Q_D(const JourneyQueryModel);
-    return !d->m_loading && !d->m_journeys.empty() && !d->m_nextRequest.isEmpty();
+    return !d->m_loading && !d->m_journeys.empty() && d->m_nextRequest.isValid();
 }
 
 void JourneyQueryModel::queryNext()
@@ -168,7 +168,7 @@ void JourneyQueryModel::queryNext()
 bool JourneyQueryModel::canQueryPrevious() const
 {
     Q_D(const JourneyQueryModel);
-    return !d->m_loading && !d->m_journeys.empty() && !d->m_prevRequest.isEmpty();
+    return !d->m_loading && !d->m_journeys.empty() && d->m_prevRequest.isValid();
 }
 
 void JourneyQueryModel::queryPrevious()
