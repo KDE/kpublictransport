@@ -150,8 +150,18 @@ class KPUBLICTRANSPORT_EXPORT Journey
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
     /** Departure time of the journey, according to schedule. */
     Q_PROPERTY(QDateTime scheduledDepartureTime READ scheduledDepartureTime STORED false)
+    /** @c true if this has real-time data. */
+    Q_PROPERTY(bool hasExpectedDepartureTime READ hasExpectedDepartureTime STORED false)
+    /** Difference to schedule in minutes. */
+    Q_PROPERTY(int departureDelay READ departureDelay STORED false)
+
     /** Arrival time of the journey, according to schedule. */
     Q_PROPERTY(QDateTime scheduledArrivalTime READ scheduledArrivalTime STORED false)
+    /** @c true if this has real-time data. */
+    Q_PROPERTY(bool hasExpectedArrivalTime READ hasExpectedArrivalTime STORED false)
+    /** Difference to schedule in minutes. */
+    Q_PROPERTY(int arrivalDelay READ arrivalDelay STORED false)
+
     /** Duration of the entire journey in seconds. */
     Q_PROPERTY(int duration READ duration STORED false)
     /** Number of changes on this journey. */
@@ -168,7 +178,13 @@ public:
     void setSections(std::vector<JourneySection> &&sections);
 
     QDateTime scheduledDepartureTime() const;
+    bool hasExpectedDepartureTime() const;
+    int departureDelay() const;
+
     QDateTime scheduledArrivalTime() const;
+    bool hasExpectedArrivalTime() const;
+    int arrivalDelay() const;
+
     int duration() const;
     int numberOfChanges() const;
     Disruption::Effect disruptionEffect() const;

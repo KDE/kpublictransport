@@ -315,12 +315,32 @@ QDateTime Journey::scheduledDepartureTime() const
     return {};
 }
 
+bool Journey::hasExpectedDepartureTime() const
+{
+    return d->sections.empty() ? false : d->sections.front().hasExpectedDepartureTime();
+}
+
+int Journey::departureDelay() const
+{
+    return d->sections.empty() ? 0 : d->sections.front().departureDelay();
+}
+
 QDateTime Journey::scheduledArrivalTime() const
 {
     if (!d->sections.empty()) {
         return d->sections.back().scheduledArrivalTime();
     }
     return {};
+}
+
+bool Journey::hasExpectedArrivalTime() const
+{
+    return d->sections.empty() ? false : d->sections.back().hasExpectedArrivalTime();
+}
+
+int Journey::arrivalDelay() const
+{
+    return d->sections.empty() ? 0 : d->sections.back().arrivalDelay();
 }
 
 int Journey::duration() const
