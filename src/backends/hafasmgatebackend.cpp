@@ -62,33 +62,44 @@ AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
-    return locationIdentifier(loc).isEmpty();
+    if (!locationIdentifier(loc).isEmpty()) {
+        return false;
+    }
+    return type == AbstractBackend::QueryType::Journey ? !loc.hasCoordinate() : true;
+}
+
+QJsonObject HafasMgateBackend::locationToJson(const Location &loc) const
+{
+    QJsonObject obj;
+
+    const auto id = locationIdentifier(loc);
+    if (!id.isEmpty()) {
+        obj.insert(QStringLiteral("extId"), id);
+        obj.insert(QStringLiteral("type"), QStringLiteral("S")); // 'S' == station
+    }
+
+    else if (loc.hasCoordinate()) {
+        QJsonObject crd;
+        crd.insert(QStringLiteral("y"), (int)(loc.latitude() * 1000000));
+        crd.insert(QStringLiteral("x"), (int)(loc.longitude() * 1000000));
+        obj.insert(QStringLiteral("crd"), crd);
+        obj.insert(QStringLiteral("type"), QStringLiteral("C")); // 'C' == coordinate
+    }
+
+    return obj;
 }
 
 bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto fromId = locationIdentifier(request.from());
-    const auto toId = locationIdentifier(request.to());
-    if (fromId.isEmpty() || toId.isEmpty()) {
-        return false;
-    }
-
     QJsonObject tripSearch;
     {
         QJsonObject cfg;
         cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
 
-        QJsonArray arrLocL;
-        QJsonObject arrLoc;
-        arrLoc.insert(QStringLiteral("extId"), toId);
-        arrLoc.insert(QStringLiteral("type"), QLatin1String("S")); // 'S' == station
-        arrLocL.push_back(arrLoc);
-
         QJsonArray depLocL;
-        QJsonObject depLoc;
-        depLoc.insert(QStringLiteral("extId"), fromId);
-        depLoc.insert(QStringLiteral("type"), QLatin1String("S"));
-        depLocL.push_back(depLoc);
+        depLocL.push_back(locationToJson(request.from()));
+        QJsonArray arrLocL;
+        arrLocL.push_back(locationToJson(request.to()));
 
         QJsonObject req;
         req.insert(QStringLiteral("arrLocL"), arrLocL);

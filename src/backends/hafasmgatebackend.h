@@ -64,6 +64,7 @@ private:
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
+    QJsonObject locationToJson(const Location &loc) const;
 
     mutable HafasMgateParser m_parser;
 
