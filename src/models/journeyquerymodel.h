@@ -67,8 +67,11 @@ public:
     Q_INVOKABLE void queryPrevious();
 
     enum Roles {
-        JourneyRole = Qt::UserRole
+        JourneyRole = Qt::UserRole,
+        ScheduledDepartureTime,
+        ScheduledArrivalTime
     };
+    Q_ENUM(Roles)
 
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;

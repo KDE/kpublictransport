@@ -214,9 +214,14 @@ QVariant JourneyQueryModel::data(const QModelIndex& index, int role) const
         return {};
     }
 
+    const auto jny = d->m_journeys[index.row()];
     switch (role) {
         case JourneyRole:
-            return QVariant::fromValue(d->m_journeys[index.row()]);
+            return QVariant::fromValue(jny);
+        case ScheduledDepartureTime:
+            return jny.scheduledDepartureTime();
+        case ScheduledArrivalTime:
+            return jny.scheduledArrivalTime();
     }
 
     return {};
@@ -226,6 +231,8 @@ QHash<int, QByteArray> JourneyQueryModel::roleNames() const
 {
     auto r = QAbstractListModel::roleNames();
     r.insert(JourneyRole, "journey");
+    r.insert(ScheduledDepartureTime, "scheduledDepartureTime");
+    r.insert(ScheduledArrivalTime, "scheduledArrivalTime");
     return r;
 }
 
