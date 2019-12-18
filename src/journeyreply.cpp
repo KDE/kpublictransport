@@ -131,12 +131,33 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
         journey.setSections(std::move(sections));
     }
 
-    // remove pointless sections such as 0-length walks
+    // clean up non-transport sections
     for (auto &journey : journeys) {
         auto sections = journey.takeSections();
+
+        // merge adjacent walking sections (yes, we do get that from backends...)
+        for (auto it = sections.begin(); it != sections.end();) {
+            if (it == sections.begin()) {
+                ++it;
+                continue;
+            }
+            auto prevIt = it - 1;
+            if ((*it).mode() == JourneySection::Walking && (*prevIt).mode() == JourneySection::Walking) {
+                (*prevIt).setTo((*it).to());
+                (*prevIt).setScheduledArrivalTime((*it).scheduledArrivalTime());
+                (*prevIt).setExpectedArrivalTime((*it).expectedArrivalTime());
+                it = sections.erase(it);
+                continue;
+            }
+
+            ++it;
+        }
+
+        // remove pointless sections such as 0-length walks
         sections.erase(std::remove_if(sections.begin(), sections.end(), isPointlessSection), sections.end());
         journey.setSections(std::move(sections));
     }
+
     // remove empty or implausible journeys
     journeys.erase(std::remove_if(journeys.begin(), journeys.end(), [](const auto &journey) {
         return journey.sections().empty() || std::any_of(journey.sections().begin(), journey.sections().end(), isImplausibleSection);
