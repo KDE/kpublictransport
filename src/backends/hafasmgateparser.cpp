@@ -346,8 +346,10 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                 section.addNotes(parseMessageList(jnyObj, remarks));
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
+                section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());
             } else if (typeStr == QLatin1String("TRSF")) {
                 section.setMode(JourneySection::Transfer);
+                section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());
             }
 
             sections.push_back(section);
