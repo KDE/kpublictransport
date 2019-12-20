@@ -44,6 +44,7 @@ public:
     QString expectedDeparturePlatform;
     QString scheduledArrivalPlatform;
     QString expectedArrivalPlatform;
+    int distance = 0;
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     QStringList notes;
 };
@@ -97,6 +98,23 @@ int JourneySection::arrivalDelay() const
 int JourneySection::duration() const
 {
     return d->scheduledDepartureTime.secsTo(d->scheduledArrivalTime);
+}
+
+int JourneySection::distance() const
+{
+    if (d->mode == JourneySection::Waiting) {
+        return 0;
+    }
+    if (!d->from.hasCoordinate() || !d->to.hasCoordinate()) {
+        return d->distance;
+    }
+    return std::max(Location::distance(d->from, d->to), d->distance);
+}
+
+void JourneySection::setDistance(int value)
+{
+    d.detach();
+    d->distance = value;
 }
 
 QString JourneySection::scheduledDeparturePlatform() const
@@ -244,6 +262,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
     res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
     res.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
+    res.setDistance(std::max(lhs.distance(), rhs.distance()));
 
     return res;
 }

@@ -105,6 +105,15 @@ Kirigami.ApplicationWindow {
         return Math.floor(dur/3600) + ":" + Math.floor((dur % 3600)/60)
     }
 
+    function displayDistance(dist)
+    {
+        if (dist == 0)
+            return "";
+        if (dist < 1000)
+            return dist + "m";
+        return Math.floor(dist/1000) + "km";
+    }
+
     Component {
         id: journeyDelegate
         Kirigami.AbstractListItem {
@@ -185,11 +194,11 @@ Kirigami.ApplicationWindow {
                         text: {
                             switch (modelData.mode) {
                             case JourneySection.PublicTransport:
-                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + displayDuration(modelData.duration);
+                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
                             case JourneySection.Walking:
-                                return "Walk " + displayDuration(modelData.duration)
+                                return "Walk " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
                             case JourneySection.Transfer:
-                                return "Transfer " + displayDuration(modelData.duration)
+                                return "Transfer " + displayDuration(modelData.duration)  + " / " + displayDistance(modelData.distance)
                             case JourneySection.Waiting:
                                 return "Wait " + displayDuration(modelData.duration)
                             return "???";

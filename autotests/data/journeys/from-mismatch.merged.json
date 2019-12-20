@@ -2,6 +2,7 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
+            "distance": 22825,
             "from": {
                 "latitude": 49.004150390625,
                 "longitude": 2.5708179473876953,

@@ -2,6 +2,7 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
+            "distance": 101547,
             "from": {
                 "identifier": {
                     "ibnr": "8503016"

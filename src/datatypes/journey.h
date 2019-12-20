@@ -62,6 +62,8 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
 
     /** Duration of the section in seconds. */
     Q_PROPERTY(int duration READ duration STORED false)
+    /** Distance of the section in meter. */
+    KPUBLICTRANSPORT_PROPERTY(int, distance, setDistance)
 
     /** Departure location of this segment. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, from, setFrom)
