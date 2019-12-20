@@ -146,6 +146,7 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
                 (*prevIt).setTo((*it).to());
                 (*prevIt).setScheduledArrivalTime((*it).scheduledArrivalTime());
                 (*prevIt).setExpectedArrivalTime((*it).expectedArrivalTime());
+                (*prevIt).setDistance((*prevIt).distance() + (*it).distance());
                 it = sections.erase(it);
                 continue;
             }
