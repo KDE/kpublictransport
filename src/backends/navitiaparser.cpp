@@ -169,6 +169,7 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
         section.setMode(JourneySection::Transfer);
     } else if (typeStr == QLatin1String("street_network") || typeStr == QLatin1String("walking") || typeStr == QLatin1String("crow_fly")) {
         section.setMode(JourneySection::Walking);
+        section.setDistance(obj.value(QLatin1String("geojson")).toObject().value(QLatin1String("properties")).toArray().at(0).toObject().value(QLatin1String("length")).toInt());
     } else if (typeStr == QLatin1String("waiting")) {
         section.setMode(JourneySection::Waiting);
     }

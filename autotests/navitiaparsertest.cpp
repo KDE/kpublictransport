@@ -61,6 +61,7 @@ private Q_SLOTS:
 
             auto sec = journey.sections()[0];
             QCOMPARE(sec.mode(), KPublicTransport::JourneySection::Walking);
+            QCOMPARE(sec.distance(), 77);
             QEXPECT_FAIL("", "tz propagation not implemented yet", Continue);
             QCOMPARE(sec.from().timeZone().id(), "Europe/Paris");
 
