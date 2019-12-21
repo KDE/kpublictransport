@@ -28,6 +28,7 @@
 #include "datatypes/backend.h"
 #include "datatypes/disruption.h"
 
+#include <KPublicTransport/Departure>
 #include <KPublicTransport/Location>
 
 #include "backends/cache.h"
@@ -373,6 +374,21 @@ bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const Depart
         return false;
     }
     reply->addAttribution(backend->attribution());
+
+    auto cache = Cache::lookupDeparture(backend->backendId(), req.cacheKey());
+    switch (cache.type) {
+        case CacheHitType::Negative:
+            qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
+            return false;
+        case CacheHitType::Positive:
+            qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+            reply->addAttributions(std::move(cache.attributions));
+            reply->addResult(backend, std::move(cache.data));
+            return false;
+        case CacheHitType::Miss:
+            qCDebug(Log) << "Cache miss for backend" << backend->backendId();
+            break;
+    }
 
     // check if we first need to resolve the location first
     if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
