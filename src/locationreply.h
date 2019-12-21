@@ -50,7 +50,10 @@ private:
     explicit LocationReply(const LocationRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    void addResult(std::vector<Location> &&res);
+    Q_DECL_HIDDEN void addResult(std::vector<Location> &&res);
+    using Reply::addError;
+    Q_DECL_HIDDEN void addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg);
+
 
     Q_DECLARE_PRIVATE(LocationReply)
 };

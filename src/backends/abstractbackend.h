@@ -127,6 +127,10 @@ protected:
         reply->addResult(std::forward<Args>(args)...);
     }
 
+    template <typename T> inline static void addError(T *reply, const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+    {
+        reply->addError(backend, error, errorMsg);
+    }
     inline static void addError(Reply *reply, Reply::Error error, const QString &errorMsg)
     {
         reply->addError(error, errorMsg);

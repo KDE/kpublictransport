@@ -73,6 +73,10 @@ protected:
     std::unique_ptr<ReplyPrivate> d_ptr;
 
     friend class AbstractBackend;
+    /** Used for a backend to report it finished it's job with an error.
+     *  Prefer to use the variants of this provided by the type-specific sub-classes
+     *  which also add the corresponding negative cache entries if appropriate.
+     */
     Q_DECL_HIDDEN void addError(Error error, const QString &errorMsg);
     Q_DECL_HIDDEN void addAttributions(std::vector<Attribution> &&attributions);
 

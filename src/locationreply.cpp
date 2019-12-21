@@ -20,6 +20,8 @@
 #include "locationrequest.h"
 #include "datatypes/locationutil_p.h"
 #include "logging.h"
+#include "backends/abstractbackend.h"
+#include "backends/cache.h"
 
 #include <KPublicTransport/Location>
 
@@ -114,4 +116,14 @@ void LocationReply::addResult(std::vector<Location> &&res)
 
     d->pendingOps--;
     d->emitFinishedIfDone(this);
+}
+
+void LocationReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+{
+    if (error == Reply::NotFoundError) {
+        Cache::addNegativeLocationCacheEntry(backend->backendId(), request().cacheKey());
+    } else {
+        qCDebug(Log) << backend->backendId() << error << errorMsg;
+    }
+    Reply::addError(error, errorMsg);
 }

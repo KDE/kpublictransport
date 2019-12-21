@@ -88,17 +88,14 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            qCDebug(Log) << netReply->url() << netReply->errorString();
-            addError(reply, Reply::NetworkError, netReply->errorString());
+            addError(reply, this, Reply::NetworkError, netReply->errorString());
             return;
         }
         qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseStopFinderResponse(data);
         if (p->error() != Reply::NoError) {
-            Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
-            addError(reply, p->error(), p->errorMessage());
-            qCDebug(Log) << p->error() << p->errorMessage();
+            addError(reply, this, p->error(), p->errorMessage());
         } else {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));

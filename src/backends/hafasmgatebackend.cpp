@@ -241,14 +241,12 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
                     Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
                     addResult(reply, std::move(res));
                 } else {
-                    Cache::addNegativeLocationCacheEntry(backendId(), reply->request().cacheKey());
-                    addError(reply, m_parser.error(), m_parser.errorMessage());
+                    addError(reply, this, m_parser.error(), m_parser.errorMessage());
                 }
                 break;
             }
             default:
-                addError(reply, Reply::NetworkError, netReply->errorString());
-                qCDebug(Log) << netReply->error() << netReply->errorString();
+                addError(reply, this, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
