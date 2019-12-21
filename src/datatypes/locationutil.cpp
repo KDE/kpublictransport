@@ -20,6 +20,8 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationRequest>
 
+#include <cmath>
+
 using namespace KPublicTransport;
 
 bool LocationUtil::sortLessThan(const LocationRequest &request, const Location &lhs, const Location &rhs)
@@ -38,4 +40,22 @@ bool LocationUtil::sortLessThan(const LocationRequest &request, const Location &
     }
 
     return lhsSame && !rhsSame;
+}
+
+QString LocationUtil::cacheKey(const QString &name, float lat, float lon)
+{
+    QString normalizedName;
+    normalizedName.reserve(name.size());
+    for (const auto c : qAsConst(name)) {
+        if (c.isLetter() || c.isDigit()) {
+            normalizedName.push_back(c.toCaseFolded());
+        }
+    }
+
+    if (!std::isnan(lat) && !std::isnan(lon)) {
+        return QString::number((int)(lat * 1000000)) + QLatin1Char('x') + QString::number((int)(lon * 1000000))
+            + QLatin1Char('_') + normalizedName;
+    }
+
+    return QLatin1String("nanxnan_") + normalizedName;
 }

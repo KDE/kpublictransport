@@ -17,6 +17,7 @@
 
 #include "locationrequest.h"
 #include "datatypes/json_p.h"
+#include "datatypes/locationutil_p.h"
 
 #include <QSharedData>
 #include <QStringList>
@@ -96,20 +97,7 @@ void LocationRequest::setName(const QString &name)
 
 QString LocationRequest::cacheKey() const
 {
-    QString normalizedName;
-    normalizedName.reserve(d->name.size());
-    for (const auto c : qAsConst(d->name)) {
-        if (c.isLetter() || c.isDigit()) {
-            normalizedName.push_back(c.toCaseFolded());
-        }
-    }
-
-    if (hasCoordinate()) {
-        return QString::number((int)(latitude() * 1000000)) + QLatin1Char('x') + QString::number((int)(longitude() * 1000000))
-            + QLatin1Char('_') + normalizedName;
-    }
-
-    return QLatin1String("nanxnan_") + normalizedName;
+    return LocationUtil::cacheKey(d->name, d->lat, d->lon);
 }
 
 QJsonObject LocationRequest::toJson(const LocationRequest &req)

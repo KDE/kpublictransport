@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_LOCATIONUTIL_P_H
 #define KPUBLICTRANSPORT_LOCATIONUTIL_P_H
 
+class QString;
+
 namespace KPublicTransport {
 
 class Location;
@@ -28,6 +30,9 @@ namespace LocationUtil
 {
     /** Request specific sorting/comparison for replies/models. */
     bool sortLessThan(const LocationRequest &request, const Location &lhs, const Location &rhs);
+
+    /** Returns the key used for caching a location with the given name and coordinates. */
+    QString cacheKey(const QString &name, float lat, float lon);
 }
 
 }
