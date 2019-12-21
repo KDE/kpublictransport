@@ -24,6 +24,8 @@
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/VehicleLayoutRequest>
+#include <KPublicTransport/VehicleLayoutReply>
 
 #include <QSignalSpy>
 #include <QTest>
@@ -96,6 +98,18 @@ private Q_SLOTS:
     {
         Manager mgr;
         QVERIFY(mgr.attributions().size() > 0);
+    }
+
+    void testInvalidVehicleLayoutQuery()
+    {
+        Manager mgr;
+        auto reply = mgr.queryVehicleLayout(VehicleLayoutRequest());
+        QVERIFY(reply);
+        QSignalSpy spy(reply, &Reply::finished);
+        QVERIFY(spy.wait(100));
+        QCOMPARE(spy.size(), 1);
+        QCOMPARE(reply->error(), Reply::InvalidRequest);
+        delete reply;
     }
 };
 

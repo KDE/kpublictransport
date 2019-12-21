@@ -1,0 +1,28 @@
+{
+    "KPlugin": {
+        "Description": "German national railway train layout service.",
+        "Name": "Deutsche Bahn (DB) train layout API"
+    },
+    "filter": {
+        "TODO": "this is the EU bounding box, but this is presumably limited to DE?",
+        "geo": [
+            [
+                37.8068,
+                82.97
+            ],
+            [
+                35.3039,
+                33.9542
+            ],
+            [
+                -14.3375,
+                34.7885
+            ],
+            [
+                -36.3425,
+                86.3072
+            ]
+        ]
+    },
+    "type": "deutschebahn"
+}

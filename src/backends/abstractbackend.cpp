@@ -214,3 +214,11 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
         httpFile.write("\n");
     }
 }
+
+bool AbstractBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
+{
+    Q_UNUSED(request);
+    Q_UNUSED(reply);
+    Q_UNUSED(nam);
+    return false;
+}

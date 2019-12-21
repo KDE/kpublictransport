@@ -42,6 +42,8 @@ class JourneyRequest;
 class Location;
 class LocationReply;
 class LocationRequest;
+class VehicleLayoutReply;
+class VehicleLayoutRequest;
 
 /** Abstract base class for transport provider backends. */
 class AbstractBackend
@@ -119,6 +121,11 @@ public:
      *  @return @c true if performing an async operation, @c false otherwise.
      */
     virtual bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const;
+
+    /** Perform a vehicle layout query.
+     *  @return @c true if performing an async operation, @c false otherwise.
+     */
+    virtual bool queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const;
 
 protected:
     /** Helper function to call non-public Reply API. */

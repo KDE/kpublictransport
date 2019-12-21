@@ -24,6 +24,8 @@
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "logging.h"
+#include "vehiclelayoutrequest.h"
+#include "vehiclelayoutreply.h"
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/backend.h"
 #include "datatypes/disruption.h"
@@ -33,6 +35,7 @@
 #include <KPublicTransport/Location>
 
 #include "backends/cache.h"
+#include "backends/deutschebahnbackend.h"
 #include "backends/efabackend.h"
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
@@ -187,6 +190,9 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
     }
     if (type == QLatin1String("efa")) {
         return loadNetwork<EfaBackend>(obj);
+    }
+    if (type == QLatin1String("deutschebahn")) {
+        return loadNetwork<DeutscheBahnBackend>(obj);
     }
 
     qCWarning(Log) << "Unknown backend type:" << type;
@@ -629,6 +635,37 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
                     ++pendingOps;
                 }
                 break;
+        }
+    }
+    reply->setPendingOps(pendingOps);
+    return reply;
+}
+
+VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req) const
+{
+    auto reply = d->makeReply<VehicleLayoutReply>(req);
+    int pendingOps = 0;
+
+    // validate input
+    if (!req.isValid()) {
+        reply->addError(Reply::InvalidRequest, {});
+        return reply;
+    }
+
+    for (const auto &backend : d->m_backends) {
+        if (d->shouldSkipBackend(backend.get(), req)) {
+            continue;
+        }
+        if (req.departure().stopPoint().hasCoordinate() && backend->isCoordinateExcluded(req.departure().stopPoint().latitude(), req.departure().stopPoint().longitude())) {
+            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
+            continue;
+        }
+        reply->addAttribution(backend->attribution());
+
+        // TODO check cache
+
+        if (backend->queryVehicleLayout(req, reply, d->nam())) {
+            ++pendingOps;
         }
     }
     reply->setPendingOps(pendingOps);

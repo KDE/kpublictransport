@@ -10,9 +10,12 @@ set(kpublictransport_srcs
     manager.cpp
     reply.cpp
     requestcontext.cpp
+    vehiclelayoutreply.cpp
+    vehiclelayoutrequest.cpp
 
     backends/abstractbackend.cpp
     backends/cache.cpp
+    backends/deutschebahnbackend.cpp
     backends/efabackend.cpp
     backends/efaparser.cpp
     backends/efacompactparser.cpp
@@ -41,7 +44,9 @@ set(kpublictransport_srcs
     datatypes/locationutil.cpp
     datatypes/mergeutil.cpp
     datatypes/notesutil.cpp
+    datatypes/platform.cpp
     datatypes/platformutils.cpp
+    datatypes/vehicle.cpp
 
     models/abstractquerymodel.cpp
     models/backendmodel.cpp
@@ -79,6 +84,8 @@ ecm_generate_headers(KPublicTransport_FORWARDING_HEADERS
         LocationRequest
         Manager
         Reply
+        VehicleLayoutReply
+        VehicleLayoutRequest
     PREFIX KPublicTransport
     REQUIRED_HEADERS KPublicTransport_HEADERS
 )
@@ -102,6 +109,8 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Journey
         Line
         Location
+        Platform
+        Vehicle
     PREFIX KPublicTransport
     REQUIRED_HEADERS KPublicTransport_Datatypes_HEADERS
     RELATIVE datatypes

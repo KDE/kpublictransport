@@ -9,6 +9,7 @@
         <file>be_sncb.json</file>
         <file>ch_sbb.json</file>
         <file>de_db.json</file>
+        <file>de_dbwagenreihung.json</file>
         <file>dk_dsb.json</file>
         <file>fr_sncf.json</file>
         <file>ie_tfi.json</file>

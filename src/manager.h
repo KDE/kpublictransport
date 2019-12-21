@@ -40,6 +40,8 @@ class JourneyRequest;
 class LocationReply;
 class LocationRequest;
 class ManagerPrivate;
+class VehicleLayoutReply;
+class VehicleLayoutRequest;
 
 /** Entry point for starting public transport queries.
  *
@@ -85,6 +87,12 @@ public:
 
     /** Query location information based on coordinates or (parts of) the name. */
     LocationReply* queryLocation(const LocationRequest &req) const;
+
+    /** Query vehicle and platform layout information.
+     *  This is only available for some trains and some operators, so be prepared
+     *  for empty results.
+     */
+    VehicleLayoutReply* queryVehicleLayout(const VehicleLayoutRequest &req) const;
 
     /** Returns all static attribution information, as well as all dynamic ones
      *  found in the cache or accumulated during the lifetime of this instance.
