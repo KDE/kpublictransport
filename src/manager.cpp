@@ -29,6 +29,7 @@
 #include "datatypes/disruption.h"
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 
 #include "backends/cache.h"
@@ -307,6 +308,21 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
         return false;
     }
     reply->addAttribution(backend->attribution());
+
+    auto cache = Cache::lookupJourney(backend->backendId(), req.cacheKey());
+    switch (cache.type) {
+        case CacheHitType::Negative:
+            qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
+            return false;
+        case CacheHitType::Positive:
+            qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+            reply->addAttributions(std::move(cache.attributions));
+            reply->addResult(backend, std::move(cache.data));
+            return false;
+        case CacheHitType::Miss:
+            qCDebug(Log) << "Cache miss for backend" << backend->backendId();
+            break;
+    }
 
     // resolve locations if needed
     if (backend->needsLocationQuery(req.from(), AbstractBackend::QueryType::Journey)) {
