@@ -21,6 +21,7 @@
 #include "requestcontext_p.h"
 #include "logging.h"
 #include "backends/abstractbackend.h"
+#include "backends/cache.h"
 #include "datatypes/journeyutil_p.h"
 
 #include <KPublicTransport/Journey>
@@ -274,4 +275,14 @@ void JourneyReply::setPreviousContext(const AbstractBackend *backend, const QVar
     context.type = RequestContext::Previous;
     context.backendData = data;
     d->prevRequest.setContext(backend, std::move(context));
+}
+
+void JourneyReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+{
+    if (error == Reply::NotFoundError) {
+        Cache::addNegativeJourneyCacheEntry(backend->backendId(), request().cacheKey());
+    } else {
+        qCDebug(Log) << backend->backendId() << error << errorMsg;
+    }
+    Reply::addError(error, errorMsg);
 }

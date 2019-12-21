@@ -138,13 +138,12 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
                 if (m_parser.error() == Reply::NoError) {
                     addResult(reply, this, std::move(res));
                 } else {
-                    addError(reply, m_parser.error(), m_parser.errorMessage());
+                    addError(reply, this, m_parser.error(), m_parser.errorMessage());
                 }
                 break;
             }
             default:
-                addError(reply, Reply::NetworkError, netReply->errorString());
-                qCDebug(Log) << netReply->error() << netReply->errorString();
+                addError(reply, this, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();

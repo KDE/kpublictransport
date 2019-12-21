@@ -53,11 +53,14 @@ public:
     JourneyRequest previousRequest() const;
 
 private:
+    friend class Manager;
     friend class ManagerPrivate;
     explicit JourneyReply(const JourneyRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    void addResult(const AbstractBackend *backend, std::vector<Journey> &&res);
+    Q_DECL_HIDDEN void addResult(const AbstractBackend *backend, std::vector<Journey> &&res);
+    using Reply::addError;
+    Q_DECL_HIDDEN void addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg);
 
     Q_DECL_HIDDEN void setNextContext(const AbstractBackend *backend, const QVariant &data);
     Q_DECL_HIDDEN void setPreviousContext(const AbstractBackend *backend, const QVariant &data);

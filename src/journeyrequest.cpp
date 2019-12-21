@@ -18,6 +18,7 @@
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "datatypes/json_p.h"
+#include "datatypes/locationutil_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -28,6 +29,8 @@
 #include <unordered_map>
 
 using namespace KPublicTransport;
+
+enum { JourneyCacheTimeResolution = 60 }; // in seconds
 
 namespace KPublicTransport {
 class JourneyRequestPrivate : public QSharedData {
@@ -174,6 +177,14 @@ void JourneyRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
+}
+
+QString JourneyRequest::cacheKey() const
+{
+    return QString::number(d->dateTime.toSecsSinceEpoch() / JourneyCacheTimeResolution) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->from.name(), d->from.latitude(), d->from.longitude()) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->to.name(), d->to.latitude(), d->to.longitude()) + QLatin1Char('_')
+        + (d->dateTimeMode == JourneyRequest::Arrival ? QLatin1Char('A') : QLatin1Char('D'));
 }
 
 #include "moc_journeyrequest.cpp"

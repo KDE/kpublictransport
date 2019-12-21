@@ -131,10 +131,6 @@ protected:
     {
         reply->addError(backend, error, errorMsg);
     }
-    inline static void addError(Reply *reply, Reply::Error error, const QString &errorMsg)
-    {
-        reply->addError(error, errorMsg);
-    }
 
     static void addAttributions(Reply *reply, std::vector<Attribution> &&attributions);
 
