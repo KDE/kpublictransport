@@ -245,6 +245,11 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
         }
     }
 
+    // cache negative hits, positive ones are too short-lived
+    if (res.empty()) {
+        Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
+    }
+
     // update result
     if (!res.empty()) {
         if (d->journeys.empty()) {

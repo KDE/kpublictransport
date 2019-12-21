@@ -124,6 +124,11 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Depar
         }
     }
 
+    // cache negative hits, positive ones are too short-lived
+    if (res.empty()) {
+        Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
+    }
+
     if (d->result.empty()) {
         d->result = std::move(res);
     } else {
