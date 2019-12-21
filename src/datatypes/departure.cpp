@@ -203,4 +203,9 @@ Departure Departure::fromJson(const QJsonObject &obj)
     return dep;
 }
 
+std::vector<Departure> Departure::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<Departure>(array);
+}
+
 #include "moc_departure.cpp"

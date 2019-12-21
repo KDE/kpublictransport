@@ -89,6 +89,9 @@ public:
      */
     void setBackendIds(const QStringList &backendIds);
 
+    /** Unique string representation used for caching results. */
+    QString cacheKey() const;
+
     ///@cond internal
     static QJsonObject toJson(const DepartureRequest &req);
     ///@endcond

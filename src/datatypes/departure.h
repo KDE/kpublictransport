@@ -102,6 +102,8 @@ public:
     static QJsonArray toJson(const std::vector<Departure> &deps);
     /** Deserialize an object from JSON. */
     static Departure fromJson(const QJsonObject &obj);
+    /** Deserialize a list of departures from JSON. */
+    static std::vector<Departure> fromJson(const QJsonArray &array);
 };
 
 }

@@ -19,6 +19,7 @@
 #include "logging.h"
 #include "datatypes/attributionutil_p.h"
 
+#include <KPublicTransport/Departure>
 #include <KPublicTransport/Location>
 
 #include <QDateTime>
@@ -95,6 +96,42 @@ CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QStri
 
     entry.type = CacheHitType::Positive;
     entry.data = Location::fromJson(QJsonDocument::fromJson(f.readAll()).array());
+
+    QFile attrFile (dir + cacheKey + attributionExtension());
+    if (attrFile.open(QFile::ReadOnly)) {
+        entry.attributions = Attribution::fromJson(QJsonDocument::fromJson(attrFile.readAll()).array());
+    }
+
+    return entry;
+}
+
+void Cache::addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey)
+{
+    const auto dir = cachePath(backendId, QStringLiteral("departure"));
+    QDir().mkpath(dir);
+    QFile f(dir + cacheKey + locationExtension());
+    f.open(QFile::WriteOnly | QFile::Truncate);
+    // empty file is used as indicator for a negative hit
+}
+
+CacheEntry<Departure> Cache::lookupDeparture(const QString &backendId, const QString &cacheKey)
+{
+    CacheEntry<Departure> entry;
+
+    const auto dir = cachePath(backendId, QStringLiteral("departure"));
+    QFile f (dir + cacheKey + locationExtension());
+    if (!f.open(QFile::ReadOnly)) {
+        entry.type = CacheHitType::Miss;
+        return entry;
+    }
+
+    if (f.size() == 0) {
+        entry.type = CacheHitType::Negative;
+        return entry;
+    }
+
+    entry.type = CacheHitType::Positive;
+    entry.data = Departure::fromJson(QJsonDocument::fromJson(f.readAll()).array());
 
     QFile attrFile (dir + cacheKey + attributionExtension());
     if (attrFile.open(QFile::ReadOnly)) {

@@ -28,6 +28,7 @@ class QString;
 
 namespace KPublicTransport {
 
+class Departure;
 class Location;
 
 enum class CacheHitType {
@@ -61,6 +62,11 @@ namespace Cache
     KPUBLICTRANSPORT_EXPORT void addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey);
     /** Perform cache lookup for location results. */
     KPUBLICTRANSPORT_EXPORT CacheEntry<Location> lookupLocation(const QString &backendId, const QString &cacheKey);
+
+    /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
+    KPUBLICTRANSPORT_EXPORT void addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey);
+    /** Perform cache lookup for departure results. */
+    KPUBLICTRANSPORT_EXPORT CacheEntry<Departure> lookupDeparture(const QString &backendId, const QString &cacheKey);
 
     /** Returns all cached attribution information.
      *  The result is inserted in the assumed to be sorted @p attrs and deduplicated.

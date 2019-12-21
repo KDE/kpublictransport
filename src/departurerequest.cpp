@@ -18,6 +18,7 @@
 #include "departurerequest.h"
 #include "requestcontext_p.h"
 #include "datatypes/json_p.h"
+#include "datatypes/locationutil_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -143,6 +144,13 @@ void DepartureRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
+}
+
+QString DepartureRequest::cacheKey() const
+{
+    return QString::number(d->dateTime.toSecsSinceEpoch()) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->stop.name(), d->stop.latitude(), d->stop.longitude())
+        + QLatin1Char('_') + (d->mode == DepartureRequest::QueryArrival ? QLatin1Char('A') : QLatin1Char('D'));
 }
 
 #include "moc_departurerequest.cpp"
