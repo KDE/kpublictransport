@@ -203,16 +203,14 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
             {
                 auto result = m_parser.parseDepartures(data);
                 if (m_parser.error() != Reply::NoError) {
-                    addError(reply, m_parser.error(), m_parser.errorMessage());
-                    qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
+                    addError(reply, this, m_parser.error(), m_parser.errorMessage());
                 } else {
                     addResult(reply, this, std::move(result));
                 }
                 break;
             }
             default:
-                addError(reply, Reply::NetworkError, netReply->errorString());
-                qCDebug(Log) << netReply->error() << netReply->errorString();
+                addError(reply, this, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();

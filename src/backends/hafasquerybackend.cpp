@@ -188,14 +188,12 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, netReply->errorString());
-            qCDebug(Log) << reply->error() << reply->errorString();
+            addError(reply, this, Reply::NetworkError, netReply->errorString());
             return;
         }
         auto res = m_parser.parseStationBoardResponse(data, reply->request().mode() == DepartureRequest::QueryArrival);
         if (m_parser.error() != Reply::NoError) {
-            addError(reply, m_parser.error(), m_parser.errorMessage());
-            qCDebug(Log) << m_parser.error() << m_parser.errorMessage();
+            addError(reply, this, m_parser.error(), m_parser.errorMessage());
         } else {
             addResult(reply, this, std::move(res));
         }

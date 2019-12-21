@@ -21,6 +21,7 @@
 #include "reply_p.h"
 #include "requestcontext_p.h"
 #include "backends/abstractbackend.h"
+#include "backends/cache.h"
 #include "datatypes/departureutil_p.h"
 
 #include <KPublicTransport/Departure>
@@ -168,4 +169,14 @@ void DepartureReply::setPreviousContext(const AbstractBackend *backend, const QV
     context.type = RequestContext::Previous;
     context.backendData = data;
     d->prevRequest.setContext(backend, std::move(context));
+}
+
+void DepartureReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+{
+    if (error == Reply::NotFoundError) {
+        Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
+    } else {
+        qCDebug(Log) << backend->backendId() << error << errorMsg;
+    }
+    Reply::addError(error, errorMsg);
 }

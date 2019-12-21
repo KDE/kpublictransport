@@ -161,11 +161,10 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
+                addError(reply, this, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 break;
             default:
-                addError(reply, Reply::NetworkError, netReply->errorString());
-                qCDebug(Log) << netReply->error() << netReply->errorString();
+                addError(reply, this, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
