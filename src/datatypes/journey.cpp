@@ -462,4 +462,9 @@ Journey KPublicTransport::Journey::fromJson(const QJsonObject &obj)
     return j;
 }
 
+std::vector<Journey> Journey::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<Journey>(array);
+}
+
 #include "moc_journey.cpp"

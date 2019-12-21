@@ -205,6 +205,8 @@ public:
     static QJsonArray toJson(const std::vector<Journey> &journeys);
     /** Deserialize an object from JSON. */
     static Journey fromJson(const QJsonObject &obj);
+    /** Deserialize a list of journey from JSON. */
+    static std::vector<Journey> fromJson(const QJsonArray &array);
 
 private:
     QVariantList sectionsVariant() const;

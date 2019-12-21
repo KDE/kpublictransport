@@ -20,6 +20,7 @@
 #include "datatypes/attributionutil_p.h"
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 
 #include <QDateTime>
@@ -54,6 +55,43 @@ static QString attributionExtension()
     return QStringLiteral(".attribution");
 }
 
+static void addNegativeCacheEntry(const QString &typeName, const QString &backendId, const QString &cacheKey)
+{
+    const auto dir = cachePath(backendId, typeName);
+    QDir().mkpath(dir);
+    QFile f(dir + cacheKey + locationExtension());
+    f.open(QFile::WriteOnly | QFile::Truncate);
+    // empty file is used as indicator for a negative hit
+}
+
+template <typename T>
+static CacheEntry<T> lookup(const QString &typeName, const QString &backendId, const QString &cacheKey)
+{
+    CacheEntry<T> entry;
+
+    const auto dir = cachePath(backendId, typeName);
+    QFile f (dir + cacheKey + locationExtension());
+    if (!f.open(QFile::ReadOnly)) {
+        entry.type = CacheHitType::Miss;
+        return entry;
+    }
+
+    if (f.size() == 0) {
+        entry.type = CacheHitType::Negative;
+        return entry;
+    }
+
+    entry.type = CacheHitType::Positive;
+    entry.data = T::fromJson(QJsonDocument::fromJson(f.readAll()).array());
+
+    QFile attrFile (dir + cacheKey + attributionExtension());
+    if (attrFile.open(QFile::ReadOnly)) {
+        entry.attributions = Attribution::fromJson(QJsonDocument::fromJson(attrFile.readAll()).array());
+    }
+
+    return entry;
+}
+
 void Cache::addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attribution)
 {
     const auto dir = cachePath(backendId, QStringLiteral("location"));
@@ -71,74 +109,32 @@ void Cache::addLocationCacheEntry(const QString &backendId, const QString &cache
 
 void Cache::addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey)
 {
-    const auto dir = cachePath(backendId, QStringLiteral("location"));
-    QDir().mkpath(dir);
-    QFile f(dir + cacheKey + locationExtension());
-    f.open(QFile::WriteOnly | QFile::Truncate);
-    // empty file is used as indicator for a negative hit
+    addNegativeCacheEntry(QStringLiteral("location"), backendId, cacheKey);
 }
 
 CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QString &cacheKey)
 {
-    CacheEntry<Location> entry;
-
-    const auto dir = cachePath(backendId, QStringLiteral("location"));
-    QFile f (dir + cacheKey + locationExtension());
-    if (!f.open(QFile::ReadOnly)) {
-        entry.type = CacheHitType::Miss;
-        return entry;
-    }
-
-    if (f.size() == 0) {
-        entry.type = CacheHitType::Negative;
-        return entry;
-    }
-
-    entry.type = CacheHitType::Positive;
-    entry.data = Location::fromJson(QJsonDocument::fromJson(f.readAll()).array());
-
-    QFile attrFile (dir + cacheKey + attributionExtension());
-    if (attrFile.open(QFile::ReadOnly)) {
-        entry.attributions = Attribution::fromJson(QJsonDocument::fromJson(attrFile.readAll()).array());
-    }
-
-    return entry;
+    return lookup<Location>(QStringLiteral("location"), backendId, cacheKey);
 }
 
 void Cache::addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey)
 {
-    const auto dir = cachePath(backendId, QStringLiteral("departure"));
-    QDir().mkpath(dir);
-    QFile f(dir + cacheKey + locationExtension());
-    f.open(QFile::WriteOnly | QFile::Truncate);
-    // empty file is used as indicator for a negative hit
+    addNegativeCacheEntry(QStringLiteral("departure"), backendId, cacheKey);
 }
 
 CacheEntry<Departure> Cache::lookupDeparture(const QString &backendId, const QString &cacheKey)
 {
-    CacheEntry<Departure> entry;
+    return lookup<Departure>(QStringLiteral("departure"), backendId, cacheKey);
+}
 
-    const auto dir = cachePath(backendId, QStringLiteral("departure"));
-    QFile f (dir + cacheKey + locationExtension());
-    if (!f.open(QFile::ReadOnly)) {
-        entry.type = CacheHitType::Miss;
-        return entry;
-    }
+void Cache::addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey)
+{
+    addNegativeCacheEntry(QStringLiteral("journey"), backendId, cacheKey);
+}
 
-    if (f.size() == 0) {
-        entry.type = CacheHitType::Negative;
-        return entry;
-    }
-
-    entry.type = CacheHitType::Positive;
-    entry.data = Departure::fromJson(QJsonDocument::fromJson(f.readAll()).array());
-
-    QFile attrFile (dir + cacheKey + attributionExtension());
-    if (attrFile.open(QFile::ReadOnly)) {
-        entry.attributions = Attribution::fromJson(QJsonDocument::fromJson(attrFile.readAll()).array());
-    }
-
-    return entry;
+CacheEntry<Journey> Cache::lookupJourney(const QString &backendId, const QString &cacheKey)
+{
+    return lookup<Journey>(QStringLiteral("journey"), backendId, cacheKey);
 }
 
 static void expireRecursive(const QString &path)
