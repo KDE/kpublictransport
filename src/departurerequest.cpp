@@ -27,6 +27,8 @@
 
 using namespace KPublicTransport;
 
+enum { DepartureCacheTimeResolution = 60 }; // in seconds
+
 namespace KPublicTransport {
 class DepartureRequestPrivate : public QSharedData {
 public:
@@ -148,7 +150,7 @@ void DepartureRequest::setBackendIds(const QStringList &backendIds)
 
 QString DepartureRequest::cacheKey() const
 {
-    return QString::number(d->dateTime.toSecsSinceEpoch()) + QLatin1Char('_')
+    return QString::number(d->dateTime.toSecsSinceEpoch() / DepartureCacheTimeResolution) + QLatin1Char('_')
         + LocationUtil::cacheKey(d->stop.name(), d->stop.latitude(), d->stop.longitude())
         + QLatin1Char('_') + (d->mode == DepartureRequest::QueryArrival ? QLatin1Char('A') : QLatin1Char('D'));
 }
