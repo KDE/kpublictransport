@@ -38,6 +38,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutRequest
 
     // TODO properties for manual setup
 
+    // TODO should this really be exposed? we need the location for the geo filter though, if available
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Departure, departure, setDeparture)
+
 public:
     /** Creates a vehicle layout request for the given departure. */
     VehicleLayoutRequest(const Departure &dep);
@@ -45,9 +48,6 @@ public:
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     bool isValid() const;
-
-    // TODO should this really be exposed? we need the location for the geo filter though, if available
-    Departure departure() const;
 
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
@@ -68,5 +68,7 @@ public:
 };
 
 }
+
+Q_DECLARE_METATYPE(KPublicTransport::VehicleLayoutRequest)
 
 #endif // KPUBLICTRANSPORT_VEHICLELAYOUTREQUEST_H

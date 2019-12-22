@@ -36,6 +36,7 @@ public:
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(VehicleLayoutRequest)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, KPublicTransport::Departure, departure, setDeparture)
 
 VehicleLayoutRequest::VehicleLayoutRequest(const Departure &dep)
     : d(new VehicleLayoutRequestPrivate)
@@ -46,11 +47,6 @@ VehicleLayoutRequest::VehicleLayoutRequest(const Departure &dep)
 bool VehicleLayoutRequest::isValid() const
 {
     return d->departure.scheduledDepartureTime().isValid() && !d->departure.route().line().name().isEmpty();
-}
-
-Departure VehicleLayoutRequest::departure() const
-{
-    return d->departure;
 }
 
 QString VehicleLayoutRequest::cacheKey() const

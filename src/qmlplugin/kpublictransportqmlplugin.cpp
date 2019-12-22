@@ -29,6 +29,9 @@
 #include <KPublicTransport/LocationQueryModel>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
+#include <KPublicTransport/Vehicle>
+#include <KPublicTransport/VehicleLayoutQueryModel>
+#include <KPublicTransport/VehicleLayoutRequest>
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
@@ -38,14 +41,17 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
 
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
+    qmlRegisterUncreatableType<KPublicTransport::Vehicle>("org.kde.kpublictransport", 1, 0, "Vehicle", {});
 
     qmlRegisterUncreatableType<KPublicTransport::DepartureRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneyRequest>("org.kde.kpublictransport", 1, 0, "JourneyRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::LocationRequest>("org.kde.kpublictransport", 1, 0, "LocationRequest", {});
+    qmlRegisterUncreatableType<KPublicTransport::VehicleLayoutRequest>("org.kde.kpublictransport", 1, 0, "VehicleLayoutRequery", {});
 
     qmlRegisterType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager");
     qmlRegisterType<KPublicTransport::DepartureQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
     qmlRegisterType<KPublicTransport::JourneyQueryModel>("org.kde.kpublictransport", 1, 0, "JourneyQueryModel");
     qmlRegisterType<KPublicTransport::LocationQueryModel>("org.kde.kpublictransport", 1, 0, "LocationQueryModel");
     qmlRegisterType<KPublicTransport::BackendModel>("org.kde.kpublictransport", 1, 0, "BackendModel");
+    qmlRegisterType<KPublicTransport::VehicleLayoutQueryModel>("org.kde.kpublictransport", 1, 0, "VehicleLayoutQueryModel");
 }

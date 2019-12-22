@@ -86,6 +86,13 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
+        id: vehicleLayoutPage
+        VehicleLayoutPage {
+            publicTransportManager: ptMgr
+        }
+    }
+
+    Component {
         id: departureDelegate
         Kirigami.AbstractListItem {
             enabled: departure.disruptionEffect != Disruption.NoService
@@ -150,6 +157,13 @@ Kirigami.ApplicationWindow {
                             text: (departure.departureDelay >= 0 ? "+" : "") + departure.departureDelay
                             color: departure.departureDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
                             visible: departure.hasExpectedDepartureTime
+                        }
+                        QQC2.Label {
+                            text: "<a href=\"#layout\">vehicle</a>"
+                            visible: departure.route.line.mode == Line.LongDistanceTrain
+                            onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": departure });
+                            Layout.fillWidth: true
+                            horizontalAlignment: Text.Right
                         }
                     }
                     RowLayout {
