@@ -17,21 +17,67 @@
 
 #include "deutschebahnbackend.h"
 
+#include <KPublicTransport/Departure>
+#include <KPublicTransport/VehicleLayoutReply>
+#include <KPublicTransport/VehicleLayoutRequest>
+
 #include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QRegularExpression>
+#include <QUrl>
 
 using namespace KPublicTransport;
 
 AbstractBackend::Capabilities DeutscheBahnBackend::capabilities() const
 {
-    return Secure;
+    return Secure; // hardcoded API endpoint below
+}
+
+static QString extractTrainNumber(const Line &line)
+{
+    qDebug() << line.modeString() << line.name();
+    QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC)\\s*(\\d+)"));
+    const auto match = regex.match(line.modeString() + line.name());
+    if (match.hasMatch()) {
+        return match.captured(1);
+    }
+    return {};
 }
 
 bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO
-    Q_UNUSED(request);
-    Q_UNUSED(reply);
-    Q_UNUSED(nam);
-    qDebug();
-    return false;
+    // we need two parameters for the online API: the train number (numeric only), and the departure time
+    // note: data is only available withing the upcoming 24h
+    // checking this early is useful as the error response from the online service is extremely verbose...
+    const auto dt = request.departure().scheduledDepartureTime();
+    const auto trainNum = extractTrainNumber(request.departure().route().line());
+    qDebug() << dt << trainNum;
+    if (!dt.isValid() || trainNum.isEmpty()) { // TODO check dt in valid range
+        return false;
+    }
+
+    QUrl url;
+    url.setScheme(QStringLiteral("https"));
+    url.setHost(QStringLiteral("www.apps-bahn.de"));
+    url.setPath(QLatin1String("/wr/wagenreihung/1.0/") + trainNum + QLatin1Char('/') + dt.toString(QStringLiteral("yyyyMMddhhmm")));
+
+    QNetworkRequest netReq(url);
+    logRequest(request, netReq);
+    auto netReply = nam->get(netReq);
+
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply] {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        if (netReply->error() == QNetworkReply::NoError) {
+            addError(reply, this, Reply::UnknownError, QStringLiteral("TODO"));
+        } else {
+            addError(reply, this, Reply::NetworkError, reply->errorString());
+        }
+        netReply->deleteLater();
+    });
+
+    return true;
 }

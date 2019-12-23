@@ -74,3 +74,13 @@ Departure VehicleLayoutReply::departure() const
     Q_D(const VehicleLayoutReply);
     return d->departure;
 }
+
+void VehicleLayoutReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+{
+    if (error == Reply::NotFoundError) {
+        // TODO add negative cache entry
+    } else {
+        qCDebug(Log) << backend->backendId() << error << errorMsg;
+    }
+    Reply::addError(error, errorMsg);
+}

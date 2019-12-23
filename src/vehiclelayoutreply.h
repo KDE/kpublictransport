@@ -51,7 +51,10 @@ private:
     friend class ManagerPrivate;
     explicit VehicleLayoutReply(const VehicleLayoutRequest &req, QObject *parent = nullptr);
 
-    // TODO result and error setting methods
+    friend class AbstractBackend;
+    // TODO result setting method
+    using Reply::addError;
+    Q_DECL_HIDDEN void addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg);
 
     Q_DECLARE_PRIVATE(VehicleLayoutReply)
 };
