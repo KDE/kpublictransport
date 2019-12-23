@@ -1,7 +1,15 @@
 {
     "KPlugin": {
         "Description": "German national railway train layout service.",
-        "Name": "Deutsche Bahn (DB) train layout API"
+        "Description[ca]": "Servei de disposició dels trens dels ferrocarrils nacionals alemanys.",
+        "Description[nl]": "Duitse nationale spoorweg service voor treinindeling.",
+        "Description[uk]": "Німецька державна залізниця, служба розкладу потягів.",
+        "Description[x-test]": "xxGerman national railway train layout service.xx",
+        "Name": "Deutsche Bahn (DB) train layout API",
+        "Name[ca]": "API de la disposició dels trens de Deutsche Bahn (DB)",
+        "Name[nl]": "Deutsche Bahn (DB) treinsamenstelling-API",
+        "Name[uk]": "Deutsche Bahn (DB), інтерфейс розкладу потягів",
+        "Name[x-test]": "xxDeutsche Bahn (DB) train layout APIxx"
     },
     "filter": {
         "TODO": "this is the EU bounding box, but this is presumably limited to DE?",
