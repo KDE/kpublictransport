@@ -75,6 +75,17 @@ Departure VehicleLayoutReply::departure() const
     return d->departure;
 }
 
+void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platoform, const Departure &departure)
+{
+    Q_D(VehicleLayoutReply);
+    d->vehicle = vehicle;
+    d->platform = platoform;
+    d->departure = departure;
+
+    d->pendingOps--;
+    d->emitFinishedIfDone(this);
+}
+
 void VehicleLayoutReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
 {
     if (error == Reply::NotFoundError) {

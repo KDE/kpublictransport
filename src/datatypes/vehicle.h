@@ -42,6 +42,15 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     // TODO relative position in platform
     // TODO type of section
     // TODO features of section, and class information
+
+    /** Serializes one vehicle section to JSON. */
+    static QJsonObject toJson(const VehicleSection &section);
+    /** Serializes a vector of vehicle sections to JSON. */
+    static QJsonArray toJson(const std::vector<VehicleSection> &sections);
+    /** Deserialize an object from JSON. */
+    static VehicleSection fromJson(const QJsonObject &obj);
+    /** Deserialize a vector of vehicle sections from JSON. */
+    static std::vector<VehicleSection> fromJson(const QJsonArray &array);
 };
 
 class VehiclePrivate;
@@ -52,10 +61,10 @@ class VehiclePrivate;
 class KPUBLICTRANSPORT_EXPORT Vehicle
 {
     KPUBLICTRANSPORT_GADGET(Vehicle)
+    /** Human readable identifier of this vehicle, typically a train number. */
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
     /** Journey sections for consumption by QML. */
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
-
-    // TODO vehicle name/number
 
 public:
     /** The vehicle sections. */
@@ -64,6 +73,11 @@ public:
     std::vector<VehicleSection>&& takeSections();
     /** Sets the vehicle sections. */
     void setSections(std::vector<VehicleSection> &&sections);
+
+    /** Serializes one vehicle object to JSON. */
+    static QJsonObject toJson(const Vehicle &vehicle);
+    /** Deserialize an object from JSON. */
+    static Vehicle fromJson(const QJsonObject &obj);
 
 private:
     QVariantList sectionsVariant() const;

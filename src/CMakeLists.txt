@@ -16,6 +16,7 @@ set(kpublictransport_srcs
     backends/abstractbackend.cpp
     backends/cache.cpp
     backends/deutschebahnbackend.cpp
+    backends/deutschebahnvehiclelayoutparser.cpp
     backends/efabackend.cpp
     backends/efaparser.cpp
     backends/efacompactparser.cpp

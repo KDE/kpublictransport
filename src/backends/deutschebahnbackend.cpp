@@ -16,6 +16,7 @@
 */
 
 #include "deutschebahnbackend.h"
+#include "deutschebahnvehiclelayoutparser.h"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/VehicleLayoutReply>
@@ -72,7 +73,12 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
         logReply(reply, netReply, data);
 
         if (netReply->error() == QNetworkReply::NoError) {
-            addError(reply, this, Reply::UnknownError, QStringLiteral("TODO"));
+            DeutscheBahnVehicleLayoutParser p;
+            if (p.parse(data)) {
+                addResult(reply, p.vehicle, p.platform, p.departure);
+            } else {
+                addError(reply, this, p.error, {});
+            }
         } else {
             addError(reply, this, Reply::NetworkError, reply->errorString());
         }

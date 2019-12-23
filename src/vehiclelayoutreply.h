@@ -52,7 +52,7 @@ private:
     explicit VehicleLayoutReply(const VehicleLayoutRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    // TODO result setting method
+    Q_DECL_HIDDEN void addResult(const Vehicle &vehicle, const Platform &platoform, const Departure &departure);
     using Reply::addError;
     Q_DECL_HIDDEN void addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg);
 
