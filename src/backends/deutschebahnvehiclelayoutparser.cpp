@@ -17,6 +17,7 @@
 
 #include "deutschebahnvehiclelayoutparser.h"
 
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 
@@ -28,6 +29,28 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     auto obj = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("istformation")).toObject();
 
     vehicle.setName(obj.value(QLatin1String("zuggattung")).toString() + QLatin1Char(' ') + obj.value(QLatin1String("zugnummer")).toString());
-    // TODO
+
+    // vehicles
+    // TODO dobule segment ICE trains technically are two Vehicle objects...
+    const auto vehiclesArray = obj.value(QLatin1String("allFahrzeuggruppe")).toArray();
+    for (const auto &vehicleV : vehiclesArray) {
+        const auto sectionsArray = vehicleV.toObject().value(QLatin1String("allFahrzeug")).toArray();
+        for (const auto &sectionV : sectionsArray) {
+            parseVehicleSection(sectionV.toObject());
+        }
+    }
+
+    // TODO platform
+    // TODO departure
     return true;
+}
+
+void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj)
+{
+    VehicleSection section;
+    section.setName(obj.value(QLatin1String("wagenordnungsnummer")).toString());
+
+    auto sections = vehicle.takeSections();
+    sections.push_back(section);
+    vehicle.setSections(std::move(sections));
 }

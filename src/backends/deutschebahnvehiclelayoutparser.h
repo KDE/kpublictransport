@@ -37,6 +37,9 @@ public:
     Platform platform;
     Departure departure;
     Reply::Error error = Reply::NoError;
+
+private:
+    void parseVehicleSection(const QJsonObject &obj);
 };
 
 }
