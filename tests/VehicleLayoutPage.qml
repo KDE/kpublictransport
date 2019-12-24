@@ -34,5 +34,22 @@ Kirigami.ScrollablePage {
         id: vehicleModel
     }
 
-    QQC2.Label { text: "todo " + departure.stopPoint.name }
+    Repeater {
+        model: vehicleModel
+        delegate: Rectangle {
+            property var section: model.vehicleSection
+            y: section.platformPositionBegin * 800
+            height: section.platformPositionEnd * 800 - y
+            width: 50
+            color: "lightsteelblue"
+            border {
+                color: "black"
+                width: 1
+            }
+            QQC2.Label {
+                anchors.centerIn: parent
+                text: section.name
+            }
+        }
+    }
 }

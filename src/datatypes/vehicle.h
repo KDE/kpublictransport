@@ -38,8 +38,15 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
 
-    // TODO relative position in vehicle
-    // TODO relative position in platform
+    /** Relative position [0-1] of the begin of this vehicle section on the platform.
+     *  0 representing the begin of the platform in platform coordinate (@see Platform), 1 being the opposite end.
+     */
+    KPUBLICTRANSPORT_PROPERTY(float, platformPositionBegin, setPlatformPositionBegin)
+    /** Relative position [0-1] of the end of this vehicle section on the platform.
+     *  0 representing the begin of the platform in platform coordinate (@see Platform), 1 being the opposite end.
+     */
+    KPUBLICTRANSPORT_PROPERTY(float, platformPositionEnd, setPlatformPositionEnd)
+
     // TODO type of section
     // TODO features of section, and class information
 

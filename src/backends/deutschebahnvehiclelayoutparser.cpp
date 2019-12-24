@@ -17,6 +17,7 @@
 
 #include "deutschebahnvehiclelayoutparser.h"
 
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -49,6 +50,10 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
 {
     VehicleSection section;
     section.setName(obj.value(QLatin1String("wagenordnungsnummer")).toString());
+
+    const auto pos = obj.value(QLatin1String("positionamhalt")).toObject();
+    section.setPlatformPositionBegin(pos.value(QLatin1String("startprozent")).toString().toDouble() / 100.0);
+    section.setPlatformPositionEnd(pos.value(QLatin1String("endeprozent")).toString().toDouble() / 100.0);
 
     auto sections = vehicle.takeSections();
     sections.push_back(section);

@@ -30,6 +30,8 @@ class VehicleSectionPrivate : public QSharedData
 {
 public:
     QString name;
+    float platformPositionBegin = -1.0;
+    float platformPositionEnd = -1.0;
 };
 
 class VehiclePrivate : public QSharedData
@@ -43,6 +45,8 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(VehicleSection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionBegin, setPlatformPositionBegin)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionEnd, setPlatformPositionEnd)
 
 QJsonObject VehicleSection::toJson(const VehicleSection &section)
 {

@@ -57,12 +57,12 @@ void VehicleLayoutQueryModelPrivate::doQuery()
 
     auto reply = m_manager->queryVehicleLayout(m_request);
     monitorReply(reply);
-    QObject::connect(reply, &KPublicTransport::VehicleLayoutReply::finished, reply, &QObject::deleteLater);
-    QObject::connect(reply, &KPublicTransport::VehicleLayoutReply::updated, q, [reply, this]() {
+    QObject::connect(reply, &KPublicTransport::VehicleLayoutReply::finished, q, [reply, this]() {
         Q_Q(VehicleLayoutQueryModel);
         q->beginResetModel();
         m_vehicle = reply->vehicle();
         q->endResetModel();
+        reply->deleteLater();
     });
 }
 
