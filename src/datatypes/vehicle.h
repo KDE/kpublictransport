@@ -47,7 +47,18 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(float, platformPositionEnd, setPlatformPositionEnd)
 
-    // TODO type of section
+    /** Vehicle section type. */
+    enum Type {
+        UnknownType, ///< no information about the vehicle section type available
+        Engine, ///< train engine, not accessible by passenders, only shown for orientation
+        PowerCar, ///< power car of a train, similar to Engine, distinction exists just for better visualization
+        ControlCar, ///< usually at the head of the train, but accessible for passengers and the same way as a PassengerCar
+        PassengerCar, ///< passenger car of a train
+    };
+    Q_ENUM(Type)
+    /** Type of this vehicle section. */
+    KPUBLICTRANSPORT_PROPERTY(Type, type, setType)
+
     // TODO features of section, and class information
 
     /** Serializes one vehicle section to JSON. */

@@ -62,6 +62,17 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
     section.setPlatformPositionBegin(pos.value(QLatin1String("startprozent")).toString().toDouble() / 100.0);
     section.setPlatformPositionEnd(pos.value(QLatin1String("endeprozent")).toString().toDouble() / 100.0);
 
+    const auto cat = obj.value(QLatin1String("kategorie")).toString();
+    if (cat.compare(QLatin1String("LOK"), Qt::CaseInsensitive) == 0) {
+        section.setType(VehicleSection::Engine);
+    } else if (cat.compare(QLatin1String("TRIEBKOPF"), Qt::CaseInsensitive) == 0) {
+        section.setType(VehicleSection::PowerCar);
+    } else if (cat.startsWith(QLatin1String("STEUERWAGEN"), Qt::CaseInsensitive)) {
+        section.setType(VehicleSection::ControlCar);
+    } else {
+        section.setType(VehicleSection::PassengerCar);
+    }
+
     auto sections = vehicle.takeSections();
     sections.push_back(section);
     vehicle.setSections(std::move(sections));

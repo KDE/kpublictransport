@@ -68,11 +68,16 @@ Kirigami.ScrollablePage {
                 y: section.platformPositionBegin * 800
                 height: section.platformPositionEnd * 800 - y
                 width: 50
-                color: "lightsteelblue"
+                color: {
+                    if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
+                        return "gray";
+                    return "lightsteelblue";
+                }
                 border {
                     color: "black"
                     width: 1
                 }
+                radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 2 : 0;
                 QQC2.Label {
                     anchors.centerIn: parent
                     text: section.name
