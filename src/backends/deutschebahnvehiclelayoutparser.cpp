@@ -41,7 +41,14 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
         }
     }
 
-    // TODO platform
+    // platform
+    const auto halt = obj.value(QLatin1String("halt")).toObject();
+    platform.setName(halt.value(QLatin1String("gleisbezeichnung")).toString());
+    const auto sectorArray = halt.value(QLatin1String("allSektor")).toArray();
+    for (const auto &sectorV : sectorArray) {
+        parsePlatformSection(sectorV.toObject());
+    }
+
     // TODO departure
     return true;
 }
@@ -58,4 +65,18 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
     auto sections = vehicle.takeSections();
     sections.push_back(section);
     vehicle.setSections(std::move(sections));
+}
+
+void DeutscheBahnVehicleLayoutParser::parsePlatformSection(const QJsonObject &obj)
+{
+    PlatformSection section;
+    section.setName(obj.value(QLatin1String("sektorbezeichnung")).toString());
+
+    const auto pos = obj.value(QLatin1String("positionamgleis")).toObject();
+    section.setBegin(pos.value(QLatin1String("startprozent")).toString().toDouble() / 100.0);
+    section.setEnd(pos.value(QLatin1String("endeprozent")).toString().toDouble() / 100.0);
+
+    auto sections = platform.takeSections();
+    sections.push_back(section);
+    platform.setSections(std::move(sections));
 }

@@ -21,6 +21,7 @@
 #include "kpublictransport_export.h"
 #include "abstractquerymodel.h"
 
+#include <KPublicTransport/Platform>
 #include <KPublicTransport/VehicleLayoutRequest>
 
 namespace KPublicTransport {
@@ -33,12 +34,17 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutQueryModel : public AbstractQueryMode
     Q_OBJECT
     Q_PROPERTY(KPublicTransport::VehicleLayoutRequest request READ request WRITE setRequest NOTIFY requestChanged)
 
+    /** The platform this vehicle is departing from. */
+    Q_PROPERTY(KPublicTransport::Platform platform READ platform NOTIFY contentChanged)
+
 public:
     explicit VehicleLayoutQueryModel(QObject *parent = nullptr);
     ~VehicleLayoutQueryModel();
 
     VehicleLayoutRequest request() const;
     void setRequest(const VehicleLayoutRequest &req);
+
+    Platform platform() const;
 
     enum Roles {
         VehicleSectionRole = Qt::UserRole
@@ -49,6 +55,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 Q_SIGNALS:
     void requestChanged();
+    void contentChanged();
 
 private:
     friend class VehicleLayoutQueryModelPrivate;

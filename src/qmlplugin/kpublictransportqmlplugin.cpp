@@ -29,6 +29,7 @@
 #include <KPublicTransport/LocationQueryModel>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
+#include <KPublicTransport/Platform>
 #include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutQueryModel>
 #include <KPublicTransport/VehicleLayoutRequest>
@@ -36,12 +37,14 @@
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
     qRegisterMetaType<KPublicTransport::Location>();
+    qRegisterMetaType<KPublicTransport::Platform>();
 
     qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
 
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
     qmlRegisterUncreatableType<KPublicTransport::Vehicle>("org.kde.kpublictransport", 1, 0, "Vehicle", {});
+    qmlRegisterUncreatableType<KPublicTransport::Platform>("org.kde.kpublictransport", 1, 0, "Platform", {});
 
     qmlRegisterUncreatableType<KPublicTransport::DepartureRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneyRequest>("org.kde.kpublictransport", 1, 0, "JourneyRequest", {});

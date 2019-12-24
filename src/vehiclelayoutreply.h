@@ -42,7 +42,7 @@ public:
     /** Vehicle layout information found by this query. */
     Vehicle vehicle() const;
     /** Platform layout information found by this query. */
-    Platform platoform() const;
+    Platform platform() const;
     /** Departure information the layout is valid for. */
     Departure departure() const;
 

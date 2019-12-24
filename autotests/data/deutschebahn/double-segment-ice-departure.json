@@ -1,0 +1,10 @@
+{
+    "disruptionEffect": "NormalService",
+    "route": {
+        "line": {
+            "mode": "Unknown"
+        }
+    },
+    "stopPoint": {
+    }
+}

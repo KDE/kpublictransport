@@ -34,21 +34,49 @@ Kirigami.ScrollablePage {
         id: vehicleModel
     }
 
-    Repeater {
-        model: vehicleModel
-        delegate: Rectangle {
-            property var section: model.vehicleSection
-            y: section.platformPositionBegin * 800
-            height: section.platformPositionEnd * 800 - y
-            width: 50
-            color: "lightsteelblue"
-            border {
-                color: "black"
-                width: 1
+    Item {
+        Repeater {
+            model: vehicleModel.platform.sections
+            delegate: Item {
+                property var section: modelData
+                width: parent.width
+                y: section.begin * 800
+                height: section.end * 800 - y
+
+                Rectangle {
+                    visible: index == 0
+                    anchors { top: parent.top; left: parent.left; right: parent.right }
+                    color: "gray"
+                    height: 1
+                }
+                QQC2.Label {
+                    anchors.centerIn: parent
+                    text: section.name
+                }
+                Rectangle {
+                    anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
+                    color: "gray"
+                    height: 1
+                }
             }
-            QQC2.Label {
-                anchors.centerIn: parent
-                text: section.name
+        }
+
+        Repeater {
+            model: vehicleModel
+            delegate: Rectangle {
+                property var section: model.vehicleSection
+                y: section.platformPositionBegin * 800
+                height: section.platformPositionEnd * 800 - y
+                width: 50
+                color: "lightsteelblue"
+                border {
+                    color: "black"
+                    width: 1
+                }
+                QQC2.Label {
+                    anchors.centerIn: parent
+                    text: section.name
+                }
             }
         }
     }

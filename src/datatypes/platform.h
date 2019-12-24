@@ -34,7 +34,19 @@ class KPUBLICTRANSPORT_EXPORT PlatformSection
     /** Human readable identifier of this platform section. */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
 
-    // TODO relative position in platform
+    /*+ Begin of this section in relative platform coordinates. */
+    KPUBLICTRANSPORT_PROPERTY(float, begin, setBegin)
+    /** End of this section in relative platform coordinates. */
+    KPUBLICTRANSPORT_PROPERTY(float, end, setEnd)
+
+    /** Serializes one platform section to JSON. */
+    static QJsonObject toJson(const PlatformSection &section);
+    /** Serializes a vector of vehicle sections to JSON. */
+    static QJsonArray toJson(const std::vector<PlatformSection> &sections);
+    /** Deserialize an object from JSON. */
+    static PlatformSection fromJson(const QJsonObject &obj);
+    /** Deserialize a vector of platform sections from JSON. */
+    static std::vector<PlatformSection> fromJson(const QJsonArray &array);
 };
 
 class PlatformPrivate;
@@ -61,10 +73,17 @@ public:
     /** Sets the platform sections. */
     void setSections(std::vector<PlatformSection> &&sections);
 
+    /** Serializes one platform object to JSON. */
+    static QJsonObject toJson(const Platform &platform);
+    /** Deserialize an object from JSON. */
+    static Platform fromJson(const QJsonObject &obj);
+
 private:
     QVariantList sectionsVariant() const;
 };
 
 }
+
+Q_DECLARE_METATYPE(KPublicTransport::Platform)
 
 #endif // KPUBLICTRANSPORT_PLATFORM_H

@@ -30,6 +30,8 @@ class PlatformSectionPrivate : public QSharedData
 {
 public:
     QString name;
+    float begin = -1.0f;
+    float end = -1.0f;
 };
 
 class PlatformPrivate : public QSharedData
@@ -43,6 +45,28 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(PlatformSection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PlatformSection, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(PlatformSection, float, begin, setBegin)
+KPUBLICTRANSPORT_MAKE_PROPERTY(PlatformSection, float, end, setEnd)
+
+QJsonObject PlatformSection::toJson(const PlatformSection &section)
+{
+    return Json::toJson(section);
+}
+
+QJsonArray PlatformSection::toJson(const std::vector<PlatformSection> &sections)
+{
+    return Json::toJson(sections);
+}
+
+PlatformSection PlatformSection::fromJson(const QJsonObject &obj)
+{
+    return Json::fromJson<PlatformSection>(obj);
+}
+
+std::vector<PlatformSection> PlatformSection::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<PlatformSection>(array);
+}
 
 
 KPUBLICTRANSPORT_MAKE_GADGET(Platform)
@@ -62,6 +86,22 @@ void Platform::setSections(std::vector<PlatformSection> &&sections)
 {
     d.detach();
     d->sections = std::move(sections);
+}
+
+QJsonObject Platform::toJson(const Platform &platform)
+{
+    auto obj = Json::toJson(platform);
+    if (!platform.sections().empty()) {
+        obj.insert(QStringLiteral("sections"), PlatformSection::toJson(platform.sections()));
+    }
+    return obj;
+}
+
+Platform Platform::fromJson(const QJsonObject &obj)
+{
+    auto p = Json::fromJson<Platform>(obj);
+    p.setSections(PlatformSection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    return p;
 }
 
 QVariantList Platform::sectionsVariant() const

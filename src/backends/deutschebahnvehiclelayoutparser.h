@@ -40,6 +40,7 @@ public:
 
 private:
     void parseVehicleSection(const QJsonObject &obj);
+    void parsePlatformSection(const QJsonObject &obj);
 };
 
 }

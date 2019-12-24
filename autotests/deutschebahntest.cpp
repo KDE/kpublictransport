@@ -43,35 +43,56 @@ private Q_SLOTS:
     void initTestCase()
     {
         qputenv("TZ", "UTC");
+        qRegisterMetaType<Disruption::Effect>();
     }
 
     void testVehicleLayoutParse_data()
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("vehicleFileName");
+        QTest::addColumn<QString>("platformFileName");
+        QTest::addColumn<QString>("departureFileName");
 
         QTest::newRow("valid-double-segment-ice")
             << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-vehicle.json");
+            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-vehicle.json")
+            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-platform.json")
+            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-departure.json");
     }
 
     void testVehicleLayoutParse()
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, vehicleFileName);
+        QFETCH(QString, platformFileName);
+        QFETCH(QString, departureFileName);
 
         KPublicTransport::DeutscheBahnVehicleLayoutParser parser;
 
         QVERIFY(parser.parse(readFile(inFileName)));
         const auto vehicleJson = Vehicle::toJson(parser.vehicle);
-
         const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).object();
-
         if (vehicleJson != vehicleRef) {
             qDebug().noquote() << QJsonDocument(vehicleJson).toJson();
         }
         QVERIFY(!vehicleJson.isEmpty());
         QCOMPARE(vehicleJson, vehicleRef);
+
+        const auto platformJson = Platform::toJson(parser.platform);
+        const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).object();
+        if (platformJson != platformRef) {
+            qDebug().noquote() << QJsonDocument(platformJson).toJson();
+        }
+        QVERIFY(!platformJson.isEmpty());
+        QCOMPARE(platformJson, platformRef);
+
+        const auto departureJson = Departure::toJson(parser.departure);
+        const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();
+        if (departureJson != departureRef) {
+            qDebug().noquote() << QJsonDocument(departureJson).toJson();
+        }
+        QVERIFY(!departureJson.isEmpty());
+        QCOMPARE(departureJson, departureRef);
     }
 };
 

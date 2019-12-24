@@ -63,7 +63,7 @@ Vehicle VehicleLayoutReply::vehicle() const
     return d->vehicle;
 }
 
-Platform VehicleLayoutReply::platoform() const
+Platform VehicleLayoutReply::platform() const
 {
     Q_D(const VehicleLayoutReply);
     return d->platform;
