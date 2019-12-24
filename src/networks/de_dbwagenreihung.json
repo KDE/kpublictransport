@@ -3,11 +3,13 @@
         "Description": "German national railway train layout service.",
         "Description[ca]": "Servei de disposició dels trens dels ferrocarrils nacionals alemanys.",
         "Description[nl]": "Duitse nationale spoorweg service voor treinindeling.",
+        "Description[pt]": "Serviço de disposição de comboios nos caminhos de ferro nacionais da Alemanha.",
         "Description[uk]": "Німецька державна залізниця, служба розкладу потягів.",
         "Description[x-test]": "xxGerman national railway train layout service.xx",
         "Name": "Deutsche Bahn (DB) train layout API",
         "Name[ca]": "API de la disposició dels trens de Deutsche Bahn (DB)",
         "Name[nl]": "Deutsche Bahn (DB) treinsamenstelling-API",
+        "Name[pt]": "API de disposição dos comboios do Deutsche Bahn (DB)",
         "Name[uk]": "Deutsche Bahn (DB), інтерфейс розкладу потягів",
         "Name[x-test]": "xxDeutsche Bahn (DB) train layout APIxx"
     },
