@@ -2,72 +2,84 @@
     "name": "ICE 1650",
     "sections": [
         {
+            "classes": "FirstClass",
             "name": "38",
             "platformPositionBegin": 0.7099999785423279,
             "platformPositionEnd": 0.7799999713897705,
             "type": "ControlCar"
         },
         {
+            "classes": "SecondClass",
             "name": "37",
             "platformPositionBegin": 0.6499999761581421,
             "platformPositionEnd": 0.7099999785423279,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "33",
             "platformPositionBegin": 0.5899999737739563,
             "platformPositionEnd": 0.6499999761581421,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "32",
             "platformPositionBegin": 0.5299999713897705,
             "platformPositionEnd": 0.5899999737739563,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "31",
             "platformPositionBegin": 0.4699999988079071,
             "platformPositionEnd": 0.5299999713897705,
             "type": "ControlCar"
         },
         {
+            "classes": "FirstClass",
             "name": "28",
             "platformPositionBegin": 0.4099999964237213,
             "platformPositionEnd": 0.4699999988079071,
             "type": "ControlCar"
         },
         {
+            "classes": "FirstClass|SecondClass",
             "name": "27",
             "platformPositionBegin": 0.3499999940395355,
             "platformPositionEnd": 0.4099999964237213,
             "type": "PassengerCar"
         },
         {
+            "classes": "UnknownClass",
             "name": "26",
             "platformPositionBegin": 0.28999999165534973,
             "platformPositionEnd": 0.3499999940395355,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "24",
             "platformPositionBegin": 0.23000000417232513,
             "platformPositionEnd": 0.28999999165534973,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "23",
             "platformPositionBegin": 0.17000000178813934,
             "platformPositionEnd": 0.23000000417232513,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "22",
             "platformPositionBegin": 0.10999999940395355,
             "platformPositionEnd": 0.17000000178813934,
             "type": "PassengerCar"
         },
         {
+            "classes": "SecondClass",
             "name": "21",
             "platformPositionBegin": 0.05000000074505806,
             "platformPositionEnd": 0.10999999940395355,

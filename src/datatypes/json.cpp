@@ -100,6 +100,12 @@ QJsonObject Json::toJson(const QMetaObject *mo, const void *elem)
             continue;
         }
 
+        if (prop.isFlagType()) { // flag has to come first, as prop.isEnumType() is also true for this
+            const auto key = prop.readOnGadget(elem).toInt();
+            const auto value = prop.enumerator().valueToKeys(key);
+            obj.insert(QString::fromUtf8(prop.name()), QString::fromUtf8(value));
+            continue;
+        }
         if (prop.isEnumType()) { // enums defined in this QMO
             const auto key = prop.readOnGadget(elem).toInt();
             const auto value = prop.enumerator().valueToKey(key);
@@ -173,6 +179,11 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
             continue;
         }
 
+        if (prop.isFlagType() && it.value().isString()) {
+            const auto key = prop.enumerator().keysToValue(it.value().toString().toUtf8().constData());
+            prop.writeOnGadget(elem, key);
+            continue;
+        }
         if (prop.isEnumType() && it.value().isString()) { // internal enums in this QMO
             const auto key = prop.enumerator().keyToValue(it.value().toString().toUtf8().constData());
             prop.writeOnGadget(elem, key);

@@ -71,13 +71,19 @@ Kirigami.ScrollablePage {
                 color: {
                     if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
                         return "gray";
-                    return "lightsteelblue";
+                    if (section.classes == KPublicTransport.VehicleSection.FirstClass)
+                        return "yellow";
+                    if (section.classes == KPublicTransport.VehicleSection.SecondClass)
+                        return "lightsteelblue";
+                    if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
+                        return "green";
+                    return "red";
                 }
                 border {
                     color: "black"
                     width: 1
                 }
-                radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 2 : 0;
+                radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 0 : 10;
                 QQC2.Label {
                     anchors.centerIn: parent
                     text: section.name

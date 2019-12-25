@@ -73,6 +73,17 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
         section.setType(VehicleSection::PassengerCar);
     }
 
+    // see https://en.wikipedia.org/wiki/UIC_classification_of_railway_coaches
+    const auto cls = obj.value(QLatin1String("fahrzeugtyp")).toString();
+    VehicleSection::Classes c = VehicleSection::UnknownClass;
+    if (cls.startsWith(QLatin1Char('A')) || cls.startsWith(QLatin1String("DA"))) {
+        c |= VehicleSection::FirstClass;
+    }
+    if (cls.startsWith(QLatin1Char('B')) || cls.startsWith(QLatin1String("AB")) || cls.startsWith(QLatin1String("DB"))) {
+        c |= VehicleSection::SecondClass;
+    }
+    section.setClasses(c);
+
     auto sections = vehicle.takeSections();
     sections.push_back(section);
     vehicle.setSections(std::move(sections));

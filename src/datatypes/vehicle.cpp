@@ -33,6 +33,7 @@ public:
     float platformPositionBegin = -1.0;
     float platformPositionEnd = -1.0;
     VehicleSection::Type type = VehicleSection::UnknownType;
+    VehicleSection::Classes classes = VehicleSection::UnknownClass;
 };
 
 class VehiclePrivate : public QSharedData
@@ -49,6 +50,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionBegin, setPlatformPositionBegin)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionEnd, setPlatformPositionEnd)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Type, type, setType)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes, setClasses)
 
 QJsonObject VehicleSection::toJson(const VehicleSection &section)
 {

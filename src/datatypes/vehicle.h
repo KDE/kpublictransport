@@ -59,7 +59,21 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     /** Type of this vehicle section. */
     KPUBLICTRANSPORT_PROPERTY(Type, type, setType)
 
-    // TODO features of section, and class information
+    /** Classes available in a vehicle section. */
+    enum Class {
+        UnknownClass = 0,
+        FirstClass = 1, ///< 1st class
+        SecondClass = 2, ///< 2nd class
+        ThirdClass = 4 ///< 3rd class
+    };
+    Q_DECLARE_FLAGS(Classes, Class)
+    Q_FLAG(Classes)
+    /** Classes available in this vehicle section.
+     *  Can be more than one.
+     */
+    KPUBLICTRANSPORT_PROPERTY(Classes, classes, setClasses)
+
+    // TODO features of section
 
     /** Serializes one vehicle section to JSON. */
     static QJsonObject toJson(const VehicleSection &section);
@@ -102,5 +116,9 @@ private:
 };
 
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Classes)
+Q_DECLARE_METATYPE(KPublicTransport::VehicleSection)
+Q_DECLARE_METATYPE(KPublicTransport::Vehicle)
 
 #endif // KPUBLICTRANSPORT_VEHICLE_H
