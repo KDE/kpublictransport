@@ -96,6 +96,9 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
     if (cls.startsWith(QLatin1Char('B')) || cls.startsWith(QLatin1String("AB")) || cls.startsWith(QLatin1String("DB"))) {
         c |= VehicleSection::SecondClass;
     }
+    if (cls.startsWith(QLatin1String("WR"))) {
+        section.setType(VehicleSection::RestaurantCar);
+    }
     section.setClasses(c);
 
     auto sections = vehicle.takeSections();

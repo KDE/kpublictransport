@@ -55,7 +55,7 @@
             "name": "26",
             "platformPositionBegin": 0.28999999165534973,
             "platformPositionEnd": 0.3499999940395355,
-            "type": "PassengerCar"
+            "type": "RestaurantCar"
         },
         {
             "classes": "SecondClass",

@@ -82,6 +82,8 @@ Kirigami.ScrollablePage {
                     color: {
                         if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
                             return "gray";
+                        if (section.type == KPublicTransport.VehicleSection.RestaurantCar)
+                            return "orange";
                         if (section.classes == KPublicTransport.VehicleSection.FirstClass)
                             return "yellow";
                         if (section.classes == KPublicTransport.VehicleSection.SecondClass)

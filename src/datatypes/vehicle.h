@@ -54,6 +54,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
         PowerCar, ///< power car of a train, similar to Engine, distinction exists just for better visualization
         ControlCar, ///< usually at the head of the train, but accessible for passengers and the same way as a PassengerCar
         PassengerCar, ///< passenger car of a train
+        RestaurantCar, ///< full-car restaurant
     };
     Q_ENUM(Type)
     /** Type of this vehicle section. */
