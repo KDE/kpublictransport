@@ -70,6 +70,7 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
 void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj)
 {
     VehicleSection section;
+    VehicleSection::Features f;
     section.setName(obj.value(QLatin1String("wagenordnungsnummer")).toString());
 
     const auto pos = obj.value(QLatin1String("positionamhalt")).toObject();
@@ -81,7 +82,7 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
         section.setType(VehicleSection::Engine);
     } else if (cat.compare(QLatin1String("TRIEBKOPF"), Qt::CaseInsensitive) == 0) {
         section.setType(VehicleSection::PowerCar);
-    } else if (cat.startsWith(QLatin1String("STEUERWAGEN"), Qt::CaseInsensitive)) {
+    } else if (cat.contains(QLatin1String("STEUERWAGEN"), Qt::CaseInsensitive)) {
         section.setType(VehicleSection::ControlCar);
     } else {
         section.setType(VehicleSection::PassengerCar);
@@ -98,8 +99,35 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
     }
     if (cls.startsWith(QLatin1String("WR"))) {
         section.setType(VehicleSection::RestaurantCar);
+        f |= VehicleSection::Restaurant;
+    }
+    if (cls.startsWith(QLatin1String("AR")) || cls.startsWith(QLatin1String("BR"))) {
+        f |= VehicleSection::Restaurant;
     }
     section.setClasses(c);
+
+    const auto equipmentArray = obj.value(QLatin1String("allFahrzeugausstattung")).toArray();
+    for (const auto &equipmentV : equipmentArray) {
+        const auto equipmentObj = equipmentV.toObject();
+        const auto type = equipmentObj.value(QLatin1String("ausstattungsart")).toString();
+        // TODO this has a status field, is this ever set?
+        if (type.compare(QLatin1String("KLIMA"), Qt::CaseInsensitive) == 0) {
+            f |= VehicleSection::AirConditioning;
+        } else if (type.compare(QLatin1String("RUHE"), Qt::CaseInsensitive) == 0) {
+            f |= VehicleSection::SilentArea;
+        } else if (type.compare(QLatin1String("BISTRO"), Qt::CaseInsensitive) == 0) {
+            f |= VehicleSection::Restaurant;
+        } else if (type.compare(QLatin1String("ABTEILKLEINKIND"), Qt::CaseInsensitive) == 0) {
+            f |= VehicleSection::ToddlerArea;
+        } else if (type.compare(QLatin1String("PLAETZEROLLSTUHL"), Qt::CaseInsensitive) == 0) {
+            f |= VehicleSection::WheelchairAccessible;
+        } else if (type.compare(QLatin1String("PLAETZEFAHRRAD"), Qt::CaseInsensitive) == 0) {
+            f |= VehicleSection::BikeStorage;
+        } else {
+            qDebug() << "Unhandled vehicle section equipment:" << type;
+        }
+    }
+    section.setFeatures(f);
 
     auto sections = vehicle.takeSections();
     sections.push_back(section);

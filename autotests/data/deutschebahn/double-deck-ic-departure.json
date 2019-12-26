@@ -1,0 +1,18 @@
+{
+    "disruptionEffect": "NormalService",
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "IC 2444"
+        }
+    },
+    "scheduledArrivalTime": "2019-12-26T16:19:00",
+    "scheduledDepartureTime": "2019-12-26T16:33:00",
+    "scheduledPlatform": "12",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8010205"
+        },
+        "name": "Leipzig Hbf"
+    }
+}

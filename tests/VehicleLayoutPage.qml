@@ -43,6 +43,9 @@ Kirigami.ScrollablePage {
         }
 
         Item {
+            id: vehicleView
+            property real fullLength: 1000 // full length of the platform display
+            implicitHeight: childrenRect.height
             Layout.fillWidth: true
             Repeater {
                 Layout.fillWidth: true;
@@ -50,13 +53,13 @@ Kirigami.ScrollablePage {
                 delegate: Item {
                     property var section: modelData
                     width: parent.width
-                    y: section.begin * 800
-                    height: section.end * 800 - y
+                    y: section.begin * vehicleView.fullLength
+                    height: section.end * vehicleView.fullLength - y
 
                     Rectangle {
                         visible: index == 0
                         anchors { top: parent.top; left: parent.left; right: parent.right }
-                        color: "gray"
+                        color: Kirigami.Theme.disabledTextColor
                         height: 1
                     }
                     QQC2.Label {
@@ -76,12 +79,12 @@ Kirigami.ScrollablePage {
                 model: vehicleModel
                 delegate: Rectangle {
                     property var section: model.vehicleSection
-                    y: section.platformPositionBegin * 800
-                    height: section.platformPositionEnd * 800 - y
+                    y: section.platformPositionBegin * vehicleView.fullLength
+                    height: section.platformPositionEnd * vehicleView.fullLength - y
                     width: 50
                     color: {
                         if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
-                            return "gray";
+                            return Kirigami.Theme.disabledTextColor
                         if (section.type == KPublicTransport.VehicleSection.RestaurantCar)
                             return "orange";
                         if (section.classes == KPublicTransport.VehicleSection.FirstClass)
@@ -101,7 +104,57 @@ Kirigami.ScrollablePage {
                         anchors.centerIn: parent
                         text: section.name
                     }
+
+                    ColumnLayout {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.right
+                        anchors.leftMargin: Kirigami.Units.largeSpacing
+                        spacing: Kirigami.Units.smallSpacing
+
+                        RowLayout {
+                            spacing: Kirigami.Units.smallSpacing
+                            Repeater {
+                                model: section.featureList
+                                QQC2.Label {
+                                    text: {
+                                        switch (modelData) {
+                                            case KPublicTransport.VehicleSection.AirConditioning: return "❄️";
+                                            case KPublicTransport.VehicleSection.Restaurant: return "🍴";
+                                            case KPublicTransport.VehicleSection.ToddlerArea: return "👶";
+                                            case KPublicTransport.VehicleSection.WheelchairAccessible: return "♿";
+                                            case KPublicTransport.VehicleSection.SilentArea: return "🔇";
+                                            case KPublicTransport.VehicleSection.BikeStorage: return "🚲";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        QQC2.Label {
+                            text: {
+                                if (section.classes == KPublicTransport.VehicleSection.FirstClass)
+                                    return "First class";
+                                if (section.classes == KPublicTransport.VehicleSection.SecondClass)
+                                    return "Second class";
+                                if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
+                                    return "First/second class";
+                                return "Unknown class";
+                            }
+                        }
+                    }
                 }
+            }
+
+            QQC2.BusyIndicator {
+                anchors.centerIn: root
+                running: vehicleModel.loading
+            }
+
+            QQC2.Label {
+                anchors.centerIn: root
+                width: parent.width
+                text: vehicleModel.errorMessage
+                color: Kirigami.Theme.negativeTextColor
+                wrapMode: Text.Wrap
             }
         }
     }

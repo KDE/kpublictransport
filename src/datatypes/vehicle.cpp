@@ -20,6 +20,7 @@
 #include "datatypes_p.h"
 
 #include <QDebug>
+#include <QMetaEnum>
 #include <QVariant>
 
 using namespace KPublicTransport;
@@ -34,6 +35,7 @@ public:
     float platformPositionEnd = -1.0;
     VehicleSection::Type type = VehicleSection::UnknownType;
     VehicleSection::Classes classes = VehicleSection::UnknownClass;
+    VehicleSection::Features features = VehicleSection::NoFeatures;
 };
 
 class VehiclePrivate : public QSharedData
@@ -51,6 +53,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionBegin, set
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionEnd, setPlatformPositionEnd)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes, setClasses)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Features, features, setFeatures)
 
 QJsonObject VehicleSection::toJson(const VehicleSection &section)
 {
@@ -72,6 +75,16 @@ std::vector<VehicleSection> VehicleSection::fromJson(const QJsonArray &array)
     return Json::fromJson<VehicleSection>(array);
 }
 
+QVariantList VehicleSection::featureList() const
+{
+    QVariantList l;
+    const auto me = QMetaEnum::fromType<VehicleSection::Features>();
+    for (int i = 0; i < me.keyCount(); ++i) {
+        if (features() & static_cast<VehicleSection::Feature>(1 << i))
+            l.push_back(static_cast<VehicleSection::Feature>(1 << i));
+    }
+    return l;
+}
 
 KPUBLICTRANSPORT_MAKE_GADGET(Vehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, QString, name, setName)

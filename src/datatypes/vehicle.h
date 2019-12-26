@@ -74,7 +74,27 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Classes, classes, setClasses)
 
-    // TODO features of section
+    /** Amenities or other features availbale in a vehicle section. */
+    enum Feature {
+        NoFeatures = 0,
+        AirConditioning = 1, ///< vehicle section is air conditioned
+        Restaurant = 2, ///< vehicle has a place to obtain food/drinks (but not necessarily a full-scale RestaurantCar)
+        ToddlerArea = 4, ///< vehicle section contains infrastructure for toddler maintenance
+        WheelchairAccessible = 8, ///< wheelchair access supported
+        SilentArea = 16, ///< wishful thinking usually
+        BikeStorage = 32, ///< vehicle section contains space for bikes
+        // TODO there's a few more we get from DB
+    };
+    Q_DECLARE_FLAGS(Features, Feature)
+    Q_FLAG(Features)
+    /** Features available in this vehicle section.
+     *  Can be more than one.
+     */
+    KPUBLICTRANSPORT_PROPERTY(Features, features, setFeatures)
+    /** Feature flag as a variant list, for consumption in QML. */
+    Q_PROPERTY(QVariantList featureList READ featureList STORED false)
+
+    // TODO where to put deck number?
 
     /** Serializes one vehicle section to JSON. */
     static QJsonObject toJson(const VehicleSection &section);
@@ -84,6 +104,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     static VehicleSection fromJson(const QJsonObject &obj);
     /** Deserialize a vector of vehicle sections from JSON. */
     static std::vector<VehicleSection> fromJson(const QJsonArray &array);
+
+private:
+    QVariantList featureList() const;
 };
 
 class VehiclePrivate;
@@ -119,6 +142,7 @@ private:
 }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Classes)
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Features)
 Q_DECLARE_METATYPE(KPublicTransport::VehicleSection)
 Q_DECLARE_METATYPE(KPublicTransport::Vehicle)
 

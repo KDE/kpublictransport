@@ -58,6 +58,12 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-vehicle.json")
             << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-platform.json")
             << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-departure.json");
+
+        QTest::newRow("valid-double-deck-ic")
+            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-input.json")
+            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-vehicle.json")
+            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-platform.json")
+            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-departure.json");
     }
 
     void testVehicleLayoutParse()
