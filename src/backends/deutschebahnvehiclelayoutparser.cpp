@@ -17,6 +17,7 @@
 
 #include "deutschebahnvehiclelayoutparser.h"
 
+#include <QDateTime>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -49,7 +50,20 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
         parsePlatformSection(sectorV.toObject());
     }
 
-    // TODO departure
+    // departure
+    Location stop;
+    stop.setName(halt.value(QLatin1String("bahnhofsname")).toString());
+    stop.setIdentifier(QStringLiteral("ibnr"), halt.value(QLatin1String("evanummer")).toString());
+    Line line;
+    line.setMode(Line::LongDistanceTrain);
+    line.setName(vehicle.name());
+    Route route;
+    route.setLine(line);
+    departure.setRoute(route);
+    departure.setStopPoint(stop);
+    departure.setScheduledArrivalTime(QDateTime::fromString(halt.value(QLatin1String("ankunftszeit")).toString(), Qt::ISODate));
+    departure.setScheduledDepartureTime(QDateTime::fromString(halt.value(QLatin1String("abfahrtszeit")).toString(), Qt::ISODate));
+    departure.setScheduledPlatform(platform.name());
     return true;
 }
 

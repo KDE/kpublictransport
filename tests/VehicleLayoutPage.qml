@@ -34,59 +34,71 @@ Kirigami.ScrollablePage {
         id: vehicleModel
     }
 
-    Item {
-        Repeater {
-            model: vehicleModel.platform.sections
-            delegate: Item {
-                property var section: modelData
-                width: parent.width
-                y: section.begin * 800
-                height: section.end * 800 - y
-
-                Rectangle {
-                    visible: index == 0
-                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                    color: "gray"
-                    height: 1
-                }
-                QQC2.Label {
-                    anchors.centerIn: parent
-                    text: section.name
-                }
-                Rectangle {
-                    anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
-                    color: "gray"
-                    height: 1
-                }
-            }
+    ColumnLayout {
+        QQC2.Label {
+            text: vehicleModel.departure.stopPoint.name + " - " + vehicleModel.departure.route.line.name + " - " + vehicleModel.departure.scheduledDepartureTime
+        }
+        QQC2.Label {
+            text: "Platform: " + vehicleModel.platform.name
         }
 
-        Repeater {
-            model: vehicleModel
-            delegate: Rectangle {
-                property var section: model.vehicleSection
-                y: section.platformPositionBegin * 800
-                height: section.platformPositionEnd * 800 - y
-                width: 50
-                color: {
-                    if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
-                        return "gray";
-                    if (section.classes == KPublicTransport.VehicleSection.FirstClass)
-                        return "yellow";
-                    if (section.classes == KPublicTransport.VehicleSection.SecondClass)
-                        return "lightsteelblue";
-                    if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
-                        return "green";
-                    return "red";
+        Item {
+            Layout.fillWidth: true
+            Repeater {
+                Layout.fillWidth: true;
+                model: vehicleModel.platform.sections
+                delegate: Item {
+                    property var section: modelData
+                    width: parent.width
+                    y: section.begin * 800
+                    height: section.end * 800 - y
+
+                    Rectangle {
+                        visible: index == 0
+                        anchors { top: parent.top; left: parent.left; right: parent.right }
+                        color: "gray"
+                        height: 1
+                    }
+                    QQC2.Label {
+                        anchors.centerIn: parent
+                        text: section.name
+                    }
+                    Rectangle {
+                        anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
+                        color: "gray"
+                        height: 1
+                    }
                 }
-                border {
-                    color: "black"
-                    width: 1
-                }
-                radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 0 : 10;
-                QQC2.Label {
-                    anchors.centerIn: parent
-                    text: section.name
+            }
+
+            Repeater {
+                Layout.fillWidth: true
+                model: vehicleModel
+                delegate: Rectangle {
+                    property var section: model.vehicleSection
+                    y: section.platformPositionBegin * 800
+                    height: section.platformPositionEnd * 800 - y
+                    width: 50
+                    color: {
+                        if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
+                            return "gray";
+                        if (section.classes == KPublicTransport.VehicleSection.FirstClass)
+                            return "yellow";
+                        if (section.classes == KPublicTransport.VehicleSection.SecondClass)
+                            return "lightsteelblue";
+                        if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
+                            return "green";
+                        return "red";
+                    }
+                    border {
+                        color: "black"
+                        width: 1
+                    }
+                    radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 0 : 10;
+                    QQC2.Label {
+                        anchors.centerIn: parent
+                        text: section.name
+                    }
                 }
             }
         }

@@ -36,6 +36,7 @@ public:
     Vehicle m_vehicle;
     VehicleLayoutRequest m_request;
     Platform m_platform;
+    Departure m_departure;
 
     Q_DECLARE_PUBLIC(VehicleLayoutQueryModel)
 };
@@ -63,6 +64,7 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         q->beginResetModel();
         m_vehicle = reply->vehicle();
         m_platform = reply->platform();
+        m_departure = reply->departure();
         q->endResetModel();
         emit q->contentChanged();
         reply->deleteLater();
@@ -94,6 +96,12 @@ Platform VehicleLayoutQueryModel::platform() const
 {
     Q_D(const VehicleLayoutQueryModel);
     return d->m_platform;
+}
+
+Departure VehicleLayoutQueryModel::departure() const
+{
+    Q_D(const VehicleLayoutQueryModel);
+    return d->m_departure;
 }
 
 int VehicleLayoutQueryModel::rowCount(const QModelIndex &parent) const
