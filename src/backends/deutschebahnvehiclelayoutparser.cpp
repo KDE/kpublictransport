@@ -41,6 +41,10 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
             parseVehicleSection(sectionV.toObject());
         }
     }
+    // direction is implied by section order
+    if (vehicle.sections().size() >= 2) {
+        vehicle.setDirection(vehicle.sections()[0].platformPositionBegin() < vehicle.sections()[1].platformPositionBegin() ? Vehicle::Forward : Vehicle::Backward);
+    }
 
     // platform
     const auto halt = obj.value(QLatin1String("halt")).toObject();

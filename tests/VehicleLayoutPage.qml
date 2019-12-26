@@ -47,6 +47,7 @@ Kirigami.ScrollablePage {
             property real fullLength: 1000 // full length of the platform display
             implicitHeight: childrenRect.height
             Layout.fillWidth: true
+
             Repeater {
                 Layout.fillWidth: true;
                 model: vehicleModel.platform.sections
@@ -70,6 +71,17 @@ Kirigami.ScrollablePage {
                 }
             }
 
+            QQC2.Label { // TODO should be an icon, but that crashes somehow
+                visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
+                text: {
+                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
+                        return "^";
+                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
+                        return "v"
+                    return "";
+                }
+                x: Kirigami.Units.gridUnit - implicitWidth / 2
+            }
             Repeater {
                 Layout.fillWidth: true
                 model: vehicleModel
@@ -139,6 +151,18 @@ Kirigami.ScrollablePage {
                         }
                     }
                 }
+            }
+            QQC2.Label { // TODO should be an icon, but that crashes somehow
+                visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
+                text: {
+                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
+                        return "^";
+                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
+                        return "v"
+                    return "";
+                }
+                x: Kirigami.Units.gridUnit - implicitWidth / 2
+                y: vehicleView.fullLength
             }
 
             QQC2.BusyIndicator {

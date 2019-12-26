@@ -119,6 +119,17 @@ class KPUBLICTRANSPORT_EXPORT Vehicle
     KPUBLICTRANSPORT_GADGET(Vehicle)
     /** Human readable identifier of this vehicle, typically a train number. */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+
+    /** Direction of travel. */
+    enum Direction {
+        UnknownDirection,
+        Forward, ///< vehicle departs toward the 0 platform coordinate
+        Backward ///< vehicle departs toward the 1 platforma coordinate
+    };
+    Q_ENUM(Direction)
+    /** Direction of travel of this vehicle. */
+    KPUBLICTRANSPORT_PROPERTY(Direction, direction, setDirection)
+
     /** Journey sections for consumption by QML. */
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
 

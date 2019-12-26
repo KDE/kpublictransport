@@ -23,6 +23,7 @@
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Platform>
+#include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutRequest>
 
 namespace KPublicTransport {
@@ -35,6 +36,8 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutQueryModel : public AbstractQueryMode
     Q_OBJECT
     Q_PROPERTY(KPublicTransport::VehicleLayoutRequest request READ request WRITE setRequest NOTIFY requestChanged)
 
+    /** The vehicle for which this model shows its sections. */
+    Q_PROPERTY(KPublicTransport::Vehicle vehicle READ vehicle NOTIFY contentChanged)
     /** The platform this vehicle is departing from. */
     Q_PROPERTY(KPublicTransport::Platform platform READ platform NOTIFY contentChanged)
     /** The departure this vehicle layout belongs to. */
@@ -47,6 +50,7 @@ public:
     VehicleLayoutRequest request() const;
     void setRequest(const VehicleLayoutRequest &req);
 
+    Vehicle vehicle() const;
     Platform platform() const;
     Departure departure() const;
 

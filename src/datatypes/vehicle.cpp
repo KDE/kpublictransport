@@ -43,6 +43,7 @@ class VehiclePrivate : public QSharedData
 public:
     QString name;
     std::vector<VehicleSection> sections;
+    Vehicle::Direction direction = Vehicle::UnknownDirection;
 };
 
 }
@@ -88,6 +89,7 @@ QVariantList VehicleSection::featureList() const
 
 KPUBLICTRANSPORT_MAKE_GADGET(Vehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, Vehicle::Direction, direction, setDirection)
 
 const std::vector<VehicleSection>& Vehicle::sections() const
 {

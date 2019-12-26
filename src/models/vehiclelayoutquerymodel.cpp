@@ -92,6 +92,12 @@ void VehicleLayoutQueryModel::setRequest(const VehicleLayoutRequest &req)
     d->query();
 }
 
+Vehicle VehicleLayoutQueryModel::vehicle() const
+{
+    Q_D(const VehicleLayoutQueryModel);
+    return d->m_vehicle;
+}
+
 Platform VehicleLayoutQueryModel::platform() const
 {
     Q_D(const VehicleLayoutQueryModel);
