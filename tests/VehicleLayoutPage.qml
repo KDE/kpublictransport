@@ -81,6 +81,7 @@ Kirigami.ScrollablePage {
                     return "";
                 }
                 x: Kirigami.Units.gridUnit - implicitWidth / 2
+                y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - implicitHeight - Kirigami.Units.largeSpacing
             }
             Repeater {
                 Layout.fillWidth: true
@@ -162,7 +163,7 @@ Kirigami.ScrollablePage {
                     return "";
                 }
                 x: Kirigami.Units.gridUnit - implicitWidth / 2
-                y: vehicleView.fullLength
+                y: vehicleModel.vehicle.platformPositionEnd * vehicleView.fullLength + Kirigami.Units.largeSpacing
             }
 
             QQC2.BusyIndicator {

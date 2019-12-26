@@ -23,6 +23,8 @@
 #include <QMetaEnum>
 #include <QVariant>
 
+#include <limits>
+
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -113,6 +115,24 @@ QVariantList Vehicle::sectionsVariant() const
     l.reserve(d->sections.size());
     std::transform(d->sections.begin(), d->sections.end(), std::back_inserter(l), [](const auto &sec) { return QVariant::fromValue(sec); });
     return l;
+}
+
+float Vehicle::platformPositionBegin() const
+{
+    float p = std::numeric_limits<float>::max();
+    for (const auto &section : sections()) {
+        p = std::min(p, section.platformPositionBegin());
+    }
+    return p;
+}
+
+float Vehicle::platformPositionEnd() const
+{
+    float p = -1.0f;
+    for (const auto &section : sections()) {
+        p = std::max(p, section.platformPositionEnd());
+    }
+    return p;
 }
 
 QJsonObject Vehicle::toJson(const Vehicle &vehicle)

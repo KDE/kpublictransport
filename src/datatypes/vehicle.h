@@ -133,6 +133,15 @@ class KPUBLICTRANSPORT_EXPORT Vehicle
     /** Journey sections for consumption by QML. */
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
 
+    /** Relative position [0-1] of the begin of this vehicle on the platform.
+     *  0 representing the begin of the platform in platform coordinate (@see Platform), 1 being the opposite end.
+     */
+    Q_PROPERTY(float platformPositionBegin READ platformPositionBegin STORED false)
+    /** Relative position [0-1] of the end of this vehicle on the platform.
+     *  0 representing the begin of the platform in platform coordinate (@see Platform), 1 being the opposite end.
+     */
+    Q_PROPERTY(float platformPositionEnd READ platformPositionEnd STORED false)
+
 public:
     /** The vehicle sections. */
     const std::vector<VehicleSection>& sections() const;
@@ -140,6 +149,9 @@ public:
     std::vector<VehicleSection>&& takeSections();
     /** Sets the vehicle sections. */
     void setSections(std::vector<VehicleSection> &&sections);
+
+    float platformPositionBegin() const;
+    float platformPositionEnd() const;
 
     /** Serializes one vehicle object to JSON. */
     static QJsonObject toJson(const Vehicle &vehicle);
