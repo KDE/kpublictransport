@@ -56,20 +56,16 @@ Kirigami.ScrollablePage {
                     y: section.begin * vehicleView.fullLength
                     height: section.end * vehicleView.fullLength - y
 
-                    Rectangle {
+                    Kirigami.Separator {
                         visible: index == 0
                         anchors { top: parent.top; left: parent.left; right: parent.right }
-                        color: Kirigami.Theme.disabledTextColor
-                        height: 1
                     }
                     QQC2.Label {
                         anchors.centerIn: parent
                         text: section.name
                     }
-                    Rectangle {
+                    Kirigami.Separator {
                         anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
-                        color: "gray"
-                        height: 1
                     }
                 }
             }
@@ -81,22 +77,22 @@ Kirigami.ScrollablePage {
                     property var section: model.vehicleSection
                     y: section.platformPositionBegin * vehicleView.fullLength
                     height: section.platformPositionEnd * vehicleView.fullLength - y
-                    width: 50
+                    width: Kirigami.Units.gridUnit * 2
                     color: {
                         if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
                             return Kirigami.Theme.disabledTextColor
                         if (section.type == KPublicTransport.VehicleSection.RestaurantCar)
-                            return "orange";
+                            return Kirigami.Theme.neutralTextColor;
                         if (section.classes == KPublicTransport.VehicleSection.FirstClass)
-                            return "yellow";
+                            return Kirigami.Theme.positiveTextColor;
                         if (section.classes == KPublicTransport.VehicleSection.SecondClass)
-                            return "lightsteelblue";
+                            return Kirigami.Theme.highlightColor;
                         if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
-                            return "green";
-                        return "red";
+                            return Qt.tint(Kirigami.Theme.highlightColor, Qt.rgba(Kirigami.Theme.positiveTextColor.r, Kirigami.Theme.positiveTextColor.g, Kirigami.Theme.positiveTextColor.b, 0.5));
+                        return Kirigami.Theme.negativeTextColor;
                     }
                     border {
-                        color: "black"
+                        color: Kirigami.Theme.textColor
                         width: 1
                     }
                     radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 0 : 10;
@@ -130,6 +126,7 @@ Kirigami.ScrollablePage {
                             }
                         }
                         QQC2.Label {
+                            visible: section.classes != KPublicTransport.VehicleSection.UnknownClass
                             text: {
                                 if (section.classes == KPublicTransport.VehicleSection.FirstClass)
                                     return "First class";
