@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "German national railway train layout service.",
         "Description[ca]": "Servei de disposició dels trens dels ferrocarrils nacionals alemanys.",
+        "Description[es]": "Servicio de plano de trenes de la compañía ferroviaria alemana.",
         "Description[et]": "Saksamaa üleriigilise raudtee rongide asukoha teenus.",
         "Description[it]": "Servizio disposizione del treno delle ferrovie nazionali tedesche.",
         "Description[nl]": "Duitse nationale spoorweg service voor treinindeling.",
@@ -10,6 +11,7 @@
         "Description[x-test]": "xxGerman national railway train layout service.xx",
         "Name": "Deutsche Bahn (DB) train layout API",
         "Name[ca]": "API de la disposició dels trens de Deutsche Bahn (DB)",
+        "Name[es]": "API de plano de trenes de Deutsche Bahn (DB)",
         "Name[et]": "Deutsche Bahni (DB) rongide asukoha API",
         "Name[it]": "API della disposizione del treno Deutsche Bahn (DB)",
         "Name[nl]": "Deutsche Bahn (DB) treinsamenstelling-API",
