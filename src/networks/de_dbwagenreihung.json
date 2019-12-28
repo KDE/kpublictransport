@@ -7,6 +7,7 @@
         "Description[it]": "Servizio disposizione del treno delle ferrovie nazionali tedesche.",
         "Description[nl]": "Duitse nationale spoorweg service voor treinindeling.",
         "Description[pt]": "Serviço de disposição de comboios nos caminhos de ferro nacionais da Alemanha.",
+        "Description[sv]": "Tyska statsjärnvägens tjänst för tåglayout.",
         "Description[uk]": "Німецька державна залізниця, служба розкладу потягів.",
         "Description[x-test]": "xxGerman national railway train layout service.xx",
         "Name": "Deutsche Bahn (DB) train layout API",
@@ -16,6 +17,7 @@
         "Name[it]": "API della disposizione del treno Deutsche Bahn (DB)",
         "Name[nl]": "Deutsche Bahn (DB) treinsamenstelling-API",
         "Name[pt]": "API de disposição dos comboios do Deutsche Bahn (DB)",
+        "Name[sv]": "Programmeringsgränssnitt för Deutsche Bahn (DB) tåglayout",
         "Name[uk]": "Deutsche Bahn (DB), інтерфейс розкладу потягів",
         "Name[x-test]": "xxDeutsche Bahn (DB) train layout APIxx"
     },
