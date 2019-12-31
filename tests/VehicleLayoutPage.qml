@@ -71,17 +71,19 @@ Kirigami.ScrollablePage {
                 }
             }
 
-            QQC2.Label { // TODO should be an icon, but that crashes somehow
+            Kirigami.Icon {
                 visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
-                text: {
+                source: {
                     if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
-                        return "^";
+                        return "go-up";
                     if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
-                        return "v"
+                        return "go-down"
                     return "";
                 }
-                x: Kirigami.Units.gridUnit - implicitWidth / 2
-                y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - implicitHeight - Kirigami.Units.largeSpacing
+                width: Kirigami.Units.iconSizes.small
+                height: width
+                x: Kirigami.Units.gridUnit - width / 2
+                y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - height - Kirigami.Units.largeSpacing
             }
             Repeater {
                 Layout.fillWidth: true
@@ -153,16 +155,18 @@ Kirigami.ScrollablePage {
                     }
                 }
             }
-            QQC2.Label { // TODO should be an icon, but that crashes somehow
+            Kirigami.Icon {
                 visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
-                text: {
+                source: {
                     if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
-                        return "^";
+                        return "go-up";
                     if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
-                        return "v"
+                        return "go-down"
                     return "";
                 }
-                x: Kirigami.Units.gridUnit - implicitWidth / 2
+                width: Kirigami.Units.iconSizes.small
+                height: width
+                x: Kirigami.Units.gridUnit - width / 2
                 y: vehicleModel.vehicle.platformPositionEnd * vehicleView.fullLength + Kirigami.Units.largeSpacing
             }
 
