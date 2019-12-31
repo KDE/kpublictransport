@@ -656,7 +656,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         if (d->shouldSkipBackend(backend.get(), req)) {
             continue;
         }
-        if (req.departure().stopPoint().hasCoordinate() && backend->isCoordinateExcluded(req.departure().stopPoint().latitude(), req.departure().stopPoint().longitude())) {
+        if (req.departure().stopPoint().hasCoordinate() && backend->isLocationExcluded(req.departure().stopPoint())) {
             qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
