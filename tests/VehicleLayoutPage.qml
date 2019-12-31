@@ -21,7 +21,7 @@ import QtQuick.Controls 2.1 as QQC2
 import org.kde.kirigami 2.4 as Kirigami
 import org.kde.kpublictransport 1.0 as KPublicTransport
 
-Kirigami.ScrollablePage {
+Kirigami.Page {
     id: root
     title: i18n("Vehicle Layout")
 
@@ -35,6 +35,7 @@ Kirigami.ScrollablePage {
     }
 
     ColumnLayout {
+        anchors.fill: parent
         QQC2.Label {
             text: vehicleModel.departure.stopPoint.name + " - " + vehicleModel.departure.route.line.name + " - " + vehicleModel.departure.scheduledDepartureTime
         }
@@ -42,11 +43,15 @@ Kirigami.ScrollablePage {
             text: "Platform: " + vehicleModel.platform.name
         }
 
-        Item {
+        Flickable {
             id: vehicleView
             property real fullLength: 1000 // full length of the platform display
-            implicitHeight: childrenRect.height
+            clip: true
+            contentHeight: fullLength
             Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
 
             Repeater {
                 Layout.fillWidth: true;
