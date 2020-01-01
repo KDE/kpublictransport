@@ -169,6 +169,9 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
         if (dep.expectedPlatform().isEmpty()) {
             dep.setExpectedPlatform(stbStop.value(QLatin1String("aPlatfR")).toString());
         }
+        if (stbStop.value(QLatin1String("dCncl")).toBool()) {
+            dep.setDisruptionEffect(Disruption::NoService);
+        }
 
         const auto startLocIdx = stbStop.value(QLatin1String("locX")).toInt(-1);
         if (startLocIdx >= 0 && (unsigned int)startLocIdx < locs.size()) {
