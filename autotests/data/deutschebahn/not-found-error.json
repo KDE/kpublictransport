@@ -1,0 +1,7 @@
+{
+    "error": {
+        "id": 404,
+        "msg": "Data not found"
+    },
+    "tryThese": [ "gigantic", "stripped", "out", "list" ]
+}

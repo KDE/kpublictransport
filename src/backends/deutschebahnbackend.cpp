@@ -77,7 +77,7 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
             if (p.parse(data)) {
                 addResult(reply, p.vehicle, p.platform, p.departure);
             } else {
-                addError(reply, this, p.error, {});
+                addError(reply, this, p.error, p.errorMessage);
             }
         } else {
             addError(reply, this, Reply::NetworkError, reply->errorString());

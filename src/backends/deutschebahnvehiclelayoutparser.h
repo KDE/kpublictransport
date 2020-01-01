@@ -37,6 +37,7 @@ public:
     Platform platform;
     Departure departure;
     Reply::Error error = Reply::NoError;
+    QString errorMessage;
 
 private:
     void parseVehicleSection(const QJsonObject &obj);

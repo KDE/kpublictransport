@@ -27,9 +27,16 @@ using namespace KPublicTransport;
 
 bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
 {
-    auto doc = QJsonDocument::fromJson(data);
-    auto obj = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("istformation")).toObject();
+    const auto doc = QJsonDocument::fromJson(data);
 
+    const auto err = doc.object().value(QLatin1String("error")).toObject();
+    if (!err.isEmpty()) {
+        error = err.value(QLatin1String("id")).toInt() == 404 ? Reply::NotFoundError : Reply::UnknownError;
+        errorMessage = err.value(QLatin1String("msg")).toString();
+        return false;
+    }
+
+    const auto obj = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("istformation")).toObject();
     vehicle.setName(obj.value(QLatin1String("zuggattung")).toString() + QLatin1Char(' ') + obj.value(QLatin1String("zugnummer")).toString());
 
     // vehicles

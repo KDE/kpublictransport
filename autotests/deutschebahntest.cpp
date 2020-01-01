@@ -76,6 +76,8 @@ private Q_SLOTS:
         KPublicTransport::DeutscheBahnVehicleLayoutParser parser;
 
         QVERIFY(parser.parse(readFile(inFileName)));
+        QCOMPARE(parser.error, Reply::NoError);
+        QVERIFY(parser.errorMessage.isEmpty());
         const auto vehicleJson = Vehicle::toJson(parser.vehicle);
         const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).object();
         if (vehicleJson != vehicleRef) {
@@ -99,6 +101,15 @@ private Q_SLOTS:
         }
         QVERIFY(!departureJson.isEmpty());
         QCOMPARE(departureJson, departureRef);
+    }
+
+    void testVehicleLayoutParseFailure()
+    {
+        KPublicTransport::DeutscheBahnVehicleLayoutParser parser;
+
+        QVERIFY(!parser.parse(readFile(QStringLiteral(SOURCE_DIR "/data/deutschebahn/not-found-error.json"))));
+        QCOMPARE(parser.error, Reply::NotFoundError);
+        QVERIFY(!parser.errorMessage.isEmpty());
     }
 };
 
