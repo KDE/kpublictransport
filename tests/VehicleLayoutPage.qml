@@ -35,6 +35,7 @@ Kirigami.Page {
     }
 
     ColumnLayout {
+        id: contentLayout
         anchors.fill: parent
         QQC2.Label {
             text: vehicleModel.departure.stopPoint.name + " - " + vehicleModel.departure.route.line.name + " - " + vehicleModel.departure.scheduledDepartureTime
@@ -91,6 +92,7 @@ Kirigami.Page {
                 y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - height - Kirigami.Units.largeSpacing
             }
             Repeater {
+                id: vehicleRepeater
                 Layout.fillWidth: true
                 model: vehicleModel
                 delegate: Rectangle {
@@ -174,19 +176,29 @@ Kirigami.Page {
                 x: Kirigami.Units.gridUnit - width / 2
                 y: vehicleModel.vehicle.platformPositionEnd * vehicleView.fullLength + Kirigami.Units.largeSpacing
             }
-
-            QQC2.BusyIndicator {
-                anchors.centerIn: root
-                running: vehicleModel.loading
-            }
-
-            QQC2.Label {
-                anchors.centerIn: root
-                width: parent.width
-                text: vehicleModel.errorMessage
-                color: Kirigami.Theme.negativeTextColor
-                wrapMode: Text.Wrap
-            }
         }
+    }
+
+    QQC2.BusyIndicator {
+        anchors.centerIn: contentLayout
+        running: vehicleModel.loading
+    }
+
+    QQC2.Label {
+        anchors.centerIn: contentLayout
+        width: parent.width
+        text: vehicleModel.errorMessage
+        color: Kirigami.Theme.negativeTextColor
+        wrapMode: Text.Wrap
+        horizontalAlignment: Text.AlignHCenter
+    }
+
+    QQC2.Label {
+        anchors.centerIn: contentLayout
+        width: parent.width
+        visible: vehicleModel.errorMessage === "" && !vehicleModel.loading && vehicleRepeater.count === 0
+        wrapMode: Text.Wrap
+        horizontalAlignment: Text.AlignHCenter
+        text: "No vehicle layout information available."
     }
 }
