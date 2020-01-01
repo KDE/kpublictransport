@@ -115,6 +115,9 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
     if (cls.startsWith(QLatin1String("AR")) || cls.startsWith(QLatin1String("BR"))) {
         f |= VehicleSection::Restaurant;
     }
+    if (cls.startsWith(QLatin1Char('D'))) {
+        section.setDeckCount(2);
+    }
     section.setClasses(c);
 
     const auto equipmentArray = obj.value(QLatin1String("allFahrzeugausstattung")).toArray();

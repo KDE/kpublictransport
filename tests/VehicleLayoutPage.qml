@@ -118,6 +118,36 @@ Kirigami.Page {
                         width: 1
                     }
                     radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 0 : 10;
+
+                    Rectangle {
+                        x: Kirigami.Units.smallSpacing
+                        y: Kirigami.Units.smallSpacing
+                        width: parent.width
+                        height: parent.height
+                        color: parent.color
+                        border.width: parent.border.width
+                        border.color: parent.border.color
+                        radius: parent.radius
+                        visible: section.deckCount > 1
+                    }
+
+                    Rectangle {
+                        x: Kirigami.Units.gridUnit / 2
+                        width: Kirigami.Units.gridUnit
+                        color: Kirigami.Theme.textColor
+                        height: 2
+                        visible: section.connectedSides & KPublicTransport.VehicleSection.Front
+                    }
+
+                    Rectangle {
+                        x: Kirigami.Units.gridUnit / 2
+                        y: parent.height - height
+                        width: Kirigami.Units.gridUnit
+                        color: Kirigami.Theme.textColor
+                        height: 2
+                        visible: section.connectedSides & KPublicTransport.VehicleSection.Back
+                    }
+
                     QQC2.Label {
                         anchors.centerIn: parent
                         text: section.name

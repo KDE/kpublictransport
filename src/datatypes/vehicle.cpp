@@ -38,6 +38,8 @@ public:
     VehicleSection::Type type = VehicleSection::UnknownType;
     VehicleSection::Classes classes = VehicleSection::UnknownClass;
     VehicleSection::Features features = VehicleSection::NoFeatures;
+    int deckCount = 1;
+    VehicleSection::Sides connectedSides = VehicleSection::Front | VehicleSection::Back;
 };
 
 class VehiclePrivate : public QSharedData
@@ -57,6 +59,8 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionEnd, setPl
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes, setClasses)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Features, features, setFeatures)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, int, deckCount, setDeckCount)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedSides, setConnectedSides)
 
 QJsonObject VehicleSection::toJson(const VehicleSection &section)
 {

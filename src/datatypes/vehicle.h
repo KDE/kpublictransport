@@ -50,7 +50,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     /** Vehicle section type. */
     enum Type {
         UnknownType, ///< no information about the vehicle section type available
-        Engine, ///< train engine, not accessible by passenders, only shown for orientation
+        Engine, ///< train engine, not accessible by passengers, only shown for orientation
         PowerCar, ///< power car of a train, similar to Engine, distinction exists just for better visualization
         ControlCar, ///< usually at the head of the train, but accessible for passengers and the same way as a PassengerCar
         PassengerCar, ///< passenger car of a train
@@ -74,7 +74,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Classes, classes, setClasses)
 
-    /** Amenities or other features availbale in a vehicle section. */
+    /** Amenities or other features available in a vehicle section. */
     enum Feature {
         NoFeatures = 0,
         AirConditioning = 1, ///< vehicle section is air conditioned
@@ -94,7 +94,25 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     /** Feature flag as a variant list, for consumption in QML. */
     Q_PROPERTY(QVariantList featureList READ featureList STORED false)
 
-    // TODO where to put deck number?
+    /** Number of decks in this vehicle section. */
+    KPUBLICTRANSPORT_PROPERTY(int, deckCount, setDeckCount)
+
+    /** Vehicle section side.
+     *  Front is towards the smaller platform coordinate, Back is the opposite direction.
+     */
+    enum Side {
+        NoSide = 0,
+        Front = 1,
+        Back = 2
+    };
+    Q_DECLARE_FLAGS(Sides, Side)
+    Q_FLAG(Sides)
+    /** Sides on which this vehicle section is connected to neighboring sections
+     *  in a way that passengers can move between those sections.
+     *  This matters for example for a double segment train with to control cars
+     *  in the middle of its full layout.
+     */
+    KPUBLICTRANSPORT_PROPERTY(Sides, connectedSides, setConnectedSides)
 
     /** Serializes one vehicle section to JSON. */
     static QJsonObject toJson(const VehicleSection &section);
@@ -166,6 +184,7 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Classes)
 Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Features)
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Sides)
 Q_DECLARE_METATYPE(KPublicTransport::VehicleSection)
 Q_DECLARE_METATYPE(KPublicTransport::Vehicle)
 

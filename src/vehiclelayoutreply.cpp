@@ -82,6 +82,44 @@ void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &plato
     d->platform = platoform;
     d->departure = departure;
 
+    if (!d->vehicle.sections().empty()) {
+        // normalize section order
+        auto sections = d->vehicle.takeSections();
+        std::sort(sections.begin(), sections.end(), [](const auto &lhs, const auto &rhs) {
+            return lhs.platformPositionBegin() < rhs.platformPositionBegin();
+        });
+
+        // we have no connections at the ends
+        sections.front().setConnectedSides(sections.front().connectedSides() & ~VehicleSection::Front);
+        sections.back().setConnectedSides(sections.back().connectedSides() & ~VehicleSection::Back);
+
+        for (auto it = sections.begin(); it != sections.end(); ++it) {
+            // engines and power cars have no connections either
+            if ((*it).type() == VehicleSection::Engine || (*it).type() == VehicleSection::PowerCar) {
+                (*it).setConnectedSides(VehicleSection::NoSide);
+            }
+
+            if (it == sections.begin()) {
+                continue;
+            }
+
+            // connect control cars in the middle of the train to the correct side
+            if ((*(it - 1)).type() == VehicleSection::ControlCar && (*it).type() == VehicleSection::ControlCar) {
+                (*it).setConnectedSides((*it).connectedSides() & ~VehicleSection::Front);
+            }
+
+            // make sure connections are symmetric
+            if (((*(it - 1)).connectedSides() & VehicleSection::Back) == 0) {
+                (*it).setConnectedSides((*it).connectedSides() & ~VehicleSection::Front);
+            }
+            if (((*it).connectedSides() & VehicleSection::Front) == 0) {
+                (*(it - 1)).setConnectedSides((*(it - 1)).connectedSides() & ~VehicleSection::Back);
+            }
+        }
+
+        d->vehicle.setSections(std::move(sections));
+    }
+
     d->pendingOps--;
     d->emitFinishedIfDone(this);
 }

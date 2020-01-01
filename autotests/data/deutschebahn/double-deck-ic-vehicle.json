@@ -4,6 +4,8 @@
     "sections": [
         {
             "classes": "UnknownClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
             "features": "NoFeatures",
             "name": "",
             "platformPositionBegin": 0.36000001430511475,
@@ -12,6 +14,8 @@
         },
         {
             "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 2,
             "features": "AirConditioning|SilentArea",
             "name": "5",
             "platformPositionBegin": 0.28999999165534973,
@@ -20,6 +24,8 @@
         },
         {
             "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 2,
             "features": "AirConditioning|BikeStorage",
             "name": "4",
             "platformPositionBegin": 0.23000000417232513,
@@ -28,6 +34,8 @@
         },
         {
             "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 2,
             "features": "AirConditioning|BikeStorage",
             "name": "3",
             "platformPositionBegin": 0.17000000178813934,
@@ -36,6 +44,8 @@
         },
         {
             "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 2,
             "features": "AirConditioning|BikeStorage",
             "name": "2",
             "platformPositionBegin": 0.10999999940395355,
@@ -44,6 +54,8 @@
         },
         {
             "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 2,
             "features": "AirConditioning|ToddlerArea|WheelchairAccessible|BikeStorage",
             "name": "1",
             "platformPositionBegin": 0.05000000074505806,
