@@ -1,0 +1,6 @@
+.VehicleSectionOutline {
+    color:{{lineColor}};
+}
+.VehicleSectionBackground {
+    color:{{fillColor}};
+}

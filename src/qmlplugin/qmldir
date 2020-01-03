@@ -1,2 +1,3 @@
 module org.kde.kpublictransport
 plugin kpublictransportqmlplugin
+classname KPublicTransportQmlPlugin

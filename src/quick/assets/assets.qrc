@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport/ui/assets/">
+        <file>controlcar-back.svg</file>
+        <file>controlcar-back-double-deck.svg</file>
+        <file>controlcar-front.svg</file>
+        <file>controlcar-front-double-deck.svg</file>
+        <file>engine.svg</file>
+        <file>passengercar.svg</file>
+        <file>passengercar-double-deck.svg</file>
+        <file>style.css</file>
+    </qresource>
+</RCC>

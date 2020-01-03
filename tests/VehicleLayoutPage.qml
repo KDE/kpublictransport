@@ -20,6 +20,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import org.kde.kirigami 2.4 as Kirigami
 import org.kde.kpublictransport 1.0 as KPublicTransport
+import org.kde.kpublictransport.ui 1.0
 
 Kirigami.Page {
     id: root
@@ -46,7 +47,8 @@ Kirigami.Page {
 
         Flickable {
             id: vehicleView
-            property real fullLength: 1000 // full length of the platform display
+            property real fullLength: 1600 // full length of the platform display
+            property real sectionWidth: 48
             clip: true
             contentHeight: fullLength
             Layout.fillWidth: true
@@ -88,65 +90,23 @@ Kirigami.Page {
                 }
                 width: Kirigami.Units.iconSizes.small
                 height: width
-                x: Kirigami.Units.gridUnit - width / 2
+                x: vehicleView.sectionWidth / 2 - width / 2
                 y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - height - Kirigami.Units.largeSpacing
             }
             Repeater {
                 id: vehicleRepeater
                 Layout.fillWidth: true
                 model: vehicleModel
-                delegate: Rectangle {
-                    property var section: model.vehicleSection
+                delegate: VehicleSectionItem {
+                    section: model.vehicleSection
                     y: section.platformPositionBegin * vehicleView.fullLength
                     height: section.platformPositionEnd * vehicleView.fullLength - y
-                    width: Kirigami.Units.gridUnit * 2
-                    color: {
-                        if (section.type == KPublicTransport.VehicleSection.Engine || section.type == KPublicTransport.VehicleSection.PowerCar)
-                            return Kirigami.Theme.disabledTextColor
-                        if (section.type == KPublicTransport.VehicleSection.RestaurantCar)
-                            return Kirigami.Theme.neutralTextColor;
-                        if (section.classes == KPublicTransport.VehicleSection.FirstClass)
-                            return Kirigami.Theme.positiveTextColor;
-                        if (section.classes == KPublicTransport.VehicleSection.SecondClass)
-                            return Kirigami.Theme.highlightColor;
-                        if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
-                            return Qt.tint(Kirigami.Theme.highlightColor, Qt.rgba(Kirigami.Theme.positiveTextColor.r, Kirigami.Theme.positiveTextColor.g, Kirigami.Theme.positiveTextColor.b, 0.5));
-                        return Kirigami.Theme.negativeTextColor;
-                    }
-                    border {
-                        color: Kirigami.Theme.textColor
-                        width: 1
-                    }
-                    radius: section.type == KPublicTransport.VehicleSection.ControlCar ? 0 : 10;
-
-                    Rectangle {
-                        x: Kirigami.Units.smallSpacing
-                        y: Kirigami.Units.smallSpacing
-                        width: parent.width
-                        height: parent.height
-                        color: parent.color
-                        border.width: parent.border.width
-                        border.color: parent.border.color
-                        radius: parent.radius
-                        visible: section.deckCount > 1
-                    }
-
-                    Rectangle {
-                        x: Kirigami.Units.gridUnit / 2
-                        width: Kirigami.Units.gridUnit
-                        color: Kirigami.Theme.textColor
-                        height: 2
-                        visible: section.connectedSides & KPublicTransport.VehicleSection.Front
-                    }
-
-                    Rectangle {
-                        x: Kirigami.Units.gridUnit / 2
-                        y: parent.height - height
-                        width: Kirigami.Units.gridUnit
-                        color: Kirigami.Theme.textColor
-                        height: 2
-                        visible: section.connectedSides & KPublicTransport.VehicleSection.Back
-                    }
+                    width: vehicleView.sectionWidth
+                    textColor: Kirigami.Theme.textColor
+                    firstClassBackground: Kirigami.Theme.positiveTextColor
+                    secondClassBackground: Kirigami.Theme.focusColor
+                    inaccessibleBackground: Kirigami.Theme.disabledTextColor
+                    restaurantBackground: Kirigami.Theme.neutralTextColor
 
                     QQC2.Label {
                         anchors.centerIn: parent
@@ -203,7 +163,7 @@ Kirigami.Page {
                 }
                 width: Kirigami.Units.iconSizes.small
                 height: width
-                x: Kirigami.Units.gridUnit - width / 2
+                x: vehicleView.sectionWidth / 2 - width / 2
                 y: vehicleModel.vehicle.platformPositionEnd * vehicleView.fullLength + Kirigami.Units.largeSpacing
             }
         }

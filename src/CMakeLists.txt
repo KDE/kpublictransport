@@ -1,5 +1,3 @@
-add_subdirectory(qmlplugin)
-
 set(kpublictransport_srcs
     departurereply.cpp
     departurerequest.cpp
@@ -145,3 +143,8 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kpublictransport
 )
+
+add_subdirectory(qmlplugin)
+if (TARGET Qt5::Quick)
+    add_subdirectory(quick)
+endif()
