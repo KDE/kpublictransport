@@ -75,6 +75,11 @@ Departure VehicleLayoutReply::departure() const
     return d->departure;
 }
 
+static bool isOneSidedCar(VehicleSection::Type type)
+{
+    return type == VehicleSection::PowerCar || type == VehicleSection::ControlCar;
+}
+
 void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platoform, const Departure &departure)
 {
     Q_D(VehicleLayoutReply);
@@ -95,7 +100,7 @@ void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &plato
 
         for (auto it = sections.begin(); it != sections.end(); ++it) {
             // engines and power cars have no connections either
-            if ((*it).type() == VehicleSection::Engine || (*it).type() == VehicleSection::PowerCar) {
+            if ((*it).type() == VehicleSection::Engine) {
                 (*it).setConnectedSides(VehicleSection::NoSide);
             }
 
@@ -104,7 +109,7 @@ void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &plato
             }
 
             // connect control cars in the middle of the train to the correct side
-            if ((*(it - 1)).type() == VehicleSection::ControlCar && (*it).type() == VehicleSection::ControlCar) {
+            if (isOneSidedCar((*(it - 1)).type()) && isOneSidedCar((*it).type())) {
                 (*it).setConnectedSides((*it).connectedSides() & ~VehicleSection::Front);
             }
 
