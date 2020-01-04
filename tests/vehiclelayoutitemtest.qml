@@ -22,17 +22,19 @@ import org.kde.kirigami 2.4 as Kirigami
 import org.kde.kpublictransport 1.0
 import org.kde.kpublictransport.ui 1.0
 
-Item {
+Rectangle {
     width: 800
     height: 400
+    color: Kirigami.Theme.backgroundColor
 
     RowLayout {
         anchors.fill: parent
 
         Image {
             source: "image://org.kde.kpublictransport.styledsvg/passengercar?lineColor=#00ff00&fillColor=#ff0000"
-            width: 64
-            height: 128
+        }
+        BorderImage {
+            source: "image://org.kde.kpublictransport.styledsvg/passengercar?lineColor=#00ff00&fillColor=#ff0000"
         }
 
         VehicleSectionItem {

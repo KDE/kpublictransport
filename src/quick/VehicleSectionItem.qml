@@ -88,8 +88,6 @@ BorderImage {
         return "image://org.kde.kpublictransport.styledsvg/" + svgName + "?lineColor=" + textColor + "&fillColor=" + fillColor;
     }
 
-    border.left: 20
-    border.right: 20
     border.top: {
         switch (section.type) {
             case VehicleSection.PowerCar:
@@ -100,5 +98,5 @@ BorderImage {
         }
         return 36;
     }
-    border.bottom: 48 - border.top - 4
+    border.bottom: implicitHeight - border.top - 4
 }

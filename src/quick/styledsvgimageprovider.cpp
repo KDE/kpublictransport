@@ -20,6 +20,7 @@
 #include <QBuffer>
 #include <QDebug>
 #include <QFile>
+#include <QGuiApplication>
 #include <QImageReader>
 #include <QUrlQuery>
 #include <QXmlStreamReader>
@@ -91,7 +92,9 @@ QImage StyledSvgImageProvider::requestImage(const QString &id, QSize *size, cons
     buffer.open(QIODevice::ReadOnly);
     buffer.seek(0);
     QImageReader imgReader(&buffer, "svg");
-    const auto img = imgReader.read();
-    *size = img.size();
+    imgReader.setScaledSize(imgReader.size() * qGuiApp->devicePixelRatio());
+    auto img = imgReader.read();
+    img.setDevicePixelRatio(qGuiApp->devicePixelRatio());
+    *size = imgReader.size();
     return img;
 }
