@@ -33,6 +33,12 @@ Kirigami.Page {
 
     KPublicTransport.VehicleLayoutQueryModel {
         id: vehicleModel
+
+        onContentChanged: {
+            var offset = vehicleView.fullLength * vehicleModel.vehicle.platformPositionBegin;
+            offset -= Kirigami.Units.iconSizes.small + Kirigami.Units.largeSpacing; // direction indicator
+            vehicleView.contentY = offset;
+        }
     }
 
     ColumnLayout {
