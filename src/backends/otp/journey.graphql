@@ -1,0 +1,57 @@
+query journeys($fromLat: Float!, $fromLon: Float!, $toLat: Float!, $toLon: Float!) {
+    plan (
+        from: { lat: $fromLat, lon: $fromLon }
+        to:   { lat: $toLat,   lon: $toLon }
+        numItineraries: 3
+    ) {
+        itineraries {
+            legs {
+                startTime
+                endTime
+                departureDelay
+                arrivalDelay
+                realTime
+                distance
+                mode
+                transitLeg
+                from {
+                    name
+                    lat
+                    lon
+                }
+                to {
+                    name
+                    lat
+                    lon
+                }
+                trip {
+                    route {
+                        mode
+                        type
+                        desc
+                        shortName
+                        longName
+                        color
+                        textColor
+                        #bikesAllowed
+                        alerts {
+                            alertHeaderTextTranslations {
+                                language
+                                text
+                            }
+                            alertDescriptionTextTranslations {
+                                language
+                                text
+                            }
+                            alertEffect
+                            alertCause
+                            alertSeverityLevel
+                        }
+                    }
+                    tripHeadsign
+                    tripShortName
+                }
+            }
+        }
+    }
+}

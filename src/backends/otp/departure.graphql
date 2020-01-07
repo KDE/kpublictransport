@@ -1,0 +1,43 @@
+query departures($stopId: String!, $startTime: Long!) {
+    stop(id: $stopId) {
+        name
+        lat
+        lon
+        stoptimesWithoutPatterns(startTime: $startTime, numberOfDepartures: 12) {
+            serviceDay
+            scheduledArrival
+            realtimeArrival
+            scheduledDeparture
+            realtimeDeparture
+            realtime
+            headsign
+            trip {
+                route {
+                    mode
+                    type
+                    desc
+                    shortName
+                    longName
+                    color
+                    textColor
+                    #bikesAllowed
+                    alerts {
+                        alertHeaderTextTranslations {
+                            language
+                            text
+                        }
+                        alertDescriptionTextTranslations {
+                            language
+                            text
+                        }
+                        alertEffect
+                        alertCause
+                        alertSeverityLevel
+                    }
+                }
+                tripHeadsign
+                tripShortName
+            }
+        }
+    }
+}
