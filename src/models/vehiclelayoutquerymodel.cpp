@@ -50,12 +50,12 @@ void VehicleLayoutQueryModelPrivate::doQuery()
     }
 
     resetForNewRequest();
-    // TODO
-//     if (!m_locations.empty()) {
-//         q->beginResetModel();
-//         m_locations.clear();
-//         q->endResetModel();
-//     }
+    q->beginResetModel();
+    m_vehicle = {};
+    q->endResetModel();
+    m_platform = {};
+    m_departure = m_request.departure();
+    emit q->contentChanged();
 
     auto reply = m_manager->queryVehicleLayout(m_request);
     monitorReply(reply);
