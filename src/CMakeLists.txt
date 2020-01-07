@@ -1,3 +1,5 @@
+add_subdirectory(graphql)
+
 set(kpublictransport_srcs
     departurereply.cpp
     departurerequest.cpp
