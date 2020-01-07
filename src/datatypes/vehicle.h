@@ -171,6 +171,12 @@ public:
     float platformPositionBegin() const;
     float platformPositionEnd() const;
 
+    /** Returns the center position of the vehicle section named @p sectionName
+     *  in relative platform coordinates.
+     *  Useful for centering a view on a selected section for example.
+     */
+    Q_INVOKABLE float platformPositionForSection(const QString &sectionName) const;
+
     /** Serializes one vehicle object to JSON. */
     static QJsonObject toJson(const Vehicle &vehicle);
     /** Deserialize an object from JSON. */

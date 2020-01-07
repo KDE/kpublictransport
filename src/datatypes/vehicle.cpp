@@ -139,6 +139,16 @@ float Vehicle::platformPositionEnd() const
     return p;
 }
 
+float Vehicle::platformPositionForSection(const QString &sectionName) const
+{
+    for (const auto &section : sections()) {
+        if (section.name() == sectionName) {
+            return (section.platformPositionBegin() + section.platformPositionEnd()) / 2.0f;
+        }
+    }
+    return -1.0f;
+}
+
 QJsonObject Vehicle::toJson(const Vehicle &vehicle)
 {
     auto obj = Json::toJson(vehicle);
