@@ -78,4 +78,9 @@ ListModel {
 
     ListElement { label: "Barcelona Sants"; lat: 41.37910; lon: 2.13983 }
     ListElement { label: "Strasbourg Gare Centrale"; lat: 48.58507; lon: 7.73368 }
+
+    ListElement { label: "Tampere Station (Akademy 2010)"; name: "Tampere"; lat: 61.49859; lon: 23.77392 }
+    ListElement { label: "Helsinki Vantaa Airport (HEL)"; name: "Lentosema"; lat: 60.31621; lon: 24.96906 }
+    ListElement { label: "Helsinki central station"; name: "Helsinki"; lat: 60.17170; lon: 24.94094 }
+    ListElement { label: "Leppävaara"; lat: 60.21946; lon: 24.81309 }
 }

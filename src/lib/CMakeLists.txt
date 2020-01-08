@@ -27,6 +27,7 @@ set(kpublictransport_srcs
     backends/hafasqueryparser.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
+    backends/opentripplannerbackend.cpp
     backends/otp/otp.qrc
     backends/scopedxmlstreamreader.cpp
 
@@ -71,6 +72,7 @@ target_link_libraries(KPublicTransport
     PUBLIC
         Qt5::Gui
     PRIVATE
+        KGraphQL
         Qt5::Network
         ZLIB::ZLIB
 )

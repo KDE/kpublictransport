@@ -11,6 +11,8 @@
         <file>de_db.json</file>
         <file>de_dbwagenreihung.json</file>
         <file>dk_dsb.json</file>
+        <file>fi_digitransit.json</file>
+        <file>fi_waltti.json</file>
         <file>fr_sncf.json</file>
         <file>ie_tfi.json</file>
         <file>lu_mobiliteitszentral.json</file>
@@ -27,6 +29,7 @@
         <file>at_6_vvst.json</file>
         <file>at_7_vvt.json</file>
         <file>at_8_vvv.json</file>
+
         <file>au_nsw.json</file>
 
         <file>de_bb_vbb.json</file>
@@ -39,11 +42,19 @@
         <file>de_he_rmv.json</file>
         <file>de_ni_gvh.json</file>
         <file>de_nw_avv.json</file>
+        <file>de_nw_muenster.json</file>
         <file>de_nw_vrr.json</file>
         <file>de_sh_sh.json</file>
         <file>de_st_insa.json</file>
 
+        <file>fi_17_helsinki.json</file>
+
+        <file>it_21_piemonte.json</file>
+        <file>it_21_torino.json</file>
+
         <file>us_ca_bart.json</file>
+        <file>us_ca_la_metro.json</file>
+        <file>us_ga_marta.json</file>
         <file>us_il_chicago.json</file>
     </qresource>
 </RCC>
