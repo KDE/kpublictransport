@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../src/datatypes/notesutil.cpp"
+#include "../src/lib/datatypes/notesutil.cpp"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>

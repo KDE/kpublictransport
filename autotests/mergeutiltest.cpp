@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "../src/datatypes/mergeutil.cpp"
+#include "../src/lib/datatypes/mergeutil.cpp"
 
 #include <QDateTime>
 #include <QTest>
