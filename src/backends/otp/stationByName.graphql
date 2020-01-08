@@ -1,0 +1,13 @@
+query stationsByName($name: String!) {
+  stations(name: $name) {
+    gtfsId
+    name
+    lat
+    lon
+    parentStation { gtfsId }
+    platformCode
+    #wheelchairBoarding
+    timezone
+    #alerts { alertHeaderText alertDescriptionText }
+  }
+}

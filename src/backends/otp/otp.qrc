@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport/otp">
+      <file>departure.graphql</file>
+      <file>journey.graphql</file>
+      <file>stationByCoordinate.graphql</file>
+      <file>stationByName.graphql</file>
+    </qresource>
+</RCC>
+

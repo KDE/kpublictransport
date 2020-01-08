@@ -1,9 +1,14 @@
 query departures($stopId: String!, $startTime: Long!) {
-    stop(id: $stopId) {
+    station(id: $stopId) {
+        gtfsId
         name
         lat
         lon
+        timezone
         stoptimesWithoutPatterns(startTime: $startTime, numberOfDepartures: 12) {
+            stop {
+                platformCode
+            }
             serviceDay
             scheduledArrival
             realtimeArrival

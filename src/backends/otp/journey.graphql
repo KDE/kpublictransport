@@ -18,11 +18,21 @@ query journeys($fromLat: Float!, $fromLon: Float!, $toLat: Float!, $toLon: Float
                     name
                     lat
                     lon
+                    stop {
+                        gtfsId
+                        platformCode
+                        timezone
+                    }
                 }
                 to {
                     name
                     lat
                     lon
+                    stop {
+                        gtfsId
+                        platformCode
+                        timezone
+                    }
                 }
                 trip {
                     route {
