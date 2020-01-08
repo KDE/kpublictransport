@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Local public transport in and around Torino, Italy.",
+        "Name": "Muoversi a Torino"
+    },
+    "filter": {
+        "geo": [
+            [
+                6.63299,
+                46.11542
+            ],
+            [
+                11.276394,
+                46.11542
+            ],
+            [
+                11.276394,
+                43.776881
+            ],
+            [
+                6.63299,
+                43.776881
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://mapi.5t.torino.it/routing/v1/routers/mat/"
+    },
+    "type": "otp"
+}

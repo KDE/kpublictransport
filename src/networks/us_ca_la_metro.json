@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in and around Los Angles, US.",
+        "Name": "Los Angeles Metro"
+    },
+    "filter": {
+        "geo": [
+            [
+                -119.5779026,
+                34.809949
+            ],
+            [
+                -116.51300990000001,
+                34.809949
+            ],
+            [
+                -116.51300990000001,
+                33.193150638074
+            ],
+            [
+                -119.5779026,
+                33.193150638074
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://otp.metroservices.io/otp/routers/default/"
+    },
+    "type": "otp"
+}

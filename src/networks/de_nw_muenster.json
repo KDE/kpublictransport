@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Local public transport in and around Münster, Germany.",
+        "Name": "Münster, Germany"
+    },
+    "filter": {
+        "geo": [
+            [
+                6.245927900000001,
+                52.483627500000004
+            ],
+            [
+                8.3234834,
+                52.483627500000004
+            ],
+            [
+                8.3234834,
+                51.4769823
+            ],
+            [
+                6.245927900000001,
+                51.4769823
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://api.digitransit.codeformuenster.org/routing/v1/routers/cfm/"
+    },
+    "type": "otp"
+}

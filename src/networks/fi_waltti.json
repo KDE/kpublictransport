@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Waltti regions in Finland.",
+        "Name": "Waltti"
+    },
+    "filter": {
+        "geo": [
+            [
+                19.3167101,
+                70.1383835
+            ],
+            [
+                31.5841445,
+                70.1383835
+            ],
+            [
+                31.5841445,
+                59.723203000000005
+            ],
+            [
+                19.3167101,
+                59.723203000000005
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/"
+    },
+    "type": "otp"
+}

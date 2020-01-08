@@ -1,0 +1,35 @@
+{
+    "KPlugin": {
+        "Description": "Local public transport in and around Helsinki, Finland.",
+        "Name": "Helsinki"
+    },
+    "attribution": {
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "© Helsinki Region Transport"
+    },
+    "filter": {
+        "geo": [
+            [
+                19.5364379883,
+                66.5802673946
+            ],
+            [
+                29.5712215851,
+                66.5802673946
+            ],
+            [
+                29.5712215851,
+                59.7865148075
+            ],
+            [
+                19.5364379883,
+                59.7865148075
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/"
+    },
+    "type": "otp"
+}
