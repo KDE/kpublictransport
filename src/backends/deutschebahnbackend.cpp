@@ -52,11 +52,17 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
     // we need two parameters for the online API: the train number (numeric only), and the departure time
     // note: data is only available withing the upcoming 24h
     // checking this early is useful as the error response from the online service is extremely verbose...
-    const auto dt = request.departure().scheduledDepartureTime();
+    auto dt = request.departure().scheduledDepartureTime();
     const auto trainNum = extractTrainNumber(request.departure().route().line());
-    qDebug() << dt << trainNum;
-    if (!dt.isValid() || trainNum.isEmpty()) { // TODO check dt in valid range
+    if (!dt.isValid() || trainNum.isEmpty()) {
         return false;
+    }
+
+    // there are only valid results for a 24h time window, so try to adjust the date accordingly
+    const auto now = QDateTime::currentDateTime();
+    if (dt.daysTo(now) > 1 || dt.daysTo(now) < -1) {
+        qDebug() << "adjusting departure time to today:" << dt;
+        dt.setDate(QDate::currentDate());
     }
 
     QUrl url;
