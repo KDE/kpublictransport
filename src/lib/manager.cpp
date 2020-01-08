@@ -503,6 +503,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     // validate input
     if (!req.isValid()) {
         reply->addError(Reply::InvalidRequest, {});
+        reply->setPendingOps(pendingOps);
         return reply;
     }
 
@@ -558,6 +559,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
     // validate input
     if (!req.isValid()) {
         reply->addError(Reply::InvalidRequest, {});
+        reply->setPendingOps(pendingOps);
         return reply;
     }
 
@@ -606,6 +608,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     // validate input
     if (!req.isValid()) {
         reply->addError(Reply::InvalidRequest, {});
+        reply->setPendingOps(pendingOps);
         return reply;
     }
 
@@ -649,6 +652,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
     // validate input
     if (!req.isValid()) {
         reply->addError(Reply::InvalidRequest, {});
+        reply->setPendingOps(pendingOps);
         return reply;
     }
 

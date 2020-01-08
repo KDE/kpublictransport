@@ -25,7 +25,7 @@ using namespace KPublicTransport;
 
 void ReplyPrivate::emitFinishedIfDone(Reply *q)
 {
-    if (pendingOps <= 0) {
+    if (pendingOps == 0) {
         finalizeResult();
         // delayed, as this is trigged from the backend settings results on us, which can be a multi-step process
         QMetaObject::invokeMethod(q, &Reply::finished, Qt::QueuedConnection);
