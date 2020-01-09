@@ -1,0 +1,117 @@
+{
+    "nearest": {
+        "edges": [
+        {
+            "node": {
+            "place": {
+                "stop": {
+                "gtfsId": "MATKA:4_TPE",
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "timezone": null,
+                "parentStation": null
+                },
+                "stoptimes": [
+                {
+                    "stop": {
+                    "platformCode": null
+                    },
+                    "serviceDay": 1578520800,
+                    "scheduledArrival": 93300,
+                    "realtimeArrival": 93300,
+                    "scheduledDeparture": 95400,
+                    "realtimeDeparture": 95400,
+                    "realtime": false,
+                    "trip": {
+                    "tripHeadsign": "ROVANIEMI",
+                    "route": {
+                        "type": 102,
+                        "shortName": "273",
+                        "color": null,
+                        "textColor": null,
+                        "alerts": []
+                    }
+                    }
+                }
+                ]
+            }
+            }
+        },
+        {
+            "node": {
+            "place": {
+                "stop": {
+                "gtfsId": "MATKA:4_TPE",
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "timezone": null,
+                "parentStation": null
+                },
+                "stoptimes": [
+                {
+                    "stop": {
+                    "platformCode": null
+                    },
+                    "serviceDay": 1578520800,
+                    "scheduledArrival": 97500,
+                    "realtimeArrival": 97500,
+                    "scheduledDeparture": 99900,
+                    "realtimeDeparture": 99900,
+                    "realtime": true,
+                    "trip": {
+                    "tripHeadsign": "HELSINKI",
+                    "route": {
+                        "type": 102,
+                        "shortName": "266",
+                        "color": null,
+                        "textColor": null,
+                        "alerts": []
+                    }
+                    }
+                }
+                ]
+            }
+            }
+        },
+        {
+            "node": {
+            "place": {
+                "stop": {
+                "gtfsId": "MATKA:4_TPE",
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "timezone": null,
+                "parentStation": null
+                },
+                "stoptimes": [
+                {
+                    "stop": {
+                    "platformCode": null
+                    },
+                    "serviceDay": 1578607200,
+                    "scheduledArrival": 18240,
+                    "realtimeArrival": 18240,
+                    "scheduledDeparture": 18240,
+                    "realtimeDeparture": 18240,
+                    "realtime": false,
+                    "trip": {
+                    "tripHeadsign": "HELSINKI",
+                    "route": {
+                        "type": 2,
+                        "shortName": "160",
+                        "color": null,
+                        "textColor": null,
+                        "alerts": []
+                    }
+                    }
+                }
+                ]
+            }
+            }
+        }
+    ]
+    }
+}

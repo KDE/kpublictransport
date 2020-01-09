@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_OPENTRIPPLANNERPARSER_H
 #define KPUBLICTRANSPORT_OPENTRIPPLANNERPARSER_H
 
+#include "kpublictransport_export.h"
+
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 
@@ -25,11 +27,13 @@ class QJsonObject;
 
 namespace KPublicTransport {
 
-/** Parser for OTP responses as defined by the GraphQL files in the otp/ subdir. */
+/** Parser for OTP responses as defined by the GraphQL files in the otp/ subdir.
+ *  @internal only exported for unit tests
+ */
 namespace OpenTripPlannerParser
 {
-    std::vector<Departure> parseDepartures(const QJsonObject &obj);
-    std::vector<Journey> parseJourneys(const QJsonObject &obj);
+    KPUBLICTRANSPORT_EXPORT std::vector<Departure> parseDepartures(const QJsonObject &obj);
+    KPUBLICTRANSPORT_EXPORT std::vector<Journey> parseJourneys(const QJsonObject &obj);
 }
 
 }

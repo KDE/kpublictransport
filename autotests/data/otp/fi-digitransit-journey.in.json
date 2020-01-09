@@ -1,0 +1,364 @@
+{
+   "plan": {
+      "itineraries": [
+        {
+          "legs": [
+            {
+              "startTime": 1578589999000,
+              "endTime": 1578590054000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 69.688,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 60.219459533691406,
+                "lon": 24.81308937072754,
+                "stop": null
+              },
+              "to": {
+                "name": "LEPPÄVAARA",
+                "lat": 60.219265,
+                "lon": 24.814299,
+                "stop": {
+                  "gtfsId": "MATKA:4_LPV",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "trip": null
+            },
+            {
+              "startTime": 1578590054000,
+              "endTime": 1578590363000,
+              "departureDelay": 14,
+              "arrivalDelay": -37,
+              "realTime": true,
+              "distance": 6973.995075871777,
+              "mode": "RAIL",
+              "transitLeg": true,
+              "from": {
+                "name": "LEPPÄVAARA",
+                "lat": 60.219265,
+                "lon": 24.814299,
+                "stop": {
+                  "gtfsId": "MATKA:4_LPV",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "PASILA",
+                "lat": 60.19855,
+                "lon": 24.93345,
+                "stop": {
+                  "gtfsId": "MATKA:4_PSL",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "trip": {
+                "route": {
+                  "type": 102,
+                  "desc": null,
+                  "shortName": "986",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "HELSINKI",
+                "tripShortName": null
+              }
+            },
+            {
+              "startTime": 1578591059000,
+              "endTime": 1578591601000,
+              "departureDelay": 359,
+              "arrivalDelay": 361,
+              "realTime": true,
+              "distance": 12058.311247846734,
+              "mode": "RAIL",
+              "transitLeg": true,
+              "from": {
+                "name": "PASILA",
+                "lat": 60.19855,
+                "lon": 24.93345,
+                "stop": {
+                  "gtfsId": "MATKA:4_PSL",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "TIKKURILA",
+                "lat": 60.292201,
+                "lon": 25.043618,
+                "stop": {
+                  "gtfsId": "MATKA:4_TKL",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "trip": {
+                "route": {
+                  "type": 102,
+                  "desc": null,
+                  "shortName": "73",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "KAJAANI",
+                "tripShortName": null
+              }
+            },
+            {
+              "startTime": 1578591881000,
+              "endTime": 1578598680000,
+              "departureDelay": 101,
+              "arrivalDelay": 0,
+              "realTime": true,
+              "distance": 152092.50815154385,
+              "mode": "RAIL",
+              "transitLeg": true,
+              "from": {
+                "name": "TIKKURILA",
+                "lat": 60.292201,
+                "lon": 25.043618,
+                "stop": {
+                  "gtfsId": "MATKA:4_TKL",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "stop": {
+                  "gtfsId": "MATKA:4_TPE",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "trip": {
+                "route": {
+                  "type": 102,
+                  "desc": null,
+                  "shortName": "265",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "KEMIJÄRVI",
+                "tripShortName": null
+              }
+            },
+            {
+              "startTime": 1578598680000,
+              "endTime": 1578599156000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 570.328,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "stop": {
+                  "gtfsId": "MATKA:4_TPE",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 61.49858856201172,
+                "lon": 23.7739200592041,
+                "stop": null
+              },
+              "trip": null
+            }
+          ]
+        },
+        {
+          "legs": [
+            {
+              "startTime": 1578593035000,
+              "endTime": 1578593160000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 127.501,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 60.219459533691406,
+                "lon": 24.81308937072754,
+                "stop": null
+              },
+              "to": {
+                "name": "Leppävaara",
+                "lat": 60.219477,
+                "lon": 24.813224,
+                "stop": {
+                  "gtfsId": "HSL:2111552",
+                  "platformCode": "2",
+                  "timezone": null
+                }
+              },
+              "trip": null
+            },
+            {
+              "startTime": 1578593160000,
+              "endTime": 1578593614000,
+              "departureDelay": 0,
+              "arrivalDelay": 34,
+              "realTime": true,
+              "distance": 7839.484392977336,
+              "mode": "RAIL",
+              "transitLeg": true,
+              "from": {
+                "name": "Leppävaara",
+                "lat": 60.219477,
+                "lon": 24.813224,
+                "stop": {
+                  "gtfsId": "HSL:2111552",
+                  "platformCode": "2",
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "Pasila",
+                "lat": 60.199474,
+                "lon": 24.932652,
+                "stop": {
+                  "gtfsId": "HSL:1174554",
+                  "platformCode": "8",
+                  "timezone": null
+                }
+              },
+              "trip": {
+                "route": {
+                  "type": 109,
+                  "desc": null,
+                  "shortName": "U",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "Helsinki",
+                "tripShortName": null
+              }
+            },
+            {
+              "startTime": 1578593614000,
+              "endTime": 1578593770000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 201.82799999999997,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Pasila",
+                "lat": 60.199474,
+                "lon": 24.932652,
+                "stop": {
+                  "gtfsId": "HSL:1174554",
+                  "platformCode": "8",
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "PASILA",
+                "lat": 60.19855,
+                "lon": 24.93345,
+                "stop": {
+                  "gtfsId": "MATKA:4_PSL",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "trip": null
+            },
+            {
+              "startTime": 1578594600000,
+              "endTime": 1578599880000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 162792.89955847053,
+              "mode": "RAIL",
+              "transitLeg": true,
+              "from": {
+                "name": "PASILA",
+                "lat": 60.19855,
+                "lon": 24.93345,
+                "stop": {
+                  "gtfsId": "MATKA:4_PSL",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "stop": {
+                  "gtfsId": "MATKA:4_TPE",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "trip": {
+                "route": {
+                  "type": 2,
+                  "desc": null,
+                  "shortName": "53",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "VAASA",
+                "tripShortName": null
+              }
+            },
+            {
+              "startTime": 1578599880000,
+              "endTime": 1578600356000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 570.328,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "TAMPERE",
+                "lat": 61.498776,
+                "lon": 23.773019,
+                "stop": {
+                  "gtfsId": "MATKA:4_TPE",
+                  "platformCode": null,
+                  "timezone": null
+                }
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 61.49858856201172,
+                "lon": 23.7739200592041,
+                "stop": null
+              },
+              "trip": null
+            }
+          ]
+        }
+      ]
+    }
+}
+

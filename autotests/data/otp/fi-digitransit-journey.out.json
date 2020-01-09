@@ -1,0 +1,215 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 70,
+                "from": {
+                    "latitude": 60.219459533691406,
+                    "longitude": 24.81308937072754,
+                    "name": "Origin"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-09T17:14:14",
+                "scheduledDepartureTime": "2020-01-09T17:13:19",
+                "to": {
+                    "latitude": 60.21926498413086,
+                    "longitude": 24.814298629760742,
+                    "name": "LEPPÄVAARA"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 6973,
+                "from": {
+                    "latitude": 60.21926498413086,
+                    "longitude": 24.814298629760742,
+                    "name": "LEPPÄVAARA"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "HELSINKI",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "986"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-09T17:19:23",
+                "scheduledDepartureTime": "2020-01-09T17:14:14",
+                "to": {
+                    "latitude": 60.198551177978516,
+                    "longitude": 24.93345069885254,
+                    "name": "PASILA"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 12058,
+                "from": {
+                    "latitude": 60.198551177978516,
+                    "longitude": 24.93345069885254,
+                    "name": "PASILA"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "KAJAANI",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "73"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-09T17:40:01",
+                "scheduledDepartureTime": "2020-01-09T17:30:59",
+                "to": {
+                    "latitude": 60.29220199584961,
+                    "longitude": 25.043617248535156,
+                    "name": "TIKKURILA"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 152092,
+                "from": {
+                    "latitude": 60.29220199584961,
+                    "longitude": 25.043617248535156,
+                    "name": "TIKKURILA"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "KEMIJÄRVI",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "265"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-09T19:38:00",
+                "scheduledDepartureTime": "2020-01-09T17:44:41",
+                "to": {
+                    "latitude": 61.498775482177734,
+                    "longitude": 23.773019790649414,
+                    "name": "TAMPERE"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 570,
+                "from": {
+                    "latitude": 61.498775482177734,
+                    "longitude": 23.773019790649414,
+                    "name": "TAMPERE"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-09T19:45:56",
+                "scheduledDepartureTime": "2020-01-09T19:38:00",
+                "to": {
+                    "latitude": 61.49858856201172,
+                    "longitude": 23.7739200592041,
+                    "name": "Destination"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 127,
+                "from": {
+                    "latitude": 60.219459533691406,
+                    "longitude": 24.81308937072754,
+                    "name": "Origin"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-09T18:06:00",
+                "scheduledDepartureTime": "2020-01-09T18:03:55",
+                "to": {
+                    "latitude": 60.219478607177734,
+                    "longitude": 24.81322479248047,
+                    "name": "Leppävaara"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 7839,
+                "from": {
+                    "latitude": 60.219478607177734,
+                    "longitude": 24.81322479248047,
+                    "name": "Leppävaara"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "Helsinki",
+                    "line": {
+                        "mode": "RapidTransit",
+                        "name": "U"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-09T18:13:34",
+                "scheduledDepartureTime": "2020-01-09T18:06:00",
+                "to": {
+                    "latitude": 60.1994743347168,
+                    "longitude": 24.93265151977539,
+                    "name": "Pasila"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 201,
+                "from": {
+                    "latitude": 60.1994743347168,
+                    "longitude": 24.93265151977539,
+                    "name": "Pasila"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-09T18:16:10",
+                "scheduledDepartureTime": "2020-01-09T18:13:34",
+                "to": {
+                    "latitude": 60.198551177978516,
+                    "longitude": 24.93345069885254,
+                    "name": "PASILA"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 162792,
+                "from": {
+                    "latitude": 60.198551177978516,
+                    "longitude": 24.93345069885254,
+                    "name": "PASILA"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "VAASA",
+                    "line": {
+                        "mode": "Train",
+                        "name": "53"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-09T19:58:00",
+                "scheduledDepartureTime": "2020-01-09T18:30:00",
+                "to": {
+                    "latitude": 61.498775482177734,
+                    "longitude": 23.773019790649414,
+                    "name": "TAMPERE"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 570,
+                "from": {
+                    "latitude": 61.498775482177734,
+                    "longitude": 23.773019790649414,
+                    "name": "TAMPERE"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-09T20:05:56",
+                "scheduledDepartureTime": "2020-01-09T19:58:00",
+                "to": {
+                    "latitude": 61.49858856201172,
+                    "longitude": 23.7739200592041,
+                    "name": "Destination"
+                }
+            }
+        ]
+    }
+]
