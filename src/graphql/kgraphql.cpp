@@ -175,6 +175,15 @@ QJsonObject KGraphQLReply::data() const
     return d->m_result.value(QLatin1String("data")).toObject();
 }
 
+QNetworkReply* KGraphQLReply::networkReply() const
+{
+    return d->m_reply;
+}
+
+QByteArray KGraphQLReply::rawData() const
+{
+    return d->m_data;
+}
 
 
 void KGraphQL::query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback)

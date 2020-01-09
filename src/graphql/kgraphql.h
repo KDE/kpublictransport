@@ -102,6 +102,12 @@ public:
     /** Result data, valid in case of error() returning NoError. */
     QJsonObject data() const;
 
+    /** The underlying QNetworkReply instance. */
+    QNetworkReply* networkReply() const;
+
+    /** @internal */
+    QByteArray rawData() const;
+
 private:
     friend void KGraphQL::query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback);
     KGraphQLReply(QNetworkReply *reply);

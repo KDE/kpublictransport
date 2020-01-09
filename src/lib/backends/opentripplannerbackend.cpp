@@ -59,7 +59,11 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
         gqlReq.setVariable(QStringLiteral("name"), req.name());
     }
 
+    if (isLoggingEnabled()) {
+        logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
+    }
     KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
+        logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, this, Reply::NetworkError, gqlReply.errorString());
             return;
@@ -69,7 +73,6 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
         addError(reply, this, Reply::NetworkError, {});
     });
 
-    qDebug() << backendId() << "starting";
     return true;
 }
 
@@ -92,7 +95,11 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     gqlReq.setVariable(QStringLiteral("toLon"), req.to().longitude());
     // TODO time, arrival/departure
 
+    if (isLoggingEnabled()) {
+        logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
+    }
     KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
+        logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, this, Reply::NetworkError, gqlReply.errorString());
             return;

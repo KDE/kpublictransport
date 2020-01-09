@@ -155,6 +155,12 @@ protected:
         reply->setPreviousContext(this, data);
     }
 
+    /** Check if network logging is enabled.
+     *  Done automatically in logRequest/logReply, but can be useful for backends if producing
+     *  the necessary input is expensive.
+     */
+    bool isLoggingEnabled() const;
+
     template <typename ReqT>
     void logRequest(const ReqT &request, const QNetworkRequest &netRequest, const QByteArray &postData = {}) const
     {
@@ -177,7 +183,6 @@ protected:
 
 private:
     Q_DISABLE_COPY(AbstractBackend)
-    bool isLoggingEnabled() const;
     QString logDir() const;
     void logRequest(const char *typeName, const QJsonObject &requestData, const QNetworkRequest &netRequest, const QByteArray &postData) const;
     void logReply(const char *typeName, QNetworkReply *netReply, const QByteArray &data) const;
