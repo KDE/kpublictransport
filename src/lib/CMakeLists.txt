@@ -49,6 +49,8 @@ set(kpublictransport_srcs
     datatypes/platformutils.cpp
     datatypes/vehicle.cpp
 
+    gtfs/hvt.cpp
+
     models/abstractquerymodel.cpp
     models/backendmodel.cpp
     models/departurequerymodel.cpp
