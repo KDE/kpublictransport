@@ -1,7 +1,18 @@
-query journeys($fromLat: Float!, $fromLon: Float!, $toLat: Float!, $toLon: Float!) {
-    plan (
+query journeys(
+  $fromLat: Float!,
+  $fromLon: Float!,
+  $toLat: Float!,
+  $toLon: Float!,
+  $date: String!,
+  $time: String!,
+  $arriveBy: Boolean!
+) {
+  plan (
         from: { lat: $fromLat, lon: $fromLon }
         to:   { lat: $toLat,   lon: $toLon }
+        date: $date
+        time: $time
+        arriveBy: $arriveBy
         numItineraries: 3
     ) {
         itineraries {
@@ -36,7 +47,6 @@ query journeys($fromLat: Float!, $fromLon: Float!, $toLat: Float!, $toLon: Float
                 }
                 trip {
                     route {
-                        mode
                         type
                         desc
                         shortName

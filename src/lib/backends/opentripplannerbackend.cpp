@@ -93,7 +93,9 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
     gqlReq.setVariable(QStringLiteral("toLat"), req.to().latitude());
     gqlReq.setVariable(QStringLiteral("toLon"), req.to().longitude());
-    // TODO time, arrival/departure
+    gqlReq.setVariable(QStringLiteral("date"), req.dateTime().date().toString(QStringLiteral("yyyy-MM-dd")));
+    gqlReq.setVariable(QStringLiteral("time"), req.dateTime().time().toString(QStringLiteral("hh:mm:ss"))); // TODO timezone conversion?
+    gqlReq.setVariable(QStringLiteral("arriveBy"), req.dateTimeMode() == JourneyRequest::Arrival);
 
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
