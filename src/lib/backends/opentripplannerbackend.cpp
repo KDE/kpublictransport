@@ -16,6 +16,7 @@
 */
 
 #include "opentripplannerbackend.h"
+#include "opentripplannerparser.h"
 
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
@@ -85,8 +86,19 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
     gqlReq.setVariable(QStringLiteral("startTime"), req.dateTime().toSecsSinceEpoch()); // TODO timezone conversion?
     // TODO arrival/departure selection?
 
-    // TODO
-    return false;
+    if (isLoggingEnabled()) {
+        logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
+    }
+    KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
+        logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
+        if (gqlReply.error() != KGraphQLReply::NoError) {
+            addError(reply, this, Reply::NetworkError, gqlReply.errorString());
+        } else {
+            addResult(reply, this, OpenTripPlannerParser::parseDepartures(gqlReply.data()));
+        }
+    });
+
+    return true;
 }
 
 bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
@@ -108,11 +120,9 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
         logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, this, Reply::NetworkError, gqlReply.errorString());
-            return;
+        } else {
+            addResult(reply, this, OpenTripPlannerParser::parseJourneys(gqlReply.data()));
         }
-        // TODO
-        qDebug() << backendId() << gqlReply.data();
-        addError(reply, this, Reply::NetworkError, {});
     });
 
     return true;
