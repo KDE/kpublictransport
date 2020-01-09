@@ -60,8 +60,9 @@ static Departure parseDeparture(const QJsonObject &obj)
     const auto baseTime = obj.value(QLatin1String("serviceDay")).toDouble(); // ### 64bit
     dep.setScheduledArrivalTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("scheduledArrival")).toDouble()));
     dep.setScheduledDepartureTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("scheduledDeparture")).toDouble()));
-    if (obj.value(QLatin1String("realTime")).toBool()) {
-        // TODO
+    if (obj.value(QLatin1String("realtime")).toBool()) {
+        dep.setExpectedArrivalTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("realtimeArrival")).toDouble()));
+        dep.setExpectedDepartureTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("realtimeDeparture")).toDouble()));
     }
     dep.setScheduledPlatform(obj.value(QLatin1String("stop")).toObject().value(QLatin1String("platformCode")).toString());
     dep.setRoute(parseRoute(obj.value(QLatin1String("trip")).toObject()));
