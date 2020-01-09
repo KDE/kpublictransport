@@ -80,6 +80,10 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
 {
     KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
     gqlReq.setQueryFromFile(QStringLiteral(":/org.kde.kpublictransport/otp/departure.graphql"));
+    gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
+    gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
+    gqlReq.setVariable(QStringLiteral("startTime"), req.dateTime().toSecsSinceEpoch()); // TODO timezone conversion?
+    // TODO arrival/departure selection?
 
     // TODO
     return false;

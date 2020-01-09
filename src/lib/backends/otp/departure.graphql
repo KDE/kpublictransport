@@ -1,48 +1,62 @@
-query departures($stopId: String!, $startTime: Long!) {
-    station(id: $stopId) {
-        gtfsId
-        name
-        lat
-        lon
-        timezone
-        stoptimesWithoutPatterns(startTime: $startTime, numberOfDepartures: 12) {
+query departures($lat: Float!, $lon: Float!, $startTime: Long!) {
+  nearest(lat: $lat, lon: $lon, maxDistance: 500, filterByPlaceTypes: DEPARTURE_ROW) {
+    edges {
+      node {
+        place {
+          ...on DepartureRow {
             stop {
+              gtfsId
+              name
+              lat
+              lon
+              timezone
+              parentStation {
+                gtfsId
+                name
+                lat
+                lon
+                timezone
+              }
+            }
+            stoptimes(startTime: $startTime, numberOfDepartures: 12, omitCanceled: false) {
+              stop {
                 platformCode
-            }
-            serviceDay
-            scheduledArrival
-            realtimeArrival
-            scheduledDeparture
-            realtimeDeparture
-            realtime
-            headsign
-            trip {
-                route {
-                    mode
-                    type
-                    desc
-                    shortName
-                    longName
-                    color
-                    textColor
-                    #bikesAllowed
-                    alerts {
-                        alertHeaderTextTranslations {
-                            language
-                            text
-                        }
-                        alertDescriptionTextTranslations {
-                            language
-                            text
-                        }
-                        alertEffect
-                        alertCause
-                        alertSeverityLevel
-                    }
-                }
+              }
+              serviceDay
+              scheduledArrival
+              realtimeArrival
+              scheduledDeparture
+              realtimeDeparture
+              realtime
+              trip {
                 tripHeadsign
-                tripShortName
+                route {
+                  type
+                  desc
+                  shortName
+                  longName
+                  color
+                  textColor
+                  #bikesAllowed
+                  alerts {
+                    alertHeaderTextTranslations {
+                      language
+                      text
+                    }
+                    alertDescriptionTextTranslations {
+                      language
+                      text
+                    }
+                    alertEffect
+                    alertCause
+                    alertSeverityLevel
+                  }
+                }
+              }
             }
+          }
         }
+      }
     }
+  }
 }
