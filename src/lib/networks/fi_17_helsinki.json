@@ -1,7 +1,17 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Helsinki, Finland.",
-        "Name": "Helsinki"
+        "Description[ca]": "Transport públic local a Helsinki i rodalies, Finlàndia.",
+        "Description[nl]": "Lokaal openbaar vervoer in en om Helsinki, Finland.",
+        "Description[pt]": "Transportes públicos locais na região de Helsínquia, Finlândia.",
+        "Description[uk]": "Місцевий громадський транспорт у Гельсінкі і околицях, Фінляндія.",
+        "Description[x-test]": "xxLocal public transport in and around Helsinki, Finland.xx",
+        "Name": "Helsinki",
+        "Name[ca]": "Helsinki",
+        "Name[nl]": "Helsinki",
+        "Name[pt]": "Helsínquia",
+        "Name[uk]": "Гельсінкі",
+        "Name[x-test]": "xxHelsinkixx"
     },
     "attribution": {
         "license": "CC-BY-4.0",

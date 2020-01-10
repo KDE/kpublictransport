@@ -1,7 +1,17 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Atlanta, Georgia, US.",
-        "Name": "Marta"
+        "Description[ca]": "Transport Públic a Atlanta i rodalies, Georgia, EEUU.",
+        "Description[nl]": "Openbaar vervoer in en om Atlanta, Georgia, VS.",
+        "Description[pt]": "Transportes públicos locais na região de Atlanta, Geórgia, EUA.",
+        "Description[uk]": "Громадський транспорт у Атланті і околицях, Джорджія, США.",
+        "Description[x-test]": "xxPublic transport in and around Atlanta, Georgia, US.xx",
+        "Name": "Marta",
+        "Name[ca]": "Marta",
+        "Name[nl]": "Marta",
+        "Name[pt]": "Marta",
+        "Name[uk]": "Marta",
+        "Name[x-test]": "xxMartaxx"
     },
     "filter": {
         "geo": [
