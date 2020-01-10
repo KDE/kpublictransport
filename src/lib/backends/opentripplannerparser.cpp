@@ -98,7 +98,8 @@ static JourneySection parseJourneySection(const QJsonObject &obj)
     section.setScheduledDepartureTime(QDateTime::fromMSecsSinceEpoch(obj.value(QLatin1String("startTime")).toDouble())); // ### sic! double to get 64 bit precision...
     section.setScheduledArrivalTime(QDateTime::fromMSecsSinceEpoch(obj.value(QLatin1String("endTime")).toDouble()));
     if (obj.value(QLatin1String("realTime")).toBool()) {
-        // TODO
+        section.setExpectedDepartureTime(section.scheduledDepartureTime().addSecs(obj.value(QLatin1String("departureDelay")).toInt()));
+        section.setExpectedArrivalTime(section.scheduledArrivalTime().addSecs(obj.value(QLatin1String("arrivalDelay")).toInt()));
     }
     section.setFrom(parseLocation(obj.value(QLatin1String("from")).toObject())); // TODO handle the nested structure correctly, TODO parse platforms
     section.setTo(parseLocation(obj.value(QLatin1String("to")).toObject()));

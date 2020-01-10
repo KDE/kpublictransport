@@ -21,6 +21,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 6973,
+                "expectedArrivalTime": "2020-01-09T17:18:46",
+                "expectedDepartureTime": "2020-01-09T17:14:28",
                 "from": {
                     "latitude": 60.21926498413086,
                     "longitude": 24.814298629760742,
@@ -45,6 +47,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 12058,
+                "expectedArrivalTime": "2020-01-09T17:46:02",
+                "expectedDepartureTime": "2020-01-09T17:36:58",
                 "from": {
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
@@ -69,6 +73,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 152092,
+                "expectedArrivalTime": "2020-01-09T19:38:00",
+                "expectedDepartureTime": "2020-01-09T17:46:22",
                 "from": {
                     "latitude": 60.29220199584961,
                     "longitude": 25.043617248535156,
@@ -131,6 +137,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 7839,
+                "expectedArrivalTime": "2020-01-09T18:14:08",
+                "expectedDepartureTime": "2020-01-09T18:06:00",
                 "from": {
                     "latitude": 60.219478607177734,
                     "longitude": 24.81322479248047,
