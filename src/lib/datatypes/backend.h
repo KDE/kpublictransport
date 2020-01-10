@@ -43,6 +43,14 @@ class KPUBLICTRANSPORT_EXPORT Backend
      *  Yes, even in 2019 that is unfortunately not guaranteed.
      */
     KPUBLICTRANSPORT_PROPERTY(bool, isSecure, setIsSecure)
+
+    /** ISO 3166-2 alpha 2 code of the country this backend service is primarity addressing.
+     *  Returns an empty value for global/international services.
+     */
+    Q_PROPERTY(QString primaryCountryCode READ primaryCountryCode)
+
+public:
+    QString primaryCountryCode() const;
 };
 
 }

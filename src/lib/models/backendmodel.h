@@ -47,7 +47,8 @@ public:
         IdentifierRole,
         SecureRole,
         ItemEnabledRole,
-        BackendEnabledRole
+        BackendEnabledRole,
+        PrimaryCountryCodeRole, ///< See Backend::primaryCountry, useful for section grouping
     };
 
     Manager* manager() const;

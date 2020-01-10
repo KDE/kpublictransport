@@ -39,4 +39,12 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, QString, description, setDescription)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, bool, isSecure, setIsSecure)
 
+QString Backend::primaryCountryCode() const
+{
+    if (identifier().size() > 3 && identifier().at(2) == QLatin1Char('_')) {
+        return identifier().left(2).toUpper();
+    }
+    return {};
+}
+
 #include "moc_backend.cpp"
