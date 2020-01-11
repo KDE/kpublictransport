@@ -63,6 +63,15 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJ
     for (const auto &stop : stopArray) {
         locs.push_back(parseLocation(stop.toObject().value(QLatin1String("node")).toObject().value(QLatin1String("stop")).toObject()));
     }
+
+    // deduplicate elements, which we get due to searching for stops rather than stations
+    std::stable_sort(locs.begin(), locs.end(), [this](const auto &lhs, const auto &rhs) {
+        return lhs.identifier(m_identifierType) < rhs.identifier(m_identifierType);
+    });
+    locs.erase(std::unique(locs.begin(), locs.end(), [this](const auto &lhs, const auto &rhs) {
+        return lhs.identifier(m_identifierType) == rhs.identifier(m_identifierType);
+    }), locs.end());
+
     return locs;
 }
 
