@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QTimeZone>
 
 using namespace KPublicTransport;
 
@@ -47,7 +48,11 @@ Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
     loc.setName(obj.value(QLatin1String("name")).toString());
     loc.setLatitude(obj.value(QLatin1String("lat")).toDouble());
     loc.setLongitude(obj.value(QLatin1String("lon")).toDouble());
-    // TODO time zone
+
+    const auto tzId = obj.value(QLatin1String("timezone")).toString();
+    if (!tzId.isEmpty()) {
+        loc.setTimeZone(QTimeZone(tzId.toUtf8()));
+    }
 
     const auto id = obj.value(QLatin1String("gtfsId")).toString();
     if (!id.isEmpty()) {

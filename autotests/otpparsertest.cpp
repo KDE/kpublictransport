@@ -88,6 +88,9 @@ private Q_SLOTS:
         QTest::newRow("fi-digitransit-location")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-name.in.json")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-name.out.json");
+        QTest::newRow("it-torino-location")
+            << s(SOURCE_DIR "/data/otp/it-torino-location-by-name.in.json")
+            << s(SOURCE_DIR "/data/otp/it-torino-location-by-name.out.json");
     }
 
     void testParseLocationByName()

@@ -1,0 +1,30 @@
+{
+    "stations": [
+      {
+        "gtfsId": "fs:ITRP-ST0012729010",
+        "name": "Stazione TORINO PORTA NUOVA",
+        "lat": 45.0609,
+        "lon": 7.67752,
+        "code": null,
+        "desc": null,
+        "zoneId": null,
+        "wheelchairBoarding": "NO_INFORMATION",
+        "locationType": "STOP",
+        "parentStation": null,
+        "timezone": null
+      },
+      {
+        "gtfsId": "gtt:39",
+        "name": "PORTA NUOVA",
+        "lat": 45.06255,
+        "lon": 7.6791,
+        "code": "39",
+        "desc": "PORTA NUOVA - M1 - STAZIONE FERROVIARIA",
+        "zoneId": "0",
+        "wheelchairBoarding": "POSSIBLE",
+        "locationType": "STOP",
+        "parentStation": null,
+        "timezone": "Europe/Rome"
+      }
+    ]
+}
