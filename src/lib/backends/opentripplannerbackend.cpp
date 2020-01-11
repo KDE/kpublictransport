@@ -65,15 +65,18 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
     }
-    KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
+    KGraphQL::query(gqlReq, nam, [this, req, reply](const KGraphQLReply &gqlReply) {
         logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, this, Reply::NetworkError, gqlReply.errorString());
             return;
         }
-        // TODO
-        qDebug() << backendId() << gqlReply.data();
-        addError(reply, this, Reply::NetworkError, {});
+
+        if (req.hasCoordinate()) {
+            addResult(reply, OpenTripPlannerParser::parseLocationsByCoordinate(gqlReply.data()));
+        } else {
+            addResult(reply, OpenTripPlannerParser::parseLocationsByName(gqlReply.data()));
+        }
     });
 
     return true;
