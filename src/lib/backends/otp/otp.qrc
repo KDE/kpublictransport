@@ -4,6 +4,9 @@
       <file>journey.graphql</file>
       <file>stationByCoordinate.graphql</file>
       <file>stationByName.graphql</file>
+
+      <file>20170808/departure.graphql</file>
+      <file>20170808/journey.graphql</file>
+      <file>20170808/stationByName.graphql</file>
     </qresource>
 </RCC>
-

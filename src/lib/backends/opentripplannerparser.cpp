@@ -123,13 +123,36 @@ static QColor parseColor(const QJsonValue &value)
     return QColor(QLatin1Char('#') + value.toString());
 }
 
+struct {
+    const char *typeName;
+    Line::Mode mode;
+} static const mode_map[] = {
+    { "RAIL", Line::Train },
+    { "TRAM", Line::Tramway },
+    { "FUNICULAR", Line::Funicular },
+    { "SUBWAY", Line::Metro },
+    { "BUS", Line::Bus },
+};
+
 Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
 {
     parseAlerts(obj.value(QLatin1String("alerts")).toArray());
 
     Line line;
     line.setName(obj.value(QLatin1String("shortName")).toString());
-    line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("type")).toInt()));
+
+    const auto type = obj.value(QLatin1String("type"));
+    if (type.isString()) {
+        const auto typeStr = type.toString();
+        for (const auto &m : mode_map) {
+            if (typeStr == QLatin1String(m.typeName)) {
+                line.setMode(m.mode);
+                break;
+            }
+        }
+    } else {
+        line.setMode(Gtfs::Hvt::typeToMode(type.toInt()));
+    }
 
     line.setColor(parseColor(obj.value(QLatin1String("color"))));
     line.setTextColor(parseColor(obj.value(QLatin1String("textColor"))));
@@ -138,9 +161,15 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
 
 Route OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
 {
+    auto line = parseLine(obj.value(QLatin1String("route")).toObject());
+    if (line.name().isEmpty()) {
+        line.setName(obj.value(QLatin1String("tripShortName")).toString());
+    }
+
     Route route;
-    route.setLine(parseLine(obj.value(QLatin1String("route")).toObject()));
+    route.setLine(line);
     route.setDirection(obj.value(QLatin1String("tripHeadsign")).toString());
+
     return route;
 }
 

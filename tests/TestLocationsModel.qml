@@ -71,6 +71,7 @@ ListModel {
     ListElement { label: "Malpensa Aeroporto"; lat: 45.6279397021696; lon: 8.71101861371495 }
     ListElement { label: "Milano Bicocca"; lat: 45.51466; lon: 9.20529 }
     ListElement { label: "Akademy 2019"; name: "Universitia Biocca Scienza"; lat: 45.51362; lon: 9.21116 }
+    ListElement { label: "Torino Porta Nuova"; lat: 45.06079; lon: 7.67735 }
 
     ListElement { label: "Nürnberg Flughafen"; lat: 49.49400; lon: 11.07854 }
     ListElement { label: "Nürnberg Hauptbahnhof"; lat: 49.44553; lon: 11.08228 }

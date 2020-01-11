@@ -31,6 +31,7 @@
 #include <kgraphql.h>
 
 #include <QDebug>
+#include <QFile>
 #include <QUrl>
 
 using namespace KPublicTransport;
@@ -54,11 +55,11 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
     KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
 
     if (req.hasCoordinate()) {
-        gqlReq.setQueryFromFile(QStringLiteral(":/org.kde.kpublictransport/otp/stationByCoordinate.graphql"));
+        gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));
         gqlReq.setVariable(QStringLiteral("lat"), req.latitude());
         gqlReq.setVariable(QStringLiteral("lon"), req.longitude());
     } else {
-        gqlReq.setQueryFromFile(QStringLiteral(":/org.kde.kpublictransport/otp/stationByName.graphql"));
+        gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByName.graphql")));
         gqlReq.setVariable(QStringLiteral("name"), req.name());
     }
 
@@ -86,7 +87,7 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
 bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
-    gqlReq.setQueryFromFile(QStringLiteral(":/org.kde.kpublictransport/otp/departure.graphql"));
+    gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
     gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
     gqlReq.setVariable(QStringLiteral("startTime"), req.dateTime().toSecsSinceEpoch()); // TODO timezone conversion?
@@ -111,7 +112,7 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
 bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
-    gqlReq.setQueryFromFile(QStringLiteral(":/org.kde.kpublictransport/otp/journey.graphql"));
+    gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("journey.graphql")));
     gqlReq.setVariable(QStringLiteral("fromLat"), req.from().latitude());
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
     gqlReq.setVariable(QStringLiteral("toLat"), req.to().latitude());
@@ -134,4 +135,20 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     });
 
     return true;
+}
+
+static QString graphQLBasePath()
+{
+    return QStringLiteral(":/org.kde.kpublictransport/otp/");
+}
+
+QString OpenTripPlannerBackend::graphQLPath(const QString &fileName) const
+{
+    if (!m_apiVersion.isEmpty()) {
+        const QString versionedPath = graphQLBasePath() + m_apiVersion + QLatin1Char('/') + fileName;
+        if (QFile::exists(versionedPath)) {
+            return versionedPath;
+        }
+    }
+    return graphQLBasePath() + fileName;
 }

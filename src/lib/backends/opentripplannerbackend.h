@@ -27,6 +27,7 @@ class OpenTripPlannerBackend : public AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
+    Q_PROPERTY(QString apiVersion MEMBER m_apiVersion)
 
 public:
     OpenTripPlannerBackend();
@@ -39,7 +40,10 @@ public:
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    QString graphQLPath(const QString &fileName) const;
+
     QString m_endpoint;
+    QString m_apiVersion;
 };
 
 }
