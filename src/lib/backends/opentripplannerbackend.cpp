@@ -18,8 +18,10 @@
 #include "opentripplannerbackend.h"
 #include "opentripplannerparser.h"
 
+#include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>

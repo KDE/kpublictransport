@@ -18,6 +18,10 @@
 #include "opentripplannerparser.h"
 #include "gtfs/hvt.h"
 
+#include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
+#include <KPublicTransport/Location>
+
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -26,14 +30,44 @@ using namespace KPublicTransport;
 
 static Location parseLocation(const QJsonObject &obj)
 {
+    const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
+    if (!parentObj.isEmpty()) {
+        return parseLocation(parentObj);
+    }
+
     Location loc;
     loc.setName(obj.value(QLatin1String("name")).toString());
     loc.setLatitude(obj.value(QLatin1String("lat")).toDouble());
     loc.setLongitude(obj.value(QLatin1String("lon")).toDouble());
     // TODO time zone
-    // TODO recursion into parent station
-    // TODO gtfs id
+
+    const auto id = obj.value(QLatin1String("gtfsId")).toString();
+    if (!id.isEmpty()) {
+        loc.setIdentifier(QLatin1String("gtfs"), id);
+    }
     return loc;
+}
+
+std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJsonObject &obj)
+{
+    std::vector<Location> locs;
+    const auto stopArray = obj.value(QLatin1String("stopsByRadius")).toObject().value(QLatin1String("edges")).toArray();
+    locs.reserve(stopArray.size());
+    for (const auto &stop : stopArray) {
+        locs.push_back(parseLocation(stop.toObject().value(QLatin1String("node")).toObject().value(QLatin1String("stop")).toObject()));
+    }
+    return locs;
+}
+
+std::vector<Location> OpenTripPlannerParser::parseLocationsByName(const QJsonObject &obj)
+{
+    std::vector<Location> locs;
+    const auto stationArray = obj.value(QLatin1String("stations")).toArray();
+    locs.reserve(stationArray.size());
+    for (const auto &station : stationArray) {
+        locs.push_back(parseLocation(station.toObject()));
+    }
+    return locs;
 }
 
 static Line parseLine(const QJsonObject &obj)

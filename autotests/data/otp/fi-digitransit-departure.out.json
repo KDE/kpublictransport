@@ -11,6 +11,9 @@
         "scheduledArrivalTime": "2020-01-09T23:55:00",
         "scheduledDepartureTime": "2020-01-10T00:30:00",
         "stopPoint": {
+            "identifier": {
+                "gtfs": "MATKA:4_TPE"
+            },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
             "name": "TAMPERE"
@@ -30,6 +33,9 @@
         "scheduledArrivalTime": "2020-01-10T01:05:00",
         "scheduledDepartureTime": "2020-01-10T01:45:00",
         "stopPoint": {
+            "identifier": {
+                "gtfs": "MATKA:4_TPE"
+            },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
             "name": "TAMPERE"
@@ -47,6 +53,9 @@
         "scheduledArrivalTime": "2020-01-10T03:04:00",
         "scheduledDepartureTime": "2020-01-10T03:04:00",
         "stopPoint": {
+            "identifier": {
+                "gtfs": "MATKA:4_TPE"
+            },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
             "name": "TAMPERE"

@@ -5,7 +5,6 @@ query stationsByName($name: String!) {
     lat
     lon
     parentStation { gtfsId }
-    platformCode
     #wheelchairBoarding
     timezone
     #alerts { alertHeaderText alertDescriptionText }

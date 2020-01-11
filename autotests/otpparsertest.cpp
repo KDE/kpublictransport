@@ -51,6 +51,60 @@ private Q_SLOTS:
         qRegisterMetaType<Disruption::Effect>();
     }
 
+    void testParseLocationByCoordinate_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("fi-digitransit-location")
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.in.json")
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.out.json");
+    }
+
+    void testParseLocationByCoordinate()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        const auto res = OpenTripPlannerParser::parseLocationsByCoordinate(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto jsonRes = Location::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
+
+    void testParseLocationByName_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("fi-digitransit-location")
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-name.in.json")
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-name.out.json");
+    }
+
+    void testParseLocationByName()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        const auto res = OpenTripPlannerParser::parseLocationsByName(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto jsonRes = Location::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
+
     void testParseDepartures_data()
     {
         QTest::addColumn<QString>("inFileName");
