@@ -22,6 +22,7 @@
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 
+#include <QColor>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -114,6 +115,14 @@ void OpenTripPlannerParser::parseAlerts(const QJsonArray& alertsArray) const
     }
 }
 
+static QColor parseColor(const QJsonValue &value)
+{
+    if (value.isNull()) {
+        return {};
+    }
+    return QColor(QLatin1Char('#') + value.toString());
+}
+
 Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
 {
     parseAlerts(obj.value(QLatin1String("alerts")).toArray());
@@ -121,7 +130,9 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
     Line line;
     line.setName(obj.value(QLatin1String("shortName")).toString());
     line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("type")).toInt()));
-    // TODO parse color
+
+    line.setColor(parseColor(obj.value(QLatin1String("color"))));
+    line.setTextColor(parseColor(obj.value(QLatin1String("textColor"))));
     return line;
 }
 

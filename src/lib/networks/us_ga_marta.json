@@ -34,7 +34,7 @@
         ]
     },
     "options": {
-        "endpoint": "https://opentrip.atlantaregion.com/otp/routers/default"
+        "endpoint": "https://opentrip.atlantaregion.com/otp/routers/default/"
     },
     "type": "otp"
 }
