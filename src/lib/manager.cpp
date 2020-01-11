@@ -184,8 +184,7 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         return loadNetwork<NavitiaBackend>(obj);
     }
     if (type == QLatin1String("otp")) {
-        //return loadNetwork<OpenTripPlannerBackend>(obj);
-        return nullptr;
+        return loadNetwork<OpenTripPlannerBackend>(obj);
     }
     if (type == QLatin1String("hafas_mgate")) {
         return loadNetwork<HafasMgateBackend>(obj);
