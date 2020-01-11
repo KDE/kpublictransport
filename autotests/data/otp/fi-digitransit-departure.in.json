@@ -30,7 +30,37 @@
                         "shortName": "273",
                         "color": null,
                         "textColor": null,
-                        "alerts": []
+                        "alerts": [
+                          {
+                            "alertHeaderTextTranslations": [
+                                {"language":"fi","text":"A- ja L-junat Helsinkiin eivät pysähdy Ilmalassa su 12.1. klo 6.30-23.40"},
+                                {"language":"sv","text":"A- och L-tåg mot Helsingfors stannar inte i Ilmala söndag 12.1 kl. 6.30-23.40"},
+                                {"language":"en","text":"A and L trains to Helsinki do not stop at Ilmala on Sunday 12 Jan 6.30am-11.40pm"}
+                            ],
+                            "alertDescriptionTextTranslations": [
+                                {"language":"fi","text":"A- ja L-junat Helsinkiin eivät pysähdy Ilmalassa su 12.1. klo 6.30-23.40."},
+                                {"language":"sv","text":"A- och L-tåg mot Helsingfors stannar inte i Ilmala söndag 12.1 kl. 6.30-23.40."},
+                                {"language":"en","text":"A and L trains to Helsinki do not stop at Ilmala on Sunday 12 Jan 6.30am-11.40pm."}
+                            ],
+                            "alertEffect":"DETOUR",
+                            "alertCause":"MAINTENANCE",
+                            "alertSeverityLevel":"WARNING"
+                         }, {
+                            "alertHeaderTextTranslations":[
+                                {"language":"fi","text":"L- ja I-junat Helsinkiin eivät pysähdy Ilmalassa la 11.1. klo 23.10-23.40"},
+                                {"language":"sv","text":"L- och I-tåg mot Helsingfors stannar inte i Ilmala lördag 11.1 kl. 23.10-23.40"},
+                                {"language":"en","text":"L and I trains to Helsinki do not stop at Ilmala on Saturday 11 Jan 11.10pm-11.40pm"}
+                            ],
+                            "alertDescriptionTextTranslations":[
+                                {"language":"fi","text":"L- ja I-junat Helsinkiin eivät pysähdy Ilmalassa la 11.1. klo 23.10-23.40."},
+                                {"language":"sv","text":"L- och I-tåg mot Helsingfors stannar inte i Ilmala lördag 11.1 kl. 23.10-23.40."},
+                                {"language":"en","text":"L and I trains to Helsinki do not stop at Ilmala on Saturday 11 Jan 11.10pm-11.40pm."}
+                            ],
+                            "alertEffect":"DETOUR",
+                            "alertCause":"MAINTENANCE",
+                            "alertSeverityLevel":"WARNING"
+                        }
+                       ]
                     }
                     }
                 }

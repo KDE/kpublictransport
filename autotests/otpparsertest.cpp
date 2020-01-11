@@ -48,6 +48,7 @@ private Q_SLOTS:
     void initTestCase()
     {
         qputenv("TZ", "UTC");
+        QLocale::setDefault(QLocale(QLocale::Swedish, QLocale::Finland));
         qRegisterMetaType<Disruption::Effect>();
     }
 

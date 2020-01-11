@@ -1,6 +1,10 @@
 [
     {
         "disruptionEffect": "NormalService",
+        "notes": [
+            "A- och L-tåg mot Helsingfors stannar inte i Ilmala söndag 12.1 kl. 6.30-23.40.",
+            "L- och I-tåg mot Helsingfors stannar inte i Ilmala lördag 11.1 kl. 23.10-23.40."
+        ],
         "route": {
             "direction": "ROVANIEMI",
             "line": {

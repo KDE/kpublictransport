@@ -86,17 +86,46 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByName(const QJsonObj
     return locs;
 }
 
-static Line parseLine(const QJsonObject &obj)
+void OpenTripPlannerParser::parseAlerts(const QJsonArray& alertsArray) const
 {
+    m_alerts.reserve(alertsArray.size());
+    for (const auto &alertValue : alertsArray) {
+        const auto alertObj = alertValue.toObject();
+        const auto descsArray = alertObj.value(QLatin1String("alertDescriptionTextTranslations")).toArray();
+        if (descsArray.empty()) {
+            continue;
+        }
+
+        // find the best language
+        const auto uiLangs = QLocale().uiLanguages();
+        int minIdx = 0, minWeight = std::numeric_limits<int>::max();
+        for (int i = 0; i < descsArray.size(); ++i) {
+            const auto lang = descsArray.at(i).toObject().value(QLatin1String("language")).toString();
+            for (int j = 0; j < uiLangs.size() && j < minWeight; ++j) {
+                if (uiLangs.at(j).startsWith(lang)) {
+                    minIdx = i;
+                    minWeight = j;
+                    break;
+                }
+            }
+        }
+
+        m_alerts.push_back(descsArray.at(minIdx).toObject().value(QLatin1String("text")).toString());
+    }
+}
+
+Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
+{
+    parseAlerts(obj.value(QLatin1String("alerts")).toArray());
+
     Line line;
-    // TODO alerts need to be propagated to journey section / departure
     line.setName(obj.value(QLatin1String("shortName")).toString());
     line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("type")).toInt()));
     // TODO parse color
     return line;
 }
 
-static Route parseRoute(const QJsonObject &obj)
+Route OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
 {
     Route route;
     route.setLine(parseLine(obj.value(QLatin1String("route")).toObject()));
@@ -104,7 +133,7 @@ static Route parseRoute(const QJsonObject &obj)
     return route;
 }
 
-static Departure parseDeparture(const QJsonObject &obj)
+Departure OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 {
     Departure dep;
     const auto baseTime = obj.value(QLatin1String("serviceDay")).toDouble(); // ### 64bit
@@ -116,6 +145,10 @@ static Departure parseDeparture(const QJsonObject &obj)
     }
     dep.setScheduledPlatform(obj.value(QLatin1String("stop")).toObject().value(QLatin1String("platformCode")).toString());
     dep.setRoute(parseRoute(obj.value(QLatin1String("trip")).toObject()));
+
+    dep.addNotes(m_alerts);
+    m_alerts.clear();
+
     return dep;
 }
 
@@ -161,6 +194,9 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     } else {
         section.setMode(JourneySection::Walking);
     }
+
+    section.addNotes(m_alerts);
+    m_alerts.clear();
 
     return section;
 }
