@@ -72,10 +72,11 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
             return;
         }
 
+        OpenTripPlannerParser p(backendId());
         if (req.hasCoordinate()) {
-            addResult(reply, OpenTripPlannerParser::parseLocationsByCoordinate(gqlReply.data()));
+            addResult(reply, p.parseLocationsByCoordinate(gqlReply.data()));
         } else {
-            addResult(reply, OpenTripPlannerParser::parseLocationsByName(gqlReply.data()));
+            addResult(reply, p.parseLocationsByName(gqlReply.data()));
         }
     });
 
@@ -99,7 +100,8 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, this, Reply::NetworkError, gqlReply.errorString());
         } else {
-            addResult(reply, this, OpenTripPlannerParser::parseDepartures(gqlReply.data()));
+            OpenTripPlannerParser p(backendId());
+            addResult(reply, this, p.parseDepartures(gqlReply.data()));
         }
     });
 
@@ -126,7 +128,8 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, this, Reply::NetworkError, gqlReply.errorString());
         } else {
-            addResult(reply, this, OpenTripPlannerParser::parseJourneys(gqlReply.data()));
+            OpenTripPlannerParser p(backendId());
+            addResult(reply, this, p.parseJourneys(gqlReply.data()));
         }
     });
 

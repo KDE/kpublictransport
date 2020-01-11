@@ -66,7 +66,8 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
 
-        const auto res = OpenTripPlannerParser::parseLocationsByCoordinate(QJsonDocument::fromJson(readFile(inFileName)).object());
+        OpenTripPlannerParser p(s("gtfs"));
+        const auto res = p.parseLocationsByCoordinate(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
@@ -93,7 +94,8 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
 
-        const auto res = OpenTripPlannerParser::parseLocationsByName(QJsonDocument::fromJson(readFile(inFileName)).object());
+        OpenTripPlannerParser p(s("gtfs"));
+        const auto res = p.parseLocationsByName(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
@@ -120,7 +122,8 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
 
-        const auto res = OpenTripPlannerParser::parseDepartures(QJsonDocument::fromJson(readFile(inFileName)).object());
+        OpenTripPlannerParser p(s("gtfs"));
+        const auto res = p.parseDepartures(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Departure::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
@@ -147,7 +150,8 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
 
-        const auto res = OpenTripPlannerParser::parseJourneys(QJsonDocument::fromJson(readFile(inFileName)).object());
+        OpenTripPlannerParser p(s("gtfs"));
+        const auto res = p.parseJourneys(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Journey::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();

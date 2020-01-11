@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <QString>
+
 #include <vector>
 
 class QJsonObject;
@@ -28,18 +30,31 @@ namespace KPublicTransport {
 
 class Departure;
 class Journey;
+class JourneySection;
 class Location;
 
 /** Parser for OTP responses as defined by the GraphQL files in the otp/ subdir.
  *  @internal only exported for unit tests
  */
-namespace OpenTripPlannerParser
+class KPUBLICTRANSPORT_EXPORT OpenTripPlannerParser
 {
-    KPUBLICTRANSPORT_EXPORT std::vector<Location> parseLocationsByCoordinate(const QJsonObject &obj);
-    KPUBLICTRANSPORT_EXPORT std::vector<Location> parseLocationsByName(const QJsonObject &obj);
-    KPUBLICTRANSPORT_EXPORT std::vector<Departure> parseDepartures(const QJsonObject &obj);
-    KPUBLICTRANSPORT_EXPORT std::vector<Journey> parseJourneys(const QJsonObject &obj);
-}
+public:
+    explicit OpenTripPlannerParser(const QString &identifierType);
+    ~OpenTripPlannerParser();
+
+    std::vector<Location> parseLocationsByCoordinate(const QJsonObject &obj) const;
+    std::vector<Location> parseLocationsByName(const QJsonObject &obj) const;
+    std::vector<Departure> parseDepartures(const QJsonObject &obj) const;
+    std::vector<Journey> parseJourneys(const QJsonObject &obj) const;
+
+private:
+    Location parseLocation(const QJsonObject &obj) const;
+    void parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure> &deps) const;
+    JourneySection parseJourneySection(const QJsonObject &obj) const;
+    Journey parseJourney(const QJsonObject &obj) const;
+
+    QString m_identifierType;
+};
 
 }
 

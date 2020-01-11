@@ -28,7 +28,14 @@
 
 using namespace KPublicTransport;
 
-static Location parseLocation(const QJsonObject &obj)
+OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType)
+    : m_identifierType(identifierType)
+{
+}
+
+OpenTripPlannerParser::~OpenTripPlannerParser() = default;
+
+Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
 {
     const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
     if (!parentObj.isEmpty()) {
@@ -43,12 +50,12 @@ static Location parseLocation(const QJsonObject &obj)
 
     const auto id = obj.value(QLatin1String("gtfsId")).toString();
     if (!id.isEmpty()) {
-        loc.setIdentifier(QLatin1String("gtfs"), id);
+        loc.setIdentifier(m_identifierType, id);
     }
     return loc;
 }
 
-std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJsonObject &obj)
+std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJsonObject &obj) const
 {
     std::vector<Location> locs;
     const auto stopArray = obj.value(QLatin1String("stopsByRadius")).toObject().value(QLatin1String("edges")).toArray();
@@ -59,7 +66,7 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJ
     return locs;
 }
 
-std::vector<Location> OpenTripPlannerParser::parseLocationsByName(const QJsonObject &obj)
+std::vector<Location> OpenTripPlannerParser::parseLocationsByName(const QJsonObject &obj) const
 {
     std::vector<Location> locs;
     const auto stationArray = obj.value(QLatin1String("stations")).toArray();
@@ -103,7 +110,7 @@ static Departure parseDeparture(const QJsonObject &obj)
     return dep;
 }
 
-static void parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure> &deps)
+void OpenTripPlannerParser::parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure> &deps) const
 {
     const auto loc = parseLocation(obj.value(QLatin1String("stop")).toObject());
     const auto stopTimes = obj.value(QLatin1String("stoptimes")).toArray();
@@ -114,7 +121,7 @@ static void parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure
     }
 }
 
-std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject &obj)
+std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject &obj) const
 {
     std::vector<Departure> deps;
 
@@ -126,7 +133,7 @@ std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject 
     return deps;
 }
 
-static JourneySection parseJourneySection(const QJsonObject &obj)
+JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj) const
 {
     JourneySection section;
     section.setScheduledDepartureTime(QDateTime::fromMSecsSinceEpoch(obj.value(QLatin1String("startTime")).toDouble())); // ### sic! double to get 64 bit precision...
@@ -149,7 +156,7 @@ static JourneySection parseJourneySection(const QJsonObject &obj)
     return section;
 }
 
-static Journey parseJourney(const QJsonObject &obj)
+Journey OpenTripPlannerParser::parseJourney(const QJsonObject &obj) const
 {
     std::vector<JourneySection> sections;
     const auto sectionsArray = obj.value(QLatin1String("legs")).toArray();
@@ -162,7 +169,7 @@ static Journey parseJourney(const QJsonObject &obj)
     return journey;
 }
 
-std::vector<Journey> OpenTripPlannerParser::parseJourneys(const QJsonObject& obj)
+std::vector<Journey> OpenTripPlannerParser::parseJourneys(const QJsonObject& obj) const
 {
     std::vector<Journey> journeys;
 
