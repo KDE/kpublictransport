@@ -144,9 +144,12 @@ private Q_SLOTS:
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("refFileName");
 
-        QTest::newRow("fi-digitransit-departures")
+        QTest::newRow("fi-digitransit-journey")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-journey.in.json")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-journey.out.json");
+        QTest::newRow("no-entur-journey")
+            << s(SOURCE_DIR "/data/otp/no-entur-journey.in.json")
+            << s(SOURCE_DIR "/data/otp/no-entur-journey.out.json");
     }
 
     void testParseJourney()

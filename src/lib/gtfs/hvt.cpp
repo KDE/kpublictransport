@@ -99,3 +99,95 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
     qDebug() << "encountered unknown GTFS (extended) route type:" << hvt;
     return Line::Unknown;
 }
+
+// top-level types, complete list
+struct {
+    const char *typeName;
+    Line::Mode mode;
+} static const coarse_mode_map[] = {
+    { "air", Line::Air },
+    { "bus", Line::Bus },
+    { "cableway", Line::Tramway }, // TODO
+    { "coach", Line::Coach },
+    { "funicular", Line::Funicular },
+    { "lift", Line::Tramway }, // ???
+    { "metro", Line::Metro },
+    { "rail", Line::Train },
+    { "subway", Line::Metro },
+    { "tram", Line::Tramway },
+    { "unknown", Line::Unknown },
+    { "water", Line::Boat },
+};
+
+// fine-grained types, special cases that can't be found by pattern matches
+struct {
+    const char *typeName;
+    Line::Mode mode;
+} static const fine_mode_map[] = {
+    { "airportlinkrail", Line::RapidTransit },
+    { "airshipservice", Line::Air },
+    { "blackcab", Line::Taxi },
+    { "canalbarge", Line::Boat },
+    { "cablecar", Line::Tramway }, // TODO
+    { "helicopterservice", Line::Air },
+    { "international", Line::LongDistanceTrain },
+    { "interregionalrail", Line::Train },
+    { "local", Line::LocalTrain },
+    { "longdistance", Line::LongDistanceTrain },
+    { "minicab", Line::Taxi },
+    { "regionalrail", Line::LocalTrain },
+    { "riverbus", Line::Boat },
+    { "streetcablecar", Line::Tramway },
+    { "suburbanrailway", Line::RapidTransit },
+    { "trainFerry", Line::Ferry }, // disambiguate as this matches multiple patterns
+    { "tube", Line::Metro },
+    { "urbanrailway", Line::RapidTransit },
+    { "watertaxi", Line::Boat },
+};
+
+// patterns for groups of fine-grained types
+struct {
+    const char *namePattern;
+    Line::Mode mode;
+} static const mode_pattern_map[] = {
+    { "boat", Line::Boat },
+    { "bus", Line::Bus },
+    { "coach", Line::Coach },
+    { "ferry", Line::Ferry },
+    { "flight", Line::Air },
+    { "funicular", Line::Funicular },
+    { "highspeed", Line::LongDistanceTrain },
+    { "lift", Line::Tramway }, // ???
+    { "rail", Line::Train },
+    { "taxi", Line::Taxi },
+    { "telecabin", Line::Tramway }, // ???
+    { "train", Line::Train },
+    { "tram", Line::Tramway },
+};
+
+Line::Mode Gtfs::Hvt::typeToMode(const QString &hvt)
+{
+    // fine-grained types, exact matches
+    for (const auto &m : fine_mode_map) {
+        if (hvt.compare(QLatin1String(m.typeName), Qt::CaseInsensitive) == 0) {
+            return m.mode;
+        }
+    }
+
+    // top-level types, exact matches
+    for (const auto &m : coarse_mode_map) {
+        if (hvt.compare(QLatin1String(m.typeName), Qt::CaseInsensitive) == 0) {
+            return m.mode;
+        }
+    }
+
+    // pattern matches on fine grained types
+    for (const auto &m : mode_pattern_map) {
+        if (hvt.contains(QLatin1String(m.namePattern), Qt::CaseInsensitive)) {
+            return m.mode;
+        }
+    }
+
+    qDebug() << "encountered unknown GTFS (extended) route type:" << hvt;
+    return Line::Unknown;
+}

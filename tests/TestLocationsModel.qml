@@ -84,4 +84,9 @@ ListModel {
     ListElement { label: "Helsinki Vantaa Airport (HEL)"; name: "Lentosema"; lat: 60.31621; lon: 24.96906 }
     ListElement { label: "Helsinki central station"; name: "Helsinki"; lat: 60.17170; lon: 24.94094 }
     ListElement { label: "Leppävaara"; lat: 60.21946; lon: 24.81309 }
+
+    ListElement { label: "Oslo Central Station"; lat: 59.91119; lon: 10.75325 }
+    ListElement { label: "Oslo Nydalen"; lat: 59.94957; lon: 10.76444 }
+    ListElement { label: "Oslo Lufthavn"; lat: 60.19318; lon: 11.09699 }
+    ListElement { label: "Bergen"; lat: 60.39026; lon: 5.33356 }
 }

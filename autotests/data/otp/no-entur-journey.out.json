@@ -1,0 +1,223 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 103,
+                "from": {
+                    "latitude": 59.94956970214844,
+                    "longitude": 10.764439582824707,
+                    "name": "Origin"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-12T13:29:17+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:27:23+01:00",
+                "to": {
+                    "latitude": 59.94953155517578,
+                    "longitude": 10.765337944030762,
+                    "name": "Nydalen"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 6101,
+                "expectedArrivalTime": "2020-01-12T13:40:17+01:00",
+                "expectedDepartureTime": "2020-01-12T13:29:17+01:00",
+                "from": {
+                    "latitude": 59.94953155517578,
+                    "longitude": 10.765337944030762,
+                    "name": "Nydalen"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "line": {
+                        "color": "#ec700c",
+                        "mode": "Metro",
+                        "name": "4",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-12T13:38:00+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:27:00+01:00",
+                "to": {
+                    "latitude": 59.915321350097656,
+                    "longitude": 10.732219696044922,
+                    "name": "Nationaltheatret"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 326,
+                "from": {
+                    "latitude": 59.915321350097656,
+                    "longitude": 10.732219696044922,
+                    "name": "Nationaltheatret"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-12T13:44:29+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:40:17+01:00",
+                "to": {
+                    "latitude": 59.91536331176758,
+                    "longitude": 10.727551460266113,
+                    "name": "Nationaltheatret stasjon"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 45260,
+                "expectedArrivalTime": "2020-01-12T14:17:00+01:00",
+                "expectedDepartureTime": "2020-01-12T13:48:00+01:00",
+                "from": {
+                    "latitude": 59.91536331176758,
+                    "longitude": 10.727551460266113,
+                    "name": "Nationaltheatret stasjon"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "line": {
+                        "color": "#dc0000",
+                        "mode": "LocalTrain",
+                        "name": "L12",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-12T14:17:00+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:48:00+01:00",
+                "to": {
+                    "latitude": 60.192955017089844,
+                    "longitude": 11.097078323364258,
+                    "name": "Oslo Lufthavn stasjon"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 34,
+                "from": {
+                    "latitude": 60.192955017089844,
+                    "longitude": 11.097078323364258,
+                    "name": "Oslo Lufthavn stasjon"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-12T14:17:28+01:00",
+                "scheduledDepartureTime": "2020-01-12T14:17:00+01:00",
+                "to": {
+                    "latitude": 60.193180084228516,
+                    "longitude": 11.096989631652832,
+                    "name": "Destination"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 103,
+                "from": {
+                    "latitude": 59.94956970214844,
+                    "longitude": 10.764439582824707,
+                    "name": "Origin"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-12T13:34:09+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:32:15+01:00",
+                "to": {
+                    "latitude": 59.94953155517578,
+                    "longitude": 10.765337944030762,
+                    "name": "Nydalen"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 6101,
+                "expectedArrivalTime": "2020-01-12T13:45:09+01:00",
+                "expectedDepartureTime": "2020-01-12T13:34:09+01:00",
+                "from": {
+                    "latitude": 59.94953155517578,
+                    "longitude": 10.765337944030762,
+                    "name": "Nydalen"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Før kl. 21:00 kjører linje 5 som normalt. Etter kl. 21:00 vil de bli endring i avgangstiden. Reiseplanlegger er oppdatert."
+                ],
+                "route": {
+                    "line": {
+                        "color": "#ec700c",
+                        "mode": "Metro",
+                        "name": "5",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-12T13:44:00+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:33:00+01:00",
+                "to": {
+                    "latitude": 59.915321350097656,
+                    "longitude": 10.732219696044922,
+                    "name": "Nationaltheatret"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 326,
+                "from": {
+                    "latitude": 59.915321350097656,
+                    "longitude": 10.732219696044922,
+                    "name": "Nationaltheatret"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-12T13:49:21+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:45:09+01:00",
+                "to": {
+                    "latitude": 59.91536331176758,
+                    "longitude": 10.727551460266113,
+                    "name": "Nationaltheatret stasjon"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 45265,
+                "expectedArrivalTime": "2020-01-12T14:22:00+01:00",
+                "expectedDepartureTime": "2020-01-12T13:54:00+01:00",
+                "from": {
+                    "latitude": 59.91536331176758,
+                    "longitude": 10.727551460266113,
+                    "name": "Nationaltheatret stasjon"
+                },
+                "mode": "PublicTransport",
+                "route": {
+                    "line": {
+                        "color": "#757575",
+                        "mode": "RapidTransit",
+                        "name": "F2",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": "2020-01-12T14:22:00+01:00",
+                "scheduledDepartureTime": "2020-01-12T13:54:00+01:00",
+                "to": {
+                    "latitude": 60.19298553466797,
+                    "longitude": 11.096880912780762,
+                    "name": "Oslo Lufthavn stasjon"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 22,
+                "from": {
+                    "latitude": 60.19298553466797,
+                    "longitude": 11.096880912780762,
+                    "name": "Oslo Lufthavn stasjon"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-01-12T14:22:18+01:00",
+                "scheduledDepartureTime": "2020-01-12T14:22:00+01:00",
+                "to": {
+                    "latitude": 60.193180084228516,
+                    "longitude": 11.096989631652832,
+                    "name": "Destination"
+                }
+            }
+        ]
+    }
+]

@@ -40,6 +40,7 @@ public:
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    QUrl graphQLEndpoint() const;
     QString graphQLPath(const QString &fileName) const;
 
     QString m_endpoint;

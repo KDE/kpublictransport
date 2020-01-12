@@ -1,0 +1,71 @@
+query journeys(
+  $fromLat: Float!,
+  $fromLon: Float!,
+  $toLat: Float!,
+  $toLon: Float!,
+  $dateTime: DateTime!,
+  $arriveBy: Boolean!
+) {
+  plan: trip (
+        from: { coordinates: { latitude: $fromLat, longitude: $fromLon } }
+        to:   { coordinates: { latitude: $toLat,   longitude: $toLon } }
+        dateTime: $dateTime
+        arriveBy: $arriveBy
+        numTripPatterns: 3
+    ) {
+    itineraries: tripPatterns {
+      legs {
+        startTime: aimedStartTime
+        endTime: aimedEndTime
+        realTime: realtime
+        expectedStartTime
+        expectedEndTime
+        distance
+        mode
+        transitLeg: ride
+        from: fromPlace {
+          name
+          lat: latitude
+          lon: longitude
+          stop: quay {
+            platformCode: publicCode
+            description
+            gtfsId: id
+            timezone
+          }
+        }
+        to: toPlace {
+          name
+          lat: latitude
+          lon: longitude
+          stop: quay {
+            platformCode: publicCode
+            description
+            gtfsId: id
+            timezone
+          }
+        }
+        line {
+          presentation {
+            color: colour
+            textColor: textColour
+          }
+          transportMode
+          type: transportSubmode
+          shortName: publicCode
+          name
+          alerts: situations {
+            alertHeaderTextTranslations: summary {
+                language
+                text: value
+            }
+            alertDescriptionTextTranslations: description {
+                language
+                text: value
+            }
+          }
+        }
+      }
+    }
+  }
+}

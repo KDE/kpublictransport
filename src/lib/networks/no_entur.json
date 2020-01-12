@@ -1,0 +1,20 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Norway.",
+        "Name": "Entur"
+    },
+    "filter": {
+        "geo": [
+            [ 5.14553, 58.7711 ],
+            [ 8.5538, 56.8847 ],
+            [ 31.5632, 69.8993 ],
+            [ 25.3899, 85.02453 ],
+            [ -0.1243, 75.9905 ]
+        ]
+    },
+    "options": {
+        "apiVersion": "entur",
+        "endpoint": "https://api.entur.io/journey-planner/v2/graphql/"
+    },
+    "type": "otp"
+}

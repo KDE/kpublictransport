@@ -52,7 +52,7 @@ bool OpenTripPlannerBackend::needsLocationQuery(const Location &loc, AbstractBac
 
 bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
+    KGraphQLRequest gqlReq(graphQLEndpoint());
 
     if (req.hasCoordinate()) {
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));
@@ -86,7 +86,7 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
 
 bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
+    KGraphQLRequest gqlReq(graphQLEndpoint());
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
     gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
@@ -111,7 +111,7 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
 
 bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    KGraphQLRequest gqlReq(QUrl(m_endpoint + QLatin1String("index/graphql")));
+    KGraphQLRequest gqlReq(graphQLEndpoint());
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("journey.graphql")));
     gqlReq.setVariable(QStringLiteral("fromLat"), req.from().latitude());
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
@@ -119,6 +119,7 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     gqlReq.setVariable(QStringLiteral("toLon"), req.to().longitude());
     gqlReq.setVariable(QStringLiteral("date"), req.dateTime().date().toString(QStringLiteral("yyyy-MM-dd")));
     gqlReq.setVariable(QStringLiteral("time"), req.dateTime().time().toString(QStringLiteral("hh:mm:ss"))); // TODO timezone conversion?
+    gqlReq.setVariable(QStringLiteral("dateTime"), req.dateTime().toString(Qt::ISODate));
     gqlReq.setVariable(QStringLiteral("arriveBy"), req.dateTimeMode() == JourneyRequest::Arrival);
 
     if (isLoggingEnabled()) {
@@ -135,6 +136,14 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     });
 
     return true;
+}
+
+QUrl OpenTripPlannerBackend::graphQLEndpoint() const
+{
+    if (m_apiVersion == QLatin1String("entur")) {
+        return QUrl(m_endpoint);
+    }
+    return QUrl(m_endpoint + QLatin1String("index/graphql"));
 }
 
 static QString graphQLBasePath()

@@ -1,1 +1,3 @@
-These queries can be tested interactively on https://api.digitransit.fi/graphiql/hsl for example.
+These queries can be tested interactively:
+- Digitransit: https://api.digitransit.fi/graphiql/hsl
+- Entur: https://api.entur.io/journey-planner/v2/ide/

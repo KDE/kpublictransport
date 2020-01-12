@@ -1,0 +1,405 @@
+{
+    "plan": {
+      "itineraries": [
+        {
+          "legs": [
+            {
+              "startTime": "2020-01-12T13:27:23+0100",
+              "endTime": "2020-01-12T13:29:17+0100",
+              "realTime": false,
+              "expectedStartTime": "2020-01-12T13:27:23+0100",
+              "expectedEndTime": "2020-01-12T13:29:17+0100",
+              "distance": 103.79500000000002,
+              "mode": "foot",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 59.94956970214844,
+                "lon": 10.764439582824707,
+                "stop": null
+              },
+              "to": {
+                "name": "Nydalen",
+                "lat": 59.949532,
+                "lon": 10.765338,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning Majorstuen",
+                  "gtfsId": "NSR:Quay:11151",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": null,
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T13:27:00+0100",
+              "endTime": "2020-01-12T13:38:00+0100",
+              "realTime": true,
+              "expectedStartTime": "2020-01-12T13:29:17+0100",
+              "expectedEndTime": "2020-01-12T13:40:17+0100",
+              "distance": 6101.852721737851,
+              "mode": "metro",
+              "transitLeg": true,
+              "from": {
+                "name": "Nydalen",
+                "lat": 59.949532,
+                "lon": 10.765338,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning Majorstuen",
+                  "gtfsId": "NSR:Quay:11151",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Nationaltheatret",
+                "lat": 59.91532,
+                "lon": 10.73222,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning øst",
+                  "gtfsId": "NSR:Quay:7333",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": {
+                "presentation": {
+                  "color": "EC700C",
+                  "textColor": "FFFFFF"
+                },
+                "transportMode": "metro",
+                "type": "metro",
+                "shortName": "4",
+                "name": "Vestli - Bergkrystallen",
+                "alerts": []
+              },
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T13:40:17+0100",
+              "endTime": "2020-01-12T13:44:29+0100",
+              "realTime": false,
+              "expectedStartTime": "2020-01-12T13:40:17+0100",
+              "expectedEndTime": "2020-01-12T13:44:29+0100",
+              "distance": 326.353,
+              "mode": "foot",
+              "transitLeg": false,
+              "from": {
+                "name": "Nationaltheatret",
+                "lat": 59.91532,
+                "lon": 10.73222,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning øst",
+                  "gtfsId": "NSR:Quay:7333",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Nationaltheatret stasjon",
+                "lat": 59.915362,
+                "lon": 10.727551,
+                "stop": {
+                  "platformCode": "3",
+                  "description": "tog retning Oslo S",
+                  "gtfsId": "NSR:Quay:477",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": null,
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T13:48:00+0100",
+              "endTime": "2020-01-12T14:17:00+0100",
+              "realTime": true,
+              "expectedStartTime": "2020-01-12T13:48:00+0100",
+              "expectedEndTime": "2020-01-12T14:17:00+0100",
+              "distance": 45260.24760969986,
+              "mode": "rail",
+              "transitLeg": true,
+              "from": {
+                "name": "Nationaltheatret stasjon",
+                "lat": 59.915362,
+                "lon": 10.727551,
+                "stop": {
+                  "platformCode": "3",
+                  "description": "tog retning Oslo S",
+                  "gtfsId": "NSR:Quay:477",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Oslo Lufthavn stasjon",
+                "lat": 60.192955,
+                "lon": 11.097078,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "",
+                  "gtfsId": "NSR:Quay:451",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": {
+                "presentation": {
+                  "color": "DC0000",
+                  "textColor": "FFFFFF"
+                },
+                "transportMode": "rail",
+                "type": "local",
+                "shortName": "L12",
+                "name": "L12",
+                "alerts": []
+              },
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T14:17:00+0100",
+              "endTime": "2020-01-12T14:17:28+0100",
+              "realTime": false,
+              "expectedStartTime": "2020-01-12T14:17:00+0100",
+              "expectedEndTime": "2020-01-12T14:17:28+0100",
+              "distance": 34.513999999999996,
+              "mode": "foot",
+              "transitLeg": false,
+              "from": {
+                "name": "Oslo Lufthavn stasjon",
+                "lat": 60.192955,
+                "lon": 11.097078,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "",
+                  "gtfsId": "NSR:Quay:451",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 60.193180084228516,
+                "lon": 11.096989631652832,
+                "stop": null
+              },
+              "line": null,
+              "rentedBike": false
+            }
+          ],
+          "endTime": "2020-01-12T14:17:28+0100",
+          "distance": 51826.76233143771,
+          "duration": 3005,
+          "startTime": "2020-01-12T13:27:23+0100"
+        },
+        {
+          "legs": [
+            {
+              "startTime": "2020-01-12T13:32:15+0100",
+              "endTime": "2020-01-12T13:34:09+0100",
+              "realTime": false,
+              "expectedStartTime": "2020-01-12T13:32:15+0100",
+              "expectedEndTime": "2020-01-12T13:34:09+0100",
+              "distance": 103.79500000000002,
+              "mode": "foot",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 59.94956970214844,
+                "lon": 10.764439582824707,
+                "stop": null
+              },
+              "to": {
+                "name": "Nydalen",
+                "lat": 59.949532,
+                "lon": 10.765338,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning Majorstuen",
+                  "gtfsId": "NSR:Quay:11151",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": null,
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T13:33:00+0100",
+              "endTime": "2020-01-12T13:44:00+0100",
+              "realTime": true,
+              "expectedStartTime": "2020-01-12T13:34:09+0100",
+              "expectedEndTime": "2020-01-12T13:45:09+0100",
+              "distance": 6101.852721737851,
+              "mode": "metro",
+              "transitLeg": true,
+              "from": {
+                "name": "Nydalen",
+                "lat": 59.949532,
+                "lon": 10.765338,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning Majorstuen",
+                  "gtfsId": "NSR:Quay:11151",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Nationaltheatret",
+                "lat": 59.91532,
+                "lon": 10.73222,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning øst",
+                  "gtfsId": "NSR:Quay:7333",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": {
+                "presentation": {
+                  "color": "EC700C",
+                  "textColor": "FFFFFF"
+                },
+                "transportMode": "metro",
+                "type": "metro",
+                "shortName": "5",
+                "name": "Sognsvann - Vestli",
+                "alerts": [
+                  {
+                    "alertHeaderTextTranslations": [
+                      {
+                        "language": "no",
+                        "text": "T-bane 5: Kjører kun mellom Sognsvann og Manglerud etter kl. 21:00 søndag-torsdag"
+                      },
+                      {
+                        "language": "en",
+                        "text": "Metro 5: Service only between Sognsvann and Manglerud after 9 PM Sundays through Thursdays"
+                      }
+                    ],
+                    "alertDescriptionTextTranslations": [
+                      {
+                        "language": "no",
+                        "text": "Før kl. 21:00 kjører linje 5 som normalt. Etter kl. 21:00 vil de bli endring i avgangstiden. Reiseplanlegger er oppdatert."
+                      },
+                      {
+                        "language": "en",
+                        "text": "There will also be a change in departure times."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T13:45:09+0100",
+              "endTime": "2020-01-12T13:49:21+0100",
+              "realTime": false,
+              "expectedStartTime": "2020-01-12T13:45:09+0100",
+              "expectedEndTime": "2020-01-12T13:49:21+0100",
+              "distance": 326.353,
+              "mode": "foot",
+              "transitLeg": false,
+              "from": {
+                "name": "Nationaltheatret",
+                "lat": 59.91532,
+                "lon": 10.73222,
+                "stop": {
+                  "platformCode": "1",
+                  "description": "Retning øst",
+                  "gtfsId": "NSR:Quay:7333",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Nationaltheatret stasjon",
+                "lat": 59.915362,
+                "lon": 10.727551,
+                "stop": {
+                  "platformCode": "3",
+                  "description": "tog retning Oslo S",
+                  "gtfsId": "NSR:Quay:477",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": null,
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T13:54:00+0100",
+              "endTime": "2020-01-12T14:22:00+0100",
+              "realTime": true,
+              "expectedStartTime": "2020-01-12T13:54:00+0100",
+              "expectedEndTime": "2020-01-12T14:22:00+0100",
+              "distance": 45265.3972513732,
+              "mode": "rail",
+              "transitLeg": true,
+              "from": {
+                "name": "Nationaltheatret stasjon",
+                "lat": 59.915362,
+                "lon": 10.727551,
+                "stop": {
+                  "platformCode": "3",
+                  "description": "tog retning Oslo S",
+                  "gtfsId": "NSR:Quay:477",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Oslo Lufthavn stasjon",
+                "lat": 60.192985,
+                "lon": 11.096881,
+                "stop": {
+                  "platformCode": "2",
+                  "description": "",
+                  "gtfsId": "NSR:Quay:447",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "line": {
+                "presentation": {
+                  "color": "757575",
+                  "textColor": "FFFFFF"
+                },
+                "transportMode": "rail",
+                "type": "airportLinkRail",
+                "shortName": "F2",
+                "name": "F2",
+                "alerts": []
+              },
+              "rentedBike": false
+            },
+            {
+              "startTime": "2020-01-12T14:22:00+0100",
+              "endTime": "2020-01-12T14:22:18+0100",
+              "realTime": false,
+              "expectedStartTime": "2020-01-12T14:22:00+0100",
+              "expectedEndTime": "2020-01-12T14:22:18+0100",
+              "distance": 22.506,
+              "mode": "foot",
+              "transitLeg": false,
+              "from": {
+                "name": "Oslo Lufthavn stasjon",
+                "lat": 60.192985,
+                "lon": 11.096881,
+                "stop": {
+                  "platformCode": "2",
+                  "description": "",
+                  "gtfsId": "NSR:Quay:447",
+                  "timezone": "Europe/Oslo"
+                }
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 60.193180084228516,
+                "lon": 11.096989631652832,
+                "stop": null
+              },
+              "line": null,
+              "rentedBike": false
+            }
+          ],
+          "endTime": "2020-01-12T14:22:18+0100",
+          "distance": 51819.90397311105,
+          "duration": 3003,
+          "startTime": "2020-01-12T13:32:15+0100"
+        }
+      ]
+    }
+}
