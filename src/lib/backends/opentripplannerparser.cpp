@@ -134,6 +134,9 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
 
     Line line;
     line.setName(obj.value(QLatin1String("shortName")).toString());
+    if (line.name().isEmpty()) {
+        line.setName(obj.value(QLatin1String("longName")).toString());
+    }
 
     const auto type = obj.value(QLatin1String("type"));
     if (type.isString()) {
@@ -165,15 +168,23 @@ Route OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
     return route;
 }
 
+static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &value)
+{
+    if (value.isDouble()) { // encoded as seconds offset to baseTime
+        return QDateTime::fromSecsSinceEpoch(baseTime + value.toDouble());
+    }
+    return QDateTime::fromString(value.toString(), Qt::ISODate);
+}
+
 Departure OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 {
     Departure dep;
     const auto baseTime = obj.value(QLatin1String("serviceDay")).toDouble(); // ### 64bit
-    dep.setScheduledArrivalTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("scheduledArrival")).toDouble()));
-    dep.setScheduledDepartureTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("scheduledDeparture")).toDouble()));
+    dep.setScheduledArrivalTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("scheduledArrival"))));
+    dep.setScheduledDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("scheduledDeparture"))));
     if (obj.value(QLatin1String("realtime")).toBool()) {
-        dep.setExpectedArrivalTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("realtimeArrival")).toDouble()));
-        dep.setExpectedDepartureTime(QDateTime::fromSecsSinceEpoch(baseTime + obj.value(QLatin1String("realtimeDeparture")).toDouble()));
+        dep.setExpectedArrivalTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("realtimeArrival"))));
+        dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("realtimeDeparture"))));
     }
     dep.setScheduledPlatform(obj.value(QLatin1String("stop")).toObject().value(QLatin1String("platformCode")).toString());
 

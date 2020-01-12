@@ -9,6 +9,7 @@
       <file>20170808/journey.graphql</file>
       <file>20170808/stationByName.graphql</file>
 
+      <file>entur/departure.graphql</file>
       <file>entur/journey.graphql</file>
     </qresource>
 </RCC>

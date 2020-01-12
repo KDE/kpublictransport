@@ -91,6 +91,7 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
     gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
     gqlReq.setVariable(QStringLiteral("startTime"), req.dateTime().toSecsSinceEpoch()); // TODO timezone conversion?
+    gqlReq.setVariable(QStringLiteral("startDateTime"), req.dateTime().toString(Qt::ISODate));
     // TODO arrival/departure selection?
 
     if (isLoggingEnabled()) {

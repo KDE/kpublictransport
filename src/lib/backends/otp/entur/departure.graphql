@@ -1,0 +1,50 @@
+query departures($lat: Float!, $lon: Float!, $startDateTime: DateTime!) {
+  nearest(latitude: $lat, longitude: $lon, maximumDistance: 500, filterByPlaceTypes: quay) {
+    edges {
+      node {
+        place {
+          ... on Quay {
+            stop: stopPlace {
+              gtffId: id
+              name
+              lat: latitude
+              lon: longitude
+              timezone
+            }
+            stoptimes: estimatedCalls(startTime: $startDateTime, numberOfDepartures: 12) {
+              stop: quay {
+                platformCode: publicCode
+              }
+              scheduledArrival: aimedArrivalTime
+              realtimeArrival: expectedArrivalTime
+              scheduledDeparture: aimedDepartureTime
+              realtimeDeparture: expectedDepartureTime
+              realtime
+              trip: serviceJourney {
+                route: line {
+                  type: transportSubmode
+                  shortName: publicCode
+                  longName: name
+                  presentation {
+                    color: colour
+                    textColor: textColour
+                  }
+                  alerts: situations {
+                    alertHeaderTextTranslations: summary {
+                        language
+                        text: value
+                    }
+                    alertDescriptionTextTranslations: description {
+                        language
+                        text: value
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
