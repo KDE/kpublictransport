@@ -62,6 +62,7 @@ enum {
 
 static inline void initResources() {
     Q_INIT_RESOURCE(networks);
+    Q_INIT_RESOURCE(otp);
 }
 
 namespace KPublicTransport {
