@@ -2,14 +2,18 @@
     "KPlugin": {
         "Description": "Public transport in Finland.",
         "Description[ca]": "Transport públic a Finlàndia.",
+        "Description[es]": "Transporte público de Finlandia.",
         "Description[nl]": "Openbaar vervoer in Finland.",
         "Description[pt]": "Transportes públicos na Finlândia.",
+        "Description[pt_BR]": "Transporte público na Finlândia.",
         "Description[uk]": "Громадський транспорт у Фінляндії.",
         "Description[x-test]": "xxPublic transport in Finland.xx",
         "Name": "Digitransit Finland",
         "Name[ca]": "Digitransit Finlàndia",
+        "Name[es]": "Digitransit Finland",
         "Name[nl]": "Digitransit Finland",
         "Name[pt]": "Digitransit Finlândia",
+        "Name[pt_BR]": "Digitransit Finlândia",
         "Name[uk]": "Digitransit Finland",
         "Name[x-test]": "xxDigitransit Finlandxx"
     },

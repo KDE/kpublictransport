@@ -2,14 +2,18 @@
     "KPlugin": {
         "Description": "Public transport in Waltti regions in Finland.",
         "Description[ca]": "Transport públic a les regions amb Waltti a Finlàndia.",
+        "Description[es]": "Trasporte público de las regiones de Waltti en Finlandia.",
         "Description[nl]": "Openbaar vervoer in de regio's Waltti in Finland.",
         "Description[pt]": "Transportes públicos locais na região de Waltti, Finlândia.",
+        "Description[pt_BR]": "Transporte público na região de Waltti, Finlândia.",
         "Description[uk]": "Громадський транспорт у областях Валтті, Фінляндія.",
         "Description[x-test]": "xxPublic transport in Waltti regions in Finland.xx",
         "Name": "Waltti",
         "Name[ca]": "Waltti",
+        "Name[es]": "Waltti",
         "Name[nl]": "Waltti",
         "Name[pt]": "Waltti",
+        "Name[pt_BR]": "Waltti",
         "Name[uk]": "Waltti",
         "Name[x-test]": "xxWalttixx"
     },

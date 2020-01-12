@@ -2,14 +2,18 @@
     "KPlugin": {
         "Description": "Local public transport in the Piemonte region in Italy.",
         "Description[ca]": "Transport públic local a la regió del Piemont a Itàlia.",
+        "Description[es]": "Trasporte público local de la región de Piamonte en Italia.",
         "Description[nl]": "Lokaal openbaar vervoer in en om de regio Piemonte in Italië.",
         "Description[pt]": "Transportes públicos locais na região de Piemonte, Itália.",
+        "Description[pt_BR]": "Transporte público local na região de Piemonte na Itália.",
         "Description[uk]": "Місцевий громадський транспорт у регіоні П'ємонт, Італія.",
         "Description[x-test]": "xxLocal public transport in the Piemonte region in Italy.xx",
         "Name": "Muoversi in Piemonte",
         "Name[ca]": "Muoversi in Piemonte",
+        "Name[es]": "Muoversi in Piemonte",
         "Name[nl]": "Muoversi in Piemonte",
         "Name[pt]": "Muoversi in Piemonte",
+        "Name[pt_BR]": "Muoversi in Piemonte",
         "Name[uk]": "Muoversi in Piemonte",
         "Name[x-test]": "xxMuoversi in Piemontexx"
     },
