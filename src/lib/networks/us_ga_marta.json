@@ -6,6 +6,7 @@
         "Description[nl]": "Openbaar vervoer in en om Atlanta, Georgia, VS.",
         "Description[pt]": "Transportes públicos locais na região de Atlanta, Geórgia, EUA.",
         "Description[pt_BR]": "Transporte público nos arredores de Atlanta, Geórgia, EUA.",
+        "Description[sv]": "Lokal transportoperatör i och omkring Atlanta, Georgia, USA.",
         "Description[uk]": "Громадський транспорт у Атланті і околицях, Джорджія, США.",
         "Description[x-test]": "xxPublic transport in and around Atlanta, Georgia, US.xx",
         "Name": "Marta",
@@ -14,6 +15,7 @@
         "Name[nl]": "Marta",
         "Name[pt]": "Marta",
         "Name[pt_BR]": "Marta",
+        "Name[sv]": "Marta",
         "Name[uk]": "Marta",
         "Name[x-test]": "xxMartaxx"
     },
