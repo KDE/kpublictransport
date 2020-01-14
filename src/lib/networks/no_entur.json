@@ -19,6 +19,12 @@
         "Name[uk]": "Entur",
         "Name[x-test]": "xxEnturxx"
     },
+    "attribution": {
+        "name": "Entur",
+        "url": "https://www.entur.org/",
+        "license": "Norwegian Licence for Open Government Data (NLOD)",
+        "licenseUrl": "https://data.norge.no/nlod/en"
+    },
     "filter": {
         "geo": [
             [
