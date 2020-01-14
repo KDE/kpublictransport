@@ -20,6 +20,10 @@
 
 #include "abstractbackend.h"
 
+#include <vector>
+
+class KGraphQLRequest;
+
 namespace KPublicTransport {
 
 /** Access to OpenTripPlanner GraphQL based backends. */
@@ -28,6 +32,7 @@ class OpenTripPlannerBackend : public AbstractBackend
     Q_GADGET
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString apiVersion MEMBER m_apiVersion)
+    Q_PROPERTY(QJsonValue extraHttpHeaders WRITE setExtraHttpHeaders)
 
 public:
     OpenTripPlannerBackend();
@@ -40,11 +45,15 @@ public:
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    KGraphQLRequest graphQLRequest() const;
     QUrl graphQLEndpoint() const;
     QString graphQLPath(const QString &fileName) const;
 
+    void setExtraHttpHeaders(const QJsonValue &v);
+
     QString m_endpoint;
     QString m_apiVersion;
+    std::vector<std::pair<QByteArray, QByteArray>> m_extraHeaders;
 };
 
 }

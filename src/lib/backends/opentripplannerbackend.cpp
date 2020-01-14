@@ -32,6 +32,8 @@
 
 #include <QDebug>
 #include <QFile>
+#include <QJsonArray>
+#include <QNetworkRequest>
 #include <QUrl>
 
 using namespace KPublicTransport;
@@ -52,8 +54,7 @@ bool OpenTripPlannerBackend::needsLocationQuery(const Location &loc, AbstractBac
 
 bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    KGraphQLRequest gqlReq(graphQLEndpoint());
-
+    auto gqlReq = graphQLRequest();
     if (req.hasCoordinate()) {
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));
         gqlReq.setVariable(QStringLiteral("lat"), req.latitude());
@@ -86,7 +87,7 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
 
 bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    KGraphQLRequest gqlReq(graphQLEndpoint());
+    auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
     gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
@@ -112,7 +113,7 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
 
 bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    KGraphQLRequest gqlReq(graphQLEndpoint());
+    auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("journey.graphql")));
     gqlReq.setVariable(QStringLiteral("fromLat"), req.from().latitude());
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
@@ -139,6 +140,15 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     return true;
 }
 
+KGraphQLRequest OpenTripPlannerBackend::graphQLRequest() const
+{
+    KGraphQLRequest req(graphQLEndpoint());
+    for (const auto &header : m_extraHeaders) {
+        req.networkRequest().setRawHeader(header.first, header.second);
+    }
+    return req;
+}
+
 QUrl OpenTripPlannerBackend::graphQLEndpoint() const
 {
     if (m_apiVersion == QLatin1String("entur")) {
@@ -161,4 +171,19 @@ QString OpenTripPlannerBackend::graphQLPath(const QString &fileName) const
         }
     }
     return graphQLBasePath() + fileName;
+}
+
+void OpenTripPlannerBackend::setExtraHttpHeaders(const QJsonValue &v)
+{
+    const auto headers = v.toArray();
+    m_extraHeaders.reserve(headers.size());
+    for (const auto &header : headers) {
+        const auto headerObj = header.toObject();
+        const auto name = headerObj.value(QLatin1String("name")).toString().toUtf8();
+        const auto val = headerObj.value(QLatin1String("value")).toString().toUtf8();
+        if (name.isEmpty() || val.isEmpty()) {
+            continue;
+        }
+        m_extraHeaders.push_back(std::make_pair(name, val));
+    }
 }
