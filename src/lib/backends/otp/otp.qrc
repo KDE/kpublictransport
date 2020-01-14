@@ -11,5 +11,7 @@
 
       <file>entur/departure.graphql</file>
       <file>entur/journey.graphql</file>
+      <file>entur/stationByCoordinate.graphql</file>
+      <file>entur/stationByName.graphql</file>
     </qresource>
 </RCC>

@@ -1,0 +1,22 @@
+query stopsByCoordinate($lat: Float!, $lon: Float!) {
+  stopsByRadius: quaysByRadius(latitude: $lat, longitude: $lon, radius: 1000) {
+    edges {
+      node {
+        stop: quay {
+          gtfsId: id
+          name
+          lat: latitude
+          lon: longitude
+          timezone
+          parentStation: stopPlace {
+            gtfsId: id
+            name
+            lat: latitude
+            lon: longitude
+            timezone
+          }
+        }
+      }
+    }
+  }
+}
