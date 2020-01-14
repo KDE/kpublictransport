@@ -1,7 +1,23 @@
 {
     "KPlugin": {
         "Description": "Public transport in Norway.",
-        "Name": "Entur"
+        "Description[ca]": "Transport públic a Noruega.",
+        "Description[et]": "Norra ühistransport.",
+        "Description[nl]": "Openbaar vervoer in Noorwegen.",
+        "Description[pt]": "Transportes públicos na Noruega.",
+        "Description[pt_BR]": "Transporte público na Noruega.",
+        "Description[sv]": "Kollektivtrafik i Norge.",
+        "Description[uk]": "Громадський транспорт у Норвегії.",
+        "Description[x-test]": "xxPublic transport in Norway.xx",
+        "Name": "Entur",
+        "Name[ca]": "Entur",
+        "Name[et]": "Entur",
+        "Name[nl]": "Entur",
+        "Name[pt]": "Entur",
+        "Name[pt_BR]": "Entur",
+        "Name[sv]": "Entur",
+        "Name[uk]": "Entur",
+        "Name[x-test]": "xxEnturxx"
     },
     "filter": {
         "geo": [
