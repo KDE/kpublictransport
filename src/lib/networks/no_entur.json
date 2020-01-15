@@ -20,10 +20,10 @@
         "Name[x-test]": "xxEnturxx"
     },
     "attribution": {
-        "name": "Entur",
-        "url": "https://www.entur.org/",
         "license": "Norwegian Licence for Open Government Data (NLOD)",
-        "licenseUrl": "https://data.norge.no/nlod/en"
+        "licenseUrl": "https://data.norge.no/nlod/en",
+        "name": "Entur",
+        "url": "https://www.entur.org/"
     },
     "filter": {
         "geo": [
@@ -52,10 +52,12 @@
     "options": {
         "apiVersion": "entur",
         "endpoint": "https://api.entur.io/journey-planner/v2/graphql/",
-        "extraHttpHeaders": [{
-            "name": "ET-Client-Name",
-            "value": "KDE - KPublicTransport"
-        }]
+        "extraHttpHeaders": [
+            {
+                "name": "ET-Client-Name",
+                "value": "KDE - KPublicTransport"
+            }
+        ]
     },
     "type": "otp"
 }
