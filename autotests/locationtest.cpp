@@ -19,6 +19,8 @@
 
 #include <QTest>
 
+#include <cmath>
+
 #define s(x) QStringLiteral(x)
 
 using namespace KPublicTransport;
