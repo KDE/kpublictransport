@@ -15,28 +15,22 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_OPENTRIPPLANNERBACKEND_H
-#define KPUBLICTRANSPORT_OPENTRIPPLANNERBACKEND_H
+#ifndef KPUBLICTRANSPORT_OPENTRIPPLANNERRESTBACKEND_H
+#define KPUBLICTRANSPORT_OPENTRIPPLANNERRESTBACKEND_H
 
 #include "abstractbackend.h"
 
-#include <vector>
-
-class KGraphQLRequest;
-
 namespace KPublicTransport {
 
-/** Access to OpenTripPlanner GraphQL based backends. */
-class OpenTripPlannerBackend : public AbstractBackend
+/** Backend for OpenTripPlanner backends using the REST API. */
+class OpenTripPlannerRestBackend : public AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
-    Q_PROPERTY(QString apiVersion MEMBER m_apiVersion)
-    Q_PROPERTY(QJsonValue extraHttpHeaders WRITE setExtraHttpHeaders)
 
 public:
-    OpenTripPlannerBackend();
-    ~OpenTripPlannerBackend();
+    OpenTripPlannerRestBackend();
+    ~OpenTripPlannerRestBackend();
 
     Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
@@ -45,17 +39,11 @@ public:
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
-    KGraphQLRequest graphQLRequest() const;
-    QUrl graphQLEndpoint() const;
-    QString graphQLPath(const QString &fileName) const;
-
-    void setExtraHttpHeaders(const QJsonValue &v);
+    QString locationToQuery(const Location &loc) const;
 
     QString m_endpoint;
-    QString m_apiVersion;
-    std::vector<std::pair<QByteArray, QByteArray>> m_extraHeaders;
 };
 
 }
 
-#endif // KPUBLICTRANSPORT_OPENTRIPPLANNERBACKEND_H
+#endif // KPUBLICTRANSPORT_OPENTRIPPLANNERRESTBACKEND_H

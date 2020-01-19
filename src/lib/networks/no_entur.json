@@ -61,5 +61,5 @@
             }
         ]
     },
-    "type": "otp"
+    "type": "otp_graphql"
 }

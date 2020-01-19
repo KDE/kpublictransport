@@ -27,8 +27,9 @@ set(kpublictransport_srcs
     backends/hafasqueryparser.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
-    backends/opentripplannerbackend.cpp
+    backends/opentripplannergraphqlbackend.cpp
     backends/opentripplannerparser.cpp
+    backends/opentripplannerrestbackend.cpp
     backends/otp/otp.qrc
     backends/scopedxmlstreamreader.cpp
 

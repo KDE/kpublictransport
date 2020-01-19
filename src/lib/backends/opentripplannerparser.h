@@ -56,6 +56,7 @@ private:
     void parseAlerts(const QJsonArray &alertsArray) const;
     Line parseLine(const QJsonObject &obj) const;
     Route parseRoute(const QJsonObject &obj) const;
+    Route parseInlineRoute(const QJsonObject &obj) const;
     Departure parseDeparture(const QJsonObject &obj) const;
     void parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure> &deps) const;
     JourneySection parseJourneySection(const QJsonObject &obj) const;

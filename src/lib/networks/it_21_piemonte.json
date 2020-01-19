@@ -46,5 +46,5 @@
     "options": {
         "endpoint": "https://map.muoversinpiemonte.it/otp/routers/mip/"
     },
-    "type": "otp"
+    "type": "otp_rest"
 }

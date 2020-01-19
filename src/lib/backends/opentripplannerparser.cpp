@@ -168,6 +168,21 @@ Route OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
     return route;
 }
 
+Route OpenTripPlannerParser::parseInlineRoute(const QJsonObject &obj) const
+{
+    Line line;
+    line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("routeType")).toInt()));
+    line.setName(obj.value(QLatin1String("tripShortName")).toString());
+    line.setColor(parseColor(obj.value(QLatin1String("routeColor"))));
+    line.setTextColor(parseColor(obj.value(QLatin1String("routeTextColor"))));
+
+    Route route;
+    route.setDirection(obj.value(QLatin1String("headsign")).toString());
+    route.setLine(line);
+
+    return route;
+}
+
 static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &value)
 {
     if (value.isDouble()) { // encoded as seconds offset to baseTime
@@ -263,9 +278,14 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         if (!trip.isEmpty()) {
             section.setRoute(parseRoute(trip));
         } else {
-            Route route;
-            route.setLine(parseLine(obj.value(QLatin1String("line")).toObject()));
-            section.setRoute(route);
+            const auto line = obj.value(QLatin1String("line")).toObject();
+            if (!line.isEmpty()) {
+                Route route;
+                route.setLine(parseLine(obj.value(QLatin1String("line")).toObject()));
+                section.setRoute(route);
+            } else {
+                section.setRoute(parseInlineRoute(obj));
+            }
         }
     } else {
         section.setMode(JourneySection::Walking);

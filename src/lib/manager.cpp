@@ -40,7 +40,8 @@
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
 #include "backends/navitiabackend.h"
-#include "backends/opentripplannerbackend.h"
+#include "backends/opentripplannergraphqlbackend.h"
+#include "backends/opentripplannerrestbackend.h"
 
 #include <QDirIterator>
 #include <QJsonArray>
@@ -184,8 +185,11 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
     if (type == QLatin1String("navitia")) {
         return loadNetwork<NavitiaBackend>(obj);
     }
-    if (type == QLatin1String("otp")) {
-        return loadNetwork<OpenTripPlannerBackend>(obj);
+    if (type == QLatin1String("otp_graphql")) {
+        return loadNetwork<OpenTripPlannerGraphQLBackend>(obj);
+    }
+    if (type == QLatin1String("otp_rest")) {
+        return loadNetwork<OpenTripPlannerRestBackend>(obj);
     }
     if (type == QLatin1String("hafas_mgate")) {
         return loadNetwork<HafasMgateBackend>(obj);

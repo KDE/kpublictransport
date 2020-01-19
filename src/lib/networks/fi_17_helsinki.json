@@ -51,5 +51,5 @@
     "options": {
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/"
     },
-    "type": "otp"
+    "type": "otp_graphql"
 }

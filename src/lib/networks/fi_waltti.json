@@ -46,5 +46,5 @@
     "options": {
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/"
     },
-    "type": "otp"
+    "type": "otp_graphql"
 }

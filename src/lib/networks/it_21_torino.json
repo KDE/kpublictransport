@@ -47,5 +47,5 @@
         "apiVersion": "20170808",
         "endpoint": "https://mapi.5t.torino.it/routing/v1/routers/mat/"
     },
-    "type": "otp"
+    "type": "otp_graphql"
 }

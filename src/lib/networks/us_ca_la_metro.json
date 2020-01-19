@@ -46,5 +46,5 @@
     "options": {
         "endpoint": "https://otp.metroservices.io/otp/routers/default/"
     },
-    "type": "otp"
+    "type": "otp_rest"
 }

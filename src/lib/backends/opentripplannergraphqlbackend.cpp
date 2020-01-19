@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "opentripplannerbackend.h"
+#include "opentripplannergraphqlbackend.h"
 #include "opentripplannerparser.h"
 
 #include <KPublicTransport/Departure>
@@ -38,21 +38,21 @@
 
 using namespace KPublicTransport;
 
-OpenTripPlannerBackend::OpenTripPlannerBackend() = default;
-OpenTripPlannerBackend::~OpenTripPlannerBackend() = default;
+OpenTripPlannerGraphQLBackend::OpenTripPlannerGraphQLBackend() = default;
+OpenTripPlannerGraphQLBackend::~OpenTripPlannerGraphQLBackend() = default;
 
-AbstractBackend::Capabilities OpenTripPlannerBackend::capabilities() const
+AbstractBackend::Capabilities OpenTripPlannerGraphQLBackend::capabilities() const
 {
     return m_endpoint.startsWith(QLatin1String("https://")) ? Secure : NoCapability;
 }
 
-bool OpenTripPlannerBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
+bool OpenTripPlannerGraphQLBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
     return !loc.hasCoordinate();
 }
 
-bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     auto gqlReq = graphQLRequest();
     if (req.hasCoordinate()) {
@@ -85,7 +85,7 @@ bool OpenTripPlannerBackend::queryLocation(const LocationRequest &req, LocationR
     return true;
 }
 
-bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerGraphQLBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
@@ -111,7 +111,7 @@ bool OpenTripPlannerBackend::queryDeparture(const DepartureRequest &req, Departu
     return true;
 }
 
-bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("journey.graphql")));
@@ -140,7 +140,7 @@ bool OpenTripPlannerBackend::queryJourney(const JourneyRequest &req, JourneyRepl
     return true;
 }
 
-KGraphQLRequest OpenTripPlannerBackend::graphQLRequest() const
+KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
 {
     KGraphQLRequest req(graphQLEndpoint());
     for (const auto &header : m_extraHeaders) {
@@ -149,7 +149,7 @@ KGraphQLRequest OpenTripPlannerBackend::graphQLRequest() const
     return req;
 }
 
-QUrl OpenTripPlannerBackend::graphQLEndpoint() const
+QUrl OpenTripPlannerGraphQLBackend::graphQLEndpoint() const
 {
     if (m_apiVersion == QLatin1String("entur")) {
         return QUrl(m_endpoint);
@@ -162,7 +162,7 @@ static QString graphQLBasePath()
     return QStringLiteral(":/org.kde.kpublictransport/otp/");
 }
 
-QString OpenTripPlannerBackend::graphQLPath(const QString &fileName) const
+QString OpenTripPlannerGraphQLBackend::graphQLPath(const QString &fileName) const
 {
     if (!m_apiVersion.isEmpty()) {
         const QString versionedPath = graphQLBasePath() + m_apiVersion + QLatin1Char('/') + fileName;
@@ -173,7 +173,7 @@ QString OpenTripPlannerBackend::graphQLPath(const QString &fileName) const
     return graphQLBasePath() + fileName;
 }
 
-void OpenTripPlannerBackend::setExtraHttpHeaders(const QJsonValue &v)
+void OpenTripPlannerGraphQLBackend::setExtraHttpHeaders(const QJsonValue &v)
 {
     const auto headers = v.toArray();
     m_extraHeaders.reserve(headers.size());
