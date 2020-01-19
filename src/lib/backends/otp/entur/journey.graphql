@@ -30,7 +30,7 @@ query journeys(
           stop: quay {
             platformCode: publicCode
             description
-            gtfsId: id
+            id
             timezone
           }
         }
@@ -41,7 +41,7 @@ query journeys(
           stop: quay {
             platformCode: publicCode
             description
-            gtfsId: id
+            id
             timezone
           }
         }

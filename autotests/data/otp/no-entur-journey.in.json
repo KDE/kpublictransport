@@ -25,7 +25,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning Majorstuen",
-                  "gtfsId": "NSR:Quay:11151",
+                  "id": "NSR:Quay:11151",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -48,7 +48,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning Majorstuen",
-                  "gtfsId": "NSR:Quay:11151",
+                  "id": "NSR:Quay:11151",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -59,7 +59,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning øst",
-                  "gtfsId": "NSR:Quay:7333",
+                  "id": "NSR:Quay:7333",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -92,7 +92,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning øst",
-                  "gtfsId": "NSR:Quay:7333",
+                  "id": "NSR:Quay:7333",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -103,7 +103,7 @@
                 "stop": {
                   "platformCode": "3",
                   "description": "tog retning Oslo S",
-                  "gtfsId": "NSR:Quay:477",
+                  "id": "NSR:Quay:477",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -126,7 +126,7 @@
                 "stop": {
                   "platformCode": "3",
                   "description": "tog retning Oslo S",
-                  "gtfsId": "NSR:Quay:477",
+                  "id": "NSR:Quay:477",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -137,7 +137,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "",
-                  "gtfsId": "NSR:Quay:451",
+                  "id": "NSR:Quay:451",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -170,7 +170,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "",
-                  "gtfsId": "NSR:Quay:451",
+                  "id": "NSR:Quay:451",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -213,7 +213,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning Majorstuen",
-                  "gtfsId": "NSR:Quay:11151",
+                  "id": "NSR:Quay:11151",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -236,7 +236,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning Majorstuen",
-                  "gtfsId": "NSR:Quay:11151",
+                  "id": "NSR:Quay:11151",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -247,7 +247,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning øst",
-                  "gtfsId": "NSR:Quay:7333",
+                  "id": "NSR:Quay:7333",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -303,7 +303,7 @@
                 "stop": {
                   "platformCode": "1",
                   "description": "Retning øst",
-                  "gtfsId": "NSR:Quay:7333",
+                  "id": "NSR:Quay:7333",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -314,7 +314,7 @@
                 "stop": {
                   "platformCode": "3",
                   "description": "tog retning Oslo S",
-                  "gtfsId": "NSR:Quay:477",
+                  "id": "NSR:Quay:477",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -337,7 +337,7 @@
                 "stop": {
                   "platformCode": "3",
                   "description": "tog retning Oslo S",
-                  "gtfsId": "NSR:Quay:477",
+                  "id": "NSR:Quay:477",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -348,7 +348,7 @@
                 "stop": {
                   "platformCode": "2",
                   "description": "",
-                  "gtfsId": "NSR:Quay:447",
+                  "id": "NSR:Quay:447",
                   "timezone": "Europe/Oslo"
                 }
               },
@@ -381,7 +381,7 @@
                 "stop": {
                   "platformCode": "2",
                   "description": "",
-                  "gtfsId": "NSR:Quay:447",
+                  "id": "NSR:Quay:447",
                   "timezone": "Europe/Oslo"
                 }
               },

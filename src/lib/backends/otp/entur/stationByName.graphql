@@ -1,12 +1,12 @@
 query stationsByName($name: String!) {
   stations: quays(name: $name) {
-    gtfsId: id
+    id
     name
     lat: latitude
     lon: longitude
     timezone
     parentStation: stopPlace {
-      gtfsId: id
+      id
       lat: latitude
       lon: longitude
       timezone

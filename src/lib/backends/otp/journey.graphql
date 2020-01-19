@@ -30,7 +30,7 @@ query journeys(
                     lat
                     lon
                     stop {
-                        gtfsId
+                        id: gtfsId
                         platformCode
                         timezone
                     }
@@ -40,7 +40,7 @@ query journeys(
                     lat
                     lon
                     stop {
-                        gtfsId
+                        id: gtfsId
                         platformCode
                         timezone
                     }

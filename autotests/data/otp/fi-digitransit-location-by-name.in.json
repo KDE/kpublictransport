@@ -1,7 +1,7 @@
 {
   "stations": [
     {
-      "gtfsId": "HSL:2000001",
+      "id": "HSL:2000001",
       "lat": 60.219235,
       "lon": 24.81329,
       "name": "Leppävaara",
@@ -9,7 +9,7 @@
       "timezone": null
     },
     {
-      "gtfsId": "HSL:2000202",
+      "id": "HSL:2000202",
       "lat": 60.219424,
       "lon": 24.814576,
       "name": "Leppävaaran asema",

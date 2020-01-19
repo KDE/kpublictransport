@@ -3,13 +3,13 @@ query stopsByCoordinate($lat: Float!, $lon: Float!) {
     edges {
       node {
         stop {
-          gtfsId
+          id: gtfsId
           name
           lat
           lon
           timezone
           parentStation {
-            gtfsId
+            id: gtfsId
             name
             lat
             lon

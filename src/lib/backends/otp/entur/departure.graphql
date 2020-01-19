@@ -5,7 +5,7 @@ query departures($lat: Float!, $lon: Float!, $startDateTime: DateTime!) {
         place {
           ... on Quay {
             stop: stopPlace {
-              gtffId: id
+              id
               name
               lat: latitude
               lon: longitude

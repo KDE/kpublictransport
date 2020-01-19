@@ -5,13 +5,13 @@ query departures($lat: Float!, $lon: Float!, $startTime: Long!) {
         place {
           ...on DepartureRow {
             stop {
-              gtfsId
+              id: gtfsId
               name
               lat
               lon
               timezone
               parentStation {
-                gtfsId
+                id: gtfsId
                 name
                 lat
                 lon

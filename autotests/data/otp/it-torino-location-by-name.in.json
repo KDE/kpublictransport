@@ -1,7 +1,7 @@
 {
     "stations": [
       {
-        "gtfsId": "fs:ITRP-ST0012729010",
+        "id": "fs:ITRP-ST0012729010",
         "name": "Stazione TORINO PORTA NUOVA",
         "lat": 45.0609,
         "lon": 7.67752,
@@ -14,7 +14,7 @@
         "timezone": null
       },
       {
-        "gtfsId": "gtt:39",
+        "id": "gtt:39",
         "name": "PORTA NUOVA",
         "lat": 45.06255,
         "lon": 7.6791,

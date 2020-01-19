@@ -54,7 +54,7 @@ Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
         loc.setTimeZone(QTimeZone(tzId.toUtf8()));
     }
 
-    const auto id = obj.value(QLatin1String("gtfsId")).toString();
+    const auto id = obj.value(QLatin1String("id")).toString();
     if (!id.isEmpty()) {
         loc.setIdentifier(m_identifierType, id);
     }
@@ -88,6 +88,16 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByName(const QJsonObj
     locs.reserve(stationArray.size());
     for (const auto &station : stationArray) {
         locs.push_back(parseLocation(station.toObject()));
+    }
+    return locs;
+}
+
+std::vector<Location> OpenTripPlannerParser::parseLocationsArray(const QJsonArray &array) const
+{
+    std::vector<Location> locs;
+    locs.reserve(array.size());
+    for (const auto &l : array) {
+        locs.push_back(parseLocation(l.toObject()));
     }
     return locs;
 }
@@ -240,6 +250,14 @@ std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject 
 
     return deps;
 }
+
+std::vector<Departure> OpenTripPlannerParser::parseDeparturesArray(const QJsonArray &array) const
+{
+    std::vector<Departure> deps;
+    // TODO
+    return deps;
+}
+
 
 static QDateTime parseJourneyDateTime(const QJsonValue &val)
 {

@@ -89,4 +89,12 @@ ListModel {
     ListElement { label: "Oslo Nydalen"; lat: 59.94957; lon: 10.76444 }
     ListElement { label: "Oslo Lufthavn"; lat: 60.19318; lon: 11.09699 }
     ListElement { label: "Bergen"; lat: 60.39026; lon: 5.33356 }
+
+    ListElement { label: "Los Angeles Union Station"; lat: 34.05587; lon: -118.23370 }
+    ListElement { label: "Los Angeles International Airport (LAX)"; lat: 33.94360; lon: -118.40676 }
+    ListElement { label: "San Francisco International Airport (SFO)"; lat: 37.61622; lon: -122.39180 }
+    ListElement { label: "San Francisco 4th & King Street"; lat: 37.77583; lon: -122.39545 }
+    ListElement { label: "San Francisco Powell Street"; lat: 37.78441; lon: -122.40767 }
+    ListElement { label: "Atlanta Airport Station"; lat: 33.64089; lon: -84.44674 }
+    ListElement { label: "Atlanta Five Points"; lat: 33.75401; lon: -84.39170 }
 }

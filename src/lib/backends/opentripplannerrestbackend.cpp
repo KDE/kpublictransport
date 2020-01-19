@@ -29,6 +29,7 @@
 #include <KPublicTransport/LocationRequest>
 
 #include <QDebug>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -48,19 +49,73 @@ AbstractBackend::Capabilities OpenTripPlannerRestBackend::capabilities() const
 bool OpenTripPlannerRestBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
-    return !loc.hasCoordinate();
+    switch (type) {
+        case AbstractBackend::QueryType::Journey:
+            return !loc.hasCoordinate() && loc.identifier(backendId()).isEmpty();
+        case AbstractBackend::QueryType::Departure:
+            return loc.identifier(backendId()).isEmpty();
+    }
+    return false;
 }
 
 bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO
-    return false;
+    if (!req.hasCoordinate()) {
+        return false;
+    }
+
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("lat"), QString::number(req.latitude()));
+    query.addQueryItem(QStringLiteral("lon"), QString::number(req.longitude()));
+    query.addQueryItem(QStringLiteral("radius"), QStringLiteral("500")); //  TODO
+
+    QUrl url(m_endpoint + QLatin1String("index/stops"));
+    url.setQuery(query);
+
+    QNetworkRequest netReq(url);
+    logRequest(req, netReq);
+    auto netReply = nam->get(netReq);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            return;
+        }
+        OpenTripPlannerParser p(backendId());
+        addResult(reply, p.parseLocationsArray(QJsonDocument::fromJson(data).array()));
+    });
+
+    return true;
 }
 
 bool OpenTripPlannerRestBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO
-    return false;
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("date"), QString::number(req.dateTime().toSecsSinceEpoch()));
+    query.addQueryItem(QStringLiteral("numberOfDepartures"), QStringLiteral("12"));
+    query.addQueryItem(QStringLiteral("omitNonPickups"), req.mode() == DepartureRequest::QueryDeparture ? QStringLiteral("true") : QStringLiteral("false"));
+
+    QUrl url(m_endpoint + QLatin1String("index/stops/") + req.stop().identifier(backendId()) + QLatin1String("/stoptimes"));
+    url.setQuery(query);
+
+    QNetworkRequest netReq(url);
+    logRequest(req, netReq);
+    auto netReply = nam->get(netReq);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            return;
+        }
+        OpenTripPlannerParser p(backendId());
+        addResult(reply, this, p.parseDeparturesArray(QJsonDocument::fromJson(data).array()));
+    });
+
+    return true;
 }
 
 bool OpenTripPlannerRestBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const

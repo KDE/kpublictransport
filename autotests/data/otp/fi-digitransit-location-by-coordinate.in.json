@@ -4,13 +4,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111552",
+              "id": "HSL:2111552",
               "name": "Leppävaara",
               "lat": 60.219477,
               "lon": 24.813224,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000202",
+                "id": "HSL:2000202",
                 "name": "Leppävaaran asema",
                 "lat": 60.219424,
                 "lon": 24.814576,
@@ -22,13 +22,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111502",
+              "id": "HSL:2111502",
               "name": "Leppävaara",
               "lat": 60.219486,
               "lon": 24.813242,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000202",
+                "id": "HSL:2000202",
                 "name": "Leppävaaran asema",
                 "lat": 60.219424,
                 "lon": 24.814576,
@@ -40,13 +40,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111204",
+              "id": "HSL:2111204",
               "name": "Leppävaaran keskus",
               "lat": 60.21989,
               "lon": 24.81219,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000001",
+                "id": "HSL:2000001",
                 "name": "Leppävaara",
                 "lat": 60.219235,
                 "lon": 24.81329,
@@ -58,13 +58,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111208",
+              "id": "HSL:2111208",
               "name": "Leppävaaran keskus",
               "lat": 60.21982,
               "lon": 24.81298,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000001",
+                "id": "HSL:2000001",
                 "name": "Leppävaara",
                 "lat": 60.219235,
                 "lon": 24.81329,
@@ -76,13 +76,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111222",
+              "id": "HSL:2111222",
               "name": "Leppävaaran asema",
               "lat": 60.219247,
               "lon": 24.812767,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000001",
+                "id": "HSL:2000001",
                 "name": "Leppävaara",
                 "lat": 60.219235,
                 "lon": 24.81329,
@@ -94,7 +94,7 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111257",
+              "id": "HSL:2111257",
               "name": "Konstaapelinkatu",
               "lat": 60.221551,
               "lon": 24.814233,
@@ -106,13 +106,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111227",
+              "id": "HSL:2111227",
               "name": "Leppävaaran asema",
               "lat": 60.21927,
               "lon": 24.8107,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000001",
+                "id": "HSL:2000001",
                 "name": "Leppävaara",
                 "lat": 60.219235,
                 "lon": 24.81329,
@@ -124,13 +124,13 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111235",
+              "id": "HSL:2111235",
               "name": "Leppävaaran asema",
               "lat": 60.21893,
               "lon": 24.81164,
               "timezone": null,
               "parentStation": {
-                "gtfsId": "HSL:2000001",
+                "id": "HSL:2000001",
                 "name": "Leppävaara",
                 "lat": 60.219235,
                 "lon": 24.81329,
@@ -142,7 +142,7 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111228",
+              "id": "HSL:2111228",
               "name": "Läkkisepänkuja",
               "lat": 60.22132,
               "lon": 24.81134,
@@ -154,7 +154,7 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111258",
+              "id": "HSL:2111258",
               "name": "Konstaapelinkatu",
               "lat": 60.221708,
               "lon": 24.814133,
@@ -166,7 +166,7 @@
         {
           "node": {
             "stop": {
-              "gtfsId": "HSL:2111229",
+              "id": "HSL:2111229",
               "name": "Läkkisepänkuja",
               "lat": 60.22095,
               "lon": 24.80986,

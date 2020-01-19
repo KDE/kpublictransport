@@ -23,7 +23,7 @@
                 "lat": 60.219265,
                 "lon": 24.814299,
                 "stop": {
-                  "gtfsId": "MATKA:4_LPV",
+                  "id": "MATKA:4_LPV",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -44,7 +44,7 @@
                 "lat": 60.219265,
                 "lon": 24.814299,
                 "stop": {
-                  "gtfsId": "MATKA:4_LPV",
+                  "id": "MATKA:4_LPV",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -54,7 +54,7 @@
                 "lat": 60.19855,
                 "lon": 24.93345,
                 "stop": {
-                  "gtfsId": "MATKA:4_PSL",
+                  "id": "MATKA:4_PSL",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -86,7 +86,7 @@
                 "lat": 60.19855,
                 "lon": 24.93345,
                 "stop": {
-                  "gtfsId": "MATKA:4_PSL",
+                  "id": "MATKA:4_PSL",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -96,7 +96,7 @@
                 "lat": 60.292201,
                 "lon": 25.043618,
                 "stop": {
-                  "gtfsId": "MATKA:4_TKL",
+                  "id": "MATKA:4_TKL",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -128,7 +128,7 @@
                 "lat": 60.292201,
                 "lon": 25.043618,
                 "stop": {
-                  "gtfsId": "MATKA:4_TKL",
+                  "id": "MATKA:4_TKL",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -138,7 +138,7 @@
                 "lat": 61.498776,
                 "lon": 23.773019,
                 "stop": {
-                  "gtfsId": "MATKA:4_TPE",
+                  "id": "MATKA:4_TPE",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -170,7 +170,7 @@
                 "lat": 61.498776,
                 "lon": 23.773019,
                 "stop": {
-                  "gtfsId": "MATKA:4_TPE",
+                  "id": "MATKA:4_TPE",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -207,7 +207,7 @@
                 "lat": 60.219477,
                 "lon": 24.813224,
                 "stop": {
-                  "gtfsId": "HSL:2111552",
+                  "id": "HSL:2111552",
                   "platformCode": "2",
                   "timezone": null
                 }
@@ -228,7 +228,7 @@
                 "lat": 60.219477,
                 "lon": 24.813224,
                 "stop": {
-                  "gtfsId": "HSL:2111552",
+                  "id": "HSL:2111552",
                   "platformCode": "2",
                   "timezone": null
                 }
@@ -238,7 +238,7 @@
                 "lat": 60.199474,
                 "lon": 24.932652,
                 "stop": {
-                  "gtfsId": "HSL:1174554",
+                  "id": "HSL:1174554",
                   "platformCode": "8",
                   "timezone": null
                 }
@@ -270,7 +270,7 @@
                 "lat": 60.199474,
                 "lon": 24.932652,
                 "stop": {
-                  "gtfsId": "HSL:1174554",
+                  "id": "HSL:1174554",
                   "platformCode": "8",
                   "timezone": null
                 }
@@ -280,7 +280,7 @@
                 "lat": 60.19855,
                 "lon": 24.93345,
                 "stop": {
-                  "gtfsId": "MATKA:4_PSL",
+                  "id": "MATKA:4_PSL",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -301,7 +301,7 @@
                 "lat": 60.19855,
                 "lon": 24.93345,
                 "stop": {
-                  "gtfsId": "MATKA:4_PSL",
+                  "id": "MATKA:4_PSL",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -311,7 +311,7 @@
                 "lat": 61.498776,
                 "lon": 23.773019,
                 "stop": {
-                  "gtfsId": "MATKA:4_TPE",
+                  "id": "MATKA:4_TPE",
                   "platformCode": null,
                   "timezone": null
                 }
@@ -343,7 +343,7 @@
                 "lat": 61.498776,
                 "lon": 23.773019,
                 "stop": {
-                  "gtfsId": "MATKA:4_TPE",
+                  "id": "MATKA:4_TPE",
                   "platformCode": null,
                   "timezone": null
                 }

@@ -5,7 +5,7 @@
             "node": {
             "place": {
                 "stop": {
-                "gtfsId": "MATKA:4_TPE",
+                "id": "MATKA:4_TPE",
                 "name": "TAMPERE",
                 "lat": 61.498776,
                 "lon": 23.773019,
@@ -72,7 +72,7 @@
             "node": {
             "place": {
                 "stop": {
-                "gtfsId": "MATKA:4_TPE",
+                "id": "MATKA:4_TPE",
                 "name": "TAMPERE",
                 "lat": 61.498776,
                 "lon": 23.773019,
@@ -109,7 +109,7 @@
             "node": {
             "place": {
                 "stop": {
-                "gtfsId": "MATKA:4_TPE",
+                "id": "MATKA:4_TPE",
                 "name": "TAMPERE",
                 "lat": 61.498776,
                 "lon": 23.773019,
