@@ -193,6 +193,23 @@ Route OpenTripPlannerParser::parseInlineRoute(const QJsonObject &obj) const
     return route;
 }
 
+Route OpenTripPlannerParser::detectAndParseRoute(const QJsonObject &obj) const
+{
+    const auto trip = obj.value(QLatin1String("trip")).toObject();
+    if (!trip.isEmpty()) {
+        return parseRoute(trip);
+    }
+
+    const auto line = obj.value(QLatin1String("line")).toObject();
+    if (!line.isEmpty()) {
+        Route route;
+        route.setLine(parseLine(obj.value(QLatin1String("line")).toObject()));
+        return route;
+    }
+
+    return parseInlineRoute(obj);
+}
+
 static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &value)
 {
     if (value.isDouble()) { // encoded as seconds offset to baseTime
@@ -212,16 +229,7 @@ Departure OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
         dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("realtimeDeparture"))));
     }
     dep.setScheduledPlatform(obj.value(QLatin1String("stop")).toObject().value(QLatin1String("platformCode")).toString());
-
-    const auto trip = obj.value(QLatin1String("trip")).toObject();
-    if (!trip.isEmpty()) {
-        dep.setRoute(parseRoute(trip));
-    } else {
-        Route route;
-        route.setLine(parseLine(obj.value(QLatin1String("line")).toObject()));
-        dep.setRoute(route);
-    }
-
+    dep.setRoute(detectAndParseRoute(obj));
     dep.addNotes(m_alerts);
     m_alerts.clear();
 
@@ -254,7 +262,13 @@ std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject 
 std::vector<Departure> OpenTripPlannerParser::parseDeparturesArray(const QJsonArray &array) const
 {
     std::vector<Departure> deps;
-    // TODO
+    for (const auto &pattern : array) {
+        const auto obj = pattern.toObject();
+        const auto times = obj.value(QLatin1String("times")).toArray();
+        for (const auto &time : times) {
+            deps.push_back(parseDeparture(time.toObject()));
+        }
+    }
     return deps;
 }
 
@@ -291,20 +305,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
 
     if (obj.value(QLatin1String("transitLeg")).toBool()) {
         section.setMode(JourneySection::PublicTransport);
-
-        const auto trip = obj.value(QLatin1String("trip")).toObject();
-        if (!trip.isEmpty()) {
-            section.setRoute(parseRoute(trip));
-        } else {
-            const auto line = obj.value(QLatin1String("line")).toObject();
-            if (!line.isEmpty()) {
-                Route route;
-                route.setLine(parseLine(obj.value(QLatin1String("line")).toObject()));
-                section.setRoute(route);
-            } else {
-                section.setRoute(parseInlineRoute(obj));
-            }
-        }
+        section.setRoute(detectAndParseRoute(obj));
     } else {
         section.setMode(JourneySection::Walking);
     }

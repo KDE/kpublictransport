@@ -103,7 +103,7 @@ bool OpenTripPlannerRestBackend::queryDeparture(const DepartureRequest &req, Dep
     QNetworkRequest netReq(url);
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, req, reply] {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
@@ -112,7 +112,11 @@ bool OpenTripPlannerRestBackend::queryDeparture(const DepartureRequest &req, Dep
             return;
         }
         OpenTripPlannerParser p(backendId());
-        addResult(reply, this, p.parseDeparturesArray(QJsonDocument::fromJson(data).array()));
+        auto res = p.parseDeparturesArray(QJsonDocument::fromJson(data).array());
+        for (auto &dep : res) {
+            dep.setStopPoint(req.stop());
+        }
+        addResult(reply, this, std::move(res));
     });
 
     return true;
