@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in and around Portland, Oregon, US.",
+        "Name": "TriMet"
+    },
+    "filter": {
+        "geo": [
+            [
+                -123.799993,
+                45.959999
+            ],
+            [
+                -121.500002,
+                45.959999
+            ],
+            [
+                -121.500002,
+                44.680003
+            ],
+            [
+                -123.799993,
+                44.680003
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://maps.trimet.org/otp_mod/"
+    },
+    "type": "otp_rest"
+}

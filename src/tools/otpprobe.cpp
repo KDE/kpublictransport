@@ -80,7 +80,7 @@ int main(int argc, char **argv)
             continue;
         }
         const auto obj = doc.object();
-        if (obj.value(QLatin1String("type")).toString().startsWith(QLatin1String("otp_"))) {
+        if (!obj.value(QLatin1String("type")).toString().startsWith(QLatin1String("otp_"))) {
             continue;
         }
 

@@ -57,5 +57,7 @@
         <file>us_ca_la_metro.json</file>
         <file>us_ga_marta.json</file>
         <file>us_il_chicago.json</file>
+        <file>us_ma_mbta.json</file>
+        <file>us_or_trimet.json</file>
     </qresource>
 </RCC>

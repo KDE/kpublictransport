@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in and around Boston, Massachusetts, US.",
+        "Name": "Massachusetts Bay Transportation Authority (MBTA)"
+    },
+    "filter": {
+        "geo": [
+            [
+                -73.5239717,
+                45.0058395
+            ],
+            [
+                -69.9291865,
+                45.0058395
+            ],
+            [
+                -69.9291865,
+                41.147626
+            ],
+            [
+                -73.5239717,
+                41.147626
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://prod.otp.mbtace.com/otp/routers/mbta/"
+    },
+    "type": "otp_rest"
+}
