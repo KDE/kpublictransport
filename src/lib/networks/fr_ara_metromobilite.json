@@ -1,0 +1,31 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in and around Grenoble, France.",
+        "Name": "Metromobilite"
+    },
+    "filter": {
+        "geo": [
+            [
+                4.70376,
+                46.39789
+            ],
+            [
+                6.57747,
+                46.39789
+            ],
+            [
+                6.57747,
+                43.94188
+            ],
+            [
+                4.70376,
+                43.94188
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://www.metromobilite.fr/otp/routers/default/"
+    },
+    "timezone": "Europe/Paris",
+    "type": "otp_rest"
+}
