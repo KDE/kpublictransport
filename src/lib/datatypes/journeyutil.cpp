@@ -47,10 +47,19 @@ bool JourneyUtil::firstTransportDepartureEqual(const Journey &lhs, const Journey
 
 static QDateTime applyTimeZone(QDateTime dt, const QTimeZone &tz)
 {
-    if (!dt.isValid() || dt.timeSpec() != Qt::LocalTime) {
+    if (!dt.isValid()) {
         return dt;
     }
-    dt.setTimeZone(tz);
+    switch (dt.timeSpec()) {
+        case Qt::LocalTime:
+            dt.setTimeZone(tz);
+            break;
+        case Qt::UTC:
+            dt = dt.toTimeZone(tz);
+            break;
+        default:
+            break;
+    }
     return dt;
 }
 

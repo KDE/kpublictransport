@@ -213,7 +213,10 @@ Route OpenTripPlannerParser::detectAndParseRoute(const QJsonObject &obj) const
 static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &value)
 {
     if (value.isDouble()) { // encoded as seconds offset to baseTime
-        return QDateTime::fromSecsSinceEpoch(baseTime + value.toDouble());
+        // UNIX timestamp of midnight in local timezone + UNIX timestamp of local time
+        auto dt = QDateTime::fromSecsSinceEpoch(baseTime + value.toDouble());
+        dt = dt.toTimeSpec(Qt::UTC);
+        return dt;
     }
     return QDateTime::fromString(value.toString(), Qt::ISODate);
 }
@@ -276,7 +279,10 @@ std::vector<Departure> OpenTripPlannerParser::parseDeparturesArray(const QJsonAr
 static QDateTime parseJourneyDateTime(const QJsonValue &val)
 {
     if (val.isDouble()) {
-        return QDateTime::fromMSecsSinceEpoch(val.toDouble()); // ### sic! double to get 64 bit precision...
+        // timestamp, as UTC value
+        auto dt = QDateTime::fromMSecsSinceEpoch(val.toDouble()); // ### sic! double to get 64 bit precision...
+        dt = dt.toTimeSpec(Qt::UTC);
+        return dt;
     }
     if (val.isString()) {
         return QDateTime::fromString(val.toString(), Qt::ISODate);

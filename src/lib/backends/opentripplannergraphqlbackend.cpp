@@ -91,8 +91,12 @@ bool OpenTripPlannerGraphQLBackend::queryDeparture(const DepartureRequest &req, 
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
     gqlReq.setVariable(QStringLiteral("lon"), req.stop().longitude());
-    gqlReq.setVariable(QStringLiteral("startTime"), req.dateTime().toSecsSinceEpoch()); // TODO timezone conversion?
-    gqlReq.setVariable(QStringLiteral("startDateTime"), req.dateTime().toString(Qt::ISODate));
+    auto dt = req.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+    gqlReq.setVariable(QStringLiteral("startTime"), dt.toSecsSinceEpoch());
+    gqlReq.setVariable(QStringLiteral("startDateTime"), dt.toString(Qt::ISODate));
     // TODO arrival/departure selection?
 
     if (isLoggingEnabled()) {
@@ -119,9 +123,13 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
     gqlReq.setVariable(QStringLiteral("toLat"), req.to().latitude());
     gqlReq.setVariable(QStringLiteral("toLon"), req.to().longitude());
-    gqlReq.setVariable(QStringLiteral("date"), req.dateTime().date().toString(QStringLiteral("yyyy-MM-dd")));
-    gqlReq.setVariable(QStringLiteral("time"), req.dateTime().time().toString(QStringLiteral("hh:mm:ss"))); // TODO timezone conversion?
-    gqlReq.setVariable(QStringLiteral("dateTime"), req.dateTime().toString(Qt::ISODate));
+    auto dt = req.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+    gqlReq.setVariable(QStringLiteral("date"), dt.toString(QStringLiteral("yyyy-MM-dd")));
+    gqlReq.setVariable(QStringLiteral("time"), dt.toString(QStringLiteral("hh:mm:ss")));
+    gqlReq.setVariable(QStringLiteral("dateTime"), dt.toString(Qt::ISODate));
     gqlReq.setVariable(QStringLiteral("arriveBy"), req.dateTimeMode() == JourneyRequest::Arrival);
 
     if (isLoggingEnabled()) {

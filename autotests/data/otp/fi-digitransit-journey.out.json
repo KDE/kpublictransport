@@ -10,8 +10,8 @@
                     "name": "Origin"
                 },
                 "mode": "Walking",
-                "scheduledArrivalTime": "2020-01-09T17:14:14",
-                "scheduledDepartureTime": "2020-01-09T17:13:19",
+                "scheduledArrivalTime": "2020-01-09T17:14:14Z",
+                "scheduledDepartureTime": "2020-01-09T17:13:19Z",
                 "to": {
                     "latitude": 60.21926498413086,
                     "longitude": 24.814298629760742,
@@ -21,8 +21,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 6973,
-                "expectedArrivalTime": "2020-01-09T17:18:46",
-                "expectedDepartureTime": "2020-01-09T17:14:28",
+                "expectedArrivalTime": "2020-01-09T17:18:46Z",
+                "expectedDepartureTime": "2020-01-09T17:14:28Z",
                 "from": {
                     "latitude": 60.21926498413086,
                     "longitude": 24.814298629760742,
@@ -36,8 +36,8 @@
                         "name": "986"
                     }
                 },
-                "scheduledArrivalTime": "2020-01-09T17:19:23",
-                "scheduledDepartureTime": "2020-01-09T17:14:14",
+                "scheduledArrivalTime": "2020-01-09T17:19:23Z",
+                "scheduledDepartureTime": "2020-01-09T17:14:14Z",
                 "to": {
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
@@ -47,8 +47,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 12058,
-                "expectedArrivalTime": "2020-01-09T17:46:02",
-                "expectedDepartureTime": "2020-01-09T17:36:58",
+                "expectedArrivalTime": "2020-01-09T17:46:02Z",
+                "expectedDepartureTime": "2020-01-09T17:36:58Z",
                 "from": {
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
@@ -62,8 +62,8 @@
                         "name": "73"
                     }
                 },
-                "scheduledArrivalTime": "2020-01-09T17:40:01",
-                "scheduledDepartureTime": "2020-01-09T17:30:59",
+                "scheduledArrivalTime": "2020-01-09T17:40:01Z",
+                "scheduledDepartureTime": "2020-01-09T17:30:59Z",
                 "to": {
                     "latitude": 60.29220199584961,
                     "longitude": 25.043617248535156,
@@ -73,8 +73,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 152092,
-                "expectedArrivalTime": "2020-01-09T19:38:00",
-                "expectedDepartureTime": "2020-01-09T17:46:22",
+                "expectedArrivalTime": "2020-01-09T19:38:00Z",
+                "expectedDepartureTime": "2020-01-09T17:46:22Z",
                 "from": {
                     "latitude": 60.29220199584961,
                     "longitude": 25.043617248535156,
@@ -88,8 +88,8 @@
                         "name": "265"
                     }
                 },
-                "scheduledArrivalTime": "2020-01-09T19:38:00",
-                "scheduledDepartureTime": "2020-01-09T17:44:41",
+                "scheduledArrivalTime": "2020-01-09T19:38:00Z",
+                "scheduledDepartureTime": "2020-01-09T17:44:41Z",
                 "to": {
                     "latitude": 61.498775482177734,
                     "longitude": 23.773019790649414,
@@ -105,8 +105,8 @@
                     "name": "TAMPERE"
                 },
                 "mode": "Walking",
-                "scheduledArrivalTime": "2020-01-09T19:45:56",
-                "scheduledDepartureTime": "2020-01-09T19:38:00",
+                "scheduledArrivalTime": "2020-01-09T19:45:56Z",
+                "scheduledDepartureTime": "2020-01-09T19:38:00Z",
                 "to": {
                     "latitude": 61.49858856201172,
                     "longitude": 23.7739200592041,
@@ -126,8 +126,8 @@
                     "name": "Origin"
                 },
                 "mode": "Walking",
-                "scheduledArrivalTime": "2020-01-09T18:06:00",
-                "scheduledDepartureTime": "2020-01-09T18:03:55",
+                "scheduledArrivalTime": "2020-01-09T18:06:00Z",
+                "scheduledDepartureTime": "2020-01-09T18:03:55Z",
                 "to": {
                     "latitude": 60.219478607177734,
                     "longitude": 24.81322479248047,
@@ -137,8 +137,8 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 7839,
-                "expectedArrivalTime": "2020-01-09T18:14:08",
-                "expectedDepartureTime": "2020-01-09T18:06:00",
+                "expectedArrivalTime": "2020-01-09T18:14:08Z",
+                "expectedDepartureTime": "2020-01-09T18:06:00Z",
                 "from": {
                     "latitude": 60.219478607177734,
                     "longitude": 24.81322479248047,
@@ -152,8 +152,8 @@
                         "name": "U"
                     }
                 },
-                "scheduledArrivalTime": "2020-01-09T18:13:34",
-                "scheduledDepartureTime": "2020-01-09T18:06:00",
+                "scheduledArrivalTime": "2020-01-09T18:13:34Z",
+                "scheduledDepartureTime": "2020-01-09T18:06:00Z",
                 "to": {
                     "latitude": 60.1994743347168,
                     "longitude": 24.93265151977539,
@@ -169,8 +169,8 @@
                     "name": "Pasila"
                 },
                 "mode": "Walking",
-                "scheduledArrivalTime": "2020-01-09T18:16:10",
-                "scheduledDepartureTime": "2020-01-09T18:13:34",
+                "scheduledArrivalTime": "2020-01-09T18:16:10Z",
+                "scheduledDepartureTime": "2020-01-09T18:13:34Z",
                 "to": {
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
@@ -193,8 +193,8 @@
                         "name": "53"
                     }
                 },
-                "scheduledArrivalTime": "2020-01-09T19:58:00",
-                "scheduledDepartureTime": "2020-01-09T18:30:00",
+                "scheduledArrivalTime": "2020-01-09T19:58:00Z",
+                "scheduledDepartureTime": "2020-01-09T18:30:00Z",
                 "to": {
                     "latitude": 61.498775482177734,
                     "longitude": 23.773019790649414,
@@ -210,8 +210,8 @@
                     "name": "TAMPERE"
                 },
                 "mode": "Walking",
-                "scheduledArrivalTime": "2020-01-09T20:05:56",
-                "scheduledDepartureTime": "2020-01-09T19:58:00",
+                "scheduledArrivalTime": "2020-01-09T20:05:56Z",
+                "scheduledDepartureTime": "2020-01-09T19:58:00Z",
                 "to": {
                     "latitude": 61.49858856201172,
                     "longitude": 23.7739200592041,

@@ -51,5 +51,6 @@
     "options": {
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/"
     },
+    "timezone": "Europe/Helsinki",
     "type": "otp_graphql"
 }

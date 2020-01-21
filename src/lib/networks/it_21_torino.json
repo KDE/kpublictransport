@@ -47,5 +47,6 @@
         "apiVersion": "20170808",
         "endpoint": "https://mapi.5t.torino.it/routing/v1/routers/mat/"
     },
+    "timezone": "Europe/Rome",
     "type": "otp_graphql"
 }

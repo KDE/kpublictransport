@@ -46,5 +46,6 @@
     "options": {
         "endpoint": "https://api.digitransit.codeformuenster.org/routing/v1/routers/cfm/"
     },
+    "timezone": "Europe/Berlin",
     "type": "otp_graphql"
 }
