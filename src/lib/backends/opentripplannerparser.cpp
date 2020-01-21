@@ -152,7 +152,7 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
     if (type.isString()) {
         line.setMode(Gtfs::Hvt::typeToMode(type.toString()));
     } else {
-        line.setMode(Gtfs::Hvt::typeToMode(type.toInt()));
+        line.setMode(Gtfs::Hvt::typeToMode(type.toInt(-1)));
     }
 
     auto presentation = obj.value(QLatin1String("presentation")).toObject();
@@ -181,7 +181,7 @@ Route OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
 Route OpenTripPlannerParser::parseInlineRoute(const QJsonObject &obj) const
 {
     Line line;
-    line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("routeType")).toInt()));
+    line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("routeType")).toInt(-1)));
     line.setName(obj.value(QLatin1String("tripShortName")).toString());
     line.setColor(parseColor(obj.value(QLatin1String("routeColor"))));
     line.setTextColor(parseColor(obj.value(QLatin1String("routeTextColor"))));

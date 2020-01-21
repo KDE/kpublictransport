@@ -23,6 +23,10 @@ using namespace KPublicTransport;
 
 Line::Mode Gtfs::Hvt::typeToMode(int hvt)
 {
+    if (hvt < 0) {
+        return Line::Unknown;
+    }
+
     // individually handled cases - https://developers.google.com/transit/gtfs/reference/extended-route-types
     switch (hvt) {
         case 101:
@@ -167,6 +171,10 @@ struct {
 
 Line::Mode Gtfs::Hvt::typeToMode(const QString &hvt)
 {
+    if (hvt.isEmpty()) {
+        return Line::Unknown;
+    }
+
     // fine-grained types, exact matches
     for (const auto &m : fine_mode_map) {
         if (hvt.compare(QLatin1String(m.typeName), Qt::CaseInsensitive) == 0) {
