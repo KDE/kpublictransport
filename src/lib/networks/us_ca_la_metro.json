@@ -46,5 +46,6 @@
     "options": {
         "endpoint": "https://otp.metroservices.io/otp/routers/default/"
     },
+    "timezone": "America/Los_Angeles",
     "type": "otp_rest"
 }

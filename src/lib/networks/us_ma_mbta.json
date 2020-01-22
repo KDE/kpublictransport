@@ -44,5 +44,6 @@
     "options": {
         "endpoint": "https://prod.otp.mbtace.com/otp/routers/mbta/"
     },
+    "timezone": "America/New_York",
     "type": "otp_rest"
 }
