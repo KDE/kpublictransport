@@ -245,7 +245,12 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
 
     const auto tzId = obj.value(QLatin1String("timezone")).toString();
     if (!tzId.isEmpty()) {
-        backend->setTimeZone(QTimeZone(tzId.toUtf8()));
+        QTimeZone tz(tzId.toUtf8());
+        if (tz.isValid()) {
+            backend->setTimeZone(tz);
+        } else {
+            qCWarning(Log) << "Invalid timezone:" << tzId;
+        }
     }
 }
 

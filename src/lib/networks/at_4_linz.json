@@ -50,6 +50,6 @@
     "options": {
         "endpoint": "https://www.linzag.at/linz2/"
     },
-    "timezone": "Austria/Vienna",
+    "timezone": "Europe/Vienna",
     "type": "efa"
 }

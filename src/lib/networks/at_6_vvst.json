@@ -51,6 +51,6 @@
         "compactXmlRepsonse": true,
         "endpoint": "http://appefa10.verbundlinie.at/android/"
     },
-    "timezone": "Austria/Vienna",
+    "timezone": "Europe/Vienna",
     "type": "efa"
 }
