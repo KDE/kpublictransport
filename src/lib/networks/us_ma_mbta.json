@@ -1,7 +1,25 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Boston, Massachusetts, US.",
-        "Name": "Massachusetts Bay Transportation Authority (MBTA)"
+        "Description[ca]": "Transport públic a Boston i rodalies, Massachusetts, EEUU.",
+        "Description[es]": "Transporte público de Boston y alrededores, Massachusetts, Estados Unidos.",
+        "Description[et]": "USA Bostoni (Massachusettsi osariik) ja selle ümbruse ühistransport.",
+        "Description[nl]": "Openbaar vervoer in en om Boston, Massachusetts, VS.",
+        "Description[pt]": "Transportes públicos na região de Boston, Massachusetts, EUA.",
+        "Description[pt_BR]": "Transporte público nos arredores de Boston, Massachusetts, EUA.",
+        "Description[sv]": "Kollektivtrafik i och omkring Boston, Massachusetts, USA.",
+        "Description[uk]": "Громадський транспорт у Бостоні і околицях, Массачусетс, США.",
+        "Description[x-test]": "xxPublic transport in and around Boston, Massachusetts, US.xx",
+        "Name": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[ca]": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[es]": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[et]": "Massachusetts Bay transpordiamet (MBTA)",
+        "Name[nl]": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[pt]": "Autoridade de Transportes da Baía de Massachusetts (MBTA)",
+        "Name[pt_BR]": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[sv]": "Massachusetts Bay Transportation Authority (MBTA)",
+        "Name[uk]": "Транспортна адміністрація затоки Массачусетс (MBTA)",
+        "Name[x-test]": "xxMassachusetts Bay Transportation Authority (MBTA)xx"
     },
     "filter": {
         "geo": [
