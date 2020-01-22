@@ -21,6 +21,7 @@
         <file>no_entur.json</file>
         <file>pl_pkp.json</file>
         <file>se_resrobot.json</file>
+        <file>tn_sncft.json</file>
 
         <!-- local providers -->
         <file>at_3_vor.json</file>
@@ -36,6 +37,7 @@
         <file>de_bb_vbb.json</file>
         <file>de_be_bvg.json</file>
         <file>de_bw_kvv.json</file>
+        <file>de_bw_ulm.json</file>
         <file>de_bw_vvs.json</file>
         <file>de_by_bayern.json</file>
         <file>de_by_mvv.json</file>

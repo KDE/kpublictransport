@@ -1,0 +1,35 @@
+{
+    "KPlugin": {
+        "Description": "Local public transport in and around Ulm, Germany.",
+        "Name": "Ulm, Germany"
+    },
+    "attribution": {
+        "name": "Verschwörhaus",
+        "url": "https://digitransit.im.verschwoerhaus.de/tietoja-palvelusta"
+    },
+    "filter": {
+        "geo": [
+            [
+                8.6407794,
+                49.0365089
+            ],
+            [
+                11.3182223,
+                49.0365089
+            ],
+            [
+                11.3182223,
+                48.2892591
+            ],
+            [
+                8.6407794,
+                48.2892591
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "otp_graphql"
+}

@@ -23,6 +23,10 @@
         "Name[uk]": "Мюнстер, Німеччина",
         "Name[x-test]": "xxMünster, Germanyxx"
     },
+    "attribution": {
+        "name": "Code for Münster",
+        "url": "https://codeformuenster.org/"
+    },
     "filter": {
         "geo": [
             [

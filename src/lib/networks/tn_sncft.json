@@ -1,0 +1,30 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Tunesia.",
+        "Name": "Société Nationale des Chemins de Fer Tunisiens (SNCFT)"
+    },
+    "filter": {
+        "geo": [
+            [
+                7.5435563000000005,
+                37.5308159
+            ],
+            [
+                11.5933919,
+                37.5308159
+            ],
+            [
+                11.5933919,
+                30.2440135
+            ],
+            [
+                7.5435563000000005,
+                30.2440135
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://planner.sncft.com.tn/otp/routers/default/"
+    },
+    "type": "otp_rest"
+}
