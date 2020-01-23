@@ -15,21 +15,7 @@
         "Description[sv]": "Franska statsjärnvägen.",
         "Description[uk]": "Французька державна залізниця.",
         "Description[x-test]": "xxFrench national railway.xx",
-        "Name": "Société Nationale des Chemins de Fer Français (SNCF)",
-        "Name[ca]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[cs]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[en_GB]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[es]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[et]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[fr]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[it]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[nl]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[pl]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[pt]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[pt_BR]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[sv]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[uk]": "Société Nationale des Chemins de Fer français (SNCF)",
-        "Name[x-test]": "xxSociété Nationale des Chemins de Fer français (SNCF)xx"
+        "Name": "Société Nationale des Chemins de Fer Français (SNCF)"
     },
     "filter": {
         "geo": [
