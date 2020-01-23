@@ -23,6 +23,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include <cmath>
+
 using namespace KPublicTransport;
 
 bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
@@ -160,4 +162,9 @@ void DeutscheBahnVehicleLayoutParser::parsePlatformSection(const QJsonObject &ob
     auto sections = platform.takeSections();
     sections.push_back(section);
     platform.setSections(std::move(sections));
+
+    const auto length = std::max(pos.value(QLatin1String("startmeter")).toString().toDouble(), pos.value(QLatin1String("endemeter")).toString().toDouble());
+    if (length > 0) {
+        platform.setLength(std::max(platform.length(), (int)std::ceil(length)));
+    }
 }

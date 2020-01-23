@@ -62,6 +62,12 @@ class KPUBLICTRANSPORT_EXPORT Platform
      */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
 
+    /** Length of the platform, in meter.
+     *  Value is negative if the information is not available.
+     *  Useful for display scaling from relative platform coordinates.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, length, setLength)
+
     /** Platform sections for consumption by QML. */
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
 

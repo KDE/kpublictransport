@@ -39,6 +39,7 @@ class PlatformPrivate : public QSharedData
 public:
     QString name;
     std::vector<PlatformSection> sections;
+    int length = -1;
 };
 
 }
@@ -71,6 +72,7 @@ std::vector<PlatformSection> PlatformSection::fromJson(const QJsonArray &array)
 
 KPUBLICTRANSPORT_MAKE_GADGET(Platform)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Platform, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Platform, int, length, setLength)
 
 const std::vector<PlatformSection>& Platform::sections() const
 {
