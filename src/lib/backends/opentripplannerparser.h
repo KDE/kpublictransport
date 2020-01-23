@@ -49,6 +49,7 @@ public:
     std::vector<Location> parseLocationsByCoordinate(const QJsonObject &obj) const;
     std::vector<Location> parseLocationsByName(const QJsonObject &obj) const;
     std::vector<Location> parseLocationsArray(const QJsonArray &array) const;
+    std::vector<Location> parseGeocodeResult(const QJsonArray &array) const;
     std::vector<Departure> parseDepartures(const QJsonObject &obj) const;
     std::vector<Departure> parseDeparturesArray(const QJsonArray &array) const;
     std::vector<Journey> parseJourneys(const QJsonObject &obj) const;

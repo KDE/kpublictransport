@@ -60,34 +60,60 @@ bool OpenTripPlannerRestBackend::needsLocationQuery(const Location &loc, Abstrac
 
 bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (!req.hasCoordinate()) {
-        return false;
+    if (req.hasCoordinate()) {
+        QUrlQuery query;
+        query.addQueryItem(QStringLiteral("lat"), QString::number(req.latitude()));
+        query.addQueryItem(QStringLiteral("lon"), QString::number(req.longitude()));
+        query.addQueryItem(QStringLiteral("radius"), QStringLiteral("500")); //  TODO
+
+        QUrl url(m_endpoint + QLatin1String("index/stops"));
+        url.setQuery(query);
+
+        QNetworkRequest netReq(url);
+        logRequest(req, netReq);
+        auto netReply = nam->get(netReq);
+        QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
+            const auto data = netReply->readAll();
+            logReply(reply, netReply, data);
+
+            if (netReply->error() != QNetworkReply::NoError) {
+                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                return;
+            }
+            OpenTripPlannerParser p(backendId());
+            addResult(reply, p.parseLocationsArray(QJsonDocument::fromJson(data).array()));
+        });
+
+        return true;
+    }
+    if (!req.name().isEmpty()) {
+        QUrlQuery query;
+        query.addQueryItem(QStringLiteral("query"), req.name());
+        query.addQueryItem(QStringLiteral("stops"), QStringLiteral("true"));
+        query.addQueryItem(QStringLiteral("corners"), QStringLiteral("false"));
+
+        QUrl url(m_endpoint + QLatin1String("geocode"));
+        url.setQuery(query);
+
+        QNetworkRequest netReq(url);
+        logRequest(req, netReq);
+        auto netReply = nam->get(netReq);
+        QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
+            const auto data = netReply->readAll();
+            logReply(reply, netReply, data);
+
+            if (netReply->error() != QNetworkReply::NoError) {
+                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                return;
+            }
+            OpenTripPlannerParser p(backendId());
+            addResult(reply, p.parseGeocodeResult(QJsonDocument::fromJson(data).array()));
+        });
+
+        return true;
     }
 
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("lat"), QString::number(req.latitude()));
-    query.addQueryItem(QStringLiteral("lon"), QString::number(req.longitude()));
-    query.addQueryItem(QStringLiteral("radius"), QStringLiteral("500")); //  TODO
-
-    QUrl url(m_endpoint + QLatin1String("index/stops"));
-    url.setQuery(query);
-
-    QNetworkRequest netReq(url);
-    logRequest(req, netReq);
-    auto netReply = nam->get(netReq);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
-        const auto data = netReply->readAll();
-        logReply(reply, netReply, data);
-
-        if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
-            return;
-        }
-        OpenTripPlannerParser p(backendId());
-        addResult(reply, p.parseLocationsArray(QJsonDocument::fromJson(data).array()));
-    });
-
-    return true;
+    return false;
 }
 
 bool OpenTripPlannerRestBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const

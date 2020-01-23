@@ -102,6 +102,26 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsArray(const QJsonArra
     return locs;
 }
 
+std::vector<Location> OpenTripPlannerParser::parseGeocodeResult(const QJsonArray &array) const
+{
+    std::vector<Location> locs;
+    locs.reserve(array.size());
+    for (const auto &v : array) {
+        const auto obj = v.toObject();
+        Location loc;
+        loc.setLatitude(obj.value(QLatin1String("lat")).toDouble());
+        loc.setLongitude(obj.value(QLatin1String("lng")).toDouble()); // sic!
+        auto desc = obj.value(QLatin1String("description")).toString();
+        if (desc.startsWith(QLatin1String("stop "))) {
+            desc = desc.mid(5);
+        }
+        loc.setName(desc);
+        loc.setIdentifier(m_identifierType, obj.value(QLatin1String("id")).toString());
+        locs.push_back(loc);
+    }
+    return locs;
+}
+
 void OpenTripPlannerParser::parseAlerts(const QJsonArray& alertsArray) const
 {
     m_alerts.reserve(alertsArray.size());
