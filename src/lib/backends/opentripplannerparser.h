@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Location>
+
 #include <QString>
 #include <QStringList>
 
@@ -34,7 +36,6 @@ class Departure;
 class Journey;
 class JourneySection;
 class Line;
-class Location;
 class Route;
 
 /** Parser for OTP responses as defined by the GraphQL files in the otp/ subdir.
@@ -55,7 +56,7 @@ public:
     std::vector<Journey> parseJourneys(const QJsonObject &obj) const;
 
 private:
-    Location parseLocation(const QJsonObject &obj) const;
+    Location parseLocation(const QJsonObject &obj, Location loc = {}) const;
     void parseAlerts(const QJsonArray &alertsArray) const;
     Line parseLine(const QJsonObject &obj) const;
     Route parseRoute(const QJsonObject &obj) const;

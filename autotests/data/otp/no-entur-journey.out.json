@@ -11,11 +11,16 @@
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T13:29:17+01:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:27:23+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:11151"
+                    },
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
-                    "name": "Nydalen"
+                    "name": "Nydalen",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
@@ -24,9 +29,13 @@
                 "expectedArrivalTime": "2020-01-12T13:40:17+01:00",
                 "expectedDepartureTime": "2020-01-12T13:29:17+01:00",
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:11151"
+                    },
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
-                    "name": "Nydalen"
+                    "name": "Nydalen",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -38,28 +47,42 @@
                     }
                 },
                 "scheduledArrivalTime": "2020-01-12T13:38:00+01:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:27:00+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:7333"
+                    },
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
-                    "name": "Nationaltheatret"
+                    "name": "Nationaltheatret",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 326,
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:7333"
+                    },
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
-                    "name": "Nationaltheatret"
+                    "name": "Nationaltheatret",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T13:44:29+01:00",
+                "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2020-01-12T13:40:17+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:477"
+                    },
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
-                    "name": "Nationaltheatret stasjon"
+                    "name": "Nationaltheatret stasjon",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
@@ -68,9 +91,13 @@
                 "expectedArrivalTime": "2020-01-12T14:17:00+01:00",
                 "expectedDepartureTime": "2020-01-12T13:48:00+01:00",
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:477"
+                    },
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
-                    "name": "Nationaltheatret stasjon"
+                    "name": "Nationaltheatret stasjon",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -82,20 +109,29 @@
                     }
                 },
                 "scheduledArrivalTime": "2020-01-12T14:17:00+01:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:48:00+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:451"
+                    },
                     "latitude": 60.192955017089844,
                     "longitude": 11.097078323364258,
-                    "name": "Oslo Lufthavn stasjon"
+                    "name": "Oslo Lufthavn stasjon",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 34,
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:451"
+                    },
                     "latitude": 60.192955017089844,
                     "longitude": 11.097078323364258,
-                    "name": "Oslo Lufthavn stasjon"
+                    "name": "Oslo Lufthavn stasjon",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T14:17:28+01:00",
@@ -120,11 +156,16 @@
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T13:34:09+01:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:32:15+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:11151"
+                    },
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
-                    "name": "Nydalen"
+                    "name": "Nydalen",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
@@ -133,9 +174,13 @@
                 "expectedArrivalTime": "2020-01-12T13:45:09+01:00",
                 "expectedDepartureTime": "2020-01-12T13:34:09+01:00",
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:11151"
+                    },
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
-                    "name": "Nydalen"
+                    "name": "Nydalen",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "PublicTransport",
                 "notes": [
@@ -150,28 +195,42 @@
                     }
                 },
                 "scheduledArrivalTime": "2020-01-12T13:44:00+01:00",
+                "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2020-01-12T13:33:00+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:7333"
+                    },
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
-                    "name": "Nationaltheatret"
+                    "name": "Nationaltheatret",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 326,
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:7333"
+                    },
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
-                    "name": "Nationaltheatret"
+                    "name": "Nationaltheatret",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T13:49:21+01:00",
+                "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2020-01-12T13:45:09+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:477"
+                    },
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
-                    "name": "Nationaltheatret stasjon"
+                    "name": "Nationaltheatret stasjon",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
@@ -180,9 +239,13 @@
                 "expectedArrivalTime": "2020-01-12T14:22:00+01:00",
                 "expectedDepartureTime": "2020-01-12T13:54:00+01:00",
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:477"
+                    },
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
-                    "name": "Nationaltheatret stasjon"
+                    "name": "Nationaltheatret stasjon",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -194,20 +257,29 @@
                     }
                 },
                 "scheduledArrivalTime": "2020-01-12T14:22:00+01:00",
+                "scheduledDeparturePlatform": "2",
                 "scheduledDepartureTime": "2020-01-12T13:54:00+01:00",
                 "to": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:447"
+                    },
                     "latitude": 60.19298553466797,
                     "longitude": 11.096880912780762,
-                    "name": "Oslo Lufthavn stasjon"
+                    "name": "Oslo Lufthavn stasjon",
+                    "timezone": "Europe/Oslo"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 22,
                 "from": {
+                    "identifier": {
+                        "gtfs": "NSR:Quay:447"
+                    },
                     "latitude": 60.19298553466797,
                     "longitude": 11.096880912780762,
-                    "name": "Oslo Lufthavn stasjon"
+                    "name": "Oslo Lufthavn stasjon",
+                    "timezone": "Europe/Oslo"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T14:22:18+01:00",

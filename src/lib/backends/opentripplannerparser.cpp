@@ -20,7 +20,6 @@
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
-#include <KPublicTransport/Location>
 
 #include <QColor>
 #include <QDebug>
@@ -37,14 +36,13 @@ OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType)
 
 OpenTripPlannerParser::~OpenTripPlannerParser() = default;
 
-Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
+Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj, Location loc) const
 {
     const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
     if (!parentObj.isEmpty()) {
-        return parseLocation(parentObj);
+        return parseLocation(parentObj, loc);
     }
 
-    Location loc;
     loc.setName(obj.value(QLatin1String("name")).toString());
     loc.setLatitude(obj.value(QLatin1String("lat")).toDouble());
     loc.setLongitude(obj.value(QLatin1String("lon")).toDouble());
@@ -325,8 +323,21 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
             section.setExpectedArrivalTime(section.scheduledArrivalTime().addSecs(obj.value(QLatin1String("arrivalDelay")).toInt()));
         }
     }
-    section.setFrom(parseLocation(obj.value(QLatin1String("from")).toObject())); // TODO handle the nested structure correctly, TODO parse platforms
-    section.setTo(parseLocation(obj.value(QLatin1String("to")).toObject()));
+
+    const auto fromObj = obj.value(QLatin1String("from")).toObject();
+    const auto fromStop = fromObj.value(QLatin1String("stop")).toObject();
+    auto from = parseLocation(fromStop);
+    from = parseLocation(fromObj, from);
+    section.setFrom(from);
+    section.setScheduledDeparturePlatform(fromStop.value(QLatin1String("platformCode")).toString());
+
+    const auto toObj = obj.value(QLatin1String("to")).toObject();
+    const auto toStop = toObj.value(QLatin1String("stop")).toObject();
+    auto to = parseLocation(toStop);
+    to = parseLocation(toObj, to);
+    section.setTo(to);
+    section.setScheduledDeparturePlatform(toStop.value(QLatin1String("platformCode")).toString());
+
     section.setDistance(obj.value(QLatin1String("distance")).toDouble());
 
     if (obj.value(QLatin1String("transitLeg")).toBool()) {
