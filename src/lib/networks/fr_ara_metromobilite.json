@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Grenoble, France.",
-        "Name": "Metromobilite"
+        "Description[ca]": "Transport públic a Grenoble i rodalies, França.",
+        "Description[et]": "Prantsusmaa Grenoble'i ja selle ümbruse ühistransport.",
+        "Description[nl]": "Openbaar vervoer in en om Grenoble, Frankrijk.",
+        "Description[pt]": "Transportes públicos na região de Grenoble, França.",
+        "Description[uk]": "Громадський транспорт у Греноблі і околицях, Франція.",
+        "Description[x-test]": "xxPublic transport in and around Grenoble, France.xx",
+        "Name": "Metromobilite",
+        "Name[ca]": "Metromobilite",
+        "Name[et]": "Metromobilite",
+        "Name[nl]": "Metromobilite",
+        "Name[pt]": "Metromobilite",
+        "Name[uk]": "Metromobilite",
+        "Name[x-test]": "xxMetromobilitexx"
     },
     "filter": {
         "geo": [
