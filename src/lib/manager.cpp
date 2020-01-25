@@ -346,18 +346,14 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
     // resolve locations if needed
     if (backend->needsLocationQuery(req.from(), AbstractBackend::QueryType::Journey)) {
-        LocationRequest fromReq;
-        fromReq.setCoordinate(req.from().latitude(), req.from().longitude());
-        fromReq.setName(req.from().name());
+        LocationRequest fromReq(req.from());
         resolveLocation(fromReq, backend, [reply, backend, req, this](const Location &loc) {
             auto jnyRequest = req;
             const auto fromLoc = Location::merge(jnyRequest.from(), loc);
             jnyRequest.setFrom(fromLoc);
 
             if (backend->needsLocationQuery(jnyRequest.to(), AbstractBackend::QueryType::Journey)) {
-                LocationRequest toReq;
-                toReq.setCoordinate(jnyRequest.to().latitude(), jnyRequest.to().longitude());
-                toReq.setName(jnyRequest.to().name());
+                LocationRequest toReq(jnyRequest.to());
                 resolveLocation(toReq, backend, [jnyRequest, reply, backend, this](const Location &loc) {
                     auto jnyReq = jnyRequest;
                     const auto toLoc = Location::merge(jnyRequest.to(), loc);
@@ -379,9 +375,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     }
 
     if (backend->needsLocationQuery(req.to(), AbstractBackend::QueryType::Journey)) {
-        LocationRequest toReq;
-        toReq.setCoordinate(req.to().latitude(), req.to().longitude());
-        toReq.setName(req.to().name());
+        LocationRequest toReq(req.to());
         resolveLocation(toReq, backend, [req, toReq, reply, backend, this](const Location &loc) {
             const auto toLoc = Location::merge(req.to(), loc);
             auto jnyRequest = req;
@@ -429,9 +423,7 @@ bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const Depart
     // check if we first need to resolve the location first
     if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
         qCDebug(Log) << "Backend needs location query first:" << backend->backendId();
-        LocationRequest locReq;
-        locReq.setCoordinate(req.stop().latitude(), req.stop().longitude());
-        locReq.setName(req.stop().name());
+        LocationRequest locReq(req.stop());
         resolveLocation(locReq, backend, [reply, req, backend, this](const Location &loc) {
             const auto depLoc = Location::merge(req.stop(), loc);
             auto depRequest = req;
