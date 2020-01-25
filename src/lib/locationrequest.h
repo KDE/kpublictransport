@@ -27,10 +27,11 @@ class QJsonObject;
 
 namespace KPublicTransport {
 
+class Location;
 class LocationRequestPrivate;
 
 /** Describes a location search.
- *  Either a geo coordinate or a name must be specified as search criteria.
+ *  Either a geo coordinate, a name or an address must be specified as search criteria.
  */
 class KPUBLICTRANSPORT_EXPORT LocationRequest
 {
@@ -42,6 +43,10 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
 
 public:
     LocationRequest();
+    /** Create a LocationRequest from @p locaction.
+     *  Whatever fields set in @p location will be used for the search request.
+     */
+    LocationRequest(const Location &locaction);
     LocationRequest(LocationRequest&&) noexcept;
     LocationRequest(const LocationRequest&);
     ~LocationRequest();

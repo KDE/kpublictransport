@@ -17,6 +17,7 @@
 
 #include "locationrequest.h"
 #include "datatypes/json_p.h"
+#include "datatypes/location.h"
 #include "datatypes/locationutil_p.h"
 
 #include <QSharedData>
@@ -29,9 +30,7 @@ using namespace KPublicTransport;
 namespace KPublicTransport {
 class LocationRequestPrivate : public QSharedData {
 public:
-    QString name;
-    float lat = NAN;
-    float lon = NAN;
+    Location location;
     QStringList backendIds;
 };
 }
@@ -41,6 +40,12 @@ LocationRequest::LocationRequest()
 {
 }
 
+LocationRequest::LocationRequest(const Location &locaction)
+    : d(new LocationRequestPrivate)
+{
+    d->location = locaction;
+}
+
 LocationRequest::LocationRequest(LocationRequest&&) noexcept = default;
 LocationRequest::LocationRequest(const LocationRequest&) = default;
 LocationRequest::~LocationRequest() = default;
@@ -48,56 +53,56 @@ LocationRequest& LocationRequest::operator=(const LocationRequest&) = default;
 
 bool LocationRequest::isValid() const
 {
-    return hasCoordinate() || !d->name.isEmpty();
+    return hasCoordinate() || !d->location.name().isEmpty();
 }
 
 float LocationRequest::latitude() const
 {
-    return d->lat;
+    return d->location.latitude();
 }
 
 void LocationRequest::setLatitude(float lat)
 {
     d.detach();
-    d->lat = lat;
+    d->location.setLatitude(lat);
 }
 
 float LocationRequest::longitude() const
 {
-    return d->lon;
+    return d->location.longitude();
 }
 
 void LocationRequest::setLongitude(float lon)
 {
     d.detach();
-    d->lon = lon;
+    d->location.setLongitude(lon);
 }
 
 void LocationRequest::setCoordinate(float lat, float lon)
 {
     d.detach();
-    d->lat = lat;
-    d->lon = lon;
+    d->location.setCoordinate(lat, lon);
 }
 
 bool LocationRequest::hasCoordinate() const
 {
-    return !std::isnan(d->lat) && !std::isnan(d->lon);
+    return d->location.hasCoordinate();
 }
 
 QString LocationRequest::name() const
 {
-    return d->name;
+    return d->location.name();
 }
 
 void LocationRequest::setName(const QString &name)
 {
-    d->name = name;
+    d.detach();
+    d->location.setName(name);
 }
 
 QString LocationRequest::cacheKey() const
 {
-    return LocationUtil::cacheKey(d->name, d->lat, d->lon);
+    return LocationUtil::cacheKey(name(), latitude(), longitude());
 }
 
 QJsonObject LocationRequest::toJson(const LocationRequest &req)
