@@ -102,7 +102,7 @@ void LocationRequest::setName(const QString &name)
 
 QString LocationRequest::cacheKey() const
 {
-    return LocationUtil::cacheKey(name(), latitude(), longitude());
+    return LocationUtil::cacheKey(d->location);
 }
 
 QJsonObject LocationRequest::toJson(const LocationRequest &req)

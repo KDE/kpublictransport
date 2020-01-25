@@ -182,8 +182,8 @@ void JourneyRequest::setBackendIds(const QStringList &backendIds)
 QString JourneyRequest::cacheKey() const
 {
     return QString::number(d->dateTime.toSecsSinceEpoch() / JourneyCacheTimeResolution) + QLatin1Char('_')
-        + LocationUtil::cacheKey(d->from.name(), d->from.latitude(), d->from.longitude()) + QLatin1Char('_')
-        + LocationUtil::cacheKey(d->to.name(), d->to.latitude(), d->to.longitude()) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->from) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->to) + QLatin1Char('_')
         + (d->dateTimeMode == JourneyRequest::Arrival ? QLatin1Char('A') : QLatin1Char('D'));
 }
 

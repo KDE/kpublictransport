@@ -20,6 +20,8 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationRequest>
 
+#include <QCryptographicHash>
+
 #include <cmath>
 
 using namespace KPublicTransport;
@@ -42,20 +44,31 @@ bool LocationUtil::sortLessThan(const LocationRequest &request, const Location &
     return lhsSame && !rhsSame;
 }
 
-QString LocationUtil::cacheKey(const QString &name, float lat, float lon)
+static QString normalizeString(const QString &str)
 {
-    QString normalizedName;
-    normalizedName.reserve(name.size());
-    for (const auto c : qAsConst(name)) {
+    QString n;
+    n.reserve(str.size());
+    for (const auto c : str) {
         if (c.isLetter() || c.isDigit()) {
-            normalizedName.push_back(c.toCaseFolded());
+            n.push_back(c.toCaseFolded());
         }
     }
+    return n;
+}
 
-    if (!std::isnan(lat) && !std::isnan(lon)) {
-        return QString::number((int)(lat * 1000000)) + QLatin1Char('x') + QString::number((int)(lon * 1000000))
-            + QLatin1Char('_') + normalizedName;
+QString LocationUtil::cacheKey(const Location &loc)
+{
+    if (loc.hasCoordinate()) {
+        return QString::number((int)(loc.latitude() * 1000000)) + QLatin1Char('x') + QString::number((int)(loc.longitude() * 1000000));
     }
 
-    return QLatin1String("nanxnan_") + normalizedName;
+    QCryptographicHash hash(QCryptographicHash::Sha1);
+    hash.addData(normalizeString(loc.name()).toUtf8());
+    hash.addData(normalizeString(loc.streetAddress()).toUtf8());
+    hash.addData(normalizeString(loc.postalCode()).toUtf8());
+    hash.addData(normalizeString(loc.locality()).toUtf8());
+    hash.addData(normalizeString(loc.region()).toUtf8());
+    hash.addData(normalizeString(loc.country()).toUtf8());
+
+    return QString::fromUtf8(hash.result().toHex());
 }

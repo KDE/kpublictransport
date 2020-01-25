@@ -89,12 +89,14 @@ private Q_SLOTS:
         {
             LocationRequest req;
             req.setCoordinate(-52.5, -13.5);
-            QCOMPARE(req.cacheKey(), QLatin1String("-52500000x-13500000_"));
+            QCOMPARE(req.cacheKey(), QLatin1String("-52500000x-13500000"));
         }
         {
             LocationRequest req;
             req.setName(QStringLiteral("Randa"));
-            QCOMPARE(req.cacheKey(), QLatin1String("nanxnan_randa"));
+            QCOMPARE(req.cacheKey(), QLatin1String("8fb4b1073d1c288ae089ce8eb7ad0c16e478e919"));
+            req.setName(QStringLiteral("RANDA"));
+            QCOMPARE(req.cacheKey(), QLatin1String("8fb4b1073d1c288ae089ce8eb7ad0c16e478e919"));
         }
     }
 };
