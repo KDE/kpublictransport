@@ -36,9 +36,12 @@ class LocationRequestPrivate;
 class KPUBLICTRANSPORT_EXPORT LocationRequest
 {
     Q_GADGET
-    Q_PROPERTY(float latitude READ latitude WRITE setLatitude)
-    Q_PROPERTY(float longitude READ longitude WRITE setLongitude)
-    Q_PROPERTY(QString name READ name WRITE setName)
+    /** Location object containing the search parameters. */
+    Q_PROPERTY(KPublicTransport::Location location READ location WRITE setLocation)
+    // TODO deprecated those?
+    Q_PROPERTY(float latitude READ latitude WRITE setLatitude STORED false)
+    Q_PROPERTY(float longitude READ longitude WRITE setLongitude STORED false)
+    Q_PROPERTY(QString name READ name WRITE setName STORED false)
     Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
 
 public:
@@ -54,6 +57,9 @@ public:
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     bool isValid() const;
+
+    Location location() const;
+    void setLocation(const Location &location);
 
     /** Latitude of the location to search. */
     float latitude() const;

@@ -56,6 +56,17 @@ bool LocationRequest::isValid() const
     return hasCoordinate() || !d->location.name().isEmpty();
 }
 
+Location LocationRequest::location() const
+{
+    return d->location;
+}
+
+void LocationRequest::setLocation(const Location &location)
+{
+    d.detach();
+    d->location = location;
+}
+
 float LocationRequest::latitude() const
 {
     return d->location.latitude();
@@ -107,7 +118,9 @@ QString LocationRequest::cacheKey() const
 
 QJsonObject LocationRequest::toJson(const LocationRequest &req)
 {
-    return Json::toJson(req);
+    auto obj = Json::toJson(req);
+    obj.insert(QStringLiteral("location"), Location::toJson(req.location()));
+    return obj;
 }
 
 QStringList LocationRequest::backendIds() const
