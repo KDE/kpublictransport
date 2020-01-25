@@ -5,6 +5,7 @@
         "Description[et]": "Saksamaa Ulmi ja selle ümbruse kohalik ühistransport.",
         "Description[nl]": "Lokaal openbaar vervoer in en om Ulm, Duitsland.",
         "Description[pt]": "Transportes públicos locais na região de Ulm, Alemanha.",
+        "Description[sv]": "Lokal kollektivtrafik i och omkring Ulm, Tyskland.",
         "Description[uk]": "Місцевий транспорт в Ульмі і околицях, Німеччина.",
         "Description[x-test]": "xxLocal public transport in and around Ulm, Germany.xx",
         "Name": "Ulm, Germany",
@@ -12,6 +13,7 @@
         "Name[et]": "Ulm, Saksamaa",
         "Name[nl]": "Ulm, Duitsland",
         "Name[pt]": "Ulm, Alemanha",
+        "Name[sv]": "Ulm, Tyskland",
         "Name[uk]": "Ульм, Німеччина",
         "Name[x-test]": "xxUlm, Germanyxx"
     },
