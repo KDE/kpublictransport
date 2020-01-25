@@ -61,8 +61,6 @@ public:
 
     /** Checks if this location has been filtered by the network configuration. */
     bool isLocationExcluded(const Location &loc) const;
-    /** Same as the above but just checking one specific geo coordinate. */
-    bool isCoordinateExcluded(float lat, float lon) const;
     void setGeoFilter(const QPolygonF &poly);
 
     /** Static timezone for all times used by and provided by the backend.

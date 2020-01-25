@@ -630,7 +630,7 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         if (d->shouldSkipBackend(backend.get(), req)) {
             continue;
         }
-        if (req.hasCoordinate() && backend->isCoordinateExcluded(req.latitude(), req.longitude())) {
+        if (req.hasCoordinate() && backend->isLocationExcluded(req.location())) {
             qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
             continue;
         }
