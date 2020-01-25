@@ -76,7 +76,7 @@ bool Location::hasCoordinate() const
 
 bool Location::isEmpty() const
 {
-    return !hasCoordinate() && d->name.isEmpty() && d->ids.isEmpty();
+    return !hasCoordinate() && d->name.isEmpty() && d->ids.isEmpty() && d->streetAddress.isEmpty();
 }
 
 QTimeZone Location::timeZone() const

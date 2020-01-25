@@ -102,6 +102,9 @@ bool LocationRequest::hasCoordinate() const
 
 QString LocationRequest::name() const
 {
+    if (d->location.name().isEmpty()) {
+        return QString(d->location.locality() + QLatin1Char(' ') + d->location.streetAddress()).trimmed();
+    }
     return d->location.name();
 }
 
