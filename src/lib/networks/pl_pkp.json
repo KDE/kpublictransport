@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Polish national railway.",
+        "Description[ca@valencia]": "Ferrocarrils nacionals polonesos.",
         "Description[ca]": "Ferrocarrils nacionals polonesos.",
         "Description[cs]": "Polské národní železnice.",
         "Description[en_GB]": "Polish national railway.",
@@ -17,6 +18,7 @@
         "Description[uk]": "Польська державна залізниця.",
         "Description[x-test]": "xxPolish national railway.xx",
         "Name": "Polskie Koleje Państwowe (PKP)",
+        "Name[ca@valencia]": "Polskie Koleje Państwowe (PKP)",
         "Name[ca]": "Polskie Koleje Państwowe (PKP)",
         "Name[cs]": "Polskie Koleje Państwowe (PKP)",
         "Name[en_GB]": "Polskie Koleje Państwowe (PKP)",

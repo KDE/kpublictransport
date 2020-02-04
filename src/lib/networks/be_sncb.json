@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Belgian national railway.",
+        "Description[ca@valencia]": "Ferrocarrils nacionals belgues.",
         "Description[ca]": "Ferrocarrils nacionals belgues.",
         "Description[cs]": "Belgické národní železnice.",
         "Description[en_GB]": "Belgian national railway.",
@@ -17,6 +18,7 @@
         "Description[uk]": "Бельгійська державна залізниця.",
         "Description[x-test]": "xxBelgian national railway.xx",
         "Name": "National Railway Company of Belgium (NMBS/SNCB)",
+        "Name[ca@valencia]": "Companyia Nacional de Ferrocarrils de Bèlgica (NMBS/SNCB)",
         "Name[ca]": "Companyia Nacional de Ferrocarrils de Bèlgica (NMBS/SNCB)",
         "Name[en_GB]": "National Railway Company of Belgium (NMBS/SNCB)",
         "Name[es]": "National Railway Company of Belgium (NMBS/SNCB)",

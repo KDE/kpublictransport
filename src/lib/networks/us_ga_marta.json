@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Atlanta, Georgia, US.",
+        "Description[ca@valencia]": "Transport Públic a Atlanta i rodalies, Georgia, EEUU.",
         "Description[ca]": "Transport Públic a Atlanta i rodalies, Georgia, EEUU.",
         "Description[es]": "Transporte público de Atlanta y alrededores, Georgia, Estados Unidos.",
         "Description[et]": "USA Atlanta (Georgia osariik) ja selle ümbruse ühistransport.",
@@ -13,6 +14,7 @@
         "Description[uk]": "Громадський транспорт у Атланті і околицях, Джорджія, США.",
         "Description[x-test]": "xxPublic transport in and around Atlanta, Georgia, US.xx",
         "Name": "Marta",
+        "Name[ca@valencia]": "Marta",
         "Name[ca]": "Marta",
         "Name[es]": "Marta",
         "Name[et]": "Marta",

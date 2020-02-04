@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "French national railway.",
+        "Description[ca@valencia]": "Ferrocarrils nacionals francesos.",
         "Description[ca]": "Ferrocarrils nacionals francesos.",
         "Description[cs]": "Francouzské národní železnice.",
         "Description[en_GB]": "French national railway.",
@@ -17,6 +18,7 @@
         "Description[uk]": "Французька державна залізниця.",
         "Description[x-test]": "xxFrench national railway.xx",
         "Name": "Société Nationale des Chemins de Fer Français (SNCF)",
+        "Name[ca@valencia]": "Société Nationale des Chemins de Fer Français (SNCF)",
         "Name[ca]": "Société Nationale des Chemins de Fer Français (SNCF)",
         "Name[es]": "Société Nationale des Chemins de Fer Français (SNCF)",
         "Name[et]": "Société Nationale des Chemins de Fer Français (SNCF)",

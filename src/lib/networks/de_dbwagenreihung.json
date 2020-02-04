@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "German national railway train layout service.",
+        "Description[ca@valencia]": "Servei de disposició dels trens dels ferrocarrils nacionals alemanys.",
         "Description[ca]": "Servei de disposició dels trens dels ferrocarrils nacionals alemanys.",
         "Description[en_GB]": "German national railway train layout service.",
         "Description[es]": "Servicio de plano de trenes de la compañía ferroviaria alemana.",
@@ -15,6 +16,7 @@
         "Description[uk]": "Німецька державна залізниця, служба розкладу потягів.",
         "Description[x-test]": "xxGerman national railway train layout service.xx",
         "Name": "Deutsche Bahn (DB) train layout API",
+        "Name[ca@valencia]": "API de la disposició dels trens de Deutsche Bahn (DB)",
         "Name[ca]": "API de la disposició dels trens de Deutsche Bahn (DB)",
         "Name[en_GB]": "Deutsche Bahn (DB) train layout API",
         "Name[es]": "API de plano de trenes de Deutsche Bahn (DB)",

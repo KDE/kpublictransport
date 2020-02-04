@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Ulm, Germany.",
+        "Description[ca@valencia]": "Transport públic local a Ulm i rodalies, Alemanya.",
         "Description[ca]": "Transport públic local a Ulm i rodalies, Alemanya.",
         "Description[es]": "Transporte público local de Ulm y alrededores, Alemania.",
         "Description[et]": "Saksamaa Ulmi ja selle ümbruse kohalik ühistransport.",
@@ -13,7 +14,9 @@
         "Description[uk]": "Місцевий транспорт в Ульмі і околицях, Німеччина.",
         "Description[x-test]": "xxLocal public transport in and around Ulm, Germany.xx",
         "Name": "Ulm, Germany",
+        "Name[ca@valencia]": "Ulm, Alemanya",
         "Name[ca]": "Ulm, Alemanya",
+        "Name[de]": "Ulm, Deutschland",
         "Name[es]": "Ulm, Alemania",
         "Name[et]": "Ulm, Saksamaa",
         "Name[it]": "Ulm, Germania",

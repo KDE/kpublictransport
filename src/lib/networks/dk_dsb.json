@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Danish national railway.",
+        "Description[ca@valencia]": "Ferrocarrils nacionals danesos.",
         "Description[ca]": "Ferrocarrils nacionals danesos.",
         "Description[cs]": "Dánské národní železnice.",
         "Description[en_GB]": "Danish national railway.",
@@ -17,6 +18,7 @@
         "Description[uk]": "Данська державна залізниця.",
         "Description[x-test]": "xxDanish national railway.xx",
         "Name": "Danske Statsbaner (DSB)",
+        "Name[ca@valencia]": "Danske Statsbaner (DSB)",
         "Name[ca]": "Danske Statsbaner (DSB)",
         "Name[cs]": "Danske Statsbaner (DSB)",
         "Name[en_GB]": "Danske Statsbaner (DSB)",

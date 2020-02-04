@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Norway.",
+        "Description[ca@valencia]": "Transport públic a Noruega.",
         "Description[ca]": "Transport públic a Noruega.",
         "Description[es]": "Transporte público de Noruega.",
         "Description[et]": "Norra ühistransport.",
@@ -13,6 +14,7 @@
         "Description[uk]": "Громадський транспорт у Норвегії.",
         "Description[x-test]": "xxPublic transport in Norway.xx",
         "Name": "Entur",
+        "Name[ca@valencia]": "Entur",
         "Name[ca]": "Entur",
         "Name[es]": "Entur",
         "Name[et]": "Entur",

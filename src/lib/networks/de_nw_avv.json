@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Aachen, Germany.",
+        "Description[ca@valencia]": "Transport local a Aachen i rodalies, Alemanya.",
         "Description[ca]": "Transport local a Aachen i rodalies, Alemanya.",
         "Description[cs]": "Místní doprava v Cáchách a okolí, Německo.",
         "Description[en_GB]": "Local transport in and around Aachen, Germany.",
@@ -17,8 +18,10 @@
         "Description[uk]": "Місцевий транспорт у Аахені і околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Aachen, Germany.xx",
         "Name": "Aachener Verkehrsverbund (AVV)",
+        "Name[ca@valencia]": "Aachener Verkehrsverbund (AVV)",
         "Name[ca]": "Aachener Verkehrsverbund (AVV)",
         "Name[cs]": "Aachener Verkehrsverbund (AVV)",
+        "Name[de]": "Aachener Verkehrsverbund (AVV)",
         "Name[en_GB]": "Aachener Verkehrsverbund (AVV)",
         "Name[es]": "Aachener Verkehrsverbund (AVV)",
         "Name[et]": "Aachener Verkehrsverbund (AVV)",

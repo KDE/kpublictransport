@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Stuttgart, Germany.",
+        "Description[ca@valencia]": "Transport local a Stuttgart i rodalies, Alemanya.",
         "Description[ca]": "Transport local a Stuttgart i rodalies, Alemanya.",
         "Description[cs]": "Místní doprava ve Stuttgartu a okolí, Německo.",
         "Description[en_GB]": "Local transport in and around Stuttgart, Germany.",
@@ -17,8 +18,10 @@
         "Description[uk]": "Місцевий транспорту Штутгарті і околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Stuttgart, Germany.xx",
         "Name": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
+        "Name[ca@valencia]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[ca]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[cs]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
+        "Name[de]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[en_GB]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[es]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[et]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",

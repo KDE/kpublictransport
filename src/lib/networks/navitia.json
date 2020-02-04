@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "World-wide Free Software and Open Data transport data provider.",
+        "Description[ca@valencia]": "Proveïdor de dades mundials de transports de programari lliure i dades obertes.",
         "Description[ca]": "Proveïdor de dades mundials de transports de programari lliure i dades obertes.",
         "Description[en_GB]": "World-wide Free Software and Open Data transport data provider.",
         "Description[es]": "Proveedor de datos de transporte mundial de código y datos abiertos.",
@@ -16,6 +17,7 @@
         "Description[uk]": "Всесвітнє джерело відкритих даних щодо транспорту для вільного програмного забезпечення.",
         "Description[x-test]": "xxWorld-wide Free Software and Open Data transport data provider.xx",
         "Name": "Navitia",
+        "Name[ca@valencia]": "Navitia",
         "Name[ca]": "Navitia",
         "Name[cs]": "Navitia",
         "Name[en_GB]": "Navitia",

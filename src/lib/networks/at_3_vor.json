@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Regional public transport in eastern Austria.",
+        "Description[ca@valencia]": "Transport públic regional a Àustria oriental.",
         "Description[ca]": "Transport públic regional a Àustria oriental.",
         "Description[en_GB]": "Regional public transport in eastern Austria.",
         "Description[es]": "Trasporte público regional de Austria oriental.",
@@ -15,7 +16,9 @@
         "Description[uk]": "Місцевий транспорт у східній Австрії.",
         "Description[x-test]": "xxRegional public transport in eastern Austria.xx",
         "Name": "Verkehrsverbund Ostregion (VOR)",
+        "Name[ca@valencia]": "Verkehrsverbund Ostregion (VOR)",
         "Name[ca]": "Verkehrsverbund Ostregion (VOR)",
+        "Name[de]": "Verkehrsverbund Ostregion (VOR)",
         "Name[en_GB]": "Verkehrsverbund Ostregion (VOR)",
         "Name[es]": "Verkehrsverbund Ostregion (VOR)",
         "Name[et]": "Verkehrsverbund Ostregion (VOR)",

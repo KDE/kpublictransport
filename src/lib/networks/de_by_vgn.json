@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Nuremberg, Germany.",
+        "Description[ca@valencia]": "Transport local a Nuremberg i rodalies, Alemanya.",
         "Description[ca]": "Transport local a Nuremberg i rodalies, Alemanya.",
         "Description[cs]": "Místní doprava v Norimberku a okolí, Německo.",
         "Description[en_GB]": "Local transport in and around Nuremberg, Germany.",
@@ -17,8 +18,10 @@
         "Description[uk]": "Місцевий транспорт у Нюрнберзі та околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Nuremberg, Germany.xx",
         "Name": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[ca@valencia]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[ca]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[cs]": "Verkehrsverbund Großraum Nürnberg (VGN)",
+        "Name[de]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[en_GB]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[es]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[et]": "Verkehrsverbund Großraum Nürnberg (VGN)",

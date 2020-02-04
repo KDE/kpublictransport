@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Linz, Austria.",
+        "Description[ca@valencia]": "Transport local a Linz i rodalies, Àustria.",
         "Description[ca]": "Transport local a Linz i rodalies, Àustria.",
         "Description[en_GB]": "Local transport in and around Linz, Austria.",
         "Description[es]": "Transporte local de Linz y alrededores, Austria.",
@@ -15,7 +16,9 @@
         "Description[uk]": "Місцевий транспорт у Лінці і околицях, Австрія.",
         "Description[x-test]": "xxLocal transport in and around Linz, Austria.xx",
         "Name": "Linz AG",
+        "Name[ca@valencia]": "Linz AG",
         "Name[ca]": "Linz AG",
+        "Name[de]": "Linz AG",
         "Name[en_GB]": "Linz AG",
         "Name[es]": "Linz AG",
         "Name[et]": "Linz AG",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Dutch national railway.",
+        "Description[ca@valencia]": "Ferrocarrils nacionals danesos.",
         "Description[ca]": "Ferrocarrils nacionals danesos.",
         "Description[cs]": "Holandské národní železnice.",
         "Description[en_GB]": "Dutch national railway.",
@@ -17,6 +18,7 @@
         "Description[uk]": "Нідерландська державна залізниця.",
         "Description[x-test]": "xxDutch national railway.xx",
         "Name": "Nederlandse Spoorwegen (NS)",
+        "Name[ca@valencia]": "Nederlandse Spoorwegen (NS)",
         "Name[ca]": "Nederlandse Spoorwegen (NS)",
         "Name[cs]": "Nederlandse Spoorwegen (NS)",
         "Name[en_GB]": "Nederlandse Spoorwegen (NS)",

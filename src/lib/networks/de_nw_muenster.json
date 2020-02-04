@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Münster, Germany.",
+        "Description[ca@valencia]": "Transport públic local a Münster i rodalies, Alemanya.",
         "Description[ca]": "Transport públic local a Münster i rodalies, Alemanya.",
         "Description[es]": "Transporte público local de Münster y alrededores, Alemania.",
         "Description[et]": "Saksamaa Münsteri ja selle ümbruse kohalik ühistransport.",
@@ -13,7 +14,9 @@
         "Description[uk]": "Місцевий транспорт у Мюнстері і околицях, Німеччина.",
         "Description[x-test]": "xxLocal public transport in and around Münster, Germany.xx",
         "Name": "Münster, Germany",
+        "Name[ca@valencia]": "Münster, Alemanya",
         "Name[ca]": "Münster, Alemanya",
+        "Name[de]": "Münster, Deutschland",
         "Name[es]": "Münster, Alemania",
         "Name[et]": "Münster, Saksamaa",
         "Name[it]": "Münster, Germania",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Portland, Oregon, US.",
+        "Description[ca@valencia]": "Transport Públic a Portland i rodalies, Oregon, EEUU.",
         "Description[ca]": "Transport Públic a Portland i rodalies, Oregon, EEUU.",
         "Description[es]": "Transporte público de Portland y alrededores, Oregón, Estados Unidos.",
         "Description[et]": "USA Postlandi (Oregoni osariik) ja selle ümbruse ühistransport.",
@@ -13,6 +14,7 @@
         "Description[uk]": "Громадський транспорт у Портленді і околицях, Орегон, США.",
         "Description[x-test]": "xxPublic transport in and around Portland, Oregon, US.xx",
         "Name": "TriMet",
+        "Name[ca@valencia]": "TriMet",
         "Name[ca]": "TriMet",
         "Name[es]": "TriMet",
         "Name[et]": "TriMet",

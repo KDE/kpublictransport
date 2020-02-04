@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Rhein-Ruhr area, Germany.",
+        "Description[ca@valencia]": "Transport local a l'àrea de Rhein-Ruhr, Alemanya.",
         "Description[ca]": "Transport local a l'àrea de Rhein-Ruhr, Alemanya.",
         "Description[cs]": "Místní doprava v oblasti Porýní-Porúří, Německo.",
         "Description[en_GB]": "Local transport in the Rhein-Ruhr area, Germany.",
@@ -17,8 +18,10 @@
         "Description[uk]": "Місцевий транспорт у регіоні Рейн-Рур, Німеччина.",
         "Description[x-test]": "xxLocal transport in the Rhein-Ruhr area, Germany.xx",
         "Name": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[ca@valencia]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[ca]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[cs]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[de]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[en_GB]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[es]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[et]": "Verkehrsverbund Rhein-Ruhr (VRR)",

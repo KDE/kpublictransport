@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Munich, Germany.",
+        "Description[ca@valencia]": "Transport local a Munich i rodalies, Alemanya.",
         "Description[ca]": "Transport local a Munich i rodalies, Alemanya.",
         "Description[cs]": "Místní doprava v Mnichově a okolí, Německo.",
         "Description[en_GB]": "Local transport in and around Munich, Germany.",
@@ -17,8 +18,10 @@
         "Description[uk]": "Місцевий транспорт у Мюнхені і околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Munich, Germany.xx",
         "Name": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[ca@valencia]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[ca]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[cs]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[de]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[en_GB]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[es]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[et]": "Münchener Verkehrs- und Tarifverbund (MVV)",

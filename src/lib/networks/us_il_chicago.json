@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Chicago, Illinois, United States.",
+        "Description[ca@valencia]": "Transport local a Chicago i rodalies, Illinois, Estats Units.",
         "Description[ca]": "Transport local a Chicago i rodalies, Illinois, Estats Units.",
         "Description[cs]": "Místní doprava v Chicago, Illinois a okolí, Spojené Státy.",
         "Description[en_GB]": "Local transport in and around Chicago, Illinois, United States.",
@@ -17,6 +18,7 @@
         "Description[uk]": "Місцевий транспорт у Чикаго і околицях, Іллінойс, США.",
         "Description[x-test]": "xxLocal transport in and around Chicago, Illinois, United States.xx",
         "Name": "Regional Transport Authority Chicago",
+        "Name[ca@valencia]": "Regional Transport Authority Chicago",
         "Name[ca]": "Regional Transport Authority Chicago",
         "Name[en_GB]": "Regional Transport Authority Chicago",
         "Name[es]": "Regional Transport Authority Chicago",

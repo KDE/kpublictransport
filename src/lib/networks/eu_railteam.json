@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Joint service of European national railway operators.",
+        "Description[ca@valencia]": "Servei conjunt dels operadors ferroviaris nacionals europeus.",
         "Description[ca]": "Servei conjunt dels operadors ferroviaris nacionals europeus.",
         "Description[en_GB]": "Joint service of European national railway operators.",
         "Description[es]": "Servicio conjunto europeo de operadores nacionales de ferrocarril.",
@@ -16,6 +17,7 @@
         "Description[uk]": "Загальна служба європейських державних операторів залізниць.",
         "Description[x-test]": "xxJoint service of European national railway operators.xx",
         "Name": "Railteam",
+        "Name[ca@valencia]": "Railteam",
         "Name[ca]": "Railteam",
         "Name[cs]": "Railteam",
         "Name[en_GB]": "Railteam",
