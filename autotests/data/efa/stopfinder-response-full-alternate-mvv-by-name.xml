@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest version="10.2.13.49" language="de" lengthUnit="METER" sessionID="0">
+  <itdStopFinderRequest requestID="0">
+    <itdOdv type="any" usage="sf" anyObjFilter="2">
+      <itdOdvPlace state="empty">
+        <odvPlaceElem/>
+      </itdOdvPlace>
+      <itdOdvName state="list">
+        <itdMessage type="error" module="BROKER" code="-8011"/>
+        <odvNameElem listIndex="0" selected="1" matchQuality="428" x="11.56112" y="48.14031" mapName="WGS84[DD.ddddd]" id="1000006" omc="9162000" placeID="1" anyType="stop" anyTypeSort="2" locality="München" objectName="Hauptbahnhof" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="München" stateless="1000006" gid="de:09162:6" value="0:1">München, Hauptbahnhof</odvNameElem>
+        <odvNameElem listIndex="1" selected="0" matchQuality="315" x="11.56079" y="48.14116" mapName="WGS84[DD.ddddd]" id="1007000" omc="9162000" placeID="1" anyType="stop" anyTypeSort="2" locality="München" objectName="Hauptbahnhof Nord" buildingName="" buildingNumber="" postCode="" streetName="" nameKey="" mainLocality="München" stateless="1007000" gid="de:09162:7000" value="1:2">München, Hauptbahnhof Nord</odvNameElem>
+      </itdOdvName>
+    </itdOdv>
+  </itdStopFinderRequest>
+</itdRequest>

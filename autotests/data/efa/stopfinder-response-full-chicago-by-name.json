@@ -4,6 +4,14 @@
             "testid": "10120152"
         },
         "latitude": 41.98918914794922,
+        "longitude": -87.88291931152344,
+        "name": "O'hare Airport Kiss-N-Fly Chicago"
+    },
+    {
+        "identifier": {
+            "testid": "10120152"
+        },
+        "latitude": 41.98918914794922,
         "locality": "Chicago",
         "longitude": -87.88291931152344,
         "name": "O'hare Airport Kiss-N-Fly, Chicago"

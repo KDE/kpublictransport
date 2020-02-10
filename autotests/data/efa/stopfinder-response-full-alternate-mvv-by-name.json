@@ -1,0 +1,18 @@
+[
+    {
+        "identifier": {
+            "testid": "1000006"
+        },
+        "latitude": 48.14030838012695,
+        "longitude": 11.56112003326416,
+        "name": "München, Hauptbahnhof"
+    },
+    {
+        "identifier": {
+            "testid": "1007000"
+        },
+        "latitude": 48.14115905761719,
+        "longitude": 11.560790061950684,
+        "name": "München, Hauptbahnhof Nord"
+    }
+]

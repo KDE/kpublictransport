@@ -65,6 +65,9 @@ private Q_SLOTS:
         QTest::newRow("tfi-alternate-format")
             << s(SOURCE_DIR "/data/efa/stopfinder-response-full-alternate-tfi-by-name.xml")
             << s(SOURCE_DIR "/data/efa/stopfinder-response-full-alternate-tfi-by-name.json");
+        QTest::newRow("mvv-alternate-format")
+            << s(SOURCE_DIR "/data/efa/stopfinder-response-full-alternate-mvv-by-name.xml")
+            << s(SOURCE_DIR "/data/efa/stopfinder-response-full-alternate-mvv-by-name.json");
     }
 
     void testParseLocation()
