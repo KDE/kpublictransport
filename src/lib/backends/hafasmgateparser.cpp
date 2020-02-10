@@ -31,6 +31,12 @@
 
 using namespace KPublicTransport;
 
+// REM or HIM elements
+struct Message {
+    QString text;
+    Disruption::Effect effect = Disruption::NormalService;
+};
+
 HafasMgateParser::HafasMgateParser() = default;
 HafasMgateParser::~HafasMgateParser() = default;
 
@@ -54,35 +60,68 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     return icos;
 }
 
-static std::vector<QString> parseRemarks(const QJsonArray &remL)
+static std::vector<Message> parseRemarks(const QJsonArray &remL)
 {
-    std::vector<QString> rems;
+    std::vector<Message> rems;
     rems.reserve(remL.size());
     for (const auto &remV : remL) {
         const auto remObj = remV.toObject();
-        rems.push_back(remObj.value(QLatin1String("txtN")).toString());
+        Message m;
+        m.text = remObj.value(QLatin1String("txtN")).toString();
+        const auto code = remObj.value(QLatin1String("code")).toString();
+        if (code == QLatin1String("text.realtime.stop.cancelled")) {
+            m.effect = Disruption::NoService;
+        }
+        rems.push_back(std::move(m));
     }
     return rems;
 }
 
-static QStringList parseMessageList(const QJsonObject &obj, const std::vector<QString> &remarks)
+static std::vector<Message> parseWarnings(const QJsonArray &himL)
+{
+    std::vector<Message> hims;
+    hims.reserve(himL.size());
+    for (const auto &himV : himL) {
+        const auto himObj = himV.toObject();
+        Message m;
+        m.text = himObj.value(QLatin1String("head")).toString() + QLatin1Char('\n')
+               + himObj.value(QLatin1String("lead")).toString() + QLatin1Char('\n')
+               + himObj.value(QLatin1String("text")).toString();
+        hims.push_back(m);
+    }
+    return hims;
+}
+
+template <typename T>
+static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<Message> &remarks, const std::vector<Message> &warnings)
 {
     const auto msgL = obj.value(QLatin1String("msgL")).toArray();
     QStringList notes;
     for (const auto &msgV : msgL) {
         const auto msgObj = msgV.toObject();
+        const auto msgType = msgObj.value(QLatin1String("type")).toString();
+
+        const std::vector<Message> *source = nullptr;
+        if (msgType == QLatin1String("REM")) {
+            source = &remarks;
+        } else if (msgType == QLatin1String("HIM")) {
+            source = &warnings;
+        } else {
+            qDebug() << "unsupported message type:" << msgType;
+            continue;
+        }
+
         const auto remX = msgObj.value(QLatin1String("remX")).toInt();
-        if (static_cast<size_t>(remX) >= remarks.size()) {
-            qCDebug(Log) << "Invalid remark index:" << remX;
+        if (static_cast<size_t>(remX) >= source->size()) {
+            qCDebug(Log) << "Invalid message index:" << remX << msgType;
             continue;
         }
-        const auto rem = remarks[remX];
-        if (rem.isEmpty()) {
-            continue;
+        const auto msg = (*source)[remX];
+        elem.addNote(msg.text);
+        if (msg.effect == Disruption::NoService) {
+            elem.setDisruptionEffect(msg.effect);
         }
-        notes.push_back(rem);
     }
-    return notes;
 }
 
 std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) const
@@ -138,6 +177,7 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
     const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
+    const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
 
     std::vector<Departure> res;
     const auto jnyL = obj.value(QLatin1String("jnyL")).toArray();
@@ -191,7 +231,8 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
             route.setDestination(locs[destLocX]);
         }
 
-        dep.addNotes(parseMessageList(jnyObj, remarks));
+        parseMessageList(dep, jnyObj, remarks, warnings);
+        parseMessageList(dep, stbStop, remarks, warnings);
         dep.setRoute(route);
         res.push_back(dep);
     }
@@ -284,6 +325,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
     const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
+    const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
 
     std::vector<Journey> res;
     const auto outConL = obj.value(QLatin1String("outConL")).toArray();
@@ -346,7 +388,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                     section.setDisruptionEffect(Disruption::NoService);
                 }
 
-                section.addNotes(parseMessageList(jnyObj, remarks));
+                parseMessageList(section, jnyObj, remarks, warnings);
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
                 section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());

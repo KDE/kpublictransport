@@ -1,0 +1,682 @@
+{
+  "ver": "1.16",
+  "lang": "eng",
+  "id": "s4kkgrzaix4sy4w8",
+  "svcResL": [
+    {
+      "meth": "ServerInfo",
+      "err": "OK",
+      "res": {
+        "common": {
+          "locL": [],
+          "prodL": [],
+          "polyL": [],
+          "layerL": [
+            {
+              "id": "standard",
+              "name": "standard",
+              "index": 0,
+              "annoCnt": 0
+            }
+          ],
+          "crdSysL": [
+            {
+              "id": "standard",
+              "index": 0,
+              "type": "WGS84",
+              "dim": 2
+            }
+          ],
+          "opL": [],
+          "remL": [],
+          "icoL": []
+        },
+        "sD": "20200209",
+        "sT": "220725",
+        "enc": "ISO-8859-1",
+        "planrtTS": "1581282437"
+      }
+    },
+    {
+      "meth": "StationBoard",
+      "err": "OK",
+      "res": {
+        "common": {
+          "locL": [
+            {
+              "lid": "A=1@O=Köln Hbf@X=6958595@Y=50942984@U=80@L=4405@",
+              "type": "S",
+              "name": "Köln Hbf",
+              "icoX": 2,
+              "extId": "4405",
+              "state": "F",
+              "crd": {
+                "x": 6958595,
+                "y": 50942984,
+                "type": "WGS84",
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 215
+            },
+            {
+              "lid": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107140@U=80@L=641200010@",
+              "type": "S",
+              "name": "Frankfurt(Main)Hbf",
+              "icoX": 2,
+              "extId": "641200010",
+              "state": "F",
+              "crd": {
+                "x": 8663785,
+                "y": 50107140,
+                "type": "WGS84",
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 7
+            },
+            {
+              "lid": "A=1@O=Köln Messe/Deutz@X=6977823@Y=50939757@U=80@L=4410@",
+              "type": "S",
+              "name": "Köln Messe/Deutz",
+              "icoX": 2,
+              "extId": "4410",
+              "state": "F",
+              "crd": {
+                "x": 6977823,
+                "y": 50939757,
+                "type": "WGS84",
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 215
+            },
+            {
+              "lid": "A=1@O=Gerolstein@X=6660387@Y=50223829@U=80@L=723330303@",
+              "type": "S",
+              "name": "Gerolstein",
+              "icoX": 2,
+              "extId": "723330303",
+              "state": "F",
+              "crd": {
+                "x": 6660369,
+                "y": 50224009,
+                "type": "WGS84",
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 1
+            }
+          ],
+          "prodL": [
+            {
+              "pid": "L::2::ICE::B0291101248::ICE_0291101248::*",
+              "name": "ICE",
+              "nameS": "ICE",
+              "number": "ICE",
+              "icoX": 0,
+              "cls": 4,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "ICE     ",
+                "num": "19",
+                "line": "ICE",
+                "matchId": "ICE",
+                "catOut": "ICE     ",
+                "catOutS": "ICE",
+                "catOutL": "-",
+                "catIn": "ICE",
+                "catCode": "2",
+                "admin": "DBA051"
+              }
+            },
+            {
+              "pid": "L::0::DPN::B2725936916::DPN_2725936916_RB26::*",
+              "name": "RB26",
+              "nameS": "RB26",
+              "number": "RB26",
+              "icoX": 2,
+              "cls": 1,
+              "oprX": 1,
+              "prodCtx": {
+                "name": "    RB26",
+                "num": "25438",
+                "line": "RB26",
+                "matchId": "RB26",
+                "catOut": "DPN     ",
+                "catOutS": "DPN",
+                "catOutL": "-",
+                "catIn": "DPN",
+                "catCode": "0",
+                "admin": "TR____"
+              }
+            },
+            {
+              "pid": "L::0::RB::B0291101248::RB_0291101248_RB24::*",
+              "name": "RB24",
+              "nameS": "RB24",
+              "number": "RB24",
+              "icoX": 2,
+              "cls": 1,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "    RB24",
+                "num": "1131",
+                "line": "RB24",
+                "matchId": "RB24",
+                "catOut": "RB      ",
+                "catOutS": "RB",
+                "catOutL": "-",
+                "catIn": "RB",
+                "catCode": "0",
+                "admin": "DBA074"
+              }
+            }
+          ],
+          "polyL": [],
+          "crdSysL": [
+            {
+              "id": "standard",
+              "index": 0,
+              "type": "WGS84",
+              "dim": 2
+            }
+          ],
+          "opL": [
+            {
+              "name": "Staatsbahnen",
+              "icoX": 1,
+              "id": "Staatsbahnen"
+            },
+            {
+              "name": "TRANS REGIO",
+              "icoX": 11,
+              "id": "TRANS REGIO"
+            },
+            {
+              "name": "Kölner Verkehrs-Betriebe AG",
+              "icoX": 12,
+              "id": "K_lner Verkehrs-Betriebe AG"
+            }
+          ],
+          "remL": [
+            {
+              "type": "R",
+              "code": "text.realtime.stop.cancelled",
+              "icoX": 7,
+              "txtN": "Stop cancelled"
+            },
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 8,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "zn",
+              "prio": 350,
+              "icoX": 8,
+              "txtN": "Betreiber: Deutsche Bahn"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 8,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "R",
+              "code": "text.realtime.journey.cancelled",
+              "icoX": 10,
+              "txtN": "ICE: Cancelled"
+            },
+            {
+              "type": "A",
+              "code": "G ",
+              "prio": 260,
+              "icoX": 8,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "zc",
+              "prio": 350,
+              "icoX": 8,
+              "txtN": "RB26: MittelrheinBahn"
+            },
+            {
+              "type": "A",
+              "code": "zd",
+              "prio": 350,
+              "icoX": 8,
+              "txtN": "Betreiber: trans regio"
+            }
+          ],
+          "himL": [
+            {
+              "hid": "1782",
+              "act": true,
+              "pub": "",
+              "head": "Bad weather - expect disruptions.",
+              "lead": "Since 17:20 operations are suspended.",
+              "text": "Operations are suspended since Sunday 09.02.  <br /><br />Operations might resume on Monday 7:00. <br /><br />Busses are affected too.<br /><br />You can all us: 08000 12 34 56.<br /><br />Last update: 09.02.2020, 20:25",
+              "tckr": "",
+              "icoX": 9,
+              "prio": 100,
+              "prod": 65535,
+              "lModDate": "20200209",
+              "lModTime": "203013",
+              "sDate": "20200209",
+              "sTime": "120000",
+              "eDate": "20200211",
+              "eTime": "235600",
+              "comp": "AVV",
+              "cat": 0,
+              "pubChL": [
+                {
+                  "name": "timetable",
+                  "fDate": "20200207",
+                  "fTime": "133400",
+                  "tDate": "20200211",
+                  "tTime": "160000"
+                },
+                {
+                  "name": "rss",
+                  "fDate": "20200207",
+                  "fTime": "133400",
+                  "tDate": "20200211",
+                  "tTime": "160000"
+                },
+                {
+                  "name": "rss_line_10",
+                  "fDate": "20200207",
+                  "fTime": "133400",
+                  "tDate": "20200211",
+                  "tTime": "160000"
+                }
+              ]
+            }
+          ],
+          "icoL": [
+            {
+              "res": "ICE",
+              "fg": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              },
+              "bg": {
+                "r": 205,
+                "g": 38,
+                "b": 48,
+                "a": 255
+              }
+            },
+            {
+              "res": "DB",
+              "txt": "Staatsbahnen"
+            },
+            {
+              "res": "RB",
+              "fg": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              },
+              "bg": {
+                "r": 139,
+                "g": 186,
+                "b": 2,
+                "a": 255
+              }
+            },
+            {
+              "res": "BUS",
+              "fg": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              },
+              "bg": {
+                "r": 190,
+                "g": 65,
+                "b": 135,
+                "a": 255
+              }
+            },
+            {
+              "res": "S",
+              "fg": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              },
+              "bg": {
+                "r": 66,
+                "g": 165,
+                "b": 66,
+                "a": 255
+              }
+            },
+            {
+              "res": "IC",
+              "fg": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              },
+              "bg": {
+                "r": 205,
+                "g": 38,
+                "b": 48,
+                "a": 255
+              }
+            },
+            {
+              "res": "STR",
+              "fg": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255
+              },
+              "bg": {
+                "r": 230,
+                "g": 161,
+                "b": 42,
+                "a": 255
+              }
+            },
+            {
+              "res": "rt_scancel"
+            },
+            {
+              "res": "INFO"
+            },
+            {
+              "res": "HIM0"
+            },
+            {
+              "res": "rt_cancel"
+            },
+            {
+              "res": "TR",
+              "txt": "TRANS REGIO"
+            },
+            {
+              "res": "KVB",
+              "txt": "Kölner Verkehrs-Betriebe AG"
+            }
+          ]
+        },
+        "type": "DEP",
+        "jnyL": [
+          {
+            "jid": "1|119674|0|80|9022020",
+            "date": "20200209",
+            "prodX": 0,
+            "dirTxt": "Frankfurt(Main)Hbf",
+            "status": "P",
+            "isCncl": true,
+            "isRchbl": false,
+            "stbStop": {
+              "locX": 0,
+              "idx": 5,
+              "dProdX": 0,
+              "dInR": false,
+              "dTimeS": "201800",
+              "dCncl": true,
+              "type": "N"
+            },
+            "stopL": [
+              {
+                "locX": 0,
+                "idx": 5,
+                "dInR": false,
+                "dTimeS": "201800",
+                "dCncl": true,
+                "msgL": [
+                  {
+                    "type": "REM",
+                    "remX": 0,
+                    "tagL": [
+                      "RES_LOC_H3"
+                    ]
+                  }
+                ],
+                "type": "N"
+              },
+              {
+                "locX": 1,
+                "idx": 8,
+                "aOutR": false,
+                "aTimeS": "213100",
+                "aCncl": true,
+                "msgL": [
+                  {
+                    "type": "REM",
+                    "remX": 0,
+                    "tagL": [
+                      "RES_LOC_H3"
+                    ]
+                  }
+                ],
+                "type": "N"
+              }
+            ],
+            "msgL": [
+              {
+                "type": "REM",
+                "remX": 1,
+                "fLocX": 0,
+                "tLocX": 1,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 2,
+                "fLocX": 0,
+                "tLocX": 1,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 3,
+                "fLocX": 0,
+                "tLocX": 1,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 4,
+                "tagL": [
+                  "RES_JNY_DTL_H3"
+                ]
+              }
+            ],
+            "subscr": "F"
+          },
+          {
+            "jid": "1|119090|2|80|9022020",
+            "date": "20200209",
+            "prodX": 1,
+            "dirTxt": "Köln Messe/Deutz",
+            "status": "P",
+            "isRchbl": true,
+            "stbStop": {
+              "locX": 0,
+              "idx": 43,
+              "dProdX": 1,
+              "dPlatfS": "1",
+              "dPlatfR": "1",
+              "dInR": true,
+              "dTimeS": "220500",
+              "dTimeR": "221900",
+              "dProgType": "PROGNOSED",
+              "msgL": [
+                {
+                  "type": "REM",
+                  "remX": 0,
+                  "tagL": [
+                    "RES_LOC_H3"
+                  ]
+                }
+              ],
+              "type": "N"
+            },
+            "stopL": [
+              {
+                "locX": 0,
+                "idx": 43,
+                "dPlatfS": "1",
+                "dPlatfR": "1",
+                "dInR": true,
+                "dTimeS": "220500",
+                "dTimeR": "221900",
+                "dProgType": "PROGNOSED",
+                "type": "N"
+              },
+              {
+                "locX": 2,
+                "idx": 44,
+                "aOutR": true,
+                "aTimeS": "220800",
+                "type": "N"
+              }
+            ],
+            "msgL": [
+              {
+                "type": "REM",
+                "remX": 5,
+                "fLocX": 0,
+                "tLocX": 2,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 6,
+                "fLocX": 0,
+                "tLocX": 2,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 7,
+                "fLocX": 0,
+                "tLocX": 2,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              }
+            ],
+            "subscr": "F"
+          },
+          {
+            "jid": "1|151165|1|80|9022020",
+            "date": "20200209",
+            "prodX": 2,
+            "dirTxt": "Gerolstein",
+            "status": "P",
+            "isRchbl": true,
+            "stbStop": {
+              "locX": 0,
+              "idx": 1,
+              "dProdX": 2,
+              "dPlatfS": "8 D-G",
+              "dPlatfR": "8 D-G",
+              "dInR": true,
+              "dTimeS": "221100",
+              "dTimeR": "221100",
+              "dProgType": "PROGNOSED",
+              "type": "N"
+            },
+            "stopL": [
+              {
+                "locX": 0,
+                "idx": 1,
+                "dPlatfS": "8 D-G",
+                "dPlatfR": "8 D-G",
+                "dInR": true,
+                "dTimeS": "221100",
+                "dTimeR": "221100",
+                "dProgType": "PROGNOSED",
+                "isImp": true,
+                "type": "N"
+              },
+              {
+                "locX": 3,
+                "idx": 23,
+                "aOutR": true,
+                "aTimeS": "01000200",
+                "isImp": true,
+                "type": "N"
+              }
+            ],
+            "msgL": [
+              {
+                "type": "REM",
+                "remX": 0,
+                "fLocX": 0,
+                "tLocX": 3,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 5,
+                "fLocX": 0,
+                "tLocX": 3,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "REM",
+                "remX": 2,
+                "fLocX": 0,
+                "tLocX": 3,
+                "tagL": [
+                  "RES_JNY_DTL"
+                ]
+              },
+              {
+                "type": "HIM",
+                "himX": 0,
+                "fLocX": 0,
+                "tagL": [
+                  "SUM_GLB_HDR_H2",
+                  "RES_GLB_HDR_H2"
+                ]
+              }
+            ],
+            "subscr": "F"
+          }
+        ],
+        "fpB": "20191201",
+        "fpE": "20201212",
+        "planrtTS": "1581282437",
+        "sD": "20200209",
+        "sT": "220725"
+      }
+    }
+  ]
+}

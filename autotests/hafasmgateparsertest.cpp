@@ -19,6 +19,9 @@
 #include <KPublicTransport/HafasMgateParser>
 
 #include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QJsonValue>
 #include <QTest>
 #include <QTimeZone>
@@ -31,9 +34,9 @@ class HafasMgateParserTest : public QObject
 {
     Q_OBJECT
 private:
-    QByteArray readFile(const char *fn)
+    QByteArray readFile(const QString &fn)
     {
-        QFile f(QString::fromUtf8(fn));
+        QFile f(fn);
         f.open(QFile::ReadOnly);
         return f.readAll();
     }
@@ -42,12 +45,13 @@ private Q_SLOTS:
     void initTestCase()
     {
         qputenv("TZ", "UTC");
+        qRegisterMetaType<Disruption::Effect>();
     }
 
     void testParseDepartureError()
     {
         HafasMgateParser p;
-        const auto res = p.parseDepartures(readFile(SOURCE_DIR "/data/hafas/stationboard-error-response.json"));
+        const auto res = p.parseDepartures(readFile(s(SOURCE_DIR "/data/hafas/stationboard-error-response.json")));
         QVERIFY(res.empty());
         QCOMPARE(p.error(), Reply::NotFoundError);
         QVERIFY(!p.errorMessage().isEmpty());
@@ -74,6 +78,35 @@ private Q_SLOTS:
         QFETCH(QJsonValue, tzOffset);
         QFETCH(QDateTime, dt);
         QCOMPARE(HafasMgateParser::parseDateTime(date, QJsonValue(time), tzOffset), dt);
+    }
+
+    void testParseDepartures_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("de-nw-avv-canceled-departures")
+            << s(SOURCE_DIR "/data/hafas/canceled-departures.in.json")
+            << s(SOURCE_DIR "/data/hafas/canceled-departures.out.json");
+    }
+
+    void testParseDepartures()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        HafasMgateParser p;
+        p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
+        const auto res = p.parseDepartures(readFile(inFileName));
+        const auto jsonRes = Departure::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
     }
 };
 

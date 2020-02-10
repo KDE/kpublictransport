@@ -1,0 +1,113 @@
+[
+    {
+        "disruptionEffect": "NoService",
+        "notes": [
+            "Komfort Check-in möglich (Infos unter <a href=\"https://bahn.de/kci)\">bahn.de/kci)</a>",
+            "Betreiber: Deutsche Bahn",
+            "Bordrestaurant",
+            "ICE: Cancelled"
+        ],
+        "route": {
+            "destination": {
+                "identifier": {
+                    "unit-test": "641200010"
+                },
+                "latitude": 50.107139587402344,
+                "longitude": 8.663784980773926,
+                "name": "Frankfurt(Main)Hbf"
+            },
+            "direction": "Frankfurt(Main)Hbf",
+            "line": {
+                "color": "#cd2630",
+                "mode": "Unknown",
+                "name": "ICE",
+                "textColor": "#ffffff"
+            }
+        },
+        "scheduledDepartureTime": "2020-02-09T20:18:00",
+        "stopPoint": {
+            "identifier": {
+                "unit-test": "4405"
+            },
+            "latitude": 50.94298553466797,
+            "longitude": 6.958594799041748,
+            "name": "Köln Hbf"
+        }
+    },
+    {
+        "disruptionEffect": "NoService",
+        "expectedDepartureTime": "2020-02-09T22:19:00",
+        "expectedPlatform": "1",
+        "notes": [
+            "Fahrradmitnahme begrenzt möglich",
+            "RB26: MittelrheinBahn",
+            "Betreiber: trans regio",
+            "Stop cancelled"
+        ],
+        "route": {
+            "destination": {
+                "identifier": {
+                    "unit-test": "4410"
+                },
+                "latitude": 50.93975830078125,
+                "longitude": 6.977822780609131,
+                "name": "Köln Messe/Deutz"
+            },
+            "direction": "Köln Messe/Deutz",
+            "line": {
+                "color": "#8bba02",
+                "mode": "Unknown",
+                "name": "RB26",
+                "textColor": "#ffffff"
+            }
+        },
+        "scheduledDepartureTime": "2020-02-09T22:05:00",
+        "scheduledPlatform": "1",
+        "stopPoint": {
+            "identifier": {
+                "unit-test": "4405"
+            },
+            "latitude": 50.94298553466797,
+            "longitude": 6.958594799041748,
+            "name": "Köln Hbf"
+        }
+    },
+    {
+        "disruptionEffect": "NoService",
+        "expectedDepartureTime": "2020-02-09T22:11:00",
+        "expectedPlatform": "8 D-G",
+        "notes": [
+            "Stop cancelled",
+            "Fahrradmitnahme begrenzt möglich",
+            "Betreiber: Deutsche Bahn",
+            "Bad weather - expect disruptions.\nSince 17:20 operations are suspended.\nOperations are suspended since Sunday 09.02. <br /><br />Operations might resume on Monday 7:00. <br /><br />Busses are affected too.<br /><br />You can all us: 08000 12 34 56.<br /><br />Last update: 09.02.2020, 20:25"
+        ],
+        "route": {
+            "destination": {
+                "identifier": {
+                    "unit-test": "723330303"
+                },
+                "latitude": 50.2240104675293,
+                "longitude": 6.660368919372559,
+                "name": "Gerolstein"
+            },
+            "direction": "Gerolstein",
+            "line": {
+                "color": "#8bba02",
+                "mode": "Unknown",
+                "name": "RB24",
+                "textColor": "#ffffff"
+            }
+        },
+        "scheduledDepartureTime": "2020-02-09T22:11:00",
+        "scheduledPlatform": "8 D-G",
+        "stopPoint": {
+            "identifier": {
+                "unit-test": "4405"
+            },
+            "latitude": 50.94298553466797,
+            "longitude": 6.958594799041748,
+            "name": "Köln Hbf"
+        }
+    }
+]

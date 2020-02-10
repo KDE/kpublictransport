@@ -21,6 +21,7 @@
 #include "kpublictransport_export.h"
 #include "hafasparser.h"
 
+#include <KPublicTransport/Disruption>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
 
