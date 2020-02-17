@@ -60,7 +60,10 @@
         ]
     },
     "options": {
-        "endpoint": "http://mobil.rozklad-pkp.pl/bin/",
+        "aid": "DrxJYtYZQpEBCtcb",
+        "clientId": "HAFAS",
+        "clientType": "AND",
+        "endpoint": "https://mobil.rozklad-pkp.pl:8019/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "16": "Bus",
@@ -91,7 +94,8 @@
             87,
             88
         ],
-        "standardLocationIdentifierType": "ibnr"
+        "standardLocationIdentifierType": "ibnr",
+        "version": "1.18"
     },
-    "type": "hafas_query"
+    "type": "hafas_mgate"
 }
