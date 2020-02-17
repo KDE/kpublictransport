@@ -1,0 +1,28 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in northern Hesse, Germany.",
+        "Name": "Nordhessische Verkehrsverbund (NVV)"
+    },
+    "filter": {
+        "geo": [ [ 9.0785, 51.7583 ], [ 7.9509, 50.6926 ], [ 10.0823, 50.1451 ], [ 10.2745, 51.4976 ] ]
+    },
+    "options": {
+        "aid": "Kt8eNOH7qjVeSxNA",
+        "clientId": "NVV",
+        "clientName": "NVVMobilPROD_APPSTORE",
+        "clientType": "IPH",
+        "endpoint": "https://auskunft.nvv.de/auskunft/bin/app/mgate.exe",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "LocalTrain",
+            "32": "Tramway",
+            "64": "Bus",
+            "512": "Taxi",
+            "1024": "Tramway"
+        },
+        "version": "1.18"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "hafas_mgate"
+}

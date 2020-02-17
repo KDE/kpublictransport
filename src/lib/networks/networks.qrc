@@ -42,7 +42,9 @@
         <file>de_by_bayern.json</file>
         <file>de_by_mvv.json</file>
         <file>de_by_vgn.json</file>
+        <file>de_he_nvv.json</file>
         <file>de_he_rmv.json</file>
+        <file>de_hh_hvv.json</file>
         <file>de_ni_gvh.json</file>
         <file>de_nw_avv.json</file>
         <file>de_nw_muenster.json</file>
@@ -63,5 +65,6 @@
         <file>us_il_chicago.json</file>
         <file>us_ma_mbta.json</file>
         <file>us_or_trimet.json</file>
+        <file>us_tx_cmta.json</file>
     </qresource>
 </RCC>

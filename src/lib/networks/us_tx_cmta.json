@@ -1,0 +1,24 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in and around Austin, Texas, US.",
+        "Name": "Capital Metropolitan Transportation Authority (CMTA)"
+    },
+    "filter": {
+        "geo": [ [ -98.5816, 30.5341 ], [ -97.6198, 30.592 ], [ -97.4924, 29.862 ], [ -98.4773, 29.7808 ] ]
+    },
+    "options": {
+        "aid": "ioslaskdcndrjcmlsd",
+        "clientId": "CMTA",
+        "clientName": "CapMetro",
+        "clientType": "IPH",
+        "endpoint": "https://capmetro.hafas.cloud/bin/mgate.exe",
+        "lineModeMap": {
+            "32": "Bus",
+            "4096": "Bus",
+            "8": "LocalTrain"
+        },
+        "version": "1.13"
+    },
+    "timezone": "America/Los_Angeles",
+    "type": "hafas_mgate"
+}
