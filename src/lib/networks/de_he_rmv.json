@@ -61,8 +61,11 @@
         ]
     },
     "options": {
-        "departureQuerySupported": false,
-        "endpoint": "https://www.rmv.de/auskunft/bin/jp/",
+        "aid": "x0k4ZR33ICN9CWmj",
+        "clientId": "RMV",
+        "clientName": "webapp",
+        "clientType": "WEB",
+        "endpoint": "https://www.rmv.de/auskunft/bin/jp/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "128": "Bus",
@@ -79,7 +82,8 @@
             55,
             81
         ],
-        "standardLocationIdentifierType": "ibnr"
+        "standardLocationIdentifierType": "ibnr",
+        "version": "1.18"
     },
-    "type": "hafas_query"
+    "type": "hafas_mgate"
 }

@@ -27,7 +27,6 @@ namespace KPublicTransport {
 class HafasQueryBackend : public HafasBackend
 {
     Q_GADGET
-    Q_PROPERTY(bool departureQuerySupported MEMBER m_departureQuerySupported)
 public:
     HafasQueryBackend();
     ~HafasQueryBackend();
@@ -46,7 +45,6 @@ private:
     QString locationId(const Location &loc) const;
 
     mutable HafasQueryParser m_parser;
-    bool m_departureQuerySupported = true;
 };
 
 }

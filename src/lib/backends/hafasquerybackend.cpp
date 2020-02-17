@@ -154,10 +154,6 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
 
 bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
-    if (!m_departureQuerySupported) {
-        return false;
-    }
-
     const auto stationId = locationIdentifier(request.stop());
     if (stationId.isEmpty()) {
         qCDebug(Log) << "no station identifier found for departure stop" << backendId();
