@@ -268,8 +268,12 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
     }
     {
         QJsonObject client;
-        client.insert(QStringLiteral("id"), m_clientId);
-        client.insert(QStringLiteral("type"), m_clientType);
+        if (!m_clientId.isEmpty()) {
+            client.insert(QStringLiteral("id"), m_clientId);
+        }
+        if (!m_clientType.isEmpty()) {
+            client.insert(QStringLiteral("type"), m_clientType);
+        }
         if (!m_clientVersion.isEmpty()) {
             client.insert(QStringLiteral("v"), m_clientVersion);
         }
