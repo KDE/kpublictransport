@@ -4,7 +4,24 @@
         "Name": "TODO (HVV)"
     },
     "filter": {
-        "geo": [ [ 9.6276, 53.9426 ], [ 9.5665, 53.2509 ], [ 10.5173, 53.1703 ], [ 10.5173, 53.8864 ] ]
+        "geo": [
+            [
+                9.6276,
+                53.9426
+            ],
+            [
+                9.5665,
+                53.2509
+            ],
+            [
+                10.5173,
+                53.1703
+            ],
+            [
+                10.5173,
+                53.8864
+            ]
+        ]
     },
     "options": {
         "aid": "andcXUmC9Mq6hjrwDIGd2l3oiaMrTUzyH",
@@ -12,21 +29,21 @@
         "clientName": "HVVPROD_ADHOC",
         "clientType": "AND",
         "endpoint": "https://hvv-app.hafas.de/bin/mgate.exe",
-        "micMacSalt": "70716A4D33694B45474F416859625837366B3952357A757476",
         "lineModeMap": {
             "1": "Metro",
-            "2": "RapidTransit",
-            "4": "Train",
-            "8": "LocalTrain",
-            "16": "LocalTrain",
-            "32": "Ferry",
-            "64": "LongDistanceTrain",
-            "128": "Bus",
-            "256": "BusRapidTransit",
             "1024": "Taxi",
+            "128": "Bus",
+            "16": "LocalTrain",
+            "2": "RapidTransit",
             "2048": "Coach",
-            "4096": "LongDistanceTrain"
+            "256": "BusRapidTransit",
+            "32": "Ferry",
+            "4": "Train",
+            "4096": "LongDistanceTrain",
+            "64": "LongDistanceTrain",
+            "8": "LocalTrain"
         },
+        "micMacSalt": "70716A4D33694B45474F416859625837366B3952357A757476",
         "version": "1.16"
     },
     "timezone": "Europe/Berlin",
