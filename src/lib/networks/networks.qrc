@@ -36,6 +36,7 @@
 
         <file>de_bb_vbb.json</file>
         <file>de_be_bvg.json</file>
+        <file>de_bw_bwegt.json</file>
         <file>de_bw_kvv.json</file>
         <file>de_bw_ulm.json</file>
         <file>de_bw_vvs.json</file>
@@ -45,12 +46,17 @@
         <file>de_he_nvv.json</file>
         <file>de_he_rmv.json</file>
         <file>de_hh_hvv.json</file>
+        <file>de_mv_vmv.json</file>
         <file>de_ni_gvh.json</file>
+        <file>de_ni_vbn.json</file>
         <file>de_nw_avv.json</file>
         <file>de_nw_muenster.json</file>
         <file>de_nw_vrr.json</file>
+        <file>de_rp_takt.json</file>
         <file>de_sh_sh.json</file>
+        <file>de_sl_saarvv.json</file>
         <file>de_st_insa.json</file>
+        <file>de_th_vmt.json</file>
 
         <file>fi_17_helsinki.json</file>
 

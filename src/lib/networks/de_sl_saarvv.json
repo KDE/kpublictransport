@@ -1,0 +1,33 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Saarland, Germany.",
+        "Name": "Saarländischer Verkehrsverbund (saarVV)"
+    },
+    "filter": {
+        "geo": [ [ 6.2763, 49.521 ], [ 7.2515, 49.6907 ], [ 7.4934, 49.1165 ], [ 6.7097, 49.0569 ] ]
+    },
+    "options": {
+        "aid": "51XfsVqgbdA6oXzHrx75jhlocRg6Xe",
+        "clientId": "ZPS-SAAR",
+        "clientName": "Saarfahrplan",
+        "clientType": "AND",
+        "endpoint": "https://saarfahrplan.de/bin/mgate.exe",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "Train",
+            "8": "LocalTrain",
+            "16": "RapidTransit",
+            "32": "Metro",
+            "64": "Tramway",
+            "128": "Bus",
+            "512": "Taxi",
+            "1024": "Bus"
+        },
+        "micMacSalt": "484A746C756269737678694A787373",
+        "supportsStbFltrEquiv": false,
+        "version": "1.21"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "hafas_mgate"
+}

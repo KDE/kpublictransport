@@ -1,0 +1,51 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Bremen and Lower Saxony, Germany.",
+        "Name": "Verkehrsverbund Bremen/Niedersachsen (VBN)"
+    },
+    "filter": {
+        "geo": [
+            [
+                6.8558,
+                53.8848
+            ],
+            [
+                6.6065,
+                52.0076
+            ],
+            [
+                10.7129,
+                51.0397
+            ],
+            [
+                11.6759,
+                53.1955
+            ],
+            [
+                9.6178,
+                53.9532
+            ]
+        ]    },
+    "options": {
+        "aid": "rnOHBWhesvc7gFkd",
+        "clientId": "VBN",
+        "clientType": "AND",
+        "endpoint": "https://fahrplaner.vbn.de/hafas/mgate.exe",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "2": "LongDistanceTrain",
+            "4": "Train",
+            "8": "LocalTrain",
+            "16": "RapidTransit",
+            "32": "Bus",
+            "64": "Ferry",
+            "128": "Metro",
+            "256": "Tramway",
+            "512": "Taxi"
+        },
+        "micMacSalt": "535033316D4275665379434C6D4E7870",
+        "version": "1.18"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "hafas_mgate"
+}
