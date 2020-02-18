@@ -242,9 +242,13 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
 
 bool HafasMgateParser::parseError(const QJsonObject& obj) const
 {
-    if (obj.value(QLatin1String("err")).toString() != QLatin1String("OK")) {
-        m_error = Reply::NotFoundError;
+    const auto err = obj.value(QLatin1String("err")).toString();
+    if (!err.isEmpty() && err != QLatin1String("OK")) {
+        m_error = err == QLatin1String("LOCATION") ? Reply::NotFoundError : Reply::UnknownError;
         m_errorMsg = obj.value(QLatin1String("errTxt")).toString();
+        if (m_errorMsg.isEmpty()) {
+            m_errorMsg = err;
+        }
         return false;
     }
 
@@ -257,9 +261,11 @@ bool HafasMgateParser::parseError(const QJsonObject& obj) const
 std::vector<Departure> HafasMgateParser::parseDepartures(const QByteArray &data) const
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
-    //qDebug().noquote() << QJsonDocument(topObj).toJson();
-    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
+    if (!parseError(topObj)) {
+        return {};
+    }
 
+    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
     for (const auto &v : svcResL) {
         const auto obj = v.toObject();
         if (obj.value(QLatin1String("meth")).toString() == QLatin1String("StationBoard")) {
@@ -276,8 +282,11 @@ std::vector<Departure> HafasMgateParser::parseDepartures(const QByteArray &data)
 std::vector<Location> HafasMgateParser::parseLocations(const QByteArray &data) const
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
-    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
+    if (!parseError(topObj)) {
+        return {};
+    }
 
+    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
     for (const auto &v : svcResL) {
         const auto obj = v.toObject();
         const auto meth = obj.value(QLatin1String("meth")).toString();
@@ -303,8 +312,11 @@ std::vector<Location> HafasMgateParser::parseLocations(const QByteArray &data) c
 std::vector<Journey> HafasMgateParser::parseJourneys(const QByteArray &data) const
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
-    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
+    if (!parseError(topObj)) {
+        return {};
+    }
 
+    const auto svcResL = topObj.value(QLatin1String("svcResL")).toArray();
     for (const auto &v : svcResL) {
         const auto obj = v.toObject();
         if (obj.value(QLatin1String("meth")).toString() == QLatin1String("TripSearch")) {

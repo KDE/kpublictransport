@@ -16,6 +16,7 @@
 */
 
 #include <KPublicTransport/Departure>
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/HafasMgateParser>
 
 #include <QFile>
@@ -46,6 +47,41 @@ private Q_SLOTS:
     {
         qputenv("TZ", "UTC");
         qRegisterMetaType<Disruption::Effect>();
+    }
+
+    void testParseGeneralError_data()
+    {
+        QTest::addColumn<QString>("input");
+        QTest::newRow("version") << s(SOURCE_DIR "/data/hafas/error-invalid-version.json");
+        QTest::newRow("parse-clientId") << s(SOURCE_DIR "/data/hafas/error-parse-clientId.json");
+        QTest::newRow("parse-stbFilterEquiv") << s(SOURCE_DIR "/data/hafas/error-parse-stbFilterEquiv.json");
+        QTest::newRow("parse-empty") << s(SOURCE_DIR "/data/hafas/error-parse-empty.json");
+    }
+
+    void testParseGeneralError()
+    {
+        QFETCH(QString, input);
+
+        {
+            HafasMgateParser p;
+            p.parseLocations(readFile(input));
+            QCOMPARE(p.error(), Reply::UnknownError);
+            QVERIFY(!p.errorMessage().isEmpty());
+        }
+
+        {
+            HafasMgateParser p;
+            p.parseDepartures(readFile(input));
+            QCOMPARE(p.error(), Reply::UnknownError);
+            QVERIFY(!p.errorMessage().isEmpty());
+        }
+
+        {
+            HafasMgateParser p;
+            p.parseJourneys(readFile(input));
+            QCOMPARE(p.error(), Reply::UnknownError);
+            QVERIFY(!p.errorMessage().isEmpty());
+        }
     }
 
     void testParseDepartureError()
