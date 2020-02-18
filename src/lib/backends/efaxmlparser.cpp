@@ -55,7 +55,7 @@ Location EfaXmlParser::parseOdvNameElem(ScopedXmlStreamReader &reader) const
     } else {
         loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
     }
-    loc.setName(reader.readElementText());
+    loc.setName(reader.readElementText(QXmlStreamReader::SkipChildElements));
     return loc;
 }
 

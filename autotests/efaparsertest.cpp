@@ -68,6 +68,9 @@ private Q_SLOTS:
         QTest::newRow("mvv-alternate-format")
             << s(SOURCE_DIR "/data/efa/stopfinder-response-full-alternate-mvv-by-name.xml")
             << s(SOURCE_DIR "/data/efa/stopfinder-response-full-alternate-mvv-by-name.json");
+        QTest::newRow("bwegt-by-name")
+            << s(SOURCE_DIR "/data/efa/stopfinder-response-full-bwegt-by-name.xml")
+            << s(SOURCE_DIR "/data/efa/stopfinder-response-full-bwegt-by-name.json");
     }
 
     void testParseLocation()

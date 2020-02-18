@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest version="10.2.13.57" language="de" lengthUnit="METER">
+  <itdStopFinderRequest requestID="0">
+    <itdOdv type="stop" usage="sf" anyObjFilter="2">
+      <itdOdvPlace state="identified" method="itp">
+        <odvPlaceElem omc="8111000" placeID="51" value="8111000:51" span="9" type="local" mainPlace="1" stateless="placeID:8111000:51">Stuttgart</odvPlaceElem>
+        <odvPlaceInput/>
+      </itdOdvPlace>
+      <itdOdvName state="identified" method="itp">
+        <odvNameElem selected="0" matchQuality="0" x="9.18279" y="48.78488" mapName="WGS84[DD.ddddd]" stopID="5006115" value="5006115:1" isTransferStop="0" stateless="5006115"><itdMapItemList/>Hauptbahnhof</odvNameElem>
+        <odvNameInput>Stuttgart Hbf</odvNameInput>
+      </itdOdvName>
+      <itdOdvAssignedStops select="0">
+        <itdOdvAssignedStop stopID="5006115" x="9.18279" y="48.78488" mapName="WGS84[DD.ddddd]" value="5006115:Hauptbahnhof (oben)" place="Stuttgart" nameWithPlace="Stuttgart Hauptbahnhof (oben)" distanceTime="0" isTransferStop="0" vm="100" gid="de:08111:6115">Hauptbahnhof (oben)</itdOdvAssignedStop>
+        <itdOdvAssignedStop stopID="5006118" x="9.18023" y="48.78339" mapName="WGS84[DD.ddddd]" value="5006118:Hauptbahnhof (tief)" place="Stuttgart" nameWithPlace="Stuttgart Hauptbahnhof (tief)" distanceTime="0" isTransferStop="0" vm="100" gid="de:08111:6118">Hauptbahnhof (tief)</itdOdvAssignedStop>
+        <itdOdvAssignedStop stopID="5006112" x="9.18112" y="48.78316" mapName="WGS84[DD.ddddd]" value="5006112:Hauptbf (Arnulf-Klett-Platz)" place="Stuttgart" nameWithPlace="Stuttgart Hauptbf (Arnulf-Klett-Platz)" distanceTime="0" isTransferStop="0" vm="100" gid="de:08111:6112">Hauptbf (Arnulf-Klett-Platz)</itdOdvAssignedStop>
+      </itdOdvAssignedStops>
+    </itdOdv>
+  </itdStopFinderRequest>
+</itdRequest>
