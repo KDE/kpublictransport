@@ -67,8 +67,10 @@
             "16": "LocalTrain",
             "2": "LongDistanceTrain",
             "256": "Metro",
+            "2048": "Taxi",
             "32": "RapidTransit",
             "4": "LongDistanceTrain",
+            "4096": "Train",
             "512": "Tramway",
             "64": "Bus",
             "8": "Train"
