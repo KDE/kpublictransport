@@ -46,6 +46,9 @@ class HafasMgateBackend : public HafasBackend
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
     /** Additional authentication parameters, passed verbatim to the backend. */
     Q_PROPERTY(QJsonObject extraAuthParams MEMBER m_extraAuthParams)
+    /** Supports the stbFltrEquiv parameter for departure queries (default @c true). */
+    Q_PROPERTY(bool supportsStbFltrEquiv MEMBER m_supportsStbFltrEquiv)
+
 public:
     HafasMgateBackend();
     ~HafasMgateBackend();
@@ -77,6 +80,7 @@ private:
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
     QJsonObject m_extraAuthParams;
+    bool m_supportsStbFltrEquiv = true;
 };
 
 }

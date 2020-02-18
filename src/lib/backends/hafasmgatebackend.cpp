@@ -172,7 +172,9 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
         QJsonObject req;
         req.insert(QStringLiteral("date"), dt.toString(QStringLiteral("yyyyMMdd")));
         req.insert(QStringLiteral("maxJny"), 12);
-        req.insert(QStringLiteral("stbFltrEquiv"), true);
+        if (m_supportsStbFltrEquiv) {
+            req.insert(QStringLiteral("stbFltrEquiv"), true);
+        }
 
         QJsonObject stbLoc;
         stbLoc.insert(QStringLiteral("extId"), locationId);
