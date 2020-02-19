@@ -4,7 +4,24 @@
         "Name": "Verkehrsverbund Mittelthüringen (VMT)"
     },
     "filter": {
-        "geo": [ [ 9.8333, 51.7011 ], [ 9.8812, 50.2173 ], [ 12.5934, 50.1455 ], [ 12.71307, 51.5734 ] ]
+        "geo": [
+            [
+                9.8333,
+                51.7011
+            ],
+            [
+                9.8812,
+                50.2173
+            ],
+            [
+                12.5934,
+                50.1455
+            ],
+            [
+                12.71307,
+                51.5734
+            ]
+        ]
     },
     "options": {
         "aid": "vj5d7i3g9m5d7e3",
@@ -13,14 +30,14 @@
         "endpoint": "https://vmt.hafas.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "Train",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Tramway",
-            "64": "Ferry",
             "128": "Bus",
-            "256": "Bus"
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
+            "256": "Bus",
+            "32": "Tramway",
+            "4": "Train",
+            "64": "Ferry",
+            "8": "LocalTrain"
         },
         "standardLocationIdentifierCountries": [
             80

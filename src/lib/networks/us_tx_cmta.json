@@ -1,7 +1,24 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Austin, Texas, US.",
-        "Name": "Capital Metropolitan Transportation Authority (CMTA)"
+        "Description[ca]": "Transport públic a Austin i rodalies, Texas, EEUU.",
+        "Description[es]": "Transporte público de Austin y alrededores, Texas, Estados Unidos.",
+        "Description[et]": "USA Austini (Texase osariik) ja selle ümbruse ühistransport.",
+        "Description[ko]": "미국 텍사스주 오스틴 시내 및 광역권 대중 교통입니다.",
+        "Description[pt]": "Transportes públicos locais na região de Austin, Texas, EUA.",
+        "Description[pt_BR]": "Transporte público na região de Austin, Texas, EUA.",
+        "Description[sv]": "Kollektivtrafik i och omkring Austin, Texas, USA.",
+        "Description[uk]": "Громадський транспорт у Остіні і околицях, Техас, США.",
+        "Description[x-test]": "xxPublic transport in and around Austin, Texas, US.xx",
+        "Name": "Capital Metropolitan Transportation Authority (CMTA)",
+        "Name[ca]": "Capital Metropolitan Transportation Authority (CMTA)",
+        "Name[es]": "Capital Metropolitan Transportation Authority (CMTA)",
+        "Name[et]": "Capital Metropolitani transpordiamet (CMTA)",
+        "Name[pt]": "Autoridade de Transportes Metropolitanos da Capital (CMTA)",
+        "Name[pt_BR]": "Capital Metropolitan Transportation Authority (CMTA)",
+        "Name[sv]": "Capital Metropolitan Transportation Authority (CMTA)",
+        "Name[uk]": "Столична транспортна адміністрація (CMTA)",
+        "Name[x-test]": "xxCapital Metropolitan Transportation Authority (CMTA)xx"
     },
     "filter": {
         "geo": [

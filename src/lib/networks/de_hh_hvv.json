@@ -1,6 +1,15 @@
 {
     "KPlugin": {
         "Description": "Public transport in Hamburg, Germany.",
+        "Description[ca]": "Transport públic a Hamburg, Alemanya.",
+        "Description[es]": "Transporte público de Hamburgo, Alemania.",
+        "Description[et]": "Saksamaa Hamburgi ühistransport.",
+        "Description[ko]": "독일 함부르크의 대중 교통입니다.",
+        "Description[pt]": "Transportes públicos em Hamburgo, Alemanha.",
+        "Description[pt_BR]": "Transporte público em Hamburgo, Alemanha.",
+        "Description[sv]": "Kollektivtrafik i Hamburg, Tyskland.",
+        "Description[uk]": "Дані щодо громадського транспорту у Гамбурзі, Німеччина.",
+        "Description[x-test]": "xxPublic transport in Hamburg, Germany.xx",
         "Name": "Hamburger Verkehrsverbund (HVV)"
     },
     "filter": {

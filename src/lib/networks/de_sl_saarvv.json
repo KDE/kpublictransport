@@ -4,7 +4,24 @@
         "Name": "Saarländischer Verkehrsverbund (saarVV)"
     },
     "filter": {
-        "geo": [ [ 6.2763, 49.521 ], [ 7.2515, 49.6907 ], [ 7.4934, 49.1165 ], [ 6.7097, 49.0569 ] ]
+        "geo": [
+            [
+                6.2763,
+                49.521
+            ],
+            [
+                7.2515,
+                49.6907
+            ],
+            [
+                7.4934,
+                49.1165
+            ],
+            [
+                6.7097,
+                49.0569
+            ]
+        ]
     },
     "options": {
         "aid": "51XfsVqgbdA6oXzHrx75jhlocRg6Xe",
@@ -14,15 +31,15 @@
         "endpoint": "https://saarfahrplan.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "Train",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Metro",
-            "64": "Tramway",
+            "1024": "Bus",
             "128": "Bus",
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
+            "32": "Metro",
+            "4": "Train",
             "512": "Taxi",
-            "1024": "Bus"
+            "64": "Tramway",
+            "8": "LocalTrain"
         },
         "micMacSalt": "484A746C756269737678694A787373",
         "supportsStbFltrEquiv": false,

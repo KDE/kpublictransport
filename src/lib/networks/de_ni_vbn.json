@@ -25,7 +25,8 @@
                 9.6178,
                 53.9532
             ]
-        ]    },
+        ]
+    },
     "options": {
         "aid": "rnOHBWhesvc7gFkd",
         "clientId": "VBN",
@@ -33,15 +34,15 @@
         "endpoint": "https://fahrplaner.vbn.de/hafas/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "2": "LongDistanceTrain",
-            "4": "Train",
-            "8": "LocalTrain",
-            "16": "RapidTransit",
-            "32": "Bus",
-            "64": "Ferry",
             "128": "Metro",
+            "16": "RapidTransit",
+            "2": "LongDistanceTrain",
             "256": "Tramway",
-            "512": "Taxi"
+            "32": "Bus",
+            "4": "Train",
+            "512": "Taxi",
+            "64": "Ferry",
+            "8": "LocalTrain"
         },
         "micMacSalt": "535033316D4275665379434C6D4E7870",
         "version": "1.18"

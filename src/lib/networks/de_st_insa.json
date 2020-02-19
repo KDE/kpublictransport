@@ -67,9 +67,9 @@
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "128": "Taxi",
-            "256": "Train",
             "16": "RapidTransit",
             "2": "LongDistanceTrain",
+            "256": "Train",
             "32": "Tramway",
             "4": "LocalTrain",
             "64": "Bus",
