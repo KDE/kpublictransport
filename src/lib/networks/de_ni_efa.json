@@ -1,0 +1,36 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Lower Saxony, Germany.",
+        "Name": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen"
+    },
+    "filter": {
+        "geo": [
+            [
+                6.8558,
+                53.8848
+            ],
+            [
+                6.6065,
+                52.0076
+            ],
+            [
+                10.7129,
+                51.0397
+            ],
+            [
+                11.6759,
+                53.1955
+            ],
+            [
+                9.6178,
+                53.9532
+            ]
+        ]
+    },
+    "options": {
+        "endpoint": "https://efa29.efa.de/efaws2/default/",
+        "mId": "efa_29"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "efa"
+}

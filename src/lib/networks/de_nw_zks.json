@@ -1,0 +1,14 @@
+{
+    "KPlugin": {
+        "Description": "Public transport North Rhine-Westphalia, Germany.",
+        "Name": "Delfi NRW"
+    },
+    "filter": {
+        "geo": [ [ 5.6532, 51.7795 ], [ 6.0541, 50.1499 ], [ 9.8753, 51.1244 ], [ 8.8895 , 52.9446 ] ]
+    },
+    "options": {
+        "endpoint": "http://delfi.nrw-zks.de/delfitrias/"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "efa"
+}

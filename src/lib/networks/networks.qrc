@@ -47,14 +47,17 @@
         <file>de_he_rmv.json</file>
         <file>de_hh_hvv.json</file>
         <file>de_mv_vmv.json</file>
+        <file>de_ni_efa.json</file>
         <file>de_ni_gvh.json</file>
         <file>de_ni_vbn.json</file>
         <file>de_nw_avv.json</file>
         <file>de_nw_muenster.json</file>
         <file>de_nw_vrr.json</file>
+        <file>de_nw_zks.json</file>
         <file>de_rp_takt.json</file>
         <file>de_sh_sh.json</file>
         <file>de_sl_saarvv.json</file>
+        <file>de_sn_vvo.json</file>
         <file>de_st_insa.json</file>
         <file>de_th_vmt.json</file>
 
