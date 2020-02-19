@@ -22,6 +22,8 @@
 
 #include <memory>
 
+class QUrlQuery;
+
 namespace KPublicTransport {
 
 class EfaParser;
@@ -36,6 +38,9 @@ class EfaBackend : public AbstractBackend
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
     /** Backend is using compact XML responses. */
     Q_PROPERTY(bool compactXmlRepsonse MEMBER  m_compactXmlResponse)
+
+    /** Additional "mId" argument value, needed by some instances. */
+    Q_PROPERTY(QString mId MEMBER m_mId)
 
     /** Override for commands send to the server.
      *  Defaults are usually fine, only change this for bizarre backends.
@@ -57,11 +62,13 @@ public:
 private:
     QString locationIdentifierType() const;
     std::unique_ptr<EfaParser> make_parser() const;
+    QUrlQuery commonQuery() const;
 
     QString m_endpoint;
     QString m_locationIdentifierType;
     bool m_compactXmlResponse = false;
 
+    QString m_mId;
     QString m_stopfinderRequestCommand;
     QString m_dmRequestCommand;
     QString m_tripRequestCommand;

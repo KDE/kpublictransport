@@ -62,10 +62,8 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     QUrl url(m_endpoint);
     url.setPath(url.path() + (m_stopfinderRequestCommand.isEmpty() ? QLatin1String("XML_STOPFINDER_REQUEST") : m_stopfinderRequestCommand));
 
-    QUrlQuery query;
+    auto query = commonQuery();
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
-    query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
-    query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
 
     if (request.hasCoordinate()) {
         query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("coord"));
@@ -120,9 +118,7 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
         dt = dt.toTimeZone(timeZone());
     }
 
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
-    query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    auto query = commonQuery();
     if (stopId.isEmpty()) {
         query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("coord"));
         query.addQueryItem(QStringLiteral("name_dm"), QString::number(request.stop().longitude()) + QLatin1Char(':') + QString::number(request.stop().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
@@ -178,9 +174,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     QUrl url(m_endpoint);
     url.setPath(url.path() + (m_tripRequestCommand.isEmpty() ? QLatin1String("XML_TRIP_REQUEST2") : m_tripRequestCommand));
 
-    QUrlQuery query;
-    query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
-    query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    auto query = commonQuery();
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
 
@@ -254,4 +248,15 @@ std::unique_ptr<EfaParser> EfaBackend::make_parser() const
     }
     p->setLocationIdentifierType(locationIdentifierType());
     return p;
+}
+
+QUrlQuery EfaBackend::commonQuery() const
+{
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
+    query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    if (!m_mId.isEmpty()) {
+        query.addQueryItem(QStringLiteral("mId"), m_mId);
+    }
+    return query;
 }
