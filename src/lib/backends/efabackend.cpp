@@ -60,7 +60,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("XML_STOPFINDER_REQUEST"));
+    url.setPath(url.path() + (m_stopfinderRequestCommand.isEmpty() ? QLatin1String("XML_STOPFINDER_REQUEST") : m_stopfinderRequestCommand));
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
@@ -113,7 +113,7 @@ bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply 
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("XML_DM_REQUEST"));
+    url.setPath(url.path() + (m_dmRequestCommand.isEmpty() ? QLatin1String("XML_DM_REQUEST") : m_dmRequestCommand));
 
     QDateTime dt = request.dateTime();
     if (timeZone().isValid()) {
@@ -176,7 +176,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("XML_TRIP_REQUEST2"));
+    url.setPath(url.path() + (m_tripRequestCommand.isEmpty() ? QLatin1String("XML_TRIP_REQUEST2") : m_tripRequestCommand));
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));

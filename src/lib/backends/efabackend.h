@@ -37,6 +37,13 @@ class EfaBackend : public AbstractBackend
     /** Backend is using compact XML responses. */
     Q_PROPERTY(bool compactXmlRepsonse MEMBER  m_compactXmlResponse)
 
+    /** Override for commands send to the server.
+     *  Defaults are usually fine, only change this for bizarre backends.
+     */
+    Q_PROPERTY(QString stopfinderRequestCommand MEMBER m_stopfinderRequestCommand)
+    Q_PROPERTY(QString dmRequestCommand MEMBER m_dmRequestCommand)
+    Q_PROPERTY(QString tripRequestCommand MEMBER m_tripRequestCommand)
+
 public:
     EfaBackend();
     ~EfaBackend();
@@ -54,6 +61,10 @@ private:
     QString m_endpoint;
     QString m_locationIdentifierType;
     bool m_compactXmlResponse = false;
+
+    QString m_stopfinderRequestCommand;
+    QString m_dmRequestCommand;
+    QString m_tripRequestCommand;
 };
 
 }
