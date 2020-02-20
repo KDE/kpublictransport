@@ -5,12 +5,21 @@
         "Description[es]": "Transporte público de Hamburgo, Alemania.",
         "Description[et]": "Saksamaa Hamburgi ühistransport.",
         "Description[ko]": "독일 함부르크의 대중 교통입니다.",
+        "Description[nl]": "Lokaal openbaar vervoer in Hamburg, Duitsland.",
         "Description[pt]": "Transportes públicos em Hamburgo, Alemanha.",
         "Description[pt_BR]": "Transporte público em Hamburgo, Alemanha.",
         "Description[sv]": "Kollektivtrafik i Hamburg, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у Гамбурзі, Німеччина.",
         "Description[x-test]": "xxPublic transport in Hamburg, Germany.xx",
-        "Name": "Hamburger Verkehrsverbund (HVV)"
+        "Name": "Hamburger Verkehrsverbund (HVV)",
+        "Name[ca]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[es]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[et]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[nl]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[pt]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[sv]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[uk]": "Hamburger Verkehrsverbund (HVV)",
+        "Name[x-test]": "xxHamburger Verkehrsverbund (HVV)xx"
     },
     "filter": {
         "geo": [

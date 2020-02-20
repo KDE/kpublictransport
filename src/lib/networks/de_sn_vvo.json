@@ -4,12 +4,29 @@
         "Name": "Verkehrsverbund Oberelbe (VVO)"
     },
     "filter": {
-        "geo": [ [ 12.1977, 51.7293 ], [ 11.8066, 50.0085 ], [ 15.1908, 50.9106 ], [ 14.9196, 51.5624 ] ]
+        "geo": [
+            [
+                12.1977,
+                51.7293
+            ],
+            [
+                11.8066,
+                50.0085
+            ],
+            [
+                15.1908,
+                50.9106
+            ],
+            [
+                14.9196,
+                51.5624
+            ]
+        ]
     },
     "options": {
+        "dmRequestCommand": "XSLT_DM_REQUEST",
         "endpoint": "http://efa.vvo-online.de:8080/dvb/",
         "stopfinderRequestCommand": "XSLT_STOPFINDER_REQUEST",
-        "dmRequestCommand": "XSLT_DM_REQUEST",
         "tripRequestCommand": "XSLT_TRIP_REQUEST2"
     },
     "timezone": "Europe/Berlin",

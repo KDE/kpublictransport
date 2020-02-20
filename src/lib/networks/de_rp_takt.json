@@ -1,7 +1,23 @@
 {
     "KPlugin": {
         "Description": "Public transport in Rhineland-Palatinate, Germany.",
-        "Name": "Rheinland-Pfalz-Takt"
+        "Description[ca]": "Transport públic a l'àrea de Rhineland-Palatinate, Alemanya.",
+        "Description[es]": "Transporte público de Renania-Palatinado, Alemania.",
+        "Description[et]": "Saksamaa Reinimaa-Pfalzi ühistransport.",
+        "Description[nl]": "Lokaal openbaar vervoer in Rhineland-Palatinate, Duitsland.",
+        "Description[pt]": "Transportes públicos na região de Rhineland-Palatinate, Alemanha.",
+        "Description[sv]": "Kollektivtrafik i Rhineland-Palatinate, Tyskland.",
+        "Description[uk]": "Громадський транспорт у регіоні Рейнланд-Пфальц, Німеччина.",
+        "Description[x-test]": "xxPublic transport in Rhineland-Palatinate, Germany.xx",
+        "Name": "Rheinland-Pfalz-Takt",
+        "Name[ca]": "Rheinland-Pfalz-Takt",
+        "Name[es]": "Rheinland-Pfalz-Takt",
+        "Name[et]": "Rheinland-Pfalz-Takt",
+        "Name[nl]": "Rheinland-Pfalz-Takt",
+        "Name[pt]": "Rheinland-Pfalz-Takt",
+        "Name[sv]": "Rheinland-Pfalz-Takt",
+        "Name[uk]": "Рейнланд-Пфальц-Такт",
+        "Name[x-test]": "xxRheinland-Pfalz-Taktxx"
     },
     "filter": {
         "geo": [
