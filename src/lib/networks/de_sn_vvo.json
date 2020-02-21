@@ -1,7 +1,21 @@
 {
     "KPlugin": {
         "Description": "Public transport Saxony, Germany.",
-        "Name": "Verkehrsverbund Oberelbe (VVO)"
+        "Description[ca]": "Transport públic a Saxònia, Alemanya.",
+        "Description[et]": "Saksamaa Saksimaa ühistransport.",
+        "Description[nl]": "Openbaar vervoer in Saksen, Duitsland.",
+        "Description[pt]": "Transportes públicos da Saxónia, Alemanha.",
+        "Description[sv]": "Kollektivtrafik i Sachsen, Tyskland.",
+        "Description[uk]": "Дані щодо громадського транспорту у Саксонії, Німеччина.",
+        "Description[x-test]": "xxPublic transport Saxony, Germany.xx",
+        "Name": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[ca]": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[et]": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[nl]": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[pt]": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[sv]": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[uk]": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[x-test]": "xxVerkehrsverbund Oberelbe (VVO)xx"
     },
     "filter": {
         "geo": [

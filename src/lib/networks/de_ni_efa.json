@@ -1,7 +1,21 @@
 {
     "KPlugin": {
         "Description": "Public transport in Lower Saxony, Germany.",
-        "Name": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen"
+        "Description[ca]": "Transport públic a la Baixa Saxònia, Alemanya.",
+        "Description[et]": "Saksamaa Alam-Saksimaa ühistransport.",
+        "Description[nl]": "Openbaar vervoer in Neder-Saksen, Duitsland.",
+        "Description[pt]": "Transportes públicos da Baixa-Saxónia, Alemanha.",
+        "Description[sv]": "Kollektivtrafik i Niedersachsen, Tyskland.",
+        "Description[uk]": "Дані щодо громадського транспорту у Нижній Саксонії, Німеччина.",
+        "Description[x-test]": "xxPublic transport in Lower Saxony, Germany.xx",
+        "Name": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[ca]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[et]": "Alam-Saksimaa ja Bremeni elektrooniline sõiduplaan",
+        "Name[nl]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[pt]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[sv]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[uk]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[x-test]": "xxElektronische Fahrplanauskunft für Niedersachsen und Bremenxx"
     },
     "filter": {
         "geo": [
