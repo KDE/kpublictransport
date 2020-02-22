@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Public transport North Rhine-Westphalia, Germany.",
         "Description[ca]": "Transport públic al Rin del Nord-Westfàlia, Alemanya.",
+        "Description[es]": "Transporte público de Renania del Norte-Westfalia, Alemania.",
         "Description[et]": "Saksamaa Põhja-Rein-Vestfaali ühistransport.",
         "Description[nl]": "Openbaar vervoer in Noord-Rijnland-Westfalen, Duitsland.",
         "Description[pt]": "Transportes públicos no Norte do Reno-Vestfália, Alemanha.",
@@ -10,9 +11,11 @@
         "Description[x-test]": "xxPublic transport North Rhine-Westphalia, Germany.xx",
         "Name": "Delfi NRW",
         "Name[ca]": "Delfi NRW",
+        "Name[es]": "Delfi NRW",
         "Name[et]": "Delfi NRW",
         "Name[nl]": "Delfi NRW",
         "Name[pt]": "Delfi NRW",
+        "Name[pt_BR]": "Delfi NRW",
         "Name[sv]": "Delfi NRW",
         "Name[uk]": "Delfi NRW",
         "Name[x-test]": "xxDelfi NRWxx"

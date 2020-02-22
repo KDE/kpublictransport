@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Public transport in Mecklenburg-Western Pomerania, Germany.",
         "Description[ca]": "Transport públic a Mecklenburg-Pomerània Occidental, Alemanya.",
+        "Description[es]": "Transporte público de Mecklemburgo-Pomerania Occidental, Alemania.",
         "Description[et]": "Saksamaa Mecklenburgi-Ees-Pommeri ühistransport.",
         "Description[nl]": "Openbaar vervoer in Mecklenburg-West-Pommeren, Duitsland.",
         "Description[pt]": "Transportes públicos em Mecklenburg-Pomerânia Ocidental, Alemanha.",
@@ -10,9 +11,11 @@
         "Description[x-test]": "xxPublic transport in Mecklenburg-Western Pomerania, Germany.xx",
         "Name": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[ca]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
+        "Name[es]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[et]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[nl]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[pt]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
+        "Name[pt_BR]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[sv]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[uk]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[x-test]": "xxVerkehrsgesellschaft Mecklenburg-Vorpommern (VMV)xx"

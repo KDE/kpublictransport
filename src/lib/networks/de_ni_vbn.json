@@ -1,7 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Bremen and Lower Saxony, Germany.",
-        "Description[ca]": "Transport públic a Bremen i Lower Saxony, Alemanya.",
+        "Description[ca]": "Transport públic a Bremen i Baixa Saxònia, Alemanya.",
         "Description[es]": "Transporte público de Bremen y Baja Sajonia, Alemania.",
         "Description[et]": "Saksamaa Bremeni ja Alam-Saksimaa ühistransport.",
         "Description[nl]": "Lokaal openbaar vervoer in Bremen en Neder-Saksen, Duitsland.",
@@ -15,6 +15,7 @@
         "Name[et]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[nl]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[pt]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
+        "Name[pt_BR]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[sv]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[uk]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[x-test]": "xxVerkehrsverbund Bremen/Niedersachsen (VBN)xx"
