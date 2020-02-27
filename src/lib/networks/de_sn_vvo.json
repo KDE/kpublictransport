@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport Saxony, Germany.",
+        "Description[ca@valencia]": "Transport públic a Saxònia, Alemanya.",
         "Description[ca]": "Transport públic a Saxònia, Alemanya.",
         "Description[es]": "Transporte público de Sajonia, Alemania.",
         "Description[et]": "Saksamaa Saksimaa ühistransport.",
@@ -11,6 +12,7 @@
         "Description[uk]": "Дані щодо громадського транспорту у Саксонії, Німеччина.",
         "Description[x-test]": "xxPublic transport Saxony, Germany.xx",
         "Name": "Verkehrsverbund Oberelbe (VVO)",
+        "Name[ca@valencia]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[ca]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[es]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[et]": "Verkehrsverbund Oberelbe (VVO)",

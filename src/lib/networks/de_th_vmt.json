@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Thuringia, Germany.",
+        "Description[ca@valencia]": "Transport públic a Thuringia, Alemanya.",
         "Description[ca]": "Transport públic a Thuringia, Alemanya.",
         "Description[es]": "Transporte público de Turingia, Alemania.",
         "Description[et]": "Saksamaa Tüüringi ühistransport.",
@@ -11,6 +12,7 @@
         "Description[uk]": "Дані щодо громадського транспорту у Тюрінґії, Німеччина.",
         "Description[x-test]": "xxPublic transport in Thuringia, Germany.xx",
         "Name": "Verkehrsverbund Mittelthüringen (VMT)",
+        "Name[ca@valencia]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[ca]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[es]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[et]": "Verkehrsverbund Mittelthüringen (VMT)",

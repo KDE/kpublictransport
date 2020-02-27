@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Saarland, Germany.",
+        "Description[ca@valencia]": "Transport públic a Saarland, Alemanya.",
         "Description[ca]": "Transport públic a Saarland, Alemanya.",
         "Description[es]": "Transporte público de Sarre, Alemania.",
         "Description[et]": "Saksamaa Saarimaa ühistransport.",
@@ -11,6 +12,7 @@
         "Description[uk]": "Дані щодо громадського транспорту у землі Саар, Німеччина.",
         "Description[x-test]": "xxPublic transport in Saarland, Germany.xx",
         "Name": "Saarländischer Verkehrsverbund (saarVV)",
+        "Name[ca@valencia]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[ca]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[es]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[et]": "Saarländischer Verkehrsverbund (saarVV)",

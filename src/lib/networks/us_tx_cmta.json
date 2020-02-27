@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in and around Austin, Texas, US.",
+        "Description[ca@valencia]": "Transport públic a Austin i rodalies, Texas, EEUU.",
         "Description[ca]": "Transport públic a Austin i rodalies, Texas, EEUU.",
         "Description[es]": "Transporte público de Austin y alrededores, Texas, Estados Unidos.",
         "Description[et]": "USA Austini (Texase osariik) ja selle ümbruse ühistransport.",
@@ -12,6 +13,7 @@
         "Description[uk]": "Громадський транспорт у Остіні і околицях, Техас, США.",
         "Description[x-test]": "xxPublic transport in and around Austin, Texas, US.xx",
         "Name": "Capital Metropolitan Transportation Authority (CMTA)",
+        "Name[ca@valencia]": "Capital Metropolitan Transportation Authority (CMTA)",
         "Name[ca]": "Capital Metropolitan Transportation Authority (CMTA)",
         "Name[es]": "Capital Metropolitan Transportation Authority (CMTA)",
         "Name[et]": "Capital Metropolitani transpordiamet (CMTA)",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Rhineland-Palatinate, Germany.",
+        "Description[ca@valencia]": "Transport públic a l'àrea de Rhineland-Palatinate, Alemanya.",
         "Description[ca]": "Transport públic a l'àrea de Rhineland-Palatinate, Alemanya.",
         "Description[es]": "Transporte público de Renania-Palatinado, Alemania.",
         "Description[et]": "Saksamaa Reinimaa-Pfalzi ühistransport.",
@@ -11,6 +12,7 @@
         "Description[uk]": "Громадський транспорт у регіоні Рейнланд-Пфальц, Німеччина.",
         "Description[x-test]": "xxPublic transport in Rhineland-Palatinate, Germany.xx",
         "Name": "Rheinland-Pfalz-Takt",
+        "Name[ca@valencia]": "Rheinland-Pfalz-Takt",
         "Name[ca]": "Rheinland-Pfalz-Takt",
         "Name[es]": "Rheinland-Pfalz-Takt",
         "Name[et]": "Rheinland-Pfalz-Takt",

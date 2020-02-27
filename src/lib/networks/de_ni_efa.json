@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Public transport in Lower Saxony, Germany.",
+        "Description[ca@valencia]": "Transport públic a la Baixa Saxònia, Alemanya.",
         "Description[ca]": "Transport públic a la Baixa Saxònia, Alemanya.",
         "Description[es]": "Transporte público de Baja Sajonia, Alemania.",
         "Description[et]": "Saksamaa Alam-Saksimaa ühistransport.",
@@ -11,6 +12,7 @@
         "Description[uk]": "Дані щодо громадського транспорту у Нижній Саксонії, Німеччина.",
         "Description[x-test]": "xxPublic transport in Lower Saxony, Germany.xx",
         "Name": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[ca@valencia]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[ca]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[es]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[et]": "Alam-Saksimaa ja Bremeni elektrooniline sõiduplaan",

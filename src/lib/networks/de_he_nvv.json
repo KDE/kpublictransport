@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Local transport in northern Hesse, Germany.",
+        "Description[ca@valencia]": "Transport local al nord de Hesse, Alemanya.",
         "Description[ca]": "Transport local al nord de Hesse, Alemanya.",
         "Description[es]": "Transporte local del norte de Hesse, Alemania.",
         "Description[et]": "Saksamaa Põhja-Hesseni piirkonna kohalik transport.",
@@ -12,6 +13,7 @@
         "Description[uk]": "Місцевий транспорт у північному Гессені, Німеччина.",
         "Description[x-test]": "xxLocal transport in northern Hesse, Germany.xx",
         "Name": "Nordhessische Verkehrsverbund (NVV)",
+        "Name[ca@valencia]": "Nordhessische Verkehrsverbund (NVV)",
         "Name[ca]": "Nordhessische Verkehrsverbund (NVV)",
         "Name[es]": "Nordhessische Verkehrsverbund (NVV)",
         "Name[et]": "Nordhessische Verkehrsverbund (NVV)",
