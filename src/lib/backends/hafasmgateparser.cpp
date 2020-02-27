@@ -66,9 +66,16 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
     rems.reserve(remL.size());
     for (const auto &remV : remL) {
         const auto remObj = remV.toObject();
+
+        const auto type = remObj.value(QLatin1String("type")).toString();
+        const auto code = remObj.value(QLatin1String("code")).toString();
+        // skip operator information, they don't make sense as a generic note
+        if (type == QLatin1String("A") && code == QLatin1String("OPERATOR")) {
+            continue;
+        }
+
         Message m;
         m.text = remObj.value(QLatin1String("txtN")).toString();
-        const auto code = remObj.value(QLatin1String("code")).toString();
         if (code == QLatin1String("text.realtime.stop.cancelled")) {
             m.effect = Disruption::NoService;
         }
