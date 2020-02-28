@@ -49,6 +49,13 @@ static QString extractTrainNumber(const Line &line)
 
 bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
+    // unlike the rest of the DB API, this only works in Germany, so do our own geo filtering here.
+    const auto germanyBBox = QPolygonF({ {5.56384, 55.0492}, {6.131, 47.2565}, {15.4307, 47.4737}, {14.6794, 54.7568} });
+    if (!germanyBBox.containsPoint({request.departure().stopPoint().longitude(), request.departure().stopPoint().latitude()}, Qt::WindingFill)) {
+        qDebug() << "request outside of bounding box";
+        return false;
+    }
+
     // we need two parameters for the online API: the train number (numeric only), and the departure time
     // note: data is only available withing the upcoming 24h
     // checking this early is useful as the error response from the online service is extremely verbose...
