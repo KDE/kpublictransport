@@ -131,7 +131,7 @@ static QString translatedValue(const QJsonObject &obj, const QString &key)
 
 void ManagerPrivate::loadNetworks()
 {
-    QDirIterator it(QStringLiteral(":/org.kde.pim/kpublictransport/networks"));
+    QDirIterator it(QStringLiteral(":/org.kde.kpublictransport/networks"));
     while (it.hasNext()) {
         QFile f(it.next());
         if (!f.open(QFile::ReadOnly)) {

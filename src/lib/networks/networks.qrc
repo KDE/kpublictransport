@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/org.kde.pim/kpublictransport/networks">
+    <qresource prefix="/org.kde.kpublictransport/networks">
         <!-- global/generic providers -->
         <file>navitia.json</file>
 
