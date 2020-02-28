@@ -20,15 +20,22 @@ The key elements are:
 * Arrival/departure queries: retrieve base schedule and if available realtime information
   about upcoming arrivals and departures at a stop.
 * Journey queries: obtain ways to get from A to B.
+* Vehicle and platform layout queries: information about where coaches stop on a platform,
+and how a platform is structured.
 
 All operations can be started from KPublicTransport::Manager with an API similar to
 QNetworkAccessManager.
 
 ## Backends
 
-All data is retrieved from online backends, this library is not offline capable.
-The primary backend is [Navitia](https://navitia.io), which is Free Software and
-relies on Open Data. Support for proprietary/vendor-specific APIs exists too though.
+All data is retrieved from online backend services, this library is not offline capable.
+The following Free Software/Open Data backend types are supported:
+* [Navitia](https://navitia.io).
+* [OpenTripPlanner](http://opentripplanner.org), in the REST, Digitransit and Entur variants.
+
+Additionally, a few proprietary/vendor-specific backends are supported too though.
+
+Configurations for more than 60 backend services can be found in 'src/lib/networks'.
 
 ## Compliance
 
