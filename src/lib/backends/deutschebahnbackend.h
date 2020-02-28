@@ -18,12 +18,12 @@
 #ifndef KPUBLICTRANSPORT_DEUTSCHEBAHNBACKEND_H
 #define KPUBLICTRANSPORT_DEUTSCHEBAHNBACKEND_H
 
-#include "abstractbackend.h"
+#include "hafasmgatebackend.h"
 
 namespace KPublicTransport {
 
 /** Backend for DB-specific APIs. */
-class DeutscheBahnBackend : public KPublicTransport::AbstractBackend
+class DeutscheBahnBackend : public KPublicTransport::HafasMgateBackend
 {
 public:
     Capabilities capabilities() const override;
