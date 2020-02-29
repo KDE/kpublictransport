@@ -60,6 +60,14 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     return icos;
 }
 
+static const struct {
+    const char *type;
+    const char *code;
+} ignored_remarks[] = {
+    { "A", "OPERATOR" }, // operator information should be a dedicated field if we ever need it
+    { "H", "wagenstand_v2" }, // contains a pointless note about checking trip details
+};
+
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
 {
     std::vector<Message> rems;
@@ -69,8 +77,14 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
 
         const auto type = remObj.value(QLatin1String("type")).toString();
         const auto code = remObj.value(QLatin1String("code")).toString();
-        // skip operator information, they don't make sense as a generic note
-        if (type == QLatin1String("A") && code == QLatin1String("OPERATOR")) {
+        bool skip = false;
+        for (const auto &ignored_remark : ignored_remarks) {
+            if (type == QLatin1String(ignored_remark.type) && code == QLatin1String(ignored_remark.code)) {
+                skip = true;
+                break;
+            }
+        }
+        if (skip) {
             continue;
         }
 
