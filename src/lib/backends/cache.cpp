@@ -55,12 +55,13 @@ static QString attributionExtension()
     return QStringLiteral(".attribution");
 }
 
-static void addNegativeCacheEntry(const QString &typeName, const QString &backendId, const QString &cacheKey)
+static void addNegativeCacheEntry(const QString &typeName, const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
 {
     const auto dir = cachePath(backendId, typeName);
     QDir().mkpath(dir);
     QFile f(dir + cacheKey + locationExtension());
     f.open(QFile::WriteOnly | QFile::Truncate);
+    f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
     // empty file is used as indicator for a negative hit
 }
 
@@ -92,24 +93,34 @@ static CacheEntry<T> lookup(const QString &typeName, const QString &backendId, c
     return entry;
 }
 
-void Cache::addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attribution)
+void Cache::addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attribution, std::chrono::seconds ttl)
 {
     const auto dir = cachePath(backendId, QStringLiteral("location"));
     QDir().mkpath(dir);
     QFile f(dir + cacheKey + locationExtension());
     f.open(QFile::WriteOnly | QFile::Truncate);
     f.write(QJsonDocument(Location::toJson(data)).toJson());
+    f.close();
+    // mtime changes need to be done without content changes to take effect
+    f.open(QFile::WriteOnly | QFile::Append);
+    f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
+    f.close();
 
     if (!attribution.empty()) {
         QFile f(dir + cacheKey + attributionExtension());
         f.open(QFile::WriteOnly | QFile::Truncate);
         f.write(QJsonDocument(Attribution::toJson(attribution)).toJson());
+        f.close();
+        // mtime changes need to be done without content changes to take effect
+        f.open(QFile::WriteOnly | QFile::Append);
+        f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
+        f.close();
     }
 }
 
-void Cache::addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey)
+void Cache::addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
 {
-    addNegativeCacheEntry(QStringLiteral("location"), backendId, cacheKey);
+    addNegativeCacheEntry(QStringLiteral("location"), backendId, cacheKey, ttl);
 }
 
 CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QString &cacheKey)
@@ -117,9 +128,9 @@ CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QStri
     return lookup<Location>(QStringLiteral("location"), backendId, cacheKey);
 }
 
-void Cache::addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey)
+void Cache::addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
 {
-    addNegativeCacheEntry(QStringLiteral("departure"), backendId, cacheKey);
+    addNegativeCacheEntry(QStringLiteral("departure"), backendId, cacheKey, ttl);
 }
 
 CacheEntry<Departure> Cache::lookupDeparture(const QString &backendId, const QString &cacheKey)
@@ -127,9 +138,9 @@ CacheEntry<Departure> Cache::lookupDeparture(const QString &backendId, const QSt
     return lookup<Departure>(QStringLiteral("departure"), backendId, cacheKey);
 }
 
-void Cache::addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey)
+void Cache::addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
 {
-    addNegativeCacheEntry(QStringLiteral("journey"), backendId, cacheKey);
+    addNegativeCacheEntry(QStringLiteral("journey"), backendId, cacheKey, ttl);
 }
 
 CacheEntry<Journey> Cache::lookupJourney(const QString &backendId, const QString &cacheKey)
@@ -150,8 +161,8 @@ static void expireRecursive(const QString &path)
                 qCDebug(Log) << "removing empty cache directory" << it.fileName();
                 QDir(path).rmdir(it.filePath());
             }
-        } else if (it.fileInfo().lastModified().addDays(30) < now) {
-            qCDebug(Log) << "removing expired cache entry" << it.fileName();
+        } else if (it.fileInfo().lastModified() < now) {
+            qCDebug(Log) << "removing expired cache entry" << it.filePath();
             QDir(path).remove(it.filePath());
         }
     }

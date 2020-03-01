@@ -50,6 +50,9 @@ private Q_SLOTS:
         Cache::addNegativeLocationCacheEntry(QStringLiteral("unittest"), req.cacheKey());
         entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Negative);
+        Cache::expire();
+        entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
+        QCOMPARE(entry.type, CacheHitType::Negative);
 
         Location loc;
         loc.setName(QStringLiteral("Randa"));
@@ -82,6 +85,11 @@ private Q_SLOTS:
         QCOMPARE(cachedAttrs[0].name(), attr.name());
 
         Cache::expire();
+
+        entry = Cache::lookupLocation(QStringLiteral("unittest"), req.cacheKey());
+        QCOMPARE(entry.type, CacheHitType::Positive);
+        QCOMPARE(entry.data.size(), 1);
+        QCOMPARE(entry.attributions.size(), 1);
     }
 
     void testLocationCacheKey()

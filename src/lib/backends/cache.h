@@ -22,6 +22,7 @@
 
 #include <KPublicTransport/Attribution>
 
+#include <chrono>
 #include <vector>
 
 class QString;
@@ -52,25 +53,30 @@ template <typename T> struct CacheEntry
     CacheHitType type = CacheHitType::Miss;
 };
 
+/** C++20 forward compatibility */
+namespace chrono {
+    typedef std::chrono::duration<std::chrono::seconds::rep, std::ratio<86400>> days;
+}
+
 /** Query result caching functions.
  *  @internal exported for unit tests only
  */
 namespace Cache
 {
     /** Add data and corresponding attribution information to the cache. */
-    KPUBLICTRANSPORT_EXPORT void addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attributions);
+    KPUBLICTRANSPORT_EXPORT void addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attributions, std::chrono::seconds ttl = chrono::days(30));
     /** Add negative cache entry for location queries, ie. remember a result could not be found. */
-    KPUBLICTRANSPORT_EXPORT void addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey);
+    KPUBLICTRANSPORT_EXPORT void addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
     /** Perform cache lookup for location results. */
     KPUBLICTRANSPORT_EXPORT CacheEntry<Location> lookupLocation(const QString &backendId, const QString &cacheKey);
 
     /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
-    void addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey);
+    void addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
     /** Perform cache lookup for departure results. */
     CacheEntry<Departure> lookupDeparture(const QString &backendId, const QString &cacheKey);
 
     /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
-    void addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey);
+    void addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
     /** Perform cache lookup for departure results. */
     CacheEntry<Journey> lookupJourney(const QString &backendId, const QString &cacheKey);
 
