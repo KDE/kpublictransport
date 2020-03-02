@@ -50,6 +50,7 @@ set(kpublictransport_srcs
     datatypes/platform.cpp
     datatypes/platformutils.cpp
     datatypes/vehicle.cpp
+    datatypes/vehiclelayoutresult.cpp
 
     gtfs/hvt.cpp
 

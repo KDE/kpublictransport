@@ -32,6 +32,7 @@ namespace KPublicTransport {
 class Departure;
 class Journey;
 class Location;
+class VehicleLayoutResult;
 
 enum class CacheHitType {
     Miss,
@@ -79,6 +80,13 @@ namespace Cache
     void addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
     /** Perform cache lookup for departure results. */
     CacheEntry<Journey> lookupJourney(const QString &backendId, const QString &cacheKey);
+
+    /** Add a positive cache entry for a vehicle layout query. */
+    void addVehicleLayoutCacheEntry(const QString &backendId, const QString &cacheKey, const VehicleLayoutResult &data, const std::vector<Attribution> &attributions, std::chrono::seconds ttl = std::chrono::minutes(1));
+    /** Add negative cache entry for vehicle layout queries. */
+    void addNegativeVehicleLayoutCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
+    /** Perform cache lookup for vehicle layout results. */
+    CacheEntry<VehicleLayoutResult> lookupVehicleLayout(const QString &backendId, const QString &cacheKey);
 
     /** Returns all cached attribution information.
      *  The result is inserted in the assumed to be sorted @p attrs and deduplicated.
