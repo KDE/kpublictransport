@@ -29,6 +29,9 @@
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/backend.h"
 #include "datatypes/disruption.h"
+#include "datatypes/platform.h"
+#include "datatypes/vehicle.h"
+#include "datatypes/vehiclelayoutresult_p.h"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
@@ -672,11 +675,27 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         }
         reply->addAttribution(backend->attribution());
 
-        // TODO check cache
-
-        if (backend->queryVehicleLayout(req, reply, d->nam())) {
-            ++pendingOps;
+        auto cache = Cache::lookupVehicleLayout(backend->backendId(), req.cacheKey());
+        switch (cache.type) {
+            case CacheHitType::Negative:
+                qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
+                break;
+            case CacheHitType::Positive:
+                qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+                if (cache.data.size() == 1) {
+                    reply->addAttributions(std::move(cache.attributions));
+                    reply->addResult(cache.data[0].vehicle(), cache.data[0].platform(), cache.data[0].departure());
+                    break;
+                }
+                Q_FALLTHROUGH();
+            case CacheHitType::Miss:
+                qCDebug(Log) << "Cache miss for backend" << backend->backendId();
+                if (backend->queryVehicleLayout(req, reply, d->nam())) {
+                    ++pendingOps;
+                }
+                break;
         }
+
     }
     reply->setPendingOps(pendingOps);
     return reply;
