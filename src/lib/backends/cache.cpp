@@ -77,6 +77,15 @@ static CacheEntry<T> lookup(const QString &typeName, const QString &backendId, c
         return entry;
     }
 
+    // check if this entry is still valid before using it
+    if (f.fileTime(QFile::FileModificationTime) < QDateTime::currentDateTimeUtc()) {
+        qDebug() << "expiring cache entry" << f.fileName();
+        f.close();
+        f.remove();
+        entry.type = CacheHitType::Miss;
+        return entry;
+    }
+
     if (f.size() == 0) {
         entry.type = CacheHitType::Negative;
         return entry;
