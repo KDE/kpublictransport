@@ -16,6 +16,7 @@
 */
 
 #include "vehiclelayoutrequest.h"
+#include "datatypes/locationutil_p.h"
 #include "datatypes/datatypes_p.h"
 #include "datatypes/departure.h"
 #include "datatypes/json_p.h"
@@ -23,6 +24,8 @@
 #include <QStringList>
 
 using namespace KPublicTransport;
+
+enum { DepartureCacheTimeResolution = 60 }; // in seconds
 
 namespace KPublicTransport {
 
@@ -51,7 +54,8 @@ bool VehicleLayoutRequest::isValid() const
 
 QString VehicleLayoutRequest::cacheKey() const
 {
-    return {}; // TODO
+    return QString::number(d->departure.scheduledDepartureTime().toSecsSinceEpoch() / DepartureCacheTimeResolution) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->departure.stopPoint());
 }
 
 QJsonObject VehicleLayoutRequest::toJson(const VehicleLayoutRequest &req)
