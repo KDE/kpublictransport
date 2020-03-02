@@ -55,6 +55,32 @@ static QString attributionExtension()
     return QStringLiteral(".attribution");
 }
 
+template <typename T>
+static void addCacheEntry(const QString &typeName, const QString &backendId, const QString &cacheKey, const std::vector<T> &data, const std::vector<Attribution> &attribution, std::chrono::seconds ttl)
+{
+   const auto dir = cachePath(backendId, typeName);
+    QDir().mkpath(dir);
+    QFile f(dir + cacheKey + locationExtension());
+    f.open(QFile::WriteOnly | QFile::Truncate);
+    f.write(QJsonDocument(T::toJson(data)).toJson());
+    f.close();
+    // mtime changes need to be done without content changes to take effect
+    f.open(QFile::WriteOnly | QFile::Append);
+    f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
+    f.close();
+
+    if (!attribution.empty()) {
+        QFile f(dir + cacheKey + attributionExtension());
+        f.open(QFile::WriteOnly | QFile::Truncate);
+        f.write(QJsonDocument(Attribution::toJson(attribution)).toJson());
+        f.close();
+        // mtime changes need to be done without content changes to take effect
+        f.open(QFile::WriteOnly | QFile::Append);
+        f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
+        f.close();
+    }
+}
+
 static void addNegativeCacheEntry(const QString &typeName, const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
 {
     const auto dir = cachePath(backendId, typeName);
@@ -104,27 +130,7 @@ static CacheEntry<T> lookup(const QString &typeName, const QString &backendId, c
 
 void Cache::addLocationCacheEntry(const QString &backendId, const QString &cacheKey, const std::vector<Location> &data, const std::vector<Attribution> &attribution, std::chrono::seconds ttl)
 {
-    const auto dir = cachePath(backendId, QStringLiteral("location"));
-    QDir().mkpath(dir);
-    QFile f(dir + cacheKey + locationExtension());
-    f.open(QFile::WriteOnly | QFile::Truncate);
-    f.write(QJsonDocument(Location::toJson(data)).toJson());
-    f.close();
-    // mtime changes need to be done without content changes to take effect
-    f.open(QFile::WriteOnly | QFile::Append);
-    f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
-    f.close();
-
-    if (!attribution.empty()) {
-        QFile f(dir + cacheKey + attributionExtension());
-        f.open(QFile::WriteOnly | QFile::Truncate);
-        f.write(QJsonDocument(Attribution::toJson(attribution)).toJson());
-        f.close();
-        // mtime changes need to be done without content changes to take effect
-        f.open(QFile::WriteOnly | QFile::Append);
-        f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
-        f.close();
-    }
+    addCacheEntry(QStringLiteral("location"), backendId, cacheKey, data, attribution, ttl);
 }
 
 void Cache::addNegativeLocationCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
