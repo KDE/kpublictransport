@@ -85,6 +85,7 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
             }
         }
         if (skip) {
+            rems.push_back({}); // make sure the indices still match!
             continue;
         }
 
