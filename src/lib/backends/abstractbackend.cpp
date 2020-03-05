@@ -69,6 +69,34 @@ void AbstractBackend::setTimeZone(const QTimeZone &tz)
     m_timeZone = tz;
 }
 
+QStringList AbstractBackend::supportedLanguages() const
+{
+    return m_supportedLanguages;
+}
+
+void AbstractBackend::setSupportedLanguages(const QStringList &langs)
+{
+    m_supportedLanguages = langs;
+}
+
+QString AbstractBackend::preferredLanguage() const
+{
+    const auto localeLangs = QLocale().uiLanguages();
+    for (const auto &l : localeLangs) {
+        if (m_supportedLanguages.contains(l)) {
+            return l;
+        }
+        if (l.size() > 2 && l[2] == QLatin1Char('-') && m_supportedLanguages.contains(l.leftRef(2))) {
+            return l.left(2);
+        }
+    }
+
+    if (!m_supportedLanguages.empty()) {
+        return m_supportedLanguages.at(0);
+    }
+    return QStringLiteral("en");
+}
+
 void AbstractBackend::init()
 {
 }

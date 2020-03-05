@@ -283,7 +283,7 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
         top.insert(QStringLiteral("client"), client);
     }
     top.insert(QStringLiteral("formatted"), false);
-    top.insert(QStringLiteral("lang"), QLatin1String("eng"));
+    top.insert(QStringLiteral("lang"), preferredLanguage());
     {
         QJsonArray svcReqs;
         {

@@ -66,5 +66,6 @@
         "version": "1.21"
     },
     "timezone": "Europe/Berlin",
+    "supportedLanguages": [ "en", "de" ],
     "type": "hafas_mgate"
 }

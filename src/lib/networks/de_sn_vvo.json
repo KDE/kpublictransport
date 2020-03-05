@@ -50,5 +50,6 @@
         "tripRequestCommand": "XSLT_TRIP_REQUEST2"
     },
     "timezone": "Europe/Berlin",
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

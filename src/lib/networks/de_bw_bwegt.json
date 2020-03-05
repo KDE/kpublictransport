@@ -47,5 +47,6 @@
         "endpoint": "https://www.efa-bw.de/nvbw3L/"
     },
     "timezone": "Europe/Berlin",
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

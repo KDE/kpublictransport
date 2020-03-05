@@ -47,5 +47,6 @@
         "endpoint": "https://www.der-takt.de/fahrplanauskunft/"
     },
     "timezone": "Europe/Berlin",
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

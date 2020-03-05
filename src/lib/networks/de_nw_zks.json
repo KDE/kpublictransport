@@ -47,5 +47,6 @@
         "endpoint": "http://delfi.nrw-zks.de/delfitrias/"
     },
     "timezone": "Europe/Berlin",
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

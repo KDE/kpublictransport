@@ -52,5 +52,6 @@
         "mId": "efa_29"
     },
     "timezone": "Europe/Berlin",
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

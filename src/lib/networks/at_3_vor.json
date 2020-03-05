@@ -78,5 +78,6 @@
         "locationIdentifierType": "vao",
         "version": "1.18"
     },
+    "supportedLanguages": [ "en", "de" ],
     "type": "hafas_mgate"
 }

@@ -56,5 +56,6 @@
         "endpoint": "http://appefa10.verbundlinie.at/android/"
     },
     "timezone": "Europe/Vienna",
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

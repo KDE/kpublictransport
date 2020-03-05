@@ -69,6 +69,22 @@ public:
     QTimeZone timeZone() const;
     void setTimeZone(const QTimeZone &tz);
 
+    /** Supported languages.
+     *  This matters for backends that require us to ask for humand readable strings
+     *  in a specific language (as opposed to providing all possible translations by default).
+     *  The first language in QLocale::uiLanguages found in this list should be requested.
+     *  @see preferredLanguage()
+     */
+    QStringList supportedLanguages() const;
+    void setSupportedLanguages(const QStringList &langs);
+
+    /** Returns the language that should be requested.
+     *  This is essentially the first language in QLocale::uiLanguages that is also found
+     *  in the list of supported languages, if that's not the case the first supported
+     *  language of the backend, or if that's not set, English by default.
+     */
+    QString preferredLanguage() const;
+
     /** Called after all settings have been set on this backend. */
     virtual void init();
 
@@ -189,6 +205,7 @@ private:
     QPolygonF m_geoFilter;
     Attribution m_attribution;
     QTimeZone m_timeZone;
+    QStringList m_supportedLanguages;
 };
 
 }

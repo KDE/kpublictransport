@@ -73,5 +73,6 @@
         "micMacSalt": "5243544a4d3266467846667878516649",
         "version": "1.14"
     },
+    "supportedLanguages": [ "en", "de" ],
     "type": "hafas_mgate"
 }

@@ -59,5 +59,6 @@
     "options": {
         "endpoint": "https://efa.vrr.de/standard/"
     },
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

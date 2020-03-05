@@ -59,5 +59,6 @@
     "options": {
         "endpoint": "https://www2.vvs.de/vvs/"
     },
+    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

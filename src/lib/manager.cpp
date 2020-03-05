@@ -255,6 +255,12 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
             qCWarning(Log) << "Invalid timezone:" << tzId;
         }
     }
+
+    const auto langArray = obj.value(QLatin1String("supportedLanguages")).toArray();
+    QStringList langs;
+    langs.reserve(langArray.size());
+    std::transform(langArray.begin(), langArray.end(), std::back_inserter(langs), std::mem_fn(qOverload<>(&QJsonValue::toString)));
+    backend->setSupportedLanguages(langs);
 }
 
 template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &obj)

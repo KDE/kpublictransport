@@ -255,6 +255,7 @@ QUrlQuery EfaBackend::commonQuery() const
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("outputFormat"), QStringLiteral("XML"));
     query.addQueryItem(QStringLiteral("coordOutputFormat"), QStringLiteral("WGS84[DD.ddddd]"));
+    query.addQueryItem(QStringLiteral("language"), preferredLanguage());
     if (!m_mId.isEmpty()) {
         query.addQueryItem(QStringLiteral("mId"), m_mId);
     }
