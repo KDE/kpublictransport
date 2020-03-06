@@ -54,7 +54,10 @@
     "options": {
         "endpoint": "https://vogtlandauskunft.de/vvv2/"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Vienna",
-    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

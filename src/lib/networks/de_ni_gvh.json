@@ -63,6 +63,9 @@
     "options": {
         "endpoint": "https://app.efa.de/mdv_server/app_gvh/"
     },
-    "supportedLanguages": [ "en", "de" ],
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "type": "efa"
 }

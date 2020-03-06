@@ -101,6 +101,11 @@
         "standardLocationIdentifierType": "ibnr",
         "version": "1.14"
     },
-    "supportedLanguages": [ "en", "de", "fr", "es" ],
+    "supportedLanguages": [
+        "en",
+        "de",
+        "fr",
+        "es"
+    ],
     "type": "deutschebahn"
 }

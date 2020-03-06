@@ -77,6 +77,10 @@
         "standardLocationIdentifierType": "uic",
         "version": "1.14"
     },
-    "supportedLanguages": [ "en", "fr", "nl" ],
+    "supportedLanguages": [
+        "en",
+        "fr",
+        "nl"
+    ],
     "type": "hafas_mgate"
 }

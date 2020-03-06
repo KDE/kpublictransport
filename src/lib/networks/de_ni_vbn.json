@@ -67,7 +67,10 @@
         "micMacSalt": "535033316D4275665379434C6D4E7870",
         "version": "1.18"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Berlin",
-    "supportedLanguages": [ "en", "de" ],
     "type": "hafas_mgate"
 }

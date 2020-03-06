@@ -61,7 +61,10 @@
         },
         "version": "1.18"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Berlin",
-    "supportedLanguages": [ "en", "de" ],
     "type": "hafas_mgate"
 }

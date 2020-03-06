@@ -57,6 +57,9 @@
         "compactXmlRepsonse": true,
         "endpoint": "https://mobile.defas-fgi.de/beg/"
     },
-    "supportedLanguages": [ "en", "de" ],
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "type": "efa"
 }

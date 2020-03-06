@@ -89,6 +89,9 @@
         "standardLocationIdentifierType": "ibnr",
         "version": "1.15"
     },
-    "supportedLanguages": [ "en", "de" ],
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "type": "hafas_mgate"
 }

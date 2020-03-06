@@ -51,7 +51,10 @@
         "endpoint": "https://efa29.efa.de/efaws2/default/",
         "mId": "efa_29"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Berlin",
-    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

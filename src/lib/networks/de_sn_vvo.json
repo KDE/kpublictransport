@@ -49,7 +49,10 @@
         "stopfinderRequestCommand": "XSLT_STOPFINDER_REQUEST",
         "tripRequestCommand": "XSLT_TRIP_REQUEST2"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Berlin",
-    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

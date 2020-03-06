@@ -46,7 +46,10 @@
     "options": {
         "endpoint": "http://efa.vmv-mbh.de/vmv/"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Berlin",
-    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

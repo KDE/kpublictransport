@@ -55,7 +55,10 @@
         "compactXmlRepsonse": true,
         "endpoint": "http://appefa10.verbundlinie.at/android/"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Vienna",
-    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }

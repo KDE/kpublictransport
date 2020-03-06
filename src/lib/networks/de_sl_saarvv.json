@@ -65,7 +65,10 @@
         "supportsStbFltrEquiv": false,
         "version": "1.21"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Berlin",
-    "supportedLanguages": [ "en", "de" ],
     "type": "hafas_mgate"
 }

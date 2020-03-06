@@ -54,7 +54,10 @@
     "options": {
         "endpoint": "https://www.linzag.at/linz2/"
     },
+    "supportedLanguages": [
+        "en",
+        "de"
+    ],
     "timezone": "Europe/Vienna",
-    "supportedLanguages": [ "en", "de" ],
     "type": "efa"
 }
