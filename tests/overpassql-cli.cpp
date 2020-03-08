@@ -92,6 +92,15 @@ int main(int argc, char **argv)
                 qDebug() << "  tag" << tag.key << tag.value;
             }
         }
+        for (const auto &rel : res.relations) {
+            qDebug() << "Relation" << rel.id << rel.bbox.min.latitude << rel.bbox.min.longitude << rel.bbox.max.latitude << rel.bbox.max.longitude;
+            for (const auto &mem : rel.members) {
+                qDebug() << "  member" << mem.id << (int)mem.type << mem.role;
+            }
+            for (const auto &tag : rel.tags) {
+                qDebug() << "  tag" << tag.key << tag.value;
+            }
+        }
 
         app.quit();
     });

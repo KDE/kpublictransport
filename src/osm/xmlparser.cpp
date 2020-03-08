@@ -78,8 +78,39 @@ void XmlParser::parseWay(QXmlStreamReader &reader)
 
 void XmlParser::parseRelation(QXmlStreamReader &reader)
 {
-    // TODO
-    reader.skipCurrentElement();
+    Relation rel;
+    rel.id = reader.attributes().value(QLatin1String("id")).toLongLong();
+
+    while (!reader.atEnd() && reader.readNext() != QXmlStreamReader::EndElement) {
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            continue;
+        }
+        if (reader.name() == QLatin1String("tag")) {
+            parseTag(reader, rel);
+        } else if (reader.name() == QLatin1String("bounds")) {
+            rel.bbox.min = Coordinate(reader.attributes().value(QLatin1String("minlat")).toDouble(), reader.attributes().value(QLatin1String("minlon")).toDouble());
+            rel.bbox.max = Coordinate(reader.attributes().value(QLatin1String("maxlat")).toDouble(), reader.attributes().value(QLatin1String("maxlon")).toDouble());
+            reader.skipCurrentElement();
+        } else if (reader.name() == QLatin1String("member")) {
+            Member member;
+            member.id = reader.attributes().value(QLatin1String("ref")).toLongLong();
+            const auto type = reader.attributes().value(QLatin1String("type"));
+            if (type == QLatin1String("node")) {
+                member.type = Member::Type::Node;
+            } else if (type == QLatin1String("way")) {
+                member.type = Member::Type::Way;
+            } else {
+                member.type = Member::Type::Relation;
+            }
+            member.role = reader.attributes().value(QLatin1String("role")).toString(); // TODO shared value pool for these values
+            rel.members.push_back(std::move(member));
+            reader.skipCurrentElement();
+        } else {
+            reader.skipCurrentElement();
+        }
+    }
+
+    m_dataSet->addRelation(std::move(rel));
 }
 
 template<typename T>

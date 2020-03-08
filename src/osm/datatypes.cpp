@@ -28,3 +28,13 @@ void DataSet::addNode(Node &&node)
     }
     nodes.insert(it, std::move(node));
 }
+
+void DataSet::addRelation(Relation &&rel)
+{
+    const auto it = std::lower_bound(relations.begin(), relations.end(), rel.id, [](const auto &lhs, Id rhs) { return lhs.id < rhs; });
+    if (it != relations.end() && (*it).id == rel.id) {
+        // do we need to merge something here?
+        return;
+    }
+    relations.insert(it, std::move(rel));
+}

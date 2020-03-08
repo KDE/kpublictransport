@@ -67,8 +67,21 @@ public:
 class Way {
 public:
     Id id;
-    std::vector<Id> way;
+    std::vector<Id> nodes;
     std::vector<Tag> tags;
+};
+
+/** A member in a relation. */
+// TODO this has 7 byte padding, can we make this more efficient?
+class Member {
+public:
+    Id id;
+    QString role;
+    enum class Type : uint8_t {
+        Node,
+        Way,
+        Relation
+    } type;
 };
 
 /** An OSM relation. */
@@ -76,7 +89,7 @@ class Relation {
 public:
     Id id;
     BoundingBox bbox;
-    std::vector<Id> members;
+    std::vector<Member> members;
     std::vector<Tag> tags;
 };
 
@@ -84,6 +97,7 @@ public:
 class DataSet {
 public:
     void addNode(Node &&node);
+    void addRelation(Relation &&rel);
 
     std::vector<Node> nodes;
     std::vector<Way> ways;
