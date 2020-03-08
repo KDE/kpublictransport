@@ -21,6 +21,7 @@
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QFile>
 #include <QJsonDocument>
 
 #include <iostream>
@@ -33,8 +34,10 @@ int main(int argc, char **argv)
     QCommandLineParser parser;
     parser.setApplicationDescription(S("overpassql-cli"));
     parser.addHelpOption();
-    QCommandLineOption queryOption({ S("q"), S("query") }, S("GraphQL query to run"), S("query-string"));
+    QCommandLineOption queryOption({ S("q"), S("query") }, S("Overpass QL query to run"), S("query-string"));
     parser.addOption(queryOption);
+    QCommandLineOption queryFileOption({ S("f"), S("query-file") }, S("File to read Overpass QL query from"), S("query-file"));
+    parser.addOption(queryFileOption);
     QCommandLineOption bboxOption({ S("b"), S("bbox") }, S("Query bounding box"), S("x,y,w,h"));
     parser.addOption(bboxOption);
     QCommandLineOption tileSizeOption({ S("t"), S("tile-size") }, S("Query tile size"), S("w,h"));
@@ -43,7 +46,17 @@ int main(int argc, char **argv)
 
     OSM::OverpassQueryManager mgr;
     OSM::OverpassQuery query;
-    query.setQuery(parser.value(queryOption));
+
+    if (parser.isSet(queryFileOption)) {
+        QFile f(parser.value(queryFileOption));
+        if (!f.open(QFile::ReadOnly)) {
+            std::cerr << "failed to read query file: " << qPrintable(f.errorString()) << std::endl;
+            return 1;
+        }
+        query.setQuery(QString::fromUtf8(f.readAll()));
+    } else {
+        query.setQuery(parser.value(queryOption));
+    }
 
     if (parser.isSet(bboxOption)) {
         const auto s = parser.value(bboxOption).split(QLatin1Char(','));
