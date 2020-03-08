@@ -16,6 +16,9 @@
 */
 
 #include "overpassquery.h"
+#include "xmlparser_p.h"
+
+#include <QNetworkReply>
 
 using namespace OSM;
 
@@ -66,4 +69,18 @@ void OverpassQuery::setTileSize(const QSizeF &tileSize)
 OverpassQuery::Error OverpassQuery::error() const
 {
     return m_error;
+}
+
+const DataSet& OverpassQuery::result() const
+{
+    return m_result;
+}
+
+void OverpassQuery::processReply(QNetworkReply *reply)
+{
+    XmlParser p(&m_result);
+    p.parse(reply);
+    qDebug() << "Nodes:" << m_result.nodes.size();
+    qDebug() << "Ways:" << m_result.ways.size();
+    qDebug() << "Relations:" << m_result.relations.size();
 }

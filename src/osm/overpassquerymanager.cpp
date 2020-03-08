@@ -155,8 +155,7 @@ void OverpassQueryManagerPrivate::taskFinished(OverpassQueryExecutor *executor, 
         query->m_error = OverpassQuery::NetworkError;
         cancelQuery(query);
     } else {
-        // TODO actually process the result
-        qDebug() << reply->readAll();
+        query->processReply(reply);
     }
 
     // free the executor for the next query

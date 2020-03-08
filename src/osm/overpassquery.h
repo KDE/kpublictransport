@@ -18,8 +18,12 @@
 #ifndef OSM_OVERPASSQUERY_H
 #define OSM_OVERPASSQUERY_H
 
+#include "datatypes.h"
+
 #include <QObject>
 #include <QRectF>
+
+class QNetworkReply;
 
 namespace OSM {
 
@@ -66,6 +70,9 @@ public:
     /** Error code of this query job. */
     Error error() const;
 
+    /** Query result data set. */
+    const DataSet& result() const;
+
 Q_SIGNALS:
     void finished();
 
@@ -73,10 +80,13 @@ private:
     friend class OverpassQueryManager;
     friend class OverpassQueryManagerPrivate;
 
+    void processReply(QNetworkReply *reply);
+
     QString m_query;
     QRectF m_bbox = { -180.0, -90.0, 360.0, 180.0 };
     QSizeF m_tileSize = { 360.0, 180.0 };
     Error m_error = NoError;
+    OSM::DataSet m_result;
 };
 
 }

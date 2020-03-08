@@ -20,6 +20,7 @@
 
 #include <QCommandLineParser>
 #include <QCoreApplication>
+#include <QDebug>
 #include <QJsonDocument>
 
 #include <iostream>
@@ -69,6 +70,16 @@ int main(int argc, char **argv)
             std::cerr << "query error" << std::endl;
             app.exit(1);
         }
+
+        // ### for testing only
+        const auto &res = query.result();
+        for (const auto &node : res.nodes) {
+            qDebug() << "Node" << node.id << node.coordinate.latitude << node.coordinate.longitude;
+            for (const auto &tag : node.tags) {
+                qDebug() << "  tag" << tag.key << tag.value;
+            }
+        }
+
         app.quit();
     });
     mgr.execute(&query);
