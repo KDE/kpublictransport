@@ -1,4 +1,4 @@
-EXCLUDE_PATTERNS += */lib/backends/* */graphql/* */quick/* */qmlplugin/* */tools/* */lib/gtfs/*
+EXCLUDE_PATTERNS += */lib/backends/* */graphql/* */quick/* */qmlplugin/* */tools/* */lib/gtfs/* */osm/*
 PREDEFINED += \
     KPUBLICTRANSPORT_EXPORT="" \
     KPUBLICTRANSPORT_PROPERTY(type,name,setter)="Q_PROPERTY(type name READ name WRITE setter)"

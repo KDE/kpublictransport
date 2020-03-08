@@ -12,3 +12,6 @@ target_link_libraries(locationcompleter KPublicTransport Qt5::Widgets)
 
 add_executable(graphql-cli graphql-cli.cpp)
 target_link_libraries(graphql-cli KGraphQL)
+
+add_executable(overpassql-cli overpassql-cli.cpp)
+target_link_libraries(overpassql-cli KOSM)

@@ -1,4 +1,5 @@
 add_subdirectory(graphql)
+add_subdirectory(osm)
 add_subdirectory(lib)
 add_subdirectory(qmlplugin)
 if (TARGET Qt5::Quick)
