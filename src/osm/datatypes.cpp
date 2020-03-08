@@ -21,7 +21,7 @@ using namespace OSM;
 
 void DataSet::addNode(Node &&node)
 {
-    const auto it = std::lower_bound(nodes.begin(), nodes.end(), node.id, [](const auto &lhs, Id rhs) { return lhs.id < rhs; });
+    const auto it = std::lower_bound(nodes.begin(), nodes.end(), node);
     if (it != nodes.end() && (*it).id == node.id) {
         // do we need to merge something here?
         return;
@@ -31,7 +31,7 @@ void DataSet::addNode(Node &&node)
 
 void DataSet::addRelation(Relation &&rel)
 {
-    const auto it = std::lower_bound(relations.begin(), relations.end(), rel.id, [](const auto &lhs, Id rhs) { return lhs.id < rhs; });
+    const auto it = std::lower_bound(relations.begin(), relations.end(), rel);
     if (it != relations.end() && (*it).id == rel.id) {
         // do we need to merge something here?
         return;

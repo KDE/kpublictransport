@@ -58,6 +58,8 @@ public:
 /** An OSM node. */
 class Node {
 public:
+    constexpr inline bool operator<(const Node &other) const { return id < other.id; }
+
     Id id;
     Coordinate coordinate;
     std::vector<Tag> tags;
@@ -66,6 +68,8 @@ public:
 /** An OSM way. */
 class Way {
 public:
+    constexpr inline bool operator<(const Way &other) const { return id < other.id; }
+
     Id id;
     std::vector<Id> nodes;
     std::vector<Tag> tags;
@@ -87,6 +91,8 @@ public:
 /** An OSM relation. */
 class Relation {
 public:
+    constexpr inline bool operator<(const Relation &other) const { return id < other.id; }
+
     Id id;
     BoundingBox bbox;
     std::vector<Member> members;
@@ -103,6 +109,24 @@ public:
     std::vector<Way> ways;
     std::vector<Relation> relations;
 };
+
+/** Returns the tag value for @p key of @p elem. */
+template <typename Elem>
+inline QString tagValue(const Elem& elem, const QLatin1String &key)
+{
+    // TODO sort tag list?
+    const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [key](const auto &t) { return t.key == key; });
+    if (it != elem.tags.end()) {
+        return (*it).value;
+    }
+    return {};
+}
+
+template <typename Elem>
+inline bool operator<(const Elem &elem, Id id)
+{
+    return elem.id < id;
+}
 
 }
 

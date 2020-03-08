@@ -76,6 +76,11 @@ const DataSet& OverpassQuery::result() const
     return m_result;
 }
 
+DataSet&& OverpassQuery::takeResult()
+{
+    return std::move(m_result);
+}
+
 void OverpassQuery::processReply(QNetworkReply *reply)
 {
     XmlParser p(&m_result);

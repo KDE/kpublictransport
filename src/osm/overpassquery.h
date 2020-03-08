@@ -72,6 +72,7 @@ public:
 
     /** Query result data set. */
     const DataSet& result() const;
+    DataSet&& takeResult();
 
 Q_SIGNALS:
     void finished();
