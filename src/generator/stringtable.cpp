@@ -46,7 +46,7 @@ std::size_t StringTable::stringOffset(const QString &s) const
 
 void StringTable::writeCode(const QString &name, QIODevice *out) const
 {
-    out->write("const char ");
+    out->write("static const char ");
     out->write(name.toUtf8());
     out->write("[] =\n");
     for (const auto &it : m_strings) {

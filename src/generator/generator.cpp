@@ -175,13 +175,25 @@ void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vecto
     }
     strTab.writeCode(QStringLiteral("line_data_stringtab"), s_out);
 
-    // TODO write route table
+    // write route table
+    // TODO this doesn't create valid code yet
+    s_out->write("static const LineData line_data[] = {\n");
+    for (const auto &route : routes) {
+        s_out->write("    { ");
+        s_out->write(QByteArray::number((int)strTab.stringOffset(route.name)));
+        s_out->write(", 0x");
+        s_out->write(QByteArray::number(route.color.rgb(), 16));
+        s_out->write(" }, // OSM: ");
+        s_out->write(QByteArray::number((long long)route.relId));
+        s_out->write(" WD: ");
+        s_out->write(route.wdId.toUtf8());
+        s_out->write("\n");
+    }
+    s_out->write("};\n");
+
+    // TODO write bucket table
     // TODO write z index
 
-    // ### debug
-    for (const auto &info : routes) {
-        qDebug() << info.relId << info.name << info.color.name() << info.wdId << info.bbox.min.latitude << info.bbox.min.longitude << info.bbox.max.latitude << info.bbox.max.longitude;
-    }
     QCoreApplication::quit();
 }
 
