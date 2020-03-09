@@ -135,7 +135,7 @@ void generateIndex(std::vector<RouteInfo> &&routes)
     std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.name < rhs.name;
     });
-    auto minDist = std::numeric_limits<int32_t>::max();
+    auto minDist = std::numeric_limits<uint32_t>::max();
     for (auto lit = routes.begin(); lit != routes.end(); ++lit) { // for each name
         auto rit = std::upper_bound(lit, routes.end(), (*lit).name, [](const auto &lhs, const auto &rhs) { return lhs < rhs.name; });
         if (lit + 1 == rit || rit == routes.end()) { // only a single route with that name
