@@ -28,7 +28,9 @@ namespace OSM {
 /** OSM element identifier. */
 typedef int64_t Id;
 
-/** Coordinate, stored as 1e7 * degree to avoid floating point precision issues. */
+/** Coordinate, stored as 1e7 * degree to avoid floating point precision issues.
+ *  Can be in an invalid state with coordinates out of range, see isValid().
+ */
 class Coordinate {
 public:
     Coordinate() = default;
@@ -37,16 +39,50 @@ public:
         , longitude(lon * 10'000'000)
     {}
 
-    int32_t latitude = 0;
-    int32_t longitude = 0;
+    constexpr inline bool isValid() const
+    {
+        return latitude != std::numeric_limits<int32_t>::max() && longitude != std::numeric_limits<int32_t>::max();
+    }
+
+    int32_t latitude = std::numeric_limits<int32_t>::max();
+    int32_t longitude = std::numeric_limits<int32_t>::max();
 };
 
 /** Bounding box, ie. a pair of coordinates. */
 class BoundingBox {
 public:
+    constexpr inline bool isValid() const
+    {
+        return min.isValid() && max.isValid();
+    }
+
     Coordinate min;
     Coordinate max;
 };
+
+constexpr inline BoundingBox unite(BoundingBox bbox1, BoundingBox bbox2)
+{
+    if (!bbox1.isValid()) {
+        return bbox2;
+    }
+    if (!bbox2.isValid()) {
+        return bbox1;
+    }
+    BoundingBox ret;
+    ret.min.latitude = std::min(bbox1.min.latitude, bbox2.min.latitude);
+    ret.min.longitude = std::min(bbox1.min.longitude, bbox2.min.longitude);
+    ret.max.latitude = std::max(bbox1.max.latitude, bbox2.max.latitude);
+    ret.max.longitude = std::max(bbox1.max.longitude, bbox2.max.longitude);
+    return ret;
+}
+
+constexpr inline bool intersects(BoundingBox bbox1, BoundingBox bbox2)
+{
+    return ((bbox1.min.latitude >= bbox2.min.latitude && bbox1.min.latitude <= bbox2.max.latitude)
+        || (bbox1.max.longitude >= bbox2.min.longitude && bbox1.max.longitude <= bbox2.max.longitude))
+        && ((bbox1.min.longitude >= bbox2.min.longitude && bbox1.min.longitude <= bbox2.max.longitude)
+        || (bbox1.max.latitude >= bbox2.min.latitude && bbox1.max.latitude <= bbox2.max.latitude));
+}
 
 /** An OSM element tag. */
 class Tag {

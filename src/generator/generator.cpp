@@ -25,7 +25,7 @@
 
 struct RouteInfo {
     OSM::Id relId;
-    // TODO bbox
+    OSM::BoundingBox bbox;
     QString name;
     QColor color;
     // TODO line type
@@ -36,8 +36,12 @@ RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 {
     RouteInfo info;
     info.relId = rel.id;
+    info.bbox = rel.bbox;
     info.name = OSM::tagValue(rel, QLatin1String("ref"));
-    info.color = QColor(OSM::tagValue(rel, QLatin1String("colour")));
+    const auto colStr = OSM::tagValue(rel, QLatin1String("colour"));
+    if (!colStr.isEmpty()) {
+        info.color = QColor(colStr);
+    }
     info.wdId = OSM::tagValue(rel, QLatin1String("wikidata"));
     return info;
 }
@@ -80,6 +84,7 @@ void processOSMData(OSM::DataSet &&dataSet)
             } else if (!wId.isEmpty()) {
                 info.wdId = wId;
             }
+            info.bbox = OSM::unite(info.bbox, (*memIt).bbox);
 
             dataSet.relations.erase(memIt);
         }
@@ -96,8 +101,14 @@ void processOSMData(OSM::DataSet &&dataSet)
 
     // filter useless routes
     routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
-        return info.name.isEmpty() || (!info.color.isValid() && info.wdId.isEmpty());
+        return info.name.isEmpty() || !info.bbox.isValid() || (!info.color.isValid() && info.wdId.isEmpty());
     }), routes.end());
+    // check for uniqueness of (bbox, name) - would break indexing and can happen for lines without a route_master relation
+    for (auto lit = routes.begin(); lit != routes.end(); ++lit) {
+        routes.erase(std::remove_if(lit + 1, routes.end(), [lit](const auto &rhs) {
+            return (*lit).name == rhs.name && OSM::intersects((*lit).bbox, rhs.bbox);
+        }), routes.end());
+    }
     qDebug() << "routes after filtering:" << routes.size();
 
     // ### debug
@@ -121,8 +132,8 @@ int main(int argc, char **argv)
     osmQuery.setQuery(QString::fromUtf8(f.readAll()));
 
     // TODO subset for testing only
-    osmQuery.setBoundingBox({12.0, 52.0, 2.0, 1.0});
-    osmQuery.setTileSize({1.0, 1.0});
+    osmQuery.setBoundingBox({9.0, 52.0, 5.0, 2.0});
+    osmQuery.setTileSize({2.0, 2.0});
 
     QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery]() {
         if (osmQuery.error() != OSM::OverpassQuery::NoError) {
