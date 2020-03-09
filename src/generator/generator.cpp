@@ -15,13 +15,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "stringtable.h"
+
 #include <overpassquery.h>
 #include <overpassquerymanager.h>
 
 #include <QColor>
+#include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
+
+static QIODevice *s_out = nullptr;
 
 struct RouteInfo {
     OSM::Id relId;
@@ -160,8 +165,16 @@ void generateIndex(std::vector<RouteInfo> &&routes)
 
 void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex)
 {
-    // TODO create string table
-    // TODO write string table
+    // write header
+    s_out->write("/* Generated code, do not edit. */\n\n");
+
+    // create and write string table
+    StringTable strTab;
+    for (const auto &route : routes) {
+        strTab.addString(route.name);
+    }
+    strTab.writeCode(QStringLiteral("line_data_stringtab"), s_out);
+
     // TODO write route table
     // TODO write z index
 
@@ -175,6 +188,18 @@ void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vecto
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    QCommandLineOption outFileOption({ QStringLiteral("o") }, QStringLiteral("Output file name"), QStringLiteral("out"));
+    parser.addOption(outFileOption);
+    parser.process(app);
+
+    QFile out(parser.value(outFileOption));
+    if (!out.open(QFile::WriteOnly)) {
+        qCritical() << "Failed to open output file:" << out.errorString();
+        return 1;
+    }
+    s_out = &out;
 
     OSM::OverpassQueryManager osmMgr;
     OSM::OverpassQuery osmQuery;
