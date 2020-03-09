@@ -48,6 +48,7 @@ public:
     int32_t longitude = std::numeric_limits<int32_t>::max();
 };
 
+
 /** Bounding box, ie. a pair of coordinates. */
 class BoundingBox {
 public:
@@ -82,6 +83,16 @@ constexpr inline bool intersects(BoundingBox bbox1, BoundingBox bbox2)
         || (bbox1.max.longitude >= bbox2.min.longitude && bbox1.max.longitude <= bbox2.max.longitude))
         && ((bbox1.min.longitude >= bbox2.min.longitude && bbox1.min.longitude <= bbox2.max.longitude)
         || (bbox1.max.latitude >= bbox2.min.latitude && bbox1.max.latitude <= bbox2.max.latitude));
+}
+
+constexpr inline int32_t latitudeDistance(BoundingBox bbox1, BoundingBox bbox2)
+{
+    return bbox1.max.latitude < bbox2.min.latitude ? bbox2.min.latitude - bbox1.max.latitude : bbox1.min.latitude - bbox2.max.latitude;
+}
+
+constexpr inline int32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbox2)
+{
+    return bbox1.max.longitude < bbox2.min.longitude ? bbox2.min.longitude - bbox1.max.longitude : bbox1.min.longitude - bbox2.max.longitude;
 }
 
 /** An OSM element tag. */

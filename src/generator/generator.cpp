@@ -32,6 +32,10 @@ struct RouteInfo {
     QString wdId;
 };
 
+void augmentFromWikidata(std::vector<RouteInfo> &&routes);
+void generateIndex(std::vector<RouteInfo> &&routes);
+void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex);
+
 RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 {
     RouteInfo info;
@@ -111,11 +115,61 @@ void processOSMData(OSM::DataSet &&dataSet)
     }
     qDebug() << "routes after filtering:" << routes.size();
 
+    augmentFromWikidata(std::move(routes));
+}
+
+void augmentFromWikidata(std::vector<RouteInfo> &&routes)
+{
+    // TODO
+    generateIndex(std::move(routes));
+}
+
+void generateIndex(std::vector<RouteInfo> &&routes)
+{
+    // find the smallest distance between two bboxes with a name collision
+    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.name < rhs.name;
+    });
+    auto minDist = std::numeric_limits<int32_t>::max();
+    for (auto lit = routes.begin(); lit != routes.end(); ++lit) { // for each name
+        auto rit = std::upper_bound(lit, routes.end(), (*lit).name, [](const auto &lhs, const auto &rhs) { return lhs < rhs.name; });
+        if (lit + 1 == rit || rit == routes.end()) { // only a single route with that name
+            continue;
+        }
+        --rit;
+
+        for (; lit != rit; ++lit) {  // for each pair with equal name
+            for (auto it = lit + 1; it != rit; ++it) {
+                minDist = std::min(minDist,
+                    std::max(OSM::latitudeDistance((*lit).bbox, (*it).bbox),
+                             OSM::longitudeDifference((*lit).bbox, (*it).bbox)));
+            }
+        }
+    }
+    qDebug() << "minimum bbox distance is" << minDist;
+    qDebug() << "z hash size is" << __builtin_clz(minDist) + 1;
+
+    // order routes by OSM id, to increase output stability
+    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) { return lhs.relId < rhs.relId; });
+    std::map<uint64_t, std::vector<std::size_t>> zIndex;
+    // TODO tile bboxes at the z-level derived from the above minimum distance
+    // TODO sort route index vectors by name
+
+    generateCode(std::move(routes), std::move(zIndex));
+}
+
+void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex)
+{
+    // TODO create string table
+    // TODO write string table
+    // TODO write route table
+    // TODO write z index
+
     // ### debug
     for (const auto &info : routes) {
-        qDebug() << info.relId << info.name << info.color.name() << info.wdId;
+        qDebug() << info.relId << info.name << info.color.name() << info.wdId << info.bbox.min.latitude << info.bbox.min.longitude << info.bbox.max.latitude << info.bbox.max.longitude;
     }
-    QCoreApplication::instance()->quit();
+    QCoreApplication::quit();
 }
 
 int main(int argc, char **argv)
@@ -138,12 +192,12 @@ int main(int argc, char **argv)
     QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery]() {
         if (osmQuery.error() != OSM::OverpassQuery::NoError) {
             qCritical() << "Overpass query failed.";
-            QCoreApplication::instance()->exit(1);
+            QCoreApplication::exit(1);
         } else {
             processOSMData(osmQuery.takeResult());
         }
     });
     osmMgr.execute(&osmQuery);
 
-    return app.exec();
+    return QCoreApplication::exec();
 }
