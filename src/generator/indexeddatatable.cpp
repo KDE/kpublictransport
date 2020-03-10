@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "stringtable.h"
+#include "indexeddatatable.h"
 
 #include <QByteArray>
 #include <QIODevice>
@@ -23,36 +23,19 @@
 
 void StringTable::addString(const QString &s)
 {
-    const auto b = s.toUtf8();
-    if (std::find(m_strings.begin(), m_strings.end(), b) != m_strings.end()) {
-        return;
-    }
-    m_strings.push_back(b);
+    addEntry(s.toUtf8());
 }
 
 std::size_t StringTable::stringOffset(const QString &s) const
 {
-    const auto b = s.toUtf8();
-    std::size_t offset = 0;
-    for (const auto &it : m_strings) {
-        if (it == b) {
-            return offset;
-        }
-        offset += it.size() + 1;
-    }
-
-    return 0;
+    return entryOffset(s.toUtf8());
 }
 
-void StringTable::writeCode(const QString &name, QIODevice *out) const
+void StringTable::writeCode(const char* name, QIODevice *out) const
 {
-    out->write("static const char ");
-    out->write(name.toUtf8());
-    out->write("[] =\n");
-    for (const auto &it : m_strings) {
-        out->write("    \"");
-        out->write(it);
-        out->write("\\0\"\n");
-    }
-    out->write(";\n");
+    IndexedDataTable<QByteArray>::writeCode("char", name, out, [](const QByteArray &b, QIODevice *out) {
+        out->write("\"");
+        out->write(b);
+        out->write("\\0\"");
+    });
 }

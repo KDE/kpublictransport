@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "stringtable.h"
+#include "indexeddatatable.h"
 
 #include <overpassquery.h>
 #include <overpassquerymanager.h>
@@ -173,7 +173,7 @@ void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vecto
     for (const auto &route : routes) {
         strTab.addString(route.name);
     }
-    strTab.writeCode(QStringLiteral("line_data_stringtab"), s_out);
+    strTab.writeCode("line_data_stringtab", s_out);
 
     // write route table
     // TODO this doesn't create valid code yet
