@@ -149,9 +149,14 @@ void OverpassQueryManagerPrivate::executeTasks()
 void OverpassQueryManagerPrivate::taskFinished(OverpassQueryExecutor *executor, QNetworkReply *reply)
 {
     auto query = executor->task->query;
-    // TODO check for the rate limit error and reschedule the task
-    if (reply->error() != QNetworkReply::NoError) {
-        qDebug() << reply->errorString() << reply->readAll();
+    if (reply->error() == QNetworkReply::UnknownContentError && reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 429) {
+        // rate limiting error
+        executor->cooldownTime *= 2;
+        qDebug() << "rate limit error, increasing cooldown time to" << executor->cooldownTime.count() << "seconds";
+        m_tasks.push_back(std::move(executor->task));
+    } else if (reply->error() != QNetworkReply::NoError) {
+        // TODO disable affected executors here and reschedule the failed task, rather than cancelling entirely
+        qDebug() << reply->error() << reply->errorString() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute) << reply->readAll();
         query->m_error = OverpassQuery::NetworkError;
         cancelQuery(query);
     } else {
