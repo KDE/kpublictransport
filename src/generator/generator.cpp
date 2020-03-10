@@ -163,12 +163,12 @@ void generateIndex(std::vector<RouteInfo> &&routes)
 
     // tile bboxes at the z-level derived from the above minimum distance
     for (auto routeIt = routes.begin(); routeIt != routes.end(); ++routeIt) {
-        const auto xMin = (*routeIt).bbox.min.latitude & zMask;
-        const auto xMax = ((*routeIt).bbox.max.latitude & zMask) + zInc;
-        const auto yMin = (*routeIt).bbox.min.longitude & zMask;
-        const auto yMax = ((*routeIt).bbox.max.longitude & zMask) + zInc;
-        for (auto x = xMin; x < xMax; x += zInc) {
-            for (auto y = yMin; y < yMax; y += zInc) {
+        const uint32_t xMin = (*routeIt).bbox.min.latitude & zMask;
+        const uint32_t xMax = ((*routeIt).bbox.max.latitude & zMask) + zInc;
+        const uint32_t yMin = (*routeIt).bbox.min.longitude & zMask;
+        const uint32_t yMax = ((*routeIt).bbox.max.longitude & zMask) + zInc;
+        for (uint32_t x = xMin; x < xMax; x += zInc) {
+            for (uint32_t y = yMin; y < yMax; y += zInc) {
                 OSM::Coordinate tile(x, y);
                 zIndex[tile.z() >> (zShift * 2)].push_back(std::distance(routes.begin(), routeIt));
             }

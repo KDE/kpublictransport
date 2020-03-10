@@ -40,6 +40,10 @@ public:
         : latitude((lat + 180.0) * 10'000'000)
         , longitude((lon + 90.0) * 10'000'000)
     {}
+    explicit constexpr Coordinate(uint32_t lat, uint32_t lon)
+        : latitude(lat)
+        , longitude(lon)
+    {}
 
     /** Create a coordinate from a z-order curve index. */
     explicit constexpr Coordinate(uint64_t z)
