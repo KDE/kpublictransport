@@ -1,6 +1,13 @@
 {
     "KPlugin": {
         "Description": "Public transport in Baden-Württemberg, Germany.",
+        "Description[ca]": "Transport públic a Baden-Württemberg, Alemanya.",
+        "Description[es]": "Transporte público de Baden-Wurtemberg, Alemania.",
+        "Description[et]": "Saksamaa Baden-Württembergi ühistransport.",
+        "Description[nl]": "Lokaal openbaar vervoer in Baden-Württemberg, Duitsland.",
+        "Description[pt]": "Transportes públicos em Baden-Württemberg, Alemanha.",
+        "Description[uk]": "Дані щодо громадського транспорту у землі Баден-Вюртемберґ, Німеччина.",
+        "Description[x-test]": "xxPublic transport in Baden-Württemberg, Germany.xx",
         "Name": "bwegt",
         "Name[ca@valencia]": "bwegt",
         "Name[ca]": "bwegt",
