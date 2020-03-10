@@ -68,6 +68,15 @@ public:
         return z;
     }
 
+    constexpr inline double latF() const
+    {
+        return (latitude / 10'000'000.0) - 180.0;
+    }
+    constexpr inline double lonF() const
+    {
+        return (longitude / 10'000'000.0) - 90.0;
+    }
+
     uint32_t latitude = std::numeric_limits<uint32_t>::max();
     uint32_t longitude = std::numeric_limits<uint32_t>::max();
 };

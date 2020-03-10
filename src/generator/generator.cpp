@@ -39,7 +39,7 @@ struct RouteInfo {
 
 void augmentFromWikidata(std::vector<RouteInfo> &&routes);
 void generateIndex(std::vector<RouteInfo> &&routes);
-void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex);
+void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift);
 
 RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 {
@@ -153,20 +153,53 @@ void generateIndex(std::vector<RouteInfo> &&routes)
     }
     qDebug() << "minimum bbox distance is" << minDist;
     qDebug() << "z hash size is" << __builtin_clz(minDist) + 1;
+    const uint32_t zShift = 32 - (__builtin_clz(minDist) + 1);
+    const uint32_t zInc = 1 << zShift;
+    const uint32_t zMask = ~(zInc - 1);
 
     // order routes by OSM id, to increase output stability
     std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) { return lhs.relId < rhs.relId; });
     std::map<uint64_t, std::vector<std::size_t>> zIndex;
-    // TODO tile bboxes at the z-level derived from the above minimum distance
-    // TODO sort route index vectors by name
 
-    generateCode(std::move(routes), std::move(zIndex));
+    // tile bboxes at the z-level derived from the above minimum distance
+    for (auto routeIt = routes.begin(); routeIt != routes.end(); ++routeIt) {
+        const auto xMin = (*routeIt).bbox.min.latitude & zMask;
+        const auto xMax = ((*routeIt).bbox.max.latitude & zMask) + zInc;
+        const auto yMin = (*routeIt).bbox.min.longitude & zMask;
+        const auto yMax = ((*routeIt).bbox.max.longitude & zMask) + zInc;
+        for (auto x = xMin; x < xMax; x += zInc) {
+            for (auto y = yMin; y < yMax; y += zInc) {
+                OSM::Coordinate tile(x, y);
+                zIndex[tile.z() >> (zShift * 2)].push_back(std::distance(routes.begin(), routeIt));
+            }
+        }
+    }
+    qDebug() << "hash buckets:" << zIndex.size();
+
+    // sort route index vectors by name
+    for (auto it = zIndex.begin(); it != zIndex.end(); ++it) {
+        std::sort((*it).second.begin(), (*it).second.end(), [&routes](const auto lhs, const auto rhs) {
+            return routes[lhs].name < routes[rhs].name;
+        });
+    }
+
+    generateCode(std::move(routes), std::move(zIndex), zShift);
 }
 
-void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex)
+void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift)
 {
     // write header
-    s_out->write("/* Generated code, do not edit. */\n\n");
+    s_out->write(R"(/*
+    SPDX-License-Identifier: ODbL-1.0
+
+    Generated code based on data from OpenStreetMap (ODbL) and Wikidata (CC0), do not edit!
+*/
+
+#include "linemetadata_p.h"
+
+namespace KPublicTransport {
+
+)");
 
     // create and write string table
     StringTable strTab;
@@ -176,14 +209,15 @@ void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vecto
     strTab.writeCode("line_data_stringtab", s_out);
 
     // write route table
-    // TODO this doesn't create valid code yet
-    s_out->write("static const LineData line_data[] = {\n");
+    s_out->write("static const LineMetaDataContent line_data[] = {\n");
     for (const auto &route : routes) {
         s_out->write("    { ");
         s_out->write(QByteArray::number((int)strTab.stringOffset(route.name)));
         s_out->write(", 0x");
         s_out->write(QByteArray::number(route.color.rgb(), 16));
-        s_out->write(" }, // OSM: ");
+        s_out->write(" }, // ");
+        s_out->write(route.name.toUtf8()),
+        s_out->write(" OSM: ");
         s_out->write(QByteArray::number((long long)route.relId));
         s_out->write(" WD: ");
         s_out->write(route.wdId.toUtf8());
@@ -191,8 +225,34 @@ void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vecto
     }
     s_out->write("};\n");
 
-    // TODO write bucket table
-    // TODO write z index
+    // write bucket table
+    IndexedDataTable<std::vector<std::size_t>> bucketTable;
+    for (const auto &zi : zIndex) {
+        bucketTable.addEntry(zi.second);
+    }
+    bucketTable.writeCode("int32_t", "line_data_bucketTable", s_out, [](const std::vector<std::size_t> &bucket, QIODevice *out) {
+        for (const auto i : bucket) {
+            out->write(QByteArray::number((int)i));
+            out->write(", ");
+        }
+        out->write("-1,");
+    });
+
+    // write z index
+    s_out->write("static const LineMetaDataZIndex line_data_zindex[] = {\n");
+    for (const auto &zi : zIndex) {
+        s_out->write("    { ");
+        s_out->write(QByteArray::number((qulonglong)zi.first));
+        s_out->write(", ");
+        s_out->write(QByteArray::number((qulonglong)bucketTable.entryOffset(zi.second)));
+        s_out->write(" }, // ");
+        OSM::Coordinate coord(zi.first << (zShift * 2));
+        s_out->write(QByteArray::number(coord.latF(), 'g', 4));
+        s_out->write(" x ");
+        s_out->write(QByteArray::number(coord.lonF(), 'g', 4));
+        s_out->write("\n");
+    }
+    s_out->write("};\n}\n");
 
     QCoreApplication::quit();
 }
