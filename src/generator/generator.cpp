@@ -219,11 +219,13 @@ namespace KPublicTransport {
         s_out->write(route.name.toUtf8()),
         s_out->write(" OSM: ");
         s_out->write(QByteArray::number((long long)route.relId));
-        s_out->write(" WD: ");
-        s_out->write(route.wdId.toUtf8());
+        if (!route.wdId.isEmpty()) {
+            s_out->write(" WD: ");
+            s_out->write(route.wdId.toUtf8());
+        }
         s_out->write("\n");
     }
-    s_out->write("};\n");
+    s_out->write("};\n\n");
 
     // write bucket table
     IndexedDataTable<std::vector<std::size_t>> bucketTable;
