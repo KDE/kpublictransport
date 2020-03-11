@@ -1,5 +1,6 @@
 add_subdirectory(graphql)
 add_subdirectory(osm)
+add_subdirectory(wikidata)
 if (NOT CMAKE_CROSSCOMPILING)
     add_subdirectory(generator)
 endif()
