@@ -24,6 +24,7 @@
 #include <QColor>
 #include <QDebug>
 #include <QString>
+#include <QUrl>
 
 using namespace KPublicTransport;
 
@@ -53,6 +54,12 @@ QString LineMetaData::name() const
 QColor LineMetaData::color() const
 {
     return QColor(d->color);
+}
+
+QUrl LineMetaData::logoUrl() const
+{
+    const auto logoName = lookup(d->logoIdx);
+    return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
 LineMetaData LineMetaData::find(double latitude, double longitude, const QString &name)

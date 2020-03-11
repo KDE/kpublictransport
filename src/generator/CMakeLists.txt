@@ -3,4 +3,4 @@ add_executable(line-data-generator
     generator.qrc
     indexeddatatable.cpp
 )
-target_link_libraries(line-data-generator KOSM Qt5::Gui)
+target_link_libraries(line-data-generator KOSM KWikidata Qt5::Gui)

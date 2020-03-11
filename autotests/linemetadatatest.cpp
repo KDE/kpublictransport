@@ -32,10 +32,12 @@ private Q_SLOTS:
         QVERIFY(!l.isNull());
         QCOMPARE(l.name(), QLatin1String("U1"));
         QCOMPARE(l.color(), QColor(0xff52b447));
+        QCOMPARE(l.logoUrl().toString(QUrl::FullyEncoded), QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/Berlin%20U1.svg"));
 
         l = LineMetaData::find(52.52, 13.40,  QStringLiteral("S 7"));
         QVERIFY(!l.isNull());
         QCOMPARE(l.name(), QLatin1String("S7"));
+        QVERIFY(!l.logoUrl().isEmpty());
     }
 
     void testNegativeLookup()

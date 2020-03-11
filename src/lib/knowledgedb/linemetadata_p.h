@@ -26,6 +26,7 @@ namespace KPublicTransport {
 struct LineMetaDataContent
 {
     uint16_t nameIdx;
+    uint16_t logoIdx;
     uint32_t color; // TODO could be 24 bit
 };
 

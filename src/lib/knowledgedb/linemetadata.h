@@ -22,6 +22,7 @@
 
 class QColor;
 class QString;
+class QUrl;
 
 namespace KPublicTransport {
 
@@ -39,6 +40,7 @@ public:
     bool isNull() const;
     QString name() const;
     QColor color() const;
+    QUrl logoUrl() const;
 
     /** Attempts to find information about a line with the given name and a stop at the given coordinates. */
     static LineMetaData find(double latitude, double longitude, const QString &name);

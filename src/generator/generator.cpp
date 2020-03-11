@@ -19,14 +19,16 @@
 
 #include <overpassquery.h>
 #include <overpassquerymanager.h>
+#include <wikidataquery.h>
+#include <wikidataquerymanager.h>
 
 #include <QColor>
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
-
-static QIODevice *s_out = nullptr;
+#include <QJsonArray>
+#include <QJsonObject>
 
 struct RouteInfo {
     OSM::Id relId;
@@ -34,14 +36,23 @@ struct RouteInfo {
     QString name;
     QColor color;
     // TODO line type
+    QString logoName;
     QString wdId;
 };
 
-void augmentFromWikidata(std::vector<RouteInfo> &&routes);
-void generateIndex(std::vector<RouteInfo> &&routes);
-void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift);
+class Generator {
+public:
+    void processOSMData(OSM::DataSet &&dataSet);
+    void augmentFromWikidata();
+    void applyWikidataResults(const QJsonObject &entities);
+    void generateIndex();
+    void generateCode(std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift);
 
-RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
+    QIODevice *out = nullptr;
+    std::vector<RouteInfo> routes;
+};
+
+static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 {
     RouteInfo info;
     info.relId = rel.id;
@@ -55,7 +66,7 @@ RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
     return info;
 }
 
-void processOSMData(OSM::DataSet &&dataSet)
+void Generator::processOSMData(OSM::DataSet &&dataSet)
 {
     qDebug() << "got" << dataSet.relations.size() << "relations from OSM";
 
@@ -68,7 +79,6 @@ void processOSMData(OSM::DataSet &&dataSet)
     qDebug() << "  containing" << routeMasterCount << "route masters and" << (dataSet.relations.size() - routeMasterCount) << "routes";
 
     // resolve route masters first, and then consider the remaining routes that have no route_master
-    std::vector<RouteInfo> routes;
     for (auto i = 0; i < routeMasterCount; ++i) {
         auto &rel = dataSet.relations[i];
         auto info = routeInfoFromRelation(rel);
@@ -83,7 +93,7 @@ void processOSMData(OSM::DataSet &&dataSet)
             // merge content
             const QColor col(OSM::tagValue(*memIt, QLatin1String("colour")));
             if (info.color.isValid() && col.isValid() && info.color != col) {
-                qWarning() << "color conflict:" << info.relId << (*memIt).id << info.name << info.color.name() << col.name();
+                qWarning() << "OSM color conflict:" << info.relId << (*memIt).id << info.name << info.color.name() << col.name();
             } else if (col.isValid()) {
                 info.color = col;
             }
@@ -120,16 +130,75 @@ void processOSMData(OSM::DataSet &&dataSet)
     }
     qDebug() << "routes after filtering:" << routes.size();
 
-    augmentFromWikidata(std::move(routes));
+    augmentFromWikidata();
 }
 
-void augmentFromWikidata(std::vector<RouteInfo> &&routes)
+void Generator::augmentFromWikidata()
 {
-    // TODO
-    generateIndex(std::move(routes));
+    // sort to maximize cache hits of the batches wikidata queries
+    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.wdId < rhs.wdId;
+    });
+    std::vector<QString> wdIds;
+    for (const auto &r: routes) {
+        if (!r.wdId.isEmpty()) {
+            wdIds.push_back(r.wdId);
+        }
+    }
+
+    auto mgr = new WikidataQueryManager(QCoreApplication::instance());
+    auto query = new WikidataQuery(mgr);
+    query->setItems(std::move(wdIds));
+    QObject::connect(query, &WikidataQuery::partialResult, [this](const auto &entities) { applyWikidataResults(entities); });
+    QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
+        if (query->error() != WikidataQuery::NoError) {
+            qCritical() << "Wikidata query failed";
+            QCoreApplication::exit(1);
+            return;
+        }
+        generateIndex();
+    });
+    mgr->execute(query);
 }
 
-void generateIndex(std::vector<RouteInfo> &&routes)
+static QVariant propertyValue(const QJsonObject &entity, const QLatin1String &propName)
+{
+    const auto propA = entity.value(QLatin1String("claims")).toObject().value(propName).toArray();
+    if (propA.empty()) {
+        return {};
+    }
+    const auto valueObj = propA.at(0).toObject().value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
+    const auto type = valueObj.value(QLatin1String("type")).toString();
+    if (type == QLatin1String("string")) {
+        return valueObj.value(QLatin1String("value")).toString();
+    }
+    // TODO other types
+
+    return {};
+}
+
+void Generator::applyWikidataResults(const QJsonObject &entities)
+{
+    for (auto it = entities.begin(); it != entities.end(); ++it) {
+        const auto rit = std::lower_bound(routes.begin(), routes.end(), it.key(), [](const RouteInfo &lhs, const QString &rhs) {
+            return lhs.wdId < rhs;
+        });
+        if (rit == routes.end() || (*rit).wdId != it.key()) {
+            continue; // shouldn't happen...
+        }
+
+        // merge information
+        const auto color = QColor(QLatin1Char('#') + propertyValue(it.value().toObject(), QLatin1String("P465")).toString());
+        if ((*rit).color.isValid() && color.isValid() && (*rit).color != color) {
+            qWarning() << "OSM/WD color conflict:" << (*rit).relId << (*rit).wdId << (*rit).name << (*rit).color.name() << color.name();
+        } else if (color.isValid()) {
+            (*rit).color = color;
+        }
+        (*rit).logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
+    }
+}
+
+void Generator::generateIndex()
 {
     // find the smallest distance between two bboxes with a name collision
     std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
@@ -178,18 +247,18 @@ void generateIndex(std::vector<RouteInfo> &&routes)
 
     // sort route index vectors by name
     for (auto it = zIndex.begin(); it != zIndex.end(); ++it) {
-        std::sort((*it).second.begin(), (*it).second.end(), [&routes](const auto lhs, const auto rhs) {
+        std::sort((*it).second.begin(), (*it).second.end(), [this](const auto lhs, const auto rhs) {
             return routes[lhs].name < routes[rhs].name;
         });
     }
 
-    generateCode(std::move(routes), std::move(zIndex), zShift);
+    generateCode(std::move(zIndex), zShift);
 }
 
-void generateCode(std::vector<RouteInfo> &&routes, std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift)
+void Generator::generateCode(std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift)
 {
     // write header
-    s_out->write(R"(/*
+    out->write(R"(/*
     SPDX-License-Identifier: ODbL-1.0
 
     Generated code based on data from OpenStreetMap (ODbL) and Wikidata (CC0), do not edit!
@@ -205,34 +274,37 @@ namespace KPublicTransport {
     StringTable strTab;
     for (const auto &route : routes) {
         strTab.addString(route.name);
+        strTab.addString(route.logoName);
     }
-    strTab.writeCode("line_data_stringtab", s_out);
+    strTab.writeCode("line_data_stringtab", out);
 
     // write route table
-    s_out->write("static const LineMetaDataContent line_data[] = {\n");
+    out->write("static const LineMetaDataContent line_data[] = {\n");
     for (const auto &route : routes) {
-        s_out->write("    { ");
-        s_out->write(QByteArray::number((int)strTab.stringOffset(route.name)));
-        s_out->write(", 0x");
-        s_out->write(QByteArray::number(route.color.rgb(), 16));
-        s_out->write(" }, // ");
-        s_out->write(route.name.toUtf8()),
-        s_out->write(" OSM: ");
-        s_out->write(QByteArray::number((long long)route.relId));
+        out->write("    { ");
+        out->write(QByteArray::number((int)strTab.stringOffset(route.name)));
+        out->write(", ");
+        out->write(QByteArray::number((int)strTab.stringOffset(route.logoName)));
+        out->write(", 0x");
+        out->write(QByteArray::number(route.color.rgb(), 16));
+        out->write(" }, // ");
+        out->write(route.name.toUtf8()),
+        out->write(" OSM: ");
+        out->write(QByteArray::number((long long)route.relId));
         if (!route.wdId.isEmpty()) {
-            s_out->write(" WD: ");
-            s_out->write(route.wdId.toUtf8());
+            out->write(" WD: ");
+            out->write(route.wdId.toUtf8());
         }
-        s_out->write("\n");
+        out->write("\n");
     }
-    s_out->write("};\n\n");
+    out->write("};\n\n");
 
     // write bucket table
     IndexedDataTable<std::vector<std::size_t>> bucketTable;
     for (const auto &zi : zIndex) {
         bucketTable.addEntry(zi.second);
     }
-    bucketTable.writeCode("int32_t", "line_data_bucketTable", s_out, [](const std::vector<std::size_t> &bucket, QIODevice *out) {
+    bucketTable.writeCode("int32_t", "line_data_bucketTable", out, [](const std::vector<std::size_t> &bucket, QIODevice *out) {
         for (const auto i : bucket) {
             out->write(QByteArray::number((int)i));
             out->write(", ");
@@ -241,23 +313,23 @@ namespace KPublicTransport {
     });
 
     // write z index
-    s_out->write("static constexpr const uint32_t line_data_zShift = ");
-    s_out->write(QByteArray::number(2* zShift));
-    s_out->write(";\n\n");
-    s_out->write("static const LineMetaDataZIndex line_data_zindex[] = {\n");
+    out->write("static constexpr const uint32_t line_data_zShift = ");
+    out->write(QByteArray::number(2* zShift));
+    out->write(";\n\n");
+    out->write("static const LineMetaDataZIndex line_data_zindex[] = {\n");
     for (const auto &zi : zIndex) {
-        s_out->write("    { ");
-        s_out->write(QByteArray::number((qulonglong)zi.first));
-        s_out->write(", ");
-        s_out->write(QByteArray::number((qulonglong)bucketTable.entryOffset(zi.second)));
-        s_out->write(" }, // ");
+        out->write("    { ");
+        out->write(QByteArray::number((qulonglong)zi.first));
+        out->write(", ");
+        out->write(QByteArray::number((qulonglong)bucketTable.entryOffset(zi.second)));
+        out->write(" }, // ");
         OSM::Coordinate coord(zi.first << (zShift * 2));
-        s_out->write(QByteArray::number(coord.latF(), 'g', 4));
-        s_out->write(" x ");
-        s_out->write(QByteArray::number(coord.lonF(), 'g', 4));
-        s_out->write("\n");
+        out->write(QByteArray::number(coord.latF(), 'g', 4));
+        out->write(" x ");
+        out->write(QByteArray::number(coord.lonF(), 'g', 4));
+        out->write("\n");
     }
-    s_out->write("};\n}\n");
+    out->write("};\n}\n");
 
     QCoreApplication::quit();
 }
@@ -276,7 +348,9 @@ int main(int argc, char **argv)
         qCritical() << "Failed to open output file:" << out.errorString();
         return 1;
     }
-    s_out = &out;
+
+    Generator generator;
+    generator.out = &out;
 
     OSM::OverpassQueryManager osmMgr;
     OSM::OverpassQuery osmQuery;
@@ -291,12 +365,12 @@ int main(int argc, char **argv)
     osmQuery.setBoundingBox({9.0, 52.0, 5.0, 2.0});
     osmQuery.setTileSize({2.0, 2.0});
 
-    QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery]() {
+    QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery, &generator]() {
         if (osmQuery.error() != OSM::OverpassQuery::NoError) {
             qCritical() << "Overpass query failed.";
             QCoreApplication::exit(1);
         } else {
-            processOSMData(osmQuery.takeResult());
+            generator.processOSMData(osmQuery.takeResult());
         }
     });
     osmMgr.execute(&osmQuery);
