@@ -16,6 +16,7 @@
 */
 
 #include "line.h"
+#include "lineutil_p.h"
 #include "location.h"
 #include "datatypes_p.h"
 #include "json_p.h"
@@ -43,44 +44,6 @@ public:
     Location destination;
 };
 
-}
-
-template <typename Iter>
-static bool isSameLineName(const Iter &lBegin, const Iter &lEnd, const Iter &rBegin, const Iter &rEnd)
-{
-    auto lIt = lBegin;
-    auto rIt = rBegin;
-    while (lIt != lEnd && rIt != rEnd) {
-        // ignore spaces etc.
-        if (!(*lIt).isLetter() && !(*lIt).isDigit()) {
-            ++lIt;
-            continue;
-        }
-        if (!(*rIt).isLetter() && !(*rIt).isDigit()) {
-            ++rIt;
-            continue;
-        }
-
-        if ((*lIt).toCaseFolded() != (*rIt).toCaseFolded()) {
-            return false;
-        }
-
-        ++lIt;
-        ++rIt;
-    }
-
-    if (lIt == lEnd && rIt == rEnd) { // both inputs fully consumed, and no mismatch found
-        return true;
-    }
-
-    // one input is prefix of the other, that is ok if there's a separator
-    return (lIt != lEnd && (*lIt).isSpace()) || (rIt != rEnd && (*rIt).isSpace());
-}
-
-static bool isSameLineName(const QString &lhs, const QString &rhs)
-{
-    return isSameLineName(lhs.begin(), lhs.end(), rhs.begin(), rhs.end())
-        || isSameLineName(lhs.rbegin(), lhs.rend(), rhs.rbegin(), rhs.rend());
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Line)
@@ -123,6 +86,7 @@ bool Line::isSame(const Line &lhs, const Line &rhs)
     }
 
     // ### not really the most efficient way of doing this...
+    using namespace LineUtil;
     return isSameLineName(lhs.name(), rhs.name())
         || isSameLineName(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), rhs.name())
         || isSameLineName(lhs.name(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed())

@@ -45,6 +45,7 @@ set(kpublictransport_srcs
     datatypes/journeyutil.cpp
     datatypes/json.cpp
     datatypes/line.cpp
+    datatypes/lineutil.cpp
     datatypes/location.cpp
     datatypes/locationutil.cpp
     datatypes/mergeutil.cpp
