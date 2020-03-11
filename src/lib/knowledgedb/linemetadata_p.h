@@ -36,6 +36,11 @@ struct LineMetaDataZIndex
     uint16_t lineIdx;
 };
 
+inline bool operator<(LineMetaDataZIndex lhs, uint32_t rhs)
+{
+    return lhs.z < rhs;
+}
+
 }
 
 

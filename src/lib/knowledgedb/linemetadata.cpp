@@ -17,10 +17,12 @@
 
 #include "linemetadata.h"
 #include "linemetadata_data.cpp"
+#include "datatypes/lineutil_p.h"
 
 #include <osm/datatypes.h>
 
 #include <QColor>
+#include <QDebug>
 #include <QString>
 
 using namespace KPublicTransport;
@@ -31,7 +33,7 @@ static QString lookup(uint16_t index)
 }
 
 LineMetaData::LineMetaData() = default;
-LineMetaData::LineMetaData(LineMetaDataContent *dd)
+LineMetaData::LineMetaData(const LineMetaDataContent *dd)
     : d(dd)
 {
 }
@@ -53,8 +55,22 @@ QColor LineMetaData::color() const
     return QColor(d->color);
 }
 
-LineMetaData LineMetaData::find(float latitude, float longitude, const QString &name)
+LineMetaData LineMetaData::find(double latitude, double longitude, const QString &name)
 {
-    // TODO
+    OSM::Coordinate coord(latitude, longitude);
+    const auto zIndex = coord.z() >> line_data_zShift;
+    const auto zIt = std::lower_bound(std::begin(line_data_zindex), std::end(line_data_zindex), zIndex);
+    if (zIt == std::end(line_data_zindex) || (*zIt).z != zIndex) {
+        return {};
+    }
+
+    auto bucketIt = line_data_bucketTable + (*zIt).lineIdx;
+    while ((*bucketIt) != -1) {
+        const auto d = line_data + (*bucketIt);
+        if (LineUtil::isSameLineName(lookup(d->nameIdx), name)) {
+            return LineMetaData(d);
+        }
+        ++bucketIt;
+    }
     return {};
 }

@@ -208,6 +208,8 @@ static const int32_t line_data_bucketTable[] = {
     4, 20, 15, 17, 14, 16, 69, 19, 55, 6, 21, 52, 9, 10, 46, -1,
 };
 
+static constexpr const uint32_t line_data_zShift = 44;
+
 static const LineMetaDataZIndex line_data_zindex[] = {
     { 306378, 0 }, // 51.53 x 8.566
     { 306379, 0 }, // 51.95 x 8.566

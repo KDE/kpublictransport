@@ -241,6 +241,9 @@ namespace KPublicTransport {
     });
 
     // write z index
+    s_out->write("static constexpr const uint32_t line_data_zShift = ");
+    s_out->write(QByteArray::number(2* zShift));
+    s_out->write(";\n\n");
     s_out->write("static const LineMetaDataZIndex line_data_zindex[] = {\n");
     for (const auto &zi : zIndex) {
         s_out->write("    { ");

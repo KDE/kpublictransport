@@ -18,15 +18,19 @@
 #ifndef KPUBLICTRANSPORT_LINEMETADATA_H
 #define KPUBLICTRANSPORT_LINEMETADATA_H
 
+#include "kpublictransport_export.h"
+
 class QColor;
 class QString;
 
 namespace KPublicTransport {
 
-class LineMetaDataContent;
+struct LineMetaDataContent;
 
-/** Static information about a public transport line. */
-class LineMetaData
+/** Static information about a public transport line.
+ *  @internal exported only for unit tests
+ */
+class KPUBLICTRANSPORT_EXPORT LineMetaData
 {
 public:
     LineMetaData();
@@ -37,11 +41,11 @@ public:
     QColor color() const;
 
     /** Attempts to find information about a line with the given name and a stop at the given coordinates. */
-    static LineMetaData find(float latitude, float longitude, const QString &name);
+    static LineMetaData find(double latitude, double longitude, const QString &name);
 
 private:
-    LineMetaData(LineMetaDataContent *dd);
-    LineMetaDataContent *d = nullptr;
+    LineMetaData(const LineMetaDataContent *dd);
+    const LineMetaDataContent *d = nullptr;
 };
 
 }
