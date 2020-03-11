@@ -20,6 +20,7 @@
 
 #include <QDateTime>
 #include <QNetworkAccessManager>
+#include <QNetworkDiskCache>
 #include <QNetworkReply>
 #include <QStandardPaths>
 #include <QTimer>
@@ -68,6 +69,11 @@ OverpassQueryManager::OverpassQueryManager(QObject *parent)
     d->m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
     d->m_nam->setStrictTransportSecurityEnabled(true);
     d->m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.osm/hsts/"));
+
+    auto diskCache = new QNetworkDiskCache;
+    diskCache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.osm/overpass-cache/"));
+    diskCache->setMaximumCacheSize(1'000'000'000); // 1GB
+    d->m_nam->setCache(diskCache);
 
     d->m_nextTaskTimer = new QTimer(this);
     d->m_nextTaskTimer->setSingleShot(true);
@@ -135,6 +141,7 @@ void OverpassQueryManagerPrivate::executeTasks()
         params.addQueryItem(QStringLiteral("data"), executor.task->query->query(executor.task->bbox));
         url.setQuery(params);
         QNetworkRequest req(url);
+        req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache); // TODO allow to override this
         auto reply = m_nam->get(req);
         // TODO enable stream parsing for XML replies by connecting to QNetworkReply::readyRead
         QObject::connect(reply, &QNetworkReply::finished, q, [this, &executor, reply]() {
