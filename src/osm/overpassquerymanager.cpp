@@ -36,6 +36,7 @@ namespace OSM {
 struct OverpassQueryTask {
     OverpassQuery *query = nullptr;
     QRectF bbox;
+    bool forceReload = false;
 };
 
 struct OverpassQueryExecutor {
@@ -141,7 +142,7 @@ void OverpassQueryManagerPrivate::executeTasks()
         params.addQueryItem(QStringLiteral("data"), executor.task->query->query(executor.task->bbox));
         url.setQuery(params);
         QNetworkRequest req(url);
-        req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache); // TODO allow to override this
+        req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, executor.task->forceReload ? QNetworkRequest::PreferNetwork : QNetworkRequest::AlwaysCache);
         auto reply = m_nam->get(req);
         // TODO enable stream parsing for XML replies by connecting to QNetworkReply::readyRead
         QObject::connect(reply, &QNetworkReply::finished, q, [this, &executor, reply]() {
@@ -160,6 +161,10 @@ void OverpassQueryManagerPrivate::taskFinished(OverpassQueryExecutor *executor, 
         // rate limiting error
         executor->cooldownTime *= 2;
         qDebug() << "rate limit error, increasing cooldown time to" << executor->cooldownTime.count() << "seconds";
+        m_tasks.push_back(std::move(executor->task));
+    } else if (reply->error() == QNetworkReply::ContentNotFoundError && !executor->task->forceReload) {
+        // cache miss, retry from network
+        executor->task->forceReload = true;
         m_tasks.push_back(std::move(executor->task));
     } else if (reply->error() != QNetworkReply::NoError) {
         // TODO disable affected executors here and reschedule the failed task, rather than cancelling entirely
