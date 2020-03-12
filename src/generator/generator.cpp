@@ -161,30 +161,58 @@ void Generator::augmentFromWikidata()
     mgr->execute(query);
 }
 
+static std::vector<QVariant> propertyValues(const QJsonObject &entity, const QLatin1String &propName)
+{
+    std::vector<QVariant> values;
+
+    const auto propA = entity.value(QLatin1String("claims")).toObject().value(propName).toArray();
+    for (const auto & propV : propA) {
+        const auto valueObj = propV.toObject().value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
+        const auto type = valueObj.value(QLatin1String("type")).toString();
+        if (type == QLatin1String("string")) {
+            values.push_back(valueObj.value(QLatin1String("value")).toString());
+        } else if (type == QLatin1String("wikibase-entityid")) {
+            values.push_back(valueObj.value(QLatin1String("value")).toObject().value(QLatin1String("id")).toString());
+        }
+
+        // TODO other types
+    }
+
+    return values;
+}
+
 static QVariant propertyValue(const QJsonObject &entity, const QLatin1String &propName)
 {
-    const auto propA = entity.value(QLatin1String("claims")).toObject().value(propName).toArray();
-    if (propA.empty()) {
-        return {};
-    }
-    const auto valueObj = propA.at(0).toObject().value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
-    const auto type = valueObj.value(QLatin1String("type")).toString();
-    if (type == QLatin1String("string")) {
-        return valueObj.value(QLatin1String("value")).toString();
-    }
-    // TODO other types
-
-    return {};
+    const auto values = propertyValues(entity, propName);
+    return values.empty() ? QVariant() : values[0];
 }
 
 void Generator::applyWikidataResults(const QJsonObject &entities)
 {
+    const QStringList suspicious_types({
+        QStringLiteral("Q43229"), // organization
+        QStringLiteral("Q740752"), // transport company
+    });
+
     for (auto it = entities.begin(); it != entities.end(); ++it) {
         const auto rit = std::lower_bound(routes.begin(), routes.end(), it.key(), [](const RouteInfo &lhs, const QString &rhs) {
             return lhs.wdId < rhs;
         });
         if (rit == routes.end() || (*rit).wdId != it.key()) {
             continue; // shouldn't happen...
+        }
+
+        // check if this is a plausible type
+        const auto instancesOf = propertyValues(it.value().toObject(), QLatin1String("P31"));
+        bool found = false;
+        for (const auto &instanceOf : instancesOf) {
+            if (suspicious_types.contains(instanceOf.toString())) {
+                qWarning() << "Suspicious WD types:" << (*rit).name << (*rit).wdId << (*rit).relId << instancesOf;
+                found = true;
+            }
+        }
+        if (found) {
+            continue;
         }
 
         // merge information
