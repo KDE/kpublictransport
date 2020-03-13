@@ -23,7 +23,12 @@
 
 namespace KPublicTransport {
 
+class Line;
 class LinePrivate;
+class LineMetaData;
+namespace LineUtil{
+void setMetaData(Line&, LineMetaData);
+}
 
 /** A public transport line. */
 class KPUBLICTRANSPORT_EXPORT Line
@@ -69,10 +74,16 @@ public:
      *  e.g. a product name.
      */
     KPUBLICTRANSPORT_PROPERTY(QString, modeString, setModeString)
+    /** Path of a local file containing the line logo.
+     *  This is downloaded on demand, and therefore might not be available
+     *  immeidately.
+     */
+    Q_PROPERTY(QString logo READ logo STORED false)
 
 public:
     bool hasColor() const;
     bool hasTextColor() const;
+    QString logo() const;
 
     /** Checks if to instances refer to the same line (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Line &lhs, const Line &rhs);
@@ -86,6 +97,10 @@ public:
     static QJsonObject toJson(const Line &l);
     /** Deserialize an object from JSON. */
     static Line fromJson(const QJsonObject &obj);
+
+private:
+    friend void LineUtil::setMetaData(Line&, LineMetaData);
+    void setMetaData(LineMetaData metaData);
 };
 
 class RoutePrivate;

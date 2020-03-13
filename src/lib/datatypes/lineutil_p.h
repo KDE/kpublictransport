@@ -22,9 +22,15 @@ class QString;
 
 namespace KPublicTransport {
 
+class Line;
+class LineMetaData;
+class Location;
+
 namespace LineUtil
 {
     bool isSameLineName(const QString &lhs, const QString &rhs);
+    void applyMetaData(Line &line, const Location &loc, bool download);
+    void setMetaData(Line &line, LineMetaData metaData);
 }
 
 }

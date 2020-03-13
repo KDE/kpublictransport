@@ -16,8 +16,17 @@
 */
 
 #include "lineutil_p.h"
+#include "assetrepository_p.h"
 
+#include <knowledgedb/linemetadata.h>
+
+#include <KPublicTransport/Line>
+#include <KPublicTransport/Location>
+
+#include <QColor>
+#include <QDebug>
 #include <QString>
+#include <QUrl>
 
 using namespace KPublicTransport;
 
@@ -57,4 +66,27 @@ bool LineUtil::isSameLineName(const QString &lhs, const QString &rhs)
 {
     return isSameLineName(lhs.begin(), lhs.end(), rhs.begin(), rhs.end())
         || isSameLineName(lhs.rbegin(), lhs.rend(), rhs.rbegin(), rhs.rend());
+}
+
+void LineUtil::applyMetaData(Line &line, const Location &loc, bool download)
+{
+    if (line.name().isEmpty() || !loc.hasCoordinate()) {
+        return;
+    }
+
+    if (line.mode() == Line::Bus) { // not covered yet, so avoid accidental hits
+        return;
+    }
+
+    auto metaData = LineMetaData::find(loc.latitude(), loc.longitude(), line.name());
+    setMetaData(line, metaData);
+
+    if (download && AssetRepository::instance()) {
+        AssetRepository::instance()->download(metaData.logoUrl());
+    }
+}
+
+void LineUtil::setMetaData(Line& line, LineMetaData metaData)
+{
+    line.setMetaData(metaData);
 }

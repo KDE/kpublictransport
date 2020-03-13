@@ -21,9 +21,13 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
+#include "assetrepository_p.h"
+
+#include "knowledgedb/linemetadata.h"
 
 #include <QColor>
 #include <QDebug>
+#include <QUrl>
 
 using namespace KPublicTransport;
 
@@ -35,6 +39,7 @@ public:
     QString name;
     QColor color;
     QColor textColor;
+    LineMetaData metaData;
 };
 
 class RoutePrivate : public QSharedData {
@@ -48,19 +53,39 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(Line)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, name, setName)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QColor, color, setColor)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QColor, textColor, setTextColor)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, Line::Mode, mode, setMode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, modeString, setModeString)
 
+QColor Line::color() const
+{
+    return d->metaData.color().isValid() ? d->metaData.color() : d->color;
+}
+
+void Line::setColor(const QColor &value)
+{
+    d.detach();
+    d->color = value;
+}
+
 bool Line::hasColor() const
 {
-    return d->color.isValid();
+    return d->color.isValid() || d->metaData.color().isValid();
 }
 
 bool Line::hasTextColor() const
 {
     return d->textColor.isValid();
+}
+
+void Line::setMetaData(LineMetaData metaData)
+{
+    d->metaData = metaData;
+}
+
+QString Line::logo() const
+{
+    return AssetRepository::localFile(d->metaData.logoUrl());
 }
 
 static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)

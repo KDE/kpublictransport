@@ -36,6 +36,8 @@ class KPUBLICTRANSPORT_EXPORT LineMetaData
 public:
     LineMetaData();
     ~LineMetaData();
+    LineMetaData(const LineMetaData&);
+    LineMetaData& operator=(const LineMetaData&);
 
     bool isNull() const;
     QString name() const;

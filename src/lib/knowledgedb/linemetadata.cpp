@@ -40,6 +40,8 @@ LineMetaData::LineMetaData(const LineMetaDataContent *dd)
 }
 
 LineMetaData::~LineMetaData() = default;
+LineMetaData::LineMetaData(const LineMetaData&) = default;
+LineMetaData& LineMetaData::operator=(const LineMetaData&) = default;
 
 bool LineMetaData::isNull() const
 {
@@ -53,11 +55,14 @@ QString LineMetaData::name() const
 
 QColor LineMetaData::color() const
 {
-    return QColor(d->color);
+    return d ? QColor(d->color) : QColor();
 }
 
 QUrl LineMetaData::logoUrl() const
 {
+    if (!d) {
+        return {};
+    }
     const auto logoName = lookup(d->logoIdx);
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
