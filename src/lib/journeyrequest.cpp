@@ -41,6 +41,7 @@ public:
     JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
     std::vector<RequestContext> contexts;
     QStringList backendIds;
+    bool downloadAssets = false;
 };
 }
 
@@ -177,6 +178,17 @@ void JourneyRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
+}
+
+bool JourneyRequest::downloadAssets() const
+{
+    return d->downloadAssets;
+}
+
+void JourneyRequest::setDownloadAssets(bool downloadAssets)
+{
+    d.detach();
+    d->downloadAssets = downloadAssets;
 }
 
 QString JourneyRequest::cacheKey() const

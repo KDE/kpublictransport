@@ -96,14 +96,24 @@ Kirigami.ApplicationWindow {
         id: departureDelegate
         Kirigami.AbstractListItem {
             enabled: departure.disruptionEffect != Disruption.NoService
+            highlighted: false
             RowLayout {
                 id: delegateLayout
+
+                Kirigami.Icon {
+                    id: icon
+                    source: departure.route.line.logo
+                    width: height
+                    height: Kirigami.Units.iconSizes.large
+                    visible: source != ""
+                }
 
                 Rectangle {
                     id: colorBar
                     width: Kirigami.Units.largeSpacing
                     color: departure.route.line.hasColor ? departure.route.line.color : "transparent"
                     Layout.fillHeight: true
+                    visible: icon.source == ""
                 }
 
                 QQC2.Label {
@@ -129,6 +139,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
+                    visible: icon.source == ""
                 }
 
                 ColumnLayout {
@@ -278,6 +289,7 @@ Kirigami.ApplicationWindow {
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            departureModel.request.downloadAssets = true
                         }
                     }
                     QQC2.Button {
@@ -290,6 +302,7 @@ Kirigami.ApplicationWindow {
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            departureModel.request.downloadAssets = true
                         }
                     }
                     QQC2.Button {
@@ -302,6 +315,7 @@ Kirigami.ApplicationWindow {
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            departureModel.request.downloadAssets = true
                         }
                     }
                     QQC2.Button {

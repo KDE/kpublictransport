@@ -16,6 +16,7 @@
 */
 
 #include "journeyutil_p.h"
+#include "lineutil_p.h"
 
 #include <KPublicTransport/Journey>
 
@@ -71,6 +72,22 @@ void JourneyUtil::applyTimeZone(Journey &jny, const QTimeZone &tz)
         sec.setExpectedDepartureTime(applyTimeZone(sec.expectedDepartureTime(), tz));
         sec.setScheduledArrivalTime(applyTimeZone(sec.scheduledArrivalTime(), tz));
         sec.setExpectedArrivalTime(applyTimeZone(sec.expectedArrivalTime(), tz));
+    }
+    jny.setSections(std::move(sections));
+}
+
+void JourneyUtil::applyMetaData(Journey &jny, bool download)
+{
+    auto sections = std::move(jny.takeSections());
+    for (auto &sec : sections) {
+        if (!sec.from().hasCoordinate() || sec.mode() != JourneySection::PublicTransport) {
+            continue;
+        }
+        auto route = sec.route();
+        auto line = route.line();
+        LineUtil::applyMetaData(line, sec.from(), download);
+        route.setLine(line);
+        sec.setRoute(route);
     }
     jny.setSections(std::move(sections));
 }

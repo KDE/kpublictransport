@@ -47,6 +47,7 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
     Q_PROPERTY(DateTimeMode dateTimeMode READ dateTimeMode WRITE setDateTimeMode)
     Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
+    Q_PROPERTY(bool downloadAssets READ downloadAssets WRITE setDownloadAssets)
 
 public:
     JourneyRequest();
@@ -101,6 +102,13 @@ public:
      *  this empty picks suitable backends automatically.
      */
     void setBackendIds(const QStringList &backendIds);
+
+    /** Download graphic assets such as line logos for the data requested here. */
+    bool downloadAssets() const;
+    /** Enable downloading of graphic assets.
+     *  Default: @c false
+     */
+    void setDownloadAssets(bool downloadAssets);
 
     /** Unique string representation used for caching results. */
     QString cacheKey() const;

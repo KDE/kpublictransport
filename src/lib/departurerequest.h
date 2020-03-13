@@ -44,6 +44,7 @@ class KPUBLICTRANSPORT_EXPORT DepartureRequest
     Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
     Q_PROPERTY(Mode mode READ mode WRITE setMode)
     Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
+    Q_PROPERTY(bool downloadAssets READ downloadAssets WRITE setDownloadAssets)
 
 public:
     DepartureRequest();
@@ -88,6 +89,13 @@ public:
      *  this empty picks suitable backends automatically.
      */
     void setBackendIds(const QStringList &backendIds);
+
+    /** Download graphic assets such as line logos for the data requested here. */
+    bool downloadAssets() const;
+    /** Enable downloading of graphic assets.
+     *  Default: @c false
+     */
+    void setDownloadAssets(bool downloadAssets);
 
     /** Unique string representation used for caching results. */
     QString cacheKey() const;

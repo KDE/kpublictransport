@@ -37,6 +37,7 @@ public:
     DepartureRequest::Mode mode = DepartureRequest::QueryDeparture;
     std::vector<RequestContext> contexts;
     QStringList backendIds;
+    bool downloadAssets = false;
 };
 }
 
@@ -146,6 +147,17 @@ void DepartureRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
+}
+
+bool DepartureRequest::downloadAssets() const
+{
+    return d->downloadAssets;
+}
+
+void DepartureRequest::setDownloadAssets(bool downloadAssets)
+{
+    d.detach();
+    d->downloadAssets = downloadAssets;
 }
 
 QString DepartureRequest::cacheKey() const

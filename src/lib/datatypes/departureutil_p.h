@@ -34,6 +34,8 @@ namespace DepartureUtil
 
     /** Reinterpret all floating times as times with the given timezone. */
     void applyTimeZone(Departure &dep, const QTimeZone &tz);
+    /** Augment line meta data. */
+    void applyMetaData(Departure &dep, bool download);
 }
 
 }

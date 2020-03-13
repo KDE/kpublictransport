@@ -124,6 +124,11 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Depar
         }
     }
 
+    // augment line information
+    for (auto &dep : res) {
+        DepartureUtil::applyMetaData(dep, request().downloadAssets());
+    }
+
     // cache negative hits, positive ones are too short-lived
     if (res.empty()) {
         Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());

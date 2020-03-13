@@ -16,6 +16,7 @@
 */
 
 #include "departureutil_p.h"
+#include "lineutil_p.h"
 
 #include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureRequest>
@@ -64,4 +65,13 @@ void DepartureUtil::applyTimeZone(Departure &dep, const QTimeZone &tz)
     dep.setExpectedDepartureTime(applyTimeZone(dep.expectedDepartureTime(), tz));
     dep.setScheduledArrivalTime(applyTimeZone(dep.scheduledArrivalTime(), tz));
     dep.setExpectedArrivalTime(applyTimeZone(dep.expectedArrivalTime(), tz));
+}
+
+void DepartureUtil::applyMetaData(Departure &dep, bool download)
+{
+    auto route = dep.route();
+    auto line = route.line();
+    LineUtil::applyMetaData(line, dep.stopPoint(), download);
+    route.setLine(line);
+    dep.setRoute(route);
 }

@@ -118,14 +118,24 @@ Kirigami.ApplicationWindow {
         id: journeyDelegate
         Kirigami.AbstractListItem {
             enabled: modelData.disruptionEffect != Disruption.NoService
+            highlighted: false
             RowLayout {
                 id: topLayout
+
+                Kirigami.Icon {
+                    id: icon
+                    source: modelData.route.line.logo
+                    width: height
+                    height: Kirigami.Units.iconSizes.large
+                    visible: source != ""
+                }
 
                 Rectangle {
                     id: colorBar
                     width: Kirigami.Units.largeSpacing
                     color: modelData.route.line.hasColor ? modelData.route.line.color : "transparent"
                     Layout.fillHeight: true
+                    visible: icon.source == ""
                 }
 
                 QQC2.Label {
@@ -161,6 +171,7 @@ Kirigami.ApplicationWindow {
                         }
                     }
                     font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
+                    visible: icon.source == ""
                 }
 
                 ColumnLayout {
@@ -348,6 +359,7 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
                             journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            journeyModel.request.downloadAssets = true
                         }
                     }
                     QQC2.Button {
@@ -366,6 +378,7 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
                             journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            journeyModel.request.downloadAssets = true
                         }
                     }
                     QQC2.Button {
@@ -384,6 +397,7 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
                             journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            journeyModel.request.downloadAssets = true
                         }
                     }
                     QQC2.Button {
