@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_ASSETREPOSITORY_P_H
 
 #include <QObject>
+#include <QUrl>
 
 #include <deque>
 
