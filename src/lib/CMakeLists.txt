@@ -1,6 +1,7 @@
 add_subdirectory(knowledgedb)
 
 set(kpublictransport_srcs
+    assetrepository.cpp
     departurereply.cpp
     departurerequest.cpp
     journeyreply.cpp

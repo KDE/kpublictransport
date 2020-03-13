@@ -16,6 +16,7 @@
 */
 
 #include "manager.h"
+#include "assetrepository_p.h"
 #include "departurereply.h"
 #include "departurerequest.h"
 #include "journeyreply.h"
@@ -478,6 +479,11 @@ Manager::Manager(QObject *parent)
     d->q = this;
     d->loadNetworks();
 
+    if (!AssetRepository::instance()) {
+        auto assetRepo = new AssetRepository(this);
+        assetRepo->setNetworkAccessManager(d->nam());
+    }
+
     Cache::expire();
 }
 
@@ -494,6 +500,10 @@ void Manager::setNetworkAccessManager(QNetworkAccessManager *nam)
     }
 
     d->m_nam = nam;
+
+    if (AssetRepository::instance()) {
+        AssetRepository::instance()->setNetworkAccessManager(nam);
+    }
 }
 
 bool Manager::allowInsecureBackends() const
