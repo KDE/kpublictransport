@@ -61,6 +61,11 @@ public:
 };
 }
 
+static const char* executor_configs[] = {
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+};
+
 OverpassQueryManager::OverpassQueryManager(QObject *parent)
     : QObject(parent)
     , d(new OverpassQueryManagerPrivate)
@@ -80,10 +85,11 @@ OverpassQueryManager::OverpassQueryManager(QObject *parent)
     d->m_nextTaskTimer->setSingleShot(true);
     connect(d->m_nextTaskTimer, &QTimer::timeout, this, [this]() { d->executeTasks(); });
 
-    // TODO add more endpoints, and one executor per slot on that system
-    OverpassQueryExecutor executor;
-    executor.endpoint = QUrl(QStringLiteral("https://overpass-api.de/api/interpreter"));
-    d->m_executors.push_back(std::move(executor));
+    for (const auto &config : executor_configs) {
+        OverpassQueryExecutor executor;
+        executor.endpoint = QUrl(QString::fromUtf8(config));
+        d->m_executors.push_back(std::move(executor));
+    }
 }
 
 OverpassQueryManager::~OverpassQueryManager() = default;
