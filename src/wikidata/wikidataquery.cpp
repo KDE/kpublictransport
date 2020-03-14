@@ -111,7 +111,7 @@ QNetworkRequest WikidataImageMetadataQuery::nextRequest()
     query.addQueryItem(QStringLiteral("action"), QStringLiteral("query"));
     query.addQueryItem(QStringLiteral("format"), QStringLiteral("json"));
     query.addQueryItem(QStringLiteral("prop"), QStringLiteral("imageinfo"));
-    query.addQueryItem(QStringLiteral("iiprop"), QStringLiteral("extmetadata"));
+    query.addQueryItem(QStringLiteral("iiprop"), QStringLiteral("extmetadata|size"));
     QString ids;
     for (auto i = m_nextBatch; i < std::min(m_images.size(), m_nextBatch + WikidataQueryMaxCount); ++i) {
         if (i != m_nextBatch) {

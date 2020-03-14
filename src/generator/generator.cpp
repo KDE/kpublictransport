@@ -30,6 +30,13 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
+enum {
+    MaxLogoFileSize = 10000, // bytes
+};
+
+static constexpr const auto MaxLogoAspectRatio = 2.75;
+static constexpr const auto MinLogoAspectRatio = 0.8;
+
 struct RouteInfo {
     OSM::Id relId;
     OSM::BoundingBox bbox;
@@ -254,16 +261,6 @@ void Generator::verifyImages()
     m_wdMgr->execute(query);
 }
 
-static QString imageLicense(const QJsonObject &obj)
-{
-    const auto imageinfo = obj.value(QLatin1String("imageinfo")).toArray();
-    if (imageinfo.isEmpty()) {
-        return {};
-    }
-    const auto extmeta = imageinfo.at(0).toObject().value(QLatin1String("extmetadata")).toObject();
-    return extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
-}
-
 static void clearLogo(std::vector<RouteInfo> &routes, const QString &name)
 {
     // we cannot rely on sort order once we have done the first call to this method!
@@ -282,9 +279,32 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
 
     for (auto it = images.begin(); it != images.end(); ++it) {
         const auto name = it.value().toObject().value(QLatin1String("title")).toString().mid(5);
-        const auto lic = imageLicense(it.value().toObject());
+
+        const auto imageinfo = it.value().toObject().value(QLatin1String("imageinfo")).toArray();
+        if (imageinfo.isEmpty()) {
+            continue;
+        }
+
+        const auto fileSize = imageinfo.at(0).toObject().value(QLatin1String("size")).toInt();
+        if (fileSize > MaxLogoFileSize) {
+            qWarning() << "not using logo" << name << "due to file size:" << fileSize;
+            clearLogo(routes, name);
+            continue;
+        }
+
+        const auto width = imageinfo.at(0).toObject().value(QLatin1String("width")).toDouble();
+        const auto height = imageinfo.at(0).toObject().value(QLatin1String("height")).toDouble();
+        const auto aspectRatio = width / height;
+        if (aspectRatio > MaxLogoAspectRatio || aspectRatio < MinLogoAspectRatio) {
+            qWarning() << "not using logo" << name << "due to aspect ratio:" << aspectRatio;
+            clearLogo(routes, name);
+            continue;
+        }
+
+        const auto extmeta = imageinfo.at(0).toObject().value(QLatin1String("extmetadata")).toObject();
+        const auto lic = extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
         if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
-            qWarning() << "not using" << name << "due to license:" << lic;
+            qWarning() << "not using logo" << name << "due to license:" << lic;
             clearLogo(routes, name);
             continue;
         }
