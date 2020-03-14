@@ -25,15 +25,13 @@
 class QNetworkReply;
 class QNetworkRequest;
 
-/** Wikidata multi-entity retrieval query. */
+/** Base class for Wikidata queries. */
 class WikidataQuery : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     explicit WikidataQuery(QObject *parent = nullptr);
     ~WikidataQuery();
-
-    void setItems(std::vector<QString> &&items);
 
     enum Error {
         NoError,
@@ -42,18 +40,57 @@ public:
     Error error();
 
 Q_SIGNALS:
-    void partialResult(const QJsonObject &entities);
     void finished();
 
-private:
+protected:
     friend class WikidataQueryManager;
-    QNetworkRequest nextRequest();
+    virtual QNetworkRequest nextRequest() = 0;
     /** Returns @true if this query is complete, @false if another request is needed. */
-    bool processReply(QNetworkReply *reply);
+    virtual bool processReply(QNetworkReply *reply) = 0;
+
+    Error m_error = NoError;
+};
+
+/** Wikidata multi-entity retrieval query. */
+class WikidataEntitiesQuery : public WikidataQuery
+{
+    Q_OBJECT
+public:
+    explicit WikidataEntitiesQuery(QObject *parent = nullptr);
+    ~WikidataEntitiesQuery();
+
+    void setItems(std::vector<QString> &&items);
+
+Q_SIGNALS:
+    void partialResult(const QJsonObject &entities);
+
+private:
+    QNetworkRequest nextRequest() override;
+    bool processReply(QNetworkReply *reply) override;
 
     std::vector<QString> m_items;
     std::size_t m_nextBatch = 0;
-    Error m_error = NoError;
+};
+
+/** Wikidata image metadata query. */
+class WikidataImageMetadataQuery : public WikidataQuery
+{
+    Q_OBJECT
+public:
+    explicit WikidataImageMetadataQuery(QObject *parent = nullptr);
+    ~WikidataImageMetadataQuery();
+
+    void setImages(std::vector<QString> &&images);
+
+Q_SIGNALS:
+    void partialResult(const QJsonObject &metaData);
+
+private:
+    QNetworkRequest nextRequest() override;
+    bool processReply(QNetworkReply *reply) override;
+
+    std::vector<QString> m_images;
+    std::size_t m_nextBatch = 0;
 };
 
 #endif // WIKIDATAQUERY_H

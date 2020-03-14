@@ -48,6 +48,14 @@ void WikidataQueryManager::execute(WikidataQuery *query)
 void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply *reply)
 {
     reply->deleteLater();
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << reply->errorString();
+        query->m_error = WikidataQuery::NetworkError;
+        emit query->finished();
+        return;
+    }
+
     if (query->processReply(reply)) {
         return;
     }

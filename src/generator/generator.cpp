@@ -45,11 +45,14 @@ public:
     void processOSMData(OSM::DataSet &&dataSet);
     void augmentFromWikidata();
     void applyWikidataResults(const QJsonObject &entities);
+    void verifyImages();
+    void verifyImageMetaData(const QJsonObject &images);
     void generateIndex();
     void generateCode(std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift);
 
     QIODevice *out = nullptr;
     std::vector<RouteInfo> routes;
+    WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
 };
 
 static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
@@ -146,19 +149,18 @@ void Generator::augmentFromWikidata()
         }
     }
 
-    auto mgr = new WikidataQueryManager(QCoreApplication::instance());
-    auto query = new WikidataQuery(mgr);
+    auto query = new WikidataEntitiesQuery(m_wdMgr);
     query->setItems(std::move(wdIds));
-    QObject::connect(query, &WikidataQuery::partialResult, [this](const auto &entities) { applyWikidataResults(entities); });
+    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](const auto &entities) { applyWikidataResults(entities); });
     QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
         if (query->error() != WikidataQuery::NoError) {
             qCritical() << "Wikidata query failed";
             QCoreApplication::exit(1);
             return;
         }
-        generateIndex();
+        verifyImages();
     });
-    mgr->execute(query);
+    m_wdMgr->execute(query);
 }
 
 static std::vector<QVariant> propertyValues(const QJsonObject &entity, const QLatin1String &propName)
@@ -223,6 +225,69 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
             (*rit).color = color;
         }
         (*rit).logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
+    }
+}
+
+void Generator::verifyImages()
+{
+    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.logoName < rhs.logoName;
+    });
+    std::vector<QString> imageIds;
+    for (const auto &r: routes) {
+        if (!r.logoName.isEmpty()) {
+            imageIds.push_back(r.logoName);
+        }
+    }
+
+    auto query = new WikidataImageMetadataQuery(m_wdMgr);
+    query->setImages(std::move(imageIds));
+    QObject::connect(query, &WikidataImageMetadataQuery::partialResult, [this](const auto &metaData) { verifyImageMetaData(metaData); });
+    QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
+        if (query->error() != WikidataQuery::NoError) {
+            qCritical() << "Wikidata image metadata query failed";
+            QCoreApplication::exit(1);
+            return;
+        }
+        generateIndex();
+    });
+    m_wdMgr->execute(query);
+}
+
+static QString imageLicense(const QJsonObject &obj)
+{
+    const auto imageinfo = obj.value(QLatin1String("imageinfo")).toArray();
+    if (imageinfo.isEmpty()) {
+        return {};
+    }
+    const auto extmeta = imageinfo.at(0).toObject().value(QLatin1String("extmetadata")).toObject();
+    return extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
+}
+
+static void clearLogo(std::vector<RouteInfo> &routes, const QString &name)
+{
+    // we cannot rely on sort order once we have done the first call to this method!
+    for (auto &info : routes) {
+        if (info.logoName == name) {
+            info.logoName.clear();
+        }
+    }
+}
+
+void Generator::verifyImageMetaData(const QJsonObject &images)
+{
+    const QStringList valid_licenses({
+        QStringLiteral("public domain"), // organization
+    });
+
+    for (auto it = images.begin(); it != images.end(); ++it) {
+        const auto name = it.value().toObject().value(QLatin1String("title")).toString().mid(5);
+        const auto lic = imageLicense(it.value().toObject());
+        if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
+            qWarning() << "not using" << name << "due to license:" << lic;
+            clearLogo(routes, name);
+            continue;
+        }
     }
 }
 

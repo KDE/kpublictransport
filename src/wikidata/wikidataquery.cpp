@@ -25,7 +25,8 @@
 #include <QUrlQuery>
 
 enum {
-    WikidataGetEntitiesMaxCount = 50
+    WikidataGetEntitiesMaxCount = 50,
+    WikidataQueryMaxCount = 50
 };
 
 WikidataQuery::WikidataQuery(QObject *parent) :
@@ -35,17 +36,25 @@ WikidataQuery::WikidataQuery(QObject *parent) :
 
 WikidataQuery::~WikidataQuery() = default;
 
-void WikidataQuery::setItems(std::vector<QString> &&items)
-{
-    m_items = std::move(items);
-}
-
 WikidataQuery::Error WikidataQuery::error()
 {
     return m_error;
 }
 
-QNetworkRequest WikidataQuery::nextRequest()
+
+WikidataEntitiesQuery::WikidataEntitiesQuery(QObject* parent)
+    : WikidataQuery(parent)
+{
+}
+
+WikidataEntitiesQuery::~WikidataEntitiesQuery() = default;
+
+void WikidataEntitiesQuery::setItems(std::vector<QString> &&items)
+{
+    m_items = std::move(items);
+}
+
+QNetworkRequest WikidataEntitiesQuery::nextRequest()
 {
     QUrl url(QStringLiteral("https://www.wikidata.org/w/api.php"));
     QUrlQuery query;
@@ -69,19 +78,62 @@ QNetworkRequest WikidataQuery::nextRequest()
     return req;
 }
 
-bool WikidataQuery::processReply(QNetworkReply *reply)
+bool WikidataEntitiesQuery::processReply(QNetworkReply *reply)
 {
-    if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << reply->errorString();
-        m_error = NetworkError;
-        emit finished();
-        return true;
-    }
-
     const auto doc = QJsonDocument::fromJson(reply->readAll());
     emit partialResult(doc.object().value(QLatin1String("entities")).toObject());
 
     if (m_nextBatch < m_items.size()) {
+        return false;
+    } else {
+        emit finished();
+        return true;
+    }
+}
+
+
+WikidataImageMetadataQuery::WikidataImageMetadataQuery(QObject* parent)
+    : WikidataQuery(parent)
+{
+}
+
+WikidataImageMetadataQuery::~WikidataImageMetadataQuery() = default;
+
+void WikidataImageMetadataQuery::setImages(std::vector<QString> &&images)
+{
+    m_images = std::move(images);
+}
+
+QNetworkRequest WikidataImageMetadataQuery::nextRequest()
+{
+    QUrl url(QStringLiteral("https://www.wikidata.org/w/api.php"));
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("action"), QStringLiteral("query"));
+    query.addQueryItem(QStringLiteral("format"), QStringLiteral("json"));
+    query.addQueryItem(QStringLiteral("prop"), QStringLiteral("imageinfo"));
+    query.addQueryItem(QStringLiteral("iiprop"), QStringLiteral("extmetadata"));
+    QString ids;
+    for (auto i = m_nextBatch; i < std::min(m_images.size(), m_nextBatch + WikidataQueryMaxCount); ++i) {
+        if (i != m_nextBatch) {
+            ids += QLatin1Char('|');
+        }
+        ids += QLatin1String("File:") + m_images[i];
+    }
+    m_nextBatch += WikidataQueryMaxCount;
+    query.addQueryItem(QStringLiteral("titles"), ids);
+    url.setQuery(query);
+
+    QNetworkRequest req(url);
+    req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
+    return req;
+}
+
+bool WikidataImageMetadataQuery::processReply(QNetworkReply *reply)
+{
+    const auto doc = QJsonDocument::fromJson(reply->readAll());
+    emit partialResult(doc.object().value(QLatin1String("query")).toObject().value(QLatin1String("pages")).toObject());
+
+    if (m_nextBatch < m_images.size()) {
         return false;
     } else {
         emit finished();
