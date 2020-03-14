@@ -18,6 +18,8 @@
 #ifndef OSM_XMLPARSER_P_H
 #define OSM_XMLPARSER_P_H
 
+#include <QString>
+
 class QIODevice;
 class QXmlStreamReader;
 
@@ -31,6 +33,7 @@ public:
     explicit XmlParser(DataSet *dataSet);
 
     void parse(QIODevice *io);
+    QString error() const;
 
 private:
     void parseNode(QXmlStreamReader &reader);
@@ -40,6 +43,7 @@ private:
     void parseTag(QXmlStreamReader &reader, T &elem);
 
     DataSet *m_dataSet;
+    QString m_error;
 };
 
 }

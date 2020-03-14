@@ -85,6 +85,12 @@ void OverpassQuery::processReply(QNetworkReply *reply)
 {
     XmlParser p(&m_result);
     p.parse(reply);
+    if (!p.error().isEmpty()) {
+        qWarning() << "Query error:" << p.error();
+        qWarning() << "Request:" << reply->request().url();
+        m_error = QueryError;
+        return;
+    }
     qDebug() << "Nodes:" << m_result.nodes.size();
     qDebug() << "Ways:" << m_result.ways.size();
     qDebug() << "Relations:" << m_result.relations.size();

@@ -174,6 +174,16 @@ void OverpassQueryManagerPrivate::taskFinished(OverpassQueryExecutor *executor, 
         cancelQuery(query);
     } else {
         query->processReply(reply);
+        if (query->error() != OverpassQuery::NoError) {
+            if (executor->task->forceReload) {
+                cancelQuery(query);
+            } else {
+                // query error in cached result, retry
+                query->m_error = OverpassQuery::NoError;
+                executor->task->forceReload = true;
+                m_tasks.push_back(std::move(executor->task));
+            }
+        }
     }
 
     // free the executor for the next query

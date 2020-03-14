@@ -46,6 +46,9 @@ void XmlParser::parse(QIODevice *io)
         }
         else if (reader.name() == QLatin1String("relation")) {
             parseRelation(reader);
+        } else if (reader.name() == QLatin1String("remark")) {
+            m_error = reader.readElementText();
+            return;
         }
     }
 }
@@ -122,4 +125,9 @@ void XmlParser::parseTag(QXmlStreamReader& reader, T& elem)
     t.value = reader.attributes().value(QLatin1String("v")).toString();
     elem.tags.push_back(t);
     reader.skipCurrentElement();
+}
+
+QString XmlParser::error() const
+{
+    return m_error;
 }
