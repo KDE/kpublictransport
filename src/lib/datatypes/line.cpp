@@ -88,6 +88,11 @@ QString Line::logo() const
     return AssetRepository::localFile(d->metaData.logoUrl());
 }
 
+bool Line::hasLogo() const
+{
+    return logo().isEmpty();
+}
+
 static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
 {
     if (lhs == rhs || lhs == Line::Unknown || rhs == Line::Unknown) {

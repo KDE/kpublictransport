@@ -79,11 +79,14 @@ public:
      *  immeidately.
      */
     Q_PROPERTY(QString logo READ logo STORED false)
+    /** @c true if the line has a logo. */
+    Q_PROPERTY(bool hasLogo READ hasLogo STORED false)
 
 public:
     bool hasColor() const;
     bool hasTextColor() const;
     QString logo() const;
+    bool hasLogo() const;
 
     /** Checks if to instances refer to the same line (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Line &lhs, const Line &rhs);
