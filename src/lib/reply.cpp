@@ -17,15 +17,17 @@
 
 #include "reply.h"
 #include "reply_p.h"
+#include "assetrepository_p.h"
 #include "datatypes/attributionutil_p.h"
 
+#include <QDebug>
 #include <QUrl>
 
 using namespace KPublicTransport;
 
 void ReplyPrivate::emitFinishedIfDone(Reply *q)
 {
-    if (pendingOps == 0) {
+    if (pendingOps == 0 && (!needToWaitForAssets() || AssetRepository::instance()->isQueueEmpty())) {
         finalizeResult();
         // delayed, as this is trigged from the backend settings results on us, which can be a multi-step process
         QMetaObject::invokeMethod(q, &Reply::finished, Qt::QueuedConnection);
@@ -37,6 +39,11 @@ void ReplyPrivate::emitUpdated(Reply *q)
     shouldClearError = true;
     // delayed, as this is trigged from immediate cache lookup in Manager, when signals are not yet connected
     QMetaObject::invokeMethod(q, &Reply::updated, Qt::QueuedConnection);
+}
+
+bool ReplyPrivate::needToWaitForAssets() const
+{
+    return false;
 }
 
 Reply::Reply(ReplyPrivate *dd, QObject *parent)
@@ -78,6 +85,10 @@ void Reply::setPendingOps(int ops)
     d_ptr->pendingOps = ops;
     if (ops == 0) {
         QMetaObject::invokeMethod(this, &Reply::finished, Qt::QueuedConnection);
+    }
+
+    if (d_ptr->needToWaitForAssets()) {
+        connect(AssetRepository::instance(), &AssetRepository::downloadFinished, this, [this]() { d_ptr->emitFinishedIfDone(this); });
     }
 }
 

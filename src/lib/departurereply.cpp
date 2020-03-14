@@ -34,6 +34,7 @@ namespace KPublicTransport {
 class DepartureReplyPrivate : public ReplyPrivate {
 public:
     void finalizeResult() override;
+    bool needToWaitForAssets() const override;
 
     DepartureRequest request;
     DepartureRequest nextRequest;
@@ -71,6 +72,11 @@ void DepartureReplyPrivate::finalizeResult()
 
     nextRequest.purgeLoops(request);
     prevRequest.purgeLoops(request);
+}
+
+bool DepartureReplyPrivate::needToWaitForAssets() const
+{
+    return request.downloadAssets();
 }
 
 DepartureReply::DepartureReply(const DepartureRequest &req, QObject *parent)

@@ -17,6 +17,7 @@
 
 #include "abstractquerymodel.h"
 #include "abstractquerymodel_p.h"
+#include "assetrepository_p.h"
 #include "datatypes/attributionutil_p.h"
 
 #include <KPublicTransport/Attribution>
@@ -88,6 +89,13 @@ AbstractQueryModel::AbstractQueryModel(AbstractQueryModelPrivate* dd, QObject* p
     , d_ptr(dd)
 {
     d_ptr->q_ptr = this;
+
+    connect(AssetRepository::instance(), &AssetRepository::downloadFinished, this, [this]() {
+        const auto rows = rowCount();
+        if (rows > 0) {
+            emit dataChanged(index(0, 0), index(rows - 1, 0));
+        }
+    });
 }
 
 AbstractQueryModel::~AbstractQueryModel() = default;

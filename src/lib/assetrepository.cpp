@@ -95,7 +95,7 @@ bool AssetRepository::download(const QUrl &url)
     return true;
 }
 
-bool AssetRepository::isEmpty()
+bool AssetRepository::isQueueEmpty()
 {
     return m_queue.empty();
 }

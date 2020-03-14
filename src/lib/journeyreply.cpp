@@ -36,6 +36,7 @@ namespace KPublicTransport {
 class JourneyReplyPrivate : public ReplyPrivate {
 public:
     void finalizeResult() override;
+    bool needToWaitForAssets() const override;
     static void postProcessJourneys(std::vector<Journey> &journeys);
 
     JourneyRequest request;
@@ -78,6 +79,11 @@ void JourneyReplyPrivate::finalizeResult()
 
     nextRequest.purgeLoops(request);
     prevRequest.purgeLoops(request);
+}
+
+bool JourneyReplyPrivate::needToWaitForAssets() const
+{
+    return request.downloadAssets();
 }
 
 static bool isPointlessSection(const JourneySection &section)

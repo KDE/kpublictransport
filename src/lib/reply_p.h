@@ -38,6 +38,7 @@ public:
     ReplyPrivate& operator=(const ReplyPrivate&) = delete;
 
     virtual void finalizeResult() = 0;
+    virtual bool needToWaitForAssets() const;
 
     void emitUpdated(Reply *q);
     void emitFinishedIfDone(Reply *q);

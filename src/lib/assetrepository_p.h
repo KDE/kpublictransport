@@ -49,7 +49,7 @@ public:
     bool download(const QUrl &url);
 
     /** Returns @c true if no further download jobs are queued or in progress. */
-    bool isEmpty();
+    bool isQueueEmpty();
 
     static AssetRepository* instance();
 
