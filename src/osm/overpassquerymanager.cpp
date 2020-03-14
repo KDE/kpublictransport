@@ -130,7 +130,8 @@ void OverpassQueryManagerPrivate::executeTasks()
         }
 
         if (executor.nextSlot > now) { // executor is still in rate limit cooldown
-            nextSlot = std::min(std::chrono::seconds(now.secsTo(executor.nextSlot)), nextSlot);
+            nextSlot = std::max(std::chrono::seconds(1), std::min(std::chrono::seconds(now.secsTo(executor.nextSlot)), nextSlot));
+            continue;
         }
 
         executor.task = std::move(m_tasks.front());
