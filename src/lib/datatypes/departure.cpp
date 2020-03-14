@@ -16,6 +16,7 @@
 */
 
 #include "departure.h"
+#include "departureutil_p.h"
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
@@ -200,6 +201,7 @@ Departure Departure::fromJson(const QJsonObject &obj)
     auto dep = Json::fromJson<Departure>(obj);
     dep.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
     dep.setStopPoint(Location::fromJson(obj.value(QLatin1String("stopPoint")).toObject()));
+    DepartureUtil::applyMetaData(dep, false);
     return dep;
 }
 

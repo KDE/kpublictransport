@@ -22,7 +22,7 @@
             "route": {
                 "direction": "Berlin Südkreuz (S)",
                 "line": {
-                    "color": "#009154",
+                    "color": "#9f4c37",
                     "mode": "RapidTransit",
                     "modeString": "S-Bahn",
                     "name": "S 41",

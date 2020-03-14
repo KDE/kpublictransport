@@ -16,6 +16,7 @@
 */
 
 #include "journey.h"
+#include "journeyutil_p.h"
 #include "json_p.h"
 #include "datatypes_p.h"
 #include "mergeutil_p.h"
@@ -459,6 +460,7 @@ Journey KPublicTransport::Journey::fromJson(const QJsonObject &obj)
 {
     Journey j;
     j.setSections(JourneySection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    JourneyUtil::applyMetaData(j, false);
     return j;
 }
 
