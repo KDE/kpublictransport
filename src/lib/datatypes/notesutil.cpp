@@ -40,6 +40,10 @@ QString NotesUtil::normalizeNote(const QString &note)
         }
     }
 
+    // strip <span> tags
+    static QRegularExpression spanExp(QStringLiteral("</?span[^>]*>"));
+    n.remove(spanExp);
+
     return n.trimmed();
 }
 
