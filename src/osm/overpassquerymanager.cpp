@@ -182,13 +182,30 @@ void OverpassQueryManagerPrivate::taskFinished(OverpassQueryExecutor *executor, 
         query->m_error = OverpassQuery::NetworkError;
         cancelQuery(query);
     } else {
-        query->processReply(reply);
-        if (query->error() != OverpassQuery::NoError) {
+        const auto queryError = query->processReply(reply);
+        // on query timeout, break up the task in 4 sub-tasks, if we are allowed to
+        if (queryError == OverpassQuery::QueryTimeout
+            && executor->task->bbox.width() > query->minimumTileSize().width()
+            && executor->task->bbox.height() > query->minimumTileSize().height())
+        {
+            qDebug() << "Splitting task due to query timeout:" << executor->task->bbox;
+            const auto xTileSize = executor->task->bbox.width() / 2.0;
+            const auto yTileSize = executor->task->bbox.height() / 2.0;
+            for (auto x = 0; x < 2; ++x) {
+                for (auto y = 0; y < 2; ++y) {
+                    auto task = std::make_unique<OverpassQueryTask>();
+                    task->query = query;
+                    task->bbox = { executor->task->bbox.x() + x * xTileSize, executor->task->bbox.y() + y * yTileSize, xTileSize, yTileSize };
+                    m_tasks.push_back(std::move(task));
+                }
+            }
+        }
+        else if (queryError != OverpassQuery::NoError) {
             if (executor->task->forceReload) {
+                query->m_error = queryError;
                 cancelQuery(query);
             } else {
                 // query error in cached result, retry
-                query->m_error = OverpassQuery::NoError;
                 executor->task->forceReload = true;
                 m_tasks.push_back(std::move(executor->task));
             }

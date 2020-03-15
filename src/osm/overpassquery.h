@@ -60,11 +60,18 @@ public:
      *  Values in degree.
      */
     void setTileSize(const QSizeF &tileSize);
+    /** Minimum tile size to which tiles can be broken down in case of query timeouts. */
+    QSizeF minimumTileSize() const;
+    /** Sets the minimum tile size.
+     *  Should be smaller than tile size by a power of 2.
+     */
+    void setMinimumTileSize(const QSizeF &minTileSize);
 
     /** Error codes. */
     enum Error {
         NoError,
-        QueryError,
+        QueryError, ///< generic query error
+        QueryTimeout, ///< query exceeded its execution time budget
         NetworkError,
     };
     /** Error code of this query job. */
@@ -81,11 +88,12 @@ private:
     friend class OverpassQueryManager;
     friend class OverpassQueryManagerPrivate;
 
-    void processReply(QNetworkReply *reply);
+    Error processReply(QNetworkReply *reply);
 
     QString m_query;
     QRectF m_bbox = { -180.0, -90.0, 360.0, 180.0 };
     QSizeF m_tileSize = { 360.0, 180.0 };
+    QSizeF m_minimumTileSize = { 1.0, 1.0 };
     Error m_error = NoError;
     OSM::DataSet m_result;
 };

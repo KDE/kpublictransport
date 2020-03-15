@@ -477,6 +477,7 @@ int main(int argc, char **argv)
     // TODO subset for testing only
     osmQuery.setBoundingBox({9.0, 52.0, 5.0, 2.0});
     osmQuery.setTileSize({2.0, 2.0});
+    osmQuery.setMinimumTileSize({1.0, 1.0});
 
     QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery, &generator]() {
         if (osmQuery.error() != OSM::OverpassQuery::NoError) {

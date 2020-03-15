@@ -66,6 +66,16 @@ void OverpassQuery::setTileSize(const QSizeF &tileSize)
     m_tileSize = tileSize;
 }
 
+QSizeF OverpassQuery::minimumTileSize() const
+{
+    return m_minimumTileSize;
+}
+
+void OverpassQuery::setMinimumTileSize(const QSizeF &minTileSize)
+{
+    m_minimumTileSize = minTileSize;
+}
+
 OverpassQuery::Error OverpassQuery::error() const
 {
     return m_error;
@@ -81,17 +91,17 @@ DataSet&& OverpassQuery::takeResult()
     return std::move(m_result);
 }
 
-void OverpassQuery::processReply(QNetworkReply *reply)
+OverpassQuery::Error OverpassQuery::processReply(QNetworkReply *reply)
 {
     XmlParser p(&m_result);
     p.parse(reply);
     if (!p.error().isEmpty()) {
         qWarning() << "Query error:" << p.error();
         qWarning() << "Request:" << reply->request().url();
-        m_error = QueryError;
-        return;
+        return p.error().contains(QLatin1String("timed out"), Qt::CaseInsensitive) ? QueryTimeout : QueryError;
     }
     qDebug() << "Nodes:" << m_result.nodes.size();
     qDebug() << "Ways:" << m_result.ways.size();
     qDebug() << "Relations:" << m_result.relations.size();
+    return NoError;
 }
