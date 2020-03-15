@@ -476,8 +476,8 @@ int main(int argc, char **argv)
     osmQuery.setQuery(QString::fromUtf8(f.readAll()));
 
     // TODO subset for testing only
-    osmQuery.setBoundingBox({9.0, 52.0, 5.0, 2.0});
-    osmQuery.setTileSize({2.0, 2.0});
+    osmQuery.setBoundingBox({0.0, 45.0, 15.0, 10.0});
+    osmQuery.setTileSize({2.5, 2.5});
     osmQuery.setMinimumTileSize({1.0, 1.0});
 
     QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery, &generator]() {

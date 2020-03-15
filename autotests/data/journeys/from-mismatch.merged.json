@@ -13,7 +13,7 @@
             "route": {
                 "direction": "Gare de Saint-Rémy les Chevreuse (Saint-Rémy-lès-Chevreuse)",
                 "line": {
-                    "color": "#427dbd",
+                    "color": "#5092c9",
                     "mode": "RapidTransit",
                     "modeString": "RER",
                     "name": "B",
