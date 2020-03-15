@@ -140,14 +140,13 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
         const auto type = link.value(QLatin1String("type")).toString();
         if (type == QLatin1String("physical_mode")) {
             line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
-        } else if (type == QLatin1String("disruption")) {
-            const auto id = link.value(QLatin1String("id")).toString();
-            const auto disruption = findDisruption(id);
-            if (disruption.value(QLatin1String("severity")).toObject().value(QLatin1String("effect")).toString() == QLatin1String("NO_SERVICE")) {
-                section.setDisruptionEffect(Disruption::NoService);
-            }
-            // TODO parse disruption messages
         }
+        parseDisruptionLink(section, link);
+    }
+    const auto displayLinks = displayInfo.value(QLatin1String("links")).toArray();
+    for (const auto &v : displayLinks) {
+        const auto link = v.toObject();
+        parseDisruptionLink(section, link);
     }
 
     Route route;
@@ -209,9 +208,10 @@ std::vector<Journey> NavitiaParser::parseJourneys(const QByteArray &data)
     return res;
 }
 
-static Departure parseDeparture(const QJsonObject &obj)
+Departure NavitiaParser::parseDeparture(const QJsonObject &obj) const
 {
     // TODO remove code duplication with journey parsing
+    Departure departure;
     const auto displayInfo = obj.value(QLatin1String("display_informations")).toObject();
 
     Line line;
@@ -222,11 +222,15 @@ static Departure parseDeparture(const QJsonObject &obj)
     const auto links = obj.value(QLatin1String("links")).toArray();
     for (const auto &v : links) {
         const auto link = v.toObject();
-        if (link.value(QLatin1String("type")).toString() != QLatin1String("physical_mode")) {
-            continue;
+        if (link.value(QLatin1String("type")).toString() == QLatin1String("physical_mode")) {
+            line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
         }
-        line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
-        break;
+        parseDisruptionLink(departure, link);
+    }
+    const auto displayLinks = displayInfo.value(QLatin1String("links")).toArray();
+    for (const auto &v : displayLinks) {
+        const auto link = v.toObject();
+        parseDisruptionLink(departure, link);
     }
 
     Route route;
@@ -236,7 +240,6 @@ static Departure parseDeparture(const QJsonObject &obj)
     route.setDestination(parseWrappedLocation(destObj));
     route.setLine(line);
 
-    Departure departure;
     departure.setRoute(route);
 
     const auto dtObj = obj.value(QLatin1String("stop_date_time")).toObject();
@@ -349,4 +352,35 @@ QJsonObject NavitiaParser::findDisruption(const QString &id) const
         }
     }
     return {};
+}
+
+static QString disruptionMessage(const QJsonObject &distruption)
+{
+    const auto msgs = distruption.value(QLatin1String("messages")).toArray();
+    for (const auto &msgV : msgs) {
+        const auto msg = msgV.toObject();
+        const auto types = msg.value(QLatin1String("channel")).toObject().value(QLatin1String("types")).toArray();
+        for (const auto &typeV : types) {
+            if (typeV.toString() == QLatin1String("web")) {
+                return msg.value(QLatin1String("text")).toString();
+            }
+        }
+    }
+    return {};
+}
+
+template <typename T>
+void NavitiaParser::parseDisruptionLink(T &element, const QJsonObject &link) const
+{
+    const auto type = link.value(QLatin1String("type")).toString();
+    if (type != QLatin1String("disruption")) {
+        return;
+    }
+
+    const auto id = link.value(QLatin1String("id")).toString();
+    const auto disruption = findDisruption(id);
+    if (disruption.value(QLatin1String("severity")).toObject().value(QLatin1String("effect")).toString() == QLatin1String("NO_SERVICE")) {
+        element.setDisruptionEffect(Disruption::NoService);
+    }
+    element.addNote(disruptionMessage(disruption));
 }

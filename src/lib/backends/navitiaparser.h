@@ -60,9 +60,11 @@ public:
 private:
     void parseLinks(const QJsonArray &links);
     void parseAttributions(const QJsonArray &feeds);
+    template <typename T> void parseDisruptionLink(T &element, const QJsonObject &link) const;
     QJsonObject findDisruption(const QString &id) const;
     JourneySection parseJourneySection(const QJsonObject &obj) const;
     Journey parseJourney(const QJsonObject &obj) const;
+    Departure parseDeparture(const QJsonObject &obj) const;
 
     QJsonArray m_disruptions;
 };
