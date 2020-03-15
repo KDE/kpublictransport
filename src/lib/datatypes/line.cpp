@@ -90,7 +90,7 @@ QString Line::logo() const
 
 bool Line::hasLogo() const
 {
-    return logo().isEmpty();
+    return !logo().isEmpty();
 }
 
 static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
