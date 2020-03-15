@@ -274,7 +274,8 @@ static void clearLogo(std::vector<RouteInfo> &routes, const QString &name)
 void Generator::verifyImageMetaData(const QJsonObject &images)
 {
     const QStringList valid_licenses({
-        QStringLiteral("public domain"), // organization
+        QStringLiteral("cc0"),
+        QStringLiteral("public domain"),
     });
 
     for (auto it = images.begin(); it != images.end(); ++it) {
