@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OSM_XMLPARSER_P_H
-#define OSM_XMLPARSER_P_H
+#ifndef OSM_XMLPARSER_H
+#define OSM_XMLPARSER_H
 
 #include <QString>
 

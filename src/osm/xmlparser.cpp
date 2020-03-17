@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "xmlparser_p.h"
+#include "xmlparser.h"
 #include "datatypes.h"
 
 #include <QIODevice>

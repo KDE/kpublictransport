@@ -16,7 +16,7 @@
 */
 
 #include "overpassquery.h"
-#include "xmlparser_p.h"
+#include "xmlparser.h"
 
 #include <QNetworkReply>
 
