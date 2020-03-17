@@ -38,12 +38,19 @@ enum {
 static constexpr const auto MaxLogoAspectRatio = 2.75;
 static constexpr const auto MinLogoAspectRatio = 0.8;
 
+enum LineMode { // ordered by accuracy in OSM data, ie. higher value -> higher probability of being the correctly detected mode
+    Unknown,
+    RapidTransit,
+    Tram,
+    Subway,
+};
+
 struct RouteInfo {
     OSM::Id relId;
     OSM::BoundingBox bbox;
     QString name;
     QColor color;
-    // TODO line type
+    LineMode mode = Unknown;
     QString logoName;
     QString wdId;
 };
@@ -63,6 +70,37 @@ public:
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
 };
 
+static LineMode lineModeStringToMode(const QString &s)
+{
+   if (s == QLatin1String("subway")) {
+        return Subway;
+    }
+    if (s == QLatin1String("tram")) {
+        return Tram;
+    }
+    if (s == QLatin1String("light_rail") || s == QLatin1String("commuter")) {
+        return RapidTransit;
+    }
+    return Unknown;
+}
+
+static LineMode determineLineMode(const OSM::Relation &rel)
+{
+    auto m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route_master")));
+    if (m != Unknown) return m;
+
+    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route")));
+    if (m != Unknown) return m;
+
+    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("line")));
+    if (m != Unknown) return m;
+
+    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("commuter")));
+    if (m != Unknown) return m;
+
+    return lineModeStringToMode(OSM::tagValue(rel, QLatin1String("passenger")));
+}
+
 static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 {
     RouteInfo info;
@@ -74,6 +112,7 @@ static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
         info.color = QColor(colStr);
     }
     info.wdId = OSM::tagValue(rel, QLatin1String("wikidata"));
+    info.mode = determineLineMode(rel);
     return info;
 }
 
@@ -115,6 +154,11 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
                 info.wdId = wId;
             }
             info.bbox = OSM::unite(info.bbox, (*memIt).bbox);
+            const auto mode = determineLineMode((*memIt));
+            if (info.mode != Unknown && mode != Unknown && info.mode != mode) {
+                qWarning() << "OSM mode conflict:" << info.relId << info.mode << (*memIt).id << mode << info.name;
+            }
+            info.mode = std::max(info.mode, mode);
 
             dataSet.relations.erase(memIt);
         }
@@ -131,7 +175,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 
     // filter useless routes
     routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
-        return info.name.isEmpty() || !info.bbox.isValid() || (!info.color.isValid() && info.wdId.isEmpty());
+        return info.name.isEmpty() || !info.bbox.isValid() || (!info.color.isValid() && info.wdId.isEmpty()) || info.mode == Unknown;
     }), routes.end());
     // check for uniqueness of (bbox, name) - would break indexing and can happen for lines without a route_master relation
     for (auto lit = routes.begin(); lit != routes.end(); ++lit) {
