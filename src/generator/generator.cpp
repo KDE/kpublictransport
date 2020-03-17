@@ -19,6 +19,7 @@
 
 #include <overpassquery.h>
 #include <overpassquerymanager.h>
+#include <xmlparser.h>
 #include <wikidataquery.h>
 #include <wikidataquerymanager.h>
 
@@ -455,6 +456,8 @@ int main(int argc, char **argv)
     parser.addHelpOption();
     QCommandLineOption outFileOption({ QStringLiteral("o") }, QStringLiteral("Output file name"), QStringLiteral("out"));
     parser.addOption(outFileOption);
+    QCommandLineOption osmInputOption({ QStringLiteral("i") }, QStringLiteral("OSM input file"),  QStringLiteral("osm-in"));
+    parser.addOption(osmInputOption);
     parser.process(app);
 
     QFile out(parser.value(outFileOption));
@@ -488,7 +491,20 @@ int main(int argc, char **argv)
             generator.processOSMData(osmQuery.takeResult());
         }
     });
-    osmMgr.execute(&osmQuery);
+
+    if (!parser.isSet(osmInputOption)) {
+        osmMgr.execute(&osmQuery);
+    } else {
+        QFile f(parser.value(osmInputOption));
+        if (!f.open(QFile::ReadOnly)) {
+            qCritical() << "Failed to open OSM input file!" << f.errorString() << f.fileName();
+            QCoreApplication::exit(1);
+        }
+        OSM::DataSet dataSet;
+        OSM::XmlParser p(&dataSet);
+        p.parse(&f);
+        generator.processOSMData(std::move(dataSet));
+    }
 
     return QCoreApplication::exec();
 }
