@@ -89,8 +89,17 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
             continue;
         }
         if (reader.name() == QLatin1String("tag")) {
-            parseTag(reader, rel);
-        } else if (reader.name() == QLatin1String("bounds")) {
+            if (reader.attributes().value(QLatin1String("k")) == QLatin1String("bBox")) { // osmconvert style bounding box
+                const auto v = reader.attributes().value(QLatin1String("v")).split(QLatin1Char(','));
+                if (v.size() == 4) {
+                    rel.bbox.min = Coordinate(v[0].toDouble(), v[1].toDouble());
+                    rel.bbox.max = Coordinate(v[2].toDouble(), v[3].toDouble());
+                }
+                reader.skipCurrentElement();
+            } else {
+                parseTag(reader, rel);
+            }
+        } else if (reader.name() == QLatin1String("bounds")) { // Overpass style bounding box
             rel.bbox.min = Coordinate(reader.attributes().value(QLatin1String("minlat")).toDouble(), reader.attributes().value(QLatin1String("minlon")).toDouble());
             rel.bbox.max = Coordinate(reader.attributes().value(QLatin1String("maxlat")).toDouble(), reader.attributes().value(QLatin1String("maxlon")).toDouble());
             reader.skipCurrentElement();
