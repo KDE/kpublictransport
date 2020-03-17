@@ -320,6 +320,7 @@ void Generator::generateIndex()
         return lhs.name < rhs.name;
     });
     auto minDist = std::numeric_limits<uint32_t>::max();
+    OSM::Id lmin = 0, rmin = 0;
     for (auto lit = routes.begin(); lit != routes.end(); ++lit) { // for each name
         auto rit = std::upper_bound(lit, routes.end(), (*lit).name, [](const auto &lhs, const auto &rhs) { return lhs < rhs.name; });
         if (lit + 1 == rit || rit == routes.end()) { // only a single route with that name
@@ -329,13 +330,16 @@ void Generator::generateIndex()
 
         for (; lit != rit; ++lit) {  // for each pair with equal name
             for (auto it = lit + 1; it != rit; ++it) {
-                minDist = std::min(minDist,
-                    std::max(OSM::latitudeDistance((*lit).bbox, (*it).bbox),
-                             OSM::longitudeDifference((*lit).bbox, (*it).bbox)));
+                const auto dist =std::max(OSM::latitudeDistance((*lit).bbox, (*it).bbox), OSM::longitudeDifference((*lit).bbox, (*it).bbox));
+                if (dist < minDist) {
+                    minDist = dist;
+                    lmin = (*lit).relId;
+                    rmin = (*it).relId;
+                }
             }
         }
     }
-    qDebug() << "minimum bbox distance is" << minDist;
+    qDebug() << "minimum bbox distance is" << minDist << lmin << rmin;
     qDebug() << "z hash size is" << __builtin_clz(minDist) + 1;
     const uint32_t zShift = 32 - (__builtin_clz(minDist) + 1);
     const uint32_t zInc = 1 << zShift;
