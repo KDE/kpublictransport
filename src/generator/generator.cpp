@@ -33,6 +33,7 @@
 
 enum {
     MaxLogoFileSize = 10000, // bytes
+    MinBoundingBoxDistance = 1'048'576, // minimum bounding box distance, in 1/1e7-th degree, lines with smaller distances will be discarded, set to yield a 26 bit hash/40 bit shift
 };
 
 static constexpr const auto MaxLogoAspectRatio = 2.75;
@@ -198,6 +199,28 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
         }
     }
     qDebug() << "routes after bbox merge:" << routes.size();
+
+    // remove all lines that are too close together, as this blows up the z index too much
+    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.name < rhs.name;
+    });
+    for (auto it = routes.begin(); it != routes.end() && it + 1 != routes.end();) {
+        bool removed = false;
+        for (auto it2 = it + 1; it2 != routes.end() && (*it).name == (*it2).name; ++it2) {
+            const auto dist = std::max(OSM::latitudeDistance((*it).bbox, (*it2).bbox), OSM::longitudeDifference((*it).bbox, (*it2).bbox));
+            if (dist < MinBoundingBoxDistance) {
+                qDebug() << "Removing close lines:" << (*it).relId << (*it2).relId << (*it).name << dist;
+                it2 = routes.erase(it2);
+                it = routes.erase(it);
+                removed = true;
+                break;
+            }
+        }
+        if (!removed) {
+            ++it;
+        }
+    }
+    qDebug() << "routes after bbox distance filtering:" << routes.size();
 
     augmentFromWikidata();
 }
@@ -388,7 +411,7 @@ void Generator::generateIndex()
 
         for (; lit != rit; ++lit) {  // for each pair with equal name
             for (auto it = lit + 1; it != rit; ++it) {
-                const auto dist =std::max(OSM::latitudeDistance((*lit).bbox, (*it).bbox), OSM::longitudeDifference((*lit).bbox, (*it).bbox));
+                const auto dist = std::max(OSM::latitudeDistance((*lit).bbox, (*it).bbox), OSM::longitudeDifference((*lit).bbox, (*it).bbox));
                 if (dist < minDist) {
                     minDist = dist;
                     lmin = (*lit).relId;
