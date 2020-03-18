@@ -116,6 +116,25 @@ static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
     return info;
 }
 
+static void mergeRouteInfo(RouteInfo &lhs, const RouteInfo &rhs)
+{
+    if (lhs.color.isValid() && rhs.color.isValid() && lhs.color != rhs.color) {
+        qWarning() << "OSM color conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.color.name() << rhs.color.name();
+    } else if (rhs.color.isValid()) {
+        lhs.color = rhs.color;
+    }
+    if (!lhs.wdId.isEmpty() && !rhs.wdId.isEmpty() && lhs.wdId != rhs.wdId) {
+        qWarning() << "wikidata id conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.wdId << rhs.wdId;
+    } else if (!rhs.wdId.isEmpty()) {
+        lhs.wdId = rhs.wdId;
+    }
+    lhs.bbox = OSM::unite(lhs.bbox, rhs.bbox);
+    if (lhs.mode != Unknown && rhs.mode != Unknown && lhs.mode != rhs.mode) {
+        qWarning() << "OSM mode conflict:" << lhs.relId << lhs.mode << rhs.relId << rhs.mode << lhs.name;
+    }
+    lhs.mode = std::max(lhs.mode, rhs.mode);
+}
+
 void Generator::processOSMData(OSM::DataSet &&dataSet)
 {
     qDebug() << "got" << dataSet.relations.size() << "relations from OSM";
@@ -139,27 +158,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
             if (memIt == dataSet.relations.end() || (*memIt).id != mem.id) {
                 continue;
             }
-
-            // merge content
-            const QColor col(OSM::tagValue(*memIt, QLatin1String("colour")));
-            if (info.color.isValid() && col.isValid() && info.color != col) {
-                qWarning() << "OSM color conflict:" << info.relId << (*memIt).id << info.name << info.color.name() << col.name();
-            } else if (col.isValid()) {
-                info.color = col;
-            }
-            const auto wId = OSM::tagValue(*memIt, QLatin1String("wikidata"));
-            if (!info.wdId.isEmpty() && !wId.isEmpty() && info.wdId != wId) {
-                qWarning() << "wikidata id conflict:" << info.relId << (*memIt).id << info.name << info.wdId << wId;
-            } else if (!wId.isEmpty()) {
-                info.wdId = wId;
-            }
-            info.bbox = OSM::unite(info.bbox, (*memIt).bbox);
-            const auto mode = determineLineMode((*memIt));
-            if (info.mode != Unknown && mode != Unknown && info.mode != mode) {
-                qWarning() << "OSM mode conflict:" << info.relId << info.mode << (*memIt).id << mode << info.name;
-            }
-            info.mode = std::max(info.mode, mode);
-
+            mergeRouteInfo(info, routeInfoFromRelation(*memIt));
             dataSet.relations.erase(memIt);
         }
         routes.push_back(std::move(info));
@@ -177,13 +176,28 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
         return info.name.isEmpty() || !info.bbox.isValid() || (!info.color.isValid() && info.wdId.isEmpty()) || info.mode == Unknown;
     }), routes.end());
-    // check for uniqueness of (bbox, name) - would break indexing and can happen for lines without a route_master relation
-    for (auto lit = routes.begin(); lit != routes.end(); ++lit) {
-        routes.erase(std::remove_if(lit + 1, routes.end(), [lit](const auto &rhs) {
-            return (*lit).name == rhs.name && OSM::intersects((*lit).bbox, rhs.bbox);
-        }), routes.end());
-    }
     qDebug() << "routes after filtering:" << routes.size();
+
+    // check for uniqueness of (bbox, name) - would break indexing and can happen for lines without a route_master relation
+    // we assume those to belong together as well and thus merge them to a single line
+    for (auto lit = routes.begin(); lit != routes.end(); ++lit) {
+        // a merge pass can increase the bbox to include more elements that we previously missed
+        // so do this as long as we find things
+        while (true) {
+            auto dupIt = std::remove_if(lit + 1, routes.end(), [lit](const auto &rhs) {
+                return (*lit).name == rhs.name && OSM::intersects((*lit).bbox, rhs.bbox);
+            });
+            if (dupIt == routes.end()) {
+                break;
+            }
+
+            for (auto it = dupIt; it != routes.end(); ++it) {
+                mergeRouteInfo(*lit, *it);
+            }
+            routes.erase(dupIt, routes.end());
+        }
+    }
+    qDebug() << "routes after bbox merge:" << routes.size();
 
     augmentFromWikidata();
 }
