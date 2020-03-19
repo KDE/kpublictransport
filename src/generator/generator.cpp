@@ -386,6 +386,13 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
             continue;
         }
 
+        const auto mt = imageinfo.at(0).toObject().value(QLatin1String("mime")).toString();
+        if (mt != QLatin1String("image/svg+xml") && mt != QLatin1String("image/png")) {
+            qWarning() << "not using logo" << name << "due to mimetype:" << mt;
+            clearLogo(routes, name);
+            continue;
+        }
+
         const auto extmeta = imageinfo.at(0).toObject().value(QLatin1String("extmetadata")).toObject();
         const auto lic = extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
         if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
