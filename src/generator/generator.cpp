@@ -37,7 +37,7 @@ enum {
 };
 
 static constexpr const auto MaxLogoAspectRatio = 2.75;
-static constexpr const auto MinLogoAspectRatio = 0.8;
+static constexpr const auto MinLogoAspectRatio = 0.45; // Shanghai Metro is the extreme still valid case with 0.5
 
 enum LineMode { // ordered by accuracy in OSM data, ie. higher value -> higher probability of being the correctly detected mode
     Unknown,
