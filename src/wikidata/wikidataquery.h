@@ -24,6 +24,7 @@
 
 class QNetworkReply;
 class QNetworkRequest;
+class QUrlQuery;
 
 /** Base class for Wikidata queries. */
 class WikidataQuery : public QObject
@@ -43,6 +44,8 @@ Q_SIGNALS:
     void finished();
 
 protected:
+    QUrlQuery commonUrlQuery() const;
+
     friend class WikidataQueryManager;
     virtual QNetworkRequest nextRequest() = 0;
     /** Returns @true if this query is complete, @false if another request is needed. */

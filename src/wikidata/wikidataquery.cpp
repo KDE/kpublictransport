@@ -41,6 +41,13 @@ WikidataQuery::Error WikidataQuery::error()
     return m_error;
 }
 
+QUrlQuery WikidataQuery::commonUrlQuery() const
+{
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("format"), QStringLiteral("json"));
+    return query;
+}
+
 
 WikidataEntitiesQuery::WikidataEntitiesQuery(QObject* parent)
     : WikidataQuery(parent)
@@ -57,9 +64,8 @@ void WikidataEntitiesQuery::setItems(std::vector<QString> &&items)
 QNetworkRequest WikidataEntitiesQuery::nextRequest()
 {
     QUrl url(QStringLiteral("https://www.wikidata.org/w/api.php"));
-    QUrlQuery query;
+    auto query = commonUrlQuery();
     query.addQueryItem(QStringLiteral("action"), QStringLiteral("wbgetentities"));
-    query.addQueryItem(QStringLiteral("format"), QStringLiteral("json"));
     query.addQueryItem(QStringLiteral("props"), QStringLiteral("claims"));
 
     QString ids;
@@ -107,9 +113,8 @@ void WikidataImageMetadataQuery::setImages(std::vector<QString> &&images)
 QNetworkRequest WikidataImageMetadataQuery::nextRequest()
 {
     QUrl url(QStringLiteral("https://www.wikidata.org/w/api.php"));
-    QUrlQuery query;
+    auto query = commonUrlQuery();
     query.addQueryItem(QStringLiteral("action"), QStringLiteral("query"));
-    query.addQueryItem(QStringLiteral("format"), QStringLiteral("json"));
     query.addQueryItem(QStringLiteral("prop"), QStringLiteral("imageinfo"));
     query.addQueryItem(QStringLiteral("iiprop"), QStringLiteral("extmetadata|size"));
     QString ids;

@@ -237,6 +237,7 @@ void Generator::augmentFromWikidata()
             wdIds.push_back(r.wdId);
         }
     }
+    qDebug() << "Retrieving" << wdIds.size() << "items from Wikidata";
 
     auto query = new WikidataEntitiesQuery(m_wdMgr);
     query->setItems(std::move(wdIds));
@@ -328,6 +329,7 @@ void Generator::verifyImages()
             imageIds.push_back(r.logoName);
         }
     }
+    qDebug() << "Verifying" << imageIds.size() << "images";
 
     auto query = new WikidataImageMetadataQuery(m_wdMgr);
     query->setImages(std::move(imageIds));

@@ -35,6 +35,7 @@ public:
     void execute(WikidataQuery *query);
 
 private:
+    void executeNextSubQuery(WikidataQuery *query);
     void subQueryFinished(WikidataQuery *query, QNetworkReply *reply);
     QNetworkAccessManager *m_nam;
 };

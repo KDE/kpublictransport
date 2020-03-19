@@ -41,6 +41,14 @@ WikidataQueryManager::~WikidataQueryManager() = default;
 
 void WikidataQueryManager::execute(WikidataQuery *query)
 {
+    executeNextSubQuery(query);
+}
+
+void WikidataQueryManager::executeNextSubQuery(WikidataQuery *query)
+{
+    auto req = query->nextRequest();
+    // see https://www.mediawiki.org/wiki/API:Etiquette
+    req.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("KPublicTransport/KnowledgeDBGenerator (kde-pim@kde.org)"));
     const auto reply = m_nam->get(query->nextRequest());
     connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
 }
@@ -59,6 +67,5 @@ void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply 
     if (query->processReply(reply)) {
         return;
     }
-    reply = m_nam->get(query->nextRequest());
-    connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
+    executeNextSubQuery(query);
 }
