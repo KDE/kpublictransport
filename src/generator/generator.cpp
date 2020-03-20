@@ -96,7 +96,7 @@ static LineMode determineLineMode(const OSM::Relation &rel)
     m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("line")));
     if (m != Unknown) return m;
 
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("commuter")));
+    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("service")));
     if (m != Unknown) return m;
 
     return lineModeStringToMode(OSM::tagValue(rel, QLatin1String("passenger")));
