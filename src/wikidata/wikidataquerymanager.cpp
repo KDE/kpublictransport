@@ -49,7 +49,7 @@ void WikidataQueryManager::executeNextSubQuery(WikidataQuery *query)
     auto req = query->nextRequest();
     // see https://www.mediawiki.org/wiki/API:Etiquette
     req.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("KPublicTransport/KnowledgeDBGenerator (kde-pim@kde.org)"));
-    const auto reply = m_nam->get(query->nextRequest());
+    const auto reply = m_nam->get(req);
     connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
 }
 
