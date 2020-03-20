@@ -1,0 +1,57 @@
+#
+# Extract route_master and route relation of relevant transport modes from a full planet-osm data file.
+# The output of this acts as input for the code generator for the line meta data tables.
+#
+# Input options
+# (1) A local planet pbf file as rsynced from an OSM mirror.
+#     This will need to be converted to o5m format, which needs ~80GB of local storage and ~1h runtime.
+# (2) A local planet o5m file already converted from pbf format.
+#     This will only need a few 100MB of extra local storage and ~15min runtime.
+#
+# Usage:
+# Link or copy this file into a folder with either of the two input files, and 80+GB of disc space.
+# Then run `make`.
+#
+# Prerequisites:
+# - a local copy of the planet-latest full OSM database (without meta data is fine).
+# - the osmctools tools from https://gitlab.com/osm-c-tools/osmctools
+#
+
+OSMCONVERT=osmconvert
+OSMFILTER=osmfilter
+
+# reduce data set to a smaller area for testing, as x1,y1,x2,y2
+# BBOX=-180.0,-90.0,180.0,90.0
+BBOX=0.0,45.0,15.0,55.0
+
+all: routes-only.osm
+
+# convert the downloaded pbf planet file to o5m, so osmfilter can consume it
+planet-latest.o5m: planet-latest.osm.pbf
+	${OSMCONVERT} $< --drop-author --drop-version --out-o5m -o=$@
+
+# extract all route and route_master relations with types we are interested in
+# this can take ~15min and produces about 100MB of output
+routes.o5m: planet-latest.o5m
+	${OSMFILTER} $< --keep="route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram" --out-o5m -o=$@
+
+# augment bounding box information
+routes-bbox.o5m: routes.o5m
+	${OSMCONVERT} $< --out-o5m --add-bbox-tags -b=${BBOX} -o=$@
+
+# drop all depending nodes/ways/relations we wont need
+# this is merely to speed up the code generator, by reducing the resulting XML output to manageable sizes
+routes-only.o5m: routes-bbox.o5m
+	${OSMFILTER} $< --drop-nodes --drop-ways --keep="route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram" --ignore-dependencies --out-o5m -o=$@
+
+# convert the output to OSM XML format, so the code generator can consume it
+# TODO for testing: bbox filter -b=<x1>,<y1>,<x2>,<y2>
+routes-only.osm: routes-only.o5m
+	${OSMCONVERT} $< -o=$@
+
+# clean up all generated files
+clean:
+	rm -f routes-bbox.o5m routes-only.o5m routes-only.osm
+
+expensive-clean: clean
+	rm -f routes.o5m
