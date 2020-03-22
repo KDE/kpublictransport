@@ -354,7 +354,7 @@ void Generator::verifyImages()
     });
     std::vector<QString> imageIds;
     for (const auto &r: routes) {
-        if (!r.logoName.isEmpty()) {
+        if (!r.logoName.isEmpty() && isUsefulInformation(r)) {
             imageIds.push_back(r.logoName);
         }
     }
