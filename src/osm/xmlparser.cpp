@@ -92,8 +92,8 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
             if (reader.attributes().value(QLatin1String("k")) == QLatin1String("bBox")) { // osmconvert style bounding box
                 const auto v = reader.attributes().value(QLatin1String("v")).split(QLatin1Char(','));
                 if (v.size() == 4) {
-                    rel.bbox.min = Coordinate(v[0].toDouble(), v[1].toDouble());
-                    rel.bbox.max = Coordinate(v[2].toDouble(), v[3].toDouble());
+                    rel.bbox.min = Coordinate(v[1].toDouble(), v[0].toDouble());
+                    rel.bbox.max = Coordinate(v[3].toDouble(), v[2].toDouble());
                 }
                 reader.skipCurrentElement();
             } else {
