@@ -117,6 +117,13 @@ static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 {
     RouteInfo info;
     info.relId = rel.id;
+
+    // check for under constructions or out-of-service tags
+    const auto underConstruction = OSM::tagValue(rel, QLatin1String("construction"));
+    if (underConstruction == QLatin1String("yes")) {
+        return info;
+    }
+
     info.bbox = rel.bbox;
     info.name = OSM::tagValue(rel, QLatin1String("ref"));
     const auto colStr = OSM::tagValue(rel, QLatin1String("colour"));
@@ -130,6 +137,11 @@ static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
 
 static void mergeRouteInfo(RouteInfo &lhs, const RouteInfo &rhs)
 {
+    Q_ASSERT(!lhs.name.isEmpty());
+    if (!rhs.name.isEmpty() && lhs.name != rhs.name) {
+        qDebug() << "OSM name conflict:" << lhs.name << lhs.relId << rhs.name << rhs.relId;
+    }
+
     if (lhs.color.isValid() && rhs.color.isValid() && lhs.color != rhs.color) {
         qWarning() << "OSM color conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.color.name() << rhs.color.name();
     } else if (rhs.color.isValid()) {
@@ -163,6 +175,9 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     for (auto i = 0; i < routeMasterCount; ++i) {
         auto &rel = dataSet.relations[i];
         auto info = routeInfoFromRelation(rel);
+        if (info.name.isEmpty()) {
+            continue;
+        }
 
         const auto members = std::move(rel.members); // reference will become invalid once we start to modify below
         for (const auto &mem : members) {
@@ -180,6 +195,9 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     qDebug() << "  " << (dataSet.relations.size() - routeMasterCount) << "dangling routes remaining";
     for (auto it = dataSet.relations.begin() + routeMasterCount; it != dataSet.relations.end(); ++it) {
         auto info = routeInfoFromRelation(*it);
+        if (info.name.isEmpty()) {
+            continue;
+        }
         routes.push_back(std::move(info));
     }
     qDebug() << "merged routes:" << routes.size();
