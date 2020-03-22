@@ -41,6 +41,7 @@ static constexpr const auto MinLogoAspectRatio = 0.45; // Shanghai Metro is the 
 
 enum LineMode { // ordered by accuracy in OSM data, ie. higher value -> higher probability of being the correctly detected mode
     Unknown,
+    LongDistance,
     RapidTransit,
     Tram,
     Subway,
@@ -81,6 +82,9 @@ static LineMode lineModeStringToMode(const QString &s)
     }
     if (s == QLatin1String("light_rail") || s == QLatin1String("commuter")) {
         return RapidTransit;
+    }
+    if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international")) {
+        return LongDistance;
     }
     return Unknown;
 }
