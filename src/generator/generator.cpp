@@ -308,11 +308,24 @@ static QVariant propertyValue(const QJsonObject &entity, const QLatin1String &pr
     return values.empty() ? QVariant() : values[0];
 }
 
+static struct {
+    const char *entity;
+    LineMode mode;
+} const wd_type_to_mode_map[] = {
+    { "Q1412403", RapidTransit }, // commuter rail
+    { "Q1192191", RapidTransit }, // airport rail link
+    { "Q50331459", RapidTransit }, // S-Bahn line
+    { "Q129172", LongDistance }, // ICE
+    { "Q15145593", Tram }, // tram line
+};
+
 void Generator::applyWikidataResults(const QJsonObject &entities)
 {
     const QStringList suspicious_types({
         QStringLiteral("Q43229"), // organization
         QStringLiteral("Q740752"), // transport company
+        QStringLiteral("Q928830"), // metro station
+        QStringLiteral("Q4830453"), // business
     });
 
     for (auto it = entities.begin(); it != entities.end(); ++it) {
@@ -326,10 +339,18 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
         // check if this is a plausible type
         const auto instancesOf = propertyValues(it.value().toObject(), QLatin1String("P31"));
         bool found = false;
+        LineMode mode = Unknown;
         for (const auto &instanceOf : instancesOf) {
-            if (suspicious_types.contains(instanceOf.toString())) {
+            const auto type = instanceOf.toString();
+            if (suspicious_types.contains(type)) {
                 qWarning() << "Suspicious WD types:" << (*rit).name << (*rit).wdId << (*rit).relId << instancesOf;
                 found = true;
+            }
+            for (const auto &modeMap : wd_type_to_mode_map) {
+                if (type == QLatin1String(modeMap.entity)) {
+                    mode = std::max(modeMap.mode, mode);
+                    break;
+                }
             }
         }
         if (found) {
@@ -344,6 +365,11 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
             (*rit).color = color;
         }
         (*rit).logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
+        if ((*rit).mode != Unknown && mode != Unknown && (*rit).mode != mode) {
+            qWarning() << "OSM/WD mode conflict:" << (*rit).relId << (*rit).wdId << (*rit).name << (*rit).mode << mode;
+        } else {
+            (*rit).mode = std::max((*rit).mode, mode);
+        }
     }
 }
 
