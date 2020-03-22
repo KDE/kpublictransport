@@ -57,6 +57,13 @@ struct RouteInfo {
     QString wdId;
 };
 
+static bool isUsefulInformation(const RouteInfo &info)
+{
+    return (info.mode != Unknown && info.mode != LongDistance)
+        && !info.name.isEmpty()
+        && (info.color.isValid() || !info.logoName.isEmpty());
+}
+
 class Generator {
 public:
     void processOSMData(OSM::DataSet &&dataSet);
@@ -177,11 +184,11 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     }
     qDebug() << "merged routes:" << routes.size();
 
-    // filter useless routes
+    // filter useless lines - ie. those that don't contain useful information and have no wikidata id to fill the missing gaps
     routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
-        return info.name.isEmpty() || !info.bbox.isValid() || (!info.color.isValid() && info.wdId.isEmpty()) || info.mode == Unknown;
+        return !isUsefulInformation(info) && info.wdId.isEmpty();
     }), routes.end());
-    qDebug() << "routes after filtering:" << routes.size();
+    qDebug() << "routes after filtering OSM data:" << routes.size();
 
     // check for uniqueness of (bbox, name) - would break indexing and can happen for lines without a route_master relation
     // we assume those to belong together as well and thus merge them to a single line
@@ -344,6 +351,12 @@ void Generator::verifyImages()
             QCoreApplication::exit(1);
             return;
         }
+
+        // filter lines still missing data
+        routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
+            return isUsefulInformation(info) && info.wdId.isEmpty();
+        }), routes.end());
+        qDebug() << "routes after Wikidata filtering:" << routes.size();
         generateIndex();
     });
     m_wdMgr->execute(query);
