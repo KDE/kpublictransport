@@ -565,6 +565,14 @@ namespace KPublicTransport {
             out->write(" WD: ");
             out->write(route.wdId.toUtf8());
         }
+        out->write(" ");
+        out->write(QByteArray::number(route.bbox.min.latF(), 'g', 4));
+        out->write(", ");
+        out->write(QByteArray::number(route.bbox.min.lonF(), 'g', 4));
+        out->write(" x ");
+        out->write(QByteArray::number(route.bbox.max.latF(), 'g', 4));
+        out->write(", ");
+        out->write(QByteArray::number(route.bbox.max.lonF(), 'g', 4));
         out->write("\n");
     }
     out->write("};\n\n");
