@@ -214,8 +214,8 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
         // a merge pass can increase the bbox to include more elements that we previously missed
         // so do this as long as we find things
         while (true) {
-            auto dupIt = std::remove_if(lit + 1, routes.end(), [lit](const auto &rhs) {
-                return (*lit).name == rhs.name && OSM::intersects((*lit).bbox, rhs.bbox);
+            auto dupIt = std::partition(lit + 1, routes.end(), [lit](const auto &rhs) {
+                return (*lit).name != rhs.name || !OSM::intersects((*lit).bbox, rhs.bbox);
             });
             if (dupIt == routes.end()) {
                 break;
