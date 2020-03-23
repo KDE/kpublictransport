@@ -126,10 +126,8 @@ constexpr inline BoundingBox unite(BoundingBox bbox1, BoundingBox bbox2)
 
 constexpr inline bool intersects(BoundingBox bbox1, BoundingBox bbox2)
 {
-    return ((bbox1.min.latitude >= bbox2.min.latitude && bbox1.min.latitude <= bbox2.max.latitude)
-        || (bbox1.max.longitude >= bbox2.min.longitude && bbox1.max.longitude <= bbox2.max.longitude))
-        && ((bbox1.min.longitude >= bbox2.min.longitude && bbox1.min.longitude <= bbox2.max.longitude)
-        || (bbox1.max.latitude >= bbox2.min.latitude && bbox1.max.latitude <= bbox2.max.latitude));
+    return !(bbox2.min.latitude > bbox1.max.latitude || bbox2.max.latitude < bbox1.min.latitude
+        || bbox2.min.longitude > bbox1.max.longitude || bbox2.max.longitude < bbox1.min.longitude);
 }
 
 constexpr inline uint32_t latitudeDistance(BoundingBox bbox1, BoundingBox bbox2)
