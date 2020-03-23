@@ -38,3 +38,10 @@ void DataSet::addRelation(Relation &&rel)
     }
     relations.insert(it, std::move(rel));
 }
+
+QDebug operator<<(QDebug debug, OSM::BoundingBox bbox)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << '[' << bbox.min.latF() << ',' << bbox.min.lonF() << '|' << bbox.max.latF() << ',' << bbox.max.lonF() << ']';
+    return debug;
+}

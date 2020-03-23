@@ -18,6 +18,7 @@
 #ifndef OSM_DATATYPES_H
 #define OSM_DATATYPES_H
 
+#include <QDebug>
 #include <QString>
 
 #include <cstdint>
@@ -92,6 +93,15 @@ public:
     constexpr inline bool isValid() const
     {
         return min.isValid() && max.isValid();
+    }
+
+    constexpr inline uint32_t width() const
+    {
+        return max.longitude - min.longitude;
+    }
+    constexpr inline uint32_t height() const
+    {
+        return max.latitude - min.latitude;
     }
 
     Coordinate min;
@@ -213,5 +223,7 @@ inline bool operator<(const Elem &elem, Id id)
 }
 
 }
+
+QDebug operator<<(QDebug debug, OSM::BoundingBox bbox);
 
 #endif // OSM_DATATYPES_H

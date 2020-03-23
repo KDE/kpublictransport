@@ -34,6 +34,7 @@
 enum {
     MaxLogoFileSize = 10000, // bytes
     MinBoundingBoxDistance = 1'048'576, // minimum bounding box distance, in 1/1e7-th degree, lines with smaller distances will be discarded, set to yield a 26 bit hash/40 bit shift
+    BoundingBoxSizeWarning = 12'000'000, // warning threshold for bbox sizes, in 1/1e7-th degree
 };
 
 static constexpr const auto MaxLogoAspectRatio = 2.75;
@@ -124,7 +125,6 @@ static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
         return info;
     }
 
-    info.bbox = rel.bbox;
     info.name = OSM::tagValue(rel, QLatin1String("ref"));
     const auto colStr = OSM::tagValue(rel, QLatin1String("colour"));
     if (!colStr.isEmpty()) {
@@ -132,6 +132,12 @@ static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
     }
     info.wdId = OSM::tagValue(rel, QLatin1String("wikidata"));
     info.mode = determineLineMode(rel);
+
+    info.bbox = rel.bbox;
+    if (isUsefulInformation(info) && (info.bbox.width() > BoundingBoxSizeWarning || info.bbox.height() > BoundingBoxSizeWarning)) {
+        qWarning() << "Suspicious bbox size:" << info.relId << info.name << info.bbox;
+    }
+
     return info;
 }
 
@@ -152,11 +158,14 @@ static void mergeRouteInfo(RouteInfo &lhs, const RouteInfo &rhs)
     } else if (!rhs.wdId.isEmpty()) {
         lhs.wdId = rhs.wdId;
     }
-    lhs.bbox = OSM::unite(lhs.bbox, rhs.bbox);
     if (lhs.mode != Unknown && rhs.mode != Unknown && lhs.mode != rhs.mode) {
         qWarning() << "OSM mode conflict:" << lhs.relId << lhs.mode << rhs.relId << rhs.mode << lhs.name;
     }
     lhs.mode = std::max(lhs.mode, rhs.mode);
+    lhs.bbox = OSM::unite(lhs.bbox, rhs.bbox);
+    if (isUsefulInformation(lhs) && (lhs.bbox.width() > BoundingBoxSizeWarning || lhs.bbox.height() > BoundingBoxSizeWarning)) {
+        qWarning() << "Suspicious bbox size after merging:" << lhs.relId << lhs.name << lhs.bbox << rhs.relId << rhs.name << rhs.bbox << lhs.bbox.width() << rhs.bbox.height();
+    }
 }
 
 void Generator::processOSMData(OSM::DataSet &&dataSet)
