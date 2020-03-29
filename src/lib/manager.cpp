@@ -61,10 +61,6 @@
 
 using namespace KPublicTransport;
 
-enum {
-    DefaultBackendState = true
-};
-
 static inline void initResources() {
     Q_INIT_RESOURCE(networks);
     Q_INIT_RESOURCE(otp);
@@ -100,6 +96,7 @@ public:
 
     bool m_allowInsecure = false;
     bool m_hasReadCachedAttributions = false;
+    bool m_backendsEnabledByDefault = true;
 
 private:
     bool shouldSkipBackend(const AbstractBackend *backend) const;
@@ -746,7 +743,7 @@ bool Manager::isBackendEnabled(const QString &backendId) const
         return true;
     }
 
-    return DefaultBackendState;
+    return d->m_backendsEnabledByDefault;
 }
 
 static void sortedInsert(QStringList &l, const QString &value)
@@ -801,4 +798,16 @@ void Manager::setDisabledBackends(const QStringList &backendIds)
     for (const auto &backendId : backendIds) {
         setBackendEnabled(backendId, false);
     }
+}
+
+bool KPublicTransport::Manager::backendsEnabledByDefault() const
+{
+    return d->m_backendsEnabledByDefault;
+}
+
+void KPublicTransport::Manager::setBackendsEnabledByDefault(bool byDefault)
+{
+    d->m_backendsEnabledByDefault = byDefault;
+
+    emit configurationChanged();
 }

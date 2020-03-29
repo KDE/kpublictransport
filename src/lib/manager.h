@@ -61,6 +61,8 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
     Q_PROPERTY(QStringList enabledBackends READ enabledBackends WRITE setEnabledBackends NOTIFY configurationChanged)
     /** @see disabledBackends() */
     Q_PROPERTY(QStringList disabledBackends READ disabledBackends WRITE setDisabledBackends NOTIFY configurationChanged)
+    /** @see backendsEnabledByDefault() */
+    Q_PROPERTY(bool backendsEnabledByDefault READ backendsEnabledByDefault WRITE setBackendsEnabledByDefault NOTIFY configurationChanged)
 
 public:
     explicit Manager(QObject *parent = nullptr);
@@ -125,6 +127,16 @@ public:
      *  Use for restoring persisted settings.
      */
     void setDisabledBackends(const QStringList &backendIds);
+    /**
+     * Returns wheter backends are enabled by default.
+     * Defaults to true.
+     */
+    bool backendsEnabledByDefault() const;
+    /**
+     * Set wheter backends are enabled by default.
+     */
+    void setBackendsEnabledByDefault(bool byDefault);
+
 
 Q_SIGNALS:
     void attributionsChanged();
