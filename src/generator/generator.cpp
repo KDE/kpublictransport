@@ -16,10 +16,11 @@
 */
 
 #include "indexeddatatable.h"
+#include "lineinfo.h"
 
-#include <overpassquery.h>
-#include <overpassquerymanager.h>
-#include <xmlparser.h>
+#include <osm/overpassquery.h>
+#include <osm/overpassquerymanager.h>
+#include <osm/xmlparser.h>
 #include <wikidataquery.h>
 #include <wikidataquerymanager.h>
 
@@ -34,36 +35,10 @@
 enum {
     MaxLogoFileSize = 10000, // bytes
     MinBoundingBoxDistance = 1'048'576, // minimum bounding box distance, in 1/1e7-th degree, lines with smaller distances will be discarded, set to yield a 26 bit hash/40 bit shift
-    BoundingBoxSizeWarning = 12'000'000, // warning threshold for bbox sizes, in 1/1e7-th degree
 };
 
 static constexpr const auto MaxLogoAspectRatio = 2.75;
 static constexpr const auto MinLogoAspectRatio = 0.45; // Shanghai Metro is the extreme still valid case with 0.5
-
-enum LineMode { // ordered by accuracy in OSM data, ie. higher value -> higher probability of being the correctly detected mode
-    Unknown,
-    LongDistance,
-    RapidTransit,
-    Tram,
-    Subway,
-};
-
-struct RouteInfo {
-    OSM::Id relId;
-    OSM::BoundingBox bbox;
-    QString name;
-    QColor color;
-    LineMode mode = Unknown;
-    QString logoName;
-    QString wdId;
-};
-
-static bool isUsefulInformation(const RouteInfo &info)
-{
-    return (info.mode != Unknown && info.mode != LongDistance)
-        && !info.name.isEmpty()
-        && (info.color.isValid() || !info.logoName.isEmpty());
-}
 
 class Generator {
 public:
@@ -76,97 +51,9 @@ public:
     void generateCode(std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift);
 
     QIODevice *out = nullptr;
-    std::vector<RouteInfo> routes;
+    std::vector<LineInfo> lines;
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
 };
-
-static LineMode lineModeStringToMode(const QString &s)
-{
-   if (s == QLatin1String("subway")) {
-        return Subway;
-    }
-    if (s == QLatin1String("tram")) {
-        return Tram;
-    }
-    if (s == QLatin1String("light_rail") || s == QLatin1String("commuter")) {
-        return RapidTransit;
-    }
-    if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international")) {
-        return LongDistance;
-    }
-    return Unknown;
-}
-
-static LineMode determineLineMode(const OSM::Relation &rel)
-{
-    auto m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route_master")));
-    if (m != Unknown) return m;
-
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route")));
-    if (m != Unknown) return m;
-
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("line")));
-    if (m != Unknown) return m;
-
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("service")));
-    if (m != Unknown) return m;
-
-    return lineModeStringToMode(OSM::tagValue(rel, QLatin1String("passenger")));
-}
-
-static RouteInfo routeInfoFromRelation(const OSM::Relation &rel)
-{
-    RouteInfo info;
-    info.relId = rel.id;
-
-    // check for under constructions or out-of-service tags
-    const auto underConstruction = OSM::tagValue(rel, QLatin1String("construction"));
-    if (underConstruction == QLatin1String("yes")) {
-        return info;
-    }
-
-    info.name = OSM::tagValue(rel, QLatin1String("ref"));
-    const auto colStr = OSM::tagValue(rel, QLatin1String("colour"));
-    if (!colStr.isEmpty()) {
-        info.color = QColor(colStr);
-    }
-    info.wdId = OSM::tagValue(rel, QLatin1String("wikidata"));
-    info.mode = determineLineMode(rel);
-
-    info.bbox = rel.bbox;
-    if (isUsefulInformation(info) && (info.bbox.width() > BoundingBoxSizeWarning || info.bbox.height() > BoundingBoxSizeWarning)) {
-        qWarning() << "Suspicious bbox size:" << info.relId << info.name << info.bbox;
-    }
-
-    return info;
-}
-
-static void mergeRouteInfo(RouteInfo &lhs, const RouteInfo &rhs)
-{
-    Q_ASSERT(!lhs.name.isEmpty());
-    if (!rhs.name.isEmpty() && lhs.name != rhs.name) {
-        qDebug() << "OSM name conflict:" << lhs.name << lhs.relId << rhs.name << rhs.relId;
-    }
-
-    if (lhs.color.isValid() && rhs.color.isValid() && lhs.color != rhs.color) {
-        qWarning() << "OSM color conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.color.name() << rhs.color.name();
-    } else if (rhs.color.isValid()) {
-        lhs.color = rhs.color;
-    }
-    if (!lhs.wdId.isEmpty() && !rhs.wdId.isEmpty() && lhs.wdId != rhs.wdId) {
-        qWarning() << "wikidata id conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.wdId << rhs.wdId;
-    } else if (!rhs.wdId.isEmpty()) {
-        lhs.wdId = rhs.wdId;
-    }
-    if (lhs.mode != Unknown && rhs.mode != Unknown && lhs.mode != rhs.mode) {
-        qWarning() << "OSM mode conflict:" << lhs.relId << lhs.mode << rhs.relId << rhs.mode << lhs.name;
-    }
-    lhs.mode = std::max(lhs.mode, rhs.mode);
-    lhs.bbox = OSM::unite(lhs.bbox, rhs.bbox);
-    if (isUsefulInformation(lhs) && (lhs.bbox.width() > BoundingBoxSizeWarning || lhs.bbox.height() > BoundingBoxSizeWarning)) {
-        qWarning() << "Suspicious bbox size after merging:" << lhs.relId << lhs.name << lhs.bbox << rhs.relId << rhs.name << rhs.bbox << lhs.bbox.width() << rhs.bbox.height();
-    }
-}
 
 void Generator::processOSMData(OSM::DataSet &&dataSet)
 {
@@ -183,7 +70,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     // resolve route masters first, and then consider the remaining routes that have no route_master
     for (auto i = 0; i < routeMasterCount; ++i) {
         auto &rel = dataSet.relations[i];
-        auto info = routeInfoFromRelation(rel);
+        auto info = LineInfo::fromRelation(rel);
         if (info.name.isEmpty()) {
             continue;
         }
@@ -194,62 +81,62 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
             if (memIt == dataSet.relations.end() || (*memIt).id != mem.id) {
                 continue;
             }
-            mergeRouteInfo(info, routeInfoFromRelation(*memIt));
+            LineInfo::merge(info, LineInfo::fromRelation(*memIt));
             dataSet.relations.erase(memIt);
         }
-        routes.push_back(std::move(info));
+        lines.push_back(std::move(info));
     }
 
     // deal with routes without a route master
     qDebug() << "  " << (dataSet.relations.size() - routeMasterCount) << "dangling routes remaining";
     for (auto it = dataSet.relations.begin() + routeMasterCount; it != dataSet.relations.end(); ++it) {
-        auto info = routeInfoFromRelation(*it);
+        auto info = LineInfo::fromRelation(*it);
         if (info.name.isEmpty()) {
             continue;
         }
-        routes.push_back(std::move(info));
+        lines.push_back(std::move(info));
     }
-    qDebug() << "merged routes:" << routes.size();
+    qDebug() << "merged lines:" << lines.size();
 
     // filter useless lines - ie. those that don't contain useful information and have no wikidata id to fill the missing gaps
-    routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
-        return !isUsefulInformation(info) && info.wdId.isEmpty();
-    }), routes.end());
-    qDebug() << "routes after filtering OSM data:" << routes.size();
+    lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
+        return !LineInfo::isUseful(info) && info.wdId.isEmpty();
+    }), lines.end());
+    qDebug() << "lines after filtering OSM data:" << lines.size();
 
     // check for uniqueness of (bbox, name) - would break indexing and can happen for lines without a route_master relation
     // we assume those to belong together as well and thus merge them to a single line
-    for (auto lit = routes.begin(); lit != routes.end(); ++lit) {
+    for (auto lit = lines.begin(); lit != lines.end(); ++lit) {
         // a merge pass can increase the bbox to include more elements that we previously missed
         // so do this as long as we find things
         while (true) {
-            auto dupIt = std::partition(lit + 1, routes.end(), [lit](const auto &rhs) {
+            auto dupIt = std::partition(lit + 1, lines.end(), [lit](const auto &rhs) {
                 return (*lit).name != rhs.name || !OSM::intersects((*lit).bbox, rhs.bbox);
             });
-            if (dupIt == routes.end()) {
+            if (dupIt == lines.end()) {
                 break;
             }
 
-            for (auto it = dupIt; it != routes.end(); ++it) {
-                mergeRouteInfo(*lit, *it);
+            for (auto it = dupIt; it != lines.end(); ++it) {
+                LineInfo::merge(*lit, *it);
             }
-            routes.erase(dupIt, routes.end());
+            lines.erase(dupIt, lines.end());
         }
     }
-    qDebug() << "routes after bbox merge:" << routes.size();
+    qDebug() << "lines after bbox merge:" << lines.size();
 
     // remove all lines that are too close together, as this blows up the z index too much
-    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.name < rhs.name;
     });
-    for (auto it = routes.begin(); it != routes.end() && it + 1 != routes.end();) {
+    for (auto it = lines.begin(); it != lines.end() && it + 1 != lines.end();) {
         bool removed = false;
-        for (auto it2 = it + 1; it2 != routes.end() && (*it).name == (*it2).name; ++it2) {
+        for (auto it2 = it + 1; it2 != lines.end() && (*it).name == (*it2).name; ++it2) {
             const auto dist = std::max(OSM::latitudeDistance((*it).bbox, (*it2).bbox), OSM::longitudeDifference((*it).bbox, (*it2).bbox));
             if (dist < MinBoundingBoxDistance) {
                 qDebug() << "Removing close lines:" << (*it).relId << (*it2).relId << (*it).name << dist;
-                it2 = routes.erase(it2);
-                it = routes.erase(it);
+                it2 = lines.erase(it2);
+                it = lines.erase(it);
                 removed = true;
                 break;
             }
@@ -258,7 +145,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
             ++it;
         }
     }
-    qDebug() << "routes after bbox distance filtering:" << routes.size();
+    qDebug() << "lines after bbox distance filtering:" << lines.size();
 
     augmentFromWikidata();
 }
@@ -266,11 +153,11 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 void Generator::augmentFromWikidata()
 {
     // sort to maximize cache hits of the batches wikidata queries
-    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.wdId < rhs.wdId;
     });
     std::vector<QString> wdIds;
-    for (const auto &r: routes) {
+    for (const auto &r: lines) {
         if (!r.wdId.isEmpty()) {
             wdIds.push_back(r.wdId);
         }
@@ -319,13 +206,13 @@ static QVariant propertyValue(const QJsonObject &entity, const QLatin1String &pr
 
 static struct {
     const char *entity;
-    LineMode mode;
+    LineInfo::Mode mode;
 } const wd_type_to_mode_map[] = {
-    { "Q1412403", RapidTransit }, // commuter rail
-    { "Q1192191", RapidTransit }, // airport rail link
-    { "Q50331459", RapidTransit }, // S-Bahn line
-    { "Q129172", LongDistance }, // ICE
-    { "Q15145593", Tram }, // tram line
+    { "Q1412403", LineInfo::RapidTransit }, // commuter rail
+    { "Q1192191", LineInfo::RapidTransit }, // airport rail link
+    { "Q50331459", LineInfo::RapidTransit }, // S-Bahn line
+    { "Q129172", LineInfo::LongDistance }, // ICE
+    { "Q15145593", LineInfo::Tram }, // tram line
 };
 
 void Generator::applyWikidataResults(const QJsonObject &entities)
@@ -338,17 +225,17 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
     });
 
     for (auto it = entities.begin(); it != entities.end(); ++it) {
-        const auto rit = std::lower_bound(routes.begin(), routes.end(), it.key(), [](const RouteInfo &lhs, const QString &rhs) {
+        const auto rit = std::lower_bound(lines.begin(), lines.end(), it.key(), [](const LineInfo &lhs, const QString &rhs) {
             return lhs.wdId < rhs;
         });
-        if (rit == routes.end() || (*rit).wdId != it.key()) {
+        if (rit == lines.end() || (*rit).wdId != it.key()) {
             continue; // shouldn't happen...
         }
 
         // check if this is a plausible type
         const auto instancesOf = propertyValues(it.value().toObject(), QLatin1String("P31"));
         bool found = false;
-        LineMode mode = Unknown;
+        LineInfo::Mode mode = LineInfo::Unknown;
         for (const auto &instanceOf : instancesOf) {
             const auto type = instanceOf.toString();
             if (suspicious_types.contains(type)) {
@@ -374,7 +261,7 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
             (*rit).color = color;
         }
         (*rit).logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
-        if ((*rit).mode != Unknown && mode != Unknown && (*rit).mode != mode) {
+        if ((*rit).mode != LineInfo::Unknown && mode != LineInfo::Unknown && (*rit).mode != mode) {
             qWarning() << "OSM/WD mode conflict:" << (*rit).relId << (*rit).wdId << (*rit).name << (*rit).mode << mode;
         } else {
             (*rit).mode = std::max((*rit).mode, mode);
@@ -384,12 +271,12 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
 
 void Generator::verifyImages()
 {
-    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.logoName < rhs.logoName;
     });
     std::vector<QString> imageIds;
-    for (const auto &r: routes) {
-        if (!r.logoName.isEmpty() && isUsefulInformation(r)) {
+    for (const auto &r: lines) {
+        if (!r.logoName.isEmpty() && LineInfo::isUseful(r)) {
             imageIds.push_back(r.logoName);
         }
     }
@@ -406,19 +293,20 @@ void Generator::verifyImages()
         }
 
         // filter lines still missing data
-        routes.erase(std::remove_if(routes.begin(), routes.end(), [](const auto &info) {
-            return isUsefulInformation(info) && info.wdId.isEmpty();
-        }), routes.end());
-        qDebug() << "routes after Wikidata filtering:" << routes.size();
+        lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
+            return LineInfo::isUseful(info) && info.wdId.isEmpty();
+        }), lines.end());
+        qDebug() << "lines after Wikidata filtering:" << lines.size();
+
         generateIndex();
     });
     m_wdMgr->execute(query);
 }
 
-static void clearLogo(std::vector<RouteInfo> &routes, const QString &name)
+static void clearLogo(std::vector<LineInfo> &lines, const QString &name)
 {
     // we cannot rely on sort order once we have done the first call to this method!
-    for (auto &info : routes) {
+    for (auto &info : lines) {
         if (info.logoName == name) {
             info.logoName.clear();
         }
@@ -443,7 +331,7 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
         const auto fileSize = imageinfo.at(0).toObject().value(QLatin1String("size")).toInt();
         if (fileSize > MaxLogoFileSize) {
             qWarning() << "not using logo" << name << "due to file size:" << fileSize;
-            clearLogo(routes, name);
+            clearLogo(lines, name);
             continue;
         }
 
@@ -452,14 +340,14 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
         const auto aspectRatio = width / height;
         if (aspectRatio > MaxLogoAspectRatio || aspectRatio < MinLogoAspectRatio) {
             qWarning() << "not using logo" << name << "due to aspect ratio:" << aspectRatio;
-            clearLogo(routes, name);
+            clearLogo(lines, name);
             continue;
         }
 
         const auto mt = imageinfo.at(0).toObject().value(QLatin1String("mime")).toString();
         if (mt != QLatin1String("image/svg+xml") && mt != QLatin1String("image/png")) {
             qWarning() << "not using logo" << name << "due to mimetype:" << mt;
-            clearLogo(routes, name);
+            clearLogo(lines, name);
             continue;
         }
 
@@ -467,7 +355,7 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
         const auto lic = extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
         if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
             qWarning() << "not using logo" << name << "due to license:" << lic;
-            clearLogo(routes, name);
+            clearLogo(lines, name);
             continue;
         }
     }
@@ -476,14 +364,14 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
 void Generator::generateIndex()
 {
     // find the smallest distance between two bboxes with a name collision
-    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) {
+    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.name < rhs.name;
     });
     auto minDist = std::numeric_limits<uint32_t>::max();
     OSM::Id lmin = 0, rmin = 0;
-    for (auto lit = routes.begin(); lit != routes.end(); ++lit) { // for each name
-        auto rit = std::upper_bound(lit, routes.end(), (*lit).name, [](const auto &lhs, const auto &rhs) { return lhs < rhs.name; });
-        if (lit + 1 == rit || rit == routes.end()) { // only a single route with that name
+    for (auto lit = lines.begin(); lit != lines.end(); ++lit) { // for each name
+        auto rit = std::upper_bound(lit, lines.end(), (*lit).name, [](const auto &lhs, const auto &rhs) { return lhs < rhs.name; });
+        if (lit + 1 == rit || rit == lines.end()) { // only a single line with that name
             continue;
         }
         --rit;
@@ -505,29 +393,29 @@ void Generator::generateIndex()
     const uint32_t zInc = 1 << zShift;
     const uint32_t zMask = ~(zInc - 1);
 
-    // order routes by OSM id, to increase output stability
-    std::sort(routes.begin(), routes.end(), [](const auto &lhs, const auto &rhs) { return lhs.relId < rhs.relId; });
+    // order lines by OSM id, to increase output stability
+    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) { return lhs.relId < rhs.relId; });
     std::map<uint64_t, std::vector<std::size_t>> zIndex;
 
     // tile bboxes at the z-level derived from the above minimum distance
-    for (auto routeIt = routes.begin(); routeIt != routes.end(); ++routeIt) {
-        const uint32_t xMin = (*routeIt).bbox.min.latitude & zMask;
-        const uint32_t xMax = ((*routeIt).bbox.max.latitude & zMask) + zInc;
-        const uint32_t yMin = (*routeIt).bbox.min.longitude & zMask;
-        const uint32_t yMax = ((*routeIt).bbox.max.longitude & zMask) + zInc;
+    for (auto lineIt = lines.begin(); lineIt != lines.end(); ++lineIt) {
+        const uint32_t xMin = (*lineIt).bbox.min.latitude & zMask;
+        const uint32_t xMax = ((*lineIt).bbox.max.latitude & zMask) + zInc;
+        const uint32_t yMin = (*lineIt).bbox.min.longitude & zMask;
+        const uint32_t yMax = ((*lineIt).bbox.max.longitude & zMask) + zInc;
         for (uint32_t x = xMin; x < xMax; x += zInc) {
             for (uint32_t y = yMin; y < yMax; y += zInc) {
                 OSM::Coordinate tile(x, y);
-                zIndex[tile.z() >> (zShift * 2)].push_back(std::distance(routes.begin(), routeIt));
+                zIndex[tile.z() >> (zShift * 2)].push_back(std::distance(lines.begin(), lineIt));
             }
         }
     }
     qDebug() << "hash buckets:" << zIndex.size();
 
-    // sort route index vectors by name
+    // sort line index vectors by name
     for (auto it = zIndex.begin(); it != zIndex.end(); ++it) {
         std::sort((*it).second.begin(), (*it).second.end(), [this](const auto lhs, const auto rhs) {
-            return routes[lhs].name < routes[rhs].name;
+            return lines[lhs].name < lines[rhs].name;
         });
     }
 
@@ -551,37 +439,37 @@ namespace KPublicTransport {
 
     // create and write string table
     StringTable strTab;
-    for (const auto &route : routes) {
-        strTab.addString(route.name);
-        strTab.addString(route.logoName);
+    for (const auto &line : lines) {
+        strTab.addString(line.name);
+        strTab.addString(line.logoName);
     }
     strTab.writeCode("line_data_stringtab", out);
 
-    // write route table
+    // write line table
     out->write("static const LineMetaDataContent line_data[] = {\n");
-    for (const auto &route : routes) {
+    for (const auto &line : lines) {
         out->write("    { ");
-        out->write(QByteArray::number((int)strTab.stringOffset(route.name)));
+        out->write(QByteArray::number((int)strTab.stringOffset(line.name)));
         out->write(", ");
-        out->write(QByteArray::number((int)strTab.stringOffset(route.logoName)));
+        out->write(QByteArray::number((int)strTab.stringOffset(line.logoName)));
         out->write(", 0x");
-        out->write(QByteArray::number(route.color.rgb(), 16));
+        out->write(QByteArray::number(line.color.rgb(), 16));
         out->write(" }, // ");
-        out->write(route.name.toUtf8()),
+        out->write(line.name.toUtf8()),
         out->write(" OSM: ");
-        out->write(QByteArray::number((long long)route.relId));
-        if (!route.wdId.isEmpty()) {
+        out->write(QByteArray::number((long long)line.relId));
+        if (!line.wdId.isEmpty()) {
             out->write(" WD: ");
-            out->write(route.wdId.toUtf8());
+            out->write(line.wdId.toUtf8());
         }
         out->write(" ");
-        out->write(QByteArray::number(route.bbox.min.latF(), 'g', 4));
+        out->write(QByteArray::number(line.bbox.min.latF(), 'g', 4));
         out->write(", ");
-        out->write(QByteArray::number(route.bbox.min.lonF(), 'g', 4));
+        out->write(QByteArray::number(line.bbox.min.lonF(), 'g', 4));
         out->write(" x ");
-        out->write(QByteArray::number(route.bbox.max.latF(), 'g', 4));
+        out->write(QByteArray::number(line.bbox.max.latF(), 'g', 4));
         out->write(", ");
-        out->write(QByteArray::number(route.bbox.max.lonF(), 'g', 4));
+        out->write(QByteArray::number(line.bbox.max.lonF(), 'g', 4));
         out->write("\n");
     }
     out->write("};\n\n");
