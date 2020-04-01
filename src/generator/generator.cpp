@@ -294,7 +294,7 @@ void Generator::verifyImages()
 
         // filter lines still missing data
         lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
-            return LineInfo::isUseful(info) && info.wdId.isEmpty();
+            return !LineInfo::isUseful(info);
         }), lines.end());
         qDebug() << "lines after Wikidata filtering:" << lines.size();
 
