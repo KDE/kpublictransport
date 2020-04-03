@@ -112,6 +112,10 @@ private Q_SLOTS:
         QTest::newRow("existing link") << s("Check-in here: <a href=\"http://www.kde.org\">http://www.kde.org</a>") << s("Check-in here: <a href=\"http://www.kde.org\">http://www.kde.org</a>");
         QTest::newRow("missing scheme") << s("Check-in here: www.kde.org/donate") << s("Check-in here: <a href=\"https://www.kde.org/donate\">www.kde.org/donate</a>");
         QTest::newRow("too much html") << s("<p><span style=\"color: rgb(37, 48, 59); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px;\"><b>Attention</b></span></p><p><span style=\"color: rgb(37, 48, 59); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px;\">Les lignes de&nbsp;BUS DIRECT ne sont pas accessibles avec un pass Navigo. Un ticket peut être acheté dans toutes les stations Métro-RER, y compris à l'aéroport.</span></p>") << s("<p><b>Attention</b></p><p>Les lignes de&nbsp;BUS DIRECT ne sont pas accessibles avec un pass Navigo. Un ticket peut être acheté dans toutes les stations Métro-RER, y compris à l'aéroport.</p>");
+        QTest::newRow("empty p 1") << s("foo <p> </p>bar") << s("foo bar");
+        QTest::newRow("empty p 2") << s("foo <p></p>bar") << s("foo bar");
+        QTest::newRow("linebreak 1") << s("foo<br/></p>") << s("foo</p>");
+        QTest::newRow("linebreak 2") << s("foo <p><br></p>bar") << s("foo bar");
     }
 
     void testRichText()

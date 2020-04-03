@@ -44,6 +44,14 @@ QString NotesUtil::normalizeNote(const QString &note)
     static QRegularExpression spanExp(QStringLiteral("</?span[^>]*>"));
     n.remove(spanExp);
 
+    // clean up extra line breaks and empty paragraphs
+    static QRegularExpression leadinBrExp(QStringLiteral("<p> *<br[^>]*>"));
+    static QRegularExpression trailingBrExp(QStringLiteral("<br[^>]*> *</p>"));
+    n.replace(leadinBrExp, QStringLiteral("<p>"));
+    n.replace(trailingBrExp, QStringLiteral("</p>"));
+    static QRegularExpression emptyParaExp(QStringLiteral("<p> *</p>"));
+    n.remove(emptyParaExp);
+
     return n.trimmed();
 }
 
