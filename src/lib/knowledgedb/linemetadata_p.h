@@ -22,6 +22,9 @@
 
 namespace KPublicTransport {
 
+#pragma pack(push)
+#pragma pack(1)
+
 /** Static information about a public transport line as stored in .rodata. */
 struct LineMetaDataContent
 {
@@ -30,6 +33,18 @@ struct LineMetaDataContent
     uint32_t color; // TODO could be 24 bit
 };
 
+/** Quad tree depth map entries. */
+struct LineMetaDataQuadTreeDepthIndex
+{
+    uint8_t depth;
+    uint16_t offset;
+};
+
+inline bool operator<(LineMetaDataQuadTreeDepthIndex lhs, uint8_t rhs)
+{
+    return lhs.depth > rhs;
+}
+
 /** z-index to line meta data index mapping. */
 struct LineMetaDataZIndex
 {
@@ -37,13 +52,16 @@ struct LineMetaDataZIndex
     uint16_t lineIdx;
 };
 
+static_assert(sizeof(LineMetaDataZIndex) == 6, "size of quad tree entry changed!");
+static_assert(sizeof(LineMetaDataZIndex) % alignof(LineMetaDataZIndex) == 0, "alignment of quad tree entry introduces padding");
+
 inline bool operator<(LineMetaDataZIndex lhs, uint32_t rhs)
 {
     return lhs.z < rhs;
 }
 
+#pragma pack(pop)
+
 }
 
-
 #endif // KPUBLICTRANSPORT_LINEMETADATA_P_H
-

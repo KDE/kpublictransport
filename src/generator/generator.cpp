@@ -21,6 +21,8 @@
 #include <osm/overpassquery.h>
 #include <osm/overpassquerymanager.h>
 #include <osm/xmlparser.h>
+#include <osm/ztile.h>
+
 #include <wikidataquery.h>
 #include <wikidataquerymanager.h>
 
@@ -47,12 +49,16 @@ public:
     void applyWikidataResults(const QJsonObject &entities);
     void verifyImages();
     void verifyImageMetaData(const QJsonObject &images);
-    void generateIndex();
-    void generateCode(std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift);
+
+    void generateQuadTree();
+    bool resolveOneBottomUpConflict();
+    void writeCode();
 
     QIODevice *out = nullptr;
     std::vector<LineInfo> lines;
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
+
+    std::map<OSM::ZTile, std::vector<size_t>> zQuadTree;
 };
 
 void Generator::processOSMData(OSM::DataSet &&dataSet)
@@ -298,7 +304,7 @@ void Generator::verifyImages()
         }), lines.end());
         qDebug() << "lines after Wikidata filtering:" << lines.size();
 
-        generateIndex();
+        generateQuadTree();
     });
     m_wdMgr->execute(query);
 }
@@ -361,68 +367,106 @@ void Generator::verifyImageMetaData(const QJsonObject &images)
     }
 }
 
-void Generator::generateIndex()
+void Generator::generateQuadTree()
 {
-    // find the smallest distance between two bboxes with a name collision
-    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.name < rhs.name;
-    });
-    auto minDist = std::numeric_limits<uint32_t>::max();
-    OSM::Id lmin = 0, rmin = 0;
-    for (auto lit = lines.begin(); lit != lines.end(); ++lit) { // for each name
-        auto rit = std::upper_bound(lit, lines.end(), (*lit).name, [](const auto &lhs, const auto &rhs) { return lhs < rhs.name; });
-        if (lit + 1 == rit || rit == lines.end()) { // only a single line with that name
-            continue;
-        }
-        --rit;
-
-        for (; lit != rit; ++lit) {  // for each pair with equal name
-            for (auto it = lit + 1; it != rit; ++it) {
-                const auto dist = std::max(OSM::latitudeDistance((*lit).bbox, (*it).bbox), OSM::longitudeDifference((*lit).bbox, (*it).bbox));
-                if (dist < minDist) {
-                    minDist = dist;
-                    lmin = (*lit).relId;
-                    rmin = (*it).relId;
-                }
-            }
-        }
-    }
-    qDebug() << "minimum bbox distance is" << minDist << lmin << rmin;
-    qDebug() << "z hash size is" << __builtin_clz(minDist) + 1;
-    const uint32_t zShift = 32 - (__builtin_clz(minDist) + 1);
-    const uint32_t zInc = 1 << zShift;
-    const uint32_t zMask = ~(zInc - 1);
-
     // order lines by OSM id, to increase output stability
     std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) { return lhs.relId < rhs.relId; });
-    std::map<uint64_t, std::vector<std::size_t>> zIndex;
 
-    // tile bboxes at the z-level derived from the above minimum distance
+    // initialize quad tree by smallest single tile containing the entire line bbox
     for (auto lineIt = lines.begin(); lineIt != lines.end(); ++lineIt) {
-        const uint32_t xMin = (*lineIt).bbox.min.latitude & zMask;
-        const uint32_t xMax = ((*lineIt).bbox.max.latitude & zMask) + zInc;
-        const uint32_t yMin = (*lineIt).bbox.min.longitude & zMask;
-        const uint32_t yMax = ((*lineIt).bbox.max.longitude & zMask) + zInc;
-        for (uint32_t x = xMin; x < xMax; x += zInc) {
-            for (uint32_t y = yMin; y < yMax; y += zInc) {
-                OSM::Coordinate tile(x, y);
-                zIndex[tile.z() >> (zShift * 2)].push_back(std::distance(lines.begin(), lineIt));
+        zQuadTree[OSM::ztileFromBoundingBox((*lineIt).bbox)].push_back(std::distance(lines.begin(), lineIt));
+    }
+    qDebug() << "initial tiles:" << zQuadTree.size();
+
+    // collision resolution
+    // this is done in two steps: bottom-up and top-down
+    // bottom-up means that for each tile/line we check if there is a parent tile with a conflicting line, and if so, we
+    // propagate that line down to the same level
+    // this is done in a rather crude brute-force way, but it gets the job done
+    while(resolveOneBottomUpConflict()) {}
+    qDebug() << "tiles after bottom-up conflict resolution:" << zQuadTree.size();
+
+    // top-down means we look at conflicts inside a given tile, and propagate the conflicting lines down
+    for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end(); ++tileIt) {
+        // sort current bucket by line name
+        std::sort((*tileIt).second.begin(), (*tileIt).second.end(), [this](const auto lhs, const auto rhs) {
+            return lines[lhs].name < lines[rhs].name;
+        });
+
+        // check for name collisions
+        for (auto lit = (*tileIt).second.begin(); lit != (*tileIt).second.end();) {
+            auto rit = std::upper_bound(lit, (*tileIt).second.end(), lines[*lit].name, [this](const auto &lhs, const auto &rhs) {
+                return lhs < lines[rhs].name;
+            });
+            if (lit + 1 == rit || rit == (*tileIt).second.end()) { // only a single line with that name
+                ++lit;
+                continue;
+            }
+
+            // insert subtiles, if they actually contain the line bbox
+            qDebug() << "subdividing" << lines[*lit].name << lines[*lit].bbox << lines[*lit].relId << std::distance(lit, rit) << (*lit) << (*rit) << (*tileIt).first.depth << (*tileIt).first.z;
+            for (auto it = lit; it != rit; ++it) {
+                for (auto subtile : (*tileIt).first.quadSplit()) {
+                    if (subtile.intersects(lines[*it].bbox)) {
+                        zQuadTree[subtile].push_back(*it);
+                    }
+                }
+            }
+
+            // remove current entries
+            lit = (*tileIt).second.erase(lit, rit);
+        }
+    }
+    qDebug() << "tiles after top-down conflict resolution:" << zQuadTree.size();
+
+    // remove empty buckets
+    for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end();) {
+        if ((*tileIt).second.empty()) {
+            tileIt = zQuadTree.erase(tileIt);
+        } else {
+            ++tileIt;
+        }
+    }
+    qDebug() << "tiles remaining after cleanup:" << zQuadTree.size();
+
+    writeCode();
+}
+
+bool Generator::resolveOneBottomUpConflict()
+{
+    for (auto tileIt = zQuadTree.rbegin(); tileIt != zQuadTree.rend(); ++tileIt) {
+        for (auto lineIt = (*tileIt).second.begin(); lineIt != (*tileIt).second.end(); ++lineIt) {
+            auto parentTile = (*tileIt).first.parent();
+            while (parentTile.depth < 32) {
+                const auto parentTileIt = zQuadTree.find(parentTile);
+                if (parentTileIt != zQuadTree.end()) {
+                    auto conflictIt = std::find_if((*parentTileIt).second.begin(), (*parentTileIt).second.end(), [this, lineIt](const auto lhs) {
+                        return lines[lhs].name == lines[*lineIt].name;
+                    });
+                    if (conflictIt != (*parentTileIt).second.end()) {
+                        qDebug() << "propagating down:" << lines[*conflictIt].name << parentTile.z << parentTile.depth;
+                        auto splitTile = parentTile;
+                        while (splitTile.depth > (*tileIt).first.depth) {
+                            for (auto subtile : splitTile.quadSplit()) {
+                                if (subtile.intersects((*tileIt).first)) {
+                                    splitTile = subtile;
+                                } else if (subtile.intersects(lines[*lineIt].bbox)) {
+                                    zQuadTree[subtile].push_back(*lineIt);
+                                }
+                            }
+                        }
+                        (*parentTileIt).second.erase(conflictIt);
+                        return true;
+                    }
+                }
+                parentTile = parentTile.parent();
             }
         }
     }
-    qDebug() << "hash buckets:" << zIndex.size();
-
-    // sort line index vectors by name
-    for (auto it = zIndex.begin(); it != zIndex.end(); ++it) {
-        std::sort((*it).second.begin(), (*it).second.end(), [this](const auto lhs, const auto rhs) {
-            return lines[lhs].name < lines[rhs].name;
-        });
-    }
-
-    generateCode(std::move(zIndex), zShift);
+    return false;
 }
 
-void Generator::generateCode(std::map<uint64_t, std::vector<std::size_t>> &&zIndex, uint32_t zShift)
+void Generator::writeCode()
 {
     // write header
     out->write(R"(/*
@@ -446,7 +490,7 @@ namespace KPublicTransport {
     strTab.writeCode("line_data_stringtab", out);
 
     // write line table
-    out->write("static const LineMetaDataContent line_data[] = {\n");
+    out->write("static const constexpr LineMetaDataContent line_data[] = {\n");
     for (const auto &line : lines) {
         out->write("    { ");
         out->write(QByteArray::number((int)strTab.stringOffset(line.name)));
@@ -476,10 +520,10 @@ namespace KPublicTransport {
 
     // write bucket table
     IndexedDataTable<std::vector<std::size_t>> bucketTable;
-    for (const auto &zi : zIndex) {
+    for (const auto &zi : zQuadTree) {
         bucketTable.addEntry(zi.second);
     }
-    bucketTable.writeCode("int32_t", "line_data_bucketTable", out, [](const std::vector<std::size_t> &bucket, QIODevice *out) {
+    bucketTable.writeCode("int16_t", "line_data_bucketTable", out, [](const std::vector<std::size_t> &bucket, QIODevice *out) {
         for (const auto i : bucket) {
             out->write(QByteArray::number((int)i));
             out->write(", ");
@@ -487,21 +531,39 @@ namespace KPublicTransport {
         out->write("-1,");
     });
 
-    // write z index
-    out->write("static constexpr const uint32_t line_data_zShift = ");
-    out->write(QByteArray::number(2* zShift));
-    out->write(";\n\n");
-    out->write("static const LineMetaDataZIndex line_data_zindex[] = {\n");
-    for (const auto &zi : zIndex) {
+    // write quad tree depth offsets
+    out->write("static const constexpr LineMetaDataQuadTreeDepthIndex line_data_depthOffsets[] = {\n");
+    int offset = -1;
+    uint8_t lastDepth = 0;
+    for (const auto &zi : zQuadTree) {
+        ++offset;
+        if (lastDepth == zi.first.depth) {
+            continue;
+        }
+        lastDepth = zi.first.depth;
         out->write("    { ");
-        out->write(QByteArray::number((qulonglong)zi.first));
+        out->write(QByteArray::number(lastDepth));
+        out->write(", ");
+        out->write(QByteArray::number((qulonglong)offset));
+        out->write(" },\n");
+    }
+    out->write("};\n\n");
+
+    // write quad tree
+    out->write("static const constexpr LineMetaDataZIndex line_data_zquadtree[] = {\n");
+    for (const auto &zi : zQuadTree) {
+        out->write("    { ");
+        out->write(QByteArray::number((qulonglong)zi.first.z));
         out->write(", ");
         out->write(QByteArray::number((qulonglong)bucketTable.entryOffset(zi.second)));
         out->write(" }, // ");
-        OSM::Coordinate coord(zi.first << (zShift * 2));
-        out->write(QByteArray::number(coord.latF(), 'g', 4));
+        out->write(QByteArray::number(zi.first.boundingBox().min.latF(), 'g', 4));
+        out->write(", ");
+        out->write(QByteArray::number(zi.first.boundingBox().min.lonF(), 'g', 4));
         out->write(" x ");
-        out->write(QByteArray::number(coord.lonF(), 'g', 4));
+        out->write(QByteArray::number(zi.first.boundingBox().max.latF(), 'g', 4));
+        out->write(", ");
+        out->write(QByteArray::number(zi.first.boundingBox().max.lonF(), 'g', 4));
         out->write("\n");
     }
     out->write("};\n}\n");

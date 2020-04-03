@@ -3,6 +3,7 @@ add_library(KOSM STATIC
     overpassquery.cpp
     overpassquerymanager.cpp
     xmlparser.cpp
+    ztile.cpp
 )
 
 target_include_directories(KOSM PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")

@@ -90,6 +90,11 @@ public:
 /** Bounding box, ie. a pair of coordinates. */
 class BoundingBox {
 public:
+    constexpr BoundingBox() = default;
+    constexpr inline BoundingBox(Coordinate c1, Coordinate c2)
+        : min(c1)
+        , max(c2)
+    {}
     constexpr inline bool isValid() const
     {
         return min.isValid() && max.isValid();

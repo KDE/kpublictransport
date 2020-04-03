@@ -79,12 +79,12 @@ set_target_properties(KPublicTransport PROPERTIES
     EXPORT_NAME KPublicTransport
 )
 target_include_directories(KPublicTransport PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
-target_include_directories(KPublicTransport PRIVATE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>") # of osm/
 target_link_libraries(KPublicTransport
     PUBLIC
         Qt5::Gui
     PRIVATE
         KGraphQL
+        KOSM
         Qt5::Network
         ZLIB::ZLIB
 )
