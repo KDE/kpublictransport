@@ -388,24 +388,20 @@ void Generator::generateQuadTree()
 
     // top-down means we look at conflicts inside a given tile, and propagate the conflicting lines down
     for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end(); ++tileIt) {
-        // sort current bucket by line name
-        std::sort((*tileIt).second.begin(), (*tileIt).second.end(), [this](const auto lhs, const auto rhs) {
-            return lines[lhs].name < lines[rhs].name;
-        });
-
         // check for name collisions
-        for (auto lit = (*tileIt).second.begin(); lit != (*tileIt).second.end();) {
-            auto rit = std::upper_bound(lit, (*tileIt).second.end(), lines[*lit].name, [this](const auto &lhs, const auto &rhs) {
-                return lhs < lines[rhs].name;
+        for (auto lit = (*tileIt).second.end(); lit != (*tileIt).second.begin();) {
+            const auto lend = lit;
+            lit = std::partition((*tileIt).second.begin(), lend, [this, tileIt](const auto &lineIdx) {
+                return lines[*((*tileIt).second.begin())].name != lines[lineIdx].name;
             });
-            if (lit + 1 == rit || rit == (*tileIt).second.end()) { // only a single line with that name
-                ++lit;
+
+            if (lit + 1 == lend) { // only a single line with that name
                 continue;
             }
 
             // insert subtiles, if they actually contain the line bbox
-            qDebug() << "subdividing" << lines[*lit].name << lines[*lit].bbox << lines[*lit].relId << std::distance(lit, rit) << (*lit) << (*rit) << (*tileIt).first.depth << (*tileIt).first.z;
-            for (auto it = lit; it != rit; ++it) {
+            qDebug() << "subdividing" << lines[*lit].name << lines[*lit].bbox << lines[*lit].relId << std::distance(lit, lend) << (*lit) << (*tileIt).first.depth << (*tileIt).first.z;
+            for (auto it = lit; it != lend; ++it) {
                 for (auto subtile : (*tileIt).first.quadSplit()) {
                     if (subtile.intersects(lines[*it].bbox)) {
                         zQuadTree[subtile].push_back(*it);
@@ -414,16 +410,20 @@ void Generator::generateQuadTree()
             }
 
             // remove current entries
-            lit = (*tileIt).second.erase(lit, rit);
+            lit = (*tileIt).second.erase(lit, lend);
         }
     }
     qDebug() << "tiles after top-down conflict resolution:" << zQuadTree.size();
 
-    // remove empty buckets
+    // remove empty buckets, and sort the non-empty ones for output stability
     for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end();) {
         if ((*tileIt).second.empty()) {
             tileIt = zQuadTree.erase(tileIt);
         } else {
+            std::sort((*tileIt).second.begin(), (*tileIt).second.end(), [this](const auto lhs, const auto rhs) {
+                return lines[lhs].name < lines[rhs].name;
+            });
+
             ++tileIt;
         }
     }
