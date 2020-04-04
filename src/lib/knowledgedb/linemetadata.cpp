@@ -56,7 +56,7 @@ QString LineMetaData::name() const
 
 QColor LineMetaData::color() const
 {
-    return d ? QColor(d->color) : QColor();
+    return d ? QColor(d->color()) : QColor();
 }
 
 QUrl LineMetaData::logoUrl() const

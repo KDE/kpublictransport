@@ -25,12 +25,19 @@ namespace KPublicTransport {
 #pragma pack(push)
 #pragma pack(1)
 
-/** Static information about a public transport line as stored in .rodata. */
+/** Static informaytion about a public transport line as stored in .rodata. */
 struct LineMetaDataContent
 {
     uint16_t nameIdx;
     uint16_t logoIdx;
-    uint32_t color; // TODO could be 24 bit
+    uint8_t colorRed;
+    uint8_t colorGreen;
+    uint8_t colorBlue;
+
+    constexpr inline uint32_t color() const
+    {
+        return 0xff000000 | colorRed << 16 | colorGreen << 8 | colorBlue;
+    }
 };
 
 /** Quad tree depth map entries. */

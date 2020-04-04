@@ -476,7 +476,11 @@ namespace KPublicTransport {
         out->write(", ");
         out->write(QByteArray::number((int)strTab.stringOffset(line.logoName)));
         out->write(", 0x");
-        out->write(QByteArray::number(line.color.rgb(), 16));
+        out->write(QByteArray::number(line.color.red(), 16));
+        out->write(", 0x");
+        out->write(QByteArray::number(line.color.green(), 16));
+        out->write(", 0x");
+        out->write(QByteArray::number(line.color.blue(), 16));
         out->write(" }, // ");
         out->write(line.name.toUtf8()),
         out->write(" OSM: ");
