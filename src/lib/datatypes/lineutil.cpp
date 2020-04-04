@@ -16,6 +16,7 @@
 */
 
 #include "lineutil_p.h"
+#include "linecompare_p.h"
 #include "assetrepository_p.h"
 
 #include <knowledgedb/linemetadata.h>
@@ -30,42 +31,9 @@
 
 using namespace KPublicTransport;
 
-template <typename Iter>
-static bool isSameLineName(const Iter &lBegin, const Iter &lEnd, const Iter &rBegin, const Iter &rEnd)
-{
-    auto lIt = lBegin;
-    auto rIt = rBegin;
-    while (lIt != lEnd && rIt != rEnd) {
-        // ignore spaces etc.
-        if (!(*lIt).isLetter() && !(*lIt).isDigit()) {
-            ++lIt;
-            continue;
-        }
-        if (!(*rIt).isLetter() && !(*rIt).isDigit()) {
-            ++rIt;
-            continue;
-        }
-
-        if ((*lIt).toCaseFolded() != (*rIt).toCaseFolded()) {
-            return false;
-        }
-
-        ++lIt;
-        ++rIt;
-    }
-
-    if (lIt == lEnd && rIt == rEnd) { // both inputs fully consumed, and no mismatch found
-        return true;
-    }
-
-    // one input is prefix of the other, that is ok if there's a separator
-    return (lIt != lEnd && (*lIt).isSpace()) || (rIt != rEnd && (*rIt).isSpace());
-}
-
 bool LineUtil::isSameLineName(const QString &lhs, const QString &rhs)
 {
-    return isSameLineName(lhs.begin(), lhs.end(), rhs.begin(), rhs.end())
-        || isSameLineName(lhs.rbegin(), lhs.rend(), rhs.rbegin(), rhs.rend());
+    return Internal::isSameLineName(lhs, rhs);
 }
 
 void LineUtil::applyMetaData(Line &line, const Location &loc, bool download)

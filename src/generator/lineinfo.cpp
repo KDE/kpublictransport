@@ -79,12 +79,6 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
     }
 
     info.name = OSM::tagValue(rel, QLatin1String("ref"));
-    // ### TEMPORARY normalize name, so a simple string comparison as currently
-    // used in the generator does produce correct results.
-    // this should eventually be replaced by using the same name comparison logic
-    // as used in the library
-    info.name = info.name.remove(QLatin1Char(' '));
-
     const auto colStr = OSM::tagValue(rel, QLatin1String("colour"));
     if (!colStr.isEmpty()) {
         info.color = QColor(colStr);

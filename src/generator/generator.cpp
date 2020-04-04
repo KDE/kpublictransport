@@ -18,6 +18,8 @@
 #include "indexeddatatable.h"
 #include "lineinfo.h"
 
+#include "../lib/datatypes/linecompare_p.h"
+
 #include <osm/overpassquery.h>
 #include <osm/overpassquerymanager.h>
 #include <osm/xmlparser.h>
@@ -369,7 +371,7 @@ void Generator::generateQuadTree()
         for (auto lit = (*tileIt).second.end(); lit != (*tileIt).second.begin();) {
             const auto lend = lit;
             lit = std::partition((*tileIt).second.begin(), lend, [this, tileIt](const auto &lineIdx) {
-                return lines[*((*tileIt).second.begin())].name != lines[lineIdx].name;
+                return !KPublicTransport::Internal::isSameLineName(lines[*((*tileIt).second.begin())].name, lines[lineIdx].name);
             });
 
             if (lit + 1 == lend) { // only a single line with that name
@@ -418,7 +420,7 @@ bool Generator::resolveOneBottomUpConflict()
                 const auto parentTileIt = zQuadTree.find(parentTile);
                 if (parentTileIt != zQuadTree.end()) {
                     auto conflictIt = std::find_if((*parentTileIt).second.begin(), (*parentTileIt).second.end(), [this, lineIt](const auto lhs) {
-                        return lines[lhs].name == lines[*lineIt].name;
+                        return KPublicTransport::Internal::isSameLineName(lines[lhs].name, lines[*lineIt].name);
                     });
                     if (conflictIt != (*parentTileIt).second.end()) {
                         qDebug() << "propagating down:" << lines[*conflictIt].name << parentTile.z << parentTile.depth;
