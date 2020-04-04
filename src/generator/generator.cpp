@@ -36,7 +36,6 @@
 
 enum {
     MaxLogoFileSize = 10000, // bytes
-    MinBoundingBoxDistance = 1'048'576, // minimum bounding box distance, in 1/1e7-th degree, lines with smaller distances will be discarded, set to yield a 26 bit hash/40 bit shift
 };
 
 static constexpr const auto MaxLogoAspectRatio = 2.75;
@@ -130,28 +129,6 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
         }
     }
     qDebug() << "lines after bbox merge:" << lines.size();
-
-    // remove all lines that are too close together, as this blows up the z index too much
-    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.name < rhs.name;
-    });
-    for (auto it = lines.begin(); it != lines.end() && it + 1 != lines.end();) {
-        bool removed = false;
-        for (auto it2 = it + 1; it2 != lines.end() && (*it).name == (*it2).name; ++it2) {
-            const auto dist = std::max(OSM::latitudeDistance((*it).bbox, (*it2).bbox), OSM::longitudeDifference((*it).bbox, (*it2).bbox));
-            if (dist < MinBoundingBoxDistance) {
-                qDebug() << "Removing close lines:" << (*it).relId << (*it2).relId << (*it).name << dist;
-                it2 = lines.erase(it2);
-                it = lines.erase(it);
-                removed = true;
-                break;
-            }
-        }
-        if (!removed) {
-            ++it;
-        }
-    }
-    qDebug() << "lines after bbox distance filtering:" << lines.size();
 
     augmentFromWikidata();
 }
