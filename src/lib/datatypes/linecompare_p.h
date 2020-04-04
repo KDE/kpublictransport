@@ -29,11 +29,11 @@ inline bool isSameLineName(const Iter &lBegin, const Iter &lEnd, const Iter &rBe
     auto rIt = rBegin;
     while (lIt != lEnd && rIt != rEnd) {
         // ignore spaces etc.
-        if (!(*lIt).isLetter() && !(*lIt).isDigit()) {
+        if (!(*lIt).isLetterOrNumber()) {
             ++lIt;
             continue;
         }
-        if (!(*rIt).isLetter() && !(*rIt).isDigit()) {
+        if (!(*rIt).isLetterOrNumber()) {
             ++rIt;
             continue;
         }
@@ -56,7 +56,8 @@ inline bool isSameLineName(const Iter &lBegin, const Iter &lEnd, const Iter &rBe
 
 inline bool isSameLineName(const QString &lhs, const QString &rhs)
 {
-    return isSameLineName(lhs.begin(), lhs.end(), rhs.begin(), rhs.end())
+    return lhs.compare(rhs, Qt::CaseInsensitive) == 0
+        || isSameLineName(lhs.begin(), lhs.end(), rhs.begin(), rhs.end())
         || isSameLineName(lhs.rbegin(), lhs.rend(), rhs.rbegin(), rhs.rend());
 }
 

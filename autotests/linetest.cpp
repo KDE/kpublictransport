@@ -47,6 +47,10 @@ private Q_SLOTS:
 
         QTest::newRow("prefix") << s("R") << s("123") << s("R") << QString();
         QTest::newRow("suffix") << QString() << s("Bus X7") << QString() << s("X7");
+
+        QTest::newRow("unicode") << QString() << s("〇") << QString() << s("〇");
+
+        QTest::newRow("special char") << QString() << s("<6>") << QString() << s("<6>");
     }
 
     void testLineCompare()

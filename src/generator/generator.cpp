@@ -367,12 +367,19 @@ void Generator::generateQuadTree()
 
     // top-down means we look at conflicts inside a given tile, and propagate the conflicting lines down
     for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end(); ++tileIt) {
+        if ((*tileIt).second.size() <= 1) {
+            continue;
+        }
         // check for name collisions
         for (auto lit = (*tileIt).second.end(); lit != (*tileIt).second.begin();) {
             const auto lend = lit;
-            lit = std::partition((*tileIt).second.begin(), lend, [this, tileIt](const auto &lineIdx) {
-                return !KPublicTransport::Internal::isSameLineName(lines[*((*tileIt).second.begin())].name, lines[lineIdx].name);
+            const auto firstIdx = (*tileIt).second.front();
+            lit = std::partition((*tileIt).second.begin(), lend, [this, firstIdx](const auto &lineIdx) {
+                return !KPublicTransport::Internal::isSameLineName(lines[firstIdx].name, lines[lineIdx].name);
             });
+
+            // must not happen if isSameLineName(x, x) == true holds
+            assert(lit != lend);
 
             if (lit + 1 == lend) { // only a single line with that name
                 continue;
