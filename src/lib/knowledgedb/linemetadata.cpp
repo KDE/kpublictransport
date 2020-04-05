@@ -101,7 +101,7 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
 
         // iterate over the bucket of this tile and look for the line
         // we have to handle two cases: single lines and buckets of lines
-        if ((*treeIt).lineIdx > line_data_count) {
+        if ((*treeIt).lineIdx >= line_data_count) {
             auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
             while ((*bucketIt) != -1) {
                 const auto d = line_data + (*bucketIt);
