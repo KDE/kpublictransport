@@ -506,12 +506,20 @@ namespace KPublicTransport {
         out->write(QByteArray::number(line.bbox.max.lonF(), 'g', 4));
         out->write("\n");
     }
-    out->write("};\n\n");
+    out->write(R"(};
+
+static constexpr const auto line_data_count = sizeof(line_data) / sizeof(LineMetaDataContent);
+
+static inline constexpr uint16_t Bucket(uint16_t index) { return line_data_count + index; }
+
+)");
 
     // write bucket table
     IndexedDataTable<std::vector<std::size_t>> bucketTable;
     for (const auto &zi : zQuadTree) {
-        bucketTable.addEntry(zi.second);
+        if (zi.second.size() > 1) {
+            bucketTable.addEntry(zi.second);
+        }
     }
     bucketTable.writeCode("int16_t", "line_data_bucketTable", out, [](const std::vector<std::size_t> &bucket, QIODevice *out) {
         for (const auto i : bucket) {
@@ -545,7 +553,13 @@ namespace KPublicTransport {
         out->write("    { ");
         out->write(QByteArray::number((qulonglong)zi.first.z));
         out->write(", ");
-        out->write(QByteArray::number((qulonglong)bucketTable.entryOffset(zi.second)));
+        if (zi.second.size() == 1) {
+            out->write(QByteArray::number((qulonglong)zi.second[0]));
+        } else {
+            out->write("Bucket(");
+            out->write(QByteArray::number((qulonglong)bucketTable.entryOffset(zi.second)));
+            out->write(")");
+        }
         out->write(" }, // ");
         out->write(QByteArray::number(zi.first.boundingBox().min.latF(), 'g', 4));
         out->write(", ");

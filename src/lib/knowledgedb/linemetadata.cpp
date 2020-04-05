@@ -68,7 +68,6 @@ QUrl LineMetaData::logoUrl() const
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
-
 LineMetaData LineMetaData::find(double latitude, double longitude, const QString &name)
 {
     OSM::Coordinate coord(latitude, longitude);
@@ -101,13 +100,21 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
         }
 
         // iterate over the bucket of this tile and look for the line
-        auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx;
-        while ((*bucketIt) != -1) {
-            const auto d = line_data + (*bucketIt);
+        // we have to handle two cases: single lines and buckets of lines
+        if ((*treeIt).lineIdx > line_data_count) {
+            auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
+            while ((*bucketIt) != -1) {
+                const auto d = line_data + (*bucketIt);
+                if (LineUtil::isSameLineName(lookup(d->nameIdx), name)) {
+                    return LineMetaData(d);
+                }
+                ++bucketIt;
+            }
+        } else {
+            const auto d = line_data + (*treeIt).lineIdx;
             if (LineUtil::isSameLineName(lookup(d->nameIdx), name)) {
                 return LineMetaData(d);
             }
-            ++bucketIt;
         }
     }
 
