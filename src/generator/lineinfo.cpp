@@ -16,6 +16,7 @@
 */
 
 #include "lineinfo.h"
+#include "../lib/datatypes/linecompare_p.h"
 
 #include <QDebug>
 
@@ -41,7 +42,7 @@ static LineInfo::Mode lineModeStringToMode(const QString &s)
     if (s == QLatin1String("tram")) {
         return LineInfo::Tram;
     }
-    if (s == QLatin1String("light_rail") || s == QLatin1String("commuter")) {
+    if (s == QLatin1String("light_rail") || s == QLatin1String("commuter") || s == QLatin1String("suburban")) {
         return LineInfo::RapidTransit;
     }
     if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international")) {
@@ -97,26 +98,40 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
 void LineInfo::merge(LineInfo &lhs, const LineInfo &rhs)
 {
     Q_ASSERT(!lhs.name.isEmpty());
-    if (!rhs.name.isEmpty() && lhs.name != rhs.name) {
-        qDebug() << "OSM name conflict:" << lhs.name << lhs.relId << rhs.name << rhs.relId;
+    if (!rhs.name.isEmpty() && !KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name)) {
+        qDebug() << "OSM name conflict:" << lhs << rhs;
     }
 
     if (lhs.color.isValid() && rhs.color.isValid() && lhs.color != rhs.color) {
-        qWarning() << "OSM color conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.color.name() << rhs.color.name();
+        qWarning() << "OSM color conflict:" << lhs << rhs;
     } else if (rhs.color.isValid()) {
         lhs.color = rhs.color;
     }
     if (!lhs.wdId.isEmpty() && !rhs.wdId.isEmpty() && lhs.wdId != rhs.wdId) {
-        qWarning() << "wikidata id conflict:" << lhs.relId << rhs.relId << lhs.name << lhs.wdId << rhs.wdId;
+        qWarning() << "wikidata id conflict:" << lhs << rhs;
     } else if (!rhs.wdId.isEmpty()) {
         lhs.wdId = rhs.wdId;
     }
     if (lhs.mode != Unknown && rhs.mode != Unknown && lhs.mode != rhs.mode) {
-        qWarning() << "OSM mode conflict:" << lhs.relId << lhs.mode << rhs.relId << rhs.mode << lhs.name;
+        qWarning() << "OSM mode conflict:" << lhs << rhs;
     }
     lhs.mode = std::max(lhs.mode, rhs.mode);
     lhs.bbox = OSM::unite(lhs.bbox, rhs.bbox);
     if (LineInfo::isUseful(lhs) && (lhs.bbox.width() > BoundingBoxSizeWarning || lhs.bbox.height() > BoundingBoxSizeWarning)) {
-        qWarning() << "Suspicious bbox size after merging:" << lhs.relId << lhs.name << lhs.bbox << rhs.relId << rhs.name << rhs.bbox << lhs.bbox.width() << rhs.bbox.height();
+        qWarning() << "Suspicious bbox size after merging:" << lhs << rhs;
     }
+}
+
+QDebug operator<<(QDebug debug, LineInfo info)
+{
+    QDebugStateSaver saver(debug);
+    debug.noquote().nospace()
+        << info.name
+        << " https://openstreetmap.org/relation//" << info.relId
+        << " " << info.mode
+        << (info.color.isValid() ? (QLatin1Char(' ') + info.color.name()) : QString())
+        << (info.wdId.isEmpty() ? QString() : (QStringLiteral(" https://www.wikidata.org/wiki/") + info.wdId))
+        << (info.logoName.isEmpty() ? QString() : (QStringLiteral(" https://commons.wikimedia.org/wiki/File:") + info.logoName))
+        << " " << info.bbox;
+    return debug;
 }

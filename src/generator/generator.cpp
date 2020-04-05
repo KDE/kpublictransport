@@ -224,7 +224,7 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
         for (const auto &instanceOf : instancesOf) {
             const auto type = instanceOf.toString();
             if (suspicious_types.contains(type)) {
-                qWarning() << "Suspicious WD types:" << (*rit).name << (*rit).wdId << (*rit).relId << instancesOf;
+                qWarning() << "Suspicious WD types:" << (*rit) << instancesOf;
                 found = true;
             }
             for (const auto &modeMap : wd_type_to_mode_map) {
@@ -241,13 +241,13 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
         // merge information
         const auto color = QColor(QLatin1Char('#') + propertyValue(it.value().toObject(), QLatin1String("P465")).toString());
         if ((*rit).color.isValid() && color.isValid() && (*rit).color != color) {
-            qWarning() << "OSM/WD color conflict:" << (*rit).relId << (*rit).wdId << (*rit).name << (*rit).color.name() << color.name();
+            qWarning() << "OSM/WD color conflict:" << (*rit) << color.name();
         } else if (color.isValid()) {
             (*rit).color = color;
         }
         (*rit).logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
         if ((*rit).mode != LineInfo::Unknown && mode != LineInfo::Unknown && (*rit).mode != mode) {
-            qWarning() << "OSM/WD mode conflict:" << (*rit).relId << (*rit).wdId << (*rit).name << (*rit).mode << mode;
+            qWarning() << "OSM/WD mode conflict:" << (*rit) << mode;
         } else {
             (*rit).mode = std::max((*rit).mode, mode);
         }

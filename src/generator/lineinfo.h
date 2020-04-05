@@ -25,6 +25,9 @@
 
 struct LineInfo
 {
+    Q_GADGET
+public:
+
     LineInfo();
     ~LineInfo();
 
@@ -35,6 +38,7 @@ struct LineInfo
         Tram,
         Subway,
     };
+    Q_ENUM(Mode)
 
     static bool isUseful(const LineInfo &info);
     static Mode determineMode(const OSM::Relation &rel);
@@ -49,5 +53,7 @@ struct LineInfo
     QString logoName;
     QString wdId;
 };
+
+QDebug operator<<(QDebug debug, LineInfo info);
 
 #endif // LINEINFO_H
