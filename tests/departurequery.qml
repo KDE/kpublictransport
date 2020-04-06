@@ -102,7 +102,7 @@ Kirigami.ApplicationWindow {
 
                 Kirigami.Icon {
                     id: icon
-                    source: departure.route.line.logo
+                    source: departure.route.line.hasLogo ? departure.route.line.logo : departure.route.line.modeLogo
                     width: height
                     height: Kirigami.Units.iconSizes.large
                     visible: source != ""

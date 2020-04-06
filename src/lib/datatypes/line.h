@@ -75,18 +75,33 @@ public:
      */
     KPUBLICTRANSPORT_PROPERTY(QString, modeString, setModeString)
     /** Path of a local file containing the line logo.
+     *  A line logo is typically a simple icon containing the short line name
+     *  and color.
      *  This is downloaded on demand, and therefore might not be available
-     *  immeidately.
+     *  immediately.
      */
     Q_PROPERTY(QString logo READ logo STORED false)
     /** @c true if the line has a logo. */
     Q_PROPERTY(bool hasLogo READ hasLogo STORED false)
+
+    /** Path of a local file containing the line mode logo.
+     *  A mode logo is the logo of the mode of transportation, or "product"
+     *  this line belongs to, such as the general logo for a subway or metro
+     *  service of this operator or in this city.
+     *  This is downloaded on demand, and therefore might not be available
+     *  immediately.
+     */
+    Q_PROPERTY(QString modeLogo READ modeLogo STORED false)
+    /** @c true if the line has a mode logo. */
+    Q_PROPERTY(bool hasModeLogo READ hasModeLogo STORED false)
 
 public:
     bool hasColor() const;
     bool hasTextColor() const;
     QString logo() const;
     bool hasLogo() const;
+    QString modeLogo() const;
+    bool hasModeLogo() const;
 
     /** Checks if to instances refer to the same line (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Line &lhs, const Line &rhs);

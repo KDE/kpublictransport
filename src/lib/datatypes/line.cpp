@@ -93,6 +93,16 @@ bool Line::hasLogo() const
     return !logo().isEmpty();
 }
 
+QString Line::modeLogo() const
+{
+    return AssetRepository::localFile(d->metaData.modeLogoUrl());
+}
+
+bool Line::hasModeLogo() const
+{
+    return !modeLogo().isEmpty();
+}
+
 static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
 {
     if (lhs == rhs || lhs == Line::Unknown || rhs == Line::Unknown) {

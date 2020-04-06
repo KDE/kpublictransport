@@ -43,6 +43,7 @@ public:
     QString name() const;
     QColor color() const;
     QUrl logoUrl() const;
+    QUrl modeLogoUrl() const;
 
     /** Attempts to find information about a line with the given name and a stop at the given coordinates. */
     static LineMetaData find(double latitude, double longitude, const QString &name);

@@ -51,6 +51,7 @@ void LineUtil::applyMetaData(Line &line, const Location &loc, bool download)
 
     if (download && AssetRepository::instance()) {
         AssetRepository::instance()->download(metaData.logoUrl());
+        AssetRepository::instance()->download(metaData.modeLogoUrl());
     }
 }
 

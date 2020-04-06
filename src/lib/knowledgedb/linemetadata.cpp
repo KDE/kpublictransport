@@ -68,6 +68,15 @@ QUrl LineMetaData::logoUrl() const
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
+QUrl LineMetaData::modeLogoUrl() const
+{
+    if (!d) {
+        return {};
+    }
+    const auto logoName = lookup(d->productLogoIdx);
+    return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
+}
+
 LineMetaData LineMetaData::find(double latitude, double longitude, const QString &name)
 {
     OSM::Coordinate coord(latitude, longitude);

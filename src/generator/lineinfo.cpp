@@ -31,7 +31,7 @@ bool LineInfo::isUseful(const LineInfo& info)
 {
     return (info.mode != Unknown && info.mode != LongDistance)
         && !info.name.isEmpty()
-        && (info.color.isValid() || !info.logoName.isEmpty());
+        && (info.color.isValid() || !info.logoName.isEmpty() || !info.productLogoName.isEmpty());
 }
 
 static LineInfo::Mode lineModeStringToMode(const QString &s)
@@ -127,7 +127,7 @@ QDebug operator<<(QDebug debug, LineInfo info)
     QDebugStateSaver saver(debug);
     debug.noquote().nospace()
         << info.name
-        << " https://openstreetmap.org/relation//" << info.relId
+        << " https://openstreetmap.org/relation/" << info.relId
         << " " << info.mode
         << (info.color.isValid() ? (QLatin1Char(' ') + info.color.name()) : QString())
         << (info.wdId.isEmpty() ? QString() : (QStringLiteral(" https://www.wikidata.org/wiki/") + info.wdId))

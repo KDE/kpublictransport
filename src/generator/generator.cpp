@@ -36,6 +36,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
+#include <set>
+
 enum {
     MaxLogoFileSize = 10000, // bytes
 };
@@ -48,6 +50,8 @@ public:
     void processOSMData(OSM::DataSet &&dataSet);
     void augmentFromWikidata();
     void applyWikidataResults(const QJsonObject &entities);
+    void augmentProductsFromWikidata();
+    void applyWikidataProductResults(const QJsonObject &entities);
     void verifyImages();
     void verifyImageMetaData(const QJsonObject &images);
 
@@ -58,6 +62,7 @@ public:
     QIODevice *out = nullptr;
     std::vector<LineInfo> lines;
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
+    std::set<QString> wdPartOfIds;
 
     std::map<OSM::ZTile, std::vector<size_t>> zQuadTree;
 };
@@ -158,7 +163,8 @@ void Generator::augmentFromWikidata()
             QCoreApplication::exit(1);
             return;
         }
-        verifyImages();
+
+        augmentProductsFromWikidata();
     });
     m_wdMgr->execute(query);
 }
@@ -238,6 +244,13 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
             continue;
         }
 
+        // collect possible product types
+        const auto partOfIds = propertyValues(it.value().toObject(), QLatin1String("P361"));
+        for (const auto &id : partOfIds) {
+            wdPartOfIds.insert(id.toString());
+            (*rit).wdProducts.push_back(id.toString());
+        }
+
         // merge information
         const auto color = QColor(QLatin1Char('#') + propertyValue(it.value().toObject(), QLatin1String("P465")).toString());
         if ((*rit).color.isValid() && color.isValid() && (*rit).color != color) {
@@ -254,6 +267,77 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
     }
 }
 
+void Generator::augmentProductsFromWikidata()
+{
+    std::vector<QString> wdIds;
+    for (const auto &id: wdPartOfIds) {
+        if (!id.isEmpty()) {
+            wdIds.push_back(id);
+        }
+    }
+    qDebug() << "Retrieving" << wdIds.size() << "product items from Wikidata";
+
+    auto query = new WikidataEntitiesQuery(m_wdMgr);
+    query->setItems(std::move(wdIds));
+    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](const auto &entities) { applyWikidataProductResults(entities); });
+    QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
+        if (query->error() != WikidataQuery::NoError) {
+            qCritical() << "Wikidata product query failed";
+            QCoreApplication::exit(1);
+            return;
+        }
+
+        verifyImages();
+    });
+    m_wdMgr->execute(query);
+}
+
+void Generator::applyWikidataProductResults(const QJsonObject &entities)
+{
+    const QStringList product_types({
+        QStringLiteral("Q5503"), // rapid transit
+        QStringLiteral("Q95723"), // S-Bahn
+        QStringLiteral("Q15640053"), // tram system
+        QStringLiteral("Q1412403"), // commuter rail
+        QStringLiteral("Q2140646"), // Stadtbahn
+        QStringLiteral("Q1268865"), // light rail
+    });
+
+    for (auto it = entities.begin(); it != entities.end(); ++it) {
+        // check if this is a plausible type
+        const auto instancesOf = propertyValues(it.value().toObject(), QLatin1String("P31"));
+        bool found = false;
+        for (const auto &instanceOf : instancesOf) {
+            const auto type = instanceOf.toString();
+            if (product_types.contains(type)) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            qDebug().nospace().noquote() << "Product https://www.wikidata.org/wiki/" << it.key() << " is of unknown type " << instancesOf;
+            continue;
+        }
+
+        // retrieve logo and find the lines this is for
+        const auto logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
+        if (logoName.isEmpty()) {
+            continue;
+        }
+        for (auto &line : lines) {
+            if (!line.wdProducts.contains(it.key())) {
+                continue;
+            }
+
+            if (line.productLogoName.isEmpty()) {
+                line.productLogoName = logoName;
+            } else if (line.productLogoName != logoName) {
+                qWarning() << "Product logo name conflict:" << line << line.productLogoName << logoName;
+            }
+        }
+    }
+}
+
 void Generator::verifyImages()
 {
     std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
@@ -263,6 +347,9 @@ void Generator::verifyImages()
     for (const auto &r: lines) {
         if (!r.logoName.isEmpty() && LineInfo::isUseful(r)) {
             imageIds.push_back(r.logoName);
+        }
+        if (!r.productLogoName.isEmpty() && LineInfo::isUseful(r)) {
+            imageIds.push_back(r.productLogoName);
         }
     }
     qDebug() << "Verifying" << imageIds.size() << "images";
@@ -294,6 +381,9 @@ static void clearLogo(std::vector<LineInfo> &lines, const QString &name)
     for (auto &info : lines) {
         if (info.logoName == name) {
             info.logoName.clear();
+        }
+        if (info.productLogoName == name) {
+            info.productLogoName.clear();
         }
     }
 }
@@ -472,6 +562,7 @@ namespace KPublicTransport {
     for (const auto &line : lines) {
         strTab.addString(line.name);
         strTab.addString(line.logoName);
+        strTab.addString(line.productLogoName);
     }
     strTab.writeCode("line_data_stringtab", out);
 
@@ -482,6 +573,8 @@ namespace KPublicTransport {
         out->write(QByteArray::number((int)strTab.stringOffset(line.name)));
         out->write(", ");
         out->write(QByteArray::number((int)strTab.stringOffset(line.logoName)));
+        out->write(", ");
+        out->write(QByteArray::number((int)strTab.stringOffset(line.productLogoName)));
         out->write(", 0x");
         out->write(QByteArray::number(line.color.red(), 16));
         out->write(", 0x");

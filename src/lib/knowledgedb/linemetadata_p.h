@@ -30,6 +30,7 @@ struct LineMetaDataContent
 {
     uint16_t nameIdx;
     uint16_t logoIdx;
+    uint16_t productLogoIdx;
     uint8_t colorRed;
     uint8_t colorGreen;
     uint8_t colorBlue;

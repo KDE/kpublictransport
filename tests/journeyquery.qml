@@ -124,7 +124,7 @@ Kirigami.ApplicationWindow {
 
                 Kirigami.Icon {
                     id: icon
-                    source: modelData.route.line.logo
+                    source: modelData.route.line.hasLogo ? modelData.route.line.logo : modelData.route.line.modeLogo
                     width: height
                     height: Kirigami.Units.iconSizes.large
                     visible: source != ""

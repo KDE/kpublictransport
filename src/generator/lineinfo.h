@@ -51,7 +51,9 @@ public:
     QColor color;
     Mode mode = Unknown;
     QString logoName;
+    QString productLogoName;
     QString wdId;
+    QStringList wdProducts;
 };
 
 QDebug operator<<(QDebug debug, LineInfo info);
