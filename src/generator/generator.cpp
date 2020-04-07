@@ -366,6 +366,9 @@ void Generator::verifyImages()
 
         // filter lines still missing data
         lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
+            if (!LineInfo::isUseful(info)) {
+                qDebug() << "dropping" << info;
+            }
             return !LineInfo::isUseful(info);
         }), lines.end());
         qDebug() << "lines after Wikidata filtering:" << lines.size();
@@ -540,6 +543,20 @@ bool Generator::resolveOneBottomUpConflict()
         }
     }
     return false;
+}
+
+static QByteArray modeToString(LineInfo::Mode mode)
+{
+    switch (mode) {
+        case LineInfo::Tram:
+            return "LineMetaDataContent::Tramway";
+        case LineInfo::Subway:
+            return "LineMetaDataContent::Subway";
+        case LineInfo::RapidTransit:
+            return "LineMetaDataContent::RapidTransit";
+        default:
+            assert(false);
+    }
 }
 
 void Generator::writeCode()

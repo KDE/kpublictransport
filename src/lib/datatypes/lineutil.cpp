@@ -21,7 +21,6 @@
 
 #include <knowledgedb/linemetadata.h>
 
-#include <KPublicTransport/Line>
 #include <KPublicTransport/Location>
 
 #include <QColor>
@@ -36,17 +35,29 @@ bool LineUtil::isSameLineName(const QString &lhs, const QString &rhs)
     return Internal::isSameLineName(lhs, rhs);
 }
 
+bool LineUtil::isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
+{
+    if (lhs == rhs || lhs == Line::Unknown || rhs == Line::Unknown) {
+        return true;
+    }
+
+    if (lhs == Line::Train) {
+        return rhs == Line::LocalTrain || rhs == Line::LongDistanceTrain || rhs == Line::RapidTransit;
+    }
+    if (rhs == Line::Train) {
+        return lhs == Line::LocalTrain || lhs == Line::LongDistanceTrain || lhs == Line::RapidTransit;
+    }
+
+    return false;
+}
+
 void LineUtil::applyMetaData(Line &line, const Location &loc, bool download)
 {
     if (line.name().isEmpty() || !loc.hasCoordinate()) {
         return;
     }
 
-    if (line.mode() == Line::Bus) { // not covered yet, so avoid accidental hits
-        return;
-    }
-
-    auto metaData = LineMetaData::find(loc.latitude(), loc.longitude(), line.name());
+    auto metaData = LineMetaData::find(loc.latitude(), loc.longitude(), line.name(), line.mode());
     setMetaData(line, metaData);
 
     if (download && AssetRepository::instance()) {

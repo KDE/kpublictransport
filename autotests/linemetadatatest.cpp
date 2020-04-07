@@ -28,26 +28,36 @@ class LineMetaDataTest : public QObject
 private Q_SLOTS:
     void testLookup()
     {
-        auto l = LineMetaData::find(52.52, 13.40, QStringLiteral("U1"));
+        auto l = LineMetaData::find(52.52, 13.40, QStringLiteral("U1"), Line::Metro);
         QVERIFY(!l.isNull());
         QCOMPARE(l.name(), QLatin1String("U1"));
         QCOMPARE(l.color(), QColor(0xff52b447));
         QCOMPARE(l.logoUrl().toString(QUrl::FullyEncoded), QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/Berlin%20U1.svg"));
+        QCOMPARE(l.mode(), Line::Metro);
         QCOMPARE(l.modeLogoUrl().toString(QUrl::FullyEncoded), QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/U-Bahn.svg"));
 
-        l = LineMetaData::find(52.52, 13.40,  QStringLiteral("S 7"));
+        l = LineMetaData::find(52.52, 13.40,  QStringLiteral("S 7"), Line::RapidTransit);
         QVERIFY(!l.isNull());
         QCOMPARE(l.name(), QLatin1String("S7"));
         QVERIFY(!l.logoUrl().isEmpty());
+        QCOMPARE(l.mode(), Line::RapidTransit);
         QVERIFY(l.modeLogoUrl().isEmpty());
+
+        l = LineMetaData::find(52.52, 13.40,  QStringLiteral("S 7"), Line::Train);
+        QVERIFY(!l.isNull());
+        QCOMPARE(l.name(), QLatin1String("S7"));
+        QCOMPARE(l.mode(), Line::RapidTransit);
     }
 
     void testNegativeLookup()
     {
-        auto l = LineMetaData::find(0.0f, -89.0, QStringLiteral("U1"));
+        auto l = LineMetaData::find(0.0f, -89.0, QStringLiteral("U1"), Line::Metro);
         QVERIFY(l.isNull());
 
-        l = LineMetaData::find(52.52f, 13.40f, QStringLiteral("U11"));
+        l = LineMetaData::find(52.52f, 13.40f, QStringLiteral("U11"), Line::Metro);
+        QVERIFY(l.isNull());
+
+        l = LineMetaData::find(52.52, 13.40, QStringLiteral("U1"), Line::Tramway);
         QVERIFY(l.isNull());
     }
 };

@@ -18,17 +18,19 @@
 #ifndef KPUBLICTRANSPORT_LINEUTIL_P_H
 #define KPUBLICTRANSPORT_LINEUTIL_P_H
 
+#include <KPublicTransport/Line>
+
 class QString;
 
 namespace KPublicTransport {
 
-class Line;
 class LineMetaData;
 class Location;
 
 namespace LineUtil
 {
     bool isSameLineName(const QString &lhs, const QString &rhs);
+    bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs);
     void applyMetaData(Line &line, const Location &loc, bool download);
     void setMetaData(Line &line, LineMetaData metaData);
 }

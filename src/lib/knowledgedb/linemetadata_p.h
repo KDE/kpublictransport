@@ -31,6 +31,14 @@ struct LineMetaDataContent
     uint16_t nameIdx;
     uint16_t logoIdx;
     uint16_t productLogoIdx;
+
+    enum Mode : uint8_t {
+        Tramway,
+        Subway,
+        RapidTransit
+    };
+    Mode mode;
+
     uint8_t colorRed;
     uint8_t colorGreen;
     uint8_t colorBlue;

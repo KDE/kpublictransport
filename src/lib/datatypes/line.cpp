@@ -103,25 +103,9 @@ bool Line::hasModeLogo() const
     return !modeLogo().isEmpty();
 }
 
-static bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
-{
-    if (lhs == rhs || lhs == Line::Unknown || rhs == Line::Unknown) {
-        return true;
-    }
-
-    if (lhs == Line::Train) {
-        return rhs == Line::LocalTrain || rhs == Line::LongDistanceTrain;
-    }
-    if (rhs == Line::Train) {
-        return lhs == Line::LocalTrain || lhs == Line::LongDistanceTrain;
-    }
-
-    return false;
-}
-
 bool Line::isSame(const Line &lhs, const Line &rhs)
 {
-    if (!isCompatibleMode(lhs.mode(), rhs.mode())) {
+    if (!LineUtil::isCompatibleMode(lhs.mode(), rhs.mode())) {
         return false;
     }
 

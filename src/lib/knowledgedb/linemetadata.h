@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Line>
+
 class QColor;
 class QString;
 class QUrl;
@@ -43,10 +45,11 @@ public:
     QString name() const;
     QColor color() const;
     QUrl logoUrl() const;
+    Line::Mode mode() const;
     QUrl modeLogoUrl() const;
 
     /** Attempts to find information about a line with the given name and a stop at the given coordinates. */
-    static LineMetaData find(double latitude, double longitude, const QString &name);
+    static LineMetaData find(double latitude, double longitude, const QString &name, Line::Mode mode);
 
 private:
     LineMetaData(const LineMetaDataContent *dd);

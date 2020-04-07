@@ -68,6 +68,22 @@ QUrl LineMetaData::logoUrl() const
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
+Line::Mode LineMetaData::mode() const
+{
+    if (!d) {
+        return Line::Unknown;
+    }
+    switch (d->mode) {
+        case LineMetaDataContent::Tramway:
+            return Line::Tramway;
+        case LineMetaDataContent::RapidTransit:
+            return Line::RapidTransit;
+        case LineMetaDataContent::Subway:
+            return Line::Metro;
+    };
+    return Line::Unknown;
+}
+
 QUrl LineMetaData::modeLogoUrl() const
 {
     if (!d) {
@@ -77,7 +93,7 @@ QUrl LineMetaData::modeLogoUrl() const
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
-LineMetaData LineMetaData::find(double latitude, double longitude, const QString &name)
+LineMetaData LineMetaData::find(double latitude, double longitude, const QString &name, Line::Mode mode)
 {
     OSM::Coordinate coord(latitude, longitude);
 
@@ -114,14 +130,14 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
             auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
             while ((*bucketIt) != -1) {
                 const auto d = line_data + (*bucketIt);
-                if (LineUtil::isSameLineName(lookup(d->nameIdx), name)) {
+                if (LineUtil::isSameLineName(lookup(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
                     return LineMetaData(d);
                 }
                 ++bucketIt;
             }
         } else {
             const auto d = line_data + (*treeIt).lineIdx;
-            if (LineUtil::isSameLineName(lookup(d->nameIdx), name)) {
+            if (LineUtil::isSameLineName(lookup(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
                 return LineMetaData(d);
             }
         }
