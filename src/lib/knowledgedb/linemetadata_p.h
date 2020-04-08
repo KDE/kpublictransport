@@ -25,6 +25,31 @@ namespace KPublicTransport {
 #pragma pack(push)
 #pragma pack(1)
 
+/** Static color structure. */
+struct Color
+{
+    explicit constexpr inline Color() = default;
+    explicit constexpr inline Color(uint32_t rgb)
+        : colorRed(rgb >> 16)
+        , colorGreen(rgb >> 8)
+        , colorBlue(rgb)
+    {}
+
+    enum : uint8_t { Invalid = 0x01 };
+
+    uint8_t colorRed = Invalid;
+    uint8_t colorGreen = Invalid;
+    uint8_t colorBlue = Invalid;
+
+    constexpr inline uint32_t argb() const
+    {
+        if (colorRed == Invalid && colorGreen == Invalid && colorRed == Invalid) {
+            return 0;
+        }
+        return 0xff000000 | colorRed << 16 | colorGreen << 8 | colorBlue;
+    }
+};
+
 /** Static informaytion about a public transport line as stored in .rodata. */
 struct LineMetaDataContent
 {
@@ -39,14 +64,7 @@ struct LineMetaDataContent
     };
     Mode mode;
 
-    uint8_t colorRed;
-    uint8_t colorGreen;
-    uint8_t colorBlue;
-
-    constexpr inline uint32_t color() const
-    {
-        return 0xff000000 | colorRed << 16 | colorGreen << 8 | colorBlue;
-    }
+    Color color;
 };
 
 /** Quad tree depth map entries. */

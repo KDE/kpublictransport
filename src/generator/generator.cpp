@@ -610,13 +610,14 @@ namespace KPublicTransport {
         }
         out->write(", ");
         out->write(modeToString(line.mode));
-        out->write(", 0x");
-        out->write(QByteArray::number(line.color.red(), 16));
-        out->write(", 0x");
-        out->write(QByteArray::number(line.color.green(), 16));
-        out->write(", 0x");
-        out->write(QByteArray::number(line.color.blue(), 16));
-        out->write(" }, // ");
+        out->write(", Color{");
+        if (line.color.isValid()) {
+            out->write("0x");
+            const auto col = QByteArray::number(line.color.rgb() & 0xffffff, 16);
+            out->write(QByteArray(6 - col.size(), '0'));
+            out->write(col);
+        }
+        out->write("} }, // ");
         out->write(line.name.toUtf8()),
         out->write(" OSM: ");
         out->write(QByteArray::number((long long)line.relId));
