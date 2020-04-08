@@ -574,24 +574,42 @@ namespace KPublicTransport {
 
 )");
 
-    // create and write string table
-    StringTable strTab;
+    // create and write string tables
+    // name and logo are separated to achieve smaller index values (and thus need less bits for storage)
+    // this can be done as due to file extensions on the logos we will never be able to apply suffix compression here
+    StringTable nameStrTab;
+    StringTable logoStrTab;
     for (const auto &line : lines) {
-        strTab.addString(line.name);
-        strTab.addString(line.logoName);
-        strTab.addString(line.productLogoName);
+        nameStrTab.addString(line.name);
+        logoStrTab.addString(line.logoName);
+        logoStrTab.addString(line.productLogoName);
     }
-    strTab.writeCode("line_data_stringtab", out);
+    nameStrTab.writeCode("line_name_stringtab", out);
+    logoStrTab.writeCode("line_logo_stringtab", out);
+    // create a symbolic name for the common no logo case (reduces diff on changes)
+    out->write("static const constexpr auto NoLogo = ");
+    out->write(QByteArray::number((int)logoStrTab.stringOffset(QString())));
+    out->write(";\n\n");
 
     // write line table
     out->write("static const constexpr LineMetaDataContent line_data[] = {\n");
     for (const auto &line : lines) {
         out->write("    { ");
-        out->write(QByteArray::number((int)strTab.stringOffset(line.name)));
+        out->write(QByteArray::number((int)nameStrTab.stringOffset(line.name)));
         out->write(", ");
-        out->write(QByteArray::number((int)strTab.stringOffset(line.logoName)));
+        if (!line.logoName.isEmpty()) {
+            out->write(QByteArray::number((int)logoStrTab.stringOffset(line.logoName)));
+        } else {
+            out->write("NoLogo");
+        }
         out->write(", ");
-        out->write(QByteArray::number((int)strTab.stringOffset(line.productLogoName)));
+        if (!line.productLogoName.isEmpty()) {
+            out->write(QByteArray::number((int)logoStrTab.stringOffset(line.productLogoName)));
+        } else {
+            out->write("NoLogo");
+        }
+        out->write(", ");
+        out->write(modeToString(line.mode));
         out->write(", 0x");
         out->write(QByteArray::number(line.color.red(), 16));
         out->write(", 0x");

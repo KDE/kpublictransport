@@ -29,9 +29,14 @@
 
 using namespace KPublicTransport;
 
-static QString lookup(uint16_t index)
+static QString lookupName(uint16_t index)
 {
-    return QString::fromUtf8(line_data_stringtab + index);
+    return QString::fromUtf8(line_name_stringtab + index);
+}
+
+static QString lookupLogo(uint16_t index)
+{
+    return QString::fromUtf8(line_logo_stringtab + index);
 }
 
 LineMetaData::LineMetaData() = default;
@@ -51,7 +56,7 @@ bool LineMetaData::isNull() const
 
 QString LineMetaData::name() const
 {
-    return lookup(d->nameIdx);
+    return lookupName(d->nameIdx);
 }
 
 QColor LineMetaData::color() const
@@ -64,7 +69,7 @@ QUrl LineMetaData::logoUrl() const
     if (!d) {
         return {};
     }
-    const auto logoName = lookup(d->logoIdx);
+    const auto logoName = lookupLogo(d->logoIdx);
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
@@ -89,7 +94,7 @@ QUrl LineMetaData::modeLogoUrl() const
     if (!d) {
         return {};
     }
-    const auto logoName = lookup(d->productLogoIdx);
+    const auto logoName = lookupLogo(d->productLogoIdx);
     return logoName.isEmpty() ? QUrl() : QUrl(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + logoName);
 }
 
@@ -130,14 +135,14 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
             auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
             while ((*bucketIt) != -1) {
                 const auto d = line_data + (*bucketIt);
-                if (LineUtil::isSameLineName(lookup(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
+                if (LineUtil::isSameLineName(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
                     return LineMetaData(d);
                 }
                 ++bucketIt;
             }
         } else {
             const auto d = line_data + (*treeIt).lineIdx;
-            if (LineUtil::isSameLineName(lookup(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
+            if (LineUtil::isSameLineName(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
                 return LineMetaData(d);
             }
         }
