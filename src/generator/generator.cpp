@@ -45,6 +45,11 @@ enum {
 static constexpr const auto MaxLogoAspectRatio = 2.75;
 static constexpr const auto MinLogoAspectRatio = 0.45; // Shanghai Metro is the extreme still valid case with 0.5
 
+static bool isSameLine(const LineInfo &lhs, const LineInfo &rhs)
+{
+    return lhs.mode == rhs.mode && KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name);
+}
+
 class Generator {
 public:
     void processOSMData(OSM::DataSet &&dataSet);
@@ -59,6 +64,8 @@ public:
     bool resolveOneBottomUpConflict();
     void writeCode();
 
+    void insertToBucket(OSM::ZTile tile, std::size_t lineIdx);
+
     QIODevice *out = nullptr;
     std::vector<LineInfo> lines;
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
@@ -66,6 +73,17 @@ public:
 
     std::map<OSM::ZTile, std::vector<size_t>> zQuadTree;
 };
+
+void Generator::insertToBucket(OSM::ZTile tile, std::size_t lineIdx)
+{
+    auto &bucket = zQuadTree[tile];
+    if (std::find(bucket.begin(), bucket.end(), lineIdx) == bucket.end()) {
+        bucket.push_back(lineIdx);
+    } else {
+        // all tree transforms below should not create duplicates
+        assert(false);
+    }
+}
 
 void Generator::processOSMData(OSM::DataSet &&dataSet)
 {
@@ -491,7 +509,7 @@ void Generator::generateQuadTree()
 
     // initialize quad tree by smallest single tile containing the entire line bbox
     for (auto lineIt = lines.begin(); lineIt != lines.end(); ++lineIt) {
-        zQuadTree[OSM::ztileFromBoundingBox((*lineIt).bbox)].push_back(std::distance(lines.begin(), lineIt));
+        insertToBucket(OSM::ztileFromBoundingBox((*lineIt).bbox), std::distance(lines.begin(), lineIt));
     }
     qDebug() << "initial tiles:" << zQuadTree.size();
 
@@ -513,7 +531,7 @@ void Generator::generateQuadTree()
             const auto lend = lit;
             const auto firstIdx = (*tileIt).second.front();
             lit = std::partition((*tileIt).second.begin(), lend, [this, firstIdx](const auto &lineIdx) {
-                return !KPublicTransport::Internal::isSameLineName(lines[firstIdx].name, lines[lineIdx].name);
+                return !isSameLine(lines[firstIdx], lines[lineIdx]);
             });
 
             // must not happen if isSameLineName(x, x) == true holds
@@ -528,7 +546,7 @@ void Generator::generateQuadTree()
             for (auto it = lit; it != lend; ++it) {
                 for (auto subtile : (*tileIt).first.quadSplit()) {
                     if (subtile.intersects(lines[*it].bbox)) {
-                        zQuadTree[subtile].push_back(*it);
+                        insertToBucket(subtile, *it);
                     }
                 }
             }
@@ -565,7 +583,7 @@ bool Generator::resolveOneBottomUpConflict()
                 const auto parentTileIt = zQuadTree.find(parentTile);
                 if (parentTileIt != zQuadTree.end()) {
                     auto conflictIt = std::find_if((*parentTileIt).second.begin(), (*parentTileIt).second.end(), [this, lineIt](const auto lhs) {
-                        return KPublicTransport::Internal::isSameLineName(lines[lhs].name, lines[*lineIt].name);
+                        return isSameLine(lines[lhs], lines[*lineIt]);
                     });
                     if (conflictIt != (*parentTileIt).second.end()) {
                         qDebug() << "propagating down:" << lines[*conflictIt].name << parentTile.z << parentTile.depth;
@@ -574,10 +592,13 @@ bool Generator::resolveOneBottomUpConflict()
                             for (auto subtile : splitTile.quadSplit()) {
                                 if (subtile.intersects((*tileIt).first)) {
                                     splitTile = subtile;
-                                } else if (subtile.intersects(lines[*lineIt].bbox)) {
-                                    zQuadTree[subtile].push_back(*lineIt);
+                                } else if (subtile.intersects(lines[*conflictIt].bbox)) {
+                                    insertToBucket(subtile, *conflictIt);
                                 }
                             }
+                        }
+                        if (splitTile.intersects(lines[*conflictIt].bbox)) {
+                            insertToBucket(splitTile, *conflictIt);
                         }
                         (*parentTileIt).second.erase(conflictIt);
                         return true;

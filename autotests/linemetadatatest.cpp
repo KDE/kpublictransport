@@ -47,6 +47,12 @@ private Q_SLOTS:
         QVERIFY(!l.isNull());
         QCOMPARE(l.name(), QLatin1String("S7"));
         QCOMPARE(l.mode(), Line::RapidTransit);
+
+        l = LineMetaData::find(48.13, 11.58,  QStringLiteral("S1"), Line::RapidTransit);
+        QVERIFY(!l.isNull());
+        QCOMPARE(l.name(), QLatin1String("S1"));
+        QCOMPARE(l.mode(), Line::RapidTransit);
+        QCOMPARE(l.logoUrl().toString(QUrl::FullyEncoded), QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/M%C3%BCnchen%20S1.svg"));
     }
 
     void testNegativeLookup()
