@@ -139,7 +139,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
         // so do this as long as we find things
         while (true) {
             auto dupIt = std::partition(lit + 1, lines.end(), [lit](const auto &rhs) {
-                return (*lit).name != rhs.name || !OSM::intersects((*lit).bbox, rhs.bbox);
+                return !isSameLine(*lit, rhs) || !OSM::intersects((*lit).bbox, rhs.bbox);
             });
             if (dupIt == lines.end()) {
                 break;
