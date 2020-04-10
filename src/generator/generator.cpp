@@ -43,6 +43,8 @@ enum {
 static constexpr const auto MaxLogoAspectRatio = 2.75;
 static constexpr const auto MinLogoAspectRatio = 0.45; // Shanghai Metro is the extreme still valid case with 0.5
 
+static constexpr const auto MinTileCoverage = 0.1;
+
 static bool isSameLine(const LineInfo &lhs, const LineInfo &rhs)
 {
     return lhs.mode == rhs.mode && KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name);
@@ -221,12 +223,11 @@ static struct {
     { "Q95723", LineInfo::RapidTransit }, // S-Bahn
     { "Q129172", LineInfo::LongDistance }, // ICE
     { "Q15145593", LineInfo::Tram }, // tram line
-// TODO enable once we enforce a minimum quad tree depth, otherwise this breaks the Randa unit test
-//     { "Q2572054", LineInfo::RapidTransit }, // Transilien (multiple variants)
-//     { "Q732778", LineInfo::RapidTransit }, // Transilien
-//     { "Q2571458", LineInfo::RapidTransit }, // Transilien
-//     { "Q2571977", LineInfo::RapidTransit }, // Transilien
-//     { "/Q373725", LineInfo::RapidTransit }, // Transilien
+    { "Q2572054", LineInfo::RapidTransit }, // Transilien (multiple variants)
+    { "Q732778", LineInfo::RapidTransit }, // Transilien
+    { "Q2571458", LineInfo::RapidTransit }, // Transilien
+    { "Q2571977", LineInfo::RapidTransit }, // Transilien
+    { "/Q373725", LineInfo::RapidTransit }, // Transilien
     { "Q858485", LineInfo::LongDistance }, // high speed railway line
 };
 
@@ -558,6 +559,41 @@ void Generator::generateQuadTree()
         }
     }
     qDebug() << "tiles after top-down conflict resolution:" << zQuadTree.size();
+
+    // split oversized tiles for what they contain, depsite the name being unique in the dataset we have here
+    for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end(); ++tileIt) {
+        if ((*tileIt).first.depth == 16) { // below that we need more than 32 bit for z in the quad tree storage
+            break;
+        }
+        for (auto lineIt = (*tileIt).second.begin(); lineIt != (*tileIt).second.end();) {
+            // push down elements that actually only occupy a sub-tile
+            // this can happen as part of conflict resolution above as well as the splitting below
+            int coveredSubTiles = 0;
+            for (auto subtile : (*tileIt).first.quadSplit()) {
+                if (subtile.intersects(lines[*lineIt].bbox)) {
+                    ++coveredSubTiles;
+                }
+            }
+
+            // check if the line is too small for the current tile, and if so, split it
+            const auto coverage = std::max((double)lines[*lineIt].bbox.width() / (double)(*tileIt).first.boundingBox().width(),
+                                           (double)lines[*lineIt].bbox.height() / (double)(*tileIt).first.boundingBox().height());
+
+            if (coverage < MinTileCoverage || coveredSubTiles == 1) {
+                qDebug() << "splitting due to small coverage:" << lines[*lineIt] << (*tileIt).first.depth << coverage << coveredSubTiles;
+                for (auto subtile : (*tileIt).first.quadSplit()) {
+                    if (subtile.intersects(lines[*lineIt].bbox)) {
+                        insertToBucket(subtile, *lineIt);
+                    }
+                }
+                lineIt = (*tileIt).second.erase(lineIt);
+                continue;
+            }
+
+            ++lineIt;
+        }
+    }
+    qDebug() << "tiles after coverage cleanup:" << zQuadTree.size();
 
     // remove empty buckets, and sort the non-empty ones for output stability
     for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end();) {
