@@ -227,6 +227,7 @@ static struct {
 //     { "Q2571458", LineInfo::RapidTransit }, // Transilien
 //     { "Q2571977", LineInfo::RapidTransit }, // Transilien
 //     { "/Q373725", LineInfo::RapidTransit }, // Transilien
+    { "Q858485", LineInfo::LongDistance }, // high speed railway line
 };
 
 static LineInfo::Mode modeFromWikidataType(const QString &type)
@@ -248,6 +249,9 @@ static const char* wd_excluded_types[] {
     "Q7835189", // transit district
     "Q249556", // railway company
     "Q17377208", // train operating company
+    "Q138825", // children's railway (yes, really...)
+    "Q1144661", // amusement ride
+    "Q420962", // heritage railway
 };
 
 static bool isExcludedWikidataType(const QString &type)

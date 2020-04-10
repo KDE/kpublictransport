@@ -45,7 +45,7 @@ static LineInfo::Mode lineModeStringToMode(const QString &s)
     if (s == QLatin1String("light_rail") || s == QLatin1String("commuter") || s == QLatin1String("suburban")) {
         return LineInfo::RapidTransit;
     }
-    if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international")) {
+    if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international") || s == QLatin1String("high_speed")) {
         return LineInfo::LongDistance;
     }
     return LineInfo::Unknown;
