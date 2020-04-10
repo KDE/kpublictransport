@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>routes.overpassql</file>
-    </qresource>
-</RCC>

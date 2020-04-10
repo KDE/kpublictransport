@@ -20,8 +20,6 @@
 
 #include "../lib/datatypes/linecompare_p.h"
 
-#include <osm/overpassquery.h>
-#include <osm/overpassquerymanager.h>
 #include <osm/xmlparser.h>
 #include <osm/ztile.h>
 
@@ -787,45 +785,18 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    QFile f(parser.value(osmInputOption));
+    if (!f.open(QFile::ReadOnly)) {
+        qCritical() << "Failed to open OSM input file!" << f.errorString() << f.fileName();
+        QCoreApplication::exit(1);
+    }
+    OSM::DataSet dataSet;
+    OSM::XmlParser p(&dataSet);
+    p.parse(&f);
+
     Generator generator;
     generator.out = &out;
-
-    OSM::OverpassQueryManager osmMgr;
-    OSM::OverpassQuery osmQuery;
-    QFile f(QStringLiteral(":/routes.overpassql"));
-    if (!f.open(QFile::ReadOnly)) {
-        qCritical() << f.errorString();
-        return 1;
-    }
-    osmQuery.setQuery(QString::fromUtf8(f.readAll()));
-
-    // TODO subset for testing only
-    osmQuery.setBoundingBox({0.0, 45.0, 15.0, 10.0});
-    osmQuery.setTileSize({2.5, 2.5});
-    osmQuery.setMinimumTileSize({1.0, 1.0});
-
-    QObject::connect(&osmQuery, &OSM::OverpassQuery::finished, [&osmQuery, &generator]() {
-        if (osmQuery.error() != OSM::OverpassQuery::NoError) {
-            qCritical() << "Overpass query failed.";
-            QCoreApplication::exit(1);
-        } else {
-            generator.processOSMData(osmQuery.takeResult());
-        }
-    });
-
-    if (!parser.isSet(osmInputOption)) {
-        osmMgr.execute(&osmQuery);
-    } else {
-        QFile f(parser.value(osmInputOption));
-        if (!f.open(QFile::ReadOnly)) {
-            qCritical() << "Failed to open OSM input file!" << f.errorString() << f.fileName();
-            QCoreApplication::exit(1);
-        }
-        OSM::DataSet dataSet;
-        OSM::XmlParser p(&dataSet);
-        p.parse(&f);
-        generator.processOSMData(std::move(dataSet));
-    }
+    generator.processOSMData(std::move(dataSet));
 
     return QCoreApplication::exec();
 }
