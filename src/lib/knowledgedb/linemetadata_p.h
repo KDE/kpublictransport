@@ -53,16 +53,24 @@ struct Color
 /** Static informaytion about a public transport line as stored in .rodata. */
 struct LineMetaDataContent
 {
-    uint16_t nameIdx;
-    uint16_t logoIdx;
-    uint16_t productLogoIdx;
-
-    enum Mode : uint8_t {
+    enum Mode : uint16_t {
         Tramway,
         Subway,
         RapidTransit
     };
-    Mode mode;
+
+    constexpr inline LineMetaDataContent(uint16_t _nameIdx, uint16_t _logoIdx, uint16_t _prodLogoIdx, Mode _mode, Color _col)
+        : nameIdx(_nameIdx)
+        , mode(_mode)
+        , logoIdx(_logoIdx)
+        , productLogoIdx(_prodLogoIdx)
+        , color(_col)
+    {}
+
+    uint16_t nameIdx : 14;
+    Mode mode : 2;
+    uint16_t logoIdx;
+    uint16_t productLogoIdx;
 
     Color color;
 };
