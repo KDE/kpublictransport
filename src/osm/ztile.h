@@ -46,7 +46,7 @@ public:
     /** tile size in 1e7-th degrees **/
     constexpr inline uint32_t size() const
     {
-        return (1 << depth) - 1;
+        return (1ull << depth) - 1;
     }
 
     BoundingBox boundingBox() const;
