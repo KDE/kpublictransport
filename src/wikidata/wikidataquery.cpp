@@ -145,10 +145,20 @@ QNetworkRequest WikidataImageMetadataQuery::nextRequest()
     return req;
 }
 
+std::vector<Wikidata::Image>&& WikidataImageMetadataQuery::takeResult()
+{
+    return std::move(m_result);
+}
+
 bool WikidataImageMetadataQuery::processReply(QNetworkReply *reply)
 {
     const auto doc = QJsonDocument::fromJson(reply->readAll());
-    emit partialResult(doc.object().value(QLatin1String("query")).toObject().value(QLatin1String("pages")).toObject());
+    const auto images = doc.object().value(QLatin1String("query")).toObject().value(QLatin1String("pages")).toObject();
+    m_result.reserve(images.size());
+    for (const auto &img : images) {
+        m_result.push_back(wd::Image(img.toObject()));
+    }
+    emit partialResult(this);
 
     if (m_nextBatch < m_images.size()) {
         return false;

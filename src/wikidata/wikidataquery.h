@@ -88,9 +88,10 @@ public:
     ~WikidataImageMetadataQuery();
 
     void setImages(std::vector<QString> &&images);
+    std::vector<Wikidata::Image>&& takeResult();
 
 Q_SIGNALS:
-    void partialResult(const QJsonObject &metaData);
+    void partialResult(WikidataImageMetadataQuery *query);
 
 private:
     QNetworkRequest nextRequest() override;
@@ -98,6 +99,7 @@ private:
 
     std::vector<QString> m_images;
     std::size_t m_nextBatch = 0;
+    std::vector<Wikidata::Image> m_result;
 };
 
 #endif // WIKIDATAQUERY_H

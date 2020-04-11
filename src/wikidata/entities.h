@@ -148,6 +148,25 @@ inline QColor Item::convertValue<QColor>(const QVariant &v)
     return QColor(s);
 }
 
+/** Commons image metadata. */
+class Image
+{
+public:
+    explicit Image(const QJsonObject &obj);
+    ~Image();
+
+    QString name() const;
+    uint64_t fileSize() const;
+    uint32_t width() const;
+    uint32_t height() const;
+    QString mimeType() const;
+    QString license() const;
+
+private:
+    QJsonObject imageInfo() const;
+    QJsonObject m_data;
+};
+
 }
 
 Q_DECLARE_METATYPE(Wikidata::Q)

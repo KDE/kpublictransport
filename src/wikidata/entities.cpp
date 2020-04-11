@@ -56,3 +56,51 @@ QVariant Item::value(Wikidata::P property) const
     const auto vals = values(property);
     return vals.empty() ? QVariant() : vals[0];
 }
+
+
+Image::Image(const QJsonObject &obj)
+    : m_data(obj)
+{
+}
+
+Image::~Image() = default;
+
+QString Image::name() const
+{
+    return m_data.value(QLatin1String("title")).toString().mid(5);
+}
+
+uint64_t Image::fileSize() const
+{
+    return imageInfo().value(QLatin1String("size")).toInt();
+}
+
+uint32_t Image::width() const
+{
+    return imageInfo().value(QLatin1String("width")).toDouble();
+}
+
+uint32_t Image::height() const
+{
+    return imageInfo().value(QLatin1String("height")).toDouble();
+}
+
+QString Image::mimeType() const
+{
+    return imageInfo().value(QLatin1String("mime")).toString();
+}
+
+QString Image::license() const
+{
+    const auto extmeta = imageInfo().value(QLatin1String("extmetadata")).toObject();
+    return extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
+}
+
+QJsonObject Image::imageInfo() const
+{
+    const auto ii = m_data.value(QLatin1String("imageinfo")).toArray();
+    if (ii.isEmpty()) {
+        return {};
+    }
+    return ii.at(0).toObject();
+}

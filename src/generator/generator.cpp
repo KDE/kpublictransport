@@ -31,8 +31,6 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QFile>
-#include <QJsonArray>
-#include <QJsonObject>
 
 #include <set>
 
@@ -61,7 +59,7 @@ public:
     void applyWikidataProductResults(std::vector<wd::Item> &&entities);
     void applyWikidataProductResults();
     void verifyImages();
-    void verifyImageMetaData(const QJsonObject &images);
+    void verifyImageMetaData(std::vector<wd::Image> &&images);
 
     void generateQuadTree();
     bool resolveOneBottomUpConflict();
@@ -405,7 +403,7 @@ void Generator::verifyImages()
 
     auto query = new WikidataImageMetadataQuery(m_wdMgr);
     query->setImages(std::move(imageIds));
-    QObject::connect(query, &WikidataImageMetadataQuery::partialResult, [this](const auto &metaData) { verifyImageMetaData(metaData); });
+    QObject::connect(query, &WikidataImageMetadataQuery::partialResult, [this](auto query) { verifyImageMetaData(std::move(query->takeResult())); });
     QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
         if (query->error() != WikidataQuery::NoError) {
             qCritical() << "Wikidata image metadata query failed";
@@ -440,46 +438,37 @@ static void clearLogo(std::vector<LineInfo> &lines, const QString &name)
     }
 }
 
-void Generator::verifyImageMetaData(const QJsonObject &images)
+void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
 {
     const QStringList valid_licenses({
         QStringLiteral("cc0"),
         QStringLiteral("public domain"),
     });
 
-    for (auto it = images.begin(); it != images.end(); ++it) {
-        const auto name = it.value().toObject().value(QLatin1String("title")).toString().mid(5);
-
-        const auto imageinfo = it.value().toObject().value(QLatin1String("imageinfo")).toArray();
-        if (imageinfo.isEmpty()) {
-            continue;
-        }
-
-        const auto fileSize = imageinfo.at(0).toObject().value(QLatin1String("size")).toInt();
+    for (const auto &image : images) {
+        const auto name = image.name();
+        const auto fileSize = image.fileSize();
         if (fileSize > MaxLogoFileSize) {
             qWarning() << "not using logo" << name << "due to file size:" << fileSize;
             clearLogo(lines, name);
             continue;
         }
 
-        const auto width = imageinfo.at(0).toObject().value(QLatin1String("width")).toDouble();
-        const auto height = imageinfo.at(0).toObject().value(QLatin1String("height")).toDouble();
-        const auto aspectRatio = width / height;
+        const auto aspectRatio = (double)image.width() / (double)image.height();
         if (aspectRatio > MaxLogoAspectRatio || aspectRatio < MinLogoAspectRatio) {
             qWarning() << "not using logo" << name << "due to aspect ratio:" << aspectRatio;
             clearLogo(lines, name);
             continue;
         }
 
-        const auto mt = imageinfo.at(0).toObject().value(QLatin1String("mime")).toString();
+        const auto mt = image.mimeType();
         if (mt != QLatin1String("image/svg+xml") && mt != QLatin1String("image/png")) {
             qWarning() << "not using logo" << name << "due to mimetype:" << mt;
             clearLogo(lines, name);
             continue;
         }
 
-        const auto extmeta = imageinfo.at(0).toObject().value(QLatin1String("extmetadata")).toObject();
-        const auto lic = extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
+        const auto lic = image.license();
         if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
             qWarning() << "not using logo" << name << "due to license:" << lic;
             clearLogo(lines, name);
