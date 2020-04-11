@@ -390,9 +390,6 @@ void Generator::applyWikidataProductResults()
 
 void Generator::verifyImages()
 {
-    std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.logoName < rhs.logoName;
-    });
     std::vector<QString> imageIds;
     for (const auto &r: lines) {
         if (!r.logoName.isEmpty() && LineInfo::isUseful(r)) {
@@ -402,6 +399,8 @@ void Generator::verifyImages()
             imageIds.push_back(r.productLogoName);
         }
     }
+    std::sort(imageIds.begin(), imageIds.end());
+    imageIds.erase(std::unique(imageIds.begin(), imageIds.end()), imageIds.end());
     qDebug() << "Verifying" << imageIds.size() << "images";
 
     auto query = new WikidataImageMetadataQuery(m_wdMgr);
