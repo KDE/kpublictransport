@@ -22,6 +22,7 @@
 
 using namespace Wikidata;
 
+Item::Item() = default;
 Item::Item(Wikidata::Q id, const QJsonObject& data)
     : m_id(id)
     , m_data(data)

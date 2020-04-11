@@ -101,9 +101,11 @@ public:
 class Item
 {
 public:
+    explicit Item();
     explicit Item(Q id, const QJsonObject &data);
     ~Item();
 
+    inline constexpr bool isValid() const { return m_id.isValid(); }
     inline constexpr Q id() const { return m_id; }
 
     template <typename T>

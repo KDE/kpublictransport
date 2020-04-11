@@ -59,6 +59,7 @@ public:
     void applyWikidataResults(std::vector<wd::Item> &&entities);
     void augmentProductsFromWikidata();
     void applyWikidataProductResults(std::vector<wd::Item> &&entities);
+    void applyWikidataProductResults();
     void verifyImages();
     void verifyImageMetaData(const QJsonObject &images);
 
@@ -72,6 +73,7 @@ public:
     std::vector<LineInfo> lines;
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
     std::set<wd::Q> wdPartOfIds;
+    std::map<wd::Q, wd::Item> wdItems;
 
     std::map<OSM::ZTile, std::vector<size_t>> zQuadTree;
 };
@@ -172,6 +174,7 @@ void Generator::augmentFromWikidata()
             wdIds.push_back(r.wdId);
         }
     }
+    wdIds.erase(std::unique(wdIds.begin(), wdIds.end()), wdIds.end());
     qDebug() << "Retrieving" << wdIds.size() << "items from Wikidata";
 
     auto query = new WikidataEntitiesQuery(m_wdMgr);
@@ -302,6 +305,8 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
                 (*rit).mode = std::max((*rit).mode, mode);
             }
         }
+
+        wdItems[item.id()] = std::move(item);
     }
 }
 
@@ -309,7 +314,7 @@ void Generator::augmentProductsFromWikidata()
 {
     std::vector<wd::Q> wdIds;
     for (const auto &id: wdPartOfIds) {
-        if (id.isValid()) {
+        if (id.isValid() && wdItems.find(id) == wdItems.end()) {
             wdIds.push_back(id);
         }
     }
@@ -325,6 +330,7 @@ void Generator::augmentProductsFromWikidata()
             return;
         }
 
+        applyWikidataProductResults();
         verifyImages();
     });
     m_wdMgr->execute(query);
@@ -332,7 +338,15 @@ void Generator::augmentProductsFromWikidata()
 
 void Generator::applyWikidataProductResults(std::vector<wd::Item> &&items)
 {
-    for (const auto &item : items) {
+    for (auto &item : items) {
+        wdItems[item.id()] = std::move(item);
+    }
+}
+
+void Generator::applyWikidataProductResults()
+{
+    for (const auto &id : wdPartOfIds) {
+        const auto item = wdItems[id];
         // check if this is a plausible type
         const auto instancesOf = item.values<wd::Q>(wd::P::instanceOf);
         LineInfo::Mode mode = LineInfo::Unknown;
