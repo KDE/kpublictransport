@@ -88,6 +88,7 @@ class P : public Identifier<uint32_t, 'P'>
 public:
     enum Property : uint32_t {
         instanceOf = 31,
+        logoImage = 154,
         partOf = 361,
     };
 

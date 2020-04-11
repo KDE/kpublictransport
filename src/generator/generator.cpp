@@ -60,6 +60,7 @@ public:
     void applyWikidataProductResults();
     void verifyImages();
     void verifyImageMetaData(std::vector<wd::Image> &&images);
+    void verifyImageMetaData(QStringList &logos);
     void verifyImageMetaData();
 
     void generateQuadTree();
@@ -298,7 +299,12 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
             } else if (color.isValid()) {
                 (*rit).color = color;
             }
-            (*rit).logoName = item.value<QString>(wd::P(154));
+            const auto logos = item.values<QString>(wd::P::logoImage);
+            for (const auto &logo : logos) {
+                if (!logo.isEmpty() && !(*rit).lineLogos.contains(logo)) {
+                    (*rit).lineLogos.push_back(logo);
+                }
+            }
             if ((*rit).mode != LineInfo::Unknown && mode != LineInfo::Unknown && (*rit).mode != mode) {
                 qWarning() << "OSM/WD mode conflict:" << (*rit) << mode;
             } else {
@@ -366,8 +372,8 @@ void Generator::applyWikidataProductResults()
 
 
         // retrieve logo and find the lines this is for
-        const auto logoName = item.value<QString>(wd::P(154));
-        if (logoName.isEmpty() && mode == LineInfo::Unknown) {
+        const auto logoNames = item.value<QString>(wd::P::logoImage);
+        if (logoNames.isEmpty() && mode == LineInfo::Unknown) {
             continue;
         }
         for (auto &line : lines) {
@@ -379,11 +385,7 @@ void Generator::applyWikidataProductResults()
                 line.mode = mode;
             }
 
-            if (line.productLogoName.isEmpty() || (line.logoName == line.productLogoName)) {
-                line.productLogoName = logoName;
-            } else if (line.productLogoName != logoName) {
-                qWarning() << "Product logo name conflict:" << line << line.productLogoName << logoName;
-            }
+            line.productLogos += logoNames;
         }
     }
 }
@@ -392,16 +394,16 @@ void Generator::verifyImages()
 {
     std::vector<QString> imageIds;
     for (const auto &r: lines) {
-        if (!r.logoName.isEmpty() && LineInfo::isUseful(r)) {
-            imageIds.push_back(r.logoName);
+        if (!LineInfo::isUseful(r)) {
+            continue;
         }
-        if (!r.productLogoName.isEmpty() && LineInfo::isUseful(r)) {
-            imageIds.push_back(r.productLogoName);
-        }
+        std::copy(r.lineLogos.begin(), r.lineLogos.end(), std::back_inserter(imageIds));
+        std::copy(r.productLogos.begin(), r.productLogos.end(), std::back_inserter(imageIds));
     }
     std::sort(imageIds.begin(), imageIds.end());
     imageIds.erase(std::unique(imageIds.begin(), imageIds.end()), imageIds.end());
-    qDebug() << "Verifying" << imageIds.size() << "images";
+    imageIds.erase(std::remove(imageIds.begin(), imageIds.end(), QString()), imageIds.end());
+    qDebug() << "Verifying" << imageIds.size() << "images" << imageIds;
 
     auto query = new WikidataImageMetadataQuery(m_wdMgr);
     query->setImages(std::move(imageIds));
@@ -463,17 +465,22 @@ void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
 
         wdImages[name] = std::move(image);
    }
+   images.clear();
+}
+
+void Generator::verifyImageMetaData(QStringList &logos)
+{
+    logos.erase(std::remove_if(logos.begin(), logos.end(), [this](const auto &logo) {
+        return wdImages.find(logo) == wdImages.end();
+    }), logos.end());
+    // TODO sort by best aspect ratio/size
 }
 
 void Generator::verifyImageMetaData()
 {
     for (auto &line : lines) {
-        if (wdImages.find(line.logoName) == wdImages.end()) {
-            line.logoName.clear();
-        }
-        if (wdImages.find(line.productLogoName) == wdImages.end()) {
-            line.productLogoName.clear();
-        }
+        verifyImageMetaData(line.lineLogos);
+        verifyImageMetaData(line.productLogos);
     }
 }
 
@@ -657,8 +664,8 @@ namespace KPublicTransport {
     StringTable logoStrTab;
     for (const auto &line : lines) {
         nameStrTab.addString(line.name);
-        logoStrTab.addString(line.logoName);
-        logoStrTab.addString(line.productLogoName);
+        logoStrTab.addString(line.lineLogos.value(0));
+        logoStrTab.addString(line.productLogos.value(0));
     }
     nameStrTab.writeCode("line_name_stringtab", out);
     logoStrTab.writeCode("line_logo_stringtab", out);
@@ -673,14 +680,14 @@ namespace KPublicTransport {
         out->write("    { ");
         out->write(QByteArray::number((int)nameStrTab.stringOffset(line.name)));
         out->write(", ");
-        if (!line.logoName.isEmpty()) {
-            out->write(QByteArray::number((int)logoStrTab.stringOffset(line.logoName)));
+        if (!line.lineLogos.isEmpty()) {
+            out->write(QByteArray::number((int)logoStrTab.stringOffset(line.lineLogos.at(0))));
         } else {
             out->write("NoLogo");
         }
         out->write(", ");
-        if (!line.productLogoName.isEmpty()) {
-            out->write(QByteArray::number((int)logoStrTab.stringOffset(line.productLogoName)));
+        if (!line.productLogos.isEmpty()) {
+            out->write(QByteArray::number((int)logoStrTab.stringOffset(line.productLogos.at(0))));
         } else {
             out->write("NoLogo");
         }

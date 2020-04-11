@@ -51,8 +51,8 @@ public:
     QString name;
     QColor color;
     Mode mode = Unknown;
-    QString logoName;
-    QString productLogoName;
+    QStringList lineLogos;
+    QStringList productLogos;
     Wikidata::Q wdId;
     std::vector<Wikidata::Q> wdProducts;
 };

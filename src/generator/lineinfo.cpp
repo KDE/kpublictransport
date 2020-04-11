@@ -31,7 +31,7 @@ bool LineInfo::isUseful(const LineInfo& info)
 {
     return (info.mode != Unknown && info.mode != LongDistance)
         && !info.name.isEmpty()
-        && (info.color.isValid() || !info.logoName.isEmpty() || !info.productLogoName.isEmpty());
+        && (info.color.isValid() || !info.lineLogos.isEmpty() || !info.productLogos.isEmpty());
 }
 
 static LineInfo::Mode lineModeStringToMode(const QString &s)
@@ -130,9 +130,7 @@ QDebug operator<<(QDebug debug, LineInfo info)
         << " https://openstreetmap.org/relation/" << info.relId
         << " " << info.mode
         << (info.color.isValid() ? (QLatin1Char(' ') + info.color.name()) : QString())
-        << (info.wdId.isValid() ? QString(QLatin1Char(' ')) : QString())
-        << info.wdId
-        << (info.logoName.isEmpty() ? QString() : (QStringLiteral(" https://commons.wikimedia.org/wiki/File:") + info.logoName))
+        << (info.wdId.isValid() ? QString(QLatin1Char(' ')) : QString()) << info.wdId
         << " " << info.bbox;
     return debug;
 }
