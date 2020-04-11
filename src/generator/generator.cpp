@@ -260,7 +260,7 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
         // OSM points to product or network elements instead, and those can occur once per line
         for (; rit != lines.end() && (*rit).wdId == item.id(); ++rit) {
             // check if this is a plausible type
-            const auto instancesOf = item.values<wd::Q>(wd::P(31));
+            const auto instancesOf = item.values<wd::Q>(wd::P::instanceOf);
             bool found = false;
             LineInfo::Mode mode = LineInfo::Unknown;
             for (const auto &instanceOf : instancesOf) {
@@ -280,7 +280,7 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
             }
 
             // collect possible product types
-            const auto partOfIds = item.values<wd::Q>(wd::P(361));
+            const auto partOfIds = item.values<wd::Q>(wd::P::partOf);
             for (const auto &id : partOfIds) {
                 wdPartOfIds.insert(id);
                 (*rit).wdProducts.push_back(id);
@@ -334,7 +334,7 @@ void Generator::applyWikidataProductResults(std::vector<wd::Item> &&items)
 {
     for (const auto &item : items) {
         // check if this is a plausible type
-        const auto instancesOf = item.values<wd::Q>(wd::P(31));
+        const auto instancesOf = item.values<wd::Q>(wd::P::instanceOf);
         LineInfo::Mode mode = LineInfo::Unknown;
         bool found = false;
         for (const auto &instanceOf : instancesOf) {

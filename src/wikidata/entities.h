@@ -86,7 +86,13 @@ public:
 class P : public Identifier<uint32_t, 'P'>
 {
 public:
+    enum Property : uint32_t {
+        instanceOf = 31,
+        partOf = 361,
+    };
+
     explicit inline constexpr P() = default;
+    /* implicit */ inline constexpr P(Property id) : Identifier(id) {}
     explicit inline constexpr P(uint32_t id) : Identifier(id) {}
     explicit inline P(const QString &id) : Identifier(id) {}
 };
