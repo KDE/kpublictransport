@@ -84,7 +84,7 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
     if (!colStr.isEmpty()) {
         info.color = QColor(colStr);
     }
-    info.wdId = OSM::tagValue(rel, QLatin1String("wikidata"));
+    info.wdId = Wikidata::Q(OSM::tagValue(rel, QLatin1String("wikidata")));
     info.mode = determineMode(rel);
 
     info.bbox = rel.bbox;
@@ -107,9 +107,9 @@ void LineInfo::merge(LineInfo &lhs, const LineInfo &rhs)
     } else if (rhs.color.isValid()) {
         lhs.color = rhs.color;
     }
-    if (!lhs.wdId.isEmpty() && !rhs.wdId.isEmpty() && lhs.wdId != rhs.wdId) {
+    if (lhs.wdId.isValid() && rhs.wdId.isValid() && lhs.wdId != rhs.wdId) {
         qWarning() << "wikidata id conflict:" << lhs << rhs;
-    } else if (!rhs.wdId.isEmpty()) {
+    } else if (rhs.wdId.isValid()) {
         lhs.wdId = rhs.wdId;
     }
     if (lhs.mode != Unknown && rhs.mode != Unknown && lhs.mode != rhs.mode) {
@@ -130,7 +130,8 @@ QDebug operator<<(QDebug debug, LineInfo info)
         << " https://openstreetmap.org/relation/" << info.relId
         << " " << info.mode
         << (info.color.isValid() ? (QLatin1Char(' ') + info.color.name()) : QString())
-        << (info.wdId.isEmpty() ? QString() : (QStringLiteral(" https://www.wikidata.org/wiki/") + info.wdId))
+        << (info.wdId.isValid() ? QString(QLatin1Char(' ')) : QString())
+        << info.wdId
         << (info.logoName.isEmpty() ? QString() : (QStringLiteral(" https://commons.wikimedia.org/wiki/File:") + info.logoName))
         << " " << info.bbox;
     return debug;

@@ -24,6 +24,8 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 
+namespace wd = Wikidata;
+
 enum {
     WikidataGetEntitiesMaxCount = 50,
     WikidataQueryMaxCount = 50
@@ -56,7 +58,7 @@ WikidataEntitiesQuery::WikidataEntitiesQuery(QObject* parent)
 
 WikidataEntitiesQuery::~WikidataEntitiesQuery() = default;
 
-void WikidataEntitiesQuery::setItems(std::vector<QString> &&items)
+void WikidataEntitiesQuery::setItems(std::vector<wd::Q> &&items)
 {
     m_items = std::move(items);
 }
@@ -73,7 +75,7 @@ QNetworkRequest WikidataEntitiesQuery::nextRequest()
         if (i != m_nextBatch) {
             ids += QLatin1Char('|');
         }
-        ids += m_items[i];
+        ids += m_items[i].toString();
     }
     m_nextBatch += WikidataGetEntitiesMaxCount;
     query.addQueryItem(QStringLiteral("ids"), ids);
@@ -84,10 +86,20 @@ QNetworkRequest WikidataEntitiesQuery::nextRequest()
     return req;
 }
 
+std::vector<Wikidata::Item>&& WikidataEntitiesQuery::takeResult()
+{
+    return std::move(m_result);
+}
+
 bool WikidataEntitiesQuery::processReply(QNetworkReply *reply)
 {
     const auto doc = QJsonDocument::fromJson(reply->readAll());
-    emit partialResult(doc.object().value(QLatin1String("entities")).toObject());
+    const auto entities = doc.object().value(QLatin1String("entities")).toObject();
+    m_result.reserve(entities.size());
+    for (auto it = entities.begin(); it != entities.end(); ++it) {
+        m_result.push_back(wd::Item(wd::Q(it.key()), it.value().toObject()));
+    }
+    emit partialResult(this);
 
     if (m_nextBatch < m_items.size()) {
         return false;

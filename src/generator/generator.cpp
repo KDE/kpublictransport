@@ -36,6 +36,8 @@
 
 #include <set>
 
+namespace wd = Wikidata;
+
 enum {
     MaxLogoFileSize = 10000, // bytes
 };
@@ -54,9 +56,9 @@ class Generator {
 public:
     void processOSMData(OSM::DataSet &&dataSet);
     void augmentFromWikidata();
-    void applyWikidataResults(const QJsonObject &entities);
+    void applyWikidataResults(std::vector<wd::Item> &&entities);
     void augmentProductsFromWikidata();
-    void applyWikidataProductResults(const QJsonObject &entities);
+    void applyWikidataProductResults(std::vector<wd::Item> &&entities);
     void verifyImages();
     void verifyImageMetaData(const QJsonObject &images);
 
@@ -69,7 +71,7 @@ public:
     QIODevice *out = nullptr;
     std::vector<LineInfo> lines;
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
-    std::set<QString> wdPartOfIds;
+    std::set<wd::Q> wdPartOfIds;
 
     std::map<OSM::ZTile, std::vector<size_t>> zQuadTree;
 };
@@ -130,7 +132,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 
     // filter useless lines - ie. those that don't contain useful information and have no wikidata id to fill the missing gaps
     lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
-        return !LineInfo::isUseful(info) && info.wdId.isEmpty();
+        return !LineInfo::isUseful(info) && !info.wdId.isValid();
     }), lines.end());
     qDebug() << "lines after filtering OSM data:" << lines.size();
 
@@ -164,9 +166,9 @@ void Generator::augmentFromWikidata()
     std::sort(lines.begin(), lines.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.wdId < rhs.wdId;
     });
-    std::vector<QString> wdIds;
+    std::vector<wd::Q> wdIds;
     for (const auto &r: lines) {
-        if (!r.wdId.isEmpty()) {
+        if (r.wdId.isValid()) {
             wdIds.push_back(r.wdId);
         }
     }
@@ -174,7 +176,7 @@ void Generator::augmentFromWikidata()
 
     auto query = new WikidataEntitiesQuery(m_wdMgr);
     query->setItems(std::move(wdIds));
-    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](const auto &entities) { applyWikidataResults(entities); });
+    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](auto query) { applyWikidataResults(std::move(query->takeResult())); });
     QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
         if (query->error() != WikidataQuery::NoError) {
             qCritical() << "Wikidata query failed";
@@ -187,121 +189,90 @@ void Generator::augmentFromWikidata()
     m_wdMgr->execute(query);
 }
 
-static std::vector<QVariant> propertyValues(const QJsonObject &entity, const QLatin1String &propName)
-{
-    std::vector<QVariant> values;
-
-    const auto propA = entity.value(QLatin1String("claims")).toObject().value(propName).toArray();
-    for (const auto & propV : propA) {
-        const auto valueObj = propV.toObject().value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
-        const auto type = valueObj.value(QLatin1String("type")).toString();
-        if (type == QLatin1String("string")) {
-            values.push_back(valueObj.value(QLatin1String("value")).toString());
-        } else if (type == QLatin1String("wikibase-entityid")) {
-            values.push_back(valueObj.value(QLatin1String("value")).toObject().value(QLatin1String("id")).toString());
-        }
-
-        // TODO other types
-    }
-
-    return values;
-}
-
-static QVariant propertyValue(const QJsonObject &entity, const QLatin1String &propName)
-{
-    const auto values = propertyValues(entity, propName);
-    return values.empty() ? QVariant() : values[0];
-}
-
 static struct {
-    const char *entity;
+    wd::Q id;
     LineInfo::Mode mode;
 } const wd_type_to_mode_map[] = {
-    { "Q1412403", LineInfo::RapidTransit }, // commuter rail
-    { "Q1192191", LineInfo::RapidTransit }, // airport rail link
-    { "Q50331459", LineInfo::RapidTransit }, // S-Bahn line
-    { "Q95723", LineInfo::RapidTransit }, // S-Bahn
-    { "Q129172", LineInfo::LongDistance }, // ICE
-    { "Q15145593", LineInfo::Tram }, // tram line
-    { "Q2572054", LineInfo::RapidTransit }, // Transilien (multiple variants)
-    { "Q732778", LineInfo::RapidTransit }, // Transilien
-    { "Q2571458", LineInfo::RapidTransit }, // Transilien
-    { "Q2571977", LineInfo::RapidTransit }, // Transilien
-    { "/Q373725", LineInfo::RapidTransit }, // Transilien
-    { "Q858485", LineInfo::LongDistance }, // high speed railway line
+    { wd::Q(1412403), LineInfo::RapidTransit }, // commuter rail
+    { wd::Q(1192191), LineInfo::RapidTransit }, // airport rail link
+    { wd::Q(50331459), LineInfo::RapidTransit }, // S-Bahn line
+    { wd::Q(95723), LineInfo::RapidTransit }, // S-Bahn
+    { wd::Q(129172), LineInfo::LongDistance }, // ICE
+    { wd::Q(15145593), LineInfo::Tram }, // tram line
+    { wd::Q(2572054), LineInfo::RapidTransit }, // Transilien (multiple variants)
+    { wd::Q(732778), LineInfo::RapidTransit }, // Transilien
+    { wd::Q(2571458), LineInfo::RapidTransit }, // Transilien
+    { wd::Q(2571977), LineInfo::RapidTransit }, // Transilien
+    { wd::Q(373725), LineInfo::RapidTransit }, // Transilien
+    { wd::Q(858485), LineInfo::LongDistance }, // high speed railway line
 };
 
-static LineInfo::Mode modeFromWikidataType(const QString &type)
+static LineInfo::Mode modeFromWikidataType(wd::Q type)
 {
     LineInfo::Mode mode = LineInfo::Unknown;
     for (const auto &modeMap : wd_type_to_mode_map) {
-        if (type == QLatin1String(modeMap.entity)) {
+        if (type == modeMap.id) {
             mode = std::max(modeMap.mode, mode);
         }
     }
     return mode;
 }
 
-static const char* wd_excluded_types[] {
-    "Q43229", // organization
-    "Q740752", // transport company
-    "Q928830", // metro station
-    "Q4830453", // business
-    "Q7835189", // transit district
-    "Q249556", // railway company
-    "Q17377208", // train operating company
-    "Q138825", // children's railway (yes, really...)
-    "Q1144661", // amusement ride
-    "Q420962", // heritage railway
+static const wd::Q wd_excluded_types[] {
+    wd::Q(43229), // organization
+    wd::Q(740752), // transport company
+    wd::Q(928830), // metro station
+    wd::Q(4830453), // business
+    wd::Q(7835189), // transit district
+    wd::Q(249556), // railway company
+    wd::Q(17377208), // train operating company
+    wd::Q(138825), // children's railway (yes, really...)
+    wd::Q(1144661), // amusement ride
+    wd::Q(420962), // heritage railway
 };
 
-static bool isExcludedWikidataType(const QString &type)
+static bool isExcludedWikidataType(wd::Q type)
 {
-    return std::find_if(std::begin(wd_excluded_types), std::end(wd_excluded_types), [type](const char *t) {
-        return QLatin1String(t) == type;
-    }) != std::end(wd_excluded_types);
+    return std::find(std::begin(wd_excluded_types), std::end(wd_excluded_types), type) != std::end(wd_excluded_types);
 }
 
-static const char* wd_product_types[] {
-    "Q5503", // rapid transit
-    "Q95723", // S-Bahn
-    "Q15640053", // tram system
-    "Q1412403", // commuter rail
-    "Q2140646", // Stadtbahn
-    "Q1268865", // light rail
+static const wd::Q wd_product_types[] {
+    wd::Q(5503), // rapid transit
+    wd::Q(95723), // S-Bahn
+    wd::Q(15640053), // tram system
+    wd::Q(1412403), // commuter rail
+    wd::Q(2140646), // Stadtbahn
+    wd::Q(1268865), // light rail
 };
 
-static bool isWikidataProductType(const QString &type)
+static bool isWikidataProductType(wd::Q type)
 {
-    return std::find_if(std::begin(wd_product_types), std::end(wd_product_types), [type](const char *t) {
-        return QLatin1String(t) == type;
-    }) != std::end(wd_product_types);
+    return std::find(std::begin(wd_product_types), std::end(wd_product_types), type) != std::end(wd_product_types);
 }
 
-void Generator::applyWikidataResults(const QJsonObject &entities)
+void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
 {
-    for (auto it = entities.begin(); it != entities.end(); ++it) {
-        auto rit = std::lower_bound(lines.begin(), lines.end(), it.key(), [](const LineInfo &lhs, const QString &rhs) {
+    for (auto &item : items) {
+        auto rit = std::lower_bound(lines.begin(), lines.end(), item.id(), [](const LineInfo &lhs, wd::Q rhs) {
             return lhs.wdId < rhs;
         });
         // wikidata line elements shouldn't occur for multiple lines, but in some cases
         // OSM points to product or network elements instead, and those can occur once per line
-        for (; rit != lines.end() && (*rit).wdId == it.key(); ++rit) {
+        for (; rit != lines.end() && (*rit).wdId == item.id(); ++rit) {
             // check if this is a plausible type
-            const auto instancesOf = propertyValues(it.value().toObject(), QLatin1String("P31"));
+            const auto instancesOf = item.values<wd::Q>(wd::P(31));
             bool found = false;
             LineInfo::Mode mode = LineInfo::Unknown;
             for (const auto &instanceOf : instancesOf) {
-                const auto type = instanceOf.toString();
-                if (isExcludedWikidataType(type)) {
+                if (isExcludedWikidataType(instanceOf)) {
                     qWarning() << "Suspicious WD types:" << (*rit) << instancesOf;
                     found = true;
                 }
-                mode = std::max(mode, modeFromWikidataType(type));
+                mode = std::max(mode, modeFromWikidataType(instanceOf));
 
-                if (isWikidataProductType(type)) { // wikidata link in OSM is pointing to the product, not the line it seems
-                    wdPartOfIds.insert(it.key());
-                    (*rit).wdProducts.push_back(it.key());
+                if (isWikidataProductType(instanceOf)) { // wikidata link in OSM is pointing to the product, not the line it seems
+                    wdPartOfIds.insert(item.id());
+                    (*rit).wdProducts.push_back(item.id());
                 }
             }
             if (found) {
@@ -309,22 +280,22 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
             }
 
             // collect possible product types
-            const auto partOfIds = propertyValues(it.value().toObject(), QLatin1String("P361"));
+            const auto partOfIds = item.values<wd::Q>(wd::P(361));
             for (const auto &id : partOfIds) {
-                wdPartOfIds.insert(id.toString());
-                (*rit).wdProducts.push_back(id.toString());
+                wdPartOfIds.insert(id);
+                (*rit).wdProducts.push_back(id);
 
-                mode = std::max(mode, modeFromWikidataType(id.toString()));
+                mode = std::max(mode, modeFromWikidataType(id));
             }
 
             // merge information
-            const auto color = QColor(QLatin1Char('#') + propertyValue(it.value().toObject(), QLatin1String("P465")).toString());
+            const auto color = item.value<QColor>(wd::P(465));
             if ((*rit).color.isValid() && color.isValid() && (*rit).color != color) {
                 qWarning() << "OSM/WD color conflict:" << (*rit) << color.name();
             } else if (color.isValid()) {
                 (*rit).color = color;
             }
-            (*rit).logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
+            (*rit).logoName = item.value<QString>(wd::P(154));
             if ((*rit).mode != LineInfo::Unknown && mode != LineInfo::Unknown && (*rit).mode != mode) {
                 qWarning() << "OSM/WD mode conflict:" << (*rit) << mode;
             } else {
@@ -336,9 +307,9 @@ void Generator::applyWikidataResults(const QJsonObject &entities)
 
 void Generator::augmentProductsFromWikidata()
 {
-    std::vector<QString> wdIds;
+    std::vector<wd::Q> wdIds;
     for (const auto &id: wdPartOfIds) {
-        if (!id.isEmpty()) {
+        if (id.isValid()) {
             wdIds.push_back(id);
         }
     }
@@ -346,7 +317,7 @@ void Generator::augmentProductsFromWikidata()
 
     auto query = new WikidataEntitiesQuery(m_wdMgr);
     query->setItems(std::move(wdIds));
-    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](const auto &entities) { applyWikidataProductResults(entities); });
+    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](auto query) { applyWikidataProductResults(std::move(query->takeResult())); });
     QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
         if (query->error() != WikidataQuery::NoError) {
             qCritical() << "Wikidata product query failed";
@@ -359,22 +330,21 @@ void Generator::augmentProductsFromWikidata()
     m_wdMgr->execute(query);
 }
 
-void Generator::applyWikidataProductResults(const QJsonObject &entities)
+void Generator::applyWikidataProductResults(std::vector<wd::Item> &&items)
 {
-    for (auto it = entities.begin(); it != entities.end(); ++it) {
+    for (const auto &item : items) {
         // check if this is a plausible type
-        const auto instancesOf = propertyValues(it.value().toObject(), QLatin1String("P31"));
+        const auto instancesOf = item.values<wd::Q>(wd::P(31));
         LineInfo::Mode mode = LineInfo::Unknown;
         bool found = false;
         for (const auto &instanceOf : instancesOf) {
-            const auto type = instanceOf.toString();
-            if (isWikidataProductType(type)) {
+            if (isWikidataProductType(instanceOf)) {
                 found = true;
             }
-            mode = std::max(mode, modeFromWikidataType(type));
+            mode = std::max(mode, modeFromWikidataType(instanceOf));
         }
-        if (!found && !std::all_of(instancesOf.begin(), instancesOf.end(), [](const auto &v) { return isExcludedWikidataType(v.toString()); })) {
-            qDebug().nospace().noquote() << "Product https://www.wikidata.org/wiki/" << it.key() << " is of unknown type " << instancesOf;
+        if (!found && !std::all_of(instancesOf.begin(), instancesOf.end(), isExcludedWikidataType)) {
+            qDebug() << "Product" << item.id() << "is of unknown type " << instancesOf;
         }
         if (!found) {
             continue;
@@ -382,12 +352,12 @@ void Generator::applyWikidataProductResults(const QJsonObject &entities)
 
 
         // retrieve logo and find the lines this is for
-        const auto logoName = propertyValue(it.value().toObject(), QLatin1String("P154")).toString();
+        const auto logoName = item.value<QString>(wd::P(154));
         if (logoName.isEmpty() && mode == LineInfo::Unknown) {
             continue;
         }
         for (auto &line : lines) {
-            if (!line.wdProducts.contains(it.key())) {
+            if (std::find(line.wdProducts.begin(), line.wdProducts.end(), item.id()) == line.wdProducts.end()) {
                 continue;
             }
 
@@ -725,9 +695,9 @@ namespace KPublicTransport {
         out->write(line.name.toUtf8()),
         out->write(" OSM: ");
         out->write(QByteArray::number((long long)line.relId));
-        if (!line.wdId.isEmpty()) {
+        if (line.wdId.isValid()) {
             out->write(" WD: ");
-            out->write(line.wdId.toUtf8());
+            out->write(line.wdId.toString().toUtf8());
         }
         out->write(" ");
         out->write(QByteArray::number(line.bbox.min.latF(), 'g', 4));

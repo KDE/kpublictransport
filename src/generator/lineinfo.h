@@ -19,6 +19,7 @@
 #define LINEINFO_H
 
 #include <osm/datatypes.h>
+#include <wikidata/entities.h>
 
 #include <QColor>
 #include <QString>
@@ -52,8 +53,8 @@ public:
     Mode mode = Unknown;
     QString logoName;
     QString productLogoName;
-    QString wdId;
-    QStringList wdProducts;
+    Wikidata::Q wdId;
+    std::vector<Wikidata::Q> wdProducts;
 };
 
 QDebug operator<<(QDebug debug, LineInfo info);
