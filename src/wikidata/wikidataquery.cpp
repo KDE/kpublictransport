@@ -124,7 +124,7 @@ void WikidataImageMetadataQuery::setImages(std::vector<QString> &&images)
 
 QNetworkRequest WikidataImageMetadataQuery::nextRequest()
 {
-    QUrl url(QStringLiteral("https://www.wikidata.org/w/api.php"));
+    QUrl url(QStringLiteral("https://commons.wikimedia.org/w/api.php"));
     auto query = commonUrlQuery();
     query.addQueryItem(QStringLiteral("action"), QStringLiteral("query"));
     query.addQueryItem(QStringLiteral("prop"), QStringLiteral("imageinfo"));
