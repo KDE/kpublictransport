@@ -13,9 +13,10 @@ set(BBOX "-180.0,-90.0,180.0,90.0")
 # this can take ~15min and produces about 100MB of output
 add_custom_command(
     OUTPUT ${OSM_PLANET_DIR}/routes.o5m
-    COMMAND OSM::filter ${OSM_PLANET_DIR}/planet-latest.o5m --keep="route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram" --out-o5m -o=${OSM_PLANET_DIR}/routes.o5m
+    COMMAND OSM::filter ${OSM_PLANET_DIR}/planet-latest.o5m --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram\" --out-o5m -o=${OSM_PLANET_DIR}/routes.o5m
     WORKING_DIRECTORY ${OSM_PLANET_DIR}
     COMMENT "Extracting all route and route_master relations"
+    DEPENDS ${OSM_PLANET_DIR}/planet-latest.o5m
 )
 
 # augment bounding box information
@@ -24,23 +25,26 @@ add_custom_command(
     COMMAND OSM::convert ${OSM_PLANET_DIR}/routes.o5m --out-o5m --add-bbox-tags -b=${BBOX} -o=${OSM_PLANET_DIR}/routes-bbox.o5m
     WORKING_DIRECTORY ${OSM_PLANET_DIR}
     COMMENT "Adding bounding boxes"
+    DEPENDS ${OSM_PLANET_DIR}/routes.o5m
 )
 
 # drop all depending nodes/ways/relations we wont need
 # this is merely to speed up the code generator, by reducing the resulting XML output to manageable sizes
 add_custom_command(
     OUTPUT ${OSM_PLANET_DIR}/routes-only.o5m
-    COMMAND OSM::filter ${OSM_PLANET_DIR}/routes-bbox.o5m --drop-nodes --drop-ways --keep="route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram" --ignore-dependencies --out-o5m -o=${OSM_PLANET_DIR}/routes-only.o5m
+    COMMAND OSM::filter ${OSM_PLANET_DIR}/routes-bbox.o5m --drop-nodes --drop-ways --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram\" --ignore-dependencies --out-o5m -o=${OSM_PLANET_DIR}/routes-only.o5m
     WORKING_DIRECTORY ${OSM_PLANET_DIR}
     COMMENT "Purging unnecessary elements"
+    DEPENDS ${OSM_PLANET_DIR}/routes-bbox.o5m
 )
 
 # convert the output to OSM XML format, so the code generator can consume it
 add_custom_command(
     OUTPUT ${OSM_PLANET_DIR}/routes-only.osm
-    COMMAND OSM::convert ${OSM_PLANET_DIR}/routes-only.o5m ${OSM_PLANET_DIR}/routes-only.o5m
+    COMMAND OSM::convert ${OSM_PLANET_DIR}/routes-only.o5m --out-osm -o=${OSM_PLANET_DIR}/routes-only.osm
     WORKING_DIRECTORY ${OSM_PLANET_DIR}
     COMMENT "Converting to OSM XML format"
+    DEPENDS ${OSM_PLANET_DIR}/routes-only.o5m
 )
 
 add_custom_command(

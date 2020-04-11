@@ -79,7 +79,7 @@ if (OSM_PLANET_DIR)
 
     add_custom_target(osm-update-planet
         COMMAND OSM::update --base-url=https://${OSM_MIRROR}/replication --day --verbose ${OSM_PLANET_DIR}/planet-latest.o5m ${OSM_PLANET_DIR}/new-planet-latest.o5m
-        COMMAND ${CMAKE_COMMAND} -E rename ${OSM_PLANET_DIR}/new-planet-latest.o5m ${OSM_PLANET_DIR}/planet-test.o5m
+        COMMAND ${CMAKE_COMMAND} -E rename ${OSM_PLANET_DIR}/new-planet-latest.o5m ${OSM_PLANET_DIR}/planet-latest.o5m
         WORKING_DIRECTORY ${OSM_PLANET_DIR}
         DEPENDS ${OSM_PLANET_DIR}/planet-latest.o5m
         COMMENT "Updating OSM planet file"
