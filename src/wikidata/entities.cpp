@@ -58,6 +58,7 @@ QVariant Item::value(Wikidata::P property) const
 }
 
 
+Image::Image() = default;
 Image::Image(const QJsonObject &obj)
     : m_data(obj)
 {

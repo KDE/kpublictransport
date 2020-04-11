@@ -60,6 +60,7 @@ public:
     void applyWikidataProductResults();
     void verifyImages();
     void verifyImageMetaData(std::vector<wd::Image> &&images);
+    void verifyImageMetaData();
 
     void generateQuadTree();
     bool resolveOneBottomUpConflict();
@@ -72,6 +73,7 @@ public:
     WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
     std::set<wd::Q> wdPartOfIds;
     std::map<wd::Q, wd::Item> wdItems;
+    std::map<QString, wd::Image> wdImages;
 
     std::map<OSM::ZTile, std::vector<size_t>> zQuadTree;
 };
@@ -410,6 +412,7 @@ void Generator::verifyImages()
             QCoreApplication::exit(1);
             return;
         }
+        verifyImageMetaData();
 
         // filter lines still missing data
         lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
@@ -425,19 +428,6 @@ void Generator::verifyImages()
     m_wdMgr->execute(query);
 }
 
-static void clearLogo(std::vector<LineInfo> &lines, const QString &name)
-{
-    // we cannot rely on sort order once we have done the first call to this method!
-    for (auto &info : lines) {
-        if (info.logoName == name) {
-            info.logoName.clear();
-        }
-        if (info.productLogoName == name) {
-            info.productLogoName.clear();
-        }
-    }
-}
-
 void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
 {
     const QStringList valid_licenses({
@@ -445,34 +435,44 @@ void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
         QStringLiteral("public domain"),
     });
 
-    for (const auto &image : images) {
+    for (auto &image : images) {
         const auto name = image.name();
         const auto fileSize = image.fileSize();
         if (fileSize > MaxLogoFileSize) {
             qWarning() << "not using logo" << name << "due to file size:" << fileSize;
-            clearLogo(lines, name);
             continue;
         }
 
         const auto aspectRatio = (double)image.width() / (double)image.height();
         if (aspectRatio > MaxLogoAspectRatio || aspectRatio < MinLogoAspectRatio) {
             qWarning() << "not using logo" << name << "due to aspect ratio:" << aspectRatio;
-            clearLogo(lines, name);
             continue;
         }
 
         const auto mt = image.mimeType();
         if (mt != QLatin1String("image/svg+xml") && mt != QLatin1String("image/png")) {
             qWarning() << "not using logo" << name << "due to mimetype:" << mt;
-            clearLogo(lines, name);
             continue;
         }
 
         const auto lic = image.license();
         if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
             qWarning() << "not using logo" << name << "due to license:" << lic;
-            clearLogo(lines, name);
             continue;
+        }
+
+        wdImages[name] = std::move(image);
+   }
+}
+
+void Generator::verifyImageMetaData()
+{
+    for (auto &line : lines) {
+        if (wdImages.find(line.logoName) == wdImages.end()) {
+            line.logoName.clear();
+        }
+        if (wdImages.find(line.productLogoName) == wdImages.end()) {
+            line.productLogoName.clear();
         }
     }
 }

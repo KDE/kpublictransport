@@ -152,6 +152,7 @@ inline QColor Item::convertValue<QColor>(const QVariant &v)
 class Image
 {
 public:
+    explicit Image();
     explicit Image(const QJsonObject &obj);
     ~Image();
 
