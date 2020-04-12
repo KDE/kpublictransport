@@ -34,18 +34,37 @@ Item::~Item() = default;
 std::vector<QVariant> Item::values(P property) const
 {
     std::vector<QVariant> values;
+    std::vector<bool> prefRank;
 
-    const auto propA = m_data.value(QLatin1String("claims")).toObject().value(property.toString()).toArray();
+    auto propA = m_data.value(QLatin1String("claims")).toObject().value(property.toString()).toArray();
     for (const auto & propV : propA) {
-        const auto valueObj = propV.toObject().value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
+        const auto propObj = propV.toObject();
+        const auto rank = propObj.value(QLatin1String("rank")).toString();
+        if (rank == QLatin1String("deprecated")) {
+            continue;
+        }
+        const auto valueObj = propObj.value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
         const auto type = valueObj.value(QLatin1String("type")).toString();
         if (type == QLatin1String("string")) {
             values.push_back(valueObj.value(QLatin1String("value")).toString());
         } else if (type == QLatin1String("wikibase-entityid")) {
             values.push_back(QVariant::fromValue(Wikidata::Q(valueObj.value(QLatin1String("value")).toObject().value(QLatin1String("id")).toString())));
         }
-
         // TODO other types
+
+        prefRank.push_back(rank == QLatin1String("preferred"));
+    }
+
+    // if there are preferred rank values, take those, otherwise take all normal ranked ones
+    if (std::any_of(prefRank.begin(), prefRank.end(), [](bool v) { return v; })) {
+        int i = 0;
+        for (auto it = values.begin(); it != values.end();) {
+            if (prefRank[i++]) {
+                ++it;
+            } else {
+                it = values.erase(it);
+            }
+        }
     }
 
     return values;
