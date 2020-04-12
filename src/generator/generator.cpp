@@ -254,6 +254,11 @@ static bool isWikidataProductType(wd::Q type)
     return std::find(std::begin(wd_product_types), std::end(wd_product_types), type) != std::end(wd_product_types);
 }
 
+static const wd::Q wd_recursive_product_types[] = {
+    wd::Q(95723), // S-Bahn
+    wd::Q(1054782), // Cercanías
+};
+
 void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
 {
     for (auto &item : items) {
@@ -318,6 +323,9 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
 
 void Generator::augmentProductsFromWikidata()
 {
+    for (const auto &t : wd_recursive_product_types) { // should all be already in there, but let's make sure so we don't have to check again below
+        wdPartOfIds.insert(t);
+    }
     std::vector<wd::Q> wdIds;
     for (const auto &id: wdPartOfIds) {
         if (id.isValid() && wdItems.find(id) == wdItems.end()) {
@@ -370,10 +378,18 @@ void Generator::applyWikidataProductResults()
             continue;
         }
 
-
         // retrieve logo and find the lines this is for
-        const auto logoNames = item.value<QString>(wd::P::logoImage);
-        if (logoNames.isEmpty() && mode == LineInfo::Unknown) {
+        auto logoNames = item.values<QString>(wd::P::logoImage);
+        // check if this is a type we should recurse on for more logo candidates
+        for (const auto &instanceOf : instancesOf) {
+            if (std::find(std::begin(wd_recursive_product_types), std::end(wd_recursive_product_types), instanceOf) == std::end(wd_recursive_product_types)) {
+                continue;
+            }
+            const auto logos = wdItems[instanceOf].values<QString>(wd::P::logoImage);
+            std::copy(logos.begin(), logos.end(), std::back_inserter(logoNames));
+        }
+
+        if (logoNames.empty() && mode == LineInfo::Unknown) {
             continue;
         }
         for (auto &line : lines) {
@@ -385,7 +401,7 @@ void Generator::applyWikidataProductResults()
                 line.mode = mode;
             }
 
-            line.productLogos += logoNames;
+            std::copy(logoNames.begin(), logoNames.end(), std::back_inserter(line.productLogos));
         }
     }
 }
@@ -473,6 +489,11 @@ void Generator::verifyImageMetaData(QStringList &logos)
     logos.erase(std::remove_if(logos.begin(), logos.end(), [this](const auto &logo) {
         return wdImages.find(logo) == wdImages.end();
     }), logos.end());
+
+    if (logos.size() <= 1) {
+        return;
+    }
+
     // TODO sort by best aspect ratio/size
 }
 
