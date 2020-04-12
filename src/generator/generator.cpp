@@ -47,7 +47,8 @@ static constexpr const auto MinTileCoverage = 0.1;
 
 static bool isSameLine(const LineInfo &lhs, const LineInfo &rhs)
 {
-    return lhs.mode == rhs.mode && KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name);
+    return (lhs.mode == LineInfo::Unknown || rhs.mode == LineInfo::Unknown || lhs.mode == rhs.mode)
+        && KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name);
 }
 
 class Generator {
