@@ -13,7 +13,7 @@ set(BBOX "-180.0,-90.0,180.0,90.0")
 # this can take ~15min and produces about 100MB of output
 add_custom_command(
     OUTPUT ${OSM_PLANET_DIR}/routes.o5m
-    COMMAND OSM::filter ${OSM_PLANET_DIR}/planet-latest.o5m --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram\" --out-o5m -o=${OSM_PLANET_DIR}/routes.o5m
+    COMMAND OSM::filter ${OSM_PLANET_DIR}/planet-latest.o5m --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram or route_master=light_rail\" --out-o5m -o=${OSM_PLANET_DIR}/routes.o5m
     WORKING_DIRECTORY ${OSM_PLANET_DIR}
     COMMENT "Extracting all route and route_master relations"
     DEPENDS ${OSM_PLANET_DIR}/planet-latest.o5m
@@ -32,7 +32,7 @@ add_custom_command(
 # this is merely to speed up the code generator, by reducing the resulting XML output to manageable sizes
 add_custom_command(
     OUTPUT ${OSM_PLANET_DIR}/routes-only.o5m
-    COMMAND OSM::filter ${OSM_PLANET_DIR}/routes-bbox.o5m --drop-nodes --drop-ways --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram\" --ignore-dependencies --out-o5m -o=${OSM_PLANET_DIR}/routes-only.o5m
+    COMMAND OSM::filter ${OSM_PLANET_DIR}/routes-bbox.o5m --drop-nodes --drop-ways --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram or route_master=light_rail\" --ignore-dependencies --out-o5m -o=${OSM_PLANET_DIR}/routes-only.o5m
     WORKING_DIRECTORY ${OSM_PLANET_DIR}
     COMMENT "Purging unnecessary elements"
     DEPENDS ${OSM_PLANET_DIR}/routes-bbox.o5m
