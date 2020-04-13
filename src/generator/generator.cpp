@@ -45,10 +45,22 @@ static constexpr const auto MinLogoAspectRatio = 0.45; // Shanghai Metro is the 
 
 static constexpr const auto MinTileCoverage = 0.1;
 
+static bool isCompatibleMode(LineInfo::Mode lhs, LineInfo::Mode rhs)
+{
+    if (lhs == LineInfo::Unknown || rhs == LineInfo::Unknown) {
+        return true;
+    }
+    if ((lhs == LineInfo::LocalTrain && rhs == LineInfo::RapidTransit) || (lhs == LineInfo::RapidTransit && rhs == LineInfo::LocalTrain)) {
+        return true;
+    }
+
+    return lhs == rhs;
+}
+
 static bool isSameLine(const LineInfo &lhs, const LineInfo &rhs)
 {
-    return (lhs.mode == LineInfo::Unknown || rhs.mode == LineInfo::Unknown || lhs.mode == rhs.mode)
-        && KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name);
+    return isCompatibleMode(lhs.mode, rhs.mode)
+        && KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name, KPublicTransport::Internal::StrictCompare);
 }
 
 class Generator {
@@ -330,7 +342,7 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
                     (*rit).lineLogos.push_back(logo);
                 }
             }
-            if ((*rit).mode != LineInfo::Unknown && mode != LineInfo::Unknown && (*rit).mode != mode) {
+            if (!isCompatibleMode((*rit).mode, mode)) {
                 qWarning() << "OSM/WD mode conflict:" << (*rit) << mode;
             }
             (*rit).mode = std::max((*rit).mode, mode);

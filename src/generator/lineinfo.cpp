@@ -110,7 +110,7 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
 void LineInfo::merge(LineInfo &lhs, const LineInfo &rhs)
 {
     Q_ASSERT(!lhs.name.isEmpty());
-    if (!rhs.name.isEmpty() && !KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name)) {
+    if (!rhs.name.isEmpty() && !KPublicTransport::Internal::isSameLineName(lhs.name, rhs.name, KPublicTransport::Internal::StrictCompare)) {
         qDebug() << "OSM name conflict:" << lhs << rhs;
     }
 

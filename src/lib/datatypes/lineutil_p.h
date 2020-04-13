@@ -29,7 +29,8 @@ class Location;
 
 namespace LineUtil
 {
-    bool isSameLineName(const QString &lhs, const QString &rhs);
+    bool isSameLineNameStrict(const QString &lhs, const QString &rhs);
+    bool isSameLineNameFuzzy(const QString &lhs, const QString &rhs);
     bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs);
     void applyMetaData(Line &line, const Location &loc, bool download);
     void setMetaData(Line &line, LineMetaData metaData);

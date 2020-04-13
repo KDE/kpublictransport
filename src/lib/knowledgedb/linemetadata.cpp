@@ -135,14 +135,14 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
             auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
             while ((*bucketIt) != -1) {
                 const auto d = line_data + (*bucketIt);
-                if (LineUtil::isSameLineName(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
+                if (LineUtil::isSameLineNameStrict(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
                     return LineMetaData(d);
                 }
                 ++bucketIt;
             }
         } else {
             const auto d = line_data + (*treeIt).lineIdx;
-            if (LineUtil::isSameLineName(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
+            if (LineUtil::isSameLineNameStrict(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
                 return LineMetaData(d);
             }
         }

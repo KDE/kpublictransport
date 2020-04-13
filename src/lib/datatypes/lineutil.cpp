@@ -30,9 +30,14 @@
 
 using namespace KPublicTransport;
 
-bool LineUtil::isSameLineName(const QString &lhs, const QString &rhs)
+bool LineUtil::isSameLineNameStrict(const QString &lhs, const QString &rhs)
 {
-    return Internal::isSameLineName(lhs, rhs);
+    return Internal::isSameLineName(lhs, rhs, Internal::StrictCompare);
+}
+
+bool LineUtil::isSameLineNameFuzzy(const QString &lhs, const QString &rhs)
+{
+    return Internal::isSameLineName(lhs, rhs, Internal::FuzzyCompare);
 }
 
 bool LineUtil::isCompatibleMode(Line::Mode lhs, Line::Mode rhs)

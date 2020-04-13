@@ -111,10 +111,10 @@ bool Line::isSame(const Line &lhs, const Line &rhs)
 
     // ### not really the most efficient way of doing this...
     using namespace LineUtil;
-    return isSameLineName(lhs.name(), rhs.name())
-        || isSameLineName(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), rhs.name())
-        || isSameLineName(lhs.name(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed())
-        || isSameLineName(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed());
+    return isSameLineNameFuzzy(lhs.name(), rhs.name())
+        || isSameLineNameFuzzy(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), rhs.name())
+        || isSameLineNameFuzzy(lhs.name(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed())
+        || isSameLineNameFuzzy(QString(lhs.modeString() + QLatin1Char(' ') + lhs.name()).trimmed(), QString(rhs.modeString() + QLatin1Char(' ') + rhs.name()).trimmed());
 }
 
 static QColor mergeColor(const QColor &lhs, const QColor &rhs)
