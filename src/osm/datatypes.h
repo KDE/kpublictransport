@@ -148,6 +148,8 @@ constexpr inline uint32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbo
 /** An OSM element tag. */
 class Tag {
 public:
+    inline bool operator<(const Tag &other) const { return key < other.key; }
+
     QString key;
     QString value;
 };
@@ -211,12 +213,31 @@ public:
 template <typename Elem>
 inline QString tagValue(const Elem& elem, const QLatin1String &key)
 {
-    // TODO sort tag list?
-    const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [key](const auto &t) { return t.key == key; });
-    if (it != elem.tags.end()) {
+    const auto it = std::lower_bound(elem.tags.begin(), elem.tags.end(), key, [](const auto &lhs, const auto &rhs) { return lhs.key < rhs; });
+    if (it != elem.tags.end() && (*it).key == key) {
         return (*it).value;
     }
     return {};
+}
+
+/** Inserts a new tag, or replaces an existing one with the same key. */
+template <typename Elem>
+inline void setTag(Elem &elem, Tag &&tag)
+{
+    const auto it = std::lower_bound(elem.tags.begin(), elem.tags.end(), tag);
+    if (it == elem.tags.end() || (*it).key != tag.key) {
+        elem.tags.insert(it, std::move(tag));
+    } else {
+        (*it) = std::move(tag);
+    }
+}
+
+/** Inserts a new tag, or updates an existing one. */
+template <typename Elem>
+inline void setTagValue(Elem &elem, const QString &key, const QString &value)
+{
+    Tag tag{ key, value };
+    setTag(elem, std::move(tag));
 }
 
 template <typename Elem>

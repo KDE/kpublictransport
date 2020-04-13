@@ -94,6 +94,23 @@ void Generator::insertToBucket(OSM::ZTile tile, std::size_t lineIdx)
 void Generator::processOSMData(OSM::DataSet &&dataSet)
 {
     qDebug() << "got" << dataSet.relations.size() << "relations from OSM";
+    // expand multi-line relations
+    for (auto it = dataSet.relations.begin(); it != dataSet.relations.end();) {
+        const auto ref = OSM::tagValue(*it, QLatin1String("ref"));
+        if (!ref.contains(QLatin1Char(';'))) {
+            ++it;
+            continue;
+        }
+
+        const auto refs = ref.split(QLatin1Char(';'), Qt::SkipEmptyParts);
+        for (const auto &ref : refs) {
+            auto rel = *it;
+            OSM::setTagValue(rel, QStringLiteral("ref"), ref);
+            dataSet.relations.push_back(rel);
+        }
+        it = dataSet.relations.erase(it);
+    }
+    qDebug() << "OSM relations after ref split:" << dataSet.relations.size();
 
     // split relations into route_master elements and route elements
     auto splitIt = std::partition(dataSet.relations.begin(), dataSet.relations.end(), [](const auto &rel) {

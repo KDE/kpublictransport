@@ -128,11 +128,7 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
 template<typename T>
 void XmlParser::parseTag(QXmlStreamReader& reader, T& elem)
 {
-    // TODO shared value pool for the key, sorting by key
-    Tag t;
-    t.key = reader.attributes().value(QLatin1String("k")).toString();
-    t.value = reader.attributes().value(QLatin1String("v")).toString();
-    elem.tags.push_back(t);
+    OSM::setTagValue(elem, reader.attributes().value(QLatin1String("k")).toString(), reader.attributes().value(QLatin1String("v")).toString());
     reader.skipCurrentElement();
 }
 
