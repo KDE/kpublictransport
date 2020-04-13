@@ -662,6 +662,8 @@ static QByteArray modeToString(LineInfo::Mode mode)
         default:
             assert(false);
     }
+
+    return {};
 }
 
 void Generator::writeCode()
