@@ -75,13 +75,9 @@ LineInfo::Mode LineInfo::determineMode(const OSM::Relation &rel)
     m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route")));
     if (m != Unknown) return m;
 
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("line")));
-    if (m != Unknown) return m;
-
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("service")));
-    if (m != Unknown) return m;
-
-    return lineModeStringToMode(OSM::tagValue(rel, QLatin1String("passenger")));
+    return std::max(lineModeStringToMode(OSM::tagValue(rel, QLatin1String("line"))),
+           std::max(lineModeStringToMode(OSM::tagValue(rel, QLatin1String("service"))),
+                    lineModeStringToMode(OSM::tagValue(rel, QLatin1String("passenger")))));
 }
 
 LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
