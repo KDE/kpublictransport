@@ -35,6 +35,7 @@ public:
     enum Mode { // ordered by accuracy in OSM data, ie. higher value -> higher probability of being the correctly detected mode
         Unknown,
         LongDistance,
+        LocalTrain,
         RapidTransit,
         Tram,
         Subway,

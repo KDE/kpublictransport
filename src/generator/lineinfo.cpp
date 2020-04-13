@@ -29,9 +29,22 @@ LineInfo::~LineInfo() = default;
 
 bool LineInfo::isUseful(const LineInfo& info)
 {
-    return (info.mode != Unknown && info.mode != LongDistance)
-        && !info.name.isEmpty()
-        && (info.color.isValid() || !info.lineLogos.isEmpty() || !info.productLogos.isEmpty());
+    if (info.name.isEmpty())
+        return false;
+
+    switch (info.mode) {
+        case Unknown:
+            return false;
+        case LongDistance:
+        case LocalTrain:
+            return false;
+            //return !info.lineLogos.empty() || !info.productLogos.empty();
+        case RapidTransit:
+        case Tram:
+        case Subway:
+            return info.color.isValid() || !info.lineLogos.isEmpty() || !info.productLogos.isEmpty();
+    }
+    return false;
 }
 
 static LineInfo::Mode lineModeStringToMode(const QString &s)
@@ -47,6 +60,9 @@ static LineInfo::Mode lineModeStringToMode(const QString &s)
     }
     if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international") || s == QLatin1String("high_speed")) {
         return LineInfo::LongDistance;
+    }
+    if (s == QLatin1String("regional")) {
+        return LineInfo::LocalTrain;
     }
     return LineInfo::Unknown;
 }

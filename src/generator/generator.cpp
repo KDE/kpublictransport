@@ -227,6 +227,8 @@ static struct {
     { wd::Q(2571977), LineInfo::RapidTransit }, // Transilien
     { wd::Q(373725), LineInfo::RapidTransit }, // Transilien
     { wd::Q(858485), LineInfo::LongDistance }, // high speed railway line
+    { wd::Q(2138247), LineInfo::LocalTrain }, // Regional-Express
+    { wd::Q(515449), LineInfo::LocalTrain }, // Regionalbahn
 };
 
 static LineInfo::Mode modeFromWikidataType(wd::Q type)
@@ -330,9 +332,8 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
             }
             if ((*rit).mode != LineInfo::Unknown && mode != LineInfo::Unknown && (*rit).mode != mode) {
                 qWarning() << "OSM/WD mode conflict:" << (*rit) << mode;
-            } else {
-                (*rit).mode = std::max((*rit).mode, mode);
             }
+            (*rit).mode = std::max((*rit).mode, mode);
         }
 
         wdItems[item.id()] = std::move(item);
