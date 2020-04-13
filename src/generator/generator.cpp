@@ -513,12 +513,16 @@ void Generator::verifyImageMetaData(QStringList &logos)
     }
 
     // TODO sort by best aspect ratio/size
+    qDebug() << "multiple logos available:" << logos;
 }
 
 void Generator::verifyImageMetaData()
 {
     for (auto &line : lines) {
         verifyImageMetaData(line.lineLogos);
+        if (!line.lineLogos.empty() && line.productLogos.size() > 1) {
+            line.productLogos.erase(std::remove(line.productLogos.begin(), line.productLogos.end(), line.lineLogos[0]), line.productLogos.end());
+        }
         verifyImageMetaData(line.productLogos);
     }
 }
