@@ -65,9 +65,8 @@ void XmlParser::parseNode(QXmlStreamReader &reader)
         }
         if (reader.name() == QLatin1String("tag")) {
             parseTag(reader, node);
-        } else {
-            reader.skipCurrentElement();
         }
+        reader.skipCurrentElement();
     }
 
     m_dataSet->addNode(std::move(node));
@@ -75,8 +74,26 @@ void XmlParser::parseNode(QXmlStreamReader &reader)
 
 void XmlParser::parseWay(QXmlStreamReader &reader)
 {
-    // TODO
-    reader.skipCurrentElement();
+    Way way;
+    way.id = reader.attributes().value(QLatin1String("id")).toLongLong();
+
+    while (!reader.atEnd() && reader.readNext() != QXmlStreamReader::EndElement) {
+        if (reader.tokenType() != QXmlStreamReader::StartElement) {
+            continue;
+        }
+        if (reader.name() == QLatin1String("nd")) {
+            OSM::Id node;
+            node = reader.attributes().value(QLatin1String("ref")).toLongLong();
+            way.nodes.push_back(node);
+        } else if (reader.name() == QLatin1String("tag")) {
+            parseTagOrBounds(reader, way);
+        } else if (reader.name() == QLatin1String("bounds")) {
+            parseBounds(reader, way);
+        }
+        reader.skipCurrentElement();
+    }
+
+    m_dataSet->addWay(std::move(way));
 }
 
 void XmlParser::parseRelation(QXmlStreamReader &reader)
@@ -89,20 +106,9 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
             continue;
         }
         if (reader.name() == QLatin1String("tag")) {
-            if (reader.attributes().value(QLatin1String("k")) == QLatin1String("bBox")) { // osmconvert style bounding box
-                const auto v = reader.attributes().value(QLatin1String("v")).split(QLatin1Char(','));
-                if (v.size() == 4) {
-                    rel.bbox.min = Coordinate(v[1].toDouble(), v[0].toDouble());
-                    rel.bbox.max = Coordinate(v[3].toDouble(), v[2].toDouble());
-                }
-                reader.skipCurrentElement();
-            } else {
-                parseTag(reader, rel);
-            }
+            parseTagOrBounds(reader, rel);
         } else if (reader.name() == QLatin1String("bounds")) { // Overpass style bounding box
-            rel.bbox.min = Coordinate(reader.attributes().value(QLatin1String("minlat")).toDouble(), reader.attributes().value(QLatin1String("minlon")).toDouble());
-            rel.bbox.max = Coordinate(reader.attributes().value(QLatin1String("maxlat")).toDouble(), reader.attributes().value(QLatin1String("maxlon")).toDouble());
-            reader.skipCurrentElement();
+            parseBounds(reader, rel);
         } else if (reader.name() == QLatin1String("member")) {
             Member member;
             member.id = reader.attributes().value(QLatin1String("ref")).toLongLong();
@@ -116,20 +122,39 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
             }
             member.role = reader.attributes().value(QLatin1String("role")).toString(); // TODO shared value pool for these values
             rel.members.push_back(std::move(member));
-            reader.skipCurrentElement();
-        } else {
-            reader.skipCurrentElement();
         }
+        reader.skipCurrentElement();
     }
 
     m_dataSet->addRelation(std::move(rel));
 }
 
-template<typename T>
-void XmlParser::parseTag(QXmlStreamReader& reader, T& elem)
+template <typename T>
+void XmlParser::parseTag(QXmlStreamReader &reader, T &elem)
 {
     OSM::setTagValue(elem, reader.attributes().value(QLatin1String("k")).toString(), reader.attributes().value(QLatin1String("v")).toString());
-    reader.skipCurrentElement();
+}
+
+template <typename T>
+void XmlParser::parseTagOrBounds(QXmlStreamReader &reader, T &elem)
+{
+    if (reader.attributes().value(QLatin1String("k")) == QLatin1String("bBox")) { // osmconvert style bounding box
+        const auto v = reader.attributes().value(QLatin1String("v")).split(QLatin1Char(','));
+        if (v.size() == 4) {
+            elem.bbox.min = Coordinate(v[1].toDouble(), v[0].toDouble());
+            elem.bbox.max = Coordinate(v[3].toDouble(), v[2].toDouble());
+        }
+    } else {
+        parseTag(reader, elem);
+    }
+}
+
+template<typename T>
+void XmlParser::parseBounds(QXmlStreamReader &reader, T &elem)
+{
+    // overpass style bounding box
+    elem.bbox.min = Coordinate(reader.attributes().value(QLatin1String("minlat")).toDouble(), reader.attributes().value(QLatin1String("minlon")).toDouble());
+    elem.bbox.max = Coordinate(reader.attributes().value(QLatin1String("maxlat")).toDouble(), reader.attributes().value(QLatin1String("maxlon")).toDouble());
 }
 
 QString XmlParser::error() const

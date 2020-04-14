@@ -29,6 +29,16 @@ void DataSet::addNode(Node &&node)
     nodes.insert(it, std::move(node));
 }
 
+void DataSet::addWay(Way &&way)
+{
+    const auto it = std::lower_bound(ways.begin(), ways.end(), way);
+    if (it != ways.end() && (*it).id == way.id) {
+        // already there?
+        return;
+    }
+    ways.insert(it, std::move(way));
+}
+
 void DataSet::addRelation(Relation &&rel)
 {
     const auto it = std::lower_bound(relations.begin(), relations.end(), rel);

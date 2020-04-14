@@ -41,6 +41,10 @@ private:
     void parseRelation(QXmlStreamReader &reader);
     template <typename T>
     void parseTag(QXmlStreamReader &reader, T &elem);
+    template <typename T>
+    void parseTagOrBounds(QXmlStreamReader &reader, T&elem);
+    template <typename T>
+    void parseBounds(QXmlStreamReader &reader, T &elem);
 
     DataSet *m_dataSet;
     QString m_error;

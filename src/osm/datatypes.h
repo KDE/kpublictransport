@@ -170,6 +170,7 @@ public:
     constexpr inline bool operator<(const Way &other) const { return id < other.id; }
 
     Id id;
+    BoundingBox bbox;
     std::vector<Id> nodes;
     std::vector<Tag> tags;
 };
@@ -202,6 +203,7 @@ public:
 class DataSet {
 public:
     void addNode(Node &&node);
+    void addWay(Way &&way);
     void addRelation(Relation &&rel);
 
     std::vector<Node> nodes;
