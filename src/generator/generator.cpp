@@ -114,7 +114,11 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
             continue;
         }
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+        const auto refs = ref.split(QLatin1Char(';'), QString::SkipEmptyParts);
+#else
         const auto refs = ref.split(QLatin1Char(';'), Qt::SkipEmptyParts);
+#endif
         for (const auto &ref : refs) {
             auto rel = *it;
             OSM::setTagValue(rel, QStringLiteral("ref"), ref);
