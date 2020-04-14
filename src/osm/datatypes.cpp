@@ -49,6 +49,21 @@ void DataSet::addRelation(Relation &&rel)
     relations.insert(it, std::move(rel));
 }
 
+QString OSM::Node::url() const
+{
+    return QStringLiteral("https://openstreetmap.org/node/") + QString::number(id);
+}
+
+QString OSM::Way::url() const
+{
+    return QStringLiteral("https://openstreetmap.org/way/") + QString::number(id);
+}
+
+QString OSM::Relation::url() const
+{
+    return QStringLiteral("https://openstreetmap.org/relation/") + QString::number(id);
+}
+
 QDebug operator<<(QDebug debug, OSM::BoundingBox bbox)
 {
     QDebugStateSaver saver(debug);

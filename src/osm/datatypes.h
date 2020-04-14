@@ -159,6 +159,8 @@ class Node {
 public:
     constexpr inline bool operator<(const Node &other) const { return id < other.id; }
 
+    QString url() const;
+
     Id id;
     Coordinate coordinate;
     std::vector<Tag> tags;
@@ -168,6 +170,8 @@ public:
 class Way {
 public:
     constexpr inline bool operator<(const Way &other) const { return id < other.id; }
+
+    QString url() const;
 
     Id id;
     BoundingBox bbox;
@@ -192,6 +196,8 @@ public:
 class Relation {
 public:
     constexpr inline bool operator<(const Relation &other) const { return id < other.id; }
+
+    QString url() const;
 
     Id id;
     BoundingBox bbox;
