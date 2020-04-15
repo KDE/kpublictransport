@@ -177,6 +177,8 @@ class Way {
 public:
     constexpr inline bool operator<(const Way &other) const { return id < other.id; }
 
+    bool isClosed() const;
+
     QString url() const;
 
     Id id;

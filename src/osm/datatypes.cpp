@@ -54,6 +54,11 @@ QString OSM::Node::url() const
     return QStringLiteral("https://openstreetmap.org/node/") + QString::number(id);
 }
 
+bool OSM::Way::isClosed() const
+{
+    return nodes.size() >= 2 && nodes.front() == nodes.back();
+}
+
 QString OSM::Way::url() const
 {
     return QStringLiteral("https://openstreetmap.org/way/") + QString::number(id);
