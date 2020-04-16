@@ -228,7 +228,7 @@ void OverpassQueryManagerPrivate::checkQueryFinished(OverpassQuery *query) const
     if (std::any_of(m_executors.begin(), m_executors.end(), [query](const auto &executor) { return executor.task && executor.task->query == query; })
         || std::any_of(m_tasks.begin(), m_tasks.end(), [query](const auto &task) { return task->query == query; }))
         return;
-    emit query->finished();
+    Q_EMIT query->finished();
 }
 
 void OverpassQueryManagerPrivate::cancelQuery(OverpassQuery *query)
