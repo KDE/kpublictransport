@@ -38,8 +38,8 @@ class Coordinate {
 public:
     Coordinate() = default;
     explicit constexpr Coordinate(double lat, double lon)
-        : latitude((lat + 180.0) * 10'000'000)
-        , longitude((lon + 90.0) * 10'000'000)
+        : latitude((lat + 90.0) * 10'000'000)
+        , longitude((lon + 180.0) * 10'000'000)
     {}
     explicit constexpr Coordinate(uint32_t lat, uint32_t lon)
         : latitude(lat)
@@ -75,11 +75,11 @@ public:
 
     constexpr inline double latF() const
     {
-        return (latitude / 10'000'000.0) - 180.0;
+        return (latitude / 10'000'000.0) - 90.0;
     }
     constexpr inline double lonF() const
     {
-        return (longitude / 10'000'000.0) - 90.0;
+        return (longitude / 10'000'000.0) - 180.0;
     }
 
     uint32_t latitude = std::numeric_limits<uint32_t>::max();

@@ -25,15 +25,15 @@ class OsmTypeTest : public QObject
 private Q_SLOTS:
     void testZIndex_data()
     {
-        QTest::addColumn<double>("lat");
         QTest::addColumn<double>("lon");
+        QTest::addColumn<double>("lat");
         QTest::addColumn<qulonglong>("z");
 
         QTest::newRow("-180,-90") << -180.0 << -90.0 << 0ull;
-        QTest::newRow("-179,-90") << -179.0 << -90.0 << 71744225558528ull;
-        QTest::newRow("-180,-89") << -180.0 << -89.0 << 143488451117056ull;
-        QTest::newRow("0,0") << 0.0 << 0.0 << 2190887290304593920ull;
-        QTest::newRow("180,90") << 180.0 << 90.0 << 8763549161218375680ull;
+        QTest::newRow("-179,-90") << -179.0 << -90.0 << 143488451117056ull;
+        QTest::newRow("-180,-89") << -180.0 << -89.0 << 71744225558528ull;
+        QTest::newRow("0,0") << 0.0 << 0.0 << 3286330935456890880ull;
+        QTest::newRow("180,90") << 180.0 << 90.0 << 13145323741827563520ull;
     }
 
     void testZIndex()

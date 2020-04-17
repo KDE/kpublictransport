@@ -189,24 +189,24 @@ static const char line_name_stringtab[] = {
     "DOY\0"
     "WAR\0"
     "840-860\0"
-    "894\0"
     "892\0"
+    "894\0"
     "890\0"
-    "891\0"
     "895\0"
     "893\0"
+    "891\0"
     "881\0"
+    "879\0"
     "875\0"
     "871\0"
     "873\0"
-    "879\0"
     "877\0"
     "883\0"
-    "878\0"
-    "880\0"
-    "874\0"
     "876\0"
+    "874\0"
     "870\0"
+    "880\0"
+    "878\0"
     "12E\0"
     "15E\0"
     "S26\0"
@@ -270,12 +270,12 @@ static const char line_name_stringtab[] = {
     "MRT Purple\0"
     "4S\0"
     "TRE\0"
-    "801\0"
     "803\0"
+    "801\0"
+    "439\0"
     "435\0"
     "433\0"
     "431\0"
-    "439\0"
     "427\0"
     "425\0"
     "M-LINE\0"
@@ -301,8 +301,8 @@ static const char line_name_stringtab[] = {
     "RS 2\0"
     "L13\0"
     "LBN\0"
-    "1705\0"
     "1701\0"
+    "1705\0"
     "1703\0"
     "G44\0"
     "Metrotranvía\0"
@@ -592,42 +592,42 @@ static const char line_name_stringtab[] = {
     "10AB\0"
     "9AB\0"
     "HN\0"
-    "442\0"
+    "436\0"
     "424\0"
+    "440\0"
+    "432\0"
+    "442\0"
     "428\0"
+    "426\0"
+    "434\0"
+    "422\0"
+    "430\0"
     "444\0"
     "438\0"
-    "422\0"
-    "436\0"
-    "440\0"
-    "426\0"
-    "430\0"
-    "432\0"
-    "434\0"
     "159\0"
-    "193\0"
-    "191\0"
-    "101\0"
-    "155\0"
-    "139\0"
-    "151\0"
     "147\0"
-    "135\0"
+    "101\0"
+    "139\0"
     "143\0"
+    "191\0"
+    "151\0"
+    "193\0"
+    "135\0"
+    "155\0"
+    "104\0"
     "194\0"
     "192\0"
-    "104\0"
     "198\0"
-    "190\0"
-    "102\0"
-    "134\0"
     "150\0"
     "138\0"
+    "146\0"
+    "134\0"
     "142\0"
     "152\0"
-    "146\0"
-    "103\0"
+    "190\0"
+    "102\0"
     "195\0"
+    "103\0"
     "GF\0"
     "Harbour\0"
     "TEL\0"
@@ -672,9 +672,9 @@ static const char line_name_stringtab[] = {
     "21A\0"
     "OT\0"
     "South\0"
-    "1704\0"
     "1700\0"
     "1702\0"
+    "1704\0"
     "North\0"
     "Daxing Airport\0"
     "River\0"
@@ -683,18 +683,18 @@ static const char line_name_stringtab[] = {
     "BTS Sukhumvit\0"
     "D2\0"
     "Roch\0"
-    "Sh&C\0"
     "EDid\0"
-    "Dean\0"
+    "Sh&C\0"
     "Vict\0"
     "Airp\0"
+    "Dean\0"
     "MCUK\0"
     "Arcobaleno\0"
-    "Asht\0"
     "Eccl\0"
+    "Asht\0"
     "Picc\0"
-    "Altr\0"
     "Bury\0"
+    "Altr\0"
     "ESFECO\0"
     "TrfC\0"
     "Crmp\0"
@@ -728,8 +728,8 @@ static const char line_name_stringtab[] = {
     "Barrie\0"
     "Lakeshore East\0"
     "LRT\0"
-    "217\0"
     "221\0"
+    "217\0"
 };
 
 static const char line_logo_stringtab[] = {
@@ -1036,6 +1036,7 @@ static const char line_logo_stringtab[] = {
     "MRT (Bangkok) logo.svg\0"
     "Lima Metro Linea 1.svg\0"
     "Seoul Metro Line Shinbundang.svg\0"
+    "Sendai City Subway Logo.svg\0"
     "Yokohama Municipal Subway Logo.svg\0"
     "Paris m 3 jms.svg\0"
     "Logo-Nsk-Metro.svg\0"
@@ -1358,8 +1359,8 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 50, 512, 40, LineMetaDataContent::RapidTransit, Color{0x018a47} }, // S2 OSM: 61466 WD: Q3743635 52.34, 13.36 x 52.68, 13.59
     { 225, 526, 40, LineMetaDataContent::RapidTransit, Color{0x018a47} }, // S25 OSM: 61469 WD: Q7388229 52.4, 13.21 x 52.64, 13.4
     { 100, 541, 250, LineMetaDataContent::Subway, Color{0xfcdf00} }, // U3 OSM: 62839 WD: Q781351 53.54, 9.969 x 53.59, 10.08
-    { 230, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfaa635} }, // J OSM: 63222 WD: Q6109356 37.72, 307 x 37.79, 307.1
-    { 233, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf0e68c} }, // F OSM: 63224 WD: Q1137818 37.76, 307.1 x 37.81, 307.1
+    { 230, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfaa635} }, // J OSM: 63222 WD: Q6109356 37.72, -122.4 x 37.79, -122.4
+    { 233, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf0e68c} }, // F OSM: 63224 WD: Q1137818 37.76, -122.4 x 37.81, -122.4
     { 61, 556, 40, LineMetaDataContent::RapidTransit, Color{0x36caec} }, // S1 OSM: 63809 WD: Q7388207 48.13, 11.48 x 48.4, 11.79
     { 186, 572, 40, LineMetaDataContent::RapidTransit, Color{0x00ac6f} }, // S6 OSM: 63839 WD: Q7388348 47.91, 11.27 x 48.15, 11.97
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff7f00} }, // 3 OSM: 63875 51.82, 12.18 x 51.84, 12.24
@@ -1384,9 +1385,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe8001b} }, // 1 OSM: 69191 47.98, 7.808 x 48.03, 7.895
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008bc5} }, // 5 OSM: 69199 47.99, 7.787 x 48, 7.852
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x646363} }, // 2 OSM: 69202 47.96, 7.833 x 48.02, 7.858
-    { 267, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Blue OSM: 71390 WD: Q6714611 45.49, 306.5 x 45.54, 307.1
-    { 272, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // Yellow OSM: 71397 WD: Q6714624 45.51, 306.8 x 45.61, 306.8
-    { 279, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // Red OSM: 71404 WD: Q6714623 45.49, 306.7 x 45.59, 306.9
+    { 267, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Blue OSM: 71390 WD: Q6714611 45.49, -123 x 45.54, -122.4
+    { 272, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // Yellow OSM: 71397 WD: Q6714624 45.51, -122.7 x 45.61, -122.7
+    { 279, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // Red OSM: 71404 WD: Q6714623 45.49, -122.8 x 45.59, -122.6
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf6a6ab} }, // 1 OSM: 71785 47.25, 11.39 x 47.28, 11.41
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xd66775} }, // 3 OSM: 71787 47.26, 11.39 x 47.27, 11.43
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfbba00} }, // 1 OSM: 73662 WD: Q61888705 51.43, 11.94 x 51.51, 11.99
@@ -1484,7 +1485,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // 2 OSM: 300207 48.46, 34.61 x 48.52, 34.69
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff00ff} }, // 1 OSM: 300208 48.51, 34.57 x 48.52, 34.62
     { 465, 1072, 40, LineMetaDataContent::RapidTransit, Color{0x9a3052} }, // S9 OSM: 304163 WD: Q4048680 52.39, 13.2 x 52.54, 13.57
-    { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // Green OSM: 304623 WD: Q6714613 45.44, 306.8 x 45.54, 306.9
+    { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // Green OSM: 304623 WD: Q6714613 45.44, -122.7 x 45.54, -122.6
     { 260, 1086, 1098, LineMetaDataContent::Subway, Color{0x0000ff} }, // M1 OSM: 309619 WD: Q17462780 52.13, 20.93 x 52.29, 21.07
     { 474, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfc7ebb} }, // SHM OSM: 331945 WD: Q7416840 -37.95, 145 x -37.82, 145
     { 478, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x149943} }, // FKN OSM: 344911 WD: Q5492274 -38.14, 144.9 x -37.81, 145.1
@@ -1585,7 +1586,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 606, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x90ee90} }, // ? OSM: 1133450 49.81, 24 x 49.84, 24.06
     { 196, 1800, 40, LineMetaDataContent::RapidTransit, Color{} }, // S4 OSM: 1136740 WD: Q2204422 47.08, 9.816 x 47.15, 9.918
     { 608, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf173ac} }, // DRL OSM: 1139477 WD: Q989330 22.32, 114 x 22.33, 114
-    { 219, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xed389c} }, // A OSM: 1142411 45.5, 306.8 x 45.53, 306.8
+    { 219, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xed389c} }, // A OSM: 1142411 45.5, -122.7 x 45.53, -122.7
     { 612, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe41f25} }, // N82 OSM: 1147592 48.24, 14.28 x 48.33, 14.36
     { 168, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe41f25} }, // 50 OSM: 1149422 48.31, 14.26 x 48.32, 14.29
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe41f25} }, // 2 OSM: 1149423 48.24, 14.28 x 48.33, 14.36
@@ -1593,12 +1594,12 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe41f25} }, // 1 OSM: 1149425 48.25, 14.28 x 48.33, 14.32
     { 97, 1820, 250, LineMetaDataContent::Subway, Color{0x00a54f} }, // U2 OSM: 1150977 WD: Q3040891 50.1, 8.64 x 50.22, 8.687
     { 616, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0039a6} }, // Harlem OSM: 1158719 40.75, -73.98 x 41.82, -73.55
-    { 623, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffc260} }, // 100s, 900s (A700s) OSM: 1165701 WD: Q4132754 34.05, 310.3 x 34.29, 311.3
-    { 642, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 200s OSM: 1172222 WD: Q4162507 34.05, 311 x 34.71, 311.4
+    { 623, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffc260} }, // 100s, 900s (A700s) OSM: 1165701 WD: Q4132754 34.05, -119.2 x 34.29, -118.2
+    { 642, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 200s OSM: 1172222 WD: Q4162507 34.05, -118.5 x 34.71, -118.1
     { 647, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009b3a} }, // Hudson OSM: 1186686 40.75, -73.99 x 41.71, -73.86
     { 654, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff7900} }, // Port Jervis OSM: 1190915 WD: Q7230730 41.11, -74.69 x 41.49, -74.09
     { 361, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xee2523} }, // L1 OSM: 1190932 41.62, -0.9378 x 41.69, -0.8708
-    { 666, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 400s OSM: 1199065 WD: Q4801982 33.96, 311.3 x 34.06, 312.1
+    { 666, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 400s OSM: 1199065 WD: Q4801982 33.96, -118.2 x 34.06, -117.4
     { 671, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0065ff} }, // SFMA OSM: 1204872 WD: Q3832760 45.09, 7.47 x 45.27, 7.677
     { 676, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x95aa53} }, // 308 OSM: 1228606 51.4, 7.16 x 51.52, 7.284
     { 680, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xb14e7a} }, // 310 OSM: 1228607 51.44, 7.152 x 51.48, 7.337
@@ -1610,9 +1611,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 696, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf47a14} }, // S 5 OSM: 1241173 49.14, 8.674 x 49.42, 9.102
     { 700, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0039a6} }, // Port Jefferson OSM: 1255264 WD: Q7230720 40.7, -73.99 x 40.94, -73.05
     { 715, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe00034} }, // New Haven OSM: 1260624 40.75, -73.98 x 41.31, -72.92
-    { 725, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x89728e} }, // VMLR OSM: 1266358 33.41, 317.4 x 33.57, 317.7
+    { 725, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x89728e} }, // VMLR OSM: 1266358 33.41, -112.1 x 33.57, -111.8
     { 545, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // T2 OSM: 1286854 28.44, -16.3 x 28.47, -16.29
-    { 730, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800000} }, // 300s OSM: 1287719 34.05, 311.3 x 34.11, 312.2
+    { 730, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800000} }, // 300s OSM: 1287719 34.05, -118.2 x 34.11, -117.3
     { 735, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00af3f} }, // Oyster Bay OSM: 1308975 WD: Q7116314 40.7, -73.99 x 40.88, -73.53
     { 746, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe6007e} }, // S31 OSM: 1319745 47.1, 15.62 x 47.22, 15.71
     { 176, 1837, 1411, LineMetaDataContent::Subway, Color{0xd61572} }, // 24 OSM: 1350576 WD: Q5944471 39.77, 116.4 x 39.84, 116.6
@@ -1642,25 +1643,25 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 2 OSM: 1390151 34.31, 132.3 x 34.4, 132.5
     { 335, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfaa93f} }, // 841-859 OSM: 1403277 WD: Q5025789 38.9, -77.01 x 39.28, -76.62
     { 944, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfaa93f} }, // 840-860 OSM: 1403278 WD: Q5025789 38.9, -77.01 x 39.28, -76.62
-    { 952, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 894 OSM: 1405414 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
-    { 956, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 892 OSM: 1405414 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
+    { 952, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 892 OSM: 1405414 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
+    { 956, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 894 OSM: 1405414 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
     { 960, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 890 OSM: 1405414 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
-    { 964, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 891 OSM: 1405415 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
-    { 968, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 895 OSM: 1405415 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
-    { 972, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 893 OSM: 1405415 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
+    { 964, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 895 OSM: 1405415 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
+    { 968, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 893 OSM: 1405415 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
+    { 972, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 891 OSM: 1405415 WD: Q4979520 38.9, -77.53 x 39.41, -76.99
     { 976, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 881 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 980, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 875 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 984, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 871 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 988, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 873 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 992, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 879 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 980, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 879 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 984, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 875 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 988, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 871 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 992, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 873 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
     { 996, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 877 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
     { 1000, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 883 OSM: 1405856 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 1004, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 878 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 1008, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 880 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 1012, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 874 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 1016, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 876 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
-    { 1020, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 870 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 1004, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 876 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 1008, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 874 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 1012, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 870 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
     { 137, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 872 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 1016, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 880 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
+    { 1020, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfbcab6} }, // 878 OSM: 1405857 WD: Q4979520 38.9, -77.96 x 39.46, -76.99
     { 1024, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff7f00} }, // 12E OSM: 1411178 WD: Q1487139 38.71, -9.138 x 38.72, -9.13
     { 1028, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff00ff} }, // 15E OSM: 1411205 WD: Q63229924 38.69, -9.233 x 38.71, -9.135
     { 233, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xb1c800} }, // F OSM: 1416967 48.57, 7.724 x 48.59, 7.777
@@ -1673,13 +1674,13 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 55, 2096, 1943, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 1475758 WD: Q729631 55.56, 37.4 x 55.82, 37.75
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffa500} }, // 4 OSM: 1476874 56.45, 84.98 x 56.48, 85.02
     { 1037, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe6f2fc} }, // 98 OSM: 1490387 52.36, 13.03 x 52.4, 13.1
-    { 965, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 91 OSM: 1492311 52.36, 13.01 x 52.4, 13.1
+    { 973, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 91 OSM: 1492311 52.36, 13.01 x 52.4, 13.1
     { 219, 2120, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // A OSM: 1502599 WD: Q17621067 6.152, -75.63 x 6.339, -75.54
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // 1 OSM: 1503481 56.47, 84.95 x 56.53, 85.02
-    { 1005, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x897cb9} }, // 78 OSM: 1504645 WD: Q6811971 -37.87, 145 x -37.81, 145
-    { 957, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x19488e} }, // 92 OSM: 1505928 52.36, 13.03 x 52.42, 13.14
-    { 973, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfe9800} }, // 93 OSM: 1509473 52.36, 13.06 x 52.41, 13.1
-    { 953, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfe9800} }, // 94 OSM: 1512265 52.37, 13.01 x 52.4, 13.11
+    { 1021, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x897cb9} }, // 78 OSM: 1504645 WD: Q6811971 -37.87, 145 x -37.81, 145
+    { 953, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x19488e} }, // 92 OSM: 1505928 52.36, 13.03 x 52.42, 13.14
+    { 969, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfe9800} }, // 93 OSM: 1509473 52.36, 13.06 x 52.41, 13.1
+    { 957, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfe9800} }, // 94 OSM: 1512265 52.37, 13.01 x 52.4, 13.11
     { 1040, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x803c9f} }, // S33 OSM: 1513484 49.12, 8.364 x 49.24, 8.594
     { 27, 2159, 1943, LineMetaDataContent::Subway, Color{0xffa500} }, // 6 OSM: 1514439 WD: Q175271 55.6, 37.51 x 55.89, 37.67
     { 42, 2183, 1943, LineMetaDataContent::Subway, Color{0xff00ff} }, // 7 OSM: 1516383 WD: Q924028 55.67, 37.43 x 55.86, 37.86
@@ -1756,10 +1757,10 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // 2 OSM: 1788097 55.67, 52.28 x 55.73, 52.47
     { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x006400} }, // 12 OSM: 1789317 55.67, 52.28 x 55.77, 52.44
     { 130, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 15 OSM: 1808234 39.96, -75.25 x 39.98, -75.13
-    { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // 12 OSM: 1809578 29.93, 339.4 x 29.95, 339.4
-    { 553, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 47 OSM: 1809579 29.95, 339.4 x 29.98, 339.4
-    { 415, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x90ee90} }, // 48 OSM: 1809580 29.95, 339.4 x 29.98, 339.4
-    { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // 2 OSM: 1809582 WD: Q18155116 29.94, 339.4 x 29.96, 339.4
+    { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // 12 OSM: 1809578 29.93, -90.13 x 29.95, -90.07
+    { 553, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 47 OSM: 1809579 29.95, -90.11 x 29.98, -90.06
+    { 415, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x90ee90} }, // 48 OSM: 1809580 29.95, -90.1 x 29.98, -90.06
+    { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // 2 OSM: 1809582 WD: Q18155116 29.94, -90.06 x 29.96, -90.06
     { 545, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x96bf0d} }, // T2 OSM: 1824544 47.29, 5.006 x 47.37, 5.059
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xcc0088} }, // T1 OSM: 1824550 47.31, 5.028 x 47.33, 5.112
     { 1115, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffb531} }, // UFD OSM: 1825844 WD: Q7898275 -37.82, 144.9 x -37.66, 145
@@ -1780,7 +1781,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 19, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xed1c24} }, // 8 OSM: 1927430 44.39, 25.98 x 44.43, 26.09
     { 181, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x406681} }, // B OSM: 1940503 35.02, 135.7 x 35.03, 135.7
     { 219, 2633, NoLogo, LineMetaDataContent::Tramway, Color{0xa83939} }, // A OSM: 1940504 WD: Q10883225 35, 135.7 x 35.02, 135.7
-    { 214, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x913108} }, // C OSM: 1958845 37.79, 307.1 x 37.79, 307.1
+    { 214, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x913108} }, // C OSM: 1958845 37.79, -122.4 x 37.79, -122.4
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x003828} }, // 2 OSM: 1984325 52.9, -1.207 x 52.99, -1.145
     { 1191, 2678, NoLogo, LineMetaDataContent::Tramway, Color{0xfcc70d} }, // SG OSM: 1994315 WD: Q339069 35.64, 139.6 x 35.67, 139.7
     { 438, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x004ea2} }, // SL OSM: 1994316 WD: Q6360898 35.33, 139.6 x 35.39, 139.7
@@ -1846,7 +1847,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 1230, 2981, NoLogo, LineMetaDataContent::RapidTransit, Color{0x6cbf68} }, // FL8 OSM: 2208506 WD: Q3737301 41.45, 12.5 x 41.9, 12.66
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xed1c24} }, // 1 OSM: 2212352 44.4, 26.05 x 44.45, 26.14
     { 19, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0098d4} }, // 8 OSM: 2262665 50.8, 4.353 x 50.85, 4.44
-    { 1036, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00ff80} }, // 398 OSM: 2271832 32.72, 312.1 x 33.2, 312.3
+    { 1036, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00ff80} }, // 398 OSM: 2271832 32.72, -117.4 x 33.2, -117.2
     { 1234, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x669933} }, // 87 OSM: 2282096 WD: Q428288 52.44, 13.69 x 52.46, 13.76
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008f4d} }, // 1 OSM: 2309633 33.84, 132.8 x 33.85, 132.8
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf9a51b} }, // 2 OSM: 2309634 33.84, 132.8 x 33.85, 132.8
@@ -1867,9 +1868,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x004b85} }, // 3 OSM: 2418220 57.67, 11.91 x 57.72, 12.03
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x6ec8dc} }, // 9 OSM: 2418235 57.68, 11.9 x 57.8, 12.05
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000000} }, // 11 OSM: 2418236 57.66, 11.85 x 57.76, 12.07
-    { 1237, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // 901 OSM: 2440421 WD: Q1617191 44.85, 336.2 x 44.98, 336.3
+    { 1237, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // 901 OSM: 2440421 WD: Q1617191 44.85, -93.28 x 44.98, -93.2
     { 247, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x61af20} }, // RB23 OSM: 2441590 WD: Q1699351 50.56, 6.761 x 50.74, 7.098
-    { 1241, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf0e130} }, // 888 OSM: 2442946 44.98, 335.8 x 45.33, 336.3
+    { 1241, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf0e130} }, // 888 OSM: 2442946 44.98, -93.73 x 45.33, -93.25
     { 61, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x0b9a33} }, // S1 OSM: 2444997 WD: Q7388210 51.16, 6.772 x 51.52, 7.46
     { 53, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0xef7c00} }, // S11 OSM: 2445000 WD: Q7388174 50.94, 6.674 x 51.28, 7.125
     { 1071, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x61af20} }, // S12 OSM: 2445001 WD: Q7388180 50.76, 6.713 x 50.95, 7.66
@@ -1965,26 +1966,26 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x223344} }, // 2 OSM: 2694563 54.26, 48.28 x 54.34, 48.41
     { 1033, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00aaad} }, // 26 OSM: 2705952 59.27, 18.27 x 59.29, 18.3
     { 226, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00aaad} }, // 25 OSM: 2705957 59.28, 18.11 x 59.31, 18.31
-    { 219, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffbf00} }, // A OSM: 2716905 32.98, 332.4 x 33.21, 332.6
-    { 1348, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x003e7e} }, // TRE OSM: 2716975 WD: Q2453601 32.75, 332.2 x 32.82, 332.7
+    { 219, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffbf00} }, // A OSM: 2716905 32.98, -97.13 x 33.21, -96.93
+    { 1348, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x003e7e} }, // TRE OSM: 2716975 WD: Q2453601 32.75, -97.33 x 32.82, -96.81
     { 65, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xdc008f} }, // 10 OSM: 2728288 50.06, 14.3 x 50.13, 14.48
     { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xdc008f} }, // 12 OSM: 2729904 50.03, 14.37 x 50.11, 14.45
     { 11, 3426, 1351, LineMetaDataContent::Subway, Color{0x7956a3} }, // M5 OSM: 2753306 WD: Q3238963 45.48, 9.117 x 45.53, 9.212
-    { 1352, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 801 OSM: 2768040 37.33, 307.1 x 37.78, 307.6
-    { 1356, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 803 OSM: 2768040 37.33, 307.1 x 37.78, 307.6
-    { 426, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 441 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1360, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 435 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 90, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 437 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1364, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 433 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1368, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 431 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1372, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 439 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1376, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 427 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 422, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 443 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1289, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 429 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
-    { 1380, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 425 OSM: 2768041 37.33, 307.1 x 37.78, 307.6
+    { 1352, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 803 OSM: 2768040 37.33, -122.4 x 37.78, -121.9
+    { 1356, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 801 OSM: 2768040 37.33, -122.4 x 37.78, -121.9
+    { 422, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 443 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1360, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 439 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 90, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 437 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1364, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 435 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 426, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 441 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1368, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 433 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1372, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 431 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1289, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 429 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1376, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 427 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
+    { 1380, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 425 OSM: 2768041 37.33, -122.4 x 37.78, -121.9
     { 27, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf67599} }, // 6 OSM: 2768662 WD: Q5931449 29.49, 106.4 x 29.83, 106.7
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe3000b} }, // 1 OSM: 2777016 52.2, 10.51 x 52.33, 10.54
-    { 1384, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x7b2f3d} }, // M-LINE OSM: 2788830 32.78, 332.7 x 32.81, 332.7
+    { 1384, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x7b2f3d} }, // M-LINE OSM: 2788830 32.78, -96.8 x 32.81, -96.79
     { 1391, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x015ca3} }, // S 7 OSM: 2791180 51.45, 11.91 x 51.49, 12
     { 1396, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xd7171f} }, // S 3 OSM: 2793231 51.31, 11.96 x 51.52, 13.11
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x687362} }, // 3 OSM: 2797182 52.5, 103.9 x 52.58, 103.9
@@ -2008,25 +2009,25 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xcb0a25} }, // 2 OSM: 2807095 47.35, 8.444 x 47.4, 8.561
     { 130, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xcb0a25} }, // 15 OSM: 2807117 47.37, 8.533 x 47.4, 8.548
     { 19, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x8bc036} }, // 8 OSM: 2807118 47.36, 8.504 x 47.39, 8.567
-    { 1404, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 800s OSM: 2808958 33.19, 311.6 x 34.1, 312.2
+    { 1404, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 800s OSM: 2808958 33.19, -117.9 x 34.1, -117.3
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf39100} }, // 5 OSM: 2810470 52.23, 10.48 x 52.26, 10.54
-    { 1409, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff8000} }, // 600s (A500s, A700s) OSM: 2812899 33.19, 311.3 x 34.06, 312.1
-    { 1429, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x4782ff} }, // 700s OSM: 2812902 33.76, 311.3 x 34.06, 312.3
+    { 1409, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff8000} }, // 600s (A500s, A700s) OSM: 2812899 33.19, -118.2 x 34.06, -117.4
+    { 1429, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x4782ff} }, // 700s OSM: 2812902 33.76, -118.2 x 34.06, -117.2
     { 26, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xa9c1d1} }, // 16 OSM: 2820891 50.06, 14.3 x 50.11, 14.55
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0b0080} }, // 1 OSM: 2826218 WD: Q5017774 29.85, 31.23 x 30.16, 31.34
     { 9, NoLogo, 3319, LineMetaDataContent::Subway, Color{0x0054a6} }, // 4 OSM: 2827680 WD: Q15731046 59.87, 10.71 x 59.97, 10.93
-    { 272, NoLogo, 3446, LineMetaDataContent::Subway, Color{0xffe800} }, // Yellow OSM: 2827687 WD: Q3784868 37.6, 307 x 38.02, 307.6
+    { 272, NoLogo, 3446, LineMetaDataContent::Subway, Color{0xffe800} }, // Yellow OSM: 2827687 WD: Q3784868 37.6, -122.5 x 38.02, -121.9
     { 1435, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf166a7} }, // 40 OSM: 2836163 59.17, 17.63 x 59.86, 18.07
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x006531} }, // 3 OSM: 2837394 52.24, 10.47 x 52.29, 10.58
     { 613, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xbed639} }, // 82 OSM: 2844184 WD: Q6811974 -37.8, 144.9 x -37.77, 144.9
-    { 59, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 3 OSM: 2845552 37.33, 307.5 x 37.96, 308.2
-    { 55, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 1 OSM: 2845552 37.33, 307.5 x 37.96, 308.2
-    { 42, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 7 OSM: 2845552 37.33, 307.5 x 37.96, 308.2
-    { 6, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 5 OSM: 2845552 37.33, 307.5 x 37.96, 308.2
-    { 279, NoLogo, 3446, LineMetaDataContent::Subway, Color{0xed1c24} }, // Red OSM: 2851513 WD: Q3809179 37.6, 307 x 37.94, 307.2
-    { 1260, NoLogo, 3446, LineMetaDataContent::Subway, Color{0xfaa61a} }, // Orange OSM: 2851514 WD: Q3866809 37.5, 307.1 x 37.94, 307.6
-    { 468, NoLogo, 3446, LineMetaDataContent::Subway, Color{0x4db848} }, // Green OSM: 2851729 WD: Q3720557 37.5, 307 x 37.81, 307.6
-    { 267, NoLogo, 3446, LineMetaDataContent::Subway, Color{0x00aeef} }, // Blue OSM: 2851730 WD: Q3720569 37.69, 307 x 37.83, 307.6
+    { 42, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 7 OSM: 2845552 37.33, -122 x 37.96, -121.3
+    { 55, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 1 OSM: 2845552 37.33, -122 x 37.96, -121.3
+    { 59, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 3 OSM: 2845552 37.33, -122 x 37.96, -121.3
+    { 6, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 5 OSM: 2845552 37.33, -122 x 37.96, -121.3
+    { 279, NoLogo, 3446, LineMetaDataContent::Subway, Color{0xed1c24} }, // Red OSM: 2851513 WD: Q3809179 37.6, -122.5 x 37.94, -122.3
+    { 1260, NoLogo, 3446, LineMetaDataContent::Subway, Color{0xfaa61a} }, // Orange OSM: 2851514 WD: Q3866809 37.5, -122.4 x 37.94, -121.9
+    { 468, NoLogo, 3446, LineMetaDataContent::Subway, Color{0x4db848} }, // Green OSM: 2851729 WD: Q3720557 37.5, -122.5 x 37.81, -121.9
+    { 267, NoLogo, 3446, LineMetaDataContent::Subway, Color{0x00aeef} }, // Blue OSM: 2851730 WD: Q3720569 37.69, -122.5 x 37.83, -121.9
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x86c5a2} }, // 11 OSM: 2858845 WD: Q18165625 -37.82, 144.9 x -37.73, 145
     { 42, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x878a83} }, // 7 OSM: 2860817 59.32, 18.06 x 59.33, 18.11
     { 746, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00907a} }, // S31 OSM: 2872363 48.44, 8.215 x 49.18, 8.785
@@ -2054,7 +2055,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf9b000} }, // 4 OSM: 2951397 52.37, 9.596 x 52.42, 9.819
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x281570} }, // T1 OSM: 2962731 WD: Q26273325 41, 28.86 x 41.03, 28.99
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x90ee90} }, // 11 OSM: 2971659 49.82, 23.99 x 49.84, 24.04
-    { 953, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x6f1b14} }, // 94 OSM: 2982672 51.48, 11.93 x 51.51, 11.97
+    { 957, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x6f1b14} }, // 94 OSM: 2982672 51.48, 11.93 x 51.51, 11.97
     { 27, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf9b000} }, // 6 OSM: 2991603 52.32, 9.69 x 52.42, 9.837
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf9b000} }, // 11 OSM: 2991649 52.36, 9.713 x 52.39, 9.775
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf9b000} }, // 5 OSM: 2991701 52.36, 9.659 x 52.41, 9.859
@@ -2063,7 +2064,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 19, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe4003a} }, // 8 OSM: 2998722 52.33, 9.734 x 52.39, 9.805
     { 164, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x76b82a} }, // 17 OSM: 2998733 52.34, 9.718 x 52.38, 9.743
     { 65, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x76b82a} }, // 10 OSM: 3004809 52.37, 9.664 x 52.38, 9.744
-    { 969, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x051541} }, // 95 OSM: 3006197 51.42, 11.96 x 51.52, 11.99
+    { 965, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x051541} }, // 95 OSM: 3006197 51.42, 11.96 x 51.52, 11.99
     { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xed1943} }, // 12 OSM: 3009639 WD: Q2189640 51.88, 4.471 x 51.92, 4.568
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0069b4} }, // 3 OSM: 3016071 52.33, 9.69 x 52.44, 9.848
     { 42, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0069b4} }, // 7 OSM: 3038575 52.33, 9.69 x 52.41, 9.854
@@ -2093,9 +2094,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 41, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0xa5ce43} }, // S7 OSM: 3168072 WD: Q63433461 52.37, 9.739 x 52.62, 10.06
     { 219, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xca305b} }, // A OSM: 3190626 47.34, 0.6578 x 47.42, 0.7119
     { 58, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x33ff33} }, // 13 OSM: 3201250 59.91, 10.59 x 59.95, 10.78
-    { 1508, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1705 OSM: 3207386 WD: Q56525585 47.6, 307.1 x 47.98, 307.3
-    { 1513, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1701 OSM: 3207386 WD: Q56525585 47.6, 307.1 x 47.98, 307.3
-    { 1518, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1703 OSM: 3207386 WD: Q56525585 47.6, 307.1 x 47.98, 307.3
+    { 1508, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1701 OSM: 3207386 WD: Q56525585 47.6, -122.4 x 47.98, -122.2
+    { 1513, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1705 OSM: 3207386 WD: Q56525585 47.6, -122.4 x 47.98, -122.2
+    { 1518, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1703 OSM: 3207386 WD: Q56525585 47.6, -122.4 x 47.98, -122.2
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x75ff00} }, // 11 OSM: 3218724 59.91, 10.72 x 59.96, 10.79
     { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x994dff} }, // 12 OSM: 3221100 59.91, 10.7 x 59.96, 10.79
     { 9, NoLogo, 3535, LineMetaDataContent::Subway, Color{0xf1ce00} }, // 4 OSM: 3228501 WD: Q1597847 45.51, -73.56 x 45.52, -73.52
@@ -2124,7 +2125,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 1495, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff9e00} }, // RS 2 OSM: 3372285 52.79, 8.597 x 53.57, 8.895
     { 203, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ee} }, // RS 1 OSM: 3372313 52.92, 8.516 x 53.21, 9.238
     { 1524, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe3ba12} }, // 44 OSM: 3394367 50.82, 4.409 x 50.84, 4.514
-    { 1373, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xde3b21} }, // 39 OSM: 3394368 50.83, 4.409 x 50.85, 4.503
+    { 1361, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xde3b21} }, // 39 OSM: 3394368 50.83, 4.409 x 50.85, 4.503
     { 65, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xe6be80} }, // 10 OSM: 3400216 WD: Q6553053 31.98, 118.6 x 32.07, 118.8
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 3400217 WD: Q6127241 31.9, 118.8 x 32.11, 118.9
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 3413089 WD: Q5960302 31.97, 118.7 x 32.12, 119
@@ -2147,11 +2148,11 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf5d200} }, // 1 OSM: 3430333 49.72, 13.37 x 49.78, 13.4
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf5d200} }, // 2 OSM: 3430559 49.73, 13.32 x 49.75, 13.41
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf5d200} }, // 4 OSM: 3430578 49.73, 13.36 x 49.78, 13.38
-    { 1541, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x913108} }, // PM OSM: 3433159 37.78, 307.1 x 37.81, 307.1
-    { 376, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x913108} }, // PH OSM: 3433160 37.78, 307.1 x 37.81, 307.1
-    { 439, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x92278f} }, // L OSM: 3435879 WD: Q16981005 37.74, 307 x 37.79, 307.1
-    { 296, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008752} }, // M OSM: 3435882 WD: Q6720518 37.71, 307 x 37.79, 307.1
-    { 480, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00539b} }, // N OSM: 3435884 WD: Q6956302 37.76, 307 x 37.79, 307.1
+    { 1541, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x913108} }, // PM OSM: 3433159 37.78, -122.4 x 37.81, -122.4
+    { 376, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x913108} }, // PH OSM: 3433160 37.78, -122.4 x 37.81, -122.4
+    { 439, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x92278f} }, // L OSM: 3435879 WD: Q16981005 37.74, -122.5 x 37.79, -122.4
+    { 296, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008752} }, // M OSM: 3435882 WD: Q6720518 37.71, -122.5 x 37.79, -122.4
+    { 480, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00539b} }, // N OSM: 3435884 WD: Q6956302 37.76, -122.5 x 37.79, -122.4
     { 134, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xde3b21} }, // 19 OSM: 3437796 50.86, 4.273 x 50.9, 4.357
     { 1544, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0066cc} }, // LBS OSM: 3443504 -34.78, -58.74 x -34.65, -58.42
     { 106, 3824, 250, LineMetaDataContent::Subway, Color{0xb77510} }, // U5 OSM: 3475206 WD: Q3832790 48.09, 11.5 x 48.14, 11.65
@@ -2219,7 +2220,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 260, NoLogo, 835, LineMetaDataContent::Subway, Color{0x007d58} }, // M1 OSM: 3931373 WD: Q1880894 55.62, 12.49 x 55.69, 12.59
     { 55, NoLogo, 1612, LineMetaDataContent::Subway, Color{0xf3cf45} }, // 1 OSM: 3936877 WD: Q1047385 23.07, 113.2 x 23.15, 113.3
     { 260, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe5442e} }, // M1 OSM: 3939086 WD: Q2740923 50.4, 4.271 x 50.42, 4.452
-    { 1596, 4047, NoLogo, LineMetaDataContent::RapidTransit, Color{0x233e81} }, // TL OSM: 3939642 WD: Q2576140 19.26, 330.3 x 19.34, 330.4
+    { 1596, 4047, NoLogo, LineMetaDataContent::RapidTransit, Color{0x233e81} }, // TL OSM: 3939642 WD: Q2576140 19.26, -99.15 x 19.34, -99.11
     { 6, NoLogo, 1612, LineMetaDataContent::Subway, Color{0xbc1543} }, // 5 OSM: 3967180 WD: Q862888 23.1, 113.2 x 23.15, 113.5
     { 1599, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xef87b6} }, // HBB OSM: 3988307 47.27, 11.4 x 47.29, 11.4
     { 41, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xda5524} }, // S7 OSM: 4006931 46.93, 7.438 x 46.98, 7.563
@@ -2287,7 +2288,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 1733, NoLogo, 4161, LineMetaDataContent::Subway, Color{0xff0000} }, // 53 OSM: 4515361 WD: Q2163442 52.31, 4.9 x 52.38, 4.985
     { 1048, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x1c9fda} }, // S10 OSM: 4543849 47.45, 17.64 x 47.75, 19.03
     { 1163, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfecd07} }, // Z30 OSM: 4546118 47.17, 18.42 x 47.5, 19.04
-    { 1736, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffa500} }, // NS OSM: 4566683 45.49, 306.8 x 45.53, 306.8
+    { 1736, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffa500} }, // NS OSM: 4566683 45.49, -122.7 x 45.53, -122.7
     { 1585, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xce8e00} }, // Hempstead OSM: 4600806 40.68, -73.97 x 40.73, -73.62
     { 1739, 4186, 4213, LineMetaDataContent::Subway, Color{0xff0000} }, // m2 OSM: 4621397 WD: Q3239144 46.51, 6.626 x 46.54, 6.661
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x94c11a} }, // 2 OSM: 4622863 52.23, 10.52 x 52.29, 10.54
@@ -2330,11 +2331,11 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x7dc833} }, // 5 OSM: 4763766 52.38, 16.88 x 52.41, 16.98
     { 1773, 4476, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe67310} }, // A2 OSM: 4785912 WD: Q19582807 53.71, 9.966 x 53.83, 9.993
     { 1776, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x004d9f} }, // Tide OSM: 4788761 WD: Q646388 36.84, -76.3 x 36.86, -76.19
-    { 1519, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee3a43} }, // 703 OSM: 4789075 WD: Q7304509 40.54, 317.5 x 40.77, 317.7
+    { 1519, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee3a43} }, // 703 OSM: 4789075 WD: Q7304509 40.54, -112 x 40.77, -111.8
     { 1781, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe3e049} }, // TECO OSM: 4789201 27.94, -82.46 x 27.96, -82.44
     { 1786, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xbdbadc} }, // 401-689 OSM: 4799475 WD: Q7163197 38.9, -77.01 x 39.57, -76.04
     { 1794, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xbdbadc} }, // 400-698 OSM: 4799476 WD: Q7163197 38.9, -77.01 x 39.57, -76.04
-    { 480, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x9f26b4} }, // N OSM: 4846846 39.76, 324.5 x 39.84, 324.6
+    { 480, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x9f26b4} }, // N OSM: 4846846 39.76, -105 x 39.84, -104.9
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 3 OSM: 5143295 49.2, 16.52 x 49.23, 16.64
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 4 OSM: 5151976 49.19, 16.58 x 49.23, 16.65
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00a5c1} }, // T1 OSM: 5157502 47.22, 5.949 x 47.26, 6.061
@@ -2383,8 +2384,8 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x009cdd} }, // 2 OSM: 5484713 53.38, 14.55 x 53.45, 14.64
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 1 OSM: 5490398 41.66, 123.4 x 41.74, 123.5
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // 3 OSM: 5490400 41.65, 123.4 x 41.72, 123.5
-    { 1260, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa500} }, // Orange OSM: 5543450 WD: Q6714620 45.43, 306.8 x 45.51, 306.9
-    { 181, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0088ab} }, // B OSM: 5575252 45.5, 306.8 x 45.54, 306.8
+    { 1260, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa500} }, // Orange OSM: 5543450 WD: Q6714620 45.43, -122.7 x 45.51, -122.6
+    { 181, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0088ab} }, // B OSM: 5575252 45.5, -122.7 x 45.54, -122.7
     { 1854, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe5554f} }, // V OSM: 5576487 WD: Q11152362 25.15, 121.4 x 25.2, 121.5
     { 214, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x80b352} }, // C OSM: 5593997 WD: Q4121246 22.59, 120.3 x 22.62, 120.3
     { 1856, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00bd19} }, // Π3 OSM: 5596928 WD: Q47477355 37.99, 23.57 x 38.46, 23.87
@@ -2430,13 +2431,13 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 189, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00bdac} }, // RT1 OSM: 5866193 WD: Q5985874 41.11, 1.098 x 41.16, 1.254
     { 544, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe579cb} }, // RT2 OSM: 5867875 WD: Q9025898 41, 0.9109 x 41.27, 1.6
     { 1913, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0073ce} }, // RG1 OSM: 5867925 WD: Q5985872 41.36, 2.099 x 42.43, 3.161
-    { 1917, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0060a9} }, // Expo Line OSM: 5881298 WD: Q5421492 49.18, 306.4 x 49.29, 306.7
-    { 1927, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffd520} }, // Millennium Line OSM: 5881419 WD: Q1534900 49.25, 306.4 x 49.29, 306.7
-    { 1943, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x009ac8} }, // Canada Line OSM: 5881439 WD: Q1031997 49.17, 306.3 x 49.29, 306.4
+    { 1917, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0060a9} }, // Expo Line OSM: 5881298 WD: Q5421492 49.18, -123.1 x 49.29, -122.8
+    { 1927, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffd520} }, // Millennium Line OSM: 5881419 WD: Q1534900 49.25, -123.1 x 49.29, -122.8
+    { 1943, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x009ac8} }, // Canada Line OSM: 5881439 WD: Q1031997 49.17, -123.2 x 49.29, -123.1
     { 1955, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfbc424} }, // U42 OSM: 5890483 51.47, 7.433 x 51.56, 7.547
     { 1959, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xec2425} }, // U45 OSM: 5892934 51.49, 7.46 x 51.52, 7.475
     { 1963, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffdd00} }, // R12 OSM: 5927786 WD: Q9026146 41.36, 0.6331 x 41.75, 2.189
-    { 39, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x1e9999} }, // E OSM: 5953002 WD: Q5324790 37.78, 307.1 x 37.81, 307.1
+    { 39, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x1e9999} }, // E OSM: 5953002 WD: Q5324790 37.78, -122.4 x 37.81, -122.4
     { 310, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf4858d} }, // 614P OSM: 5955260 WD: Q15903043 22.37, 114 x 22.41, 114
     { 1967, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x006684} }, // 615P OSM: 5955261 WD: Q15903207 22.37, 114 x 22.41, 114
     { 219, NoLogo, 4616, LineMetaDataContent::Subway, Color{0x00aa50} }, // A OSM: 5955845 WD: Q2310450 51.9, 4.315 x 51.96, 4.566
@@ -2465,7 +2466,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 233, 4730, 4682, LineMetaDataContent::RapidTransit, Color{0xf96915} }, // F OSM: 6064751 WD: Q10318684 41.15, -8.655 x 41.19, -8.542
     { 219, 4757, 4682, LineMetaDataContent::RapidTransit, Color{0x0083d7} }, // A OSM: 6064925 WD: Q18473912 41.15, -8.694 x 41.19, -8.582
     { 214, 4784, 4682, LineMetaDataContent::RapidTransit, Color{0x6eab24} }, // C OSM: 6065645 WD: Q10318673 41.15, -8.656 x 41.27, -8.586
-    { 35, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // S OSM: 6071918 WD: Q7395342 37.74, 307 x 37.79, 307.1
+    { 35, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // S OSM: 6071918 WD: Q7395342 37.74, -122.5 x 37.79, -122.4
     { 55, 4811, NoLogo, LineMetaDataContent::Subway, Color{0x000080} }, // 1 OSM: 6087653 WD: Q1537708 -19.95, -44.03 x -19.82, -43.91
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xea5297} }, // 4 OSM: 6092716 47.99, 7.829 x 48.04, 7.863
     { 2003, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // Sul OSM: 6113028 WD: Q10318728 -3.895, -38.63 x -3.72, -38.53
@@ -2484,11 +2485,11 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 26, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfa7222} }, // 16 OSM: 6197182 WD: Q2746551 52.02, 4.271 x 52.1, 4.327
     { 164, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x006b8b} }, // 17 OSM: 6197183 WD: Q2417431 52.02, 4.289 x 52.08, 4.339
     { 134, NoLogo, 4641, LineMetaDataContent::Tramway, Color{0xc01115} }, // 19 OSM: 6197184 WD: Q2886326 52.01, 4.35 x 52.09, 4.406
-    { 2007, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0275a4} }, // BLUE OSM: 6265609 WD: Q4929367 32.65, 332.7 x 32.92, 332.9
-    { 2012, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xcc0000} }, // RED OSM: 6265610 WD: Q16984038 32.72, 332.6 x 33.03, 332.8
-    { 2016, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00873f} }, // GREEN OSM: 6265672 WD: Q5602816 32.72, 332.6 x 32.99, 332.8
-    { 2022, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xcc6600} }, // ORANGE OSM: 6265702 WD: Q7099665 32.78, 332.5 x 33.03, 332.8
-    { 2029, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000066} }, // 620 OSM: 6265792 WD: Q19878111 32.75, 332.7 x 32.78, 332.7
+    { 2007, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0275a4} }, // BLUE OSM: 6265609 WD: Q4929367 32.65, -96.81 x 32.92, -96.56
+    { 2012, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xcc0000} }, // RED OSM: 6265610 WD: Q16984038 32.72, -96.87 x 33.03, -96.7
+    { 2016, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00873f} }, // GREEN OSM: 6265672 WD: Q5602816 32.72, -96.94 x 32.99, -96.68
+    { 2022, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xcc6600} }, // ORANGE OSM: 6265702 WD: Q7099665 32.78, -97.04 x 33.03, -96.7
+    { 2029, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000066} }, // 620 OSM: 6265792 WD: Q19878111 32.75, -96.82 x 32.78, -96.81
     { 65, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 10 OSM: 6286483 WD: Q3239219 59.33, 17.88 x 59.4, 18.07
     { 54, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 11 OSM: 6286484 WD: Q3239220 59.33, 17.91 x 59.42, 18.07
     { 164, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 17 OSM: 6286485 WD: Q3239225 59.27, 17.92 x 59.34, 18.13
@@ -2518,9 +2519,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 2136, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x6633ff} }, // T1 R OSM: 6545828 36.72, 3.083 x 36.78, 3.263
     { 2141, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff00ff} }, // 18E OSM: 6547489 WD: Q63230200 38.7, -9.203 x 38.71, -9.145
     { 2145, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xba85bb} }, // 706 OSM: 6558996 WD: Q6718531 22.45, 114 x 22.47, 114
-    { 1509, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8cc022} }, // 705 OSM: 6558997 WD: Q16057726 22.45, 114 x 22.47, 114
+    { 1514, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8cc022} }, // 705 OSM: 6558997 WD: Q16057726 22.45, 114 x 22.47, 114
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe41f25} }, // 4 OSM: 6576221 48.22, 14.23 x 48.31, 14.29
-    { 1352, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0171b7} }, // 801 OSM: 6585129 33.77, 311.2 x 34.05, 311.3
+    { 1356, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0171b7} }, // 801 OSM: 6585129 33.77, -118.3 x 34.05, -118.2
     { 2149, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff7f00} }, // 25E OSM: 6595981 WD: Q63230206 38.71, -9.17 x 38.72, -9.135
     { 2153, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // CBTU OSM: 6636198 WD: Q10388583 -9.672, -35.86 x -9.476, -35.72
     { 2158, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // C13 OSM: 6641930 50.81, 12.81 x 50.92, 12.94
@@ -2551,8 +2552,8 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 59, 4953, NoLogo, LineMetaDataContent::Subway, Color{0xffd100} }, // 3 OSM: 6817204 WD: Q1326495 31.15, 121.4 x 31.41, 121.5
     { 2194, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xb6bd00} }, // SIL OSM: 6827213 WD: Q2041013 22.24, 114.1 x 22.28, 114.2
     { 27, 4962, NoLogo, LineMetaDataContent::Subway, Color{0xd9017a} }, // 6 OSM: 6840940 WD: Q631135 31.15, 121.5 x 31.36, 121.6
-    { 2198, NoLogo, 4971, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // TL-1 OSM: 6849311 WD: Q5985920 20.61, 326.1 x 20.74, 326.1
-    { 2203, NoLogo, 4971, LineMetaDataContent::RapidTransit, Color{0x008000} }, // TL-2 OSM: 6851904 WD: Q5986178 20.66, 326.1 x 20.68, 326.2
+    { 2198, NoLogo, 4971, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // TL-1 OSM: 6849311 WD: Q5985920 20.61, -103.4 x 20.74, -103.4
+    { 2203, NoLogo, 4971, LineMetaDataContent::RapidTransit, Color{0x008000} }, // TL-2 OSM: 6851904 WD: Q5986178 20.66, -103.4 x 20.68, -103.3
     { 2208, 2207, 1943, LineMetaDataContent::Subway, Color{0xffff00} }, // 8А OSM: 6855054 WD: Q585986 55.63, 37.33 x 55.79, 37.59
     { 365, 4989, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff6600} }, // L2 OSM: 6857222 WD: Q5986175 -37.03, -73.16 x -36.82, -73.06
     { 361, 5001, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff6600} }, // L1 OSM: 6857223 WD: Q5985914 -36.98, -73.12 x -36.71, -72.94
@@ -2584,7 +2585,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 361, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // L1 OSM: 7106760 WD: Q3011576 43.24, -3.013 x 43.4, -2.897
     { 42, 5235, 5256, LineMetaDataContent::Tramway, Color{0xfff06e} }, // 7 OSM: 7135778 WD: Q3239018 50.81, 4.336 x 50.9, 4.408
     { 369, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xe3007d} }, // L3 OSM: 7141757 WD: Q2992379 43.25, -2.926 x 43.27, -2.889
-    { 957, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xde3b21} }, // 92 OSM: 7152034 50.79, 4.34 x 50.88, 4.381
+    { 953, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xde3b21} }, // 92 OSM: 7152034 50.79, 4.34 x 50.88, 4.381
     { 196, NoLogo, 816, LineMetaDataContent::RapidTransit, Color{0x97bd2f} }, // S4 OSM: 7152118 WD: Q67882906 47.91, 14.1 x 48.29, 14.29
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x37b355} }, // 2 OSM: 7157243 WD: Q60031554 48.38, 9.936 x 48.43, 9.987
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xed1b24} }, // 1 OSM: 7157244 WD: Q60031375 48.39, 9.955 x 48.43, 10.03
@@ -2650,7 +2651,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 9, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x289dd5} }, // 4 OSM: 7625893 WD: Q489253 37.3, 126.7 x 37.67, 127.1
     { 361, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0033cc} }, // L1 OSM: 7627370 WD: Q20685853 36.71, 3.054 x 36.79, 3.138
     { 256, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe3ba12} }, // 51 OSM: 7632520 50.78, 4.326 x 50.89, 4.349
-    { 973, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe87d0d} }, // 93 OSM: 7632524 50.82, 4.33 x 50.89, 4.372
+    { 969, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe87d0d} }, // 93 OSM: 7632524 50.82, 4.33 x 50.89, 4.372
     { 16, NoLogo, 3307, LineMetaDataContent::Subway, Color{0x006699} }, // 2 OSM: 7660420 WD: Q1771527 56.32, 43.89 x 56.34, 43.97
     { 260, 5741, 5741, LineMetaDataContent::Subway, Color{0xf25e24} }, // M1 OSM: 7664663 WD: Q207287 60.16, 24.74 x 60.21, 25.15
     { 329, 5741, 5741, LineMetaDataContent::Subway, Color{0xf25e24} }, // M2 OSM: 7664664 WD: Q207287 60.16, 24.8 x 60.24, 25.11
@@ -2696,9 +2697,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 1334, NoLogo, 6196, LineMetaDataContent::Subway, Color{0x800080} }, // MRT Purple OSM: 7725058 WD: Q6584549 13.81, 100.4 x 13.89, 100.5
     { 361, 6219, NoLogo, LineMetaDataContent::Subway, Color{0x228b22} }, // L1 OSM: 7727216 WD: Q5985884 -12.21, -77.01 x -11.96, -76.93
     { 2424, 6242, NoLogo, LineMetaDataContent::Subway, Color{0xc82127} }, // DX OSM: 7728256 WD: Q20388 37.29, 127 x 37.5, 127.1
-    { 2427, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x2e8b57} }, // 仙台市南北線 (Sendai Namboku Line) OSM: 7732249 WD: Q908156 38.21, 140.9 x 38.32, 140.9
-    { 2468, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00bfff} }, // 仙台市東西線 (Sendai Tozai Line) OSM: 7732250 WD: Q7450186 38.24, 140.8 x 38.26, 140.9
-    { 181, NoLogo, 6275, LineMetaDataContent::Subway, Color{0x0000ff} }, // B OSM: 7732280 WD: Q841360 35.4, 139.5 x 35.57, 139.6
+    { 2427, NoLogo, 6275, LineMetaDataContent::Subway, Color{0x2e8b57} }, // 仙台市南北線 (Sendai Namboku Line) OSM: 7732249 WD: Q908156 38.21, 140.9 x 38.32, 140.9
+    { 2468, NoLogo, 6275, LineMetaDataContent::Subway, Color{0x00bfff} }, // 仙台市東西線 (Sendai Tozai Line) OSM: 7732250 WD: Q7450186 38.24, 140.8 x 38.26, 140.9
+    { 181, NoLogo, 6303, LineMetaDataContent::Subway, Color{0x0000ff} }, // B OSM: 7732280 WD: Q841360 35.4, 139.5 x 35.57, 139.6
     { 201, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x1d8b3b} }, // G OSM: 7732283 WD: Q3116096 35.51, 139.5 x 35.56, 139.6
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xcc0000} }, // 1 OSM: 7732970 WD: Q4215382 -33.46, -70.72 x -33.41, -70.55
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffbe2e} }, // 2 OSM: 7732971 WD: Q11690005 -33.54, -70.66 x -33.38, -70.64
@@ -2706,41 +2707,41 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 2507, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0099ff} }, // 4A OSM: 7732973 WD: Q11690009 -33.54, -70.66 x -33.52, -70.6
     { 6, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x006633} }, // 5 OSM: 7732974 WD: Q9025969 -33.53, -70.76 x -33.44, -70.6
     { 27, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x8e16a1} }, // 6 OSM: 7732978 WD: Q5986809 -33.48, -70.7 x -33.42, -70.6
-    { 59, 6310, 3277, LineMetaDataContent::Subway, Color{0x9a9940} }, // 3 OSM: 7733214 WD: Q50741 48.86, 2.28 x 48.9, 2.418
+    { 59, 6338, 3277, LineMetaDataContent::Subway, Color{0x9a9940} }, // 3 OSM: 7733214 WD: Q50741 48.86, 2.28 x 48.9, 2.418
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7733917 WD: Q494079 55.74, 49.08 x 55.86, 49.22
-    { 55, NoLogo, 6328, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7733918 WD: Q594532 54.98, 82.89 x 55.06, 82.94
-    { 16, NoLogo, 6328, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7733919 WD: Q2711371 55.04, 82.9 x 55.04, 82.98
-    { 55, 6347, 6347, LineMetaDataContent::Subway, Color{0x1c8c3a} }, // 1 OSM: 7733920 WD: Q750441 56.8, 60.6 x 56.9, 60.63
+    { 55, NoLogo, 6356, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7733918 WD: Q594532 54.98, 82.89 x 55.06, 82.94
+    { 16, NoLogo, 6356, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7733919 WD: Q2711371 55.04, 82.9 x 55.04, 82.98
+    { 55, 6375, 6375, LineMetaDataContent::Subway, Color{0x1c8c3a} }, // 1 OSM: 7733920 WD: Q750441 56.8, 60.6 x 56.9, 60.63
     { 2510, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x076c57} }, // Verde OSM: 7733971 WD: Q10318743 -15.84, -48.12 x -15.79, -47.88
     { 2516, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xeb9710} }, // Laranja OSM: 7733972 WD: Q10318700 -15.88, -48.09 x -15.79, -47.88
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 7734060 WD: Q25421356 18.48, -69.97 x 18.51, -69.86
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 7734061 WD: Q25421357 18.45, -69.93 x 18.55, -69.9
     { 55, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 1 OSM: 7734069 10.62, -71.67 x 10.64, -71.62
-    { 55, 6366, 6389, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 7734077 WD: Q28604 53.85, 27.47 x 53.95, 27.69
-    { 16, 6410, 6389, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 7734078 WD: Q2638932 53.86, 27.43 x 53.91, 27.67
-    { 16, NoLogo, 6433, LineMetaDataContent::Subway, Color{0x0000ff} }, // 2 OSM: 7734092 WD: Q12295702 42.65, 23.26 x 42.74, 23.42
-    { 55, NoLogo, 6433, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734093 WD: Q20020737 42.63, 23.26 x 42.74, 23.38
-    { 2524, NoLogo, 6454, LineMetaDataContent::Subway, Color{0xdf096f} }, // Vermelha OSM: 7734163 WD: Q163215 38.73, -9.154 x 38.78, -9.1
-    { 2533, NoLogo, 6454, LineMetaDataContent::Subway, Color{0xf4bc18} }, // Amarela OSM: 7734164 WD: Q1826607 38.71, -9.173 x 38.79, -9.145
-    { 2541, NoLogo, 6454, LineMetaDataContent::Subway, Color{0x5e82c4} }, // Azul OSM: 7734165 WD: Q1826609 38.71, -9.224 x 38.76, -9.122
-    { 2510, NoLogo, 6454, LineMetaDataContent::Subway, Color{0x2f9b9c} }, // Verde OSM: 7734166 WD: Q1826613 38.71, -9.167 x 38.76, -9.133
-    { 2546, 6484, 6484, LineMetaDataContent::Subway, Color{0xff6600} }, // Subway OSM: 7734173 WD: Q506290 55.85, -4.312 x 55.88, -4.253
+    { 55, 6394, 6417, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 7734077 WD: Q28604 53.85, 27.47 x 53.95, 27.69
+    { 16, 6438, 6417, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 7734078 WD: Q2638932 53.86, 27.43 x 53.91, 27.67
+    { 16, NoLogo, 6461, LineMetaDataContent::Subway, Color{0x0000ff} }, // 2 OSM: 7734092 WD: Q12295702 42.65, 23.26 x 42.74, 23.42
+    { 55, NoLogo, 6461, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734093 WD: Q20020737 42.63, 23.26 x 42.74, 23.38
+    { 2524, NoLogo, 6482, LineMetaDataContent::Subway, Color{0xdf096f} }, // Vermelha OSM: 7734163 WD: Q163215 38.73, -9.154 x 38.78, -9.1
+    { 2533, NoLogo, 6482, LineMetaDataContent::Subway, Color{0xf4bc18} }, // Amarela OSM: 7734164 WD: Q1826607 38.71, -9.173 x 38.79, -9.145
+    { 2541, NoLogo, 6482, LineMetaDataContent::Subway, Color{0x5e82c4} }, // Azul OSM: 7734165 WD: Q1826609 38.71, -9.224 x 38.76, -9.122
+    { 2510, NoLogo, 6482, LineMetaDataContent::Subway, Color{0x2f9b9c} }, // Verde OSM: 7734166 WD: Q1826613 38.71, -9.167 x 38.76, -9.133
+    { 2546, 6512, 6512, LineMetaDataContent::Subway, Color{0xff6600} }, // Subway OSM: 7734173 WD: Q506290 55.85, -4.312 x 55.88, -4.253
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734180 WD: Q219374 48.48, 34.93 x 48.48, 35.02
     { 480, NoLogo, 5955, LineMetaDataContent::Subway, Color{0x008000} }, // N OSM: 7734239 WD: Q1039166 33.55, 130.3 x 33.59, 130.4
     { 279, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xcc0000} }, // Red OSM: 7734262 WD: Q1369034 24.98, 55.09 x 25.27, 55.39
     { 468, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00cc00} }, // Green OSM: 7734263 WD: Q1544621 25.22, 55.29 x 25.28, 55.4
     { 35, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffc0cb} }, // S OSM: 7734268 WD: Q16240707 21.33, 39.87 x 21.42, 39.98
-    { 55, 6503, 6527, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734272 WD: Q1473986 43.23, 76.87 x 43.27, 76.95
-    { 16, NoLogo, 6549, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7734279 WD: Q712790 39.03, 125.7 x 39.07, 125.8
-    { 55, NoLogo, 6549, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734280 WD: Q711112 39.01, 125.7 x 39.07, 125.8
+    { 55, 6531, 6555, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734272 WD: Q1473986 43.23, 76.87 x 43.27, 76.95
+    { 16, NoLogo, 6577, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7734279 WD: Q712790 39.03, 125.7 x 39.07, 125.8
+    { 55, NoLogo, 6577, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7734280 WD: Q711112 39.01, 125.7 x 39.07, 125.8
     { 55, NoLogo, 6068, LineMetaDataContent::Subway, Color{0xff0f04} }, // 1 OSM: 7735256 WD: Q20110118 35.52, 51.37 x 35.8, 51.44
     { 6, NoLogo, 6068, LineMetaDataContent::RapidTransit, Color{0x008033} }, // 5 OSM: 7735262 WD: Q20110122 35.72, 50.93 x 35.83, 51.33
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x4caf50} }, // 1 OSM: 7740660 WD: Q19856263 26.5, 106.6 x 26.66, 106.7
-    { 2553, 6581, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // ODEA OSM: 7747967 WD: Q93386 48.88, 2.345 x 48.94, 2.358
-    { 2558, 6581, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // ADEO OSM: 7747968 WD: Q93386 48.88, 2.345 x 48.94, 2.358
-    { 2563, 6581, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // VOBA OSM: 7747969 WD: Q93386 48.88, 2.345 x 48.94, 2.358
-    { 2568, 6581, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // AVOL OSM: 7747970 WD: Q93386 48.88, 2.345 x 48.94, 2.358
-    { 2573, 6581, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // APOR OSM: 7747972 WD: Q93386 48.88, 2.345 x 48.94, 2.358
+    { 2553, 6609, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // ODEA OSM: 7747967 WD: Q93386 48.88, 2.345 x 48.94, 2.358
+    { 2558, 6609, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // ADEO OSM: 7747968 WD: Q93386 48.88, 2.345 x 48.94, 2.358
+    { 2563, 6609, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // VOBA OSM: 7747969 WD: Q93386 48.88, 2.345 x 48.94, 2.358
+    { 2568, 6609, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // AVOL OSM: 7747970 WD: Q93386 48.88, 2.345 x 48.94, 2.358
+    { 2573, 6609, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7b4339} }, // APOR OSM: 7747972 WD: Q93386 48.88, 2.345 x 48.94, 2.358
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x64318f} }, // T1 OSM: 7758458 WD: Q50319281 49.61, 6.119 x 49.64, 6.176
     { 59, NoLogo, 6068, LineMetaDataContent::Subway, Color{0x00aad4} }, // 3 OSM: 7770934 WD: Q20110120 35.63, 51.34 x 35.8, 51.52
     { 2578, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00afad} }, // B-L OSM: 7772561 51.46, -0.08835 x 51.51, -0.009433
@@ -2758,9 +2759,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 260, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf1b03e} }, // M1 OSM: 7781536 WD: Q5985887 39.58, 2.648 x 39.63, 2.673
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7786077 WD: Q2210273 41.72, 44.72 x 41.73, 44.8
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7786078 WD: Q340562 41.68, 44.78 x 41.79, 44.87
-    { 39, 6614, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // E OSM: 7786518 WD: Q1714062 50.4, 30.4 x 50.5, 30.64
-    { 16, 6644, 6664, LineMetaDataContent::Subway, Color{0xed1d24} }, // 2 OSM: 7786752 WD: Q3238802 50.62, 2.973 x 50.74, 3.181
-    { 55, 6690, 6664, LineMetaDataContent::Subway, Color{0xffd400} }, // 1 OSM: 7786754 WD: Q3238658 50.61, 3.036 x 50.64, 3.143
+    { 39, 6642, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // E OSM: 7786518 WD: Q1714062 50.4, 30.4 x 50.5, 30.64
+    { 16, 6672, 6692, LineMetaDataContent::Subway, Color{0xed1d24} }, // 2 OSM: 7786752 WD: Q3238802 50.62, 2.973 x 50.74, 3.181
+    { 55, 6718, 6692, LineMetaDataContent::Subway, Color{0xffd400} }, // 1 OSM: 7786754 WD: Q3238658 50.61, 3.036 x 50.64, 3.143
     { 2602, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x90ee90} }, // 2B OSM: 7792472 WD: Q213271 40.38, 49.85 x 40.38, 49.87
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7792473 WD: Q3832654 40.37, 49.83 x 40.42, 49.95
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7792474 WD: Q3832656 40.37, 49.8 x 40.43, 49.95
@@ -2771,42 +2772,42 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 2605, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffd503} }, // U29 OSM: 7801954 48.77, 9.122 x 48.78, 9.182
     { 2609, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x69be51} }, // U34 OSM: 7801962 48.76, 9.143 x 48.78, 9.178
     { 2613, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf17f1a} }, // S 9 OSM: 7805411 51.45, 11.98 x 51.52, 12.64
-    { 357, 6710, 6733, LineMetaDataContent::Subway, Color{0x824100} }, // L4 OSM: 7827780 WD: Q1826677 40.42, -3.716 x 40.48, -3.635
-    { 361, 6753, 6733, LineMetaDataContent::Subway, Color{0x67c0dd} }, // L1 OSM: 7831481 WD: Q1826675 40.36, -3.705 x 40.48, -3.592
+    { 357, 6738, 6761, LineMetaDataContent::Subway, Color{0x824100} }, // L4 OSM: 7827780 WD: Q1826677 40.42, -3.716 x 40.48, -3.635
+    { 361, 6781, 6761, LineMetaDataContent::Subway, Color{0x67c0dd} }, // L1 OSM: 7831481 WD: Q1826675 40.36, -3.705 x 40.48, -3.592
     { 19, NoLogo, 6068, LineMetaDataContent::Subway, Color{0x73b65a} }, // 8 OSM: 7832314 WD: Q20110125 35.4, 51.15 x 35.56, 51.38
     { 16, NoLogo, 6068, LineMetaDataContent::Subway, Color{0x003380} }, // 2 OSM: 7832325 WD: Q20110119 35.69, 51.33 x 35.74, 51.55
-    { 1745, NoLogo, 6733, LineMetaDataContent::Subway, Color{0x015396} }, // L10 OSM: 7834660 WD: Q1760090 40.34, -3.813 x 40.56, -3.611
-    { 1486, NoLogo, 6776, LineMetaDataContent::Subway, Color{0x7fffd4} }, // I OSM: 7834960 WD: Q55810159 9.959, 76.28 x 10.11, 76.35
-    { 1231, 6797, 6733, LineMetaDataContent::Subway, Color{0xff0080} }, // L8 OSM: 7837169 WD: Q1475527 40.44, -3.692 x 40.49, -3.572
-    { 538, 6820, 6733, LineMetaDataContent::Subway, Color{0x9c3293} }, // L9 OSM: 7837206 WD: Q1759707 40.3, -3.721 x 40.5, -3.447
-    { 2617, 6843, NoLogo, LineMetaDataContent::Subway, Color{0x996633} }, // Z OSM: 7837591 WD: Q126484 40.68, -74.01 x 40.72, -73.8
-    { 1219, 6869, 6733, LineMetaDataContent::Subway, Color{0x96bf0d} }, // L5 OSM: 7838614 WD: Q1568028 40.38, -3.769 x 40.46, -3.588
+    { 1745, NoLogo, 6761, LineMetaDataContent::Subway, Color{0x015396} }, // L10 OSM: 7834660 WD: Q1760090 40.34, -3.813 x 40.56, -3.611
+    { 1486, NoLogo, 6804, LineMetaDataContent::Subway, Color{0x7fffd4} }, // I OSM: 7834960 WD: Q55810159 9.959, 76.28 x 10.11, 76.35
+    { 1231, 6825, 6761, LineMetaDataContent::Subway, Color{0xff0080} }, // L8 OSM: 7837169 WD: Q1475527 40.44, -3.692 x 40.49, -3.572
+    { 538, 6848, 6761, LineMetaDataContent::Subway, Color{0x9c3293} }, // L9 OSM: 7837206 WD: Q1759707 40.3, -3.721 x 40.5, -3.447
+    { 2617, 6871, NoLogo, LineMetaDataContent::Subway, Color{0x996633} }, // Z OSM: 7837591 WD: Q126484 40.68, -74.01 x 40.72, -73.8
+    { 1219, 6897, 6761, LineMetaDataContent::Subway, Color{0x96bf0d} }, // L5 OSM: 7838614 WD: Q1568028 40.38, -3.769 x 40.46, -3.588
     { 260, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffa500} }, // M1 OSM: 7838818 36.98, 35.26 x 37.05, 35.34
-    { 369, 6892, 6733, LineMetaDataContent::Subway, Color{0xffdf00} }, // L3 OSM: 7838838 WD: Q1826673 40.34, -3.719 x 40.43, -3.693
-    { 365, 6915, 6733, LineMetaDataContent::Subway, Color{0xfb0f0c} }, // L2 OSM: 7838963 WD: Q1826679 40.42, -3.71 x 40.45, -3.602
-    { 1227, 6938, 6733, LineMetaDataContent::Subway, Color{0xed7b24} }, // L7 OSM: 7840623 WD: Q1826683 40.42, -3.727 x 40.5, -3.524
-    { 317, 6961, 6733, LineMetaDataContent::Subway, Color{0xffffff} }, // R OSM: 7840747 WD: Q1496137 40.42, -3.72 x 40.42, -3.71
+    { 369, 6920, 6761, LineMetaDataContent::Subway, Color{0xffdf00} }, // L3 OSM: 7838838 WD: Q1826673 40.34, -3.719 x 40.43, -3.693
+    { 365, 6943, 6761, LineMetaDataContent::Subway, Color{0xfb0f0c} }, // L2 OSM: 7838963 WD: Q1826679 40.42, -3.71 x 40.45, -3.602
+    { 1227, 6966, 6761, LineMetaDataContent::Subway, Color{0xed7b24} }, // L7 OSM: 7840623 WD: Q1826683 40.42, -3.727 x 40.5, -3.524
+    { 317, 6989, 6761, LineMetaDataContent::Subway, Color{0xffffff} }, // R OSM: 7840747 WD: Q1496137 40.42, -3.72 x 40.42, -3.71
     { 1338, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xe542de} }, // Purple OSM: 7841332 WD: Q7261433 12.95, 77.53 x 12.99, 77.66
-    { 2162, 6983, 6733, LineMetaDataContent::Subway, Color{0xa49a00} }, // L12 OSM: 7841412 WD: Q1558864 40.28, -3.876 x 40.35, -3.71
+    { 2162, 7011, 6761, LineMetaDataContent::Subway, Color{0xa49a00} }, // L12 OSM: 7841412 WD: Q1558864 40.28, -3.876 x 40.35, -3.71
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7841834 WD: Q11085985 31.44, 120.3 x 31.68, 120.3
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7841837 WD: Q11085986 31.55, 120.2 x 31.61, 120.5
-    { 55, NoLogo, 7007, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7841839 WD: Q30326155 38.04, 114.4 x 38.16, 114.6
-    { 59, NoLogo, 7007, LineMetaDataContent::Subway, Color{0x0000ff} }, // 3 OSM: 7841854 WD: Q30326157 38.01, 114.4 x 38.08, 114.5
+    { 55, NoLogo, 7035, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7841839 WD: Q30326155 38.04, 114.4 x 38.16, 114.6
+    { 59, NoLogo, 7035, LineMetaDataContent::Subway, Color{0x0000ff} }, // 3 OSM: 7841854 WD: Q30326157 38.01, 114.4 x 38.08, 114.5
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00b04f} }, // 1 OSM: 7841881 WD: Q17498765 22.82, 108.2 x 22.84, 108.4
-    { 1223, 7030, 6733, LineMetaDataContent::Subway, Color{0x939393} }, // L6 OSM: 7842094 WD: Q514227 40.39, -3.745 x 40.45, -3.669
-    { 1749, 7053, 6733, LineMetaDataContent::Subway, Color{0x006400} }, // L11 OSM: 7842127 WD: Q608251 40.36, -3.778 x 40.39, -3.716
+    { 1223, 7058, 6761, LineMetaDataContent::Subway, Color{0x939393} }, // L6 OSM: 7842094 WD: Q514227 40.39, -3.745 x 40.45, -3.669
+    { 1749, 7081, 6761, LineMetaDataContent::Subway, Color{0x006400} }, // L11 OSM: 7842127 WD: Q608251 40.36, -3.778 x 40.39, -3.716
     { 468, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x009933} }, // Green OSM: 7842288 WD: Q17054000 12.89, 77.5 x 13.05, 77.58
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xc32a05} }, // 2 OSM: 7844345 WD: Q11149384 36.06, 120.3 x 36.17, 120.5
-    { 16, NoLogo, 7077, LineMetaDataContent::Subway, Color{0x53b848} }, // 2 OSM: 7845614 WD: Q20647027 12.99, 80.19 x 13.09, 80.27
+    { 16, NoLogo, 7105, LineMetaDataContent::Subway, Color{0x53b848} }, // 2 OSM: 7845614 WD: Q20647027 12.99, 80.19 x 13.09, 80.27
     { 164, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xc09c83} }, // 17 OSM: 7845847 WD: Q6553108 31.1, 121 x 31.2, 121.3
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x18be00} }, // 2 OSM: 7845969 WD: Q200332 35.83, 128.4 x 35.87, 128.8
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7845971 WD: Q200331 35.8, 128.5 x 35.89, 128.7
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffff00} }, // 2 OSM: 7846276 WD: Q15908164 34.66, 113.6 x 34.87, 113.7
-    { 2619, NoLogo, 7100, LineMetaDataContent::RapidTransit, Color{0x4682b4} }, // ML1 OSM: 7849381 WD: Q2058921 40.48, -3.669 x 40.51, -3.651
-    { 2623, NoLogo, 7100, LineMetaDataContent::RapidTransit, Color{0x660066} }, // ML2 OSM: 7853073 WD: Q3832710 40.4, -3.812 x 40.45, -3.775
-    { 368, NoLogo, 7100, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // ML3 OSM: 7853483 WD: Q3832709 40.39, -3.905 x 40.41, -3.775
-    { 2627, 7126, NoLogo, LineMetaDataContent::Subway, Color{0x6fa0ce} }, // I1 OSM: 7854149 WD: Q487733 37.38, 126.6 x 37.57, 126.7
-    { 59, 7151, 5256, LineMetaDataContent::Tramway, Color{0xb5ba05} }, // 3 OSM: 7857250 WD: Q1888831 50.81, 4.336 x 50.9, 4.377
+    { 2619, NoLogo, 7128, LineMetaDataContent::RapidTransit, Color{0x4682b4} }, // ML1 OSM: 7849381 WD: Q2058921 40.48, -3.669 x 40.51, -3.651
+    { 2623, NoLogo, 7128, LineMetaDataContent::RapidTransit, Color{0x660066} }, // ML2 OSM: 7853073 WD: Q3832710 40.4, -3.812 x 40.45, -3.775
+    { 368, NoLogo, 7128, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // ML3 OSM: 7853483 WD: Q3832709 40.39, -3.905 x 40.41, -3.775
+    { 2627, 7154, NoLogo, LineMetaDataContent::Subway, Color{0x6fa0ce} }, // I1 OSM: 7854149 WD: Q487733 37.38, 126.6 x 37.57, 126.7
+    { 59, 7179, 5256, LineMetaDataContent::Tramway, Color{0xb5ba05} }, // 3 OSM: 7857250 WD: Q1888831 50.81, 4.336 x 50.9, 4.377
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x02406f} }, // 2 OSM: 7857258 WD: Q10318650 -12.98, -38.48 x -12.9, -38.34
     { 2630, 4599, NoLogo, LineMetaDataContent::RapidTransit, Color{0xa6c82b} }, // R2Nord OSM: 7867878 WD: Q1880046 41.3, 2.052 x 41.77, 2.673
     { 1560, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xba55d3} }, // R7 OSM: 7867903 WD: Q1647981 41.43, 2.115 x 41.51, 2.189
@@ -2820,48 +2821,48 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 2640, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x000000} }, // B2 OSM: 7869622 40.19, 28.87 x 40.22, 29.21
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7871046 WD: Q15303225 34.75, 113.5 x 34.83, 113.8
     { 119, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xb93ff5} }, // 9 OSM: 7871541 WD: Q28441548 34.53, 113.7 x 34.66, 113.9
-    { 2643, 7172, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8fbe00} }, // C-10 OSM: 7871793 WD: Q583732 40.4, -4.009 x 40.63, -3.662
-    { 494, 7186, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009ad5} }, // C-1 OSM: 7871905 WD: Q3832674 40.4, -3.719 x 40.49, -3.594
-    { 2648, 7205, NoLogo, LineMetaDataContent::RapidTransit, Color{0xde0118} }, // C-7 OSM: 7872150 WD: Q8879938 40.38, -3.874 x 40.51, -3.365
+    { 2643, 7200, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8fbe00} }, // C-10 OSM: 7871793 WD: Q583732 40.4, -4.009 x 40.63, -3.662
+    { 494, 7214, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009ad5} }, // C-1 OSM: 7871905 WD: Q3832674 40.4, -3.719 x 40.49, -3.594
+    { 2648, 7233, NoLogo, LineMetaDataContent::RapidTransit, Color{0xde0118} }, // C-7 OSM: 7872150 WD: Q8879938 40.38, -3.874 x 40.51, -3.365
     { 1639, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // Red Line OSM: 7874288 WD: Q152039 42.21, -71.14 x 42.4, -71
-    { 2652, 7217, NoLogo, LineMetaDataContent::Subway, Color{0xff8000} }, // Orange Line OSM: 7874312 WD: Q152029 42.3, -71.12 x 42.44, -71.06
+    { 2652, 7245, NoLogo, LineMetaDataContent::Subway, Color{0xff8000} }, // Orange Line OSM: 7874312 WD: Q152029 42.3, -71.12 x 42.44, -71.06
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 1 OSM: 7874579 52.26, 104.3 x 52.29, 104.3
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00afec} }, // 2 OSM: 7875250 WD: Q15919822 28.15, 112.9 x 28.21, 113.1
-    { 55, 7246, NoLogo, LineMetaDataContent::Subway, Color{0xe60012} }, // 1 OSM: 7875257 WD: Q15911087 28.07, 113 x 28.27, 113
+    { 55, 7274, NoLogo, LineMetaDataContent::Subway, Color{0xe60012} }, // 1 OSM: 7875257 WD: Q15911087 28.07, 113 x 28.27, 113
     { 2664, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000000} }, // 4a OSM: 7875272 52.28, 104.3 x 52.29, 104.4
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // 4 OSM: 7875274 52.28, 104.3 x 52.29, 104.4
     { 9, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7d4697} }, // 4 OSM: 7875301 WD: Q6553125 43.79, 125.3 x 43.91, 125.4
     { 59, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009943} }, // 3 OSM: 7875360 WD: Q6123656 43.77, 125.3 x 43.91, 125.4
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x4bc7df} }, // 2 OSM: 7875922 52.27, 104.3 x 52.29, 104.3
-    { 219, 7276, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // A OSM: 7877753 WD: Q770771 39.91, 32.81 x 39.93, 32.88
+    { 219, 7304, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // A OSM: 7877753 WD: Q770771 39.91, 32.81 x 39.93, 32.88
     { 260, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // M1 OSM: 7877773 WD: Q21526526 39.92, 32.73 x 39.97, 32.86
     { 329, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffff00} }, // M2 OSM: 7877891 WD: Q21526527 39.89, 32.69 x 39.92, 32.85
     { 1287, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffa500} }, // O OSM: 7879290 WD: Q7099668 22.62, 120.3 x 22.63, 120.4
     { 317, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // R OSM: 7879291 WD: Q7304504 22.56, 120.3 x 22.78, 120.4
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xfe5b10} }, // 3 OSM: 7879839 WD: Q20393 37.48, 126.7 x 37.68, 127.1
     { 6, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x8b50a4} }, // 5 OSM: 7879871 WD: Q92530 37.49, 126.8 x 37.58, 127.2
-    { 59, NoLogo, 7292, LineMetaDataContent::Subway, Color{0x006dbb} }, // 3 OSM: 7883242 WD: Q15907883 36.05, 120.3 x 36.17, 120.4
+    { 59, NoLogo, 7320, LineMetaDataContent::Subway, Color{0x006dbb} }, // 3 OSM: 7883242 WD: Q15907883 36.05, 120.3 x 36.17, 120.4
     { 119, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xaa9872} }, // 9 OSM: 7883317 WD: Q17503 37.5, 126.8 x 37.58, 127.1
-    { 16, 7323, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 7883944 WD: Q10946021 29.81, 121.5 x 29.93, 121.7
-    { 55, 7344, 666, LineMetaDataContent::Subway, Color{0xffff00} }, // 1 OSM: 7884489 WD: Q54369 43.65, -79.53 x 43.8, -79.38
+    { 16, 7351, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 7883944 WD: Q10946021 29.81, 121.5 x 29.93, 121.7
+    { 55, 7372, 666, LineMetaDataContent::Subway, Color{0xffff00} }, // 1 OSM: 7884489 WD: Q54369 43.65, -79.53 x 43.8, -79.38
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7885089 WD: Q56277837 40.59, 22.93 x 40.65, 22.97
-    { 16, 7393, 666, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7885287 WD: Q54371 43.64, -79.54 x 43.73, -79.26
+    { 16, 7421, 666, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 7885287 WD: Q54371 43.64, -79.54 x 43.73, -79.26
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x009651} }, // 3 OSM: 7885547 WD: Q10906683 31.87, 118.7 x 32.17, 118.8
-    { 2667, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x77278b} }, // WCE OSM: 7887557 49.13, 306.4 x 49.29, 307.2
+    { 2667, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x77278b} }, // WCE OSM: 7887557 49.13, -123.1 x 49.29, -122.3
     { 2671, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x000000} }, // Conexão Metrô-Aeroporto OSM: 7889062 WD: Q23891467 -29.99, -51.18 x -29.99, -51.18
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 1 OSM: 7889178 WD: Q45668 31.28, 120.5 x 31.33, 120.8
-    { 2697, 7432, 7432, LineMetaDataContent::Subway, Color{0x808080} }, // RMGL OSM: 7890003 WD: Q7294170 28.42, 77.09 x 28.5, 77.11
-    { 55, 7446, NoLogo, LineMetaDataContent::Subway, Color{0xfec04f} }, // 1 OSM: 7890223 WD: Q5985916 25.68, 329.1 x 25.76, 329.3
-    { 16, 7464, NoLogo, LineMetaDataContent::Subway, Color{0x6bc069} }, // 2 OSM: 7890224 WD: Q2842186 25.67, 329.2 x 25.77, 329.2
-    { 16, NoLogo, 7482, LineMetaDataContent::Subway, Color{0x0066a1} }, // 2 OSM: 7890240 WD: Q6379343 38.9, 121.5 x 38.96, 121.7
+    { 2697, 7460, 7460, LineMetaDataContent::Subway, Color{0x808080} }, // RMGL OSM: 7890003 WD: Q7294170 28.42, 77.09 x 28.5, 77.11
+    { 55, 7474, NoLogo, LineMetaDataContent::Subway, Color{0xfec04f} }, // 1 OSM: 7890223 WD: Q5985916 25.68, -100.4 x 25.76, -100.2
+    { 16, 7492, NoLogo, LineMetaDataContent::Subway, Color{0x6bc069} }, // 2 OSM: 7890224 WD: Q2842186 25.67, -100.3 x 25.77, -100.3
+    { 16, NoLogo, 7510, LineMetaDataContent::Subway, Color{0x0066a1} }, // 2 OSM: 7890240 WD: Q6379343 38.9, 121.5 x 38.96, 121.7
     { 2702, 1188, NoLogo, LineMetaDataContent::Subway, Color{0x808183} }, // S Rockaway Park OSM: 7893704 WD: Q126772 40.58, -73.84 x 40.61, -73.81
     { 2718, 1188, NoLogo, LineMetaDataContent::Subway, Color{0x808183} }, // S Franklin Avenue OSM: 7894362 WD: Q126725 40.66, -73.96 x 40.68, -73.96
-    { 55, NoLogo, 7515, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7894481 WD: Q5934658 41.76, 123.2 x 41.81, 123.5
-    { 16, NoLogo, 7515, LineMetaDataContent::Subway, Color{0xffff00} }, // 2 OSM: 7894597 WD: Q5933526 41.7, 123.4 x 41.96, 123.5
-    { 55, NoLogo, 7551, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7895188 WD: Q15941872 25.99, 119.3 x 26.15, 119.4
+    { 55, NoLogo, 7543, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7894481 WD: Q5934658 41.76, 123.2 x 41.81, 123.5
+    { 16, NoLogo, 7543, LineMetaDataContent::Subway, Color{0xffff00} }, // 2 OSM: 7894597 WD: Q5933526 41.7, 123.4 x 41.96, 123.5
+    { 55, NoLogo, 7579, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7895188 WD: Q15941872 25.99, 119.3 x 26.15, 119.4
     { 58, NoLogo, 1612, LineMetaDataContent::Subway, Color{0x918c10} }, // 13 OSM: 7895357 WD: Q6553065 23.08, 113.4 x 23.14, 113.6
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0070ff} }, // 2 OSM: 7898299 WD: Q56277844 40.57, 22.93 x 40.65, 22.97
-    { 59, NoLogo, 7482, LineMetaDataContent::Subway, Color{0x008000} }, // 3 OSM: 7908058 WD: Q5976456 38.92, 121.6 x 39.15, 122
+    { 59, NoLogo, 7510, LineMetaDataContent::Subway, Color{0x008000} }, // 3 OSM: 7908058 WD: Q5976456 38.92, 121.6 x 39.15, 122
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 2 OSM: 7909740 WD: Q11087464 25.03, 102.7 x 25.12, 102.8
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xdb372b} }, // 1 OSM: 7909748 WD: Q11087462 24.82, 102.7 x 25.03, 102.9
     { 61, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x4bbbb4} }, // S1 OSM: 7913272 WD: Q10946118 31.72, 118.8 x 31.97, 118.9
@@ -2871,37 +2872,37 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 19, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf51361} }, // 8 OSM: 7919019 WD: Q45086 37.43, 127.1 x 37.55, 127.2
     { 27, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x9e4510} }, // 6 OSM: 7919154 WD: Q92549 37.53, 126.9 x 37.62, 127.1
     { 296, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00a651} }, // M OSM: 7919553 WD: Q805751 39.29, -76.78 x 39.41, -76.59
-    { 2575, 7573, 5720, LineMetaDataContent::Subway, Color{0xe89038} }, // OR OSM: 7919601 WD: Q4715683 38.88, -77.28 x 38.95, -76.87
-    { 2736, 7590, 5720, LineMetaDataContent::Subway, Color{0xe94333} }, // RD OSM: 7919630 WD: Q2193330 38.89, -77.17 x 39.12, -76.99
-    { 2739, 7604, 5720, LineMetaDataContent::Subway, Color{0xc0c0c0} }, // SI OSM: 7919737 WD: Q4711838 38.88, -77.34 x 38.95, -76.84
-    { 2742, 7621, 5720, LineMetaDataContent::Subway, Color{0x0000ff} }, // BL OSM: 7919758 WD: Q2602185 38.77, -77.17 x 38.9, -76.84
-    { 316, 7636, 5720, LineMetaDataContent::Subway, Color{0x008000} }, // GR OSM: 7919786 WD: Q4715207 38.83, -77.03 x 39.01, -76.91
+    { 2575, 7601, 5720, LineMetaDataContent::Subway, Color{0xe89038} }, // OR OSM: 7919601 WD: Q4715683 38.88, -77.28 x 38.95, -76.87
+    { 2736, 7618, 5720, LineMetaDataContent::Subway, Color{0xe94333} }, // RD OSM: 7919630 WD: Q2193330 38.89, -77.17 x 39.12, -76.99
+    { 2739, 7632, 5720, LineMetaDataContent::Subway, Color{0xc0c0c0} }, // SI OSM: 7919737 WD: Q4711838 38.88, -77.34 x 38.95, -76.84
+    { 2742, 7649, 5720, LineMetaDataContent::Subway, Color{0x0000ff} }, // BL OSM: 7919758 WD: Q2602185 38.77, -77.17 x 38.9, -76.84
+    { 316, 7664, 5720, LineMetaDataContent::Subway, Color{0x008000} }, // GR OSM: 7919786 WD: Q4715207 38.83, -77.03 x 39.01, -76.91
     { 42, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x54640d} }, // 7 OSM: 7922930 WD: Q22910 37.48, 126.7 x 37.7, 127.1
     { 468, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x62bb46} }, // Green OSM: 7924527 WD: Q55734262 25.68, -80.33 x 25.85, -80.2
     { 1260, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf78f1e} }, // Orange OSM: 7924528 WD: Q55734269 25.68, -80.32 x 25.81, -80.2
     { 1117, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x009832} }, // D OSM: 7925628 48.57, 7.691 x 48.59, 7.816
     { 214, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf68712} }, // C OSM: 7925656 48.55, 7.735 x 48.59, 7.773
-    { 27, 7652, 5174, LineMetaDataContent::Subway, Color{0x0078ad} }, // 6 OSM: 7927182 WD: Q668977 50.83, 4.321 x 50.9, 4.37
+    { 27, 7680, 5174, LineMetaDataContent::Subway, Color{0x0078ad} }, // 6 OSM: 7927182 WD: Q668977 50.83, 4.321 x 50.9, 4.37
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff7000} }, // 2 OSM: 7927236 WD: Q5017773 29.98, 31.2 x 30.12, 31.25
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7927442 WD: Q6515333 10.48, -66.96 x 10.52, -66.8
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xafc805} }, // 2 OSM: 7927568 WD: Q5986160 10.42, -67.01 x 10.51, -66.87
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 3 OSM: 7927573 WD: Q21346332 10.43, -66.94 x 10.5, -66.88
     { 2745, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000000} }, // L1B OSM: 7928119 37.99, -1.187 x 38.01, -1.161
-    { 55, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xe86495} }, // 1 OSM: 7935038 WD: Q2295084 19.4, 330.3 x 19.43, 330.4
-    { 1356, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 803 OSM: 7935053 33.89, 311.1 x 33.93, 311.4
-    { 2749, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd700} }, // 804 OSM: 7935245 34.03, 311.3 x 34.15, 311.6
-    { 2753, 7695, 7720, LineMetaDataContent::Subway, Color{0x800080} }, // 805 OSM: 7935318 WD: Q3916689 34.05, 311.2 x 34.06, 311.3
-    { 9, NoLogo, 7673, LineMetaDataContent::Subway, Color{0x80ffff} }, // 4 OSM: 7935352 WD: Q2837181 19.4, 330.4 x 19.49, 330.4
-    { 6, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xffff11} }, // 5 OSM: 7935366 WD: Q1152238 19.41, 330.3 x 19.5, 330.4
-    { 15, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xb69764} }, // 12 OSM: 7935368 WD: Q5985548 19.28, 330.3 x 19.38, 330.5
-    { 42, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xff8000} }, // 7 OSM: 7935375 WD: Q929645 19.36, 330.3 x 19.51, 330.3
-    { 219, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xa3277d} }, // A OSM: 7935382 WD: Q3239049 19.35, 330.4 x 19.42, 330.5
-    { 19, NoLogo, 7673, LineMetaDataContent::Subway, Color{0x30c090} }, // 8 OSM: 7935426 WD: Q1149545 19.34, 330.4 x 19.45, 330.4
-    { 181, NoLogo, 7673, LineMetaDataContent::Subway, Color{0x408080} }, // B OSM: 7935433 WD: Q3239062 19.43, 330.3 x 19.53, 330.5
-    { 16, NoLogo, 7673, LineMetaDataContent::Subway, Color{0x0080ff} }, // 2 OSM: 7935439 WD: Q1152993 19.34, 330.3 x 19.46, 330.4
-    { 119, NoLogo, 7673, LineMetaDataContent::Subway, Color{0x804000} }, // 9 OSM: 7935444 WD: Q3239046 19.4, 330.3 x 19.42, 330.4
-    { 59, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xae9d27} }, // 3 OSM: 7935449 WD: Q945935 19.32, 330.3 x 19.5, 330.4
-    { 27, NoLogo, 7673, LineMetaDataContent::Subway, Color{0xe00050} }, // 6 OSM: 7935454 WD: Q3238990 19.48, 330.3 x 19.5, 330.4
+    { 55, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xe86495} }, // 1 OSM: 7935038 WD: Q2295084 19.4, -99.2 x 19.43, -99.07
+    { 1352, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 803 OSM: 7935053 33.89, -118.4 x 33.93, -118.1
+    { 2749, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd700} }, // 804 OSM: 7935245 34.03, -118.2 x 34.15, -117.9
+    { 2753, 7723, 7748, LineMetaDataContent::Subway, Color{0x800080} }, // 805 OSM: 7935318 WD: Q3916689 34.05, -118.3 x 34.06, -118.2
+    { 9, NoLogo, 7701, LineMetaDataContent::Subway, Color{0x80ffff} }, // 4 OSM: 7935352 WD: Q2837181 19.4, -99.12 x 19.49, -99.1
+    { 6, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xffff11} }, // 5 OSM: 7935366 WD: Q1152238 19.41, -99.15 x 19.5, -99.07
+    { 15, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xb69764} }, // 12 OSM: 7935368 WD: Q5985548 19.28, -99.2 x 19.38, -99.01
+    { 42, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xff8000} }, // 7 OSM: 7935375 WD: Q929645 19.36, -99.2 x 19.51, -99.18
+    { 219, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xa3277d} }, // A OSM: 7935382 WD: Q3239049 19.35, -99.08 x 19.42, -98.96
+    { 19, NoLogo, 7701, LineMetaDataContent::Subway, Color{0x30c090} }, // 8 OSM: 7935426 WD: Q1149545 19.34, -99.14 x 19.45, -99.05
+    { 181, NoLogo, 7701, LineMetaDataContent::Subway, Color{0x408080} }, // B OSM: 7935433 WD: Q3239062 19.43, -99.16 x 19.53, -99.03
+    { 16, NoLogo, 7701, LineMetaDataContent::Subway, Color{0x0080ff} }, // 2 OSM: 7935439 WD: Q1152993 19.34, -99.22 x 19.46, -99.13
+    { 119, NoLogo, 7701, LineMetaDataContent::Subway, Color{0x804000} }, // 9 OSM: 7935444 WD: Q3239046 19.4, -99.19 x 19.42, -99.06
+    { 59, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xae9d27} }, // 3 OSM: 7935449 WD: Q945935 19.32, -99.18 x 19.5, -99.12
+    { 27, NoLogo, 7701, LineMetaDataContent::Subway, Color{0xe00050} }, // 6 OSM: 7935454 WD: Q3238990 19.48, -99.2 x 19.5, -99.1
     { 2757, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xdb5450} }, // PATCO OSM: 7939445 WD: Q2043730 39.83, -75.17 x 39.96, -75
     { 1839, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x233e99} }, // WTR OSM: 7940934 WD: Q7986701 39.95, -75.18 x 40.26, -74.82
     { 2284, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xef3941} }, // PATH NWK–WTC OSM: 7943869 WD: Q2673356 40.71, -74.17 x 40.74, -74.01
@@ -2915,15 +2916,15 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x3366ff} }, // 2 OSM: 7949335 WD: Q10916960 31.85, 117.1 x 31.87, 117.4
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xe50011} }, // 1 OSM: 7949339 WD: Q15913092 43.79, 125.3 x 43.95, 125.3
     { 2806, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf58220} }, // BSL OSM: 7950670 WD: Q837022 39.91, -75.17 x 40.04, -75.14
-    { 55, NoLogo, 7482, LineMetaDataContent::Subway, Color{0x008000} }, // 1 OSM: 7951024 WD: Q6379309 38.84, 121.5 x 39.04, 121.6
+    { 55, NoLogo, 7510, LineMetaDataContent::Subway, Color{0x008000} }, // 1 OSM: 7951024 WD: Q6379309 38.84, 121.5 x 39.04, 121.6
     { 2810, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0066ff} }, // MFL OSM: 7953598 WD: Q823251 39.95, -75.26 x 40.02, -75.08
     { 2814, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x84388a} }, // NHSL OSM: 7953621 39.96, -75.35 x 40.11, -75.26
-    { 15, NoLogo, 7482, LineMetaDataContent::Subway, Color{0x5f259f} }, // 12 OSM: 7957874 WD: Q10938157 38.8, 121.1 x 38.86, 121.5
-    { 2819, 7732, NoLogo, LineMetaDataContent::Subway, Color{0x38a800} }, // Μ1 OSM: 7963514 WD: Q6553095 37.94, 23.64 x 38.07, 23.81
-    { 2823, 7756, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // Γ2 OSM: 7963569 WD: Q9295813 37.89, 23.69 x 38.02, 23.75
+    { 15, NoLogo, 7510, LineMetaDataContent::Subway, Color{0x5f259f} }, // 12 OSM: 7957874 WD: Q10938157 38.8, 121.1 x 38.86, 121.5
+    { 2819, 7760, NoLogo, LineMetaDataContent::Subway, Color{0x38a800} }, // Μ1 OSM: 7963514 WD: Q6553095 37.94, 23.64 x 38.07, 23.81
+    { 2823, 7784, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // Γ2 OSM: 7963569 WD: Q9295813 37.89, 23.69 x 38.02, 23.75
     { 317, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x2d3087} }, // R OSM: 7963671 WD: Q225095 35.61, 139.7 x 35.65, 139.8
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7963913 WD: Q320337 40.14, 44.47 x 40.2, 44.52
-    { 19, NoLogo, 7780, LineMetaDataContent::Subway, Color{0x9aaead} }, // 8 OSM: 7964884 WD: Q11124525 30.58, 114.3 x 30.68, 114.4
+    { 19, NoLogo, 7808, LineMetaDataContent::Subway, Color{0x9aaead} }, // 8 OSM: 7964884 WD: Q11124525 30.58, 114.3 x 30.68, 114.4
     { 2827, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x98cd37} }, // ML4 OSM: 7968999 40.22, -3.773 x 40.25, -3.749
     { 2831, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x006400} }, // Tranvía OSM: 7981323 37.77, -3.79 x 37.81, -3.778
     { 2840, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0354a6} }, // DTL OSM: 7981644 WD: Q1663943 1.278, 103.7 x 1.417, 104
@@ -2934,72 +2935,72 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 8, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x800080} }, // M4 OSM: 7981756 WD: Q31193144 39.94, 32.84 x 40, 32.88
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 2 OSM: 7981873 WD: Q55105894 38.39, 27.07 x 38.47, 27.23
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xed1c24} }, // 2 OSM: 7986215 WD: Q11103955 22.86, 113.7 x 23.09, 113.9
-    { 2856, NoLogo, 7801, LineMetaDataContent::Subway, Color{0x0000ff} }, // Pink Line OSM: 7989308 WD: Q17053988 26.88, 75.75 x 26.93, 75.83
+    { 2856, NoLogo, 7829, LineMetaDataContent::Subway, Color{0x0000ff} }, // Pink Line OSM: 7989308 WD: Q17053988 26.88, 75.75 x 26.93, 75.83
     { 2866, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x246b5b} }, // BTS Silom OSM: 7989387 WD: Q2634702 13.71, 100.5 x 13.75, 100.5
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 7992938 WD: Q133748 30.17, 120.2 x 30.41, 120.4
     { 2876, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa000} }, // U AVO OSM: 7993108 40.64, -8.654 x 41.15, -8.564
-    { 9, 7823, 5256, LineMetaDataContent::Tramway, Color{0xf25482} }, // 4 OSM: 7999217 WD: Q2527775 50.79, 4.318 x 50.86, 4.363
-    { 226, 7844, 5256, LineMetaDataContent::Tramway, Color{0x991f36} }, // 25 OSM: 7999338 WD: Q3238750 50.8, 4.358 x 50.87, 4.408
-    { 209, 7866, 5256, LineMetaDataContent::Tramway, Color{0xe3ba12} }, // 55 OSM: 7999374 WD: Q2236365 50.86, 4.358 x 50.88, 4.416
-    { 613, 7888, 5256, LineMetaDataContent::Tramway, Color{0x9ebfe3} }, // 82 OSM: 7999733 WD: Q2534011 50.78, 4.29 x 50.87, 4.341
+    { 9, 7851, 5256, LineMetaDataContent::Tramway, Color{0xf25482} }, // 4 OSM: 7999217 WD: Q2527775 50.79, 4.318 x 50.86, 4.363
+    { 226, 7872, 5256, LineMetaDataContent::Tramway, Color{0x991f36} }, // 25 OSM: 7999338 WD: Q3238750 50.8, 4.358 x 50.87, 4.408
+    { 209, 7894, 5256, LineMetaDataContent::Tramway, Color{0xe3ba12} }, // 55 OSM: 7999374 WD: Q2236365 50.86, 4.358 x 50.88, 4.416
+    { 613, 7916, 5256, LineMetaDataContent::Tramway, Color{0x9ebfe3} }, // 82 OSM: 7999733 WD: Q2534011 50.78, 4.29 x 50.87, 4.341
     { 59, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffcc00} }, // 3 OSM: 8000255 WD: Q13422345 14.54, 121 x 14.65, 121.1
-    { 55, 7910, 7910, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 1 OSM: 8000262 WD: Q4165607 14.53, 121 x 14.66, 121
-    { 16, NoLogo, 7910, LineMetaDataContent::Subway, Color{0x800080} }, // 2 OSM: 8000265 WD: Q4165317 14.6, 121 x 14.63, 121.1
+    { 55, 7938, 7938, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 1 OSM: 8000262 WD: Q4165607 14.53, 121 x 14.66, 121
+    { 16, NoLogo, 7938, LineMetaDataContent::Subway, Color{0x800080} }, // 2 OSM: 8000265 WD: Q4165317 14.6, 121 x 14.63, 121.1
     { 2882, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfe8e10} }, // AG OSM: 8000298 WD: Q474391 3.12, 101.7 x 3.188, 101.8
     { 119, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 9 OSM: 8000326 WD: Q6717618 2.981, 101.6 x 3.207, 101.8
     { 2885, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x721422} }, // SP OSM: 8000405 WD: Q474391 2.994, 101.6 x 3.188, 101.7
     { 229, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe0115f} }, // KJ OSM: 8000461 2.995, 101.6 x 3.233, 101.7
-    { 377, NoLogo, 7923, LineMetaDataContent::Subway, Color{0x0000ff} }, // H OSM: 8000565 WD: Q981822 43.02, 141.4 x 43.11, 141.4
-    { 561, NoLogo, 7923, LineMetaDataContent::Subway, Color{0xff8c00} }, // T OSM: 8000572 WD: Q981826 43.03, 141.3 x 43.09, 141.5
-    { 480, NoLogo, 7923, LineMetaDataContent::Subway, Color{0x008800} }, // N OSM: 8000575 WD: Q843793 42.99, 141.3 x 43.11, 141.4
+    { 377, NoLogo, 7951, LineMetaDataContent::Subway, Color{0x0000ff} }, // H OSM: 8000565 WD: Q981822 43.02, 141.4 x 43.11, 141.4
+    { 561, NoLogo, 7951, LineMetaDataContent::Subway, Color{0xff8c00} }, // T OSM: 8000572 WD: Q981826 43.03, 141.3 x 43.09, 141.5
+    { 480, NoLogo, 7951, LineMetaDataContent::Subway, Color{0x008800} }, // N OSM: 8000575 WD: Q843793 42.99, 141.3 x 43.11, 141.4
     { 1565, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0377ae} }, // R6 OSM: 8005936 48.62, 21.19 x 48.71, 21.24
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x55bace} }, // 3 OSM: 8013591 48.68, 21.26 x 48.72, 21.3
     { 42, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x5cbf14} }, // 7 OSM: 8013592 48.68, 21.24 x 48.73, 21.3
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x7477b0} }, // 4 OSM: 8013593 48.68, 21.24 x 48.74, 21.27
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf5d907} }, // 9 OSM: 8013594 48.68, 21.23 x 48.74, 21.3
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xd2005c} }, // 2 OSM: 8013595 48.72, 21.24 x 48.74, 21.27
-    { 296, 7935, 7975, LineMetaDataContent::Subway, Color{0xf62e36} }, // M OSM: 8015940 WD: Q1147028 35.67, 139.6 x 35.73, 139.8
-    { 35, 7996, NoLogo, LineMetaDataContent::Subway, Color{0xffb300} }, // S OSM: 8016135 WD: Q16948 37.36, 126.6 x 37.48, 126.7
+    { 296, 7963, 8003, LineMetaDataContent::Subway, Color{0xf62e36} }, // M OSM: 8015940 WD: Q1147028 35.67, 139.6 x 35.73, 139.8
+    { 35, 8024, NoLogo, LineMetaDataContent::Subway, Color{0xffb300} }, // S OSM: 8016135 WD: Q16948 37.36, 126.6 x 37.48, 126.7
     { 2888, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x11385b} }, // 金山(Jinshan) OSM: 8019734 WD: Q3338133 30.73, 121.3 x 31.16, 121.4
-    { 219, 8022, NoLogo, LineMetaDataContent::Subway, Color{0xe85298} }, // A OSM: 8019854 WD: Q720653 35.59, 139.7 x 35.71, 139.8
-    { 35, 8051, NoLogo, LineMetaDataContent::Subway, Color{0x6cbb5a} }, // S OSM: 8019866 WD: Q1374502 35.65, 139.5 x 35.79, 139.9
-    { 39, 8081, NoLogo, LineMetaDataContent::Subway, Color{0xb6007a} }, // E OSM: 8019893 WD: Q384862 35.65, 139.6 x 35.76, 139.8
-    { 1486, 8107, NoLogo, LineMetaDataContent::Subway, Color{0x0079c2} }, // I OSM: 8019914 WD: Q1374506 35.63, 139.6 x 35.79, 139.8
+    { 219, 8050, NoLogo, LineMetaDataContent::Subway, Color{0xe85298} }, // A OSM: 8019854 WD: Q720653 35.59, 139.7 x 35.71, 139.8
+    { 35, 8079, NoLogo, LineMetaDataContent::Subway, Color{0x6cbb5a} }, // S OSM: 8019866 WD: Q1374502 35.65, 139.5 x 35.79, 139.9
+    { 39, 8109, NoLogo, LineMetaDataContent::Subway, Color{0xb6007a} }, // E OSM: 8019893 WD: Q384862 35.65, 139.6 x 35.76, 139.8
+    { 1486, 8135, NoLogo, LineMetaDataContent::Subway, Color{0x0079c2} }, // I OSM: 8019914 WD: Q1374506 35.63, 139.6 x 35.79, 139.8
     { 1523, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xafca36} }, // G44 OSM: 8021111 47.37, 18.87 x 47.5, 19.04
-    { 214, 8133, 7975, LineMetaDataContent::Subway, Color{0x00bb85} }, // C OSM: 8026069 WD: Q1075089 35.66, 139.7 x 35.78, 139.8
-    { 480, 8170, 7975, LineMetaDataContent::Subway, Color{0x00ac9b} }, // N OSM: 8026071 WD: Q520772 35.63, 139.7 x 35.78, 139.8
-    { 201, 8207, 7975, LineMetaDataContent::Subway, Color{0xff9500} }, // G OSM: 8026077 WD: Q1073046 35.66, 139.7 x 35.71, 139.8
-    { 492, 8242, 7975, LineMetaDataContent::Subway, Color{0xc1a470} }, // Y OSM: 8026115 WD: Q787305 35.64, 139.6 x 35.79, 139.8
-    { 561, 8283, 7975, LineMetaDataContent::Subway, Color{0x009bbf} }, // T OSM: 8026124 WD: Q1147054 35.66, 139.7 x 35.71, 140
-    { 377, 8319, 7975, LineMetaDataContent::Subway, Color{0xb5b5ac} }, // H OSM: 8026149 WD: Q1196223 35.64, 139.7 x 35.75, 139.8
-    { 2617, 8355, 7975, LineMetaDataContent::Subway, Color{0x8f76d6} }, // Z OSM: 8026157 WD: Q1376030 35.66, 139.7 x 35.71, 139.8
-    { 233, 8394, 7975, LineMetaDataContent::Subway, Color{0x9c5e31} }, // F OSM: 8026161 WD: Q1332908 35.66, 139.6 x 35.79, 139.7
-    { 35, 8434, NoLogo, LineMetaDataContent::Subway, Color{0xffaadd} }, // S OSM: 8028801 WD: Q1073354 34.64, 135.5 x 34.69, 135.6
+    { 214, 8161, 8003, LineMetaDataContent::Subway, Color{0x00bb85} }, // C OSM: 8026069 WD: Q1075089 35.66, 139.7 x 35.78, 139.8
+    { 480, 8198, 8003, LineMetaDataContent::Subway, Color{0x00ac9b} }, // N OSM: 8026071 WD: Q520772 35.63, 139.7 x 35.78, 139.8
+    { 201, 8235, 8003, LineMetaDataContent::Subway, Color{0xff9500} }, // G OSM: 8026077 WD: Q1073046 35.66, 139.7 x 35.71, 139.8
+    { 492, 8270, 8003, LineMetaDataContent::Subway, Color{0xc1a470} }, // Y OSM: 8026115 WD: Q787305 35.64, 139.6 x 35.79, 139.8
+    { 561, 8311, 8003, LineMetaDataContent::Subway, Color{0x009bbf} }, // T OSM: 8026124 WD: Q1147054 35.66, 139.7 x 35.71, 140
+    { 377, 8347, 8003, LineMetaDataContent::Subway, Color{0xb5b5ac} }, // H OSM: 8026149 WD: Q1196223 35.64, 139.7 x 35.75, 139.8
+    { 2617, 8383, 8003, LineMetaDataContent::Subway, Color{0x8f76d6} }, // Z OSM: 8026157 WD: Q1376030 35.66, 139.7 x 35.71, 139.8
+    { 233, 8422, 8003, LineMetaDataContent::Subway, Color{0x9c5e31} }, // F OSM: 8026161 WD: Q1332908 35.66, 139.6 x 35.79, 139.7
+    { 35, 8462, NoLogo, LineMetaDataContent::Subway, Color{0xffaadd} }, // S OSM: 8028801 WD: Q1073354 34.64, 135.5 x 34.69, 135.6
     { 296, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xdd0000} }, // M OSM: 8028805 34.56, 135.5 x 34.81, 135.5
-    { 1486, 8474, NoLogo, LineMetaDataContent::Subway, Color{0xff9900} }, // I OSM: 8028826 WD: Q1066118 34.67, 135.5 x 34.76, 135.6
-    { 431, 8514, NoLogo, LineMetaDataContent::Subway, Color{0x662211} }, // K OSM: 8028828 WD: Q1143250 34.64, 135.5 x 34.71, 135.5
-    { 480, 8552, NoLogo, LineMetaDataContent::Subway, Color{0xaadd55} }, // N OSM: 8028846 WD: Q284828 34.67, 135.5 x 34.72, 135.6
-    { 492, 8606, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // Y OSM: 8028853 WD: Q1067748 34.61, 135.5 x 34.7, 135.5
+    { 1486, 8502, NoLogo, LineMetaDataContent::Subway, Color{0xff9900} }, // I OSM: 8028826 WD: Q1066118 34.67, 135.5 x 34.76, 135.6
+    { 431, 8542, NoLogo, LineMetaDataContent::Subway, Color{0x662211} }, // K OSM: 8028828 WD: Q1143250 34.64, 135.5 x 34.71, 135.5
+    { 480, 8580, NoLogo, LineMetaDataContent::Subway, Color{0xaadd55} }, // N OSM: 8028846 WD: Q284828 34.67, 135.5 x 34.72, 135.6
+    { 492, 8634, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // Y OSM: 8028853 WD: Q1067748 34.61, 135.5 x 34.7, 135.5
     { 561, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x540a56} }, // T OSM: 8028879 WD: Q1142773 34.6, 135.5 x 34.75, 135.6
-    { 431, 8645, 8670, LineMetaDataContent::Subway, Color{0x3cb371} }, // K OSM: 8030551 WD: Q762347 34.96, 135.8 x 35.06, 135.8
-    { 561, 8702, 8670, LineMetaDataContent::Subway, Color{0xff4500} }, // T OSM: 8030553 WD: Q1143898 34.93, 135.7 x 35.01, 135.8
-    { 35, 8724, 6132, LineMetaDataContent::Subway, Color{0xff0000} }, // S OSM: 8030762 WD: Q1132780 35.09, 136.9 x 35.17, 137
-    { 377, 8769, 6132, LineMetaDataContent::Subway, Color{0xffffcc} }, // H OSM: 8030765 WD: Q1132799 35.14, 136.9 x 35.18, 137
-    { 39, 8814, 6132, LineMetaDataContent::Subway, Color{0x8f76d6} }, // E OSM: 8030779 WD: Q1045061 35.09, 136.9 x 35.14, 136.9
-    { 561, 8853, 6132, LineMetaDataContent::Subway, Color{0xadd8e6} }, // T OSM: 8030785 WD: Q1043806 35.12, 136.9 x 35.22, 137
-    { 508, 8895, NoLogo, LineMetaDataContent::RapidTransit, Color{0x449ad5} }, // R1 OSM: 8030919 WD: Q2395239 41.36, 2.02 x 41.77, 2.769
-    { 296, 8912, 6132, LineMetaDataContent::Subway, Color{0x8f76d6} }, // M OSM: 8031607 WD: Q906775 35.12, 136.9 x 35.2, 137
-    { 55, NoLogo, 8951, LineMetaDataContent::Subway, Color{0x008000} }, // 1 OSM: 8034179 WD: Q6427301 22.46, 88.34 x 22.64, 88.4
-    { 55, NoLogo, 7077, LineMetaDataContent::Subway, Color{0x3281c4} }, // 1 OSM: 8037596 WD: Q19891160 12.98, 80.16 x 13.11, 80.29
-    { 1606, NoLogo, 8974, LineMetaDataContent::Subway, Color{0x0000ff} }, // Blue Line OSM: 8037671 WD: Q1029921 28.55, 77.02 x 28.66, 77.38
-    { 1658, NoLogo, 8974, LineMetaDataContent::Subway, Color{0x008000} }, // Green Line OSM: 8037672 WD: Q5602820 28.65, 76.91 x 28.7, 77.17
-    { 2904, NoLogo, 8974, LineMetaDataContent::Subway, Color{0x800080} }, // Violet Line OSM: 8037706 WD: Q3634451 28.34, 77.21 x 28.67, 77.32
-    { 2916, NoLogo, 8974, LineMetaDataContent::Subway, Color{0xffff00} }, // Yellow Line OSM: 8037713 WD: Q795156 28.46, 77.07 x 28.75, 77.23
-    { 2928, NoLogo, 8974, LineMetaDataContent::Subway, Color{0xffa500} }, // AEx OSM: 8037716 WD: Q5253735 28.55, 77.06 x 28.64, 77.22
+    { 431, 8673, 8698, LineMetaDataContent::Subway, Color{0x3cb371} }, // K OSM: 8030551 WD: Q762347 34.96, 135.8 x 35.06, 135.8
+    { 561, 8730, 8698, LineMetaDataContent::Subway, Color{0xff4500} }, // T OSM: 8030553 WD: Q1143898 34.93, 135.7 x 35.01, 135.8
+    { 35, 8752, 6132, LineMetaDataContent::Subway, Color{0xff0000} }, // S OSM: 8030762 WD: Q1132780 35.09, 136.9 x 35.17, 137
+    { 377, 8797, 6132, LineMetaDataContent::Subway, Color{0xffffcc} }, // H OSM: 8030765 WD: Q1132799 35.14, 136.9 x 35.18, 137
+    { 39, 8842, 6132, LineMetaDataContent::Subway, Color{0x8f76d6} }, // E OSM: 8030779 WD: Q1045061 35.09, 136.9 x 35.14, 136.9
+    { 561, 8881, 6132, LineMetaDataContent::Subway, Color{0xadd8e6} }, // T OSM: 8030785 WD: Q1043806 35.12, 136.9 x 35.22, 137
+    { 508, 8923, NoLogo, LineMetaDataContent::RapidTransit, Color{0x449ad5} }, // R1 OSM: 8030919 WD: Q2395239 41.36, 2.02 x 41.77, 2.769
+    { 296, 8940, 6132, LineMetaDataContent::Subway, Color{0x8f76d6} }, // M OSM: 8031607 WD: Q906775 35.12, 136.9 x 35.2, 137
+    { 55, NoLogo, 8979, LineMetaDataContent::Subway, Color{0x008000} }, // 1 OSM: 8034179 WD: Q6427301 22.46, 88.34 x 22.64, 88.4
+    { 55, NoLogo, 7105, LineMetaDataContent::Subway, Color{0x3281c4} }, // 1 OSM: 8037596 WD: Q19891160 12.98, 80.16 x 13.11, 80.29
+    { 1606, NoLogo, 9002, LineMetaDataContent::Subway, Color{0x0000ff} }, // Blue Line OSM: 8037671 WD: Q1029921 28.55, 77.02 x 28.66, 77.38
+    { 1658, NoLogo, 9002, LineMetaDataContent::Subway, Color{0x008000} }, // Green Line OSM: 8037672 WD: Q5602820 28.65, 76.91 x 28.7, 77.17
+    { 2904, NoLogo, 9002, LineMetaDataContent::Subway, Color{0x800080} }, // Violet Line OSM: 8037706 WD: Q3634451 28.34, 77.21 x 28.67, 77.32
+    { 2916, NoLogo, 9002, LineMetaDataContent::Subway, Color{0xffff00} }, // Yellow Line OSM: 8037713 WD: Q795156 28.46, 77.07 x 28.75, 77.23
+    { 2928, NoLogo, 9002, LineMetaDataContent::Subway, Color{0xffa500} }, // AEx OSM: 8037716 WD: Q5253735 28.55, 77.06 x 28.64, 77.22
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xeb3d1a} }, // 2 OSM: 8040132 WD: Q21245979 22.72, 108.3 x 22.9, 108.4
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xfe4998} }, // 3 OSM: 8040148 WD: Q11087465 24.99, 102.6 x 25.05, 102.8
-    { 2932, NoLogo, 8974, LineMetaDataContent::Subway, Color{0xff00ff} }, // Magenta Line OSM: 8051576 WD: Q19893471 28.54, 77.08 x 28.63, 77.34
-    { 119, NoLogo, 8974, LineMetaDataContent::Subway, Color{0x808080} }, // 9 OSM: 8051593 WD: Q47100305 28.61, 77 x 28.62, 77.02
+    { 2932, NoLogo, 9002, LineMetaDataContent::Subway, Color{0xff00ff} }, // Magenta Line OSM: 8051576 WD: Q19893471 28.54, 77.08 x 28.63, 77.34
+    { 119, NoLogo, 9002, LineMetaDataContent::Subway, Color{0x808080} }, // 9 OSM: 8051593 WD: Q47100305 28.61, 77 x 28.62, 77.02
     { 22, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xabd02c} }, // 18 OSM: 8054951 50.05, 14.39 x 50.11, 14.44
     { 164, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xa7c9ae} }, // 17 OSM: 8055113 50, 14.4 x 50.13, 14.46
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xdc008f} }, // 11 OSM: 8060662 50.05, 14.3 x 50.09, 14.54
@@ -3018,9 +3019,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 545, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // T2 OSM: 8209896 WD: Q16655789 47.99, 0.1929 x 48.02, 0.2359
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xeb001b} }, // T1 OSM: 8209897 WD: Q3239229 47.96, 0.152 x 48.02, 0.2304
     { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009933} }, // Green OSM: 8212097 WD: Q19960507 54.9, -1.711 x 55.04, -1.382
-    { 2961, 8995, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 802 OSM: 8219357 WD: Q2778331 34.05, 311.1 x 34.17, 311.3
-    { 272, NoLogo, 3446, LineMetaDataContent::RapidTransit, Color{0xffe800} }, // Yellow OSM: 8237627 WD: Q21593049 38, 307.6 x 38.02, 307.7
-    { 2856, NoLogo, 8974, LineMetaDataContent::Subway, Color{0xffc0cb} }, // Pink Line OSM: 8242438 WD: Q19891094 28.57, 77.12 x 28.72, 77.32
+    { 2961, 9023, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 802 OSM: 8219357 WD: Q2778331 34.05, -118.4 x 34.17, -118.2
+    { 272, NoLogo, 3446, LineMetaDataContent::RapidTransit, Color{0xffe800} }, // Yellow OSM: 8237627 WD: Q21593049 38, -121.9 x 38.02, -121.8
+    { 2856, NoLogo, 9002, LineMetaDataContent::Subway, Color{0xffc0cb} }, // Pink Line OSM: 8242438 WD: Q19891094 28.57, 77.12 x 28.72, 77.32
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xbb8c00} }, // 3 OSM: 8247017 WD: Q86468 35.17, 129 x 35.21, 129.1
     { 9, NoLogo, 4641, LineMetaDataContent::Tramway, Color{0xfc751c} }, // 4 OSM: 8255319 WD: Q2735863 52.04, 4.245 x 52.08, 4.543
     { 59, NoLogo, 4641, LineMetaDataContent::Tramway, Color{0x703276} }, // 3 OSM: 8255320 WD: Q3056105 52.05, 4.228 x 52.08, 4.518
@@ -3030,12 +3031,12 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 47, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x5e2d91} }, // S8 OSM: 8294822 WD: Q7388382 47.2, 8.519 x 47.5, 8.782
     { 41, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0xfebe10} }, // S7 OSM: 8294823 WD: Q7388366 47.22, 8.511 x 47.5, 8.824
     { 50, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x5da526} }, // S2 OSM: 8294824 WD: Q7388254 47.13, 8.519 x 47.45, 9.063
-    { 42, 9020, NoLogo, LineMetaDataContent::Subway, Color{0x6ad1e3} }, // 7 OSM: 8297146 WD: Q11074646 30.61, 104 x 30.7, 104.1
-    { 59, 9030, NoLogo, LineMetaDataContent::Subway, Color{0xd40f7d} }, // 3 OSM: 8297273 WD: Q8985154 30.54, 103.9 x 30.82, 104.2
+    { 42, 9048, NoLogo, LineMetaDataContent::Subway, Color{0x6ad1e3} }, // 7 OSM: 8297146 WD: Q11074646 30.61, 104 x 30.7, 104.1
+    { 59, 9058, NoLogo, LineMetaDataContent::Subway, Color{0xd40f7d} }, // 3 OSM: 8297273 WD: Q8985154 30.54, 103.9 x 30.82, 104.2
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 2 OSM: 8297697 17.38, 78.48 x 17.45, 78.5
     { 1639, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // Red Line OSM: 8297698 WD: Q646209 17.35, 78.37 x 17.5, 78.55
-    { 16, 9040, NoLogo, LineMetaDataContent::Subway, Color{0xff5c39} }, // 2 OSM: 8298113 WD: Q4391357 30.56, 104 x 30.76, 104.3
-    { 9, 9050, NoLogo, LineMetaDataContent::Subway, Color{0x44af52} }, // 4 OSM: 8298132 WD: Q11074645 30.64, 103.8 x 30.69, 104.2
+    { 16, 9068, NoLogo, LineMetaDataContent::Subway, Color{0xff5c39} }, // 2 OSM: 8298113 WD: Q4391357 30.56, 104 x 30.76, 104.3
+    { 9, 9078, NoLogo, LineMetaDataContent::Subway, Color{0x44af52} }, // 4 OSM: 8298132 WD: Q11074645 30.64, 103.8 x 30.69, 104.2
     { 65, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x003da5} }, // 10 OSM: 8298254 WD: Q11074644 30.41, 103.8 x 30.63, 104
     { 2965, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // North-South (Red Line) OSM: 8299497 WD: Q18128813 26.77, 80.88 x 26.89, 81
     { 2988, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xa89968} }, // 〇 OSM: 8300611 WD: Q15915083 29.51, 106.5 x 29.61, 106.6
@@ -3046,19 +3047,19 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffda01} }, // 2 OSM: 8306856 WD: Q5960302 28.56, 115.8 x 28.7, 116
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 8306857 WD: Q6850056 28.67, 115.8 x 28.86, 116.1
     { 2264, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0xf9aa8f} }, // S41 OSM: 8306928 WD: Q15088595 47.49, 8.535 x 47.53, 8.724
-    { 55, NoLogo, 7780, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 8309087 WD: Q5963161 30.57, 114.1 x 30.71, 114.3
+    { 55, NoLogo, 7808, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 8309087 WD: Q5963161 30.57, 114.1 x 30.71, 114.3
     { 3003, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0xbda07c} }, // S15 OSM: 8309090 WD: Q7388191 47.22, 8.368 x 47.51, 8.864
     { 44, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x48b4ca} }, // S5 OSM: 8311264 WD: Q7388335 47.17, 8.429 x 47.41, 8.864
-    { 3007, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x000000} }, // WES OSM: 8313440 45.31, 306.7 x 45.49, 306.7
+    { 3007, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x000000} }, // WES OSM: 8313440 45.31, -122.8 x 45.49, -122.8
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff7300} }, // 2 OSM: 8323745 WD: Q2657097 30.12, 120 x 30.36, 120.3
-    { 55, 9060, NoLogo, LineMetaDataContent::Subway, Color{0x3180b7} }, // 1 OSM: 8324096 WD: Q10946020 29.84, 121.4 x 29.92, 121.9
+    { 55, 9088, NoLogo, LineMetaDataContent::Subway, Color{0x3180b7} }, // 1 OSM: 8324096 WD: Q10946020 29.84, 121.4 x 29.92, 121.9
     { 26, NoLogo, 1411, LineMetaDataContent::Subway, Color{0x6ba53a} }, // 16 OSM: 8324250 WD: Q6553080 40, 116.1 x 40.07, 116.3
     { 1810, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x0588cc} }, // S30 OSM: 8327718 WD: Q7388265 47.5, 8.722 x 47.59, 9.106
     { 1032, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x007e94} }, // S26 OSM: 8327719 WD: Q2321332 47.26, 8.724 x 47.51, 8.934
     { 563, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x7a4c29} }, // S13 OSM: 8327720 WD: Q7388186 47.13, 8.675 x 47.23, 8.75
-    { 55, NoLogo, 9081, LineMetaDataContent::Subway, Color{0xff7300} }, // 1 OSM: 8337169 WD: Q15953685 24.45, 118 x 24.66, 118.1
+    { 55, NoLogo, 9109, LineMetaDataContent::Subway, Color{0xff7300} }, // 1 OSM: 8337169 WD: Q15953685 24.45, 118 x 24.66, 118.1
     { 225, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0xb41e8e} }, // S25 OSM: 8355962 WD: Q18391643 46.92, 8.519 x 47.38, 9.084
-    { 1639, NoLogo, 8974, LineMetaDataContent::Subway, Color{0xff0000} }, // Red Line OSM: 8429148 WD: Q3278367 28.67, 77.1 x 28.72, 77.42
+    { 1639, NoLogo, 9002, LineMetaDataContent::Subway, Color{0xff0000} }, // Red Line OSM: 8429148 WD: Q3278367 28.67, 77.1 x 28.72, 77.42
     { 2108, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xa82618} }, // 6-610 OSM: 8435621 41.59, -87.62 x 41.88, -86.29
     { 3011, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xa82618} }, // 7-703 OSM: 8435622 41.59, -87.62 x 41.88, -86.29
     { 3017, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x73b3d7} }, // S35 OSM: 8437405 WD: Q7388272 47.46, 8.724 x 47.51, 9.042
@@ -3070,7 +3071,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // 2 OSM: 8439253 WD: Q1054280 31.25, 120.6 x 31.44, 120.8
     { 272, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // Yellow OSM: 8464133 WD: Q55683262 9.006, 7.272 x 9.057, 7.475
     { 1092, NoLogo, 4161, LineMetaDataContent::Subway, Color{0x00adef} }, // 52 OSM: 8466672 WD: Q2466115 52.34, 4.874 x 52.4, 4.933
-    { 3041, 9101, 2356, LineMetaDataContent::Tramway, Color{0xe65e37} }, // T11 OSM: 8467024 WD: Q1083349 48.93, 2.302 x 48.96, 2.424
+    { 3041, 9129, 2356, LineMetaDataContent::Tramway, Color{0xe65e37} }, // T11 OSM: 8467024 WD: Q1083349 48.93, 2.302 x 48.96, 2.424
     { 3045, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xa1a5a7} }, // Π4 OSM: 8467447 WD: Q17853551 37.91, 23.71 x 38.07, 23.94
     { 3049, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd000} }, // Π1 OSM: 8467448 WD: Q47477364 37.91, 23.64 x 38.07, 23.94
     { 3053, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0098d8} }, // Π2 OSM: 8467516 WD: Q20552930 37.91, 22.73 x 38.09, 23.74
@@ -3093,31 +3094,31 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009049} }, // 2 OSM: 8511768 36.81, 10.18 x 36.86, 10.2
     { 1524, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf166a7} }, // 44 OSM: 8518402 59.2, 17.81 x 59.45, 18.07
     { 3077, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf166a7} }, // 43X OSM: 8518405 58.9, 17.81 x 59.45, 18.16
-    { 439, 9134, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7577c0} }, // L OSM: 8557335 WD: Q93379 48.81, 2.009 x 49.05, 2.324
+    { 439, 9162, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7577c0} }, // L OSM: 8557335 WD: Q93379 48.81, 2.009 x 49.05, 2.324
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff00ff} }, // 9 OSM: 8624098 50.86, 4.309 x 50.89, 4.33
     { 3081, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0c8e72} }, // GC OSM: 8656365 WD: Q20192 37.58, 127 x 37.89, 127.7
-    { 44, 9167, 1682, LineMetaDataContent::RapidTransit, Color{0xeb8738} }, // S5 OSM: 8662846 WD: Q1159300 45.46, 8.789 x 45.82, 9.589
-    { 186, 9181, 1682, LineMetaDataContent::RapidTransit, Color{0xebcc00} }, // S6 OSM: 8662847 WD: Q1160580 45.43, 8.625 x 45.53, 9.589
+    { 44, 9195, 1682, LineMetaDataContent::RapidTransit, Color{0xeb8738} }, // S5 OSM: 8662846 WD: Q1159300 45.46, 8.789 x 45.82, 9.589
+    { 186, 9209, 1682, LineMetaDataContent::RapidTransit, Color{0xebcc00} }, // S6 OSM: 8662847 WD: Q1160580 45.43, 8.625 x 45.53, 9.589
     { 3084, 4443, 4418, LineMetaDataContent::Subway, Color{0x009fe3} }, // L10 Sud OSM: 8663605 WD: Q1577033 41.34, 2.113 x 41.38, 2.148
     { 3092, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x73c7a6} }, // G·J OSM: 8667957 WD: Q18233162 37.47, 126.7 x 37.89, 127.6
-    { 439, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // L OSM: 8668342 39.74, 324.5 x 39.76, 324.5
+    { 439, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffff00} }, // L OSM: 8668342 39.74, -105 x 39.76, -105
     { 37, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff7f00} }, // 24E OSM: 8682141 WD: Q63230204 38.71, -9.162 x 38.73, -9.143
-    { 3097, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008144} }, // 902 OSM: 8708438 WD: Q5060656 44.95, 336.2 x 44.98, 336.4
+    { 3097, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008144} }, // 902 OSM: 8708438 WD: Q5060656 44.95, -93.28 x 44.98, -93.08
     { 26, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf9b000} }, // 16 OSM: 8712352 52.32, 9.722 x 52.38, 9.837
-    { 22, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe4003a} }, // 18 OSM: 8712368 52.33, 9.739 x 52.38, 9.805
-    { 3101, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xba55d3} }, // 750 OSM: 8718106 WD: Q5505779 40.23, 317.5 x 41.23, 317.8
-    { 3105, 9195, NoLogo, LineMetaDataContent::Subway, Color{0x8fc31e} }, // SH OSM: 8725316 WD: Q12601528 37.3, 126.8 x 37.48, 126.8
-    { 3038, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x9bb14f} }, // TS OSM: 8729960 33.41, 317.6 x 33.42, 317.6
-    { 3108, 9233, NoLogo, LineMetaDataContent::Subway, Color{0x0054a6} }, // GG OSM: 8735483 WD: Q23933857 37.26, 127.1 x 37.41, 127.6
+    { 22, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe4003a} }, // 18 OSM: 8712368 52.33, 9.739 x 52.38, 9.804
+    { 3101, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xba55d3} }, // 750 OSM: 8718106 WD: Q5505779 40.23, -112 x 41.23, -111.7
+    { 3105, 9223, NoLogo, LineMetaDataContent::Subway, Color{0x8fc31e} }, // SH OSM: 8725316 WD: Q12601528 37.3, 126.8 x 37.48, 126.8
+    { 3038, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x9bb14f} }, // TS OSM: 8729960 33.41, -111.9 x 33.42, -111.9
+    { 3108, 9261, NoLogo, LineMetaDataContent::Subway, Color{0x0054a6} }, // GG OSM: 8735483 WD: Q23933857 37.26, 127.1 x 37.41, 127.6
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x10069f} }, // 1 OSM: 8742572 WD: Q17498490 43.75, 87.47 x 43.92, 87.62
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // T1 OSM: 8753522 43.25, -2.952 x 43.27, -2.921
     { 15, NoLogo, 0, LineMetaDataContent::Tramway, Color{0xffd800} }, // 12 OSM: 8823281 WD: Q1485440 47.55, 19.09 x 47.57, 19.13
     { 3111, NoLogo, 0, LineMetaDataContent::Tramway, Color{0xffd800} }, // 56A OSM: 8823482 WD: Q21996124 47.48, 18.96 x 47.54, 19.05
     { 3115, NoLogo, 0, LineMetaDataContent::Tramway, Color{0xffd800} }, // 59A OSM: 8823524 WD: Q1491496 47.48, 19 x 47.51, 19.02
     { 3119, NoLogo, 0, LineMetaDataContent::Tramway, Color{0xffd800} }, // 59B OSM: 8823525 WD: Q22810651 47.48, 18.96 x 47.54, 19.02
-    { 47, 9265, 1682, LineMetaDataContent::RapidTransit, Color{0xf09ea1} }, // S8 OSM: 8840314 WD: Q1160824 45.48, 9.179 x 45.86, 9.435
-    { 465, 9279, 1682, LineMetaDataContent::RapidTransit, Color{0x8c3682} }, // S9 OSM: 8840324 WD: Q56920 45.4, 8.956 x 45.65, 9.274
-    { 53, 9293, 1682, LineMetaDataContent::RapidTransit, Color{0x8787ba} }, // S11 OSM: 8840325 WD: Q1160879 45.48, 9.029 x 45.83, 9.274
+    { 47, 9293, 1682, LineMetaDataContent::RapidTransit, Color{0xf09ea1} }, // S8 OSM: 8840314 WD: Q1160824 45.48, 9.179 x 45.86, 9.435
+    { 465, 9307, 1682, LineMetaDataContent::RapidTransit, Color{0x8c3682} }, // S9 OSM: 8840324 WD: Q56920 45.4, 8.956 x 45.65, 9.274
+    { 53, 9321, 1682, LineMetaDataContent::RapidTransit, Color{0x8787ba} }, // S11 OSM: 8840325 WD: Q1160879 45.48, 9.029 x 45.83, 9.274
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 1 OSM: 8857089 24.54, 46.61 x 24.84, 46.78
     { 27, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x800080} }, // 6 OSM: 8857388 24.7, 46.64 x 24.81, 46.83
     { 15, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf5a300} }, // 12 OSM: 8871002 46.17, 6.122 x 46.2, 6.207
@@ -3127,10 +3128,10 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x835237} }, // 1 OSM: 9118510 47.55, 7.573 x 47.57, 7.608
     { 27, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0072bc} }, // 6 OSM: 9128621 47.55, 7.537 x 47.59, 7.656
     { 19, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf171ab} }, // 8 OSM: 9173651 47.55, 7.557 x 47.59, 7.608
-    { 3126, 9308, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00289c} }, // C-4 OSM: 9174513 WD: Q1919488 40.24, -3.778 x 40.65, -3.635
+    { 3126, 9336, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00289c} }, // C-4 OSM: 9174513 WD: Q1919488 40.24, -3.778 x 40.65, -3.635
     { 65, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xfeca0a} }, // 10 OSM: 9177454 47.48, 7.459 x 47.55, 7.62
-    { 3130, 9326, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa500} }, // C-9 OSM: 9181540 WD: Q8880294 40.74, -4.066 x 40.82, -3.963
-    { 2244, 9341, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008a29} }, // C-2 OSM: 9187669 WD: Q2287356 40.38, -3.694 x 40.64, -3.181
+    { 3130, 9354, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa500} }, // C-9 OSM: 9181540 WD: Q8880294 40.74, -4.066 x 40.82, -3.963
+    { 2244, 9369, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008a29} }, // C-2 OSM: 9187669 WD: Q2287356 40.38, -3.694 x 40.64, -3.181
     { 126, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf58220} }, // 14 OSM: 9190891 47.52, 7.587 x 47.57, 7.694
     { 130, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00a54f} }, // 15 OSM: 9193744 WD: Q89415715 47.53, 7.587 x 47.56, 7.6
     { 26, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xa6ce39} }, // 16 OSM: 9196819 47.53, 7.584 x 47.56, 7.605
@@ -3139,9 +3140,9 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xd64560} }, // 2 OSM: 9235815 47.26, 11.34 x 47.28, 11.44
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x8b445b} }, // 5 OSM: 9235816 47.26, 11.34 x 47.28, 11.44
     { 3134, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // СТ-2 OSM: 9244973 48.68, 44.47 x 48.8, 44.6
-    { 267, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000c0} }, // Blue OSM: 9248096 38.45, 308 x 38.65, 308.1
-    { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00c000} }, // Green OSM: 9248097 38.57, 308 x 38.6, 308
-    { 3141, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xc0ba00} }, // Gold OSM: 9248098 38.55, 308 x 38.68, 308.3
+    { 267, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000c0} }, // Blue OSM: 9248096 38.45, -121.5 x 38.65, -121.4
+    { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00c000} }, // Green OSM: 9248097 38.57, -121.5 x 38.6, -121.5
+    { 3141, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xc0ba00} }, // Gold OSM: 9248098 38.55, -121.5 x 38.68, -121.2
     { 3146, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff69b4} }, // NT OSM: 9253571 35.73, 139.8 x 35.82, 139.8
     { 2241, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xd85b81} }, // SA OSM: 9254426 WD: Q1064795 35.71, 139.7 x 35.75, 139.8
     { 3149, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00ffff} }, // Aqua Line OSM: 9256785 WD: Q41668068 28.44, 77.37 x 28.59, 77.55
@@ -3150,18 +3151,18 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 508, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0377ae} }, // R1 OSM: 9273350 48.62, 21.19 x 48.72, 21.27
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0377ae} }, // 5 OSM: 9274837 48.7, 21.24 x 48.72, 21.27
     { 3159, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xcc3333} }, // exo1 OSM: 9288759 WD: Q3239247 45.39, -74.14 x 45.5, -73.57
-    { 1401, 9355, NoLogo, LineMetaDataContent::RapidTransit, Color{0xda0442} }, // TY OSM: 9288983 WD: Q1192468 35.47, 139.6 x 35.66, 139.7
+    { 1401, 9383, NoLogo, LineMetaDataContent::RapidTransit, Color{0xda0442} }, // TY OSM: 9288983 WD: Q1192468 35.47, 139.6 x 35.66, 139.7
     { 545, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x5d3988} }, // T2 OSM: 9298542 WD: Q61670436 43.77, 11.2 x 43.8, 11.25
-    { 1338, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x903e98} }, // Purple OSM: 9315479 37.6, 307.1 x 37.62, 307.1
+    { 1338, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x903e98} }, // Purple OSM: 9315479 37.6, -122.4 x 37.62, -122.4
     { 54, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x6a1d44} }, // 11 OSM: 9318442 WD: Q4698920 22.52, 113.8 x 22.79, 114.1
     { 3164, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009900} }, // exo2 OSM: 9326028 45.45, -74 x 45.77, -73.57
     { 3169, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0099ff} }, // exo6 OSM: 9332052 WD: Q3239101 45.5, -73.91 x 45.55, -73.57
     { 3174, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x3564af} }, // SR OSM: 9336150 WD: Q1065949 35.78, 139.7 x 35.89, 139.8
-    { 3177, 9380, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf18c43} }, // OM OSM: 9341650 WD: Q384995 35.6, 139.6 x 35.61, 139.7
-    { 430, 9405, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee86a8} }, // IK OSM: 9342009 WD: Q1192388 35.56, 139.7 x 35.63, 139.7
-    { 3180, 9430, NoLogo, LineMetaDataContent::RapidTransit, Color{0xae0079} }, // TM OSM: 9343887 WD: Q379292 35.56, 139.7 x 35.59, 139.7
+    { 3177, 9408, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf18c43} }, // OM OSM: 9341650 WD: Q384995 35.6, 139.6 x 35.61, 139.7
+    { 430, 9433, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee86a8} }, // IK OSM: 9342009 WD: Q1192388 35.56, 139.7 x 35.63, 139.7
+    { 3180, 9458, NoLogo, LineMetaDataContent::RapidTransit, Color{0xae0079} }, // TM OSM: 9343887 WD: Q379292 35.56, 139.7 x 35.59, 139.7
     { 3183, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff00ff} }, // exo5 OSM: 9344059 45.5, -73.67 x 45.74, -73.49
-    { 3188, 9455, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0071be} }, // KD OSM: 9344153 WD: Q842701 35.53, 139.5 x 35.56, 139.5
+    { 3188, 9483, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0071be} }, // KD OSM: 9344153 WD: Q842701 35.53, 139.5 x 35.56, 139.5
     { 1736, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x10a899} }, // NS OSM: 9346454 WD: Q846381 35.91, 139.6 x 36.01, 139.6
     { 3191, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x6600cc} }, // exo3 OSM: 9348176 45.49, -73.57 x 45.58, -73.18
     { 3196, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xbac219} }, // U16 OSM: 9354869 48.8, 9.087 x 48.81, 9.277
@@ -3173,11 +3174,11 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 260, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xb43c46} }, // M1 OSM: 9434553 WD: Q60608236 -6.292, 106.8 x -6.191, 106.8
     { 3200, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf890a5} }, // 捷運紅線 (新北投支線) OSM: 9437207 WD: Q8044505 25.13, 121.5 x 25.14, 121.5
     { 2742, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x398afc} }, // BL OSM: 9437778 WD: Q708378 24.96, 121.4 x 25.05, 121.6
-    { 1032, 9480, 40, LineMetaDataContent::RapidTransit, Color{0x018a47} }, // S26 OSM: 9445376 WD: Q7388232 52.4, 13.28 x 52.61, 13.4
+    { 1032, 9508, 40, LineMetaDataContent::RapidTransit, Color{0x018a47} }, // S26 OSM: 9445376 WD: Q7388232 52.4, 13.28 x 52.61, 13.4
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffff00} }, // 3 OSM: 9453120 WD: Q61000373 -22.91, -43.19 x -22.9, -43.17
     { 27, NoLogo, 6068, LineMetaDataContent::Subway, Color{0xff5599} }, // 6 OSM: 9468298 WD: Q20110123 35.62, 51.44 x 35.7, 51.47
     { 3231, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff6600} }, // RN OSM: 9477810 35.81, 139.9 x 35.86, 139.9
-    { 296, NoLogo, 9495, LineMetaDataContent::Subway, Color{0x3e9397} }, // M OSM: 9487066 WD: Q7057341 -33.8, 150.9 x -33.69, 151.2
+    { 296, NoLogo, 9523, LineMetaDataContent::Subway, Color{0x3e9397} }, // M OSM: 9487066 WD: Q7057341 -33.8, 150.9 x -33.69, 151.2
     { 3234, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7a745a} }, // F3 OSM: 9488738 WD: Q31193173 41.1, 28.99 x 41.11, 28.99
     { 2019, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x006400} }, // EN OSM: 9499957 35.3, 139.5 x 35.34, 139.6
     { 3237, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00ced1} }, // SS OSM: 9507192 WD: Q195685 35.7, 139.3 x 35.91, 139.7
@@ -3194,13 +3195,13 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 465, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffc600} }, // S9 OSM: 9584587 31.34, 118.8 x 31.76, 118.9
     { 47, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff8000} }, // S8 OSM: 9588181 WD: Q10945880 32.15, 118.7 x 32.47, 119
     { 9, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x796baf} }, // 4 OSM: 9588283 32.06, 118.7 x 32.13, 119
-    { 59, NoLogo, 7780, LineMetaDataContent::Subway, Color{0xdab866} }, // 3 OSM: 9588292 WD: Q11124519 30.49, 114.2 x 30.68, 114.3
-    { 16, NoLogo, 7780, LineMetaDataContent::Subway, Color{0xe99bc1} }, // 2 OSM: 9592190 WD: Q5952205 30.44, 114.2 x 30.79, 114.4
-    { 27, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 6 OSM: 9599549 37.33, 307.5 x 37.96, 308.2
-    { 9, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 4 OSM: 9599549 37.33, 307.5 x 37.96, 308.2
-    { 19, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 8 OSM: 9599549 37.33, 307.5 x 37.96, 308.2
-    { 65, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 10 OSM: 9599549 37.33, 307.5 x 37.96, 308.2
-    { 3243, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x006400} }, // SMART OSM: 9599557 WD: Q7562166 37.95, 306.7 x 38.51, 307
+    { 59, NoLogo, 7808, LineMetaDataContent::Subway, Color{0xdab866} }, // 3 OSM: 9588292 WD: Q11124519 30.49, 114.2 x 30.68, 114.3
+    { 16, NoLogo, 7808, LineMetaDataContent::Subway, Color{0xe99bc1} }, // 2 OSM: 9592190 WD: Q5952205 30.44, 114.2 x 30.79, 114.4
+    { 27, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 6 OSM: 9599549 37.33, -122 x 37.96, -121.3
+    { 65, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 10 OSM: 9599549 37.33, -122 x 37.96, -121.3
+    { 9, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 4 OSM: 9599549 37.33, -122 x 37.96, -121.3
+    { 19, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x800080} }, // 8 OSM: 9599549 37.33, -122 x 37.96, -121.3
+    { 3243, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x006400} }, // SMART OSM: 9599557 WD: Q7562166 37.95, -122.8 x 38.51, -122.5
     { 427, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x006400} }, // 41 OSM: 9600352 51.66, 19.32 x 51.74, 19.46
     { 22, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // 18 OSM: 9600353 51.74, 19.38 x 51.78, 19.51
     { 164, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffc0cb} }, // 17 OSM: 9600354 51.7, 19.41 x 51.78, 19.51
@@ -3219,57 +3220,57 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffa500} }, // 3 OSM: 9600368 51.74, 19.45 x 51.81, 19.55
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffa500} }, // 2 OSM: 9600370 51.74, 19.36 x 51.8, 19.51
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x800080} }, // 1 OSM: 9600371 51.73, 19.46 x 51.8, 19.49
-    { 3263, 9507, NoLogo, LineMetaDataContent::Tramway, Color{} }, // HN OSM: 9603867 WD: Q5648522 34.54, 135.4 x 34.65, 135.5
-    { 313, 9545, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7777ff} }, // P OSM: 9603949 WD: Q1073366 34.61, 135.4 x 34.64, 135.5
-    { 2749, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 804 OSM: 9604087 37.33, 307.1 x 37.78, 307.6
-    { 2961, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 802 OSM: 9604087 37.33, 307.1 x 37.78, 307.6
-    { 3266, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 442 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3270, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 424 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3274, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 428 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3278, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 444 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3282, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 438 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3286, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 422 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3290, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 436 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3294, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 440 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3298, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 426 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3302, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 430 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3306, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 432 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
-    { 3310, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 434 OSM: 9604089 37.33, 307.1 x 37.78, 307.6
+    { 3263, 9535, NoLogo, LineMetaDataContent::Tramway, Color{} }, // HN OSM: 9603867 WD: Q5648522 34.54, 135.4 x 34.65, 135.5
+    { 313, 9573, NoLogo, LineMetaDataContent::RapidTransit, Color{0x7777ff} }, // P OSM: 9603949 WD: Q1073366 34.61, 135.4 x 34.64, 135.5
+    { 2961, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 802 OSM: 9604087 37.33, -122.4 x 37.78, -121.9
+    { 2749, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 804 OSM: 9604087 37.33, -122.4 x 37.78, -121.9
+    { 3266, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 436 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3270, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 424 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3274, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 440 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3278, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 432 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3282, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 442 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3286, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 428 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3290, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 426 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3294, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 434 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3298, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 422 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3302, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 430 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3306, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 444 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
+    { 3310, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 438 OSM: 9604089 37.33, -122.4 x 37.78, -121.9
     { 6, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xfb6f14} }, // 5 OSM: 9604983 WD: Q10940000 39.04, 117.1 x 39.27, 117.2
-    { 548, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 156 OSM: 9605479 37, 307.1 x 37.78, 307.9
-    { 3314, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 159 OSM: 9605480 37.33, 307.1 x 37.78, 307.6
-    { 3318, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 193 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3322, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 191 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3326, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 101 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3330, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 155 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3334, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 139 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3338, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 151 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3342, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 147 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 1060, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 199 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3346, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 135 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3350, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 143 OSM: 9605481 37.33, 307.1 x 37.78, 307.6
-    { 3354, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 194 OSM: 9605482 37.31, 307.1 x 37.78, 307.6
-    { 3358, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 192 OSM: 9605482 37.31, 307.1 x 37.78, 307.6
-    { 3362, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 104 OSM: 9605482 37.31, 307.1 x 37.78, 307.6
-    { 3366, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 198 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 319, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 196 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3370, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 190 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3374, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 102 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3378, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 134 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3382, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 150 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3386, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 138 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3390, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 142 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3394, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 152 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3398, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 146 OSM: 9605483 37.33, 307.1 x 37.78, 307.6
-    { 3402, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 103 OSM: 9605484 37.31, 307.1 x 37.78, 307.6
-    { 3406, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 195 OSM: 9605484 37.31, 307.1 x 37.78, 307.6
-    { 1616, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 197 OSM: 9605484 37.31, 307.1 x 37.78, 307.6
+    { 548, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 156 OSM: 9605479 37, -122.4 x 37.78, -121.6
+    { 3314, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 159 OSM: 9605480 37.33, -122.4 x 37.78, -121.9
+    { 3318, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 147 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3322, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 101 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3326, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 139 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3330, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 143 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3334, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 191 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3338, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 151 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3342, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 193 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 1060, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 199 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3346, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 135 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3350, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 155 OSM: 9605481 37.33, -122.4 x 37.78, -121.9
+    { 3354, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 104 OSM: 9605482 37.31, -122.4 x 37.78, -121.9
+    { 3358, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 194 OSM: 9605482 37.31, -122.4 x 37.78, -121.9
+    { 3362, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 192 OSM: 9605482 37.31, -122.4 x 37.78, -121.9
+    { 3366, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 198 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3370, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 150 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3374, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 138 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3378, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 146 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3382, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 134 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3386, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 142 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3390, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 152 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 319, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 196 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3394, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 190 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 3398, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 102 OSM: 9605483 37.33, -122.4 x 37.78, -121.9
+    { 1616, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 197 OSM: 9605484 37.31, -122.4 x 37.78, -121.9
+    { 3402, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 195 OSM: 9605484 37.31, -122.4 x 37.78, -121.9
+    { 3406, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 103 OSM: 9605484 37.31, -122.4 x 37.78, -121.9
     { 9, NoLogo, 1612, LineMetaDataContent::Subway, Color{0x117e44} }, // 4 OSM: 9607978 WD: Q863422 22.75, 113.4 x 23.14, 113.6
     { 9, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xdc8633} }, // 4 OSM: 9609521 WD: Q15900365 29.6, 106.5 x 29.63, 106.7
     { 69, NoLogo, 1612, LineMetaDataContent::Subway, Color{0x201747} }, // 21 OSM: 9611531 WD: Q6553110 23.12, 113.4 x 23.29, 113.8
     { 3410, NoLogo, 1612, LineMetaDataContent::Subway, Color{0xb5cc19} }, // GF OSM: 9612493 WD: Q3272527 22.96, 113.1 x 23.09, 113.3
-    { 27, NoLogo, 7780, LineMetaDataContent::Subway, Color{0x007733} }, // 6 OSM: 9617440 WD: Q15899990 30.49, 114.2 x 30.64, 114.3
-    { 42, NoLogo, 7780, LineMetaDataContent::Subway, Color{0xee7800} }, // 7 OSM: 9617441 WD: Q11124507 30.32, 114.2 x 30.64, 114.3
+    { 27, NoLogo, 7808, LineMetaDataContent::Subway, Color{0x007733} }, // 6 OSM: 9617440 WD: Q15899990 30.49, 114.2 x 30.64, 114.3
+    { 42, NoLogo, 7808, LineMetaDataContent::Subway, Color{0xee7800} }, // 7 OSM: 9617441 WD: Q11124507 30.32, 114.2 x 30.64, 114.3
     { 3413, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Harbour OSM: 9622461 WD: Q5654835 18.94, 72.83 x 19.07, 73.12
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xdb6d1c} }, // 2 OSM: 9622751 WD: Q5947229 22.48, 113.9 x 22.56, 114.1
     { 44, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8d1d81} }, // S5 OSM: 9626749 46.71, 15.42 x 47.07, 15.63
@@ -3278,8 +3279,8 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00a2e1} }, // 3 OSM: 9629887 WD: Q1065551 22.52, 114 x 22.73, 114.3
     { 61, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00983a} }, // S1 OSM: 9631352 47.07, 15.28 x 47.41, 15.42
     { 9, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x920783} }, // 4 OSM: 9632502 WD: Q24835582 28.14, 112.9 x 28.3, 113.1
-    { 9, NoLogo, 7780, LineMetaDataContent::Subway, Color{0xb8d200} }, // 4 OSM: 9633082 WD: Q6553126 30.53, 114 x 30.61, 114.4
-    { 54, NoLogo, 7780, LineMetaDataContent::Subway, Color{0xfdd000} }, // 11 OSM: 9633134 WD: Q11124500 30.49, 114.4 x 30.49, 114.7
+    { 9, NoLogo, 7808, LineMetaDataContent::Subway, Color{0xb8d200} }, // 4 OSM: 9633082 WD: Q6553126 30.53, 114 x 30.61, 114.4
+    { 54, NoLogo, 7808, LineMetaDataContent::Subway, Color{0xfdd000} }, // 11 OSM: 9633134 WD: Q11124500 30.49, 114.4 x 30.49, 114.7
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x8b4513} }, // 3 OSM: 9633218 WD: Q5986353 -33.46, -70.69 x -33.37, -70.56
     { 465, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x9f7fb8} }, // S9 OSM: 9634178 47.41, 15.27 x 47.61, 15.68
     { 47, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x5cc1d1} }, // S8 OSM: 9634179 47.17, 14.44 x 47.41, 15.28
@@ -3288,18 +3289,18 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x3b6a96} }, // 2 OSM: 9642906 WD: Q15913266 43.86, 125.2 x 43.88, 125.4
     { 19, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x25b7bc} }, // 8 OSM: 9642908 43.95, 125.3 x 44.01, 125.4
     { 6, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x9950b2} }, // 5 OSM: 9645952 WD: Q5926109 22.48, 113.9 x 22.63, 114.1
-    { 55, 9589, NoLogo, LineMetaDataContent::Subway, Color{0xee352e} }, // 1 OSM: 9651536 WD: Q126093 40.7, -74.02 x 40.89, -73.9
-    { 16, 9615, NoLogo, LineMetaDataContent::Subway, Color{0xee352e} }, // 2 OSM: 9655665 WD: Q126142 40.63, -74.01 x 40.9, -73.85
+    { 55, 9617, NoLogo, LineMetaDataContent::Subway, Color{0xee352e} }, // 1 OSM: 9651536 WD: Q126093 40.7, -74.02 x 40.89, -73.9
+    { 16, 9643, NoLogo, LineMetaDataContent::Subway, Color{0xee352e} }, // 2 OSM: 9655665 WD: Q126142 40.63, -74.01 x 40.9, -73.85
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x571887} }, // 3 OSM: 9656354 WD: Q25824052 22.72, 108.3 x 22.88, 108.4
-    { 59, 9641, NoLogo, LineMetaDataContent::Subway, Color{0xee352e} }, // 3 OSM: 9663807 WD: Q126151 40.66, -74.01 x 40.82, -73.88
+    { 59, 9669, NoLogo, LineMetaDataContent::Subway, Color{0xee352e} }, // 3 OSM: 9663807 WD: Q126151 40.66, -74.01 x 40.82, -73.88
     { 3425, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x6c8bc6} }, // D11 OSM: 9672611 51.1, 16.15 x 51.4, 17.04
-    { 9, 9667, NoLogo, LineMetaDataContent::Subway, Color{0x00933c} }, // 4 OSM: 9677108 WD: Q126163 40.67, -74.01 x 40.89, -73.88
+    { 9, 9695, NoLogo, LineMetaDataContent::Subway, Color{0x00933c} }, // 4 OSM: 9677108 WD: Q126163 40.67, -74.01 x 40.89, -73.88
     { 1736, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xce0037} }, // NS OSM: 9677671 WD: Q3333785 -6.292, 106.8 x -6.191, 106.8
     { 361, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee343f} }, // L1 OSM: 9678605 WD: Q14543324 -33.91, 151.1 x -33.87, 151.2
     { 439, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe4022d} }, // L OSM: 9678765 -32.93, 151.8 x -32.92, 151.8
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // 2 OSM: 9680853 51.37, -0.2081 x 51.42, -0.02612
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xb5e61d} }, // 4 OSM: 9680854 51.37, -0.2081 x 51.42, -0.04953
-    { 6, 9693, NoLogo, LineMetaDataContent::Subway, Color{0x00933c} }, // 5 OSM: 9682651 WD: Q126177 40.63, -74.01 x 40.9, -73.83
+    { 6, 9721, NoLogo, LineMetaDataContent::Subway, Color{0x00933c} }, // 5 OSM: 9682651 WD: Q126177 40.63, -74.01 x 40.9, -73.83
     { 119, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x846e74} }, // 9 OSM: 9699772 WD: Q5939429 22.51, 113.9 x 22.57, 114.1
     { 2007, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // BLUE OSM: 9701744 53.33, -1.508 x 53.4, -1.344
     { 3429, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x800080} }, // PURP OSM: 9701781 53.34, -1.469 x 53.38, -1.424
@@ -3319,26 +3320,26 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 6, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffbf00} }, // 5 OSM: 9712141 47.1, 37.54 x 47.15, 37.65
     { 27, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffbf00} }, // 6 OSM: 9712142 47.1, 37.54 x 47.12, 37.65
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0068b2} }, // 9 OSM: 9712143 47.1, 37.54 x 47.18, 37.65
-    { 296, 9719, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // M OSM: 9712349 WD: Q126418 40.7, -74 x 40.76, -73.84
-    { 439, 9745, NoLogo, LineMetaDataContent::Subway, Color{0xa7a9ac} }, // L OSM: 9716997 WD: Q126534 40.65, -74.01 x 40.74, -73.9
+    { 296, 9747, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // M OSM: 9712349 WD: Q126418 40.7, -74 x 40.76, -73.84
+    { 439, 9773, NoLogo, LineMetaDataContent::Subway, Color{0xa7a9ac} }, // L OSM: 9716997 WD: Q126534 40.65, -74.01 x 40.74, -73.9
     { 465, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x8567a6} }, // S9 OSM: 9719969 WD: Q3239195 47.35, 7.812 x 47.46, 7.918
     { 3446, 1162, NoLogo, LineMetaDataContent::Subway, Color{0xb933ad} }, // <7> OSM: 9721629 WD: Q126203 40.74, -74 x 40.76, -73.83
     { 3450, 1266, NoLogo, LineMetaDataContent::Subway, Color{0x00933c} }, // <6> OSM: 9721630 WD: Q126192 40.71, -74.01 x 40.85, -73.83
-    { 16, 9771, NoLogo, LineMetaDataContent::RapidTransit, Color{0x75bd42} }, // 2 OSM: 9727182 WD: Q20814403 45.36, -75.72 x 45.41, -75.66
-    { 3454, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // 202 OSM: 9729897 51.04, 315.3 x 51.13, 315.5
-    { 3061, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 201 OSM: 9729912 50.9, 315.3 x 51.13, 315.4
-    { 3458, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfc6357} }, // 502 OSM: 9730137 53.52, 316 x 53.57, 316
-    { 3462, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x3a59a9} }, // 501 OSM: 9730138 53.46, 316 x 53.6, 316.1
+    { 16, 9799, NoLogo, LineMetaDataContent::RapidTransit, Color{0x75bd42} }, // 2 OSM: 9727182 WD: Q20814403 45.36, -75.72 x 45.41, -75.66
+    { 3454, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // 202 OSM: 9729897 51.04, -114.2 x 51.13, -113.9
+    { 3061, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 201 OSM: 9729912 50.9, -114.2 x 51.13, -114.1
+    { 3458, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfc6357} }, // 502 OSM: 9730137 53.52, -113.5 x 53.57, -113.5
+    { 3462, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x3a59a9} }, // 501 OSM: 9730138 53.46, -113.5 x 53.6, -113.4
     { 55, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // 1 OSM: 9732464 -3.039, 104.7 x -2.894, 104.8
     { 3466, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xed1d24} }, // TWL OSM: 9736531 WD: Q1194568 22.28, 114.1 x 22.38, 114.2
     { 3470, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x7d499d} }, // TKL OSM: 9736612 WD: Q989347 22.29, 114.2 x 22.32, 114.3
-    { 230, 6843, NoLogo, LineMetaDataContent::Subway, Color{0x996633} }, // J OSM: 9747970 WD: Q126484 40.68, -74.01 x 40.72, -73.8
-    { 181, 9800, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // B OSM: 9748435 WD: Q126381 40.58, -74 x 40.87, -73.89
-    { 233, 9826, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // F OSM: 9753684 WD: Q126404 40.58, -74 x 40.77, -73.78
+    { 230, 6871, NoLogo, LineMetaDataContent::Subway, Color{0x996633} }, // J OSM: 9747970 WD: Q126484 40.68, -74.01 x 40.72, -73.8
+    { 181, 9828, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // B OSM: 9748435 WD: Q126381 40.58, -74 x 40.87, -73.89
+    { 233, 9854, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // F OSM: 9753684 WD: Q126404 40.58, -74 x 40.77, -73.78
     { 3474, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xb60081} }, // Yangluo OSM: 9765661 30.65, 114.3 x 30.72, 114.6
-    { 214, 9852, NoLogo, LineMetaDataContent::Subway, Color{0x0039a6} }, // C OSM: 9767766 WD: Q126358 40.67, -74.01 x 40.84, -73.87
-    { 1117, 9878, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // D OSM: 9769161 WD: Q126396 40.58, -74.01 x 40.88, -73.87
-    { 39, 9904, NoLogo, LineMetaDataContent::Subway, Color{0x0039a6} }, // E OSM: 9769302 WD: Q126368 40.7, -74.01 x 40.76, -73.8
+    { 214, 9880, NoLogo, LineMetaDataContent::Subway, Color{0x0039a6} }, // C OSM: 9767766 WD: Q126358 40.67, -74.01 x 40.84, -73.87
+    { 1117, 9906, NoLogo, LineMetaDataContent::Subway, Color{0xff6319} }, // D OSM: 9769161 WD: Q126396 40.58, -74.01 x 40.88, -73.87
+    { 39, 9932, NoLogo, LineMetaDataContent::Subway, Color{0x0039a6} }, // E OSM: 9769302 WD: Q126368 40.7, -74.01 x 40.76, -73.8
     { 3482, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x000000} }, // 751P OSM: 9788142 WD: Q15903000 22.45, 114 x 22.47, 114
     { 3487, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee3a41} }, // NEC OSM: 9795466 WD: Q7057868 40.2, -74.79 x 40.77, -73.99
     { 545, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe2393a} }, // T2 OSM: 9797089 49.18, -0.3663 x 49.21, -0.348
@@ -3357,24 +3358,24 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 3510, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Norte OSM: 9881792 -5.797, -35.42 x -5.632, -35.21
     { 2003, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Sul OSM: 9881793 -5.917, -35.26 x -5.78, -35.21
     { 119, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0000ff} }, // 9 OSM: 9893306 41.72, 123.3 x 41.84, 123.5
-    { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x76c761} }, // Green OSM: 9897509 WD: Q6925400 37.28, 307.4 x 37.41, 307.6
-    { 267, 9930, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00a4e2} }, // Blue OSM: 9897510 WD: Q4737344 37.24, 307.6 x 37.41, 307.7
+    { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x76c761} }, // Green OSM: 9897509 WD: Q6925400 37.28, -122.1 x 37.41, -121.9
+    { 267, 9958, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00a4e2} }, // Blue OSM: 9897510 WD: Q4737344 37.24, -121.9 x 37.41, -121.8
     { 3516, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xff0000} }, // ARL OSM: 9921501 WD: Q1133704 13.69, 100.5 x 13.76, 100.8
     { 119, NoLogo, 1612, LineMetaDataContent::Subway, Color{0x71cc98} }, // 9 OSM: 9924027 WD: Q6553161 23.35, 113.1 x 23.4, 113.3
-    { 1084, 9984, 40, LineMetaDataContent::RapidTransit, Color{0xc36939} }, // S42 OSM: 9942315 WD: Q15118875 52.46, 13.28 x 52.55, 13.48
-    { 201, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd700} }, // G OSM: 9942698 WD: Q5578772 39.75, 324.4 x 39.81, 324.5
-    { 181, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // B OSM: 9942699 WD: Q19865232 39.75, 324.5 x 39.82, 324.5
-    { 219, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x57c0e8} }, // A OSM: 9942719 WD: Q5328174 39.75, 324.5 x 39.85, 324.8
-    { 3520, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xcccccc} }, // Silver OSM: 9946498 32.71, 312.3 x 32.72, 312.3
-    { 3527, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 530 OSM: 9946502 32.71, 312.3 x 32.84, 312.5
-    { 3531, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa500} }, // 520 OSM: 9946503 32.71, 312.3 x 32.81, 312.5
-    { 214, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf79239} }, // C OSM: 9947502 WD: Q5015067 39.58, 324.5 x 39.76, 324.5
-    { 1117, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008348} }, // D OSM: 9947503 39.58, 324.5 x 39.75, 324.5
-    { 39, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x552683} }, // E OSM: 9947507 39.52, 324.5 x 39.76, 324.6
-    { 233, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee3e33} }, // F OSM: 9947520 39.52, 324.5 x 39.75, 324.6
-    { 377, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0075bf} }, // H OSM: 9947525 39.63, 324.5 x 39.75, 324.7
-    { 317, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xb7f037} }, // R OSM: 9947529 39.52, 324.6 x 39.77, 324.7
-    { 570, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x37b5a5} }, // W OSM: 9947532 39.72, 324.3 x 39.76, 324.5
+    { 1084, 10012, 40, LineMetaDataContent::RapidTransit, Color{0xc36939} }, // S42 OSM: 9942315 WD: Q15118875 52.46, 13.28 x 52.55, 13.48
+    { 201, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd700} }, // G OSM: 9942698 WD: Q5578772 39.75, -105.1 x 39.81, -105
+    { 181, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // B OSM: 9942699 WD: Q19865232 39.75, -105 x 39.82, -105
+    { 219, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x57c0e8} }, // A OSM: 9942719 WD: Q5328174 39.75, -105 x 39.85, -104.7
+    { 3520, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xcccccc} }, // Silver OSM: 9946498 32.71, -117.2 x 32.72, -117.2
+    { 3527, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // 530 OSM: 9946502 32.71, -117.2 x 32.84, -117
+    { 3531, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffa500} }, // 520 OSM: 9946503 32.71, -117.2 x 32.81, -117
+    { 214, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf79239} }, // C OSM: 9947502 WD: Q5015067 39.58, -105 x 39.76, -105
+    { 1117, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008348} }, // D OSM: 9947503 39.58, -105 x 39.75, -105
+    { 39, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x552683} }, // E OSM: 9947507 39.52, -105 x 39.76, -104.9
+    { 233, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee3e33} }, // F OSM: 9947520 39.52, -105 x 39.75, -104.9
+    { 377, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0075bf} }, // H OSM: 9947525 39.63, -105 x 39.75, -104.8
+    { 317, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xb7f037} }, // R OSM: 9947529 39.52, -104.9 x 39.77, -104.8
+    { 570, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x37b5a5} }, // W OSM: 9947532 39.72, -105.2 x 39.76, -105
     { 190, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x23a638} }, // T1 OSM: 9953164 49.15, -0.3663 x 49.2, -0.329
     { 1071, NoLogo, 1682, LineMetaDataContent::RapidTransit, Color{0x293838} }, // S12 OSM: 9959066 WD: Q26828150 45.36, 9.159 x 45.5, 9.319
     { 3535, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x996746} }, // AREX OSM: 9961461 WD: Q487643 37.44, 126.4 x 37.6, 127
@@ -3387,28 +3388,28 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 3596, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x6b297e} }, // Parangaba-Mucuripe OSM: 9963934 WD: Q10318709 -3.776, -38.56 x -3.736, -38.48
     { 3615, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // Oeste OSM: 9963937 WD: Q14325543 -3.77, -38.66 x -3.718, -38.54
     { 9, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x009ee3} }, // 4 OSM: 9964886 52.25, 10.51 x 52.27, 10.56
-    { 219, 9999, 226, LineMetaDataContent::RapidTransit, Color{0x00bfff} }, // A OSM: 9971068 WD: Q2323144 55.46, 12.17 x 55.93, 12.59
+    { 219, 10027, 226, LineMetaDataContent::RapidTransit, Color{0x00bfff} }, // A OSM: 9971068 WD: Q2323144 55.46, 12.17 x 55.93, 12.59
     { 267, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00aeef} }, // Blue OSM: 9976615 39.18, -76.68 x 39.5, -76.62
     { 272, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xfff200} }, // Yellow OSM: 9976616 39.17, -76.66 x 39.45, -76.62
     { 279, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xde1d43} }, // Red OSM: 9976617 39.28, -76.62 x 39.31, -76.61
     { 3621, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008c4e} }, // HBLR OSM: 9997061 40.65, -74.13 x 40.79, -74.01
-    { 130, 10021, 1943, LineMetaDataContent::Subway, Color{0xde64a1} }, // 15 OSM: 10011657 WD: Q4226438 55.7, 37.7 x 55.78, 37.94
+    { 130, 10049, 1943, LineMetaDataContent::Subway, Color{0xde64a1} }, // 15 OSM: 10011657 WD: Q4226438 55.7, 37.7 x 55.78, 37.94
     { 267, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Blue OSM: 10012484 35.11, -80.88 x 35.32, -80.73
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x009cdd} }, // 9 OSM: 10015448 53.41, 14.49 x 53.47, 14.55
-    { 200, 10046, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8ba2ae} }, // MG OSM: 10023806 WD: Q283861 35.55, 139.6 x 35.63, 139.7
-    { 3626, 10071, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00a650} }, // JB OSM: 10025275 WD: Q5365768 35.75, 139.8 x 35.9, 140.1
-    { 3629, 10093, NoLogo, LineMetaDataContent::RapidTransit, Color{0x01aaaa} }, // TJ OSM: 10032387 WD: Q1040703 35.73, 139.2 x 36.12, 139.7
-    { 3632, 10124, NoLogo, LineMetaDataContent::RapidTransit, Color{0x01aaaa} }, // DT OSM: 10032468 WD: Q1190086 35.47, 139.4 x 35.66, 139.7
+    { 200, 10074, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8ba2ae} }, // MG OSM: 10023806 WD: Q283861 35.55, 139.6 x 35.63, 139.7
+    { 3626, 10099, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00a650} }, // JB OSM: 10025275 WD: Q5365768 35.75, 139.8 x 35.9, 140.1
+    { 3629, 10121, NoLogo, LineMetaDataContent::RapidTransit, Color{0x01aaaa} }, // TJ OSM: 10032387 WD: Q1040703 35.73, 139.2 x 36.12, 139.7
+    { 3632, 10152, NoLogo, LineMetaDataContent::RapidTransit, Color{0x01aaaa} }, // DT OSM: 10032468 WD: Q1190086 35.47, 139.4 x 35.66, 139.7
     { 3635, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe2000a} }, // 21A OSM: 10034064 49.4, 8.675 x 49.41, 8.693
-    { 55, 10149, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee1b2e} }, // 1 OSM: 10036404 WD: Q5159786 45.4, -75.74 x 45.43, -75.61
+    { 55, 10177, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee1b2e} }, // 1 OSM: 10036404 WD: Q5159786 45.4, -75.74 x 45.43, -75.61
     { 3639, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00a650} }, // OT OSM: 10036880 WD: Q1063832 35.43, 139.4 x 35.67, 139.7
-    { 3038, 10188, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8ba2ae} }, // TS OSM: 10061514 WD: Q13360900 35.7, 139.7 x 36.03, 139.8
+    { 3038, 10216, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8ba2ae} }, // TS OSM: 10061514 WD: Q13360900 35.7, 139.7 x 36.03, 139.8
     { 1287, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe80000} }, // O OSM: 10073686 WD: Q1142127 34.65, 135.5 x 34.71, 135.5
-    { 3642, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x5fb04f} }, // South OSM: 10077909 WD: Q7564853 47.15, 307 x 47.6, 307.3
-    { 3648, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1704 OSM: 10077947 WD: Q56525585 47.6, 307.1 x 47.98, 307.3
-    { 3653, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1700 OSM: 10077947 WD: Q56525585 47.6, 307.1 x 47.98, 307.3
-    { 3658, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1702 OSM: 10077947 WD: Q56525585 47.6, 307.1 x 47.98, 307.3
-    { 3663, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // North OSM: 10077955 WD: Q7564853 47.6, 307.1 x 47.98, 307.3
+    { 3642, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x5fb04f} }, // South OSM: 10077909 WD: Q7564853 47.15, -122.5 x 47.6, -122.2
+    { 3648, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1700 OSM: 10077947 WD: Q56525585 47.6, -122.4 x 47.98, -122.2
+    { 3653, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1702 OSM: 10077947 WD: Q56525585 47.6, -122.4 x 47.98, -122.2
+    { 3658, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // 1704 OSM: 10077947 WD: Q56525585 47.6, -122.4 x 47.98, -122.2
+    { 3663, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x88be5f} }, // North OSM: 10077955 WD: Q7564853 47.6, -122.4 x 47.98, -122.2
     { 65, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe3000b} }, // 10 OSM: 10082596 52.25, 10.51 x 52.31, 10.54
     { 468, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008150} }, // Green OSM: 10099594 WD: Q172031 42.32, -71.25 x 42.36, -71.06
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x4ea391} }, // 9 OSM: 10103680 47.12, 27.56 x 47.19, 27.59
@@ -3423,7 +3424,7 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 153, NoLogo, 40, LineMetaDataContent::RapidTransit, Color{0x6c99d7} }, // S3 OSM: 10249618 WD: Q3239191 47.33, 7.08 x 47.55, 7.918
     { 214, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00dd00} }, // C OSM: 10258970 WD: Q1057729 34.64, 135.4 x 34.73, 135.8
     { 3690, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x343f4b} }, // CMET OSM: 10271387 WD: Q16927042 -35.28, 149.1 x -35.19, 149.2
-    { 3695, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x000000} }, // APT OSM: 10274979 32.86, 332.6 x 32.87, 332.6
+    { 3695, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x000000} }, // APT OSM: 10274979 32.86, -96.94 x 32.87, -96.93
     { 1548, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x14b845} }, // T3 OSM: 10279985 43.66, 7.195 x 43.71, 7.212
     { 332, NoLogo, 835, LineMetaDataContent::Subway, Color{0xff0a0a} }, // M3 OSM: 10283923 WD: Q1094251 55.67, 12.53 x 55.71, 12.59
     { 3699, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x65b724} }, // BTS Sukhumvit OSM: 10285801 WD: Q4921598 13.56, 100.5 x 13.84, 100.6
@@ -3431,26 +3432,26 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 233, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008000} }, // F OSM: 10286522 WD: Q3537109 35.91, 136.2 x 36.07, 136.2
     { 572, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf6a602} }, // D1 OSM: 10309188 WD: Q62091003 55.67, 37.28 x 56.01, 37.59
     { 3713, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe83f83} }, // D2 OSM: 10309312 WD: Q62091175 55.43, 37.18 x 55.84, 37.74
-    { 55, 10222, 10222, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 10309985 WD: Q2106 53.2, 50.12 x 53.21, 50.28
+    { 55, 10250, 10250, LineMetaDataContent::Subway, Color{0xff0000} }, // 1 OSM: 10309985 WD: Q2106 53.2, 50.12 x 53.21, 50.28
     { 3716, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff88bb} }, // Roch OSM: 10310648 53.41, -2.28 x 53.62, -2.088
-    { 3721, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x887766} }, // Sh&C OSM: 10310683 53.41, -2.28 x 53.58, -2.089
-    { 3726, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x887766} }, // EDid OSM: 10310683 53.41, -2.28 x 53.62, -2.088
-    { 3626, 10244, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd700} }, // JB OSM: 10312072 WD: Q1091295 35.61, 139.6 x 35.74, 140.1
-    { 3731, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0066bb} }, // Dean OSM: 10314875 WD: Q22712167 53.37, -2.297 x 53.49, -2.238
-    { 3736, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0066bb} }, // Vict OSM: 10314875 53.37, -2.297 x 53.49, -2.238
-    { 3741, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0066bb} }, // Airp OSM: 10314875 53.37, -2.297 x 53.49, -2.238
+    { 3721, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x887766} }, // EDid OSM: 10310683 53.41, -2.28 x 53.62, -2.088
+    { 3726, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x887766} }, // Sh&C OSM: 10310683 53.41, -2.28 x 53.58, -2.089
+    { 3626, 10272, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffd700} }, // JB OSM: 10312072 WD: Q1091295 35.61, 139.6 x 35.74, 140.1
+    { 3731, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0066bb} }, // Vict OSM: 10314875 53.37, -2.297 x 53.49, -2.238
+    { 3736, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0066bb} }, // Airp OSM: 10314875 53.37, -2.297 x 53.49, -2.238
+    { 3741, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0066bb} }, // Dean OSM: 10314875 WD: Q22712167 53.37, -2.297 x 53.49, -2.238
     { 3746, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff7700} }, // MCUK OSM: 10320090 53.47, -2.297 x 53.49, -2.098
     { 3751, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xffffff} }, // Arcobaleno OSM: 10320583 WD: Q3832713 40.89, 14.21 x 40.97, 14.24
     { 3141, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf9b428} }, // Gold OSM: 10322047 WD: Q22948672 25.26, 51.44 x 25.29, 51.57
-    { 3762, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00ccff} }, // Asht OSM: 10326857 53.47, -2.334 x 53.49, -2.098
-    { 3767, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00ccff} }, // Eccl OSM: 10326857 WD: Q22087023 53.47, -2.334 x 53.49, -2.098
+    { 3762, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00ccff} }, // Eccl OSM: 10326857 WD: Q22087023 53.47, -2.334 x 53.49, -2.098
+    { 3767, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00ccff} }, // Asht OSM: 10326857 53.47, -2.334 x 53.49, -2.098
     { 3772, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffbb00} }, // Picc OSM: 10334672 WD: Q22087020 53.39, -2.347 x 53.59, -2.226
-    { 3777, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008800} }, // Altr OSM: 10334764 53.39, -2.347 x 53.59, -2.226
-    { 3782, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008800} }, // Bury OSM: 10334764 53.39, -2.347 x 53.59, -2.226
+    { 3777, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008800} }, // Bury OSM: 10334764 53.39, -2.347 x 53.59, -2.226
+    { 3782, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x008800} }, // Altr OSM: 10334764 53.39, -2.347 x 53.59, -2.226
     { 3787, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xd32232} }, // ESFECO OSM: 10334823 WD: Q1132053 -22.95, -43.22 x -22.94, -43.2
     { 3794, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000000} }, // TrfC OSM: 10334906 53.46, -2.348 x 53.52, -2.227
     { 3799, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x000000} }, // Crmp OSM: 10334906 53.46, -2.348 x 53.52, -2.227
-    { 55, NoLogo, 10266, LineMetaDataContent::Subway, Color{0xbf3a35} }, // 1 OSM: 10379854 WD: Q47004909 34.24, 117.1 x 34.27, 117.3
+    { 55, NoLogo, 10294, LineMetaDataContent::Subway, Color{0xbf3a35} }, // 1 OSM: 10379854 WD: Q47004909 34.24, 117.1 x 34.27, 117.3
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0080bc} }, // 1 OSM: 10380194 WD: Q10893610 36.04, 103.7 x 36.1, 103.9
     { 61, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x0061ae} }, // S1 OSM: 10380259 WD: Q15910427 27.91, 120.6 x 27.99, 121
     { 3804, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00c1d5} }, // AIRPORT OSM: 10381397 WD: Q15939632 34.38, 108.8 x 34.46, 108.9
@@ -3482,14 +3483,14 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 3888, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8ed16a} }, // NWK OSM: 10433672 WD: Q8022734 39.67, -75.75 x 39.98, -75.15
     { 1219, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xc72a80} }, // L5 OSM: 10443588 46.18, 5.999 x 46.22, 6.144
     { 1223, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x00b3b9} }, // L6 OSM: 10447940 46.1, 5.821 x 46.22, 6.144
-    { 16, NoLogo, 7551, LineMetaDataContent::Subway, Color{0x00643a} }, // 2 OSM: 10458608 WD: Q20063925 26.04, 119.1 x 26.11, 119.4
+    { 16, NoLogo, 7579, LineMetaDataContent::Subway, Color{0x00643a} }, // 2 OSM: 10458608 WD: Q20063925 26.04, 119.1 x 26.11, 119.4
     { 357, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xdc911b} }, // L4 OSM: 10464491 46.17, 6.121 x 46.32, 6.237
-    { 54, NoLogo, 7292, LineMetaDataContent::Subway, Color{0x304299} }, // 11 OSM: 10467354 WD: Q15944362 36.1, 120.5 x 36.48, 120.8
-    { 58, NoLogo, 7292, LineMetaDataContent::Subway, Color{0x00ac84} }, // 13 OSM: 10467728 WD: Q15937512 35.67, 119.7 x 35.95, 120.2
+    { 54, NoLogo, 7320, LineMetaDataContent::Subway, Color{0x304299} }, // 11 OSM: 10467354 WD: Q15944362 36.1, 120.5 x 36.48, 120.8
+    { 58, NoLogo, 7320, LineMetaDataContent::Subway, Color{0x00ac84} }, // 13 OSM: 10467728 WD: Q15937512 35.67, 119.7 x 35.95, 120.2
     { 3892, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Sado OSM: 10484570 WD: Q1314068 38.51, -9.08 x 38.66, -8.838
     { 164, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x00ace7} }, // 17 OSM: 10486182 46.19, 6.125 x 46.2, 6.232
     { 219, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff0000} }, // A OSM: 10486983 47.83, 1.9 x 47.93, 1.939
-    { 16, NoLogo, 9081, LineMetaDataContent::Subway, Color{0x008900} }, // 2 OSM: 10488738 WD: Q24838989 24.48, 117.9 x 24.58, 118.2
+    { 16, NoLogo, 9109, LineMetaDataContent::Subway, Color{0x008900} }, // 2 OSM: 10488738 WD: Q24838989 24.48, 117.9 x 24.58, 118.2
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xf57b00} }, // 3 OSM: 10488912 WD: Q6112757 31.26, 120.5 x 31.37, 120.8
     { 59, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x008000} }, // 3 OSM: 10488951 WD: Q17023374 31.75, 117.2 x 31.93, 117.4
     { 545, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x44d62c} }, // T2 OSM: 10490757 30.69, 103.8 x 30.83, 104
@@ -3503,19 +3504,19 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xffcc11} }, // 2 OSM: 10547015 51, 3.709 x 51.05, 3.772
     { 119, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xff2e17} }, // 9 OSM: 10547655 48.34, 10.89 x 48.37, 10.9
     { 219, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xe3028c} }, // A OSM: 10551319 48.38, -4.556 x 48.43, -4.444
-    { 1260, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf9661e} }, // Orange OSM: 10561837 37.36, 307.4 x 37.42, 307.7
+    { 1260, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf9661e} }, // Orange OSM: 10561837 37.36, -122.1 x 37.42, -121.8
     { 1606, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x0000ff} }, // Blue Line OSM: 10563564 25.31, 51.42 x 25.32, 51.43
     { 2256, 1800, 40, LineMetaDataContent::RapidTransit, Color{0x008000} }, // Central OSM: 10570207 WD: Q459508 -7.233, -39.41 x -7.203, -39.3
     { 55, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x8a8988} }, // 1 OSM: 10570395 WD: Q10318643 -5.111, -42.82 x -5.08, -42.74
     { 2153, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x008000} }, // CBTU OSM: 10570416 WD: Q18484877 -7.131, -34.98 x -6.974, -34.83
     { 3510, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x0000ff} }, // Norte OSM: 10570453 -3.683, -40.37 x -3.662, -40.34
     { 2003, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // Sul OSM: 10570461 -3.699, -40.36 x -3.682, -40.33
-    { 3897, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 550 OSM: 10577109 WD: Q4338668 30.26, 331.6 x 30.59, 331.8
+    { 3897, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xff0000} }, // 550 OSM: 10577109 WD: Q4338668 30.26, -97.86 x 30.59, -97.7
     { 16, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf18e00} }, // 2 OSM: 10579671 WD: Q3238812 43.57, 3.83 x 43.65, 3.931
     { 59, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xcbd300} }, // 3 OSM: 10579672 WD: Q3238911 43.56, 3.81 x 43.62, 3.964
     { 55, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x005ba1} }, // 1 OSM: 10579673 WD: Q3238667 43.6, 3.817 x 43.64, 3.92
-    { 3901, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee293d} }, // TEX OSM: 10580066 WD: Q28228164 32.75, 332.2 x 32.94, 332.5
-    { 61, NoLogo, 10282, LineMetaDataContent::RapidTransit, Color{} }, // S1 OSM: 10603188 WD: Q43285793 39.89, 116.3 x 39.9, 116.7
+    { 3901, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xee293d} }, // TEX OSM: 10580066 WD: Q28228164 32.75, -97.34 x 32.94, -97.04
+    { 61, NoLogo, 10310, LineMetaDataContent::RapidTransit, Color{} }, // S1 OSM: 10603188 WD: Q43285793 39.89, 116.3 x 39.9, 116.7
     { 3905, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x55502b} }, // UP Express OSM: 10608917 WD: Q497520 43.64, -79.62 x 43.71, -79.38
     { 3916, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x794400} }, // Stouffville OSM: 10624851 WD: Q3239216 43.64, -79.38 x 44, -79.23
     { 3928, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0x009ac7} }, // Richmond Hill OSM: 10624852 WD: Q3239183 43.64, -79.43 x 43.88, -79.32
@@ -3527,8 +3528,8 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 492, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0xfedb00} }, // Y OSM: 10658528 24.98, 121.5 x 25.06, 121.5
     { 3149, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x00ffff} }, // Aqua Line OSM: 10659365 21.11, 79 x 21.14, 79.08
     { 3981, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xadd8e6} }, // LRT OSM: 10693161 -6.193, 106.9 x -6.155, 106.9
-    { 3374, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 102 OSM: 10696526 39.91, -75.3 x 39.96, -75.26
-    { 3326, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 101 OSM: 10696527 39.91, -75.39 x 39.96, -75.26
+    { 3398, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 102 OSM: 10696526 39.91, -75.3 x 39.96, -75.26
+    { 3322, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 101 OSM: 10696527 39.91, -75.39 x 39.96, -75.26
     { 153, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xe6007e} }, // S3 OSM: 10699280 46.95, 15.42 x 47.1, 16.01
     { 65, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 10 OSM: 10703006 WD: Q839339 39.95, -75.25 x 39.98, -75.16
     { 1828, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 34 OSM: 10703188 WD: Q839339 39.94, -75.25 x 39.96, -75.16
@@ -3536,17 +3537,17 @@ static const constexpr LineMetaDataContent line_data[] = {
     { 54, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 11 OSM: 10705415 WD: Q839339 39.92, -75.26 x 39.96, -75.16
     { 58, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3e6c01} }, // 13 OSM: 10705526 WD: Q839339 39.92, -75.26 x 39.96, -75.16
     { 186, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xf39200} }, // S6 OSM: 10748876 46.72, 15.21 x 47.07, 15.48
-    { 329, 10295, 1351, LineMetaDataContent::Subway, Color{0x82bb32} }, // M2 OSM: 10760559 WD: Q2519385 45.4, 9.145 x 45.55, 9.44
+    { 329, 10323, 1351, LineMetaDataContent::Subway, Color{0x82bb32} }, // M2 OSM: 10760559 WD: Q2519385 45.4, 9.145 x 45.55, 9.44
     { 55, NoLogo, NoLogo, LineMetaDataContent::Subway, Color{0x005daa} }, // 1 OSM: 10776869 WD: Q20280 36.77, 126.6 x 37.95, 127.2
-    { 332, 10315, 1351, LineMetaDataContent::Subway, Color{0xe2e11d} }, // M3 OSM: 10788272 WD: Q2519355 45.43, 9.163 x 45.53, 9.257
-    { 181, 10335, NoLogo, LineMetaDataContent::Subway, Color{0xffb300} }, // B OSM: 10799694 WD: Q16266 37.25, 127 x 37.58, 127.1
-    { 260, 10364, 1351, LineMetaDataContent::Subway, Color{0xeb312e} }, // M1 OSM: 10803053 WD: Q2400801 45.46, 9.084 x 45.54, 9.238
+    { 332, 10343, 1351, LineMetaDataContent::Subway, Color{0xe2e11d} }, // M3 OSM: 10788272 WD: Q2519355 45.43, 9.163 x 45.53, 9.257
+    { 181, 10363, NoLogo, LineMetaDataContent::Subway, Color{0xffb300} }, // B OSM: 10799695 WD: Q16266 37.25, 127 x 37.58, 127.1
+    { 260, 10392, 1351, LineMetaDataContent::Subway, Color{0xeb312e} }, // M1 OSM: 10803053 WD: Q2400801 45.46, 9.084 x 45.54, 9.238
     { 126, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x009cdd} }, // 14 OSM: 10830259 53.4, 14.53 x 53.44, 14.54
     { 130, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0x3fbfaa} }, // 15 OSM: 10899251 47.1, 37.62 x 47.12, 37.65
     { 8, NoLogo, 835, LineMetaDataContent::Subway, Color{0x36b6f1} }, // M4 OSM: 10925800 WD: Q30597405 55.67, 12.56 x 55.71, 12.6
     { 2739, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xed772d} }, // SI OSM: 10956060 WD: Q93546 35.72, 139.2 x 35.91, 139.7
-    { 3985, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 217 OSM: 10967056 37, 307.1 x 37.78, 307.9
-    { 3989, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 221 OSM: 10967056 37, 307.1 x 37.78, 307.9
+    { 3985, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 221 OSM: 10967056 37, -122.4 x 37.78, -121.6
+    { 3989, NoLogo, NoLogo, LineMetaDataContent::RapidTransit, Color{0xffffff} }, // 217 OSM: 10967056 37, -122.4 x 37.78, -121.6
 };
 
 static constexpr const auto line_data_count = sizeof(line_data) / sizeof(LineMetaDataContent);
@@ -3554,1854 +3555,1883 @@ static constexpr const auto line_data_count = sizeof(line_data) / sizeof(LineMet
 static inline constexpr uint16_t Bucket(uint16_t index) { return line_data_count + index; }
 
 static const int16_t line_data_bucketTable[] = {
-    1231, 1247, 1248, -1,
-    1855, 1856, -1,
-    1068, 405, 404, -1,
-    1250, 1249, -1,
-    2268, 668, 1046, -1,
-    648, 778, -1,
-    355, 871, 872, -1,
-    249, 2275, 2212, 2139, 434, 1699, -1,
-    268, 2142, -1,
-    1783, 1246, 1604, 1220, 1222, 1225, -1,
-    646, 1420, 203, 1353, 1419, -1,
-    492, 1853, 1849, -1,
-    630, 633, 636, -1,
-    1150, 171, -1,
-    918, 917, 1360, 693, -1,
-    730, 707, 880, 865, 992, -1,
-    362, 1159, -1,
-    2183, 246, 315, 247, -1,
-    730, 707, 880, 865, 866, 992, -1,
-    1144, 1147, 1150, 1149, 1148, 1145, -1,
-    755, 1087, 327, 2209, 2311, -1,
-    2280, 2281, -1,
-    389, 390, 642, -1,
-    1663, 2173, -1,
-    2252, 1758, -1,
-    816, 1995, 2032, 2341, 2342, 815, 1993, 818, 1992, 817, 1994, -1,
-    986, 205, 258, 204, -1,
-    1914, 1915, -1,
-    1722, 1725, 1460, -1,
-    2222, 1488, -1,
-    652, 1832, 1827, 2295, -1,
-    1608, 2249, -1,
-    1662, 1949, -1,
-    1991, 1990, 2074, 2065, -1,
-    1708, 2287, -1,
-    922, 923, 1989, 1660, 1988, 1987, -1,
-    869, 870, 868, -1,
-    490, 1129, 1128, 437, 436, 455, 446, 456, 447, 453, 445, 454, 449, 451, 448, 452, 444, 450, 440, 441, 439, 443, 438, 442, 1671, 1667, 1668, 1669, -1,
-    2317, 2318, 2313, -1,
-    1129, 1128, -1,
-    299, 2129, 429, 2133, 2130, 428, 427, 431, 430, 297, 2136, 253, 736, 298, 301, 373, 2101, -1,
-    1945, 1950, 1956, -1,
-    1057, 418, 415, 419, 416, 1056, 1619, -1,
-    1269, 1733, -1,
-    1616, 1926, 1170, 1923, 1618, 739, 1576, 1580, 1574, -1,
-    337, 1311, -1,
-    1450, 1390, 1456, 1454, 1455, 1464, 202, 1463, 1308, -1,
-    1450, 1390, 1456, 1454, 1455, 1464, 202, 1463, -1,
-    531, 267, 1889, 303, -1,
-    913, 1555, -1,
-    2293, 2290, -1,
-    1892, 1040, -1,
-    496, 1326, 1843, 500, 1825, 1850, 1823, -1,
-    1913, 356, 1892, 1911, -1,
-    974, 1825, -1,
+    1250, 1231, 1247, 1248, 1249, -1,
+    388, 391, 1068, 431, 430, 405, 404, -1,
+    1144, 1081, 1146, 1151, 1150, -1,
+    812, 1881, 265, -1,
+    816, 1993, 817, 1994, 818, 1992, 815, 1995, -1,
+    408, 394, 806, 807, 1685, -1,
+    873, 874, 875, 869, 355, 870, 876, 877, 868, 871, 872, -1,
+    1129, 1128, 437, 436, 453, 447, 454, 448, 452, 446, 451, 449, 456, 445, 455, 444, 450, 440, 443, 438, 442, 439, 441, -1,
+    428, 2136, 373, -1,
+    988, 986, 258, -1,
+    415, 419, -1,
+    1616, 1170, 1618, 739, -1,
+    240, 268, 242, -1,
+    1246, 1225, -1,
+    1295, 1294, -1,
+    1455, 1463, 1297, -1,
+    531, 1353, 267, 303, 1418, -1,
+    2293, 2294, 2290, -1,
     634, 637, 638, -1,
-    147, 481, 972, 613, 114, 951, -1,
-    1804, 1803, -1,
-    751, 1151, 1155, 1154, -1,
-    1397, 1398, 1399, 1405, 1406, -1,
-    1201, 664, 677, -1,
-    22, 680, 17, 682, 825, 826, 683, 828, 1335, 26, -1,
-    1359, 700, -1,
-    700, 753, 1048, 692, 704, 1047, 702, 886, -1,
-    1187, 169, 528, 1184, 1186, -1,
-    717, 716, -1,
-    714, 334, 159, 13, 16, -1,
-    750, 751, 1155, 1154, -1,
-    98, 302, -1,
-    511, 1081, 1146, 1151, 1143, 1082, -1,
-    760, 1881, 265, 1888, -1,
-    1448, 1449, 287, -1,
-    466, 491, 477, 478, 1349, 2225, 2226, -1,
-    466, 480, 2188, 491, 477, 478, 1349, 489, 2225, 2226, -1,
-    548, 549, 732, 733, -1,
-    1875, 1874, 1873, 2031, 1876, -1,
-    1711, 1649, 1657, -1,
-    408, 394, 806, 807, 804, 1316, 1684, -1,
-    2333, 2335, 1891, 1904, 1895, -1,
-    2194, 1983, 2197, 1946, -1,
-    2154, 1996, -1,
-    180, 182, -1,
-    1351, 1350, -1,
-    884, 949, 207, 206, 1441, -1,
-    965, 836, 830, 969, 967, 834, 617, 618, -1,
-    1299, 1298, 2177, -1,
-    1679, 1680, -1,
-    2146, 2145, -1,
-    1196, 1197, -1,
-    809, 1678, -1,
-    1940, 1787, 1854, 1789, -1,
-    1742, 1744, 1743, -1,
-    1830, 1831, -1,
-    1588, 1792, -1,
-    1607, 1609, 2140, -1,
-    2071, 1479, 2083, 2070, -1,
-    1325, 2062, 2060, 1016, 1394, -1,
-    1842, 2064, -1,
-    1840, 1839, -1,
-    1654, 2278, -1,
-    1846, 2253, -1,
-    1342, 1343, 1756, -1,
-    873, 874, 746, 703, 718, 875, 878, 708, 745, 749, 876, 711, 877, -1,
-    2184, 1666, 2185, -1,
-    2319, 1639, 1641, 2315, 2312, -1,
-    2324, 433, 2274, 1713, 2273, -1,
-    1071, 388, 1084, 391, 409, 1006, -1,
-    895, 1951, -1,
-    417, 2206, 2110, -1,
-    1211, 1221, -1,
-    740, 741, -1,
-    2241, 2242, 2245, 2240, 2244, -1,
-    2097, 2099, -1,
-    1391, 1418, -1,
-    1813, 232, -1,
-    2294, 2276, 2277, -1,
-    2215, 2216, 1964, 250, -1,
-    482, 1844, 498, 1824, -1,
-    786, 794, 796, 499, 1563, 482, 1841, 1844, 498, 1824, 502, -1,
-    2332, 353, 354, 1893, -1,
-    626, 627, 1034, 635, 639, -1,
-    970, 971, -1,
-    193, 2068, 2331, 172, 173, -1,
-    752, 1268, 1156, -1,
-    1014, 903, -1,
-    1371, 938, 939, 9, 1368, 935, 1369, 990, 641, 1396, 1380, 1402, 1400, 1403, 1404, -1,
-    1152, 586, 1202, 1153, 666, 667, 669, 671, 672, 675, 676, -1,
-    1279, 73, 74, 307, 1819, 1272, 1235, 1236, 1237, 1238, 1239, -1,
-    1042, 827, 1336, -1,
-    721, 722, 476, 712, -1,
-    925, 926, 681, 698, 335, 927, 928, 1096, -1,
-    82, 83, 84, -1,
-    679, 680, 683, -1,
-    1119, 536, 535, -1,
-    194, 195, 196, 619, 569, -1,
-    191, 713, 781, -1,
-    782, 713, 1838, -1,
-    1136, 748, 1138, 1265, 1266, 1267, -1,
-    125, 127, -1,
-    6, 66, 33, 35, 32, 34, 8, 67, 15, 136, -1,
-    1341, 1328, -1,
-    533, 763, 1798, 764, 808, 1797, 572, 585, 592, 144, 145, 143, -1,
-    1120, 1467, 1203, 1323, 1878, 1123, 1468, 1469, -1,
-    102, 654, 662, 656, 660, 103, 116, 113, 655, 661, -1,
-    691, 1715, 1868, 1183, 1332, -1,
-    1515, 1514, -1,
-    1484, 1482, 1481, 1411, -1,
-    621, 573, 1545, 846, 1544, -1,
-    2006, 2005, 2004, 2003, 2002, 1999, 1998, 2013, 2012, 2011, 2008, 2007, -1,
-    812, 266, -1,
-    538, 534, -1,
-    684, 686, 687, 688, -1,
-    545, 544, -1,
-    1570, 1538, 1472, -1,
-    1652, 1653, 1251, 2152, -1,
-    248, 560, 562, -1,
-    604, 245, 823, 291, 213, 255, 214, 248, 89, 229, 371, 370, 372, 0, 54, 1, 212, 211, 565, 285, 559, 283, 286, 564, 566, 284, 560, 121, 558, 562, 561, -1,
-    12, 11, -1,
-    2310, 762, -1,
-    1634, 1443, 1635, 1672, 1637, -1,
-    1596, 1595, -1,
-    1820, 1821, 1817, 1473, -1,
-    1780, 1779, 1782, -1,
-    1958, 2340, 1976, 2193, 2198, -1,
-    2036, 2050, 2057, 2046, 2051, 2042, 2053, 2038, 2054, 2043, 2056, 2040, 2052, 2039, 2055, 2037, 2033, 2049, 2035, 2045, 2034, 2044, 2058, 2048, 2059, 2047, 2041, 2024, 2020, 777, 2027, 774, 2021, 776, 2028, 772, 2029, 771, 2030, 769, 2025, 770, 2023, 773, 2026, 768, 2019, 775, 2022, 766, 2018, 767, 2017, 822, 821, 820, 819, 811, -1,
-    1935, 1937, -1,
-    2202, 890, 2203, 891, 2201, 889, 2204, -1,
-    2122, 2121, -1,
-    1497, 2076, -1,
-    987, 208, -1,
-    831, 2149, 900, -1,
-    1704, 1043, 1300, 2175, 2176, -1,
-    2179, 2174, -1,
-    1052, 1050, -1,
-    1673, 1674, -1,
-    1508, 1507, -1,
-    2181, 1264, -1,
-    1409, 1410, -1,
-    2237, 1985, -1,
-    1591, 1582, -1,
-    1175, 1829, -1,
-    1791, 1794, 1816, 1790, -1,
-    1723, 2069, -1,
-    1659, 1793, -1,
-    1835, 1834, -1,
-    2067, 1304, 1306, 1305, 2096, 271, 273, 270, 274, 2126, 272, -1,
-    898, 2147, 2156, 2063, -1,
-    1623, 2073, -1,
-    1614, 1597, 2254, -1,
-    1968, 1039, -1,
-    1863, 1862, -1,
-    1338, 1427, 316, 1425, 1426, 1594, 254, 260, 1424, -1,
-    921, 1642, 1661, -1,
-    1584, 1585, -1,
-    1338, 1427, 316, 1425, 1426, 254, 1344, 1346, 260, 1423, 1424, -1,
-    1437, 1438, 1439, -1,
-    201, 200, 2314, -1,
-    1710, 2270, 2269, 2272, 432, 1712, 1698, -1,
-    2084, 2085, 2089, 2095, 300, 295, 2119, 2118, 2132, 2134, 2128, 2115, 567, 1575, -1,
-    1517, 1518, 1519, -1,
-    1617, 929, 1568, 1571, 1583, 1578, 1589, 1599, 1600, -1,
-    1617, 1568, -1,
-    288, 1385, 1377, 954, -1,
-    244, 241, -1,
-    1188, 239, 238, 1190, 1189, -1,
-    1113, 1243, 1219, 1106, 1107, 1105, -1,
+    693, 1047, -1,
+    714, 16, -1,
+    751, 752, 1268, 1159, 1156, 1155, -1,
+    362, 2088, -1,
+    266, 1888, -1,
+    1634, 1443, 1635, 1672, 1637, 1895, -1,
+    2340, 1976, 2193, -1,
+    283, 284, -1,
+    2035, 2056, 2059, 2044, 2051, 2042, 2049, 2036, 2052, 2037, 2050, 2034, 2048, 2039, 2053, 2043, 2032, 2033, 2055, 2038, 2046, 2040, 2045, 2058, 2054, 2057, 2047, 2041, 2342, 2341, 2027, 2020, 777, 2025, 776, 2024, 775, 2028, 774, 2022, 773, 2026, 771, 2019, 770, 2030, 769, 2021, 772, 2023, 768, 2029, 767, 2017, 766, 2018, 821, 820, -1,
+    2035, 2056, 2059, 2044, 2051, 2042, 2049, 2036, 2052, 2037, 2050, 2034, 2048, 2039, 2053, 2043, 2032, 2033, 2055, 2038, 2046, 2040, 2045, 2058, 2054, 2057, 2047, 2041, 2342, 2341, 2027, 2020, 777, 2025, 776, 2024, 775, 2028, 774, 2022, 773, 2026, 771, 2019, 770, 2030, 769, 2021, 772, 2023, 768, 2029, 767, 2017, 766, 2018, 822, 821, 820, 1996, 811, -1,
+    2163, 2162, 804, -1,
+    761, 1283, 762, -1,
+    1855, 1856, 878, -1,
+    2319, 226, 2316, -1,
+    249, 433, 1712, 2273, 727, 1698, 2212, 2139, 434, 1699, -1,
+    836, 830, 900, 834, 618, -1,
+    1043, 2175, 2176, 1299, 1298, 2177, -1,
+    421, 1056, -1,
+    1783, 1219, 1604, 1211, 1220, 1221, 1222, -1,
     1366, 968, -1,
-    231, 2093, 1435, 1539, 1540, 1451, 1542, 1293, -1,
-    2234, 2238, 2232, 2230, 2239, 2235, 2228, 2229, 2233, -1,
-    1451, 1293, -1,
-    1357, 257, -1,
-    912, 1415, 1355, 1357, -1,
-    2296, 1045, 1401, 1400, -1,
-    336, 964, -1,
-    1893, 1912, -1,
-    1023, 1018, -1,
-    1924, 1026, 1927, 1930, -1,
-    1858, 501, 1857, -1,
-    2336, 2334, 765, 2172, 357, 1912, -1,
-    313, 330, 2236, -1,
-    631, 632, 624, 628, -1,
-    971, 218, 973, -1,
-    156, 1375, 292, 157, -1,
+    2242, 2241, 2229, 2240, 2228, 2230, -1,
+    2229, 2228, 2230, -1,
+    646, 203, 1889, 1419, 257, -1,
+    1201, 508, 81, 85, 664, 275, 668, 669, 1046, -1,
+    1152, 1201, 508, 586, 401, 85, 2268, 666, 667, 668, 669, 1046, 670, 672, 676, 699, 677, 678, -1,
+    635, 636, 639, -1,
+    691, 1868, 1183, 1867, -1,
+    1893, 1040, -1,
+    496, 499, 1326, 1843, 1563, 1825, 492, 1853, 1850, 1849, 1857, 1844, 1824, 1823, -1,
+    499, 1563, 492, 1849, 825, 826, 1336, -1,
+    653, 335, 927, 928, -1,
     970, 867, -1,
-    1365, 1381, -1,
-    2072, 2325, 410, -1,
-    1157, 989, 62, 79, -1,
-    1602, 1677, 1378, 1407, 1401, -1,
-    1602, 1378, -1,
-    589, 590, -1,
-    63, 1329, 64, 72, -1,
-    1200, 508, 587, 588, 589, 93, 590, 81, -1,
-    402, 401, 670, 699, 678, -1,
-    402, 401, 670, 678, -1,
-    21, 620, 20, 25, 24, 222, 1255, 120, 1334, -1,
-    82, 345, -1,
-    21, 620, 20, 25, 24, 222, 1255, 1042, 827, 1334, -1,
-    666, 673, 677, 1229, -1,
-    1961, 175, 90, 345, 37, 47, 48, 31, 49, 50, 1960, 38, 39, 40, 41, 42, 43, 44, 45, -1,
+    763, 1798, 808, 144, 145, 1265, -1,
+    221, 366, 918, 917, 1359, 1360, -1,
+    879, 782, 713, 1566, -1,
+    1137, 748, 15, -1,
+    246, 247, -1,
+    2325, 2068, 2331, 172, 2077, -1,
+    1147, 1149, 1148, 1143, 1145, 1082, -1,
+    2008, 2007, -1,
+    707, 880, 992, -1,
+    1554, 217, 220, -1,
+    1742, 1744, 1743, -1,
+    1460, 2069, -1,
+    548, 549, 732, 733, -1,
+    1659, 1793, -1,
+    1325, 2147, -1,
+    2075, 2131, -1,
+    316, 1594, -1,
+    1088, 755, 1848, 414, 326, 327, 420, -1,
+    1494, 2194, 1983, 2197, 1758, -1,
+    390, 1814, 1684, -1,
+    390, 1814, -1,
+    2160, 2164, 2165, 2166, 2167, 2168, 2169, -1,
+    180, 280, 1845, -1,
+    2122, 2121, -1,
+    1689, 1696, 1687, 1688, 1690, 1692, 1691, 1693, -1,
+    1280, 1282, 1281, -1,
+    1050, 1049, -1,
+    1437, 1438, 1439, -1,
+    2317, 2318, 2315, 2314, 2313, -1,
+    1667, 1669, -1,
+    2318, 2314, 2313, -1,
+    2085, 2087, 2089, 2095, 300, 295, 2119, 2118, 299, 2132, 2133, 2134, 2130, 1084, 2128, 2115, 253, 409, 567, 301, 1006, 1575, -1,
+    2085, 2089, 2095, 299, 2133, 409, -1,
+    897, 895, 1945, 1950, 1951, -1,
+    884, 205, 204, -1,
+    1409, 1410, 1065, -1,
+    1617, 1926, 1923, 1568, 1571, 1579, 1576, 1580, 1574, -1,
+    1188, 2142, -1,
+    231, 2093, 1435, 2094, 1540, 1390, 1456, 1451, 1454, 202, 1308, 1542, 1293, -1,
+    1413, 1412, 1416, 911, 912, 1415, 908, 1420, 1391, 706, 505, 1354, -1,
+    1407, 1402, 1400, 1403, -1,
+    1924, 2216, 1018, -1,
+    1407, 1402, 1400, -1,
+    1070, 1076, 1077, 1080, 1079, -1,
+    671, 675, 63, 1329, 64, 72, -1,
     673, 1229, -1,
-    221, 52, 53, 361, 1982, 358, 366, 364, -1,
-    1185, 153, 829, -1,
-    914, 343, 602, -1,
-    156, 1375, 292, -1,
-    156, 1375, -1,
-    76, 92, 189, 838, 879, 782, -1,
-    940, 941, -1,
-    99, 77, 76, 92, 78, 100, 142, 88, 838, 879, -1,
-    1319, 1386, 1387, -1,
-    1134, 1140, 1141, 756, 1135, 1137, -1,
-    95, 122, 128, 96, 119, 117, -1,
-    57, 55, 58, 59, 60, 56, 715, -1,
-    4, 71, 174, 28, 29, 3, 5, 151, 152, 1969, 1395, 2157, 160, 279, 138, 134, 133, 101, 132, 131, -1,
+    632, 626, 627, 1034, 630, 633, -1,
+    1716, 1332, 1331, -1,
+    2336, 2332, 2334, 765, 353, 1913, 2172, 354, 357, 352, 356, 1892, 1912, -1,
+    1851, 1965, 1859, 498, -1,
+    1851, 1859, -1,
+    1892, 1893, -1,
+    974, 379, -1,
+    222, 1255, 23, 17, 827, 828, 120, 1334, 1335, 26, -1,
+    82, 83, 84, 916, 90, 345, 37, 48, 31, 50, 1960, 38, 39, 40, 41, 42, 43, 44, 45, -1,
+    925, 926, -1,
+    971, 218, 973, -1,
+    1375, 292, 115, 157, 613, 114, 957, -1,
     1365, 1381, 1352, -1,
-    1158, 1157, 989, 61, 62, 79, -1,
-    263, 312, 1131, -1,
-    263, 312, 310, 1131, 1132, 75, -1,
-    198, 504, 714, -1,
-    593, 595, 1176, 594, 985, 599, 601, 600, -1,
-    304, 1012, 219, 2221, -1,
-    734, 810, 735, -1,
-    1716, 1867, 1331, -1,
-    512, 350, 339, 341, 338, 1908, 1910, 342, 369, -1,
-    512, 518, 339, 341, 338, 1908, 515, 521, 519, 369, 510, 509, 1028, -1,
-    2014, 2001, 2000, 1997, 2010, 2009, -1,
-    2014, 2001, 2010, 2009, -1,
-    1285, 1286, 1290, 1291, 1287, 1288, 1289, 264, 1887, -1,
-    1032, 1554, 966, 220, -1,
+    692, 704, 702, 886, -1,
+    1187, 528, 1184, 1185, 1119, 1186, 539, 536, 535, 153, 829, -1,
+    122, 129, -1,
+    99, 76, 78, 142, 80, 140, 838, 1838, -1,
+    71, 29, 334, 151, 152, 1969, 67, 1395, 2157, 159, 13, 279, 138, 134, 133, 101, 132, 131, 130, -1,
+    71, 334, 151, 152, 1969, -1,
+    2183, 98, 302, 315, 1012, 219, -1,
+    2072, 2078, -1,
+    510, 509, -1,
+    734, 730, 810, 735, 865, 866, -1,
+    1194, 1091, 1093, -1,
     1512, 1513, -1,
-    997, 998, 999, 1000, 996, 1002, 1001, -1,
-    1726, 1727, -1,
-    2267, 2266, 2265, 2264, -1,
-    2106, 2107, 2111, 2112, 2105, 2114, -1,
-    465, 479, -1,
-    1558, 1559, -1,
-    1586, 1587, -1,
-    2210, 2292, -1,
-    322, 1088, 1848, 414, 328, 1837, -1,
-    411, 412, -1,
-    322, 1088, 321, 411, 328, 326, 1089, 420, 412, -1,
-    1592, 1636, -1,
-    1177, 1178, -1,
-    2015, 2016, -1,
-    2163, 2162, -1,
-    1689, 1694, 1696, 1687, 1688, 1690, 1692, 1691, 1693, -1,
-    1647, 1648, -1,
-    1280, 1282, 1283, 1281, -1,
-    1601, 1428, 1755, 1902, -1,
-    1442, 1665, 1664, 1491, -1,
-    2081, 1627, 2082, -1,
-    1777, 2214, 1778, -1,
-    1495, 579, -1,
-    1759, 1769, 1754, 1938, 1953, 1952, 1765, -1,
-    1492, 1493, -1,
-    280, 1179, -1,
-    1226, 1227, -1,
-    2166, 2167, 2168, 2169, -1,
-    1498, 1499, 1500, -1,
-    507, 842, 844, 843, -1,
-    1510, 1509, -1,
-    1611, 1610, 1612, -1,
-    1161, 1171, -1,
-    1981, 1864, -1,
-    2141, 2144, -1,
-    1786, 1593, -1,
-    1966, 2090, -1,
-    1836, 2061, -1,
-    2147, 1242, -1,
-    269, 1345, -1,
-    1013, 1242, 329, 1474, -1,
-    1363, 1038, 1037, 2320, -1,
-    2326, 2329, 2330, 551, 2327, 2328, 2271, -1,
-    2187, 2143, 1703, 1700, -1,
-    2087, 294, 2187, 2116, 1701, 1703, 1700, 1364, -1,
-    897, 894, 896, -1,
-    1021, 1620, -1,
-    458, 1312, 1317, 276, -1,
-    1579, 1567, -1,
-    953, 1682, -1,
-    237, 236, -1,
-    1115, 1894, 1108, 1112, 1109, 1110, 1605, -1,
-    614, 615, 616, -1,
+    2266, 2265, 2264, -1,
+    997, 998, 996, -1,
+    1448, 1449, -1,
+    2155, 2222, -1,
+    1722, 1725, -1,
+    1524, 1523, -1,
+    1530, 1569, -1,
+    2107, 2111, 2112, 2114, -1,
+    466, 480, 491, 465, 478, 479, -1,
+    1791, 1787, 1788, 1794, 1816, 1854, 1790, -1,
+    1588, 1792, 2086, -1,
+    1832, 1827, 1831, 2288, -1,
+    648, 778, 1834, -1,
+    2060, 2063, -1,
+    271, 270, 272, -1,
+    1662, 1949, 2083, 2070, 2096, 272, -1,
+    2074, 2065, -1,
+    1827, 2288, -1,
+    1608, 1609, 2140, -1,
+    1852, 2285, -1,
+    1968, 1039, 1038, 332, -1,
+    1847, 1638, 2250, -1,
+    1708, 2287, -1,
+    922, 921, 923, 1642, -1,
+    2286, 1862, -1,
+    1338, 1427, 1425, 1426, 1342, 254, 1344, 1422, 1346, 260, 1423, 1424, -1,
+    321, 411, 1089, 1087, 2209, 412, 2311, -1,
+    1875, 1872, -1,
+    1711, 1649, -1,
+    2333, 1663, 2173, -1,
+    2333, 1904, -1,
+    1709, 1627, 1626, -1,
+    2333, 1891, -1,
+    1821, 1822, -1,
+    2015, 1771, 2214, -1,
+    2252, 1165, -1,
+    245, 213, 255, 0, 54, 1, 212, 565, 285, 286, 564, 566, 121, -1,
+    2154, 2153, 2299, -1,
+    1935, 1937, -1,
+    2159, 2158, 1130, 2170, -1,
+    2201, 889, 2202, 891, 2203, 890, 2204, 2200, -1,
+    2124, 2123, -1,
+    746, 703, 749, 711, -1,
+    1432, 1433, 1434, -1,
+    1670, 1671, 1668, 1436, -1,
+    2184, 1666, 2185, -1,
+    2324, 2274, 1713, -1,
+    2129, 429, 294, 2187, 2116, 427, 297, 1700, 736, 298, 2101, -1,
+    429, 427, 736, -1,
+    1498, 1500, -1,
+    949, 987, 207, -1,
+    206, 1441, -1,
+    965, 2149, 617, -1,
+    965, 831, 2149, -1,
+    1680, 1681, -1,
+    2141, 2146, 2144, -1,
+    417, 2110, 2206, 418, 416, 1620, 1619, -1,
+    1259, 1257, 1733, -1,
+    1551, 1550, -1,
+    1108, 1605, -1,
+    486, 484, 485, 1199, -1,
     2309, 2307, 2308, -1,
-    2171, 2138, -1,
-    2094, 1452, -1,
-    1413, 706, 505, -1,
-    907, 1414, 1413, 1412, 906, 1388, 1502, 1416, 911, 701, 908, 1533, 1536, 1535, 1532, 706, 1866, 505, 1354, 975, 1356, 1534, -1,
-    1885, 1877, 1884, 1979, -1,
-    984, 981, 982, 976, 977, 979, 737, -1,
-    1009, 1007, -1,
-    1916, 1060, 2283, 1059, -1,
-    1033, 881, -1,
-    1919, 1921, -1,
-    177, 176, 1263, 178, -1,
-    787, 801, -1,
-    625, 629, -1,
-    183, 1932, 184, 1933, 289, -1,
-    164, 146, 167, 162, 149, 612, 957, 909, 950, 958, 959, -1,
-    1445, 1737, -1,
-    934, 931, -1,
-    920, 919, -1,
-    2263, 932, 934, 936, 937, 931, -1,
-    1206, 1210, 1209, 581, 65, 582, 1207, -1,
-    86, 583, 87, 85, -1,
-    1163, 1164, -1,
-    2259, 400, 396, 397, 2261, 399, -1,
-    1270, 1274, 1276, 1277, 1278, 1271, 1818, 1275, -1,
-    860, 1240, 1241, 1020, 1213, 305, 306, -1,
-    1276, 1271, 306, -1,
-    1063, 1882, 1062, 1073, 1075, 1070, 1064, 1074, 1066, 1061, 1077, 1078, 1865, 1069, -1,
-    1192, 1193, -1,
-    1882, 1062, 1072, 1073, 1075, 1070, 1064, 1074, 1066, 1061, 1077, 1078, 1865, 1069, -1,
-    400, 2261, -1,
-    1254, 27, 1244, 23, -1,
-    1254, 1244, 23, -1,
-    720, 723, 403, -1,
-    403, 653, -1,
-    670, 674, -1,
-    697, 570, 1095, 387, 1097, 1098, 955, 1099, 1100, 1101, -1,
-    606, 607, 608, -1,
-    360, 359, 365, -1,
-    854, 852, 857, 861, 853, 851, 862, 863, 1055, -1,
-    858, 852, 857, 861, 853, 851, 862, 863, 1055, -1,
-    779, 2205, 1086, 813, 2182, 805, -1,
-    164, 146, 167, 292, 957, 958, 959, -1,
-    99, 77, 100, 142, 80, 140, -1,
-    1142, 464, 1139, -1,
-    1036, 158, -1,
-    469, 473, 474, 494, 468, -1,
+    740, 741, 744, -1,
+    1450, 1464, -1,
+    1813, 232, -1,
+    907, 910, -1,
+    1556, 1555, 259, 347, -1,
+    1014, 903, -1,
+    1371, 948, 1393, 1602, 1368, 1734, 1369, 1445, 1677, 990, 1378, 1396, 1737, 1446, 1024, 1397, 1398, 1404, 1405, 1406, -1,
+    2276, 2277, -1,
+    1133, 324, -1,
+    1023, 1033, 881, -1,
+    1023, 881, -1,
+    2215, 250, 2117, -1,
+    1398, 1399, 1405, 1406, -1,
+    1964, 250, -1,
+    215, 223, 1675, -1,
+    589, 1153, -1,
+    587, 588, 589, 590, -1,
+    933, 1397, 1404, -1,
+    1270, 1276, 1819, 1272, 1235, 1237, 1238, 1239, -1,
+    1153, 1206, 1209, 1207, -1,
+    402, 2259, 396, 397, 399, -1,
+    1978, 1979, 1883, -1,
+    622, 629, -1,
+    1485, 1411, -1,
+    1481, 1483, 1799, 1411, -1,
+    1629, 1727, -1,
+    2216, 2117, -1,
+    786, 798, 1392, 797, 571, 801, 799, 800, 793, 794, 795, 803, 796, 487, 500, 482, 488, 502, -1,
+    970, 971, 972, -1,
+    1253, 1252, 1254, 25, 22, 682, 476, 683, -1,
+    403, 679, 680, -1,
+    722, 679, 680, 682, 683, -1,
+    925, 926, 681, 698, -1,
+    681, 698, 570, -1,
+    1375, 115, 114, -1,
+    195, 569, 532, 568, -1,
+    147, 481, 156, 612, 951, -1,
+    1804, 1803, 1054, -1,
+    1191, 1041, -1,
+    1341, 1328, -1,
+    533, 764, 1797, 1796, 572, 585, 592, -1,
+    533, 764, 1797, 1796, -1,
+    606, 607, 609, 608, 610, -1,
+    854, 1899, 1900, 855, 861, 847, 853, 851, 862, 856, 863, 700, 753, 1055, -1,
+    92, 100, -1,
+    124, 125, 126, -1,
+    58, 60, 56, -1,
+    58, 59, 60, 56, -1,
+    1136, 1265, 1267, -1,
     469, 473, 474, 475, 494, 468, 495, -1,
-    7, 30, 69, 36, 70, 2, 659, 14, 233, -1,
-    386, 384, 385, 1315, 382, -1,
-    902, 899, -1,
-    308, 262, 261, -1,
-    506, 503, -1,
-    650, 598, 597, 2190, -1,
-    1204, 1205, -1,
-    835, 892, 893, 888, 901, 840, 839, -1,
-    1640, 1656, -1,
-    340, 1218, 993, 1761, -1,
-    526, 525, 522, 340, 1218, 993, 514, 524, 520, 422, -1,
-    1483, 1799, -1,
-    640, 705, -1,
-    1194, 1092, 1093, -1,
-    1753, 1749, 1751, 1944, 1808, 1750, 1752, 1943, 1941, 1809, 1807, 1748, 1810, 1942, -1,
-    1546, 824, -1,
-    994, 995, -1,
-    1630, 1631, -1,
-    2108, 2109, 2113, -1,
-    2103, 2102, -1,
-    709, 1447, -1,
-    1971, 1471, -1,
-    543, 1934, -1,
+    7, 6, 69, 66, 33, 32, 68, 34, 8, 5, 160, 233, 136, -1,
+    1158, 1157, 61, -1,
+    1421, 1158, 1157, 902, 899, 989, 61, 62, -1,
+    341, 1218, 338, 1908, 1910, 342, 1761, 511, 1029, -1,
+    883, 882, -1,
+    1120, 1208, 1880, 1204, 1879, 1205, 1467, 1203, 1323, 1121, 1878, 1123, 1468, 1322, 1469, 1480, -1,
+    2006, 2005, 2004, 2003, 2002, 2000, 1999, 1998, 2013, 2011, 1997, 2010, -1,
+    2005, 2004, 2003, 2000, 1999, 1998, 2013, 2011, 2010, -1,
+    835, 892, 893, 888, 901, 840, -1,
+    662, 656, -1,
+    729, 374, 377, 1327, 378, -1,
+    640, 621, 483, 573, 1545, 846, 1544, -1,
+    112, 107, 287, -1,
+    684, 685, 686, 687, 688, -1,
+    1196, 1197, -1,
+    1591, 1582, -1,
+    1786, 1593, -1,
+    1488, 1489, -1,
+    1739, 1738, -1,
+    1914, 1915, -1,
+    1529, 1472, -1,
+    545, 546, -1,
+    1800, 463, 462, 477, 1349, 489, -1,
     1053, 758, 1376, 647, -1,
-    696, 694, 695, -1,
-    1504, 1505, -1,
-    471, 423, 467, -1,
+    550, 738, -1,
+    652, 1830, 2295, -1,
+    898, 1016, 1394, 1242, -1,
+    269, 1301, 2127, 274, -1,
+    1729, 2060, -1,
+    2071, 1479, 274, -1,
+    1623, 1622, -1,
+    1842, 1991, 1990, 2064, 1719, -1,
+    1607, 2249, -1,
+    1614, 1597, -1,
+    1182, 1633, -1,
+    1846, 2080, 2253, -1,
+    1989, 1988, -1,
+    1343, 1756, -1,
+    320, 325, 322, 328, 754, 747, -1,
+    322, 413, -1,
+    1874, 1873, 2031, 1876, -1,
+    2335, 1491, -1,
+    1596, 1595, -1,
+    1177, 1178, -1,
+    1177, 1653, 1178, 1251, 2152, -1,
+    1820, 1817, 1473, -1,
+    1780, 1779, 1782, -1,
+    1757, 1762, 1954, 2191, 1717, 1766, 2198, 1946, 1931, 1765, 1768, -1,
+    604, 823, 291, 248, 89, 229, 371, 814, 211, 559, 560, 558, 562, -1,
+    155, 154, 945, 947, 1261, -1,
+    1347, 1348, -1,
+    1226, 1227, -1,
+    1179, 181, -1,
+    1683, 1694, 1695, -1,
+    718, 708, -1,
+    1673, 1674, -1,
+    1639, 1641, -1,
+    2323, 2329, 2330, 2328, 2271, 1710, -1,
+    2084, 1702, 1703, 1364, -1,
+    2084, 2129, -1,
+    2196, 2120, -1,
+    1496, 1497, 1499, 1501, -1,
+    507, 842, 987, -1,
+    1611, 1610, 1612, -1,
+    458, 1312, 1518, -1,
+    1260, 1256, 1258, -1,
+    929, 1583, -1,
+    929, 1590, 1583, 1589, -1,
+    288, 1377, 954, -1,
+    363, 1321, -1,
+    288, 1377, 954, 1379, -1,
+    239, 237, 238, 1190, 1189, -1,
+    337, 1311, -1,
+    1115, 1894, 1112, 1109, 1110, 1117, 1114, 1113, 1106, 1107, 1105, -1,
+    2233, 2234, 2232, -1,
+    2233, 2239, 2245, 2234, 2238, 2235, 2244, 2232, -1,
+    2097, 2098, 2100, 2099, -1,
+    2284, 2289, -1,
+    906, 905, 1361, 1358, -1,
+    906, 1388, 1502, 905, 1533, 1536, 1535, 1532, 1866, 975, 1019, 1534, -1,
+    1362, 1355, -1,
+    792, 1031, -1,
+    1735, 920, 919, 641, 1380, -1,
+    984, 982, 976, 977, 979, -1,
+    1010, 1009, 1007, 1008, -1,
+    1916, 1058, 1060, 1059, -1,
+    1920, 1026, 1927, 1928, 1929, 1930, 1918, 1963, 1919, 1921, 1922, -1,
+    1026, 1930, 1919, 1921, 1922, -1,
+    176, 178, -1,
+    583, 87, 1200, -1,
+    1044, 2296, 1045, -1,
+    2263, 938, 939, 9, 932, 934, 935, 936, 937, 931, -1,
+    1273, 1274, 1277, 1278, 1271, 1818, 1275, -1,
+    73, 1020, 74, 307, 1213, 306, -1,
+    1279, 1271, 1818, -1,
+    1063, 1882, 1072, 1075, 1064, 1074, 1078, 1069, -1,
+    1192, 1193, -1,
+    1210, 581, 65, 582, -1,
+    583, 87, 1200, 1202, -1,
+    1163, 1164, -1,
+    400, 2261, 398, -1,
+    2260, 674, -1,
+    1678, 1459, -1,
+    1515, 1514, -1,
+    1630, 1631, -1,
+    501, 1841, -1,
+    21, 620, 24, 1244, 1042, -1,
+    403, 683, -1,
+    720, 721, 403, -1,
+    697, 1095, 387, 1096, 955, 1099, 1100, 1101, -1,
+    183, 1932, 184, 1933, 289, -1,
+    163, 161, 164, 146, 148, 167, 162, 165, 1003, 149, 209, 956, 952, 909, 950, 958, 959, -1,
+    195, 196, -1,
+    1319, 1386, 1387, -1,
+    386, 384, 385, 1315, 383, 382, -1,
+    940, 942, -1,
+    52, 53, 361, 360, 359, 364, 365, -1,
+    858, 1048, -1,
+    779, 2205, 1086, 813, 2182, 805, -1,
+    185, 192, 186, 187, 188, 190, 424, 859, 781, -1,
+    118, 128, 97, 119, 117, -1,
+    251, 252, 88, -1,
+    1134, 1141, 756, 1142, 1135, 464, 1138, 1139, 1266, -1,
+    4, 30, 36, 70, 2, 3, 659, 14, -1,
+    1134, 1141, 1142, 1135, 1139, 1266, -1,
+    593, 650, 985, 597, 601, 600, 2190, -1,
+    593, 650, 985, 597, 601, 2190, -1,
+    263, 308, 312, 310, 262, 1131, 1132, 311, 75, 261, 1166, -1,
+    512, 1907, 350, 339, 10, 513, 526, 525, 517, 522, 527, 340, 993, 216, 524, 520, 515, 521, 519, 422, 1030, 1028, -1,
+    1753, 1751, 1808, 1750, 1752, 1943, 1941, 1809, 1807, 1748, 1810, 1942, -1,
+    102, 657, 660, 658, 103, 116, 113, 655, 661, -1,
+    1290, 1289, 1887, -1,
+    1290, 1291, 1287, 1288, 1289, 264, 1887, -1,
+    1290, 1291, 1287, 1288, 1289, 264, 1887, 824, -1,
+    537, 538, 529, 534, -1,
+    278, 277, -1,
+    994, 999, 995, 1002, -1,
+    1966, 2090, -1,
+    1724, 1723, -1,
+    1570, 1538, 1471, -1,
+    1558, 1559, -1,
+    2106, 2103, 2102, 2108, 2109, 2113, -1,
+    2106, 2103, 2102, -1,
+    543, 1934, -1,
+    1175, 1829, -1,
+    471, 423, -1,
+    1836, 2061, 1835, -1,
+    1013, 329, -1,
+    273, 2126, -1,
+    2067, 273, -1,
+    789, 790, 783, 833, 832, 791, -1,
     1621, 1628, 1625, 1624, -1,
-    788, 789, 790, 833, 832, 791, -1,
-    320, 325, 1089, 747, -1,
-    320, 325, -1,
-    1005, 351, 282, -1,
-    1005, 351, -1,
-    1772, 1773, 1771, 1774, 1770, 1776, 1775, -1,
-    1683, 1695, 1015, -1,
-    552, 553, -1,
-    1709, 1626, -1,
-    1772, 1776, -1,
-    1757, 1762, 1764, 1767, 1760, 1763, 1717, 1939, 1766, 1768, -1,
-    1745, 1747, 1917, -1,
-    576, 1232, 155, 154, 945, 946, 944, 1261, -1,
-    2153, 2299, -1,
-    2159, 2164, 2165, 2158, 1130, -1,
-    2159, 2158, 1130, -1,
-    841, 845, 210, -1,
+    1037, 2320, -1,
+    1584, 1585, -1,
+    1645, 1863, -1,
+    1592, 1636, -1,
+    1601, 1428, 1755, 1902, -1,
+    1601, 1428, -1,
+    1442, 1665, 1431, -1,
+    1665, 1664, 2335, 1431, -1,
+    644, 645, 1169, -1,
+    1478, 1477, 1487, -1,
+    1772, 1773, 1774, 2199, 1770, 1776, 1775, -1,
+    575, 574, 1778, -1,
+    2231, 1953, 1955, -1,
+    1759, 1769, 1764, 1767, 1760, 1754, 1763, 1939, -1,
+    1745, 1747, -1,
+    1005, 563, 290, 370, 372, 282, 561, -1,
+    2213, 2262, -1,
+    1647, 1648, -1,
+    381, 1180, 1083, -1,
+    552, 553, 554, -1,
+    1052, 1051, -1,
+    2326, 551, 2327, 2270, 2269, 2272, 432, -1,
+    2270, 2269, 432, -1,
+    551, 432, -1,
+    843, 208, -1,
+    844, 843, -1,
+    969, 967, -1,
+    1704, 2243, -1,
+    1897, 1317, 276, 1519, 1516, -1,
+    1599, 1600, -1,
+    1578, 1567, -1,
+    1567, 1598, -1,
+    244, 241, -1,
+    236, 235, -1,
+    1111, 1118, 1102, 1104, 1103, -1,
+    227, 690, -1,
+    1812, 1811, -1,
+    2171, 2137, -1,
+    2239, 2238, 2235, -1,
+    1539, 1453, -1,
+    1539, 1541, -1,
+    336, 963, 964, -1,
+    1414, 1417, 701, -1,
+    1367, 1370, 1372, -1,
+    177, 179, -1,
+    177, 179, 1263, -1,
+    1676, 224, 459, -1,
+    860, 1240, 1241, 305, -1,
+    1020, 1235, -1,
+    1062, 1073, 1066, 1061, 1067, -1,
+    86, 584, -1,
+    1886, 1885, 1884, -1,
+    1871, 1947, -1,
+    1215, 1217, -1,
+    1640, 1656, -1,
+    1339, 1340, 1337, -1,
+    1339, 1340, -1,
+    1484, 1482, 848, -1,
+    1484, 1482, -1,
+    170, 175, 1564, -1,
+    1961, 175, 47, 49, 51, 1564, -1,
+    170, 49, 51, -1,
+    719, 2195, 723, -1,
+    1097, 1098, -1,
+    926, 1097, 1099, -1,
+    914, 343, 602, 915, 344, 2297, -1,
+    166, 731, 605, -1,
+    150, 197, -1,
+    1191, 649, -1,
+    1982, 358, -1,
+    852, 857, -1,
+    18, 19, -1,
+    426, 191, 850, -1,
+    95, 96, 94, -1,
+    77, 141, -1,
+    57, 715, -1,
+    57, 55, 715, -1,
+    1140, 1172, -1,
+    174, 28, 580, -1,
+    598, 1176, 599, -1,
+    304, 2221, 2339, -1,
+    518, 1173, 523, 369, 323, -1,
+    425, 651, 541, 540, 460, -1,
+    518, 369, -1,
+    1176, 601, 600, -1,
+    1285, 1286, 1291, -1,
+    1285, 1286, -1,
+    849, 375, 376, -1,
+    1090, 1195, 1094, 2207, -1,
+    1090, 1195, 1092, 1094, 2207, -1,
+    1000, 1001, -1,
+    757, 109, -1,
+    104, 106, 105, 1292, 108, 757, 109, 110, 111, -1,
+    1553, 1552, -1,
+    1558, 1559, 1560, -1,
+    2105, 2104, -1,
+    1302, 1303, 1304, 1306, 1233, 1305, 1234, -1,
+    1302, 1303, 1304, 1306, 1233, 1305, 1234, 1314, 1313, 2135, 1307, -1,
+    1465, 1522, -1,
+    2231, 578, -1,
+    351, 214, 472, -1,
+    576, 1232, 944, 943, -1,
+    841, 845, -1,
     1320, 1374, 1970, -1,
     2304, 2305, -1,
-    1739, 1738, -1,
-    1314, 1313, 2135, 1307, -1,
-    1301, 2127, -1,
-    1338, 1344, -1,
-    1432, 1433, -1,
-    1432, 1433, 1434, -1,
-    1259, 1257, -1,
-    1257, 1258, -1,
-    1549, 1548, -1,
-    1111, 1102, 1104, 1103, -1,
-    1551, 1550, -1,
-    486, 1199, -1,
-    1296, 1520, -1,
-    907, 910, 908, -1,
-    1361, 1358, -1,
-    910, 905, -1,
-    1556, 259, -1,
-    1978, 1886, -1,
-    228, 690, 689, 1162, -1,
-    798, 1392, 797, 802, 571, 799, 800, 795, 803, 487, -1,
-    798, 795, 803, -1,
-    1215, 1217, 1216, -1,
-    623, 622, -1,
-    148, 952, 950, -1,
-    163, 161, 148, 166, 731, 605, 209, 956, 952, -1,
-    948, 1393, 1735, 1734, 1890, 1446, 1024, -1,
-    1735, 1446, -1,
-    930, 933, -1,
-    1080, 1079, -1,
-    215, 224, -1,
-    1253, 1252, 1245, -1,
-    401, 2259, 397, -1,
-    1383, 1382, -1,
-    854, 1899, 1900, 855, 856, -1,
-    854, 861, 851, -1,
-    835, 888, 734, -1,
-    603, 344, -1,
-    163, 166, 605, 209, 956, 952, -1,
-    185, 192, 426, 186, 187, 188, 424, 859, -1,
-    99, 100, -1,
-    139, 251, 252, -1,
-    118, 94, -1,
-    1208, 1880, 1879, 1121, 1322, 1480, -1,
-    10, 368, 216, 349, 1909, 367, 348, 1029, -1,
-    541, 540, 460, -1,
-    10, 513, 1173, 517, 527, 368, 216, 367, 1030, 1029, -1,
-    1339, 1340, 1337, -1,
-    1090, 1195, 1094, 2207, -1,
-    729, 849, 374, 375, 376, 377, 1327, 378, -1,
-    376, 377, -1,
-    542, 537, 529, -1,
-    104, 112, 106, 105, 107, 108, 757, 109, 110, 111, -1,
-    1800, 463, -1,
-    2091, 2213, 2262, -1,
-    644, 645, 1169, 1168, -1,
-    575, 574, -1,
-    1954, 2191, 1955, -1,
-    1954, 2231, 2191, 1955, -1,
-    2231, 1931, -1,
-    381, 1180, 1083, -1,
-    1302, 1303, 1233, 1234, -1,
-    259, 347, -1,
-    1367, 1370, 1372, -1,
-    1928, 1929, 1918, -1,
-    1920, 1928, 1929, 1918, 1963, -1,
-    793, 488, -1,
-    146, 731, 149, 156, -1,
-    165, 1003, -1,
-    215, 223, -1,
-    223, 1676, 459, -1,
-    46, 170, 1565, -1,
-    1899, 861, 853, 851, 862, -1,
-    853, 862, -1,
-    18, 123, -1,
-    323, 1030, -1,
-    425, 651, -1,
-    563, 290, -1,
-    799, 793, -1,
-    719, 2195, -1,
+    243, 241, -1,
+    689, 1162, -1,
+    624, 628, -1,
+    1140, 756, -1,
+    506, 198, 504, -1,
+    506, 504, -1,
+    595, 2337, 594, -1,
+    595, 594, -1,
+    349, 1909, 348, -1,
+    368, 349, 1909, 367, -1,
+    1176, 601, -1,
+    2014, 2009, -1,
+    1291, 1287, -1,
+    1287, 264, -1,
+    1090, 1195, -1,
+    1304, 1306, 1305, -1,
 };
 
 static const constexpr LineMetaDataQuadTreeDepthIndex line_data_depthOffsets[] = {
     { 27, 0 },
     { 26, 1 },
-    { 25, 7 },
-    { 24, 37 },
-    { 23, 129 },
-    { 22, 300 },
-    { 21, 564 },
-    { 20, 872 },
-    { 19, 1117 },
-    { 18, 1280 },
-    { 17, 1322 },
-    { 16, 1333 },
+    { 25, 8 },
+    { 24, 44 },
+    { 23, 122 },
+    { 22, 296 },
+    { 21, 562 },
+    { 20, 854 },
+    { 19, 1115 },
+    { 18, 1239 },
+    { 17, 1289 },
+    { 16, 1343 },
 };
 
 static const constexpr LineMetaDataZIndex line_data_zquadtree[] = {
-    { 296, Bucket(0) }, // 34.75, -9.469 x 48.17, 3.952
-    { 1025, Bucket(4) }, // 41.46, -90 x 48.17, -83.29
-    { 1027, 2316 }, // 41.46, -83.29 x 48.17, -76.58
-    { 1032, Bucket(7) }, // 34.75, -76.58 x 41.46, -69.87
-    { 1186, Bucket(11) }, // 34.75, -2.758 x 41.46, 3.952
-    { 1190, 1297 }, // 48.17, -2.758 x 54.88, 3.952
-    { 1196, Bucket(14) }, // 48.17, 3.952 x 54.88, 10.66
-    { 1223, 988 }, // -35.72, -59.8 x -32.36, -56.45
-    { 4060, Bucket(18) }, // 28.04, 104.6 x 31.39, 108
-    { 4100, Bucket(21) }, // 41.46, -90 x 44.81, -86.64
-    { 4110, 226 }, // 41.46, -79.93 x 44.81, -76.58
-    { 4129, Bucket(25) }, // 38.1, -76.58 x 41.46, -73.22
-    { 4134, 421 }, // 41.46, -73.22 x 44.81, -69.87
-    { 4745, Bucket(32) }, // 38.1, -2.758 x 41.46, 0.597
-    { 4747, Bucket(35) }, // 38.1, 0.597 x 41.46, 3.952
-    { 4750, Bucket(35) }, // 41.46, 0.597 x 44.81, 3.952
-    { 4758, 1294 }, // 54.88, -6.114 x 58.24, -2.758
-    { 4762, Bucket(42) }, // 48.17, 0.597 x 51.53, 3.952
-    { 4775, Bucket(48) }, // 44.81, 7.308 x 48.17, 10.66
-    { 4780, Bucket(52) }, // 41.46, 10.66 x 44.81, 14.02
-    { 4783, Bucket(56) }, // 44.81, 14.02 x 48.17, 17.37
-    { 4786, 916 }, // 48.17, 7.308 x 51.53, 10.66
-    { 4787, Bucket(59) }, // 51.53, 7.308 x 54.88, 10.66
-    { 4791, Bucket(64) }, // 58.24, 7.308 x 61.59, 10.66
-    { 4792, 1566 }, // 48.17, 10.66 x 51.53, 14.02
-    { 4794, Bucket(70) }, // 48.17, 14.02 x 51.53, 17.37
-    { 4796, Bucket(73) }, // 54.88, 10.66 x 58.24, 14.02
-    { 4797, Bucket(78) }, // 58.24, 10.66 x 61.59, 14.02
-    { 6149, Bucket(85) }, // 44.81, 17.37 x 48.17, 20.73
-    { 6155, 1613 }, // 38.1, 27.44 x 41.46, 30.8
-    { 6819, Bucket(92) }, // 38.1, 114.7 x 41.46, 118
-    { 6824, Bucket(98) }, // 34.75, 118 x 38.1, 121.4
-    { 12159, Bucket(101) }, // 31.39, 309.3 x 34.75, 312.7
-    { 12288, Bucket(105) }, // 34.75, 124.7 x 38.1, 128.1
-    { 12320, Bucket(108) }, // 34.75, 138.2 x 38.1, 141.5
-    { 14888, Bucket(111) }, // 34.75, 305.9 x 38.1, 309.3
-    { 14979, 1901 }, // 38.1, 316 x 41.46, 319.4
-    { 4511, 1496 }, // -34.04, -71.55 x -32.36, -69.87
-    { 4892, Bucket(123) }, // -35.72, -59.8 x -34.04, -58.12
-    { 4971, 1174 }, // -30.68, -51.41 x -29.01, -49.73
-    { 5471, 1049 }, // 33.07, -84.97 x 34.75, -83.29
-    { 14147, 1914 }, // 23, 45.9 x 24.68, 47.57
-    { 14150, Bucket(128) }, // 24.68, 45.9 x 26.36, 47.57
-    { 14188, 1523 }, // 24.68, 54.28 x 26.36, 55.96
-    { 15706, 1788 }, // 28.04, 76.09 x 29.72, 77.77
-    { 15962, Bucket(131) }, // 1.194, 102.9 x 2.872, 104.6
-    { 16135, Bucket(135) }, // 12.94, 99.58 x 14.62, 101.3
-    { 16219, Bucket(138) }, // 29.72, 102.9 x 31.39, 104.6
-    { 16253, Bucket(143) }, // 33.07, 108 x 34.75, 109.6
-    { 16322, Bucket(146) }, // 21.33, 113 x 23, 114.7
-    { 16339, Bucket(149) }, // 29.72, 113 x 31.39, 114.7
-    { 16343, 1615 }, // 33.07, 113 x 34.75, 114.7
-    { 16350, Bucket(154) }, // 31.39, 116.4 x 33.07, 118
-    { 16351, 2246 }, // 33.07, 116.4 x 34.75, 118
-    { 16369, 1987 }, // 29.72, 118 x 31.39, 119.7
-    { 16371, 2286 }, // 29.72, 119.7 x 31.39, 121.4
-    { 16372, Bucket(157) }, // 31.39, 118 x 33.07, 119.7
-    { 16402, Bucket(164) }, // 41.46, -88.32 x 43.14, -86.64
-    { 16418, 2189 }, // 34.75, -81.61 x 36.43, -79.93
-    { 16430, Bucket(168) }, // 38.1, -78.26 x 39.78, -76.58
-    { 16441, Bucket(197) }, // 43.14, -79.93 x 44.81, -78.26
-    { 16516, Bucket(201) }, // 38.1, -76.58 x 39.78, -74.9
-    { 16517, 727 }, // 39.78, -76.58 x 41.46, -74.9
-    { 16519, Bucket(204) }, // 39.78, -74.9 x 41.46, -73.22
-    { 16534, Bucket(222) }, // 44.81, -74.9 x 46.49, -73.22
-    { 16538, Bucket(226) }, // 41.46, -71.55 x 43.14, -69.87
-    { 18949, Bucket(234) }, // 39.78, -9.469 x 41.46, -7.792
-    { 18959, Bucket(237) }, // 39.78, -4.436 x 41.46, -2.758
-    { 18982, 242 }, // 38.1, -1.081 x 39.78, 0.597
-    { 18987, Bucket(247) }, // 36.43, 2.275 x 38.1, 3.952
-    { 18989, 1224 }, // 39.78, 0.597 x 41.46, 2.275
-    { 19043, Bucket(250) }, // 49.85, -1.081 x 51.53, 0.597
-    { 19046, Bucket(260) }, // 51.53, -1.081 x 53.2, 0.597
-    { 19048, 1889 }, // 48.17, 0.597 x 49.85, 2.275
-    { 19050, Bucket(269) }, // 48.17, 2.275 x 49.85, 3.952
-    { 19051, Bucket(274) }, // 49.85, 2.275 x 51.53, 3.952
-    { 19094, Bucket(277) }, // 44.81, 5.63 x 46.49, 7.308
-    { 19100, Bucket(280) }, // 44.81, 7.308 x 46.49, 8.986
-    { 19101, Bucket(283) }, // 46.49, 7.308 x 48.17, 8.986
-    { 19102, Bucket(291) }, // 44.81, 8.986 x 46.49, 10.66
-    { 19103, Bucket(296) }, // 46.49, 8.986 x 48.17, 10.66
-    { 19111, 638 }, // 39.78, 12.34 x 41.46, 14.02
-    { 19122, Bucket(299) }, // 41.46, 12.34 x 43.14, 14.02
-    { 19125, Bucket(303) }, // 46.49, 10.66 x 48.17, 12.34
-    { 19127, Bucket(310) }, // 46.49, 12.34 x 48.17, 14.02
-    { 19133, 2078 }, // 46.49, 14.02 x 48.17, 15.7
-    { 19135, Bucket(313) }, // 46.49, 15.7 x 48.17, 17.37
-    { 19137, Bucket(318) }, // 49.85, 3.952 x 51.53, 5.63
-    { 19139, Bucket(324) }, // 49.85, 5.63 x 51.53, 7.308
-    { 19144, Bucket(328) }, // 48.17, 7.308 x 49.85, 8.986
-    { 19148, Bucket(339) }, // 51.53, 7.308 x 53.2, 8.986
-    { 19150, Bucket(342) }, // 51.53, 8.986 x 53.2, 10.66
-    { 19151, Bucket(351) }, // 53.2, 8.986 x 54.88, 10.66
-    { 19168, Bucket(307) }, // 48.17, 10.66 x 49.85, 12.34
-    { 19171, 714 }, // 49.85, 12.34 x 51.53, 14.02
-    { 19172, 129 }, // 51.53, 10.66 x 53.2, 12.34
-    { 19173, Bucket(357) }, // 53.2, 10.66 x 54.88, 12.34
-    { 19174, Bucket(360) }, // 51.53, 12.34 x 53.2, 14.02
-    { 19175, 716 }, // 53.2, 12.34 x 54.88, 14.02
-    { 19178, Bucket(366) }, // 48.17, 15.7 x 49.85, 17.37
-    { 19179, 2088 }, // 49.85, 15.7 x 51.53, 17.37
-    { 19184, Bucket(371) }, // 54.88, 10.66 x 56.56, 12.34
-    { 19186, Bucket(371) }, // 54.88, 12.34 x 56.56, 14.02
-    { 24587, 1869 }, // 36.43, 22.41 x 38.1, 24.09
-    { 24597, Bucket(374) }, // 46.49, 17.37 x 48.17, 19.05
-    { 24599, 511 }, // 46.49, 19.05 x 48.17, 20.73
-    { 24660, Bucket(381) }, // 58.24, 17.37 x 59.91, 19.05
-    { 24693, Bucket(386) }, // 59.91, 24.09 x 61.59, 25.76
-    { 24794, Bucket(390) }, // 54.88, 35.83 x 56.56, 37.51
-    { 24816, Bucket(398) }, // 54.88, 37.51 x 56.56, 39.18
-    { 25120, 1529 }, // 34.75, 50.93 x 36.43, 52.61
-    { 25200, Bucket(409) }, // 54.88, 50.93 x 56.56, 52.61
-    { 27146, 2247 }, // 34.75, 102.9 x 36.43, 104.6
-    { 27278, Bucket(414) }, // 38.1, 116.4 x 39.78, 118
-    { 27308, Bucket(420) }, // 38.1, 121.4 x 39.78, 123.1
-    { 37296, 784 }, // -39.07, 144.9 x -37.39, 146.6
-    { 38269, 2217 }, // 33.07, 134.8 x 34.75, 136.5
-    { 48639, Bucket(424) }, // 33.07, 311 x 34.75, 312.7
-    { 49115, 2306 }, // 29.72, 331.1 x 31.39, 332.8
-    { 49155, Bucket(432) }, // 36.43, 126.4 x 38.1, 128.1
-    { 49174, 1705 }, // 44.81, 126.4 x 46.49, 128.1
-    { 49280, Bucket(438) }, // 34.75, 138.2 x 36.43, 139.8
-    { 59553, Bucket(443) }, // 36.43, 305.9 x 38.1, 307.6
-    { 59555, 2154 }, // 36.43, 307.6 x 38.1, 309.3
-    { 59556, 1996 }, // 38.1, 305.9 x 39.78, 307.6
-    { 59572, Bucket(446) }, // 44.81, 305.9 x 46.49, 307.6
-    { 59573, 2200 }, // 46.49, 305.9 x 48.17, 307.6
-    { 59616, 1643 }, // 48.17, 305.9 x 49.85, 307.6
-    { 59917, 1126 }, // 39.78, 316 x 41.46, 317.7
-    { 18020, Bucket(449) }, // -37.39, -73.22 x -36.55, -72.38
-    { 19568, 234 }, // -35.72, -59.8 x -34.88, -58.96
-    { 19570, 234 }, // -35.72, -58.96 x -34.88, -58.12
-    { 19571, Bucket(452) }, // -34.88, -58.96 x -34.04, -58.12
-    { 20302, Bucket(458) }, // -23.97, -47.22 x -23.13, -46.38
-    { 20324, 830 }, // -23.97, -46.38 x -23.13, -45.54
-    { 20335, Bucket(467) }, // -23.13, -43.86 x -22.29, -43.02
-    { 20714, 1490 }, // -12.23, -77.42 x -11.39, -76.58
-    { 21665, 1475 }, // 8.744, -79.93 x 9.583, -79.09
-    { 22159, Bucket(471) }, // 10.42, -67.35 x 11.26, -66.51
-    { 22256, 1122 }, // 17.97, -66.51 x 18.81, -65.67
-    { 23223, 1603 }, // -13.07, -38.83 x -12.23, -37.99
-    { 32092, 1065 }, // 33.07, -7.792 x 33.91, -6.953
-    { 50259, 2146 }, // -34.88, 18.21 x -34.04, 19.05
-    { 50262, Bucket(474) }, // -34.04, 18.21 x -33.2, 19.05
-    { 54915, Bucket(477) }, // 8.744, 38.35 x 9.583, 39.18
-    { 55108, Bucket(480) }, // 29.72, 30.8 x 30.55, 31.63
-    { 56720, 2258 }, // 24.68, 50.93 x 25.52, 51.77
-    { 62508, 1572 }, // 9.583, 76.09 x 10.42, 76.93
-    { 62679, 2321 }, // 20.49, 78.61 x 21.33, 79.45
-    { 62826, Bucket(483) }, // 28.04, 76.93 x 28.88, 77.77
-    { 62878, 1833 }, // 26.36, 80.29 x 27.2, 81.13
-    { 63265, 1785 }, // 22.17, 87.84 x 23, 88.68
-    { 63844, Bucket(488) }, // 2.872, 101.3 x 3.711, 102.1
-    { 64818, 1658 }, // 24.68, 102.1 x 25.52, 102.9
-    { 64879, Bucket(492) }, // 30.55, 103.8 x 31.39, 104.6
-    { 64929, Bucket(495) }, // 22.17, 108 x 23, 108.8
-    { 65015, Bucket(498) }, // 33.91, 108.8 x 34.75, 109.6
-    { 65289, 2060 }, // 22.17, 113 x 23, 113.8
-    { 65291, Bucket(502) }, // 22.17, 113.8 x 23, 114.7
-    { 65292, Bucket(507) }, // 23, 113 x 23.84, 113.8
-    { 65358, 2064 }, // 29.72, 113.8 x 30.55, 114.7
-    { 65359, Bucket(513) }, // 30.55, 113.8 x 31.39, 114.7
-    { 65378, Bucket(516) }, // 28.04, 115.5 x 28.88, 116.4
-    { 65402, 1707 }, // 31.39, 117.2 x 32.23, 118
-    { 65417, 1633 }, // 22.17, 119.7 x 23, 120.6
-    { 65427, Bucket(519) }, // 25.52, 118.9 x 26.36, 119.7
-    { 65456, 332 }, // 24.68, 121.4 x 25.52, 122.2
-    { 65484, Bucket(522) }, // 29.72, 119.7 x 30.55, 120.6
-    { 65487, Bucket(526) }, // 30.55, 120.6 x 31.39, 121.4
-    { 65508, 1847 }, // 29.72, 121.4 x 30.55, 122.2
-    { 65509, Bucket(525) }, // 30.55, 121.4 x 31.39, 122.2
-    { 65565, 877 }, // 40.62, -88.32 x 41.46, -87.48
-    { 65608, Bucket(529) }, // 41.46, -88.32 x 42.3, -87.48
-    { 65722, 1670 }, // 38.1, -77.42 x 38.94, -76.58
-    { 65723, Bucket(543) }, // 38.94, -77.42 x 39.78, -76.58
-    { 65764, Bucket(547) }, // 43.14, -79.93 x 43.98, -79.09
-    { 66052, 1125 }, // 36.43, -76.58 x 37.26, -75.74
-    { 66070, Bucket(553) }, // 39.78, -75.74 x 40.62, -74.9
-    { 66077, 392 }, // 40.62, -74.9 x 41.46, -74.06
-    { 66079, Bucket(559) }, // 40.62, -74.06 x 41.46, -73.22
-    { 66120, 392 }, // 41.46, -74.9 x 42.3, -74.06
-    { 66122, 388 }, // 41.46, -74.06 x 42.3, -73.22
-    { 66138, Bucket(566) }, // 44.81, -74.06 x 45.65, -73.22
-    { 66152, 417 }, // 41.46, -71.55 x 42.3, -70.71
-    { 66153, Bucket(569) }, // 42.3, -71.55 x 43.14, -70.71
-    { 75792, 2282 }, // 38.1, -9.469 x 38.94, -8.631
-    { 75837, 1925 }, // 40.62, -4.436 x 41.46, -3.597
-    { 75929, 240 }, // 38.94, -1.081 x 39.78, -0.2419
-    { 75959, Bucket(573) }, // 40.62, 1.436 x 41.46, 2.275
-    { 75981, 741 }, // 43.98, -1.081 x 44.81, -0.2419
-    { 75992, Bucket(576) }, // 44.81, -1.081 x 45.65, -0.2419
-    { 76002, 1221 }, // 41.46, 1.436 x 42.3, 2.275
-    { 76004, 484 }, // 43.14, 0.597 x 43.98, 1.436
-    { 76006, 484 }, // 43.14, 1.436 x 43.98, 2.275
-    { 76023, 2289 }, // 47.33, 1.436 x 48.17, 2.275
-    { 76029, 1418 }, // 47.33, 2.275 x 48.17, 3.114
-    { 76139, 1295 }, // 55.72, -3.597 x 56.56, -2.758
-    { 76171, 962 }, // 49.01, -0.2419 x 49.85, 0.597
-    { 76180, Bucket(579) }, // 53.2, -2.758 x 54.04, -1.92
-    { 76182, Bucket(585) }, // 53.2, -1.92 x 54.04, -1.081
-    { 76200, Bucket(588) }, // 48.17, 2.275 x 49.01, 3.114
-    { 76206, 1440 }, // 49.85, 3.114 x 50.69, 3.952
-    { 76207, 1044 }, // 50.69, 3.114 x 51.53, 3.952
-    { 76226, Bucket(591) }, // 54.88, -1.92 x 55.72, -1.081
-    { 76334, 1883 }, // 36.43, 9.824 x 37.26, 10.66
-    { 76376, 1008 }, // 44.81, 5.63 x 45.65, 6.469
-    { 76377, Bucket(594) }, // 45.65, 5.63 x 46.49, 6.469
-    { 76380, 1133 }, // 46.49, 5.63 x 47.33, 6.469
-    { 76382, 346 }, // 46.49, 6.469 x 47.33, 7.308
-    { 76400, 395 }, // 44.81, 7.308 x 45.65, 8.147
-    { 76405, Bucket(598) }, // 47.33, 7.308 x 48.17, 8.147
-    { 76406, Bucket(603) }, // 46.49, 8.147 x 47.33, 8.986
-    { 76407, Bucket(608) }, // 47.33, 8.147 x 48.17, 8.986
-    { 76408, Bucket(620) }, // 44.81, 8.986 x 45.65, 9.824
-    { 76488, Bucket(625) }, // 41.46, 12.34 x 42.3, 13.18
-    { 76500, Bucket(631) }, // 46.49, 10.66 x 47.33, 11.5
-    { 76501, 115 }, // 47.33, 10.66 x 48.17, 11.5
-    { 76502, 970 }, // 46.49, 11.5 x 47.33, 12.34
-    { 76503, 115 }, // 47.33, 11.5 x 48.17, 12.34
-    { 76509, 1054 }, // 47.33, 12.34 x 48.17, 13.18
-    { 76533, 1341 }, // 47.33, 14.02 x 48.17, 14.86
-    { 76534, Bucket(634) }, // 46.49, 14.86 x 47.33, 15.7
-    { 76535, 2077 }, // 47.33, 14.86 x 48.17, 15.7
-    { 76541, Bucket(640) }, // 47.33, 15.7 x 48.17, 16.54
-    { 76548, Bucket(644) }, // 49.85, 3.952 x 50.69, 4.791
-    { 76549, Bucket(647) }, // 50.69, 3.952 x 51.53, 4.791
-    { 76559, Bucket(663) }, // 50.69, 6.469 x 51.53, 7.308
-    { 76560, Bucket(675) }, // 51.53, 3.952 x 52.36, 4.791
-    { 76576, 1675 }, // 48.17, 7.308 x 49.01, 8.147
-    { 76577, 679 }, // 49.01, 7.308 x 49.85, 8.147
-    { 76578, Bucket(687) }, // 48.17, 8.147 x 49.01, 8.986
-    { 76579, Bucket(691) }, // 49.01, 8.147 x 49.85, 8.986
-    { 76582, Bucket(696) }, // 49.85, 8.147 x 50.69, 8.986
-    { 76584, Bucket(705) }, // 48.17, 8.986 x 49.01, 9.824
-    { 76585, Bucket(709) }, // 49.01, 8.986 x 49.85, 9.824
-    { 76587, 619 }, // 49.01, 9.824 x 49.85, 10.66
-    { 76594, 609 }, // 51.53, 8.147 x 52.36, 8.986
-    { 76606, Bucket(713) }, // 53.2, 9.824 x 54.04, 10.66
-    { 76672, 115 }, // 48.17, 10.66 x 49.01, 11.5
-    { 76673, Bucket(717) }, // 49.01, 10.66 x 49.85, 11.5
-    { 76674, 115 }, // 48.17, 11.5 x 49.01, 12.34
-    { 76676, 194 }, // 49.85, 10.66 x 50.69, 11.5
-    { 76679, Bucket(723) }, // 50.69, 11.5 x 51.53, 12.34
-    { 76685, Bucket(727) }, // 50.69, 12.34 x 51.53, 13.18
-    { 76687, Bucket(731) }, // 50.69, 13.18 x 51.53, 14.02
-    { 76692, Bucket(738) }, // 53.2, 10.66 x 54.04, 11.5
-    { 76699, Bucket(741) }, // 52.36, 13.18 x 53.2, 14.02
-    { 76704, Bucket(752) }, // 48.17, 14.02 x 49.01, 14.86
-    { 76708, Bucket(755) }, // 49.85, 14.02 x 50.69, 14.86
-    { 76709, 1265 }, // 50.69, 14.02 x 51.53, 14.86
-    { 76712, Bucket(640) }, // 48.17, 15.7 x 49.01, 16.54
-    { 76731, Bucket(768) }, // 52.36, 16.54 x 53.2, 17.37
-    { 76743, Bucket(777) }, // 57.4, 11.5 x 58.24, 12.34
-    { 98351, Bucket(788) }, // 37.26, 23.25 x 38.1, 24.09
-    { 98362, 1183 }, // 38.1, 23.25 x 38.94, 24.09
-    { 98386, 256 }, // 44.81, 18.21 x 45.65, 19.05
-    { 98411, Bucket(794) }, // 42.3, 23.25 x 43.14, 24.09
-    { 98486, 1606 }, // 39.78, 28.28 x 40.62, 29.12
-    { 98487, Bucket(797) }, // 40.62, 28.28 x 41.46, 29.12
-    { 98509, Bucket(802) }, // 43.98, 25.76 x 44.81, 26.6
-    { 98584, Bucket(808) }, // 51.53, 19.05 x 52.36, 19.89
-    { 98641, Bucket(821) }, // 59.08, 17.37 x 59.91, 18.21
-    { 98734, 217 }, // 49.85, 29.96 x 50.69, 30.8
-    { 98756, Bucket(824) }, // 56.56, 24.09 x 57.4, 24.92
-    { 98811, Bucket(827) }, // 59.08, 29.96 x 59.91, 30.8
-    { 98814, Bucket(827) }, // 59.91, 29.96 x 60.75, 30.8
-    { 99116, Bucket(832) }, // 49.85, 35.83 x 50.69, 36.67
-    { 100480, 1569 }, // 34.75, 50.93 x 35.59, 51.77
-    { 100481, Bucket(835) }, // 35.59, 50.93 x 36.43, 51.77
-    { 109077, 2291 }, // 40.62, 111.3 x 41.46, 112.2
-    { 109110, 413 }, // 39.78, 115.5 x 40.62, 116.4
-    { 109115, 1872 }, // 38.94, 117.2 x 39.78, 118
-    { 109288, Bucket(839) }, // 41.46, 123.1 x 42.3, 123.9
-    { 149099, Bucket(844) }, // -38.23, 144 x -37.39, 144.9
-    { 149185, Bucket(848) }, // -38.23, 144.9 x -37.39, 145.7
-    { 149246, 1973 }, // -34.04, 150.8 x -33.2, 151.6
-    { 151195, 1212 }, // -41.59, 174.2 x -40.75, 175.1
-    { 151246, Bucket(880) }, // -37.39, 174.2 x -36.55, 175.1
-    { 153047, 435 }, // 33.91, 132.3 x 34.75, 133.1
-    { 194557, 1685 }, // 33.91, 311 x 34.75, 311.8
-    { 195958, 406 }, // 33.07, 316.8 x 33.91, 317.7
-    { 195964, 406 }, // 33.07, 317.7 x 33.91, 318.5
-    { 196475, Bucket(883) }, // 32.23, 331.9 x 33.07, 332.8
-    { 196616, 1562 }, // 34.75, 126.4 x 35.59, 127.3
-    { 196621, Bucket(886) }, // 37.26, 126.4 x 38.1, 127.3
-    { 196640, 1473 }, // 34.75, 128.1 x 35.59, 128.9
-    { 196641, Bucket(892) }, // 35.59, 128.1 x 36.43, 128.9
-    { 196642, Bucket(895) }, // 34.75, 128.9 x 35.59, 129.8
-    { 196771, 2224 }, // 35.59, 135.7 x 36.43, 136.5
-    { 196776, Bucket(900) }, // 34.75, 136.5 x 35.59, 137.3
-    { 197123, Bucket(904) }, // 35.59, 139 x 36.43, 139.8
-    { 238215, Bucket(910) }, // 37.26, 306.8 x 38.1, 307.6
-    { 238232, Bucket(969) }, // 38.1, 307.6 x 38.94, 308.5
-    { 238295, Bucket(972) }, // 47.33, 306.8 x 48.17, 307.6
-    { 238465, 1228 }, // 49.01, 305.9 x 49.85, 306.8
-    { 239801, 2160 }, // 38.94, 324.4 x 39.78, 325.2
-    { 239804, 2160 }, // 39.78, 324.4 x 40.62, 325.2
-    { 239887, Bucket(980) }, // 50.69, 315.2 x 51.53, 316
-    { 240346, 665 }, // 44.81, 335.3 x 45.65, 336.1
-    { 240368, 665 }, // 44.81, 336.1 x 45.65, 337
-    { 72185, Bucket(983) }, // -33.62, -70.71 x -33.2, -70.29
-    { 72540, 924 }, // -33.2, -69.03 x -32.78, -68.61
-    { 78284, 234 }, // -34.88, -58.96 x -34.46, -58.54
-    { 78286, Bucket(986) }, // -34.88, -58.54 x -34.46, -58.12
-    { 81211, Bucket(989) }, // -23.55, -46.8 x -23.13, -46.38
-    { 81342, Bucket(993) }, // -23.13, -43.44 x -22.71, -43.02
-    { 81343, Bucket(999) }, // -22.71, -43.44 x -22.29, -43.02
-    { 87539, Bucket(1002) }, // 33.49, -84.55 x 33.91, -84.13
-    { 87662, Bucket(1005) }, // 25.52, -80.35 x 25.94, -79.93
-    { 88222, 1511 }, // 10.42, -71.96 x 10.84, -71.55
-    { 92191, Bucket(1008) }, // -16, -48.48 x -15.58, -48.06
-    { 92213, Bucket(1008) }, // -16, -48.06 x -15.58, -47.64
-    { 93696, 2302 }, // -5.517, -43.02 x -5.098, -42.6
-    { 93697, 2302 }, // -5.098, -43.02 x -4.678, -42.6
-    { 93837, 1264 }, // -4.259, -38.83 x -3.839, -38.41
-    { 93848, Bucket(1011) }, // -3.839, -38.83 x -3.42, -38.41
-    { 114966, 1318 }, // -9.711, -35.89 x -9.292, -35.47
-    { 115034, 2303 }, // -7.195, -35.05 x -6.775, -34.64
-    { 115037, 2150 }, // -5.936, -35.47 x -5.517, -35.05
-    { 128369, Bucket(1014) }, // 33.49, -7.792 x 33.91, -7.372
-    { 226883, Bucket(1017) }, // 25.1, 51.35 x 25.52, 51.77
-    { 227017, 1524 }, // 25.1, 55.12 x 25.52, 55.54
-    { 250095, 1591 }, // 12.52, 77.35 x 12.94, 77.77
-    { 250106, Bucket(1020) }, // 12.94, 77.35 x 13.36, 77.77
-    { 250212, 2066 }, // 18.81, 72.74 x 19.23, 73.16
-    { 250646, Bucket(1023) }, // 17.13, 78.19 x 17.55, 78.61
-    { 250719, 1984 }, // 20.91, 79.03 x 21.33, 79.45
-    { 251305, Bucket(1026) }, // 28.46, 76.93 x 28.88, 77.35
-    { 255400, Bucket(1031) }, // 1.194, 103.8 x 1.613, 104.2
-    { 258169, 2155 }, // 13.36, 100.4 x 13.78, 100.8
-    { 259274, Bucket(1034) }, // 24.68, 102.5 x 25.1, 102.9
-    { 259516, 2288 }, // 30.55, 103.8 x 30.97, 104.2
-    { 259696, 1531 }, // 26.36, 106.3 x 26.78, 106.7
-    { 259717, 2086 }, // 22.58, 108 x 23, 108.4
-    { 259877, Bucket(1037) }, // 29.3, 106.3 x 29.72, 106.7
-    { 261157, 2063 }, // 22.58, 113 x 23, 113.4
-    { 261164, Bucket(1040) }, // 22.17, 113.8 x 22.58, 114.3
-    { 261168, Bucket(1052) }, // 23, 113 x 23.42, 113.4
-    { 261170, 1655 }, // 23, 113.4 x 23.42, 113.8
-    { 261386, Bucket(1057) }, // 28.04, 112.6 x 28.46, 113
-    { 261408, 2073 }, // 28.04, 113 x 28.46, 113.4
-    { 261435, 2075 }, // 30.13, 114.3 x 30.55, 114.7
-    { 261438, 2131 }, // 30.55, 114.3 x 30.97, 114.7
-    { 261495, Bucket(1060) }, // 34.33, 113.4 x 34.75, 113.8
-    { 261653, 1852 }, // 24.26, 118 x 24.68, 118.5
-    { 261671, 1632 }, // 22.58, 120.1 x 23, 120.6
-    { 261757, 2248 }, // 27.62, 120.6 x 28.04, 121
-    { 261824, Bucket(1064) }, // 24.68, 121.4 x 25.1, 121.8
-    { 261939, 1732 }, // 30.13, 120.1 x 30.55, 120.6
-    { 261949, Bucket(1067) }, // 30.97, 120.6 x 31.39, 121
-    { 261951, Bucket(1070) }, // 30.97, 121 x 31.39, 121.4
-    { 261955, Bucket(1080) }, // 31.81, 118.5 x 32.23, 118.9
-    { 261986, Bucket(1084) }, // 31.39, 120.1 x 31.81, 120.6
-    { 261992, 1863 }, // 31.39, 120.6 x 31.81, 121
-    { 261994, 316 }, // 31.39, 121 x 31.81, 121.4
-    { 262032, 1638 }, // 29.72, 121.4 x 30.13, 121.8
-    { 262037, Bucket(1087) }, // 30.97, 121.4 x 31.39, 121.8
-    { 262080, 316 }, // 31.39, 121.4 x 31.81, 121.8
-    { 262263, 878 }, // 41.04, -87.9 x 41.46, -87.48
-    { 262435, 725 }, // 41.88, -87.9 x 42.3, -87.48
-    { 262751, 1434 }, // 41.04, -82.03 x 41.46, -81.61
-    { 262779, Bucket(1099) }, // 40.2, -80.35 x 40.62, -79.93
-    { 262922, 1434 }, // 41.46, -82.03 x 41.88, -81.61
-    { 263059, Bucket(1103) }, // 43.56, -79.51 x 43.98, -79.09
-    { 264282, Bucket(1107) }, // 39.78, -75.32 x 40.2, -74.9
-    { 264316, Bucket(1115) }, // 40.62, -74.06 x 41.04, -73.64
-    { 264488, 391 }, // 41.46, -74.06 x 41.88, -73.64
-    { 264555, 1959 }, // 45.23, -73.64 x 45.65, -73.22
-    { 303169, Bucket(1130) }, // 38.52, -9.469 x 38.94, -9.05
-    { 303191, 1260 }, // 41.04, -9.05 x 41.46, -8.631
-    { 303197, 1260 }, // 41.04, -8.631 x 41.46, -8.211
-    { 303347, Bucket(1134) }, // 40.2, -4.017 x 40.62, -3.597
-    { 303353, Bucket(1144) }, // 40.2, -3.597 x 40.62, -3.178
-    { 303546, Bucket(1147) }, // 43.14, -3.178 x 43.56, -2.758
-    { 303714, Bucket(1152) }, // 38.1, -0.6613 x 38.52, -0.2419
-    { 303719, Bucket(1155) }, // 39.36, -0.6613 x 39.78, -0.2419
-    { 303721, 318 }, // 38.52, -0.2419 x 38.94, 0.1775
-    { 303831, 1223 }, // 41.04, 1.016 x 41.46, 1.436
-    { 303839, Bucket(1161) }, // 41.04, 1.855 x 41.46, 2.275
-    { 303904, 393 }, // 41.46, -1.081 x 41.88, -0.6613
-    { 303965, 1004 }, // 47.75, -1.92 x 48.17, -1.5
-    { 303997, 1812 }, // 47.75, -0.2419 x 48.17, 0.1775
-    { 303999, 1812 }, // 47.75, 0.1775 x 48.17, 0.597
-    { 304010, 1219 }, // 41.46, 1.855 x 41.88, 2.275
-    { 304250, Bucket(1168) }, // 53.2, -6.533 x 53.62, -6.114
-    { 304266, 2298 }, // 48.17, -4.856 x 48.59, -4.436
-    { 304336, 1366 }, // 53.2, -6.114 x 53.62, -5.694
-    { 304701, Bucket(1171) }, // 51.11, -0.2419 x 51.53, 0.1775
-    { 304710, 225 }, // 52.36, -2.339 x 52.78, -1.92
-    { 304716, 225 }, // 52.36, -1.92 x 52.78, -1.5
-    { 304719, 230 }, // 52.78, -1.5 x 53.2, -1.081
-    { 304722, Bucket(1180) }, // 53.2, -2.339 x 53.62, -1.92
-    { 304730, 2100 }, // 53.2, -1.5 x 53.62, -1.081
-    { 304744, Bucket(1190) }, // 51.53, -0.2419 x 51.95, 0.1775
-    { 304779, Bucket(1193) }, // 48.59, 1.855 x 49.01, 2.275
-    { 304801, Bucket(1196) }, // 48.59, 2.275 x 49.01, 2.694
-    { 304830, Bucket(1201) }, // 50.69, 3.533 x 51.11, 3.952
-    { 304900, 1295 }, // 55.72, -2.758 x 56.14, -2.339
-    { 305434, 227 }, // 43.14, 5.211 x 43.56, 5.63
-    { 305473, 336 }, // 45.23, 3.952 x 45.65, 4.372
-    { 305475, Bucket(1206) }, // 45.23, 4.372 x 45.65, 4.791
-    { 305484, 978 }, // 45.65, 4.791 x 46.07, 5.211
-    { 305511, 2279 }, // 46.07, 6.05 x 46.49, 6.469
-    { 305534, 2216 }, // 47.33, 6.888 x 47.75, 7.308
-    { 305611, Bucket(1209) }, // 45.23, 8.566 x 45.65, 8.986
-    { 305617, Bucket(1212) }, // 46.91, 7.308 x 47.33, 7.727
-    { 305620, Bucket(1215) }, // 47.33, 7.308 x 47.75, 7.727
-    { 305627, 1859 }, // 46.91, 8.566 x 47.33, 8.986
-    { 305628, 1965 }, // 47.33, 8.147 x 47.75, 8.566
-    { 305630, Bucket(1220) }, // 47.33, 8.566 x 47.75, 8.986
-    { 305633, Bucket(1224) }, // 45.23, 8.986 x 45.65, 9.405
-    { 305651, 379 }, // 46.91, 9.405 x 47.33, 9.824
-    { 305652, 499 }, // 47.33, 8.986 x 47.75, 9.405
-    { 305657, 379 }, // 46.91, 9.824 x 47.33, 10.24
-    { 305725, 1214 }, // 37.68, 13.18 x 38.1, 13.6
-    { 305768, 1214 }, // 38.1, 13.18 x 38.52, 13.6
-    { 305781, 639 }, // 41.04, 12.34 x 41.46, 12.76
-    { 305820, 1457 }, // 37.26, 14.86 x 37.68, 15.28
-    { 305876, Bucket(1231) }, // 40.62, 14.02 x 41.04, 14.44
-    { 305939, 1871 }, // 43.56, 11.08 x 43.98, 11.5
-    { 305952, 628 }, // 41.46, 12.34 x 41.88, 12.76
-    { 305953, Bucket(1235) }, // 41.88, 12.34 x 42.3, 12.76
-    { 306003, Bucket(1241) }, // 46.91, 11.08 x 47.33, 11.5
-    { 306004, Bucket(631) }, // 47.33, 10.66 x 47.75, 11.08
-    { 306006, Bucket(631) }, // 47.33, 11.08 x 47.75, 11.5
-    { 306007, Bucket(1245) }, // 47.75, 11.08 x 48.17, 11.5
-    { 306009, Bucket(1240) }, // 46.91, 11.5 x 47.33, 11.92
-    { 306012, Bucket(631) }, // 47.33, 11.5 x 47.75, 11.92
-    { 306013, Bucket(1244) }, // 47.75, 11.5 x 48.17, 11.92
-    { 306014, Bucket(1249) }, // 47.33, 11.92 x 47.75, 12.34
-    { 306015, 157 }, // 47.75, 11.92 x 48.17, 12.34
-    { 306036, 867 }, // 47.33, 12.34 x 47.75, 12.76
-    { 306039, 1805 }, // 47.75, 12.76 x 48.17, 13.18
-    { 306133, Bucket(1252) }, // 47.75, 14.02 x 48.17, 14.44
-    { 306139, Bucket(1255) }, // 46.91, 15.28 x 47.33, 15.7
-    { 306161, Bucket(1256) }, // 46.91, 15.7 x 47.33, 16.12
-    { 306167, Bucket(1259) }, // 47.75, 16.12 x 48.17, 16.54
-    { 306195, 792 }, // 50.27, 4.372 x 50.69, 4.791
-    { 306196, Bucket(1264) }, // 50.69, 3.952 x 51.11, 4.372
-    { 306198, Bucket(1270) }, // 50.69, 4.372 x 51.11, 4.791
-    { 306222, 275 }, // 49.01, 6.888 x 49.43, 7.308
-    { 306235, Bucket(1273) }, // 50.27, 6.888 x 50.69, 7.308
-    { 306237, Bucket(1276) }, // 51.11, 6.469 x 51.53, 6.888
-    { 306238, Bucket(1281) }, // 50.69, 6.888 x 51.11, 7.308
-    { 306239, Bucket(1290) }, // 51.11, 6.888 x 51.53, 7.308
-    { 306249, 1076 }, // 51.95, 4.791 x 52.36, 5.211
-    { 306252, 1076 }, // 52.36, 4.791 x 52.78, 5.211
-    { 306282, Bucket(1296) }, // 51.53, 6.888 x 51.95, 7.308
-    { 306307, 1334 }, // 48.59, 7.727 x 49.01, 8.147
-    { 306313, Bucket(1301) }, // 48.59, 8.147 x 49.01, 8.566
-    { 306315, Bucket(1311) }, // 48.59, 8.566 x 49.01, 8.986
-    { 306316, Bucket(1314) }, // 49.01, 8.147 x 49.43, 8.566
-    { 306317, 679 }, // 49.43, 8.147 x 49.85, 8.566
-    { 306318, 679 }, // 49.01, 8.566 x 49.43, 8.986
-    { 306319, 679 }, // 49.43, 8.566 x 49.85, 8.986
-    { 306325, Bucket(1325) }, // 51.11, 7.308 x 51.53, 7.727
-    { 306328, 712 }, // 49.85, 8.147 x 50.27, 8.566
-    { 306331, 570 }, // 50.27, 8.566 x 50.69, 8.986
-    { 306337, Bucket(1330) }, // 48.59, 8.986 x 49.01, 9.405
-    { 306340, 403 }, // 49.01, 8.986 x 49.43, 9.405
-    { 306368, Bucket(1350) }, // 51.53, 7.308 x 51.95, 7.727
-    { 306383, Bucket(1353) }, // 52.78, 8.566 x 53.2, 8.986
-    { 306406, 847 }, // 52.36, 9.405 x 52.78, 9.824
-    { 306424, Bucket(1362) }, // 53.2, 9.824 x 53.62, 10.24
-    { 306425, 1124 }, // 53.62, 9.824 x 54.04, 10.24
-    { 306688, Bucket(1366) }, // 48.17, 10.66 x 48.59, 11.08
-    { 306690, Bucket(1370) }, // 48.17, 11.08 x 48.59, 11.5
-    { 306696, Bucket(1374) }, // 48.17, 11.5 x 48.59, 11.92
-    { 306701, 194 }, // 49.43, 11.5 x 49.85, 11.92
-    { 306718, 197 }, // 50.69, 11.92 x 51.11, 12.34
-    { 306719, Bucket(1377) }, // 51.11, 11.92 x 51.53, 12.34
-    { 306733, Bucket(1384) }, // 49.43, 13.18 x 49.85, 13.6
-    { 306741, Bucket(1387) }, // 51.11, 12.34 x 51.53, 12.76
-    { 306742, Bucket(1398) }, // 50.69, 12.76 x 51.11, 13.18
-    { 306750, Bucket(1402) }, // 50.69, 13.6 x 51.11, 14.02
-    { 306761, Bucket(1409) }, // 51.95, 11.5 x 52.36, 11.92
-    { 306762, 879 }, // 51.53, 11.92 x 51.95, 12.34
-    { 306782, Bucket(1416) }, // 54.04, 11.92 x 54.46, 12.34
-    { 306784, 879 }, // 51.53, 12.34 x 51.95, 12.76
-    { 306793, 151 }, // 51.95, 13.18 x 52.36, 13.6
-    { 306796, Bucket(1424) }, // 52.36, 13.18 x 52.78, 13.6
-    { 306816, Bucket(1445) }, // 48.17, 14.02 x 48.59, 14.44
-    { 306832, 1796 }, // 49.85, 14.02 x 50.27, 14.44
-    { 306834, 1796 }, // 49.85, 14.44 x 50.27, 14.86
-    { 306837, 714 }, // 51.11, 14.02 x 51.53, 14.44
-    { 306850, Bucket(1449) }, // 48.17, 16.12 x 48.59, 16.54
-    { 306854, Bucket(1456) }, // 49.01, 16.12 x 49.43, 16.54
-    { 306860, Bucket(1460) }, // 49.01, 16.54 x 49.43, 16.95
-    { 306880, Bucket(1467) }, // 51.53, 14.02 x 51.95, 14.44
-    { 306898, Bucket(1471) }, // 53.2, 14.44 x 53.62, 14.86
-    { 306977, Bucket(1480) }, // 55.3, 12.34 x 55.72, 12.76
-    { 306980, 304 }, // 55.72, 12.34 x 56.14, 12.76
-    { 307013, Bucket(1485) }, // 59.49, 10.66 x 59.91, 11.08
-    { 307024, Bucket(1485) }, // 59.91, 10.66 x 60.33, 11.08
-    { 393407, Bucket(1489) }, // 37.68, 23.67 x 38.1, 24.09
-    { 393566, Bucket(1493) }, // 47.33, 18.63 x 47.75, 19.05
-    { 393588, Bucket(1503) }, // 47.33, 19.05 x 47.75, 19.47
-    { 393834, 1728 }, // 38.1, 27.02 x 38.52, 27.44
-    { 393950, 848 }, // 40.62, 28.7 x 41.04, 29.12
-    { 394193, 1091 }, // 46.91, 27.44 x 47.33, 27.86
-    { 394336, Bucket(1517) }, // 51.53, 19.05 x 51.95, 19.47
-    { 394338, Bucket(1524) }, // 51.53, 19.47 x 51.95, 19.89
-    { 394433, 281 }, // 51.95, 20.73 x 52.36, 21.15
-    { 394566, Bucket(1529) }, // 59.08, 17.79 x 59.49, 18.21
-    { 394939, Bucket(1539) }, // 50.27, 30.38 x 50.69, 30.8
-    { 394961, Bucket(1544) }, // 53.62, 27.44 x 54.04, 27.86
-    { 395176, Bucket(1547) }, // 54.88, 29.96 x 55.3, 30.38
-    { 395376, Bucket(1555) }, // 39.78, 32.47 x 40.2, 32.89
-    { 395645, Bucket(1558) }, // 47.75, 33.31 x 48.17, 33.73
-    { 396113, Bucket(1563) }, // 46.91, 37.51 x 47.33, 37.93
-    { 396464, 546 }, // 49.85, 35.83 x 50.27, 36.25
-    { 396466, 546 }, // 49.85, 36.25 x 50.27, 36.67
-    { 397060, Bucket(1570) }, // 55.72, 37.51 x 56.14, 37.93
-    { 401651, Bucket(1573) }, // 40.2, 49.67 x 40.62, 50.09
-    { 401666, 1553 }, // 41.46, 44.64 x 41.88, 45.06
-    { 401924, 1530 }, // 35.59, 50.93 x 36.01, 51.35
-    { 403211, 550 }, // 55.3, 52.19 x 55.72, 52.61
-    { 403214, 550 }, // 55.72, 52.19 x 56.14, 52.61
-    { 403493, 333 }, // 36.01, 59.32 x 36.43, 59.74
-    { 428347, 1905 }, // 43.56, 87.42 x 43.98, 87.84
-    { 435436, 783 }, // 52.36, 103.8 x 52.78, 104.2
-    { 436258, Bucket(1060) }, // 34.75, 113.4 x 35.17, 113.8
-    { 436287, Bucket(1576) }, // 37.68, 114.3 x 38.1, 114.7
-    { 436330, 1586 }, // 38.1, 114.3 x 38.52, 114.7
-    { 436402, Bucket(1579) }, // 36.43, 116.8 x 36.85, 117.2
-    { 436431, 414 }, // 39.36, 115.9 x 39.78, 116.4
-    { 436442, Bucket(1582) }, // 39.78, 115.9 x 40.2, 116.4
-    { 436453, Bucket(1589) }, // 39.36, 116.4 x 39.78, 116.8
-    { 436464, Bucket(1592) }, // 39.78, 116.4 x 40.2, 116.8
-    { 436775, Bucket(1602) }, // 36.01, 120.1 x 36.43, 120.6
-    { 436843, 1714 }, // 38.52, 121 x 38.94, 121.4
-    { 437152, Bucket(1605) }, // 41.46, 123.1 x 41.88, 123.5
-    { 603215, 2255 }, // -27.75, 152.9 x -27.33, 153.3
-    { 611827, 1465 }, // 33.49, 130.2 x 33.91, 130.6
-    { 612309, 1487 }, // 34.33, 134.8 x 34.75, 135.2
-    { 612311, Bucket(1608) }, // 34.33, 135.2 x 34.75, 135.7
-    { 778223, Bucket(1611) }, // 32.65, 312.2 x 33.07, 312.7
-    { 778228, 1814 }, // 33.91, 311 x 34.33, 311.4
-    { 784724, 1347 }, // 20.49, 326.1 x 20.91, 326.5
-    { 784845, Bucket(1614) }, // 19.23, 330.3 x 19.65, 330.7
-    { 785518, Bucket(1624) }, // 25.52, 329 x 25.94, 329.4
-    { 785903, Bucket(1627) }, // 32.65, 332.4 x 33.07, 332.8
-    { 786245, Bucket(1627) }, // 32.65, 332.8 x 33.07, 333.2
-    { 786477, 1561 }, // 36.01, 127.3 x 36.43, 127.7
-    { 786484, Bucket(1632) }, // 37.26, 126.4 x 37.68, 126.8
-    { 786486, Bucket(1637) }, // 37.26, 126.8 x 37.68, 127.3
-    { 786487, 1429 }, // 37.68, 126.8 x 38.1, 127.3
-    { 786508, 1527 }, // 38.94, 125.6 x 39.36, 126
-    { 786569, 1822 }, // 35.17, 128.9 x 35.59, 129.4
-    { 786707, Bucket(1642) }, // 43.56, 125.2 x 43.98, 125.6
-    { 786710, 2082 }, // 43.98, 125.2 x 44.4, 125.6
-    { 787072, 1487 }, // 34.75, 134.8 x 35.17, 135.2
-    { 787080, Bucket(1646) }, // 34.75, 135.7 x 35.17, 136.1
-    { 788491, Bucket(1650) }, // 35.17, 139.4 x 35.59, 139.8
-    { 788494, Bucket(1653) }, // 35.59, 139.4 x 36.01, 139.8
-    { 788516, 1165 }, // 35.59, 139.8 x 36.01, 140.3
-    { 788584, Bucket(1661) }, // 38.1, 140.7 x 38.52, 141.1
-    { 788783, 1746 }, // 42.72, 141.1 x 43.14, 141.5
-    { 952861, 947 }, // 37.68, 306.8 x 38.1, 307.2
-    { 953155, 1845 }, // 45.23, 306.4 x 45.65, 306.8
-    { 953161, Bucket(1664) }, // 45.23, 306.8 x 45.65, 307.2
-    { 953862, Bucket(1667) }, // 49.01, 306.4 x 49.43, 306.8
-    { 959205, Bucket(1670) }, // 39.36, 324.4 x 39.78, 324.8
-    { 961472, 1898 }, // 44.81, 336.1 x 45.23, 336.6
-    { 288718, 1500 }, // -33.62, -70.92 x -33.41, -70.71
-    { 288740, Bucket(1675) }, // -33.62, -70.71 x -33.41, -70.5
-    { 313114, 234 }, // -34.88, -59.17 x -34.67, -58.96
-    { 313145, Bucket(1679) }, // -34.67, -58.54 x -34.46, -58.33
-    { 313146, 210 }, // -34.88, -58.33 x -34.67, -58.12
-    { 313147, 210 }, // -34.67, -58.33 x -34.46, -58.12
-    { 324841, 960 }, // -23.76, -46.8 x -23.55, -46.59
-    { 325583, 1262 }, // -19.99, -44.07 x -19.78, -43.86
-    { 326740, 2179 }, // -22.71, -43.02 x -22.5, -42.81
-    { 341344, 470 }, // 6.227, -75.74 x 6.437, -75.53
-    { 346649, 1980 }, // 8.953, -79.51 x 9.163, -79.3
-    { 354222, Bucket(1684) }, // 18.39, -70.08 x 18.6, -69.87
-    { 354535, 1801 }, // 10.21, -67.14 x 10.42, -66.93
-    { 354546, 1801 }, // 10.42, -67.14 x 10.63, -66.93
-    { 355588, 1509 }, // 18.39, -69.87 x 18.6, -69.66
-    { 371570, 1330 }, // -13.07, -38.62 x -12.86, -38.41
-    { 372503, 2301 }, // -7.404, -39.46 x -7.195, -39.25
-    { 375394, 2180 }, // -3.839, -38.62 x -3.63, -38.41
-    { 460077, Bucket(1687) }, // -8.243, -35.05 x -8.034, -34.84
-    { 460088, 1611 }, // -8.034, -35.05 x -7.824, -34.84
-    { 460150, 2151 }, // -5.936, -35.26 x -5.727, -35.05
-    { 489131, 91 }, // 28.25, -16.39 x 28.46, -16.18
-    { 489134, 91 }, // 28.46, -16.39 x 28.67, -16.18
-    { 513520, Bucket(1691) }, // 33.91, -6.953 x 34.12, -6.743
-    { 516283, 1981 }, // 8.953, 7.098 x 9.163, 7.308
-    { 516625, Bucket(1694) }, // 8.953, 7.308 x 9.163, 7.518
-    { 804151, 2144 }, // -34.25, 18.42 x -34.04, 18.63
-    { 804194, Bucket(1697) }, // -34.04, 18.42 x -33.83, 18.63
-    { 881737, 1459 }, // 29.92, 31.22 x 30.13, 31.43
-    { 882826, 1525 }, // 21.33, 39.81 x 21.54, 40.02
-    { 908351, 1470 }, // 29.51, 52.4 x 29.72, 52.61
-    { 1000849, 1458 }, // 19.02, 72.74 x 19.23, 72.95
-    { 1001930, Bucket(1700) }, // 12.94, 80.08 x 13.15, 80.29
-    { 1002587, 1828 }, // 17.34, 78.4 x 17.55, 78.61
-    { 1003583, 1977 }, // 22.79, 72.53 x 23, 72.74
-    { 1003626, 1977 }, // 23, 72.53 x 23.21, 72.74
-    { 1004396, 1730 }, // 26.78, 75.68 x 26.99, 75.88
-    { 1019352, Bucket(1703) }, // -6.356, 106.7 x -6.146, 106.9
-    { 1021513, 1741 }, // 3.081, 101.7 x 3.291, 101.9
-    { 1021600, 1724 }, // 1.194, 103.8 x 1.404, 104
-    { 1022021, 2125 }, // -3.21, 104.6 x -3, 104.8
-    { 1022032, 2125 }, // -3, 104.6 x -2.791, 104.8
-    { 1032666, 1489 }, // 13.78, 100.2 x 13.99, 100.4
-    { 1032677, 1731 }, // 13.57, 100.4 x 13.78, 100.6
-    { 1032688, 1489 }, // 13.78, 100.4 x 13.99, 100.6
-    { 1037099, 743 }, // 24.89, 102.7 x 25.1, 102.9
-    { 1038066, 1826 }, // 30.55, 104 x 30.76, 104.2
-    { 1039511, Bucket(1706) }, // 29.51, 106.5 x 29.72, 106.7
-    { 1039554, 1836 }, // 29.72, 106.5 x 29.92, 106.7
-    { 1042941, 1740 }, // 14.41, 121 x 14.62, 121.2
-    { 1043624, 1740 }, // 14.62, 121 x 14.83, 121.2
-    { 1044631, Bucket(1709) }, // 22.79, 113.2 x 23, 113.4
-    { 1044639, 1729 }, // 22.79, 113.6 x 23, 113.8
-    { 1044658, Bucket(1712) }, // 22.17, 114.1 x 22.38, 114.3
-    { 1044661, 1729 }, // 22.79, 113.8 x 23, 114.1
-    { 1044674, Bucket(1715) }, // 23, 113.2 x 23.21, 113.4
-    { 1044682, 1729 }, // 23, 113.6 x 23.21, 113.8
-    { 1045247, 2285 }, // 24.47, 117.8 x 24.68, 118
-    { 1045546, 1622 }, // 28.04, 112.8 x 28.25, 113
-    { 1045752, 1719 }, // 30.55, 114.3 x 30.76, 114.5
-    { 1045981, 2208 }, // 34.54, 113.4 x 34.75, 113.6
-    { 1046613, 2285 }, // 24.47, 118 x 24.68, 118.2
-    { 1046955, 1363 }, // 24.89, 121.2 x 25.1, 121.4
-    { 1047297, Bucket(1720) }, // 24.89, 121.4 x 25.1, 121.6
-    { 1047756, 2080 }, // 30.13, 120.1 x 30.34, 120.3
-    { 1047775, 1645 }, // 31.18, 120.3 x 31.39, 120.6
-    { 1047797, 1645 }, // 31.18, 120.6 x 31.39, 120.8
-    { 1047841, 1986 }, // 31.6, 118.9 x 31.81, 119.1
-    { 1047939, 2211 }, // 31.6, 119.9 x 31.81, 120.1
-    { 1047968, 1862 }, // 31.39, 120.6 x 31.6, 120.8
-    { 1048128, 2250 }, // 29.72, 121.4 x 29.92, 121.6
-    { 1048149, 1422 }, // 31.18, 121.4 x 31.39, 121.6
-    { 1048320, 260 }, // 31.39, 121.4 x 31.6, 121.6
-    { 1049734, 1861 }, // 41.88, -88.11 x 42.09, -87.9
-    { 1049740, 1861 }, // 41.88, -87.9 x 42.09, -87.69
-    { 1051559, 1436 }, // 38.73, -77.21 x 38.94, -77
-    { 1057128, Bucket(1725) }, // 39.78, -75.32 x 39.99, -75.11
-    { 1057242, Bucket(1733) }, // 40.62, -74.27 x 40.83, -74.06
-    { 1057264, Bucket(1738) }, // 40.62, -74.06 x 40.83, -73.85
-    { 1058084, 2196 }, // 45.23, -75.74 x 45.44, -75.53
-    { 1058221, Bucket(1747) }, // 45.44, -73.64 x 45.65, -73.43
-    { 1058456, Bucket(1751) }, // 42.3, -71.13 x 42.51, -70.92
-    { 1058565, 1959 }, // 45.44, -73.22 x 45.65, -73.01
-    { 1212678, Bucket(1754) }, // 38.52, -9.26 x 38.73, -9.05
-    { 1212788, 1256 }, // 41.04, -8.631 x 41.25, -8.421
-    { 1213008, 1547 }, // 37.26, -6.114 x 37.47, -5.904
-    { 1213135, 1384 }, // 37.06, -3.807 x 37.26, -3.597
-    { 1213150, 1721 }, // 37.68, -3.807 x 37.89, -3.597
-    { 1213157, 1384 }, // 37.06, -3.597 x 37.26, -3.388
-    { 1213391, Bucket(1759) }, // 40.41, -3.807 x 40.62, -3.597
-    { 1214591, Bucket(1762) }, // 37.89, -1.29 x 38.1, -1.081
-    { 1214878, Bucket(1765) }, // 39.36, -0.4516 x 39.57, -0.2419
-    { 1215179, 1444 }, // 36.64, 2.904 x 36.85, 3.114
-    { 1215201, 1444 }, // 36.64, 3.114 x 36.85, 3.323
-    { 1215359, Bucket(1768) }, // 41.25, 2.065 x 41.46, 2.275
-    { 1215445, 1219 }, // 41.25, 2.275 x 41.46, 2.484
-    { 1215709, 744 }, // 44.6, -0.6613 x 44.81, -0.4516
-    { 1215847, Bucket(1776) }, // 47.12, -1.71 x 47.33, -1.5
-    { 1215880, 744 }, // 44.81, -0.6613 x 45.02, -0.4516
-    { 1215960, 904 }, // 47.33, -0.6613 x 47.54, -0.4516
-    { 1216042, 1605 }, // 41.46, 2.065 x 41.67, 2.275
-    { 1216078, 485 }, // 43.56, 1.226 x 43.77, 1.436
-    { 1216100, 485 }, // 43.56, 1.436 x 43.77, 1.646
-    { 1216128, 1219 }, // 41.46, 2.275 x 41.67, 2.484
-    { 1216238, Bucket(1780) }, // 43.56, 3.743 x 43.77, 3.952
-    { 1216336, 887 }, // 47.33, 0.597 x 47.54, 0.8067
-    { 1216380, 2284 }, // 47.75, 1.855 x 47.96, 2.065
-    { 1216959, 1366 }, // 52.99, -6.324 x 53.2, -6.114
-    { 1218714, Bucket(1784) }, // 49.01, -0.4516 x 49.22, -0.2419
-    { 1218805, Bucket(1787) }, // 51.32, -0.2419 x 51.53, -0.03218
-    { 1218807, 1543 }, // 51.32, -0.03218 x 51.53, 0.1775
-    { 1218878, 577 }, // 52.78, -1.29 x 52.99, -1.081
-    { 1218976, 1452 }, // 51.53, -0.2419 x 51.74, -0.03218
-    { 1218978, 1543 }, // 51.53, -0.03218 x 51.74, 0.1775
-    { 1219119, Bucket(1790) }, // 48.8, 2.065 x 49.01, 2.275
-    { 1219205, Bucket(1794) }, // 48.8, 2.275 x 49.01, 2.484
-    { 1219322, 1403 }, // 50.69, 3.743 x 50.9, 3.952
-    { 1221347, Bucket(1817) }, // 36.64, 10.03 x 36.85, 10.24
-    { 1221521, 1160 }, // 39.15, 8.986 x 39.36, 9.195
-    { 1221870, 2220 }, // 43.56, 7.098 x 43.77, 7.308
-    { 1221936, Bucket(1822) }, // 45.65, 4.791 x 45.86, 5.001
-    { 1221991, 557 }, // 47.12, 5.001 x 47.33, 5.211
-    { 1222017, Bucket(1830) }, // 45.02, 5.63 x 45.23, 5.84
-    { 1222044, Bucket(1833) }, // 46.07, 6.05 x 46.28, 6.259
-    { 1222087, 324 }, // 47.12, 5.84 x 47.33, 6.05
-    { 1222403, 314 }, // 45.02, 7.518 x 45.23, 7.727
-    { 1222468, Bucket(1838) }, // 46.91, 7.308 x 47.12, 7.518
-    { 1222483, Bucket(1841) }, // 47.54, 7.518 x 47.75, 7.727
-    { 1222488, 2117 }, // 47.33, 7.727 x 47.54, 7.937
-    { 1222493, Bucket(1844) }, // 47.96, 7.727 x 48.17, 7.937
-    { 1222509, 1851 }, // 47.12, 8.566 x 47.33, 8.776
-    { 1222514, Bucket(1849) }, // 47.33, 8.356 x 47.54, 8.566
-    { 1222520, 787 }, // 47.33, 8.566 x 47.54, 8.776
-    { 1222533, 352 }, // 45.44, 8.986 x 45.65, 9.195
-    { 1222554, 317 }, // 45.65, 9.615 x 45.86, 9.824
-    { 1222567, 785 }, // 45.44, 10.03 x 45.65, 10.24
-    { 1222573, 785 }, // 45.44, 10.24 x 45.65, 10.45
-    { 1222618, 980 }, // 47.33, 9.615 x 47.54, 9.824
-    { 1223670, 885 }, // 41.04, 16.75 x 41.25, 16.95
-    { 1223723, 629 }, // 41.67, 12.13 x 41.88, 12.34
-    { 1223809, Bucket(1852) }, // 41.67, 12.34 x 41.88, 12.55
-    { 1223812, 625 }, // 41.88, 12.34 x 42.09, 12.55
-    { 1224015, Bucket(1855) }, // 47.12, 11.29 x 47.33, 11.5
-    { 1224031, 612 }, // 47.96, 11.29 x 48.17, 11.5
-    { 1224053, Bucket(1861) }, // 47.96, 11.5 x 48.17, 11.71
-    { 1224157, 1802 }, // 47.96, 12.76 x 48.17, 12.97
-    { 1224568, 2072 }, // 47.33, 15.28 x 47.54, 15.49
-    { 1224671, 902 }, // 47.96, 16.33 x 48.17, 16.54
-    { 1224780, 1031 }, // 50.27, 4.372 x 50.48, 4.582
-    { 1224786, Bucket(1873) }, // 50.69, 4.162 x 50.9, 4.372
-    { 1224790, Bucket(1876) }, // 51.11, 4.162 x 51.32, 4.372
-    { 1224792, Bucket(1879) }, // 50.69, 4.372 x 50.9, 4.582
-    { 1224796, Bucket(1882) }, // 51.11, 4.372 x 51.32, 4.582
-    { 1224844, 596 }, // 48.59, 6.05 x 48.8, 6.259
-    { 1224860, 1537 }, // 49.43, 6.05 x 49.64, 6.259
-    { 1224950, Bucket(1889) }, // 51.11, 6.679 x 51.32, 6.888
-    { 1224953, Bucket(1897) }, // 50.9, 6.888 x 51.11, 7.098
-    { 1224957, Bucket(1902) }, // 51.32, 6.888 x 51.53, 7.098
-    { 1224959, Bucket(1905) }, // 51.32, 7.098 x 51.53, 7.308
-    { 1224966, Bucket(1912) }, // 51.95, 4.162 x 52.15, 4.372
-    { 1224969, Bucket(1921) }, // 51.74, 4.372 x 51.95, 4.582
-    { 1224972, Bucket(1929) }, // 51.95, 4.372 x 52.15, 4.582
-    { 1224997, Bucket(1933) }, // 52.15, 4.791 x 52.36, 5.001
-    { 1224998, Bucket(1948) }, // 51.95, 5.001 x 52.15, 5.211
-    { 1225008, Bucket(1951) }, // 52.36, 4.791 x 52.57, 5.001
-    { 1225128, 1163 }, // 51.53, 6.888 x 51.74, 7.098
-    { 1225130, Bucket(1966) }, // 51.53, 7.098 x 51.74, 7.308
-    { 1225255, Bucket(1969) }, // 48.8, 8.356 x 49.01, 8.566
-    { 1225260, 120 }, // 48.59, 8.566 x 48.8, 8.776
-    { 1225261, 120 }, // 48.8, 8.566 x 49.01, 8.776
-    { 1225262, 90 }, // 48.59, 8.776 x 48.8, 8.986
-    { 1225263, 90 }, // 48.8, 8.776 x 49.01, 8.986
-    { 1225265, 679 }, // 49.22, 8.147 x 49.43, 8.356
-    { 1225266, Bucket(1974) }, // 49.01, 8.356 x 49.22, 8.566
-    { 1225267, 679 }, // 49.22, 8.356 x 49.43, 8.566
-    { 1225272, 827 }, // 49.01, 8.566 x 49.22, 8.776
-    { 1225273, Bucket(1978) }, // 49.22, 8.566 x 49.43, 8.776
-    { 1225274, 403 }, // 49.01, 8.776 x 49.22, 8.986
-    { 1225275, Bucket(1982) }, // 49.22, 8.776 x 49.43, 8.986
-    { 1225301, Bucket(1985) }, // 51.32, 7.308 x 51.53, 7.518
-    { 1225320, 712 }, // 49.85, 8.566 x 50.06, 8.776
-    { 1225321, Bucket(1988) }, // 50.06, 8.566 x 50.27, 8.776
-    { 1225323, 570 }, // 50.06, 8.776 x 50.27, 8.986
-    { 1225350, 170 }, // 48.59, 9.195 x 48.8, 9.405
-    { 1225361, 653 }, // 49.22, 8.986 x 49.43, 9.195
-    { 1225472, 670 }, // 51.53, 7.308 x 51.74, 7.518
-    { 1225510, Bucket(1999) }, // 51.95, 8.356 x 52.15, 8.566
-    { 1225516, 608 }, // 51.95, 8.566 x 52.15, 8.776
-    { 1225535, Bucket(2003) }, // 52.99, 8.776 x 53.2, 8.986
-    { 1225615, Bucket(2007) }, // 52.15, 9.615 x 52.36, 9.824
-    { 1225626, Bucket(2017) }, // 52.36, 9.615 x 52.57, 9.824
-    { 1225637, 854 }, // 52.15, 9.824 x 52.36, 10.03
-    { 1225647, Bucket(2027) }, // 52.15, 10.45 x 52.36, 10.66
-    { 1225697, 539 }, // 53.41, 9.824 x 53.62, 10.03
-    { 1226784, Bucket(2034) }, // 48.17, 11.5 x 48.38, 11.71
-    { 1226877, 190 }, // 51.32, 11.92 x 51.53, 12.13
-    { 1226922, 1352 }, // 48.17, 13.81 x 48.38, 14.02
-    { 1226933, 942 }, // 49.64, 13.18 x 49.85, 13.39
-    { 1226960, 649 }, // 50.69, 12.34 x 50.9, 12.55
-    { 1226965, Bucket(2046) }, // 51.32, 12.34 x 51.53, 12.55
-    { 1226968, 1041 }, // 50.69, 12.76 x 50.9, 12.97
-    { 1227001, Bucket(2049) }, // 50.9, 13.6 x 51.11, 13.81
-    { 1227044, 97 }, // 51.95, 11.5 x 52.15, 11.71
-    { 1227051, Bucket(2053) }, // 51.74, 12.13 x 51.95, 12.34
-    { 1227083, 126 }, // 53.41, 11.29 x 53.62, 11.5
-    { 1227151, Bucket(2056) }, // 52.15, 12.97 x 52.36, 13.18
-    { 1227162, Bucket(2062) }, // 52.36, 12.97 x 52.57, 13.18
-    { 1227184, 130 }, // 52.36, 13.18 x 52.57, 13.39
-    { 1227186, Bucket(2070) }, // 52.36, 13.39 x 52.57, 13.6
-    { 1227192, 643 }, // 52.36, 13.6 x 52.57, 13.81
-    { 1227266, Bucket(2080) }, // 48.17, 14.23 x 48.38, 14.44
-    { 1227380, 882 }, // 51.11, 14.86 x 51.32, 15.07
-    { 1227402, Bucket(2086) }, // 48.17, 16.33 x 48.38, 16.54
-    { 1227440, Bucket(2089) }, // 49.01, 16.54 x 49.22, 16.75
-    { 1227523, Bucket(2093) }, // 51.74, 14.23 x 51.95, 14.44
-    { 1227593, Bucket(2096) }, // 53.41, 14.44 x 53.62, 14.65
-    { 1227698, Bucket(2101) }, // 52.36, 16.75 x 52.57, 16.95
-    { 1227897, 658 }, // 57.61, 11.92 x 57.82, 12.13
-    { 1228053, Bucket(2104) }, // 59.7, 10.66 x 59.91, 10.87
-    { 1228096, Bucket(2104) }, // 59.91, 10.66 x 60.12, 10.87
-    { 1573837, Bucket(2112) }, // 40.41, 22.83 x 40.62, 23.04
-    { 1573848, Bucket(2112) }, // 40.62, 22.83 x 40.83, 23.04
-    { 1574266, Bucket(2115) }, // 47.33, 18.84 x 47.54, 19.05
-    { 1574352, Bucket(2120) }, // 47.33, 19.05 x 47.54, 19.26
-    { 1575801, 1485 }, // 40.83, 28.7 x 41.04, 28.91
-    { 1575803, Bucket(2131) }, // 40.83, 28.91 x 41.04, 29.12
-    { 1575804, 1485 }, // 41.04, 28.7 x 41.25, 28.91
-    { 1575889, 1483 }, // 40.83, 29.12 x 41.04, 29.33
-    { 1576150, Bucket(2134) }, // 44.4, 25.97 x 44.6, 26.18
-    { 1576773, Bucket(2137) }, // 47.12, 27.44 x 47.33, 27.65
-    { 1577426, 611 }, // 54.04, 19.26 x 54.25, 19.47
-    { 1577484, Bucket(2141) }, // 48.59, 21.15 x 48.8, 21.36
-    { 1577735, 1035 }, // 52.15, 20.94 x 52.36, 21.15
-    { 1578267, Bucket(2156) }, // 59.29, 18 x 59.49, 18.21
-    { 1579756, 547 }, // 50.27, 30.38 x 50.48, 30.59
-    { 1580707, Bucket(2159) }, // 55.09, 30.17 x 55.3, 30.38
-    { 1581026, 685 }, // 59.91, 30.17 x 60.12, 30.38
-    { 1581506, Bucket(2162) }, // 39.78, 32.68 x 39.99, 32.89
-    { 1581670, 1577 }, // 36.85, 35.2 x 37.06, 35.41
-    { 1584452, Bucket(2165) }, // 46.91, 37.51 x 47.12, 37.72
-    { 1584453, Bucket(2169) }, // 47.12, 37.51 x 47.33, 37.72
-    { 1585673, 277 }, // 48.38, 34.57 x 48.59, 34.78
-    { 1586874, 465 }, // 55.72, 37.3 x 55.93, 37.51
-    { 1588240, 462 }, // 55.72, 37.51 x 55.93, 37.72
-    { 1588924, Bucket(2172) }, // 56.14, 43.8 x 56.35, 44.01
-    { 1606665, 1552 }, // 41.67, 44.64 x 41.88, 44.85
-    { 1607704, Bucket(2175) }, // 35.59, 51.35 x 35.8, 51.56
-    { 1609734, Bucket(2178) }, // 48.59, 44.43 x 48.8, 44.64
-    { 1610587, Bucket(2181) }, // 54.25, 48.2 x 54.46, 48.41
-    { 1610677, 2227 }, // 52.99, 50.09 x 53.2, 50.3
-    { 1610720, 2227 }, // 53.2, 50.09 x 53.41, 50.3
-    { 1611322, 1503 }, // 55.72, 49.04 x 55.93, 49.25
-    { 1613975, 1198 }, // 36.22, 59.53 x 36.43, 59.74
-    { 1616767, Bucket(2186) }, // 41.25, 69.17 x 41.46, 69.38
-    { 1619177, 1506 }, // 56.77, 60.58 x 56.98, 60.79
-    { 1705674, 1526 }, // 43.14, 76.72 x 43.35, 76.93
-    { 1705696, 1526 }, // 43.14, 76.93 x 43.35, 77.14
-    { 1711744, Bucket(2190) }, // 54.88, 82.81 x 55.09, 83.02
-    { 1717277, Bucket(2193) }, // 56.35, 84.9 x 56.56, 85.11
-    { 1741741, Bucket(2197) }, // 52.15, 104.2 x 52.36, 104.4
-    { 1741744, Bucket(2202) }, // 52.36, 103.8 x 52.57, 104
-    { 1745032, 2208 }, // 34.75, 113.4 x 34.96, 113.6
-    { 1745725, 1870 }, // 39.57, 115.9 x 39.78, 116.2
-    { 1745727, 754 }, // 39.57, 116.2 x 39.78, 116.4
-    { 1745770, Bucket(2209) }, // 39.78, 116.2 x 39.99, 116.4
-    { 1745813, 754 }, // 39.57, 116.4 x 39.78, 116.6
-    { 1745856, Bucket(2214) }, // 39.78, 116.4 x 39.99, 116.6
-    { 1747717, 1714 }, // 38.73, 121.4 x 38.94, 121.6
-    { 2386961, Bucket(2217) }, // -38.02, 144.9 x -37.81, 145.1
-    { 2386964, Bucket(2221) }, // -37.81, 144.9 x -37.6, 145.1
-    { 2387748, 2218 }, // -35.3, 149.1 x -35.09, 149.3
-    { 2447308, 1462 }, // 33.49, 130.2 x 33.7, 130.4
-    { 2447310, 1462 }, // 33.49, 130.4 x 33.7, 130.6
-    { 2448756, 1461 }, // 34.33, 132.3 x 34.54, 132.5
-    { 2449239, 1477 }, // 34.54, 135 x 34.75, 135.2
-    { 2449247, Bucket(2224) }, // 34.54, 135.4 x 34.75, 135.7
-    { 3138896, 1348 }, // 20.49, 326.1 x 20.7, 326.3
-    { 3139380, Bucket(2232) }, // 19.23, 330.3 x 19.44, 330.5
-    { 3139381, 1697 }, // 19.44, 330.3 x 19.65, 330.5
-    { 3143613, 761 }, // 32.86, 332.4 x 33.07, 332.6
-    { 3143614, 1284 }, // 32.65, 332.6 x 32.86, 332.8
-    { 3143656, 761 }, // 33.07, 332.4 x 33.28, 332.6
-    { 3145451, Bucket(2236) }, // 29.92, 339.3 x 30.13, 339.5
-    { 3145935, 1430 }, // 37.06, 127.1 x 37.26, 127.3
-    { 3145945, 1431 }, // 37.47, 126.8 x 37.68, 127.1
-    { 3145946, 1430 }, // 37.26, 127.1 x 37.47, 127.3
-    { 3146032, 1528 }, // 38.94, 125.6 x 39.15, 125.8
-    { 3146829, Bucket(2239) }, // 43.77, 125.2 x 43.98, 125.4
-    { 3148298, Bucket(2242) }, // 34.75, 135.4 x 34.96, 135.7
-    { 3153964, 1975 }, // 35.17, 139.4 x 35.38, 139.6
-    { 3153965, 1494 }, // 35.38, 139.4 x 35.59, 139.6
-    { 3153967, 1757 }, // 35.38, 139.6 x 35.59, 139.8
-    { 3153976, 2231 }, // 35.59, 139.4 x 35.8, 139.6
-    { 3153978, Bucket(2245) }, // 35.59, 139.6 x 35.8, 139.8
-    { 3154064, 1766 }, // 35.59, 139.8 x 35.8, 140.1
-    { 3154065, 2192 }, // 35.8, 139.8 x 36.01, 140.1
-    { 3155135, Bucket(2256) }, // 42.93, 141.3 x 43.14, 141.5
-    { 3811446, Bucket(2260) }, // 37.68, 307 x 37.89, 307.2
-    { 3811450, Bucket(2269) }, // 37.26, 307.4 x 37.47, 307.6
-    { 3811455, 1815 }, // 37.89, 307.4 x 38.1, 307.6
-    { 3811536, 2299 }, // 37.26, 307.6 x 37.47, 307.8
-    { 3811541, 1815 }, // 37.89, 307.6 x 38.1, 307.8
-    { 3812645, 181 }, // 45.44, 306.8 x 45.65, 307
-    { 3836821, Bucket(2272) }, // 39.57, 324.4 x 39.78, 324.6
-    { 3836864, Bucket(2278) }, // 39.78, 324.4 x 39.99, 324.6
-    { 3838443, 2124 }, // 53.41, 315.8 x 53.62, 316
-    { 3838785, 2124 }, // 53.41, 316 x 53.62, 316.2
-    { 3845888, 663 }, // 44.81, 336.1 x 45.02, 336.4
-    { 1154961, 1501 }, // -33.51, -70.71 x -33.41, -70.6
-    { 1252578, 210 }, // -34.88, -58.44 x -34.77, -58.33
-    { 1252579, 210 }, // -34.77, -58.44 x -34.67, -58.33
-    { 1252582, Bucket(2282) }, // -34.67, -58.44 x -34.56, -58.33
-    { 1300736, 1389 }, // -23.97, -46.38 x -23.87, -46.27
-    { 1300752, 831 }, // -23.55, -46.38 x -23.45, -46.27
-    { 1301458, 2178 }, // -22.71, -43.76 x -22.61, -43.65
-    { 1301484, Bucket(2286) }, // -22.92, -43.23 x -22.82, -43.13
-    { 1365207, 470 }, // 6.122, -75.63 x 6.227, -75.53
-    { 1365378, 837 }, // 6.227, -75.63 x 6.332, -75.53
-    { 1400630, 1051 }, // 33.7, -84.44 x 33.8, -84.34
-    { 1418186, 1681 }, // 10.42, -67.04 x 10.53, -66.93
-    { 1418208, 1681 }, // 10.42, -66.93 x 10.53, -66.83
-    { 1500035, Bucket(2290) }, // -3.734, -40.4 x -3.63, -40.3
-    { 3216605, 2141 }, // -34.14, 18.42 x -34.04, 18.53
-    { 3505022, 1408 }, // 31.18, 29.85 x 31.29, 29.96
-    { 4020871, 1646 }, // 28.35, 77.04 x 28.46, 77.14
-    { 4020881, 1795 }, // 28.56, 76.93 x 28.67, 77.04
-    { 4020882, 1646 }, // 28.46, 77.04 x 28.56, 77.14
-    { 4171765, Bucket(2293) }, // 14.51, 121 x 14.62, 121.1
-    { 4174496, 1738 }, // 14.62, 121 x 14.72, 121.1
-    { 4178525, 898 }, // 22.9, 113.2 x 23, 113.3
-    { 4178627, 380 }, // 22.27, 113.9 x 22.38, 114.1
-    { 4178630, Bucket(2296) }, // 22.38, 113.9 x 22.48, 114.1
-    { 4178635, Bucket(2301) }, // 22.27, 114.2 x 22.38, 114.3
-    { 4178657, 2127 }, // 22.27, 114.3 x 22.38, 114.4
-    { 4178816, 1729 }, // 23, 113.8 x 23.11, 113.9
-    { 4182529, 1622 }, // 28.14, 113 x 28.25, 113.1
-    { 4186738, 1182 }, // 22.58, 120.2 x 22.69, 120.3
-    { 4189200, 1181 }, // 25.1, 121.4 x 25.21, 121.5
-    { 4191768, 2211 }, // 31.81, 119.9 x 31.92, 120
-    { 4192514, 2251 }, // 29.72, 121.5 x 29.82, 121.6
-    { 4193280, Bucket(2304) }, // 31.39, 121.4 x 31.5, 121.5
-    { 4197985, 1027 }, // 39.05, -84.55 x 39.15, -84.44
-    { 4206282, 1436 }, // 38.94, -77.1 x 39.05, -77
-    { 4206762, Bucket(2307) }, // 41.46, -81.72 x 41.56, -81.61
-    { 4207104, Bucket(2310) }, // 41.46, -81.61 x 41.56, -81.51
-    { 4228513, 2323 }, // 39.89, -75.32 x 39.99, -75.22
-    { 4229056, 1651 }, // 40.62, -74.06 x 40.73, -73.96
-    { 4229057, 1702 }, // 40.73, -74.06 x 40.83, -73.96
-    { 4229058, 1651 }, // 40.62, -73.96 x 40.73, -73.85
-    { 4229064, 2148 }, // 40.62, -73.85 x 40.73, -73.75
-    { 4232337, 2120 }, // 45.34, -75.74 x 45.44, -75.63
-    { 4233781, 497 }, // 42.19, -71.13 x 42.3, -71.02
-    { 4850718, 1516 }, // 38.73, -9.155 x 38.84, -9.05
-    { 4851067, Bucket(2314) }, // 41.14, -8.735 x 41.25, -8.631
-    { 4851153, Bucket(2317) }, // 41.14, -8.631 x 41.25, -8.526
-    { 4852142, Bucket(2320) }, // 36.64, -4.541 x 36.74, -4.436
-    { 4852484, 1548 }, // 36.64, -4.436 x 36.74, -4.331
-    { 4853560, 1720 }, // 40.2, -3.807 x 40.31, -3.702
-    { 4853561, 1590 }, // 40.31, -3.807 x 40.41, -3.702
-    { 4853566, 1573 }, // 40.41, -3.702 x 40.52, -3.597
-    { 4853652, 1573 }, // 40.41, -3.597 x 40.52, -3.492
-    { 4856745, 1379 }, // 43.24, -2.968 x 43.35, -2.863
-    { 4859430, 243 }, // 38.31, -0.5565 x 38.42, -0.4516
-    { 4861437, 1114 }, // 41.35, 2.065 x 41.46, 2.17
-    { 4861439, Bucket(2323) }, // 41.35, 2.17 x 41.46, 2.275
-    { 4861534, Bucket(2328) }, // 39.57, 2.589 x 39.68, 2.694
-    { 4861556, 1550 }, // 39.57, 2.694 x 39.68, 2.799
-    { 4862033, 1321 }, // 42.82, -2.758 x 42.93, -2.654
-    { 4863988, 1811 }, // 47.96, 0.1775 x 48.07, 0.2824
-    { 4864314, Bucket(2331) }, // 43.56, 1.331 x 43.66, 1.436
-    { 4864400, Bucket(2331) }, // 43.56, 1.436 x 43.66, 1.541
-    { 4864954, 1025 }, // 43.56, 3.848 x 43.66, 3.952
-    { 4865643, 1962 }, // 45.76, 3.009 x 45.86, 3.114
-    { 4865729, 1962 }, // 45.76, 3.114 x 45.86, 3.218
-    { 4869205, 1366 }, // 53.1, -6.114 x 53.2, -6.009
-    { 4872771, Bucket(2334) }, // 55.82, -4.331 x 55.93, -4.226
-    { 4874970, 961 }, // 49.43, 0.07268 x 49.53, 0.1775
-    { 4875229, 1541 }, // 51.42, -0.03218 x 51.53, 0.07268
-    { 4875681, 2098 }, // 53.31, -1.5 x 53.41, -1.395
-    { 4876389, 726 }, // 49.32, 1.016 x 49.43, 1.121
-    { 4876400, 726 }, // 49.43, 1.016 x 49.53, 1.121
-    { 4876478, Bucket(2337) }, // 48.8, 2.17 x 48.9, 2.275
-    { 4876817, Bucket(2341) }, // 48.69, 2.275 x 48.8, 2.38
-    { 4876820, Bucket(2344) }, // 48.8, 2.275 x 48.9, 2.38
-    { 4876821, 1019 }, // 48.9, 2.275 x 49.01, 2.38
-    { 4877119, 1556 }, // 50.58, 3.009 x 50.69, 3.114
-    { 4877205, Bucket(2347) }, // 50.58, 3.114 x 50.69, 3.218
-    { 4877248, 259 }, // 50.69, 3.114 x 50.79, 3.218
-    { 4885391, Bucket(2350) }, // 36.74, 10.14 x 36.85, 10.24
-    { 4885402, 1886 }, // 36.85, 10.14 x 36.95, 10.24
-    { 4886800, 2308 }, // 43.56, 3.952 x 43.66, 4.057
-    { 4886947, Bucket(2353) }, // 43.24, 5.316 x 43.35, 5.42
-    { 4886953, 690 }, // 43.24, 5.42 x 43.35, 5.525
-    { 4886955, 1310 }, // 43.24, 5.525 x 43.35, 5.63
-    { 4887483, 2223 }, // 43.66, 7.203 x 43.77, 7.308
-    { 4887965, 556 }, // 47.23, 5.001 x 47.33, 5.106
-    { 4888008, 556 }, // 47.33, 5.001 x 47.44, 5.106
-    { 4888069, 1010 }, // 45.13, 5.63 x 45.23, 5.735
-    { 4888071, 1011 }, // 45.13, 5.735 x 45.23, 5.84
-    { 4888177, 1058 }, // 46.18, 6.05 x 46.28, 6.154
-    { 4889082, 742 }, // 44.4, 8.881 x 44.5, 8.986
-    { 4889874, 728 }, // 46.91, 7.413 x 47.02, 7.518
-    { 4889932, 1922 }, // 47.54, 7.518 x 47.65, 7.622
-    { 4889974, 179 }, // 47.96, 7.832 x 48.07, 7.937
-    { 4890015, 488 }, // 47.23, 8.461 x 47.33, 8.566
-    { 4890058, Bucket(2358) }, // 47.33, 8.461 x 47.44, 8.566
-    { 4890080, Bucket(2369) }, // 47.33, 8.566 x 47.44, 8.671
-    { 4890433, 1857 }, // 47.44, 8.986 x 47.54, 9.09
-    { 4891607, 1216 }, // 38, 13.28 x 38.1, 13.39
-    { 4892290, Bucket(2373) }, // 38.1, 13.28 x 38.21, 13.39
-    { 4895030, 1947 }, // 43.77, 11.19 x 43.87, 11.29
-    { 4895239, 622 }, // 41.77, 12.45 x 41.88, 12.55
-    { 4895250, Bucket(2377) }, // 41.88, 12.45 x 41.98, 12.55
-    { 4895899, 293 }, // 45.34, 11.82 x 45.44, 11.92
-    { 4896061, 1017 }, // 47.23, 11.29 x 47.33, 11.4
-    { 4896063, 1017 }, // 47.23, 11.4 x 47.33, 11.5
-    { 4896127, Bucket(2380) }, // 48.07, 11.4 x 48.17, 11.5
-    { 4896213, Bucket(2384) }, // 48.07, 11.5 x 48.17, 11.61
-    { 4899147, Bucket(2394) }, // 50.79, 4.267 x 50.9, 4.372
-    { 4899163, 933 }, // 51.21, 4.267 x 51.32, 4.372
-    { 4899169, Bucket(2402) }, // 50.79, 4.372 x 50.9, 4.477
-    { 4899185, Bucket(2405) }, // 51.21, 4.372 x 51.32, 4.477
-    { 4899790, 584 }, // 50.9, 6.784 x 51, 6.888
-    { 4899812, 584 }, // 50.9, 6.888 x 51, 6.993
-    { 4899839, 398 }, // 51.42, 7.203 x 51.53, 7.308
-    { 4899867, 1273 }, // 52.05, 4.267 x 52.15, 4.372
-    { 4899889, 1818 }, // 52.05, 4.372 x 52.15, 4.477
-    { 4899891, 1818 }, // 52.05, 4.477 x 52.15, 4.582
-    { 4899989, 1067 }, // 52.26, 4.791 x 52.36, 4.896
-    { 4899991, Bucket(2408) }, // 52.26, 4.896 x 52.36, 5.001
-    { 4899995, 2256 }, // 52.05, 5.106 x 52.15, 5.211
-    { 4900034, Bucket(2408) }, // 52.36, 4.896 x 52.47, 5.001
-    { 4900522, 398 }, // 51.53, 7.203 x 51.63, 7.308
-    { 4900879, 215 }, // 48.48, 7.622 x 48.59, 7.727
-    { 4900901, Bucket(2411) }, // 48.48, 7.727 x 48.59, 7.832
-    { 4900912, 224 }, // 48.59, 7.727 x 48.69, 7.832
-    { 4900970, 1334 }, // 49.01, 8.042 x 49.11, 8.147
-    { 4901021, Bucket(2414) }, // 48.9, 8.356 x 49.01, 8.461
-    { 4901064, Bucket(2414) }, // 49.01, 8.356 x 49.11, 8.461
-    { 4901082, 724 }, // 49.43, 8.461 x 49.53, 8.566
-    { 4901087, 335 }, // 49.74, 8.461 x 49.85, 8.566
-    { 4901088, 1042 }, // 49.01, 8.566 x 49.11, 8.671
-    { 4901091, 403 }, // 49.11, 8.671 x 49.22, 8.776
-    { 4901092, 827 }, // 49.22, 8.566 x 49.32, 8.671
-    { 4901095, 653 }, // 49.32, 8.671 x 49.43, 8.776
-    { 4901109, 335 }, // 49.74, 8.566 x 49.85, 8.671
-    { 4901205, Bucket(2418) }, // 51.42, 7.308 x 51.53, 7.413
-    { 4901207, 1230 }, // 51.42, 7.413 x 51.53, 7.518
-    { 4901395, 1564 }, // 48.69, 9.09 x 48.8, 9.195
-    { 4901397, 683 }, // 48.9, 8.986 x 49.01, 9.09
-    { 4901398, 170 }, // 48.8, 9.09 x 48.9, 9.195
-    { 4901404, 170 }, // 48.8, 9.195 x 48.9, 9.3
-    { 4901406, 170 }, // 48.8, 9.3 x 48.9, 9.405
-    { 4901428, 170 }, // 48.8, 9.405 x 48.9, 9.51
-    { 4901510, Bucket(2422) }, // 48.38, 9.929 x 48.48, 10.03
-    { 4901888, 401 }, // 51.53, 7.308 x 51.63, 7.413
-    { 4902042, 610 }, // 51.95, 8.461 x 52.05, 8.566
-    { 4902463, Bucket(2426) }, // 52.26, 9.72 x 52.36, 9.824
-    { 4902506, Bucket(2425) }, // 52.36, 9.72 x 52.47, 9.824
-    { 4902592, Bucket(2431) }, // 52.36, 9.824 x 52.47, 9.929
-    { 4906751, Bucket(2436) }, // 59.81, 10.56 x 59.91, 10.66
-    { 4906922, Bucket(2435) }, // 59.91, 10.56 x 60.02, 10.66
-    { 4907017, Bucket(2439) }, // 48.27, 10.87 x 48.38, 10.98
-    { 4907098, 532 }, // 49.43, 10.98 x 49.53, 11.08
-    { 4907120, 532 }, // 49.43, 11.08 x 49.53, 11.19
-    { 4907136, Bucket(2442) }, // 48.17, 11.5 x 48.27, 11.61
-    { 4907351, 19 }, // 51.42, 10.77 x 51.53, 10.87
-    { 4907392, 194 }, // 49.85, 11.5 x 49.95, 11.61
-    { 4907487, 186 }, // 51.42, 11.82 x 51.53, 11.92
-    { 4907491, 150 }, // 50.79, 12.03 x 50.9, 12.13
-    { 4907509, Bucket(2449) }, // 51.42, 11.92 x 51.53, 12.03
-    { 4907515, Bucket(2458) }, // 51.21, 12.24 x 51.32, 12.34
-    { 4907518, Bucket(2042) }, // 51.32, 12.24 x 51.42, 12.34
-    { 4907842, 1191 }, // 50.69, 12.45 x 50.79, 12.55
-    { 4907860, Bucket(2461) }, // 51.32, 12.34 x 51.42, 12.45
-    { 4908007, 1172 }, // 51, 13.7 x 51.11, 13.81
-    { 4908034, 123 }, // 51.53, 10.77 x 51.63, 10.87
-    { 4908179, Bucket(2465) }, // 52.05, 11.61 x 52.15, 11.71
-    { 4908335, 124 }, // 53.52, 11.4 x 53.62, 11.5
-    { 4908346, 124 }, // 53.62, 11.4 x 53.73, 11.5
-    { 4908739, 137 }, // 52.47, 13.28 x 52.57, 13.39
-    { 4908745, 580 }, // 52.47, 13.39 x 52.57, 13.49
-    { 4908746, 68 }, // 52.36, 13.49 x 52.47, 13.6
-    { 4909065, 383 }, // 48.27, 14.23 x 48.38, 14.33
-    { 4909522, 883 }, // 51.11, 14.96 x 51.21, 15.07
-    { 4909608, 1421 }, // 48.17, 16.33 x 48.27, 16.43
-    { 4909761, 311 }, // 49.11, 16.54 x 49.22, 16.64
-    { 4910794, Bucket(2468) }, // 52.36, 16.85 x 52.47, 16.95
-    { 4910816, 1322 }, // 52.36, 16.95 x 52.47, 17.06
-    { 4911588, 657 }, // 57.61, 11.92 x 57.71, 12.03
-    { 6294494, 1333 }, // 37.89, 23.56 x 38, 23.67
-    { 6294516, 1333 }, // 37.89, 23.67 x 38, 23.77
-    { 6297067, Bucket(2475) }, // 47.44, 18.95 x 47.54, 19.05
-    { 6297305, Bucket(2484) }, // 46.18, 20.1 x 46.28, 20.21
-    { 6297409, Bucket(2488) }, // 47.44, 19.05 x 47.54, 19.16
-    { 6297412, 1907 }, // 47.54, 19.05 x 47.65, 19.16
-    { 6303479, Bucket(2499) }, // 39.68, 30.48 x 39.78, 30.59
-    { 6303557, 1799 }, // 40.93, 29.12 x 41.04, 29.22
-    { 6303650, 1340 }, // 39.78, 30.48 x 39.89, 30.59
-    { 6304600, 483 }, // 44.4, 25.97 x 44.5, 26.08
-    { 6307094, Bucket(2503) }, // 47.12, 27.55 x 47.23, 27.65
-    { 6310655, Bucket(2508) }, // 49.74, 23.98 x 49.85, 24.09
-    { 6310826, Bucket(2517) }, // 49.85, 23.98 x 49.95, 24.09
-    { 6314927, 542 }, // 56.87, 23.98 x 56.98, 24.09
-    { 6318014, 1513 }, // 53.83, 27.34 x 53.94, 27.44
-    { 6320389, Bucket(2520) }, // 56.87, 24.09 x 56.98, 24.19
-    { 6320400, 537 }, // 56.98, 24.09 x 57.08, 24.19
-    { 6321454, Bucket(2524) }, // 60.12, 24.82 x 60.23, 24.92
-    { 6321540, Bucket(2524) }, // 60.12, 24.92 x 60.23, 25.03
-    { 6323935, 685 }, // 59.81, 30.27 x 59.91, 30.38
-    { 6326027, 1629 }, // 39.89, 32.79 x 39.99, 32.89
-    { 6337809, 2104 }, // 47.02, 37.51 x 47.12, 37.61
-    { 6342702, 1521 }, // 48.38, 34.89 x 48.48, 34.99
-    { 6347498, 463 }, // 55.72, 37.4 x 55.82, 37.51
-    { 6352916, 493 }, // 55.51, 37.51 x 55.62, 37.61
-    { 6352960, Bucket(2535) }, // 55.72, 37.51 x 55.82, 37.61
-    { 6423821, 1718 }, // 40.1, 44.43 x 40.2, 44.53
-    { 6451389, 738 }, // 55.62, 52.4 x 55.72, 52.5
-    { 6451432, 738 }, // 55.72, 52.4 x 55.82, 52.5
-    { 6983083, 319 }, // 39.89, 116.3 x 39.99, 116.4
-    { 6983425, 319 }, // 39.89, 116.4 x 39.99, 116.5
-    { 9547847, 472 }, // -37.92, 145 x -37.81, 145.1
-    { 9551755, 2091 }, // -33.93, 151.1 x -33.83, 151.2
-    { 9551777, Bucket(2538) }, // -33.93, 151.2 x -33.83, 151.3
-    { 9789234, 1522 }, // 33.49, 130.3 x 33.59, 130.4
-    { 9794997, Bucket(2542) }, // 33.8, 132.7 x 33.91, 132.8
-    { 9796959, 1478 }, // 34.64, 135.1 x 34.75, 135.2
-    { 9796989, 2199 }, // 34.64, 135.4 x 34.75, 135.5
-    { 12451657, 1686 }, // 34.01, 311.2 x 34.12, 311.3
-    { 12574459, 780 }, // 32.76, 332.7 x 32.86, 332.8
-    { 12581806, 554 }, // 29.92, 339.4 x 30.03, 339.5
-    { 12588610, 1706 }, // 45.65, 126.5 x 45.76, 126.6
-    { 12593192, 1771 }, // 34.75, 135.4 x 34.85, 135.5
-    { 12593284, Bucket(2547) }, // 34.96, 135.7 x 35.06, 135.8
-    { 12593679, 1781 }, // 35.06, 136.8 x 35.17, 136.9
-    { 12593701, 1784 }, // 35.06, 136.9 x 35.17, 137
-    { 12593712, 1784 }, // 35.17, 136.9 x 35.27, 137
-    { 12593714, 2079 }, // 35.17, 137 x 35.27, 137.1
-    { 12615861, 1957 }, // 35.48, 139.4 x 35.59, 139.5
-    { 12615869, Bucket(2550) }, // 35.48, 139.6 x 35.59, 139.7
-    { 12615912, Bucket(2554) }, // 35.59, 139.6 x 35.69, 139.7
-    { 12615913, 2231 }, // 35.69, 139.6 x 35.8, 139.7
-    { 12615914, Bucket(2559) }, // 35.59, 139.7 x 35.69, 139.8
-    { 12615918, 2192 }, // 35.8, 139.7 x 35.9, 139.8
-    { 12616256, 2231 }, // 35.59, 139.8 x 35.69, 140
-    { 12616258, 2231 }, // 35.59, 140 x 35.69, 140.1
-    { 12616260, 1972 }, // 35.8, 139.8 x 35.9, 140
-    { 12616264, 2231 }, // 35.59, 140.1 x 35.69, 140.2
-    { 12616268, 2192 }, // 35.8, 140.1 x 35.9, 140.2
-    { 15246874, 1936 }, // 38.52, 307.9 x 38.63, 308
-    { 15250580, Bucket(2562) }, // 45.44, 306.8 x 45.55, 306.9
-    { 15346943, 2170 }, // 39.68, 324.3 x 39.78, 324.4
-    { 15347285, 2170 }, // 39.68, 324.4 x 39.78, 324.5
-    { 5090417, 1644 }, // -30, -51.2 x -29.95, -51.15
-    { 5197482, 1389 }, // -23.97, -46.43 x -23.92, -46.38
-    { 5205925, 2243 }, // -22.98, -43.23 x -22.92, -43.18
-    { 5461514, 1309 }, // 6.227, -75.58 x 6.28, -75.53
-    { 5608958, 1127 }, // 27.93, -82.5 x 27.99, -82.45
-    { 5609300, 1127 }, // 27.93, -82.45 x 27.99, -82.4
-    { 8260539, 1864 }, // 9.006, 7.255 x 9.058, 7.308
-    { 14520530, 2300 }, // 25.31, 51.4 x 25.36, 51.45
-    { 16309647, 2322 }, // -6.199, 106.9 x -6.146, 106.9
-    { 16697984, 1739 }, // 14.62, 121 x 14.67, 121
-    { 16713949, 2257 }, // 22.11, 113.5 x 22.17, 113.6
-    { 16714509, Bucket(2567) }, // 22.32, 113.9 x 22.38, 114
-    { 16714520, Bucket(2566) }, // 22.38, 113.9 x 22.43, 114
-    { 16767658, 260 }, // 31.39, 121.3 x 31.45, 121.4
-    { 16770377, 1806 }, // 31.03, 121.5 x 31.08, 121.6
-    { 16817493, 1434 }, // 41.41, -81.61 x 41.46, -81.56
-    { 16825278, 2186 }, // 39.26, -76.63 x 39.31, -76.58
-    { 16916085, 1650 }, // 40.57, -73.85 x 40.62, -73.8
-    { 16916230, 296 }, // 40.73, -74.01 x 40.78, -73.96
-    { 19404270, 1258 }, // 41.14, -8.683 x 41.2, -8.631
-    { 19404612, 1259 }, // 41.14, -8.631 x 41.2, -8.578
-    { 19409937, 1549 }, // 36.69, -4.436 x 36.74, -4.384
-    { 19414265, 1598 }, // 40.46, -3.702 x 40.52, -3.65
-    { 19426980, 1906 }, // 43.24, -2.968 x 43.29, -2.916
-    { 19445750, 1117 }, // 41.35, 2.117 x 41.41, 2.17
-    { 19445757, 1118 }, // 41.41, 2.17 x 41.46, 2.222
-    { 19448134, 363 }, // 42.82, -2.706 x 42.87, -2.654
-    { 19456680, 1118 }, // 41.46, 2.17 x 41.51, 2.222
-    { 19499431, 2137 }, // 49.17, -0.3992 x 49.22, -0.3468
-    { 19500893, 1453 }, // 51.47, -0.137 x 51.53, -0.08461
-    { 19503648, 1541 }, // 51.53, -0.03218 x 51.58, 0.02025
-    { 19505914, 1354 }, // 48.8, 2.222 x 48.85, 2.275
-    { 19507289, 1417 }, // 48.85, 2.38 x 48.9, 2.432
-    { 19507319, 1362 }, // 48.96, 2.537 x 49.01, 2.589
-    { 19507490, 1362 }, // 49.01, 2.537 x 49.06, 2.589
-    { 19508479, Bucket(2571) }, // 50.63, 3.061 x 50.69, 3.114
-    { 19508650, Bucket(2571) }, // 50.69, 3.061 x 50.74, 3.114
-    { 19508821, 347 }, // 50.63, 3.114 x 50.69, 3.166
-    { 19508992, 347 }, // 50.69, 3.114 x 50.74, 3.166
-    { 19550405, 963 }, // 45.39, 4.372 x 45.44, 4.424
-    { 19550416, 963 }, // 45.44, 4.372 x 45.5, 4.424
-    { 19550980, 983 }, // 45.76, 4.791 x 45.81, 4.844
-    { 19553802, 1085 }, // 46.49, 6.626 x 46.54, 6.679
-    { 19554239, 1372 }, // 47.7, 7.255 x 47.75, 7.308
-    { 19554282, 1372 }, // 47.75, 7.255 x 47.8, 7.308
-    { 19559496, 1022 }, // 46.91, 7.413 x 46.96, 7.465
-    { 19559701, Bucket(2574) }, // 47.7, 7.308 x 47.75, 7.36
-    { 19559719, Bucket(2578) }, // 47.49, 7.57 x 47.54, 7.622
-    { 19559730, Bucket(2582) }, // 47.54, 7.57 x 47.59, 7.622
-    { 19559744, Bucket(2574) }, // 47.75, 7.308 x 47.8, 7.36
-    { 19560234, Bucket(2588) }, // 47.33, 8.514 x 47.38, 8.566
-    { 19561870, 461 }, // 47.44, 9.562 x 47.49, 9.615
-    { 19576079, 331 }, // 40.78, 14.18 x 40.83, 14.23
-    { 19576090, 331 }, // 40.83, 14.18 x 40.88, 14.23
-    { 19584252, 199 }, // 47.23, 11.4 x 47.28, 11.45
-    { 19584511, Bucket(2591) }, // 48.12, 11.45 x 48.17, 11.5
-    { 19584855, Bucket(2596) }, // 48.12, 11.55 x 48.17, 11.61
-    { 19596591, 1736 }, // 50.84, 4.319 x 50.9, 4.372
-    { 19596677, 1736 }, // 50.84, 4.372 x 50.9, 4.424
-    { 19599358, 2260 }, // 51.42, 7.255 x 51.47, 7.308
-    { 19599553, 1818 }, // 52, 4.372 x 52.05, 4.424
-    { 19599554, 1213 }, // 51.95, 4.424 x 52, 4.477
-    { 19599555, 1818 }, // 52, 4.424 x 52.05, 4.477
-    { 19599560, 1213 }, // 51.95, 4.477 x 52, 4.529
-    { 19599561, 1818 }, // 52, 4.477 x 52.05, 4.529
-    { 19600130, 1067 }, // 52.36, 4.844 x 52.42, 4.896
-    { 19603519, 223 }, // 48.54, 7.675 x 48.59, 7.727
-    { 19603562, Bucket(2599) }, // 48.59, 7.675 x 48.64, 7.727
-    { 19603605, Bucket(2602) }, // 48.54, 7.727 x 48.59, 7.78
-    { 19603648, Bucket(2599) }, // 48.59, 7.727 x 48.64, 7.78
-    { 19604360, 1042 }, // 49.01, 8.671 x 49.06, 8.723
-    { 19604376, 827 }, // 49.22, 8.671 x 49.27, 8.723
-    { 19604377, 653 }, // 49.27, 8.671 x 49.32, 8.723
-    { 19604379, 653 }, // 49.27, 8.723 x 49.32, 8.776
-    { 19604820, 2260 }, // 51.42, 7.308 x 51.47, 7.36
-    { 19605583, Bucket(2606) }, // 48.75, 9.143 x 48.8, 9.195
-    { 19605597, 683 }, // 48.96, 9.09 x 49.01, 9.143
-    { 19605598, 170 }, // 48.9, 9.143 x 48.96, 9.195
-    { 19605599, 683 }, // 48.96, 9.143 x 49.01, 9.195
-    { 19605605, 51 }, // 48.75, 9.195 x 48.8, 9.248
-    { 19605616, 51 }, // 48.8, 9.195 x 48.85, 9.248
-    { 19605620, 170 }, // 48.9, 9.195 x 48.96, 9.248
-    { 19605621, 683 }, // 48.96, 9.195 x 49.01, 9.248
-    { 19605622, 170 }, // 48.9, 9.248 x 48.96, 9.3
-    { 19605623, 683 }, // 48.96, 9.248 x 49.01, 9.3
-    { 19605628, 170 }, // 48.9, 9.3 x 48.96, 9.353
-    { 19605629, 683 }, // 48.96, 9.3 x 49.01, 9.353
-    { 19605630, 170 }, // 48.9, 9.353 x 48.96, 9.405
-    { 19605631, 683 }, // 48.96, 9.353 x 49.01, 9.405
-    { 19605701, 170 }, // 48.75, 9.405 x 48.8, 9.457
-    { 19605716, 170 }, // 48.9, 9.405 x 48.96, 9.457
-    { 19605717, 683 }, // 48.96, 9.405 x 49.01, 9.457
-    { 19605719, 683 }, // 48.96, 9.457 x 49.01, 9.51
-    { 19610197, Bucket(2610) }, // 52.31, 9.824 x 52.36, 9.877
-    { 19610368, Bucket(2616) }, // 52.36, 9.824 x 52.42, 9.877
-    { 19627007, 835 }, // 59.86, 10.61 x 59.91, 10.66
-    { 19628069, 2297 }, // 48.33, 10.87 x 48.38, 10.93
-    { 19628351, 532 }, // 49.38, 11.03 x 49.43, 11.08
-    { 19628394, 568 }, // 49.43, 11.03 x 49.48, 11.08
-    { 19628437, 532 }, // 49.38, 11.08 x 49.43, 11.14
-    { 19628480, 568 }, // 49.43, 11.08 x 49.48, 11.14
-    { 19629405, Bucket(2619) }, // 51.47, 10.77 x 51.53, 10.82
-    { 19629808, 864 }, // 50.48, 12.13 x 50.53, 12.18
-    { 19630037, 850 }, // 51.47, 11.92 x 51.53, 11.97
-    { 19630063, 142 }, // 51.26, 12.29 x 51.32, 12.34
-    { 19630074, 141 }, // 51.32, 12.29 x 51.37, 12.34
-    { 19631440, 141 }, // 51.32, 12.34 x 51.37, 12.39
-    { 19634958, 135 }, // 52.47, 13.34 x 52.52, 13.39
-    { 19637306, 591 }, // 50.06, 14.39 x 50.11, 14.44
-    { 19637392, 591 }, // 50.06, 14.44 x 50.11, 14.49
-    { 19639047, 1166 }, // 49.17, 16.59 x 49.22, 16.64
-    { 19639058, 1166 }, // 49.22, 16.59 x 49.27, 16.64
-    { 19641490, 2337 }, // 53.41, 14.49 x 53.47, 14.54
-    { 19646581, 2339 }, // 55.67, 12.55 x 55.72, 12.6
-    { 25188271, Bucket(2622) }, // 47.49, 19 x 47.54, 19.05
-    { 25189221, Bucket(2625) }, // 46.23, 20.1 x 46.28, 20.15
-    { 25189636, 523 }, // 47.44, 19.05 x 47.49, 19.1
-    { 25189637, 323 }, // 47.49, 19.05 x 47.54, 19.1
-    { 25189638, 516 }, // 47.44, 19.1 x 47.49, 19.16
-    { 25212904, 1486 }, // 41.04, 29.01 x 41.09, 29.07
-    { 25252615, 759 }, // 59.23, 18.27 x 59.29, 18.32
-    { 25252626, 759 }, // 59.29, 18.27 x 59.34, 18.32
-    { 25259711, 530 }, // 56.93, 24.03 x 56.98, 24.09
-    { 25259754, 530 }, // 56.98, 24.03 x 57.03, 24.09
-    { 25281557, 530 }, // 56.93, 24.09 x 56.98, 24.14
-    { 25281600, 530 }, // 56.98, 24.09 x 57.03, 24.14
-    { 25286160, 1292 }, // 60.12, 24.92 x 60.18, 24.98
-    { 25351245, 2338 }, // 47.07, 37.61 x 47.12, 37.66
-    { 25370772, 278 }, // 48.48, 34.57 x 48.54, 34.62
-    { 25705677, 1560 }, // 40.36, 49.78 x 40.41, 49.83
-    { 25705679, 1557 }, // 40.36, 49.83 x 40.41, 49.88
-    { 25705688, 1560 }, // 40.41, 49.78 x 40.46, 49.83
-    { 27932330, 754 }, // 39.78, 116.3 x 39.83, 116.4
-    { 27933696, 754 }, // 39.78, 116.4 x 39.83, 116.4
-    { 38191383, Bucket(2628) }, // -37.87, 144.9 x -37.81, 145
-    { 38191424, 814 }, // -37.81, 144.9 x -37.76, 144.9
-    { 38191426, Bucket(2628) }, // -37.81, 144.9 x -37.76, 145
-    { 38556955, 2092 }, // -32.94, 151.7 x -32.88, 151.8
-    { 50327224, 555 }, // 29.92, 339.4 x 29.98, 339.4
-    { 50374719, 1784 }, // 35.12, 136.9 x 35.17, 136.9
-    { 50374762, 1784 }, // 35.17, 136.9 x 35.22, 136.9
-    { 50463451, 1466 }, // 35.43, 139.6 x 35.48, 139.6
-    { 50463473, 1466 }, // 35.43, 139.6 x 35.48, 139.7
-    { 50463649, 578 }, // 35.64, 139.6 x 35.69, 139.7
-    { 50463660, 2231 }, // 35.69, 139.7 x 35.74, 139.8
-    { 50463662, 2231 }, // 35.69, 139.8 x 35.74, 139.8
-    { 50463663, 2192 }, // 35.74, 139.8 x 35.8, 139.8
-    { 50465028, 2231 }, // 35.69, 139.8 x 35.74, 139.9
-    { 50465029, 2192 }, // 35.74, 139.8 x 35.8, 139.9
-    { 50465030, 2231 }, // 35.69, 139.9 x 35.74, 140
-    { 50465031, 2192 }, // 35.74, 139.9 x 35.8, 140
-    { 50465036, 2231 }, // 35.69, 140 x 35.74, 140
-    { 50465037, 2192 }, // 35.74, 140 x 35.8, 140
-    { 50465038, 2231 }, // 35.69, 140 x 35.74, 140.1
-    { 50465039, 2192 }, // 35.74, 140 x 35.8, 140.1
-    { 50465060, 2231 }, // 35.69, 140.1 x 35.74, 140.1
-    { 50465061, 2192 }, // 35.74, 140.1 x 35.8, 140.1
-    { 50465062, 2231 }, // 35.69, 140.1 x 35.74, 140.2
-    { 60983100, 1948 }, // 37.58, 307.1 x 37.63, 307.1
-    { 61387775, 2158 }, // 39.73, 324.3 x 39.78, 324.4
-    { 61388458, 2158 }, // 39.78, 324.3 x 39.83, 324.4
-    { 61389149, 1896 }, // 39.73, 324.5 x 39.78, 324.6
-    { 61415102, 2123 }, // 53.52, 316 x 53.57, 316
-    { 20041216, 234 }, // -34.88, -58.54 x -34.85, -58.52
-    { 31304415, 407 }, // 28.43, -16.31 x 28.46, -16.29
-    { 31304586, 407 }, // 28.46, -16.31 x 28.48, -16.29
-    { 67070634, 1338 }, // 31.39, 121.4 x 31.42, 121.4
-    { 67218418, 1860 }, // 42.19, -83.37 x 42.22, -83.34
-    { 77611423, 1897 }, // 38.71, -9.181 x 38.73, -9.155
-    { 77611445, 1897 }, // 38.71, -9.155 x 38.73, -9.129
-    { 77657034, 1581 }, // 40.41, -3.728 x 40.44, -3.702
-    { 77752229, 235 }, // 39.44, -0.3468 x 39.47, -0.3205
-    { 77783029, 1116 }, // 41.43, 2.17 x 41.46, 2.196
-    { 77826720, 1116 }, // 41.46, 2.17 x 41.49, 2.196
-    { 78216959, 1370 }, // 47.72, 7.282 x 47.75, 7.308
-    { 78241281, Bucket(2631) }, // 47.36, 8.566 x 47.38, 8.592
-    { 78398253, 1818 }, // 52.02, 4.529 x 52.05, 4.555
-    { 78398463, 1063 }, // 52.34, 4.765 x 52.36, 4.791
-    { 78399146, 1075 }, // 52.36, 4.765 x 52.39, 4.791
-    { 78414079, 459 }, // 48.56, 7.701 x 48.59, 7.727
-    { 78417525, Bucket(2634) }, // 49.4, 8.671 x 49.43, 8.697
-    { 78422901, 683 }, // 48.98, 9.51 x 49.01, 9.536
-    { 78429877, 309 }, // 50.87, 10.56 x 50.9, 10.58
-    { 78429920, 309 }, // 50.9, 10.56 x 50.92, 10.58
-    { 78441472, 1899 }, // 52.36, 9.824 x 52.39, 9.851
-    { 78512277, 915 }, // 48.35, 10.87 x 48.38, 10.9
-    { 78512320, 915 }, // 48.38, 10.87 x 48.41, 10.9
-    { 78512810, 952 }, // 48.17, 11.48 x 48.2, 11.5
-    { 78514184, Bucket(2596) }, // 48.17, 11.55 x 48.2, 11.58
-    { 78514186, 168 }, // 48.17, 11.58 x 48.2, 11.61
-    { 78519806, 192 }, // 51.47, 11.9 x 51.5, 11.92
-    { 78520255, 77 }, // 51.29, 12.31 x 51.32, 12.34
-    { 78565919, 2337 }, // 53.39, 14.52 x 53.41, 14.54
-    { 100851598, 1974 }, // 41.09, 28.99 x 41.12, 29.01
-    { 101010500, 1546 }, // 59.34, 18.21 x 59.36, 18.24
-    { 101484613, 1521 }, // 48.46, 34.99 x 48.48, 35.02
-    { 152765728, 472 }, // -37.81, 145 x -37.79, 145
-    { 156719955, 1167 }, // 33.83, 132.7 x 33.86, 132.8
-    { 199225102, 2161 }, // 32.7, 312.3 x 32.73, 312.3
-    { 199225124, 2161 }, // 32.7, 312.3 x 32.73, 312.4
-    { 200661723, 1903 }, // 33.41, 317.6 x 33.44, 317.6
-    { 201191231, 2219 }, // 32.83, 332.5 x 32.86, 332.6
-    { 201191274, 2219 }, // 32.86, 332.5 x 32.89, 332.6
-    { 243932559, 943 }, // 37.76, 307.1 x 37.79, 307.1
-    { 243932570, 943 }, // 37.79, 307.1 x 37.82, 307.1
-    { 232133624, 991 }, // 29.24, 47.97 x 29.26, 47.98
-    { 268108846, 1967 }, // 25.13, 121.5 x 25.14, 121.5
-    { 268108932, 1967 }, // 25.13, 121.5 x 25.14, 121.5
-    { 310445782, 457 }, // 38.71, -9.142 x 38.72, -9.129
-    { 311132005, 1324 }, // 41.39, 2.117 x 41.41, 2.131
-    { 312117119, 1373 }, // 49, 2.576 x 49.01, 2.589
-    { 312868522, 1370 }, // 47.75, 7.295 x 47.76, 7.308
-    { 313357693, 168 }, // 48.16, 11.58 x 48.17, 11.59
-    { 313593855, 1075 }, // 52.35, 4.778 x 52.36, 4.791
-    { 314051242, 146 }, // 48.17, 11.49 x 48.18, 11.5
-    { 805997574, 1476 }, // 35.19, 136.9 x 35.21, 136.9
-    { 1248468821, 1373 }, // 49, 2.589 x 49.01, 2.596
-    { 1253189473, 710 }, // 41.83, 12.89 x 41.84, 12.9
+    { 227, Bucket(0) }, // 30.8, -5.517 x 44.22, 7.905
+    { 390, 389 }, // 30.8, -119.6 x 37.51, -112.9
+    { 397, 1901 }, // 37.51, -112.9 x 44.22, -106.2
+    { 400, 1643 }, // 44.22, -126.3 x 50.93, -119.6
+    { 431, Bucket(6) }, // 37.51, -79.34 x 44.22, -72.63
+    { 773, 1068 }, // 37.51, -72.63 x 44.22, -65.91
+    { 946, Bucket(14) }, // 44.22, 14.62 x 50.93, 21.33
+    { 950, Bucket(20) }, // 57.64, 14.62 x 64.35, 21.33
+    { 1555, Bucket(24) }, // 34.15, -123 x 37.51, -119.6
+    { 1558, Bucket(24) }, // 37.51, -123 x 40.86, -119.6
+    { 1560, Bucket(33) }, // 30.8, -119.6 x 34.15, -116.2
+    { 1561, 1685 }, // 34.15, -119.6 x 37.51, -116.2
+    { 1695, Bucket(39) }, // 40.86, -89.4 x 44.22, -86.05
+    { 1724, Bucket(51) }, // 37.51, -79.34 x 40.86, -75.98
+    { 1726, Bucket(75) }, // 37.51, -75.98 x 40.86, -72.63
+    { 1727, 392 }, // 40.86, -75.98 x 44.22, -72.63
+    { 2314, 258 }, // -36.31, -62.56 x -32.96, -59.2
+    { 2336, Bucket(79) }, // -36.31, -59.2 x -32.96, -55.85
+    { 3093, Bucket(83) }, // 40.86, -72.63 x 44.22, -69.27
+    { 3636, Bucket(86) }, // 37.51, -5.517 x 40.86, -2.162
+    { 3638, Bucket(91) }, // 37.51, -2.162 x 40.86, 1.194
+    { 3645, Bucket(95) }, // 40.86, 1.194 x 44.22, 4.549
+    { 3683, 1297 }, // 47.57, -2.162 x 50.93, 1.194
+    { 3685, Bucket(98) }, // 54.28, -5.517 x 57.64, -2.162
+    { 3686, Bucket(101) }, // 50.93, -2.162 x 54.28, 1.194
+    { 3689, Bucket(105) }, // 47.57, 1.194 x 50.93, 4.549
+    { 3690, Bucket(111) }, // 44.22, 4.549 x 47.57, 7.905
+    { 3692, 913 }, // 50.93, 1.194 x 54.28, 4.549
+    { 3735, Bucket(115) }, // 40.86, 11.26 x 44.22, 14.62
+    { 3764, 1869 }, // 37.51, 21.33 x 40.86, 24.68
+    { 3780, Bucket(119) }, // 50.93, 7.905 x 54.28, 11.26
+    { 3782, Bucket(122) }, // 50.93, 11.26 x 54.28, 14.62
+    { 3785, Bucket(125) }, // 47.57, 14.62 x 50.93, 17.97
+    { 3788, Bucket(132) }, // 50.93, 14.62 x 54.28, 17.97
+    { 3800, Bucket(135) }, // 57.64, 14.62 x 60.99, 17.97
+    { 3802, Bucket(135) }, // 57.64, 17.97 x 60.99, 21.33
+    { 9285, 2225 }, // 54.28, 34.75 x 57.64, 38.1
+    { 9771, 2062 }, // 20.73, 111.9 x 24.09, 115.3
+    { 9875, 2281 }, // 34.15, 118.6 x 37.51, 122
+    { 9883, Bucket(138) }, // 34.15, 125.3 x 37.51, 128.7
+    { 9886, Bucket(138) }, // 37.51, 125.3 x 40.86, 128.7
+    { 9915, Bucket(145) }, // 34.15, 138.8 x 37.51, 142.1
+    { 10325, Bucket(149) }, // -39.67, 142.1 x -36.31, 145.5
+    { 10327, 284 }, // -39.67, 145.5 x -36.31, 148.8
+    { 3830, 1490 }, // -12.82, -77.66 x -11.15, -75.98
+    { 6221, Bucket(152) }, // 35.83, -123 x 37.51, -121.3
+    { 6232, Bucket(211) }, // 37.51, -123 x 39.18, -121.3
+    { 6243, Bucket(273) }, // 32.47, -117.9 x 34.15, -116.2
+    { 6337, 406 }, // 32.47, -112.9 x 34.15, -111.2
+    { 6723, Bucket(277) }, // 32.47, -97.79 x 34.15, -96.11
+    { 6782, Bucket(281) }, // 40.86, -87.73 x 42.54, -86.05
+    { 6879, Bucket(285) }, // 42.54, -81.01 x 44.22, -79.34
+    { 6898, 490 }, // 37.51, -77.66 x 39.18, -75.98
+    { 6901, 226 }, // 42.54, -79.34 x 44.22, -77.66
+    { 6905, Bucket(289) }, // 39.18, -75.98 x 40.86, -74.3
+    { 6907, 1071 }, // 39.18, -74.3 x 40.86, -72.63
+    { 6922, 665 }, // 44.22, -94.44 x 45.9, -92.76
+    { 7082, 1959 }, // 44.22, -74.3 x 45.9, -72.63
+    { 9345, 210 }, // -34.64, -59.2 x -32.96, -57.53
+    { 9407, Bucket(300) }, // -24.57, -47.46 x -22.89, -45.78
+    { 9751, Bucket(306) }, // -24.57, -44.1 x -22.89, -42.43
+    { 9794, Bucket(306) }, // -22.89, -44.1 x -21.21, -42.43
+    { 11817, 2145 }, // -34.64, 17.97 x -32.96, 19.65
+    { 12372, Bucket(313) }, // 40.86, -72.63 x 42.54, -70.95
+    { 14551, 1385 }, // 42.54, -3.839 x 44.22, -2.162
+    { 14580, Bucket(316) }, // 40.86, 1.194 x 42.54, 2.872
+    { 14651, Bucket(324) }, // 52.61, -7.195 x 54.28, -5.517
+    { 14739, Bucket(327) }, // 52.61, -3.839 x 54.28, -2.162
+    { 14745, Bucket(334) }, // 52.61, -2.162 x 54.28, -0.4838
+    { 14756, Bucket(338) }, // 47.57, 1.194 x 49.25, 2.872
+    { 14759, 1401 }, // 49.25, 2.872 x 50.93, 4.549
+    { 14762, 1040 }, // 44.22, 6.227 x 45.9, 7.905
+    { 14766, 275 }, // 47.57, 6.227 x 49.25, 7.905
+    { 14767, Bucket(344) }, // 49.25, 6.227 x 50.93, 7.905
+    { 14770, 1401 }, // 50.93, 2.872 x 52.61, 4.549
+    { 14778, Bucket(354) }, // 50.93, 6.227 x 52.61, 7.905
+    { 14940, Bucket(373) }, // 40.86, 11.26 x 42.54, 12.94
+    { 15031, 809 }, // 29.12, 29.72 x 30.8, 31.39
+    { 15058, Bucket(377) }, // 37.51, 23 x 39.18, 24.68
+    { 15089, 1613 }, // 39.18, 28.04 x 40.86, 29.72
+    { 15104, Bucket(382) }, // 44.22, 7.905 x 45.9, 9.583
+    { 15105, Bucket(385) }, // 45.9, 7.905 x 47.57, 9.583
+    { 15108, Bucket(400) }, // 47.57, 7.905 x 49.25, 9.583
+    { 15109, Bucket(408) }, // 49.25, 7.905 x 50.93, 9.583
+    { 15111, 619 }, // 49.25, 9.583 x 50.93, 11.26
+    { 15113, Bucket(413) }, // 45.9, 11.26 x 47.57, 12.94
+    { 15117, 713 }, // 49.25, 11.26 x 50.93, 12.94
+    { 15119, Bucket(416) }, // 49.25, 12.94 x 50.93, 14.62
+    { 15121, Bucket(423) }, // 52.61, 7.905 x 54.28, 9.583
+    { 15128, Bucket(430) }, // 50.93, 11.26 x 52.61, 12.94
+    { 15129, 717 }, // 52.61, 11.26 x 54.28, 12.94
+    { 15130, Bucket(435) }, // 50.93, 12.94 x 52.61, 14.62
+    { 15132, Bucket(439) }, // 54.28, 11.26 x 55.96, 12.94
+    { 15137, Bucket(442) }, // 45.9, 14.62 x 47.57, 16.29
+    { 15140, 2077 }, // 47.57, 14.62 x 49.25, 16.29
+    { 15142, 1154 }, // 47.57, 16.29 x 49.25, 17.97
+    { 15145, Bucket(448) }, // 45.9, 17.97 x 47.57, 19.65
+    { 15148, 1145 }, // 47.57, 17.97 x 49.25, 19.65
+    { 15160, Bucket(455) }, // 50.93, 17.97 x 52.61, 19.65
+    { 15171, Bucket(458) }, // 59.32, 9.583 x 60.99, 11.26
+    { 15271, Bucket(462) }, // 49.25, 29.72 x 50.93, 31.39
+    { 36159, Bucket(466) }, // 2.275, 100.2 x 3.952, 101.9
+    { 36246, Bucket(470) }, // 0.597, 103.5 x 2.275, 105.2
+    { 37142, 2226 }, // 54.28, 36.43 x 55.96, 38.1
+    { 37276, Bucket(473) }, // 54.28, 51.53 x 55.96, 53.2
+    { 37526, 1940 }, // 27.44, 76.69 x 29.12, 78.37
+    { 37631, 1905 }, // 42.54, 86.76 x 44.22, 88.44
+    { 39056, Bucket(478) }, // 24.09, 101.9 x 25.76, 103.5
+    { 39085, Bucket(481) }, // 22.41, 111.9 x 24.09, 113.6
+    { 39100, 2073 }, // 27.44, 111.9 x 29.12, 113.6
+    { 39103, Bucket(484) }, // 29.12, 113.6 x 30.8, 115.3
+    { 39162, 1586 }, // 37.51, 113.6 x 39.18, 115.3
+    { 39493, 2210 }, // 35.83, 115.3 x 37.51, 117
+    { 39496, 1987 }, // 30.8, 118.6 x 32.47, 120.3
+    { 39498, Bucket(487) }, // 30.8, 120.3 x 32.47, 122
+    { 39505, Bucket(490) }, // 39.18, 115.3 x 40.86, 117
+    { 39514, 1714 }, // 37.51, 120.3 x 39.18, 122
+    { 39660, Bucket(498) }, // 34.15, 138.8 x 35.83, 140.4
+    { 39679, 1746 }, // 42.54, 140.4 x 44.22, 142.1
+    { 41819, 1212 }, // -41.35, 174 x -39.67, 175.7
+    { 41823, 11 }, // -37.99, 174 x -36.31, 175.7
+    { 42019, 1973 }, // -34.64, 150.5 x -32.96, 152.2
+    { 12287, 1351 }, // -37.15, -73.46 x -36.31, -72.63
+    { 16292, 470 }, // 5.63, -75.98 x 6.469, -75.14
+    { 24928, 819 }, // 37.51, -123 x 38.35, -122.1
+    { 24967, Bucket(504) }, // 33.31, -118.8 x 34.15, -117.9
+    { 24972, 642 }, // 32.47, -117.9 x 33.31, -117.1
+    { 24978, Bucket(508) }, // 34.15, -118.8 x 34.99, -117.9
+    { 25542, Bucket(511) }, // 39.18, -105.3 x 40.02, -104.5
+    { 25633, Bucket(519) }, // 45.06, -123 x 45.9, -122.1
+    { 25637, 2200 }, // 46.73, -123 x 47.57, -122.1
+    { 25789, 2122 }, // 50.09, -114.6 x 50.93, -113.7
+    { 25832, Bucket(523) }, // 50.93, -114.6 x 51.77, -113.7
+    { 26628, Bucket(526) }, // 19.05, -99.47 x 19.89, -98.63
+    { 26711, 2306 }, // 29.96, -98.63 x 30.8, -97.79
+    { 26717, 2306 }, // 29.96, -97.79 x 30.8, -96.95
+    { 26892, 2310 }, // 32.47, -97.79 x 33.31, -96.95
+    { 26894, Bucket(535) }, // 32.47, -96.95 x 33.31, -96.11
+    { 27399, Bucket(539) }, // 33.31, -85.21 x 34.15, -84.37
+    { 27405, Bucket(539) }, // 33.31, -84.37 x 34.15, -83.53
+    { 27503, Bucket(542) }, // 40.02, -80.18 x 40.86, -79.34
+    { 27519, Bucket(546) }, // 43.38, -80.18 x 44.22, -79.34
+    { 27593, Bucket(552) }, // 38.35, -77.66 x 39.18, -76.82
+    { 27605, Bucket(555) }, // 43.38, -79.34 x 44.22, -78.5
+    { 27620, 2275 }, // 39.18, -75.98 x 40.02, -75.14
+    { 27629, Bucket(559) }, // 40.02, -74.3 x 40.86, -73.46
+    { 27640, Bucket(582) }, // 40.86, -74.3 x 41.7, -73.46
+    { 27690, 1898 }, // 44.22, -93.6 x 45.06, -92.76
+    { 28329, Bucket(589) }, // 45.06, -74.3 x 45.9, -73.46
+    { 36877, 2076 }, // -33.8, -70.95 x -32.96, -70.11
+    { 36901, 924 }, // -33.8, -69.27 x -32.96, -68.43
+    { 36912, 924 }, // -32.96, -69.27 x -32.12, -68.43
+    { 37380, Bucket(595) }, // -34.64, -59.2 x -33.8, -58.37
+    { 37527, 1174 }, // -30.44, -51.65 x -29.6, -50.82
+    { 40084, 2181 }, // -4.436, -39.07 x -3.597, -38.23
+    { 40112, 2150 }, // -6.114, -35.72 x -5.275, -34.88
+    { 49491, 1057 }, // 41.7, -71.79 x 42.54, -70.95
+    { 57767, Bucket(599) }, // 33.31, -8.034 x 34.15, -7.195
+    { 57791, 1547 }, // 36.67, -6.356 x 37.51, -5.517
+    { 57803, 1517 }, // 38.35, -9.711 x 39.18, -8.872
+    { 57840, 1269 }, // 40.86, -8.872 x 41.7, -8.034
+    { 58189, Bucket(603) }, // 40.02, -3.839 x 40.86, -3
+    { 58214, 1188 }, // 39.18, -1.323 x 40.02, -0.4838
+    { 58217, 318 }, // 38.35, -0.4838 x 39.18, 0.3551
+    { 58220, Bucket(613) }, // 39.18, -0.4838 x 40.02, 0.3551
+    { 58982, 230 }, // 52.61, -1.323 x 53.45, -0.4838
+    { 58984, Bucket(616) }, // 50.93, -0.4838 x 51.77, 0.3551
+    { 59027, Bucket(630) }, // 48.41, 2.033 x 49.25, 2.872
+    { 59039, Bucket(643) }, // 50.09, 3.711 x 50.93, 4.549
+    { 59041, 978 }, // 45.06, 4.549 x 45.9, 5.388
+    { 59046, 2279 }, // 45.9, 5.388 x 46.73, 6.227
+    { 59051, 395 }, // 45.06, 7.066 x 45.9, 7.905
+    { 59052, 2279 }, // 45.9, 6.227 x 46.73, 7.066
+    { 59055, Bucket(648) }, // 46.73, 7.066 x 47.57, 7.905
+    { 59070, 679 }, // 49.25, 7.066 x 50.09, 7.905
+    { 59082, Bucket(652) }, // 50.93, 3.711 x 51.77, 4.549
+    { 59083, 1236 }, // 51.77, 3.711 x 52.61, 4.549
+    { 59105, Bucket(656) }, // 51.77, 4.549 x 52.61, 5.388
+    { 59112, Bucket(662) }, // 50.93, 6.227 x 51.77, 7.066
+    { 59114, Bucket(669) }, // 50.93, 7.066 x 51.77, 7.905
+    { 59759, 330 }, // 40.02, 13.78 x 40.86, 14.62
+    { 59763, Bucket(672) }, // 41.7, 12.1 x 42.54, 12.94
+    { 59770, 330 }, // 40.86, 13.78 x 41.7, 14.62
+    { 60232, Bucket(679) }, // 37.51, 23 x 38.35, 23.84
+    { 60390, 1726 }, // 39.18, 32.23 x 40.02, 33.07
+    { 60419, Bucket(683) }, // 45.06, 8.744 x 45.9, 9.583
+    { 60421, Bucket(697) }, // 46.73, 7.905 x 47.57, 8.744
+    { 60423, Bucket(702) }, // 46.73, 8.744 x 47.57, 9.583
+    { 60425, Bucket(705) }, // 45.06, 9.583 x 45.9, 10.42
+    { 60429, Bucket(708) }, // 46.73, 9.583 x 47.57, 10.42
+    { 60431, 973 }, // 46.73, 10.42 x 47.57, 11.26
+    { 60432, 1965 }, // 47.57, 7.905 x 48.41, 8.744
+    { 60433, Bucket(711) }, // 48.41, 7.905 x 49.25, 8.744
+    { 60435, Bucket(722) }, // 48.41, 8.744 x 49.25, 9.583
+    { 60436, 712 }, // 49.25, 7.905 x 50.09, 8.744
+    { 60437, Bucket(742) }, // 50.09, 7.905 x 50.93, 8.744
+    { 60438, 683 }, // 49.25, 8.744 x 50.09, 9.583
+    { 60442, 292 }, // 47.57, 10.42 x 48.41, 11.26
+    { 60443, 619 }, // 48.41, 10.42 x 49.25, 11.26
+    { 60446, 194 }, // 49.25, 10.42 x 50.09, 11.26
+    { 60453, Bucket(745) }, // 46.73, 11.26 x 47.57, 12.1
+    { 60464, Bucket(749) }, // 47.57, 11.26 x 48.41, 12.1
+    { 60468, 194 }, // 49.25, 11.26 x 50.09, 12.1
+    { 60474, Bucket(757) }, // 47.57, 13.78 x 48.41, 14.62
+    { 60476, 941 }, // 49.25, 12.94 x 50.09, 13.78
+    { 60477, 1267 }, // 50.09, 12.94 x 50.93, 13.78
+    { 60483, 700 }, // 51.77, 8.744 x 52.61, 9.583
+    { 60489, Bucket(761) }, // 51.77, 9.583 x 52.61, 10.42
+    { 60492, Bucket(763) }, // 52.61, 9.583 x 53.45, 10.42
+    { 60493, Bucket(766) }, // 53.45, 9.583 x 54.28, 10.42
+    { 60512, 189 }, // 50.93, 11.26 x 51.77, 12.1
+    { 60513, Bucket(778) }, // 51.77, 11.26 x 52.61, 12.1
+    { 60514, Bucket(781) }, // 50.93, 12.1 x 51.77, 12.94
+    { 60516, 129 }, // 52.61, 11.26 x 53.45, 12.1
+    { 60519, 716 }, // 53.45, 12.1 x 54.28, 12.94
+    { 60521, Bucket(790) }, // 51.77, 12.94 x 52.61, 13.78
+    { 60522, 1265 }, // 50.93, 13.78 x 51.77, 14.62
+    { 60524, Bucket(810) }, // 52.61, 12.94 x 53.45, 13.78
+    { 60531, Bucket(816) }, // 55.12, 12.1 x 55.96, 12.94
+    { 60549, Bucket(823) }, // 46.73, 14.62 x 47.57, 15.45
+    { 60550, 171 }, // 45.9, 15.45 x 46.73, 16.29
+    { 60551, 410 }, // 46.73, 15.45 x 47.57, 16.29
+    { 60568, 750 }, // 47.57, 16.29 x 48.41, 17.13
+    { 60583, Bucket(826) }, // 46.73, 18.81 x 47.57, 19.65
+    { 60594, 510 }, // 47.57, 18.81 x 48.41, 19.65
+    { 60651, 281 }, // 51.77, 20.49 x 52.61, 21.33
+    { 60686, Bucket(829) }, // 59.32, 10.42 x 60.16, 11.26
+    { 60708, 866 }, // 59.32, 11.26 x 60.16, 12.1
+    { 60975, Bucket(836) }, // 46.73, 27.2 x 47.57, 28.04
+    { 61039, Bucket(840) }, // 53.45, 27.2 x 54.28, 28.04
+    { 61085, 966 }, // 50.09, 29.72 x 50.93, 30.55
+    { 61112, Bucket(843) }, // 47.57, 33.07 x 48.41, 33.91
+    { 61145, Bucket(847) }, // 55.12, 29.72 x 55.96, 30.55
+    { 61221, Bucket(851) }, // 60.16, 24.68 x 60.99, 25.52
+    { 144877, Bucket(854) }, // 13.18, 100.2 x 14.02, 101
+    { 144927, 2125 }, // -3.597, 104.4 x -2.758, 105.2
+    { 144984, Bucket(857) }, // 0.597, 103.5 x 1.436, 104.4
+    { 148043, 1985 }, // 24.92, 50.69 x 25.76, 51.53
+    { 148065, 1985 }, // 24.92, 51.53 x 25.76, 52.36
+    { 148161, Bucket(860) }, // 24.92, 54.88 x 25.76, 55.72
+    { 148251, Bucket(863) }, // 34.99, 50.69 x 35.83, 51.53
+    { 148406, 333 }, // 35.83, 59.08 x 36.67, 59.91
+    { 148495, Bucket(866) }, // 46.73, 37.26 x 47.57, 38.1
+    { 148571, Bucket(871) }, // 55.12, 37.26 x 55.96, 38.1
+    { 149068, 2227 }, // 52.61, 49.85 x 53.45, 50.69
+    { 149667, 2066 }, // 18.21, 72.5 x 19.05, 73.34
+    { 149670, 2066 }, // 19.05, 72.5 x 19.89, 73.34
+    { 149970, 696 }, // 40.86, 69.14 x 41.7, 69.98
+    { 150105, Bucket(878) }, // 28.28, 76.69 x 29.12, 77.53
+    { 156222, Bucket(886) }, // 22.41, 107.7 x 23.25, 108.6
+    { 156253, Bucket(890) }, // 29.96, 103.5 x 30.8, 104.4
+    { 156278, Bucket(895) }, // 29.12, 106.1 x 29.96, 106.9
+    { 156342, Bucket(899) }, // 22.41, 112.8 x 23.25, 113.6
+    { 156343, 2156 }, // 23.25, 112.8 x 24.09, 113.6
+    { 156345, Bucket(902) }, // 21.57, 113.6 x 22.41, 114.4
+    { 156348, Bucket(906) }, // 22.41, 113.6 x 23.25, 114.4
+    { 156413, Bucket(913) }, // 29.96, 113.6 x 30.8, 114.4
+    { 156424, Bucket(916) }, // 30.8, 103.5 x 31.63, 104.4
+    { 156549, 2140 }, // 33.31, 108.6 x 34.15, 109.4
+    { 156560, Bucket(919) }, // 34.15, 108.6 x 34.99, 109.4
+    { 156600, 1615 }, // 34.15, 113.6 x 34.99, 114.4
+    { 157770, Bucket(923) }, // 24.09, 117.8 x 24.92, 118.6
+    { 157777, 1840 }, // 28.28, 115.3 x 29.12, 116.1
+    { 157803, Bucket(926) }, // 24.92, 121.2 x 25.76, 122
+    { 157815, 1732 }, // 29.96, 119.5 x 30.8, 120.3
+    { 157816, 2248 }, // 27.44, 120.3 x 28.28, 121.2
+    { 157821, 1732 }, // 29.96, 120.3 x 30.8, 121.2
+    { 157822, Bucket(931) }, // 29.12, 121.2 x 29.96, 122
+    { 157961, Bucket(935) }, // 31.63, 117 x 32.47, 117.8
+    { 157963, 921 }, // 31.63, 117.8 x 32.47, 118.6
+    { 157985, Bucket(938) }, // 31.63, 118.6 x 32.47, 119.5
+    { 157992, Bucket(943) }, // 30.8, 120.3 x 31.63, 121.2
+    { 157994, Bucket(946) }, // 30.8, 121.2 x 31.63, 122
+    { 158012, 2280 }, // 35.83, 120.3 x 36.67, 121.2
+    { 158022, Bucket(959) }, // 39.18, 116.1 x 40.02, 117
+    { 158025, Bucket(967) }, // 38.35, 117 x 39.18, 117.8
+    { 158028, 1875 }, // 39.18, 117 x 40.02, 117.8
+    { 158059, Bucket(970) }, // 38.35, 121.2 x 39.18, 122
+    { 158135, Bucket(973) }, // 36.67, 126.2 x 37.51, 127
+    { 158140, 1561 }, // 35.83, 127 x 36.67, 127.9
+    { 158141, Bucket(977) }, // 36.67, 127 x 37.51, 127.9
+    { 158163, 1652 }, // 41.7, 122.8 x 42.54, 123.7
+    { 158175, Bucket(980) }, // 43.38, 124.5 x 44.22, 125.3
+    { 158177, 1527 }, // 38.35, 125.3 x 39.18, 126.2
+    { 158178, Bucket(973) }, // 37.51, 126.2 x 38.35, 127
+    { 158184, Bucket(984) }, // 37.51, 127 x 38.35, 127.9
+    { 158197, Bucket(981) }, // 43.38, 125.3 x 44.22, 126.2
+    { 158481, Bucket(987) }, // 34.99, 128.7 x 35.83, 129.5
+    { 158512, 435 }, // 34.15, 132.1 x 34.99, 132.9
+    { 158608, Bucket(990) }, // 34.15, 135.4 x 34.99, 136.3
+    { 158609, 2214 }, // 34.99, 135.4 x 35.83, 136.3
+    { 158643, Bucket(994) }, // 34.99, 139.6 x 35.83, 140.4
+    { 158646, 2192 }, // 35.83, 139.6 x 36.67, 140.4
+    { 158696, 1493 }, // 37.51, 140.4 x 38.35, 141.3
+    { 165211, 285 }, // -38.83, 144.6 x -37.99, 145.5
+    { 165214, Bucket(997) }, // -37.99, 144.6 x -37.15, 145.5
+    { 49148, 1350 }, // -37.15, -73.46 x -36.73, -73.05
+    { 64751, 1475 }, // 8.566, -79.76 x 8.986, -79.34
+    { 64762, 1475 }, // 8.986, -79.76 x 9.405, -79.34
+    { 65169, 837 }, // 6.05, -75.98 x 6.469, -75.56
+    { 99549, Bucket(1011) }, // 37.09, -122.1 x 37.51, -121.7
+    { 99714, 946 }, // 37.51, -122.5 x 37.93, -122.1
+    { 99721, 1815 }, // 37.93, -122.1 x 38.35, -121.7
+    { 99726, Bucket(1015) }, // 38.35, -121.7 x 38.77, -121.3
+    { 99748, 1937 }, // 38.35, -121.3 x 38.77, -120.9
+    { 99871, 1316 }, // 33.73, -118.3 x 34.15, -117.9
+    { 101661, 1126 }, // 40.44, -112.1 x 40.86, -111.6
+    { 102169, Bucket(1018) }, // 39.6, -105.3 x 40.02, -104.9
+    { 102511, 1228 }, // 48.83, -123.4 x 49.25, -123
+    { 102522, 1228 }, // 49.25, -123.4 x 49.67, -123
+    { 102533, 182 }, // 45.48, -123 x 45.9, -122.5
+    { 102594, Bucket(1023) }, // 47.57, -122.5 x 47.99, -122.1
+    { 103356, Bucket(1032) }, // 53.45, -113.7 x 53.86, -113.3
+    { 106512, 1015 }, // 19.05, -99.47 x 19.47, -99.05
+    { 108494, 746 }, // 41.7, -88.14 x 42.12, -87.73
+    { 108516, Bucket(1035) }, // 41.7, -87.73 x 42.12, -87.31
+    { 109796, 2189 }, // 34.99, -81.01 x 35.41, -80.59
+    { 110025, Bucket(1040) }, // 41.28, -81.85 x 41.7, -81.43
+    { 110078, 2312 }, // 43.38, -79.76 x 43.8, -79.34
+    { 110206, 1125 }, // 36.67, -76.4 x 37.09, -75.98
+    { 110375, Bucket(1044) }, // 38.77, -77.24 x 39.18, -76.82
+    { 110392, Bucket(1049) }, // 39.18, -76.82 x 39.6, -76.4
+    { 110483, Bucket(1053) }, // 39.6, -75.56 x 40.02, -75.14
+    { 110486, 1713 }, // 40.02, -75.56 x 40.44, -75.14
+    { 110517, Bucket(1057) }, // 40.44, -74.3 x 40.86, -73.88
+    { 110519, 2148 }, // 40.44, -73.88 x 40.86, -73.46
+    { 110560, Bucket(1069) }, // 40.86, -74.3 x 41.28, -73.88
+    { 112810, 2317 }, // 44.22, -79.76 x 44.64, -79.34
+    { 113319, 1956 }, // 45.48, -73.88 x 45.9, -73.46
+    { 147508, Bucket(1073) }, // -33.8, -70.95 x -33.38, -70.53
+    { 149508, 234 }, // -35.47, -59.2 x -35.05, -58.78
+    { 149509, 234 }, // -35.05, -59.2 x -34.64, -58.78
+    { 149510, 234 }, // -35.47, -58.78 x -35.05, -58.37
+    { 149511, Bucket(1076) }, // -35.05, -58.78 x -34.64, -58.37
+    { 149522, Bucket(1080) }, // -34.64, -58.78 x -34.22, -58.37
+    { 150518, Bucket(1083) }, // -23.73, -47.04 x -23.31, -46.62
+    { 150524, Bucket(1087) }, // -23.73, -46.62 x -23.31, -46.2
+    { 151432, 1507 }, // -16.18, -48.3 x -15.76, -47.88
+    { 152823, Bucket(1091) }, // 10.24, -67.17 x 10.66, -66.75
+    { 156712, 2179 }, // -22.89, -43.27 x -22.47, -42.85
+    { 157463, 1603 }, // -13.24, -38.65 x -12.82, -38.23
+    { 160339, 1264 }, // -4.017, -38.65 x -3.597, -38.23
+    { 160450, 2151 }, // -6.114, -35.3 x -5.694, -34.88
+    { 188152, 1864 }, // 8.986, 7.066 x 9.405, 7.485
+    { 189075, Bucket(1094) }, // -34.22, 18.39 x -33.8, 18.81
+    { 196652, 1509 }, // 18.21, -70.11 x 18.63, -69.69
+    { 196782, 1122 }, // 18.21, -66.33 x 18.63, -65.91
+    { 197967, Bucket(1098) }, // 42.12, -71.37 x 42.54, -70.95
+    { 197989, 418 }, // 42.12, -70.95 x 42.54, -70.53
+    { 231214, 2282 }, // 38.35, -9.292 x 38.77, -8.872
+    { 231300, 2282 }, // 38.35, -8.872 x 38.77, -8.453
+    { 231317, 1733 }, // 40.44, -8.872 x 40.86, -8.453
+    { 231360, Bucket(1106) }, // 40.86, -8.872 x 41.28, -8.453
+    { 232540, 1549 }, // 36.67, -4.678 x 37.09, -4.259
+    { 232565, 1384 }, // 37.09, -3.839 x 37.51, -3.42
+    { 232735, 1925 }, // 40.44, -4.259 x 40.86, -3.839
+    { 232757, 1573 }, // 40.44, -3.839 x 40.86, -3.42
+    { 232938, 1224 }, // 40.86, 0.7745 x 41.28, 1.194
+    { 233076, 1444 }, // 36.67, 2.872 x 37.09, 3.291
+    { 233242, Bucket(1110) }, // 39.18, 2.452 x 39.6, 2.872
+    { 233243, Bucket(1110) }, // 39.6, 2.452 x 40.02, 2.872
+    { 233280, 1224 }, // 40.86, 1.194 x 41.28, 1.613
+    { 233289, Bucket(1113) }, // 41.28, 2.033 x 41.7, 2.452
+    { 233300, Bucket(1116) }, // 43.38, 1.194 x 43.8, 1.613
+    { 233340, Bucket(1121) }, // 43.38, 3.711 x 43.8, 4.13
+    { 235593, 2298 }, // 47.99, -4.678 x 48.41, -4.259
+    { 235596, 2298 }, // 48.41, -4.678 x 48.83, -4.259
+    { 235659, Bucket(1125) }, // 44.64, -0.9032 x 45.06, -0.4838
+    { 235671, 614 }, // 47.15, -1.742 x 47.57, -1.323
+    { 235709, 887 }, // 47.15, 0.3551 x 47.57, 0.7745
+    { 235762, 962 }, // 49.25, -0.06436 x 49.67, 0.3551
+    { 235909, 225 }, // 52.19, -2.162 x 52.61, -1.742
+    { 235937, Bucket(1129) }, // 51.35, -0.4838 x 51.77, -0.06436
+    { 235971, Bucket(1132) }, // 54.7, -1.742 x 55.12, -1.323
+    { 236108, 1357 }, // 48.41, 2.033 x 48.83, 2.452
+    { 236109, Bucket(1135) }, // 48.83, 2.033 x 49.25, 2.452
+    { 236149, Bucket(1138) }, // 50.51, 2.872 x 50.93, 3.291
+    { 236158, Bucket(1143) }, // 50.09, 4.13 x 50.51, 4.549
+    { 236159, Bucket(1146) }, // 50.51, 4.13 x 50.93, 4.549
+    { 236183, 556 }, // 47.15, 4.969 x 47.57, 5.388
+    { 236186, Bucket(1167) }, // 45.9, 5.808 x 46.31, 6.227
+    { 236191, Bucket(1170) }, // 47.15, 5.808 x 47.57, 6.227
+    { 236214, 346 }, // 46.73, 6.647 x 47.15, 7.066
+    { 236220, Bucket(1173) }, // 46.73, 7.066 x 47.15, 7.485
+    { 236222, Bucket(1177) }, // 46.73, 7.485 x 47.15, 7.905
+    { 236223, Bucket(1180) }, // 47.15, 7.485 x 47.57, 7.905
+    { 236245, Bucket(1184) }, // 50.51, 4.549 x 50.93, 4.969
+    { 236266, Bucket(1189) }, // 47.57, 7.485 x 47.99, 7.905
+    { 236270, Bucket(1192) }, // 48.41, 7.485 x 48.83, 7.905
+    { 236279, Bucket(1196) }, // 50.51, 6.647 x 50.93, 7.066
+    { 236282, 680 }, // 49.25, 7.485 x 49.67, 7.905
+    { 236285, Bucket(1199) }, // 50.51, 7.066 x 50.93, 7.485
+    { 236330, Bucket(1204) }, // 50.93, 4.13 x 51.35, 4.549
+    { 236334, Bucket(1208) }, // 51.77, 4.13 x 52.19, 4.549
+    { 236420, 1236 }, // 51.77, 4.549 x 52.19, 4.969
+    { 236421, 1865 }, // 52.19, 4.549 x 52.61, 4.969
+    { 236422, 2256 }, // 51.77, 4.969 x 52.19, 5.388
+    { 236450, Bucket(1217) }, // 50.93, 6.647 x 51.35, 7.066
+    { 236451, 402 }, // 51.35, 6.647 x 51.77, 7.066
+    { 236457, Bucket(1222) }, // 51.35, 7.066 x 51.77, 7.485
+    { 238710, Bucket(1228) }, // 36.67, 10 x 37.09, 10.42
+    { 239052, Bucket(1232) }, // 41.7, 12.1 x 42.12, 12.52
+    { 239054, 622 }, // 41.7, 12.52 x 42.12, 12.94
+    { 241436, 1606 }, // 40.02, 28.88 x 40.44, 29.3
+    { 241474, Bucket(1235) }, // 40.86, 28.46 x 41.28, 28.88
+    { 241480, Bucket(1238) }, // 40.86, 28.88 x 41.28, 29.3
+    { 241563, Bucket(1243) }, // 39.6, 32.65 x 40.02, 33.07
+    { 241672, 742 }, // 44.22, 8.744 x 44.64, 9.163
+    { 241679, 1911 }, // 45.48, 9.163 x 45.9, 9.583
+    { 241685, Bucket(1246) }, // 47.15, 7.905 x 47.57, 8.324
+    { 241687, Bucket(1249) }, // 47.15, 8.324 x 47.57, 8.744
+    { 241693, 482 }, // 47.15, 8.744 x 47.57, 9.163
+    { 241701, 317 }, // 45.48, 9.583 x 45.9, 10
+    { 241727, Bucket(1268) }, // 47.15, 10.84 x 47.57, 11.26
+    { 241730, 502 }, // 47.57, 8.324 x 47.99, 8.744
+    { 241733, 1042 }, // 48.83, 7.905 x 49.25, 8.324
+    { 241735, Bucket(1272) }, // 48.83, 8.324 x 49.25, 8.744
+    { 241742, 170 }, // 48.41, 9.163 x 48.83, 9.583
+    { 241744, Bucket(1282) }, // 49.25, 7.905 x 49.67, 8.324
+    { 241746, Bucket(1285) }, // 49.25, 8.324 x 49.67, 8.744
+    { 241747, Bucket(1291) }, // 49.67, 8.324 x 50.09, 8.744
+    { 241750, Bucket(1296) }, // 50.09, 8.324 x 50.51, 8.744
+    { 241752, Bucket(1281) }, // 49.25, 8.744 x 49.67, 9.163
+    { 241754, 679 }, // 49.25, 9.163 x 49.67, 9.583
+    { 241756, 570 }, // 50.09, 8.744 x 50.51, 9.163
+    { 241771, Bucket(1300) }, // 47.99, 10.84 x 48.41, 11.26
+    { 241775, 195 }, // 48.83, 10.84 x 49.25, 11.26
+    { 241786, Bucket(1304) }, // 49.25, 10.84 x 49.67, 11.26
+    { 241798, 293 }, // 45.06, 11.68 x 45.48, 12.1
+    { 241813, 972 }, // 47.15, 11.26 x 47.57, 11.68
+    { 241823, 1803 }, // 47.15, 12.52 x 47.57, 12.94
+    { 241845, 1803 }, // 47.15, 12.94 x 47.57, 13.36
+    { 241855, 2078 }, // 47.15, 14.2 x 47.57, 14.62
+    { 241856, 970 }, // 47.57, 11.26 x 47.99, 11.68
+    { 241857, Bucket(1309) }, // 47.99, 11.26 x 48.41, 11.68
+    { 241858, 970 }, // 47.57, 11.68 x 47.99, 12.1
+    { 241859, 156 }, // 47.99, 11.68 x 48.41, 12.1
+    { 241860, 1375 }, // 48.41, 11.26 x 48.83, 11.68
+    { 241862, 1375 }, // 48.41, 11.68 x 48.83, 12.1
+    { 241866, Bucket(1316) }, // 47.57, 12.52 x 47.99, 12.94
+    { 241887, Bucket(1319) }, // 50.51, 12.52 x 50.93, 12.94
+    { 241888, Bucket(1315) }, // 47.57, 12.94 x 47.99, 13.36
+    { 241899, Bucket(1322) }, // 47.99, 14.2 x 48.41, 14.62
+    { 241915, Bucket(1325) }, // 49.67, 14.2 x 50.09, 14.62
+    { 241918, Bucket(1333) }, // 50.09, 14.2 x 50.51, 14.62
+    { 241926, Bucket(1338) }, // 51.77, 8.324 x 52.19, 8.744
+    { 241935, 753 }, // 52.19, 9.163 x 52.61, 9.583
+    { 241946, 753 }, // 52.61, 9.163 x 53.03, 9.583
+    { 241950, 1186 }, // 53.45, 9.163 x 53.86, 9.583
+    { 241957, Bucket(1344) }, // 52.19, 9.583 x 52.61, 10
+    { 241961, 123 }, // 51.35, 10.42 x 51.77, 10.84
+    { 241972, 169 }, // 53.45, 9.583 x 53.86, 10
+    { 242056, Bucket(1359) }, // 50.93, 12.1 x 51.35, 12.52
+    { 242068, Bucket(1362) }, // 53.45, 11.26 x 53.86, 11.68
+    { 242071, Bucket(1366) }, // 53.86, 11.68 x 54.28, 12.1
+    { 242077, Bucket(1370) }, // 53.86, 12.1 x 54.28, 12.52
+    { 242082, Bucket(1375) }, // 50.93, 13.36 x 51.35, 13.78
+    { 242085, Bucket(1379) }, // 52.19, 12.94 x 52.61, 13.36
+    { 242087, Bucket(1387) }, // 52.19, 13.36 x 52.61, 13.78
+    { 242088, 1136 }, // 50.93, 13.78 x 51.35, 14.2
+    { 242198, 173 }, // 46.73, 15.04 x 47.15, 15.45
+    { 242199, 193 }, // 47.15, 15.04 x 47.57, 15.45
+    { 242251, Bucket(1401) }, // 47.99, 15.87 x 48.41, 16.29
+    { 242273, Bucket(1405) }, // 47.99, 16.29 x 48.41, 16.71
+    { 242333, Bucket(1414) }, // 47.15, 18.81 x 47.57, 19.23
+    { 242432, Bucket(1424) }, // 50.93, 14.62 x 51.35, 15.04
+    { 242471, Bucket(1427) }, // 52.19, 16.71 x 52.61, 17.13
+    { 242571, Bucket(1444) }, // 51.35, 19.23 x 51.77, 19.65
+    { 242574, Bucket(1457) }, // 51.77, 19.23 x 52.19, 19.65
+    { 242591, 611 }, // 53.86, 19.23 x 54.28, 19.65
+    { 242745, Bucket(1467) }, // 59.74, 10.42 x 60.16, 10.84
+    { 242818, Bucket(1474) }, // 57.64, 11.68 x 58.06, 12.1
+    { 243333, 760 }, // 58.9, 17.97 x 59.32, 18.39
+    { 243344, 1546 }, // 59.32, 17.97 x 59.74, 18.39
+    { 243833, Bucket(1477) }, // 49.67, 23.84 x 50.09, 24.26
+    { 243850, Bucket(1483) }, // 44.22, 25.94 x 44.64, 26.36
+    { 244092, 530 }, // 56.8, 23.84 x 57.22, 24.26
+    { 244884, Bucket(1491) }, // 60.16, 24.68 x 60.58, 25.1
+    { 245299, Bucket(1495) }, // 59.74, 30.13 x 60.16, 30.55
+    { 545991, 1197 }, // 8.566, 38.52 x 8.986, 38.94
+    { 546002, Bucket(1501) }, // 8.986, 38.52 x 9.405, 38.94
+    { 556126, 1572 }, // 9.824, 76.27 x 10.24, 76.69
+    { 556339, Bucket(1504) }, // 12.76, 77.11 x 13.18, 77.53
+    { 556345, Bucket(1504) }, // 12.76, 77.53 x 13.18, 77.95
+    { 556465, Bucket(1507) }, // 12.76, 80.05 x 13.18, 80.47
+    { 579509, Bucket(1510) }, // 13.6, 100.2 x 14.02, 100.6
+    { 587235, Bucket(1513) }, // 14.44, 120.7 x 14.86, 121.2
+    { 590049, 1525 }, // 21.15, 39.78 x 21.57, 40.2
+    { 590753, Bucket(1516) }, // 24.5, 46.49 x 24.92, 46.91
+    { 592345, 1470 }, // 29.54, 52.36 x 29.96, 52.78
+    { 593007, Bucket(1519) }, // 35.41, 51.11 x 35.83, 51.53
+    { 593988, 1521 }, // 48.41, 34.75 x 48.83, 35.17
+    { 594011, Bucket(1522) }, // 49.67, 36.01 x 50.09, 36.43
+    { 594285, Bucket(1525) }, // 55.54, 37.26 x 55.96, 37.68
+    { 594287, 2188 }, // 55.54, 37.68 x 55.96, 38.1
+    { 596245, Bucket(1532) }, // 53.86, 48.17 x 54.28, 48.59
+    { 596288, Bucket(1532) }, // 54.28, 48.17 x 54.7, 48.59
+    { 596301, 1503 }, // 55.54, 49.01 x 55.96, 49.43
+    { 596423, 550 }, // 55.54, 51.95 x 55.96, 52.36
+    { 596429, Bucket(1537) }, // 55.54, 52.36 x 55.96, 52.78
+    { 600258, 2321 }, // 20.73, 78.79 x 21.15, 79.21
+    { 600420, 1646 }, // 28.28, 76.69 x 28.7, 77.11
+    { 600422, 1789 }, // 28.28, 77.11 x 28.7, 77.53
+    { 600502, 1833 }, // 26.6, 80.47 x 27.02, 80.89
+    { 600508, 1833 }, // 26.6, 80.89 x 27.02, 81.31
+    { 600826, 1785 }, // 22.41, 88.02 x 22.83, 88.44
+    { 601457, 1526 }, // 42.96, 76.69 x 43.38, 77.11
+    { 624908, 743 }, // 24.92, 102.7 x 25.34, 103.1
+    { 625015, Bucket(1540) }, // 30.38, 104 x 30.8, 104.4
+    { 625051, 1531 }, // 26.18, 106.5 x 26.6, 106.9
+    { 625054, 1531 }, // 26.6, 106.5 x 27.02, 106.9
+    { 625371, Bucket(1544) }, // 22.83, 113.2 x 23.25, 113.6
+    { 625383, Bucket(1549) }, // 21.99, 114 x 22.41, 114.4
+    { 625393, Bucket(1554) }, // 22.83, 113.6 x 23.25, 114
+    { 625394, Bucket(1557) }, // 22.41, 114 x 22.83, 114.4
+    { 625609, Bucket(1561) }, // 27.86, 112.8 x 28.28, 113.2
+    { 625655, Bucket(1564) }, // 30.38, 114 x 30.8, 114.4
+    { 625776, 2247 }, // 35.83, 103.5 x 36.25, 104
+    { 626240, Bucket(1570) }, // 34.15, 108.6 x 34.57, 109
+    { 626379, Bucket(1573) }, // 34.57, 113.2 x 34.99, 113.6
+    { 626401, Bucket(1573) }, // 34.57, 113.6 x 34.99, 114
+    { 626495, 2291 }, // 40.44, 111.5 x 40.86, 111.9
+    { 631002, Bucket(1576) }, // 22.41, 119.9 x 22.83, 120.3
+    { 631024, Bucket(1576) }, // 22.41, 120.3 x 22.83, 120.7
+    { 631110, 1839 }, // 28.28, 115.7 x 28.7, 116.1
+    { 631186, 2278 }, // 25.76, 119.1 x 26.18, 119.5
+    { 631212, 1363 }, // 24.92, 121.2 x 25.34, 121.6
+    { 631262, Bucket(1579) }, // 29.96, 119.9 x 30.38, 120.3
+    { 631293, 1756 }, // 30.38, 121.2 x 30.8, 121.6
+    { 631844, 1707 }, // 31.63, 117 x 32.05, 117.4
+    { 631904, 2246 }, // 34.15, 117 x 34.57, 117.4
+    { 631940, 1660 }, // 31.63, 118.6 x 32.05, 119.1
+    { 631941, Bucket(1583) }, // 32.05, 118.6 x 32.47, 119.1
+    { 631971, 1863 }, // 31.22, 120.7 x 31.63, 121.2
+    { 631976, Bucket(1586) }, // 30.8, 121.2 x 31.22, 121.6
+    { 632089, Bucket(1589) }, // 39.6, 116.1 x 40.02, 116.5
+    { 632092, Bucket(1596) }, // 40.02, 116.1 x 40.44, 116.5
+    { 632101, Bucket(1599) }, // 38.77, 117 x 39.18, 117.4
+    { 632112, Bucket(1600) }, // 39.18, 117 x 39.6, 117.4
+    { 632239, 1657 }, // 38.77, 121.6 x 39.18, 122
+    { 632526, 1562 }, // 34.99, 126.6 x 35.41, 127
+    { 632543, 2335 }, // 37.09, 126.6 x 37.51, 127
+    { 632559, 1596 }, // 35.41, 128.3 x 35.83, 128.7
+    { 632565, Bucket(1604) }, // 37.09, 127 x 37.51, 127.4
+    { 632570, Bucket(1607) }, // 35.83, 128.3 x 36.25, 128.7
+    { 632581, 1657 }, // 38.77, 122 x 39.18, 122.4
+    { 632651, Bucket(1610) }, // 41.28, 123.2 x 41.7, 123.7
+    { 632654, Bucket(1613) }, // 41.7, 123.2 x 42.12, 123.7
+    { 633924, Bucket(1619) }, // 34.99, 128.7 x 35.41, 129.1
+    { 634433, 2217 }, // 34.57, 135.4 x 34.99, 135.8
+    { 634446, Bucket(1623) }, // 34.99, 136.7 x 35.41, 137.1
+    { 634450, 2224 }, // 35.83, 135.8 x 36.25, 136.3
+    { 634567, 2231 }, // 35.41, 139.2 x 35.83, 139.6
+    { 634573, Bucket(1627) }, // 35.41, 139.6 x 35.83, 140
+    { 634584, 2198 }, // 35.83, 139.6 x 36.25, 140
+    { 635535, 1705 }, // 45.48, 126.6 x 45.9, 127
+    { 660847, 784 }, // -38.41, 145.1 x -37.99, 145.5
+    { 660856, Bucket(1639) }, // -37.99, 144.6 x -37.57, 145.1
+    { 669174, 12 }, // -37.15, 174.4 x -36.73, 174.8
+    { 669180, 12 }, // -37.15, 174.8 x -36.73, 175.3
+    { 672260, 2218 }, // -35.47, 148.8 x -35.05, 149.3
+    { 672307, 2091 }, // -34.22, 150.9 x -33.8, 151.4
+    { 259050, 1980 }, // 8.986, -79.55 x 9.195, -79.34
+    { 398857, Bucket(1653) }, // 37.72, -122.5 x 37.93, -122.3
+    { 399485, 1686 }, // 33.94, -118.3 x 34.15, -118.1
+    { 403703, Bucket(1659) }, // 20.52, -103.5 x 20.73, -103.2
+    { 410047, Bucket(1662) }, // 49.04, -123.2 x 49.25, -123
+    { 410090, Bucket(1662) }, // 49.25, -123.2 x 49.46, -123
+    { 410131, 1179 }, // 45.27, -122.7 x 45.48, -122.5
+    { 410134, Bucket(1665) }, // 45.48, -122.7 x 45.69, -122.5
+    { 410389, Bucket(1662) }, // 49.04, -123 x 49.25, -122.7
+    { 410432, Bucket(1662) }, // 49.25, -123 x 49.46, -122.7
+    { 426051, Bucket(1668) }, // 19.26, -99.26 x 19.47, -99.05
+    { 426054, 1697 }, // 19.47, -99.26 x 19.68, -99.05
+    { 430305, 780 }, // 32.68, -96.95 x 32.89, -96.74
+    { 433978, Bucket(1672) }, // 41.7, -87.94 x 41.91, -87.73
+    { 434064, Bucket(1672) }, // 41.7, -87.73 x 41.91, -87.52
+    { 435871, Bucket(1675) }, // 25.55, -80.39 x 25.76, -80.18
+    { 435914, Bucket(1675) }, // 25.76, -80.39 x 25.97, -80.18
+    { 438484, 1052 }, // 33.73, -84.37 x 33.94, -84.16
+    { 440315, Bucket(1678) }, // 43.59, -79.55 x 43.8, -79.34
+    { 441568, 2186 }, // 39.18, -76.82 x 39.39, -76.61
+    { 441681, 1641 }, // 43.59, -79.34 x 43.8, -79.13
+    { 441935, Bucket(1681) }, // 39.81, -75.35 x 40.02, -75.14
+    { 441957, 1710 }, // 39.81, -75.14 x 40.02, -74.93
+    { 442069, 2143 }, // 40.65, -74.3 x 40.86, -74.09
+    { 442071, Bucket(1688) }, // 40.65, -74.09 x 40.86, -73.88
+    { 442242, Bucket(1693) }, // 40.86, -74.09 x 41.07, -73.88
+    { 443047, 663 }, // 44.85, -93.39 x 45.06, -93.18
+    { 453139, Bucket(1696) }, // 45.27, -75.77 x 45.48, -75.56
+    { 590035, Bucket(1699) }, // -33.59, -70.74 x -33.38, -70.53
+    { 598044, 234 }, // -35.05, -58.78 x -34.84, -58.57
+    { 598046, 234 }, // -35.05, -58.57 x -34.84, -58.37
+    { 598047, 210 }, // -34.84, -58.57 x -34.64, -58.37
+    { 598069, 210 }, // -34.84, -58.37 x -34.64, -58.16
+    { 598090, Bucket(1704) }, // -34.64, -58.57 x -34.43, -58.37
+    { 602074, 960 }, // -23.73, -46.83 x -23.52, -46.62
+    { 605731, 1508 }, // -15.97, -48.09 x -15.76, -47.88
+    { 611292, 1801 }, // 10.24, -67.17 x 10.45, -66.96
+    { 611295, 1679 }, // 10.45, -66.96 x 10.66, -66.75
+    { 624095, 1300 }, // -23.1, -43.48 x -22.89, -43.27
+    { 624117, 1300 }, // -23.1, -43.27 x -22.89, -43.06
+    { 626849, 2174 }, // -22.68, -43.27 x -22.47, -43.06
+    { 626900, 1262 }, // -19.96, -44.1 x -19.75, -43.89
+    { 629853, 1330 }, // -13.03, -38.65 x -12.82, -38.44
+    { 630271, 1318 }, // -9.679, -35.93 x -9.469, -35.72
+    { 639724, 2301 }, // -7.372, -39.49 x -7.162, -39.28
+    { 641357, 2180 }, // -3.807, -38.65 x -3.597, -38.44
+    { 641566, Bucket(1708) }, // -8.211, -35.09 x -8.001, -34.88
+    { 641615, 2303 }, // -7.162, -35.09 x -6.953, -34.88
+    { 641637, 2303 }, // -7.162, -34.88 x -6.953, -34.67
+    { 752610, 1981 }, // 8.986, 7.276 x 9.195, 7.485
+    { 786609, 1510 }, // 18.42, -70.11 x 18.63, -69.9
+    { 791871, 1021 }, // 42.33, -71.16 x 42.54, -70.95
+    { 918960, 91 }, // 28.28, -16.42 x 28.49, -16.21
+    { 924375, 1161 }, // 33.94, -6.985 x 34.15, -6.775
+    { 924857, Bucket(1712) }, // 38.56, -9.292 x 38.77, -9.082
+    { 925443, Bucket(1716) }, // 41.07, -8.663 x 41.28, -8.453
+    { 930939, Bucket(1720) }, // 40.23, -4.049 x 40.44, -3.839
+    { 931025, Bucket(1723) }, // 40.23, -3.839 x 40.44, -3.63
+    { 931028, 1589 }, // 40.44, -3.839 x 40.65, -3.63
+    { 931279, Bucket(1728) }, // 43.17, -3.21 x 43.38, -3
+    { 931299, Bucket(1732) }, // 42.75, -2.791 x 42.96, -2.581
+    { 931301, Bucket(1735) }, // 43.17, -3 x 43.38, -2.791
+    { 931364, 953 }, // 37.93, -1.323 x 38.14, -1.113
+    { 931435, 1189 }, // 39.39, -0.6935 x 39.6, -0.4838
+    { 931521, Bucket(1740) }, // 39.39, -0.4838 x 39.6, -0.2741
+    { 932306, Bucket(1746) }, // 36.67, 3.081 x 36.88, 3.291
+    { 933156, Bucket(1749) }, // 41.28, 2.033 x 41.49, 2.243
+    { 933711, 228 }, // 43.17, 5.179 x 43.38, 5.388
+    { 933733, 228 }, // 43.17, 5.388 x 43.38, 5.598
+    { 933873, 2220 }, // 43.59, 7.066 x 43.8, 7.276
+    { 942684, 615 }, // 47.15, -1.742 x 47.36, -1.532
+    { 942719, 904 }, // 47.36, -0.6935 x 47.57, -0.4838
+    { 942860, 1004 }, // 47.99, -1.742 x 48.2, -1.532
+    { 943082, 726 }, // 49.25, 0.9842 x 49.46, 1.194
+    { 943343, Bucket(1761) }, // 53.24, -2.371 x 53.45, -2.162
+    { 943354, Bucket(1765) }, // 53.45, -2.371 x 53.65, -2.162
+    { 943415, 1520 }, // 55.75, -4.468 x 55.96, -4.259
+    { 943421, 1520 }, // 55.75, -4.259 x 55.96, -4.049
+    { 943695, Bucket(1774) }, // 53.24, -1.532 x 53.45, -1.323
+    { 943713, 577 }, // 52.82, -1.323 x 53.03, -1.113
+    { 943750, 1452 }, // 51.35, -0.2741 x 51.56, -0.06436
+    { 943756, 1543 }, // 51.35, -0.06436 x 51.56, 0.1454
+    { 944279, 1962 }, // 45.69, 3.081 x 45.9, 3.291
+    { 944395, Bucket(1779) }, // 47.78, 1.823 x 47.99, 2.033
+    { 944435, Bucket(1782) }, // 48.62, 2.243 x 48.83, 2.452
+    { 944438, Bucket(1787) }, // 48.83, 2.243 x 49.04, 2.452
+    { 944444, Bucket(1800) }, // 48.83, 2.452 x 49.04, 2.662
+    { 944603, 1440 }, // 50.3, 3.501 x 50.51, 3.711
+    { 944635, Bucket(1803) }, // 50.3, 4.34 x 50.51, 4.549
+    { 944639, Bucket(1806) }, // 50.72, 4.34 x 50.93, 4.549
+    { 944663, Bucket(1812) }, // 45.69, 4.759 x 45.9, 4.969
+    { 944690, Bucket(1818) }, // 45.06, 5.598 x 45.27, 5.808
+    { 944732, 557 }, // 47.15, 4.969 x 47.36, 5.179
+    { 944747, Bucket(1823) }, // 46.11, 6.017 x 46.31, 6.227
+    { 944893, Bucket(1828) }, // 47.36, 7.485 x 47.57, 7.695
+    { 945003, 1537 }, // 49.46, 6.017 x 49.67, 6.227
+    { 945064, Bucket(1840) }, // 47.57, 7.485 x 47.78, 7.695
+    { 945067, Bucket(1846) }, // 47.78, 7.695 x 47.99, 7.905
+    { 945070, Bucket(1846) }, // 47.99, 7.695 x 48.2, 7.905
+    { 945119, Bucket(1849) }, // 50.72, 6.856 x 50.93, 7.066
+    { 945290, Bucket(1853) }, // 50.93, 3.501 x 51.14, 3.711
+    { 945312, Bucket(1853) }, // 50.93, 3.711 x 51.14, 3.92
+    { 945323, Bucket(1857) }, // 51.14, 4.34 x 51.35, 4.549
+    { 945337, Bucket(1868) }, // 51.98, 4.13 x 52.19, 4.34
+    { 945338, Bucket(1876) }, // 51.77, 4.34 x 51.98, 4.549
+    { 945339, Bucket(1883) }, // 51.98, 4.34 x 52.19, 4.549
+    { 945680, 1237 }, // 51.77, 4.549 x 51.98, 4.759
+    { 945686, Bucket(1887) }, // 52.19, 4.759 x 52.4, 4.969
+    { 945689, Bucket(1896) }, // 51.98, 4.969 x 52.19, 5.179
+    { 945801, Bucket(1899) }, // 51.14, 6.647 x 51.35, 6.856
+    { 945802, Bucket(1904) }, // 50.93, 6.856 x 51.14, 7.066
+    { 945806, Bucket(1909) }, // 51.35, 6.856 x 51.56, 7.066
+    { 945828, Bucket(1912) }, // 51.35, 7.066 x 51.56, 7.276
+    { 945830, Bucket(1916) }, // 51.35, 7.276 x 51.56, 7.485
+    { 954840, 1877 }, // 36.67, 10 x 36.88, 10.21
+    { 956328, 2236 }, // 40.86, 14.2 x 41.07, 14.41
+    { 957833, 885 }, // 41.07, 16.71 x 41.28, 16.92
+    { 962042, Bucket(1919) }, // 29.96, 31.18 x 30.17, 31.39
+    { 963726, 1715 }, // 37.93, 23.63 x 38.14, 23.84
+    { 964034, Bucket(1922) }, // 42.54, 23.21 x 42.75, 23.42
+    { 964250, 1728 }, // 38.35, 26.99 x 38.56, 27.2
+    { 964272, 1728 }, // 38.35, 27.2 x 38.56, 27.41
+    { 965920, 848 }, // 40.86, 28.88 x 41.07, 29.09
+    { 966253, Bucket(1925) }, // 39.81, 32.65 x 40.02, 32.86
+    { 966741, 2215 }, // 47.36, 7.905 x 47.57, 8.115
+    { 966751, Bucket(1928) }, // 47.36, 8.534 x 47.57, 8.744
+    { 966773, 1858 }, // 47.36, 8.744 x 47.57, 8.953
+    { 966869, 980 }, // 47.36, 9.583 x 47.57, 9.792
+    { 966922, 501 }, // 47.57, 8.534 x 47.78, 8.744
+    { 966940, Bucket(1931) }, // 48.83, 8.324 x 49.04, 8.534
+    { 966941, 1042 }, // 49.04, 8.324 x 49.25, 8.534
+    { 966942, 1042 }, // 48.83, 8.534 x 49.04, 8.744
+    { 966944, 1858 }, // 47.57, 8.744 x 47.78, 8.953
+    { 966964, 683 }, // 48.83, 8.744 x 49.04, 8.953
+    { 966965, Bucket(1937) }, // 49.04, 8.744 x 49.25, 8.953
+    { 966966, 175 }, // 48.83, 8.953 x 49.04, 9.163
+    { 966967, Bucket(1937) }, // 49.04, 8.953 x 49.25, 9.163
+    { 966972, 175 }, // 48.83, 9.163 x 49.04, 9.373
+    { 966973, 683 }, // 49.04, 9.163 x 49.25, 9.373
+    { 966975, 683 }, // 49.04, 9.373 x 49.25, 9.583
+    { 966983, 925 }, // 49.88, 8.115 x 50.09, 8.324
+    { 966986, Bucket(1940) }, // 49.25, 8.534 x 49.46, 8.744
+    { 967002, Bucket(1944) }, // 50.09, 8.534 x 50.3, 8.744
+    { 967013, 925 }, // 49.88, 8.744 x 50.09, 8.953
+    { 967024, 925 }, // 50.09, 8.744 x 50.3, 8.953
+    { 967071, 619 }, // 49.04, 10.21 x 49.25, 10.42
+    { 967082, 970 }, // 47.57, 11.05 x 47.78, 11.26
+    { 967085, 603 }, // 48.2, 10.84 x 48.41, 11.05
+    { 967146, 196 }, // 49.25, 11.05 x 49.46, 11.26
+    { 967252, Bucket(1953) }, // 47.15, 11.26 x 47.36, 11.47
+    { 967430, Bucket(1959) }, // 47.99, 11.47 x 48.2, 11.68
+    { 967467, 1805 }, // 47.78, 12.73 x 47.99, 12.94
+    { 967488, Bucket(1977) }, // 49.25, 11.26 x 49.46, 11.47
+    { 967551, Bucket(1980) }, // 50.72, 12.73 x 50.93, 12.94
+    { 967553, 1805 }, // 47.78, 12.94 x 47.99, 13.15
+    { 967597, Bucket(1984) }, // 48.2, 14.2 x 48.41, 14.41
+    { 967628, Bucket(1991) }, // 49.67, 13.36 x 49.88, 13.57
+    { 967637, Bucket(1981) }, // 50.72, 12.94 x 50.93, 13.15
+    { 967663, 143 }, // 49.88, 14.41 x 50.09, 14.62
+    { 967674, 143 }, // 50.09, 14.41 x 50.3, 14.62
+    { 967742, 1048 }, // 52.19, 9.373 x 52.4, 9.583
+    { 967780, Bucket(1994) }, // 53.03, 8.744 x 53.24, 8.953
+    { 967828, Bucket(2002) }, // 52.19, 9.583 x 52.4, 9.792
+    { 967860, Bucket(2005) }, // 52.19, 10.42 x 52.4, 10.63
+    { 967872, 753 }, // 52.61, 9.583 x 52.82, 9.792
+    { 967891, 1124 }, // 53.65, 9.792 x 53.86, 10
+    { 968206, Bucket(2012) }, // 51.35, 11.89 x 51.56, 12.1
+    { 968211, Bucket(2022) }, // 51.98, 11.47 x 52.19, 11.68
+    { 968227, Bucket(2028) }, // 51.14, 12.31 x 51.35, 12.52
+    { 968230, Bucket(2028) }, // 51.35, 12.31 x 51.56, 12.52
+    { 968240, 158 }, // 51.77, 12.1 x 51.98, 12.31
+    { 968320, 1387 }, // 50.93, 12.94 x 51.14, 13.15
+    { 968321, 782 }, // 51.14, 12.94 x 51.35, 13.15
+    { 968322, 1267 }, // 50.93, 13.15 x 51.14, 13.36
+    { 968324, 782 }, // 51.35, 12.94 x 51.56, 13.15
+    { 968330, Bucket(2032) }, // 50.93, 13.57 x 51.14, 13.78
+    { 968349, Bucket(2042) }, // 52.4, 13.36 x 52.61, 13.57
+    { 968351, 35 }, // 52.4, 13.57 x 52.61, 13.78
+    { 968352, Bucket(2051) }, // 50.93, 13.78 x 51.14, 13.99
+    { 968431, Bucket(2058) }, // 53.24, 14.41 x 53.45, 14.62
+    { 968442, Bucket(2066) }, // 53.45, 14.41 x 53.65, 14.62
+    { 969006, 79 }, // 47.99, 16.08 x 48.2, 16.29
+    { 969092, 79 }, // 47.99, 16.29 x 48.2, 16.5
+    { 969111, Bucket(2073) }, // 49.04, 16.5 x 49.25, 16.71
+    { 969246, 256 }, // 45.48, 18.6 x 45.69, 18.81
+    { 969335, Bucket(2085) }, // 47.36, 19.02 x 47.57, 19.23
+    { 969659, Bucket(2108) }, // 48.62, 21.12 x 48.83, 21.33
+    { 970287, 2012 }, // 51.56, 19.44 x 51.77, 19.65
+    { 970298, 2012 }, // 51.77, 19.44 x 51.98, 19.65
+    { 970428, 1035 }, // 52.19, 20.91 x 52.4, 21.12
+    { 970982, 839 }, // 59.74, 10.63 x 59.95, 10.84
+    { 971274, Bucket(2121) }, // 57.64, 11.89 x 57.85, 12.1
+    { 972991, Bucket(2131) }, // 59.11, 17.76 x 59.32, 17.97
+    { 973034, Bucket(2131) }, // 59.32, 17.76 x 59.53, 17.97
+    { 973333, Bucket(2135) }, // 59.11, 17.97 x 59.32, 18.18
+    { 973335, 759 }, // 59.11, 18.18 x 59.32, 18.39
+    { 973376, Bucket(2143) }, // 59.32, 17.97 x 59.53, 18.18
+    { 975401, 705 }, // 44.43, 25.94 x 44.64, 26.15
+    { 976370, Bucket(2152) }, // 56.8, 24.05 x 57.01, 24.26
+    { 977371, 547 }, // 50.3, 30.34 x 50.51, 30.55
+    { 977850, Bucket(2157) }, // 48.41, 34.54 x 48.62, 34.75
+    { 978328, Bucket(2160) }, // 55.12, 30.13 x 55.33, 30.34
+    { 2226005, 1829 }, // 17.16, 78.37 x 17.37, 78.58
+    { 2314234, 1741 }, // 3.114, 101.6 x 3.323, 101.9
+    { 2318038, 1731 }, // 13.6, 100.4 x 13.81, 100.6
+    { 2318975, Bucket(2165) }, // -6.324, 106.7 x -6.114, 106.9
+    { 2319751, Bucket(2168) }, // 1.226, 103.7 x 1.436, 104
+    { 2348942, 1740 }, // 14.44, 120.9 x 14.65, 121.2
+    { 2363737, 1577 }, // 36.88, 35.17 x 37.09, 35.38
+    { 2366712, 1718 }, // 40.02, 44.4 x 40.23, 44.6
+    { 2368699, 2258 }, // 25.13, 51.32 x 25.34, 51.53
+    { 2372031, Bucket(2171) }, // 35.62, 51.32 x 35.83, 51.53
+    { 2372373, 1570 }, // 35.62, 51.53 x 35.83, 51.74
+    { 2372817, Bucket(2175) }, // 40.23, 49.85 x 40.44, 50.06
+    { 2374508, 1198 }, // 36.25, 59.49 x 36.46, 59.7
+    { 2375923, Bucket(2178) }, // 46.94, 37.47 x 47.15, 37.68
+    { 2375926, Bucket(2185) }, // 47.15, 37.47 x 47.36, 37.68
+    { 2376047, 544 }, // 49.88, 36.22 x 50.09, 36.43
+    { 2377139, 493 }, // 55.33, 37.47 x 55.54, 37.68
+    { 2377142, 493 }, // 55.54, 37.47 x 55.75, 37.68
+    { 2378169, Bucket(2189) }, // 48.62, 44.4 x 48.83, 44.6
+    { 2379211, 709 }, // 56.17, 43.77 x 56.38, 43.98
+    { 2379233, 709 }, // 56.17, 43.98 x 56.38, 44.19
+    { 2399524, 694 }, // 41.28, 69.14 x 41.49, 69.35
+    { 2400768, Bucket(2192) }, // 17.37, 78.37 x 17.58, 78.58
+    { 2401035, 1984 }, // 20.94, 79 x 21.15, 79.21
+    { 2401371, 1730 }, // 26.81, 75.64 x 27.02, 75.85
+    { 2401683, 1795 }, // 28.49, 76.9 x 28.7, 77.11
+    { 2420007, 1504 }, // 54.91, 82.77 x 55.12, 82.98
+    { 2420206, Bucket(2195) }, // 56.38, 84.87 x 56.59, 85.08
+    { 2499632, 1658 }, // 24.92, 102.7 x 25.13, 102.9
+    { 2500061, 1826 }, // 30.59, 104 x 30.8, 104.2
+    { 2500460, Bucket(2198) }, // 29.54, 106.5 x 29.75, 106.7
+    { 2501485, Bucket(2202) }, // 23.04, 113.2 x 23.25, 113.4
+    { 2501487, 1655 }, // 23.04, 113.4 x 23.25, 113.6
+    { 2501533, Bucket(2205) }, // 22.2, 114 x 22.41, 114.2
+    { 2501570, 2067 }, // 22.41, 113.8 x 22.62, 114
+    { 2501571, 1479 }, // 22.62, 113.8 x 22.83, 114
+    { 2501576, Bucket(2208) }, // 22.41, 114 x 22.62, 114.2
+    { 2502792, 2295 }, // 30.8, 104 x 31.01, 104.2
+    { 2505604, 2254 }, // 34.57, 113.6 x 34.78, 113.8
+    { 2506404, 1587 }, // 37.93, 114.4 x 38.14, 114.6
+    { 2516119, Bucket(2211) }, // 52.4, 103.7 x 52.61, 104
+    { 2516126, Bucket(2218) }, // 52.19, 104.2 x 52.4, 104.4
+    { 2524747, 1654 }, // 25.97, 119.3 x 26.18, 119.5
+    { 2524850, Bucket(2223) }, // 24.92, 121.4 x 25.13, 121.6
+    { 2527419, 1661 }, // 31.84, 118.4 x 32.05, 118.6
+    { 2527751, 1986 }, // 31.43, 118.8 x 31.63, 119.1
+    { 2527761, 1661 }, // 31.84, 118.6 x 32.05, 118.8
+    { 2527762, 1986 }, // 31.63, 118.8 x 31.84, 119.1
+    { 2527791, 1584 }, // 31.43, 120.1 x 31.63, 120.3
+    { 2527800, 2211 }, // 31.63, 119.9 x 31.84, 120.1
+    { 2527876, 1645 }, // 31.22, 120.3 x 31.43, 120.5
+    { 2527877, Bucket(2226) }, // 31.43, 120.3 x 31.63, 120.5
+    { 2527878, Bucket(2229) }, // 31.22, 120.5 x 31.43, 120.7
+    { 2527879, 1863 }, // 31.43, 120.5 x 31.63, 120.7
+    { 2527884, 1645 }, // 31.22, 120.7 x 31.43, 120.9
+    { 2528107, 1636 }, // 36.04, 120.1 x 36.25, 120.3
+    { 2528193, Bucket(2232) }, // 36.04, 120.3 x 36.25, 120.5
+    { 2528334, 1870 }, // 39.6, 115.9 x 39.81, 116.1
+    { 2528357, 1837 }, // 39.81, 116.1 x 40.02, 116.3
+    { 2528359, 319 }, // 39.81, 116.3 x 40.02, 116.5
+    { 2530173, Bucket(2235) }, // 37.3, 126.6 x 37.51, 126.8
+    { 2530175, 1442 }, // 37.3, 126.8 x 37.51, 127
+    { 2530260, 1430 }, // 37.09, 127 x 37.3, 127.2
+    { 2530261, 1664 }, // 37.3, 127 x 37.51, 127.2
+    { 2530814, 2081 }, // 43.8, 125.1 x 44.01, 125.3
+    { 2530856, Bucket(2240) }, // 37.51, 126.6 x 37.72, 126.8
+    { 2530858, Bucket(2243) }, // 37.51, 126.8 x 37.72, 127
+    { 2530944, Bucket(2247) }, // 37.51, 127 x 37.72, 127.2
+    { 2535633, 1462 }, // 33.52, 130.4 x 33.73, 130.6
+    { 2536030, Bucket(2252) }, // 33.73, 132.7 x 33.94, 132.9
+    { 2536195, 1461 }, // 34.36, 132.3 x 34.57, 132.5
+    { 2536201, 1461 }, // 34.36, 132.5 x 34.57, 132.7
+    { 2536364, Bucket(2256) }, // 34.57, 135 x 34.78, 135.2
+    { 2536366, 2217 }, // 34.57, 135.2 x 34.78, 135.4
+    { 2537732, Bucket(2260) }, // 34.57, 135.4 x 34.78, 135.6
+    { 2537735, 1778 }, // 34.78, 135.6 x 34.99, 135.8
+    { 2537746, Bucket(2268) }, // 34.99, 135.6 x 35.2, 135.8
+    { 2537786, 1781 }, // 34.99, 136.9 x 35.2, 137.1
+    { 2538267, 1975 }, // 35.2, 139.4 x 35.41, 139.6
+    { 2538292, Bucket(2272) }, // 35.41, 139.6 x 35.62, 139.8
+    { 2538293, Bucket(2276) }, // 35.62, 139.6 x 35.83, 139.8
+    { 2538294, 2231 }, // 35.41, 139.8 x 35.62, 140
+    { 2538314, 1958 }, // 35.83, 139.4 x 36.04, 139.6
+    { 2538336, 1958 }, // 35.83, 139.6 x 36.04, 139.8
+    { 2539149, 1492 }, // 38.14, 140.9 x 38.35, 141.1
+    { 2539492, Bucket(2285) }, // 42.96, 141.3 x 43.17, 141.5
+    { 2643426, Bucket(2288) }, // -37.99, 144.8 x -37.78, 145.1
+    { 2689231, Bucket(2296) }, // -34.01, 151.1 x -33.8, 151.4
+    { 2690638, 2255 }, // -27.5, 152.8 x -27.3, 153
+    { 2690660, 2255 }, // -27.5, 153 x -27.3, 153.2
+    { 1620607, Bucket(2299) }, // 25.66, -100.4 x 25.76, -100.3
+    { 1620693, Bucket(2299) }, // 25.66, -100.3 x 25.76, -100.2
+    { 1634715, 1896 }, // 39.71, -105 x 39.81, -104.9
+    { 1639162, 180 }, // 45.48, -123.1 x 45.58, -123
+    { 1640536, Bucket(2302) }, // 45.48, -122.7 x 45.58, -122.6
+    { 1718167, Bucket(2306) }, // 29.85, -90.14 x 29.96, -90.03
+    { 1718210, Bucket(2307) }, // 29.96, -90.14 x 30.06, -90.03
+    { 1735915, 745 }, // 41.81, -87.83 x 41.91, -87.73
+    { 1735916, 1861 }, // 41.91, -87.94 x 42.02, -87.83
+    { 1736257, 745 }, // 41.81, -87.73 x 41.91, -87.62
+    { 1753594, Bucket(2310) }, // 33.73, -84.47 x 33.84, -84.37
+    { 1761263, 200 }, // 43.69, -79.44 x 43.8, -79.34
+    { 1766103, 2184 }, // 39.08, -76.72 x 39.18, -76.61
+    { 1766725, 201 }, // 43.69, -79.34 x 43.8, -79.23
+    { 1767743, Bucket(2313) }, // 39.92, -75.25 x 40.02, -75.14
+    { 1767786, Bucket(2321) }, // 40.02, -75.25 x 40.13, -75.14
+    { 1767829, Bucket(2325) }, // 39.92, -75.14 x 40.02, -75.04
+    { 1767872, 432 }, // 40.02, -75.14 x 40.13, -75.04
+    { 1768305, 1650 }, // 40.55, -73.88 x 40.65, -73.78
+    { 1813112, 896 }, // 45.48, -73.67 x 45.58, -73.57
+    { 2392191, Bucket(2328) }, // -34.74, -58.47 x -34.64, -58.37
+    { 2392362, Bucket(2331) }, // -34.64, -58.47 x -34.53, -58.37
+    { 2408299, Bucket(2334) }, // -23.63, -46.73 x -23.52, -46.62
+    { 2408345, 1389 }, // -24.04, -46.41 x -23.94, -46.31
+    { 2408385, 969 }, // -23.63, -46.62 x -23.52, -46.52
+    { 2442711, 1511 }, // 10.56, -71.68 x 10.66, -71.58
+    { 2496469, Bucket(2337) }, // -23, -43.27 x -22.89, -43.16
+    { 2507278, 2178 }, // -22.68, -43.79 x -22.58, -43.69
+    { 2507300, 2178 }, // -22.68, -43.69 x -22.58, -43.58
+    { 2557665, 2302 }, // -5.17, -42.85 x -5.065, -42.74
+    { 3167481, 497 }, // 42.23, -71.16 x 42.33, -71.05
+    { 3697502, 1171 }, // 33.94, -6.88 x 34.05, -6.775
+    { 3699431, Bucket(2340) }, // 38.66, -9.187 x 38.77, -9.082
+    { 3699442, 1516 }, // 38.77, -9.187 x 38.87, -9.082
+    { 3723759, 1600 }, // 40.34, -3.944 x 40.44, -3.839
+    { 3723780, 1721 }, // 37.72, -3.839 x 37.82, -3.734
+    { 3724101, Bucket(2346) }, // 40.34, -3.839 x 40.44, -3.734
+    { 3724103, Bucket(2349) }, // 40.34, -3.734 x 40.44, -3.63
+    { 3724112, 1599 }, // 40.44, -3.839 x 40.55, -3.734
+    { 3724114, Bucket(2352) }, // 40.44, -3.734 x 40.55, -3.63
+    { 3725204, 1906 }, // 43.17, -3 x 43.27, -2.896
+    { 3725248, 1377 }, // 43.38, -3 x 43.48, -2.896
+    { 3725458, 1682 }, // 37.93, -1.218 x 38.03, -1.113
+    { 3725546, 244 }, // 38.35, -0.5886 x 38.45, -0.4838
+    { 3725888, Bucket(2355) }, // 38.35, -0.4838 x 38.45, -0.3789
+    { 3726086, Bucket(2358) }, // 39.39, -0.3789 x 39.5, -0.2741
+    { 3726495, 393 }, // 41.6, -1.008 x 41.7, -0.9032
+    { 3726517, 393 }, // 41.6, -0.9032 x 41.7, -0.7984
+    { 3727022, 1223 }, // 41.07, 1.089 x 41.18, 1.194
+    { 3732484, 1223 }, // 41.07, 1.194 x 41.18, 1.299
+    { 3732624, 1243 }, // 41.28, 2.033 x 41.39, 2.138
+    { 3732627, Bucket(2361) }, // 41.39, 2.138 x 41.49, 2.243
+    { 3734847, 227 }, // 43.27, 5.283 x 43.38, 5.388
+    { 3734933, Bucket(2367) }, // 43.27, 5.388 x 43.38, 5.493
+    { 3770738, 616 }, // 47.15, -1.637 x 47.26, -1.532
+    { 3771949, Bucket(2370) }, // 47.89, 0.1454 x 47.99, 0.2502
+    { 3771960, Bucket(2370) }, // 47.99, 0.1454 x 48.1, 0.2502
+    { 3771991, Bucket(2373) }, // 49.15, -0.3789 x 49.25, -0.2741
+    { 3772198, 961 }, // 49.46, 0.0405 x 49.57, 0.1454
+    { 3773663, 1296 }, // 55.86, -4.364 x 55.96, -4.259
+    { 3774784, Bucket(2376) }, // 53.45, -2.162 x 53.55, -2.057
+    { 3775003, Bucket(2380) }, // 51.45, -0.1692 x 51.56, -0.06436
+    { 3775025, Bucket(2383) }, // 51.45, -0.06436 x 51.56, 0.0405
+    { 3777261, Bucket(2386) }, // 45.37, 4.34 x 45.48, 4.445
+    { 3777272, 336 }, // 45.48, 4.34 x 45.58, 4.445
+    { 3777754, Bucket(2390) }, // 48.83, 2.347 x 48.94, 2.452
+    { 3778551, 1890 }, // 50.82, 4.235 x 50.93, 4.34
+    { 3778557, 1736 }, // 50.82, 4.34 x 50.93, 4.445
+    { 3778652, 981 }, // 45.69, 4.759 x 45.79, 4.864
+    { 3778654, 737 }, // 45.69, 4.864 x 45.79, 4.969
+    { 3778763, 1011 }, // 45.16, 5.703 x 45.27, 5.808
+    { 3778990, 2283 }, // 46.11, 6.122 x 46.21, 6.227
+    { 3779255, 314 }, // 44.95, 7.59 x 45.06, 7.695
+    { 3779298, 314 }, // 45.06, 7.59 x 45.16, 7.695
+    { 3779531, 1022 }, // 46.84, 7.381 x 46.94, 7.485
+    { 3779534, 1022 }, // 46.94, 7.381 x 47.05, 7.485
+    { 3779822, 596 }, // 48.62, 6.122 x 48.73, 6.227
+    { 3780233, Bucket(2394) }, // 47.68, 7.276 x 47.78, 7.381
+    { 3780271, Bucket(2398) }, // 47.89, 7.8 x 47.99, 7.905
+    { 3780282, Bucket(2401) }, // 47.99, 7.8 x 48.1, 7.905
+    { 3780329, Bucket(2405) }, // 48.52, 7.695 x 48.62, 7.8
+    { 3780564, 93 }, // 50.72, 7.066 x 50.82, 7.171
+    { 3781355, Bucket(2409) }, // 51.87, 4.445 x 51.98, 4.549
+    { 3782721, Bucket(2414) }, // 51.87, 4.549 x 51.98, 4.654
+    { 3782747, Bucket(2417) }, // 52.29, 4.864 x 52.4, 4.969
+    { 3783208, Bucket(2423) }, // 50.93, 6.856 x 51.03, 6.961
+    { 3783323, 1230 }, // 51.45, 7.381 x 51.56, 7.485
+    { 3819363, Bucket(2426) }, // 36.77, 10.11 x 36.88, 10.21
+    { 3821962, 1160 }, // 39.18, 9.058 x 39.29, 9.163
+    { 3823599, Bucket(2430) }, // 43.69, 11.16 x 43.8, 11.26
+    { 3823610, Bucket(2430) }, // 43.8, 11.16 x 43.9, 11.26
+    { 3824155, Bucket(2433) }, // 38.03, 13.25 x 38.14, 13.36
+    { 3824177, 1214 }, // 38.03, 13.36 x 38.14, 13.46
+    { 3824629, 313 }, // 40.76, 14.2 x 40.86, 14.3
+    { 3824843, 625 }, // 41.81, 12.41 x 41.91, 12.52
+    { 3824846, 623 }, // 41.91, 12.41 x 42.02, 12.52
+    { 3824865, 631 }, // 41.81, 12.52 x 41.91, 12.62
+    { 3825312, 313 }, // 40.86, 14.2 x 40.97, 14.3
+    { 3827061, 1457 }, // 37.4, 15.04 x 37.51, 15.14
+    { 3829792, 1457 }, // 37.51, 15.04 x 37.61, 15.14
+    { 3854843, Bucket(2436) }, // 40.55, 22.9 x 40.65, 23
+    { 3854893, 1333 }, // 37.82, 23.63 x 37.93, 23.74
+    { 3854904, 1333 }, // 37.93, 23.63 x 38.03, 23.74
+    { 3863355, Bucket(2439) }, // 39.71, 30.45 x 39.81, 30.55
+    { 3863441, Bucket(2443) }, // 39.71, 30.55 x 39.81, 30.66
+    { 3863595, Bucket(2446) }, // 40.97, 28.77 x 41.07, 28.88
+    { 3863681, Bucket(2450) }, // 40.97, 28.88 x 41.07, 28.98
+    { 3863686, 1486 }, // 41.07, 28.98 x 41.18, 29.09
+    { 3867004, 787 }, // 47.36, 8.534 x 47.47, 8.639
+    { 3867007, 1858 }, // 47.47, 8.639 x 47.57, 8.744
+    { 3867256, 785 }, // 45.48, 10.21 x 45.58, 10.32
+    { 3867690, 1858 }, // 47.57, 8.639 x 47.68, 8.744
+    { 3867761, 20 }, // 48.94, 8.324 x 49.04, 8.429
+    { 3867763, 27 }, // 48.94, 8.429 x 49.04, 8.534
+    { 3867772, 1042 }, // 49.04, 8.534 x 49.15, 8.639
+    { 3867775, 403 }, // 49.15, 8.639 x 49.25, 8.744
+    { 3867855, Bucket(2453) }, // 48.73, 9.058 x 48.83, 9.163
+    { 3867865, 683 }, // 48.94, 8.953 x 49.04, 9.058
+    { 3867866, 170 }, // 48.83, 9.058 x 48.94, 9.163
+    { 3867877, Bucket(2457) }, // 48.73, 9.163 x 48.83, 9.268
+    { 3867888, Bucket(2464) }, // 48.83, 9.163 x 48.94, 9.268
+    { 3867890, 170 }, // 48.83, 9.268 x 48.94, 9.373
+    { 3867896, 170 }, // 48.83, 9.373 x 48.94, 9.478
+    { 3867935, 926 }, // 49.98, 8.219 x 50.09, 8.324
+    { 3867942, 724 }, // 49.46, 8.429 x 49.57, 8.534
+    { 3867947, Bucket(2468) }, // 49.36, 8.639 x 49.46, 8.744
+    { 3868010, Bucket(2472) }, // 50.09, 8.639 x 50.19, 8.744
+    { 3868053, 926 }, // 49.98, 8.744 x 50.09, 8.849
+    { 3868096, Bucket(2475) }, // 50.09, 8.744 x 50.19, 8.849
+    { 3868191, 1382 }, // 48.31, 9.897 x 48.41, 10
+    { 3868234, 1382 }, // 48.41, 9.897 x 48.52, 10
+    { 3868319, 343 }, // 48.31, 10.74 x 48.41, 10.84
+    { 3868341, Bucket(2479) }, // 48.31, 10.84 x 48.41, 10.95
+    { 3869010, 199 }, // 47.15, 11.37 x 47.26, 11.47
+    { 3869721, Bucket(2486) }, // 48.1, 11.47 x 48.2, 11.57
+    { 3869781, 195 }, // 49.15, 11.26 x 49.25, 11.37
+    { 3869824, 970 }, // 47.57, 12.1 x 47.68, 12.2
+    { 3869871, 1802 }, // 47.89, 12.83 x 47.99, 12.94
+    { 3869882, 1802 }, // 47.99, 12.83 x 48.1, 12.94
+    { 3870079, Bucket(2490) }, // 50.82, 11.99 x 50.93, 12.1
+    { 3870149, 864 }, // 50.4, 12.1 x 50.51, 12.2
+    { 3870160, 864 }, // 50.51, 12.1 x 50.61, 12.2
+    { 3870165, 197 }, // 50.82, 12.1 x 50.93, 12.2
+    { 3870171, Bucket(2493) }, // 50.61, 12.41 x 50.72, 12.52
+    { 3870174, Bucket(2493) }, // 50.72, 12.41 x 50.82, 12.52
+    { 3870653, 591 }, // 49.98, 14.41 x 50.09, 14.51
+    { 3870696, 591 }, // 50.09, 14.41 x 50.19, 14.51
+    { 3871034, 358 }, // 53.03, 8.639 x 53.13, 8.744
+    { 3871120, Bucket(2496) }, // 53.03, 8.744 x 53.13, 8.849
+    { 3871315, Bucket(2499) }, // 52.29, 9.687 x 52.4, 9.792
+    { 3871387, Bucket(2502) }, // 51.45, 10.74 x 51.56, 10.84
+    { 3872825, Bucket(2505) }, // 51.45, 11.89 x 51.56, 11.99
+    { 3872847, Bucket(2509) }, // 52.08, 11.57 x 52.19, 11.68
+    { 3872869, 94 }, // 52.08, 11.68 x 52.19, 11.78
+    { 3872909, Bucket(2513) }, // 51.24, 12.31 x 51.35, 12.41
+    { 3872920, 77 }, // 51.35, 12.31 x 51.45, 12.41
+    { 3872938, 1386 }, // 50.93, 12.83 x 51.03, 12.94
+    { 3872962, 1036 }, // 51.77, 12.2 x 51.87, 12.31
+    { 3873091, 127 }, // 53.55, 11.37 x 53.65, 11.47
+    { 3873150, Bucket(2516) }, // 54.07, 11.99 x 54.18, 12.1
+    { 3873236, Bucket(2519) }, // 54.07, 12.1 x 54.18, 12.2
+    { 3873280, 1386 }, // 50.93, 12.94 x 51.03, 13.04
+    { 3873323, Bucket(2523) }, // 51.03, 13.67 x 51.14, 13.78
+    { 3873397, Bucket(2526) }, // 52.5, 13.36 x 52.61, 13.46
+    { 3873406, 643 }, // 52.4, 13.67 x 52.5, 13.78
+    { 3873463, 503 }, // 51.66, 14.3 x 51.77, 14.41
+    { 3873727, Bucket(2530) }, // 53.34, 14.51 x 53.45, 14.62
+    { 3873770, Bucket(2530) }, // 53.45, 14.51 x 53.55, 14.62
+    { 3874011, 304 }, // 55.65, 12.41 x 55.75, 12.52
+    { 3874033, Bucket(2534) }, // 55.65, 12.52 x 55.75, 12.62
+    { 3877341, Bucket(2538) }, // 47.47, 19.02 x 47.57, 19.12
+    { 3877342, 514 }, // 47.36, 19.12 x 47.47, 19.23
+    { 3877669, Bucket(2544) }, // 46.21, 20.07 x 46.31, 20.17
+    { 3878024, Bucket(2550) }, // 47.57, 19.02 x 47.68, 19.12
+    { 3878638, 1749 }, // 48.62, 21.22 x 48.73, 21.33
+    { 3879189, Bucket(2553) }, // 53.34, 14.62 x 53.45, 14.72
+    { 3881149, 2001 }, // 51.66, 19.44 x 51.77, 19.54
+    { 3881192, 2001 }, // 51.77, 19.44 x 51.87, 19.54
+    { 3885096, 654 }, // 57.64, 11.89 x 57.74, 11.99
+    { 3892138, Bucket(2557) }, // 59.32, 17.87 x 59.42, 17.97
+    { 3893504, Bucket(2561) }, // 59.32, 17.97 x 59.42, 18.08
+    { 3901331, Bucket(2564) }, // 49.78, 23.95 x 49.88, 24.05
+    { 3902415, Bucket(2568) }, // 47.05, 27.51 x 47.15, 27.62
+    { 3902426, Bucket(2573) }, // 47.15, 27.51 x 47.26, 27.62
+    { 3905481, 542 }, // 56.91, 24.05 x 57.01, 24.16
+    { 3909573, 1032 }, // 50.4, 30.55 x 50.51, 30.66
+    { 3909584, 1032 }, // 50.51, 30.55 x 50.61, 30.66
+    { 3911183, 2267 }, // 47.89, 33.39 x 47.99, 33.49
+    { 3913290, Bucket(2579) }, // 55.12, 30.03 x 55.23, 30.13
+    { 3913312, Bucket(2579) }, // 55.12, 30.13 x 55.23, 30.24
+    { 3918109, Bucket(2582) }, // 60.05, 24.89 x 60.16, 25
+    { 3918152, Bucket(2585) }, // 60.16, 24.89 x 60.26, 25
+    { 9276245, 2322 }, // -6.219, 106.9 x -6.114, 107
+    { 9467626, Bucket(2595) }, // 41.7, 44.71 x 41.81, 44.81
+    { 9468949, 1553 }, // 41.6, 44.81 x 41.7, 44.92
+    { 9468992, 1553 }, // 41.7, 44.81 x 41.81, 44.92
+    { 9474799, 2237 }, // 25.24, 51.42 x 25.34, 51.53
+    { 9476165, 2258 }, // 25.24, 51.53 x 25.34, 51.63
+    { 9488126, 1971 }, // 35.62, 51.42 x 35.72, 51.53
+    { 9490927, Bucket(2598) }, // 40.34, 49.74 x 40.44, 49.85
+    { 9503693, Bucket(2602) }, // 47.05, 37.47 x 47.15, 37.58
+    { 9503695, 2338 }, // 47.05, 37.58 x 47.15, 37.68
+    { 9516847, 1447 }, // 56.28, 43.87 x 56.38, 43.98
+    { 9551720, 1506 }, // 56.8, 60.54 x 56.91, 60.65
+    { 9578890, 1458 }, // 19.05, 72.81 x 19.16, 72.92
+    { 9579923, 1977 }, // 22.93, 72.6 x 23.04, 72.71
+    { 9598098, 695 }, // 41.28, 69.25 x 41.39, 69.35
+    { 9603074, 1828 }, // 17.37, 78.47 x 17.48, 78.58
+    { 9680031, 1505 }, // 55.02, 82.88 x 55.12, 82.98
+    { 10005755, 2257 }, // 22.09, 113.5 x 22.2, 113.6
+    { 10005942, 1474 }, // 23.04, 113.3 x 23.14, 113.4
+    { 10006111, Bucket(2605) }, // 22.3, 113.9 x 22.41, 114
+    { 10006134, 1345 }, // 22.2, 114.1 x 22.3, 114.2
+    { 10006277, 2060 }, // 22.72, 113.6 x 22.83, 113.7
+    { 10006282, Bucket(2613) }, // 22.41, 113.9 x 22.51, 114
+    { 10006283, 1479 }, // 22.51, 113.9 x 22.62, 114
+    { 10006292, 1655 }, // 23.04, 113.6 x 23.14, 113.7
+    { 10006304, 1307 }, // 22.41, 114 x 22.51, 114.1
+    { 10019167, 1607 }, // 34.05, 108.9 x 34.15, 109
+    { 10022075, 2208 }, // 34.68, 113.5 x 34.78, 113.6
+    { 10064479, 788 }, // 52.5, 103.8 x 52.61, 104
+    { 10096388, 1632 }, // 22.62, 120.3 x 22.72, 120.4
+    { 10099404, 1181 }, // 25.13, 121.4 x 25.24, 121.5
+    { 10100638, 2251 }, // 29.75, 121.5 x 29.85, 121.6
+    { 10110743, 2292 }, // 36.56, 117.1 x 36.67, 117.2
+    { 10110786, 2292 }, // 36.67, 117.1 x 36.77, 117.2
+    { 10111157, 2211 }, // 31.53, 119.9 x 31.63, 120
+    { 10111167, 1585 }, // 31.53, 120.2 x 31.63, 120.3
+    { 10111204, 2211 }, // 31.84, 119.9 x 31.95, 120
+    { 10111630, 1806 }, // 31.01, 121.5 x 31.11, 121.6
+    { 10121045, 1442 }, // 37.4, 127 x 37.51, 127.1
+    { 10123259, 2082 }, // 43.9, 125.2 x 44.01, 125.3
+    { 10123358, 1528 }, // 38.97, 125.7 x 39.08, 125.8
+    { 10123434, 2335 }, // 37.51, 126.9 x 37.61, 127
+    { 10123776, 1442 }, // 37.51, 127 x 37.61, 127.1
+    { 10123780, 1429 }, // 37.72, 127 x 37.82, 127.1
+    { 10124624, 2081 }, // 43.8, 125.3 x 43.9, 125.5
+    { 10124625, 2082 }, // 43.9, 125.3 x 44.01, 125.5
+    { 10142190, Bucket(2625) }, // 33.52, 130.3 x 33.63, 130.4
+    { 10142532, Bucket(2625) }, // 33.52, 130.4 x 33.63, 130.5
+    { 10142976, Bucket(1607) }, // 35.83, 128.7 x 35.93, 128.8
+    { 10145466, 2016 }, // 34.57, 135.3 x 34.68, 135.4
+    { 10150928, 2016 }, // 34.57, 135.4 x 34.68, 135.5
+    { 10150943, 1777 }, // 34.89, 135.7 x 34.99, 135.8
+    { 10150986, 1777 }, // 34.99, 135.7 x 35.1, 135.8
+    { 10151145, 1784 }, // 35.1, 136.9 x 35.2, 137
+    { 10151147, 2079 }, // 35.1, 137 x 35.2, 137.1
+    { 10153083, 1495 }, // 35.51, 139.5 x 35.62, 139.6
+    { 10153157, 579 }, // 35.3, 139.6 x 35.41, 139.7
+    { 10153168, 1466 }, // 35.41, 139.6 x 35.51, 139.7
+    { 10153172, Bucket(2628) }, // 35.62, 139.6 x 35.72, 139.7
+    { 10153173, 2231 }, // 35.72, 139.6 x 35.83, 139.7
+    { 10153174, 2231 }, // 35.62, 139.7 x 35.72, 139.8
+    { 10153175, 1938 }, // 35.72, 139.7 x 35.83, 139.8
+    { 10153180, 2231 }, // 35.62, 139.8 x 35.72, 139.9
+    { 10153182, 2231 }, // 35.62, 139.9 x 35.72, 140
+    { 10153201, 2231 }, // 35.51, 140 x 35.62, 140.1
+    { 10153204, 2231 }, // 35.62, 140 x 35.72, 140.1
+    { 10153346, 1952 }, // 35.83, 139.7 x 35.93, 139.8
+    { 10157968, 1917 }, // 42.96, 141.3 x 43.06, 141.4
+    { 10573707, Bucket(2631) }, // -37.89, 145 x -37.78, 145.1
+    { 4170863, 1309 }, // 6.207, -75.61 x 6.259, -75.56
+    { 4170949, 1309 }, // 6.207, -75.56 x 6.259, -75.51
+    { 6381721, Bucket(2635) }, // 37.77, -122.4 x 37.82, -122.4
+    { 6382490, 1936 }, // 38.56, -121.5 x 38.61, -121.5
+    { 6393016, 2161 }, // 32.68, -117.2 x 32.74, -117.1
+    { 6461986, 1347 }, // 20.73, -103.4 x 20.78, -103.3
+    { 6489865, 1903 }, // 33.36, -111.9 x 33.42, -111.9
+    { 6489868, 1903 }, // 33.42, -111.9 x 33.47, -111.9
+    { 6872671, 555 }, // 29.9, -90.08 x 29.96, -90.03
+    { 6872842, 555 }, // 29.96, -90.08 x 30.01, -90.03
+    { 6884885, 2219 }, // 32.84, -96.95 x 32.89, -96.9
+    { 6884889, 1284 }, // 32.74, -96.85 x 32.79, -96.8
+    { 6943678, 725 }, // 42.02, -87.78 x 42.07, -87.73
+    { 6945044, 725 }, // 42.02, -87.73 x 42.07, -87.67
+    { 6975585, 1127 }, // 27.91, -82.48 x 27.96, -82.43
+    { 7015744, 1051 }, // 33.73, -84.37 x 33.78, -84.32
+    { 7029750, 1027 }, // 39.08, -84.53 x 39.13, -84.47
+    { 7064415, 2185 }, // 39.13, -76.66 x 39.18, -76.61
+    { 7071146, 1710 }, // 40.02, -75.19 x 40.08, -75.14
+    { 7073139, 1701 }, // 40.7, -74.04 x 40.76, -73.99
+    { 7073144, 1651 }, // 40.65, -73.99 x 40.7, -73.94
+    { 7252456, 894 }, // 45.48, -73.57 x 45.53, -73.52
+    { 9568767, 845 }, // -34.69, -58.42 x -34.64, -58.37
+    { 9569450, Bucket(2640) }, // -34.64, -58.42 x -34.58, -58.37
+    { 9985879, Bucket(2643) }, // -22.94, -43.21 x -22.89, -43.16
+    { 10239102, Bucket(2647) }, // -3.702, -40.38 x -3.65, -40.33
+    { 14703373, 407 }, // 28.44, -16.32 x 28.49, -16.26
+    { 14882592, 1548 }, // 36.67, -4.468 x 36.72, -4.416
+    { 14896391, 1720 }, // 40.18, -3.787 x 40.23, -3.734
+    { 14896402, 1720 }, // 40.23, -3.787 x 40.29, -3.734
+    { 14902186, Bucket(2650) }, // 38.35, -0.5362 x 38.4, -0.4838
+    { 14903552, 243 }, // 38.35, -0.4838 x 38.4, -0.4314
+    { 14933786, 1025 }, // 43.59, 3.868 x 43.64, 3.92
+    { 14939390, Bucket(2653) }, // 43.27, 5.336 x 43.33, 5.388
+    { 14939732, 689 }, // 43.27, 5.388 x 43.33, 5.441
+    { 14941982, 2223 }, // 43.69, 7.223 x 43.75, 7.276
+    { 14942004, 2223 }, // 43.69, 7.276 x 43.75, 7.328
+    { 15087964, 2138 }, // 49.15, -0.3789 x 49.2, -0.3265
+    { 15094740, 1296 }, // 55.86, -4.259 x 55.91, -4.206
+    { 15111020, 1356 }, // 48.94, 2.347 x 48.99, 2.4
+    { 15111117, 1373 }, // 48.99, 2.557 x 49.04, 2.61
+    { 15118127, 728 }, // 46.89, 7.433 x 46.94, 7.485
+    { 15118138, 728 }, // 46.94, 7.433 x 47, 7.485
+    { 15121911, 86 }, // 50.88, 6.909 x 50.93, 6.961
+    { 15130884, 860 }, // 51.87, 4.549 x 51.92, 4.602
+    { 15296623, 1216 }, // 38.08, 13.3 x 38.14, 13.36
+    { 15299375, Bucket(2656) }, // 41.86, 12.47 x 41.91, 12.52
+    { 15299461, Bucket(2656) }, // 41.86, 12.52 x 41.91, 12.57
+    { 15435807, 1408 }, // 31.16, 29.87 x 31.22, 29.92
+    { 15435850, 1408 }, // 31.22, 29.87 x 31.27, 29.92
+    { 15467994, 802 }, // 47.36, 8.482 x 47.42, 8.534
+    { 15468016, 802 }, // 47.36, 8.534 x 47.42, 8.586
+    { 15471047, 1245 }, // 48.99, 8.377 x 49.04, 8.429
+    { 15471096, 1042 }, // 49.04, 8.639 x 49.09, 8.691
+    { 15471099, 403 }, // 49.09, 8.691 x 49.15, 8.744
+    { 15471469, 683 }, // 48.99, 9.058 x 49.04, 9.111
+    { 15471471, 683 }, // 48.99, 9.111 x 49.04, 9.163
+    { 15471508, 46 }, // 48.73, 9.163 x 48.78, 9.216
+    { 15471556, 170 }, // 48.94, 9.163 x 48.99, 9.216
+    { 15471557, 683 }, // 48.99, 9.163 x 49.04, 9.216
+    { 15471558, 170 }, // 48.94, 9.216 x 48.99, 9.268
+    { 15471559, 683 }, // 48.99, 9.216 x 49.04, 9.268
+    { 15471564, 170 }, // 48.94, 9.268 x 48.99, 9.32
+    { 15471565, 683 }, // 48.99, 9.268 x 49.04, 9.32
+    { 15471566, 170 }, // 48.94, 9.32 x 48.99, 9.373
+    { 15471567, 683 }, // 48.99, 9.32 x 49.04, 9.373
+    { 15471588, 170 }, // 48.94, 9.373 x 48.99, 9.425
+    { 15471589, 683 }, // 48.99, 9.373 x 49.04, 9.425
+    { 15471591, 683 }, // 48.99, 9.425 x 49.04, 9.478
+    { 15471597, 683 }, // 48.99, 9.478 x 49.04, 9.53
+    { 15472767, 1383 }, // 48.36, 9.95 x 48.41, 10
+    { 15472853, 1383 }, // 48.36, 10 x 48.41, 10.05
+    { 15472938, 1383 }, // 48.41, 9.95 x 48.46, 10
+    { 15473024, 1383 }, // 48.41, 10 x 48.46, 10.05
+    { 15476044, 1017 }, // 47.26, 11.37 x 47.31, 11.42
+    { 15478893, 168 }, // 48.15, 11.57 x 48.2, 11.63
+    { 15491639, 139 }, // 51.3, 12.36 x 51.35, 12.41
+    { 15491682, 139 }, // 51.35, 12.36 x 51.4, 12.41
+    { 15491754, 1387 }, // 50.93, 12.89 x 50.98, 12.94
+    { 15492602, 55 }, // 54.07, 12.05 x 54.13, 12.1
+    { 15493636, Bucket(2659) }, // 51.03, 13.78 x 51.09, 13.83
+    { 15493853, Bucket(2662) }, // 51.72, 14.3 x 51.77, 14.35
+    { 15494024, Bucket(2666) }, // 51.77, 14.3 x 51.82, 14.35
+    { 15494909, Bucket(2669) }, // 53.39, 14.51 x 53.45, 14.56
+    { 15495080, Bucket(2673) }, // 53.45, 14.51 x 53.5, 14.56
+    { 15509342, Bucket(2676) }, // 47.47, 18.97 x 47.52, 19.02
+    { 15509364, Bucket(2680) }, // 47.47, 19.02 x 47.52, 19.07
+    { 15509369, 516 }, // 47.42, 19.12 x 47.47, 19.18
+    { 15514553, 1944 }, // 48.67, 21.22 x 48.73, 21.27
+    { 15516928, Bucket(2685) }, // 53.45, 14.62 x 53.5, 14.67
+    { 15524597, Bucket(2688) }, // 51.72, 19.44 x 51.77, 19.49
+    { 15524768, Bucket(2688) }, // 51.77, 19.44 x 51.82, 19.49
+    { 15567871, Bucket(2691) }, // 59.26, 17.92 x 59.32, 17.97
+    { 15568554, Bucket(2694) }, // 59.32, 17.92 x 59.37, 17.97
+    { 15609792, Bucket(2697) }, // 47.15, 27.62 x 47.21, 27.67
+    { 37870335, 1553 }, // 41.65, 44.76 x 41.7, 44.81
+    { 37904660, 2237 }, // 25.24, 51.53 x 25.29, 51.58
+    { 38014818, 2105 }, // 47.15, 37.53 x 47.21, 37.58
+    { 38206711, 1506 }, // 56.75, 60.6 x 56.8, 60.65
+    { 38723305, 467 }, // 56.43, 84.98 x 56.49, 85.03
+    { 40024532, 380 }, // 22.3, 114 x 22.35, 114.1
+    { 40024533, Bucket(2700) }, // 22.35, 114 x 22.41, 114.1
+    { 40025216, Bucket(2700) }, // 22.41, 114 x 22.46, 114.1
+    { 40384186, 1632 }, // 22.62, 120.3 x 22.67, 120.3
+    { 40444842, 1584 }, // 31.63, 120.3 x 31.69, 120.3
+    { 40446208, 1584 }, // 31.63, 120.3 x 31.69, 120.4
+    { 40571221, 1596 }, // 35.78, 128.7 x 35.83, 128.8
+    { 40576486, 1168 }, // 33.84, 132.7 x 33.89, 132.8
+    { 40581857, 1477 }, // 34.62, 135.2 x 34.68, 135.3
+    { 40581860, 1477 }, // 34.68, 135.2 x 34.73, 135.3
+    { 40605957, 2079 }, // 35.15, 137.1 x 35.2, 137.1
+    { 40612326, 1957 }, // 35.51, 139.4 x 35.57, 139.5
+    { 40612676, 1495 }, // 35.51, 139.6 x 35.57, 139.7
+    { 40612700, 2231 }, // 35.72, 139.7 x 35.78, 139.8
+    { 40612701, 1952 }, // 35.78, 139.7 x 35.83, 139.8
+    { 40612703, 2192 }, // 35.78, 139.8 x 35.83, 139.8
+    { 40612725, 2192 }, // 35.78, 139.8 x 35.83, 139.9
+    { 40612727, 2192 }, // 35.78, 139.9 x 35.83, 139.9
+    { 40612733, 2192 }, // 35.78, 139.9 x 35.83, 140
+    { 40612735, 2192 }, // 35.78, 140 x 35.83, 140
+    { 40612821, 2192 }, // 35.78, 140 x 35.83, 140.1
+    { 40612822, 2231 }, // 35.72, 140.1 x 35.78, 140.1
+    { 40613410, 1972 }, // 35.83, 139.9 x 35.88, 139.9
+    { 40674170, 1706 }, // 45.69, 126.6 x 45.74, 126.6
+    { 25526823, 1948 }, // 37.59, -122.4 x 37.61, -122.4
+    { 25526834, 1948 }, // 37.61, -122.4 x 37.64, -122.4
+    { 25933824, 1648 }, // 25.76, -100.3 x 25.79, -100.3
+    { 28142893, 1860 }, // 42.2, -83.37 x 42.23, -83.35
+    { 28285952, 1710 }, // 40.02, -75.14 x 40.05, -75.12
+    { 59602602, 1377 }, // 43.38, -3.027 x 43.41, -3
+    { 59722010, 1324 }, // 41.39, 2.111 x 41.41, 2.138
+    { 59722038, 1116 }, // 41.44, 2.164 x 41.47, 2.19
+    { 59758968, 1310 }, // 43.27, 5.546 x 43.3, 5.572
+    { 60458445, 983 }, // 45.76, 4.812 x 45.79, 4.838
+    { 60469317, 2283 }, // 46.18, 6.227 x 46.21, 6.253
+    { 60469695, 1085 }, // 46.5, 6.62 x 46.52, 6.647
+    { 60469738, 1085 }, // 46.52, 6.62 x 46.55, 6.647
+    { 60470037, 1085 }, // 46.5, 6.647 x 46.52, 6.673
+    { 60470080, 1085 }, // 46.52, 6.647 x 46.55, 6.673
+    { 60500687, 930 }, // 51.22, 4.418 x 51.24, 4.445
+    { 60523536, 1240 }, // 51.87, 4.549 x 51.9, 4.576
+    { 61194068, 331 }, // 40.81, 14.2 x 40.84, 14.22
+    { 61197503, 631 }, // 41.88, 12.49 x 41.91, 12.52
+    { 61743317, 1408 }, // 31.19, 29.92 x 31.22, 29.95
+    { 61818977, 1974 }, // 41.1, 28.98 x 41.12, 29.01
+    { 61879621, 461 }, // 47.44, 9.583 x 47.47, 9.609
+    { 61884391, 403 }, // 49.12, 8.665 x 49.15, 8.691
+    { 61884392, 1042 }, // 49.04, 8.691 x 49.07, 8.717
+    { 61885691, 1565 }, // 48.75, 9.137 x 48.78, 9.163
+    { 61885882, 170 }, // 48.94, 9.137 x 48.96, 9.163
+    { 61886033, 1565 }, // 48.75, 9.163 x 48.78, 9.189
+    { 61886360, 170 }, // 48.94, 9.425 x 48.96, 9.451
+    { 61898102, 309 }, // 50.88, 10.55 x 50.9, 10.58
+    { 61973999, 135 }, // 52.48, 13.33 x 52.5, 13.36
+    { 61974352, 137 }, // 52.5, 13.36 x 52.53, 13.38
+    { 62271487, 264 }, // 59.29, 17.94 x 59.32, 17.97
+    { 151255697, 991 }, // 29.25, 47.96 x 29.28, 47.99
+    { 151860305, 1557 }, // 40.36, 49.85 x 40.39, 49.87
+    { 162305944, 1167 }, // 33.84, 132.7 x 33.86, 132.8
+    { 162450808, 2231 }, // 35.72, 139.8 x 35.75, 139.8
+    { 162450811, 2192 }, // 35.75, 139.8 x 35.78, 139.8
+    { 162450897, 2192 }, // 35.75, 139.8 x 35.78, 139.8
+    { 162450899, 2192 }, // 35.75, 139.8 x 35.78, 139.9
+    { 162450905, 2192 }, // 35.75, 139.9 x 35.78, 139.9
+    { 162450907, 2192 }, // 35.75, 139.9 x 35.78, 139.9
+    { 162450911, 1972 }, // 35.8, 139.9 x 35.83, 139.9
+    { 162450929, 2192 }, // 35.75, 139.9 x 35.78, 139.9
+    { 162450931, 2192 }, // 35.75, 139.9 x 35.78, 140
+    { 162450937, 2192 }, // 35.75, 140 x 35.78, 140
+    { 162450939, 2192 }, // 35.75, 140 x 35.78, 140
+    { 162451281, 2192 }, // 35.75, 140 x 35.78, 140.1
+    { 162451283, 2192 }, // 35.75, 140.1 x 35.78, 140.1
+    { 162697024, 1706 }, // 45.69, 126.6 x 45.71, 126.6
+    { 172124673, 2092 }, // -32.93, 151.8 x -32.91, 151.8
+    { 103729834, 1648 }, // 25.76, -100.3 x 25.78, -100.3
+    { 113170325, 296 }, // 40.74, -73.99 x 40.76, -73.98
+    { 153713678, 1644 }, // -30, -51.2 x -29.98, -51.18
+    { 153713700, 1644 }, // -30, -51.18 x -29.98, -51.17
+    { 238342614, 1581 }, // 40.42, -3.721 x 40.43, -3.708
+    { 239030251, 690 }, // 43.29, 5.375 x 43.3, 5.388
+    { 244774907, 331 }, // 40.82, 14.18 x 40.84, 14.2
+    { 249755989, Bucket(2697) }, // 47.14, 27.62 x 47.15, 27.63
+    { 606387153, 2300 }, // 25.3, 51.42 x 25.32, 51.43
+    { 646361821, 1967 }, // 25.12, 121.5 x 25.13, 121.5
+    { 646361992, 1967 }, // 25.13, 121.5 x 25.15, 121.5
+    { 649803240, 2231 }, // 35.72, 139.8 x 35.74, 139.8
+    { 649803242, 2231 }, // 35.72, 139.8 x 35.74, 139.8
+    { 649803243, 2192 }, // 35.74, 139.8 x 35.75, 139.8
+    { 649803584, 2231 }, // 35.72, 139.8 x 35.74, 139.8
+    { 649803585, 2192 }, // 35.74, 139.8 x 35.75, 139.8
+    { 649803586, 2231 }, // 35.72, 139.8 x 35.74, 139.8
+    { 649803587, 2192 }, // 35.74, 139.8 x 35.75, 139.8
+    { 649803592, 2231 }, // 35.72, 139.8 x 35.74, 139.9
+    { 649803593, 2192 }, // 35.74, 139.8 x 35.75, 139.9
+    { 649803594, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803595, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803616, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803617, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803618, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803619, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803624, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803625, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803626, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803627, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803712, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803713, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803714, 2231 }, // 35.72, 139.9 x 35.74, 139.9
+    { 649803715, 2192 }, // 35.74, 139.9 x 35.75, 139.9
+    { 649803720, 2231 }, // 35.72, 139.9 x 35.74, 140
+    { 649803721, 2192 }, // 35.74, 139.9 x 35.75, 140
+    { 649803722, 2231 }, // 35.72, 140 x 35.74, 140
+    { 649803723, 2192 }, // 35.74, 140 x 35.75, 140
+    { 649803744, 2231 }, // 35.72, 140 x 35.74, 140
+    { 649803745, 2192 }, // 35.74, 140 x 35.75, 140
+    { 649803746, 2231 }, // 35.72, 140 x 35.74, 140
+    { 649803747, 2192 }, // 35.74, 140 x 35.75, 140
+    { 649803752, 2231 }, // 35.72, 140 x 35.74, 140
+    { 649803753, 2192 }, // 35.74, 140 x 35.75, 140
+    { 649803754, 2231 }, // 35.72, 140 x 35.74, 140
+    { 649803755, 2192 }, // 35.74, 140 x 35.75, 140
+    { 649805120, 2231 }, // 35.72, 140 x 35.74, 140
+    { 649805121, 2192 }, // 35.74, 140 x 35.75, 140
+    { 649805122, 2231 }, // 35.72, 140 x 35.74, 140.1
+    { 649805123, 2192 }, // 35.74, 140 x 35.75, 140.1
+    { 649805128, 2231 }, // 35.72, 140.1 x 35.74, 140.1
+    { 649805129, 2192 }, // 35.74, 140.1 x 35.75, 140.1
+    { 649805130, 2231 }, // 35.72, 140.1 x 35.74, 140.1
+    { 688497326, 2092 }, // -32.93, 151.8 x -32.92, 151.8
+    { 947054399, 457 }, // 38.71, -9.141 x 38.71, -9.135
+    { 947054442, 457 }, // 38.71, -9.141 x 38.72, -9.135
+    { 947054485, 457 }, // 38.71, -9.135 x 38.71, -9.128
+    { 947054528, 457 }, // 38.71, -9.135 x 38.72, -9.128
+    { 979168146, 710 }, // 41.83, 12.89 x 41.84, 12.9
+    { 987895808, 1408 }, // 31.22, 29.92 x 31.22, 29.93
+    { 990309034, 1375 }, // 48.41, 11.25 x 48.42, 11.26
+    { 2596894943, 1167 }, // 33.83, 132.8 x 33.84, 132.8
+    { 2598693247, 1476 }, // 35.19, 136.9 x 35.2, 136.9
+    { 2598693930, 1476 }, // 35.2, 136.9 x 35.21, 136.9
 };
 }
