@@ -38,6 +38,7 @@ namespace wd = Wikidata;
 
 enum {
     MaxLogoFileSize = 10000, // bytes
+    QuadTreeDepthLimit = 16, // we don't want to use more than 32 bit
 };
 
 static constexpr const auto MaxLogoAspectRatio = 2.75;
@@ -551,7 +552,11 @@ void Generator::generateQuadTree()
 
     // initialize quad tree by smallest single tile containing the entire line bbox
     for (auto lineIt = lines.begin(); lineIt != lines.end(); ++lineIt) {
-        insertToBucket(OSM::ztileFromBoundingBox((*lineIt).bbox), std::distance(lines.begin(), lineIt));
+        auto z = OSM::ztileFromBoundingBox((*lineIt).bbox);
+        while (z.depth < QuadTreeDepthLimit) { // don't go deeper than what we can represent in 32bit
+            z = z.parent();
+        }
+        insertToBucket(z, std::distance(lines.begin(), lineIt));
     }
     qDebug() << "initial tiles:" << zQuadTree.size();
 
@@ -601,7 +606,7 @@ void Generator::generateQuadTree()
 
     // split oversized tiles for what they contain, depsite the name being unique in the dataset we have here
     for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end(); ++tileIt) {
-        if ((*tileIt).first.depth == 16) { // below that we need more than 32 bit for z in the quad tree storage
+        if ((*tileIt).first.depth == QuadTreeDepthLimit) { // below that we need more than 32 bit for z in the quad tree storage
             break;
         }
         for (auto lineIt = (*tileIt).second.begin(); lineIt != (*tileIt).second.end();) {
@@ -637,6 +642,9 @@ void Generator::generateQuadTree()
     // remove empty buckets, and sort the non-empty ones for output stability
     for (auto tileIt = zQuadTree.begin(); tileIt != zQuadTree.end();) {
         if ((*tileIt).second.empty()) {
+            tileIt = zQuadTree.erase(tileIt);
+        } else if ((*tileIt).first.depth < QuadTreeDepthLimit) {
+            qWarning() << "  found tile below depth limit!";
             tileIt = zQuadTree.erase(tileIt);
         } else {
             std::sort((*tileIt).second.begin(), (*tileIt).second.end(), [this](const auto lhs, const auto rhs) {
