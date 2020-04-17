@@ -264,6 +264,7 @@ inline bool operator<(const Elem &elem, Id id)
 
 }
 
+QDebug operator<<(QDebug debug, OSM::Coordinate coord);
 QDebug operator<<(QDebug debug, OSM::BoundingBox bbox);
 
 #endif // OSM_DATATYPES_H

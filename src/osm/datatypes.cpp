@@ -69,6 +69,13 @@ QString OSM::Relation::url() const
     return QStringLiteral("https://openstreetmap.org/relation/") + QString::number(id);
 }
 
+QDebug operator<<(QDebug debug, OSM::Coordinate coord)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << '(' << coord.latF() << ',' << coord.lonF() << ')';
+    return debug;
+}
+
 QDebug operator<<(QDebug debug, OSM::BoundingBox bbox)
 {
     QDebugStateSaver saver(debug);
