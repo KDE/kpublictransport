@@ -109,6 +109,11 @@ public:
         return max.latitude - min.latitude;
     }
 
+    constexpr inline Coordinate center() const
+    {
+        return Coordinate(min.latitude + height() / 2, min.longitude + width() / 2);
+    }
+
     Coordinate min;
     Coordinate max;
 };
