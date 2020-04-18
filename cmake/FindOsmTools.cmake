@@ -85,3 +85,64 @@ if (OSM_PLANET_DIR)
         COMMENT "Updating OSM planet file"
     )
 endif()
+
+if (TARGET OSM::convert)
+
+# Convert the given input file to the output file with determining the output format
+# from the file extension
+# Arguments:
+#   INPUT input file, assumed to be in OSM_PLANET_DIR
+#   OUTPUT output file, assumed to be in OSM_PLANET_DIR
+#   ADD_BBOX bool, enable injection of bounding box tags
+function(osm_convert)
+    set(optionArgs ADD_BBOX)
+    set(oneValueArgs INPUT OUTPUT)
+    cmake_parse_arguments(osm_convert "${optionArgs}" "${oneValueArgs}" "" ${ARGN})
+    get_filename_component(format ${osm_convert_OUTPUT} LAST_EXT)
+    string(SUBSTRING ${format} 1 -1 format)
+
+    set(extra_args "")
+    if (osm_convert_ADD_BBOX)
+        set(extra_args "--add-bbox-tags")
+    endif()
+
+    add_custom_command(
+        OUTPUT ${OSM_PLANET_DIR}/${osm_convert_OUTPUT}
+        COMMAND OSM::convert ${OSM_PLANET_DIR}/${osm_convert_INPUT} --drop-author --drop-version ${extra_args} --out-${format} -o=${OSM_PLANET_DIR}/${osm_convert_OUTPUT}
+        WORKING_DIRECTORY ${OSM_PLANET_DIR}
+        COMMENT "Converting ${osm_convert_INPUT} to ${format} format"
+        DEPENDS ${OSM_PLANET_DIR}/${osm_convert_INPUT}
+    )
+endfunction()
+
+endif()
+
+
+if (TARGET OSM::filter)
+
+# Filter the given input file by the given filter arguments
+# Arguments:
+#   INPUT input file, assumed to be in OSM_PLANET_DIR (default is planet-latest.o5m)
+#   OUTPUT output file, assumed to be in OSM_PLANET_DIR
+#   FILTER filter arguments for osmfilter
+function(osm_filter)
+    set(oneValueArgs INPUT OUTPUT)
+    set(multiValueArgs FILTER)
+    cmake_parse_arguments(osm_filter "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    get_filename_component(format ${osm_filter_OUTPUT} LAST_EXT)
+    string(SUBSTRING ${format} 1 -1 format)
+
+    if (NOT osm_filter_INPUT)
+        set(osm_filter_INPUT planet-latest.o5m)
+    endif()
+
+    add_custom_command(
+        OUTPUT ${OSM_PLANET_DIR}/${osm_filter_OUTPUT}
+        COMMAND OSM::filter ${OSM_PLANET_DIR}/${osm_filter_INPUT} --drop-author --drop-version ${osm_filter_FILTER} --out-${format} -o=${OSM_PLANET_DIR}/${osm_filter_OUTPUT}
+        WORKING_DIRECTORY ${OSM_PLANET_DIR}
+        COMMENT "Filtering ${osm_filter_INPUT}"
+        DEPENDS ${OSM_PLANET_DIR}/${osm_filter_INPUT}
+    )
+endfunction()
+
+endif()
