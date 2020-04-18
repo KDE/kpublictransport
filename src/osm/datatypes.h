@@ -156,6 +156,8 @@ constexpr inline uint32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbo
     return bbox1.max.longitude < bbox2.min.longitude ? bbox2.min.longitude - bbox1.max.longitude : bbox1.min.longitude - bbox2.max.longitude;
 }
 
+uint32_t distance(Coordinate coord1, Coordinate coord2);
+
 /** An OSM element tag. */
 class Tag {
 public:

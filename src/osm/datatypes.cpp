@@ -17,7 +17,22 @@
 
 #include "datatypes.h"
 
+#include <cmath>
+
 using namespace OSM;
+
+// see https://en.wikipedia.org/wiki/Haversine_formula
+uint32_t OSM::distance(Coordinate coord1, Coordinate coord2)
+{
+    const auto degToRad = M_PI / 180.0;
+    const auto earthRadius = 6371000.0; // in meters
+
+    const auto d_lat = (coord1.latF() - coord2.latF()) * degToRad;
+    const auto d_lon = (coord1.lonF() - coord2.lonF()) * degToRad;
+
+    const auto a = pow(sin(d_lat / 2.0), 2) + cos(coord1.latF() * degToRad) * cos(coord2.latF() * degToRad) * pow(sin(d_lon / 2.0), 2);
+    return 2.0 * earthRadius * atan2(sqrt(a), sqrt(1.0 - a));
+}
 
 void DataSet::addNode(Node &&node)
 {
