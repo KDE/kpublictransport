@@ -3,7 +3,7 @@
 A library for accessing realtime public transport data and for performing
 public transport journey queries.
 
-!! Before using this, please read the compliance section below !!
+!! Before using this, please read the license compliance and attribution section below !!
 
 ## Data Model
 
@@ -37,7 +37,7 @@ Additionally, a few proprietary/vendor-specific backends are supported too thoug
 
 Configurations for more than 60 backend services can be found in 'src/lib/networks'.
 
-## Compliance
+## License Compliance and Attribution
 
 When using the data retrieved by this library you need to comply with the license
 terms of the backends this is coming from, in particular https://www.navitia.io/api-term-of-use.
@@ -45,6 +45,11 @@ terms of the backends this is coming from, in particular https://www.navitia.io/
 Attribution information that need to be displayed in an appropriate place in the
 application using this are provided globally via KPublicTransport::Manager::attributions()
 as well as more fine-grained per query reply via KPublicTransport::Reply::attributions().
+
+Besides attributing backend data correctly, this library also contains static data
+retrieved from [Wikidata](https://wikidata.org) under licensed as CC0 as well as data
+from [OpenStreetMap](https://openstreetmap.org) under licensed as ODbL, so those should
+be appropriately credited in your application as well.
 
 ## Development
 
