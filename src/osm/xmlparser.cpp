@@ -114,11 +114,11 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
             member.id = reader.attributes().value(QLatin1String("ref")).toLongLong();
             const auto type = reader.attributes().value(QLatin1String("type"));
             if (type == QLatin1String("node")) {
-                member.type = Member::Type::Node;
+                member.type = Type::Node;
             } else if (type == QLatin1String("way")) {
-                member.type = Member::Type::Way;
+                member.type = Type::Way;
             } else {
-                member.type = Member::Type::Relation;
+                member.type = Type::Relation;
             }
             member.role = reader.attributes().value(QLatin1String("role")).toString(); // TODO shared value pool for these values
             rel.members.push_back(std::move(member));

@@ -156,6 +156,7 @@ constexpr inline uint32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbo
     return bbox1.max.longitude < bbox2.min.longitude ? bbox2.min.longitude - bbox1.max.longitude : bbox1.min.longitude - bbox2.max.longitude;
 }
 
+/** Distance between @p coord1 and @p coord2 in meter. */
 uint32_t distance(Coordinate coord1, Coordinate coord2);
 
 /** An OSM element tag. */
@@ -194,17 +195,20 @@ public:
     std::vector<Tag> tags;
 };
 
+/** Element type. */
+enum class Type : uint8_t {
+    Node,
+    Way,
+    Relation
+};
+
 /** A member in a relation. */
 // TODO this has 7 byte padding, can we make this more efficient?
 class Member {
 public:
     Id id;
     QString role;
-    enum class Type : uint8_t {
-        Node,
-        Way,
-        Relation
-    } type;
+    Type type;
 };
 
 /** An OSM relation. */
