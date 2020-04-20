@@ -62,6 +62,12 @@ public:
     QString tagValue(const QLatin1String &key) const;
     QString url() const;
 
+    /** Returns all nodes belonging to the outer path of this element.
+     *  In the simplest case that's a single closed polygon, but it can also be a sequence of multiple
+     *  closed loop polygons, or a polyline.
+     */
+    std::vector<const Node*> outerPath(const DataSet &dataSet) const;
+
 private:
     Internal::TaggedPointer<const void> m_elem;
 };
