@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OSM_MATH_H
-#define OSM_MATH_H
+#ifndef OSM_GEOMATH_H
+#define OSM_GEOMATH_H
 
 #include "datatypes.h"
 
@@ -33,4 +33,4 @@ uint32_t distance(const std::vector<const OSM::Node*> &path, Coordinate coord);
 
 }
 
-#endif // OSM_MATH_H
+#endif // OSM_GEOMATH_H
