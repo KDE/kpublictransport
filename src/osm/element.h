@@ -72,17 +72,30 @@ private:
     Internal::TaggedPointer<const void> m_elem;
 };
 
+enum ForeachFlag : uint8_t {
+    IncludeRelations = 1,
+    IncludeWays = 2,
+    IncludeNodes = 4,
+    IterateAll = IncludeRelations | IncludeWays | IncludeNodes,
+};
+
 template <typename Func>
-inline void for_each(const DataSet &dataSet, Func func)
+inline void for_each(const DataSet &dataSet, Func func, uint8_t flags = IterateAll)
 {
-    for (const auto &rel : dataSet.relations) {
-        func(Element(&rel));
+    if (flags & IncludeRelations) {
+        for (const auto &rel : dataSet.relations) {
+            func(Element(&rel));
+        }
     }
-    for (const auto &way : dataSet.ways) {
-        func(Element(&way));
+    if (flags & IncludeWays) {
+        for (const auto &way : dataSet.ways) {
+            func(Element(&way));
+        }
     }
-    for (const auto &node : dataSet.nodes) {
-        func(Element(&node));
+    if (flags & IncludeNodes) {
+        for (const auto &node : dataSet.nodes) {
+            func(Element(&node));
+        }
     }
 }
 
