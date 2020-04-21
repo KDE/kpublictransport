@@ -194,6 +194,7 @@ public:
 
 /** Element type. */
 enum class Type : uint8_t {
+    Null,
     Node,
     Way,
     Relation

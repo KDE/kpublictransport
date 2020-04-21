@@ -21,11 +21,9 @@ using namespace OSM;
 
 Coordinate Element::center() const
 {
-    if (!m_elem) {
-        return {};
-    }
-
     switch (type()) {
+        case Type::Null:
+            return {};
         case Type::Node:
             return node()->coordinate;
         case Type::Way:
@@ -39,11 +37,9 @@ Coordinate Element::center() const
 
 BoundingBox Element::boundingBox() const
 {
-    if (!m_elem) {
-        return {};
-    }
-
     switch (type()) {
+        case Type::Null:
+            return {};
         case Type::Node:
             return BoundingBox(node()->coordinate, node()->coordinate);
         case Type::Way:
@@ -57,11 +53,9 @@ BoundingBox Element::boundingBox() const
 
 QString Element::tagValue(const QLatin1String &key) const
 {
-    if (!m_elem) {
-        return {};
-    }
-
     switch (type()) {
+        case Type::Null:
+            return {};
         case Type::Node:
             return OSM::tagValue(*node(), key);
         case Type::Way:
@@ -75,11 +69,9 @@ QString Element::tagValue(const QLatin1String &key) const
 
 QString Element::url() const
 {
-    if (!m_elem) {
-        return {};
-    }
-
     switch (type()) {
+        case Type::Null:
+            return {};
         case Type::Node:
             return node()->url();
         case Type::Way:
@@ -132,11 +124,9 @@ static OSM::Id appendNextPath(const DataSet &dataSet, std::vector<const Node*> &
 
 std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
 {
-    if (!m_elem) {
-        return {};
-    }
-
     switch (type()) {
+        case Type::Null:
+            return {};
         case Type::Node:
             return {node()};
         case Type::Way:
