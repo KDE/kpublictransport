@@ -68,6 +68,12 @@ public:
      */
     std::vector<const Node*> outerPath(const DataSet &dataSet) const;
 
+    /** Recompute the bounding box of this element.
+     *  We usually assume those to be provided by Overpass/osmconvert, but there seem to be cases where those
+     *  aren't reliable.
+     */
+    void recomputeBoundingBox(const DataSet &dataSet);
+
 private:
     Internal::TaggedPointer<const void> m_elem;
 };

@@ -175,3 +175,28 @@ std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
 
     return {};
 }
+
+void Element::recomputeBoundingBox(const DataSet &dataSet)
+{
+    switch (type()) {
+        case Type::Null:
+        case Type::Node:
+            break;
+        case Type::Way:
+            way()->bbox = std::accumulate(way()->nodes.begin(), way()->nodes.end(), OSM::BoundingBox(), [&dataSet](auto bbox, auto nodeId) {
+                const auto nodeIt = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), nodeId);
+                if (nodeIt == dataSet.nodes.end() || (*nodeIt).id != nodeId) {
+                    return bbox;
+                }
+                return OSM::unite(bbox, {(*nodeIt).coordinate, (*nodeIt).coordinate});
+            });
+            break;
+        case Type::Relation:
+            relation()->bbox = {};
+            for_each_member(dataSet, *relation(), [this, &dataSet](auto mem) {
+                mem.recomputeBoundingBox(dataSet);
+                relation()->bbox = OSM::unite(relation()->bbox, mem.boundingBox());
+            });
+            break;
+    }
+}

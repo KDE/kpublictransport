@@ -187,7 +187,7 @@ public:
     QString url() const;
 
     Id id;
-    BoundingBox bbox;
+    mutable BoundingBox bbox;
     std::vector<Id> nodes;
     std::vector<Tag> tags;
 };
@@ -217,7 +217,7 @@ public:
     QString url() const;
 
     Id id;
-    BoundingBox bbox;
+    mutable BoundingBox bbox;
     std::vector<Member> members;
     std::vector<Tag> tags;
 };
