@@ -99,6 +99,41 @@ inline void for_each(const DataSet &dataSet, Func func, uint8_t flags = IterateA
     }
 }
 
+template <typename Func>
+inline void for_each_member(const DataSet &dataSet, const Relation &rel, Func func)
+{
+    for (const auto &mem : rel.members) {
+        switch (mem.type) {
+            case Type::Null:
+                break;
+            case Type::Node:
+            {
+                const auto it = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), mem.id);
+                if (it != dataSet.nodes.end() && (*it).id == mem.id) {
+                    func(Element(&(*it)));
+                }
+                break;
+            }
+            case Type::Way:
+            {
+                const auto it = std::lower_bound(dataSet.ways.begin(), dataSet.ways.end(), mem.id);
+                if (it != dataSet.ways.end() && (*it).id == mem.id) {
+                    func(Element(&(*it)));
+                }
+                break;
+            }
+            case Type::Relation:
+            {
+                const auto it = std::lower_bound(dataSet.relations.begin(), dataSet.relations.end(), mem.id);
+                if (it != dataSet.relations.end() && (*it).id == mem.id) {
+                    func(Element(&(*it)));
+                }
+                break;
+            }
+        }
+    }
+}
+
 }
 
 #endif // OSM_ELEMENT_H
