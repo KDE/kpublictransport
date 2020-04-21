@@ -52,6 +52,8 @@ class KPUBLICTRANSPORT_EXPORT Location
     /** Country of the location as ISO 3166-1 alpha 2 code, if known. */
     KPUBLICTRANSPORT_PROPERTY(QString, country, setCountry)
 
+    Q_PROPERTY(bool hasCoordinate READ hasCoordinate STORED false)
+
     // TODO: type, id
 
 public:
