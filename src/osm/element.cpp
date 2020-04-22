@@ -67,6 +67,11 @@ QString Element::tagValue(const QLatin1String &key) const
     return {};
 }
 
+QString OSM::Element::tagValue(const char *key) const
+{
+    return tagValue(QLatin1String(key));
+}
+
 QString Element::url() const
 {
     switch (type()) {
@@ -137,7 +142,7 @@ std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
         }
         case Type::Relation:
         {
-            if (tagValue(QLatin1String("type")) != QLatin1String("multipolygon")) {
+            if (tagValue("type") != QLatin1String("multipolygon")) {
                 return {};
             }
 
