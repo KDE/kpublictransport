@@ -3,6 +3,7 @@
         <file>journeyquery.qml</file>
         <file>AttributionSheet.qml</file>
         <file>BackendPage.qml</file>
+        <file>JourneySectionPage.qml</file>
         <file>LocationDetailsSheet.qml</file>
         <file>TestLocationsModel.qml</file>
     </qresource>
