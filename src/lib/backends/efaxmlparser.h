@@ -41,7 +41,9 @@ private:
     Departure parseDmDeparture(ScopedXmlStreamReader &&reader) const;
     void parseTripDeparture(ScopedXmlStreamReader &&reader, JourneySection &section) const;
     void parseTripArrival(ScopedXmlStreamReader &&reader, JourneySection &section) const;
-    Departure parseCompactDp(ScopedXmlStreamReader &&reader) const;
+
+    Departure parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const;
+    std::vector<Departure> parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const;
 
     JourneySection parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
     Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;

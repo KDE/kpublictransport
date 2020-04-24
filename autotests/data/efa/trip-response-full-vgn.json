@@ -59,6 +59,46 @@
                     "longitude": 11.081809997558594,
                     "name": "Nürnberg Hbf"
                 },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "route": {
+                            "line": {
+                                "mode": "Unknown"
+                            }
+                        },
+                        "scheduledDepartureTime": "2019-11-11T22:05:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "testid": "3000561"
+                            },
+                            "latitude": 49.429298400878906,
+                            "locality": "Nürnberg",
+                            "longitude": 11.086319923400879,
+                            "name": "Nürnberg Frankenstr."
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "route": {
+                            "line": {
+                                "mode": "Unknown"
+                            }
+                        },
+                        "scheduledDepartureTime": "2019-11-11T22:06:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "testid": "3001701"
+                            },
+                            "latitude": 49.424530029296875,
+                            "locality": "Nürnberg",
+                            "longitude": 11.0897798538208,
+                            "name": "Nürnberg Hasenbuck"
+                        }
+                    }
+                ],
                 "mode": "PublicTransport",
                 "route": {
                     "direction": "Nürnberg Langwasser Süd",

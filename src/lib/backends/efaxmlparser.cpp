@@ -203,6 +203,52 @@ void EfaXmlParser::parseTripArrival(ScopedXmlStreamReader &&reader, JourneySecti
     }
 }
 
+Departure EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const
+{
+    Location loc;
+    loc.setName(reader.attributes().value(QLatin1String("name")).toString());
+    loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
+    loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
+    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
+    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
+
+    Departure stop;
+    stop.setStopPoint(loc);
+    stop.setScheduledPlatform(reader.attributes().value(QLatin1String("platform")).toString());
+
+    // TODO arrDelay/depDelay properties - which unit do they have?
+
+    while (reader.readNextSibling()) {
+        if (reader.name() == QLatin1String("itdDateTime")) {
+            // TODO sometimes there are two itdDateTime elements here?
+            // TODO sometimes there are invalid itdDateTime elements here?
+            const auto dt = parseDateTime(reader.subReader());
+            if (dt.isValid()) {
+                stop.setScheduledDepartureTime(dt);
+            }
+        }
+    }
+
+    return stop;
+}
+
+std::vector<Departure> EfaXmlParser::parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const
+{
+    std::vector<Departure> stops;
+    while (reader.readNextSibling()) {
+        if (reader.name() == QLatin1String("itdPoint")) {
+            stops.push_back(parsePartialTripIntermediateStop(reader.subReader()));
+        }
+    }
+
+    if (stops.size() > 2) { // includes departure/arrival stops too
+        stops.erase(std::prev(stops.end()));
+        stops.erase(stops.begin());
+    }
+
+    return stops;
+}
+
 JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reader) const
 {
     JourneySection section;
@@ -237,6 +283,8 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
             }
         } else if (reader.name() == QLatin1String("infoLink")) {
             section.addNotes(parseInfoLink(reader.subReader()));
+        } else if (reader.name() == QLatin1String("itdStopSeq")) {
+            section.setIntermediateStops(parsePartialTripStopSequence(reader.subReader()));
         }
     }
 

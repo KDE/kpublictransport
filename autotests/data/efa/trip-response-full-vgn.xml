@@ -156,7 +156,40 @@
                   <publicCode>VAGI</publicCode>
                 </itdOperator>
               </itdMeansOfTransport>
-              <itdStopSeq>...</itdStopSeq>
+              <itdStopSeq>
+                <itdPoint stopID="3000510" area="11" platform="1" gid="de:09564:510" pointGid="de:09564:510:11:U1" name="Nürnberg Hbf" nameWO="Nürnberg Hbf" place="Nürnberg" platformName="" usage="" x="11.08181" y="49.44637" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" arrDelay="-1" arrValid="0" depDelay="-1" depValid="0">
+                  <itdDateTime>
+                    <itdDate year="2019" month="11" day="11" weekday="2"/>
+                    <itdTime hour="22" minute="0"/>
+                  </itdDateTime>
+                  <itdDateTime>
+                    <itdDate year="0" month="0" day="-1" weekday="-1"/>
+                    <itdTime hour="0" minute="-1"/>
+                  </itdDateTime>
+                </itdPoint>
+                <itdPoint stopID="3000561" area="11" platform="1" gid="de:09564:561" pointGid="de:09564:561:11:1" name="Nürnberg Frankenstr." nameWO="Frankenstr." place="Nürnberg" platformName="" usage="" x="11.08632" y="49.42930" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" arrDelay="-1" arrValid="0" depDelay="-1" depValid="0">
+                  <itdDateTime>
+                    <itdDate year="2019" month="11" day="11" weekday="2"/>
+                    <itdTime hour="22" minute="5"/>
+                  </itdDateTime>
+                </itdPoint>
+               <itdPoint stopID="3001701" area="11" platform="1" gid="de:09564:1701" pointGid="de:09564:1701:11:1" name="Nürnberg Hasenbuck" nameWO="Hasenbuck" place="Nürnberg" platformName="" usage="" x="11.08978" y="49.42453" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" arrDelay="-1" arrValid="0" depDelay="-1" depValid="0">
+                  <itdDateTime>
+                    <itdDate year="2019" month="11" day="11" weekday="2"/>
+                    <itdTime hour="22" minute="6"/>
+                  </itdDateTime>
+                </itdPoint>
+                <itdPoint stopID="3001502" area="11" platform="1" gid="de:09564:1502" pointGid="de:09564:1502:11:1" name="Nürnberg Messe" nameWO="Messe" place="Nürnberg" platformName="" usage="" x="11.11406" y="49.41586" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="1" arrDelay="-1" arrValid="0" depDelay="-1" depValid="0">
+                  <itdDateTime>
+                    <itdDate year="0" month="0" day="-1" weekday="-1"/>
+                    <itdTime hour="0" minute="-1"/>
+                  </itdDateTime>
+                  <itdDateTime>
+                    <itdDate year="2019" month="11" day="11" weekday="2"/>
+                    <itdTime hour="22" minute="9"/>
+                  </itdDateTime>
+                </itdPoint>
+              </itdStopSeq>
               <itdPathCoordinates>
                 <coordEllipsoid>WGS84</coordEllipsoid>
                 <coordType>GEO_DECIMAL</coordType>
