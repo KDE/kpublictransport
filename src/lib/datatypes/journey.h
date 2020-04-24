@@ -29,6 +29,7 @@
 
 namespace KPublicTransport {
 
+class Departure;
 class JourneySectionPrivate;
 
 /** A segment of a journey plan. */
@@ -95,6 +96,9 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     /** General human-readable notes on this service, e.g. details about a disruption. */
     KPUBLICTRANSPORT_PROPERTY(QStringList, notes, setNotes)
 
+    /** Intermediate stops for consumption by QML. */
+    Q_PROPERTY(QVariantList intermediateStops READ intermediateStopsVariant)
+
 public:
     /** Mode of transport. */
     enum Mode {
@@ -124,6 +128,15 @@ public:
     void addNote(const QString &note);
     void addNotes(const QStringList &notes);
 
+    /** Intermediate stop-overs along this journey section.
+     *  This does not include the departure and arrival stops, and might be empty on backends not providing this information.
+     */
+    const std::vector<Departure>& intermediateStops() const;
+    /** Moves the intermediate stops out of this object. */
+    std::vector<Departure>&& takeIntermediateStops();
+    /** Set the intermediate stops. */
+    void setIntermediateStops(std::vector<Departure> &&stops);
+
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
     static bool isSame(const JourneySection &lhs, const JourneySection &rhs);
 
@@ -140,6 +153,9 @@ public:
     static JourneySection fromJson(const QJsonObject &obj);
     /** Deserialize a vector of journey sections from JSON. */
     static std::vector<JourneySection> fromJson(const QJsonArray &array);
+
+private:
+    QVariantList intermediateStopsVariant() const;
 };
 
 class JourneyPrivate;
