@@ -88,6 +88,13 @@ private Q_SLOTS:
             QCOMPARE(sec.route().line().modeString(), QStringLiteral("RER"));
             QCOMPARE(sec.route().line().color(), QColor(123, 163, 220));
             QCOMPARE(sec.route().line().textColor(), QColor(255, 255, 255));
+            QCOMPARE(sec.intermediateStops().size(), 3);
+            for (const auto &stop : sec.intermediateStops()) {
+                QVERIFY(!stop.stopPoint().name().isEmpty());
+                QVERIFY(stop.stopPoint().hasCoordinate());
+                QVERIFY(stop.scheduledArrivalTime().isValid());
+                QVERIFY(stop.scheduledDepartureTime().isValid());
+            }
 
             sec = journey.sections()[2];
             QCOMPARE(sec.mode(), KPublicTransport::JourneySection::Transfer);
@@ -104,6 +111,7 @@ private Q_SLOTS:
             QCOMPARE(sec.route().line().textColor(), QColor(255, 255, 255));
             QCOMPARE(sec.from().name(), QStringLiteral("Châtelet les Halles (Paris)"));
             QCOMPARE(sec.to().name(), QStringLiteral("Gare de Lyon RER A (Paris)"));
+            QCOMPARE(sec.intermediateStops().size(), 0);
         }
 
         {

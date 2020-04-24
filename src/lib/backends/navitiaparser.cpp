@@ -122,6 +122,17 @@ static Location parseWrappedLocation(const QJsonObject &obj)
     return loc;
 }
 
+static void parseStopDateTime(const QJsonObject &dtObj, Departure &departure)
+{
+    departure.setScheduledDepartureTime(parseDateTime(dtObj.value(QLatin1String("base_departure_date_time")), departure.stopPoint().timeZone()));
+    departure.setScheduledArrivalTime(parseDateTime(dtObj.value(QLatin1String("base_arrival_date_time")), departure.stopPoint().timeZone()));
+    if (dtObj.value(QLatin1String("data_freshness")).toString() != QLatin1String("base_schedule")) {
+        departure.setExpectedDepartureTime(parseDateTime(dtObj.value(QLatin1String("departure_date_time")), departure.stopPoint().timeZone()));
+        departure.setExpectedArrivalTime(parseDateTime(dtObj.value(QLatin1String("arrival_date_time")), departure.stopPoint().timeZone()));
+    }
+
+}
+
 JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
 {
     JourneySection section;
@@ -172,6 +183,23 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
     } else if (typeStr == QLatin1String("waiting")) {
         section.setMode(JourneySection::Waiting);
     }
+
+    const auto stopsDtA = obj.value(QLatin1String("stop_date_times")).toArray();
+    if (stopsDtA.size() > 2) { // departure/arrival are included, we don't want that
+        std::vector<Departure> stops;
+        stops.reserve(stopsDtA.size() - 2);
+        for (auto it = std::next(stopsDtA.begin()); it != std::prev(stopsDtA.end()); ++it) {
+            const auto obj = (*it).toObject();
+            Departure stop;
+            stop.setStopPoint(parseLocation(obj.value(QLatin1String("stop_point")).toObject()));
+            parseStopDateTime(obj, stop);
+            stop.setRoute(route);
+            stops.push_back(std::move(stop));
+        }
+        section.setIntermediateStops(std::move(stops));
+    }
+
+    // TODO "co2_emission" key
 
     return section;
 }
@@ -241,15 +269,8 @@ Departure NavitiaParser::parseDeparture(const QJsonObject &obj) const
     route.setLine(line);
 
     departure.setRoute(route);
-
-    const auto dtObj = obj.value(QLatin1String("stop_date_time")).toObject();
     departure.setStopPoint(parseLocation(obj.value(QLatin1String("stop_point")).toObject()));
-    departure.setScheduledDepartureTime(parseDateTime(dtObj.value(QLatin1String("base_departure_date_time")), departure.stopPoint().timeZone()));
-    departure.setScheduledArrivalTime(parseDateTime(dtObj.value(QLatin1String("base_arrival_date_time")), departure.stopPoint().timeZone()));
-    if (dtObj.value(QLatin1String("data_freshness")).toString() != QLatin1String("base_schedule")) {
-        departure.setExpectedDepartureTime(parseDateTime(dtObj.value(QLatin1String("departure_date_time")), departure.stopPoint().timeZone()));
-        departure.setExpectedArrivalTime(parseDateTime(dtObj.value(QLatin1String("arrival_date_time")), departure.stopPoint().timeZone()));
-    }
+    parseStopDateTime(obj.value(QLatin1String("stop_date_time")).toObject(), departure);
 
     return departure;
 }
