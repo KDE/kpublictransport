@@ -422,6 +422,28 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                     section.setDisruptionEffect(Disruption::NoService);
                 }
 
+                const auto stopL = jnyObj.value(QLatin1String("stopL")).toArray();
+                if (stopL.size() > 2) { // we don't want departure/arrival stops in here
+                    std::vector<Departure> stops;
+                    stops.reserve(stopL.size() - 2);
+                    for (auto it = std::next(stopL.begin()); it != std::prev(stopL.end()); ++it) {
+                        const auto stopObj = (*it).toObject();
+                        // TODO how does this look for individual stop skips during disruptions?
+                        Departure stop;
+                        const auto locIdx = stopObj.value(QLatin1String("locX")).toInt();
+                        if ((unsigned int)locIdx < locs.size()) {
+                            stop.setStopPoint(locs[locIdx]);
+                        }
+                        stop.setScheduledDepartureTime(parseDateTime(dateStr, stopObj.value(QLatin1String("dTimeS")), stopObj.value(QLatin1String("dTZOffset"))));
+                        stop.setExpectedDepartureTime(parseDateTime(dateStr, stopObj.value(QLatin1String("dTimeR")), stopObj.value(QLatin1String("dTZOffset"))));
+                        stop.setScheduledArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeS")), stopObj.value(QLatin1String("aTZOffset"))));
+                        stop.setExpectedArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeR")), stopObj.value(QLatin1String("aTZOffset"))));
+                        stop.setRoute(section.route());
+                        stops.push_back(stop);
+                    }
+                    section.setIntermediateStops(std::move(stops));
+                }
+
                 parseMessageList(section, jnyObj, remarks, warnings);
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
