@@ -247,6 +247,11 @@ Kirigami.ApplicationWindow {
                     }
                 }
             }
+            onClicked: {
+                if (modelData.intermediateStops.length > 0) {
+                    applicationWindow().pageStack.push(journeySectionPathPage, {"intermediateStops": modelData.intermediateStops});
+                }
+            }
         }
     }
 
@@ -254,6 +259,30 @@ Kirigami.ApplicationWindow {
         id: backendPage
         BackendPage {
             publicTransportManager: ptMgr
+        }
+    }
+
+    Component {
+        id: journeySectionPathPage
+        Kirigami.Page {
+            property var intermediateStops
+            ListView {
+                anchors.fill: parent
+                delegate: Kirigami.AbstractListItem {
+                    RowLayout {
+                        QQC2.Label {
+                            text: modelData.stopPoint.name
+                        }
+                        QQC2.Label {
+                            text: modelData.scheduledArrivalTime
+                        }
+                        QQC2.Label {
+                            text: modelData.scheduledDepartureTime
+                        }
+                    }
+                }
+                model: intermediateStops
+            }
         }
     }
 
