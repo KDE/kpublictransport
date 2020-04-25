@@ -19,7 +19,6 @@
             "direction": "Frankfurt(Main)Hbf",
             "line": {
                 "color": "#cd2630",
-                "mode": "Unknown",
                 "name": "ICE",
                 "textColor": "#ffffff"
             }
@@ -56,7 +55,6 @@
             "direction": "Köln Messe/Deutz",
             "line": {
                 "color": "#8bba02",
-                "mode": "Unknown",
                 "name": "RB26",
                 "textColor": "#ffffff"
             }
@@ -94,7 +92,6 @@
             "direction": "Gerolstein",
             "line": {
                 "color": "#8bba02",
-                "mode": "Unknown",
                 "name": "RB24",
                 "textColor": "#ffffff"
             }

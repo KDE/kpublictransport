@@ -331,7 +331,6 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                     stop.setStopPoint(loc);
                     stop.setScheduledPlatform(stopParams[7]);
                     stop.setScheduledDepartureTime(dt);
-                    stop.setRoute(section.route());
 
                     stops.push_back(stop);
                 }

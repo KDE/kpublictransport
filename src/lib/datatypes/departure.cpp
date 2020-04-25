@@ -186,7 +186,10 @@ Departure Departure::merge(const Departure &lhs, const Departure &rhs)
 QJsonObject Departure::toJson(const Departure &dep)
 {
     auto obj = Json::toJson(dep);
-    obj.insert(QStringLiteral("route"), Route::toJson(dep.route()));
+    const auto routeObj = Route::toJson(dep.route());
+    if (!routeObj.empty()) {
+        obj.insert(QStringLiteral("route"), routeObj);
+    }
     obj.insert(QStringLiteral("stopPoint"), Location::toJson(dep.stopPoint()));
     return obj;
 }

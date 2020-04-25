@@ -193,7 +193,6 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
             Departure stop;
             stop.setStopPoint(parseLocation(obj.value(QLatin1String("stop_point")).toObject()));
             parseStopDateTime(obj, stop);
-            stop.setRoute(route);
             stops.push_back(std::move(stop));
         }
         section.setIntermediateStops(std::move(stops));

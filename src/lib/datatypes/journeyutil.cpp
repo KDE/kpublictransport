@@ -18,6 +18,7 @@
 #include "journeyutil_p.h"
 #include "lineutil_p.h"
 
+#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 
 #include <QDateTime>
@@ -88,6 +89,13 @@ void JourneyUtil::applyMetaData(Journey &jny, bool download)
         LineUtil::applyMetaData(line, sec.from(), download);
         route.setLine(line);
         sec.setRoute(route);
+
+        // propagate to intermediate stops
+        auto stops = sec.takeIntermediateStops();
+        for (auto &stop : stops) {
+            stop.setRoute(route);
+        }
+        sec.setIntermediateStops(std::move(stops));
     }
     jny.setSections(std::move(sections));
 }

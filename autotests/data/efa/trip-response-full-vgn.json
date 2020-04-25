@@ -62,11 +62,6 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "line": {
-                                "mode": "Unknown"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T22:05:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -81,11 +76,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "line": {
-                                "mode": "Unknown"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T22:06:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {

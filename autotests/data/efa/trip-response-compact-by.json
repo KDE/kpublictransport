@@ -18,14 +18,6 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:28:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -39,14 +31,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:30:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -60,14 +44,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:32:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -82,14 +58,6 @@
                     {
                         "disruptionEffect": "NormalService",
                         "scheduledPlatform": "1",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:33:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -103,14 +71,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:34:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -124,14 +84,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:36:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -145,14 +97,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "route": {
-                            "direction": "Röthenbach",
-                            "line": {
-                                "mode": "Metro",
-                                "modeString": "U-Bahn",
-                                "name": "U2"
-                            }
-                        },
                         "scheduledDepartureTime": "2019-11-11T21:37:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -165,7 +109,6 @@
                         }
                     }
                 ],
-
                 "mode": "PublicTransport",
                 "notes": [
                      "Some construction works. More info on some website."

@@ -154,6 +154,9 @@ Line Line::merge(const Line &lhs, const Line &rhs)
 QJsonObject Line::toJson(const Line &l)
 {
     auto obj = Json::toJson(l);
+    if (l.mode() == Unknown) {
+        obj.remove(QLatin1String("mode"));
+    }
     return obj;
 }
 
@@ -202,7 +205,10 @@ Route Route::merge(const Route &lhs, const Route &rhs)
 QJsonObject Route::toJson(const Route &r)
 {
     auto obj = Json::toJson(r);
-    obj.insert(QStringLiteral("line"), Line::toJson(r.line()));
+    const auto lineObj = Line::toJson(r.line());
+    if (!lineObj.empty()) {
+        obj.insert(QStringLiteral("line"), lineObj);
+    }
     if (!r.destination().isEmpty()) {
         obj.insert(QStringLiteral("destination"), Location::toJson(r.destination()));
     }

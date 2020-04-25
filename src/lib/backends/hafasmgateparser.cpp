@@ -440,7 +440,6 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                         stop.setExpectedArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeR")), stopObj.value(QLatin1String("aTZOffset"))));
                         stop.setScheduledPlatform(stopObj.value(QLatin1String("dPlatfS")).toString());
                         stop.setExpectedPlatform(stopObj.value(QLatin1String("dPlatfR")).toString());
-                        stop.setRoute(section.route());
                         stops.push_back(stop);
                     }
                     section.setIntermediateStops(std::move(stops));
