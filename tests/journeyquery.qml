@@ -115,6 +115,13 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
+        id: vehicleLayoutPage
+        VehicleLayoutPage {
+            publicTransportManager: ptMgr
+        }
+    }
+
+    Component {
         id: journeyDelegate
         Kirigami.AbstractListItem {
             enabled: modelData.disruptionEffect != Disruption.NoService
@@ -248,7 +255,7 @@ Kirigami.ApplicationWindow {
                 }
             }
             onClicked: {
-                if (modelData.intermediateStops.length > 0) {
+                if (modelData.mode == JourneySection.PublicTransport) {
                     applicationWindow().pageStack.push(journeySectionPathPage, {"journeySection": modelData});
                 }
             }

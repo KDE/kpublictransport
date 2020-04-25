@@ -6,5 +6,6 @@
         <file>JourneySectionPage.qml</file>
         <file>LocationDetailsSheet.qml</file>
         <file>TestLocationsModel.qml</file>
+        <file>VehicleLayoutPage.qml</file>
     </qresource>
 </RCC>

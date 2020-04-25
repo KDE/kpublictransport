@@ -26,10 +26,12 @@ Kirigami.Page {
     ListView {
         anchors.fill: parent
         header: RowLayout {
+            width: parent.width - 2 * Kirigami.Units.largeSpacing
+            x: Kirigami.Units.largeSpacing
             Rectangle {
                 Layout.fillHeight: true
                 width: Kirigami.Units.largeSpacing
-                color: journeySection.route.line.color
+                color: journeySection.route.line.hasColor ? journeySection.route.line.color : Kirigami.Theme.textColor
             }
 
             QQC2.Label {
@@ -60,7 +62,7 @@ Kirigami.Page {
             property var stop: modelData
             highlighted: false
             GridLayout {
-                columns: 4
+                columns: 5
                 rows: 2
                 Rectangle {
                     Layout.column: 0
@@ -68,7 +70,7 @@ Kirigami.Page {
                     Layout.fillHeight: true
                     Layout.rowSpan: 2
                     width: Kirigami.Units.largeSpacing
-                    color: stop.route.line.color
+                    color: stop.route.line.hasColor ? stop.route.line.color : Kirigami.Theme.textColor
                 }
 
                 QQC2.Label {
@@ -87,11 +89,18 @@ Kirigami.Page {
                 QQC2.Label {
                     Layout.column: 3
                     Layout.row: 0
+                    Layout.rowSpan: 2
                     Layout.fillWidth: true
-                    text: "<a href=\"#loc\">" + stop.stopPoint.name + "</a>"
+                    Layout.fillHeight: true
+                    text: "<a href=\"#loc\">" + stop.stopPoint.name + "</a>" + (stop.route.line.mode == Line.LongDistanceTrain ? " <a href=\"#layout\">(layout)</a>" : "")
+                    verticalAlignment: Qt.AlignVCenter
                     onLinkActivated: {
-                        locationDetailsSheet.location = stop.stopPoint;
-                        locationDetailsSheet.sheetOpen = true;
+                        if (link == "#loc") {
+                            locationDetailsSheet.location = stop.stopPoint;
+                            locationDetailsSheet.sheetOpen = true;
+                        } else if (link == "#layout") {
+                            applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": stop });
+                        }
                     }
                 }
 
@@ -109,10 +118,11 @@ Kirigami.Page {
                 }
 
                 QQC2.Label {
-                    Layout.column: 3
-                    Layout.row: 1
-                    Layout.fillWidth: true
-                    horizontalAlignment: Qt.AlignRight
+                    Layout.column: 4
+                    Layout.row: 0
+                    Layout.rowSpan: 2
+                    Layout.fillHeight: true
+                    verticalAlignment: Qt.AlignVCenter
                     text: stop.hasExpectedPlatform ? stop.expectedPlatform : stop.scheduledPlatform
                     color: stop.hasExpectedPlatform ? (stop.platformChanged ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor) : Kirigami.Theme.textColor
                 }
@@ -120,10 +130,12 @@ Kirigami.Page {
         }
 
         footer: RowLayout {
+            width: parent.width - 2 * Kirigami.Units.largeSpacing
+            x: Kirigami.Units.largeSpacing
             Rectangle {
                 Layout.fillHeight: true
                 width: Kirigami.Units.largeSpacing
-                color: journeySection.route.line.color
+                color: journeySection.route.line.hasColor ? journeySection.route.line.color : Kirigami.Theme.textColor
             }
 
             QQC2.Label {
