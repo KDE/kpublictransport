@@ -40,7 +40,6 @@ query journeys(
           lon: longitude
           stop: quay {
             platformCode: publicCode
-            description
             id
             timezone
           }
@@ -64,6 +63,20 @@ query journeys(
                 text: value
             }
           }
+        }
+        intermediateStops: intermediateEstimatedCalls {
+          stop: quay {
+            id
+            name
+            platformCode: publicCode
+            lat: latitude
+            lon: longitude
+            timezone
+          }
+          scheduledArrivalTime: aimedArrivalTime
+          expectedArrivalTime: actualArrivalTime
+          scheduledDepartureTime: aimedDepartureTime
+          expectedDepartureTime: actualDepartureTime
         }
       }
     }

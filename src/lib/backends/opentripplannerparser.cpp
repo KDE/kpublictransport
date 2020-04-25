@@ -350,6 +350,26 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     section.addNotes(m_alerts);
     m_alerts.clear();
 
+    const auto stopsA = obj.value(QLatin1String("intermediateStops")).toArray();
+    std::vector<Departure> stops;
+    stops.reserve(stopsA.size());
+    for (const auto &stopV : stopsA) {
+        const auto stopObj = stopV.toObject();
+        const auto locObj = stopObj.value(QLatin1String("stop")).toObject();
+        const auto loc = parseLocation(locObj);
+
+        Departure stop;
+        stop.setStopPoint(loc);
+        stop.setScheduledPlatform(stopObj.value(QLatin1String("platformCode")).toString());
+        stop.setScheduledArrivalTime(parseJourneyDateTime(stopObj.value(QLatin1String("scheduledArrivalTime"))));
+        stop.setScheduledDepartureTime(parseJourneyDateTime(stopObj.value(QLatin1String("scheduledDepartureTime"))));
+        stop.setExpectedArrivalTime(parseJourneyDateTime(stopObj.value(QLatin1String("expectedArrivalTime"))));
+        stop.setExpectedDepartureTime(parseJourneyDateTime(stopObj.value(QLatin1String("expectedDepartureTime"))));
+
+        stops.push_back(stop);
+    }
+    section.setIntermediateStops(std::move(stops));
+
     return section;
 }
 

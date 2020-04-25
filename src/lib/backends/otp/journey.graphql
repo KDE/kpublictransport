@@ -71,6 +71,18 @@ query journeys(
                     tripHeadsign
                     tripShortName
                 }
+                intermediateStops: intermediatePlaces {
+                    stop {
+                        id: gtfsId
+                        name
+                        lat
+                        lon
+                        platformCode
+                        timezone
+                    }
+                    scheduledArrivalTime: arrivalTime
+                    scheduledDepartureTime: departureTime
+                }
             }
         }
     }
