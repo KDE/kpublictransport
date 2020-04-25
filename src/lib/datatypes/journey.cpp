@@ -50,6 +50,8 @@ public:
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     QStringList notes;
     std::vector<Departure> intermediateStops;
+
+    int estimatedDistance() const;
 };
 
 class JourneyPrivate : public QSharedData
@@ -71,6 +73,27 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, to, setTo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
+
+int JourneySectionPrivate::estimatedDistance() const
+{
+    assert(from.hasCoordinate() && to.hasCoordinate());
+    int d = 0;
+
+    float startLat = from.latitude();
+    float startLon = from.longitude();
+
+    for (const auto &stop : intermediateStops) {
+        if (!stop.stopPoint().hasCoordinate()) {
+            continue;
+        }
+        d += Location::distance(startLat, startLon, stop.stopPoint().latitude(), stop.stopPoint().longitude());
+        startLat = stop.stopPoint().latitude();
+        startLon = stop.stopPoint().longitude();
+    }
+
+    d += Location::distance(startLat, startLon, to.latitude(), to.longitude());
+    return d;
+}
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -111,7 +134,7 @@ int JourneySection::distance() const
     if (!d->from.hasCoordinate() || !d->to.hasCoordinate()) {
         return d->distance;
     }
-    return std::max(Location::distance(d->from, d->to), d->distance);
+    return std::max(d->estimatedDistance(), d->distance);
 }
 
 void JourneySection::setDistance(int value)
