@@ -208,7 +208,7 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
                     loc.setIdentifier(m_locationIdentifierType, subReader.readElementText());
                 } else if (subReader.name() == QLatin1String("pc")) {
                     loc.setLocality(subReader.readElementText());
-                } else if (subReader.name() == QLatin1String("pl")) {
+                } else if (subReader.name() == QLatin1String("pl") || subReader.name() == QLatin1String("divaPl")) {
                     platform = subReader.readElementText();
                 } else if (subReader.name() == QLatin1String("c")) {
                     parseCompactCoordinate(subReader.readElementText(), loc);
@@ -285,6 +285,63 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                 section.setExpectedArrivalTime({});
                 section.setExpectedDepartureTime({});
             }
+        } else if (reader.name() == QLatin1String("pss")) {
+            std::vector<Departure> stops;
+            auto subReader = reader.subReader();
+            while (subReader.readNextSibling()) {
+                if (subReader.name() == QLatin1String("s")) {
+                    const auto stopParams = subReader.readElementText().split(QLatin1Char(';'));
+                    if (stopParams.size() <= 13) {
+                        continue;
+                    }
+
+                    // semicolon separated list with the following content
+                    // TODO some of these are likely delay parameters!
+                    // 0: station id
+                    // 1: station name
+                    // 2: date as yyyyMMdd
+                    // 3: time as hhmm
+                    // 4: location coordinate, colon separated as <lon>:<lat>:WGS84[DD.ddddd]
+                    // 5: "0"?
+                    // 6: integer of unknown meaning - same as <a>
+                    // 7: platform - same as <divaPl>
+                    // 8: date as yyyyMMdd - only set on departure?
+                    // 9: time as hhmm - only set on departure?
+                    // 10: "0" or "", unknown meaning
+                    // 11: integer of unknown meaning
+                    // 12: IFOPT station id (see also <gid>)
+                    // 13: IFOPT stop/platform id (see also <pgid>)
+
+                    Location loc;
+                    loc.setIdentifier(m_locationIdentifierType, stopParams[0]);
+                    loc.setName(stopParams[1]);
+
+                    const auto coord = stopParams[4].split(QLatin1Char(':'));
+                    if (coord.size() < 2) {
+                        continue;
+                    }
+                    loc.setCoordinate(coord[1].toFloat(), coord[0].toFloat());
+
+                    const auto dt = QDateTime::fromString(stopParams[2] + stopParams[3], QStringLiteral("yyyyMMddhhmm"));
+                    if (!dt.isValid()) {
+                        continue;
+                    }
+
+                    Departure stop;
+                    stop.setStopPoint(loc);
+                    stop.setScheduledPlatform(stopParams[7]);
+                    stop.setScheduledDepartureTime(dt);
+                    stop.setRoute(section.route());
+
+                    stops.push_back(stop);
+                }
+            }
+
+            if (stops.size() > 2) { // exclude departure/arrival stops
+                stops.erase(std::prev(stops.end()));
+                stops.erase(stops.begin());
+            }
+            section.setIntermediateStops(std::move(stops));
         }
         // TODO interchange tag - should we turn this into transfer sections?
     }
