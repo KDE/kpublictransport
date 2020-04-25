@@ -359,6 +359,33 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
 
                 section.setExpectedDepartureTime(parseDateTime(baseDate, sectionDetail->expectedDepartureTime));
                 section.setExpectedArrivalTime(parseDateTime(baseDate, sectionDetail->expectedArrivalTime));
+
+                std::vector<Departure> stops;
+                stops.reserve(sectionDetail->numStops);
+                for (int i = 0; i < sectionDetail->numStops; ++i) {
+                    const auto stopInfo = reinterpret_cast<const HafasJourneyResponseStop*>(rawData.constData() + extHeader->detailsOffset + detailsHeader->stopsOffset + i * detailsHeader->stopsSize);
+
+                    Location loc;
+                    const auto locInfo = reinterpret_cast<const HafasJourneyResponseStation*>(rawData.constData()
+                        + header->stationTableOffset
+                        + stopInfo->stationIdx * sizeof(HafasJourneyResponseStation));
+                    loc.setName(stringTable.lookup(locInfo->nameStr));
+                    loc.setLatitude(locInfo->latitude / 1000000.0);
+                    loc.setLongitude(locInfo->longitude / 1000000.0);
+
+                    Departure stop;
+                    stop.setStopPoint(loc);
+                    stop.setScheduledArrivalTime(parseDateTime(baseDate, stopInfo->scheduledArrivalTime));
+                    stop.setScheduledDepartureTime(parseDateTime(baseDate, stopInfo->scheduledDepartureTime));
+                    stop.setExpectedArrivalTime(parseDateTime(baseDate, stopInfo->expectedArrivalTime));
+                    stop.setExpectedDepartureTime(parseDateTime(baseDate, stopInfo->expectedDepartureTime));
+                    stop.setScheduledPlatform(stringTable.lookup(stopInfo->scheduledDeparturePlatformStr));
+                    stop.setExpectedPlatform(stringTable.lookup(stopInfo->expectedDeparturePlatformStr));
+
+                    stops.push_back(stop);
+                }
+                section.setIntermediateStops(std::move(stops));
+
             } else if (sectionInfo->type == HafasJourneyResponseSectionMode::Walk) {
                 section.setMode(JourneySection::Walking);
             } else if (sectionInfo->type == HafasJourneyResponseSectionMode::Transfer1 || sectionInfo->type == HafasJourneyResponseSectionMode::Transfer2) {

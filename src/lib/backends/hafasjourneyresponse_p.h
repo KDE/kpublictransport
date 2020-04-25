@@ -200,6 +200,23 @@ struct HafasJourneyResponseDisruptionTable
 };
 static_assert(alignof(HafasJourneyResponseDisruptionTable) == 1, "broken alignment for binary response struct");
 
+// intermediate stops, located at HafasJourneyResponseDetailsHeader::stopsOffset
+struct HafasJourneyResponseStop
+{
+    uint16_t scheduledDepartureTime;
+    uint16_t scheduledArrivalTime;
+    uint16_t scheduledDeparturePlatformStr;
+    uint16_t scheduledArrivalPlatformStr;
+    uint32_t unknown1;
+    uint16_t expectedDepartureTime;
+    uint16_t expectedArrivalTime;
+    uint16_t expectedDeparturePlatformStr;
+    uint16_t expectedArrivalPlatformStr;
+    uint16_t flags; // 0x10 arrival cancelled, 0x20 departure cancelled
+    uint16_t unknown2;
+    uint16_t stationIdx;
+};
+
 // disruption table entry
 struct HafasJourneyResponseDisruption
 {
