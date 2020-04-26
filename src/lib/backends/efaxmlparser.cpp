@@ -267,9 +267,12 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
         } else if (reader.name() == QLatin1String("itdMeansOfTransport")) {
             Line line;
             line.setName(reader.attributes().value(QLatin1String("shortname")).toString());
+            const auto type = reader.attributes().value(QLatin1String("type")).toInt();
             const auto prodName = reader.attributes().value(QLatin1String("productName"));
-            if (prodName == QLatin1String("Fussweg")) {
+            if (type == 99 || prodName == QLatin1String("Fussweg")) {
                 section.setMode(JourneySection::Walking);
+            } else if (type == 98) {
+                section.setMode(JourneySection::Transfer);
             } else {
                 line.setModeString(prodName.toString());
             }
@@ -278,7 +281,7 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
             route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
             route.setLine(line);
             section.setRoute(route);
-            if (section.mode() != JourneySection::Walking) {
+            if (section.mode() == JourneySection::Invalid) {
                 section.setMode(JourneySection::PublicTransport);
             }
         } else if (reader.name() == QLatin1String("infoLink")) {
