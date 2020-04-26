@@ -29,6 +29,7 @@
 namespace KPublicTransport {
 
 class Departure;
+class JourneySection;
 class VehicleLayoutRequestPrivate;
 
 /** Describes a query for vehicle layout information. */
@@ -43,8 +44,12 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutRequest
 
 public:
     /** Creates a vehicle layout request for the given departure. */
-    VehicleLayoutRequest(const Departure &dep);
-    // TODO ctor from JourneySection
+    explicit VehicleLayoutRequest(const Departure &dep);
+    /** Create a vehilce layout request for the departure of the given journey section. */
+    explicit VehicleLayoutRequest(const JourneySection &section);
+
+    /** Create a vehicle layout request from a JourneySection out of QML. */
+    Q_INVOKABLE KPublicTransport::VehicleLayoutRequest fromJourneySection(const KPublicTransport::JourneySection &section) const;
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     bool isValid() const;

@@ -206,6 +206,13 @@ Kirigami.ApplicationWindow {
                             color: modelData.departureDelay > 1 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor
                             visible: modelData.hasExpectedDepartureTime
                         }
+                        QQC2.Label {
+                            text: "<a href=\"#layout\">vehicle</a>"
+                            visible: modelData.route.line.mode == Line.LongDistanceTrain
+                            onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"journeySection": modelData });
+                            Layout.fillWidth: true
+                            horizontalAlignment: Text.Right
+                        }
                     }
                     QQC2.Label {
                         Layout.fillWidth: true

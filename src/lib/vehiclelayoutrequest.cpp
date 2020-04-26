@@ -19,6 +19,7 @@
 #include "datatypes/locationutil_p.h"
 #include "datatypes/datatypes_p.h"
 #include "datatypes/departure.h"
+#include "datatypes/journey.h"
 #include "datatypes/json_p.h"
 
 #include <QStringList>
@@ -45,6 +46,22 @@ VehicleLayoutRequest::VehicleLayoutRequest(const Departure &dep)
     : d(new VehicleLayoutRequestPrivate)
 {
     d->departure = dep;
+}
+
+VehicleLayoutRequest::VehicleLayoutRequest(const JourneySection &section)
+    : d(new VehicleLayoutRequestPrivate)
+{
+    d->departure.setStopPoint(section.from());
+    d->departure.setRoute(section.route());
+    d->departure.setScheduledDepartureTime(section.scheduledDepartureTime());
+    d->departure.setExpectedDepartureTime(section.expectedDepartureTime());
+    d->departure.setScheduledPlatform(section.scheduledDeparturePlatform());
+    d->departure.setExpectedPlatform(section.expectedDeparturePlatform());
+}
+
+VehicleLayoutRequest VehicleLayoutRequest::fromJourneySection(const JourneySection &section) const
+{
+    return VehicleLayoutRequest(section);
 }
 
 bool VehicleLayoutRequest::isValid() const

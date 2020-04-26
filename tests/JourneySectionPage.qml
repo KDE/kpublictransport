@@ -31,7 +31,7 @@ Kirigami.Page {
         GridLayout {
             Layout.fillWidth: true
             Layout.margins: Kirigami.Units.largeSpacing
-            columns: 2
+            columns: 3
             rows: 2
 
             Kirigami.Icon {
@@ -46,12 +46,22 @@ Kirigami.Page {
             QQC2.Label {
                 Layout.row: 0
                 Layout.column: 1
+                Layout.fillWidth: true
                 text: "<b>" + journeySection.route.line.modeString + " " + journeySection.route.line.name + "</b>"
+            }
+
+            QQC2.Label {
+                Layout.row: 0
+                Layout.column: 2
+                text: "<a href=\"#layout\">vehicle</a>"
+                visible: journeySection.route.line.mode == Line.LongDistanceTrain
+                onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"journeySection": journeySection});
             }
 
             QQC2.Label {
                 Layout.row: 1
                 Layout.column: 1
+                Layout.columnSpan: 2
                 text: "Direction: " + journeySection.route.direction
             }
         }
@@ -127,7 +137,7 @@ Kirigami.Page {
                         Layout.rowSpan: 2
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        text: "<a href=\"#loc\">" + stop.stopPoint.name + "</a>" + (stop.route.line.mode == Line.LongDistanceTrain ? " <a href=\"#layout\">(layout)</a>" : "")
+                        text: "<a href=\"#loc\">" + stop.stopPoint.name + "</a>" + (stop.route.line.mode == Line.LongDistanceTrain ? " (<a href=\"#layout\">vehicle</a>)" : "")
                         verticalAlignment: Qt.AlignVCenter
                         onLinkActivated: {
                             if (link == "#loc") {

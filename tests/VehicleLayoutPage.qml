@@ -28,8 +28,10 @@ Kirigami.Page {
 
     property alias publicTransportManager: vehicleModel.manager
     property var departure
+    property var journeySection
 
     onDepartureChanged: vehicleModel.request.departure = root.departure;
+    onJourneySectionChanged: vehicleModel.request = vehicleModel.request.fromJourneySection(journeySection);
 
     KPublicTransport.VehicleLayoutQueryModel {
         id: vehicleModel
