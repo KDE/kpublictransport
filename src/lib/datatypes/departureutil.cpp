@@ -18,8 +18,8 @@
 #include "departureutil_p.h"
 #include "lineutil_p.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureRequest>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QTimeZone>
@@ -32,7 +32,7 @@ static QDateTime clipSeconds(QDateTime dt)
     return dt;
 }
 
-bool DepartureUtil::timeLessThan(const DepartureRequest &req, const Departure &lhs, const Departure &rhs)
+bool DepartureUtil::timeLessThan(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs)
 {
     if (req.mode() == DepartureRequest::QueryDeparture) {
         return clipSeconds(lhs.scheduledDepartureTime()) < clipSeconds(rhs.scheduledDepartureTime());
@@ -41,7 +41,7 @@ bool DepartureUtil::timeLessThan(const DepartureRequest &req, const Departure &l
     }
 }
 
-bool DepartureUtil::timeEqual(const DepartureRequest &req, const Departure &lhs, const Departure &rhs)
+bool DepartureUtil::timeEqual(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs)
 {
     if (req.mode() == DepartureRequest::QueryDeparture) {
         return clipSeconds(lhs.scheduledDepartureTime()) == clipSeconds(rhs.scheduledDepartureTime());
@@ -59,7 +59,7 @@ static QDateTime applyTimeZone(QDateTime dt, const QTimeZone &tz)
     return dt;
 }
 
-void DepartureUtil::applyTimeZone(Departure &dep, const QTimeZone &tz)
+void DepartureUtil::applyTimeZone(Stopover &dep, const QTimeZone &tz)
 {
     dep.setScheduledDepartureTime(applyTimeZone(dep.scheduledDepartureTime(), tz));
     dep.setExpectedDepartureTime(applyTimeZone(dep.expectedDepartureTime(), tz));
@@ -67,7 +67,7 @@ void DepartureUtil::applyTimeZone(Departure &dep, const QTimeZone &tz)
     dep.setExpectedArrivalTime(applyTimeZone(dep.expectedArrivalTime(), tz));
 }
 
-void DepartureUtil::applyMetaData(Departure &dep, bool download)
+void DepartureUtil::applyMetaData(Stopover &dep, bool download)
 {
     auto route = dep.route();
     auto line = route.line();

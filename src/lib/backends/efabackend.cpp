@@ -21,7 +21,6 @@
 #include "cache.h"
 #include "logging.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
@@ -30,6 +29,7 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/Stopover>
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>

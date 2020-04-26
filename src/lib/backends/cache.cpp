@@ -20,9 +20,9 @@
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/vehiclelayoutresult_p.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QDebug>
@@ -149,9 +149,9 @@ void Cache::addNegativeDepartureCacheEntry(const QString &backendId, const QStri
     addNegativeCacheEntry(QStringLiteral("departure"), backendId, cacheKey, ttl);
 }
 
-CacheEntry<Departure> Cache::lookupDeparture(const QString &backendId, const QString &cacheKey)
+CacheEntry<Stopover> Cache::lookupDeparture(const QString &backendId, const QString &cacheKey)
 {
-    return lookup<Departure>(QStringLiteral("departure"), backendId, cacheKey);
+    return lookup<Stopover>(QStringLiteral("departure"), backendId, cacheKey);
 }
 
 void Cache::addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)

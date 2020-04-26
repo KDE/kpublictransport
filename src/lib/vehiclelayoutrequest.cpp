@@ -18,7 +18,7 @@
 #include "vehiclelayoutrequest.h"
 #include "datatypes/locationutil_p.h"
 #include "datatypes/datatypes_p.h"
-#include "datatypes/departure.h"
+#include "datatypes/stopover.h"
 #include "datatypes/journey.h"
 #include "datatypes/json_p.h"
 
@@ -33,16 +33,16 @@ namespace KPublicTransport {
 class VehicleLayoutRequestPrivate : public QSharedData
 {
 public:
-    Departure departure;
+    Stopover departure;
     QStringList backendIds;
 };
 
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(VehicleLayoutRequest)
-KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, KPublicTransport::Departure, departure, setDeparture)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, Stopover, departure, setDeparture)
 
-VehicleLayoutRequest::VehicleLayoutRequest(const Departure &dep)
+VehicleLayoutRequest::VehicleLayoutRequest(const Stopover &dep)
     : d(new VehicleLayoutRequestPrivate)
 {
     d->departure = dep;

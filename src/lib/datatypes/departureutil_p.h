@@ -22,20 +22,20 @@ class QTimeZone;
 
 namespace KPublicTransport {
 
-class Departure;
 class DepartureRequest;
+class Stopover;
 
-/** Internal methods around Departure. */
+/** Internal methods around Stopover objects. */
 namespace DepartureUtil
 {
     /** Request specific time-based sorting/comparison. */
-    bool timeLessThan(const DepartureRequest &req, const Departure &lhs, const Departure &rhs);
-    bool timeEqual(const DepartureRequest &req, const Departure &lhs, const Departure &rhs);
+    bool timeLessThan(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs);
+    bool timeEqual(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs);
 
     /** Reinterpret all floating times as times with the given timezone. */
-    void applyTimeZone(Departure &dep, const QTimeZone &tz);
+    void applyTimeZone(Stopover &dep, const QTimeZone &tz);
     /** Augment line meta data. */
-    void applyMetaData(Departure &dep, bool download);
+    void applyMetaData(Stopover &dep, bool download);
 }
 
 }

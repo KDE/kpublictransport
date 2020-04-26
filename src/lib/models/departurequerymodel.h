@@ -25,9 +25,9 @@
 
 namespace KPublicTransport {
 
-class Departure;
 class DepartureQueryModelPrivate;
 class DepartureRequest;
+class Stopover;
 
 /**
  * Model representing arrival or departure query results.
@@ -75,7 +75,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     /** The current model content. */
-    const std::vector<Departure>& departures() const;
+    const std::vector<Stopover>& departures() const;
 
 Q_SIGNALS:
     void requestChanged();

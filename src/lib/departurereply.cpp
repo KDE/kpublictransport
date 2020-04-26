@@ -24,7 +24,7 @@
 #include "backends/cache.h"
 #include "datatypes/departureutil_p.h"
 
-#include <KPublicTransport/Departure>
+#include <KPublicTransport/Stopover>
 
 #include <QNetworkReply>
 
@@ -39,7 +39,7 @@ public:
     DepartureRequest request;
     DepartureRequest nextRequest;
     DepartureRequest prevRequest;
-    std::vector<Departure> result;
+    std::vector<Stopover> result;
 };
 }
 
@@ -61,8 +61,8 @@ void DepartureReplyPrivate::finalizeResult()
                 break;
             }
 
-            if (Departure::isSame(*it, *mergeIt)) {
-                *it = Departure::merge(*it, *mergeIt);
+            if (Stopover::isSame(*it, *mergeIt)) {
+                *it = Stopover::merge(*it, *mergeIt);
                 mergeIt = result.erase(mergeIt);
             } else {
                 ++mergeIt;
@@ -96,19 +96,19 @@ DepartureRequest DepartureReply::request() const
     return d->request;
 }
 
-const std::vector<Departure>& DepartureReply::result() const
+const std::vector<Stopover>& DepartureReply::result() const
 {
     Q_D(const DepartureReply);
     return d->result;
 }
 
-std::vector<Departure>&& DepartureReply::takeResult()
+std::vector<Stopover>&& DepartureReply::takeResult()
 {
     Q_D(DepartureReply);
     return std::move(d->result);
 }
 
-void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Departure> &&res)
+void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Stopover> &&res)
 {
     Q_D(DepartureReply);
     // update context for next/prev requests

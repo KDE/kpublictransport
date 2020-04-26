@@ -29,8 +29,8 @@
 
 namespace KPublicTransport {
 
-class Departure;
 class JourneySectionPrivate;
+class Stopover;
 
 /** A segment of a journey plan. */
 class KPUBLICTRANSPORT_EXPORT JourneySection
@@ -131,11 +131,11 @@ public:
     /** Intermediate stop-overs along this journey section.
      *  This does not include the departure and arrival stops, and might be empty on backends not providing this information.
      */
-    const std::vector<Departure>& intermediateStops() const;
+    const std::vector<Stopover>& intermediateStops() const;
     /** Moves the intermediate stops out of this object. */
-    std::vector<Departure>&& takeIntermediateStops();
+    std::vector<Stopover>&& takeIntermediateStops();
     /** Set the intermediate stops. */
-    void setIntermediateStops(std::vector<Departure> &&stops);
+    void setIntermediateStops(std::vector<Stopover> &&stops);
 
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
     static bool isSame(const JourneySection &lhs, const JourneySection &rhs);

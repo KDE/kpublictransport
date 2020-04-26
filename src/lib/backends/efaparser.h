@@ -33,10 +33,10 @@ class QXmlStreamReader;
 
 namespace KPublicTransport {
 
-class Departure;
 class Journey;
 class JourneySection;
 class Location;
+class Stopover;
 
 /** Base class for parsers for responses from EFA services.
  *  @internal just exported for unit tests
@@ -52,7 +52,7 @@ public:
     QString errorMessage() const;
 
     virtual std::vector<Location> parseStopFinderResponse(const QByteArray &data) const = 0;
-    virtual std::vector<Departure> parseDmResponse(const QByteArray &data) const = 0;
+    virtual std::vector<Stopover> parseDmResponse(const QByteArray &data) const = 0;
     virtual std::vector<Journey> parseTripResponse(const QByteArray &data) const = 0;
 
 protected:

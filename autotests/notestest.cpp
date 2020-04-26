@@ -17,8 +17,8 @@
 
 #include "../src/lib/datatypes/notesutil.cpp"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Stopover>
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -34,13 +34,13 @@ class NotesTest : public QObject
 private Q_SLOTS:
     void testSerialization()
     {
-        Departure dep;
+        Stopover dep;
         dep.addNote(s("line1"));
         dep.addNote(s("line2"));
         QCOMPARE(dep.notes().size(), 2);
-        const auto json = Departure::toJson(dep);
+        const auto json = Stopover::toJson(dep);
         //qDebug().noquote() << QJsonDocument(json).toJson();
-        const auto dep2 = Departure::fromJson(json);
+        const auto dep2 = Stopover::fromJson(json);
         QCOMPARE(dep.notes(), dep2.notes());
     }
 
@@ -68,7 +68,7 @@ private Q_SLOTS:
         sec.addNotes(in);
         QCOMPARE(sec.notes(), res);
 
-        Departure dep;
+        Stopover dep;
         for (const auto &note : in)
             dep.addNote(note);
         QCOMPARE(dep.notes(), res);
@@ -76,12 +76,12 @@ private Q_SLOTS:
 
     void testNotesMerge()
     {
-        Departure dep1;
-        Departure dep2;
+        Stopover dep1;
+        Stopover dep2;
         dep1.addNote(s("line1"));
         dep2.addNotes({s("line2"), s("line1")});
 
-        const auto dep3 = Departure::merge(dep1, dep2);
+        const auto dep3 = Stopover::merge(dep1, dep2);
         QCOMPARE(dep3.notes(), QStringList({s("line1"), s("line2")}));
     }
 

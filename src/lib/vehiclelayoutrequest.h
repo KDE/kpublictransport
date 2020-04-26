@@ -28,7 +28,7 @@
 
 namespace KPublicTransport {
 
-class Departure;
+class Stopover;
 class JourneySection;
 class VehicleLayoutRequestPrivate;
 
@@ -40,11 +40,11 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutRequest
     // TODO properties for manual setup
 
     // TODO should this really be exposed? we need the location for the geo filter though, if available
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Departure, departure, setDeparture)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, departure, setDeparture)
 
 public:
     /** Creates a vehicle layout request for the given departure. */
-    explicit VehicleLayoutRequest(const Departure &dep);
+    explicit VehicleLayoutRequest(const Stopover &dep);
     /** Create a vehilce layout request for the departure of the given journey section. */
     explicit VehicleLayoutRequest(const JourneySection &section);
 

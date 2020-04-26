@@ -34,9 +34,9 @@
 #include "datatypes/vehicle.h"
 #include "datatypes/vehiclelayoutresult_p.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include "backends/cache.h"
 #include "backends/deutschebahnbackend.h"

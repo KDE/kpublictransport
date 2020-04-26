@@ -17,9 +17,9 @@
 
 #include "backends/opentripplannerparser.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QFile>
 #include <QJsonArray>
@@ -128,7 +128,7 @@ private Q_SLOTS:
 
         OpenTripPlannerParser p(s("gtfs"));
         const auto res = p.parseDepartures(QJsonDocument::fromJson(readFile(inFileName)).object());
-        const auto jsonRes = Departure::toJson(res);
+        const auto jsonRes = Stopover::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 

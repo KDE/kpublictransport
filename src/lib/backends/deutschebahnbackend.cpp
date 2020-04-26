@@ -20,7 +20,7 @@
 #include "cache.h"
 #include "datatypes/vehiclelayoutresult_p.h"
 
-#include <KPublicTransport/Departure>
+#include <KPublicTransport/Stopover>
 #include <KPublicTransport/VehicleLayoutReply>
 #include <KPublicTransport/VehicleLayoutRequest>
 

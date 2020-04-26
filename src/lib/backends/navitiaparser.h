@@ -31,10 +31,10 @@ class QString;
 namespace KPublicTransport {
 
 class Attribution;
-class Departure;
 class Journey;
 class JourneySection;
 class Location;
+class Stopover;
 
 /** Navitia REST response parser.
  *  @internal exported for unit tests only
@@ -46,7 +46,7 @@ public:
     ~NavitiaParser();
 
     std::vector<Journey> parseJourneys(const QByteArray &data);
-    std::vector<Departure> parseDepartures(const QByteArray &data);
+    std::vector<Stopover> parseDepartures(const QByteArray &data);
     std::vector<Location> parsePlacesNearby(const QByteArray &data);
     std::vector<Location> parsePlaces(const QByteArray &data);
 
@@ -64,7 +64,7 @@ private:
     QJsonObject findDisruption(const QString &id) const;
     JourneySection parseJourneySection(const QJsonObject &obj) const;
     Journey parseJourney(const QJsonObject &obj) const;
-    Departure parseDeparture(const QJsonObject &obj) const;
+    Stopover parseDeparture(const QJsonObject &obj) const;
 
     QJsonArray m_disruptions;
 };

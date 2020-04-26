@@ -18,7 +18,6 @@
 #include "opentripplannerrestbackend.h"
 #include "opentripplannerparser.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
@@ -27,6 +26,7 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/Stopover>
 
 #include <QDebug>
 #include <QJsonArray>

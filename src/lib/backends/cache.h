@@ -29,9 +29,9 @@ class QString;
 
 namespace KPublicTransport {
 
-class Departure;
 class Journey;
 class Location;
+class Stopover;
 class VehicleLayoutResult;
 
 enum class CacheHitType {
@@ -74,7 +74,7 @@ namespace Cache
     /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
     void addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
     /** Perform cache lookup for departure results. */
-    CacheEntry<Departure> lookupDeparture(const QString &backendId, const QString &cacheKey);
+    CacheEntry<Stopover> lookupDeparture(const QString &backendId, const QString &cacheKey);
 
     /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
     void addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));

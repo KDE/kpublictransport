@@ -15,9 +15,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/HafasMgateParser>
+#include <KPublicTransport/Stopover>
 
 #include <QFile>
 #include <QJsonArray>
@@ -134,7 +134,7 @@ private Q_SLOTS:
         HafasMgateParser p;
         p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
         const auto res = p.parseDepartures(readFile(inFileName));
-        const auto jsonRes = Departure::toJson(res);
+        const auto jsonRes = Stopover::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 

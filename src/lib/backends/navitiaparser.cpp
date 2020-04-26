@@ -18,9 +18,9 @@
 #include "navitiaparser.h"
 
 #include <KPublicTransport/Attribution>
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
+#include <KPublicTransport/Stopover>
 
 #include <QColor>
 #include <QDebug>
@@ -122,7 +122,7 @@ static Location parseWrappedLocation(const QJsonObject &obj)
     return loc;
 }
 
-static void parseStopDateTime(const QJsonObject &dtObj, Departure &departure)
+static void parseStopDateTime(const QJsonObject &dtObj, Stopover &departure)
 {
     departure.setScheduledDepartureTime(parseDateTime(dtObj.value(QLatin1String("base_departure_date_time")), departure.stopPoint().timeZone()));
     departure.setScheduledArrivalTime(parseDateTime(dtObj.value(QLatin1String("base_arrival_date_time")), departure.stopPoint().timeZone()));
@@ -186,11 +186,11 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
 
     const auto stopsDtA = obj.value(QLatin1String("stop_date_times")).toArray();
     if (stopsDtA.size() > 2) { // departure/arrival are included, we don't want that
-        std::vector<Departure> stops;
+        std::vector<Stopover> stops;
         stops.reserve(stopsDtA.size() - 2);
         for (auto it = std::next(stopsDtA.begin()); it != std::prev(stopsDtA.end()); ++it) {
             const auto obj = (*it).toObject();
-            Departure stop;
+            Stopover stop;
             stop.setStopPoint(parseLocation(obj.value(QLatin1String("stop_point")).toObject()));
             parseStopDateTime(obj, stop);
             stops.push_back(std::move(stop));
@@ -235,10 +235,10 @@ std::vector<Journey> NavitiaParser::parseJourneys(const QByteArray &data)
     return res;
 }
 
-Departure NavitiaParser::parseDeparture(const QJsonObject &obj) const
+Stopover NavitiaParser::parseDeparture(const QJsonObject &obj) const
 {
     // TODO remove code duplication with journey parsing
-    Departure departure;
+    Stopover departure;
     const auto displayInfo = obj.value(QLatin1String("display_informations")).toObject();
 
     Line line;
@@ -274,13 +274,13 @@ Departure NavitiaParser::parseDeparture(const QJsonObject &obj) const
     return departure;
 }
 
-std::vector<Departure> NavitiaParser::parseDepartures(const QByteArray &data)
+std::vector<Stopover> NavitiaParser::parseDepartures(const QByteArray &data)
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
     m_disruptions = topObj.value(QLatin1String("disruptions")).toArray();
     const auto departures = topObj.value(QLatin1String("departures")).toArray();
 
-    std::vector<Departure> res;
+    std::vector<Stopover> res;
     res.reserve(departures.size());
 
     for (const auto &v : departures) {

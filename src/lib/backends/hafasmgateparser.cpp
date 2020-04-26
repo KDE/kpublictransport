@@ -18,9 +18,9 @@
 #include "hafasmgateparser.h"
 #include "logging.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
+#include <KPublicTransport/Stopover>
 
 #include <QColor>
 #include <QDateTime>
@@ -192,7 +192,7 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
     return lines;
 }
 
-std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonObject &obj) const
+std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObject &obj) const
 {
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
@@ -201,7 +201,7 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
 
-    std::vector<Departure> res;
+    std::vector<Stopover> res;
     const auto jnyL = obj.value(QLatin1String("jnyL")).toArray();
     res.reserve(jnyL.size());
 
@@ -209,7 +209,7 @@ std::vector<Departure> HafasMgateParser::parseStationBoardResponse(const QJsonOb
         const auto jnyObj = jny.toObject();
         const auto stbStop = jnyObj.value(QLatin1String("stbStop")).toObject();
 
-        Departure dep;
+        Stopover dep;
         Route route;
         route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
         const auto lineIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
@@ -280,7 +280,7 @@ bool HafasMgateParser::parseError(const QJsonObject& obj) const
 }
 
 
-std::vector<Departure> HafasMgateParser::parseDepartures(const QByteArray &data) const
+std::vector<Stopover> HafasMgateParser::parseDepartures(const QByteArray &data) const
 {
     const auto topObj = QJsonDocument::fromJson(data).object();
     if (!parseError(topObj)) {
@@ -424,12 +424,12 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
 
                 const auto stopL = jnyObj.value(QLatin1String("stopL")).toArray();
                 if (stopL.size() > 2) { // we don't want departure/arrival stops in here
-                    std::vector<Departure> stops;
+                    std::vector<Stopover> stops;
                     stops.reserve(stopL.size() - 2);
                     for (auto it = std::next(stopL.begin()); it != std::prev(stopL.end()); ++it) {
                         const auto stopObj = (*it).toObject();
                         // TODO how does this look for individual stop skips during disruptions?
-                        Departure stop;
+                        Stopover stop;
                         const auto locIdx = stopObj.value(QLatin1String("locX")).toInt();
                         if ((unsigned int)locIdx < locs.size()) {
                             stop.setStopPoint(locs[locIdx]);

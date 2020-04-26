@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <KPublicTransport/Departure>
+#include <KPublicTransport/Stopover>
 
 #include <QFile>
 #include <QJsonDocument>
@@ -60,23 +60,23 @@ private Q_SLOTS:
     {
         QFETCH(QString, baseName);
 
-        const auto lhs = Departure::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".lhs.json"))).object());
-        const auto rhs = Departure::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".rhs.json"))).object());
+        const auto lhs = Stopover::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".lhs.json"))).object());
+        const auto rhs = Stopover::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".rhs.json"))).object());
         const auto expected = QJsonDocument::fromJson(readFile(baseName + QLatin1String(".merged.json")));
 
-        QVERIFY(Departure::isSame(lhs, rhs));
-        QVERIFY(Departure::isSame(rhs, lhs));
+        QVERIFY(Stopover::isSame(lhs, rhs));
+        QVERIFY(Stopover::isSame(rhs, lhs));
 
-        const auto mergedL2R = Departure::merge(lhs, rhs);
-        if (Departure::toJson(mergedL2R) != expected.object()) {
-            qDebug().noquote() << QJsonDocument(Departure::toJson(mergedL2R)).toJson();
+        const auto mergedL2R = Stopover::merge(lhs, rhs);
+        if (Stopover::toJson(mergedL2R) != expected.object()) {
+            qDebug().noquote() << QJsonDocument(Stopover::toJson(mergedL2R)).toJson();
         }
-        QCOMPARE(QJsonDocument(Departure::toJson(mergedL2R)), expected);
-        const auto mergedR2L = Departure::merge(rhs, lhs);
-        if (Departure::toJson(mergedR2L) != expected.object()) {
-            qDebug().noquote() << QJsonDocument(Departure::toJson(mergedR2L)).toJson();
+        QCOMPARE(QJsonDocument(Stopover::toJson(mergedL2R)), expected);
+        const auto mergedR2L = Stopover::merge(rhs, lhs);
+        if (Stopover::toJson(mergedR2L) != expected.object()) {
+            qDebug().noquote() << QJsonDocument(Stopover::toJson(mergedR2L)).toJson();
         }
-        QCOMPARE(QJsonDocument(Departure::toJson(mergedR2L)), expected);
+        QCOMPARE(QJsonDocument(Stopover::toJson(mergedR2L)), expected);
     }
 };
 

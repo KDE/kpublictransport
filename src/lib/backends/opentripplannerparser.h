@@ -32,11 +32,11 @@ class QJsonObject;
 
 namespace KPublicTransport {
 
-class Departure;
 class Journey;
 class JourneySection;
 class Line;
 class Route;
+class Stopover;
 
 /** Parser for OTP responses as defined by the GraphQL files in the otp/ subdir.
  *  @internal only exported for unit tests
@@ -51,8 +51,8 @@ public:
     std::vector<Location> parseLocationsByName(const QJsonObject &obj) const;
     std::vector<Location> parseLocationsArray(const QJsonArray &array) const;
     std::vector<Location> parseGeocodeResult(const QJsonArray &array) const;
-    std::vector<Departure> parseDepartures(const QJsonObject &obj) const;
-    std::vector<Departure> parseDeparturesArray(const QJsonArray &array) const;
+    std::vector<Stopover> parseDepartures(const QJsonObject &obj) const;
+    std::vector<Stopover> parseDeparturesArray(const QJsonArray &array) const;
     std::vector<Journey> parseJourneys(const QJsonObject &obj) const;
 
 private:
@@ -62,8 +62,8 @@ private:
     Route parseRoute(const QJsonObject &obj) const;
     Route parseInlineRoute(const QJsonObject &obj) const;
     Route detectAndParseRoute(const QJsonObject &obj) const;
-    Departure parseDeparture(const QJsonObject &obj) const;
-    void parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure> &deps) const;
+    Stopover parseDeparture(const QJsonObject &obj) const;
+    void parseDeparturesForStop(const QJsonObject &obj, std::vector<Stopover> &deps) const;
     JourneySection parseJourneySection(const QJsonObject &obj) const;
     Journey parseJourney(const QJsonObject &obj) const;
 

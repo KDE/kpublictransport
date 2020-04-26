@@ -19,9 +19,9 @@
 #include "hafasjourneyresponse_p.h"
 #include "logging.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QDebug>
@@ -37,11 +37,11 @@ using namespace KPublicTransport;
 HafasQueryParser::HafasQueryParser() = default;
 HafasQueryParser::~HafasQueryParser() = default;
 
-std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteArray &data, bool isArrival)
+std::vector<Stopover> HafasQueryParser::parseStationBoardResponse(const QByteArray &data, bool isArrival)
 {
     clearErrorState();
     qDebug().noquote() << data;
-    std::vector<Departure> res;
+    std::vector<Stopover> res;
 
     QXmlStreamReader reader;
     if (data.startsWith("<Journey")) { // SBB and RT don't reply with valid XML...
@@ -67,7 +67,7 @@ std::vector<Departure> HafasQueryParser::parseStationBoardResponse(const QByteAr
                     }
                     const auto delayStr = reader.attributes().value(QLatin1String("e_delay"));
                     const auto delaySecs = delayStr.toInt() * 60;
-                    Departure dep;
+                    Stopover dep;
                     if (isArrival) {
                         dep.setScheduledArrivalTime(dt);
                         if (!delayStr.isEmpty()) {
@@ -360,7 +360,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                 section.setExpectedDepartureTime(parseDateTime(baseDate, sectionDetail->expectedDepartureTime));
                 section.setExpectedArrivalTime(parseDateTime(baseDate, sectionDetail->expectedArrivalTime));
 
-                std::vector<Departure> stops;
+                std::vector<Stopover> stops;
                 stops.reserve(sectionDetail->numStops);
                 for (int i = 0; i < sectionDetail->numStops; ++i) {
                     const auto stopInfo = reinterpret_cast<const HafasJourneyResponseStop*>(rawData.constData() + extHeader->detailsOffset + detailsHeader->stopsOffset + i * detailsHeader->stopsSize);
@@ -373,7 +373,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                     loc.setLatitude(locInfo->latitude / 1000000.0);
                     loc.setLongitude(locInfo->longitude / 1000000.0);
 
-                    Departure stop;
+                    Stopover stop;
                     stop.setStopPoint(loc);
                     stop.setScheduledArrivalTime(parseDateTime(baseDate, stopInfo->scheduledArrivalTime));
                     stop.setScheduledDepartureTime(parseDateTime(baseDate, stopInfo->scheduledDepartureTime));

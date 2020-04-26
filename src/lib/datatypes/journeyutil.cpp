@@ -18,8 +18,8 @@
 #include "journeyutil_p.h"
 #include "lineutil_p.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QTimeZone>

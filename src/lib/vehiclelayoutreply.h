@@ -23,8 +23,8 @@
 namespace KPublicTransport {
 
 class AbstractBackend;
-class Departure;
 class Platform;
+class Stopover;
 class Vehicle;
 class VehicleLayoutRequest;
 class VehicleLayoutReplyPrivate;
@@ -44,7 +44,7 @@ public:
     /** Platform layout information found by this query. */
     Platform platform() const;
     /** Departure information the layout is valid for. */
-    Departure departure() const;
+    Stopover departure() const;
 
 private:
     friend class Manager;
@@ -52,7 +52,7 @@ private:
     explicit VehicleLayoutReply(const VehicleLayoutRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    Q_DECL_HIDDEN void addResult(const Vehicle &vehicle, const Platform &platoform, const Departure &departure);
+    Q_DECL_HIDDEN void addResult(const Vehicle &vehicle, const Platform &platoform, const Stopover &departure);
     using Reply::addError;
     Q_DECL_HIDDEN void addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg);
 

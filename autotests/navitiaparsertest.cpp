@@ -16,10 +16,10 @@
 */
 
 #include <KPublicTransport/Attribution>
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/NavitiaParser>
+#include <KPublicTransport/Stopover>
 
 #include <QFile>
 #include <QTest>

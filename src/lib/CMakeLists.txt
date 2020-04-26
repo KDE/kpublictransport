@@ -39,7 +39,6 @@ set(kpublictransport_srcs
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
     datatypes/backend.cpp
-    datatypes/departure.cpp
     datatypes/departureutil.cpp
     datatypes/disruption.cpp
     datatypes/journey.cpp
@@ -53,6 +52,7 @@ set(kpublictransport_srcs
     datatypes/notesutil.cpp
     datatypes/platform.cpp
     datatypes/platformutils.cpp
+    datatypes/stopover.cpp
     datatypes/vehicle.cpp
     datatypes/vehiclelayoutresult.cpp
 
@@ -125,6 +125,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Line
         Location
         Platform
+        Stopover
         Vehicle
     PREFIX KPublicTransport
     REQUIRED_HEADERS KPublicTransport_Datatypes_HEADERS

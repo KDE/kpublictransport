@@ -18,8 +18,8 @@
 #include "opentripplannerparser.h"
 #include "gtfs/hvt.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Stopover>
 
 #include <QColor>
 #include <QDebug>
@@ -239,9 +239,9 @@ static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &val
     return QDateTime::fromString(value.toString(), Qt::ISODate);
 }
 
-Departure OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
+Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 {
-    Departure dep;
+    Stopover dep;
     const auto baseTime = obj.value(QLatin1String("serviceDay")).toDouble(); // ### 64bit
     dep.setScheduledArrivalTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("scheduledArrival"))));
     dep.setScheduledDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("scheduledDeparture"))));
@@ -257,7 +257,7 @@ Departure OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
     return dep;
 }
 
-void OpenTripPlannerParser::parseDeparturesForStop(const QJsonObject &obj, std::vector<Departure> &deps) const
+void OpenTripPlannerParser::parseDeparturesForStop(const QJsonObject &obj, std::vector<Stopover> &deps) const
 {
     const auto loc = parseLocation(obj.value(QLatin1String("stop")).toObject());
     const auto stopTimes = obj.value(QLatin1String("stoptimes")).toArray();
@@ -268,9 +268,9 @@ void OpenTripPlannerParser::parseDeparturesForStop(const QJsonObject &obj, std::
     }
 }
 
-std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject &obj) const
+std::vector<Stopover> OpenTripPlannerParser::parseDepartures(const QJsonObject &obj) const
 {
-    std::vector<Departure> deps;
+    std::vector<Stopover> deps;
 
     const auto depsArray = obj.value(QLatin1String("nearest")).toObject().value(QLatin1String("edges")).toArray();
     for (const auto &depsV : depsArray) {
@@ -280,9 +280,9 @@ std::vector<Departure> OpenTripPlannerParser::parseDepartures(const QJsonObject 
     return deps;
 }
 
-std::vector<Departure> OpenTripPlannerParser::parseDeparturesArray(const QJsonArray &array) const
+std::vector<Stopover> OpenTripPlannerParser::parseDeparturesArray(const QJsonArray &array) const
 {
-    std::vector<Departure> deps;
+    std::vector<Stopover> deps;
     for (const auto &pattern : array) {
         const auto obj = pattern.toObject();
         const auto times = obj.value(QLatin1String("times")).toArray();
@@ -351,14 +351,14 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     m_alerts.clear();
 
     const auto stopsA = obj.value(QLatin1String("intermediateStops")).toArray();
-    std::vector<Departure> stops;
+    std::vector<Stopover> stops;
     stops.reserve(stopsA.size());
     for (const auto &stopV : stopsA) {
         const auto stopObj = stopV.toObject();
         const auto locObj = stopObj.value(QLatin1String("stop")).toObject();
         const auto loc = parseLocation(locObj);
 
-        Departure stop;
+        Stopover stop;
         stop.setStopPoint(loc);
         stop.setScheduledPlatform(stopObj.value(QLatin1String("platformCode")).toString());
         stop.setScheduledArrivalTime(parseJourneyDateTime(stopObj.value(QLatin1String("scheduledArrivalTime"))));

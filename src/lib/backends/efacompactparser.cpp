@@ -19,9 +19,9 @@
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QDebug>
@@ -112,9 +112,9 @@ QStringList EfaCompactParser::parseNotes(ScopedXmlStreamReader &&reader) const
     return ns;
 }
 
-Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
+Stopover EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
 {
-    Departure dep;
+    Stopover dep;
     Location loc;
     bool clearRealtime = false;
     while (reader.readNextSibling()) {
@@ -171,9 +171,9 @@ Departure EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
     return dep;
 }
 
-std::vector<Departure> EfaCompactParser::parseDmResponse(const QByteArray &data) const
+std::vector<Stopover> EfaCompactParser::parseDmResponse(const QByteArray &data) const
 {
-    std::vector<Departure> res;
+    std::vector<Stopover> res;
     QXmlStreamReader xsr(data);
     ScopedXmlStreamReader reader(xsr);
     while (reader.readNextElement()) {
@@ -286,7 +286,7 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                 section.setExpectedDepartureTime({});
             }
         } else if (reader.name() == QLatin1String("pss")) {
-            std::vector<Departure> stops;
+            std::vector<Stopover> stops;
             auto subReader = reader.subReader();
             while (subReader.readNextSibling()) {
                 if (subReader.name() == QLatin1String("s")) {
@@ -327,7 +327,7 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                         continue;
                     }
 
-                    Departure stop;
+                    Stopover stop;
                     stop.setStopPoint(loc);
                     stop.setScheduledPlatform(stopParams[7]);
                     stop.setScheduledDepartureTime(dt);

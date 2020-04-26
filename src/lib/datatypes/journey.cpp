@@ -19,10 +19,10 @@
 #include "journeyutil_p.h"
 #include "json_p.h"
 #include "datatypes_p.h"
-#include "departure.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
 #include "platformutils_p.h"
+#include "stopover.h"
 
 #include <QDebug>
 #include <QVariant>
@@ -49,7 +49,7 @@ public:
     int distance = 0;
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     QStringList notes;
-    std::vector<Departure> intermediateStops;
+    std::vector<Stopover> intermediateStops;
 
     int estimatedDistance() const;
 };
@@ -224,17 +224,17 @@ void JourneySection::addNotes(const QStringList &notes)
     }
 }
 
-const std::vector<Departure>& JourneySection::intermediateStops() const
+const std::vector<Stopover>& JourneySection::intermediateStops() const
 {
     return d->intermediateStops;
 }
 
-std::vector<Departure>&& JourneySection::takeIntermediateStops()
+std::vector<Stopover>&& JourneySection::takeIntermediateStops()
 {
     return std::move(d->intermediateStops);
 }
 
-void JourneySection::setIntermediateStops(std::vector<Departure> &&stops)
+void JourneySection::setIntermediateStops(std::vector<Stopover> &&stops)
 {
     d.detach();
     d->intermediateStops = std::move(stops);
@@ -317,7 +317,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     if (lhs.intermediateStops().size() == rhs.intermediateStops().size()) {
         auto stops = res.takeIntermediateStops();
         for (uint i = 0; i < stops.size(); ++i) {
-            stops[i] = Departure::merge(stops[i], rhs.intermediateStops()[i]);
+            stops[i] = Stopover::merge(stops[i], rhs.intermediateStops()[i]);
         }
         res.setIntermediateStops(std::move(stops));
     }
@@ -335,7 +335,7 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
     if (section.mode() == PublicTransport) {
         obj.insert(QStringLiteral("route"), Route::toJson(section.route()));
         if (!section.intermediateStops().empty()) {
-            obj.insert(QStringLiteral("intermediateStops"), Departure::toJson(section.intermediateStops()));
+            obj.insert(QStringLiteral("intermediateStops"), Stopover::toJson(section.intermediateStops()));
         }
     }
     return obj;
@@ -352,7 +352,7 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setFrom(Location::fromJson(obj.value(QLatin1String("from")).toObject()));
     section.setTo(Location::fromJson(obj.value(QLatin1String("to")).toObject()));
     section.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
-    section.setIntermediateStops(Departure::fromJson(obj.value(QLatin1String("intermediateStops")).toArray()));
+    section.setIntermediateStops(Stopover::fromJson(obj.value(QLatin1String("intermediateStops")).toArray()));
     return section;
 }
 

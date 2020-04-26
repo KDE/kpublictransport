@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Stopover>
 
 #include <QTest>
 
@@ -52,7 +52,7 @@ private Q_SLOTS:
         QFETCH(QString, in);
         QFETCH(QString, out);
 
-        Departure dep;
+        Stopover dep;
         dep.setScheduledPlatform(in);
         QCOMPARE(dep.scheduledPlatform(), out);
         dep.setExpectedPlatform(in);
@@ -88,7 +88,7 @@ private Q_SLOTS:
         QFETCH(QString, expected);
         QFETCH(bool, changed);
 
-        Departure dep;
+        Stopover dep;
         dep.setScheduledPlatform(scheduled);
         dep.setExpectedPlatform(expected);
         QCOMPARE(dep.platformChanged(), changed);

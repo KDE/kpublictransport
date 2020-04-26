@@ -18,9 +18,9 @@
 #include "backends/efacompactparser.h"
 #include "backends/efaxmlparser.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QFile>
 #include <QJsonArray>
@@ -140,7 +140,7 @@ private Q_SLOTS:
         parser.setLocationIdentifierType(s("testid"));
 
         const auto res = parser.parseDmResponse(readFile(inFileName));
-        const auto jsonRes = Departure::toJson(res);
+        const auto jsonRes = Stopover::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 
@@ -170,7 +170,7 @@ private Q_SLOTS:
         parser.setLocationIdentifierType(s("testid"));
 
         const auto res = parser.parseDmResponse(readFile(inFileName));
-        const auto jsonRes = Departure::toJson(res);
+        const auto jsonRes = Stopover::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 

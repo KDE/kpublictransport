@@ -31,12 +31,12 @@ class KPUBLICTRANSPORT_EXPORT EfaCompactParser : public EfaParser
 {
 public:
     std::vector<Location> parseStopFinderResponse(const QByteArray &data) const override;
-    std::vector<Departure> parseDmResponse(const QByteArray &data) const override;
+    std::vector<Stopover> parseDmResponse(const QByteArray &data) const override;
     std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
 
 private:
     Location parseCompactSf(ScopedXmlStreamReader &&reader) const;
-    Departure parseCompactDp(ScopedXmlStreamReader &&reader) const;
+    Stopover parseCompactDp(ScopedXmlStreamReader &&reader) const;
     Journey parseCompactTp(ScopedXmlStreamReader &&reader) const;
     JourneySection parseTripSection(ScopedXmlStreamReader &&reader) const;
     void parseTripSectionHalf(ScopedXmlStreamReader &&reader, JourneySection &section) const;

@@ -36,7 +36,7 @@ public:
     Vehicle m_vehicle;
     VehicleLayoutRequest m_request;
     Platform m_platform;
-    Departure m_departure;
+    Stopover m_departure;
 
     Q_DECLARE_PUBLIC(VehicleLayoutQueryModel)
 };
@@ -104,7 +104,7 @@ Platform VehicleLayoutQueryModel::platform() const
     return d->m_platform;
 }
 
-Departure VehicleLayoutQueryModel::departure() const
+Stopover VehicleLayoutQueryModel::departure() const
 {
     Q_D(const VehicleLayoutQueryModel);
     return d->m_departure;

@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "departure.h"
+#include "stopover.h"
 #include "departureutil_p.h"
 #include "datatypes_p.h"
 #include "json_p.h"
@@ -29,7 +29,7 @@
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
-class DeparturePrivate : public QSharedData {
+class StopoverPrivate : public QSharedData {
 public:
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     QDateTime scheduledArrivalTime;
@@ -44,22 +44,22 @@ public:
 };
 }
 
-KPUBLICTRANSPORT_MAKE_GADGET(Departure)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, expectedArrivalTime, setExpectedArrivalTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QDateTime, expectedDepartureTime, setExpectedDepartureTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Route, route, setRoute)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Location, stopPoint, setStopPoint)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, Disruption::Effect, disruptionEffect, setDisruptionEffect)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Departure, QStringList, notes, setNotes)
+KPUBLICTRANSPORT_MAKE_GADGET(Stopover)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QDateTime, expectedArrivalTime, setExpectedArrivalTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QDateTime, expectedDepartureTime, setExpectedDepartureTime)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Route, route, setRoute)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Location, stopPoint, setStopPoint)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Disruption::Effect, disruptionEffect, setDisruptionEffect)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QStringList, notes, setNotes)
 
-bool Departure::hasExpectedArrivalTime() const
+bool Stopover::hasExpectedArrivalTime() const
 {
     return d->expectedArrivalTime.isValid();
 }
 
-int Departure::arrivalDelay() const
+int Stopover::arrivalDelay() const
 {
     if (hasExpectedArrivalTime()) {
         return d->scheduledArrivalTime.secsTo(d->expectedArrivalTime) / 60;
@@ -67,12 +67,12 @@ int Departure::arrivalDelay() const
     return 0;
 }
 
-bool Departure::hasExpectedDepartureTime() const
+bool Stopover::hasExpectedDepartureTime() const
 {
     return d->expectedDepartureTime.isValid();
 }
 
-int Departure::departureDelay() const
+int Stopover::departureDelay() const
 {
     if (hasExpectedDepartureTime()) {
         return d->scheduledDepartureTime.secsTo(d->expectedDepartureTime) / 60;
@@ -80,39 +80,39 @@ int Departure::departureDelay() const
     return 0;
 }
 
-QString Departure::scheduledPlatform() const
+QString Stopover::scheduledPlatform() const
 {
     return d->scheduledPlatform;
 }
 
-void Departure::setScheduledPlatform(const QString &platform)
+void Stopover::setScheduledPlatform(const QString &platform)
 {
     d.detach();
     d->scheduledPlatform = PlatformUtils::normalizePlatform(platform);
 }
 
-QString Departure::expectedPlatform() const
+QString Stopover::expectedPlatform() const
 {
     return d->expectedPlatform;
 }
 
-void Departure::setExpectedPlatform(const QString &platform)
+void Stopover::setExpectedPlatform(const QString &platform)
 {
     d.detach();
     d->expectedPlatform = PlatformUtils::normalizePlatform(platform);
 }
 
-bool Departure::hasExpectedPlatform() const
+bool Stopover::hasExpectedPlatform() const
 {
     return !d->expectedPlatform.isEmpty();
 }
 
-bool Departure::platformChanged() const
+bool Stopover::platformChanged() const
 {
     return PlatformUtils::platformChanged(d->scheduledPlatform, d->expectedPlatform);
 }
 
-void Departure::addNote(const QString &note)
+void Stopover::addNote(const QString &note)
 {
     const auto n = NotesUtil::normalizeNote(note);
     const auto idx = NotesUtil::needsAdding(d->notes, n);
@@ -122,14 +122,14 @@ void Departure::addNote(const QString &note)
     }
 }
 
-void Departure::addNotes(const QStringList &notes)
+void Stopover::addNotes(const QStringList &notes)
 {
     for (const auto &n : notes) {
         addNote(n);
     }
 }
 
-bool Departure::isSame(const Departure &lhs, const Departure &rhs)
+bool Stopover::isSame(const Stopover &lhs, const Stopover &rhs)
 {
     // same time is mandatory
     const auto departureTimeMatch = lhs.scheduledDepartureTime().isValid()
@@ -159,7 +159,7 @@ bool Departure::isSame(const Departure &lhs, const Departure &rhs)
         || Location::isSameName(lhs.route().direction(), rhs.route().direction());
 }
 
-Departure Departure::merge(const Departure &lhs, const Departure &rhs)
+Stopover Stopover::merge(const Stopover &lhs, const Stopover &rhs)
 {
     auto dep = lhs;
 
@@ -183,7 +183,7 @@ Departure Departure::merge(const Departure &lhs, const Departure &rhs)
     return dep;
 }
 
-QJsonObject Departure::toJson(const Departure &dep)
+QJsonObject Stopover::toJson(const Stopover &dep)
 {
     auto obj = Json::toJson(dep);
     const auto routeObj = Route::toJson(dep.route());
@@ -194,23 +194,23 @@ QJsonObject Departure::toJson(const Departure &dep)
     return obj;
 }
 
-QJsonArray Departure::toJson(const std::vector<Departure> &deps)
+QJsonArray Stopover::toJson(const std::vector<Stopover> &deps)
 {
     return Json::toJson(deps);
 }
 
-Departure Departure::fromJson(const QJsonObject &obj)
+Stopover Stopover::fromJson(const QJsonObject &obj)
 {
-    auto dep = Json::fromJson<Departure>(obj);
+    auto dep = Json::fromJson<Stopover>(obj);
     dep.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
     dep.setStopPoint(Location::fromJson(obj.value(QLatin1String("stopPoint")).toObject()));
     DepartureUtil::applyMetaData(dep, false);
     return dep;
 }
 
-std::vector<Departure> Departure::fromJson(const QJsonArray &array)
+std::vector<Stopover> Stopover::fromJson(const QJsonArray &array)
 {
-    return Json::fromJson<Departure>(array);
+    return Json::fromJson<Stopover>(array);
 }
 
-#include "moc_departure.cpp"
+#include "moc_stopover.cpp"

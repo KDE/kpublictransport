@@ -21,9 +21,9 @@
 #include "datatypes/departureutil_p.h"
 
 #include <KPublicTransport/Attribution>
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Manager>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QDebug>
@@ -35,9 +35,9 @@ class DepartureQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void doQuery() override;
-    void mergeResults(const std::vector<Departure> &newDepartures);
+    void mergeResults(const std::vector<Stopover> &newDepartures);
 
-    std::vector<Departure> m_departures;
+    std::vector<Stopover> m_departures;
 
     DepartureRequest m_request;
     DepartureRequest m_nextRequest;
@@ -79,7 +79,7 @@ void DepartureQueryModelPrivate::doQuery()
     });
 }
 
-void DepartureQueryModelPrivate::mergeResults(const std::vector<Departure> &newDepartures)
+void DepartureQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDepartures)
 {
     Q_Q(DepartureQueryModel);
     for (const auto &dep : newDepartures) {
@@ -89,8 +89,8 @@ void DepartureQueryModelPrivate::mergeResults(const std::vector<Departure> &newD
 
         bool found = false;
         while (it != m_departures.end() && DepartureUtil::timeEqual(m_request, dep, *it)) {
-            if (Departure::isSame(dep, *it)) {
-                *it = Departure::merge(*it, dep);
+            if (Stopover::isSame(dep, *it)) {
+                *it = Stopover::merge(*it, dep);
                 found = true;
                 const auto row = std::distance(m_departures.begin(), it);
                 const auto idx = q->index(row, 0);
@@ -231,7 +231,7 @@ QHash<int, QByteArray> DepartureQueryModel::roleNames() const
     return r;
 }
 
-const std::vector<Departure>& DepartureQueryModel::departures() const
+const std::vector<Stopover>& DepartureQueryModel::departures() const
 {
     Q_D(const DepartureQueryModel);
     return d->m_departures;

@@ -18,10 +18,10 @@
 #ifndef KPUBLICTRANSPORT_DEUTSCHEBAHNVEHICLELAYOUTPARSER_H
 #define KPUBLICTRANSPORT_DEUTSCHEBAHNVEHICLELAYOUTPARSER_H
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/Vehicle>
 #include <KPublicTransport/Reply>
+#include <KPublicTransport/Stopover>
 
 class QByteArray;
 
@@ -35,7 +35,7 @@ public:
 
     Vehicle vehicle;
     Platform platform;
-    Departure departure;
+    Stopover departure;
     Reply::Error error = Reply::NoError;
     QString errorMessage;
 

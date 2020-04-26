@@ -19,9 +19,9 @@
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QDateTime>
 #include <QDebug>
@@ -101,9 +101,9 @@ static QDateTime parseDateTime(ScopedXmlStreamReader &&reader)
     return dt;
 }
 
-Departure EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
+Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
 {
-    Departure dep;
+    Stopover dep;
     dep.setScheduledPlatform(reader.attributes().value(QLatin1String("platformName")).toString());
 
     Location stop;
@@ -140,9 +140,9 @@ Departure EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
     return dep;
 }
 
-std::vector<Departure> EfaXmlParser::parseDmResponse(const QByteArray &data) const
+std::vector<Stopover> EfaXmlParser::parseDmResponse(const QByteArray &data) const
 {
-    std::vector<Departure> res;
+    std::vector<Stopover> res;
     QXmlStreamReader xsr(data);
     ScopedXmlStreamReader reader(xsr);
     while (reader.readNextElement()) {
@@ -203,7 +203,7 @@ void EfaXmlParser::parseTripArrival(ScopedXmlStreamReader &&reader, JourneySecti
     }
 }
 
-Departure EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const
+Stopover EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const
 {
     Location loc;
     loc.setName(reader.attributes().value(QLatin1String("name")).toString());
@@ -212,7 +212,7 @@ Departure EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &
     loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
     loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
 
-    Departure stop;
+    Stopover stop;
     stop.setStopPoint(loc);
     stop.setScheduledPlatform(reader.attributes().value(QLatin1String("platform")).toString());
 
@@ -232,9 +232,9 @@ Departure EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &
     return stop;
 }
 
-std::vector<Departure> EfaXmlParser::parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const
+std::vector<Stopover> EfaXmlParser::parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const
 {
-    std::vector<Departure> stops;
+    std::vector<Stopover> stops;
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdPoint")) {
             stops.push_back(parsePartialTripIntermediateStop(reader.subReader()));

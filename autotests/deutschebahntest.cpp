@@ -94,7 +94,7 @@ private Q_SLOTS:
         QVERIFY(!platformJson.isEmpty());
         QCOMPARE(platformJson, platformRef);
 
-        const auto departureJson = Departure::toJson(parser.departure);
+        const auto departureJson = Stopover::toJson(parser.departure);
         const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();
         if (departureJson != departureRef) {
             qDebug().noquote() << QJsonDocument(departureJson).toJson();

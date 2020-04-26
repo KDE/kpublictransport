@@ -27,16 +27,16 @@ class VehicleLayoutResultPrivate : public QSharedData
 public:
     Vehicle vehicle;
     Platform platform;
-    Departure departure;
+    Stopover departure;
 };
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(VehicleLayoutResult)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutResult, Vehicle, vehicle, setVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutResult, Platform, platform, setPlatform)
-KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutResult, Departure, departure, setDeparture)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutResult, Stopover, departure, setDeparture)
 
-VehicleLayoutResult::VehicleLayoutResult(const Vehicle &vehicle, const Platform &platform, const Departure &dep)
+VehicleLayoutResult::VehicleLayoutResult(const Vehicle &vehicle, const Platform &platform, const Stopover &dep)
     : d(new VehicleLayoutResultPrivate)
 {
     d->vehicle = vehicle;
@@ -49,7 +49,7 @@ VehicleLayoutResult VehicleLayoutResult::fromJson(const QJsonObject &obj)
     VehicleLayoutResult res;
     res.setVehicle(Vehicle::fromJson(obj.value(QLatin1String("vehicle")).toObject()));
     res.setPlatform(Platform::fromJson(obj.value(QLatin1String("platform")).toObject()));
-    res.setDeparture(Departure::fromJson(obj.value(QLatin1String("departure")).toObject()));
+    res.setDeparture(Stopover::fromJson(obj.value(QLatin1String("departure")).toObject()));
     return res;
 }
 
@@ -63,7 +63,7 @@ QJsonObject KPublicTransport::VehicleLayoutResult::toJson(const VehicleLayoutRes
     QJsonObject obj;
     obj.insert(QStringLiteral("vehicle"), Vehicle::toJson(res.vehicle()));
     obj.insert(QStringLiteral("platform"), Platform::toJson(res.platform()));
-    obj.insert(QStringLiteral("departure"), Departure::toJson(res.departure()));
+    obj.insert(QStringLiteral("departure"), Stopover::toJson(res.departure()));
     return obj;
 }
 
@@ -71,4 +71,3 @@ QJsonArray VehicleLayoutResult::toJson(const std::vector<VehicleLayoutResult> &r
 {
     return Json::toJson(res);
 }
-

@@ -31,19 +31,19 @@ class KPUBLICTRANSPORT_EXPORT EfaXmlParser : public EfaParser
 {
 public:
     std::vector<Location> parseStopFinderResponse(const QByteArray &data) const override;
-    std::vector<Departure> parseDmResponse(const QByteArray &data) const override;
+    std::vector<Stopover> parseDmResponse(const QByteArray &data) const override;
     std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
 
 private:
     Location parseItdOdvAssignedStop(const ScopedXmlStreamReader &reader) const;
     Location parseOdvNameElem(ScopedXmlStreamReader &reader) const;
 
-    Departure parseDmDeparture(ScopedXmlStreamReader &&reader) const;
+    Stopover parseDmDeparture(ScopedXmlStreamReader &&reader) const;
     void parseTripDeparture(ScopedXmlStreamReader &&reader, JourneySection &section) const;
     void parseTripArrival(ScopedXmlStreamReader &&reader, JourneySection &section) const;
 
-    Departure parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const;
-    std::vector<Departure> parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const;
+    Stopover parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const;
+    std::vector<Stopover> parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const;
 
     JourneySection parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
     Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;

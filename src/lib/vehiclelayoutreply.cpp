@@ -22,8 +22,8 @@
 #include "backends/abstractbackend.h"
 #include "backends/cache.h"
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/Platform>
+#include <KPublicTransport/Stopover>
 #include <KPublicTransport/Vehicle>
 
 #include <QDebug>
@@ -38,7 +38,7 @@ public:
     VehicleLayoutRequest request;
     Vehicle vehicle;
     Platform platform;
-    Departure departure;
+    Stopover departure;
 };
 }
 
@@ -69,7 +69,7 @@ Platform VehicleLayoutReply::platform() const
     return d->platform;
 }
 
-Departure VehicleLayoutReply::departure() const
+Stopover VehicleLayoutReply::departure() const
 {
     Q_D(const VehicleLayoutReply);
     return d->departure;
@@ -80,7 +80,7 @@ static bool isOneSidedCar(VehicleSection::Type type)
     return type == VehicleSection::PowerCar || type == VehicleSection::ControlCar;
 }
 
-void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platoform, const Departure &departure)
+void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platoform, const Stopover &departure)
 {
     Q_D(VehicleLayoutReply);
     d->vehicle = vehicle;

@@ -18,8 +18,8 @@
 #ifndef KPUBLICTRANSPORT_VEHICLELAYOUTRESULT_H
 #define KPUBLICTRANSPORT_VEHICLELAYOUTRESULT_H
 
-#include "departure.h"
 #include "platform.h"
+#include "stopover.h"
 #include "vehicle.h"
 
 namespace KPublicTransport {
@@ -34,10 +34,10 @@ class VehicleLayoutResult
     KPUBLICTRANSPORT_GADGET(VehicleLayoutResult)
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Vehicle, vehicle, setVehicle)
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Platform, platform, setPlatform)
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Departure, departure, setDeparture)
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, departure, setDeparture)
 
 public:
-    VehicleLayoutResult(const Vehicle &vehicle, const Platform &platform, const Departure &dep);
+    VehicleLayoutResult(const Vehicle &vehicle, const Platform &platform, const Stopover &dep);
 
     static VehicleLayoutResult fromJson(const QJsonObject &obj);
     static std::vector<VehicleLayoutResult> fromJson(const QJsonArray &array);

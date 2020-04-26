@@ -18,11 +18,11 @@
 #ifndef EXAMPLEUTIL_H
 #define EXAMPLEUTIL_H
 
-#include <KPublicTransport/Departure>
 #include <KPublicTransport/DepartureQueryModel>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyQueryModel>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Stopover>
 
 #include <QDebug>
 #include <QFile>
@@ -48,7 +48,7 @@ public:
         if (qobject_cast<JourneyQueryModel*>(model)) {
             f.write(QJsonDocument(Journey::toJson(qobject_cast<JourneyQueryModel*>(model)->journeys())).toJson());
         } else if (qobject_cast<DepartureQueryModel*>(model)) {
-            f.write(QJsonDocument(Departure::toJson(qobject_cast<DepartureQueryModel*>(model)->departures())).toJson());
+            f.write(QJsonDocument(Stopover::toJson(qobject_cast<DepartureQueryModel*>(model)->departures())).toJson());
         }
     }
 
