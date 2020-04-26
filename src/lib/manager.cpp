@@ -573,7 +573,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     return reply;
 }
 
-StopoverReply* Manager::queryDeparture(const StopoverRequest &req) const
+StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
 {
     auto reply = d->makeReply<StopoverReply>(req);
     int pendingOps = 0;
@@ -620,6 +620,11 @@ StopoverReply* Manager::queryDeparture(const StopoverRequest &req) const
 
     reply->setPendingOps(pendingOps);
     return reply;
+}
+
+StopoverReply* Manager::queryDeparture(const StopoverRequest &req) const
+{
+    return queryStopover(req);
 }
 
 LocationReply* Manager::queryLocation(const LocationRequest &req) const

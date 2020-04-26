@@ -85,7 +85,7 @@ private Q_SLOTS:
     void testQueryDepartures()
     {
         Manager mgr;
-        auto reply = mgr.queryDeparture({});
+        auto reply = mgr.queryStopover({});
         QVERIFY(reply);
         QSignalSpy spy(reply, &Reply::finished);
         QVERIFY(spy.wait(100));

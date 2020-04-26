@@ -84,8 +84,9 @@ public:
     /** Query a journey. */
     JourneyReply* queryJourney(const JourneyRequest &req) const;
 
-    /** Query departures from a specific station. */
-    StopoverReply* queryDeparture(const StopoverRequest &req) const;
+    /** Query arrivals or departures from a specific station. */
+    StopoverReply* queryStopover(const StopoverRequest &req) const;
+    [[deprecated("Use queryStopovers instead")]] StopoverReply* queryDeparture(const StopoverRequest &req) const;
 
     /** Query location information based on coordinates or (parts of) the name. */
     LocationReply* queryLocation(const LocationRequest &req) const;

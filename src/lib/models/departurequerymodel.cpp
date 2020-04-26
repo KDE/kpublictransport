@@ -64,7 +64,7 @@ void DepartureQueryModelPrivate::doQuery()
     m_prevRequest = {};
     emit q->canQueryPrevNextChanged();
 
-    auto reply = m_manager->queryDeparture(m_request);
+    auto reply = m_manager->queryStopover(m_request);
     monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::StopoverReply::finished, q, [reply, q, this]{
         if (reply->error() == KPublicTransport::StopoverReply::NoError) {
@@ -149,7 +149,7 @@ void DepartureQueryModel::queryNext()
     }
 
     d->setLoading(true);
-    auto reply = d->m_manager->queryDeparture(d->m_nextRequest);
+    auto reply = d->m_manager->queryStopover(d->m_nextRequest);
     d->monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::StopoverReply::finished, this, [reply, this] {
         Q_D(DepartureQueryModel);
@@ -182,7 +182,7 @@ void DepartureQueryModel::queryPrevious()
     }
 
     d->setLoading(true);
-    auto reply = d->m_manager->queryDeparture(d->m_prevRequest);
+    auto reply = d->m_manager->queryStopover(d->m_prevRequest);
     d->monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::StopoverReply::finished, this, [reply, this] {
         Q_D(DepartureQueryModel);

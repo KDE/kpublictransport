@@ -11,13 +11,13 @@ This largely follows the concepts and naming conventions used by [Navitia](https
 
 The key elements are:
 
-* KPublicTransport::Journey
-* KPublicTransport::Departure
+* KPublicTransport::Journey (getting from one place to another)
+* KPublicTransport::Stopover (departures/arrivals)
 
 ## Supported Operations
 
 * Location searches: retrieve stop information based on name or geo coordinates.
-* Arrival/departure queries: retrieve base schedule and if available realtime information
+* Stopover (arrival/departure) queries: retrieve base schedule and if available realtime information
   about upcoming arrivals and departures at a stop.
 * Journey queries: obtain ways to get from A to B.
 * Vehicle and platform layout queries: information about where coaches stop on a platform,
