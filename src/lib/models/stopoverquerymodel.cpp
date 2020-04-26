@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "departurequerymodel.h"
+#include "stopoverquerymodel.h"
 #include "abstractquerymodel_p.h"
 #include "logging.h"
 #include "datatypes/stopoverutil_p.h"
@@ -31,7 +31,7 @@
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
-class DepartureQueryModelPrivate : public AbstractQueryModelPrivate
+class StopoverQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void doQuery() override;
@@ -43,13 +43,13 @@ public:
     StopoverRequest m_nextRequest;
     StopoverRequest m_prevRequest;
 
-    Q_DECLARE_PUBLIC(DepartureQueryModel)
+    Q_DECLARE_PUBLIC(StopoverQueryModel)
 };
 }
 
-void DepartureQueryModelPrivate::doQuery()
+void StopoverQueryModelPrivate::doQuery()
 {
-    Q_Q(DepartureQueryModel);
+    Q_Q(StopoverQueryModel);
     if (!m_manager || !m_request.isValid()) {
         return;
     }
@@ -79,9 +79,9 @@ void DepartureQueryModelPrivate::doQuery()
     });
 }
 
-void DepartureQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDepartures)
+void StopoverQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDepartures)
 {
-    Q_Q(DepartureQueryModel);
+    Q_Q(StopoverQueryModel);
     for (const auto &dep : newDepartures) {
         auto it = std::lower_bound(m_departures.begin(), m_departures.end(), dep, [this](const auto &lhs, const auto &rhs) {
             return StopoverUtil::timeLessThan(m_request, lhs, rhs);
@@ -112,37 +112,37 @@ void DepartureQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDe
 }
 
 
-DepartureQueryModel::DepartureQueryModel(QObject *parent)
-    : AbstractQueryModel(new DepartureQueryModelPrivate, parent)
+StopoverQueryModel::StopoverQueryModel(QObject *parent)
+    : AbstractQueryModel(new StopoverQueryModelPrivate, parent)
 {
-    connect(this, &AbstractQueryModel::loadingChanged, this, &DepartureQueryModel::canQueryPrevNextChanged);
+    connect(this, &AbstractQueryModel::loadingChanged, this, &StopoverQueryModel::canQueryPrevNextChanged);
 }
 
-DepartureQueryModel::~DepartureQueryModel() = default;
+StopoverQueryModel::~StopoverQueryModel() = default;
 
-StopoverRequest DepartureQueryModel::request() const
+StopoverRequest StopoverQueryModel::request() const
 {
-    Q_D(const DepartureQueryModel);
+    Q_D(const StopoverQueryModel);
     return d->m_request;
 }
 
-void DepartureQueryModel::setRequest(const StopoverRequest &req)
+void StopoverQueryModel::setRequest(const StopoverRequest &req)
 {
-    Q_D(DepartureQueryModel);
+    Q_D(StopoverQueryModel);
     d->m_request = req;
     emit requestChanged();
     d->query();
 }
 
-bool DepartureQueryModel::canQueryNext() const
+bool StopoverQueryModel::canQueryNext() const
 {
-    Q_D(const DepartureQueryModel);
+    Q_D(const StopoverQueryModel);
     return !d->m_loading && !d->m_departures.empty() && d->m_nextRequest.isValid();
 }
 
-void DepartureQueryModel::queryNext()
+void StopoverQueryModel::queryNext()
 {
-    Q_D(DepartureQueryModel);
+    Q_D(StopoverQueryModel);
     if (!canQueryNext()) {
         qCWarning(Log) << "Cannot query next journeys";
         return;
@@ -152,7 +152,7 @@ void DepartureQueryModel::queryNext()
     auto reply = d->m_manager->queryStopover(d->m_nextRequest);
     d->monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::StopoverReply::finished, this, [reply, this] {
-        Q_D(DepartureQueryModel);
+        Q_D(StopoverQueryModel);
         if (reply->error() == KPublicTransport::StopoverReply::NoError) {
             d->m_nextRequest = reply->nextRequest();
         } else {
@@ -162,20 +162,20 @@ void DepartureQueryModel::queryNext()
         reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
-        Q_D(DepartureQueryModel);
+        Q_D(StopoverQueryModel);
         d->mergeResults(reply->takeResult());
     });
 }
 
-bool DepartureQueryModel::canQueryPrevious() const
+bool StopoverQueryModel::canQueryPrevious() const
 {
-    Q_D(const DepartureQueryModel);
+    Q_D(const StopoverQueryModel);
     return !d->m_loading && !d->m_departures.empty() && d->m_prevRequest.isValid();
 }
 
-void DepartureQueryModel::queryPrevious()
+void StopoverQueryModel::queryPrevious()
 {
-    Q_D(DepartureQueryModel);
+    Q_D(StopoverQueryModel);
     if (!canQueryPrevious()) {
         qCWarning(Log) << "Cannot query previous journeys";
         return;
@@ -185,7 +185,7 @@ void DepartureQueryModel::queryPrevious()
     auto reply = d->m_manager->queryStopover(d->m_prevRequest);
     d->monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::StopoverReply::finished, this, [reply, this] {
-        Q_D(DepartureQueryModel);
+        Q_D(StopoverQueryModel);
         if (reply->error() == KPublicTransport::StopoverReply::NoError) {
             d->m_prevRequest = reply->previousRequest();
         } else {
@@ -195,23 +195,23 @@ void DepartureQueryModel::queryPrevious()
         reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
-        Q_D(DepartureQueryModel);
+        Q_D(StopoverQueryModel);
         d->mergeResults(reply->takeResult());
     });
 }
 
-int DepartureQueryModel::rowCount(const QModelIndex& parent) const
+int StopoverQueryModel::rowCount(const QModelIndex& parent) const
 {
-    Q_D(const DepartureQueryModel);
+    Q_D(const StopoverQueryModel);
     if (parent.isValid()) {
         return 0;
     }
     return d->m_departures.size();
 }
 
-QVariant DepartureQueryModel::data(const QModelIndex& index, int role) const
+QVariant StopoverQueryModel::data(const QModelIndex& index, int role) const
 {
-    Q_D(const DepartureQueryModel);
+    Q_D(const StopoverQueryModel);
     if (!index.isValid()) {
         return {};
     }
@@ -224,17 +224,17 @@ QVariant DepartureQueryModel::data(const QModelIndex& index, int role) const
     return {};
 }
 
-QHash<int, QByteArray> DepartureQueryModel::roleNames() const
+QHash<int, QByteArray> StopoverQueryModel::roleNames() const
 {
     auto r = QAbstractListModel::roleNames();
     r.insert(DepartureRole, "departure");
     return r;
 }
 
-const std::vector<Stopover>& DepartureQueryModel::departures() const
+const std::vector<Stopover>& StopoverQueryModel::departures() const
 {
-    Q_D(const DepartureQueryModel);
+    Q_D(const StopoverQueryModel);
     return d->m_departures;
 }
 
-#include "moc_departurequerymodel.moc"
+#include "moc_stopoverquerymodel.moc"

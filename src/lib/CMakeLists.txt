@@ -62,9 +62,9 @@ set(kpublictransport_srcs
 
     models/abstractquerymodel.cpp
     models/backendmodel.cpp
-    models/departurequerymodel.cpp
     models/journeyquerymodel.cpp
     models/locationquerymodel.cpp
+    models/stopoverquerymodel.cpp
     models/vehiclelayoutquerymodel.cpp
 
     networks/networks.qrc
@@ -140,6 +140,7 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
         DepartureQueryModel
         JourneyQueryModel
         LocationQueryModel
+        StopoverQueryModel
         VehicleLayoutQueryModel
     PREFIX KPublicTransport
     REQUIRED_HEADERS KPublicTransport_Models_HEADERS
