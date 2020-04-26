@@ -15,8 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KPUBLICTRANSPORT_DEPARTUREUTIL_P_H
-#define KPUBLICTRANSPORT_DEPARTUREUTIL_P_H
+#ifndef KPUBLICTRANSPORT_STOPOVERUTIL_P_H
+#define KPUBLICTRANSPORT_STOPOVERUTIL_P_H
 
 class QTimeZone;
 
@@ -26,7 +26,7 @@ class DepartureRequest;
 class Stopover;
 
 /** Internal methods around Stopover objects. */
-namespace DepartureUtil
+namespace StopoverUtil
 {
     /** Request specific time-based sorting/comparison. */
     bool timeLessThan(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs);
@@ -40,4 +40,4 @@ namespace DepartureUtil
 
 }
 
-#endif // KPUBLICTRANSPORT_DEPARTUREUTIL_H
+#endif // KPUBLICTRANSPORT_STOPOVERUTIL_H

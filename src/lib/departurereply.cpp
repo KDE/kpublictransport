@@ -22,7 +22,7 @@
 #include "requestcontext_p.h"
 #include "backends/abstractbackend.h"
 #include "backends/cache.h"
-#include "datatypes/departureutil_p.h"
+#include "datatypes/stopoverutil_p.h"
 
 #include <KPublicTransport/Stopover>
 
@@ -52,12 +52,12 @@ void DepartureReplyPrivate::finalizeResult()
     errorMsg.clear();
 
     std::sort(result.begin(), result.end(), [this](const auto &lhs, const auto &rhs) {
-            return DepartureUtil::timeLessThan(request, lhs, rhs);
+            return StopoverUtil::timeLessThan(request, lhs, rhs);
     });
 
     for (auto it = result.begin(); it != result.end(); ++it) {
         for (auto mergeIt = it + 1; mergeIt != result.end();) {
-            if (!DepartureUtil::timeEqual(request, (*it), (*mergeIt))) {
+            if (!StopoverUtil::timeEqual(request, (*it), (*mergeIt))) {
                 break;
             }
 
@@ -126,13 +126,13 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Stopo
     // if this is a backend with a static timezone, apply this to the result
     if (backend->timeZone().isValid()) {
         for (auto &dep : res) {
-            DepartureUtil::applyTimeZone(dep, backend->timeZone());
+            StopoverUtil::applyTimeZone(dep, backend->timeZone());
         }
     }
 
     // augment line information
     for (auto &dep : res) {
-        DepartureUtil::applyMetaData(dep, request().downloadAssets());
+        StopoverUtil::applyMetaData(dep, request().downloadAssets());
     }
 
     // cache negative hits, positive ones are too short-lived

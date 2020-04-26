@@ -39,7 +39,6 @@ set(kpublictransport_srcs
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
     datatypes/backend.cpp
-    datatypes/departureutil.cpp
     datatypes/disruption.cpp
     datatypes/journey.cpp
     datatypes/journeyutil.cpp
@@ -53,6 +52,7 @@ set(kpublictransport_srcs
     datatypes/platform.cpp
     datatypes/platformutils.cpp
     datatypes/stopover.cpp
+    datatypes/stopoverutil.cpp
     datatypes/vehicle.cpp
     datatypes/vehiclelayoutresult.cpp
 

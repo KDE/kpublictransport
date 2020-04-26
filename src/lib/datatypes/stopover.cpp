@@ -16,12 +16,12 @@
 */
 
 #include "stopover.h"
-#include "departureutil_p.h"
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
 #include "platformutils_p.h"
+#include "stopoverutil_p.h"
 
 #include <QDateTime>
 #include <QDebug>
@@ -204,7 +204,7 @@ Stopover Stopover::fromJson(const QJsonObject &obj)
     auto dep = Json::fromJson<Stopover>(obj);
     dep.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
     dep.setStopPoint(Location::fromJson(obj.value(QLatin1String("stopPoint")).toObject()));
-    DepartureUtil::applyMetaData(dep, false);
+    StopoverUtil::applyMetaData(dep, false);
     return dep;
 }
 

@@ -18,7 +18,7 @@
 #include "departurequerymodel.h"
 #include "abstractquerymodel_p.h"
 #include "logging.h"
-#include "datatypes/departureutil_p.h"
+#include "datatypes/stopoverutil_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/DepartureReply>
@@ -84,11 +84,11 @@ void DepartureQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDe
     Q_Q(DepartureQueryModel);
     for (const auto &dep : newDepartures) {
         auto it = std::lower_bound(m_departures.begin(), m_departures.end(), dep, [this](const auto &lhs, const auto &rhs) {
-            return DepartureUtil::timeLessThan(m_request, lhs, rhs);
+            return StopoverUtil::timeLessThan(m_request, lhs, rhs);
         });
 
         bool found = false;
-        while (it != m_departures.end() && DepartureUtil::timeEqual(m_request, dep, *it)) {
+        while (it != m_departures.end() && StopoverUtil::timeEqual(m_request, dep, *it)) {
             if (Stopover::isSame(dep, *it)) {
                 *it = Stopover::merge(*it, dep);
                 found = true;
