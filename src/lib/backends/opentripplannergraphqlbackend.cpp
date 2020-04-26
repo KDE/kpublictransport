@@ -18,7 +18,6 @@
 #include "opentripplannergraphqlbackend.h"
 #include "opentripplannerparser.h"
 
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -26,6 +25,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 
 #include <kgraphql.h>
@@ -85,7 +85,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
     return true;
 }
 
-bool OpenTripPlannerGraphQLBackend::queryDeparture(const StopoverRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerGraphQLBackend::queryDeparture(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));

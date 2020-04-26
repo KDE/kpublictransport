@@ -19,7 +19,6 @@
 #include "cache.h"
 #include "logging.h"
 
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -27,6 +26,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 
 #include <QDateTime>
@@ -152,7 +152,7 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     return true;
 }
 
-bool HafasQueryBackend::queryDeparture(const StopoverRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool HafasQueryBackend::queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     const auto stationId = locationIdentifier(request.stop());
     if (stationId.isEmpty()) {

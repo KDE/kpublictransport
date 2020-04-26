@@ -17,13 +17,13 @@
 
 #include "manager.h"
 #include "assetrepository_p.h"
-#include "departurereply.h"
 #include "journeyreply.h"
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "logging.h"
+#include "stopoverreply.h"
 #include "stopoverrequest.h"
 #include "vehiclelayoutrequest.h"
 #include "vehiclelayoutreply.h"
@@ -78,7 +78,7 @@ public:
 
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
-    bool queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, DepartureReply *reply);
+    bool queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply);
 
     template <typename RepT, typename ReqT> RepT* makeReply(const ReqT &request);
 
@@ -397,7 +397,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     return backend->queryJourney(req, reply, nam());
 }
 
-bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, DepartureReply *reply)
+bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply)
 {
     if (shouldSkipBackend(backend, req)) {
         return false;
@@ -573,9 +573,9 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     return reply;
 }
 
-DepartureReply* Manager::queryDeparture(const StopoverRequest &req) const
+StopoverReply* Manager::queryDeparture(const StopoverRequest &req) const
 {
-    auto reply = d->makeReply<DepartureReply>(req);
+    auto reply = d->makeReply<StopoverReply>(req);
     int pendingOps = 0;
 
     // validate input

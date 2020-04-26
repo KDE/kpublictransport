@@ -16,13 +16,13 @@
 */
 
 #include <KPublicTransport/Attribution>
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 #include <KPublicTransport/VehicleLayoutRequest>
 #include <KPublicTransport/VehicleLayoutReply>

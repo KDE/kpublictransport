@@ -21,9 +21,9 @@
 #include "datatypes/stopoverutil_p.h"
 
 #include <KPublicTransport/Attribution>
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverReply>
 
 #include <QDateTime>
 #include <QDebug>
@@ -66,15 +66,15 @@ void DepartureQueryModelPrivate::doQuery()
 
     auto reply = m_manager->queryDeparture(m_request);
     monitorReply(reply);
-    QObject::connect(reply, &KPublicTransport::DepartureReply::finished, q, [reply, q, this]{
-        if (reply->error() == KPublicTransport::DepartureReply::NoError) {
+    QObject::connect(reply, &KPublicTransport::StopoverReply::finished, q, [reply, q, this]{
+        if (reply->error() == KPublicTransport::StopoverReply::NoError) {
             m_nextRequest = reply->nextRequest();
             m_prevRequest = reply->previousRequest();
             emit q->canQueryPrevNextChanged();
         }
         reply->deleteLater();
     });
-    QObject::connect(reply, &KPublicTransport::DepartureReply::updated,q, [reply, this]() {
+    QObject::connect(reply, &KPublicTransport::StopoverReply::updated,q, [reply, this]() {
         mergeResults(reply->takeResult());
     });
 }
@@ -151,9 +151,9 @@ void DepartureQueryModel::queryNext()
     d->setLoading(true);
     auto reply = d->m_manager->queryDeparture(d->m_nextRequest);
     d->monitorReply(reply);
-    QObject::connect(reply, &KPublicTransport::DepartureReply::finished, this, [reply, this] {
+    QObject::connect(reply, &KPublicTransport::StopoverReply::finished, this, [reply, this] {
         Q_D(DepartureQueryModel);
-        if (reply->error() == KPublicTransport::DepartureReply::NoError) {
+        if (reply->error() == KPublicTransport::StopoverReply::NoError) {
             d->m_nextRequest = reply->nextRequest();
         } else {
             d->m_nextRequest = {};
@@ -161,7 +161,7 @@ void DepartureQueryModel::queryNext()
         emit canQueryPrevNextChanged();
         reply->deleteLater();
     });
-    QObject::connect(reply, &KPublicTransport::DepartureReply::updated, this, [reply, this]() {
+    QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
         Q_D(DepartureQueryModel);
         d->mergeResults(reply->takeResult());
     });
@@ -184,9 +184,9 @@ void DepartureQueryModel::queryPrevious()
     d->setLoading(true);
     auto reply = d->m_manager->queryDeparture(d->m_prevRequest);
     d->monitorReply(reply);
-    QObject::connect(reply, &KPublicTransport::DepartureReply::finished, this, [reply, this] {
+    QObject::connect(reply, &KPublicTransport::StopoverReply::finished, this, [reply, this] {
         Q_D(DepartureQueryModel);
-        if (reply->error() == KPublicTransport::DepartureReply::NoError) {
+        if (reply->error() == KPublicTransport::StopoverReply::NoError) {
             d->m_prevRequest = reply->previousRequest();
         } else {
             d->m_prevRequest = {};
@@ -194,7 +194,7 @@ void DepartureQueryModel::queryPrevious()
         emit canQueryPrevNextChanged();
         reply->deleteLater();
     });
-    QObject::connect(reply, &KPublicTransport::DepartureReply::updated, this, [reply, this]() {
+    QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
         Q_D(DepartureQueryModel);
         d->mergeResults(reply->takeResult());
     });

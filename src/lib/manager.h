@@ -33,12 +33,12 @@ namespace KPublicTransport {
 
 class Attribution;
 class Backend;
-class DepartureReply;
 class JourneyReply;
 class JourneyRequest;
 class LocationReply;
 class LocationRequest;
 class ManagerPrivate;
+class StopoverReply;
 class StopoverRequest;
 class VehicleLayoutReply;
 class VehicleLayoutRequest;
@@ -85,7 +85,7 @@ public:
     JourneyReply* queryJourney(const JourneyRequest &req) const;
 
     /** Query departures from a specific station. */
-    DepartureReply* queryDeparture(const StopoverRequest &req) const;
+    StopoverReply* queryDeparture(const StopoverRequest &req) const;
 
     /** Query location information based on coordinates or (parts of) the name. */
     LocationReply* queryLocation(const LocationRequest &req) const;

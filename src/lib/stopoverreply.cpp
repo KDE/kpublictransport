@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "departurereply.h"
+#include "stopoverreply.h"
 #include "logging.h"
 #include "reply_p.h"
 #include "requestcontext_p.h"
@@ -31,7 +31,7 @@
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
-class DepartureReplyPrivate : public ReplyPrivate {
+class StopoverReplyPrivate : public ReplyPrivate {
 public:
     void finalizeResult() override;
     bool needToWaitForAssets() const override;
@@ -43,7 +43,7 @@ public:
 };
 }
 
-void DepartureReplyPrivate::finalizeResult()
+void StopoverReplyPrivate::finalizeResult()
 {
     if (result.empty()) {
         return;
@@ -74,43 +74,43 @@ void DepartureReplyPrivate::finalizeResult()
     prevRequest.purgeLoops(request);
 }
 
-bool DepartureReplyPrivate::needToWaitForAssets() const
+bool StopoverReplyPrivate::needToWaitForAssets() const
 {
     return request.downloadAssets();
 }
 
-DepartureReply::DepartureReply(const StopoverRequest &req, QObject *parent)
-    : Reply(new DepartureReplyPrivate, parent)
+StopoverReply::StopoverReply(const StopoverRequest &req, QObject *parent)
+    : Reply(new StopoverReplyPrivate, parent)
 {
-    Q_D(DepartureReply);
+    Q_D(StopoverReply);
     d->request = req;
     d->nextRequest = req;
     d->prevRequest = req;
 }
 
-DepartureReply::~DepartureReply() = default;
+StopoverReply::~StopoverReply() = default;
 
-StopoverRequest DepartureReply::request() const
+StopoverRequest StopoverReply::request() const
 {
-    Q_D(const DepartureReply);
+    Q_D(const StopoverReply);
     return d->request;
 }
 
-const std::vector<Stopover>& DepartureReply::result() const
+const std::vector<Stopover>& StopoverReply::result() const
 {
-    Q_D(const DepartureReply);
+    Q_D(const StopoverReply);
     return d->result;
 }
 
-std::vector<Stopover>&& DepartureReply::takeResult()
+std::vector<Stopover>&& StopoverReply::takeResult()
 {
-    Q_D(DepartureReply);
+    Q_D(StopoverReply);
     return std::move(d->result);
 }
 
-void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Stopover> &&res)
+void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopover> &&res)
 {
-    Q_D(DepartureReply);
+    Q_D(StopoverReply);
     // update context for next/prev requests
     // do this first, before res gets moved from below
     if (d->request.mode() == StopoverRequest::QueryDeparture && !res.empty()) {
@@ -151,43 +151,43 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Stopo
     d->emitFinishedIfDone(this);
 }
 
-StopoverRequest DepartureReply::nextRequest() const
+StopoverRequest StopoverReply::nextRequest() const
 {
-    Q_D(const DepartureReply);
+    Q_D(const StopoverReply);
     if (d->nextRequest.contexts().empty()) {
         return {};
     }
     return d->nextRequest;
 }
 
-StopoverRequest DepartureReply::previousRequest() const
+StopoverRequest StopoverReply::previousRequest() const
 {
-    Q_D(const DepartureReply);
+    Q_D(const StopoverReply);
     if (d->prevRequest.contexts().empty()) {
         return {};
     }
     return d->prevRequest;
 }
 
-void DepartureReply::setNextContext(const AbstractBackend *backend, const QVariant &data)
+void StopoverReply::setNextContext(const AbstractBackend *backend, const QVariant &data)
 {
-    Q_D(DepartureReply);
+    Q_D(StopoverReply);
     auto context = d->nextRequest.context(backend);
     context.type = RequestContext::Next;
     context.backendData = data;
     d->nextRequest.setContext(backend, std::move(context));
 }
 
-void DepartureReply::setPreviousContext(const AbstractBackend *backend, const QVariant &data)
+void StopoverReply::setPreviousContext(const AbstractBackend *backend, const QVariant &data)
 {
-    Q_D(DepartureReply);
+    Q_D(StopoverReply);
     auto context = d->prevRequest.context(backend);
     context.type = RequestContext::Previous;
     context.backendData = data;
     d->prevRequest.setContext(backend, std::move(context));
 }
 
-void DepartureReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+void StopoverReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
 {
     if (error == Reply::NotFoundError) {
         Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());

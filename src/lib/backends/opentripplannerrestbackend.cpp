@@ -18,7 +18,6 @@
 #include "opentripplannerrestbackend.h"
 #include "opentripplannerparser.h"
 
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -26,6 +25,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 
 #include <QDebug>
@@ -116,7 +116,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
     return false;
 }
 
-bool OpenTripPlannerRestBackend::queryDeparture(const StopoverRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerRestBackend::queryDeparture(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("date"), QString::number(req.dateTime().toSecsSinceEpoch()));

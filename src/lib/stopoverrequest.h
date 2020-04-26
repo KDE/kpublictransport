@@ -105,8 +105,8 @@ public:
     ///@endcond
 private:
     friend class AbstractBackend;
-    friend class DepartureReply;
-    friend class DepartureReplyPrivate;
+    friend class StopoverReply;
+    friend class StopoverReplyPrivate;
     friend class Manager;
     Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;

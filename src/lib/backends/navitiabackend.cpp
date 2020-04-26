@@ -20,7 +20,6 @@
 #include "navitiaparser.h"
 #include "cache.h"
 
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -28,6 +27,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 
 #include <QNetworkAccessManager>
@@ -114,7 +114,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     return true;
 }
 
-bool NavitiaBackend::queryDeparture(const StopoverRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool NavitiaBackend::queryDeparture(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.stop().hasCoordinate()) {
         return false;

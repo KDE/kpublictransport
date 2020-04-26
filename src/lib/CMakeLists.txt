@@ -2,7 +2,6 @@ add_subdirectory(knowledgedb)
 
 set(kpublictransport_srcs
     assetrepository.cpp
-    departurereply.cpp
     journeyreply.cpp
     journeyrequest.cpp
     locationreply.cpp
@@ -10,6 +9,7 @@ set(kpublictransport_srcs
     manager.cpp
     reply.cpp
     requestcontext.cpp
+    stopoverreply.cpp
     stopoverrequest.cpp
     vehiclelayoutreply.cpp
     vehiclelayoutrequest.cpp
@@ -99,6 +99,7 @@ ecm_generate_headers(KPublicTransport_FORWARDING_HEADERS
         LocationRequest
         Manager
         Reply
+        StopoverReply
         StopoverRequest
         VehicleLayoutReply
         VehicleLayoutRequest

@@ -20,7 +20,6 @@
 #include "logging.h"
 #include "cache.h"
 
-#include <KPublicTransport/DepartureReply>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -28,6 +27,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 
 #include <QCryptographicHash>
@@ -152,7 +152,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
     return true;
 }
 
-bool HafasMgateBackend::queryDeparture(const StopoverRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool HafasMgateBackend::queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     const auto locationId = locationIdentifier(request.stop());
     if (locationId.isEmpty()) {
