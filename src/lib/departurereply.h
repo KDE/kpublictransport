@@ -25,9 +25,9 @@
 namespace KPublicTransport {
 
 class AbstractBackend;
-class DepartureRequest;
 class DepartureReplyPrivate;
 class Stopover;
+class StopoverRequest;
 
 /** Departure or arrival query reply. */
 class KPUBLICTRANSPORT_EXPORT DepartureReply : public Reply
@@ -37,7 +37,7 @@ public:
     ~DepartureReply();
 
     /** The request this is the reply for. */
-    DepartureRequest request() const;
+    StopoverRequest request() const;
 
     /** Returns the found arrival or departure information. */
     const std::vector<Stopover>& result() const;
@@ -47,16 +47,16 @@ public:
     /** Returns a request object for querying departures following the ones returned by this reply.
      *  The returned request is empty if querying later departures is not possible/supported.
      */
-    DepartureRequest nextRequest() const;
+    StopoverRequest nextRequest() const;
     /** Returns a request object for querying departures preceding the ones returned by this reply.
      *  The returned request is empty if querying earlier departures is not possible/supported.
      */
-    DepartureRequest previousRequest() const;
+    StopoverRequest previousRequest() const;
 
 private:
     friend class Manager;
     friend class ManagerPrivate;
-    explicit DepartureReply(const DepartureRequest &req, QObject *parent = nullptr);
+    explicit DepartureReply(const StopoverRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
     Q_DECL_HIDDEN void addResult(const AbstractBackend *backend, std::vector<Stopover> &&res);

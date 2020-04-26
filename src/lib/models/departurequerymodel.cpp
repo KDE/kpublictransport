@@ -39,9 +39,9 @@ public:
 
     std::vector<Stopover> m_departures;
 
-    DepartureRequest m_request;
-    DepartureRequest m_nextRequest;
-    DepartureRequest m_prevRequest;
+    StopoverRequest m_request;
+    StopoverRequest m_nextRequest;
+    StopoverRequest m_prevRequest;
 
     Q_DECLARE_PUBLIC(DepartureQueryModel)
 };
@@ -120,13 +120,13 @@ DepartureQueryModel::DepartureQueryModel(QObject *parent)
 
 DepartureQueryModel::~DepartureQueryModel() = default;
 
-DepartureRequest DepartureQueryModel::request() const
+StopoverRequest DepartureQueryModel::request() const
 {
     Q_D(const DepartureQueryModel);
     return d->m_request;
 }
 
-void DepartureQueryModel::setRequest(const DepartureRequest &req)
+void DepartureQueryModel::setRequest(const StopoverRequest &req)
 {
     Q_D(DepartureQueryModel);
     d->m_request = req;

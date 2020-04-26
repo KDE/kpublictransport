@@ -21,7 +21,6 @@
 #include "cache.h"
 
 #include <KPublicTransport/DepartureReply>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -29,6 +28,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -114,7 +114,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     return true;
 }
 
-bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool NavitiaBackend::queryDeparture(const StopoverRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.stop().hasCoordinate()) {
         return false;
@@ -128,7 +128,7 @@ bool NavitiaBackend::queryDeparture(const DepartureRequest &req, DepartureReply 
         QStringLiteral("/v1/coverage/") +
         (m_coverage.isEmpty() ? QString::number(loc.longitude()) + QLatin1Char(';') + QString::number(loc.latitude()) : m_coverage) +
         QStringLiteral("/coord/") + QString::number(loc.longitude()) + QLatin1Char(';') + QString::number(loc.latitude()) +
-        (req.mode() == DepartureRequest::QueryDeparture ? QStringLiteral("/departures") : QStringLiteral("/arrivals"))
+        (req.mode() == StopoverRequest::QueryDeparture ? QStringLiteral("/departures") : QStringLiteral("/arrivals"))
     );
 
     QUrlQuery query;

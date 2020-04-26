@@ -113,7 +113,7 @@ bool AbstractBackend::needsLocationQuery(const Location &loc, QueryType type) co
     return false;
 }
 
-bool AbstractBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool AbstractBackend::queryDeparture(const StopoverRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     Q_UNUSED(request);
     Q_UNUSED(reply);

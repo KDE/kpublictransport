@@ -21,7 +21,6 @@
 
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/DepartureQueryModel>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyQueryModel>
 #include <KPublicTransport/JourneyRequest>
@@ -30,6 +29,7 @@
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/Platform>
+#include <KPublicTransport/StopoverRequest>
 #include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutQueryModel>
 #include <KPublicTransport/VehicleLayoutRequest>
@@ -39,6 +39,8 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::Location>();
     qRegisterMetaType<KPublicTransport::Platform>();
     qRegisterMetaType<KPublicTransport::Stopover>();
+    // backward compat
+    qRegisterMetaType<KPublicTransport::StopoverRequest>("KPublicTransport::DepartureRequest");
 
     qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
 
@@ -48,7 +50,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableType<KPublicTransport::VehicleSection>("org.kde.kpublictransport", 1, 0, "VehicleSection", {});
     qmlRegisterUncreatableType<KPublicTransport::Platform>("org.kde.kpublictransport", 1, 0, "Platform", {});
 
-    qmlRegisterUncreatableType<KPublicTransport::DepartureRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
+    qmlRegisterUncreatableType<KPublicTransport::StopoverRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneyRequest>("org.kde.kpublictransport", 1, 0, "JourneyRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::LocationRequest>("org.kde.kpublictransport", 1, 0, "LocationRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::VehicleLayoutRequest>("org.kde.kpublictransport", 1, 0, "VehicleLayoutRequery", {});

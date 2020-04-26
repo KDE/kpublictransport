@@ -18,8 +18,8 @@
 #include "stopoverutil_p.h"
 #include "lineutil_p.h"
 
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QDateTime>
 #include <QTimeZone>
@@ -32,18 +32,18 @@ static QDateTime clipSeconds(QDateTime dt)
     return dt;
 }
 
-bool StopoverUtil::timeLessThan(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs)
+bool StopoverUtil::timeLessThan(const StopoverRequest &req, const Stopover &lhs, const Stopover &rhs)
 {
-    if (req.mode() == DepartureRequest::QueryDeparture) {
+    if (req.mode() == StopoverRequest::QueryDeparture) {
         return clipSeconds(lhs.scheduledDepartureTime()) < clipSeconds(rhs.scheduledDepartureTime());
     } else {
         return clipSeconds(lhs.scheduledArrivalTime()) < clipSeconds(rhs.scheduledArrivalTime());
     }
 }
 
-bool StopoverUtil::timeEqual(const DepartureRequest &req, const Stopover &lhs, const Stopover &rhs)
+bool StopoverUtil::timeEqual(const StopoverRequest &req, const Stopover &lhs, const Stopover &rhs)
 {
-    if (req.mode() == DepartureRequest::QueryDeparture) {
+    if (req.mode() == StopoverRequest::QueryDeparture) {
         return clipSeconds(lhs.scheduledDepartureTime()) == clipSeconds(rhs.scheduledDepartureTime());
     } else {
         return clipSeconds(lhs.scheduledArrivalTime()) == clipSeconds(rhs.scheduledArrivalTime());

@@ -21,7 +21,6 @@
 #include "cache.h"
 
 #include <KPublicTransport/DepartureReply>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -29,6 +28,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QCryptographicHash>
 #include <QDateTime>
@@ -152,7 +152,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
     return true;
 }
 
-bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool HafasMgateBackend::queryDeparture(const StopoverRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     const auto locationId = locationIdentifier(request.stop());
     if (locationId.isEmpty()) {
@@ -183,7 +183,7 @@ bool HafasMgateBackend::queryDeparture(const DepartureRequest &request, Departur
 
         req.insert(QStringLiteral("stbLoc"), stbLoc);
         req.insert(QStringLiteral("time"), dt.toString(QStringLiteral("hhmmss")));
-        req.insert(QStringLiteral("type"), request.mode() == DepartureRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
+        req.insert(QStringLiteral("type"), request.mode() == StopoverRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
 
         stationBoard.insert(QStringLiteral("cfg"), cfg);
         stationBoard.insert(QStringLiteral("meth"), QLatin1String("StationBoard"));

@@ -18,13 +18,13 @@
 #include "manager.h"
 #include "assetrepository_p.h"
 #include "departurereply.h"
-#include "departurerequest.h"
 #include "journeyreply.h"
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
 #include "locationreply.h"
 #include "locationrequest.h"
 #include "logging.h"
+#include "stopoverrequest.h"
 #include "vehiclelayoutrequest.h"
 #include "vehiclelayoutreply.h"
 #include "datatypes/attributionutil_p.h"
@@ -78,7 +78,7 @@ public:
 
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
-    bool queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply);
+    bool queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, DepartureReply *reply);
 
     template <typename RepT, typename ReqT> RepT* makeReply(const ReqT &request);
 
@@ -397,12 +397,12 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     return backend->queryJourney(req, reply, nam());
 }
 
-bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const DepartureRequest &req, DepartureReply *reply)
+bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, DepartureReply *reply)
 {
     if (shouldSkipBackend(backend, req)) {
         return false;
     }
-    if (req.mode() == DepartureRequest::QueryArrival && (backend->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
+    if (req.mode() == StopoverRequest::QueryArrival && (backend->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
         qCDebug(Log) << "Skipping backend due to not supporting arrival queries:" << backend->backendId();
         return false;
     }
@@ -573,7 +573,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     return reply;
 }
 
-DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
+DepartureReply* Manager::queryDeparture(const StopoverRequest &req) const
 {
     auto reply = d->makeReply<DepartureReply>(req);
     int pendingOps = 0;
@@ -607,7 +607,7 @@ DepartureReply* Manager::queryDeparture(const DepartureRequest &req) const
             }
 
             // backend doesn't support this, let's try to emulate
-            if (context.type == RequestContext::Next && req.mode() == DepartureRequest::QueryDeparture) {
+            if (context.type == RequestContext::Next && req.mode() == StopoverRequest::QueryDeparture) {
                 auto r = req;
                 r.setDateTime(context.dateTime);
                 if (d->queryDeparture(context.backend, r, reply)) {

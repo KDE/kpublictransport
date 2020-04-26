@@ -15,7 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "departurerequest.h"
+#include "stopoverrequest.h"
 #include "requestcontext_p.h"
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
@@ -30,50 +30,50 @@ using namespace KPublicTransport;
 enum { DepartureCacheTimeResolution = 60 }; // in seconds
 
 namespace KPublicTransport {
-class DepartureRequestPrivate : public QSharedData {
+class StopoverRequestPrivate : public QSharedData {
 public:
     Location stop;
     QDateTime dateTime;
-    DepartureRequest::Mode mode = DepartureRequest::QueryDeparture;
+    StopoverRequest::Mode mode = StopoverRequest::QueryDeparture;
     std::vector<RequestContext> contexts;
     QStringList backendIds;
     bool downloadAssets = false;
 };
 }
 
-DepartureRequest::DepartureRequest()
-    : d(new DepartureRequestPrivate)
+StopoverRequest::StopoverRequest()
+    : d(new StopoverRequestPrivate)
 {
 }
 
-DepartureRequest::DepartureRequest(const Location &stop)
-    : d(new DepartureRequestPrivate)
+StopoverRequest::StopoverRequest(const Location &stop)
+    : d(new StopoverRequestPrivate)
 {
     d->stop = stop;
 }
 
-DepartureRequest::DepartureRequest(DepartureRequest&&) noexcept = default;
-DepartureRequest::DepartureRequest(const DepartureRequest&) = default;
-DepartureRequest::~DepartureRequest() = default;
-DepartureRequest& DepartureRequest::operator=(const DepartureRequest&) = default;
+StopoverRequest::StopoverRequest(StopoverRequest&&) noexcept = default;
+StopoverRequest::StopoverRequest(const StopoverRequest&) = default;
+StopoverRequest::~StopoverRequest() = default;
+StopoverRequest& StopoverRequest::operator=(const StopoverRequest&) = default;
 
-bool DepartureRequest::isValid() const
+bool StopoverRequest::isValid() const
 {
     return !d->stop.isEmpty();
 }
 
-Location DepartureRequest::stop() const
+Location StopoverRequest::stop() const
 {
     return d->stop;
 }
 
-void DepartureRequest::setStop(const Location &stop)
+void StopoverRequest::setStop(const Location &stop)
 {
     d.detach();
     d->stop = stop;
 }
 
-QDateTime DepartureRequest::dateTime() const
+QDateTime StopoverRequest::dateTime() const
 {
     if (!d->dateTime.isValid()) {
         d->dateTime = QDateTime::currentDateTime();
@@ -81,24 +81,24 @@ QDateTime DepartureRequest::dateTime() const
     return d->dateTime;
 }
 
-void DepartureRequest::setDateTime(const QDateTime &dt)
+void StopoverRequest::setDateTime(const QDateTime &dt)
 {
     d.detach();
     d->dateTime = dt;
 }
 
-DepartureRequest::Mode DepartureRequest::mode() const
+StopoverRequest::Mode StopoverRequest::mode() const
 {
     return d->mode;
 }
 
-void DepartureRequest::setMode(DepartureRequest::Mode mode)
+void StopoverRequest::setMode(StopoverRequest::Mode mode)
 {
     d.detach();
     d->mode = mode;
 }
 
-RequestContext DepartureRequest::context(const AbstractBackend *backend) const
+RequestContext StopoverRequest::context(const AbstractBackend *backend) const
 {
     const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
     if (it != d->contexts.end() && (*it).backend == backend) {
@@ -110,12 +110,12 @@ RequestContext DepartureRequest::context(const AbstractBackend *backend) const
     return context;
 }
 
-const std::vector<RequestContext>& DepartureRequest::contexts() const
+const std::vector<RequestContext>& StopoverRequest::contexts() const
 {
     return d->contexts;
 }
 
-void DepartureRequest::setContext(const AbstractBackend *backend, RequestContext &&context)
+void StopoverRequest::setContext(const AbstractBackend *backend, RequestContext &&context)
 {
     d.detach();
     const auto it = std::lower_bound(d->contexts.begin(), d->contexts.end(), backend);
@@ -126,45 +126,45 @@ void DepartureRequest::setContext(const AbstractBackend *backend, RequestContext
     }
 }
 
-void DepartureRequest::purgeLoops(const DepartureRequest &baseRequest)
+void StopoverRequest::purgeLoops(const StopoverRequest &baseRequest)
 {
     RequestContext::purgeLoops(d->contexts, baseRequest.contexts());
 }
 
-QJsonObject DepartureRequest::toJson(const DepartureRequest &req)
+QJsonObject StopoverRequest::toJson(const StopoverRequest &req)
 {
     auto obj = Json::toJson(req);
     obj.insert(QStringLiteral("stop"), Location::toJson(req.stop()));
     return obj;
 }
 
-QStringList DepartureRequest::backendIds() const
+QStringList StopoverRequest::backendIds() const
 {
     return d->backendIds;
 }
 
-void DepartureRequest::setBackendIds(const QStringList &backendIds)
+void StopoverRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
 }
 
-bool DepartureRequest::downloadAssets() const
+bool StopoverRequest::downloadAssets() const
 {
     return d->downloadAssets;
 }
 
-void DepartureRequest::setDownloadAssets(bool downloadAssets)
+void StopoverRequest::setDownloadAssets(bool downloadAssets)
 {
     d.detach();
     d->downloadAssets = downloadAssets;
 }
 
-QString DepartureRequest::cacheKey() const
+QString StopoverRequest::cacheKey() const
 {
     return QString::number(d->dateTime.toSecsSinceEpoch() / DepartureCacheTimeResolution) + QLatin1Char('_')
         + LocationUtil::cacheKey(d->stop)
-        + QLatin1Char('_') + (d->mode == DepartureRequest::QueryArrival ? QLatin1Char('A') : QLatin1Char('D'));
+        + QLatin1Char('_') + (d->mode == StopoverRequest::QueryArrival ? QLatin1Char('A') : QLatin1Char('D'));
 }
 
-#include "moc_departurerequest.cpp"
+#include "moc_stopoverrequest.cpp"

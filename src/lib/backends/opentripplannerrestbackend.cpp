@@ -19,7 +19,6 @@
 #include "opentripplannerparser.h"
 
 #include <KPublicTransport/DepartureReply>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -27,6 +26,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QDebug>
 #include <QJsonArray>
@@ -116,12 +116,12 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
     return false;
 }
 
-bool OpenTripPlannerRestBackend::queryDeparture(const DepartureRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerRestBackend::queryDeparture(const StopoverRequest &req, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("date"), QString::number(req.dateTime().toSecsSinceEpoch()));
     query.addQueryItem(QStringLiteral("numberOfDepartures"), QStringLiteral("12"));
-    query.addQueryItem(QStringLiteral("omitNonPickups"), req.mode() == DepartureRequest::QueryDeparture ? QStringLiteral("true") : QStringLiteral("false"));
+    query.addQueryItem(QStringLiteral("omitNonPickups"), req.mode() == StopoverRequest::QueryDeparture ? QStringLiteral("true") : QStringLiteral("false"));
 
     QUrl url(m_endpoint + QLatin1String("index/stops/") + req.stop().identifier(backendId()) + QLatin1String("/stoptimes"));
     url.setQuery(query);

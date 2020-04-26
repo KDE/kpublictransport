@@ -21,12 +21,11 @@
 #include "kpublictransport_export.h"
 #include "abstractquerymodel.h"
 
-#include <KPublicTransport/DepartureRequest>
+#include <KPublicTransport/StopoverRequest>
 
 namespace KPublicTransport {
 
 class DepartureQueryModelPrivate;
-class DepartureRequest;
 class Stopover;
 
 /**
@@ -40,7 +39,7 @@ class KPUBLICTRANSPORT_EXPORT DepartureQueryModel : public AbstractQueryModel
     Q_OBJECT
 
     /** Specify the actual departure query. */
-    Q_PROPERTY(KPublicTransport::DepartureRequest request READ request WRITE setRequest NOTIFY requestChanged)
+    Q_PROPERTY(KPublicTransport::StopoverRequest request READ request WRITE setRequest NOTIFY requestChanged)
 
     /** Whether querying for later departures is possible. */
     Q_PROPERTY(bool canQueryNext READ canQueryNext NOTIFY canQueryPrevNextChanged)
@@ -51,8 +50,8 @@ public:
     explicit DepartureQueryModel(QObject *parent = nullptr);
     ~DepartureQueryModel();
 
-    DepartureRequest request() const;
-    void setRequest(const DepartureRequest &req);
+    StopoverRequest request() const;
+    void setRequest(const StopoverRequest &req);
 
     bool canQueryNext() const;
     /** Search for later journeys.

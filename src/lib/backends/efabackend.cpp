@@ -22,7 +22,6 @@
 #include "logging.h"
 
 #include <KPublicTransport/DepartureReply>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -30,6 +29,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -103,7 +103,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     return true;
 }
 
-bool EfaBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool EfaBackend::queryDeparture(const StopoverRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     const auto stopId = request.stop().identifier(locationIdentifierType());
     if (stopId.isEmpty() && !request.stop().hasCoordinate()) {

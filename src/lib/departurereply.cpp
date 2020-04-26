@@ -16,10 +16,10 @@
 */
 
 #include "departurereply.h"
-#include "departurerequest.h"
 #include "logging.h"
 #include "reply_p.h"
 #include "requestcontext_p.h"
+#include "stopoverrequest.h"
 #include "backends/abstractbackend.h"
 #include "backends/cache.h"
 #include "datatypes/stopoverutil_p.h"
@@ -36,9 +36,9 @@ public:
     void finalizeResult() override;
     bool needToWaitForAssets() const override;
 
-    DepartureRequest request;
-    DepartureRequest nextRequest;
-    DepartureRequest prevRequest;
+    StopoverRequest request;
+    StopoverRequest nextRequest;
+    StopoverRequest prevRequest;
     std::vector<Stopover> result;
 };
 }
@@ -79,7 +79,7 @@ bool DepartureReplyPrivate::needToWaitForAssets() const
     return request.downloadAssets();
 }
 
-DepartureReply::DepartureReply(const DepartureRequest &req, QObject *parent)
+DepartureReply::DepartureReply(const StopoverRequest &req, QObject *parent)
     : Reply(new DepartureReplyPrivate, parent)
 {
     Q_D(DepartureReply);
@@ -90,7 +90,7 @@ DepartureReply::DepartureReply(const DepartureRequest &req, QObject *parent)
 
 DepartureReply::~DepartureReply() = default;
 
-DepartureRequest DepartureReply::request() const
+StopoverRequest DepartureReply::request() const
 {
     Q_D(const DepartureReply);
     return d->request;
@@ -113,7 +113,7 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Stopo
     Q_D(DepartureReply);
     // update context for next/prev requests
     // do this first, before res gets moved from below
-    if (d->request.mode() == DepartureRequest::QueryDeparture && !res.empty()) {
+    if (d->request.mode() == StopoverRequest::QueryDeparture && !res.empty()) {
         // we create a context for later queries here in any case, since we can emulate that generically without backend support
         auto context = d->nextRequest.context(backend);
         context.type = RequestContext::Next;
@@ -151,7 +151,7 @@ void DepartureReply::addResult(const AbstractBackend *backend, std::vector<Stopo
     d->emitFinishedIfDone(this);
 }
 
-DepartureRequest DepartureReply::nextRequest() const
+StopoverRequest DepartureReply::nextRequest() const
 {
     Q_D(const DepartureReply);
     if (d->nextRequest.contexts().empty()) {
@@ -160,7 +160,7 @@ DepartureRequest DepartureReply::nextRequest() const
     return d->nextRequest;
 }
 
-DepartureRequest DepartureReply::previousRequest() const
+StopoverRequest DepartureReply::previousRequest() const
 {
     Q_D(const DepartureReply);
     if (d->prevRequest.contexts().empty()) {

@@ -20,7 +20,6 @@
 #include "logging.h"
 
 #include <KPublicTransport/DepartureReply>
-#include <KPublicTransport/DepartureRequest>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
@@ -28,6 +27,7 @@
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QDateTime>
 #include <QDebug>
@@ -152,7 +152,7 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     return true;
 }
 
-bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
+bool HafasQueryBackend::queryDeparture(const StopoverRequest &request, DepartureReply *reply, QNetworkAccessManager *nam) const
 {
     const auto stationId = locationIdentifier(request.stop());
     if (stationId.isEmpty()) {
@@ -164,7 +164,7 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
     url.setPath(url.path() + QLatin1String("/stboard.exe/en")); // dn/nn?
 
     QUrlQuery query;
-    query.addQueryItem(QStringLiteral("boardType"), request.mode() == DepartureRequest::QueryDeparture ? QStringLiteral("dep") : QStringLiteral("arr"));
+    query.addQueryItem(QStringLiteral("boardType"), request.mode() == StopoverRequest::QueryDeparture ? QStringLiteral("dep") : QStringLiteral("arr"));
     query.addQueryItem(QStringLiteral("disableEquivs"), QStringLiteral("0"));
     query.addQueryItem(QStringLiteral("maxJourneys"), QStringLiteral("12"));
     query.addQueryItem(QStringLiteral("input"), stationId);
@@ -187,7 +187,7 @@ bool HafasQueryBackend::queryDeparture(const DepartureRequest &request, Departur
             addError(reply, this, Reply::NetworkError, netReply->errorString());
             return;
         }
-        auto res = m_parser.parseStationBoardResponse(data, reply->request().mode() == DepartureRequest::QueryArrival);
+        auto res = m_parser.parseStationBoardResponse(data, reply->request().mode() == StopoverRequest::QueryArrival);
         if (m_parser.error() != Reply::NoError) {
             addError(reply, this, m_parser.error(), m_parser.errorMessage());
         } else {
