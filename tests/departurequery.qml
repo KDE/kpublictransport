@@ -80,7 +80,7 @@ Kirigami.ApplicationWindow {
         property alias disabledBackends: ptMgr.disabledBackends
     }
 
-    DepartureQueryModel {
+    StopoverQueryModel {
         id: departureModel
         manager: ptMgr
     }
@@ -287,7 +287,7 @@ Kirigami.ApplicationWindow {
                             stop.longitude = lonQuery.text;
                             stop.name = nameQuery.text;
                             departureModel.request.stop = stop;
-                            departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                            departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             departureModel.request.downloadAssets = true
                         }
@@ -300,7 +300,7 @@ Kirigami.ApplicationWindow {
                             stop.longitude = NaN;
                             stop.name = nameQuery.text;
                             departureModel.request.stop = stop;
-                            departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                            departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             departureModel.request.downloadAssets = true
                         }
@@ -313,7 +313,7 @@ Kirigami.ApplicationWindow {
                             stop.longitude = lonQuery.text;
                             stop.name = "";
                             departureModel.request.stop = stop;
-                            departureModel.request.mode = arrivalBox.checked ? DepartureRequest.QueryArrival : DepartureRequest.QueryDeparture;
+                            departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             departureModel.request.downloadAssets = true
                         }
