@@ -99,6 +99,11 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     /** Intermediate stops for consumption by QML. */
     Q_PROPERTY(QVariantList intermediateStops READ intermediateStopsVariant)
 
+    /** All departure information represented as Stopover object. */
+    Q_PROPERTY(KPublicTransport::Stopover departure READ departure STORED false)
+    /** All arrival information represented as Stopover object. */
+    Q_PROPERTY(KPublicTransport::Stopover arrival READ arrival STORED false)
+
 public:
     /** Mode of transport. */
     enum Mode {
@@ -136,6 +141,17 @@ public:
     std::vector<Stopover>&& takeIntermediateStops();
     /** Set the intermediate stops. */
     void setIntermediateStops(std::vector<Stopover> &&stops);
+
+    /** Returns the departure stopover of this journey section.
+     *  This is the same information as accessible by individual properties,
+     *  so this is mainly useful if you have to interface with code expecting a Stopover object.
+     */
+    Stopover departure() const;
+    /** Returns the arrival stopover of this journey section.
+     *  This is the same information as accessible by individual properties,
+     *  so this is mainly useful if you have to interface with code expecting a Stopover object.
+     */
+    Stopover arrival() const;
 
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
     static bool isSame(const JourneySection &lhs, const JourneySection &rhs);

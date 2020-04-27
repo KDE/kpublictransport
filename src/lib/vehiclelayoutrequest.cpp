@@ -48,22 +48,6 @@ VehicleLayoutRequest::VehicleLayoutRequest(const Stopover &dep)
     d->departure = dep;
 }
 
-VehicleLayoutRequest::VehicleLayoutRequest(const JourneySection &section)
-    : d(new VehicleLayoutRequestPrivate)
-{
-    d->departure.setStopPoint(section.from());
-    d->departure.setRoute(section.route());
-    d->departure.setScheduledDepartureTime(section.scheduledDepartureTime());
-    d->departure.setExpectedDepartureTime(section.expectedDepartureTime());
-    d->departure.setScheduledPlatform(section.scheduledDeparturePlatform());
-    d->departure.setExpectedPlatform(section.expectedDeparturePlatform());
-}
-
-VehicleLayoutRequest VehicleLayoutRequest::fromJourneySection(const JourneySection &section) const
-{
-    return VehicleLayoutRequest(section);
-}
-
 bool VehicleLayoutRequest::isValid() const
 {
     return d->departure.scheduledDepartureTime().isValid() && !d->departure.route().line().name().isEmpty();

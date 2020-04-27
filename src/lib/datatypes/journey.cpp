@@ -248,6 +248,30 @@ QVariantList JourneySection::intermediateStopsVariant() const
     return l;
 }
 
+Stopover JourneySection::departure() const
+{
+    Stopover dep;
+    dep.setStopPoint(from());
+    dep.setRoute(route());
+    dep.setScheduledDepartureTime(scheduledDepartureTime());
+    dep.setExpectedDepartureTime(expectedDepartureTime());
+    dep.setScheduledPlatform(scheduledDeparturePlatform());
+    dep.setExpectedPlatform(expectedDeparturePlatform());
+    return dep;
+}
+
+Stopover JourneySection::arrival() const
+{
+    Stopover arr;
+    arr.setStopPoint(from());
+    arr.setRoute(route());
+    arr.setScheduledArrivalTime(scheduledArrivalTime());
+    arr.setExpectedArrivalTime(expectedArrivalTime());
+    arr.setScheduledPlatform(scheduledArrivalPlatform());
+    arr.setExpectedPlatform(expectedArrivalPlatform());
+    return arr;
+}
+
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
     if (lhs.d->mode != rhs.d->mode) {

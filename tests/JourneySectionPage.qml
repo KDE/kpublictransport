@@ -55,7 +55,7 @@ Kirigami.Page {
                 Layout.column: 2
                 text: "<a href=\"#layout\">vehicle</a>"
                 visible: journeySection.route.line.mode == Line.LongDistanceTrain
-                onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"journeySection": journeySection});
+                onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": journeySection.departure});
             }
 
             QQC2.Label {
