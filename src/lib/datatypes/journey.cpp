@@ -50,6 +50,7 @@ public:
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     QStringList notes;
     std::vector<Stopover> intermediateStops;
+    int co2Emission = -1;
 
     int estimatedDistance() const;
 };
@@ -272,6 +273,46 @@ Stopover JourneySection::arrival() const
     return arr;
 }
 
+int JourneySection::co2Emission() const
+{
+    if (d->co2Emission >= 0) {
+        return d->co2Emission;
+    }
+
+    struct {
+        Line::Mode mode;
+        int gramPerKm;
+    } static const emissionForModeMap[] = {
+        { Line::Air, 285 },
+        { Line::Boat, 245 },
+        { Line::Bus, 68 },
+        { Line::BusRapidTransit, 68 },
+        { Line::Coach, 68 },
+        { Line::Ferry, 245 },
+        { Line::LocalTrain, 14 },
+        { Line::LongDistanceTrain, 14 },
+        { Line::Metro, 11 },
+        { Line::RapidTransit, 11 },
+        { Line::Taxi, 158 },
+        { Line::Train, 14 },
+        { Line::Tramway, 11 },
+    };
+
+    const auto mode = route().line().mode();
+    for (const auto &map : emissionForModeMap) {
+        if (map.mode == mode) {
+            return (map.gramPerKm * distance()) / 1000;
+        }
+    }
+    return -1;
+}
+
+void JourneySection::setCo2Emission(int value)
+{
+    d.detach();
+    d->co2Emission = value;
+}
+
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
     if (lhs.d->mode != rhs.d->mode) {
@@ -346,6 +387,8 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
         res.setIntermediateStops(std::move(stops));
     }
 
+    res.d->co2Emission = std::max(lhs.d->co2Emission, rhs.d->co2Emission);
+
     return res;
 }
 
@@ -361,6 +404,9 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
         if (!section.intermediateStops().empty()) {
             obj.insert(QStringLiteral("intermediateStops"), Stopover::toJson(section.intermediateStops()));
         }
+    }
+    if (section.d->co2Emission < 0) {
+        obj.remove(QLatin1String("co2Emission"));
     }
     return obj;
 }

@@ -95,6 +95,7 @@ private Q_SLOTS:
                 QVERIFY(stop.scheduledArrivalTime().isValid());
                 QVERIFY(stop.scheduledDepartureTime().isValid());
             }
+            QCOMPARE(sec.co2Emission(), 147);
 
             sec = journey.sections()[2];
             QCOMPARE(sec.mode(), KPublicTransport::JourneySection::Transfer);

@@ -32,10 +32,10 @@ Kirigami.Page {
             Layout.fillWidth: true
             Layout.margins: Kirigami.Units.largeSpacing
             columns: 3
-            rows: 2
+            rows: 4
 
             Kirigami.Icon {
-                Layout.rowSpan: 2
+                Layout.rowSpan: 4
                 id: icon
                 source: journeySection.route.line.hasLogo ? journeySection.route.line.logo : journeySection.route.line.modeLogo
                 width: height
@@ -63,6 +63,20 @@ Kirigami.Page {
                 Layout.column: 1
                 Layout.columnSpan: 2
                 text: "Direction: " + journeySection.route.direction
+            }
+
+            QQC2.Label {
+                Layout.row: 2
+                Layout.column: 1
+                Layout.columnSpan: 2
+                text: "Distance: " + journeySection.distance / 1000.0 + "km"
+            }
+            QQC2.Label {
+                Layout.row: 3
+                Layout.column: 1
+                Layout.columnSpan: 2
+                text: "CO₂: " + journeySection.co2Emission + "g"
+                visible: journeySection.co2Emission >= 0
             }
         }
 

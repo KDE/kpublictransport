@@ -104,6 +104,15 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     /** All arrival information represented as Stopover object. */
     Q_PROPERTY(KPublicTransport::Stopover arrival READ arrival STORED false)
 
+    /** CO₂ emission during this journey section, in gram.
+     *  In case the backend doesn't provide this value, it is estimated based on the
+     *  distance travelled during this section and the mode of transport, based on
+     *  average emission values from https://en.wikipedia.org/wiki/Environmental_impact_of_transport
+     *  This value can be 0 (e.g. in case of walk or wait sections), or -1 if no
+     *  information is available.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, co2Emission, setCo2Emission)
+
 public:
     /** Mode of transport. */
     enum Mode {
