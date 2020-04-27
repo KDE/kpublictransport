@@ -216,7 +216,12 @@ Stopover EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &&
     stop.setStopPoint(loc);
     stop.setScheduledPlatform(reader.attributes().value(QLatin1String("platform")).toString());
 
-    // TODO arrDelay/depDelay properties - which unit do they have?
+    bool result = false;
+    auto depDelay = reader.attributes().value(QLatin1String("depDelay")).toInt(&result);
+    if (!result) {
+        depDelay = -1;
+    }
+    // TODO there is also arrDelay - but what's the corresponding date/time for that?
 
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdDateTime")) {
@@ -225,6 +230,10 @@ Stopover EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &&
             const auto dt = parseDateTime(reader.subReader());
             if (dt.isValid()) {
                 stop.setScheduledDepartureTime(dt);
+
+                if (depDelay >= 0) {
+                    stop.setExpectedDepartureTime(dt.addSecs(60 * depDelay));
+                }
             }
         }
     }
