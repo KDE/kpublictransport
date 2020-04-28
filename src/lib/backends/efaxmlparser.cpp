@@ -250,7 +250,7 @@ std::vector<Stopover> EfaXmlParser::parsePartialTripStopSequence(ScopedXmlStream
         }
     }
 
-    if (stops.size() > 2) { // includes departure/arrival stops too
+    if (stops.size() >= 2) { // includes departure/arrival stops too
         stops.erase(std::prev(stops.end()));
         stops.erase(stops.begin());
     }

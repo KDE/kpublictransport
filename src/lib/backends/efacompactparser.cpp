@@ -343,7 +343,7 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                 }
             }
 
-            if (stops.size() > 2) { // exclude departure/arrival stops
+            if (stops.size() >= 2) { // exclude departure/arrival stops
                 stops.erase(std::prev(stops.end()));
                 stops.erase(stops.begin());
             }
