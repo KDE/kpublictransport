@@ -258,6 +258,16 @@ std::vector<Stopover> EfaXmlParser::parsePartialTripStopSequence(ScopedXmlStream
     return stops;
 }
 
+struct {
+    int type;
+    JourneySection::Mode mode;
+} static const journey_section_types[] = {
+    { 97, JourneySection::Waiting }, // technically: "do not change"?
+    { 98, JourneySection::Transfer },
+    { 99, JourneySection::Walking },
+    { 100, JourneySection::Walking },
+};
+
 JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reader) const
 {
     JourneySection section;
@@ -277,11 +287,15 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
             Line line;
             line.setName(reader.attributes().value(QLatin1String("shortname")).toString());
             const auto type = reader.attributes().value(QLatin1String("type")).toInt();
+            for (const auto &m : journey_section_types) {
+                if (m.type == type) {
+                    section.setMode(m.mode);
+                    break;
+                }
+            }
             const auto prodName = reader.attributes().value(QLatin1String("productName"));
-            if (type == 99 || prodName == QLatin1String("Fussweg")) {
+            if (prodName == QLatin1String("Fussweg")) {
                 section.setMode(JourneySection::Walking);
-            } else if (type == 98) {
-                section.setMode(JourneySection::Transfer);
             } else {
                 line.setModeString(prodName.toString());
             }
