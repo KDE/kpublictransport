@@ -296,18 +296,17 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                     }
 
                     // semicolon separated list with the following content
-                    // TODO some of these are likely delay parameters!
                     // 0: station id
                     // 1: station name
                     // 2: date as yyyyMMdd
                     // 3: time as hhmm
                     // 4: location coordinate, colon separated as <lon>:<lat>:WGS84[DD.ddddd]
-                    // 5: "0"?
+                    // 5: delay in minutes, presumably for fields 2/3
                     // 6: integer of unknown meaning - same as <a>
                     // 7: platform - same as <divaPl>
                     // 8: date as yyyyMMdd - only set on departure?
                     // 9: time as hhmm - only set on departure?
-                    // 10: "0" or "", unknown meaning
+                    // 10: delay in minutes, presumably for fields 8/9
                     // 11: integer of unknown meaning
                     // 12: IFOPT station id (see also <gid>)
                     // 13: IFOPT stop/platform id (see also <pgid>)
@@ -326,11 +325,19 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                     if (!dt.isValid()) {
                         continue;
                     }
+                    bool result = false;
+                    auto delay = stopParams[5].toInt(&result);
+                    if (!result) {
+                        delay = -1;
+                    }
 
                     Stopover stop;
                     stop.setStopPoint(loc);
                     stop.setScheduledPlatform(stopParams[7]);
                     stop.setScheduledDepartureTime(dt);
+                    if (delay >= 0) {
+                        stop.setExpectedDepartureTime(dt.addSecs(delay * 60));
+                    }
 
                     stops.push_back(stop);
                 }
