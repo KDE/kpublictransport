@@ -33,11 +33,6 @@
 
 using namespace KPublicTransport;
 
-AbstractBackend::Capabilities DeutscheBahnBackend::capabilities() const
-{
-    return Secure; // hardcoded API endpoint below
-}
-
 static QString extractTrainNumber(const Line &line)
 {
     qDebug() << line.modeString() << line.name();
