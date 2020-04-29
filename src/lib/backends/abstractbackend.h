@@ -129,7 +129,7 @@ public:
     /** Perform a departure query.
      *  @return @c true if performing an async operation, @c false otherwise.
      */
-    virtual bool queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const;
+    virtual bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const;
 
     /** Perform a location query.
      *  @return @c true if performing an async operation, @c false otherwise.

@@ -78,7 +78,7 @@ public:
 
     void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
-    bool queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply);
+    bool queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply);
 
     template <typename RepT, typename ReqT> RepT* makeReply(const ReqT &request);
 
@@ -397,7 +397,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     return backend->queryJourney(req, reply, nam());
 }
 
-bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply)
+bool ManagerPrivate::queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply)
 {
     if (shouldSkipBackend(backend, req)) {
         return false;
@@ -435,14 +435,14 @@ bool ManagerPrivate::queryDeparture(const AbstractBackend *backend, const Stopov
             const auto depLoc = Location::merge(req.stop(), loc);
             auto depRequest = req;
             depRequest.setStop(depLoc);
-            if (!backend->queryDeparture(depRequest, reply, nam())) {
+            if (!backend->queryStopover(depRequest, reply, nam())) {
                 reply->addError(Reply::NotFoundError, {});
             }
         });
         return true;
     }
 
-    return backend->queryDeparture(req, reply, nam());
+    return backend->queryStopover(req, reply, nam());
 }
 
 void ManagerPrivate::readCachedAttributions()
@@ -588,7 +588,7 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
     // first time/direct query
     if (req.contexts().empty()) {
         for (const auto &backend : d->m_backends) {
-            if (d->queryDeparture(backend.get(), req, reply)) {
+            if (d->queryStopover(backend.get(), req, reply)) {
                 ++pendingOps;
             }
         }
@@ -600,7 +600,7 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
             if ((context.type == RequestContext::Next && context.backend->hasCapability(AbstractBackend::CanQueryNextDeparture))
               ||(context.type == RequestContext::Previous && context.backend->hasCapability(AbstractBackend::CanQueryPreviousDeparture)))
             {
-                if (d->queryDeparture(context.backend, req, reply)) {
+                if (d->queryStopover(context.backend, req, reply)) {
                     ++pendingOps;
                     continue;
                 }
@@ -610,7 +610,7 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
             if (context.type == RequestContext::Next && req.mode() == StopoverRequest::QueryDeparture) {
                 auto r = req;
                 r.setDateTime(context.dateTime);
-                if (d->queryDeparture(context.backend, r, reply)) {
+                if (d->queryStopover(context.backend, r, reply)) {
                     ++pendingOps;
                     continue;
                 }

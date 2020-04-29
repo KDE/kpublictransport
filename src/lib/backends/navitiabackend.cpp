@@ -114,7 +114,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     return true;
 }
 
-bool NavitiaBackend::queryDeparture(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
+bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.stop().hasCoordinate()) {
         return false;

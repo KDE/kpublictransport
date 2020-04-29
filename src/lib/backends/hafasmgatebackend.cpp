@@ -152,7 +152,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
     return true;
 }
 
-bool HafasMgateBackend::queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
+bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     const auto locationId = locationIdentifier(request.stop());
     if (locationId.isEmpty()) {

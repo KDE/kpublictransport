@@ -103,7 +103,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     return true;
 }
 
-bool EfaBackend::queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
+bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     const auto stopId = request.stop().identifier(locationIdentifierType());
     if (stopId.isEmpty() && !request.stop().hasCoordinate()) {

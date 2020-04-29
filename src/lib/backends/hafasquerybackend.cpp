@@ -152,7 +152,7 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     return true;
 }
 
-bool HafasQueryBackend::queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
+bool HafasQueryBackend::queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     const auto stationId = locationIdentifier(request.stop());
     if (stationId.isEmpty()) {

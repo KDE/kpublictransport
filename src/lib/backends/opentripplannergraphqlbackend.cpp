@@ -85,7 +85,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
     return true;
 }
 
-bool OpenTripPlannerGraphQLBackend::queryDeparture(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));

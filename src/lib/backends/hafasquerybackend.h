@@ -35,7 +35,7 @@ public:
     Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, QueryType type) const override;
     bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryDeparture(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
+    bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:

@@ -116,7 +116,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
     return false;
 }
 
-bool OpenTripPlannerRestBackend::queryDeparture(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
+bool OpenTripPlannerRestBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("date"), QString::number(req.dateTime().toSecsSinceEpoch()));
