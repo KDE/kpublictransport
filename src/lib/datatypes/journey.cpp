@@ -396,17 +396,30 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
 {
     auto obj = Json::toJson(section);
     if (section.mode() != Waiting) {
-        obj.insert(QStringLiteral("from"), Location::toJson(section.from()));
-        obj.insert(QStringLiteral("to"), Location::toJson(section.to()));
+        const auto fromObj = Location::toJson(section.from());
+        if (!fromObj.empty()) {
+            obj.insert(QStringLiteral("from"), fromObj);
+        }
+        const auto toObj = Location::toJson(section.to());
+        if (!toObj.empty()) {
+            obj.insert(QStringLiteral("to"), toObj);
+        }
     }
     if (section.mode() == PublicTransport) {
-        obj.insert(QStringLiteral("route"), Route::toJson(section.route()));
+        const auto routeObj = Route::toJson(section.route());
+        if (!routeObj.empty()) {
+            obj.insert(QStringLiteral("route"), routeObj);
+        }
         if (!section.intermediateStops().empty()) {
             obj.insert(QStringLiteral("intermediateStops"), Stopover::toJson(section.intermediateStops()));
         }
     }
     if (section.d->co2Emission < 0) {
         obj.remove(QLatin1String("co2Emission"));
+    }
+
+    if (obj.size() <= 3) { // only the disruption and mode enums and distance, ie. this is an empty object
+        return {};
     }
     return obj;
 }

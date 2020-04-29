@@ -190,7 +190,14 @@ QJsonObject Stopover::toJson(const Stopover &dep)
     if (!routeObj.empty()) {
         obj.insert(QStringLiteral("route"), routeObj);
     }
-    obj.insert(QStringLiteral("stopPoint"), Location::toJson(dep.stopPoint()));
+    const auto locObj = Location::toJson(dep.stopPoint());
+    if (!locObj.empty()) {
+        obj.insert(QStringLiteral("stopPoint"), locObj);
+    }
+
+    if (obj.size() == 1) { // only the disruption enum, ie. this is an empty object
+        return {};
+    }
     return obj;
 }
 
