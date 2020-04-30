@@ -1202,7 +1202,7 @@ static const char line_logo_stringtab[] = {
     "Milano linea M1.svg\0"
 };
 
-static const constexpr auto NoLogo = 25;
+static const constexpr uint16_t NoLogo = 25;
 
 static const constexpr LineMetaDataContent line_data[] = {
     { 1, NoLogo, NoLogo, LineMetaDataContent::Tramway, Color{0xf38bb9} }, // 70 OSM: 9056 WD: Q6811967 -37.84, 144.9 x -37.81, 145.1

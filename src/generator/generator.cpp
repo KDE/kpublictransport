@@ -740,7 +740,7 @@ namespace KPublicTransport {
     nameStrTab.writeCode("line_name_stringtab", out);
     logoStrTab.writeCode("line_logo_stringtab", out);
     // create a symbolic name for the common no logo case (reduces diff on changes)
-    out->write("static const constexpr auto NoLogo = ");
+    out->write("static const constexpr uint16_t NoLogo = ");
     out->write(QByteArray::number((int)logoStrTab.stringOffset(QString())));
     out->write(";\n\n");
 
