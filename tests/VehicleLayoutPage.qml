@@ -22,7 +22,7 @@ import org.kde.kirigami 2.4 as Kirigami
 import org.kde.kpublictransport 1.0 as KPublicTransport
 import org.kde.kpublictransport.ui 1.0
 
-Kirigami.Page {
+Kirigami.ScrollablePage {
     id: root
     title: i18n("Vehicle Layout")
 
@@ -37,39 +37,40 @@ Kirigami.Page {
         onContentChanged: {
             var offset = vehicleView.fullLength * vehicleModel.vehicle.platformPositionBegin;
             offset -= Kirigami.Units.iconSizes.small + Kirigami.Units.largeSpacing; // direction indicator
-            vehicleView.contentY = offset;
+            root.flickable.contentY = offset;
         }
     }
 
-    ColumnLayout {
-        id: contentLayout
-        anchors.fill: parent
+    header: Column {
         QQC2.Label {
             text: vehicleModel.departure.stopPoint.name + " - " + vehicleModel.departure.route.line.name + " - " + vehicleModel.departure.scheduledDepartureTime
+            leftPadding: Kirigami.Units.largeSpacing
+            topPadding: Kirigami.Units.largeSpacing
         }
         QQC2.Label {
             text: "Platform: " + vehicleModel.platform.name
+            leftPadding: Kirigami.Units.largeSpacing
         }
+    }
 
-        Flickable {
-            id: vehicleView
-            property real fullLength: 1600 // full length of the platform display
-            property real sectionWidth: 48
-            clip: true
-            contentHeight: fullLength
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+    Item {
+        width: parent.width
+        height: childrenRect.height
 
-            QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
+        Column {
+            id: contentLayout
+            width: parent.width
 
             Repeater {
-                Layout.fillWidth: true;
+                id: vehicleView
+                property real fullLength: 1600 // full length of the platform display
+                property real sectionWidth: 48
+
                 model: vehicleModel.platform.sections
                 delegate: Item {
                     property var section: modelData
                     width: parent.width
-                    y: section.begin * vehicleView.fullLength
-                    height: section.end * vehicleView.fullLength - y
+                    height: (section.end - section.begin) * vehicleView.fullLength
 
                     Kirigami.Separator {
                         visible: index == 0
@@ -84,117 +85,119 @@ Kirigami.Page {
                     }
                 }
             }
+        }
 
-            Kirigami.Icon {
-                visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
-                source: {
-                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
-                        return "go-up";
-                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
-                        return "go-down"
-                    return "";
-                }
-                width: Kirigami.Units.iconSizes.small
-                height: width
-                x: vehicleView.sectionWidth / 2 - width / 2
-                y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - height - Kirigami.Units.largeSpacing
+        Kirigami.Icon {
+            visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
+            source: {
+                if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
+                    return "go-up";
+                if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
+                    return "go-down"
+                return "";
             }
-            Repeater {
-                id: vehicleRepeater
-                Layout.fillWidth: true
-                model: vehicleModel
-                delegate: VehicleSectionItem {
-                    section: model.vehicleSection
-                    y: section.platformPositionBegin * vehicleView.fullLength
-                    height: section.platformPositionEnd * vehicleView.fullLength - y
-                    width: vehicleView.sectionWidth
-                    textColor: Kirigami.Theme.textColor
-                    firstClassBackground: Kirigami.Theme.positiveTextColor
-                    secondClassBackground: Kirigami.Theme.focusColor
-                    inaccessibleBackground: Kirigami.Theme.disabledTextColor
-                    restaurantBackground: Kirigami.Theme.neutralTextColor
+            width: Kirigami.Units.iconSizes.small
+            height: width
+            x: vehicleView.sectionWidth / 2 - width / 2
+            y: vehicleModel.vehicle.platformPositionBegin * vehicleView.fullLength - height - Kirigami.Units.largeSpacing
+        }
 
-                    QQC2.Label {
-                        anchors.centerIn: parent
-                        text: section.name
-                    }
+        Repeater {
+            id: vehicleRepeater
+            Layout.fillWidth: true
+            model: vehicleModel
+            delegate: VehicleSectionItem {
+                section: model.vehicleSection
+                y: section.platformPositionBegin * vehicleView.fullLength
+                height: section.platformPositionEnd * vehicleView.fullLength - y
+                width: vehicleView.sectionWidth
+                textColor: Kirigami.Theme.textColor
+                firstClassBackground: Kirigami.Theme.positiveTextColor
+                secondClassBackground: Kirigami.Theme.focusColor
+                inaccessibleBackground: Kirigami.Theme.disabledTextColor
+                restaurantBackground: Kirigami.Theme.neutralTextColor
 
-                    ColumnLayout {
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.right
-                        anchors.leftMargin: Kirigami.Units.largeSpacing
+                QQC2.Label {
+                    anchors.centerIn: parent
+                    text: section.name
+                }
+
+                ColumnLayout {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.right
+                    anchors.leftMargin: Kirigami.Units.largeSpacing
+                    spacing: Kirigami.Units.smallSpacing
+
+                    RowLayout {
                         spacing: Kirigami.Units.smallSpacing
-
-                        RowLayout {
-                            spacing: Kirigami.Units.smallSpacing
-                            Repeater {
-                                model: section.featureList
-                                QQC2.Label {
-                                    text: {
-                                        switch (modelData) {
-                                            case KPublicTransport.VehicleSection.AirConditioning: return "❄️";
-                                            case KPublicTransport.VehicleSection.Restaurant: return "🍴";
-                                            case KPublicTransport.VehicleSection.ToddlerArea: return "👶";
-                                            case KPublicTransport.VehicleSection.WheelchairAccessible: return "♿";
-                                            case KPublicTransport.VehicleSection.SilentArea: return "🔇";
-                                            case KPublicTransport.VehicleSection.BikeStorage: return "🚲";
-                                        }
+                        Repeater {
+                            model: section.featureList
+                            QQC2.Label {
+                                text: {
+                                    switch (modelData) {
+                                        case KPublicTransport.VehicleSection.AirConditioning: return "❄️";
+                                        case KPublicTransport.VehicleSection.Restaurant: return "🍴";
+                                        case KPublicTransport.VehicleSection.ToddlerArea: return "👶";
+                                        case KPublicTransport.VehicleSection.WheelchairAccessible: return "♿";
+                                        case KPublicTransport.VehicleSection.SilentArea: return "🔇";
+                                        case KPublicTransport.VehicleSection.BikeStorage: return "🚲";
                                     }
                                 }
                             }
                         }
-                        QQC2.Label {
-                            visible: section.classes != KPublicTransport.VehicleSection.UnknownClass
-                            text: {
-                                if (section.classes == KPublicTransport.VehicleSection.FirstClass)
-                                    return "First class";
-                                if (section.classes == KPublicTransport.VehicleSection.SecondClass)
-                                    return "Second class";
-                                if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
-                                    return "First/second class";
-                                return "Unknown class";
-                            }
+                    }
+                    QQC2.Label {
+                        visible: section.classes != KPublicTransport.VehicleSection.UnknownClass
+                        text: {
+                            if (section.classes == KPublicTransport.VehicleSection.FirstClass)
+                                return "First class";
+                            if (section.classes == KPublicTransport.VehicleSection.SecondClass)
+                                return "Second class";
+                            if (section.classes == (KPublicTransport.VehicleSection.FirstClass | KPublicTransport.VehicleSection.SecondClass))
+                                return "First/second class";
+                            return "Unknown class";
                         }
                     }
                 }
             }
-            Kirigami.Icon {
-                visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
-                source: {
-                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
-                        return "go-up";
-                    if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
-                        return "go-down"
-                    return "";
-                }
-                width: Kirigami.Units.iconSizes.small
-                height: width
-                x: vehicleView.sectionWidth / 2 - width / 2
-                y: vehicleModel.vehicle.platformPositionEnd * vehicleView.fullLength + Kirigami.Units.largeSpacing
-            }
         }
-    }
 
-    QQC2.BusyIndicator {
-        anchors.centerIn: contentLayout
-        running: vehicleModel.loading
-    }
+        Kirigami.Icon {
+            visible: vehicleModel.vehicle.direction != KPublicTransport.Vehicle.UnknownDirection
+            source: {
+                if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Forward)
+                    return "go-up";
+                if (vehicleModel.vehicle.direction == KPublicTransport.Vehicle.Backward)
+                    return "go-down"
+                return "";
+            }
+            width: Kirigami.Units.iconSizes.small
+            height: width
+            x: vehicleView.sectionWidth / 2 - width / 2
+            y: vehicleModel.vehicle.platformPositionEnd * vehicleView.fullLength + Kirigami.Units.largeSpacing
+        }
 
-    QQC2.Label {
-        anchors.centerIn: contentLayout
-        width: parent.width
-        text: vehicleModel.errorMessage
-        color: Kirigami.Theme.negativeTextColor
-        wrapMode: Text.Wrap
-        horizontalAlignment: Text.AlignHCenter
-    }
+        QQC2.BusyIndicator {
+            anchors.centerIn: contentLayout
+            running: vehicleModel.loading
+        }
 
-    QQC2.Label {
-        anchors.centerIn: contentLayout
-        width: parent.width
-        visible: vehicleModel.errorMessage === "" && !vehicleModel.loading && vehicleRepeater.count === 0
-        wrapMode: Text.Wrap
-        horizontalAlignment: Text.AlignHCenter
-        text: "No vehicle layout information available."
+        QQC2.Label {
+            anchors.centerIn: contentLayout
+            width: parent.width
+            text: vehicleModel.errorMessage
+            color: Kirigami.Theme.negativeTextColor
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        QQC2.Label {
+            anchors.centerIn: contentLayout
+            width: parent.width
+            visible: vehicleModel.errorMessage === "" && !vehicleModel.loading && vehicleRepeater.count === 0
+            wrapMode: Text.Wrap
+            horizontalAlignment: Text.AlignHCenter
+            text: "No vehicle layout information available."
+        }
     }
 }
