@@ -258,6 +258,7 @@ Stopover JourneySection::departure() const
     dep.setExpectedDepartureTime(expectedDepartureTime());
     dep.setScheduledPlatform(scheduledDeparturePlatform());
     dep.setExpectedPlatform(expectedDeparturePlatform());
+    dep.addNotes(notes());
     return dep;
 }
 
