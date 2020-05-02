@@ -265,7 +265,7 @@ Stopover JourneySection::departure() const
 Stopover JourneySection::arrival() const
 {
     Stopover arr;
-    arr.setStopPoint(from());
+    arr.setStopPoint(to());
     arr.setRoute(route());
     arr.setScheduledArrivalTime(scheduledArrivalTime());
     arr.setExpectedArrivalTime(expectedArrivalTime());
