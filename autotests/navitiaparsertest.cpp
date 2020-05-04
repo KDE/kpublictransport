@@ -94,6 +94,8 @@ private Q_SLOTS:
                 QVERIFY(stop.stopPoint().hasCoordinate());
                 QVERIFY(stop.scheduledArrivalTime().isValid());
                 QVERIFY(stop.scheduledDepartureTime().isValid());
+                QVERIFY(!stop.expectedArrivalTime().isValid());
+                QVERIFY(!stop.expectedDepartureTime().isValid());
             }
             QCOMPARE(sec.co2Emission(), 147);
 

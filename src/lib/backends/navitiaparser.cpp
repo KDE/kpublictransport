@@ -165,9 +165,10 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
     route.setLine(line);
     section.setRoute(route);
 
+    const auto hasRealTime = obj.value(QLatin1String("data_freshness")).toString() != QLatin1String("base_schedule");
     section.setScheduledDepartureTime(parseDateTime(obj.value(QLatin1String("base_departure_date_time")), section.from().timeZone()));
     section.setScheduledArrivalTime(parseDateTime(obj.value(QLatin1String("base_arrival_date_time")), section.to().timeZone()));
-    if (obj.value(QLatin1String("data_freshness")).toString() != QLatin1String("base_schedule")) {
+    if (hasRealTime) {
         section.setScheduledArrivalTime(parseDateTime(obj.value(QLatin1String("arrival_date_time")), section.to().timeZone()));
         section.setScheduledDepartureTime(parseDateTime(obj.value(QLatin1String("departure_date_time")), section.from().timeZone()));
     }
@@ -193,6 +194,10 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
             Stopover stop;
             stop.setStopPoint(parseLocation(obj.value(QLatin1String("stop_point")).toObject()));
             parseStopDateTime(obj, stop);
+            if (!hasRealTime) { // intermediate stops seems to miss the "data_freshness" field, so propagate that
+                stop.setExpectedArrivalTime({});
+                stop.setExpectedDepartureTime({});
+            }
             stops.push_back(std::move(stop));
         }
         section.setIntermediateStops(std::move(stops));
