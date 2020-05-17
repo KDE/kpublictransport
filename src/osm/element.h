@@ -28,7 +28,7 @@ namespace Internal {
 template <typename T> class TaggedPointer
 {
 public:
-    explicit inline TaggedPointer(T *ptr, uint8_t tag)
+    explicit inline constexpr TaggedPointer(T *ptr, uint8_t tag)
         : m_data(reinterpret_cast<std::uintptr_t>(ptr) | (tag & TagMask))
     {}
 
@@ -48,6 +48,7 @@ private:
 class Element
 {
 public:
+    inline constexpr Element() : m_elem(nullptr, static_cast<uint8_t>(Type::Null)) {}
     inline Element(const Node *node) : m_elem(node, static_cast<uint8_t>(Type::Node)) {}
     inline Element(const Way *way) : m_elem(way, static_cast<uint8_t>(Type::Way)) {}
     inline Element(const Relation *relation) : m_elem(relation, static_cast<uint8_t>(Type::Relation)) {}

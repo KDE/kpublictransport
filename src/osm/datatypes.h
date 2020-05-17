@@ -61,6 +61,10 @@ public:
     {
         return latitude != std::numeric_limits<uint32_t>::max() && longitude != std::numeric_limits<uint32_t>::max();
     }
+    constexpr inline bool operator==(Coordinate other) const
+    {
+        return latitude == other.latitude && longitude == other.longitude;
+    }
 
     /** Z-order curve value for this coordinate. */
     constexpr inline uint64_t z() const
@@ -98,6 +102,10 @@ public:
     constexpr inline bool isValid() const
     {
         return min.isValid() && max.isValid();
+    }
+    constexpr inline bool operator==(BoundingBox other) const
+    {
+        return min == other.min && max == other.max;
     }
 
     constexpr inline uint32_t width() const
