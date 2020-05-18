@@ -20,6 +20,7 @@
 
 #include <QByteArray>
 #include <QColor>
+#include <QPen>
 
 #include <cmath>
 
@@ -51,17 +52,58 @@ public:
         Color, /// line color
         Opacity, /// line opacity
         Dashes, /// line dash pattern
+        Image, /// fill image for the line
+        LineCap, /// line end cap style: none (default), round, square
+        LineJoin, /// line join style: round (default), miter, bevel
 
-        // polygon properties
+        // line casing properties
+        CasingWidth, /// line casing width
+        CasingColor, /// line casing color
+        CasingOpacity, /// line casing opacity
+        CasingDashes, /// line casing dash pattern
+        CasingLineCap, /// line casing end cap
+        CasingLineJoin, /// line casing join style
+
+        // missing here: extrude properites
+
+        // polygon (and canvas) properties
         FillColor, /// area fill color
         FillOpacity, /// area fill opacity
+        FillImage, /// image to fill the area with
+
+        // icon properties
+        IconImage, /// URL to the icon image
+        IconWidth, /// icon width
+        IconHeight, /// icon height
+        IconOpacity, /// icon opacity
 
         // label properties
-        Text, /// label content
+        FontFamily, /// font name
+        FontSize, /// font size
+        FontWeight, /// font weight: bold or normal (default)
+        FontStyle, /// italic or normal (default)
+        FontVariant, /// small-caps or normal (default)
+        TextDecoration, /// none (default) or underline
+        TextTransform, /// none (default), uppercase, lowercase or capitalize
         TextColor, /// text color used for the label
+        TextOpacity, /// text opacity
+        TextPosition, /// @p line or @p center
+        TextOffset, /// vertical offset from the center of the way or point
+        MaxWidth, /// maximum width before wrapping
+        Text, /// label content
+        TextHaloColor, /// text halo color
+        TextHaloRadius, /// text halo radius
 
-        // casing properites
-
+        // shield properites (casing > frame > shield > text)
+        ShieldColor, /// shield color
+        ShieldOpacity, /// shield opacity
+        ShieldFrameColor, /// shield frame color
+        ShieldFrameWidth, /// shield frame width (0 to disable)
+        ShieldCasingColor, /// schield casing color
+        ShieldCasingWidth, /// shield  casing width
+        ShieldText, /// text to render on the shield
+        ShieldImage, /// background image of the shield
+        ShieldShape, /// @p rounded or @p rectangular
     };
 
     Property property() const;
@@ -87,6 +129,9 @@ public:
     QByteArray keyValue() const;
     /** Line dashes. */
     QVector<double> dashesValue() const;
+
+    Qt::PenCapStyle capStyle() const;
+    Qt::PenJoinStyle joinStyle() const;
 
     void write(QIODevice *out) const;
 

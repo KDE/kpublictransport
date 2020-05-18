@@ -127,6 +127,9 @@ void SceneController::updateScene(SceneGraph &sg) const
         } else if (m_styleResult.hasLineProperties()) {
             auto item = new PolylineItem;
             item->path = createPolygon(e);
+            // default according to spec
+            item->pen.setCapStyle(Qt::FlatCap);
+            item->pen.setJoinStyle(Qt::RoundJoin);
 
             for (auto decl : m_styleResult.declarations()) {
                 switch (decl->property()) {
@@ -135,7 +138,6 @@ void SceneController::updateScene(SceneGraph &sg) const
                         break;
                     case MapCSSDeclaration::Color:
                         item->pen.setColor(decl->colorValue());
-                        item->pen.setStyle(Qt::SolidLine);
                         break;
                     case MapCSSDeclaration::Width:
                         item->pen.setWidthF(decl->doubleValue());
@@ -143,13 +145,16 @@ void SceneController::updateScene(SceneGraph &sg) const
                     case MapCSSDeclaration::Dashes:
                         item->pen.setDashPattern(decl->dashesValue());
                         break;
+                    case MapCSSDeclaration::LineCap:
+                        item->pen.setCapStyle(decl->capStyle());
+                        break;
+                    case MapCSSDeclaration::LineJoin:
+                        item->pen.setJoinStyle(decl->joinStyle());
                     default:
                         break;
                 }
             }
 
-            item->pen.setCapStyle(Qt::FlatCap);
-            item->pen.setJoinStyle(Qt::RoundJoin);
             sg.addItem(item);
         }
 

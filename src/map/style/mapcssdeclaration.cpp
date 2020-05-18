@@ -32,15 +32,69 @@ struct {
 } static constexpr const property_types[] = {
     // only those properties have their corresonding flag set that actually trigger emission of a scene graph item
     // e.g. for a label we either need a text or an icon, the visual properties for those on their own would be a no-op
+    { "casing-color", MapCSSDeclaration::CasingColor, MapCSSDeclaration::LabelProperty },
+    { "casing-dashes", MapCSSDeclaration::CasingDashes, MapCSSDeclaration::NoFlag },
+    { "casing-linecap", MapCSSDeclaration::CasingLineCap, MapCSSDeclaration::NoFlag },
+    { "casing-linejoin", MapCSSDeclaration::CasingLineJoin, MapCSSDeclaration::NoFlag },
+    { "casing-opacity", MapCSSDeclaration::CasingOpacity, MapCSSDeclaration::NoFlag },
+    { "casing-width", MapCSSDeclaration::CasingWidth, MapCSSDeclaration::LineProperty },
     { "color", MapCSSDeclaration::Color, MapCSSDeclaration::LineProperty },
-    { "dashes", MapCSSDeclaration::Dashes, MapCSSDeclaration::LineProperty },
+    { "dashes", MapCSSDeclaration::Dashes, MapCSSDeclaration::NoFlag },
     { "fill-color", MapCSSDeclaration::FillColor, MapCSSDeclaration::AreaProperty | MapCSSDeclaration::CanvasProperty }, // TODO this also applies to lines
+    { "fill-image", MapCSSDeclaration::FillImage, MapCSSDeclaration::AreaProperty | MapCSSDeclaration::CanvasProperty },
     { "fill-opacity", MapCSSDeclaration::FillOpacity, MapCSSDeclaration::AreaProperty },
+    { "font-family", MapCSSDeclaration::FontFamily, MapCSSDeclaration::NoFlag },
+    { "font-size", MapCSSDeclaration::FontSize, MapCSSDeclaration::NoFlag },
+    { "font-style", MapCSSDeclaration::FontStyle, MapCSSDeclaration::NoFlag },
+    { "font-variant", MapCSSDeclaration::FontVariant, MapCSSDeclaration::NoFlag },
+    { "font-weight", MapCSSDeclaration::FontWeight, MapCSSDeclaration::NoFlag },
+    { "icon-height", MapCSSDeclaration::IconWidth, MapCSSDeclaration::NoFlag },
+    { "icon-image", MapCSSDeclaration::IconImage, MapCSSDeclaration::LabelProperty },
+    { "icon-opacity", MapCSSDeclaration::IconOpacity, MapCSSDeclaration::NoFlag },
+    { "icon-width", MapCSSDeclaration::IconWidth, MapCSSDeclaration::NoFlag },
+    { "image", MapCSSDeclaration::Image, MapCSSDeclaration::LineProperty },
+    { "linecap", MapCSSDeclaration::LineCap, MapCSSDeclaration::NoFlag },
+    { "linejoin", MapCSSDeclaration::LineJoin, MapCSSDeclaration::NoFlag },
+    { "max-width", MapCSSDeclaration::MaxWidth, MapCSSDeclaration::NoFlag },
     { "opacity", MapCSSDeclaration::Opacity, MapCSSDeclaration::NoFlag },
+    { "shield-casing-color", MapCSSDeclaration::ShieldCasingColor, MapCSSDeclaration::LabelProperty },
+    { "shield-casing-width", MapCSSDeclaration::ShieldCasingWidth, MapCSSDeclaration::NoFlag },
+    { "shield-color", MapCSSDeclaration::ShieldColor, MapCSSDeclaration::LabelProperty },
+    { "shield-frame-color", MapCSSDeclaration::ShieldFrameColor, MapCSSDeclaration::LabelProperty },
+    { "shield-frame-width", MapCSSDeclaration::ShieldFrameWidth, MapCSSDeclaration::NoFlag },
+    { "shield-image", MapCSSDeclaration::ShieldImage, MapCSSDeclaration::LabelProperty },
+    { "shield-opacity", MapCSSDeclaration::ShieldOpacity, MapCSSDeclaration::NoFlag },
+    { "shield-shape", MapCSSDeclaration::ShieldShape, MapCSSDeclaration::NoFlag },
+    { "shield-text", MapCSSDeclaration::ShieldText, MapCSSDeclaration::LabelProperty },
     { "text", MapCSSDeclaration::Text, MapCSSDeclaration::LabelProperty },
     { "text-color", MapCSSDeclaration::TextColor, MapCSSDeclaration::CanvasProperty },
+    { "text-declaration", MapCSSDeclaration::TextDecoration, MapCSSDeclaration::NoFlag },
+    { "text-halo-color", MapCSSDeclaration::TextHaloColor, MapCSSDeclaration::NoFlag },
+    { "text-halo-radius", MapCSSDeclaration::TextHaloRadius, MapCSSDeclaration::NoFlag },
+    { "text-offset", MapCSSDeclaration::TextOffset, MapCSSDeclaration::NoFlag },
+    { "text-opacity", MapCSSDeclaration::TextOpacity, MapCSSDeclaration::NoFlag },
+    { "text-position", MapCSSDeclaration::TextPosition, MapCSSDeclaration::NoFlag },
+    { "text-transform", MapCSSDeclaration::TextTransform, MapCSSDeclaration::NoFlag },
     { "width", MapCSSDeclaration::Width, MapCSSDeclaration::LineProperty },
     { "z-index", MapCSSDeclaration::ZIndex, MapCSSDeclaration::NoFlag },
+};
+
+struct {
+    const char *name;
+    Qt::PenCapStyle capStyle;
+} static constexpr const capstyle_map[] = {
+    { "none", Qt::FlatCap },
+    { "round", Qt::RoundCap },
+    { "square", Qt::SquareCap },
+};
+
+struct {
+    const char *name;
+    Qt::PenJoinStyle joinStyle;
+} static constexpr const joinstyle_map[] = {
+    { "bevel", Qt::BevelJoin },
+    { "miter", Qt::MiterJoin },
+    { "round", Qt::RoundJoin },
 };
 
 MapCSSDeclaration::MapCSSDeclaration() = default;
@@ -127,6 +181,26 @@ void MapCSSDeclaration::setColorRgba(uint32_t argb)
 void MapCSSDeclaration::setDashesValue(const QVector<double> &dashes)
 {
     m_dashValue = dashes;
+}
+
+Qt::PenCapStyle MapCSSDeclaration::capStyle() const
+{
+    for (const auto &c : capstyle_map) {
+        if (std::strcmp(c.name, m_identValue.constData()) == 0) {
+            return c.capStyle;
+        }
+    }
+    return Qt::FlatCap;
+}
+
+Qt::PenJoinStyle MapCSSDeclaration::joinStyle() const
+{
+    for (const auto &j : joinstyle_map) {
+        if (std::strcmp(j.name, m_identValue.constData()) == 0) {
+            return j.joinStyle;
+        }
+    }
+    return Qt::RoundJoin;
 }
 
 void MapCSSDeclaration::write(QIODevice *out) const

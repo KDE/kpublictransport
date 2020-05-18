@@ -31,6 +31,11 @@ node[building:part][building:part=elevator]
 // line properties
 line {
     dashes: 3,5;
+    linecap: round;
+    linejoin: bevel;
+    casing-width: 1;
+    casing-color: #444444;
+    casing-dashes: 1,1;
 }
 
 // zoom ranges
