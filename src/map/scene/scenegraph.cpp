@@ -18,7 +18,7 @@
 #include "scenegraph.h"
 #include "scenegraphitem.h"
 
-#include <qalgorithms.h>
+#include <QDebug>
 #include <QGuiApplication>
 #include <QPalette>
 
@@ -48,4 +48,39 @@ void SceneGraph::zSort()
         }
         return lhs->layer < rhs->layer;
     });
+
+    recomputeLayerIndex();
+}
+
+void SceneGraph::clear()
+{
+    m_items.clear();
+    m_layerOffsets.clear();
+}
+
+void SceneGraph::setBackgroundColor(const QColor &bg)
+{
+    m_bgColor = bg;
+}
+
+void SceneGraph::recomputeLayerIndex()
+{
+    m_layerOffsets.clear();
+    if (m_items.empty()) {
+        return;
+    }
+
+    auto prevLayer = m_items.front()->layer;
+    auto prevIndex = 0;
+    for (auto it = m_items.begin(); it != m_items.end();) {
+        it = std::upper_bound(it, m_items.end(), prevLayer, [](auto lhs, const auto &rhs) {
+            return lhs < rhs->layer;
+        });
+        const auto nextIndex = std::distance(m_items.begin(), it);
+        m_layerOffsets.push_back(std::make_pair(prevIndex, nextIndex));
+        prevIndex = nextIndex;
+        if (it != m_items.end()) {
+            prevLayer = (*it)->layer;
+        }
+    }
 }

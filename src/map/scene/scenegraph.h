@@ -41,8 +41,17 @@ public:
 
     void addItem(SceneGraphItem *item);
     void zSort();
+    void clear();
 
+    /** Canvas background color. */
+    void setBackgroundColor(const QColor &bg);
+
+private:
+    void recomputeLayerIndex();
+
+    friend class PainterRenderer; // TODO
     std::vector<std::unique_ptr<SceneGraphItem>> m_items;
+    std::vector<std::pair<std::size_t, std::size_t>> m_layerOffsets;
     QColor m_bgColor;
 };
 

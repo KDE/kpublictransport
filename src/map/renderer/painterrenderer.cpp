@@ -42,15 +42,22 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
     beginRender();
     renderBackground(sg.m_bgColor);
 
-    for (const auto &item : sg.m_items) {
-        if (auto i = dynamic_cast<PolygonItem*>(item.get())) {
-            renderPolygon(i);
-        } else if (auto i = dynamic_cast<PolylineItem*>(item.get())) {
-            renderPolyline(i);
-        } else if (auto i = dynamic_cast<LabelItem*>(item.get())) {
-            renderLabel(i);
-        } else {
-            qCritical() << "Unsupported scene graph item!";
+    for (const auto &layerOffsets : sg.m_layerOffsets) {
+        const auto layerBegin = sg.m_items.begin() + layerOffsets.first;
+        const auto layerEnd = sg.m_items.begin() + layerOffsets.second;
+        //qDebug() << "rendering layer" << (*layerBegin)->layer;
+
+        for (auto it = layerBegin; it != layerEnd; ++it) {
+            const auto &item = (*it);
+            if (auto i = dynamic_cast<PolygonItem*>(item.get())) {
+                renderPolygon(i);
+            } else if (auto i = dynamic_cast<PolylineItem*>(item.get())) {
+                renderPolyline(i);
+            } else if (auto i = dynamic_cast<LabelItem*>(item.get())) {
+                renderLabel(i);
+            } else {
+                qCritical() << "Unsupported scene graph item!";
+            }
         }
     }
 

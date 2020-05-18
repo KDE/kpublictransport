@@ -67,16 +67,16 @@ static bool containsLevel(const QString &currentLevel, const QString &desiredLev
 
 void SceneController::updateScene(SceneGraph &sg) const
 {
-    sg.m_bgColor = QGuiApplication::palette().color(QPalette::Base);
+    sg.setBackgroundColor(QGuiApplication::palette().color(QPalette::Base));
 
-    sg.m_items.clear(); // TODO reuse what is still valid
+    sg.clear(); // TODO reuse what is still valid
 
     auto defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
     m_styleSheet->evaluateCanvas(m_styleResult);
     for (auto decl : m_styleResult.declarations()) {
         switch (decl->property()) {
             case MapCSSDeclaration::FillColor:
-                sg.m_bgColor = decl->colorValue();
+                sg.setBackgroundColor(decl->colorValue());
                 break;
             case MapCSSDeclaration::TextColor:
                 defaultTextColor = decl->colorValue();
