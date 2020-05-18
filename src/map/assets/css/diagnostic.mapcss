@@ -49,10 +49,9 @@ area[layer]
     fill-color: #20ff00ff;
 }
 
-line
-{
-    color: #00ff00;
-}
+line { color: #00ff00; }
+line[layer] { color: #008000; }
+
 line[railway]
 {
     color: #ffff00;

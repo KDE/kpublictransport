@@ -18,6 +18,8 @@
 #ifndef KOSMINDOORMAP_PAINTERRENDERER_H
 #define KOSMINDOORMAP_PAINTERRENDERER_H
 
+#include "../scene/scenegraphitem.h"
+
 #include <osm/datatypes.h>
 
 #include <QPainter>
@@ -46,8 +48,9 @@ public:
 
 private:
     void beginRender();
+    void beginPhase(SceneGraphItem::RenderPhase phase);
     void renderBackground(const QColor &bgColor);
-    void renderPolygon(PolygonItem *item);
+    void renderPolygon(PolygonItem *item, SceneGraphItem::RenderPhase phase);
     void renderPolyline(PolylineItem *item);
     void renderLabel(LabelItem *item);
     void endRender();

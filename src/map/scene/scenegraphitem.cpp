@@ -20,3 +20,18 @@
 using namespace KOSMIndoorMap;
 
 SceneGraphItem::~SceneGraphItem() = default;
+
+uint8_t PolylineItem::renderPhases() const
+{
+    return StrokePhase;
+}
+
+uint8_t PolygonItem::renderPhases() const
+{
+    return (pen.style() == Qt::NoPen ? NoPhase : StrokePhase) | (brush.style() == Qt::NoBrush ? NoPhase : FillPhase);
+}
+
+uint8_t LabelItem::renderPhases() const
+{
+    return LabelPhase;
+}

@@ -30,7 +30,6 @@ area[building],
 relation[type=multipolygon][man_made=bridge]
 {
     fill-color: #20eff0f1;
-    z-index: -20;
 }
 /** Generic building stuff */
 area[indoor],
@@ -64,7 +63,7 @@ area[indoor=wall]
     fill-color: #888786;
 }
 
-line [highway=steps] { color: #b08000; width: 1; z-index: 1; }
+line [highway=steps] { color: #b08000; width: 1; }
 line[highway=steps][conveying] { color: #006e28; width: 1; }
 
 /** Railway stuff */

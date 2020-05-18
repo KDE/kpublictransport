@@ -19,9 +19,9 @@
 #include "view.h"
 
 #include "../scene/scenegraph.h"
-#include "../scene/scenegraphitem.h"
 
 #include <QDebug>
+#include <QElapsedTimer>
 #include <QFontMetricsF>
 #include <QGuiApplication>
 #include <QPainter>
@@ -38,6 +38,9 @@ void PainterRenderer::setPaintDevice(QPaintDevice *device)
 
 void PainterRenderer::render(const SceneGraph &sg, View *view)
 {
+    QElapsedTimer frameTimer;
+    frameTimer.start();
+
     m_view = view;
     beginRender();
     renderBackground(sg.m_bgColor);
@@ -47,22 +50,31 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
         const auto layerEnd = sg.m_items.begin() + layerOffsets.second;
         //qDebug() << "rendering layer" << (*layerBegin)->layer;
 
-        for (auto it = layerBegin; it != layerEnd; ++it) {
-            const auto &item = (*it);
-            if (auto i = dynamic_cast<PolygonItem*>(item.get())) {
-                renderPolygon(i);
-            } else if (auto i = dynamic_cast<PolylineItem*>(item.get())) {
-                renderPolyline(i);
-            } else if (auto i = dynamic_cast<LabelItem*>(item.get())) {
-                renderLabel(i);
-            } else {
-                qCritical() << "Unsupported scene graph item!";
+        for (auto phase : {SceneGraphItem::FillPhase, SceneGraphItem::CasingPhase, SceneGraphItem::StrokePhase, SceneGraphItem::LabelPhase}) {
+            beginPhase(phase);
+            for (auto it = layerBegin; it != layerEnd; ++it) {
+                const auto &item = (*it);
+                if ((item->renderPhases() & phase) == 0) {
+                    continue;
+                }
+
+                if (auto i = dynamic_cast<PolygonItem*>(item.get())) {
+                    renderPolygon(i, phase); // TODO split in filling and line stroking!
+                } else if (auto i = dynamic_cast<PolylineItem*>(item.get())) {
+                    renderPolyline(i);
+                } else if (auto i = dynamic_cast<LabelItem*>(item.get())) {
+                    renderLabel(i);
+                } else {
+                    qCritical() << "Unsupported scene graph item!";
+                }
             }
         }
     }
 
     endRender();
     m_view = nullptr;
+
+    qDebug() << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.m_items.size() << "items on" << sg.m_layerOffsets.size() << "layers";
 }
 
 void PainterRenderer::beginRender()
@@ -70,6 +82,7 @@ void PainterRenderer::beginRender()
     m_painter.begin(m_device);
     m_painter.setRenderHint(QPainter::HighQualityAntialiasing);
     m_painter.setTransform(m_view->sceneToScreenTransform());
+    m_painter.setClipRect(m_view->viewport());
 }
 
 void PainterRenderer::renderBackground(const QColor &bgColor)
@@ -77,11 +90,30 @@ void PainterRenderer::renderBackground(const QColor &bgColor)
     m_painter.fillRect(0, 0, m_view->screenWidth(), m_view->screenHeight(), bgColor);
 }
 
-void PainterRenderer::renderPolygon(PolygonItem *item)
+void PainterRenderer::beginPhase(SceneGraphItem::RenderPhase phase)
 {
-    m_painter.setPen(item->pen);
-    m_painter.setBrush(item->brush);
-    m_painter.drawPolygon(item->polygon);
+    switch (phase) {
+        case SceneGraphItem::FillPhase:
+            m_painter.setPen(Qt::NoPen);
+            break;
+        case SceneGraphItem::CasingPhase:
+        case SceneGraphItem::StrokePhase:
+            m_painter.setBrush(Qt::NoBrush);
+            break;
+        default:
+            break;
+    }
+}
+
+void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItem::RenderPhase phase)
+{
+    if (phase == SceneGraphItem::FillPhase) {
+        m_painter.setBrush(item->brush);
+        m_painter.drawPolygon(item->polygon);
+    } else {
+        m_painter.setPen(item->pen);
+        m_painter.drawPolygon(item->polygon);
+    }
 }
 
 void PainterRenderer::renderPolyline(PolylineItem *item)

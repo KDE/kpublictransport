@@ -32,6 +32,17 @@ class SceneGraphItem
 public:
     virtual ~SceneGraphItem();
 
+    /** See MapCSS spec: "Within a layer, first all fills are rendered, then all casings, then all strokes, then all icons and labels." .*/
+    enum RenderPhase : uint8_t {
+        NoPhase = 0,
+        FillPhase = 1,
+        CasingPhase = 2,
+        StrokePhase = 4,
+        LabelPhase = 8,
+    };
+    /** Returns in which phase this item needs to be rendered (can be multiple). */
+    virtual uint8_t renderPhases() const = 0;
+
     // TODO we probably don't need the full 32bit for those
     int layer = 0;
     int z = 0;
@@ -42,6 +53,8 @@ public:
 class PolylineItem : public SceneGraphItem
 {
 public:
+    uint8_t renderPhases() const override;
+
     QPolygonF path;
     QPen pen;
 };
@@ -51,6 +64,8 @@ public:
 class PolygonItem : public SceneGraphItem
 {
 public:
+    uint8_t renderPhases() const override;
+
     QPolygonF polygon;
     QBrush brush = Qt::NoBrush;
     QPen pen = Qt::NoPen;
@@ -61,6 +76,8 @@ public:
 class LabelItem : public SceneGraphItem
 {
 public:
+    uint8_t renderPhases() const override;
+
     QPointF pos;
     QString text;
     QColor color;
