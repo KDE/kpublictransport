@@ -1,0 +1,4 @@
+/** test file included via import */
+area[railway=platform] {
+    color: #550022;
+}

@@ -1,0 +1,111 @@
+/*
+    Copyright (C) 2020 Volker Krause <vkrause@kde.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Library General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+    License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
+/** Dark theme stylesheet */
+@import url("breeze-common.mapcss");
+
+canvas {
+    fill-color: #232629;
+    text-color: #eff0f1;
+}
+
+/** Generic outdoor stuff */
+area[amenity=parking] { fill-color: #31363b; }
+area[building],
+relation[type=multipolygon][man_made=bridge]
+{
+    fill-color: #20bdc3c7;
+    z-index: -20;
+}
+
+/** Generic building stuff */
+area[indoor],
+relation[type=multipolygon][building],
+relation[type=multipolygon][building:part=yes]
+{
+    fill-color: #80bdc3c7;
+}
+
+area[indoor=corridor],
+area[stairwell],
+relation[type=multipolygon][indoor=corridor],
+area[tunnel]
+{
+    fill-color: #bdc3c7;
+}
+
+area[stairwell] { color: #7f8c8d; width: 0; }
+
+area[indoor=room],
+area[shop],
+relation[type=multipolygon][indoor=room]
+{
+    fill-color: #7f8c8d;
+    color: #000000;
+    width: 0; // 1px
+}
+
+area[indoor=wall]
+{
+    fill-color: #7f8c8d;
+}
+
+line[highway=steps] { color: #f67400; width: 1; z-index: 1; }
+line[highway=steps][conveying] { color: #27ae60; width: 1; }
+
+/** Railway stuff */
+area[railway=platform],
+area[public_transport=platform],
+relation[type=multipolygon][railway=platform]
+{
+    fill-color: #31363b;
+    color: #bdc3c7;
+    width: 0;
+}
+
+line[public_transport=platform]
+{
+    color: #31363b;
+    width: 1.5; // meter
+}
+
+/** Specific elements */
+area[room=toilets],
+relation[type=multipolygon][room=toilets]
+{
+    fill-color: #3daee9;
+}
+
+area[building:part=elevator]
+{
+    fill-color: #27ae60;
+    color: #7f8c8d;
+    width: 0;
+}
+
+area[shop=ticket]
+{
+    fill-color: #da4453;
+}
+
+/** Restricted access, disused, etc: keep this last. */
+area[indoor=room][access=private],
+area[shop=vacant]
+{
+    fill-color: #4d4d4d;
+}

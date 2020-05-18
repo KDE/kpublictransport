@@ -1,0 +1,43 @@
+@import url("included.mapcss");
+
+// union selector
+area[railway=platform],
+relation[type=multipolygon][railway=platform]
+{
+    color: #ff550022;
+    fill-color: #80f0e0d0;
+}
+
+// chained selector
+area[railway=platform] node[sign]
+{
+    unsupportedproperty: todo;
+    fill-color: #ff0000;
+    opacity: 0.5;
+}
+
+// condition with colon-separated keys
+node[building:part][building:part=elevator]
+{
+    opacity: 1;
+}
+
+// text properties
+* {
+    text: ref;
+    text-color: #ff00ff;
+}
+
+// line properties
+line {
+    dashes: 3,5;
+}
+
+// zoom ranges
+// TODO: some of this doesn't really work yet
+// node|z12-13 {}
+node|z10 {}
+node|z-10 {}
+node|z10- {}
+//node|z12-13[name] {}
+node|z14-[name] {}

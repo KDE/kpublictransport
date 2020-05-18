@@ -1,0 +1,101 @@
+/*
+    Copyright (C) 2020 Volker Krause <vkrause@kde.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Library General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+    License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/* common definitions between light and dark style */
+
+/** Various outdoor stuff. */
+area[water]
+{
+    fill-color: #103daee9;
+    z-index: -1000;
+}
+*[leisure=park],
+*[landuse=grass]
+{
+    fill-color: #1027ae60;
+    z-index: -999;
+}
+
+area|z17-[amenity=parking]
+{
+    text: "P";
+    text-color: #3daee9;
+}
+area|z17-[amenity=parking][access=private]
+{
+    text: "🚫";
+}
+*|z17-[amenity=bicycle_parking]
+{
+    text: "🚲";
+}
+
+/** Railway tracks */
+way[railway=rail],
+way[railway=light_rail],
+way[railway=subway],
+way[railway=tram]
+{
+    color: #31363b;
+    dashes: 2,2;
+    width: 1.5; // meter
+}
+
+/** Platforms */
+area|z17-[railway=platform],
+area|z17-[public_transport=platform],
+relation|z17-[type=multipolygon][railway=platform],
+way|z17-[public_transport=platform]
+{
+    text: name;
+}
+
+area|z17-[railway=platform][ref],
+area|z17-[public_transport=platform][ref],
+relation|z17-[type=multipolygon][railway=platform][ref],
+way|z17-[public_transport=platform][ref]
+{
+    text: ref;
+}
+
+area|z17-[railway=platform][local_ref],
+area|z17-[public_transport=platform][local_ref],
+relation|z17-[type=multipolygon][railway=platform][local_ref],
+way|z17-[public_transport=platform][local_ref]
+{
+    text: local_ref;
+}
+
+/** Shops/etc */
+*|z19- [shop]
+{
+    text: name;
+}
+
+/** icons */
+node|z17-[vending=public_transport_tickets] { text: "🎫"; }
+
+area|z18-[room=toilets],
+relation|z16-[type=multipolygon][room=toilets],
+node|z18-[amenity=toilets]
+{
+    text: "🚻";
+}
+
+node|z18-[amenity=atm] { text: "🏧"; }
+
+*|z18-[amenity=pharmacy] { text: "⚕"; }

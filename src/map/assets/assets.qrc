@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/org.kde.kosmindoormap/assets/">
+        <file>css/breeze-common.mapcss</file>
+        <file>css/breeze-dark.mapcss</file>
+        <file>css/breeze-light.mapcss</file>
+        <file>css/diagnostic.mapcss</file>
+    </qresource>
+</RCC>

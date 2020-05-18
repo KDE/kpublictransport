@@ -32,6 +32,11 @@ find_package(ZLIB REQUIRED)
 find_package(OsmTools)
 set_package_properties(OsmTools PROPERTIES TYPE OPTIONAL PURPOSE "Needed only for regenereating line metadata tables (ie. you most likely don't need this)")
 
+find_package(FLEX)
+set_package_properties(FLEX PROPERTIES TYPE RECOMMENDED PURPOSE "MapCSS parser for indoor map rendering.")
+find_package(BISON)
+set_package_properties(BISON PROPERTIES TYPE RECOMMENDED PURPOSE "MapCSS parser for indoor map rendering.")
+
 if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
    add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050d00)
    add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054400)

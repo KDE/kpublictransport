@@ -1,0 +1,157 @@
+/*
+    Copyright (C) 2020 Volker Krause <vkrause@kde.org>
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Library General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+    This program is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
+    License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#include "mapcssdeclaration.h"
+
+#include <QDebug>
+#include <QIODevice>
+
+#include <cstring>
+
+using namespace KOSMIndoorMap;
+
+// keep this sorted by property name!
+struct {
+    const char* name;
+    MapCSSDeclaration::Property property;
+    int flags;
+} static constexpr const property_types[] = {
+    // only those properties have their corresonding flag set that actually trigger emission of a scene graph item
+    // e.g. for a label we either need a text or an icon, the visual properties for those on their own would be a no-op
+    { "color", MapCSSDeclaration::Color, MapCSSDeclaration::LineProperty },
+    { "dashes", MapCSSDeclaration::Dashes, MapCSSDeclaration::LineProperty },
+    { "fill-color", MapCSSDeclaration::FillColor, MapCSSDeclaration::AreaProperty | MapCSSDeclaration::CanvasProperty }, // TODO this also applies to lines
+    { "fill-opacity", MapCSSDeclaration::FillOpacity, MapCSSDeclaration::AreaProperty },
+    { "opacity", MapCSSDeclaration::Opacity, MapCSSDeclaration::NoFlag },
+    { "text", MapCSSDeclaration::Text, MapCSSDeclaration::LabelProperty },
+    { "text-color", MapCSSDeclaration::TextColor, MapCSSDeclaration::CanvasProperty },
+    { "width", MapCSSDeclaration::Width, MapCSSDeclaration::LineProperty },
+    { "z-index", MapCSSDeclaration::ZIndex, MapCSSDeclaration::NoFlag },
+};
+
+MapCSSDeclaration::MapCSSDeclaration() = default;
+MapCSSDeclaration::~MapCSSDeclaration() = default;
+
+MapCSSDeclaration::Property MapCSSDeclaration::property() const
+{
+    return m_property;
+}
+
+int MapCSSDeclaration::propertyFlags() const
+{
+    return m_flags;
+}
+
+int MapCSSDeclaration::intValue() const
+{
+    return m_doubleValue;
+}
+
+double MapCSSDeclaration::doubleValue() const
+{
+    return m_doubleValue;
+}
+
+QString MapCSSDeclaration::stringValue() const
+{
+    return m_stringValue;
+}
+
+QColor MapCSSDeclaration::colorValue() const
+{
+    return m_colorValue;
+}
+
+QByteArray MapCSSDeclaration::keyValue() const
+{
+    return m_identValue;
+}
+
+QVector<double> MapCSSDeclaration::dashesValue() const
+{
+    return m_dashValue;
+}
+
+void MapCSSDeclaration::setDoubleValue(double val)
+{
+    m_doubleValue = val;
+}
+
+void MapCSSDeclaration::setPropertyName(const char *name, std::size_t len)
+{
+    const auto it = std::lower_bound(std::begin(property_types), std::end(property_types), name, [len](const auto &lhs, const char *rhs) {
+        const auto lhsLen = std::strlen(lhs.name);
+        const auto cmp = std::strncmp(lhs.name, rhs, std::min(lhsLen, len));
+        return cmp < 0 || (cmp == 0 && lhsLen < len);
+    });
+    if (it == std::end(property_types) || std::strncmp((*it).name, name, std::max(len, std::strlen((*it).name))) != 0) {
+        qWarning() << "Unknown property declaration:" << QByteArray::fromRawData(name, len);
+        m_property = Unknown;
+        return;
+    }
+    m_property = (*it).property;
+    m_flags = (*it).flags;
+}
+
+void MapCSSDeclaration::setIdentifierValue(const char *val, int len)
+{
+    m_identValue = QByteArray(val, len);
+}
+
+void MapCSSDeclaration::setStringValue(char *str)
+{
+    m_stringValue = QString::fromUtf8(str);
+    free(str);
+}
+
+void MapCSSDeclaration::setColorRgba(uint32_t argb)
+{
+    m_colorValue = QColor::fromRgba(argb);
+    //qDebug() << m_colorValue << argb;
+}
+
+void MapCSSDeclaration::setDashesValue(const QVector<double> &dashes)
+{
+    m_dashValue = dashes;
+}
+
+void MapCSSDeclaration::write(QIODevice *out) const
+{
+    out->write("    ");
+
+    for (const auto &p : property_types) {
+        if (p.property == m_property) {
+            out->write(p.name);
+            break;
+        }
+    }
+
+    out->write(": ");
+    if (!std::isnan(m_doubleValue)) {
+        out->write(QByteArray::number(m_doubleValue));
+    } else if (m_colorValue.isValid()) {
+        out->write(m_colorValue.name(QColor::HexArgb).toUtf8());
+    } else if (!m_dashValue.isEmpty()) {
+        for (const auto &d : m_dashValue) {
+            out->write(QByteArray::number(d));
+            out->write(", ");
+        }
+    } else {
+        out->write(m_identValue);
+    }
+    out->write(";\n");
+}
