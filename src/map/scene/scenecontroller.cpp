@@ -28,6 +28,7 @@
 #include <osm/element.h>
 #include <osm/datatypes.h>
 
+#include <QDebug>
 #include <QGuiApplication>
 #include <QPalette>
 
@@ -111,7 +112,7 @@ void SceneController::updateScene(SceneGraph &sg) const
                         break;
                 }
             }
-            sg.addItem(item);
+            addItem(sg, e, item);
         } else if (m_styleResult.hasLineProperties()) {
             auto item = new PolylineItem;
             item->path = createPolygon(e);
@@ -124,7 +125,7 @@ void SceneController::updateScene(SceneGraph &sg) const
                 applyPenStyle(decl, item->pen);
             }
 
-            sg.addItem(item);
+            addItem(sg, e, item);
         }
 
         if (m_styleResult.hasLabelProperties()) {
@@ -154,7 +155,7 @@ void SceneController::updateScene(SceneGraph &sg) const
                             break;
                     }
                 }
-                sg.addItem(item);
+                addItem(sg, e, item);
             }
         }
     });
@@ -234,4 +235,21 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) co
         default:
             break;
     }
+}
+
+void SceneController::addItem(SceneGraph &sg, OSM::Element e, SceneGraphItem *item) const
+{
+    // get the OSM layer, if set
+    const auto layerStr = e.tagValue(QLatin1String("layer"));
+    if (!layerStr.isEmpty()) {
+        bool success = false;
+        const auto layer = layerStr.toInt(&success);
+        if (success) {
+            item->layer = layer;
+        } else {
+            qWarning() << "Invalid layer:" << e.url() << layerStr;
+        }
+    }
+
+    sg.addItem(item);
 }

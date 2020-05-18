@@ -32,6 +32,8 @@ class SceneGraphItem
 public:
     virtual ~SceneGraphItem();
 
+    // TODO we probably don't need the full 32bit for those
+    int layer = 0;
     int z = 0;
 };
 

@@ -44,6 +44,11 @@ relation[type=multipolygon]
     width: 0;
 }
 
+area[layer]
+{
+    fill-color: #20ff00ff;
+}
+
 line
 {
     color: #00ff00;

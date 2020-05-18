@@ -63,6 +63,8 @@ private:
     void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
     void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
 
+    void addItem(SceneGraph &sg, OSM::Element e, SceneGraphItem *item) const;
+
     const OSM::DataSet *m_dataSet = nullptr;
     const MapCSSStyle *m_styleSheet = nullptr;
     const View *m_view = nullptr;

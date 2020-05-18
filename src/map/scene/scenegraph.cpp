@@ -36,5 +36,16 @@ void SceneGraph::addItem(SceneGraphItem *item)
 
 void SceneGraph::zSort()
 {
-    std::stable_sort(m_items.begin(), m_items.end(), [](const auto &lhs, const auto &rhs) { return lhs->z < rhs->z; });
+    /* The MapCSS spec says we have to render in the following order:
+     * - Objects with lower layer should always be rendered first.
+     * - Within a layer, first all fills are rendered, then all casings, then all strokes, then all icons and labels.
+     * - Within each of those categories, objects are ordered according to z-index.
+     * - If all of the above are equal, the order is undefined.
+     */
+    std::stable_sort(m_items.begin(), m_items.end(), [](const auto &lhs, const auto &rhs) {
+        if (lhs->layer == rhs->layer) {
+            return lhs->z < rhs->z;
+        }
+        return lhs->layer < rhs->layer;
+    });
 }
