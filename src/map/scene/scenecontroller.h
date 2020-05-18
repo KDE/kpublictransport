@@ -36,6 +36,7 @@ namespace KOSMIndoorMap {
 
 class MapCSSStyle;
 class SceneGraph;
+class SceneGraphItem;
 class View;
 
 /** Creates/updates the scene graph based on a given style sheet and view. */
@@ -58,6 +59,9 @@ private:
     QPolygonF createMultiPolygon(const OSM::Relation* rel) const;
     QPolygonF createPolygon(const std::vector<const OSM::Node*> &path) const;
     QPolygonF createPolygon(OSM::Element e) const;
+
+    void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
+    void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
 
     const OSM::DataSet *m_dataSet = nullptr;
     const MapCSSStyle *m_styleSheet = nullptr;

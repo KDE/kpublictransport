@@ -100,24 +100,12 @@ void SceneController::updateScene(SceneGraph &sg) const
             auto item = new PolygonItem;
             item->polygon = createPolygon(e);
             for (auto decl : m_styleResult.declarations()) {
+                applyGenericStyle(decl, item);
+                applyPenStyle(decl, item->pen);
                 switch (decl->property()) {
-                    case MapCSSDeclaration::ZIndex:
-                        item->z = decl->intValue();
-                        break;
                     case MapCSSDeclaration::FillColor:
                         item->brush.setColor(decl->colorValue());
                         item->brush.setStyle(Qt::SolidPattern);
-                        break;
-                    case MapCSSDeclaration::Color:
-                        item->pen.setColor(decl->colorValue());
-                        item->pen.setWidth(0); // TODO
-                        item->pen.setStyle(Qt::SolidLine);
-                        break;
-                    case MapCSSDeclaration::Width:
-                        item->pen.setWidthF(decl->doubleValue());
-                        break;
-                    case MapCSSDeclaration::Dashes:
-                        item->pen.setDashPattern(decl->dashesValue());
                         break;
                     default:
                         break;
@@ -132,27 +120,8 @@ void SceneController::updateScene(SceneGraph &sg) const
             item->pen.setJoinStyle(Qt::RoundJoin);
 
             for (auto decl : m_styleResult.declarations()) {
-                switch (decl->property()) {
-                    case MapCSSDeclaration::ZIndex:
-                        item->z = decl->intValue();
-                        break;
-                    case MapCSSDeclaration::Color:
-                        item->pen.setColor(decl->colorValue());
-                        break;
-                    case MapCSSDeclaration::Width:
-                        item->pen.setWidthF(decl->doubleValue());
-                        break;
-                    case MapCSSDeclaration::Dashes:
-                        item->pen.setDashPattern(decl->dashesValue());
-                        break;
-                    case MapCSSDeclaration::LineCap:
-                        item->pen.setCapStyle(decl->capStyle());
-                        break;
-                    case MapCSSDeclaration::LineJoin:
-                        item->pen.setJoinStyle(decl->joinStyle());
-                    default:
-                        break;
-                }
+                applyGenericStyle(decl, item);
+                applyPenStyle(decl, item->pen);
             }
 
             sg.addItem(item);
@@ -176,10 +145,8 @@ void SceneController::updateScene(SceneGraph &sg) const
                 item->color = defaultTextColor;
 
                 for (auto decl : m_styleResult.declarations()) {
+                    applyGenericStyle(decl, item);
                     switch (decl->property()) {
-                        case MapCSSDeclaration::ZIndex:
-                            item->z = decl->intValue();
-                            break;
                         case MapCSSDeclaration::TextColor:
                             item->color = decl->colorValue();
                             break;
@@ -235,4 +202,36 @@ QPolygonF SceneController::createPolygon(const std::vector<const OSM::Node*> &pa
         poly.push_back(m_view->mapGeoToScene(node->coordinate));
     }
     return poly;
+}
+
+void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const
+{
+    if (decl->property() == MapCSSDeclaration::ZIndex) {
+        item->z = decl->intValue();
+    }
+}
+
+void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
+{
+    switch (decl->property()) {
+        case MapCSSDeclaration::Color:
+            pen.setColor(decl->colorValue());
+            if (pen.style() == Qt::NoPen) {
+                pen.setStyle(Qt::SolidLine);
+            }
+            break;
+        case MapCSSDeclaration::Width:
+            pen.setWidthF(decl->doubleValue());
+            break;
+        case MapCSSDeclaration::Dashes:
+            pen.setDashPattern(decl->dashesValue());
+            break;
+        case MapCSSDeclaration::LineCap:
+            pen.setCapStyle(decl->capStyle());
+            break;
+        case MapCSSDeclaration::LineJoin:
+            pen.setJoinStyle(decl->joinStyle());
+        default:
+            break;
+    }
 }
