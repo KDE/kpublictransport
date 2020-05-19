@@ -46,3 +46,12 @@ node|z-10 {}
 node|z10- {}
 //node|z12-13[name] {}
 node|z14-[name] {}
+
+// font properties
+* {
+    font-family: Arial;
+    font-size: 16;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+}

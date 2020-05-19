@@ -34,6 +34,7 @@ area|z17-[amenity=parking]
 {
     text: "P";
     text-color: #3daee9;
+    font-weight: bold;
 }
 area|z17-[amenity=parking][access=private]
 {

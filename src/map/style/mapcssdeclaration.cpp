@@ -68,7 +68,7 @@ struct {
     { "shield-text", MapCSSDeclaration::ShieldText, MapCSSDeclaration::LabelProperty },
     { "text", MapCSSDeclaration::Text, MapCSSDeclaration::LabelProperty },
     { "text-color", MapCSSDeclaration::TextColor, MapCSSDeclaration::CanvasProperty },
-    { "text-declaration", MapCSSDeclaration::TextDecoration, MapCSSDeclaration::NoFlag },
+    { "text-decoration", MapCSSDeclaration::TextDecoration, MapCSSDeclaration::NoFlag },
     { "text-halo-color", MapCSSDeclaration::TextHaloColor, MapCSSDeclaration::NoFlag },
     { "text-halo-radius", MapCSSDeclaration::TextHaloRadius, MapCSSDeclaration::NoFlag },
     { "text-offset", MapCSSDeclaration::TextOffset, MapCSSDeclaration::NoFlag },
@@ -95,6 +95,18 @@ struct {
     { "bevel", Qt::BevelJoin },
     { "miter", Qt::MiterJoin },
     { "round", Qt::RoundJoin },
+};
+
+struct {
+    const char *name;
+    QFont::Capitalization capitalizationStyle;
+} static constexpr const capitalizationstyle_map[] = {
+    { "capitalize", QFont::Capitalize },
+    { "lowercase", QFont::AllLowercase },
+    { "none", QFont::MixedCase },
+    { "normal", QFont::MixedCase },
+    { "small-caps", QFont::SmallCaps },
+    { "uppercase", QFont::AllUppercase },
 };
 
 MapCSSDeclaration::MapCSSDeclaration() = default;
@@ -201,6 +213,31 @@ Qt::PenJoinStyle MapCSSDeclaration::joinStyle() const
         }
     }
     return Qt::RoundJoin;
+}
+
+QFont::Capitalization MapCSSDeclaration::capitalizationStyle() const
+{
+    for (const auto &c : capitalizationstyle_map) {
+        if (std::strcmp(c.name, m_identValue.constData()) == 0) {
+            return c.capitalizationStyle;
+        }
+    }
+    return QFont::MixedCase;
+}
+
+bool MapCSSDeclaration::isBoldStyle() const
+{
+    return m_identValue == "bold";
+}
+
+bool MapCSSDeclaration::isItalicStyle() const
+{
+    return m_identValue == "italic";
+}
+
+bool MapCSSDeclaration::isUnderlineStyle() const
+{
+    return m_identValue == "underline";
 }
 
 void MapCSSDeclaration::write(QIODevice *out) const

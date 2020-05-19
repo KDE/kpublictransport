@@ -20,6 +20,7 @@
 
 #include <QByteArray>
 #include <QColor>
+#include <QFont>
 #include <QPen>
 
 #include <cmath>
@@ -132,6 +133,10 @@ public:
 
     Qt::PenCapStyle capStyle() const;
     Qt::PenJoinStyle joinStyle() const;
+    QFont::Capitalization capitalizationStyle() const;
+    bool isBoldStyle() const;
+    bool isItalicStyle() const;
+    bool isUnderlineStyle() const;
 
     void write(QIODevice *out) const;
 

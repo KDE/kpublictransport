@@ -150,6 +150,7 @@ void SceneController::updateScene(SceneGraph &sg) const
 
                 for (auto decl : m_styleResult.declarations()) {
                     applyGenericStyle(decl, item);
+                    applyFontStyle(decl, item->font);
                     switch (decl->property()) {
                         case MapCSSDeclaration::TextColor:
                             item->color = decl->colorValue();
@@ -235,6 +236,35 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) co
             break;
         case MapCSSDeclaration::LineJoin:
             pen.setJoinStyle(decl->joinStyle());
+        default:
+            break;
+    }
+}
+
+void SceneController::applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const
+{
+    switch (decl->property()) {
+        case MapCSSDeclaration::FontFamily:
+            font.setFamily(decl->stringValue());
+            break;
+        case MapCSSDeclaration::FontSize:
+            font.setPointSizeF(decl->doubleValue()); // TODO unit support
+            break;
+        case MapCSSDeclaration::FontWeight:
+            font.setBold(decl->isBoldStyle());
+            break;
+        case MapCSSDeclaration::FontStyle:
+            font.setItalic(decl->isItalicStyle());
+            break;
+        case MapCSSDeclaration::FontVariant:
+            font.setCapitalization(decl->capitalizationStyle());
+            break;
+        case MapCSSDeclaration::TextDecoration:
+            font.setUnderline(decl->isUnderlineStyle());
+            break;
+        case MapCSSDeclaration::TextTransform:
+            font.setCapitalization(decl->capitalizationStyle());
+            break;
         default:
             break;
     }

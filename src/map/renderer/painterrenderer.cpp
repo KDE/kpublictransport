@@ -145,7 +145,7 @@ void PainterRenderer::renderPolyline(PolylineItem *item)
     m_painter.drawPolyline(item->path);
 }
 
-void PainterRenderer::renderLabel(KOSMIndoorMap::LabelItem *item)
+void PainterRenderer::renderLabel(LabelItem *item)
 {
     m_painter.setPen(item->color);
     m_painter.setFont(item->font);
@@ -154,7 +154,6 @@ void PainterRenderer::renderLabel(KOSMIndoorMap::LabelItem *item)
         QFontMetricsF fm(item->font);
         item->bbox = fm.boundingRect(item->text);
         item->bbox.moveCenter(item->pos);
-        item->bbox.adjust(-2, 0, 2, 0); // TODO why do we need this to have the full text visible??
         item->hasFineBbox = true;
     }
 
