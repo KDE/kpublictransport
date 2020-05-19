@@ -72,6 +72,8 @@ void SceneController::updateScene(SceneGraph &sg) const
     sg.clear(); // TODO reuse what is still valid
 
     auto defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
+    auto defaultFont = QGuiApplication::font();
+
     m_styleSheet->evaluateCanvas(m_styleResult);
     for (auto decl : m_styleResult.declarations()) {
         switch (decl->property()) {
@@ -86,7 +88,7 @@ void SceneController::updateScene(SceneGraph &sg) const
         }
     }
 
-    OSM::for_each(*m_dataSet, [this, &sg, defaultTextColor](auto e) {
+    OSM::for_each(*m_dataSet, [this, &sg, defaultTextColor, defaultFont](auto e) {
         const auto l = e.tagValue("level");
         if (!containsLevel(l, m_view->level())) {
             return;
@@ -142,6 +144,7 @@ void SceneController::updateScene(SceneGraph &sg) const
             if (!text.isEmpty()) {
                 auto item = new LabelItem;
                 item->text = text;
+                item->font = defaultFont;
                 item->pos = m_view->mapGeoToScene(e.center()); // TODO center() is too simple for concave polygons
                 item->color = defaultTextColor;
 

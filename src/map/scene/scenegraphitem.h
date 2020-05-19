@@ -20,6 +20,7 @@
 
 #include <QBrush>
 #include <QColor>
+#include <QFont>
 #include <QPen>
 #include <QPolygonF>
 #include <QString>
@@ -43,6 +44,16 @@ public:
     /** Returns in which phase this item needs to be rendered (can be multiple). */
     virtual uint8_t renderPhases() const = 0;
 
+    /** Bounding box of this item in scene coordinates.
+     *  Performance trumps precision here, so estimating this slightly larger rather than computing it expensively makes sense.
+     */
+    virtual QRectF boundingRect() const = 0;
+
+    /** Is this item drawn in scene coordinates (as oposed to HUD coordinates)? */
+    bool inSceneSpace() const;
+    /** Is this item drawn in HUD coordinates (as oposed to scene coordinates)? */
+    bool inHUDSpace() const;
+
     // TODO we probably don't need the full 32bit for those
     int layer = 0;
     int z = 0;
@@ -54,6 +65,7 @@ class PolylineItem : public SceneGraphItem
 {
 public:
     uint8_t renderPhases() const override;
+    QRectF boundingRect() const override;
 
     QPolygonF path;
     QPen pen;
@@ -65,6 +77,7 @@ class PolygonItem : public SceneGraphItem
 {
 public:
     uint8_t renderPhases() const override;
+    QRectF boundingRect() const override;
 
     QPolygonF polygon;
     QBrush brush = Qt::NoBrush;
@@ -77,10 +90,14 @@ class LabelItem : public SceneGraphItem
 {
 public:
     uint8_t renderPhases() const override;
+    QRectF boundingRect() const override;
 
     QPointF pos;
     QString text;
     QColor color;
+    QFont font;
+    mutable QRectF bbox;
+    bool hasFineBbox = false;
 };
 
 

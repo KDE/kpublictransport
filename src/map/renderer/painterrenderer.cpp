@@ -50,19 +50,35 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
         const auto layerEnd = sg.m_items.begin() + layerOffsets.second;
         //qDebug() << "rendering layer" << (*layerBegin)->layer;
 
+        // select elements currently in view
+        m_renderBatch.clear();
+        m_renderBatch.reserve(layerOffsets.second - layerOffsets.first);
+        const QRectF screenRect(QPointF(0, 0), QSizeF(m_view->screenWidth(), m_view->screenHeight()));
+        for (auto it = layerBegin; it != layerEnd; ++it) {
+            if ((*it)->inSceneSpace() && m_view->viewport().intersects((*it)->boundingRect())) {
+                m_renderBatch.push_back((*it).get());
+            }
+            if ((*it)->inHUDSpace()) {
+                auto bbox = (*it)->boundingRect();
+                bbox.moveCenter(m_view->sceneToScreen(bbox.center()));
+                if (screenRect.intersects(bbox)) {
+                    m_renderBatch.push_back((*it).get());
+                }
+            }
+        }
+
         for (auto phase : {SceneGraphItem::FillPhase, SceneGraphItem::CasingPhase, SceneGraphItem::StrokePhase, SceneGraphItem::LabelPhase}) {
             beginPhase(phase);
-            for (auto it = layerBegin; it != layerEnd; ++it) {
-                const auto &item = (*it);
+            for (const auto item : m_renderBatch) {
                 if ((item->renderPhases() & phase) == 0) {
                     continue;
                 }
 
-                if (auto i = dynamic_cast<PolygonItem*>(item.get())) {
-                    renderPolygon(i, phase); // TODO split in filling and line stroking!
-                } else if (auto i = dynamic_cast<PolylineItem*>(item.get())) {
+                if (auto i = dynamic_cast<PolygonItem*>(item)) {
+                    renderPolygon(i, phase);
+                } else if (auto i = dynamic_cast<PolylineItem*>(item)) {
                     renderPolyline(i);
-                } else if (auto i = dynamic_cast<LabelItem*>(item.get())) {
+                } else if (auto i = dynamic_cast<LabelItem*>(item)) {
                     renderLabel(i);
                 } else {
                     qCritical() << "Unsupported scene graph item!";
@@ -81,8 +97,6 @@ void PainterRenderer::beginRender()
 {
     m_painter.begin(m_device);
     m_painter.setRenderHint(QPainter::HighQualityAntialiasing);
-    m_painter.setTransform(m_view->sceneToScreenTransform());
-    m_painter.setClipRect(m_view->viewport());
 }
 
 void PainterRenderer::renderBackground(const QColor &bgColor)
@@ -93,14 +107,21 @@ void PainterRenderer::renderBackground(const QColor &bgColor)
 void PainterRenderer::beginPhase(SceneGraphItem::RenderPhase phase)
 {
     switch (phase) {
+        case SceneGraphItem::NoPhase:
+            Q_UNREACHABLE();
         case SceneGraphItem::FillPhase:
             m_painter.setPen(Qt::NoPen);
+            m_painter.setTransform(m_view->sceneToScreenTransform());
+            m_painter.setClipRect(m_view->viewport());
             break;
         case SceneGraphItem::CasingPhase:
         case SceneGraphItem::StrokePhase:
             m_painter.setBrush(Qt::NoBrush);
+            m_painter.setTransform(m_view->sceneToScreenTransform());
+            m_painter.setClipRect(m_view->viewport());
             break;
-        default:
+        case SceneGraphItem::LabelPhase:
+            m_painter.setTransform({});
             break;
     }
 }
@@ -126,16 +147,20 @@ void PainterRenderer::renderPolyline(PolylineItem *item)
 
 void PainterRenderer::renderLabel(KOSMIndoorMap::LabelItem *item)
 {
-    m_painter.save();
-    m_painter.setTransform({});
     m_painter.setPen(item->color);
+    m_painter.setFont(item->font);
 
-    QFontMetricsF fm(QGuiApplication::font());
-    auto bbox = fm.boundingRect(item->text);
-    bbox.moveCenter(m_view->sceneToScreen(item->pos));
-    bbox.adjust(-2, 0, 2, 0); // TODO why do we need this to have the full text visible??
-    m_painter.drawText(bbox, item->text);
-    m_painter.restore();
+    if (!item->hasFineBbox) {
+        QFontMetricsF fm(item->font);
+        item->bbox = fm.boundingRect(item->text);
+        item->bbox.moveCenter(item->pos);
+        item->bbox.adjust(-2, 0, 2, 0); // TODO why do we need this to have the full text visible??
+        item->hasFineBbox = true;
+    }
+
+    auto box = item->bbox;
+    box.moveCenter(m_view->sceneToScreen(item->pos));
+    m_painter.drawText(box.bottomLeft(), item->text);
 }
 
 void PainterRenderer::endRender()

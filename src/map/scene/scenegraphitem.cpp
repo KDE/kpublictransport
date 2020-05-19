@@ -17,21 +17,59 @@
 
 #include "scenegraphitem.h"
 
+#include <QDebug>
+#include <QFontMetrics>
+
 using namespace KOSMIndoorMap;
 
 SceneGraphItem::~SceneGraphItem() = default;
+
+bool SceneGraphItem::inSceneSpace() const
+{
+    return renderPhases() & (FillPhase | StrokePhase | CasingPhase);
+}
+
+bool SceneGraphItem::inHUDSpace() const
+{
+    return renderPhases() & LabelPhase;
+}
+
 
 uint8_t PolylineItem::renderPhases() const
 {
     return StrokePhase;
 }
 
+QRectF PolylineItem::boundingRect() const
+{
+    return path.boundingRect(); // TODO do we need to cache this?
+}
+
+
 uint8_t PolygonItem::renderPhases() const
 {
     return (pen.style() == Qt::NoPen ? NoPhase : StrokePhase) | (brush.style() == Qt::NoBrush ? NoPhase : FillPhase);
 }
 
+QRectF PolygonItem::boundingRect() const
+{
+    return polygon.boundingRect(); // TODO do we need to cache this?
+}
+
+
 uint8_t LabelItem::renderPhases() const
 {
     return LabelPhase;
+}
+
+QRectF LabelItem::boundingRect() const
+{
+    if (bbox.isValid()) {
+        return bbox;
+    }
+
+    QFontMetricsF fm(font);
+    bbox = QRectF(QPointF(0, 0), QPointF(fm.maxWidth() * text.size(), fm.lineSpacing() * text.size()));
+    bbox.moveCenter(pos);
+    return bbox;
 }

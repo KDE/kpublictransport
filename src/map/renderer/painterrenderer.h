@@ -58,6 +58,8 @@ private:
     QPaintDevice *m_device = nullptr;
     QPainter m_painter;
     View *m_view = nullptr;
+
+    std::vector<SceneGraphItem*> m_renderBatch; // member rather than function-local to preserve allocations
 };
 
 }
