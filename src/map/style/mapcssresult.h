@@ -43,7 +43,7 @@ public:
     /** Returns the declaration for property @prop, or @c nullptr is this property isn't set. */
     const MapCSSDeclaration* declaration(MapCSSDeclaration::Property prop) const;
     /** The active declarations for the queried element. */
-    std::vector<const MapCSSDeclaration*> declarations() const;
+    const std::vector<const MapCSSDeclaration*>& declarations() const;
 
     /** @internal */
     void addDeclaration(const MapCSSDeclaration *decl);

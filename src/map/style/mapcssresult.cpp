@@ -56,7 +56,7 @@ const MapCSSDeclaration* MapCSSResult::declaration(MapCSSDeclaration::Property p
     return (*it);
 }
 
-std::vector<const MapCSSDeclaration*> MapCSSResult::declarations() const
+const std::vector<const MapCSSDeclaration*>& MapCSSResult::declarations() const
 {
     return m_declarations;
 }
