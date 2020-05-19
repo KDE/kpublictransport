@@ -96,7 +96,6 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
 void PainterRenderer::beginRender()
 {
     m_painter.begin(m_device);
-    m_painter.setRenderHint(QPainter::HighQualityAntialiasing);
 }
 
 void PainterRenderer::renderBackground(const QColor &bgColor)
@@ -113,15 +112,18 @@ void PainterRenderer::beginPhase(SceneGraphItem::RenderPhase phase)
             m_painter.setPen(Qt::NoPen);
             m_painter.setTransform(m_view->sceneToScreenTransform());
             m_painter.setClipRect(m_view->viewport());
+            m_painter.setRenderHint(QPainter::Antialiasing, false);
             break;
         case SceneGraphItem::CasingPhase:
         case SceneGraphItem::StrokePhase:
             m_painter.setBrush(Qt::NoBrush);
             m_painter.setTransform(m_view->sceneToScreenTransform());
             m_painter.setClipRect(m_view->viewport());
+            m_painter.setRenderHint(QPainter::Antialiasing, true);
             break;
         case SceneGraphItem::LabelPhase:
             m_painter.setTransform({});
+            m_painter.setRenderHint(QPainter::Antialiasing, true);
             break;
     }
 }
