@@ -33,6 +33,7 @@ static constexpr inline double degToRad(double deg)
 
 static constexpr const double SceneSize = 256.0;
 static constexpr const double LatitudeLimit = 85.05112879806592; // invtan(sinh(pi)) + radToDeg
+static constexpr const auto MaxZoomFactor = 21; // 2^MaxZoomFactor subdivisions of the scene space
 
 QPointF View::mapGeoToScene(OSM::Coordinate coord) const
 {
@@ -68,6 +69,7 @@ void View::setScreenSize(QSize size)
 
     m_viewport.setWidth(m_viewport.width() * dx);
     m_viewport.setHeight(m_viewport.height() * dy);
+    constrainViewToScene();
 }
 
 QString View::level() const
@@ -82,7 +84,7 @@ void View::setLevel(const QString &level)
 
 double View::zoomLevel() const
 {
-    const auto dx = (m_viewport.width()) / (screenWidth() / 256.0) / 360.0;
+    const auto dx = m_viewport.width() / (screenWidth() / 256.0) / 360.0;
     return - std::log2(dx);
 }
 
@@ -94,7 +96,7 @@ QRectF View::viewport() const
 void View::setViewport(const QRectF &viewport)
 {
     m_viewport = viewport;
-    // TODO clamp to bbox
+    constrainViewToScene();
 }
 
 void View::setSceneBoundingBox(OSM::BoundingBox bbox)
@@ -130,6 +132,7 @@ void View::panScreenSpace(QPoint offset)
     auto dx = offset.x() * (m_viewport.width() / screenWidth());
     auto dy = offset.y() * (m_viewport.height() / screenHeight());
     m_viewport.adjust(dx, dy, dx, dy);
+    constrainViewToScene();
 }
 
 QTransform View::sceneToScreenTransform() const
@@ -142,16 +145,54 @@ QTransform View::sceneToScreenTransform() const
 
 void View::zoomIn()
 {
-    auto dx = 0.25 * m_viewport.width();
-    auto dy = 0.25 * m_viewport.height();
+    const auto factor = std::min(2.0, ((m_viewport.width() / 2.0) / (screenWidth() / 256.0) / 360.0) * (2 << MaxZoomFactor));
+    if (factor <= 1) {
+        return;
+    }
+
+    auto dx = 0.25 * m_viewport.width() * (factor/2);
+    auto dy = 0.25 * m_viewport.height() * (factor/2);
     m_viewport.adjust(dx, dy, -dx, -dy);
+    constrainViewToScene();
     qDebug() << zoomLevel();
 }
 
 void View::zoomOut()
 {
+    if (m_bbox.width() <= m_viewport.width() && m_bbox.height() <= m_viewport.height()) {
+        return;
+    }
+
     auto dx = 0.5 * m_viewport.width();
     auto dy = 0.5 * m_viewport.height();
     m_viewport.adjust(-dx, -dy, dx, dy);
+    constrainViewToScene();
     qDebug() << zoomLevel();
+}
+
+void View::constrainViewToScene()
+{
+    // ensure we don't scale smaller than the bounding box
+    const auto s = std::min(m_viewport.width() / m_bbox.width(), m_viewport.height() / m_bbox.height());
+    if (s > 1.0) {
+        m_viewport.setWidth(m_viewport.width() / s);
+        m_viewport.setHeight(m_viewport.height() / s);
+    }
+
+    // ensure we don't pan outside of the bounding box
+    if (m_bbox.left() < m_viewport.left() && m_bbox.right() < m_viewport.right()) {
+        const auto dx = std::min(m_viewport.left() - m_bbox.left(), m_viewport.right() - m_bbox.right());
+        m_viewport.adjust(-dx, 0, -dx, 0);
+    } else if (m_bbox.right() > m_viewport.right() && m_bbox.left() > m_viewport.left()) {
+        const auto dx = std::min(m_bbox.right() - m_viewport.right(), m_bbox.left() - m_viewport.left());
+        m_viewport.adjust(dx, 0, dx, 0);
+    }
+
+    if (m_bbox.top() < m_viewport.top() && m_bbox.bottom() < m_viewport.bottom()) {
+        const auto dy = std::min(m_viewport.top() - m_bbox.top(), m_viewport.bottom() - m_bbox.bottom());
+        m_viewport.adjust(0, -dy, 0, -dy);
+    } else if (m_bbox.bottom() > m_viewport.bottom() && m_bbox.top() > m_viewport.top()) {
+        const auto dy = std::min(m_bbox.bottom() - m_viewport.bottom(), m_bbox.top() - m_viewport.top());
+        m_viewport.adjust(0, dy, 0, dy);
+    }
 }

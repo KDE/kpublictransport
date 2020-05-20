@@ -81,6 +81,9 @@ public:
     void zoomOut();
 
 private:
+    /** Ensure we stay within the bounding box with the viewport, call after viewport modification. */
+    void constrainViewToScene();
+
     QRectF m_bbox;
     QRectF m_viewport;
     QSize m_screenSize;

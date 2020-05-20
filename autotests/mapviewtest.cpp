@@ -105,6 +105,25 @@ private Q_SLOTS:
         QCOMPARE(v.zoomLevel(), 3.0);
         v.zoomOut();
         QCOMPARE(v.zoomLevel(), 2.0);
+        v.zoomOut();
+        v.zoomOut();
+        v.zoomOut();
+        QCOMPARE(v.zoomLevel(), 2.0);
+    }
+
+    void testPan()
+    {
+        View v;
+        v.setScreenSize({512, 256});
+        v.setSceneBoundingBox(QRectF(QPointF{-180.0, -90.0}, QPointF{180.0, 90.0}));
+        QCOMPARE(v.viewport(), QRectF(QPointF{-180.0, -90.0}, QPointF{180.0, 90.0}));
+        v.zoomIn();
+        v.panScreenSpace(QPoint(-10000, -10000));
+        QCOMPARE(v.viewport().left(), -180.0);
+        QCOMPARE(v.viewport().top(), -90.0);
+        v.panScreenSpace(QPoint(10000, 10000));
+        QCOMPARE(v.viewport().left(), 0.0);
+        QCOMPARE(v.viewport().top(), 0.0);
     }
 };
 
