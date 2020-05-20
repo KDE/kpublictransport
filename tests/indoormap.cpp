@@ -84,9 +84,9 @@ void MapWidget::mouseMoveEvent(QMouseEvent *event)
 void MapWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().y() > 0) {
-        m_view.zoomIn();
+        m_view.zoomIn(event->position());
     } else {
-        m_view.zoomOut();
+        m_view.zoomOut(event->position());
     }
     QWidget::wheelEvent(event);
     m_controller.updateScene(m_sg);

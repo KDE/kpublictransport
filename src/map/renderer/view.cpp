@@ -122,9 +122,15 @@ void View::setSceneBoundingBox(const QRectF &bbox)
 }
 
 
-QPointF View::sceneToScreen(QPointF scenePos) const
+QPointF View::mapSceneToScreen(QPointF scenePos) const
 {
     return sceneToScreenTransform().map(scenePos);
+}
+
+QPointF View::mapScreenToScene(QPointF screenPos) const
+{
+    // TODO this can be implemented more efficiently
+    return sceneToScreenTransform().inverted().map(screenPos);
 }
 
 void View::panScreenSpace(QPoint offset)
@@ -143,29 +149,39 @@ QTransform View::sceneToScreenTransform() const
     return t;
 }
 
-void View::zoomIn()
+void View::zoomIn(QPointF center)
 {
     const auto factor = std::min(2.0, ((m_viewport.width() / 2.0) / (screenWidth() / 256.0) / 360.0) * (2 << MaxZoomFactor));
     if (factor <= 1) {
         return;
     }
 
-    auto dx = 0.25 * m_viewport.width() * (factor/2);
-    auto dy = 0.25 * m_viewport.height() * (factor/2);
-    m_viewport.adjust(dx, dy, -dx, -dy);
+    const auto dx = 0.5 * m_viewport.width() * (factor/2);
+    const auto dy = 0.5 * m_viewport.height() * (factor/2);
+
+    const auto centerScene = mapScreenToScene(center);
+    const auto xr = (centerScene.x() - m_viewport.x()) / m_viewport.width();
+    const auto yr = (centerScene.y() - m_viewport.y()) / m_viewport.height();
+
+    m_viewport.adjust(xr * dx, yr * dy, - (1-xr) * dx, - (1-yr) * dy);
     constrainViewToScene();
     qDebug() << zoomLevel();
 }
 
-void View::zoomOut()
+void View::zoomOut(QPointF center)
 {
     if (m_bbox.width() <= m_viewport.width() && m_bbox.height() <= m_viewport.height()) {
         return;
     }
 
-    auto dx = 0.5 * m_viewport.width();
-    auto dy = 0.5 * m_viewport.height();
-    m_viewport.adjust(-dx, -dy, dx, dy);
+    const auto dx = m_viewport.width();
+    const auto dy = m_viewport.height();
+
+    const auto centerScene = mapScreenToScene(center);
+    const auto xr = (centerScene.x() - m_viewport.x()) / m_viewport.width();
+    const auto yr = (centerScene.y() - m_viewport.y()) / m_viewport.height();
+
+    m_viewport.adjust(-xr * dx, -yr * dy, (1-xr) * dx, (1-yr) * dy);
     constrainViewToScene();
     qDebug() << zoomLevel();
 }

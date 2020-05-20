@@ -74,11 +74,12 @@ public:
     void setSceneBoundingBox(const QRectF &bbox);
 
     /** Converts a point in scene coordinates to screen coordinates. */
-    QPointF sceneToScreen(QPointF scenePos) const;
+    QPointF mapSceneToScreen(QPointF scenePos) const;
+    QPointF mapScreenToScene(QPointF screenPos) const;
 
     void panScreenSpace(QPoint offset);
-    void zoomIn(); // TODO add center point argument
-    void zoomOut();
+    void zoomIn(QPointF center);
+    void zoomOut(QPointF center);
 
 private:
     /** Ensure we stay within the bounding box with the viewport, call after viewport modification. */

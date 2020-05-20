@@ -101,13 +101,13 @@ private Q_SLOTS:
         v.setScreenSize({1024, 512});
         v.setSceneBoundingBox(QRectF(QPointF{-180.0, -90.0}, QPointF{180.0, 90.0}));
         QCOMPARE(v.zoomLevel(), 2.0);
-        v.zoomIn();
+        v.zoomIn({512, 256});
         QCOMPARE(v.zoomLevel(), 3.0);
-        v.zoomOut();
+        v.zoomOut({512, 256});
         QCOMPARE(v.zoomLevel(), 2.0);
-        v.zoomOut();
-        v.zoomOut();
-        v.zoomOut();
+        v.zoomOut({512, 256});
+        v.zoomOut({512, 256});
+        v.zoomOut({512, 256});
         QCOMPARE(v.zoomLevel(), 2.0);
     }
 
@@ -117,7 +117,7 @@ private Q_SLOTS:
         v.setScreenSize({512, 256});
         v.setSceneBoundingBox(QRectF(QPointF{-180.0, -90.0}, QPointF{180.0, 90.0}));
         QCOMPARE(v.viewport(), QRectF(QPointF{-180.0, -90.0}, QPointF{180.0, 90.0}));
-        v.zoomIn();
+        v.zoomIn({256, 128});
         v.panScreenSpace(QPoint(-10000, -10000));
         QCOMPARE(v.viewport().left(), -180.0);
         QCOMPARE(v.viewport().top(), -90.0);

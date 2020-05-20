@@ -60,7 +60,7 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
             }
             if ((*it)->inHUDSpace()) {
                 auto bbox = (*it)->boundingRect();
-                bbox.moveCenter(m_view->sceneToScreen(bbox.center()));
+                bbox.moveCenter(m_view->mapSceneToScreen(bbox.center()));
                 if (screenRect.intersects(bbox)) {
                     m_renderBatch.push_back((*it).get());
                 }
@@ -173,7 +173,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     }
 
     auto box = item->bbox;
-    box.moveCenter(m_view->sceneToScreen(item->pos));
+    box.moveCenter(m_view->mapSceneToScreen(item->pos));
     m_painter.drawText(box.bottomLeft(), item->text);
 }
 
