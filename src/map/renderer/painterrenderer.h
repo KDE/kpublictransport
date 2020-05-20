@@ -52,7 +52,7 @@ private:
     void renderBackground(const QColor &bgColor);
     void renderPolygon(PolygonItem *item, SceneGraphItem::RenderPhase phase);
     void renderMultiPolygon(MultiPolygonItm *item, SceneGraphItem::RenderPhase phase);
-    void renderPolyline(PolylineItem *item);
+    void renderPolyline(PolylineItem *item, SceneGraphItem::RenderPhase phase);
     void renderLabel(LabelItem *item);
     void endRender();
 

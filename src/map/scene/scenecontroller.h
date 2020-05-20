@@ -61,6 +61,7 @@ private:
 
     void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
     void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
+    void applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
     void applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const;
 
     void addItem(SceneGraph &sg, OSM::Element e, SceneGraphItem *item) const;

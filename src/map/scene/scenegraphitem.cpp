@@ -37,7 +37,7 @@ bool SceneGraphItem::inHUDSpace() const
 
 uint8_t PolylineItem::renderPhases() const
 {
-    return StrokePhase;
+    return (pen.style() != Qt::NoPen ? StrokePhase : NoPhase) | (casingPen.style() != Qt::NoPen ? CasingPhase : NoPhase);
 }
 
 QRectF PolylineItem::boundingRect() const

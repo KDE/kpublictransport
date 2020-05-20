@@ -70,6 +70,7 @@ public:
 
     QPolygonF path;
     QPen pen;
+    QPen casingPen;
 };
 
 

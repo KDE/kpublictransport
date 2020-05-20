@@ -134,6 +134,7 @@ void SceneController::updateScene(SceneGraph &sg) const
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
                 applyPenStyle(decl, item->pen);
+                applyCasingPenStyle(decl, item->casingPen);
             }
 
             addItem(sg, e, item);
@@ -257,6 +258,37 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) co
             break;
         case MapCSSDeclaration::LineJoin:
             pen.setJoinStyle(decl->joinStyle());
+            break;
+        case MapCSSDeclaration::Opacity:
+            // TODO
+        default:
+            break;
+    }
+}
+
+void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
+{
+    switch (decl->property()) {
+        case MapCSSDeclaration::CasingColor:
+            pen.setColor(decl->colorValue());
+            if (pen.style() == Qt::NoPen) {
+                pen.setStyle(Qt::SolidLine);
+            }
+            break;
+        case MapCSSDeclaration::CasingWidth:
+            pen.setWidthF(decl->doubleValue());
+            break;
+        case MapCSSDeclaration::CasingDashes:
+            pen.setDashPattern(decl->dashesValue());
+            break;
+        case MapCSSDeclaration::CasingLineCap:
+            pen.setCapStyle(decl->capStyle());
+            break;
+        case MapCSSDeclaration::CasingLineJoin:
+            pen.setJoinStyle(decl->joinStyle());
+            break;
+        case MapCSSDeclaration::CasingOpacity:
+            // TODO
         default:
             break;
     }

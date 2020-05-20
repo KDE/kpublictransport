@@ -79,7 +79,7 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
                 } else if (auto i = dynamic_cast<MultiPolygonItm*>(item)) {
                     renderMultiPolygon(i, phase);
                 } else if (auto i = dynamic_cast<PolylineItem*>(item)) {
-                    renderPolyline(i);
+                    renderPolyline(i, phase);
                 } else if (auto i = dynamic_cast<LabelItem*>(item)) {
                     renderLabel(i);
                 } else {
@@ -152,12 +152,19 @@ void PainterRenderer::renderMultiPolygon(MultiPolygonItm *item, SceneGraphItem::
     }
 }
 
-void PainterRenderer::renderPolyline(PolylineItem *item)
+void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItem::RenderPhase phase)
 {
-    auto p = item->pen;
-    p.setWidthF(p.widthF() * 0.000009009009009009); // TODO proper map projection and distance to scene size conversion
-    m_painter.setPen(p);
-    m_painter.drawPolyline(item->path);
+    if (phase == SceneGraphItem::StrokePhase) {
+        auto p = item->pen;
+        p.setWidthF(p.widthF() * 0.000009009009009009); // TODO proper map projection and distance to scene size conversion
+        m_painter.setPen(p);
+        m_painter.drawPolyline(item->path);
+    } else {
+        auto p = item->casingPen;
+        p.setWidth(0); // TODO see above
+        m_painter.setPen(p);
+        m_painter.drawPolyline(item->path);
+    }
 }
 
 void PainterRenderer::renderLabel(LabelItem *item)
