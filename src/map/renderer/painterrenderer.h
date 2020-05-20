@@ -51,6 +51,7 @@ private:
     void beginPhase(SceneGraphItem::RenderPhase phase);
     void renderBackground(const QColor &bgColor);
     void renderPolygon(PolygonItem *item, SceneGraphItem::RenderPhase phase);
+    void renderMultiPolygon(MultiPolygonItm *item, SceneGraphItem::RenderPhase phase);
     void renderPolyline(PolylineItem *item);
     void renderLabel(LabelItem *item);
     void endRender();

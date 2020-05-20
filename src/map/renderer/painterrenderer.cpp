@@ -76,6 +76,8 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
 
                 if (auto i = dynamic_cast<PolygonItem*>(item)) {
                     renderPolygon(i, phase);
+                } else if (auto i = dynamic_cast<MultiPolygonItm*>(item)) {
+                    renderMultiPolygon(i, phase);
                 } else if (auto i = dynamic_cast<PolylineItem*>(item)) {
                     renderPolyline(i);
                 } else if (auto i = dynamic_cast<LabelItem*>(item)) {
@@ -136,6 +138,17 @@ void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItem::RenderPha
     } else {
         m_painter.setPen(item->pen);
         m_painter.drawPolygon(item->polygon);
+    }
+}
+
+void PainterRenderer::renderMultiPolygon(MultiPolygonItm *item, SceneGraphItem::RenderPhase phase)
+{
+    if (phase == SceneGraphItem::FillPhase) {
+        m_painter.setBrush(item->brush);
+        m_painter.drawPath(item->path);
+    } else {
+        m_painter.setPen(item->pen);
+        m_painter.drawPath(item->path);
     }
 }
 

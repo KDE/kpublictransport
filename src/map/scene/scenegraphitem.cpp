@@ -46,7 +46,7 @@ QRectF PolylineItem::boundingRect() const
 }
 
 
-uint8_t PolygonItem::renderPhases() const
+uint8_t PolygonBaseItem::renderPhases() const
 {
     return (pen.style() == Qt::NoPen ? NoPhase : StrokePhase) | (brush.style() == Qt::NoBrush ? NoPhase : FillPhase);
 }
@@ -54,6 +54,11 @@ uint8_t PolygonItem::renderPhases() const
 QRectF PolygonItem::boundingRect() const
 {
     return polygon.boundingRect(); // TODO do we need to cache this?
+}
+
+QRectF MultiPolygonItm::boundingRect() const
+{
+    return path.boundingRect(); // TODO do we need to cache this?
 }
 
 

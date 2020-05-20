@@ -56,9 +56,8 @@ public:
     void updateScene(SceneGraph &sg) const;
 
 private:
-    QPolygonF createMultiPolygon(const OSM::Relation* rel) const;
-    QPolygonF createPolygon(const std::vector<const OSM::Node*> &path) const;
     QPolygonF createPolygon(OSM::Element e) const;
+    QPainterPath createPath(OSM::Element e) const;
 
     void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
     void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;

@@ -21,6 +21,7 @@
 #include <QBrush>
 #include <QColor>
 #include <QFont>
+#include <QPainterPath>
 #include <QPen>
 #include <QPolygonF>
 #include <QString>
@@ -72,18 +73,35 @@ public:
 };
 
 
-/** A single filled polygon. */
-class PolygonItem : public SceneGraphItem
+/** Base item for filled polygons. */
+class PolygonBaseItem : public SceneGraphItem
 {
 public:
     uint8_t renderPhases() const override;
-    QRectF boundingRect() const override;
 
-    QPolygonF polygon;
     QBrush brush = Qt::NoBrush;
     QPen pen = Qt::NoPen;
 };
 
+
+/** A single filled polygon. */
+class PolygonItem : public PolygonBaseItem
+{
+public:
+    QRectF boundingRect() const override;
+
+    QPolygonF polygon;
+};
+
+
+/** Multi-polygon item, used for polygons with "holes" in them. */
+class MultiPolygonItm : public PolygonBaseItem
+{
+public:
+    QRectF boundingRect() const override;
+
+    QPainterPath path;
+};
 
 /** A text or item label */
 class LabelItem : public SceneGraphItem

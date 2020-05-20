@@ -100,8 +100,17 @@ void SceneController::updateScene(SceneGraph &sg) const
         m_styleSheet->evaluate(state, m_styleResult);
 
         if (m_styleResult.hasAreaProperties()) {
-            auto item = new PolygonItem;
-            item->polygon = createPolygon(e);
+            PolygonBaseItem *item;
+            if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
+                auto i = new MultiPolygonItm;
+                i->path = createPath(e);
+                item = i;
+            } else {
+                auto i = new PolygonItem;
+                i->polygon = createPolygon(e);
+                item = i;
+            }
+
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
                 applyPenStyle(decl, item->pen);
@@ -169,18 +178,30 @@ void SceneController::updateScene(SceneGraph &sg) const
 
 QPolygonF SceneController::createPolygon(OSM::Element e) const
 {
-    if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
-        return createMultiPolygon(e.relation());
+    const auto path = e.outerPath(*m_dataSet);
+    QPolygonF poly;
+    poly.reserve(path.size());
+    for (auto node : path) {
+        poly.push_back(m_view->mapGeoToScene(node->coordinate));
     }
-    return createPolygon(e.outerPath(*m_dataSet));
+    return poly;
 }
 
-QPolygonF SceneController::createMultiPolygon(const OSM::Relation* rel) const
+QPainterPath SceneController::createPath(const OSM::Element e) const
 {
-    QPolygonF poly;
+    assert(e.type() == OSM::Type::Relation);
+    QPainterPath path;
 
-    for (const auto &mem : rel->members) {
-        if (mem.type != OSM::Type::Way || (mem.role != QLatin1String("outer") && mem.role != QLatin1String("inner"))) {
+    // some multi-polygons in OSM have inner elements preceeding outer elements
+    // we remember those in here until we saw the first outer element.
+    // we cannot just sort this, as complex nested constructs are possible as well
+    // @see https://wiki.openstreetmap.org/wiki/Relation:multipolygon
+    QPainterPath subtractBuffer;
+
+    for (const auto &mem : e.relation()->members) {
+        const bool isOuter = mem.role == QLatin1String("outer");
+        const bool isInner = mem.role == QLatin1String("inner");
+        if (mem.type != OSM::Type::Way || (!isOuter && !isInner)) {
             continue;
         }
         auto wayIt = std::lower_bound(m_dataSet->ways.begin(), m_dataSet->ways.end(), mem.id);
@@ -189,24 +210,24 @@ QPolygonF SceneController::createMultiPolygon(const OSM::Relation* rel) const
         }
 
         const auto subPoly = createPolygon(OSM::Element(&(*wayIt)));
-        if (mem.role == QLatin1String("inner")) {
-            poly = poly.subtracted(subPoly);
+        if (isInner) {
+            if (!path.isEmpty()) {
+                QPainterPath subPath;
+                subPath.addPolygon(subPoly);
+                path = path.subtracted(subPath);
+            } else {
+                subtractBuffer.addPolygon(subPoly);
+            }
         } else {
-            poly = poly.united(subPoly);
+            path.addPolygon(subPoly);
+            if (!subtractBuffer.isEmpty()) {
+                path = path.subtracted(subtractBuffer);
+                subtractBuffer.clear();
+            }
         }
     }
 
-    return poly;
-}
-
-QPolygonF SceneController::createPolygon(const std::vector<const OSM::Node*> &path) const
-{
-    QPolygonF poly;
-    poly.reserve(path.size());
-    for (auto node : path) {
-        poly.push_back(m_view->mapGeoToScene(node->coordinate));
-    }
-    return poly;
+    return path;
 }
 
 void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const
