@@ -35,6 +35,11 @@ namespace KOSMIndoorMap {
  *    This uses QPointF ranging from 0x0 to 256x256
  *  - The screen coordinates (ie. visible pixels on screen).
  *    This uses QPoint.
+ *  Further, there's also two slight variations of those in use here:
+ *  - "HUD" coordinates: elements that follow the scene coordinates for their positioning,
+ *    but the screen coordinates regarding scaling and rotation. This is used for map labels.
+ *  - Geographic distances. This is needed to display things in a fixed width in meters in the scene,
+ *    or to compute the map scale.
  */
 class View
 {
@@ -45,6 +50,8 @@ public:
     /** Map a geographic coordinate to a scene coordinate, ie. apply the mercator projection. */
     QPointF mapGeoToScene(OSM::Coordinate coord) const;
     QRectF mapGeoToScene(OSM::BoundingBox box) const;
+    /** Map a scene coordinate to a geographic one, ie. apply the inverse mercator projection. */
+    OSM::Coordinate mapSceneToGeo(QPointF p) const;
 
     /** Screen-space sizes, ie the size of the on-screen area used for displaying. */
     int screenWidth() const;

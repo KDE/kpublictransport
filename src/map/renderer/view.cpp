@@ -17,30 +17,27 @@
 
 #include "view.h"
 
+#include <osm/geomath.h>
+
 #include <QTransform>
 
 #include <cmath>
 
 using namespace KOSMIndoorMap;
 
-View::View() = default;
-View::~View() = default;
-
-static constexpr inline double degToRad(double deg)
-{
-    return deg / 180.0 * M_PI;
-}
-
-static constexpr const double SceneSize = 256.0;
+static constexpr const double SceneWorldSize = 256.0; // size of the scene when containing the full world
 static constexpr const double LatitudeLimit = 85.05112879806592; // invtan(sinh(pi)) + radToDeg
 static constexpr const auto MaxZoomFactor = 21; // 2^MaxZoomFactor subdivisions of the scene space
+
+View::View() = default;
+View::~View() = default;
 
 QPointF View::mapGeoToScene(OSM::Coordinate coord) const
 {
     const auto lat = qBound(-LatitudeLimit, coord.latF(), LatitudeLimit);
     return QPointF(
-        SceneSize / (2.0 * M_PI) * (degToRad(coord.lonF()) + M_PI),
-        SceneSize / (2.0 * M_PI) * (M_PI - std::log(std::tan((M_PI / 4.0) + ((degToRad(lat) / 2.0)))))
+        (coord.lonF() + 180.0) / 360.0 * SceneWorldSize,
+        SceneWorldSize / (2.0 * M_PI) * (M_PI - std::log(std::tan((M_PI / 4.0) + ((OSM::degToRad(lat) / 2.0)))))
     );
 }
 
@@ -49,6 +46,14 @@ QRectF View::mapGeoToScene(OSM::BoundingBox box) const
     const auto p1 = mapGeoToScene(box.min);
     const auto p2 = mapGeoToScene(box.max);
     return QRectF(QPointF(p1.x(), p2.y()), QPointF(p2.x(), p1.y()));
+}
+
+OSM::Coordinate View::mapSceneToGeo(QPointF p) const
+{
+    return OSM::Coordinate(
+        OSM::radToDeg(std::atan(std::sinh(M_PI * (1 - 2 * (p.y() / SceneWorldSize))))),
+        (p.x() / SceneWorldSize) * 360.0 - 180.0
+    );
 }
 
 int View::screenHeight() const
@@ -84,7 +89,7 @@ void View::setLevel(const QString &level)
 
 double View::zoomLevel() const
 {
-    const auto dx = m_viewport.width() / (screenWidth() / 256.0) / 360.0;
+    const auto dx = m_viewport.width() / (screenWidth() / SceneWorldSize) / 360.0;
     return - std::log2(dx);
 }
 
@@ -151,7 +156,7 @@ QTransform View::sceneToScreenTransform() const
 
 void View::zoomIn(QPointF center)
 {
-    const auto factor = std::min(2.0, ((m_viewport.width() / 2.0) / (screenWidth() / 256.0) / 360.0) * (2 << MaxZoomFactor));
+    const auto factor = std::min(2.0, ((m_viewport.width() / 2.0) / (screenWidth() / SceneWorldSize) / 360.0) * (2 << MaxZoomFactor));
     if (factor <= 1) {
         return;
     }

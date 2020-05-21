@@ -20,7 +20,20 @@
 
 #include "datatypes.h"
 
+#include <cmath>
+
 namespace OSM {
+
+/** Degree to radian conversion. */
+constexpr inline double degToRad(double deg)
+{
+    return deg / 180.0 * M_PI;
+}
+/** Radian to degree conversion. */
+constexpr inline double radToDeg(double rad)
+{
+    return rad / M_PI * 180.0;
+}
 
 /** Distance between two coordinates. */
 uint32_t distance(double lat1, double lon1, double lat2, double lon2);

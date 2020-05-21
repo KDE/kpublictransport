@@ -27,14 +27,14 @@ using namespace OSM;
 // see https://en.wikipedia.org/wiki/Haversine_formula
 uint32_t OSM::distance(double lat1, double lon1, double lat2, double lon2)
 {
-    const auto degToRad = M_PI / 180.0;
-    const auto earthRadius = 6371000.0; // in meters
+    constexpr const auto earthRadius = 6371000.0; // in meters
 
-    const auto d_lat = (lat1 - lat2) * degToRad;
-    const auto d_lon = (lon1 - lon2) * degToRad;
+    const auto d_lat = degToRad(lat1 - lat2);
+    const auto d_lon = degToRad(lon1 - lon2);
 
-    const auto a = pow(sin(d_lat / 2.0), 2) + cos(lat1 * degToRad) * cos(lat2 * degToRad) * pow(sin(d_lon / 2.0), 2);
-    return 2.0 * earthRadius * atan2(sqrt(a), sqrt(1.0 - a));}
+    const auto a = pow(sin(d_lat / 2.0), 2) + cos(degToRad(lat1)) * cos(degToRad(lat2)) * pow(sin(d_lon / 2.0), 2);
+    return 2.0 * earthRadius * atan2(sqrt(a), sqrt(1.0 - a));
+}
 
 uint32_t OSM::distance(Coordinate coord1, Coordinate coord2)
 {

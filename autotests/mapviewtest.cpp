@@ -29,14 +29,20 @@ private Q_SLOTS:
     {
         View v;
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{0.0, 0.0}), QPointF(128.0, 128.0));
+        QCOMPARE(v.mapSceneToGeo(QPointF(128.0, 128.0)), OSM::Coordinate(0.0, 0.0));
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{0.0, -180.0}), QPointF(0.0, 128.0));
+        QCOMPARE(v.mapSceneToGeo(QPointF(0.0, 128.0)), OSM::Coordinate(0.0, -180.0));
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{0.0, 180.0}), QPointF(256.0, 128.0));
+        QCOMPARE(v.mapSceneToGeo(QPointF(256.0, 128.0)), OSM::Coordinate(0.0, 180.0));
 
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{90.0, 0.0}).toPoint().y(), 0);
+        QCOMPARE(v.mapSceneToGeo(QPointF(0.0, 128.0)).latF(), 0.0);
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{85.0512, 0.0}).toPoint().y(), 0);
+        QCOMPARE(v.mapSceneToGeo(QPointF(0.0, 0.0)).latF(), 85.0511287);
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{60.0, 0.0}).toPoint().y(), 74);
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{-60.0, 0.0}).toPoint().y(), 182);
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{-85.0512, 0.0}).toPoint().y(), 256.0);
+        QCOMPARE(v.mapSceneToGeo(QPointF(0.0, 256.0)).latF(), -85.0511288);
         QCOMPARE(v.mapGeoToScene(OSM::Coordinate{-90.0, 0.0}).toPoint().y(), 256.0);
 
         QCOMPARE(v.mapGeoToScene(OSM::BoundingBox{OSM::Coordinate{-90.0, -180.0}, OSM::Coordinate{90.0, 180.0}}).toRect(), QRect(0, 0, 256, 256));
