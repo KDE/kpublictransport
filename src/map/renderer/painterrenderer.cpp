@@ -156,7 +156,7 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItem::RenderP
 {
     if (phase == SceneGraphItem::StrokePhase) {
         auto p = item->pen;
-        p.setWidthF(p.widthF() * 0.000009009009009009); // TODO proper map projection and distance to scene size conversion
+        p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()));
         m_painter.setPen(p);
         m_painter.drawPolyline(item->path);
     } else {

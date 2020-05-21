@@ -217,3 +217,12 @@ void View::constrainViewToScene()
         m_viewport.adjust(0, dy, 0, dy);
     }
 }
+
+double View::mapMetersToScene(double meters) const
+{
+    // ### this fails for distances above 180° due to OSM::distance wrapping around
+    // doesn't matter for our use-case though, we are looking at much much smaller areas
+    const auto d = OSM::distance(mapSceneToGeo(QPointF(m_viewport.left(), m_viewport.center().y())), mapSceneToGeo(QPointF(m_viewport.right(), m_viewport.center().y())));
+    const auto scale = m_viewport.width() / d;
+    return meters * scale;
+}

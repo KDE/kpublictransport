@@ -49,17 +49,23 @@ area[layer]
     fill-color: #20ff00ff;
 }
 
-line { color: #00ff00; }
+line {
+    color: #00ff00;
+    width: 0.75;
+}
 line[layer] { color: #008000; }
 
 line[railway]
 {
     color: #ffff00;
     dashes: 2,2;
+    width: 1.5;
 }
 line[waterway]
 {
     color: #0000ff;
+    width: 3;
+    opacity: 0.5;
 }
 
 node

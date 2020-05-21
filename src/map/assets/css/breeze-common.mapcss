@@ -54,6 +54,8 @@ way[railway=tram]
     color: #31363b;
     dashes: 2,2;
     width: 1.5; // meter
+    casing-width: 1;
+    casing-color: #31363b;
 }
 
 /** Platforms */

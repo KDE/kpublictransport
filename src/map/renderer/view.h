@@ -39,7 +39,8 @@ namespace KOSMIndoorMap {
  *  - "HUD" coordinates: elements that follow the scene coordinates for their positioning,
  *    but the screen coordinates regarding scaling and rotation. This is used for map labels.
  *  - Geographic distances. This is needed to display things in a fixed width in meters in the scene,
- *    or to compute the map scale.
+ *    or to compute the map scale. Note that this only works due to the relatively high zoom levels,
+ *    so that earth curvature or map projection effects are negligible.
  */
 class View
 {
@@ -84,6 +85,8 @@ public:
     QPointF mapSceneToScreen(QPointF scenePos) const;
     QPointF mapScreenToScene(QPointF screenPos) const;
 
+    /** Returns how many units in scene coordinate represent the distance of @p meters in the current view transformation. */
+    double mapMetersToScene(double meters) const;
     void panScreenSpace(QPoint offset);
     void zoomIn(QPointF center);
     void zoomOut(QPointF center);

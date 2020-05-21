@@ -69,8 +69,8 @@ public:
     QRectF boundingRect() const override;
 
     QPolygonF path;
-    QPen pen;
-    QPen casingPen;
+    QPen pen = Qt::NoPen;
+    QPen casingPen = Qt::NoPen;
 };
 
 
