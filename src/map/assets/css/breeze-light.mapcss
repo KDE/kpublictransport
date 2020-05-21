@@ -106,8 +106,14 @@ area[indoor=wall]
     fill-color: #888786;
 }
 
-line [highway=steps] { color: #b08000; width: 1; }
-line[highway=steps][conveying] { color: #006e28; width: 1; }
+line [highway=steps] {
+    color: #e0dfde;
+    width: 1;
+    casing-width: 1.5;
+    casing-color: #888786;
+    dashes: 0.5, 0.5;
+}
+line[highway=steps][conveying] { casing-color: #006e28; }
 
 /** Railway stuff */
 area[railway=platform],
