@@ -18,7 +18,10 @@
 /* common definitions between light and dark style */
 
 /** Various outdoor stuff. */
-area[water]
+relation[type=multipolygon][water],
+relation[type=multipolygon][natural=water],
+area[water],
+area[natural=water]
 {
     fill-color: #103daee9;
     z-index: -1000;
@@ -112,6 +115,12 @@ way[railway=tram]
     width: 1.5; // meter
     casing-width: 3;
     casing-color: #31363b;
+}
+
+way[railway:traffic_mode=freight],
+way[railway=rail][service=yard]
+{
+    casing-color: #7f8c8d;
 }
 
 /** Platforms */

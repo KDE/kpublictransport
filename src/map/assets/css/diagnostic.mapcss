@@ -29,7 +29,10 @@ area
     color: #ff808080;
     width: 0;
 }
-area[water]
+relation[type=multipolygon][water],
+relation[type=multipolygon][natural=water],
+area[water],
+area[natural=water]
 {
     fill-color: #200000ff;
     color: #0000ff;
