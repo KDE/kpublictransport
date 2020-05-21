@@ -161,7 +161,7 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItem::RenderP
         m_painter.drawPolyline(item->path);
     } else {
         auto p = item->casingPen;
-        p.setWidth(0); // TODO see above
+        p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()) + m_view->mapScreenDistanceToSceneDistance(item->casingPen.widthF()));
         m_painter.setPen(p);
         m_painter.drawPolyline(item->path);
     }

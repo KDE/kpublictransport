@@ -83,7 +83,10 @@ public:
 
     /** Converts a point in scene coordinates to screen coordinates. */
     QPointF mapSceneToScreen(QPointF scenePos) const;
+    /** Converts a point in screen coordinates to scene coordinates. */
     QPointF mapScreenToScene(QPointF screenPos) const;
+    /** Converts a distance in screen coordinates to a distance in scene coordinates. */
+    double mapScreenDistanceToSceneDistance(double distance) const;
 
     /** Returns how many units in scene coordinate represent the distance of @p meters in the current view transformation. */
     double mapMetersToScene(double meters) const;

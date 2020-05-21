@@ -138,6 +138,14 @@ QPointF View::mapScreenToScene(QPointF screenPos) const
     return sceneToScreenTransform().inverted().map(screenPos);
 }
 
+double View::mapScreenDistanceToSceneDistance(double distance) const
+{
+    const auto p1 = mapScreenToScene(m_viewport.center());
+    const auto p2 = mapScreenToScene(m_viewport.center() + QPointF(1.0, 0));
+    // ### does not consider rotations, needs to take the actual distance between p1 and p2 for that
+    return std::abs(p2.x() - p1.x()) * distance;
+}
+
 void View::panScreenSpace(QPoint offset)
 {
     auto dx = offset.x() * (m_viewport.width() / screenWidth());

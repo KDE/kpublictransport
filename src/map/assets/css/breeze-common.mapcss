@@ -51,10 +51,10 @@ way[railway=light_rail],
 way[railway=subway],
 way[railway=tram]
 {
-    color: #31363b;
+    color: #eff0f1;
     dashes: 2,2;
     width: 1.5; // meter
-    casing-width: 1;
+    casing-width: 3;
     casing-color: #31363b;
 }
 

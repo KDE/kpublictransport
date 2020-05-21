@@ -130,6 +130,8 @@ void SceneController::updateScene(SceneGraph &sg) const
             // default according to spec
             item->pen.setCapStyle(Qt::FlatCap);
             item->pen.setJoinStyle(Qt::RoundJoin);
+            item->casingPen.setCapStyle(Qt::FlatCap);
+            item->casingPen.setJoinStyle(Qt::RoundJoin);
 
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
