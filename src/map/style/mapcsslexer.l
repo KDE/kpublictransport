@@ -79,6 +79,10 @@ STRING      ["]{STRING_ELEMENT}*["]
 
 "="  { yylval->binaryOp = MapCSSCondition::Equal; return T_BINARY_OP; }
 "!=" { yylval->binaryOp = MapCSSCondition::NotEqual; return T_BINARY_OP; }
+"<"  { yylval->binaryOp = MapCSSCondition::LessThan; return T_BINARY_OP; }
+">"  { yylval->binaryOp = MapCSSCondition::GreaterThan; return T_BINARY_OP; }
+"<=" { yylval->binaryOp = MapCSSCondition::LessOrEqual; return T_BINARY_OP; }
+">=" { yylval->binaryOp = MapCSSCondition::GreaterOrEqual; return T_BINARY_OP; }
 
 "@import" { return T_KEYWORD_IMPORT; }
 "url"     { return T_KEYWORD_URL; }

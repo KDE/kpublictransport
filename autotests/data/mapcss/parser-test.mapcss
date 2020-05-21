@@ -55,3 +55,9 @@ node|z14-[name] {}
     font-style: italic;
     text-decoration: underline;
 }
+
+// numeric comparison conditions
+* [layer>1],
+* [layer<2],
+* [layer>=3],
+* [layer<=4] {}

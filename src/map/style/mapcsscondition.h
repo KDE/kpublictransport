@@ -24,6 +24,8 @@
 #include <QByteArray>
 #include <QString>
 
+#include <cmath>
+
 class QIODevice;
 
 namespace KOSMIndoorMap {
@@ -48,15 +50,22 @@ public:
         None,
         Equal,
         NotEqual,
+        LessThan,
+        GreaterThan,
+        LessOrEqual,
+        GreaterOrEqual
     };
     Operator op = None;
 
-    QString m_value;
-
     void setKey(const char *key, int len);
     void setValue(const char *value, int len);
+    void setValue(double val);
 
     void write(QIODevice *out) const;
+
+private:
+    QString m_value;
+    double m_numericValue = NAN;
 };
 
 /** @internal intermediate AST node used during parsing */

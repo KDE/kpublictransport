@@ -211,9 +211,10 @@ Tests:
 
 Test: T_LBRACKET Condition T_RBRACKET { $$ = $2; };
 
-// TODO incomplete: binary ops, unary ops
+// TODO incomplete: unary ops, quoted names, regexps
 Condition:
   Key T_BINARY_OP T_IDENT { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->op = $2; $$->setValue($3.str, $3.len); }
+| Key T_BINARY_OP T_DOUBLE { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->op = $2; $$->setValue($3); }
 | Key { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); }
 ;
 

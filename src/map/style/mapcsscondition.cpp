@@ -27,6 +27,13 @@ MapCSSCondition::MapCSSCondition() = default;
 MapCSSCondition::MapCSSCondition(MapCSSCondition &&) = default;
 MapCSSCondition::~MapCSSCondition() = default;
 
+static double toNumber(const QString &val)
+{
+    bool res = false;
+    const auto n = val.toDouble(&res);
+    return res ? n : NAN;
+}
+
 bool MapCSSCondition::matches(const MapCSSState &state) const
 {
     const auto v = state.element.tagValue(m_key.constData());
@@ -34,6 +41,10 @@ bool MapCSSCondition::matches(const MapCSSState &state) const
         case None: return !v.isEmpty();
         case Equal: return v == m_value;
         case NotEqual: return v != m_value;
+        case LessThan: return toNumber(v) < m_value.toDouble();
+        case GreaterThan: return toNumber(v) > m_value.toDouble();
+        case LessOrEqual: return toNumber(v) <= m_value.toDouble();
+        case GreaterOrEqual: return toNumber(v) >= m_value.toDouble();
     }
     return false;
 }
@@ -41,13 +52,16 @@ bool MapCSSCondition::matches(const MapCSSState &state) const
 void MapCSSCondition::setKey(const char *key, int len)
 {
     m_key = QByteArray(key, len);
-    qDebug() << m_key;
 }
 
 void MapCSSCondition::setValue(const char *value, int len)
 {
     m_value = QString::fromUtf8(value, len);
-    qDebug() << m_value;
+}
+
+void MapCSSCondition::setValue(double val)
+{
+    m_numericValue = val;
 }
 
 void MapCSSCondition::write(QIODevice *out) const
@@ -59,8 +73,17 @@ void MapCSSCondition::write(QIODevice *out) const
         case None: out->write("]"); return;
         case Equal: out->write("="); break;
         case NotEqual: out->write("!="); break;
+        case LessThan: out->write("<"); break;
+        case GreaterThan: out->write(">"); break;
+        case LessOrEqual: out->write("<="); break;
+        case GreaterOrEqual: out->write(">="); break;
     }
-    out->write(m_value.toUtf8());
+
+    if (m_numericValue != NAN && m_value.isEmpty()) {
+        out->write(QByteArray::number(m_numericValue));
+    } else {
+        out->write(m_value.toUtf8());
+    }
 
     out->write("]");
 }
