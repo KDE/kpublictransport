@@ -31,6 +31,49 @@ relation[type=multipolygon][man_made=bridge]
 {
     fill-color: #20eff0f1;
 }
+
+/** Roads */
+line[highway=motorway],
+line[highway=motorway_link]
+{
+    color: #dacdce;
+    casing-color: #da6c77;
+}
+
+line[highway=trunk],
+line[highway=trunk_link]
+{
+    color: #fff7ef;
+    casing-color: #e0a46f;
+}
+
+line[highway=primary],
+line[highway=primary_link],
+line[highway=secondary],
+line[highway=secondary_link]
+{
+    color: #fdf8ee;
+    casing-color: #fdcf7e;
+}
+
+line[highway=tertiary],
+line[highway=tertiary_link],
+line[highway=unclassified],
+line[highway=residential],
+line[highway=service],
+line[highway=road]
+{
+    casing-color: #bdc3c7;
+    color: #eff0f1;
+}
+
+line[highway=living_street]
+line[highway=pedestrian]
+{
+    casing-color: #5c95b9;
+    color: #aeb5b9;
+}
+
 /** Generic building stuff */
 area[indoor],
 relation[type=multipolygon][building],

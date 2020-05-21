@@ -45,6 +45,62 @@ area|z17-[amenity=parking][access=private]
     text: "🚲";
 }
 
+/** Roads */
+line[highway=motorway],
+line[highway=motorway_link],
+line[highway=trunk],
+line[highway=trunk_link],
+line[highway=primary],
+line[highway=primary_link],
+line[highway=secondary],
+line[highway=secondary_link],
+line[highway=tertiary],
+line[highway=tertiary_link],
+line[highway=unclassified],
+line[highway=residential],
+line[highway=service],
+line[highway=living_street],
+line[highway=pedestrian],
+line[highway=road]
+{
+    casing-width: 1;
+    z-index: -10;
+    linecap: round;
+    casing-linecap: round;
+}
+
+line[highway=motorway] { width: 9; }
+line[highway=trunk] { width: 7; }
+line[highway=primary] { width: 6.5; }
+line[highway=secondary] { width: 6; }
+line[highway=tertiary] { width: 5; }
+
+line[highway=motorway_link]
+line[highway=trunk_link],
+line[highway=primary_link],
+line[highway=secondary_link],
+line[highway=tertiary_link],
+line[highway=unclassified],
+line[highway=living_street],
+line[highway=pedestrian]
+{
+    width: 4;
+}
+
+line[highway=residential],
+line[highway=road]
+{
+    width: 3;
+}
+
+line[highway=service] { width: 2; }
+
+line[highway][layer<0] {
+    casing-dashes: 0.25,0.25;
+    casing-linecap: flat;
+}
+
+
 /** Railway tracks */
 way[railway=rail],
 way[railway=light_rail],
