@@ -136,7 +136,9 @@ void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItem::RenderPha
         m_painter.setBrush(item->brush);
         m_painter.drawPolygon(item->polygon);
     } else {
-        m_painter.setPen(item->pen);
+        auto p = item->pen;
+        p.setWidthF(m_view->mapScreenDistanceToSceneDistance(item->pen.widthF()));
+        m_painter.setPen(p);
         m_painter.drawPolygon(item->polygon);
     }
 }
@@ -147,7 +149,9 @@ void PainterRenderer::renderMultiPolygon(MultiPolygonItm *item, SceneGraphItem::
         m_painter.setBrush(item->brush);
         m_painter.drawPath(item->path);
     } else {
-        m_painter.setPen(item->pen);
+        auto p = item->pen;
+        p.setWidthF(m_view->mapScreenDistanceToSceneDistance(item->pen.widthF()));
+        m_painter.setPen(p);
         m_painter.drawPath(item->path);
     }
 }

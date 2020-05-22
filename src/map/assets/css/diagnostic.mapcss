@@ -47,9 +47,19 @@ relation[type=multipolygon]
     width: 0;
 }
 
-area[layer]
+area[layer>0],
+relation[type=multipolygon][layer>0]
 {
-    fill-color: #20ff00ff;
+    color: #80ff00ff;
+    dashes: 5,5;
+    width: 2;
+}
+area[layer<0],
+relation[type=multipolygon][layer<0]
+{
+    color: #8000ffff;
+    dashes: 5,5;
+    width: 2;
 }
 
 line {

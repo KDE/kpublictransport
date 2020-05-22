@@ -177,11 +177,6 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     } else if (m_styleResult.hasLineProperties()) {
         auto item = new PolylineItem;
         item->path = createPolygon(e);
-        // default according to spec
-        item->pen.setCapStyle(Qt::FlatCap);
-        item->pen.setJoinStyle(Qt::RoundJoin);
-        item->casingPen.setCapStyle(Qt::FlatCap);
-        item->casingPen.setJoinStyle(Qt::RoundJoin);
 
         for (auto decl : m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
@@ -332,6 +327,10 @@ void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGrap
 
 void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
 {
+    // default according to spec
+    pen.setCapStyle(Qt::FlatCap);
+    pen.setJoinStyle(Qt::RoundJoin);
+
     double opacity = 1.0;
     switch (decl->property()) {
         case MapCSSDeclaration::Color:
@@ -368,6 +367,10 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) co
 
 void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
 {
+    // default according to spec
+    pen.setCapStyle(Qt::FlatCap);
+    pen.setJoinStyle(Qt::RoundJoin);
+
     double opacity = 1.0;
     switch (decl->property()) {
         case MapCSSDeclaration::CasingColor:
