@@ -113,6 +113,27 @@ line[highway][layer<0] {
     casing-linecap: flat;
 }
 
+line|z19-[highway=motorway],
+line|z20-[highway=motorway_link],
+line|z19-[highway=trunk],
+line|z20-[highway=trunk_link],
+line|z19-[highway=primary],
+line|z20-[highway=primary_link],
+line|z19-[highway=secondary],
+line|z20-[highway=secondary_link],
+line|z20-[highway=tertiary],
+line|z20-[highway=tertiary_link],
+line|z20-[highway=unclassified],
+line|z20-[highway=residential],
+line|z21-[highway=service],
+line|z20-[highway=living_street],
+line|z20-[highway=pedestrian],
+line|z20-[highway=road]
+{
+    text-position: line;
+    text-opacity: 0.75;
+    text: name;
+}
 
 /** Railway tracks */
 way[railway=rail],
