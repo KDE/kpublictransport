@@ -13,6 +13,7 @@ add_flex_bison_dependency(mapcssscanner mapcssparser)
 add_library(KOSMIndoorMap STATIC
     assets/assets.qrc
 
+    loader/mapdata.cpp
     loader/maploader.cpp
 
     renderer/painterrenderer.cpp

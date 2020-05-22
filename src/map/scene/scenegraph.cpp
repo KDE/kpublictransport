@@ -43,10 +43,13 @@ void SceneGraph::zSort()
      * - If all of the above are equal, the order is undefined.
      */
     std::stable_sort(m_items.begin(), m_items.end(), [](const auto &lhs, const auto &rhs) {
-        if (lhs->layer == rhs->layer) {
-            return lhs->z < rhs->z;
+        if (lhs->level == rhs->level) {
+            if (lhs->layer == rhs->layer) {
+                return lhs->z < rhs->z;
+            }
+            return lhs->layer < rhs->layer;
         }
-        return lhs->layer < rhs->layer;
+        return lhs->level < rhs->level;
     });
 
     recomputeLayerIndex();

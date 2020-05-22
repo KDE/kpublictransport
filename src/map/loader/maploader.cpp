@@ -33,26 +33,8 @@ void MapLoader::loadFromOsmXml(const QString &fileName)
         return;
     }
 
-    OSM::XmlParser p(&m_dataSet);
+    OSM::DataSet ds;
+    OSM::XmlParser p(&ds);
     p.parse(&f);
-
-    determineLevels();
-}
-
-void MapLoader::determineLevels()
-{
-    OSM::for_each(m_dataSet, [this](auto e) {
-        const auto level = e.tagValue("level");
-        const auto ls = level.splitRef(QLatin1Char(';'), QString::SkipEmptyParts);
-        if (ls.isEmpty()) {
-            return;
-        }
-        for (const auto &l : ls) {
-            auto it = std::lower_bound(m_levels.begin(), m_levels.end(), l);
-            if (it != m_levels.end() && (*it) == l) {
-                return;
-            }
-            m_levels.insert(it, l.toString());
-        }
-    }, OSM::IncludeRelations | OSM::IncludeWays);
+    m_data.setDataSet(std::move(ds));
 }

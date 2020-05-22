@@ -62,9 +62,11 @@ public:
     /** The transformation to apply to scene coordinate to get to the view on screen. */
     QTransform sceneToScreenTransform() const;
 
-    /** The (floor) level to display. */
-    QString level() const;
-    void setLevel(const QString &level);
+    /** The (floor) level to display.
+     *  @see MapLevel.
+     */
+    int level() const;
+    void setLevel(int level);
 
     /** OSM-compatible zoom level, ie. the 2^level-th subdivision of the scene space. */
     double zoomLevel() const;
@@ -101,7 +103,7 @@ private:
     QRectF m_bbox;
     QRectF m_viewport;
     QSize m_screenSize;
-    QString m_level;
+    int m_level;
 };
 
 }

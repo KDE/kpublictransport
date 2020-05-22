@@ -112,7 +112,7 @@ int main(int argc, char **argv)
 
     MapWidget widget;
     widget.resize(480, 720);
-    widget.m_controller.setDataSet(&loader.m_dataSet);
+    widget.m_controller.setDataSet(&loader.m_data);
     widget.m_controller.setStyleSheet(&style);
     widget.m_controller.setView(&widget.m_view);
 
@@ -121,10 +121,13 @@ int main(int argc, char **argv)
 
     auto levelBox = new QComboBox;
     layout->addWidget(levelBox);
-    levelBox->addItems(loader.m_levels);
-    levelBox->addItem(QString());
-    QObject::connect(levelBox, &QComboBox::currentTextChanged, &app, [&](const QString &level) {
-        widget.m_view.setLevel(level);
+    for (const auto &l : loader.m_data.m_levelMap) {
+        if (l.first.isFullLevel()) {
+            levelBox->addItem(l.first.name(), l.first.numericLevel());
+        }
+    }
+    QObject::connect(levelBox, &QComboBox::currentTextChanged, &app, [&]() {
+        widget.m_view.setLevel(levelBox->currentData().toInt());
         widget.m_controller.updateScene(widget.m_sg);
         widget.update();
     });

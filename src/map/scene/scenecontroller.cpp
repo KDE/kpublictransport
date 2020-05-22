@@ -20,6 +20,7 @@
 #include "scenegraph.h"
 #include "scenegraphitem.h"
 
+#include "../loader/mapdata.h"
 #include "../renderer/view.h"
 #include "../style/mapcssdeclaration.h"
 #include "../style/mapcssstyle.h"
@@ -37,9 +38,9 @@ using namespace KOSMIndoorMap;
 SceneController::SceneController() = default;
 SceneController::~SceneController() = default;
 
-void SceneController::setDataSet(const OSM::DataSet *dataSet)
+void SceneController::setDataSet(const MapData *data)
 {
-    m_dataSet = dataSet;
+    m_data = data;
 }
 
 void SceneController::setStyleSheet(const MapCSSStyle *styleSheet)
@@ -52,27 +53,46 @@ void SceneController::setView(const View *view)
     m_view = view;
 }
 
-static bool containsLevel(const QString &currentLevel, const QString &desiredLevel)
-{
-    if (desiredLevel.isEmpty() || (currentLevel.isEmpty() && desiredLevel == QLatin1String("0"))) {
-        return true;
-    }
-
-    if (currentLevel.contains(QLatin1Char(';')) && currentLevel.split(QLatin1Char(';')).contains(desiredLevel)) {
-        return true;
-    }
-
-    return currentLevel == desiredLevel;
-}
-
 void SceneController::updateScene(SceneGraph &sg) const
 {
-    sg.setBackgroundColor(QGuiApplication::palette().color(QPalette::Base));
-
     sg.clear(); // TODO reuse what is still valid
+    updateCanvas(sg);
 
-    auto defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
-    auto defaultFont = QGuiApplication::font();
+    // find all intermediate levels below or above the currently selected "full" level
+    auto it = m_data->m_levelMap.find(MapLevel(m_view->level()));
+    if (it == m_data->m_levelMap.end()) {
+        return;
+    }
+
+    auto beginIt = it;
+    if (beginIt != m_data->m_levelMap.begin()) {
+        do {
+            --beginIt;
+        } while (!(*beginIt).first.isFullLevel() && beginIt != m_data->m_levelMap.begin());
+        ++beginIt;
+    }
+
+    auto endIt = it;
+    for (++endIt; endIt != m_data->m_levelMap.end(); ++endIt) {
+        if ((*endIt).first.isFullLevel()) {
+            break;
+        }
+    }
+
+    for (auto it = beginIt; it != endIt; ++it) {
+        for (auto e : (*it).second) {
+            updateElement(e, (*it).first.numericLevel(), sg);
+        }
+    }
+
+    sg.zSort();
+}
+
+void SceneController::updateCanvas(SceneGraph &sg) const
+{
+    sg.setBackgroundColor(QGuiApplication::palette().color(QPalette::Base));
+    m_defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
+    m_defaultFont = QGuiApplication::font();
 
     m_styleSheet->evaluateCanvas(m_styleResult);
     for (auto decl : m_styleResult.declarations()) {
@@ -81,107 +101,102 @@ void SceneController::updateScene(SceneGraph &sg) const
                 sg.setBackgroundColor(decl->colorValue());
                 break;
             case MapCSSDeclaration::TextColor:
-                defaultTextColor = decl->colorValue();
+                m_defaultTextColor = decl->colorValue();
                 break;
             default:
                 break;
         }
     }
+}
 
-    OSM::for_each(*m_dataSet, [this, &sg, defaultTextColor, defaultFont](auto e) {
-        const auto l = e.tagValue("level");
-        if (!containsLevel(l, m_view->level())) {
-            return;
+void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) const
+{
+    MapCSSState state;
+    state.element = e;
+    state.zoomLevel = m_view->zoomLevel();
+    m_styleSheet->evaluate(state, m_styleResult);
+
+    if (m_styleResult.hasAreaProperties()) {
+        PolygonBaseItem *item;
+        if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
+            auto i = new MultiPolygonItm;
+            i->path = createPath(e);
+            item = i;
+        } else {
+            auto i = new PolygonItem;
+            i->polygon = createPolygon(e);
+            item = i;
         }
 
-        MapCSSState state;
-        state.element = e;
-        state.zoomLevel = m_view->zoomLevel();
-        m_styleSheet->evaluate(state, m_styleResult);
-
-        if (m_styleResult.hasAreaProperties()) {
-            PolygonBaseItem *item;
-            if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
-                auto i = new MultiPolygonItm;
-                i->path = createPath(e);
-                item = i;
-            } else {
-                auto i = new PolygonItem;
-                i->polygon = createPolygon(e);
-                item = i;
+        for (auto decl : m_styleResult.declarations()) {
+            applyGenericStyle(decl, item);
+            applyPenStyle(decl, item->pen);
+            switch (decl->property()) {
+                case MapCSSDeclaration::FillColor:
+                    item->brush.setColor(decl->colorValue());
+                    item->brush.setStyle(Qt::SolidPattern);
+                    break;
+                default:
+                    break;
             }
+        }
+
+        addItem(sg, e, level, item);
+    } else if (m_styleResult.hasLineProperties()) {
+        auto item = new PolylineItem;
+        item->path = createPolygon(e);
+        // default according to spec
+        item->pen.setCapStyle(Qt::FlatCap);
+        item->pen.setJoinStyle(Qt::RoundJoin);
+        item->casingPen.setCapStyle(Qt::FlatCap);
+        item->casingPen.setJoinStyle(Qt::RoundJoin);
+
+        for (auto decl : m_styleResult.declarations()) {
+            applyGenericStyle(decl, item);
+            applyPenStyle(decl, item->pen);
+            applyCasingPenStyle(decl, item->casingPen);
+        }
+
+        addItem(sg, e, level, item);
+    }
+
+    if (m_styleResult.hasLabelProperties()) {
+        QString text;
+        const auto textDecl = m_styleResult.declaration(MapCSSDeclaration::Text);
+        if (textDecl) {
+            if (!textDecl->keyValue().isEmpty()) {
+                text = e.tagValue(textDecl->keyValue().constData());
+            } else {
+                text = textDecl->stringValue();
+            }
+        }
+
+        if (!text.isEmpty()) {
+            auto item = new LabelItem;
+            item->text = text;
+            item->font = m_defaultFont;
+            item->pos = m_view->mapGeoToScene(e.center()); // TODO center() is too simple for concave polygons
+            item->color = m_defaultTextColor;
 
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
-                applyPenStyle(decl, item->pen);
+                applyFontStyle(decl, item->font);
                 switch (decl->property()) {
-                    case MapCSSDeclaration::FillColor:
-                        item->brush.setColor(decl->colorValue());
-                        item->brush.setStyle(Qt::SolidPattern);
+                    case MapCSSDeclaration::TextColor:
+                        item->color = decl->colorValue();
                         break;
                     default:
                         break;
                 }
             }
-            addItem(sg, e, item);
-        } else if (m_styleResult.hasLineProperties()) {
-            auto item = new PolylineItem;
-            item->path = createPolygon(e);
-            // default according to spec
-            item->pen.setCapStyle(Qt::FlatCap);
-            item->pen.setJoinStyle(Qt::RoundJoin);
-            item->casingPen.setCapStyle(Qt::FlatCap);
-            item->casingPen.setJoinStyle(Qt::RoundJoin);
-
-            for (auto decl : m_styleResult.declarations()) {
-                applyGenericStyle(decl, item);
-                applyPenStyle(decl, item->pen);
-                applyCasingPenStyle(decl, item->casingPen);
-            }
-
-            addItem(sg, e, item);
+            addItem(sg, e, level, item);
         }
-
-        if (m_styleResult.hasLabelProperties()) {
-            QString text;
-            const auto textDecl = m_styleResult.declaration(MapCSSDeclaration::Text);
-            if (textDecl) {
-                if (!textDecl->keyValue().isEmpty()) {
-                    text = e.tagValue(textDecl->keyValue().constData());
-                } else {
-                    text = textDecl->stringValue();
-                }
-            }
-
-            if (!text.isEmpty()) {
-                auto item = new LabelItem;
-                item->text = text;
-                item->font = defaultFont;
-                item->pos = m_view->mapGeoToScene(e.center()); // TODO center() is too simple for concave polygons
-                item->color = defaultTextColor;
-
-                for (auto decl : m_styleResult.declarations()) {
-                    applyGenericStyle(decl, item);
-                    applyFontStyle(decl, item->font);
-                    switch (decl->property()) {
-                        case MapCSSDeclaration::TextColor:
-                            item->color = decl->colorValue();
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                addItem(sg, e, item);
-            }
-        }
-    });
-
-    sg.zSort();
+    }
 }
 
 QPolygonF SceneController::createPolygon(OSM::Element e) const
 {
-    const auto path = e.outerPath(*m_dataSet);
+    const auto path = e.outerPath(m_data->dataSet());
     QPolygonF poly;
     poly.reserve(path.size());
     for (auto node : path) {
@@ -207,8 +222,8 @@ QPainterPath SceneController::createPath(const OSM::Element e) const
         if (mem.type != OSM::Type::Way || (!isOuter && !isInner)) {
             continue;
         }
-        auto wayIt = std::lower_bound(m_dataSet->ways.begin(), m_dataSet->ways.end(), mem.id);
-        if (wayIt == m_dataSet->ways.end() || (*wayIt).id != mem.id) {
+        auto wayIt = std::lower_bound(m_data->dataSet().ways.begin(), m_data->dataSet().ways.end(), mem.id);
+        if (wayIt == m_data->dataSet().ways.end() || (*wayIt).id != mem.id) {
             continue;
         }
 
@@ -325,8 +340,10 @@ void SceneController::applyFontStyle(const MapCSSDeclaration *decl, QFont &font)
     }
 }
 
-void SceneController::addItem(SceneGraph &sg, OSM::Element e, SceneGraphItem *item) const
+void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, SceneGraphItem *item) const
 {
+    item->level = level;
+
     // get the OSM layer, if set
     const auto layerStr = e.tagValue(QLatin1String("layer"));
     if (!layerStr.isEmpty()) {

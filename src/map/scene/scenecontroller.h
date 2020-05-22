@@ -34,6 +34,7 @@ class Relation;
 
 namespace KOSMIndoorMap {
 
+class MapData;
 class MapCSSStyle;
 class SceneGraph;
 class SceneGraphItem;
@@ -46,7 +47,7 @@ public:
     explicit SceneController();
     ~SceneController();
 
-    void setDataSet(const OSM::DataSet *dataSet);
+    void setDataSet(const MapData *data);
     void setStyleSheet(const MapCSSStyle *styleSheet);
     void setView(const View *view);
 
@@ -56,6 +57,9 @@ public:
     void updateScene(SceneGraph &sg) const;
 
 private:
+    void updateCanvas(SceneGraph &sg) const;
+    void updateElement(OSM::Element e, int level, SceneGraph &sg) const;
+
     QPolygonF createPolygon(OSM::Element e) const;
     QPainterPath createPath(OSM::Element e) const;
 
@@ -64,12 +68,15 @@ private:
     void applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
     void applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const;
 
-    void addItem(SceneGraph &sg, OSM::Element e, SceneGraphItem *item) const;
+    void addItem(SceneGraph &sg, OSM::Element e, int level, SceneGraphItem *item) const;
 
-    const OSM::DataSet *m_dataSet = nullptr;
+    const MapData *m_data = nullptr;
     const MapCSSStyle *m_styleSheet = nullptr;
     const View *m_view = nullptr;
+
     mutable MapCSSResult m_styleResult;
+    mutable QColor m_defaultTextColor;
+    mutable QFont m_defaultFont;
 };
 
 }

@@ -18,6 +18,8 @@
 #ifndef KOSMINDOORMAP_MAPLOADER_H
 #define KOSMINDOORMAP_MAPLOADER_H
 
+#include "mapdata.h"
+
 #include <osm/datatypes.h>
 
 namespace KOSMIndoorMap {
@@ -30,11 +32,7 @@ class MapLoader
 public:
     void loadFromOsmXml(const QString &fileName);
 
-    OSM::DataSet m_dataSet;
-    QStringList m_levels;
-
-private:
-    void determineLevels();
+    MapData m_data;
 };
 
 }

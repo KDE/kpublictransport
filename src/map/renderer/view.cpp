@@ -77,12 +77,12 @@ void View::setScreenSize(QSize size)
     constrainViewToScene();
 }
 
-QString View::level() const
+int View::level() const
 {
     return m_level;
 }
 
-void View::setLevel(const QString &level)
+void View::setLevel(int level)
 {
     m_level = level;
 }
