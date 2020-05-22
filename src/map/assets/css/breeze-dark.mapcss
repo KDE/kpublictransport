@@ -67,7 +67,7 @@ line[highway=road]
     color: #1c1e20;
 }
 
-line[highway=living_street]
+line[highway=living_street],
 line[highway=pedestrian]
 {
     casing-color: #1f5e80;
@@ -152,7 +152,8 @@ area[building:part=elevator]
     width: 0;
 }
 
-area[shop=ticket]
+area[shop=ticket],
+area[tourism=information]
 {
     fill-color: #da4453;
 }

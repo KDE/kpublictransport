@@ -36,7 +36,7 @@ relation[type=multipolygon][man_made=bridge]
 line[highway=motorway],
 line[highway=motorway_link]
 {
-    color: #dacdce;
+    color: #e1d4d5;
     casing-color: #da6c77;
 }
 
@@ -67,11 +67,11 @@ line[highway=road]
     color: #eff0f1;
 }
 
-line[highway=living_street]
+line[highway=living_street],
 line[highway=pedestrian]
 {
     casing-color: #5c95b9;
-    color: #aeb5b9;
+    color: #d2dbe0;
 }
 
 /** Generic building stuff */
@@ -152,7 +152,8 @@ area[building:part=elevator]
     width: 0;
 }
 
-area[shop=ticket]
+area[shop=ticket],
+area[tourism=information]
 {
     fill-color: #bf0303;
 }

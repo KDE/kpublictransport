@@ -76,9 +76,13 @@ line[highway=motorway] { width: 9; }
 line[highway=trunk] { width: 7; }
 line[highway=primary] { width: 6.5; }
 line[highway=secondary] { width: 6; }
-line[highway=tertiary] { width: 5; }
 
-line[highway=motorway_link]
+line[highway=motorway_link],
+line[highway=tertiary]
+{
+    width: 5;
+}
+
 line[highway=trunk_link],
 line[highway=primary_link],
 line[highway=secondary_link],
@@ -149,7 +153,11 @@ way|z17-[public_transport=platform][local_ref]
 }
 
 /** Shops/etc */
-*|z19- [shop]
+*|z19- [shop],
+*|z19- [amenity=cafe],
+*|z19- [amenity=fast_food],
+*|z19- [amenity=restaurant],
+*|z19- [tourism=information]
 {
     text: name;
 }
