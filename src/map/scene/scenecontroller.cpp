@@ -215,12 +215,16 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             item->pos = m_view->mapGeoToScene(e.center()); // TODO center() is too simple for concave polygons
             item->color = m_defaultTextColor;
 
+            double textOpacity = 1.0;
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
                 applyFontStyle(decl, item->font);
                 switch (decl->property()) {
                     case MapCSSDeclaration::TextColor:
                         item->color = decl->colorValue();
+                        break;
+                    case MapCSSDeclaration::TextOpacity:
+                        textOpacity = decl->doubleValue();
                         break;
                     case MapCSSDeclaration::ShieldCasingColor:
                         item->casingColor = decl->colorValue();
@@ -246,6 +250,11 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     default:
                         break;
                 }
+            }
+            if (item->color.isValid() && textOpacity < 1.0) {
+                auto c = item->color;
+                c.setAlphaF(c.alphaF() * textOpacity);
+                item->color = c;
             }
             addItem(sg, e, level, item);
         }
