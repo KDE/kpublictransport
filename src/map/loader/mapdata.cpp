@@ -171,7 +171,21 @@ void MapData::addElement(int level, OSM::Element e)
 
 QString MapData::levelName(OSM::Element e)
 {
-    return e.tagValue("level:ref");
+    const auto n = e.tagValue("level:ref");
+    if (!n.isEmpty()) {
+        return n;
+    }
+
+    if (e.type() == OSM::Type::Relation) {
+        const auto isLevelRel = std::all_of(e.relation()->members.begin(), e.relation()->members.end(), [](const auto &mem) {
+            return mem.role == QLatin1String("shell") || mem.role == QLatin1String("buildingpart");
+        });
+        if (isLevelRel) {
+            return e.tagValue("name");
+        }
+    }
+
+    return {};
 }
 
 void MapData::filterLevels()
