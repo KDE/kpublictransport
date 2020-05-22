@@ -69,6 +69,7 @@ public:
     void write(QIODevice* out) const override;
 
     /** @internal only to be used by the parser */
+    void setObjectType(const char *str, std::size_t len);
     void setZoomRange(int low, int high);
     void setConditions(MapCSSConditionHolder *conds);
 

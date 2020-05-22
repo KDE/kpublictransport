@@ -89,7 +89,6 @@ using namespace KOSMIndoorMap;
     MapCSSBasicSelector *basicSelector;
     MapCSSCondition *condition;
     MapCSSConditionHolder *conditionHolder;
-    MapCSSBasicSelector::ObjectType objectType;
     MapCSSCondition::Operator binaryOp;
     MapCSSDeclaration *declaration;
 }
@@ -105,12 +104,12 @@ using namespace KOSMIndoorMap;
 %token T_COMMA
 %token T_SPACE
 %token T_DASH
+%token T_STAR
 %token T_ZOOM
 %token T_UNARY_OP
 %token <binaryOp> T_BINARY_OP
 %token T_KEYWORD_IMPORT
 %token T_KEYWORD_URL
-%token <objectType> T_OBJECT
 %token <strRef> T_IDENT
 %token <uintVal> T_HEX_COLOR
 %token <str> T_STRING
@@ -189,9 +188,16 @@ Selector:
 ;
 
 // TODO incomplete: missing class
-BasicSelector: T_OBJECT ZoomRange Tests {
+BasicSelector:
+  T_IDENT ZoomRange Tests {
     $$ = new MapCSSBasicSelector;
-    $$->objectType = $1;
+    $$->setObjectType($1.str, $1.len);
+    $$->setZoomRange($2.low, $2.high);
+    $$->setConditions($3);
+  }
+| T_STAR ZoomRange Tests {
+    $$ = new MapCSSBasicSelector;
+    $$->objectType = MapCSSBasicSelector::Any;
     $$->setZoomRange($2.low, $2.high);
     $$->setConditions($3);
   }

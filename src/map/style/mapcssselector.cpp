@@ -23,6 +23,7 @@
 #include <QIODevice>
 
 #include <cmath>
+#include <cstring>
 
 using namespace KOSMIndoorMap;
 
@@ -60,16 +61,26 @@ bool MapCSSBasicSelector::matchesCanvas() const
     return objectType == Canvas;
 }
 
+struct {
+    const char *name;
+    MapCSSBasicSelector::ObjectType type;
+} static constexpr const object_type_map[] = {
+    { "node", MapCSSBasicSelector::Node },
+    { "way", MapCSSBasicSelector::Way },
+    { "relation", MapCSSBasicSelector::Relation },
+    { "area", MapCSSBasicSelector::Area },
+    { "line", MapCSSBasicSelector::Line },
+    { "canvas", MapCSSBasicSelector::Canvas },
+    { "*", MapCSSBasicSelector::Any },
+};
+
 void MapCSSBasicSelector::write(QIODevice *out) const
 {
-    switch (objectType) {
-        case Node: out->write("node"); break;
-        case Way: out->write("way"); break;
-        case Relation: out->write("relation"); break;
-        case Area: out->write("area"); break;
-        case Line: out->write("line"); break;
-        case Canvas: out->write("canvas"); break;
-        case Any: out->write("*"); break;
+    for (const auto &t : object_type_map) {
+        if (objectType == t.type) {
+            out->write(t.name);
+            break;
+        }
     }
 
     if (m_zoomLow > 0 || m_zoomHigh > 0) {
@@ -89,6 +100,16 @@ void MapCSSBasicSelector::write(QIODevice *out) const
 
     for (const auto &cond : conditions) {
         cond->write(out);
+    }
+}
+
+void MapCSSBasicSelector::setObjectType(const char *str, std::size_t len)
+{
+    for (const auto &t : object_type_map) {
+        if (std::strncmp(t.name, str, std::max(std::strlen(t.name), len)) == 0) {
+            objectType = t.type;
+            return;
+        }
     }
 }
 

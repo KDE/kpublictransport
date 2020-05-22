@@ -76,6 +76,7 @@ STRING      ["]{STRING_ELEMENT}*["]
 " " { return T_SPACE; }
 "-" { return T_DASH; }
 "|z" { return T_ZOOM; }
+"*" { return T_STAR; }
 
 "="  { yylval->binaryOp = MapCSSCondition::Equal; return T_BINARY_OP; }
 "!=" { yylval->binaryOp = MapCSSCondition::NotEqual; return T_BINARY_OP; }
@@ -86,14 +87,6 @@ STRING      ["]{STRING_ELEMENT}*["]
 
 "@import" { return T_KEYWORD_IMPORT; }
 "url"     { return T_KEYWORD_URL; }
-
-"node"     { yylval->objectType = MapCSSBasicSelector::Node; return T_OBJECT; }
-"way"      { yylval->objectType = MapCSSBasicSelector::Way; return T_OBJECT; }
-"relation" { yylval->objectType = MapCSSBasicSelector::Relation; return T_OBJECT; }
-"area"     { yylval->objectType = MapCSSBasicSelector::Area; return T_OBJECT; }
-"line"     { yylval->objectType = MapCSSBasicSelector::Line; return T_OBJECT; }
-"canvas"   { yylval->objectType = MapCSSBasicSelector::Canvas; return T_OBJECT; }
-"*"        { yylval->objectType = MapCSSBasicSelector::Any; return T_OBJECT; }
 
 {IDENTIFIER} {
     yylval->strRef.str = yytext;

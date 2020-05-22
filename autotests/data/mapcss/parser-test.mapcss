@@ -61,3 +61,8 @@ node|z14-[name] {}
 * [layer<2],
 * [layer>=3],
 * [layer<=4] {}
+
+// object types as tag or propery values
+area[indoor=area] {
+    text-position: line;
+}
