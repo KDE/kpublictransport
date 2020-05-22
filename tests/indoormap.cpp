@@ -52,7 +52,6 @@ MapWidget::MapWidget(QWidget* parent)
 {
     m_renderer.setPaintDevice(this);
     m_view.setScreenSize(size());
-    m_view.setSceneBoundingBox(OSM::BoundingBox(OSM::Coordinate(52.52320, 13.36310), OSM::Coordinate(52.52845, 13.37375)));
 }
 
 void MapWidget::paintEvent(QPaintEvent *event)
@@ -112,6 +111,7 @@ int main(int argc, char **argv)
 
     MapWidget widget;
     widget.resize(480, 720);
+    widget.m_view.setSceneBoundingBox(loader.m_data.boundingBox());
     widget.m_controller.setDataSet(&loader.m_data);
     widget.m_controller.setStyleSheet(&style);
     widget.m_controller.setView(&widget.m_view);

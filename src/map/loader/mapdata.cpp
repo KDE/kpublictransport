@@ -76,14 +76,26 @@ const OSM::DataSet& MapData::dataSet() const
 void MapData::setDataSet(OSM::DataSet &&dataSet)
 {
     m_dataSet = std::move(dataSet);
+
     m_levelMap.clear();
-    determineLevels();
+    m_bbox = {};
+
+    processElements();
     filterLevels();
 }
 
-void MapData::determineLevels()
+OSM::BoundingBox MapData::boundingBox() const
+{
+    return m_bbox;
+}
+
+void MapData::processElements()
 {
     OSM::for_each(m_dataSet, [this](auto e) {
+        // bbox computation
+        m_bbox = OSM::unite(e.boundingBox(), m_bbox);
+
+        // level parsing
         auto level = e.tagValue("level");
         if (level.isEmpty()) {
             level = e.tagValue("repeat_on");
@@ -91,10 +103,9 @@ void MapData::determineLevels()
 
         if (level.isEmpty()) { // level-less -> outdoor
             m_levelMap[MapLevel{}].push_back(e);
-            return;
+        } else {
+            parseLevel(std::move(level), e);
         }
-
-        parseLevel(std::move(level), e);
     });
 }
 

@@ -62,17 +62,20 @@ public:
     const OSM::DataSet& dataSet() const;
     void setDataSet(OSM::DataSet &&dataSet);
 
+    OSM::BoundingBox boundingBox() const;
+
     // TODO efficient access API for this
     std::map<MapLevel, std::vector<OSM::Element>> m_levelMap;
 
 private:
-    void determineLevels();
+    void processElements();
     void parseLevel(QString &&level, OSM::Element e);
     void addElement(int level, OSM::Element e);
     QString levelName(OSM::Element e);
     void filterLevels();
 
     OSM::DataSet m_dataSet;
+    OSM::BoundingBox m_bbox;
 };
 
 }
