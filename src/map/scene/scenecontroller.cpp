@@ -216,6 +216,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             item->color = m_defaultTextColor;
 
             double textOpacity = 1.0;
+            double shieldOpacity = 1.0;
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
                 applyFontStyle(decl, item->font);
@@ -235,6 +236,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     case MapCSSDeclaration::ShieldColor:
                         item->shieldColor = decl->colorValue();
                         break;
+                    case MapCSSDeclaration::ShieldOpacity:
+                        shieldOpacity = decl->doubleValue();
+                        break;
                     case MapCSSDeclaration::ShieldFrameColor:
                         item->frameColor = decl->colorValue();
                         break;
@@ -244,7 +248,6 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     case MapCSSDeclaration::TextPosition:
                         if (decl->textFollowsLine() && linePath.size() > 1) {
                             item->angle = angleForPath(linePath);
-                            qDebug() << item->text << item->angle;
                         }
                         break;
                     default:
@@ -255,6 +258,11 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 auto c = item->color;
                 c.setAlphaF(c.alphaF() * textOpacity);
                 item->color = c;
+            }
+            if (item->shieldColor.isValid() && shieldOpacity < 1.0) {
+                auto c = item->shieldColor;
+                c.setAlphaF(c.alphaF() * shieldOpacity);
+                item->shieldColor = c;
             }
             addItem(sg, e, level, item);
         }
@@ -324,6 +332,7 @@ void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGrap
 
 void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
 {
+    double opacity = 1.0;
     switch (decl->property()) {
         case MapCSSDeclaration::Color:
             pen.setColor(decl->colorValue());
@@ -344,14 +353,22 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) co
             pen.setJoinStyle(decl->joinStyle());
             break;
         case MapCSSDeclaration::Opacity:
-            // TODO
+            opacity = decl->doubleValue();
+            break;
         default:
             break;
+    }
+
+    if (pen.style() != Qt::NoPen && opacity < 1.0) {
+        auto c = pen.color();
+        c.setAlphaF(c.alphaF() * opacity);
+        pen.setColor(c);
     }
 }
 
 void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
 {
+    double opacity = 1.0;
     switch (decl->property()) {
         case MapCSSDeclaration::CasingColor:
             pen.setColor(decl->colorValue());
@@ -372,9 +389,16 @@ void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &p
             pen.setJoinStyle(decl->joinStyle());
             break;
         case MapCSSDeclaration::CasingOpacity:
-            // TODO
+            opacity = decl->doubleValue();
+            break;
         default:
             break;
+    }
+
+    if (pen.style() != Qt::NoPen && opacity < 1.0) {
+        auto c = pen.color();
+        c.setAlphaF(c.alphaF() * opacity);
+        pen.setColor(c);
     }
 }
 
