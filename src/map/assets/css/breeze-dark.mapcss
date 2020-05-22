@@ -27,6 +27,7 @@ canvas {
 /** Generic outdoor stuff */
 area[amenity=parking] { fill-color: #31363b; }
 area[building],
+area[man_made=bridge],
 relation[type=multipolygon][man_made=bridge]
 {
     fill-color: #20bdc3c7;
@@ -127,7 +128,7 @@ area[railway=platform],
 area[public_transport=platform],
 relation[type=multipolygon][railway=platform]
 {
-    fill-color: #31363b;
+    fill-color: #607080;
     color: #bdc3c7;
     width: 0;
 }

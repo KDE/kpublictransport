@@ -54,12 +54,6 @@ area|z17-[amenity=parking][access=private]
     text: "🚲";
 }
 
-area[building=roof],
-relation[type=multipolygon][building=roof]
-{
-    fill-opacity: 0;
-}
-
 /** Roads */
 line[highway=motorway],
 line[highway=motorway_link],
@@ -118,6 +112,9 @@ line[highway][layer<0] {
     casing-dashes: 0.25,0.25;
     casing-linecap: flat;
 }
+line[highway=steps][layer<0] {
+    casing-dashes: none;
+}
 
 line|z19-[highway=motorway],
 line|z20-[highway=motorway_link],
@@ -152,6 +149,7 @@ way[railway=tram]
     width: 1.5; // meter
     casing-width: 3;
     casing-color: #31363b;
+    linecap: flat;
 }
 
 way[railway:traffic_mode=freight],
@@ -159,6 +157,24 @@ way[railway=rail][service=yard]
 {
     casing-color: #7f8c8d;
 }
+
+/** Buildings */
+area[building],
+area[building:part=yes],
+area[indoor=area]
+relation[type=multipolygon][indoor=area]
+relation[type=multipolygon][building],
+relation[type=multipolygon][building:part=yes]
+{
+    z-index: -1;
+}
+
+area[building=roof],
+relation[type=multipolygon][building=roof]
+{
+    fill-opacity: 0;
+}
+
 
 /** Platforms */
 area|z17-[railway=platform],
@@ -194,6 +210,15 @@ relation|z17-[type=multipolygon][railway=platform][local_ref],
 way|z17-[public_transport=platform][local_ref]
 {
     text: local_ref;
+}
+
+node|z18-[public_transport=platform_section_sign]
+{
+    text: platform_section_sign_value;
+    text-color: #fcfcfc;
+    shield-color: #1d99f3;
+    shield-casing-color: #fcfcfc;
+    shield-casing-width: 1;
 }
 
 /** Shops/etc */
