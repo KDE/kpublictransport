@@ -19,15 +19,21 @@
 
 /** Various outdoor stuff. */
 relation[type=multipolygon][water],
+relation[type=multipolygon][waterway],
 relation[type=multipolygon][natural=water],
 area[water],
+area[waterway],
 area[natural=water]
 {
     fill-color: #103daee9;
     z-index: -1000;
 }
 *[leisure=park],
-*[landuse=grass]
+*[landuse=grass],
+*[landuse=village_green],
+*[landuse=allotments],
+*[landuse=cemetery],
+*[natural=wood]
 {
     fill-color: #1027ae60;
     z-index: -999;
