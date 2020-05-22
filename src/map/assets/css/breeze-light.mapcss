@@ -29,7 +29,7 @@ area[amenity=parking] { fill-color: #f8f7f6; }
 area[building],
 relation[type=multipolygon][man_made=bridge]
 {
-    fill-color: #20eff0f1;
+    fill-color: #80dad9d8;
 }
 
 /** Roads */

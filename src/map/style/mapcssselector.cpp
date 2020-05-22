@@ -100,7 +100,6 @@ void MapCSSBasicSelector::setZoomRange(int low, int high)
 
 void MapCSSBasicSelector::setConditions(MapCSSConditionHolder *conds)
 {
-    qDebug() << conds;
     if (!conds) {
         return;
     }

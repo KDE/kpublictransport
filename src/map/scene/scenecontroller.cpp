@@ -128,6 +128,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             item = i;
         }
 
+        double fillOpacity = 1.0;
         for (auto decl : m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
             applyPenStyle(decl, item->pen);
@@ -136,9 +137,17 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     item->brush.setColor(decl->colorValue());
                     item->brush.setStyle(Qt::SolidPattern);
                     break;
+                case MapCSSDeclaration::FillOpacity:
+                    fillOpacity = decl->doubleValue();
+                    break;
                 default:
                     break;
             }
+        }
+        if (item->brush.style() == Qt::SolidPattern && fillOpacity < 1.0) {
+            auto c = item->brush.color();
+            c.setAlphaF(c.alphaF() * fillOpacity);
+            item->brush.setColor(c);
         }
 
         addItem(sg, e, level, item);

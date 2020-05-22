@@ -48,6 +48,12 @@ area|z17-[amenity=parking][access=private]
     text: "🚲";
 }
 
+area[building=roof],
+relation[type=multipolygon][building=roof]
+{
+    fill-opacity: 0;
+}
+
 /** Roads */
 line[highway=motorway],
 line[highway=motorway_link],

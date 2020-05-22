@@ -65,7 +65,6 @@ void MapCSSRule::setSelector(MapCSSSelector *selector)
 
 void MapCSSRule::addDeclaration(MapCSSDeclaration *decl)
 {
-    qDebug() << decl << decl->property();
     std::unique_ptr<MapCSSDeclaration> declPtr(decl);
     if (declPtr->property() != MapCSSDeclaration::Unknown) {
         m_declarations.push_back(std::move(declPtr));
