@@ -2,6 +2,7 @@ flex_target(mapcssscanner
     style/mapcsslexer.l
     ${CMAKE_CURRENT_BINARY_DIR}/mapcsslexer.cpp
     DEFINES_FILE ${CMAKE_CURRENT_BINARY_DIR}/mapcssscanner.h
+    COMPILE_FLAGS "--nounistd"
 )
 bison_target(mapcssparser
     style/mapcssparser.y
