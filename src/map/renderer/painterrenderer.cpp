@@ -176,9 +176,12 @@ void PainterRenderer::renderLabel(LabelItem *item)
         item->hasFineBbox = true;
     }
 
-    // transform to HUD coordinates
+    m_painter.save();
+    m_painter.translate(m_view->mapSceneToScreen(item->pos));
+    m_painter.rotate(item->angle);
+
     auto box = item->bbox;
-    box.moveCenter(m_view->mapSceneToScreen(item->pos));
+    box.moveCenter({0.0, 0.0});
 
     // draw shield
     // @see https://wiki.openstreetmap.org/wiki/MapCSS/0.2#Shield_properties
@@ -199,6 +202,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     m_painter.setPen(item->color);
     m_painter.setFont(item->font);
     m_painter.drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
+    m_painter.restore();
 }
 
 void PainterRenderer::endRender()

@@ -137,6 +137,7 @@ public:
     bool isBoldStyle() const;
     bool isItalicStyle() const;
     bool isUnderlineStyle() const;
+    bool textFollowsLine() const;
 
     void write(QIODevice *out) const;
 

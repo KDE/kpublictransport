@@ -240,6 +240,11 @@ bool MapCSSDeclaration::isUnderlineStyle() const
     return m_identValue == "underline";
 }
 
+bool MapCSSDeclaration::textFollowsLine() const
+{
+    return m_identValue == "line";
+}
+
 void MapCSSDeclaration::write(QIODevice *out) const
 {
     out->write("    ");

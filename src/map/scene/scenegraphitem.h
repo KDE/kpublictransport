@@ -125,6 +125,8 @@ public:
 
     mutable QRectF bbox;
     bool hasFineBbox = false;
+
+    double angle = 0.0;
 };
 
 
