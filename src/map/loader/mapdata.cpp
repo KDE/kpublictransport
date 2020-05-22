@@ -192,8 +192,10 @@ void MapData::filterLevels()
 {
     // remove all-node levels as we can't display anything meaningfully there
     for (auto it = m_levelMap.begin(); it != m_levelMap.end();) {
-        const auto isAllNodeLevel = std::all_of((*it).second.begin(), (*it).second.end(), [](auto e) { return e.type() == OSM::Type::Node; });
-        if (isAllNodeLevel) {
+        const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [](auto e) {
+            return e.type() == OSM::Type::Node || (e.type() == OSM::Type::Relation && e.tagValue("type") != QLatin1String("multipolygon"));
+        });
+        if (isNonVisual) {
             it = m_levelMap.erase(it);
         } else {
             ++it;
