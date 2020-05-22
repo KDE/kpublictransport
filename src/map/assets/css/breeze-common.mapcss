@@ -134,6 +134,17 @@ relation|z17-[type=multipolygon][railway=platform],
 way|z17-[public_transport=platform]
 {
     text: name;
+    text-color: #fcfcfc;
+    shield-color: #1d99f3;
+    shield-casing-color: #fcfcfc;
+    shield-casing-width: 1;
+}
+area|z19-[railway=platform],
+area|z19-[public_transport=platform],
+relation|z19-[type=multipolygon][railway=platform],
+way|z19-[public_transport=platform]
+{
+    font-size: 16;
 }
 
 area|z17-[railway=platform][ref],
@@ -163,7 +174,7 @@ way|z17-[public_transport=platform][local_ref]
 }
 
 /** icons */
-node|z17-[vending=public_transport_tickets] { text: "🎫"; }
+node|z18-[vending=public_transport_tickets] { text: "🎫"; }
 
 area|z18-[room=toilets],
 relation|z16-[type=multipolygon][room=toilets],

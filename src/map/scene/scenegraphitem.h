@@ -116,6 +116,13 @@ public:
     QString text;
     QColor color;
     QFont font;
+
+    double casingWidth = 0.0;
+    QColor casingColor = Qt::transparent;
+    double frameWidth = 0.0;
+    QColor frameColor = Qt::transparent;
+    QColor shieldColor = Qt::transparent;
+
     mutable QRectF bbox;
     bool hasFineBbox = false;
 };

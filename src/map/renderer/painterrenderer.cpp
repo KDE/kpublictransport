@@ -169,9 +169,6 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItem::RenderP
 
 void PainterRenderer::renderLabel(LabelItem *item)
 {
-    m_painter.setPen(item->color);
-    m_painter.setFont(item->font);
-
     if (!item->hasFineBbox) {
         QFontMetricsF fm(item->font);
         item->bbox = fm.boundingRect(item->text);
@@ -179,9 +176,29 @@ void PainterRenderer::renderLabel(LabelItem *item)
         item->hasFineBbox = true;
     }
 
+    // transform to HUD coordinates
     auto box = item->bbox;
     box.moveCenter(m_view->mapSceneToScreen(item->pos));
-    m_painter.drawText(box.bottomLeft(), item->text);
+
+    // draw shield
+    // @see https://wiki.openstreetmap.org/wiki/MapCSS/0.2#Shield_properties
+    auto w = item->casingWidth + item->frameWidth + 2.0;
+    if (item->casingWidth > 0.0 && item->casingColor.alpha() > 0) {
+        m_painter.fillRect(box.adjusted(-w, -w, w, w), item->casingColor);
+    }
+    w -= item->casingWidth;
+    if (item->frameWidth > 0.0 && item->frameColor.alpha() > 0) {
+        m_painter.fillRect(box.adjusted(-w, -w, w, w), item->frameColor);
+    }
+    w -= item->frameWidth;
+    if (item->shieldColor.alpha() > 0) {
+        m_painter.fillRect(box.adjusted(-w, -w, w, w), item->shieldColor);
+    }
+
+    // draw text
+    m_painter.setPen(item->color);
+    m_painter.setFont(item->font);
+    m_painter.drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
 }
 
 void PainterRenderer::endRender()

@@ -162,7 +162,11 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
 
     if (m_styleResult.hasLabelProperties()) {
         QString text;
-        const auto textDecl = m_styleResult.declaration(MapCSSDeclaration::Text);
+        auto textDecl = m_styleResult.declaration(MapCSSDeclaration::Text);
+        if (!textDecl) {
+            textDecl = m_styleResult.declaration(MapCSSDeclaration::ShieldText);
+        }
+
         if (textDecl) {
             if (!textDecl->keyValue().isEmpty()) {
                 text = e.tagValue(textDecl->keyValue().constData());
@@ -184,6 +188,21 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 switch (decl->property()) {
                     case MapCSSDeclaration::TextColor:
                         item->color = decl->colorValue();
+                        break;
+                    case MapCSSDeclaration::ShieldCasingColor:
+                        item->casingColor = decl->colorValue();
+                        break;
+                    case MapCSSDeclaration::ShieldCasingWidth:
+                        item->casingWidth = decl->doubleValue();
+                        break;
+                    case MapCSSDeclaration::ShieldColor:
+                        item->shieldColor = decl->colorValue();
+                        break;
+                    case MapCSSDeclaration::ShieldFrameColor:
+                        item->frameColor = decl->colorValue();
+                        break;
+                    case MapCSSDeclaration::ShieldFrameWidth:
+                        item->frameWidth = decl->doubleValue();
                         break;
                     default:
                         break;
