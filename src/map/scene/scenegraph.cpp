@@ -61,6 +61,11 @@ void SceneGraph::clear()
     m_layerOffsets.clear();
 }
 
+QColor SceneGraph::backgroundColor() const
+{
+    return m_bgColor;
+}
+
 void SceneGraph::setBackgroundColor(const QColor &bg)
 {
     m_bgColor = bg;
@@ -97,4 +102,24 @@ void SceneGraph::itemsAt(QPointF pos)
         }
         // TODO HUD space elements
     }
+}
+
+const std::vector<SceneGraph::LayerOffset>& SceneGraph::layerOffsets() const
+{
+    return m_layerOffsets;
+}
+
+SceneGraph::SceneGraphItemIter SceneGraph::itemsBegin(SceneGraph::LayerOffset layer) const
+{
+    return m_items.begin() + layer.first;
+}
+
+SceneGraph::SceneGraphItemIter SceneGraph::itemsEnd(SceneGraph::LayerOffset layer) const
+{
+    return m_items.begin() + layer.second;
+}
+
+std::size_t SceneGraph::itemCount() const
+{
+    return m_items.size();
 }

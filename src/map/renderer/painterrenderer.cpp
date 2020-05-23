@@ -43,11 +43,11 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
 
     m_view = view;
     beginRender();
-    renderBackground(sg.m_bgColor);
+    renderBackground(sg.backgroundColor());
 
-    for (const auto &layerOffsets : sg.m_layerOffsets) {
-        const auto layerBegin = sg.m_items.begin() + layerOffsets.first;
-        const auto layerEnd = sg.m_items.begin() + layerOffsets.second;
+    for (const auto &layerOffsets : sg.layerOffsets()) {
+        const auto layerBegin = sg.itemsBegin(layerOffsets);
+        const auto layerEnd = sg.itemsEnd(layerOffsets);
         //qDebug() << "rendering layer" << (*layerBegin)->layer;
 
         // select elements currently in view
@@ -92,7 +92,7 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
     endRender();
     m_view = nullptr;
 
-    qDebug() << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.m_items.size() << "items on" << sg.m_layerOffsets.size() << "layers";
+    qDebug() << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.itemCount() << "items on" << sg.layerOffsets().size() << "layers";
 }
 
 void PainterRenderer::beginRender()

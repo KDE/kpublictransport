@@ -46,6 +46,7 @@ public:
     void clear();
 
     /** Canvas background color. */
+    QColor backgroundColor() const;
     void setBackgroundColor(const QColor &bg);
 
     /** Items at scene coordinate @p pos.
@@ -53,10 +54,18 @@ public:
      */
     void itemsAt(QPointF pos);
 
+    // renderer interface
+    typedef std::pair<std::size_t, std::size_t> LayerOffset;
+    const std::vector<LayerOffset>& layerOffsets() const;
+
+    typedef std::vector<std::unique_ptr<SceneGraphItem>>::const_iterator SceneGraphItemIter;
+    SceneGraphItemIter itemsBegin(LayerOffset layer) const;
+    SceneGraphItemIter itemsEnd(LayerOffset layer) const;
+    std::size_t itemCount() const;
+
 private:
     void recomputeLayerIndex();
 
-    friend class PainterRenderer; // TODO
     std::vector<std::unique_ptr<SceneGraphItem>> m_items;
     std::vector<std::pair<std::size_t, std::size_t>> m_layerOffsets;
     QColor m_bgColor;
