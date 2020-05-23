@@ -431,7 +431,19 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, SceneGr
         bool success = false;
         const auto layer = layerStr.toInt(&success);
         if (success) {
-            item->layer = layer;
+
+            // ### Ignore layer information when it matches the level
+            // This is very wrong according to the specification, however it looks that in many places
+            // layer and level tags aren't correctly filled, possibly a side-effect of layer pre-dating
+            // level and layers not having been properly updated when retrofitting level information
+            // Strictly following the MapCSS rendering order yields sub-optimal results in that case, with
+            // relevant elements being hidden.
+            //
+            // Ideally we find a way to detect the presence of that problem, and only then enabling this
+            // workaround, but until we have this, this seems to produce better results in all tests.
+            if (level != layer * 10) {
+                item->layer = layer;
+            }
         } else {
             qWarning() << "Invalid layer:" << e.url() << layerStr;
         }
