@@ -21,6 +21,7 @@ add_library(KOSMIndoorMap STATIC
     renderer/view.cpp
 
     scene/scenecontroller.cpp
+    scene/scenegeometry.cpp
     scene/scenegraph.cpp
     scene/scenegraphitem.cpp
 
