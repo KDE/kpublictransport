@@ -275,21 +275,16 @@ QPolygonF SceneController::createPolygon(OSM::Element e) const
     return poly;
 }
 
+// @see https://wiki.openstreetmap.org/wiki/Relation:multipolygon
 QPainterPath SceneController::createPath(const OSM::Element e) const
 {
     assert(e.type() == OSM::Type::Relation);
     QPainterPath path;
-
-    // some multi-polygons in OSM have inner elements preceeding outer elements
-    // we remember those in here until we saw the first outer element.
-    // we cannot just sort this, as complex nested constructs are possible as well
-    // @see https://wiki.openstreetmap.org/wiki/Relation:multipolygon
-    QPainterPath subtractBuffer;
+    path.addPolygon(createPolygon(e)); // assemble the outer polygon, which can be represented as a set of unsorted lines here even
 
     for (const auto &mem : e.relation()->members) {
-        const bool isOuter = mem.role == QLatin1String("outer");
         const bool isInner = mem.role == QLatin1String("inner");
-        if (mem.type != OSM::Type::Way || (!isOuter && !isInner)) {
+        if (mem.type != OSM::Type::Way || !isInner) {
             continue;
         }
         auto wayIt = std::lower_bound(m_data->dataSet().ways.begin(), m_data->dataSet().ways.end(), mem.id);
@@ -298,21 +293,9 @@ QPainterPath SceneController::createPath(const OSM::Element e) const
         }
 
         const auto subPoly = createPolygon(OSM::Element(&(*wayIt)));
-        if (isInner) {
-            if (!path.isEmpty()) {
-                QPainterPath subPath;
-                subPath.addPolygon(subPoly);
-                path = path.subtracted(subPath);
-            } else {
-                subtractBuffer.addPolygon(subPoly);
-            }
-        } else {
-            path.addPolygon(subPoly);
-            if (!subtractBuffer.isEmpty()) {
-                path = path.subtracted(subtractBuffer);
-                subtractBuffer.clear();
-            }
-        }
+        QPainterPath subPath;
+        subPath.addPolygon(subPoly);
+        path = path.subtracted(subPath);
     }
 
     return path;
