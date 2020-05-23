@@ -117,17 +117,16 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     state.zoomLevel = m_view->zoomLevel();
     m_styleSheet->evaluate(state, m_styleResult);
 
-    QPolygonF linePath;
-
     if (m_styleResult.hasAreaProperties()) {
         PolygonBaseItem *item;
         if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
             auto i = new MultiPolygonItm;
-            i->path = createPath(e);
+            i->path = createPath(e, m_labelPlacementPath);
             item = i;
         } else {
             auto i = new PolygonItem;
             i->polygon = createPolygon(e);
+            m_labelPlacementPath = i->polygon;
             item = i;
         }
 
@@ -173,7 +172,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         finalizePen(item->pen, lineOpacity);
         finalizePen(item->casingPen, casingOpacity);
 
-        linePath = item->path;
+        m_labelPlacementPath = item->path;
         addItem(sg, e, level, item);
     }
 
@@ -196,8 +195,16 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             auto item = new LabelItem;
             item->text = text;
             item->font = m_defaultFont;
-            item->pos = m_view->mapGeoToScene(e.center()); // TODO center() is too simple for concave polygons
             item->color = m_defaultTextColor;
+
+            if (m_styleResult.hasAreaProperties()) {
+                item->pos = SceneGeometry::polygonCentroid(m_labelPlacementPath);
+            } else if (m_styleResult.hasLineProperties()) {
+                // TODO compute placement at half distance along the path
+            }
+            if (item->pos.isNull()) {
+                item->pos = m_view->mapGeoToScene(e.center()); // node or something failed above
+            }
 
             double textOpacity = 1.0;
             double shieldOpacity = 1.0;
@@ -230,8 +237,8 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         item->frameWidth = decl->doubleValue();
                         break;
                     case MapCSSDeclaration::TextPosition:
-                        if (decl->textFollowsLine() && linePath.size() > 1) {
-                            item->angle = SceneGeometry::angleForPath(linePath);
+                        if (decl->textFollowsLine() && m_labelPlacementPath.size() > 1) {
+                            item->angle = SceneGeometry::angleForPath(m_labelPlacementPath);
                         }
                         break;
                     default:
@@ -265,11 +272,12 @@ QPolygonF SceneController::createPolygon(OSM::Element e) const
 }
 
 // @see https://wiki.openstreetmap.org/wiki/Relation:multipolygon
-QPainterPath SceneController::createPath(const OSM::Element e) const
+QPainterPath SceneController::createPath(const OSM::Element e, QPolygonF &outerPath) const
 {
     assert(e.type() == OSM::Type::Relation);
+    outerPath = createPolygon(e);
     QPainterPath path;
-    path.addPolygon(createPolygon(e)); // assemble the outer polygon, which can be represented as a set of unsorted lines here even
+    path.addPolygon(outerPath); // assemble the outer polygon, which can be represented as a set of unsorted lines here even
 
     for (const auto &mem : e.relation()->members) {
         const bool isInner = mem.role == QLatin1String("inner");

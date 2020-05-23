@@ -61,7 +61,7 @@ private:
     void updateElement(OSM::Element e, int level, SceneGraph &sg) const;
 
     QPolygonF createPolygon(OSM::Element e) const;
-    QPainterPath createPath(OSM::Element e) const;
+    QPainterPath createPath(OSM::Element e, QPolygonF &outerPath) const;
 
     void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
     void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
@@ -80,6 +80,7 @@ private:
     mutable MapCSSResult m_styleResult;
     mutable QColor m_defaultTextColor;
     mutable QFont m_defaultFont;
+    mutable QPolygonF m_labelPlacementPath;
 };
 
 }

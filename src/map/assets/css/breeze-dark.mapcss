@@ -28,7 +28,8 @@ canvas {
 area[amenity=parking] { fill-color: #31363b; }
 area[building],
 area[man_made=bridge],
-relation[type=multipolygon][man_made=bridge]
+relation[type=multipolygon][man_made=bridge],
+area[railway=loading_ramp]
 {
     fill-color: #20bdc3c7;
 }
