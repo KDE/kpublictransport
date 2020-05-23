@@ -64,9 +64,12 @@ private:
     QPainterPath createPath(OSM::Element e) const;
 
     void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
-    void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
-    void applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const;
+    void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
+    void applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
     void applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const;
+
+    void initializePen(QPen &pen) const;
+    void finalizePen(QPen &pen, double opacity) const;
 
     void addItem(SceneGraph &sg, OSM::Element e, int level, SceneGraphItem *item) const;
 

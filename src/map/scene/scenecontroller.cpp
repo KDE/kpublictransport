@@ -151,10 +151,12 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             item = i;
         }
 
+        double lineOpacity = 1.0;
         double fillOpacity = 1.0;
+        initializePen(item->pen);
         for (auto decl : m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
-            applyPenStyle(decl, item->pen);
+            applyPenStyle(decl, item->pen, lineOpacity);
             switch (decl->property()) {
                 case MapCSSDeclaration::FillColor:
                     item->brush.setColor(decl->colorValue());
@@ -167,6 +169,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     break;
             }
         }
+        finalizePen(item->pen, lineOpacity);
         if (item->brush.style() == Qt::SolidPattern && fillOpacity < 1.0) {
             auto c = item->brush.color();
             c.setAlphaF(c.alphaF() * fillOpacity);
@@ -178,11 +181,17 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         auto item = new PolylineItem;
         item->path = createPolygon(e);
 
+        double lineOpacity = 1.0;
+        double casingOpacity = 1.0;
+        initializePen(item->pen);
+        initializePen(item->casingPen);
         for (auto decl : m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
-            applyPenStyle(decl, item->pen);
-            applyCasingPenStyle(decl, item->casingPen);
+            applyPenStyle(decl, item->pen, lineOpacity);
+            applyCasingPenStyle(decl, item->casingPen, casingOpacity);
         }
+        finalizePen(item->pen, lineOpacity);
+        finalizePen(item->casingPen, casingOpacity);
 
         linePath = item->path;
         addItem(sg, e, level, item);
@@ -308,19 +317,11 @@ void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGrap
     }
 }
 
-void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
+void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const
 {
-    // default according to spec
-    pen.setCapStyle(Qt::FlatCap);
-    pen.setJoinStyle(Qt::RoundJoin);
-
-    double opacity = 1.0;
     switch (decl->property()) {
         case MapCSSDeclaration::Color:
             pen.setColor(decl->colorValue());
-            if (pen.style() == Qt::NoPen) {
-                pen.setStyle(Qt::SolidLine);
-            }
             break;
         case MapCSSDeclaration::Width:
             pen.setWidthF(decl->doubleValue());
@@ -340,27 +341,13 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen) co
         default:
             break;
     }
-
-    if (pen.style() != Qt::NoPen && opacity < 1.0) {
-        auto c = pen.color();
-        c.setAlphaF(c.alphaF() * opacity);
-        pen.setColor(c);
-    }
 }
 
-void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen) const
+void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const
 {
-    // default according to spec
-    pen.setCapStyle(Qt::FlatCap);
-    pen.setJoinStyle(Qt::RoundJoin);
-
-    double opacity = 1.0;
     switch (decl->property()) {
         case MapCSSDeclaration::CasingColor:
             pen.setColor(decl->colorValue());
-            if (pen.style() == Qt::NoPen) {
-                pen.setStyle(Qt::SolidLine);
-            }
             break;
         case MapCSSDeclaration::CasingWidth:
             pen.setWidthF(decl->doubleValue());
@@ -379,12 +366,6 @@ void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &p
             break;
         default:
             break;
-    }
-
-    if (pen.style() != Qt::NoPen && opacity < 1.0) {
-        auto c = pen.color();
-        c.setAlphaF(c.alphaF() * opacity);
-        pen.setColor(c);
     }
 }
 
@@ -414,6 +395,29 @@ void SceneController::applyFontStyle(const MapCSSDeclaration *decl, QFont &font)
             break;
         default:
             break;
+    }
+}
+
+void SceneController::initializePen(QPen &pen) const
+{
+    pen.setColor(Qt::transparent);
+
+    // default according to spec
+    pen.setCapStyle(Qt::FlatCap);
+    pen.setJoinStyle(Qt::RoundJoin);
+    pen.setStyle(Qt::SolidLine);
+}
+
+void SceneController::finalizePen(QPen &pen, double opacity) const
+{
+    if (pen.color().isValid() && opacity < 1.0) {
+        auto c = pen.color();
+        c.setAlphaF(c.alphaF() * opacity);
+        pen.setColor(c);
+    }
+
+    if (pen.color().alphaF() == 0.0) {
+        pen.setStyle(Qt::NoPen); // so the renderer can skip this entirely
     }
 }
 

@@ -70,8 +70,8 @@ public:
     QRectF boundingRect() const override;
 
     QPolygonF path;
-    QPen pen = Qt::NoPen;
-    QPen casingPen = Qt::NoPen;
+    QPen pen;
+    QPen casingPen;
 };
 
 
@@ -82,7 +82,7 @@ public:
     uint8_t renderPhases() const override;
 
     QBrush brush = Qt::NoBrush;
-    QPen pen = Qt::NoPen;
+    QPen pen;
 };
 
 
