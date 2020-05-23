@@ -31,6 +31,7 @@
 #include <osm/datatypes.h>
 
 #include <QDebug>
+#include <QElapsedTimer>
 #include <QGuiApplication>
 #include <QPalette>
 
@@ -56,6 +57,9 @@ void SceneController::setView(const View *view)
 
 void SceneController::updateScene(SceneGraph &sg) const
 {
+    QElapsedTimer sgUpdateTimer;
+    sgUpdateTimer.start();
+
     sg.clear(); // TODO reuse what is still valid
     updateCanvas(sg);
 
@@ -80,6 +84,7 @@ void SceneController::updateScene(SceneGraph &sg) const
         }
     }
 
+    // for each level, update or create scene graph elements
     for (auto it = beginIt; it != endIt; ++it) {
         for (auto e : (*it).second) {
             updateElement(e, (*it).first.numericLevel(), sg);
@@ -87,6 +92,8 @@ void SceneController::updateScene(SceneGraph &sg) const
     }
 
     sg.zSort();
+
+    qDebug() << "updated scenegraph took" << sgUpdateTimer.elapsed() << "ms";
 }
 
 void SceneController::updateCanvas(SceneGraph &sg) const
@@ -411,6 +418,7 @@ void SceneController::finalizePen(QPen &pen, double opacity) const
 
 void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, SceneGraphItem *item) const
 {
+    item->element = e;
     item->level = level;
 
     // get the OSM layer, if set

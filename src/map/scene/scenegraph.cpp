@@ -87,3 +87,14 @@ void SceneGraph::recomputeLayerIndex()
         }
     }
 }
+
+void SceneGraph::itemsAt(QPointF pos)
+{
+    // ### temporary for testing
+    for (const auto &item : m_items) {
+        if (item->inSceneSpace() && item->boundingRect().contains(pos)) {
+            qDebug() << item->element.url() << item->element.tagValue("name");
+        }
+        // TODO HUD space elements
+    }
+}

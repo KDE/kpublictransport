@@ -18,6 +18,8 @@
 #ifndef KOSMINDOORMAP_SCENEGRAPHITEM_H
 #define KOSMINDOORMAP_SCENEGRAPHITEM_H
 
+#include <osm/element.h>
+
 #include <QBrush>
 #include <QColor>
 #include <QFont>
@@ -54,6 +56,9 @@ public:
     bool inSceneSpace() const;
     /** Is this item drawn in HUD coordinates (as oposed to scene coordinates)? */
     bool inHUDSpace() const;
+
+    /** The OSM::Element this item refers to. */
+    OSM::Element element;
 
     // TODO we probably don't need the full 32bit for those
     int level = 0;

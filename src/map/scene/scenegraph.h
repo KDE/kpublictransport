@@ -23,6 +23,8 @@
 #include <memory>
 #include <vector>
 
+class QPointF;
+
 namespace KOSMIndoorMap {
 
 class SceneGraphItem;
@@ -45,6 +47,11 @@ public:
 
     /** Canvas background color. */
     void setBackgroundColor(const QColor &bg);
+
+    /** Items at scene coordinate @p pos.
+     *  TODO this still needs a lot of work to be useful, mostly for debugging atm.
+     */
+    void itemsAt(QPointF pos);
 
 private:
     void recomputeLayerIndex();

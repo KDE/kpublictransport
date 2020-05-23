@@ -38,6 +38,7 @@ public:
     void resizeEvent(QResizeEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
 
     SceneGraph m_sg;
@@ -78,6 +79,13 @@ void MapWidget::mouseMoveEvent(QMouseEvent *event)
     m_lastPanPoint = event->pos();
     QWidget::mouseMoveEvent(event);
     update();
+}
+
+void MapWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::RightButton) {
+        m_sg.itemsAt(m_view.mapScreenToScene(event->pos()));
+    }
 }
 
 void MapWidget::wheelEvent(QWheelEvent *event)
