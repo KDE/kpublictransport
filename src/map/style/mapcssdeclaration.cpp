@@ -202,6 +202,7 @@ Qt::PenCapStyle MapCSSDeclaration::capStyle() const
             return c.capStyle;
         }
     }
+    qDebug() << "unknown line cap style:" << m_identValue;
     return Qt::FlatCap;
 }
 

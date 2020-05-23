@@ -110,7 +110,7 @@ line[highway=service] { width: 2; }
 
 line[highway][layer<0] {
     casing-dashes: 0.25,0.25;
-    casing-linecap: flat;
+    casing-linecap: none;
 }
 line[highway=steps][layer<0] {
     casing-dashes: none;
@@ -149,7 +149,7 @@ way[railway=tram]
     width: 1.5; // meter
     casing-width: 3;
     casing-color: #31363b;
-    linecap: flat;
+    linecap: none;
 }
 
 way[railway:traffic_mode=freight],
