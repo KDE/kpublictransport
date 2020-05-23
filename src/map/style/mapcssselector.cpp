@@ -40,8 +40,16 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
         case Way: if (state.element.type() != OSM::Type::Way) return false; break;
         case Relation: if (state.element.type() != OSM::Type::Relation) return false; break;
         // TODO should this include multi-polygon relations?
-        case Area: if (state.element.type() != OSM::Type::Way || !state.element.way()->isClosed()) return false; break;
-        case Line: if (state.element.type() != OSM::Type::Way || state.element.way()->isClosed()) return false; break;
+        case Area:
+            if (state.element.type() != OSM::Type::Way || !state.element.way()->isClosed())  {
+                return false;
+            }
+            break;
+        case Line:
+            if (state.element.type() != OSM::Type::Way || (state.element.way()->isClosed() && state.element.tagValue("area") == QLatin1String("yes"))) {
+                return false;
+            }
+            break;
         case Canvas: return false;
         case Any: break;
     }
