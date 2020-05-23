@@ -71,7 +71,7 @@ private:
     void initializePen(QPen &pen) const;
     void finalizePen(QPen &pen, double opacity) const;
 
-    void addItem(SceneGraph &sg, OSM::Element e, int level, SceneGraphItem *item) const;
+    void addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItem> &&item) const;
 
     const MapData *m_data = nullptr;
     const MapCSSStyle *m_styleSheet = nullptr;

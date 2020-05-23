@@ -60,7 +60,7 @@ void SceneController::updateScene(SceneGraph &sg) const
     QElapsedTimer sgUpdateTimer;
     sgUpdateTimer.start();
 
-    sg.clear(); // TODO reuse what is still valid
+    sg.beginSwap();
     updateCanvas(sg);
 
     // find all intermediate levels below or above the currently selected "full" level
@@ -92,6 +92,7 @@ void SceneController::updateScene(SceneGraph &sg) const
     }
 
     sg.zSort();
+    sg.endSwap();
 
     qDebug() << "updated scenegraph took" << sgUpdateTimer.elapsed() << "ms";
 }
@@ -125,23 +126,23 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     m_styleSheet->evaluate(state, m_styleResult);
 
     if (m_styleResult.hasAreaProperties()) {
-        PolygonBaseItem *item;
+        std::unique_ptr<PolygonBaseItem> item;
         if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
-            auto i = new MultiPolygonItm;
+            auto i = new MultiPolygonItem;
             i->path = createPath(e, m_labelPlacementPath);
-            item = i;
+            item.reset(i);
         } else {
             auto i = new PolygonItem;
             i->polygon = createPolygon(e);
             m_labelPlacementPath = i->polygon;
-            item = i;
+            item.reset(i);
         }
 
         double lineOpacity = 1.0;
         double fillOpacity = 1.0;
         initializePen(item->pen);
         for (auto decl : m_styleResult.declarations()) {
-            applyGenericStyle(decl, item);
+            applyGenericStyle(decl, item.get());
             applyPenStyle(decl, item->pen, lineOpacity);
             switch (decl->property()) {
                 case MapCSSDeclaration::FillColor:
@@ -162,9 +163,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             item->brush.setColor(c);
         }
 
-        addItem(sg, e, level, item);
+        addItem(sg, e, level, std::move(item));
     } else if (m_styleResult.hasLineProperties()) {
-        auto item = new PolylineItem;
+        auto item = std::make_unique<PolylineItem>();
         item->path = createPolygon(e);
 
         double lineOpacity = 1.0;
@@ -172,7 +173,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         initializePen(item->pen);
         initializePen(item->casingPen);
         for (auto decl : m_styleResult.declarations()) {
-            applyGenericStyle(decl, item);
+            applyGenericStyle(decl, item.get());
             applyPenStyle(decl, item->pen, lineOpacity);
             applyCasingPenStyle(decl, item->casingPen, casingOpacity);
         }
@@ -180,7 +181,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         finalizePen(item->casingPen, casingOpacity);
 
         m_labelPlacementPath = item->path;
-        addItem(sg, e, level, item);
+        addItem(sg, e, level, std::move(item));
     }
 
     if (m_styleResult.hasLabelProperties()) {
@@ -199,7 +200,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         }
 
         if (!text.isEmpty()) {
-            auto item = new LabelItem;
+            auto item = std::make_unique<LabelItem>();
             item->text = text;
             item->font = m_defaultFont;
             item->color = m_defaultTextColor;
@@ -216,7 +217,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             double textOpacity = 1.0;
             double shieldOpacity = 1.0;
             for (auto decl : m_styleResult.declarations()) {
-                applyGenericStyle(decl, item);
+                applyGenericStyle(decl, item.get());
                 applyFontStyle(decl, item->font);
                 switch (decl->property()) {
                     case MapCSSDeclaration::TextColor:
@@ -262,7 +263,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 c.setAlphaF(c.alphaF() * shieldOpacity);
                 item->shieldColor = c;
             }
-            addItem(sg, e, level, item);
+            addItem(sg, e, level, std::move(item));
         }
     }
 }
@@ -416,7 +417,7 @@ void SceneController::finalizePen(QPen &pen, double opacity) const
     }
 }
 
-void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, SceneGraphItem *item) const
+void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItem> &&item) const
 {
     item->element = e;
     item->level = level;
@@ -445,5 +446,5 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, SceneGr
         }
     }
 
-    sg.addItem(item);
+    sg.addItem(std::move(item));
 }

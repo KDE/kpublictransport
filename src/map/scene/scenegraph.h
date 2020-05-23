@@ -41,9 +41,11 @@ public:
     SceneGraph& operator=(const SceneGraph&) = delete;
     SceneGraph& operator=(SceneGraph &&other);
 
-    void addItem(SceneGraphItem *item);
+    // scene builder interface
+    void beginSwap();
+    void addItem(std::unique_ptr<SceneGraphItem> &&item);
     void zSort();
-    void clear();
+    void endSwap();
 
     /** Canvas background color. */
     QColor backgroundColor() const;

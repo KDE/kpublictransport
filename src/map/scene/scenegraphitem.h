@@ -102,7 +102,7 @@ public:
 
 
 /** Multi-polygon item, used for polygons with "holes" in them. */
-class MultiPolygonItm : public PolygonBaseItem
+class MultiPolygonItem : public PolygonBaseItem
 {
 public:
     QRectF boundingRect() const override;

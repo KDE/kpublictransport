@@ -29,9 +29,9 @@ SceneGraph::SceneGraph(SceneGraph&&) = default;
 SceneGraph::~SceneGraph() = default;
 SceneGraph& SceneGraph::operator=(SceneGraph &&other) = default;
 
-void SceneGraph::addItem(SceneGraphItem *item)
+void SceneGraph::addItem(std::unique_ptr<SceneGraphItem> &&item)
 {
-    m_items.push_back(std::unique_ptr<SceneGraphItem>(item));
+    m_items.push_back(std::move(item));
 }
 
 void SceneGraph::zSort()
@@ -55,10 +55,14 @@ void SceneGraph::zSort()
     recomputeLayerIndex();
 }
 
-void SceneGraph::clear()
+void SceneGraph::beginSwap()
 {
     m_items.clear();
     m_layerOffsets.clear();
+}
+
+void SceneGraph::endSwap()
+{
 }
 
 QColor SceneGraph::backgroundColor() const

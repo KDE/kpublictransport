@@ -56,7 +56,7 @@ QRectF PolygonItem::boundingRect() const
     return polygon.boundingRect(); // TODO do we need to cache this?
 }
 
-QRectF MultiPolygonItm::boundingRect() const
+QRectF MultiPolygonItem::boundingRect() const
 {
     return path.boundingRect(); // TODO do we need to cache this?
 }
