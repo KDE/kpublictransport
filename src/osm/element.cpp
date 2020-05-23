@@ -72,6 +72,36 @@ QString OSM::Element::tagValue(const char *key) const
     return tagValue(QLatin1String(key));
 }
 
+std::vector<Tag>::const_iterator OSM::Element::tagsBegin() const
+{
+    switch (type()) {
+        case Type::Null:
+            Q_UNREACHABLE();
+        case Type::Node:
+            return node()->tags.begin();
+        case Type::Way:
+            return way()->tags.begin();
+        case Type::Relation:
+            return relation()->tags.begin();
+    }
+    Q_UNREACHABLE();
+}
+
+std::vector<Tag>::const_iterator OSM::Element::tagsEnd() const
+{
+    switch (type()) {
+        case Type::Null:
+            Q_UNREACHABLE();
+        case Type::Node:
+            return node()->tags.end();
+        case Type::Way:
+            return way()->tags.end();
+        case Type::Relation:
+            return relation()->tags.end();
+    }
+    Q_UNREACHABLE();
+}
+
 QString Element::url() const
 {
     switch (type()) {

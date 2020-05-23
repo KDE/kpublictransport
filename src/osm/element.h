@@ -62,6 +62,8 @@ public:
     BoundingBox boundingBox() const;
     QString tagValue(const QLatin1String &key) const;
     QString tagValue(const char *key) const;
+    std::vector<Tag>::const_iterator tagsBegin() const;
+    std::vector<Tag>::const_iterator tagsEnd() const;
     QString url() const;
 
     /** Returns all nodes belonging to the outer path of this element.
