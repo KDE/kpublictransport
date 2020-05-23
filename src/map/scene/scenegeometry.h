@@ -30,6 +30,9 @@ namespace SceneGeometry
      *  @see https://en.wikipedia.org/wiki/Polygon#Centroid
      */
     QPointF polygonCentroid(const QPolygonF &poly);
+
+    /** Rotation angle for a label placed alongside @p path. */
+    double angleForPath(const QPolygonF &path);
 }
 
 }

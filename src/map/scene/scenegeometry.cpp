@@ -18,9 +18,33 @@
 #include "scenegeometry.h"
 
 #include <QDebug>
+#include <QLineF>
 #include <QPolygonF>
 
+#include <cmath>
+
 using namespace KOSMIndoorMap;
+
+// TODO this is a simplification, assuming equidistant point positions
+// this actually needs to be done taking lengths into account
+double SceneGeometry::angleForPath(const QPolygonF &path)
+{
+    assert(path.size() >= 2);
+
+    QLineF line;
+    line.setP1(path.at(path.size() / 2 - 1));
+    if (path.size() % 2 == 0) {
+        line.setP2(path.at(path.size() / 2));
+    } else {
+        line.setP2(path.at(path.size() / 2 + 1));
+    }
+
+    auto a = - std::remainder(line.angle(), 360.0);
+    if (a < -90.0 || a > 90.0) {
+        a += 180.0;
+    }
+    return a;
+}
 
 /* the algorithm in here would be pretty simple (see https://en.wikipedia.org/wiki/Polygon#Centroid)
  * if it weren't for numeric stability. We need something that keeps sufficient precision (~7 digits)

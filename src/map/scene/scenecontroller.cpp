@@ -17,6 +17,7 @@
 
 #include "scenecontroller.h"
 
+#include "scenegeometry.h"
 #include "scenegraph.h"
 #include "scenegraphitem.h"
 
@@ -107,27 +108,6 @@ void SceneController::updateCanvas(SceneGraph &sg) const
                 break;
         }
     }
-}
-
-// TODO this is a simplication, assuming equidistant point positions
-// this actually needs to be done taking lengths into account
-static double angleForPath(const QPolygonF &path)
-{
-    assert(path.size() >= 2);
-
-    QLineF line;
-    line.setP1(path.at(path.size() / 2 - 1));
-    if (path.size() % 2 == 0) {
-        line.setP2(path.at(path.size() / 2));
-    } else {
-        line.setP2(path.at(path.size() / 2 + 1));
-    }
-
-    auto a = - std::remainder(line.angle(), 360.0);
-    if (a < -90.0 || a > 90.0) {
-        a += 180.0;
-    }
-    return a;
 }
 
 void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) const
@@ -251,7 +231,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         break;
                     case MapCSSDeclaration::TextPosition:
                         if (decl->textFollowsLine() && linePath.size() > 1) {
-                            item->angle = angleForPath(linePath);
+                            item->angle = SceneGeometry::angleForPath(linePath);
                         }
                         break;
                     default:
