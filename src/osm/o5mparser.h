@@ -18,6 +18,7 @@
 #ifndef OSM_O5MPARSER_H
 #define OSM_O5MPARSER_H
 
+#include <cstddef>
 #include <cstdint>
 
 class O5mParserTest;
