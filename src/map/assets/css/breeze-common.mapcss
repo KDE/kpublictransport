@@ -176,6 +176,44 @@ relation[type=multipolygon][building=roof]
 }
 
 
+/** Airports */
+way|z15-[aeroway=runway]
+{
+    color: #eff0f1;
+    width: 1;
+    dashes: 4, 4;
+    casing-width: 20; // m TODO
+    casing-color: #95a5a6;
+    text: ref;
+    text-color: #232629;
+    shield-color: #fdbc4b;
+    z-index: -10;
+}
+area|z15-[aeroway=helipad]
+{
+    text: "H";
+    fill-color: #95a5a6;
+}
+way|z15-[aeroway=taxiway]
+{
+    color: #fdbc4b;
+    width: 0.5;
+    casing-width: 10; // m TODO
+    casing-color: #95a5a6;
+    z-index: -20;
+}
+area|z16-[aeroway=terminal],
+relation|z16-[type=multipolygon][aeroway=terminal]
+{
+    text: name;
+}
+node|z18-[aeroway=gate]
+{
+    text: ref;
+    text-color: #232629;
+    shield-color: #fdbc4b;
+}
+
 /** Platforms */
 area|z17-[railway=platform],
 area|z17-[public_transport=platform],
