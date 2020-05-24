@@ -2,6 +2,7 @@ add_library(KOSM STATIC
     datatypes.cpp
     element.cpp
     geomath.cpp
+    o5mparser.cpp
     overpassquery.cpp
     overpassquerymanager.cpp
     xmlparser.cpp
