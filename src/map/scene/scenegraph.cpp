@@ -16,7 +16,6 @@
 */
 
 #include "scenegraph.h"
-#include "scenegraphitem.h"
 
 #include <QDebug>
 #include <QGuiApplication>
@@ -29,12 +28,18 @@ SceneGraph::SceneGraph(SceneGraph&&) = default;
 SceneGraph::~SceneGraph() = default;
 SceneGraph& SceneGraph::operator=(SceneGraph &&other) = default;
 
-void SceneGraph::addItem(std::unique_ptr<SceneGraphItem> &&item)
+void SceneGraph::addItem(SceneGraphItem &&item)
 {
     m_items.push_back(std::move(item));
 }
 
 void SceneGraph::zSort()
+{
+    std::stable_sort(m_items.begin(), m_items.end(), SceneGraph::zOrderCompare);
+    recomputeLayerIndex();
+}
+
+bool SceneGraph::zOrderCompare(const SceneGraphItem &lhs, const SceneGraphItem &rhs)
 {
     /* The MapCSS spec says we have to render in the following order:
      * - Objects with lower layer should always be rendered first.
@@ -42,27 +47,26 @@ void SceneGraph::zSort()
      * - Within each of those categories, objects are ordered according to z-index.
      * - If all of the above are equal, the order is undefined.
      */
-    std::stable_sort(m_items.begin(), m_items.end(), [](const auto &lhs, const auto &rhs) {
-        if (lhs->level == rhs->level) {
-            if (lhs->layer == rhs->layer) {
-                return lhs->z < rhs->z;
-            }
-            return lhs->layer < rhs->layer;
+    if (lhs.level == rhs.level) {
+        if (lhs.layer == rhs.layer) {
+            return lhs.payload->z < rhs.payload->z;
         }
-        return lhs->level < rhs->level;
-    });
-
-    recomputeLayerIndex();
+        return lhs.layer < rhs.layer;
+    }
+    return lhs.level < rhs.level;
 }
 
 void SceneGraph::beginSwap()
 {
+    std::swap(m_items, m_previousItems);
     m_items.clear();
+    std::sort(m_previousItems.begin(), m_previousItems.end(), SceneGraph::itemPoolCompare);
     m_layerOffsets.clear();
 }
 
 void SceneGraph::endSwap()
 {
+    m_previousItems.clear();
 }
 
 QColor SceneGraph::backgroundColor() const
@@ -82,17 +86,17 @@ void SceneGraph::recomputeLayerIndex()
         return;
     }
 
-    auto prevLayer = m_items.front()->layer;
+    auto prevLayer = m_items.front().layer;
     auto prevIndex = 0;
     for (auto it = m_items.begin(); it != m_items.end();) {
-        it = std::upper_bound(it, m_items.end(), prevLayer, [](auto lhs, const auto &rhs) {
-            return lhs < rhs->layer;
+        it = std::upper_bound(it, m_items.end(), prevLayer, [](const auto &lhs, const auto &rhs) {
+            return lhs < rhs.layer;
         });
         const auto nextIndex = std::distance(m_items.begin(), it);
         m_layerOffsets.push_back(std::make_pair(prevIndex, nextIndex));
         prevIndex = nextIndex;
         if (it != m_items.end()) {
-            prevLayer = (*it)->layer;
+            prevLayer = (*it).layer;
         }
     }
 }
@@ -101,9 +105,9 @@ void SceneGraph::itemsAt(QPointF pos)
 {
     // ### temporary for testing
     for (const auto &item : m_items) {
-        if (item->inSceneSpace() && item->boundingRect().contains(pos)) {
-            qDebug() << item->element.url();
-            for (auto it = item->element.tagsBegin(); it != item->element.tagsEnd(); ++it) {
+        if (item.payload->inSceneSpace() && item.payload->boundingRect().contains(pos)) {
+            qDebug() << item.element.url();
+            for (auto it = item.element.tagsBegin(); it != item.element.tagsEnd(); ++it) {
                 qDebug() << "    " << (*it).key << (*it).value;
             }
         }
@@ -129,4 +133,15 @@ SceneGraph::SceneGraphItemIter SceneGraph::itemsEnd(SceneGraph::LayerOffset laye
 std::size_t SceneGraph::itemCount() const
 {
     return m_items.size();
+}
+
+bool SceneGraph::itemPoolCompare(const SceneGraphItem &lhs, const SceneGraphItem &rhs)
+{
+    if (lhs.element.type() == rhs.element.type()) {
+        if (lhs.element.id() == rhs.element.id()) {
+            return lhs.level < rhs.level;
+        }
+        return lhs.element.id() < rhs.element.id();
+    }
+    return lhs.element.type() < rhs.element.type();
 }

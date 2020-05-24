@@ -19,6 +19,7 @@
 
 #include <QDebug>
 #include <QLineF>
+#include <QPainterPath>
 #include <QPolygonF>
 
 #include <cmath>
@@ -91,4 +92,22 @@ QPointF SceneGeometry::polygonCentroid(const QPolygonF &poly)
     cy /= 3 * a;
 
     return QPointF((double)cx / scale, (double)cy / scale) + offset;
+}
+
+void SceneGeometry::outerPolygonFromPath(const QPainterPath &path, QPolygonF &poly)
+{
+    if (path.isEmpty()) {
+        return;
+    }
+
+    poly.clear();
+    poly.reserve(path.elementCount());
+    poly.push_back(path.elementAt(0));
+    for (int i = 1; i < path.elementCount(); ++i) {
+        const auto e = path.elementAt(i);
+        if (e.type != QPainterPath::LineToElement) {
+            return;
+        }
+        poly.push_back(e);
+    }
 }

@@ -48,11 +48,11 @@ public:
 
 private:
     void beginRender();
-    void beginPhase(SceneGraphItem::RenderPhase phase);
+    void beginPhase(SceneGraphItemPayload::RenderPhase phase);
     void renderBackground(const QColor &bgColor);
-    void renderPolygon(PolygonItem *item, SceneGraphItem::RenderPhase phase);
-    void renderMultiPolygon(MultiPolygonItem *item, SceneGraphItem::RenderPhase phase);
-    void renderPolyline(PolylineItem *item, SceneGraphItem::RenderPhase phase);
+    void renderPolygon(PolygonItem *item, SceneGraphItemPayload::RenderPhase phase);
+    void renderMultiPolygon(MultiPolygonItem *item, SceneGraphItemPayload::RenderPhase phase);
+    void renderPolyline(PolylineItem *item, SceneGraphItemPayload::RenderPhase phase);
     void renderLabel(LabelItem *item);
     void endRender();
 
@@ -60,7 +60,7 @@ private:
     QPainter m_painter;
     View *m_view = nullptr;
 
-    std::vector<SceneGraphItem*> m_renderBatch; // member rather than function-local to preserve allocations
+    std::vector<SceneGraphItemPayload*> m_renderBatch; // member rather than function-local to preserve allocations
 };
 
 }

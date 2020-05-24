@@ -18,6 +18,7 @@
 #ifndef KOSMINDOORMAP_SCENEGEOMETRY_H
 #define KOSMINDOORMAP_SCENEGEOMETRY_H
 
+class QPainterPath;
 class QPointF;
 class QPolygonF;
 
@@ -33,6 +34,12 @@ namespace SceneGeometry
 
     /** Rotation angle for a label placed alongside @p path. */
     double angleForPath(const QPolygonF &path);
+
+    /** Returns the outer polygon of a painter path.
+     *  @note This is not generic, but makes assumptions about the painter path
+     *  structure that happen to hold of OSM input data.
+     */
+    void outerPolygonFromPath(const QPainterPath &path, QPolygonF &poly);
 }
 
 }

@@ -55,19 +55,19 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
         m_renderBatch.reserve(layerOffsets.second - layerOffsets.first);
         const QRectF screenRect(QPointF(0, 0), QSizeF(m_view->screenWidth(), m_view->screenHeight()));
         for (auto it = layerBegin; it != layerEnd; ++it) {
-            if ((*it)->inSceneSpace() && m_view->viewport().intersects((*it)->boundingRect())) {
-                m_renderBatch.push_back((*it).get());
+            if ((*it).payload->inSceneSpace() && m_view->viewport().intersects((*it).payload->boundingRect())) {
+                m_renderBatch.push_back((*it).payload.get());
             }
-            if ((*it)->inHUDSpace()) {
-                auto bbox = (*it)->boundingRect();
+            if ((*it).payload->inHUDSpace()) {
+                auto bbox = (*it).payload->boundingRect();
                 bbox.moveCenter(m_view->mapSceneToScreen(bbox.center()));
                 if (screenRect.intersects(bbox)) {
-                    m_renderBatch.push_back((*it).get());
+                    m_renderBatch.push_back((*it).payload.get());
                 }
             }
         }
 
-        for (auto phase : {SceneGraphItem::FillPhase, SceneGraphItem::CasingPhase, SceneGraphItem::StrokePhase, SceneGraphItem::LabelPhase}) {
+        for (auto phase : {SceneGraphItemPayload::FillPhase, SceneGraphItemPayload::CasingPhase, SceneGraphItemPayload::StrokePhase, SceneGraphItemPayload::LabelPhase}) {
             beginPhase(phase);
             for (const auto item : m_renderBatch) {
                 if ((item->renderPhases() & phase) == 0) {
@@ -105,34 +105,34 @@ void PainterRenderer::renderBackground(const QColor &bgColor)
     m_painter.fillRect(0, 0, m_view->screenWidth(), m_view->screenHeight(), bgColor);
 }
 
-void PainterRenderer::beginPhase(SceneGraphItem::RenderPhase phase)
+void PainterRenderer::beginPhase(SceneGraphItemPayload::RenderPhase phase)
 {
     switch (phase) {
-        case SceneGraphItem::NoPhase:
+        case SceneGraphItemPayload::NoPhase:
             Q_UNREACHABLE();
-        case SceneGraphItem::FillPhase:
+        case SceneGraphItemPayload::FillPhase:
             m_painter.setPen(Qt::NoPen);
             m_painter.setTransform(m_view->sceneToScreenTransform());
             m_painter.setClipRect(m_view->viewport());
             m_painter.setRenderHint(QPainter::Antialiasing, false);
             break;
-        case SceneGraphItem::CasingPhase:
-        case SceneGraphItem::StrokePhase:
+        case SceneGraphItemPayload::CasingPhase:
+        case SceneGraphItemPayload::StrokePhase:
             m_painter.setBrush(Qt::NoBrush);
             m_painter.setTransform(m_view->sceneToScreenTransform());
             m_painter.setClipRect(m_view->viewport());
             m_painter.setRenderHint(QPainter::Antialiasing, true);
             break;
-        case SceneGraphItem::LabelPhase:
+        case SceneGraphItemPayload::LabelPhase:
             m_painter.setTransform({});
             m_painter.setRenderHint(QPainter::Antialiasing, true);
             break;
     }
 }
 
-void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItem::RenderPhase phase)
+void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItemPayload::RenderPhase phase)
 {
-    if (phase == SceneGraphItem::FillPhase) {
+    if (phase == SceneGraphItemPayload::FillPhase) {
         m_painter.setBrush(item->brush);
         m_painter.drawPolygon(item->polygon);
     } else {
@@ -143,9 +143,9 @@ void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItem::RenderPha
     }
 }
 
-void PainterRenderer::renderMultiPolygon(MultiPolygonItem *item, SceneGraphItem::RenderPhase phase)
+void PainterRenderer::renderMultiPolygon(MultiPolygonItem *item, SceneGraphItemPayload::RenderPhase phase)
 {
-    if (phase == SceneGraphItem::FillPhase) {
+    if (phase == SceneGraphItemPayload::FillPhase) {
         m_painter.setBrush(item->brush);
         m_painter.drawPath(item->path);
     } else {
@@ -156,9 +156,9 @@ void PainterRenderer::renderMultiPolygon(MultiPolygonItem *item, SceneGraphItem:
     }
 }
 
-void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItem::RenderPhase phase)
+void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItemPayload::RenderPhase phase)
 {
-    if (phase == SceneGraphItem::StrokePhase) {
+    if (phase == SceneGraphItemPayload::StrokePhase) {
         auto p = item->pen;
         p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()));
         m_painter.setPen(p);

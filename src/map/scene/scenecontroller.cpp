@@ -126,23 +126,32 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     m_styleSheet->evaluate(state, m_styleResult);
 
     if (m_styleResult.hasAreaProperties()) {
-        std::unique_ptr<PolygonBaseItem> item;
+        PolygonBaseItem *item = nullptr;
+        std::unique_ptr<SceneGraphItemPayload> baseItem;
         if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
-            auto i = new MultiPolygonItem;
-            i->path = createPath(e, m_labelPlacementPath);
-            item.reset(i);
+            baseItem = sg.findOrCreatePayload<MultiPolygonItem>(e, level);
+            auto i = static_cast<MultiPolygonItem*>(baseItem.get());
+            if (i->path.isEmpty()) {
+                i->path = createPath(e, m_labelPlacementPath);
+            } else if (m_styleResult.hasLabelProperties()) {
+                SceneGeometry::outerPolygonFromPath(i->path, m_labelPlacementPath);
+            }
+            item = i;
         } else {
-            auto i = new PolygonItem;
-            i->polygon = createPolygon(e);
+            baseItem = sg.findOrCreatePayload<PolygonItem>(e, level);
+            auto i = static_cast<PolygonItem*>(baseItem.get());
+            if (i->polygon.isEmpty()) {
+                i->polygon = createPolygon(e);
+            }
             m_labelPlacementPath = i->polygon;
-            item.reset(i);
+            item = i;
         }
 
         double lineOpacity = 1.0;
         double fillOpacity = 1.0;
         initializePen(item->pen);
         for (auto decl : m_styleResult.declarations()) {
-            applyGenericStyle(decl, item.get());
+            applyGenericStyle(decl, item);
             applyPenStyle(decl, item->pen, lineOpacity);
             switch (decl->property()) {
                 case MapCSSDeclaration::FillColor:
@@ -163,17 +172,20 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             item->brush.setColor(c);
         }
 
-        addItem(sg, e, level, std::move(item));
+        addItem(sg, e, level, std::move(baseItem));
     } else if (m_styleResult.hasLineProperties()) {
-        auto item = std::make_unique<PolylineItem>();
-        item->path = createPolygon(e);
+        auto baseItem = sg.findOrCreatePayload<PolylineItem>(e, level);
+        auto item = static_cast<PolylineItem*>(baseItem.get());
+        if (item->path.isEmpty()) {
+            item->path = createPolygon(e);
+        }
 
         double lineOpacity = 1.0;
         double casingOpacity = 1.0;
         initializePen(item->pen);
         initializePen(item->casingPen);
         for (auto decl : m_styleResult.declarations()) {
-            applyGenericStyle(decl, item.get());
+            applyGenericStyle(decl, item);
             applyPenStyle(decl, item->pen, lineOpacity);
             applyCasingPenStyle(decl, item->casingPen, casingOpacity);
         }
@@ -181,7 +193,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         finalizePen(item->casingPen, casingOpacity);
 
         m_labelPlacementPath = item->path;
-        addItem(sg, e, level, std::move(item));
+        addItem(sg, e, level, std::move(baseItem));
     }
 
     if (m_styleResult.hasLabelProperties()) {
@@ -200,24 +212,29 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         }
 
         if (!text.isEmpty()) {
-            auto item = std::make_unique<LabelItem>();
+            auto baseItem = sg.findOrCreatePayload<LabelItem>(e, level);
+            auto item = static_cast<LabelItem*>(baseItem.get());
             item->text = text;
+            item->hasFineBbox = false;
+            item->bbox = {};
             item->font = m_defaultFont;
             item->color = m_defaultTextColor;
 
-            if (m_styleResult.hasAreaProperties()) {
-                item->pos = SceneGeometry::polygonCentroid(m_labelPlacementPath);
-            } else if (m_styleResult.hasLineProperties()) {
-                // TODO compute placement at half distance along the path
-            }
             if (item->pos.isNull()) {
-                item->pos = m_view->mapGeoToScene(e.center()); // node or something failed above
+                if (m_styleResult.hasAreaProperties()) {
+                    item->pos = SceneGeometry::polygonCentroid(m_labelPlacementPath);
+                } else if (m_styleResult.hasLineProperties()) {
+                    // TODO compute placement at half distance along the path
+                }
+                if (item->pos.isNull()) {
+                    item->pos = m_view->mapGeoToScene(e.center()); // node or something failed above
+                }
             }
 
             double textOpacity = 1.0;
             double shieldOpacity = 1.0;
             for (auto decl : m_styleResult.declarations()) {
-                applyGenericStyle(decl, item.get());
+                applyGenericStyle(decl, item);
                 applyFontStyle(decl, item->font);
                 switch (decl->property()) {
                     case MapCSSDeclaration::TextColor:
@@ -263,7 +280,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 c.setAlphaF(c.alphaF() * shieldOpacity);
                 item->shieldColor = c;
             }
-            addItem(sg, e, level, std::move(item));
+            addItem(sg, e, level, std::move(baseItem));
         }
     }
 }
@@ -306,7 +323,7 @@ QPainterPath SceneController::createPath(const OSM::Element e, QPolygonF &outerP
     return path;
 }
 
-void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const
+void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItemPayload *item) const
 {
     if (decl->property() == MapCSSDeclaration::ZIndex) {
         item->z = decl->intValue();
@@ -417,10 +434,12 @@ void SceneController::finalizePen(QPen &pen, double opacity) const
     }
 }
 
-void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItem> &&item) const
+void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItemPayload> &&payload) const
 {
-    item->element = e;
-    item->level = level;
+    SceneGraphItem item;
+    item.element = e;
+    item.level = level;
+    item.payload = std::move(payload);
 
     // get the OSM layer, if set
     const auto layerStr = e.tagValue(QLatin1String("layer"));
@@ -439,7 +458,7 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::un
             // Ideally we find a way to detect the presence of that problem, and only then enabling this
             // workaround, but until we have this, this seems to produce better results in all tests.
             if (level != layer * 10) {
-                item->layer = layer;
+                item.layer = layer;
             }
         } else {
             qWarning() << "Invalid layer:" << e.url() << layerStr;

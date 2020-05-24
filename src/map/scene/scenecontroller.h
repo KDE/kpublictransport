@@ -38,6 +38,7 @@ class MapData;
 class MapCSSStyle;
 class SceneGraph;
 class SceneGraphItem;
+class SceneGraphItemPayload;
 class View;
 
 /** Creates/updates the scene graph based on a given style sheet and view. */
@@ -63,7 +64,7 @@ private:
     QPolygonF createPolygon(OSM::Element e) const;
     QPainterPath createPath(OSM::Element e, QPolygonF &outerPath) const;
 
-    void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItem *item) const;
+    void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItemPayload *item) const;
     void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
     void applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
     void applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const;
@@ -71,7 +72,7 @@ private:
     void initializePen(QPen &pen) const;
     void finalizePen(QPen &pen, double opacity) const;
 
-    void addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItem> &&item) const;
+    void addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItemPayload> &&payload) const;
 
     const MapData *m_data = nullptr;
     const MapCSSStyle *m_styleSheet = nullptr;

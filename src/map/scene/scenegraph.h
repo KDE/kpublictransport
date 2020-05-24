@@ -18,6 +18,10 @@
 #ifndef KOSMINDOORMAP_SCENEGRAPH_H
 #define KOSMINDOORMAP_SCENEGRAPH_H
 
+#include "scenegraphitem.h"
+
+#include <osm/element.h>
+
 #include <QColor>
 
 #include <memory>
@@ -43,7 +47,9 @@ public:
 
     // scene builder interface
     void beginSwap();
-    void addItem(std::unique_ptr<SceneGraphItem> &&item);
+    void addItem(SceneGraphItem &&item);
+    template <typename T>
+    std::unique_ptr<SceneGraphItemPayload> findOrCreatePayload(OSM::Element e, int level);
     void zSort();
     void endSwap();
 
@@ -60,7 +66,7 @@ public:
     typedef std::pair<std::size_t, std::size_t> LayerOffset;
     const std::vector<LayerOffset>& layerOffsets() const;
 
-    typedef std::vector<std::unique_ptr<SceneGraphItem>>::const_iterator SceneGraphItemIter;
+    typedef std::vector<SceneGraphItem>::const_iterator SceneGraphItemIter;
     SceneGraphItemIter itemsBegin(LayerOffset layer) const;
     SceneGraphItemIter itemsEnd(LayerOffset layer) const;
     std::size_t itemCount() const;
@@ -68,10 +74,30 @@ public:
 private:
     void recomputeLayerIndex();
 
-    std::vector<std::unique_ptr<SceneGraphItem>> m_items;
+    static bool itemPoolCompare(const SceneGraphItem &lhs, const SceneGraphItem &rhs);
+    static bool zOrderCompare(const SceneGraphItem &lhs, const SceneGraphItem &rhs);
+
+    std::vector<SceneGraphItem> m_items;
+    std::vector<SceneGraphItem> m_previousItems;
     std::vector<std::pair<std::size_t, std::size_t>> m_layerOffsets;
     QColor m_bgColor;
 };
+
+
+template<typename T>
+std::unique_ptr<SceneGraphItemPayload> SceneGraph::findOrCreatePayload(OSM::Element e, int level)
+{
+    SceneGraphItem ref;
+    ref.element = e;
+    ref.level = level;
+    auto it = std::lower_bound(m_previousItems.begin(), m_previousItems.end(), ref, SceneGraph::itemPoolCompare);
+    for (;it != m_previousItems.end() && (*it).element.type() == e.type() && (*it).element.id() == e.id() && (*it).level == level && (*it).payload; ++it) {
+        if (dynamic_cast<T*>((*it).payload.get())) {
+            return std::move((*it).payload);
+        }
+    }
+    return std::make_unique<T>();
+}
 
 }
 

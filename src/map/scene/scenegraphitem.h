@@ -28,13 +28,35 @@
 #include <QPolygonF>
 #include <QString>
 
+#include <memory>
+
 namespace KOSMIndoorMap {
 
-/** Base class for scene graph items. */
+class SceneGraphItemPayload;
+
+/** Scene graph item description and handle for its content.
+ *  This is a minimal and cheap part that can be used allocation-free,
+ *  and it holds the expensive polymorphic parts (geometry, materials) depending on the
+ *  type of this is item.
+ *  This split allows to use this part for searching/sorting/indexing.
+ */
 class SceneGraphItem
 {
 public:
-    virtual ~SceneGraphItem();
+    /** The OSM::Element this item refers to. */
+    OSM::Element element;
+
+    int level = 0;
+    int layer = 0;
+
+    std::unique_ptr<SceneGraphItemPayload> payload;
+};
+
+/** Payload base class for scene graph items. */
+class SceneGraphItemPayload
+{
+public:
+    virtual ~SceneGraphItemPayload();
 
     /** See MapCSS spec: "Within a layer, first all fills are rendered, then all casings, then all strokes, then all icons and labels." .*/
     enum RenderPhase : uint8_t {
@@ -57,18 +79,12 @@ public:
     /** Is this item drawn in HUD coordinates (as oposed to scene coordinates)? */
     bool inHUDSpace() const;
 
-    /** The OSM::Element this item refers to. */
-    OSM::Element element;
-
-    // TODO we probably don't need the full 32bit for those
-    int level = 0;
-    int layer = 0;
     int z = 0;
 };
 
 
 /** A path/way/line item in the scenegraph. */
-class PolylineItem : public SceneGraphItem
+class PolylineItem : public SceneGraphItemPayload
 {
 public:
     uint8_t renderPhases() const override;
@@ -81,7 +97,7 @@ public:
 
 
 /** Base item for filled polygons. */
-class PolygonBaseItem : public SceneGraphItem
+class PolygonBaseItem : public SceneGraphItemPayload
 {
 public:
     uint8_t renderPhases() const override;
@@ -111,7 +127,7 @@ public:
 };
 
 /** A text or item label */
-class LabelItem : public SceneGraphItem
+class LabelItem : public SceneGraphItemPayload
 {
 public:
     uint8_t renderPhases() const override;

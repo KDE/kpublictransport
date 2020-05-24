@@ -22,14 +22,14 @@
 
 using namespace KOSMIndoorMap;
 
-SceneGraphItem::~SceneGraphItem() = default;
+SceneGraphItemPayload::~SceneGraphItemPayload() = default;
 
-bool SceneGraphItem::inSceneSpace() const
+bool SceneGraphItemPayload::inSceneSpace() const
 {
     return renderPhases() & (FillPhase | StrokePhase | CasingPhase);
 }
 
-bool SceneGraphItem::inHUDSpace() const
+bool SceneGraphItemPayload::inHUDSpace() const
 {
     return renderPhases() & LabelPhase;
 }
