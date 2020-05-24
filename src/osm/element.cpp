@@ -19,6 +19,21 @@
 
 using namespace OSM;
 
+Id Element::id() const
+{
+    switch (type()) {
+        case Type::Null:
+            return {};
+        case Type::Node:
+            return node()->id;
+        case Type::Way:
+            return way()->id;
+        case Type::Relation:
+            return relation()->id;
+    }
+    return {};
+}
+
 Coordinate Element::center() const
 {
     switch (type()) {

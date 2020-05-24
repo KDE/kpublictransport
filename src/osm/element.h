@@ -57,6 +57,7 @@ public:
     inline const Node* node() const { return static_cast<const Node*>(m_elem.get()); }
     inline const Way* way() const { return static_cast<const Way*>(m_elem.get()); }
     inline const Relation* relation() const { return static_cast<const Relation*>(m_elem.get()); }
+    Id id() const;
 
     Coordinate center() const;
     BoundingBox boundingBox() const;
