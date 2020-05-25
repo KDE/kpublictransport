@@ -18,23 +18,29 @@
 #include "maploader.h"
 
 #include <osm/element.h>
-#include <osm/xmlparser.h>
+#include <osm/o5mparser.h>
 
 #include <QDebug>
+#include <QElapsedTimer>
 #include <QFile>
 
 using namespace KOSMIndoorMap;
 
-void MapLoader::loadFromOsmXml(const QString &fileName)
+void MapLoader::loadFromO5m(const QString &fileName)
 {
+    QElapsedTimer loadTime;
+    loadTime.start();
+
     QFile f(fileName);
     if (!f.open(QFile::ReadOnly)) {
         qCritical() << f.fileName() << f.errorString();
         return;
     }
+    const auto data = f.map(0, f.size());
 
     OSM::DataSet ds;
-    OSM::XmlParser p(&ds);
-    p.parse(&f);
+    OSM::O5mParser p(&ds);
+    p.parse(data, f.size());
     m_data.setDataSet(std::move(ds));
+    qDebug() << "o5m loading took" << loadTime.elapsed() << "ms";
 }

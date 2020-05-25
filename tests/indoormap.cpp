@@ -112,7 +112,7 @@ int main(int argc, char **argv)
     QApplication app(argc, argv);
 
     MapLoader loader;
-    loader.loadFromOsmXml(QStringLiteral("/k/osm/berlin_hbf.osm"));
+    loader.loadFromO5m(QStringLiteral("/k/osm/berlin_hbf.o5m"));
 
     MapCSSParser cssParser;
     auto style = cssParser.parse(cssPath(QStringLiteral("breeze-light")));
