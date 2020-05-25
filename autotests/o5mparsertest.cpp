@@ -158,6 +158,32 @@ private Q_SLOTS:
         QCOMPARE(way.tags.size(), 1);
         QCOMPARE(way.bbox.isValid(), true);
     }
+
+    void testParseRelation()
+    {
+        const auto data = QByteArray::fromHex("902e0011f498830b0031696e6e657200ca93d30d010074797065006d756c7469706f6c79676f6e00");
+        const auto beginIt = reinterpret_cast<const uint8_t*>(data.constBegin());
+        auto it = beginIt;
+        const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
+
+        OSM::DataSet dataSet;
+        OSM::O5mParser p(&dataSet);
+        p.readRelation(it, endIt);
+
+        QCOMPARE(dataSet.relations.size(), 1);
+        const auto &rel = dataSet.relations[0];
+        QCOMPARE(rel.id, 2952ll);
+        QCOMPARE(rel.members.size(), 2);
+        QCOMPARE(rel.members[0].id, 11560506ll);
+        QCOMPARE(rel.members[0].role, QStringLiteral("inner"));
+        QCOMPARE(rel.members[0].type, OSM::Type::Way);
+        QCOMPARE(rel.members[1].id, 25873183ll);
+        QCOMPARE(rel.members[1].role, QStringLiteral("inner"));
+        QCOMPARE(rel.members[1].type, OSM::Type::Way);
+        QCOMPARE(rel.tags.size(), 1);
+        QCOMPARE(rel.tags[0].key, QStringLiteral("type"));
+        QCOMPARE(rel.tags[0].value, QStringLiteral("multipolygon"));
+    }
 };
 
 QTEST_GUILESS_MAIN(O5mParserTest)
