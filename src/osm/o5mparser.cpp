@@ -25,16 +25,21 @@
 using namespace OSM;
 
 enum : uint8_t {
-    O5M_RESET = 0xff,
-    O5M_NODE = 0x10,
-    O5M_WAY = 0x11,
-    O5M_RELATION = 0x12,
-    O5M_BOUNDING_BOX = 0xdb,
-    O5M_TIMESTAMP = 0xdc,
-    O5M_HEADER = 0xe0,
+    O5M_BLOCK_RESET = 0xff,
+    O5M_BLOCK_NODE = 0x10,
+    O5M_BLOCK_WAY = 0x11,
+    O5M_BLOCK_RELATION = 0x12,
+    O5M_BLOCK_BOUNDING_BOX = 0xdb,
+    O5M_BLOCK_TIMESTAMP = 0xdc,
+    O5M_BLOCK_HEADER = 0xe0,
+
     O5M_NUMBER_CONTINUATION = 0b1000'0000,
     O5M_NUMBER_MASK = 0b0111'1111,
-    O5M_SIGNED_BIT = 0b1,
+    O5M_NUMBER_SIGNED_BIT = 0b1,
+
+    O5M_MEMTYPE_NODE = 0x30,
+    O5M_MEMTYPE_WAY = 0x31,
+    O5M_MEMTYPE_RELATION = 0x32,
 };
 
 enum : uint16_t {
@@ -54,7 +59,7 @@ void O5mParser::parse(const uint8_t* data, std::size_t len)
     const auto endIt = data + len;
     for (auto it = data; it < endIt - 1;) {
         const auto blockType = (*it);
-        if (blockType == O5M_RESET) {
+        if (blockType == O5M_BLOCK_RESET) {
             resetDeltaCodingState();
             ++it;
             continue;
@@ -66,23 +71,23 @@ void O5mParser::parse(const uint8_t* data, std::size_t len)
             break;
         }
         switch (blockType) {
-            case O5M_HEADER:
+            case O5M_BLOCK_HEADER:
                 if (blockSize != 4 || std::strncmp(reinterpret_cast<const char*>(it), "o5m2", 4) != 0) {
                     qWarning() << "Invalid file header";
                     return;
                 }
                 break;
-            case O5M_BOUNDING_BOX:
-            case O5M_TIMESTAMP:
+            case O5M_BLOCK_BOUNDING_BOX:
+            case O5M_BLOCK_TIMESTAMP:
                 // not of interest at the moment
                 break;
-            case O5M_NODE:
+            case O5M_BLOCK_NODE:
                 readNode(it, it + blockSize);
                 break;
-            case O5M_WAY:
+            case O5M_BLOCK_WAY:
                 readWay(it, it + blockSize);
                 break;
-            case O5M_RELATION:
+            case O5M_BLOCK_RELATION:
                 readRelation(it, it + blockSize);
                 break;
             default:
@@ -109,7 +114,7 @@ uint64_t O5mParser::readUnsigned(const uint8_t *&it, const uint8_t *endIt) const
 int64_t O5mParser::readSigned(const uint8_t *&it, const uint8_t *endIt) const
 {
     const uint64_t u = readUnsigned(it, endIt);
-    return (u & O5M_SIGNED_BIT) ? (-(u >> 1) -1) : (u >> 1);
+    return (u & O5M_NUMBER_SIGNED_BIT) ? (-(u >> 1) -1) : (u >> 1);
 }
 
 template <typename T>
@@ -174,67 +179,97 @@ void O5mParser::skipVersionInformation(const uint8_t *&it, const uint8_t *end)
 
 void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
 {
+    OSM::Node node;
+
     auto it = begin;
-    const OSM::Id id = readDelta(it, end, m_nodeIdDelta);
+    node.id = readDelta(it, end, m_nodeIdDelta);
     skipVersionInformation(it, end);
     if (it >= end) { return; }
 
-    const auto lat = readDelta(it, end, m_latDelata);
-    const auto lon = readDelta(it, end, m_lonDelta);
-    qDebug() << "    node" << id << (lat / 1.0e7) << (lon / 1.0e7);
+    node.coordinate.longitude = (int64_t)readDelta(it, end, m_lonDelta) + 1'800'000'000ll;
+    node.coordinate.latitude = (int64_t)readDelta(it, end, m_latDelata) + 900'000'000ll;
     if (it >= end) { return; }
 
     while (it < end) {
-        const auto tag = readStringPair(it, end);
-        qDebug() << "      tag" << tag.first << tag.second;
+        OSM::Tag tag;
+        const auto tagData = readStringPair(it, end);
+        tag.key = QString::fromUtf8(tagData.first);
+        tag.value = QString::fromUtf8(tagData.second);
+        OSM::setTag(node, std::move(tag));
     }
+
+    m_dataSet->addNode(std::move(node));
 }
 
 void O5mParser::readWay(const uint8_t *begin, const uint8_t *end)
 {
+    OSM::Way way;
+
     auto it = begin;
-    const OSM::Id id = readDelta(it, end, m_wayIdDelta);
+    way.id = readDelta(it, end, m_wayIdDelta);
     skipVersionInformation(it, end);
     if (it >= end) { return; }
 
     const auto nodesBlockSize = readUnsigned(it, end);
-    qDebug() << "    way" << id << nodesBlockSize;
     if (it + nodesBlockSize > end) { return; }
 
     const auto nodesBlockEnd = it + nodesBlockSize;
     while(it < nodesBlockEnd) {
-        const OSM::Id nodeId = readDelta(it, end, m_wayNodeIdDelta);
-        qDebug() << "      nd" << nodeId;
+        way.nodes.push_back(readDelta(it, end, m_wayNodeIdDelta));
     }
 
     while (it < end) {
-        const auto tag = readStringPair(it, end);
-        qDebug() << "      tag" << tag.first << tag.second;
+        const auto tagData = readStringPair(it, end);
+        // TODO handle bbox tags
+
+        OSM::Tag tag;
+        tag.key = QString::fromUtf8(tagData.first);
+        tag.value = QString::fromUtf8(tagData.second);
+        OSM::setTag(way, std::move(tag));
     }
+
+    m_dataSet->addWay(std::move(way));
 }
 
 void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
 {
+    OSM::Relation rel;
+
     auto it = begin;
-    const OSM::Id id = readDelta(it, end, m_relIdDelta);
+    rel.id = readDelta(it, end, m_relIdDelta);
     skipVersionInformation(it, end);
     if (it >= end) { return; }
 
     const auto relBlockSize = readUnsigned(it, end);
-    qDebug() << "    relation" << id << relBlockSize;
     if (it + relBlockSize > end) { return; }
 
     const auto relBlockEnd = it + relBlockSize;
     while (it < relBlockEnd) {
-        const OSM::Id memId = readDelta(it, end, m_relMemberIdDelta);
+        OSM::Member mem;
+        mem.id = readDelta(it, end, m_relMemberIdDelta);
+
         const auto typeAndRole = readString(it, end);
-        qDebug() << "     mem" << memId << typeAndRole[0] << (typeAndRole + 1);
+        switch (typeAndRole[0]) {
+            case O5M_MEMTYPE_NODE: mem.type = OSM::Type::Node; break;
+            case O5M_MEMTYPE_WAY: mem.type = OSM::Type::Way; break;
+            case O5M_MEMTYPE_RELATION: mem.type = OSM::Type::Relation; break;
+        }
+        mem.role = QString::fromUtf8(typeAndRole + 1);
+
+        rel.members.push_back(std::move(mem));
     }
 
     while (it < end) {
-        const auto tag = readStringPair(it, end);
-        qDebug() << "      tag" << tag.first << tag.second;
+        const auto tagData = readStringPair(it, end);
+        // TODO handle bbox tags
+
+        OSM::Tag tag;
+        tag.key = QString::fromUtf8(tagData.first);
+        tag.value = QString::fromUtf8(tagData.second);
+        OSM::setTag(rel, std::move(tag));
     }
+
+    m_dataSet->addRelation(std::move(rel));
 }
 
 void O5mParser::resetDeltaCodingState()

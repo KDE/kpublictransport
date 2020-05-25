@@ -15,6 +15,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include <osm/datatypes.h>
 #include <osm/o5mparser.h>
 
 #include <QTest>
@@ -146,8 +147,11 @@ private Q_SLOTS:
         auto it = beginIt;
         const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
 
-        OSM::O5mParser p(nullptr);
+        OSM::DataSet dataSet;
+        OSM::O5mParser p(&dataSet);
         p.readWay(it, endIt);
+
+        QCOMPARE(dataSet.ways.size(), 1);
     }
 };
 
