@@ -73,7 +73,9 @@ private:
     int64_t m_wayNodeIdDelta = 0;
 
     int64_t m_relIdDelta = 0;
-    int64_t m_relMemberIdDelta = 0;
+    int64_t m_relNodeMemberIdDelta = 0;
+    int64_t m_relWayMemberIdDelta = 0;
+    int64_t m_relRelMemberIdDelta = 0;
 
     std::vector<const char*> m_stringLookupTable;
     uint16_t m_stringLookupPosition = 0;

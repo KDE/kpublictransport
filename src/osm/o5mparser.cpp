@@ -259,19 +259,29 @@ void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
 
     const auto relBlockEnd = it + relBlockSize;
     while (it < relBlockEnd) {
+        const int64_t memId = readSigned(it, end);
         OSM::Member mem;
-        mem.id = readDelta(it, end, m_relMemberIdDelta);
-
         const auto typeAndRole = readString(it, end);
         switch (typeAndRole[0]) {
-            case O5M_MEMTYPE_NODE: mem.type = OSM::Type::Node; break;
-            case O5M_MEMTYPE_WAY: mem.type = OSM::Type::Way; break;
-            case O5M_MEMTYPE_RELATION: mem.type = OSM::Type::Relation; break;
+            case O5M_MEMTYPE_NODE:
+                mem.id = m_relNodeMemberIdDelta += memId;
+                mem.type = OSM::Type::Node;
+                break;
+            case O5M_MEMTYPE_WAY:
+                mem.id = m_relWayMemberIdDelta += memId;
+                mem.type = OSM::Type::Way;
+                break;
+            case O5M_MEMTYPE_RELATION:
+                mem.id = m_relRelMemberIdDelta += memId;
+                mem.type = OSM::Type::Relation;
+                break;
         }
         mem.role = QString::fromUtf8(typeAndRole + 1);
 
         rel.members.push_back(std::move(mem));
     }
+
+
 
     while (it < end) {
         readTagOrBbox(rel, it, end);
@@ -290,5 +300,7 @@ void O5mParser::resetDeltaCodingState()
     m_wayNodeIdDelta = 0;
 
     m_relIdDelta = 0;
-    m_relMemberIdDelta = 0;
+    m_relNodeMemberIdDelta = 0;
+    m_relWayMemberIdDelta = 0;
+    m_relRelMemberIdDelta = 0;
 }
