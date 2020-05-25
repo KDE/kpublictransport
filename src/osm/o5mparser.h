@@ -53,6 +53,8 @@ private:
     std::pair<const char*, const char*> readStringPair(const uint8_t *&it, const uint8_t *endIt);
 
     void skipVersionInformation(const uint8_t *&it, const uint8_t *end);
+    template <typename Elem>
+    void readTagOrBbox(Elem &e, const uint8_t *&it, const uint8_t *endIt);
 
     void readNode(const uint8_t *begin, const uint8_t *end);
     void readWay(const uint8_t *begin, const uint8_t *end);

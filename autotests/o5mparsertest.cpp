@@ -152,6 +152,11 @@ private Q_SLOTS:
         p.readWay(it, endIt);
 
         QCOMPARE(dataSet.ways.size(), 1);
+        const auto &way = dataSet.ways[0];
+        QCOMPARE(way.id, 4315430ll);
+        QCOMPARE(way.nodes.size(), 10);
+        QCOMPARE(way.tags.size(), 1);
+        QCOMPARE(way.bbox.isValid(), true);
     }
 };
 

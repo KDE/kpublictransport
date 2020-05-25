@@ -20,6 +20,7 @@
 
 #include <QDebug>
 
+#include <cstdlib>
 #include <cstring>
 
 using namespace OSM;
@@ -55,7 +56,6 @@ O5mParser::O5mParser(DataSet *dataSet)
 
 void O5mParser::parse(const uint8_t* data, std::size_t len)
 {
-    qDebug() << "begin parsing";
     const auto endIt = data + len;
     for (auto it = data; it < endIt - 1;) {
         const auto blockType = (*it);
@@ -96,8 +96,6 @@ void O5mParser::parse(const uint8_t* data, std::size_t len)
 
         it += blockSize;
     }
-
-    qDebug() << "parsing done";
 }
 
 uint64_t O5mParser::readUnsigned(const uint8_t *&it, const uint8_t *endIt) const
@@ -177,6 +175,29 @@ void O5mParser::skipVersionInformation(const uint8_t *&it, const uint8_t *end)
     }
 }
 
+template<typename Elem>
+void O5mParser::readTagOrBbox(Elem &e, const uint8_t *&it, const uint8_t *endIt)
+{
+    const auto tagData = readStringPair(it, endIt);
+    if (std::strcmp(tagData.first, "bBox") == 0) {
+        char *next = nullptr;
+        const auto lon1 = std::strtod(tagData.second, &next);
+        ++next;
+        const auto lat1 = std::strtod(next, &next);
+        ++next;
+        const auto lon2 = std::strtod(next, &next);
+        ++next;
+        const auto lat2 = std::strtod(next, &next);
+        e.bbox = OSM::BoundingBox(OSM::Coordinate(lat1, lon1), OSM::Coordinate(lat2, lon2));
+        return;
+    }
+
+    OSM::Tag tag;
+    tag.key = QString::fromUtf8(tagData.first);
+    tag.value = QString::fromUtf8(tagData.second);
+    OSM::setTag(e, std::move(tag));
+}
+
 void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
 {
     OSM::Node node;
@@ -188,7 +209,6 @@ void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
 
     node.coordinate.longitude = (int64_t)readDelta(it, end, m_lonDelta) + 1'800'000'000ll;
     node.coordinate.latitude = (int64_t)readDelta(it, end, m_latDelata) + 900'000'000ll;
-    if (it >= end) { return; }
 
     while (it < end) {
         OSM::Tag tag;
@@ -219,13 +239,7 @@ void O5mParser::readWay(const uint8_t *begin, const uint8_t *end)
     }
 
     while (it < end) {
-        const auto tagData = readStringPair(it, end);
-        // TODO handle bbox tags
-
-        OSM::Tag tag;
-        tag.key = QString::fromUtf8(tagData.first);
-        tag.value = QString::fromUtf8(tagData.second);
-        OSM::setTag(way, std::move(tag));
+        readTagOrBbox(way, it, end);
     }
 
     m_dataSet->addWay(std::move(way));
@@ -260,13 +274,7 @@ void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
     }
 
     while (it < end) {
-        const auto tagData = readStringPair(it, end);
-        // TODO handle bbox tags
-
-        OSM::Tag tag;
-        tag.key = QString::fromUtf8(tagData.first);
-        tag.value = QString::fromUtf8(tagData.second);
-        OSM::setTag(rel, std::move(tag));
+        readTagOrBbox(rel, it, end);
     }
 
     m_dataSet->addRelation(std::move(rel));
