@@ -20,6 +20,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <vector>
 
 class O5mParserTest;
 
@@ -48,15 +49,32 @@ private:
     template <typename T>
     T readDelta(const uint8_t *&it, const uint8_t *endIt, T &deltaState);
 
-    void parseNode(const uint8_t *begin, const uint8_t *end);
+    const char* readString(const uint8_t *&it, const uint8_t *endIt);
+    std::pair<const char*, const char*> readStringPair(const uint8_t *&it, const uint8_t *endIt);
+
+    void skipVersionInformation(const uint8_t *&it, const uint8_t *end);
+
+    void readNode(const uint8_t *begin, const uint8_t *end);
+    void readWay(const uint8_t *begin, const uint8_t *end);
+    void readRelation(const uint8_t *begin, const uint8_t *end);
 
     DataSet *m_dataSet = nullptr;
 
     // delta coding state
     void resetDeltaCodingState();
+
     int64_t m_nodeIdDelta = 0;
     int32_t m_latDelata = 0; // this can overflow, but that is intentional according to the spec!
     int32_t m_lonDelta = 0;
+
+    int64_t m_wayIdDelta = 0;
+    int64_t m_wayNodeIdDelta = 0;
+
+    int64_t m_relIdDelta = 0;
+    int64_t m_relMemberIdDelta = 0;
+
+    std::vector<const char*> m_stringLookupTable;
+    uint16_t m_stringLookupPosition = 0;
 };
 
 }

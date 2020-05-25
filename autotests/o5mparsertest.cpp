@@ -19,6 +19,7 @@
 
 #include <QTest>
 
+// see https://wiki.openstreetmap.org/wiki/O5m for the examples used below
 class O5mParserTest : public QObject
 {
     Q_OBJECT
@@ -75,6 +76,78 @@ private Q_SLOTS:
         QCOMPARE(p.readSigned(it, endIt), num);
         QVERIFY(it > beginIt);
         QVERIFY(it <= endIt);
+    }
+
+    void testParseString()
+    {
+        const auto data = QByteArray::fromHex("0031696e6e65720001");
+        const auto beginIt = reinterpret_cast<const uint8_t*>(data.constBegin());
+        auto it = beginIt;
+        const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
+
+        OSM::O5mParser p(nullptr);
+        auto s = p.readString(it, endIt);
+        QCOMPARE(s, "1inner");
+        QCOMPARE(it, beginIt + 8);
+
+        s = p.readString(it, endIt);
+        QCOMPARE(s, "1inner");
+        QCOMPARE(it, beginIt + 9);
+    }
+
+    void testParseStringPair()
+    {
+        const auto data = QByteArray::fromHex("006f6e6577617900796573000061746d006e6f000200fc07004a6f686e00020301");
+        const auto beginIt = reinterpret_cast<const uint8_t*>(data.constBegin());
+        auto it = beginIt;
+        const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
+
+        OSM::O5mParser p(nullptr);
+        auto s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "oneway");
+        QCOMPARE(s.second, "yes");
+        QCOMPARE(it, beginIt + 12);
+
+        s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "atm");
+        QCOMPARE(s.second, "no");
+        QCOMPARE(it, beginIt + 20);
+
+        s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "oneway");
+        QCOMPARE(s.second, "yes");
+        QCOMPARE(it, beginIt + 21);
+
+        s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "\xfc\x07");
+        QCOMPARE(s.second, "John");
+        QCOMPARE(it, beginIt + 30);
+
+        s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "atm");
+        QCOMPARE(s.second, "no");
+        QCOMPARE(it, beginIt + 31);
+
+        s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "oneway");
+        QCOMPARE(s.second, "yes");
+        QCOMPARE(it, beginIt + 32);
+
+        s = p.readStringPair(it, endIt);
+        QCOMPARE(s.first, "\xfc\x07");
+        QCOMPARE(s.second, "John");
+        QCOMPARE(it, beginIt + 33);
+    }
+
+    void testParseWay()
+    {
+        const auto data = QByteArray::fromHex("CCE48E04002DCAAFA01A02BCA0AFF6018FFAD5F70180DFBB9E0FA5E5E5A60DE4E5E5A60DE385959D0F9E86959D0FF7E6E5A60D0062426F780031332E333634313031392C35322E353233323734312C31332E333635373039392C35322E353234323033310000726566003630323400");
+        const auto beginIt = reinterpret_cast<const uint8_t*>(data.constBegin());
+        auto it = beginIt;
+        const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
+
+        OSM::O5mParser p(nullptr);
+        p.readWay(it, endIt);
     }
 };
 
