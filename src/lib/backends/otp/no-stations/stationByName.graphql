@@ -1,0 +1,16 @@
+query stationsByName($name: String!) {
+  stations: stops(name: $name) {
+    id: gtfsId
+    name
+    lat
+    lon
+    parentStation {
+      id: gtfsId
+      name
+      lat
+      lon
+      timezone
+    }
+    timezone
+  }
+}

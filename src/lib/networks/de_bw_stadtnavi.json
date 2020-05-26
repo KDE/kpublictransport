@@ -1,0 +1,36 @@
+{
+    "KPlugin": {
+        "Description": "Local public transport in and around Herrenberg, Germany.",
+        "Name": "Stadtnavi"
+    },
+    "attribution": {
+        "name": "Stadtnavi",
+        "url": "https://stadtnavi.de/"
+    },
+    "filter": {
+        "geo": [
+            [
+                7.503590600000001,
+                49.8348605
+            ],
+            [
+                11.082291,
+                49.8348605
+            ],
+            [
+                11.082291,
+                47.525812300000005
+            ],
+            [
+                7.503590600000001,
+                47.525812300000005
+            ]
+        ]
+    },
+    "options": {
+        "apiVersion": "no-stations",
+        "endpoint": "https://api.stadtnavi.de/routing/v1/router/"
+    },
+    "timezone": "Europe/Berlin",
+    "type": "otp_graphql"
+}
