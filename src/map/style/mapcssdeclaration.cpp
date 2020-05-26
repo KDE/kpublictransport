@@ -246,6 +246,11 @@ bool MapCSSDeclaration::textFollowsLine() const
     return m_identValue == "line";
 }
 
+void MapCSSDeclaration::compile(const OSM::DataSet &dataSet)
+{
+    // TODO
+}
+
 void MapCSSDeclaration::write(QIODevice *out) const
 {
     out->write("    ");

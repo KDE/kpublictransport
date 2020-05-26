@@ -34,17 +34,26 @@ static double toNumber(const QString &val)
     return res ? n : NAN;
 }
 
+void MapCSSCondition::compile(const OSM::DataSet &dataSet)
+{
+    m_tagKey = dataSet.tagKey(m_key.constData());
+}
+
 bool MapCSSCondition::matches(const MapCSSState &state) const
 {
-    const auto v = state.element.tagValue(m_key.constData());
-    switch (op) {
+    if (m_tagKey.isNull()) {
+        return false;
+    }
+
+    const auto v = state.element.tagValue(m_tagKey);
+    switch (m_op) {
         case None: return !v.isEmpty();
         case Equal: return v == m_value;
         case NotEqual: return v != m_value;
-        case LessThan: return toNumber(v) < m_value.toDouble();
-        case GreaterThan: return toNumber(v) > m_value.toDouble();
-        case LessOrEqual: return toNumber(v) <= m_value.toDouble();
-        case GreaterOrEqual: return toNumber(v) >= m_value.toDouble();
+        case LessThan: return toNumber(v) < m_numericValue;
+        case GreaterThan: return toNumber(v) > m_numericValue;
+        case LessOrEqual: return toNumber(v) <= m_numericValue;
+        case GreaterOrEqual: return toNumber(v) >= m_numericValue;
     }
     return false;
 }
@@ -52,6 +61,11 @@ bool MapCSSCondition::matches(const MapCSSState &state) const
 void MapCSSCondition::setKey(const char *key, int len)
 {
     m_key = QByteArray(key, len);
+}
+
+void MapCSSCondition::setOperation(MapCSSCondition::Operator op)
+{
+    m_op = op;
 }
 
 void MapCSSCondition::setValue(const char *value, int len)
@@ -69,7 +83,7 @@ void MapCSSCondition::write(QIODevice *out) const
     out->write("[");
     out->write(m_key);
 
-    switch (op) {
+    switch (m_op) {
         case None: out->write("]"); return;
         case Equal: out->write("="); break;
         case NotEqual: out->write("!="); break;

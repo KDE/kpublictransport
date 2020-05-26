@@ -66,7 +66,7 @@ BoundingBox Element::boundingBox() const
     return {};
 }
 
-QString Element::tagValue(const QLatin1String &key) const
+QString Element::tagValue(TagKey key) const
 {
     switch (type()) {
         case Type::Null:
@@ -82,9 +82,20 @@ QString Element::tagValue(const QLatin1String &key) const
     return {};
 }
 
-QString OSM::Element::tagValue(const char *key) const
+QString Element::tagValue(const char *keyName) const
 {
-    return tagValue(QLatin1String(key));
+    switch (type()) {
+        case Type::Null:
+            return {};
+        case Type::Node:
+            return OSM::tagValue(*node(), keyName);
+        case Type::Way:
+            return OSM::tagValue(*way(), keyName);
+        case Type::Relation:
+            return OSM::tagValue(*relation(), keyName);
+    }
+
+    return {};
 }
 
 std::vector<Tag>::const_iterator OSM::Element::tagsBegin() const

@@ -22,9 +22,12 @@
 #include <QString>
 
 #include <cstdint>
+#include <cstring>
 #include <vector>
 
 namespace OSM {
+
+class DataSet;
 
 /** OSM element identifier. */
 typedef int64_t Id;
@@ -164,12 +167,35 @@ constexpr inline uint32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbo
     return bbox1.max.longitude < bbox2.min.longitude ? bbox2.min.longitude - bbox1.max.longitude : bbox1.min.longitude - bbox2.max.longitude;
 }
 
+
+/** A key of an OSM tag.
+ *  See DataSet::tagKey().
+ */
+class TagKey
+{
+public:
+    constexpr inline TagKey() = default;
+    constexpr inline const char* name() const { return key; }
+    constexpr inline bool isNull() const { return !key; }
+
+    // yes, pointer compare is enough here
+    inline constexpr bool operator<(TagKey other) const { return key < other.key; }
+    inline constexpr bool operator==(TagKey other) const { return key == other.key; }
+    inline constexpr bool operator!=(TagKey other) const { return key != other.key; }
+
+private:
+    friend class DataSet;
+    explicit constexpr inline TagKey(const char *keyData) : key(keyData) {}
+
+    const char* key = nullptr;
+};
+
 /** An OSM element tag. */
 class Tag {
 public:
-    inline bool operator<(const Tag &other) const { return key < other.key; }
+    inline constexpr bool operator<(const Tag &other) const { return key < other.key; }
 
-    QString key;
+    TagKey key;
     QString value;
 };
 
@@ -233,21 +259,62 @@ public:
 /** A set of nodes, ways and relations. */
 class DataSet {
 public:
+    explicit DataSet();
+    DataSet(const DataSet&) = delete;
+    DataSet(DataSet &&other);
+    ~DataSet();
+
+    DataSet& operator=(const DataSet&) = delete;
+    DataSet& operator=(DataSet &&);
+
     void addNode(Node &&node);
     void addWay(Way &&way);
     void addRelation(Relation &&rel);
 
+    /** Look up a tag key for the given tag name, if it exists.
+     *  If no key exists, an empty/invalid/null key is returned.
+     *  Use this for tag lookup, not for creating/adding tags.
+     */
+    TagKey tagKey(const char *keyName) const;
+
+    enum TagKeyMemory { TagKeyIsPersistent, TagKeyIsTransient };
+    /** Create a tag key for the given tag name. If none exist yet a new one is created.
+     *  Use this for creating tags, not for lookup, prefer tagKey() for that.
+     *  @param keyMemOpt specifies whether @p keyName is persisent for the lifetime of this
+     *  instance and thus can be used without requiring a copy. If the memory is transient
+     *  the string is copied if needed, and released in the DataSet destructor.
+     */
+    TagKey makeTagKey(const char *keyName, TagKeyMemory keyMemOpt = TagKeyIsTransient);
+
     std::vector<Node> nodes;
     std::vector<Way> ways;
     std::vector<Relation> relations;
+
+private:
+    std::vector<TagKey> m_tagKeyRegistry;
+    std::vector<char*> m_stringPool;
 };
 
 /** Returns the tag value for @p key of @p elem. */
 template <typename Elem>
-inline QString tagValue(const Elem& elem, const QLatin1String &key)
+inline QString tagValue(const Elem& elem, TagKey key)
 {
     const auto it = std::lower_bound(elem.tags.begin(), elem.tags.end(), key, [](const auto &lhs, const auto &rhs) { return lhs.key < rhs; });
     if (it != elem.tags.end() && (*it).key == key) {
+        return (*it).value;
+    }
+    return {};
+}
+
+/** Returns the tag value for key name @p keyName of @p elem.
+ *  @warning This is slow due to doing a linear search and string comparissons.
+ *  Where possible avoid this in favor of tagValue().
+ */
+template <typename Elem>
+inline QString tagValue(const Elem& elem, const char *keyName)
+{
+    const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [keyName](const auto &tag) { return std::strcmp(tag.key.name(), keyName) == 0; });
+    if (it != elem.tags.end()) {
         return (*it).value;
     }
     return {};
@@ -267,7 +334,7 @@ inline void setTag(Elem &elem, Tag &&tag)
 
 /** Inserts a new tag, or updates an existing one. */
 template <typename Elem>
-inline void setTagValue(Elem &elem, const QString &key, const QString &value)
+inline void setTagValue(Elem &elem, TagKey key, const QString &value)
 {
     Tag tag{ key, value };
     setTag(elem, std::move(tag));

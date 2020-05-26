@@ -27,6 +27,10 @@
 
 class QIODevice;
 
+namespace OSM {
+class DataSet;
+}
+
 namespace KOSMIndoorMap {
 
 class MapCSSParser;
@@ -41,6 +45,11 @@ public:
     ~MapCSSStyle();
 
     MapCSSStyle& operator=(MapCSSStyle&&);
+
+    /** Optimizes style sheet rules for application against @p dataSet.
+     *  This does resolve tag keys and is therefore mandatory when changing the data set.
+     */
+    void compile(const OSM::DataSet &dataSet);
 
     /** Evaluates the style sheet for a given state @p state (OSM element, view state, element state, etc).
      *  The result is not returned but added to @p result for reusing allocated memory

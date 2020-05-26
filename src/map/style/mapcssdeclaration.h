@@ -25,6 +25,10 @@
 
 #include <cmath>
 
+namespace OSM {
+class DataSet;
+}
+
 class QIODevice;
 
 namespace KOSMIndoorMap { class MapCSSParser; }
@@ -139,6 +143,7 @@ public:
     bool isUnderlineStyle() const;
     bool textFollowsLine() const;
 
+    void compile(const OSM::DataSet &dataSet);
     void write(QIODevice *out) const;
 
 private:

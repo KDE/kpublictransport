@@ -18,6 +18,8 @@
 #ifndef KOSMINDOORMAP_SCENECONTROLLER_H
 #define KOSMINDOORMAP_SCENECONTROLLER_H
 
+#include <osm/datatypes.h>
+
 #include <vector>
 
 #include "../style/mapcssresult.h"
@@ -26,10 +28,7 @@ class QPolygonF;
 class QString;
 
 namespace OSM {
-class DataSet;
 class Element;
-class Node;
-class Relation;
 }
 
 namespace KOSMIndoorMap {
@@ -82,6 +81,9 @@ private:
     mutable QColor m_defaultTextColor;
     mutable QFont m_defaultFont;
     mutable QPolygonF m_labelPlacementPath;
+
+    OSM::TagKey m_layerTag;
+    OSM::TagKey m_typeTag;
 };
 
 }

@@ -18,6 +18,8 @@
 #ifndef KOSMINDOORMAP_MAPCSSSELECTOR_H
 #define KOSMINDOORMAP_MAPCSSSELECTOR_H
 
+#include <osm/datatypes.h>
+
 #include <memory>
 #include <vector>
 
@@ -35,6 +37,8 @@ class MapCSSSelector
 public:
     virtual ~MapCSSSelector();
 
+    /** Resolve tag keys. */
+    virtual void compile(const OSM::DataSet &dataSet) = 0;
     /** Returns @c true if this selector matches the evaluation state. */
     virtual bool matches(const MapCSSState &state) const = 0;
     /** Selector matches the canvas element. */
@@ -64,6 +68,7 @@ public:
     };
     ObjectType objectType;
 
+    void compile(const OSM::DataSet &dataSet) override;
     bool matches(const MapCSSState &state) const override;
     bool matchesCanvas() const override;
     void write(QIODevice* out) const override;
@@ -74,6 +79,7 @@ public:
     void setConditions(MapCSSConditionHolder *conds);
 
     std::vector<std::unique_ptr<MapCSSCondition>> conditions;
+    OSM::TagKey m_areaKey;
     int m_zoomLow = 0;
     int m_zoomHigh = 0;
 };
@@ -82,6 +88,7 @@ public:
 class MapCSSChainedSelector : public MapCSSSelector
 {
 public:
+    void compile(const OSM::DataSet &dataSet) override;
     bool matches(const MapCSSState &state) const override;
     bool matchesCanvas() const override;
     void write(QIODevice* out) const override;
@@ -95,6 +102,7 @@ public:
     explicit MapCSSUnionSelector();
     ~MapCSSUnionSelector();
 
+    void compile(const OSM::DataSet &dataSet) override;
     bool matches(const MapCSSState &state) const override;
     bool matchesCanvas() const override;
     void write(QIODevice* out) const override;

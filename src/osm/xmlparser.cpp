@@ -132,7 +132,8 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
 template <typename T>
 void XmlParser::parseTag(QXmlStreamReader &reader, T &elem)
 {
-    OSM::setTagValue(elem, reader.attributes().value(QLatin1String("k")).toString(), reader.attributes().value(QLatin1String("v")).toString());
+    const auto key = m_dataSet->makeTagKey(reader.attributes().value(QLatin1String("k")).toString().toUtf8().constData(), OSM::DataSet::TagKeyIsTransient);
+    OSM::setTagValue(elem, key, reader.attributes().value(QLatin1String("v")).toString());
 }
 
 template <typename T>

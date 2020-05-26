@@ -33,6 +33,14 @@ MapCSSSelector::~MapCSSSelector() = default;
 MapCSSBasicSelector::MapCSSBasicSelector() = default;
 MapCSSBasicSelector::~MapCSSBasicSelector() = default;
 
+void MapCSSBasicSelector::compile(const OSM::DataSet &dataSet)
+{
+    m_areaKey = dataSet.tagKey("area");
+    for (const auto &c : conditions) {
+        c->compile(dataSet);
+    }
+}
+
 bool MapCSSBasicSelector::matches(const MapCSSState &state) const
 {
     switch (objectType) {
@@ -46,7 +54,7 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
             }
             break;
         case Line:
-            if (state.element.type() != OSM::Type::Way || (state.element.way()->isClosed() && state.element.tagValue("area") == QLatin1String("yes"))) {
+            if (state.element.type() != OSM::Type::Way || (state.element.way()->isClosed() && state.element.tagValue(m_areaKey) == QLatin1String("yes"))) {
                 return false;
             }
             break;
@@ -137,6 +145,13 @@ void MapCSSBasicSelector::setConditions(MapCSSConditionHolder *conds)
 }
 
 
+void MapCSSChainedSelector::compile(const OSM::DataSet &dataSet)
+{
+    for (const auto &s : selectors) {
+        s->compile(dataSet);
+    }
+}
+
 bool MapCSSChainedSelector::matches(const MapCSSState &state) const
 {
     // TODO
@@ -161,6 +176,13 @@ void MapCSSChainedSelector::write(QIODevice *out) const
 
 MapCSSUnionSelector::MapCSSUnionSelector() = default;
 MapCSSUnionSelector::~MapCSSUnionSelector() = default;
+
+void MapCSSUnionSelector::compile(const OSM::DataSet &dataSet)
+{
+    for (const auto &s : selectors) {
+        s->compile(dataSet);
+    }
+}
 
 bool MapCSSUnionSelector::matches(const MapCSSState &state) const
 {

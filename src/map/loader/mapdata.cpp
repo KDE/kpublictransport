@@ -77,6 +77,9 @@ void MapData::setDataSet(OSM::DataSet &&dataSet)
 {
     m_dataSet = std::move(dataSet);
 
+    m_levelRefTag = m_dataSet.tagKey("level:ref");
+    m_nameTag = m_dataSet.tagKey("name");
+
     m_levelMap.clear();
     m_bbox = {};
 
@@ -91,14 +94,16 @@ OSM::BoundingBox MapData::boundingBox() const
 
 void MapData::processElements()
 {
-    OSM::for_each(m_dataSet, [this](auto e) {
+    const auto levelTag = m_dataSet.tagKey("level");
+    const auto repeatOnTag = m_dataSet.tagKey("repeat_on");
+    OSM::for_each(m_dataSet, [this, levelTag, repeatOnTag](auto e) {
         // bbox computation
         m_bbox = OSM::unite(e.boundingBox(), m_bbox);
 
         // level parsing
-        auto level = e.tagValue("level");
+        auto level = e.tagValue(levelTag);
         if (level.isEmpty()) {
-            level = e.tagValue("repeat_on");
+            level = e.tagValue(repeatOnTag);
         }
 
         if (level.isEmpty()) { // level-less -> outdoor
@@ -182,7 +187,7 @@ void MapData::addElement(int level, OSM::Element e)
 
 QString MapData::levelName(OSM::Element e)
 {
-    const auto n = e.tagValue("level:ref");
+    const auto n = e.tagValue(m_levelRefTag);
     if (!n.isEmpty()) {
         return n;
     }
@@ -192,7 +197,7 @@ QString MapData::levelName(OSM::Element e)
             return mem.role == QLatin1String("shell") || mem.role == QLatin1String("buildingpart");
         });
         if (isLevelRel) {
-            return e.tagValue("name");
+            return e.tagValue(m_nameTag);
         }
     }
 
@@ -202,9 +207,10 @@ QString MapData::levelName(OSM::Element e)
 void MapData::filterLevels()
 {
     // remove all-node levels as we can't display anything meaningfully there
+    const auto typeTag = m_dataSet.tagKey("type");
     for (auto it = m_levelMap.begin(); it != m_levelMap.end();) {
-        const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [](auto e) {
-            return e.type() == OSM::Type::Node || (e.type() == OSM::Type::Relation && e.tagValue("type") != QLatin1String("multipolygon"));
+        const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [typeTag](auto e) {
+            return e.type() == OSM::Type::Node || (e.type() == OSM::Type::Relation && e.tagValue(typeTag) != QLatin1String("multipolygon"));
         });
         if (isNonVisual) {
             it = m_levelMap.erase(it);

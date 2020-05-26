@@ -76,6 +76,9 @@ private:
 
     OSM::DataSet m_dataSet;
     OSM::BoundingBox m_bbox;
+
+    OSM::TagKey m_levelRefTag;
+    OSM::TagKey m_nameTag;
 };
 
 }

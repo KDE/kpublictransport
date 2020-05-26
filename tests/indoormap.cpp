@@ -116,6 +116,7 @@ int main(int argc, char **argv)
 
     MapCSSParser cssParser;
     auto style = cssParser.parse(cssPath(QStringLiteral("breeze-light")));
+    style.compile(loader.m_data.dataSet());
 
     MapWidget widget;
     widget.resize(480, 720);
@@ -147,6 +148,7 @@ int main(int argc, char **argv)
     QObject::connect(styleBox, &QComboBox::currentTextChanged, &app, [&](const QString &styleName) {
         MapCSSParser p;
         style = p.parse(cssPath(styleName));
+        style.compile(loader.m_data.dataSet());
         widget.m_controller.setStyleSheet(&style);
         widget.m_controller.updateScene(widget.m_sg);
         widget.update();

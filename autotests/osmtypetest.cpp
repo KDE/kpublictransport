@@ -49,6 +49,37 @@ private Q_SLOTS:
         QCOMPARE(coord2.latitude, coord.latitude);
         QCOMPARE(coord2.longitude, coord.longitude);
     }
+
+    void testTagKeys()
+    {
+        OSM::DataSet ds;
+
+        OSM::TagKey nullKey;
+        QCOMPARE(nullKey, ds.tagKey("akey"));
+        QCOMPARE(nullKey.isNull(), true);
+
+        const auto key1 = ds.makeTagKey("akey", OSM::DataSet::TagKeyIsPersistent);
+        QCOMPARE(key1, ds.makeTagKey("akey", OSM::DataSet::TagKeyIsPersistent));
+        QCOMPARE(key1, ds.tagKey("akey"));
+        QCOMPARE(key1.isNull(), false);
+        QCOMPARE(key1.name(), "akey");
+        QVERIFY(key1 != nullKey);
+
+        const auto key2 = ds.makeTagKey("bkey", OSM::DataSet::TagKeyIsTransient);
+        QVERIFY(key1 != key2);
+        QCOMPARE(key2, ds.makeTagKey("bkey", OSM::DataSet::TagKeyIsTransient));
+
+        OSM::Node node;
+        OSM::setTagValue(node, key1, QStringLiteral("avalue"));
+        OSM::setTagValue(node, key2, QStringLiteral("bvalue-1"));
+        OSM::setTagValue(node, key2, QStringLiteral("bvalue"));
+
+        QCOMPARE(OSM::tagValue(node, key1), QLatin1String("avalue"));
+        QCOMPARE(OSM::tagValue(node, key2), QLatin1String("bvalue"));
+
+        QCOMPARE(OSM::tagValue(node, "bkey"), QLatin1String("bvalue"));
+        QCOMPARE(OSM::tagValue(node, "akey"), QLatin1String("avalue"));
+    }
 };
 
 QTEST_GUILESS_MAIN(OsmTypeTest)

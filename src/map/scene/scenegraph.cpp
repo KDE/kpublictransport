@@ -108,7 +108,7 @@ void SceneGraph::itemsAt(QPointF pos)
         if (item.payload->inSceneSpace() && item.payload->boundingRect().contains(pos)) {
             qDebug() << item.element.url();
             for (auto it = item.element.tagsBegin(); it != item.element.tagsEnd(); ++it) {
-                qDebug() << "    " << (*it).key << (*it).value;
+                qDebug() << "    " << (*it).key.name() << (*it).value;
             }
         }
         // TODO HUD space elements

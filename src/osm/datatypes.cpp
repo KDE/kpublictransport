@@ -19,6 +19,44 @@
 
 using namespace OSM;
 
+DataSet::DataSet() = default;
+DataSet::DataSet(DataSet &&) = default;
+DataSet::~DataSet()
+{
+    std::for_each(m_stringPool.begin(), m_stringPool.end(), free);
+}
+
+DataSet& DataSet::operator=(DataSet &&) = default;
+
+TagKey DataSet::makeTagKey(const char *keyName, DataSet::TagKeyMemory keyMemOpt)
+{
+    const auto it = std::lower_bound(m_tagKeyRegistry.begin(), m_tagKeyRegistry.end(), keyName, [](TagKey lhs, const char *rhs) {
+        return std::strcmp(lhs.key, rhs) < 0;
+    });
+    if (it == m_tagKeyRegistry.end() || std::strcmp((*it).key, keyName) != 0) {
+        if (keyMemOpt == TagKeyIsTransient) {
+            auto s = strdup(keyName);
+            m_stringPool.push_back(s);
+            keyName = s;
+        }
+        TagKey k(keyName);
+        m_tagKeyRegistry.insert(it, k);
+        return k;
+    }
+    return (*it);
+}
+
+TagKey DataSet::tagKey(const char *keyName) const
+{
+    const auto it = std::lower_bound(m_tagKeyRegistry.begin(), m_tagKeyRegistry.end(), keyName, [](TagKey lhs, const char *rhs) {
+        return std::strcmp(lhs.key, rhs) < 0;
+    });
+    if (it == m_tagKeyRegistry.end() || std::strcmp((*it).key, keyName) != 0) {
+        return {};
+    }
+    return (*it);
+}
+
 void DataSet::addNode(Node &&node)
 {
     const auto it = std::lower_bound(nodes.begin(), nodes.end(), node);

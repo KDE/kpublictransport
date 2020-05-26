@@ -89,7 +89,7 @@ int main(int argc, char **argv)
         for (const auto &node : res.nodes) {
             qDebug() << "Node" << node.id << node.coordinate.latitude << node.coordinate.longitude;
             for (const auto &tag : node.tags) {
-                qDebug() << "  tag" << tag.key << tag.value;
+                qDebug() << "  tag" << tag.key.name() << tag.value;
             }
         }
         for (const auto &rel : res.relations) {
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
                 qDebug() << "  member" << mem.id << (int)mem.type << mem.role;
             }
             for (const auto &tag : rel.tags) {
-                qDebug() << "  tag" << tag.key << tag.value;
+                qDebug() << "  tag" << tag.key.name() << tag.value;
             }
         }
 

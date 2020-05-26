@@ -109,7 +109,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     qDebug() << "got" << dataSet.relations.size() << "relations from OSM";
     // expand multi-line relations
     for (auto it = dataSet.relations.begin(); it != dataSet.relations.end();) {
-        const auto ref = OSM::tagValue(*it, QLatin1String("ref"));
+        const auto ref = OSM::tagValue(*it, "ref");
         if (!ref.contains(QLatin1Char(';'))) {
             ++it;
             continue;
@@ -122,7 +122,8 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 #endif
         for (const auto &ref : refs) {
             auto rel = *it;
-            OSM::setTagValue(rel, QStringLiteral("ref"), ref);
+            const auto tagKey = dataSet.makeTagKey("ref", OSM::DataSet::TagKeyIsPersistent);
+            OSM::setTagValue(rel, tagKey, ref);
             dataSet.relations.push_back(rel);
         }
         it = dataSet.relations.erase(it);
@@ -131,7 +132,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 
     // split relations into route_master elements and route elements
     auto splitIt = std::partition(dataSet.relations.begin(), dataSet.relations.end(), [](const auto &rel) {
-        return OSM::tagValue(rel, QLatin1String("type")) == QLatin1String("route_master");
+        return OSM::tagValue(rel, "type") == QLatin1String("route_master");
     });
     sort(splitIt, dataSet.relations.end());
     const auto routeMasterCount = std::distance(dataSet.relations.begin(), splitIt);
@@ -170,6 +171,9 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 
     // filter useless lines - ie. those that don't contain useful information and have no wikidata id to fill the missing gaps
     lines.erase(std::remove_if(lines.begin(), lines.end(), [](const auto &info) {
+        if (!LineInfo::isUseful(info) && !info.wdId.isValid() && info.mode != LineInfo::LongDistance) {
+            qDebug() << "dropping" << info;
+        }
         return !LineInfo::isUseful(info) && !info.wdId.isValid();
     }), lines.end());
     qDebug() << "lines after filtering OSM data:" << lines.size();
@@ -188,6 +192,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
             }
 
             for (auto it = dupIt; it != lines.end(); ++it) {
+                qDebug() << "  merging:" << *lit << "with" << *it;
                 LineInfo::merge(*lit, *it);
             }
             lines.erase(dupIt, lines.end());
@@ -337,7 +342,7 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
             // merge information
             const auto color = item.value<QColor>(wd::P(465));
             if ((*rit).color.isValid() && color.isValid() && (*rit).color != color) {
-                qWarning() << "OSM/WD color conflict:" << (*rit) << color.name();
+                //qWarning() << "OSM/WD color conflict:" << (*rit) << color.name();
             } else if (color.isValid()) {
                 (*rit).color = color;
             }
@@ -591,6 +596,7 @@ void Generator::generateQuadTree()
             // insert subtiles, if they actually contain the line bbox
             qDebug() << "subdividing" << lines[*lit].name << lines[*lit].bbox << lines[*lit].relId << std::distance(lit, lend) << (*lit) << (*tileIt).first.depth << (*tileIt).first.z;
             for (auto it = lit; it != lend; ++it) {
+                qDebug() << "  " << lines[*it];
                 for (auto subtile : (*tileIt).first.quadSplit()) {
                     if (subtile.intersects(lines[*it].bbox)) {
                         insertToBucket(subtile, *it);
@@ -671,7 +677,7 @@ bool Generator::resolveOneBottomUpConflict()
                         return isSameLine(lines[lhs], lines[*lineIt]);
                     });
                     if (conflictIt != (*parentTileIt).second.end()) {
-                        qDebug() << "propagating down:" << lines[*conflictIt].name << parentTile.z << parentTile.depth;
+                        qDebug() << "propagating down:" << lines[*conflictIt].name << lines[*conflictIt].relId << parentTile.z << parentTile.depth << *conflictIt;
                         auto splitTile = parentTile;
                         while (splitTile.depth > (*tileIt).first.depth) {
                             for (auto subtile : splitTile.quadSplit()) {

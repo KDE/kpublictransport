@@ -18,13 +18,14 @@
 #ifndef KOSMINDOORMAP_MAPCSSCONDITION_H
 #define KOSMINDOORMAP_MAPCSSCONDITION_H
 
-#include <memory>
-#include <vector>
+#include <osm/datatypes.h>
 
 #include <QByteArray>
 #include <QString>
 
 #include <cmath>
+#include <memory>
+#include <vector>
 
 class QIODevice;
 
@@ -40,11 +41,12 @@ public:
     MapCSSCondition(const MapCSSCondition&) = delete;
     MapCSSCondition(MapCSSCondition&&);
     ~MapCSSCondition();
+    MapCSSCondition& operator=(const MapCSSCondition&) = delete;
 
+    /** Resolve tag keys. */
+    void compile(const OSM::DataSet &dataSet);
     /** Condition matches the given evaluation state. */
     bool matches(const MapCSSState &state) const;
-
-    QByteArray m_key;
 
     enum Operator {
         None,
@@ -55,17 +57,20 @@ public:
         LessOrEqual,
         GreaterOrEqual
     };
-    Operator op = None;
 
     void setKey(const char *key, int len);
+    void setOperation(Operator op);
     void setValue(const char *value, int len);
     void setValue(double val);
 
     void write(QIODevice *out) const;
 
 private:
+    OSM::TagKey m_tagKey;
+    QByteArray m_key;
     QString m_value;
     double m_numericValue = NAN;
+    Operator m_op = None;
 };
 
 /** @internal intermediate AST node used during parsing */

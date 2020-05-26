@@ -69,15 +69,15 @@ static LineInfo::Mode lineModeStringToMode(const QString &s)
 
 LineInfo::Mode LineInfo::determineMode(const OSM::Relation &rel)
 {
-    auto m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route_master")));
+    auto m = lineModeStringToMode(OSM::tagValue(rel, "route_master"));
     if (m != Unknown) return m;
 
-    m = lineModeStringToMode(OSM::tagValue(rel, QLatin1String("route")));
+    m = lineModeStringToMode(OSM::tagValue(rel, "route"));
     if (m != Unknown) return m;
 
-    return std::max(lineModeStringToMode(OSM::tagValue(rel, QLatin1String("line"))),
-           std::max(lineModeStringToMode(OSM::tagValue(rel, QLatin1String("service"))),
-                    lineModeStringToMode(OSM::tagValue(rel, QLatin1String("passenger")))));
+    return std::max(lineModeStringToMode(OSM::tagValue(rel, "line")),
+           std::max(lineModeStringToMode(OSM::tagValue(rel, "service")),
+                    lineModeStringToMode(OSM::tagValue(rel, "passenger"))));
 }
 
 LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
@@ -86,17 +86,17 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
     info.relId = rel.id;
 
     // check for under constructions or out-of-service tags
-    const auto underConstruction = OSM::tagValue(rel, QLatin1String("construction"));
+    const auto underConstruction = OSM::tagValue(rel, "construction");
     if (underConstruction == QLatin1String("yes")) {
         return info;
     }
 
-    info.name = OSM::tagValue(rel, QLatin1String("ref"));
-    const auto colStr = OSM::tagValue(rel, QLatin1String("colour"));
+    info.name = OSM::tagValue(rel, "ref");
+    const auto colStr = OSM::tagValue(rel, "colour");
     if (!colStr.isEmpty()) {
         info.color = QColor(colStr);
     }
-    info.wdId = Wikidata::Q(OSM::tagValue(rel, QLatin1String("wikidata")));
+    info.wdId = Wikidata::Q(OSM::tagValue(rel, "wikidata"));
     info.mode = determineMode(rel);
 
     info.bbox = rel.bbox;

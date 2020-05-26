@@ -26,6 +26,10 @@
 
 class QIODevice;
 
+namespace OSM {
+class DataSet;
+}
+
 namespace KOSMIndoorMap {
 
 class MapCSSResult;
@@ -37,6 +41,9 @@ class MapCSSRule
 public:
     explicit MapCSSRule();
     ~MapCSSRule();
+
+    /** Perform tag key resolution. */
+    void compile(const OSM::DataSet &dataSet);
 
     /** Rule evaluation, @see MapCSSStyle. */
     void evaluate(const MapCSSState &state, MapCSSResult &result) const;
@@ -50,7 +57,7 @@ public:
     void setSelector(MapCSSSelector *selector);
     void addDeclaration(MapCSSDeclaration *decl);
 
-    // TODO private
+private:
     std::unique_ptr<MapCSSSelector> m_selector;
     std::vector<std::unique_ptr<MapCSSDeclaration>> m_declarations;
 };

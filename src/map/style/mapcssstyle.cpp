@@ -30,6 +30,13 @@ MapCSSStyle::MapCSSStyle(MapCSSStyle&&) = default;
 MapCSSStyle::~MapCSSStyle() = default;
 MapCSSStyle& MapCSSStyle::operator=(MapCSSStyle&&) = default;
 
+void MapCSSStyle::compile(const OSM::DataSet &dataSet)
+{
+    for (const auto &rule : m_rules) {
+        rule->compile(dataSet);
+    }
+}
+
 void MapCSSStyle::evaluate(const MapCSSState &state, MapCSSResult &result) const
 {
     result.clear();

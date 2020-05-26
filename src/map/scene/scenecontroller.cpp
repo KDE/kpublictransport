@@ -43,6 +43,8 @@ SceneController::~SceneController() = default;
 void SceneController::setDataSet(const MapData *data)
 {
     m_data = data;
+    m_layerTag = data->dataSet().tagKey("layer");
+    m_typeTag = data->dataSet().tagKey("type");
 }
 
 void SceneController::setStyleSheet(const MapCSSStyle *styleSheet)
@@ -128,7 +130,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     if (m_styleResult.hasAreaProperties()) {
         PolygonBaseItem *item = nullptr;
         std::unique_ptr<SceneGraphItemPayload> baseItem;
-        if (e.type() == OSM::Type::Relation && e.tagValue("type") == QLatin1String("multipolygon")) {
+        if (e.type() == OSM::Type::Relation && e.tagValue(m_typeTag) == QLatin1String("multipolygon")) {
             baseItem = sg.findOrCreatePayload<MultiPolygonItem>(e, level);
             auto i = static_cast<MultiPolygonItem*>(baseItem.get());
             if (i->path.isEmpty()) {
@@ -442,7 +444,7 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::un
     item.payload = std::move(payload);
 
     // get the OSM layer, if set
-    const auto layerStr = e.tagValue(QLatin1String("layer"));
+    const auto layerStr = e.tagValue(m_layerTag);
     if (!layerStr.isEmpty()) {
         bool success = false;
         const auto layer = layerStr.toInt(&success);
