@@ -268,6 +268,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                             item->angle = SceneGeometry::angleForPath(m_labelPlacementPath);
                         }
                         break;
+                    case MapCSSDeclaration::TextOffset:
+                        item->offset = decl->doubleValue();
+                        break;
                     default:
                         break;
                 }

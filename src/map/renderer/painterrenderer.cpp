@@ -185,7 +185,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     m_painter.rotate(item->angle);
 
     auto box = item->bbox;
-    box.moveCenter({0.0, 0.0});
+    box.moveCenter({0.0, item->offset});
 
     // draw shield
     // @see https://wiki.openstreetmap.org/wiki/MapCSS/0.2#Shield_properties

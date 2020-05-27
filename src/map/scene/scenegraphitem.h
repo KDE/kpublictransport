@@ -148,6 +148,7 @@ public:
     bool hasFineBbox = false;
 
     double angle = 0.0;
+    double offset = 0.0;
 };
 
 
