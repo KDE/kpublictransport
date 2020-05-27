@@ -24,7 +24,17 @@
 #include <QElapsedTimer>
 #include <QFile>
 
+inline void initResources()  // needs to be outside of a namespace
+{
+    Q_INIT_RESOURCE(assets);
+}
+
 using namespace KOSMIndoorMap;
+
+MapLoader::MapLoader()
+{
+    initResources();
+}
 
 void MapLoader::loadFromO5m(const QString &fileName)
 {

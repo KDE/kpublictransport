@@ -30,6 +30,8 @@ namespace KOSMIndoorMap {
 class MapLoader
 {
 public:
+    MapLoader();
+
     void loadFromO5m(const QString &fileName);
 
     MapData m_data;
