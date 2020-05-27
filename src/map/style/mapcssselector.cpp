@@ -43,6 +43,14 @@ void MapCSSBasicSelector::compile(const OSM::DataSet &dataSet)
 
 bool MapCSSBasicSelector::matches(const MapCSSState &state) const
 {
+    // check zoom conditions first, as this is the cheapest one and can avoid expensive tag lookups we it doesn't match
+    if (m_zoomLow > 0 && state.zoomLevel < m_zoomLow) {
+        return false;
+    }
+    if (m_zoomHigh > 0 && std::ceil(state.zoomLevel) > m_zoomHigh) {
+        return false;
+    }
+
     switch (objectType) {
         case Node: if (state.element.type() != OSM::Type::Node) return false; break;
         case Way: if (state.element.type() != OSM::Type::Way) return false; break;
@@ -60,13 +68,6 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
             break;
         case Canvas: return false;
         case Any: break;
-    }
-
-    if (m_zoomLow > 0 && state.zoomLevel < m_zoomLow) {
-        return false;
-    }
-    if (m_zoomHigh > 0 && std::ceil(state.zoomLevel) > m_zoomHigh) {
-        return false;
     }
 
     return std::all_of(conditions.begin(), conditions.end(), [state](const auto &cond) { return cond->matches(state); });
