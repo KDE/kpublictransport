@@ -22,9 +22,7 @@
 
 #include <osm/datatypes.h>
 
-#include <QPainter>
-
-class QPaintDevice;
+class QPainter;
 
 namespace KOSMIndoorMap {
 
@@ -43,7 +41,7 @@ public:
     explicit PainterRenderer();
     ~PainterRenderer();
 
-    void setPaintDevice(QPaintDevice *device);
+    void setPainter(QPainter *painter);
     void render(const SceneGraph &sg, View *view);
 
 private:
@@ -56,8 +54,7 @@ private:
     void renderLabel(LabelItem *item);
     void endRender();
 
-    QPaintDevice *m_device = nullptr;
-    QPainter m_painter;
+    QPainter *m_painter = nullptr;
     View *m_view = nullptr;
 
     std::vector<SceneGraphItemPayload*> m_renderBatch; // member rather than function-local to preserve allocations

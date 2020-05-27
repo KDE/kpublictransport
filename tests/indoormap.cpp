@@ -27,6 +27,7 @@
 #include <QMouseEvent>
 #include <QComboBox>
 #include <QHBoxLayout>
+#include <QPainter>
 
 using namespace KOSMIndoorMap;
 
@@ -51,12 +52,13 @@ public:
 MapWidget::MapWidget(QWidget* parent)
     : QWidget(parent)
 {
-    m_renderer.setPaintDevice(this);
     m_view.setScreenSize(size());
 }
 
 void MapWidget::paintEvent(QPaintEvent *event)
 {
+    QPainter p(this);
+    m_renderer.setPainter(&p);
     m_renderer.render(m_sg, &m_view);
     return QWidget::paintEvent(event);
 }

@@ -31,9 +31,9 @@ using namespace KOSMIndoorMap;
 PainterRenderer::PainterRenderer() = default;
 PainterRenderer::~PainterRenderer() = default;
 
-void PainterRenderer::setPaintDevice(QPaintDevice *device)
+void PainterRenderer::setPainter(QPainter *painter)
 {
-    m_device = device;
+    m_painter = painter;
 }
 
 void PainterRenderer::render(const SceneGraph &sg, View *view)
@@ -97,12 +97,12 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
 
 void PainterRenderer::beginRender()
 {
-    m_painter.begin(m_device);
+    m_painter->save();
 }
 
 void PainterRenderer::renderBackground(const QColor &bgColor)
 {
-    m_painter.fillRect(0, 0, m_view->screenWidth(), m_view->screenHeight(), bgColor);
+    m_painter->fillRect(0, 0, m_view->screenWidth(), m_view->screenHeight(), bgColor);
 }
 
 void PainterRenderer::beginPhase(SceneGraphItemPayload::RenderPhase phase)
@@ -111,21 +111,21 @@ void PainterRenderer::beginPhase(SceneGraphItemPayload::RenderPhase phase)
         case SceneGraphItemPayload::NoPhase:
             Q_UNREACHABLE();
         case SceneGraphItemPayload::FillPhase:
-            m_painter.setPen(Qt::NoPen);
-            m_painter.setTransform(m_view->sceneToScreenTransform());
-            m_painter.setClipRect(m_view->viewport());
-            m_painter.setRenderHint(QPainter::Antialiasing, false);
+            m_painter->setPen(Qt::NoPen);
+            m_painter->setTransform(m_view->sceneToScreenTransform());
+            m_painter->setClipRect(m_view->viewport());
+            m_painter->setRenderHint(QPainter::Antialiasing, false);
             break;
         case SceneGraphItemPayload::CasingPhase:
         case SceneGraphItemPayload::StrokePhase:
-            m_painter.setBrush(Qt::NoBrush);
-            m_painter.setTransform(m_view->sceneToScreenTransform());
-            m_painter.setClipRect(m_view->viewport());
-            m_painter.setRenderHint(QPainter::Antialiasing, true);
+            m_painter->setBrush(Qt::NoBrush);
+            m_painter->setTransform(m_view->sceneToScreenTransform());
+            m_painter->setClipRect(m_view->viewport());
+            m_painter->setRenderHint(QPainter::Antialiasing, true);
             break;
         case SceneGraphItemPayload::LabelPhase:
-            m_painter.setTransform({});
-            m_painter.setRenderHint(QPainter::Antialiasing, true);
+            m_painter->setTransform({});
+            m_painter->setRenderHint(QPainter::Antialiasing, true);
             break;
     }
 }
@@ -133,26 +133,26 @@ void PainterRenderer::beginPhase(SceneGraphItemPayload::RenderPhase phase)
 void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItemPayload::RenderPhase phase)
 {
     if (phase == SceneGraphItemPayload::FillPhase) {
-        m_painter.setBrush(item->brush);
-        m_painter.drawPolygon(item->polygon);
+        m_painter->setBrush(item->brush);
+        m_painter->drawPolygon(item->polygon);
     } else {
         auto p = item->pen;
         p.setWidthF(m_view->mapScreenDistanceToSceneDistance(item->pen.widthF()));
-        m_painter.setPen(p);
-        m_painter.drawPolygon(item->polygon);
+        m_painter->setPen(p);
+        m_painter->drawPolygon(item->polygon);
     }
 }
 
 void PainterRenderer::renderMultiPolygon(MultiPolygonItem *item, SceneGraphItemPayload::RenderPhase phase)
 {
     if (phase == SceneGraphItemPayload::FillPhase) {
-        m_painter.setBrush(item->brush);
-        m_painter.drawPath(item->path);
+        m_painter->setBrush(item->brush);
+        m_painter->drawPath(item->path);
     } else {
         auto p = item->pen;
         p.setWidthF(m_view->mapScreenDistanceToSceneDistance(item->pen.widthF()));
-        m_painter.setPen(p);
-        m_painter.drawPath(item->path);
+        m_painter->setPen(p);
+        m_painter->drawPath(item->path);
     }
 }
 
@@ -161,13 +161,13 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItemPayload::
     if (phase == SceneGraphItemPayload::StrokePhase) {
         auto p = item->pen;
         p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()));
-        m_painter.setPen(p);
-        m_painter.drawPolyline(item->path);
+        m_painter->setPen(p);
+        m_painter->drawPolyline(item->path);
     } else {
         auto p = item->casingPen;
         p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()) + m_view->mapScreenDistanceToSceneDistance(item->casingPen.widthF()));
-        m_painter.setPen(p);
-        m_painter.drawPolyline(item->path);
+        m_painter->setPen(p);
+        m_painter->drawPolyline(item->path);
     }
 }
 
@@ -180,9 +180,9 @@ void PainterRenderer::renderLabel(LabelItem *item)
         item->hasFineBbox = true;
     }
 
-    m_painter.save();
-    m_painter.translate(m_view->mapSceneToScreen(item->pos));
-    m_painter.rotate(item->angle);
+    m_painter->save();
+    m_painter->translate(m_view->mapSceneToScreen(item->pos));
+    m_painter->rotate(item->angle);
 
     auto box = item->bbox;
     box.moveCenter({0.0, item->offset});
@@ -191,25 +191,25 @@ void PainterRenderer::renderLabel(LabelItem *item)
     // @see https://wiki.openstreetmap.org/wiki/MapCSS/0.2#Shield_properties
     auto w = item->casingWidth + item->frameWidth + 2.0;
     if (item->casingWidth > 0.0 && item->casingColor.alpha() > 0) {
-        m_painter.fillRect(box.adjusted(-w, -w, w, w), item->casingColor);
+        m_painter->fillRect(box.adjusted(-w, -w, w, w), item->casingColor);
     }
     w -= item->casingWidth;
     if (item->frameWidth > 0.0 && item->frameColor.alpha() > 0) {
-        m_painter.fillRect(box.adjusted(-w, -w, w, w), item->frameColor);
+        m_painter->fillRect(box.adjusted(-w, -w, w, w), item->frameColor);
     }
     w -= item->frameWidth;
     if (item->shieldColor.alpha() > 0) {
-        m_painter.fillRect(box.adjusted(-w, -w, w, w), item->shieldColor);
+        m_painter->fillRect(box.adjusted(-w, -w, w, w), item->shieldColor);
     }
 
     // draw text
-    m_painter.setPen(item->color);
-    m_painter.setFont(item->font);
-    m_painter.drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
-    m_painter.restore();
+    m_painter->setPen(item->color);
+    m_painter->setFont(item->font);
+    m_painter->drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
+    m_painter->restore();
 }
 
 void PainterRenderer::endRender()
 {
-    m_painter.end();
+    m_painter->restore();
 }
