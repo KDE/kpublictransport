@@ -36,14 +36,19 @@ namespace KOSMIndoorMap {
 class MapCSSParser;
 class MapCSSResult;
 
-/** A parsed MapCSS style sheet. */
+/** A parsed MapCSS style sheet.
+ *  @see MapCSSParser::parse for how to obtain a valid instance
+ */
 class MapCSSStyle
 {
 public:
+    /** Creates an invalid/empty style. */
+    explicit MapCSSStyle();
     MapCSSStyle(const MapCSSStyle&) = delete;
     MapCSSStyle(MapCSSStyle&&);
     ~MapCSSStyle();
 
+    MapCSSStyle& operator=(const MapCSSStyle&) = delete;
     MapCSSStyle& operator=(MapCSSStyle&&);
 
     /** Optimizes style sheet rules for application against @p dataSet.
@@ -67,8 +72,6 @@ public:
 
 private:
     friend class MapCSSParser;
-    MapCSSStyle();
-
     std::vector<std::unique_ptr<MapCSSRule>> m_rules;
 };
 

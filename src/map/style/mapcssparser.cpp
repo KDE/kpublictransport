@@ -77,7 +77,7 @@ MapCSSStyle MapCSSParser::parse(const QString &fileName)
     MapCSSStyle style;
     parse(&style, fileName);
     if (m_error) {
-        return {};
+        return MapCSSStyle();
     }
 
     return style;
