@@ -32,8 +32,14 @@ namespace SceneGeometry
      */
     QPointF polygonCentroid(const QPolygonF &poly);
 
-    /** Rotation angle for a label placed alongside @p path. */
-    double angleForPath(const QPolygonF &path);
+    /** Returns the lengths of the given polyline. */
+    double polylineLength(const QPolygonF &poly);
+
+    /** Returns the point at equal distance between the ends on the given polygon. */
+    QPointF polylineMidPoint(const QPolygonF &poly);
+
+    /** Rotation angle for a label placed at the middle of @p path. */
+    double polylineMidPointAngle(const QPolygonF &path);
 
     /** Returns the outer polygon of a painter path.
      *  @note This is not generic, but makes assumptions about the painter path

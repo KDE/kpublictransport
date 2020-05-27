@@ -26,25 +26,75 @@
 
 using namespace KOSMIndoorMap;
 
-// TODO this is a simplification, assuming equidistant point positions
-// this actually needs to be done taking lengths into account
-double SceneGeometry::angleForPath(const QPolygonF &path)
+double SceneGeometry::polylineLength(const QPolygonF &poly)
 {
-    assert(path.size() >= 2);
-
-    QLineF line;
-    line.setP1(path.at(path.size() / 2 - 1));
-    if (path.size() % 2 == 0) {
-        line.setP2(path.at(path.size() / 2));
-    } else {
-        line.setP2(path.at(path.size() / 2 + 1));
+    if (poly.size() <= 1) {
+        return 0.0;
     }
 
-    auto a = - std::remainder(line.angle(), 360.0);
-    if (a < -90.0 || a > 90.0) {
-        a += 180.0;
+    double lineLength = 0.0;
+    QPointF p1 = poly.at(0);
+    for (auto it = std::next(poly.begin()); it != poly.end(); ++it) {
+        lineLength += QLineF(p1, *it).length();
+        p1 = *it;
     }
-    return a;
+    return lineLength;
+}
+
+QPointF SceneGeometry::polylineMidPoint(const QPolygonF &poly)
+{
+    const auto lineLength = polylineLength(poly);
+    if (lineLength <= 0.0) {
+        return {};
+    }
+
+    double length = 0.0;
+    auto p1 = poly.at(0);
+    for (auto it = std::next(poly.begin()); it != poly.end(); ++it) {
+        const QLineF line(p1, *it);
+        const auto l = line.length();
+
+        if (length + l < lineLength / 2.0) {
+            length += l;
+        } else {
+            const auto r = ((length + l) - lineLength / 2.0) / l;
+            return line.pointAt(1 - r);
+        }
+
+        p1 = *it;
+    }
+
+    return {};
+}
+
+double SceneGeometry::polylineMidPointAngle(const QPolygonF &path)
+{
+    const auto lineLength = polylineLength(path);
+    if (lineLength <= 0.0) {
+        return 0.0;
+    }
+
+    double length = 0.0;
+    auto p1 = path.at(0);
+    for (auto it = std::next(path.begin()); it != path.end(); ++it) {
+        const QLineF line(p1, *it);
+        const auto l = line.length();
+
+        if (length + l < lineLength / 2.0) {
+            length += l;
+        } else {
+            const auto r = ((length + l) - lineLength / 2.0) / l;
+            auto a = - std::remainder(line.angle(), 360.0);
+            if (a < -90.0 || a > 90.0) {
+                a += 180.0;
+            }
+            return a;
+        }
+
+        p1 = *it;
+    }
+
+    return 0.0;
 }
 
 /* the algorithm in here would be pretty simple (see https://en.wikipedia.org/wiki/Polygon#Centroid)

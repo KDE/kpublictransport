@@ -226,7 +226,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 if (m_styleResult.hasAreaProperties()) {
                     item->pos = SceneGeometry::polygonCentroid(m_labelPlacementPath);
                 } else if (m_styleResult.hasLineProperties()) {
-                    // TODO compute placement at half distance along the path
+                    item->pos = SceneGeometry::polylineMidPoint(m_labelPlacementPath);
                 }
                 if (item->pos.isNull()) {
                     item->pos = m_view->mapGeoToScene(e.center()); // node or something failed above
@@ -265,7 +265,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         break;
                     case MapCSSDeclaration::TextPosition:
                         if (decl->textFollowsLine() && m_labelPlacementPath.size() > 1) {
-                            item->angle = SceneGeometry::angleForPath(m_labelPlacementPath);
+                            item->angle = SceneGeometry::polylineMidPointAngle(m_labelPlacementPath);
                         }
                         break;
                     case MapCSSDeclaration::TextOffset:

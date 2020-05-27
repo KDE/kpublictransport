@@ -51,6 +51,27 @@ private Q_SLOTS:
         QVERIFY((SceneGeometry::polygonCentroid(p5) * 1000).toPoint().y() >= 325821);
         QVERIFY((SceneGeometry::polygonCentroid(p5) * 1000).toPoint().y() <= 325822);
     }
+
+    void testLineMidPoint()
+    {
+        QPolygonF p1{{{1,1}, {2,2}, {2,2}}};
+        QCOMPARE(SceneGeometry::polylineMidPoint(p1), QPointF(1.5, 1.5));
+
+        QPolygonF p2{{{1,1}, {2,2}, {3,3}}};
+        QCOMPARE(SceneGeometry::polylineMidPoint(p2), QPointF(2, 2));
+
+        QPolygonF p3{{{1,1}, {2,2}, {21,21}}};
+        QCOMPARE(SceneGeometry::polylineMidPoint(p3), QPointF(11, 11));
+    }
+
+    void testPathAngle()
+    {
+        QPolygonF p1{{{1,1}, {2,2}, {2,2}}};
+        QCOMPARE(SceneGeometry::polylineMidPointAngle(p1), 45.0);
+
+        QPolygonF p2{{{1,1}, {2,2}, {2,20}}};
+        QCOMPARE(SceneGeometry::polylineMidPointAngle(p2), 90.0);
+    }
 };
 
 QTEST_GUILESS_MAIN(SceneGeometryTest)
