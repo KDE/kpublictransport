@@ -68,6 +68,10 @@ int View::screenWidth() const
 
 void View::setScreenSize(QSize size)
 {
+    if (size.width() <= 0.0 || size.height() <= 0.0) {
+        return;
+    }
+
     const auto dx = (double)size.width() / (double)screenWidth();
     const auto dy = (double)size.height() / (double)screenHeight();
     m_screenSize = size;
