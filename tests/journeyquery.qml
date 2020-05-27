@@ -167,6 +167,7 @@ Kirigami.ApplicationWindow {
                                     case Line.Taxi: return "🚕";
                                     case Line.Train: return "🚆";
                                     case Line.Tramway: return "🚈";
+                                    case Line.RideShare: return "🚗";
                                     default: return "?";
                                 }
                                 break;

@@ -99,6 +99,9 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
     if (hvt >= 1500 && hvt < 1599) {
         return Line::Taxi;
     }
+    if (hvt == 1700) { // not officially specified, but de-facto standard in a number of OTP deployments
+        return Line::RideShare;
+    }
 
     qDebug() << "encountered unknown GTFS (extended) route type:" << hvt;
     return Line::Unknown;

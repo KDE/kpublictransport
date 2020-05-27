@@ -36,7 +36,10 @@ class KPUBLICTRANSPORT_EXPORT Line
     KPUBLICTRANSPORT_GADGET(Line)
 
 public:
-    enum Mode { // ### direct copy from Navitia, we maybe can reduce that a bit
+    /** Mode of transportation.
+     *  @toto direct copy from Navitia, we maybe can reduce that a bit
+     */
+    enum Mode {
         Unknown,
         Air,
         Boat,
@@ -54,6 +57,7 @@ public:
         Taxi,
         Train,
         Tramway,
+        RideShare, ///< peer-to-peer ride sharing/car pooling
     };
     Q_ENUM(Mode)
 
