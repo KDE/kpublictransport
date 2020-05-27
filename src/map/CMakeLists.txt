@@ -42,3 +42,36 @@ target_include_directories(KOSMIndoorMap PUBLIC $<BUILD_INTERFACE:${CMAKE_CURREN
 target_link_libraries(KOSMIndoorMap
     PUBLIC Qt5::Gui KOSM
 )
+
+ecm_generate_headers(KOSMIndoorMap_Loader_FORWARDING_HEADERS
+    HEADER_NAMES
+        MapLoader
+        MapData
+    PREFIX KOSMIndoorMap
+    REQUIRED_HEADERS KOSMIndoorMap_Loader_HEADERS
+    RELATIVE loader
+)
+ecm_generate_headers(KOSMIndoorMap_Renderer_FORWARDING_HEADERS
+    HEADER_NAMES
+        PainterRenderer
+        View
+    PREFIX KOSMIndoorMap
+    REQUIRED_HEADERS KOSMIndoorMap_Renderer_HEADERS
+    RELATIVE renderer
+)
+ecm_generate_headers(KOSMIndoorMap_Scene_FORWARDING_HEADERS
+    HEADER_NAMES
+        SceneController
+        SceneGraph
+    PREFIX KOSMIndoorMap
+    REQUIRED_HEADERS KOSMIndoorMap_Scene_HEADERS
+    RELATIVE scene
+)
+ecm_generate_headers(KOSMIndoorMap_Style_FORWARDING_HEADERS
+    HEADER_NAMES
+        MapCSSParser
+        MapCSSStyle
+    PREFIX KOSMIndoorMap
+    REQUIRED_HEADERS KOSMIndoorMap_Style_HEADERS
+    RELATIVE style
+)
