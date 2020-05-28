@@ -16,6 +16,7 @@ add_library(KOSMIndoorMap STATIC
 
     loader/mapdata.cpp
     loader/maploader.cpp
+    loader/tilecache.cpp
 
     renderer/painterrenderer.cpp
     renderer/view.cpp
@@ -41,6 +42,7 @@ target_include_directories(KOSMIndoorMap PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRE
 target_include_directories(KOSMIndoorMap PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
 target_link_libraries(KOSMIndoorMap
     PUBLIC Qt5::Gui KOSM
+    PRIVATE Qt5::Network
 )
 
 ecm_generate_headers(KOSMIndoorMap_Loader_FORWARDING_HEADERS
