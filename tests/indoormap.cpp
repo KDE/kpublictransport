@@ -24,6 +24,7 @@
 #include <style/mapcssstyle.h>
 
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QMouseEvent>
 #include <QComboBox>
 #include <QHBoxLayout>
@@ -112,9 +113,15 @@ static QString cssPath(const QString &styleName)
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
+    QCommandLineParser parser;
+    QCommandLineOption o5mOpt({QStringLiteral("o5m")}, QStringLiteral("o5m file to load"), QStringLiteral("o5m file"));
+    parser.addOption(o5mOpt);
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.process(app);
 
     MapLoader loader;
-    loader.loadFromO5m(QStringLiteral("/k/osm/berlin_hbf.o5m"));
+    loader.loadFromO5m(parser.value(o5mOpt));
 
     MapCSSParser cssParser;
     auto style = cssParser.parse(cssPath(QStringLiteral("breeze-light")));
