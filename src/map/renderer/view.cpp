@@ -29,7 +29,11 @@ static constexpr const double SceneWorldSize = 256.0; // size of the scene when 
 static constexpr const double LatitudeLimit = 85.05112879806592; // invtan(sinh(pi)) + radToDeg
 static constexpr const auto MaxZoomFactor = 21; // 2^MaxZoomFactor subdivisions of the scene space
 
-View::View() = default;
+View::View(QObject *parent)
+    : QObject(parent)
+{
+}
+
 View::~View() = default;
 
 QPointF View::mapGeoToScene(OSM::Coordinate coord) const
@@ -68,7 +72,7 @@ int View::screenWidth() const
 
 void View::setScreenSize(QSize size)
 {
-    if (size.width() <= 0.0 || size.height() <= 0.0) {
+    if (size.width() <= 0.0 || size.height() <= 0.0 || size == m_screenSize) {
         return;
     }
 
@@ -115,6 +119,9 @@ void View::setSceneBoundingBox(OSM::BoundingBox bbox)
 
 void View::setSceneBoundingBox(const QRectF &bbox)
 {
+    if (m_bbox == bbox) {
+        return;
+    }
     m_bbox = bbox;
 
     // scale to fit horizontally

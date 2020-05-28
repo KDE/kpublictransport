@@ -20,6 +20,7 @@
 
 #include <osm/datatypes.h>
 
+#include <QObject>
 #include <QRectF>
 #include <QSize>
 
@@ -42,10 +43,11 @@ namespace KOSMIndoorMap {
  *    or to compute the map scale. Note that this only works due to the relatively high zoom levels,
  *    so that earth curvature or map projection effects are negligible.
  */
-class View
+class View : public QObject
 {
+    Q_OBJECT
 public:
-    explicit View();
+    explicit View(QObject *parent = nullptr);
     ~View();
 
     /** Map a geographic coordinate to a scene coordinate, ie. apply the mercator projection. */
