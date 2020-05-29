@@ -66,7 +66,10 @@ int MapLevel::numericLevel() const
 
 
 MapData::MapData() = default;
+MapData::MapData(MapData&&) = default;
 MapData::~MapData() = default;
+
+MapData& MapData::operator=(MapData&&) = default;
 
 const OSM::DataSet& MapData::dataSet() const
 {

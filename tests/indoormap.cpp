@@ -29,8 +29,15 @@
 #include <QComboBox>
 #include <QHBoxLayout>
 #include <QPainter>
+#include <QRegularExpression>
 
 using namespace KOSMIndoorMap;
+
+static QString cssPath(const QString &styleName)
+{
+    return QLatin1String(SOURCE_DIR "/../src/map/assets/css/") + styleName + QLatin1String(".mapcss");
+//     return QLatin1String(":/org.kde.kosmindoormap/assets/css/") + styleName + QLatin1String(".mapcss");
+}
 
 class MapWidget : public QWidget
 {
@@ -42,8 +49,12 @@ public:
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
+    void setMapData(MapData &&data);
+    void setStyleSheet(const QString &styleName);
 
+    MapData m_data;
     SceneGraph m_sg;
+    MapCSSStyle m_style;
     SceneController m_controller;
     PainterRenderer m_renderer;
     View m_view;
@@ -54,6 +65,7 @@ MapWidget::MapWidget(QWidget* parent)
     : QWidget(parent)
 {
     m_view.setScreenSize(size());
+    m_controller.setView(&m_view);
 }
 
 void MapWidget::paintEvent(QPaintEvent *event)
@@ -103,66 +115,82 @@ void MapWidget::wheelEvent(QWheelEvent *event)
     update();
 }
 
-
-static QString cssPath(const QString &styleName)
+void MapWidget::setMapData(MapData &&data)
 {
-    return QLatin1String(SOURCE_DIR "/../src/map/assets/css/") + styleName + QLatin1String(".mapcss");
-//     return QLatin1String(":/org.kde.kosmindoormap/assets/css/") + styleName + QLatin1String(".mapcss");
+    m_data = std::move(data);
+    m_controller.setDataSet(&m_data);
+    m_view.setSceneBoundingBox(m_data.boundingBox());
+    m_style.compile(m_data.dataSet());
+    m_controller.setStyleSheet(&m_style);
+    m_controller.updateScene(m_sg);
+    update();
 }
+
+void MapWidget::setStyleSheet(const QString &styleName)
+{
+    MapCSSParser cssParser;
+    m_style = cssParser.parse(cssPath(styleName));
+    m_style.compile(m_data.dataSet());
+    m_controller.setStyleSheet(&m_style);
+}
+
 
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     QCommandLineParser parser;
+    QCommandLineOption coordOpt({QStringLiteral("coordinate"), QStringLiteral("c")}, QStringLiteral("coordinate of the location to load"), QStringLiteral("lat,lon"));
+    parser.addOption(coordOpt);
     QCommandLineOption o5mOpt({QStringLiteral("o5m")}, QStringLiteral("o5m file to load"), QStringLiteral("o5m file"));
     parser.addOption(o5mOpt);
     parser.addHelpOption();
     parser.addVersionOption();
     parser.process(app);
 
-    MapLoader loader;
-    loader.loadFromO5m(parser.value(o5mOpt));
-
-    MapCSSParser cssParser;
-    auto style = cssParser.parse(cssPath(QStringLiteral("breeze-light")));
-    style.compile(loader.m_data.dataSet());
-
     MapWidget widget;
     widget.resize(480, 720);
-    widget.m_view.setSceneBoundingBox(loader.m_data.boundingBox());
-    widget.m_controller.setDataSet(&loader.m_data);
-    widget.m_controller.setStyleSheet(&style);
-    widget.m_controller.setView(&widget.m_view);
+    widget.setStyleSheet(QStringLiteral("breeze-light"));
 
     auto layout = new QHBoxLayout(&widget);
     layout->setAlignment(Qt::AlignTop);
 
     auto levelBox = new QComboBox;
     layout->addWidget(levelBox);
-    for (const auto &l : loader.m_data.m_levelMap) {
-        if (l.first.isFullLevel()) {
-            levelBox->addItem(l.first.name(), l.first.numericLevel());
-        }
-    }
     QObject::connect(levelBox, &QComboBox::currentTextChanged, &app, [&]() {
         widget.m_view.setLevel(levelBox->currentData().toInt());
         widget.m_controller.updateScene(widget.m_sg);
         widget.update();
     });
-    levelBox->setCurrentText(QLatin1String("0"));
 
     auto styleBox = new QComboBox;
     layout->addWidget(styleBox);
     styleBox->addItems({QStringLiteral("breeze-light"), QStringLiteral("breeze-dark"), QStringLiteral("diagnostic")});
     QObject::connect(styleBox, &QComboBox::currentTextChanged, &app, [&](const QString &styleName) {
-        MapCSSParser p;
-        style = p.parse(cssPath(styleName));
-        style.compile(loader.m_data.dataSet());
-        widget.m_controller.setStyleSheet(&style);
+        widget.setStyleSheet(styleName);
         widget.m_controller.updateScene(widget.m_sg);
         widget.update();
     });
 
     widget.show();
+
+    MapLoader loader;
+    QObject::connect(&loader, &MapLoader::done, &app, [&]() {
+        widget.setMapData(loader.takeData());
+        levelBox->clear();
+        for (const auto &l : widget.m_data.m_levelMap) {
+            if (l.first.isFullLevel()) {
+                levelBox->addItem(l.first.name(), l.first.numericLevel());
+            }
+        }
+        levelBox->setCurrentText(QLatin1String("0"));
+    });
+
+    if (parser.isSet(o5mOpt)) {
+        loader.loadFromO5m(parser.value(o5mOpt));
+    } else if (parser.isSet(coordOpt)) {
+        const auto s = parser.value(coordOpt).split(QRegularExpression(QStringLiteral("[,/;]")));
+        loader.loadForCoordinate(s.at(0).toDouble(), s.at(1).toDouble());
+    }
+
     return app.exec();
 }

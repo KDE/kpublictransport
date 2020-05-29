@@ -57,7 +57,11 @@ class MapData
 public:
     explicit MapData();
     MapData(const MapData&) = delete;
+    MapData(MapData&&);
     ~MapData();
+
+    MapData& operator=(const MapData&) = delete;
+    MapData& operator=(MapData&&);
 
     const OSM::DataSet& dataSet() const;
     void setDataSet(OSM::DataSet &&dataSet);

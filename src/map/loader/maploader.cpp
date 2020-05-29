@@ -31,10 +31,14 @@ inline void initResources()  // needs to be outside of a namespace
 
 using namespace KOSMIndoorMap;
 
-MapLoader::MapLoader()
+MapLoader::MapLoader(QObject *parent)
+    : QObject(parent)
 {
     initResources();
+    connect(&m_tileCache, &TileCache::tileLoaded, this, &MapLoader::downloadFinished);
 }
+
+MapLoader::~MapLoader() = default;
 
 void MapLoader::loadFromO5m(const QString &fileName)
 {
@@ -53,4 +57,74 @@ void MapLoader::loadFromO5m(const QString &fileName)
     p.parse(data, f.size());
     m_data.setDataSet(std::move(ds));
     qDebug() << "o5m loading took" << loadTime.elapsed() << "ms";
+    Q_EMIT done();
+}
+
+void MapLoader::loadForCoordinate(double lat, double lon)
+{
+    const auto center = Tile::fromCoordinate(lat, lon, 17);
+    // TODO expand this
+    m_topLeft = m_bottomRight = center;
+    m_topLeft.x--;
+    m_topLeft.y--;
+    m_bottomRight.x++;
+    m_bottomRight.y++;
+
+    for (auto x = m_topLeft.x; x <= m_bottomRight.x; ++x) {
+        for (auto y = m_topLeft.y; y <= m_bottomRight.y; ++y) {
+            Tile tile;
+            tile.x = x;
+            tile.y = y;
+            tile.z = 17;
+
+            m_tileCache.ensureCached(tile);
+        }
+    }
+    if (m_tileCache.pendingDownloads() == 0) {
+        loadTiles();
+    }
+}
+
+MapData&& MapLoader::takeData()
+{
+    return std::move(m_data);
+}
+
+void MapLoader::downloadFinished()
+{
+    if (m_tileCache.pendingDownloads() > 0) {
+        return;
+    }
+    loadTiles();
+}
+
+void MapLoader::loadTiles()
+{
+    QElapsedTimer loadTime;
+    loadTime.start();
+
+    OSM::DataSet ds;
+    OSM::O5mParser p(&ds);
+    for (auto x = m_topLeft.x; x <= m_bottomRight.x; ++x) {
+        for (auto y = m_topLeft.y; y <= m_bottomRight.y; ++y) {
+            Tile tile;
+            tile.x = x;
+            tile.y = y;
+            tile.z = 17;
+
+            const auto fileName = m_tileCache.cachedTile(tile);
+            qDebug() << fileName;
+            QFile f(fileName);
+            if (!f.open(QFile::ReadOnly)) {
+                qWarning() << f.fileName() << f.errorString();
+                break;
+            }
+            const auto data = f.map(0, f.size());
+            p.parse(data, f.size());
+        }
+    }
+    m_data.setDataSet(std::move(ds));
+
+    qDebug() << "o5m loading took" << loadTime.elapsed() << "ms";
+    Q_EMIT done();
 }

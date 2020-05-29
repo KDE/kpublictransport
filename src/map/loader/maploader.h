@@ -19,22 +19,46 @@
 #define KOSMINDOORMAP_MAPLOADER_H
 
 #include "mapdata.h"
+#include "tilecache.h"
 
 #include <osm/datatypes.h>
 
+#include <QObject>
+
 namespace KOSMIndoorMap {
 
-/** Loader for OSM data.
- *  Largely temporary, until we have a proper solution on how to actually get the required data.
- */
-class MapLoader
+/** Loader for OSM data for a single station or airport. */
+class MapLoader : public QObject
 {
+    Q_OBJECT
 public:
-    MapLoader();
+    explicit MapLoader(QObject *parent = nullptr);
+    ~MapLoader();
 
+    /** Load a single O5M file. */
     void loadFromO5m(const QString &fileName);
+    /** Load map for the given coordinates.
+     *  This can involve online access.
+     */
+    void loadForCoordinate(double lat, double lon);
+
+    /** Take out the completely loaded result.
+     *  Do this before loading the next map with the same loader.
+     */
+    MapData&& takeData();
+
+Q_SIGNALS:
+    /** Emitted when the requested data has been loaded. */
+    void done();
+
+private:
+    void downloadFinished();
+    void loadTiles();
 
     MapData m_data;
+    TileCache m_tileCache;
+    Tile m_topLeft;
+    Tile m_bottomRight;
 };
 
 }
