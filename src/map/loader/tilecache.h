@@ -18,9 +18,13 @@
 #ifndef KOSMINDOORMAP_TILECACHE_H
 #define KOSMINDOORMAP_TILECACHE_H
 
+#include <QFile>
 #include <QObject>
 
+#include <deque>
+
 class QNetworkAccessManager;
+class QNetworkReply;
 
 namespace KOSMIndoorMap {
 
@@ -48,13 +52,27 @@ public:
     /** Returns the path to the cached content of @p tile, if present locally. */
     QString cachedTile(Tile tile) const;
 
+    /** Ensure @p tile is locally cached. */
+    void ensureCached(Tile tile);
+
     /** Triggers the download of tile @p tile. */
     void downloadTile(Tile tile);
 
+    /** Number of pending downloads. */
+    int pendingDownloads() const;
+
+Q_SIGNALS:
+    void tileLoaded(Tile tile);
+
 private:
     QString cachePath(Tile tile) const;
+    void downloadNext();
+    void dataReceived(QNetworkReply *reply);
+    void downloadFinished(QNetworkReply *reply, Tile tile);
 
     QNetworkAccessManager *m_nam;
+    QFile m_output;
+    std::deque<Tile> m_pendingDownloads;
 };
 
 }

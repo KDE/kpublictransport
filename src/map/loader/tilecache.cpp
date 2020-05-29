@@ -61,33 +61,18 @@ QString TileCache::cachedTile(Tile tile) const
     return {};
 }
 
+void TileCache::ensureCached(Tile tile)
+{
+    if (!cachedTile(tile).isEmpty()) {
+        return;
+    }
+    downloadTile(tile);
+}
+
 void TileCache::downloadTile(Tile tile)
 {
-    //  TODO queue multiple requests and process at most N in parallel
-
-    QUrl url;
-    url.setScheme(QStringLiteral("https"));
-    url.setHost(QStringLiteral("maps.kde.org"));
-    url.setPath(QLatin1String("/earth/vectorosm/v1/") + QString::number(tile.z) + QLatin1Char('/') + QString::number(tile.x) + QLatin1Char('/') + QString::number(tile.y) + QLatin1String(".o5m"));
-
-    // TODO stream incoming data to the final destination (or a file with a .part suffix to avoid reads while downlaoding)
-
-    QNetworkRequest req(url);
-    auto reply = m_nam->get(req);
-    qDebug() << reply << url;
-    connect(reply, &QNetworkReply::finished, this, [this, reply, tile]() {
-        reply->deleteLater();
-        qDebug() << reply->errorString() << reply->url();
-
-        QFileInfo fi(cachePath(tile));
-        QDir().mkpath(fi.absolutePath());
-        QFile f(fi.absoluteFilePath());
-        if (!f.open(QFile::WriteOnly)) {
-            qWarning() << f.fileName() << f.errorString();
-            return;
-        }
-        f.write(reply->readAll());
-    });
+    m_pendingDownloads.push_back(tile);
+    downloadNext();
 }
 
 QString TileCache::cachePath(Tile tile) const
@@ -97,4 +82,61 @@ QString TileCache::cachePath(Tile tile) const
         + QString::number(tile.z) + QLatin1Char('/')
         + QString::number(tile.x) + QLatin1Char('/')
         + QString::number(tile.y) + QLatin1String(".o5m");
+}
+
+void TileCache::downloadNext()
+{
+    if (m_output.isOpen() || m_pendingDownloads.empty()) {
+        return;
+    }
+
+    const auto tile = m_pendingDownloads.front();
+    m_pendingDownloads.pop_front();
+
+    QFileInfo fi(cachePath(tile));
+    QDir().mkpath(fi.absolutePath());
+    m_output.setFileName(fi.absoluteFilePath() + QLatin1String(".part"));
+    if (!m_output.open(QFile::WriteOnly)) {
+        qWarning() << m_output.fileName() << m_output.errorString();
+        return;
+    }
+
+    QUrl url;
+    url.setScheme(QStringLiteral("https"));
+    url.setHost(QStringLiteral("maps.kde.org"));
+    url.setPath(QLatin1String("/earth/vectorosm/v1/") + QString::number(tile.z) + QLatin1Char('/') + QString::number(tile.x) + QLatin1Char('/') + QString::number(tile.y) + QLatin1String(".o5m"));
+
+    QNetworkRequest req(url);
+    auto reply = m_nam->get(req);
+    connect(reply, &QNetworkReply::readyRead, this, [this, reply]() { dataReceived(reply); });
+    connect(reply, &QNetworkReply::finished, this, [this, reply, tile]() { downloadFinished(reply, tile); });
+}
+
+void TileCache::dataReceived(QNetworkReply *reply)
+{
+    m_output.write(reply->read(reply->bytesAvailable()));
+}
+
+void TileCache::downloadFinished(QNetworkReply* reply, Tile tile)
+{
+    reply->deleteLater();
+    m_output.close();
+
+    if (reply->error() != QNetworkReply::NoError) {
+        qWarning() << reply->errorString() << reply->url();
+        m_output.remove();
+        downloadNext();
+        return;
+    }
+
+    m_output.close();
+    m_output.rename(cachePath(tile));
+
+    Q_EMIT tileLoaded(tile);
+    downloadNext();
+}
+
+int TileCache::pendingDownloads() const
+{
+    return m_pendingDownloads.size() + (m_output.isOpen() ? 1 : 0);
 }
