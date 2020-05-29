@@ -31,6 +31,8 @@ namespace KOSMIndoorMap {
 class MapLoader : public QObject
 {
     Q_OBJECT
+    /** Indicates we are downloading content. Use for progress display. */
+    Q_PROPERTY(bool isLoading READ isLoading NOTIFY isLoadingChanged)
 public:
     explicit MapLoader(QObject *parent = nullptr);
     ~MapLoader();
@@ -40,16 +42,19 @@ public:
     /** Load map for the given coordinates.
      *  This can involve online access.
      */
-    void loadForCoordinate(double lat, double lon);
+    Q_INVOKABLE void loadForCoordinate(double lat, double lon);
 
     /** Take out the completely loaded result.
      *  Do this before loading the next map with the same loader.
      */
     MapData&& takeData();
 
+    bool isLoading() const;
+
 Q_SIGNALS:
     /** Emitted when the requested data has been loaded. */
     void done();
+    void isLoadingChanged();
 
 private:
     void downloadFinished();

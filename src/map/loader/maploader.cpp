@@ -82,6 +82,8 @@ void MapLoader::loadForCoordinate(double lat, double lon)
     }
     if (m_tileCache.pendingDownloads() == 0) {
         loadTiles();
+    } else {
+        Q_EMIT isLoadingChanged();
     }
 }
 
@@ -126,5 +128,11 @@ void MapLoader::loadTiles()
     m_data.setDataSet(std::move(ds));
 
     qDebug() << "o5m loading took" << loadTime.elapsed() << "ms";
+    Q_EMIT isLoadingChanged();
     Q_EMIT done();
+}
+
+bool MapLoader::isLoading() const
+{
+    return m_tileCache.pendingDownloads() > 0;
 }
