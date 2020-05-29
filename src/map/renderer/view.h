@@ -28,7 +28,7 @@ class QTransform;
 
 namespace KOSMIndoorMap {
 
-/** View transformations and tranformation manipulation.
+/** View transformations and transformation manipulation.
  *  There are three different coordinate systems involved here:
  *  - The geographic world coordinates of the OSM input data.
  *    This uses OSM::Coordinate.
@@ -36,16 +36,22 @@ namespace KOSMIndoorMap {
  *    This uses QPointF ranging from 0x0 to 256x256
  *  - The screen coordinates (ie. visible pixels on screen).
  *    This uses QPoint.
- *  Further, there's also two slight variations of those in use here:
+ *  Further, there's also three slight variations of those in use here:
  *  - "HUD" coordinates: elements that follow the scene coordinates for their positioning,
  *    but the screen coordinates regarding scaling and rotation. This is used for map labels.
  *  - Geographic distances. This is needed to display things in a fixed width in meters in the scene,
  *    or to compute the map scale. Note that this only works due to the relatively high zoom levels,
  *    so that earth curvature or map projection effects are negligible.
+ *  - "pan space": same transform as screen space, but with the origin at the origin of the scene bounding box
+ *    This is useful for implementing scene-wide panning and showing scroll bars.
  */
 class View : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(double panX READ panX NOTIFY transformationChanged)
+    Q_PROPERTY(double panY READ panY NOTIFY transformationChanged)
+    Q_PROPERTY(double panWidth READ panWidth NOTIFY transformationChanged)
+    Q_PROPERTY(double panHeight READ panHeight NOTIFY transformationChanged)
 public:
     explicit View(QObject *parent = nullptr);
     ~View();
@@ -82,11 +88,14 @@ public:
     /** The bounding box of the scene.
      *  The viewport cannot exceed this area.
      */
+    QRectF sceneBoundingBox() const;
     void setSceneBoundingBox(OSM::BoundingBox bbox);
     void setSceneBoundingBox(const QRectF &bbox);
 
     /** Converts a point in scene coordinates to screen coordinates. */
     QPointF mapSceneToScreen(QPointF scenePos) const;
+    /** Converts a rectanble in scene coordinates to screen coordinates. */
+    QRectF mapSceneToScreen(const QRectF &sceneRect) const;
     /** Converts a point in screen coordinates to scene coordinates. */
     QPointF mapScreenToScene(QPointF screenPos) const;
     /** Converts a distance in screen coordinates to a distance in scene coordinates. */
@@ -95,8 +104,21 @@ public:
     /** Returns how many units in scene coordinate represent the distance of @p meters in the current view transformation. */
     double mapMetersToScene(double meters) const;
     void panScreenSpace(QPoint offset);
-    void zoomIn(QPointF center);
-    void zoomOut(QPointF center);
+    Q_INVOKABLE void zoomIn(QPointF center);
+    Q_INVOKABLE void zoomOut(QPointF center);
+
+    /** Position of the viewport in pan coordinates. */
+    double panX() const;
+    double panY() const;
+    /** Size of the pan-able area in screen coordinates. */
+    double panWidth() const;
+    double panHeight() const;
+
+    /** Move the viewport to the pan coordinates @p x and @p y. */
+    Q_INVOKABLE void panTopLeft(double x, double y);
+
+Q_SIGNALS:
+    void transformationChanged();
 
 private:
     /** Ensure we stay within the bounding box with the viewport, call after viewport modification. */

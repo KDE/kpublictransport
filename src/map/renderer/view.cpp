@@ -83,6 +83,7 @@ void View::setScreenSize(QSize size)
     m_viewport.setWidth(m_viewport.width() * dx);
     m_viewport.setHeight(m_viewport.height() * dy);
     constrainViewToScene();
+    Q_EMIT transformationChanged();
 }
 
 int View::level() const
@@ -112,6 +113,11 @@ void View::setViewport(const QRectF &viewport)
     constrainViewToScene();
 }
 
+QRectF View::sceneBoundingBox() const
+{
+    return m_bbox;
+}
+
 void View::setSceneBoundingBox(OSM::BoundingBox bbox)
 {
     setSceneBoundingBox(mapGeoToScene(bbox));
@@ -135,12 +141,19 @@ void View::setSceneBoundingBox(const QRectF &bbox)
         m_viewport.setHeight(m_viewport.height() * dy);
         m_viewport.setWidth(m_viewport.width() * dy);
     }
+
+    Q_EMIT transformationChanged();
 }
 
 
 QPointF View::mapSceneToScreen(QPointF scenePos) const
 {
     return sceneToScreenTransform().map(scenePos);
+}
+
+QRectF View::mapSceneToScreen(const QRectF &sceneRect) const
+{
+    return QRectF(mapSceneToScreen(sceneRect.topLeft()), mapSceneToScreen(sceneRect.bottomRight()));
 }
 
 QPointF View::mapScreenToScene(QPointF screenPos) const
@@ -190,6 +203,7 @@ void View::zoomIn(QPointF center)
     m_viewport.adjust(xr * dx, yr * dy, - (1-xr) * dx, - (1-yr) * dy);
     constrainViewToScene();
     qDebug() << zoomLevel();
+    Q_EMIT transformationChanged();
 }
 
 void View::zoomOut(QPointF center)
@@ -208,6 +222,7 @@ void View::zoomOut(QPointF center)
     m_viewport.adjust(-xr * dx, -yr * dy, (1-xr) * dx, (1-yr) * dy);
     constrainViewToScene();
     qDebug() << zoomLevel();
+    Q_EMIT transformationChanged();
 }
 
 void View::constrainViewToScene()
@@ -244,4 +259,35 @@ double View::mapMetersToScene(double meters) const
     const auto d = OSM::distance(mapSceneToGeo(QPointF(m_viewport.left(), m_viewport.center().y())), mapSceneToGeo(QPointF(m_viewport.right(), m_viewport.center().y())));
     const auto scale = m_viewport.width() / d;
     return meters * scale;
+}
+
+double View::panX() const
+{
+    const auto r = (m_viewport.left() - m_bbox.left()) / m_bbox.width();
+    return panWidth() * r;
+}
+
+double View::panY() const
+{
+    const auto r = (m_viewport.top() - m_bbox.top()) / m_bbox.height();
+    return panHeight() * r;
+}
+
+double View::panWidth() const
+{
+    const auto r = m_bbox.width() / m_viewport.width();
+    return screenWidth() * r;
+}
+
+double View::panHeight() const
+{
+    const auto r = m_bbox.height() / m_viewport.height();
+    return screenHeight() * r;
+}
+
+void View::panTopLeft(double x, double y)
+{
+    m_viewport.moveLeft(m_bbox.x() + m_bbox.width() * (x / panWidth()));
+    m_viewport.moveTop(m_bbox.y() + m_bbox.height() * (y / panHeight()));
+    constrainViewToScene();
 }
