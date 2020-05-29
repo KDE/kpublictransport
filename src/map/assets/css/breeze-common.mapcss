@@ -30,6 +30,7 @@ area[natural=water]
 }
 *[leisure=park],
 *[landuse=farmland],
+*[landuse=forest],
 *[landuse=grass],
 *[landuse=village_green],
 *[landuse=allotments],
