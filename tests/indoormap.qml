@@ -27,9 +27,27 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: Kirigami.Page {
         title: "Indoor Map View"
 
+        actions {
+            contextualActions: [
+                Kirigami.Action {
+                    text: "Light Style"
+                    onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"
+                },
+                Kirigami.Action {
+                    text: "Dark Style"
+                    onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-dark.mapcss"
+                },
+                Kirigami.Action {
+                    text: "Diagnostic View"
+                    onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/diagnostic.mapcss"
+                }
+            ]
+        }
+
         IndoorMap {
             id: map
             anchors.fill: parent
+            styleSheet: ":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"
 
             Component.onCompleted: {
                 map.mapLoader.loadForCoordinate(49.44572, 11.08196);

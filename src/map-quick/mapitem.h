@@ -38,6 +38,7 @@ class MapItem : public QQuickPaintedItem
     Q_OBJECT
     Q_PROPERTY(KOSMIndoorMap::MapLoader* loader READ loader CONSTANT)
     Q_PROPERTY(KOSMIndoorMap::View* view READ view CONSTANT)
+    Q_PROPERTY(QString styleSheet READ styleSheetName WRITE setStylesheetName NOTIFY styleSheetChanged)
 public:
     explicit MapItem(QQuickItem *parent = nullptr);
     ~MapItem();
@@ -46,6 +47,12 @@ public:
 
     MapLoader* loader() const;
     View* view() const;
+
+    QString styleSheetName() const;
+    void setStylesheetName(const QString &styleSheet);
+
+Q_SIGNALS:
+    void styleSheetChanged();
 
 protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
@@ -57,6 +64,7 @@ private:
     MapData m_data;
     SceneGraph m_sg;
     View *m_view = nullptr;
+    QString m_styleSheetName;
     MapCSSStyle m_style;
     SceneController m_controller;
     PainterRenderer m_renderer;

@@ -24,7 +24,10 @@ import QtQuick.Controls 2.12 as QQC2
 Item {
     id: mapRoot
 
+    /** Access to map loading status and progress. */
     property alias mapLoader: map.loader
+    /** Path to a MapCSS style sheet used for rendering the map. */
+    property alias styleSheet: map.styleSheet
 
     MapItemImpl {
         id: map

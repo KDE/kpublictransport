@@ -34,10 +34,6 @@ MapItem::MapItem(QQuickItem *parent)
     m_view->setScreenSize({100, 100}); // FIXME this breaks view when done too late!
     m_view->setLevel(0);
     m_controller.setView(m_view);
-
-    // TODO error handling, make style path a property
-    MapCSSParser cssParser;
-    m_style = cssParser.parse(QStringLiteral(":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"));
 }
 
 MapItem::~MapItem() = default;
@@ -57,6 +53,27 @@ MapLoader* MapItem::loader() const
 View* MapItem::view() const
 {
     return m_view;
+}
+
+QString MapItem::styleSheetName() const
+{
+    return m_styleSheetName;
+}
+
+void MapItem::setStylesheetName(const QString &styleSheet)
+{
+    if (m_styleSheetName == styleSheet) {
+        return;
+    }
+    m_styleSheetName = styleSheet;
+
+    MapCSSParser cssParser;
+    m_style = cssParser.parse(m_styleSheetName);
+    m_style.compile(m_data.dataSet());
+    m_controller.setStyleSheet(&m_style);
+
+    emit styleSheetChanged();
+    update();
 }
 
 void MapItem::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
