@@ -17,6 +17,7 @@
 
 #include "mapitem.h"
 
+#include <KOSMIndoorMap/HitDetector>
 #include <KOSMIndoorMap/MapCSSParser>
 
 #include <QDebug>
@@ -106,5 +107,10 @@ void MapItem::loaderDone()
 
 OSMElement MapItem::elementAt(double x, double y) const
 {
-    return OSMElement(m_sg.elementAt(m_view->mapScreenToScene(QPointF(x, y))));
+    HitDetector detector;
+    const auto item = detector.itemAt(QPointF(x, y), m_sg, m_view);
+    if (item) {
+        return OSMElement(item->element);
+    }
+    return {};
 }

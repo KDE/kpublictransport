@@ -18,6 +18,7 @@ add_library(KOSMIndoorMap STATIC
     loader/maploader.cpp
     loader/tilecache.cpp
 
+    renderer/hitdetector.cpp
     renderer/painterrenderer.cpp
     renderer/view.cpp
 
@@ -55,6 +56,7 @@ ecm_generate_headers(KOSMIndoorMap_Loader_FORWARDING_HEADERS
 )
 ecm_generate_headers(KOSMIndoorMap_Renderer_FORWARDING_HEADERS
     HEADER_NAMES
+        HitDetector
         PainterRenderer
         View
     PREFIX KOSMIndoorMap

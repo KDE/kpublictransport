@@ -66,13 +66,6 @@ public:
     QColor backgroundColor() const;
     void setBackgroundColor(const QColor &bg);
 
-    /** Items at scene coordinate @p pos.
-     *  TODO this still needs a lot of work to be useful, mostly for debugging atm.
-     */
-    void itemsAt(QPointF pos) const;
-    /** OSM element of the top item at the given scene coordinate. */
-    OSM::Element elementAt(QPointF pos) const;
-
     // renderer interface
     typedef std::pair<std::size_t, std::size_t> LayerOffset;
     const std::vector<LayerOffset>& layerOffsets() const;
@@ -80,7 +73,9 @@ public:
     typedef std::vector<SceneGraphItem>::const_iterator SceneGraphItemIter;
     SceneGraphItemIter itemsBegin(LayerOffset layer) const;
     SceneGraphItemIter itemsEnd(LayerOffset layer) const;
-    std::size_t itemCount() const;
+
+    // hit detector interface
+    const std::vector<SceneGraphItem>& items() const;
 
 private:
     void recomputeLayerIndex();

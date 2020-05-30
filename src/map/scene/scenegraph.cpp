@@ -131,33 +131,6 @@ void SceneGraph::recomputeLayerIndex()
     }
 }
 
-void SceneGraph::itemsAt(QPointF pos) const
-{
-    // ### temporary for testing
-    for (const auto &item : m_items) {
-        if (item.payload->inSceneSpace() && item.payload->boundingRect().contains(pos)) {
-            qDebug() << item.element.url();
-            for (auto it = item.element.tagsBegin(); it != item.element.tagsEnd(); ++it) {
-                qDebug() << "    " << (*it).key.name() << (*it).value;
-            }
-        }
-        // TODO HUD space elements
-    }
-}
-
-OSM::Element SceneGraph::elementAt(QPointF pos) const
-{
-    for (auto it = m_items.rbegin(); it != m_items.rend(); ++it) {
-        if ((*it).payload->inSceneSpace() && (*it).payload->boundingRect().contains(pos)) {
-            // TODO precise bounds check
-            return (*it).element;
-        }
-        // TODO HUD space elements
-    }
-
-    return {};
-}
-
 const std::vector<SceneGraph::LayerOffset>& SceneGraph::layerOffsets() const
 {
     return m_layerOffsets;
@@ -173,9 +146,9 @@ SceneGraph::SceneGraphItemIter SceneGraph::itemsEnd(SceneGraph::LayerOffset laye
     return m_items.begin() + layer.second;
 }
 
-std::size_t SceneGraph::itemCount() const
+const std::vector<SceneGraphItem>& SceneGraph::items() const
 {
-    return m_items.size();
+    return m_items;
 }
 
 bool SceneGraph::itemPoolCompare(const SceneGraphItem &lhs, const SceneGraphItem &rhs)

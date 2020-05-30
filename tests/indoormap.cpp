@@ -15,13 +15,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <loader/maploader.h>
-#include <renderer/painterrenderer.h>
-#include <renderer/view.h>
-#include <scene/scenegraph.h>
-#include <scene/scenecontroller.h>
-#include <style/mapcssparser.h>
-#include <style/mapcssstyle.h>
+#include <KOSMIndoorMap/HitDetector>
+#include <KOSMIndoorMap/MapCSSParser>
+#include <KOSMIndoorMap/MapCSSStyle>
+#include <KOSMIndoorMap/MapLoader>
+#include <KOSMIndoorMap/PainterRenderer>
+#include <KOSMIndoorMap/SceneController>
+#include <KOSMIndoorMap/SceneGraph>
+#include <KOSMIndoorMap/View>
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -100,7 +101,29 @@ void MapWidget::mouseMoveEvent(QMouseEvent *event)
 void MapWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::RightButton) {
-        m_sg.itemsAt(m_view.mapScreenToScene(event->pos()));
+        HitDetector detector;
+        const auto items = detector.itemsAt(event->pos(), m_sg, &m_view);
+        for (const auto item : items) {
+            qDebug() << item->element.url();
+            for (auto it = item->element.tagsBegin(); it != item->element.tagsEnd(); ++it) {
+                qDebug() << "    " << (*it).key.name() << (*it).value;
+            }
+            switch (item->element.type()) {
+                case OSM::Type::Null:
+                case OSM::Type::Node:
+                    break;
+                case OSM::Type::Way:
+                    for (const auto &node : item->element.way()->nodes) {
+                        qDebug() << "      " << node;
+                    }
+                    break;
+                case OSM::Type::Relation:
+                    for (const auto &mem : item->element.relation()->members) {
+                        qDebug() << "      " << mem.role << (int)mem.type << mem.id;
+                    }
+                    break;
+            }
+        }
     }
 }
 

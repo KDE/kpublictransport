@@ -92,7 +92,7 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
     endRender();
     m_view = nullptr;
 
-    qDebug() << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.itemCount() << "items on" << sg.layerOffsets().size() << "layers";
+    qDebug() << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.items().size() << "items on" << sg.layerOffsets().size() << "layers";
 }
 
 void PainterRenderer::beginRender()
