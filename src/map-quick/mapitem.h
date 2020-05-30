@@ -18,6 +18,8 @@
 #ifndef KOSMINDOORMAP_MAPITEM_H
 #define KOSMINDOORMAP_MAPITEM_H
 
+#include "floorlevelmodel.h"
+
 #include <KOSMIndoorMap/MapData>
 #include <KOSMIndoorMap/MapCSSStyle>
 #include <KOSMIndoorMap/MapLoader>
@@ -39,6 +41,7 @@ class MapItem : public QQuickPaintedItem
     Q_PROPERTY(KOSMIndoorMap::MapLoader* loader READ loader CONSTANT)
     Q_PROPERTY(KOSMIndoorMap::View* view READ view CONSTANT)
     Q_PROPERTY(QString styleSheet READ styleSheetName WRITE setStylesheetName NOTIFY styleSheetChanged)
+    Q_PROPERTY(KOSMIndoorMap::FloorLevelModel* floorLevels READ floorLevelModel CONSTANT)
 public:
     explicit MapItem(QQuickItem *parent = nullptr);
     ~MapItem();
@@ -51,8 +54,11 @@ public:
     QString styleSheetName() const;
     void setStylesheetName(const QString &styleSheet);
 
+    FloorLevelModel *floorLevelModel() const;
+
 Q_SIGNALS:
     void styleSheetChanged();
+    void currentFloorLevelChanged();
 
 protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
@@ -68,6 +74,7 @@ private:
     MapCSSStyle m_style;
     SceneController m_controller;
     PainterRenderer m_renderer;
+    FloorLevelModel *m_floorLevelModel = nullptr;
 };
 
 }

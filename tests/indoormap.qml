@@ -28,6 +28,16 @@ Kirigami.ApplicationWindow {
         title: "Indoor Map View"
 
         actions {
+            left: Kirigami.Action {
+                iconName: "go-down-symbolic"
+                enabled: map.floorLevels.hasFloorLevelBelow(map.view.floorLevel)
+                onTriggered: map.view.floorLevel = map.floorLevels.floorLevelBelow(map.view.floorLevel)
+            }
+            right: Kirigami.Action {
+                iconName: "go-up-symbolic"
+                enabled: map.floorLevels.hasFloorLevelAbove(map.view.floorLevel)
+                onTriggered: map.view.floorLevel = map.floorLevels.floorLevelAbove(map.view.floorLevel)
+            }
             contextualActions: [
                 Kirigami.Action {
                     text: "Light Style"
@@ -42,6 +52,41 @@ Kirigami.ApplicationWindow {
                     onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/diagnostic.mapcss"
                 }
             ]
+        }
+
+        header: RowLayout {
+            QQC2.Label { text: "Floor Level:" }
+            QQC2.ComboBox {
+                id: floorLevelCombo
+                model: map.floorLevels
+                textRole: "display"
+                Component.onCompleted: currentIndex = map.floorLevels.rowForLevel(map.view.floorLevel);
+                onCurrentIndexChanged: if (currentIndex >= 0) { map.view.floorLevel = map.floorLevels.levelForRow(currentIndex); }
+            }
+            Connections {
+                target: map.view
+                onFloorLevelChanged: floorLevelCombo.currentIndex = map.floorLevels.rowForLevel(map.view.floorLevel);
+            }
+
+            QQC2.Label { text: "Coordinate:" }
+            QQC2.TextField {
+                id: coordInput
+                placeholderText: "map coordinates"
+                text: "49.44572, 11.08196"
+            }
+            QQC2.Button {
+                text: "x"
+                onClicked: coordInput.text = ""
+            }
+            QQC2.Button {
+                text: ">"
+                onClicked: {
+                    var c = coordInput.text.match(/(.*)[,;/ ]+(.*)/);
+                    var lat = c[1];
+                    var lon = c[2];
+                    map.mapLoader.loadForCoordinate(lat, lon);
+                }
+            }
         }
 
         IndoorMap {

@@ -28,12 +28,13 @@ MapItem::MapItem(QQuickItem *parent)
     : QQuickPaintedItem(parent)
     , m_loader(new MapLoader(this))
     , m_view(new View(this))
+    , m_floorLevelModel(new FloorLevelModel(this))
 {
     connect(m_loader, &MapLoader::done, this, &MapItem::loaderDone);
 
     m_view->setScreenSize({100, 100}); // FIXME this breaks view when done too late!
-    m_view->setLevel(0);
     m_controller.setView(m_view);
+    connect(m_view, &View::floorLevelChanged, this, [this]() { update(); });
 }
 
 MapItem::~MapItem() = default;
@@ -76,6 +77,11 @@ void MapItem::setStylesheetName(const QString &styleSheet)
     update();
 }
 
+FloorLevelModel* MapItem::floorLevelModel() const
+{
+    return m_floorLevelModel;
+}
+
 void MapItem::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry)
 {
     QQuickPaintedItem::geometryChanged(newGeometry, oldGeometry);
@@ -85,10 +91,15 @@ void MapItem::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeomet
 
 void MapItem::loaderDone()
 {
+    m_floorLevelModel->setMapData(nullptr);
+    m_sg.clear();
     m_data = m_loader->takeData();
     m_view->setSceneBoundingBox(m_data.boundingBox());
     m_controller.setDataSet(&m_data);
     m_style.compile(m_data.dataSet());
     m_controller.setStyleSheet(&m_style);
+    m_view->setLevel(0);
+    m_floorLevelModel->setMapData(&m_data);
+    m_view->floorLevelChanged();
     update();
 }

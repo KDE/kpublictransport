@@ -52,6 +52,7 @@ class View : public QObject
     Q_PROPERTY(double panY READ panY NOTIFY transformationChanged)
     Q_PROPERTY(double panWidth READ panWidth NOTIFY transformationChanged)
     Q_PROPERTY(double panHeight READ panHeight NOTIFY transformationChanged)
+    Q_PROPERTY(int floorLevel READ level WRITE setLevel NOTIFY floorLevelChanged)
 public:
     explicit View(QObject *parent = nullptr);
     ~View();
@@ -119,6 +120,7 @@ public:
 
 Q_SIGNALS:
     void transformationChanged();
+    void floorLevelChanged();
 
 private:
     /** Ensure we stay within the bounding box with the viewport, call after viewport modification. */
@@ -127,7 +129,7 @@ private:
     QRectF m_bbox;
     QRectF m_viewport;
     QSize m_screenSize;
-    int m_level;
+    int m_level = 0;
 };
 
 }

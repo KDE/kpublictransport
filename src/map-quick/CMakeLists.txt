@@ -1,5 +1,6 @@
 set(kosmindoormapquickplugin_SRC
     kosmindoormapquickplugin.cpp
+    floorlevelmodel.cpp
     mapitem.cpp
 )
 set(kosmindoormapquickplugin_qml

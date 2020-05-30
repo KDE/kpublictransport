@@ -28,6 +28,16 @@ SceneGraph::SceneGraph(SceneGraph&&) = default;
 SceneGraph::~SceneGraph() = default;
 SceneGraph& SceneGraph::operator=(SceneGraph &&other) = default;
 
+void SceneGraph::clear()
+{
+    m_items.clear();
+    m_previousItems.clear();
+    m_layerOffsets.clear();
+    m_bgColor = {};
+    m_floorLevel = 0;
+    m_zoomLevel = 0;
+}
+
 void SceneGraph::addItem(SceneGraphItem &&item)
 {
     m_items.push_back(std::move(item));

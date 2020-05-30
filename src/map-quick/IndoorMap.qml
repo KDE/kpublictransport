@@ -28,6 +28,10 @@ Item {
     property alias mapLoader: map.loader
     /** Path to a MapCSS style sheet used for rendering the map. */
     property alias styleSheet: map.styleSheet
+    /** Floor level model. */
+    property alias floorLevels: map.floorLevels
+    /** Access to the view transformation and floor level selection. */
+    property alias view: map.view
 
     MapItemImpl {
         id: map

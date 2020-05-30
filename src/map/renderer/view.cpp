@@ -93,7 +93,12 @@ int View::level() const
 
 void View::setLevel(int level)
 {
+    if (m_level == level) {
+        return;
+    }
+
     m_level = level;
+    emit floorLevelChanged();
 }
 
 double View::zoomLevel() const

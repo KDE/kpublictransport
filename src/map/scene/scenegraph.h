@@ -45,6 +45,9 @@ public:
     SceneGraph& operator=(const SceneGraph&) = delete;
     SceneGraph& operator=(SceneGraph &&other);
 
+    /** Clears all data from the scene graph. */
+    void clear();
+
     // scene builder interface
     void beginSwap();
     void addItem(SceneGraphItem &&item);
