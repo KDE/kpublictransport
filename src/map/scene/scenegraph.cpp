@@ -69,6 +69,26 @@ void SceneGraph::endSwap()
     m_previousItems.clear();
 }
 
+int SceneGraph::zoomLevel() const
+{
+    return m_zoomLevel;
+}
+
+void SceneGraph::setZoomLevel(int zoom)
+{
+    m_zoomLevel = zoom;
+}
+
+int SceneGraph::currentFloorLevel() const
+{
+    return m_floorLevel;
+}
+
+void SceneGraph::setCurrentFloorLevel(int level)
+{
+    m_floorLevel = level;
+}
+
 QColor SceneGraph::backgroundColor() const
 {
     return m_bgColor;

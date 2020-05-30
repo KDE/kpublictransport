@@ -84,6 +84,8 @@ private:
 
     OSM::TagKey m_layerTag;
     OSM::TagKey m_typeTag;
+
+    mutable bool m_dirty = true;
 };
 
 }

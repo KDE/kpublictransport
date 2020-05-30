@@ -53,6 +53,12 @@ public:
     void zSort();
     void endSwap();
 
+    // dirty state tracking
+    int zoomLevel() const;
+    void setZoomLevel(int zoom);
+    int currentFloorLevel() const;
+    void setCurrentFloorLevel(int level);
+
     /** Canvas background color. */
     QColor backgroundColor() const;
     void setBackgroundColor(const QColor &bg);
@@ -81,6 +87,9 @@ private:
     std::vector<SceneGraphItem> m_previousItems;
     std::vector<std::pair<std::size_t, std::size_t>> m_layerOffsets;
     QColor m_bgColor;
+
+    int m_zoomLevel = 0;
+    int m_floorLevel = 0;
 };
 
 

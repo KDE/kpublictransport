@@ -70,6 +70,7 @@ MapWidget::MapWidget(QWidget* parent)
 
 void MapWidget::paintEvent(QPaintEvent *event)
 {
+    m_controller.updateScene(m_sg);
     QPainter p(this);
     m_renderer.setPainter(&p);
     m_renderer.render(m_sg, &m_view);
@@ -111,7 +112,6 @@ void MapWidget::wheelEvent(QWheelEvent *event)
         m_view.zoomOut(event->position());
     }
     QWidget::wheelEvent(event);
-    m_controller.updateScene(m_sg);
     update();
 }
 
@@ -122,7 +122,6 @@ void MapWidget::setMapData(MapData &&data)
     m_view.setSceneBoundingBox(m_data.boundingBox());
     m_style.compile(m_data.dataSet());
     m_controller.setStyleSheet(&m_style);
-    m_controller.updateScene(m_sg);
     update();
 }
 
@@ -158,7 +157,6 @@ int main(int argc, char **argv)
     layout->addWidget(levelBox);
     QObject::connect(levelBox, &QComboBox::currentTextChanged, &app, [&]() {
         widget.m_view.setLevel(levelBox->currentData().toInt());
-        widget.m_controller.updateScene(widget.m_sg);
         widget.update();
     });
 
@@ -167,7 +165,6 @@ int main(int argc, char **argv)
     styleBox->addItems({QStringLiteral("breeze-light"), QStringLiteral("breeze-dark"), QStringLiteral("diagnostic")});
     QObject::connect(styleBox, &QComboBox::currentTextChanged, &app, [&](const QString &styleName) {
         widget.setStyleSheet(styleName);
-        widget.m_controller.updateScene(widget.m_sg);
         widget.update();
     });
 

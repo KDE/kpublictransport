@@ -45,22 +45,38 @@ void SceneController::setDataSet(const MapData *data)
     m_data = data;
     m_layerTag = data->dataSet().tagKey("layer");
     m_typeTag = data->dataSet().tagKey("type");
+    m_dirty = true;
 }
 
 void SceneController::setStyleSheet(const MapCSSStyle *styleSheet)
 {
     m_styleSheet = styleSheet;
+    m_dirty = true;
 }
 
 void SceneController::setView(const View *view)
 {
     m_view = view;
+    m_dirty = true;
 }
 
 void SceneController::updateScene(SceneGraph &sg) const
 {
     QElapsedTimer sgUpdateTimer;
     sgUpdateTimer.start();
+
+    // check if we are set up completely yet (we can't rely on a defined order with QML)
+    if (!m_data || !m_view || !m_styleSheet) {
+        return;
+    }
+
+    // check if the scene is dirty at all
+    if (sg.zoomLevel() == (int)m_view->zoomLevel() && sg.currentFloorLevel() == m_view->level() && !m_dirty) {
+        return;
+    }
+    sg.setZoomLevel(m_view->zoomLevel());
+    sg.setCurrentFloorLevel(m_view->level());
+    m_dirty = false;
 
     sg.beginSwap();
     updateCanvas(sg);

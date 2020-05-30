@@ -44,6 +44,7 @@ MapItem::~MapItem() = default;
 
 void MapItem::paint(QPainter *painter)
 {
+    m_controller.updateScene(m_sg);
     m_renderer.setPainter(painter);
     m_renderer.render(m_sg, m_view);
 }
@@ -72,6 +73,5 @@ void MapItem::loaderDone()
     m_controller.setDataSet(&m_data);
     m_style.compile(m_data.dataSet());
     m_controller.setStyleSheet(&m_style);
-    m_controller.updateScene(m_sg);
     update();
 }
