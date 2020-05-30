@@ -99,7 +99,31 @@ Kirigami.ApplicationWindow {
 
             ColumnLayout {
                 QQC2.Label {
+                    visible: text != ""
                     text: elementDetailsSheet.element.tagValue("description");
+                }
+                QQC2.Label {
+                    visible: text != ""
+                    text: elementDetailsSheet.element.tagValue("amenity") + elementDetailsSheet.element.tagValue("shop") + elementDetailsSheet.element.tagValue("tourism") + elementDetailsSheet.element.tagValue("office")
+                }
+                QQC2.Label {
+                    visible: text != ""
+                    text: elementDetailsSheet.element.tagValue("opening_hours");
+                }
+                QQC2.Label {
+                    visible: elementDetailsSheet.element.tagValue("website") != ""
+                    text: "<a href=\"" + elementDetailsSheet.element.tagValue("website") + "\">" + elementDetailsSheet.element.tagValue("website") + "</a>"
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+                QQC2.Label {
+                    visible: elementDetailsSheet.element.wikipediaUrl != ""
+                    text: "<a href=\"" + elementDetailsSheet.element.wikipediaUrl + "\">Wikipedia</a>"
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
+                QQC2.Label {
+                    text: elementDetailsSheet.element.tagValue("addr:street") + " " + elementDetailsSheet.element.tagValue("addr:housenumber") +
+                        "\n" + elementDetailsSheet.element.tagValue("addr:postcode") + " " + elementDetailsSheet.element.tagValue("addr:city") +
+                        "\n" + elementDetailsSheet.element.tagValue("addr:country");
                 }
             }
         }

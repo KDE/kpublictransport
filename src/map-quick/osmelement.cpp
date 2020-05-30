@@ -38,6 +38,27 @@ QString OSMElement::name() const
     return m_element.tagValue("name");
 }
 
+// TODO generalize for *:wikipedia tags
+QUrl OSMElement::wikipediaUrl() const
+{
+    // TODO read localized value
+    const auto wp = m_element.tagValue("wikipedia");
+    if (wp.isEmpty()) {
+        return {};
+    }
+
+    const auto idx = wp.indexOf(QLatin1Char(':'));
+    if (idx < 0) {
+        return {};
+    }
+
+    QUrl url;
+    url.setScheme(QStringLiteral("https"));
+    url.setHost(wp.leftRef(idx) + QLatin1String(".wikipedia.org"));
+    url.setPath(QLatin1String("/wiki/") + wp.midRef(idx + 1));
+    return url;
+}
+
 QString OSMElement::tagValue(const QString &key) const
 {
     return m_element.tagValue(key.toUtf8().constData());
