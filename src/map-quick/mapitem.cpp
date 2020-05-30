@@ -103,3 +103,8 @@ void MapItem::loaderDone()
     m_view->floorLevelChanged();
     update();
 }
+
+OSMElement MapItem::elementAt(double x, double y) const
+{
+    return OSMElement(m_sg.elementAt(m_view->mapScreenToScene(QPointF(x, y))));
+}

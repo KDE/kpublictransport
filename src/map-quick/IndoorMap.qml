@@ -33,9 +33,13 @@ Item {
     /** Access to the view transformation and floor level selection. */
     property alias view: map.view
 
+    /** Emitted when a map element has been picked by clicking/tapping on it. */
+    signal elementPicked(var element);
+
     MapItemImpl {
         id: map
         anchors.fill: parent
+
     }
 
     Flickable {
@@ -65,6 +69,19 @@ Item {
 
         QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
         QQC2.ScrollBar.horizontal: QQC2.ScrollBar {}
+
+        TapHandler {
+            acceptedButtons: Qt.LeftButton
+            onTapped: {
+                var root = parent;
+                while (root.parent) { root = root.parent; }
+                var localPos = map.mapFromItem(root, eventPoint.scenePosition.x, eventPoint.scenePosition.y);
+                var element = map.elementAt(localPos.x, localPos.y);
+                if (!element.isNull) {
+                    elementPicked(element);
+                }
+            }
+        }
     }
 
     Connections {

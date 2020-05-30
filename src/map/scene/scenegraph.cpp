@@ -131,7 +131,7 @@ void SceneGraph::recomputeLayerIndex()
     }
 }
 
-void SceneGraph::itemsAt(QPointF pos)
+void SceneGraph::itemsAt(QPointF pos) const
 {
     // ### temporary for testing
     for (const auto &item : m_items) {
@@ -143,6 +143,19 @@ void SceneGraph::itemsAt(QPointF pos)
         }
         // TODO HUD space elements
     }
+}
+
+OSM::Element SceneGraph::elementAt(QPointF pos) const
+{
+    for (auto it = m_items.rbegin(); it != m_items.rend(); ++it) {
+        if ((*it).payload->inSceneSpace() && (*it).payload->boundingRect().contains(pos)) {
+            // TODO precise bounds check
+            return (*it).element;
+        }
+        // TODO HUD space elements
+    }
+
+    return {};
 }
 
 const std::vector<SceneGraph::LayerOffset>& SceneGraph::layerOffsets() const

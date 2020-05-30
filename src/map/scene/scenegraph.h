@@ -69,7 +69,9 @@ public:
     /** Items at scene coordinate @p pos.
      *  TODO this still needs a lot of work to be useful, mostly for debugging atm.
      */
-    void itemsAt(QPointF pos);
+    void itemsAt(QPointF pos) const;
+    /** OSM element of the top item at the given scene coordinate. */
+    OSM::Element elementAt(QPointF pos) const;
 
     // renderer interface
     typedef std::pair<std::size_t, std::size_t> LayerOffset;

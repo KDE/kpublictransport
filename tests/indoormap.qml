@@ -89,6 +89,21 @@ Kirigami.ApplicationWindow {
             }
         }
 
+        Kirigami.OverlaySheet {
+            id: elementDetailsSheet
+            property var element
+
+            header: Kirigami.Heading {
+                text: elementDetailsSheet.element.name
+            }
+
+            ColumnLayout {
+                QQC2.Label {
+                    text: elementDetailsSheet.element.tagValue("description");
+                }
+            }
+        }
+
         IndoorMap {
             id: map
             anchors.fill: parent
@@ -96,6 +111,11 @@ Kirigami.ApplicationWindow {
 
             Component.onCompleted: {
                 map.mapLoader.loadForCoordinate(49.44572, 11.08196);
+            }
+
+            onElementPicked: {
+                elementDetailsSheet.element = element;
+                elementDetailsSheet.sheetOpen = true;
             }
         }
     }

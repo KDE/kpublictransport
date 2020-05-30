@@ -15,17 +15,37 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "kosmindoormapquickplugin.h"
-#include "mapitem.h"
-#include "osmelement.h"
+#ifndef KOSMINDOORMAP_OSMELEMENT_H
+#define KOSMINDOORMAP_OSMELEMENT_H
 
-using namespace KOSMIndoorMap;
+#include <osm/element.h>
 
-void KOSMIndoorMapQuickPlugin::registerTypes(const char *uri)
+#include <QMetaType>
+
+namespace KOSMIndoorMap {
+
+/** QML wrapper around an OSM element. */
+class OSMElement
 {
-    Q_UNUSED(uri);
-    qRegisterMetaType<OSMElement>();
+    Q_GADGET
+    Q_PROPERTY(bool isNull READ isNull)
+    Q_PROPERTY(QString name READ name)
+public:
+    OSMElement();
+    explicit OSMElement(OSM::Element e);
+    ~OSMElement();
 
-    qmlRegisterUncreatableType<OSMElement>("org.kde.kosmindoormap", 1, 0, "OSMElement", {});
-    qmlRegisterType<MapItem>("org.kde.kosmindoormap", 1, 0, "MapItemImpl");
+    bool isNull() const;
+    QString name() const;
+
+    Q_INVOKABLE QString tagValue(const QString &key) const;
+
+private:
+    OSM::Element m_element;
+};
+
 }
+
+Q_DECLARE_METATYPE(KOSMIndoorMap::OSMElement)
+
+#endif // KOSMINDOORMAP_OSMELEMENT_H

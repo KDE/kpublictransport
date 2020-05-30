@@ -19,6 +19,7 @@
 #define KOSMINDOORMAP_MAPITEM_H
 
 #include "floorlevelmodel.h"
+#include "osmelement.h"
 
 #include <KOSMIndoorMap/MapData>
 #include <KOSMIndoorMap/MapCSSStyle>
@@ -55,6 +56,8 @@ public:
     void setStylesheetName(const QString &styleSheet);
 
     FloorLevelModel *floorLevelModel() const;
+
+    Q_INVOKABLE KOSMIndoorMap::OSMElement elementAt(double x, double y) const;
 
 Q_SIGNALS:
     void styleSheetChanged();

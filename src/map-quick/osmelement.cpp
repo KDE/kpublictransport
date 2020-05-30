@@ -15,17 +15,30 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "kosmindoormapquickplugin.h"
-#include "mapitem.h"
 #include "osmelement.h"
 
 using namespace KOSMIndoorMap;
 
-void KOSMIndoorMapQuickPlugin::registerTypes(const char *uri)
+OSMElement::OSMElement() = default;
+OSMElement::OSMElement(OSM::Element e)
+    : m_element(e)
 {
-    Q_UNUSED(uri);
-    qRegisterMetaType<OSMElement>();
+}
 
-    qmlRegisterUncreatableType<OSMElement>("org.kde.kosmindoormap", 1, 0, "OSMElement", {});
-    qmlRegisterType<MapItem>("org.kde.kosmindoormap", 1, 0, "MapItemImpl");
+OSMElement::~OSMElement() = default;
+
+bool OSMElement::isNull() const
+{
+    return m_element.type() == OSM::Type::Null;
+}
+
+QString OSMElement::name() const
+{
+    // TODO read localized value
+    return m_element.tagValue("name");
+}
+
+QString OSMElement::tagValue(const QString &key) const
+{
+    return m_element.tagValue(key.toUtf8().constData());
 }
