@@ -82,6 +82,25 @@ Item {
                 }
             }
         }
+        PinchHandler {
+            id: pinchHandler
+            target: null
+            onScaleChanged: {
+                // TODO
+                console.log(pinchHandler.scale, pinchHandler.activeScale, pinchHandler.active, pinchHandler.centroid.pressPosition)
+                if (pinchHandler.activeScale > 2) {
+                    map.view.zoomIn(pinchHandler.centroid.pressPosition);
+                    map.update();
+                } else if (pinchHandler.activeScale < 0.5) {
+                    map.view.zoomOut(pinchHandler.centroid.pressPosition);
+                    map.update();
+                }
+            }
+            xAxis.enabled: false
+            yAxis.enabled: false
+            minimumRotation: 0.0
+            maximumRotation: 0.0
+        }
     }
 
     Connections {
@@ -105,10 +124,6 @@ Item {
             wheel.accepted = true;
             map.update();
         }
-    }
-
-    PinchArea {
-        anchors.fill: parent
     }
 
     QQC2.BusyIndicator {
