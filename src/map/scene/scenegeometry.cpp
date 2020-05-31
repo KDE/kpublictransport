@@ -161,3 +161,17 @@ void SceneGeometry::outerPolygonFromPath(const QPainterPath &path, QPolygonF &po
         poly.push_back(e);
     }
 }
+
+double SceneGeometry::distanceToLine(const QLineF &line, QPointF p)
+{
+    const auto len = line.length();
+    if (len == 0.0) {
+        return QLineF(line.p1(), p).length();
+    }
+
+    // project p on a line extending the line segment given by @p line, and clamp to that to the segment
+    const auto r = qBound(0.0, QPointF::dotProduct(p - line.p1(), line.p2() - line.p1()) / (len*len), 1.0);
+    const auto intersection = line.p1() + r * (line.p2() - line.p1());
+    return QLineF(intersection, p).length();
+
+}

@@ -20,6 +20,8 @@
 #include <QFile>
 #include <QTest>
 
+#include <cmath>
+
 using namespace KOSMIndoorMap;
 
 class SceneGeometryTest: public QObject
@@ -71,6 +73,28 @@ private Q_SLOTS:
 
         QPolygonF p2{{{1,1}, {2,2}, {2,20}}};
         QCOMPARE(SceneGeometry::polylineMidPointAngle(p2), 90.0);
+    }
+
+    void testDistanceToLine()
+    {
+        QLineF line({1,1}, {3, 1});
+        QCOMPARE(SceneGeometry::distanceToLine(line, {0, 1}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {1, 1}), 0.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {2, 1}), 0.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {3, 1}), 0.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {4, 1}), 1.0);
+
+        QCOMPARE(SceneGeometry::distanceToLine(line, {0, 2}), std::sqrt(2.0));
+        QCOMPARE(SceneGeometry::distanceToLine(line, {1, 2}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {2, 2}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {3, 2}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {4, 2}), std::sqrt(2.0));
+
+        QCOMPARE(SceneGeometry::distanceToLine(line, {0, 0}), std::sqrt(2.0));
+        QCOMPARE(SceneGeometry::distanceToLine(line, {1, 0}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {2, 0}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {3, 0}), 1.0);
+        QCOMPARE(SceneGeometry::distanceToLine(line, {4, 0}), std::sqrt(2.0));
     }
 };
 

@@ -18,6 +18,7 @@
 #ifndef KOSMINDOORMAP_SCENEGEOMETRY_H
 #define KOSMINDOORMAP_SCENEGEOMETRY_H
 
+class QLineF;
 class QPainterPath;
 class QPointF;
 class QPolygonF;
@@ -46,6 +47,9 @@ namespace SceneGeometry
      *  structure that happen to hold of OSM input data.
      */
     void outerPolygonFromPath(const QPainterPath &path, QPolygonF &poly);
+
+    /** Computes the distance of the given line to the given point. */
+    double distanceToLine(const QLineF &line, QPointF p);
 }
 
 }

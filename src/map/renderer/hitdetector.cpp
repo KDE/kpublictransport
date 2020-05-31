@@ -19,6 +19,7 @@
 
 #include "../scene/scenegraph.h"
 #include "../scene/scenegraphitem.h"
+#include "../scene/scenegeometry.h"
 #include "view.h"
 
 using namespace KOSMIndoorMap;
@@ -62,6 +63,9 @@ bool HitDetector::itemContainsPoint(const SceneGraphItem &item, QPointF screenPo
     if (const auto i = dynamic_cast<MultiPolygonItem*>(item.payload.get())) {
         return itemContainsPoint(i, view->mapScreenToScene(screenPos));
     }
+    if (const auto i = dynamic_cast<PolylineItem*>(item.payload.get())) {
+        return itemContainsPoint(i, view->mapScreenToScene(screenPos), view);
+    }
     if (const auto i = dynamic_cast<LabelItem*>(item.payload.get())) {
         return itemContainsPoint(i, screenPos, view);
     }
@@ -78,6 +82,25 @@ bool HitDetector::itemContainsPoint(const MultiPolygonItem *item, QPointF sceneP
 bool HitDetector::itemContainsPoint(const PolygonItem *item, QPointF scenePos) const
 {
     return item->polygon.containsPoint(scenePos, Qt::OddEvenFill);
+}
+
+bool HitDetector::itemContainsPoint(const PolylineItem *item, QPointF scenePos, const View *view) const
+{
+    if (item->path.size() < 2) {
+        return false;
+    }
+
+    const auto lineWidth = view->mapMetersToScene(item->pen.widthF())
+        + view->mapScreenDistanceToSceneDistance(item->casingPen.widthF());
+
+    double dist = std::numeric_limits<double>::max();
+    // TODO do we need to wrap around here for closed lines?
+    for (auto it = std::next(item->path.begin()); it != item->path.end(); ++it) {
+        QLineF line(*std::prev(it), *it);
+        dist = std::min(dist, SceneGeometry::distanceToLine(line, scenePos));
+    }
+
+    return dist <= lineWidth;
 }
 
 bool HitDetector::itemContainsPoint(const LabelItem *item, QPointF screenPos, const View *view) const

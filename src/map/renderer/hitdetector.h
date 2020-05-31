@@ -27,6 +27,7 @@ namespace KOSMIndoorMap {
 class LabelItem;
 class MultiPolygonItem;
 class PolygonItem;
+class PolylineItem;
 class SceneGraph;
 class SceneGraphItem;
 class View;
@@ -48,6 +49,7 @@ private:
     bool itemContainsPoint(const SceneGraphItem &item, QPointF screenPos, const View *view) const;
     bool itemContainsPoint(const MultiPolygonItem *item, QPointF scenePos) const;
     bool itemContainsPoint(const PolygonItem *item, QPointF scenePos) const;
+    bool itemContainsPoint(const PolylineItem *item, QPointF scenePos, const View *view) const;
     bool itemContainsPoint(const LabelItem *item, QPointF screenPos, const View *view) const;
 };
 
