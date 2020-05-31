@@ -110,6 +110,10 @@ OSMElement MapItem::elementAt(double x, double y) const
     HitDetector detector;
     const auto item = detector.itemAt(QPointF(x, y), m_sg, m_view);
     if (item) {
+        qDebug() << item->element.url();
+        for (auto it = item->element.tagsBegin(); it != item->element.tagsEnd(); ++it) {
+            qDebug() << "    " << (*it).key.name() << (*it).value;
+        }
         return OSMElement(item->element);
     }
     return {};

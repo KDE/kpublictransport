@@ -25,16 +25,14 @@ using namespace KOSMIndoorMap;
 
 const SceneGraphItem* HitDetector::itemAt(QPointF pos, const SceneGraph& sg, const View* view) const
 {
-    const auto scenePos = view->mapScreenToScene(pos);
-
     for (auto it = sg.items().rbegin(); it != sg.items().rend(); ++it) {
-        if ((*it).payload->inSceneSpace() && (*it).payload->boundingRect().contains(scenePos)) {
-            if (!itemContainsPoint((*it), scenePos, view)) {
-                continue;
-            }
-            return &(*it);
+        if (!(*it).payload->boundingRect().contains(view->mapScreenToScene(pos))) {
+            continue;
         }
-        // TODO HUD space elements
+        if (!itemContainsPoint((*it), pos, view)) {
+            continue;
+        }
+        return &(*it);
     }
 
     return nullptr;
@@ -43,31 +41,32 @@ const SceneGraphItem* HitDetector::itemAt(QPointF pos, const SceneGraph& sg, con
 std::vector<const SceneGraphItem*> HitDetector::itemsAt(QPointF pos, const SceneGraph &sg, const View *view) const
 {
     std::vector<const SceneGraphItem*> result;
-    const auto scenePos = view->mapScreenToScene(pos);
-
     for (const auto &item : sg.items()) {
-        if (item.payload->inSceneSpace() && item.payload->boundingRect().contains(scenePos)) {
-            if (!itemContainsPoint(item, scenePos, view)) {
-                continue;
-            }
-            result.push_back(&item);
+        if (!item.payload->boundingRect().contains(view->mapScreenToScene(pos))) {
+            continue;
         }
-        // TODO HUD space elements
+        if (!itemContainsPoint(item, pos, view)) {
+            continue;
+        }
+        result.push_back(&item);
     }
 
     return result;
 }
 
-bool HitDetector::itemContainsPoint(const SceneGraphItem &item, QPointF scenePos, const View *view) const
+bool HitDetector::itemContainsPoint(const SceneGraphItem &item, QPointF screenPos, const View *view) const
 {
     if (const auto i = dynamic_cast<PolygonItem*>(item.payload.get())) {
-        return itemContainsPoint(i, scenePos);
+        return itemContainsPoint(i, view->mapScreenToScene(screenPos));
     }
     if (const auto i = dynamic_cast<MultiPolygonItem*>(item.payload.get())) {
-        return itemContainsPoint(i, scenePos);
+        return itemContainsPoint(i, view->mapScreenToScene(screenPos));
+    }
+    if (const auto i = dynamic_cast<LabelItem*>(item.payload.get())) {
+        return itemContainsPoint(i, screenPos, view);
     }
 
-    // TODO
+    // TODO polyline
     return true;
 }
 
@@ -79,4 +78,11 @@ bool HitDetector::itemContainsPoint(const MultiPolygonItem *item, QPointF sceneP
 bool HitDetector::itemContainsPoint(const PolygonItem *item, QPointF scenePos) const
 {
     return item->polygon.containsPoint(scenePos, Qt::OddEvenFill);
+}
+
+bool HitDetector::itemContainsPoint(const LabelItem *item, QPointF screenPos, const View *view) const
+{
+    auto hitBox = item->bbox;
+    hitBox.moveCenter(view->mapSceneToScreen(hitBox.center()));
+    return hitBox.contains(screenPos);
 }

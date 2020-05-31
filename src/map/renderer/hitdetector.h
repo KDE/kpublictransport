@@ -24,6 +24,7 @@ class QPointF;
 
 namespace KOSMIndoorMap {
 
+class LabelItem;
 class MultiPolygonItem;
 class PolygonItem;
 class SceneGraph;
@@ -44,9 +45,10 @@ public:
 
 private:
     /** Precise bounds check for @p item. */
-    bool itemContainsPoint(const SceneGraphItem &item, QPointF scenePos, const View *view) const;
+    bool itemContainsPoint(const SceneGraphItem &item, QPointF screenPos, const View *view) const;
     bool itemContainsPoint(const MultiPolygonItem *item, QPointF scenePos) const;
     bool itemContainsPoint(const PolygonItem *item, QPointF scenePos) const;
+    bool itemContainsPoint(const LabelItem *item, QPointF screenPos, const View *view) const;
 };
 
 }
