@@ -130,9 +130,17 @@ void MapWidget::mouseReleaseEvent(QMouseEvent *event)
 void MapWidget::wheelEvent(QWheelEvent *event)
 {
     if (event->angleDelta().y() > 0) {
+#if QT_VERSION <= QT_VERSION_CHECK(5, 14, 0)
+        m_view.zoomIn(event->pos());
+#else
         m_view.zoomIn(event->position());
+#endif
     } else {
+#if QT_VERSION <= QT_VERSION_CHECK(5, 14, 0)
+        m_view.zoomOut(event->pos());
+#else
         m_view.zoomOut(event->position());
+#endif
     }
     QWidget::wheelEvent(event);
     update();

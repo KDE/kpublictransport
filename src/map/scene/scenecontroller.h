@@ -20,6 +20,7 @@
 
 #include <osm/datatypes.h>
 
+#include <memory>
 #include <vector>
 
 #include "../style/mapcssresult.h"
