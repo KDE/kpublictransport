@@ -17,6 +17,7 @@
 
 #include "tilecache.h"
 
+#include <osm/datatypes.h>
 #include <osm/geomath.h>
 
 #include <QDir>
@@ -40,6 +41,25 @@ Tile Tile::fromCoordinate(double lat, double lon, uint8_t z)
     t.z = z;
     return t;
 }
+
+OSM::Coordinate Tile::topLeft() const
+{
+    const auto lon = x / (double)(1 << z) * 360.0 - 180.0;
+
+    const auto n = M_PI - 2.0 * M_PI * y / (double)(1 << z);
+    const auto lat = OSM::radToDeg(std::atan(0.5 * (std::exp(n) - std::exp(-n))));
+
+    return OSM::Coordinate(lat, lon);
+}
+
+OSM::BoundingBox Tile::boundingBox() const
+{
+    Tile bottomRight = *this;
+    ++bottomRight.x;
+    ++bottomRight.y;
+    return OSM::BoundingBox(topLeft(), bottomRight.topLeft());
+}
+
 
 TileCache::TileCache(QObject *parent)
     : QObject(parent)

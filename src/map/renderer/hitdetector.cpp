@@ -70,7 +70,6 @@ bool HitDetector::itemContainsPoint(const SceneGraphItem &item, QPointF screenPo
         return itemContainsPoint(i, screenPos, view);
     }
 
-    // TODO polyline
     return true;
 }
 
