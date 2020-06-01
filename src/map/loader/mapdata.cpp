@@ -95,6 +95,11 @@ OSM::BoundingBox MapData::boundingBox() const
     return m_bbox;
 }
 
+void MapData::setBoundingBox(OSM::BoundingBox bbox)
+{
+    m_bbox = bbox;
+}
+
 void MapData::processElements()
 {
     const auto levelTag = m_dataSet.tagKey("level");

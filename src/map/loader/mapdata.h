@@ -67,6 +67,7 @@ public:
     void setDataSet(OSM::DataSet &&dataSet);
 
     OSM::BoundingBox boundingBox() const;
+    void setBoundingBox(OSM::BoundingBox bbox);
 
     // TODO efficient access API for this
     std::map<MapLevel, std::vector<OSM::Element>> m_levelMap;
