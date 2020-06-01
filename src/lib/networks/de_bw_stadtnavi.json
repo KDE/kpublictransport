@@ -1,7 +1,9 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Herrenberg, Germany.",
-        "Name": "Stadtnavi"
+        "Description[x-test]": "xxLocal public transport in and around Herrenberg, Germany.xx",
+        "Name": "Stadtnavi",
+        "Name[x-test]": "xxStadtnavixx"
     },
     "attribution": {
         "name": "Stadtnavi",
