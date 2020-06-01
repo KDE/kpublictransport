@@ -87,9 +87,17 @@ void DataSet::addRelation(Relation &&rel)
     relations.insert(it, std::move(rel));
 }
 
+// resolve ids for elements split in Marble vector tiles
+template <typename T>
+static QString actualIdString(const T &elem)
+{
+    const auto mxoid = OSM::tagValue(elem, "mx:oid");
+    return mxoid.isEmpty() ? QString::number(elem.id) : mxoid;
+}
+
 QString OSM::Node::url() const
 {
-    return QStringLiteral("https://openstreetmap.org/node/") + QString::number(id);
+    return QStringLiteral("https://openstreetmap.org/node/") + actualIdString(*this);
 }
 
 bool OSM::Way::isClosed() const
@@ -99,12 +107,12 @@ bool OSM::Way::isClosed() const
 
 QString OSM::Way::url() const
 {
-    return QStringLiteral("https://openstreetmap.org/way/") + QString::number(id);
+    return QStringLiteral("https://openstreetmap.org/way/") + actualIdString(*this);
 }
 
 QString OSM::Relation::url() const
 {
-    return QStringLiteral("https://openstreetmap.org/relation/") + QString::number(id);
+    return QStringLiteral("https://openstreetmap.org/relation/") + actualIdString(*this);
 }
 
 QDebug operator<<(QDebug debug, OSM::Coordinate coord)
