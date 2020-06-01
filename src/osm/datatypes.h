@@ -120,6 +120,15 @@ public:
         return max.latitude - min.latitude;
     }
 
+    constexpr inline double widthF() const
+    {
+        return width() / 10'000'000.0;
+    }
+    constexpr inline double heightF() const
+    {
+        return height() / 10'000'000.0;
+    }
+
     constexpr inline Coordinate center() const
     {
         return Coordinate(min.latitude + height() / 2, min.longitude + width() / 2);

@@ -18,12 +18,14 @@
 #ifndef KOSMINDOORMAP_MAPLOADER_H
 #define KOSMINDOORMAP_MAPLOADER_H
 
+#include "boundarysearch.h"
 #include "mapdata.h"
 #include "tilecache.h"
 
 #include <osm/datatypes.h>
 
 #include <QObject>
+#include <QRect>
 
 namespace KOSMIndoorMap {
 
@@ -57,13 +59,17 @@ Q_SIGNALS:
     void isLoadingChanged();
 
 private:
+    void downloadTiles();
     void downloadFinished();
     void loadTiles();
 
+    OSM::DataSet m_dataSet;
     MapData m_data;
     TileCache m_tileCache;
-    Tile m_topLeft;
-    Tile m_bottomRight;
+    OSM::BoundingBox m_tileBbox;
+    QRect m_loadedTiles;
+    std::vector<Tile> m_pendingTiles;
+    BoundarySearch m_boundarySearcher;
 };
 
 }
