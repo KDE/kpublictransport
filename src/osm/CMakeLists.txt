@@ -1,5 +1,6 @@
 add_library(KOSM STATIC
     datatypes.cpp
+    datasetmergebuffer.cpp
     element.cpp
     geomath.cpp
     o5mparser.cpp

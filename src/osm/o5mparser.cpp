@@ -17,6 +17,7 @@
 
 #include "o5mparser.h"
 #include "datatypes.h"
+#include "datasetmergebuffer.h"
 
 #include <QDebug>
 
@@ -52,6 +53,11 @@ O5mParser::O5mParser(DataSet *dataSet)
     : m_dataSet(dataSet)
 {
     m_stringLookupTable.resize(O5M_STRING_TABLE_SIZE);
+}
+
+void O5mParser::setMergeBuffer(DataSetMergeBuffer *buffer)
+{
+    m_mergeBuffer = buffer;
 }
 
 void O5mParser::parse(const uint8_t* data, std::size_t len)
@@ -218,7 +224,7 @@ void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
         OSM::setTag(node, std::move(tag));
     }
 
-    m_dataSet->addNode(std::move(node));
+    m_mergeBuffer ? m_mergeBuffer->nodes.push_back(std::move(node)) : m_dataSet->addNode(std::move(node));
 }
 
 void O5mParser::readWay(const uint8_t *begin, const uint8_t *end)
@@ -242,7 +248,7 @@ void O5mParser::readWay(const uint8_t *begin, const uint8_t *end)
         readTagOrBbox(way, it, end);
     }
 
-    m_dataSet->addWay(std::move(way));
+    m_mergeBuffer ? m_mergeBuffer->ways.push_back(std::move(way)) : m_dataSet->addWay(std::move(way));
 }
 
 void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
@@ -287,7 +293,7 @@ void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
         readTagOrBbox(rel, it, end);
     }
 
-    m_dataSet->addRelation(std::move(rel));
+    m_mergeBuffer ? m_mergeBuffer->relations.push_back(std::move(rel)) : m_dataSet->addRelation(std::move(rel));
 }
 
 void O5mParser::resetDeltaCodingState()
