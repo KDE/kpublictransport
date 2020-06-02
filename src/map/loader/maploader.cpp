@@ -108,6 +108,7 @@ void MapLoader::loadTiles()
     loadTime.start();
 
     OSM::O5mParser p(&m_dataSet);
+    //p.setMergeBuffer(&m_mergeBuffer);
     for (const auto &tile : m_pendingTiles) {
         const auto fileName = m_tileCache.cachedTile(tile);
         qDebug() << fileName;
@@ -118,6 +119,7 @@ void MapLoader::loadTiles()
         }
         const auto data = f.map(0, f.size());
         p.parse(data, f.size());
+        //m_marbleMerger.merge(&m_dataSet, &m_mergeBuffer);
 
         m_tileBbox = OSM::unite(m_tileBbox, tile.boundingBox());
     }

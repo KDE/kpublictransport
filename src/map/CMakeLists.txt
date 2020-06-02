@@ -17,6 +17,7 @@ add_library(KOSMIndoorMap STATIC
     loader/boundarysearch.cpp
     loader/mapdata.cpp
     loader/maploader.cpp
+    loader/marblegeometryassembler.cpp
     loader/tilecache.cpp
 
     renderer/hitdetector.cpp

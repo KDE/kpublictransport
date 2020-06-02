@@ -20,9 +20,11 @@
 
 #include "boundarysearch.h"
 #include "mapdata.h"
+#include "marblegeometryassembler.h"
 #include "tilecache.h"
 
 #include <osm/datatypes.h>
+#include <osm/datasetmergebuffer.h>
 
 #include <QObject>
 #include <QRect>
@@ -64,6 +66,8 @@ private:
     void loadTiles();
 
     OSM::DataSet m_dataSet;
+    OSM::DataSetMergeBuffer m_mergeBuffer;
+    MarbleGeometryAssembler m_marbleMerger;
     MapData m_data;
     TileCache m_tileCache;
     OSM::BoundingBox m_tileBbox;
