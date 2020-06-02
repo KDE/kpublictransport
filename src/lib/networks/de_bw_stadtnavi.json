@@ -1,8 +1,12 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Herrenberg, Germany.",
+        "Description[pt_BR]": "Transporte público local na região de Herrenberg, Alemanha.",
+        "Description[uk]": "Місцевий транспорт у Герренберзі і околицях, Німеччина.",
         "Description[x-test]": "xxLocal public transport in and around Herrenberg, Germany.xx",
         "Name": "Stadtnavi",
+        "Name[pt_BR]": "Stadtnavi",
+        "Name[uk]": "Stadtnavi",
         "Name[x-test]": "xxStadtnavixx"
     },
     "attribution": {
