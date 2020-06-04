@@ -109,6 +109,15 @@ struct {
     { "uppercase", QFont::AllUppercase },
 };
 
+struct {
+    const char *name;
+    MapCSSDeclaration::Unit unit;
+} static constexpr const unit_map[] = {
+    { "m", MapCSSDeclaration::Meters },
+    { "pt", MapCSSDeclaration::Point },
+    { "px", MapCSSDeclaration::Pixels },
+};
+
 MapCSSDeclaration::MapCSSDeclaration() = default;
 MapCSSDeclaration::~MapCSSDeclaration() = default;
 
@@ -246,9 +255,27 @@ bool MapCSSDeclaration::textFollowsLine() const
     return m_identValue == "line";
 }
 
+MapCSSDeclaration::Unit MapCSSDeclaration::unit() const
+{
+    return m_unit;
+}
+
+void MapCSSDeclaration::setUnit(const char *val, int len)
+{
+    for (const auto &u : unit_map) {
+        if (std::strncmp(u.name, val, std::max<std::size_t>(std::strlen(u.name), len)) == 0) {
+            m_unit = u.unit;
+            return;
+        }
+    }
+    qWarning() << "unknown unit:" << QByteArray(val, len);
+    m_unit = NoUnit;
+}
+
 void MapCSSDeclaration::compile(const OSM::DataSet &dataSet)
 {
-    // TODO
+    Q_UNUSED(dataSet);
+    // TODO resolve tag key if m_identValue is one
 }
 
 void MapCSSDeclaration::write(QIODevice *out) const
@@ -275,5 +302,13 @@ void MapCSSDeclaration::write(QIODevice *out) const
     } else {
         out->write(m_identValue);
     }
+
+    for (const auto &u : unit_map) {
+        if (u.unit == m_unit) {
+            out->write(u.name);
+            break;
+        }
+    }
+
     out->write(";\n");
 }

@@ -66,3 +66,10 @@ node|z14-[name] {}
 area[indoor=area] {
     text-position: line;
 }
+
+// units
+* {
+    font-size: 16pt;
+    width: 42px;
+    casing-width: 2m;
+}

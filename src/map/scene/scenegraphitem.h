@@ -34,6 +34,12 @@ namespace KOSMIndoorMap {
 
 class SceneGraphItemPayload;
 
+/** Unit for geometry sizes. */
+enum class Unit : uint8_t {
+    Pixel,
+    Meter,
+};
+
 /** Scene graph item description and handle for its content.
  *  This is a minimal and cheap part that can be used allocation-free,
  *  and it holds the expensive polymorphic parts (geometry, materials) depending on the
@@ -93,6 +99,8 @@ public:
     QPolygonF path;
     QPen pen;
     QPen casingPen;
+    Unit penWidthUnit = Unit::Meter;
+    Unit casingPenWidthUnit = Unit::Pixel;
 };
 
 
@@ -104,6 +112,7 @@ public:
 
     QBrush brush = Qt::NoBrush;
     QPen pen;
+    Unit penWidthUnit = Unit::Pixel;
 };
 
 

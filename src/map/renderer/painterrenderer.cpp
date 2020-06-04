@@ -137,7 +137,7 @@ void PainterRenderer::renderPolygon(PolygonItem *item, SceneGraphItemPayload::Re
         m_painter->drawPolygon(item->polygon);
     } else {
         auto p = item->pen;
-        p.setWidthF(m_view->mapScreenDistanceToSceneDistance(item->pen.widthF()));
+        p.setWidthF(mapToSceneWidth(item->pen.widthF(), item->penWidthUnit));
         m_painter->setPen(p);
         m_painter->drawPolygon(item->polygon);
     }
@@ -150,7 +150,7 @@ void PainterRenderer::renderMultiPolygon(MultiPolygonItem *item, SceneGraphItemP
         m_painter->drawPath(item->path);
     } else {
         auto p = item->pen;
-        p.setWidthF(m_view->mapScreenDistanceToSceneDistance(item->pen.widthF()));
+        p.setWidthF(mapToSceneWidth(item->pen.widthF(), item->penWidthUnit));
         m_painter->setPen(p);
         m_painter->drawPath(item->path);
     }
@@ -160,12 +160,12 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItemPayload::
 {
     if (phase == SceneGraphItemPayload::StrokePhase) {
         auto p = item->pen;
-        p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()));
+        p.setWidthF(mapToSceneWidth(item->pen.widthF(), item->penWidthUnit));
         m_painter->setPen(p);
         m_painter->drawPolyline(item->path);
     } else {
         auto p = item->casingPen;
-        p.setWidthF(m_view->mapMetersToScene(item->pen.widthF()) + m_view->mapScreenDistanceToSceneDistance(item->casingPen.widthF()));
+        p.setWidthF(mapToSceneWidth(item->pen.widthF(), item->penWidthUnit) + mapToSceneWidth(item->casingPen.widthF(), item->casingPenWidthUnit));
         m_painter->setPen(p);
         m_painter->drawPolyline(item->path);
     }
@@ -212,4 +212,16 @@ void PainterRenderer::renderLabel(LabelItem *item)
 void PainterRenderer::endRender()
 {
     m_painter->restore();
+}
+
+double PainterRenderer::mapToSceneWidth(double width, Unit unit) const
+{
+    switch (unit) {
+        case Unit::Pixel:
+            return m_view->mapScreenDistanceToSceneDistance(width);
+        case Unit::Meter:
+            return m_view->mapMetersToScene(width);
+    }
+
+    return width;
 }

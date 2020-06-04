@@ -143,6 +143,15 @@ public:
     bool isUnderlineStyle() const;
     bool textFollowsLine() const;
 
+    /** Unit type for numeric value. */
+    enum Unit {
+        NoUnit,
+        Pixels,
+        Point,
+        Meters,
+    };
+    Unit unit() const;
+
     void compile(const OSM::DataSet &dataSet);
     void write(QIODevice *out) const;
 
@@ -156,6 +165,7 @@ private:
     void setStringValue(char *str);
     void setColorRgba(uint32_t argb);
     void setDashesValue(const QVector<double> &dashes);
+    void setUnit(const char *val, int len);
 
     Property m_property = Unknown;
     int m_flags = NoFlag;
@@ -165,6 +175,7 @@ private:
     double m_doubleValue = NAN;
     QVector<double> m_dashValue;
     QString m_stringValue;
+    Unit m_unit = NoUnit;
 };
 
 }

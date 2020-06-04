@@ -149,7 +149,8 @@ line|z20-[highway=road]
 way[railway=rail],
 way[railway=light_rail],
 way[railway=subway],
-way[railway=tram]
+way[railway=tram],
+way[railway=monorail]
 {
     color: #eff0f1;
     dashes: 2,2;
@@ -187,14 +188,18 @@ relation[type=multipolygon][building=roof]
 way|z15-[aeroway=runway]
 {
     color: #eff0f1;
-    width: 1;
+    width: 2px;
     dashes: 4, 4;
-    casing-width: 20; // m TODO
+    casing-width: 20m;
     casing-color: #95a5a6;
     text: ref;
     text-color: #232629;
     shield-color: #fdbc4b;
     z-index: -10;
+}
+way|z15-[aeroway=runway][width]
+{
+    casing-width: width;
 }
 area|z15-[aeroway=helipad]
 {
@@ -204,10 +209,14 @@ area|z15-[aeroway=helipad]
 way|z15-[aeroway=taxiway]
 {
     color: #fdbc4b;
-    width: 0.5;
-    casing-width: 10; // m TODO
+    width: 1px;
+    casing-width: 10m;
     casing-color: #95a5a6;
     z-index: -20;
+}
+way|z15-[aeroway=taxiway][width]
+{
+    casing-width: width;
 }
 way|z19-[aeroway=taxiway]
 {
@@ -220,7 +229,7 @@ way|z19-[aeroway=taxiway]
 way|z19-[aeroway=parking_position]
 {
     color: #fdbc4b;
-    width: 0.3; // TODO 1px
+    width: 1px;
     dashes: 8,8;
     text-color: #fdbc4b;
     text-position: line;

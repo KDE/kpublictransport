@@ -246,6 +246,7 @@ PropertyName:
 PropertyValue:
   T_IDENT { $$ = new MapCSSDeclaration; $$->setIdentifierValue($1.str, $1.len); }
 | T_HEX_COLOR { $$ = new MapCSSDeclaration; $$->setColorRgba($1); }
+| T_DOUBLE T_IDENT { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); $$->setUnit($2.str, $2.len); }
 | T_DOUBLE { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); }
 | T_DOUBLE T_COMMA T_DOUBLE { $$ = new MapCSSDeclaration; $$->setDashesValue({$1, $3}); } // generalize to n dash distances
 | T_STRING { $$ = new MapCSSDeclaration; $$->setStringValue($1); }

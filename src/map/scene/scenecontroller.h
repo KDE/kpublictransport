@@ -18,12 +18,13 @@
 #ifndef KOSMINDOORMAP_SCENECONTROLLER_H
 #define KOSMINDOORMAP_SCENECONTROLLER_H
 
+#include "scenegraphitem.h"
+#include "../style/mapcssresult.h"
+
 #include <osm/datatypes.h>
 
 #include <memory>
 #include <vector>
-
-#include "../style/mapcssresult.h"
 
 class QPolygonF;
 class QString;
@@ -37,8 +38,6 @@ namespace KOSMIndoorMap {
 class MapData;
 class MapCSSStyle;
 class SceneGraph;
-class SceneGraphItem;
-class SceneGraphItemPayload;
 class View;
 
 /** Creates/updates the scene graph based on a given style sheet and view. */
@@ -65,8 +64,8 @@ private:
     QPainterPath createPath(OSM::Element e, QPolygonF &outerPath) const;
 
     void applyGenericStyle(const MapCSSDeclaration *decl, SceneGraphItemPayload *item) const;
-    void applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
-    void applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const;
+    void applyPenStyle(OSM::Element e, const MapCSSDeclaration *decl, QPen &pen, double &opacity, Unit &unit) const;
+    void applyCasingPenStyle(OSM::Element e, const MapCSSDeclaration *decl, QPen &pen, double &opacity, Unit &unit) const;
     void applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const;
 
     void initializePen(QPen &pen) const;

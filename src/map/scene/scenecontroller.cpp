@@ -19,7 +19,6 @@
 
 #include "scenegeometry.h"
 #include "scenegraph.h"
-#include "scenegraphitem.h"
 
 #include "../loader/mapdata.h"
 #include "../renderer/view.h"
@@ -170,7 +169,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         initializePen(item->pen);
         for (auto decl : m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
-            applyPenStyle(decl, item->pen, lineOpacity);
+            applyPenStyle(e, decl, item->pen, lineOpacity, item->penWidthUnit);
             switch (decl->property()) {
                 case MapCSSDeclaration::FillColor:
                     item->brush.setColor(decl->colorValue());
@@ -204,8 +203,8 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         initializePen(item->casingPen);
         for (auto decl : m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
-            applyPenStyle(decl, item->pen, lineOpacity);
-            applyCasingPenStyle(decl, item->casingPen, casingOpacity);
+            applyPenStyle(e, decl, item->pen, lineOpacity, item->penWidthUnit);
+            applyCasingPenStyle(e, decl, item->casingPen, casingOpacity, item->casingPenWidthUnit);
         }
         finalizePen(item->pen, lineOpacity);
         finalizePen(item->casingPen, casingOpacity);
@@ -351,14 +350,22 @@ void SceneController::applyGenericStyle(const MapCSSDeclaration *decl, SceneGrap
     }
 }
 
-void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const
+void SceneController::applyPenStyle(OSM::Element e, const MapCSSDeclaration *decl, QPen &pen, double &opacity, Unit &unit) const
 {
     switch (decl->property()) {
         case MapCSSDeclaration::Color:
             pen.setColor(decl->colorValue());
             break;
         case MapCSSDeclaration::Width:
+            if (!decl->keyValue().isEmpty()) {
+                pen.setWidthF(e.tagValue(decl->keyValue().constData()).toDouble());
+                unit = Unit::Meter;
+                break;
+            }
             pen.setWidthF(decl->doubleValue());
+            if (decl->unit() != MapCSSDeclaration::NoUnit) {
+                unit = decl->unit() == MapCSSDeclaration::Meters ? Unit::Meter : Unit::Pixel;
+            }
             break;
         case MapCSSDeclaration::Dashes:
             pen.setDashPattern(decl->dashesValue());
@@ -377,14 +384,22 @@ void SceneController::applyPenStyle(const MapCSSDeclaration *decl, QPen &pen, do
     }
 }
 
-void SceneController::applyCasingPenStyle(const MapCSSDeclaration *decl, QPen &pen, double &opacity) const
+void SceneController::applyCasingPenStyle(OSM::Element e, const MapCSSDeclaration *decl, QPen &pen, double &opacity, Unit &unit) const
 {
     switch (decl->property()) {
         case MapCSSDeclaration::CasingColor:
             pen.setColor(decl->colorValue());
             break;
         case MapCSSDeclaration::CasingWidth:
+            if (!decl->keyValue().isEmpty()) {
+                pen.setWidthF(e.tagValue(decl->keyValue().constData()).toDouble());
+                unit = Unit::Meter;
+                break;
+            }
             pen.setWidthF(decl->doubleValue());
+            if (decl->unit() != MapCSSDeclaration::NoUnit) {
+                unit = decl->unit() == MapCSSDeclaration::Meters ? Unit::Meter : Unit::Pixel;
+            }
             break;
         case MapCSSDeclaration::CasingDashes:
             pen.setDashPattern(decl->dashesValue());
@@ -410,7 +425,11 @@ void SceneController::applyFontStyle(const MapCSSDeclaration *decl, QFont &font)
             font.setFamily(decl->stringValue());
             break;
         case MapCSSDeclaration::FontSize:
-            font.setPointSizeF(decl->doubleValue()); // TODO unit support
+            if (decl->unit() == MapCSSDeclaration::Pixels) {
+                font.setPixelSize(decl->doubleValue());
+            } else {
+                font.setPointSizeF(decl->doubleValue());
+            }
             break;
         case MapCSSDeclaration::FontWeight:
             font.setBold(decl->isBoldStyle());

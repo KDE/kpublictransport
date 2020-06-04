@@ -54,6 +54,8 @@ private:
     void renderLabel(LabelItem *item);
     void endRender();
 
+    double mapToSceneWidth(double width, Unit unit) const;
+
     QPainter *m_painter = nullptr;
     View *m_view = nullptr;
 
