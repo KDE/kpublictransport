@@ -266,6 +266,20 @@ double View::mapMetersToScene(double meters) const
     return meters * scale;
 }
 
+double View::mapMetersToScreen(double meters) const
+{
+    const auto d = OSM::distance(mapSceneToGeo(QPointF(m_viewport.left(), m_viewport.center().y())), mapSceneToGeo(QPointF(m_viewport.right(), m_viewport.center().y())));
+    const auto r = meters / d;
+    return r * m_screenSize.width();
+}
+
+double View::mapScreenToMeters(int pixels) const
+{
+    const auto d = OSM::distance(mapSceneToGeo(QPointF(m_viewport.left(), m_viewport.center().y())), mapSceneToGeo(QPointF(m_viewport.right(), m_viewport.center().y())));
+    const auto r = (double)pixels / (double)m_screenSize.width();
+    return d * r;
+}
+
 double View::panX() const
 {
     const auto r = (m_viewport.left() - m_bbox.left()) / m_bbox.width();

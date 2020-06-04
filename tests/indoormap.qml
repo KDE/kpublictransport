@@ -137,6 +137,46 @@ Kirigami.ApplicationWindow {
                 map.mapLoader.loadForCoordinate(49.44572, 11.08196);
             }
 
+            Rectangle {
+                id: scaleBackground
+                color: Kirigami.Theme.backgroundColor
+                opacity: 0.5
+                anchors.left: map.left
+                anchors.bottom: map.bottom
+                width: 0.3 * map.width;
+                height: 30
+
+                function updateScale() {
+                    var d = map.view.mapScreenToMeters(scaleBackground.width);
+                    var s = d < 20 ? 5 : d < 100 ? 10 : 20;
+                    d /= s;
+                    d = Math.floor(d);
+                    d *= s;
+                    scaleLabel.text = d + "m";
+                    scale.width = map.view.mapMetersToScreen(d);
+                }
+
+                QQC2.Label {
+                    id: scaleLabel
+                    anchors.centerIn: parent
+                }
+
+                Rectangle {
+                    id: scale
+                    anchors.bottom: parent.bottom
+                    height: 4
+                    color: Kirigami.Theme.textColor
+                    width: parent.width
+                }
+
+                Component.onCompleted: scaleBackground.updateScale()
+
+                Connections {
+                    target: map.view
+                    onTransformationChanged: scaleBackground.updateScale();
+                }
+            }
+
             onElementPicked: {
                 elementDetailsSheet.element = element;
                 elementDetailsSheet.sheetOpen = true;

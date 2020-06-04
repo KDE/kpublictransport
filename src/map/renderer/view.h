@@ -104,6 +104,11 @@ public:
 
     /** Returns how many units in scene coordinate represent the distance of @p meters in the current view transformation. */
     double mapMetersToScene(double meters) const;
+    /** Returns how many pixels on screen represent the distance of @p meters with the current view transformation. */
+    Q_INVOKABLE double mapMetersToScreen(double meters) const;
+    /** Returns how many meters are represented by @p pixels with the current view transformation. */
+    Q_INVOKABLE double mapScreenToMeters(int pixels) const;
+
     void panScreenSpace(QPoint offset);
     Q_INVOKABLE void zoomIn(QPointF center);
     Q_INVOKABLE void zoomOut(QPointF center);
