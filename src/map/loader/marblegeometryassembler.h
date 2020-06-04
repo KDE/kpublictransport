@@ -36,9 +36,10 @@ private:
     void mergeWays(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
     void mergeRelations(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
 
-    void mergeWay(const OSM::DataSet *dataSet, OSM::Way &way, const OSM::Way &otherWay) const;
+    void mergeWay(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const;
     void mergeLine(const OSM::DataSet *dataSet, OSM::Way &way, const OSM::Way &otherWay) const;
-    void mergeArea(const OSM::DataSet *dataSet, OSM::Way &way, const OSM::Way &otherWay) const;
+    std::vector<OSM::Id> mergeArea(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const;
+    void mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::const_iterator &pathBegin, std::vector<OSM::Id> &otherPath) const;
 
     template <typename Elem>
     OSM::Id takeMxOid(Elem &elem) const;
