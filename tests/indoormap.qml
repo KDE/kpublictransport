@@ -131,7 +131,6 @@ Kirigami.ApplicationWindow {
         IndoorMap {
             id: map
             anchors.fill: parent
-            styleSheet: ":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"
 
             IndoorMapScale {
                 view: map.view

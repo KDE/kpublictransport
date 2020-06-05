@@ -21,7 +21,9 @@
 #include <KOSMIndoorMap/MapCSSParser>
 
 #include <QDebug>
+#include <QGuiApplication>
 #include <QPainter>
+#include <QPalette>
 
 using namespace KOSMIndoorMap;
 
@@ -36,6 +38,12 @@ MapItem::MapItem(QQuickItem *parent)
     m_view->setScreenSize({100, 100}); // FIXME this breaks view when done too late!
     m_controller.setView(m_view);
     connect(m_view, &View::floorLevelChanged, this, [this]() { update(); });
+
+    if (QGuiApplication::palette().base().color().value() > 128) {
+        setStylesheetName(QStringLiteral(":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"));
+    } else {
+        setStylesheetName(QStringLiteral(":/org.kde.kosmindoormap/assets/css/breeze-dark.mapcss"));
+    }
 }
 
 MapItem::~MapItem() = default;
