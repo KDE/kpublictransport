@@ -125,12 +125,27 @@ void MarbleGeometryAssembler::mergeLine(const OSM::DataSet *dataSet, OSM::Way &w
 
 std::vector<OSM::Id> MarbleGeometryAssembler::mergeArea(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const
 {
+    // sanity checks for assumptions below
+    if (way.nodes.size() < 3 || otherWay.nodes.size() < 3 || !way.isClosed() || !otherWay.isClosed()) {
+        qWarning() << "got invalid polygons!";
+        return way.nodes;
+    }
+
+    // "open" the closed polygons (otherwise we have to special-case the closing edges in both ways below)
+    way.nodes.pop_back();
+    otherWay.nodes.pop_back();
+
     std::vector<OSM::Id> nodes;
     mergeAreaSection(dataSet, nodes, way.nodes, way.nodes.begin(), otherWay.nodes);
+
+    // re-close the polygon
+    if (!nodes.empty()) {
+        nodes.push_back(nodes.front());
+    }
     return nodes;
 }
 
-void MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::const_iterator &pathBegin, std::vector<OSM::Id> &otherPath) const
+void MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const
 {
     for (auto nodeIt = pathBegin; nodeIt != path.end(); ++nodeIt) {
         if ((*nodeIt) >= 0) { // not synthetic
@@ -170,7 +185,7 @@ void MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std:
     }
 
     // copy the final segment
-    std::copy(pathBegin, path.cend(), std::back_inserter(assembledPath));
+    std::copy(pathBegin, path.end(), std::back_inserter(assembledPath));
     path.erase(pathBegin, path.end());
 
     // wrap around when starting in the middle (can happen on the secondary path)
