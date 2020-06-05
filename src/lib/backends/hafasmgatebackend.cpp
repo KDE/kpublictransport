@@ -282,6 +282,9 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
         }
         top.insert(QStringLiteral("client"), client);
     }
+    if (!m_extParam.isEmpty()) {
+        top.insert(QStringLiteral("ext"), m_extParam);
+    }
     top.insert(QStringLiteral("formatted"), false);
     top.insert(QStringLiteral("lang"), preferredLanguage());
     {

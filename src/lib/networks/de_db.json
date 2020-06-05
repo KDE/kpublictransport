@@ -63,8 +63,9 @@
         "clientId": "DB",
         "clientName": "DB Navigator",
         "clientType": "AND",
-        "clientVersion": "16040000",
+        "clientVersion": "19040000",
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
+        "ext": "DB.R19.12.a",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "128": "Metro",
@@ -99,7 +100,7 @@
             88
         ],
         "standardLocationIdentifierType": "ibnr",
-        "version": "1.14"
+        "version": "1.18"
     },
     "supportedLanguages": [
         "en",
