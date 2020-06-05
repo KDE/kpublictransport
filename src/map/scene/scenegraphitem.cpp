@@ -74,7 +74,7 @@ QRectF LabelItem::boundingRect() const
     }
 
     QFontMetricsF fm(font);
-    bbox = QRectF(QPointF(0, 0), QPointF(fm.maxWidth() * text.size(), fm.lineSpacing() * text.size()));
+    bbox = QRectF(QPointF(0, 0), QSizeF(std::max(fm.maxWidth() * text.size(), iconSize.width()), fm.lineSpacing() * text.size() + iconSize.height()));
     bbox.moveCenter(pos);
     return bbox;
 }

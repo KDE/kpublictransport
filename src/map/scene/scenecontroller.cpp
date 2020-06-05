@@ -228,7 +228,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             }
         }
 
-        if (!text.isEmpty()) {
+        const auto iconDecl = m_styleResult.declaration(MapCSSDeclaration::IconImage);
+
+        if (!text.isEmpty() || iconDecl) {
             auto baseItem = sg.findOrCreatePayload<LabelItem>(e, level);
             auto item = static_cast<LabelItem*>(baseItem.get());
             item->text = text;
@@ -286,6 +288,16 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     case MapCSSDeclaration::TextOffset:
                         item->offset = decl->doubleValue();
                         break;
+                    case MapCSSDeclaration::IconImage:
+                        item->icon = QIcon::fromTheme(decl->stringValue()); // TODO icon urls
+                        qDebug() << "icon:" << decl->stringValue() << item->icon;
+                        break;
+                    case MapCSSDeclaration::IconHeight:
+                        item->iconSize.setHeight(decl->doubleValue()); // TODO percent sizes
+                        break;
+                    case MapCSSDeclaration::IconWidth:
+                        item->iconSize.setWidth(decl->doubleValue()); // TODO percent sizes
+                        break;
                     default:
                         break;
                 }
@@ -299,6 +311,18 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 auto c = item->shieldColor;
                 c.setAlphaF(c.alphaF() * shieldOpacity);
                 item->shieldColor = c;
+            }
+            if (!item->icon.isNull()) {
+                const auto iconSourceSize = item->icon.availableSizes().at(0);
+                const auto aspectRatio = (double)iconSourceSize.width() / (double)iconSourceSize.height();
+                if (item->iconSize.width() <= 0.0 && item->iconSize.height() <= 0.0) {
+                    item->iconSize = iconSourceSize;
+                } else if (item->iconSize.width() <= 0.0) {
+                    item->iconSize.setWidth(item->iconSize.height() * aspectRatio);
+                } else if (item->iconSize.height() <= 0.0) {
+                    item->iconSize.setHeight(item->iconSize.width() / aspectRatio);
+                }
+                qDebug() << item->iconSize << iconSourceSize << aspectRatio;
             }
             addItem(sg, e, level, std::move(baseItem));
         }

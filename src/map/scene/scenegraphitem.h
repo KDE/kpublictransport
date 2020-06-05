@@ -23,6 +23,7 @@
 #include <QBrush>
 #include <QColor>
 #include <QFont>
+#include <QIcon>
 #include <QPainterPath>
 #include <QPen>
 #include <QPolygonF>
@@ -146,6 +147,9 @@ public:
     QString text;
     QColor color;
     QFont font;
+
+    QIcon icon;
+    QSizeF iconSize;
 
     double casingWidth = 0.0;
     QColor casingColor = Qt::transparent;

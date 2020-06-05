@@ -174,8 +174,17 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItemPayload::
 void PainterRenderer::renderLabel(LabelItem *item)
 {
     if (!item->hasFineBbox) {
-        QFontMetricsF fm(item->font);
-        item->bbox = fm.boundingRect(item->text);
+        if (!item->text.isEmpty()) {
+            QFontMetricsF fm(item->font);
+            item->bbox = fm.boundingRect(item->text);
+        } else {
+            item->bbox = QRectF();
+        }
+
+        if (!item->icon.isNull()) {
+            item->bbox = item->bbox.united(QRectF(QPointF(0.0, 0.0), item->iconSize));
+        }
+
         item->bbox.moveCenter(item->pos);
         item->hasFineBbox = true;
     }
@@ -202,10 +211,21 @@ void PainterRenderer::renderLabel(LabelItem *item)
         m_painter->fillRect(box.adjusted(-w, -w, w, w), item->shieldColor);
     }
 
+    // draw icon
+    if (!item->icon.isNull()) {
+        QRectF iconRect(QPointF(0.0, 0.0), item->iconSize);
+        iconRect.moveCenter(QPointF(0.0, 0.0));
+        qDebug() << item->icon << iconRect;
+        item->icon.paint(m_painter, iconRect.toRect());
+    }
+
     // draw text
-    m_painter->setPen(item->color);
-    m_painter->setFont(item->font);
-    m_painter->drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
+    if (!item->text.isEmpty()) {
+        m_painter->setPen(item->color);
+        m_painter->setFont(item->font);
+        m_painter->drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
+    }
+
     m_painter->restore();
 }
 
