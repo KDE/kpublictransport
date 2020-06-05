@@ -7,6 +7,7 @@ set(kosmindoormapquickplugin_SRC
 set(kosmindoormapquickplugin_qml
     qmldir
     IndoorMap.qml
+    IndoorMapScale.qml
 )
 
 add_library(kosmindoormapquickplugin ${kosmindoormapquickplugin_SRC})

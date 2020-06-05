@@ -2,3 +2,4 @@ module org.kde.kosmindoormap
 plugin kosmindoormapquickplugin
 classname KOSMIndoorMapQuickPlugin
 IndoorMap 1.0 IndoorMap.qml
+IndoorMapScale 1.0 IndoorMapScale.qml
