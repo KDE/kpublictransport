@@ -19,6 +19,7 @@
 #define OSM_DATATYPES_H
 
 #include <QDebug>
+#include <QLocale>
 #include <QString>
 
 #include <cstdint>
@@ -327,6 +328,37 @@ inline QString tagValue(const Elem& elem, const char *keyName)
         return (*it).value;
     }
     return {};
+}
+
+/** Returns the localized version of the tag value for key name @p keyName of @p elem.
+ *  @warning This is slow due to doing a linear search and string comparissons.
+ */
+template <typename Elem>
+inline QString tagValue(const Elem& elem, const char *keyName, const QLocale &locale)
+{
+    QByteArray key(keyName);
+    key.push_back(':');
+    const auto baseLen = key.size();
+    for (const auto &lang : locale.uiLanguages()) {
+        key.resize(baseLen);
+        key.append(lang.toUtf8());
+        const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [key](const auto &tag) { return std::strcmp(tag.key.name(), key.constData()) == 0; });
+        if (it != elem.tags.end()) {
+            return (*it).value;
+        }
+
+        const auto idx = lang.indexOf(QLatin1Char('-'));
+        if (idx > 0) {
+            key.resize(baseLen);
+            key.append(lang.leftRef(idx).toUtf8());
+            const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [key](const auto &tag) { return std::strcmp(tag.key.name(), key.constData()) == 0; });
+            if (it != elem.tags.end()) {
+                return (*it).value;
+            }
+        }
+    }
+
+    return tagValue(elem, keyName);
 }
 
 /** Inserts a new tag, or replaces an existing one with the same key. */

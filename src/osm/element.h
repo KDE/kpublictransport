@@ -63,6 +63,7 @@ public:
     BoundingBox boundingBox() const;
     QString tagValue(TagKey key) const;
     QString tagValue(const char *keyName) const;
+    QString tagValue(const char *keyName, const QLocale &locale) const;
     std::vector<Tag>::const_iterator tagsBegin() const;
     std::vector<Tag>::const_iterator tagsEnd() const;
     QString url() const;

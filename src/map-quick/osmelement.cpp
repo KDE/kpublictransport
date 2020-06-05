@@ -34,15 +34,13 @@ bool OSMElement::isNull() const
 
 QString OSMElement::name() const
 {
-    // TODO read localized value
-    return m_element.tagValue("name");
+    return m_element.tagValue("name", QLocale());
 }
 
 // TODO generalize for *:wikipedia tags
 QUrl OSMElement::wikipediaUrl() const
 {
-    // TODO read localized value
-    const auto wp = m_element.tagValue("wikipedia");
+    const auto wp = m_element.tagValue("wikipedia", QLocale());
     if (wp.isEmpty()) {
         return {};
     }

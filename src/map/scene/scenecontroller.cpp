@@ -222,7 +222,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
 
         if (textDecl) {
             if (!textDecl->keyValue().isEmpty()) {
-                text = e.tagValue(textDecl->keyValue().constData());
+                text = e.tagValue(textDecl->keyValue().constData(), QLocale());
             } else {
                 text = textDecl->stringValue();
             }

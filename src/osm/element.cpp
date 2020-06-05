@@ -98,6 +98,22 @@ QString Element::tagValue(const char *keyName) const
     return {};
 }
 
+QString Element::tagValue(const char *keyName, const QLocale &locale) const
+{
+    switch (type()) {
+        case Type::Null:
+            return {};
+        case Type::Node:
+            return OSM::tagValue(*node(), keyName, locale);
+        case Type::Way:
+            return OSM::tagValue(*way(), keyName, locale);
+        case Type::Relation:
+            return OSM::tagValue(*relation(), keyName, locale);
+    }
+
+    return {};
+}
+
 std::vector<Tag>::const_iterator OSM::Element::tagsBegin() const
 {
     switch (type()) {
