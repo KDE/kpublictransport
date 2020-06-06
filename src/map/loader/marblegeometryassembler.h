@@ -39,7 +39,10 @@ private:
     void mergeWay(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const;
     void mergeLine(const OSM::DataSet *dataSet, OSM::Way &way, const OSM::Way &otherWay) const;
     std::vector<OSM::Id> mergeArea(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const;
-    void mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const;
+    /**
+     * @returns @c true when @p path has been completely processed, @c false otherwise
+     */
+    bool mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const;
 
     template <typename Elem>
     OSM::Id takeMxOid(Elem &elem) const;

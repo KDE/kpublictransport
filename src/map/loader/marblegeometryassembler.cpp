@@ -145,7 +145,7 @@ std::vector<OSM::Id> MarbleGeometryAssembler::mergeArea(const OSM::DataSet *data
     return nodes;
 }
 
-void MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const
+bool MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const
 {
     for (auto nodeIt = pathBegin; nodeIt != path.end(); ++nodeIt) {
         if ((*nodeIt) >= 0) { // not synthetic
@@ -176,10 +176,23 @@ void MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std:
 
             // found a matching synthetic node, continue in the other path
             std::copy(pathBegin, nodeIt, std::back_inserter(assembledPath));
-            path.erase(pathBegin, ++nodeIt);
+            nodeIt = path.erase(pathBegin, ++nodeIt);
+            if (nodeIt == path.end()) {
+                nodeIt = path.begin();
+            }
             otherNodeIt = otherPath.erase(otherNodeIt);
-            mergeAreaSection(dataSet, assembledPath, otherPath, otherNodeIt, path);
-            return;
+            if (otherNodeIt == otherPath.end()) {
+                otherNodeIt = otherPath.begin();
+            }
+            // if otherPath was completely consumed, it would have switched back to us with its closing edge
+            // so add the remaining part of path here
+            if (mergeAreaSection(dataSet, assembledPath, otherPath, otherNodeIt, path)) {
+                qDebug() << "      processing trailing path";
+                std::copy(nodeIt, path.end(), std::back_inserter(assembledPath));
+                std::copy(path.begin(), nodeIt, std::back_inserter(assembledPath));
+                path.clear();
+            }
+            return false;
         }
 
     }
@@ -190,8 +203,10 @@ void MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std:
 
     // wrap around when starting in the middle (can happen on the secondary path)
     if (!path.empty()) {
-        mergeAreaSection(dataSet, assembledPath, path, path.begin(), otherPath);
+        return mergeAreaSection(dataSet, assembledPath, path, path.begin(), otherPath);
     }
+
+    return path.empty();
 }
 
 void MarbleGeometryAssembler::mergeRelations(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
