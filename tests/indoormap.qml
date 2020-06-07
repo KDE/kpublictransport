@@ -139,6 +139,11 @@ Kirigami.ApplicationWindow {
                 width: 0.3 * map.width
             }
 
+            IndoorMapAttributionLabel {
+                anchors.right: map.right
+                anchors.bottom: map.bottom
+            }
+
             Component.onCompleted: {
                 map.mapLoader.loadForCoordinate(49.44572, 11.08196);
             }
