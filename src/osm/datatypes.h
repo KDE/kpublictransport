@@ -248,6 +248,8 @@ enum class Type : uint8_t {
 // TODO this has 7 byte padding, can we make this more efficient?
 class Member {
 public:
+    inline bool operator==(const Member &other) const { return id == other.id && type == other.type && role == other.role; }
+
     Id id;
     QString role;
     Type type;

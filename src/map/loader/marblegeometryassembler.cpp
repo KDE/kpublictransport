@@ -28,6 +28,7 @@ static bool fuzzyEquals(OSM::Coordinate lhs, OSM::Coordinate rhs)
 void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
 {
     m_wayIdMap.clear();
+    m_relIdMap.clear();
     m_mxoidKey = dataSet->tagKey("mx:oid");
 
     mergeNodes(dataSet, mergeBuffer);
@@ -217,6 +218,15 @@ void MarbleGeometryAssembler::mergeRelations(OSM::DataSet *dataSet, OSM::DataSet
     // 3. if a relations with the restored id already exists, merge with its content
 
     for (auto &rel : mergeBuffer->relations) {
+        const OSM::Id mxoid = takeMxOid(rel);
+        if (mxoid <= 0) { // shouldn't happen?
+            dataSet->addRelation(std::move(rel));
+            continue;
+        }
+
+        m_relIdMap[rel.id] = mxoid;
+        rel.id = mxoid;
+
         for (auto &member : rel.members) {
             if (member.id >= 0) { // not a synthetic id
                 continue;
@@ -227,11 +237,30 @@ void MarbleGeometryAssembler::mergeRelations(OSM::DataSet *dataSet, OSM::DataSet
                 if (it != m_wayIdMap.end()) {
                     member.id = (*it).second;
                 }
+            } else if (member.type == OSM::Type::Relation) {
+                const auto it = m_relIdMap.find(member.id);
+                if (it != m_relIdMap.end()) {
+                    member.id = (*it).second;
+                }
             }
         }
 
-        // ### temporary scaffolding
-        dataSet->addRelation(std::move(rel));
+        const auto it = std::lower_bound(dataSet->relations.begin(), dataSet->relations.end(), rel);
+        if (it != dataSet->relations.end() && (*it).id == rel.id) {
+            mergeRelation(*it, rel);
+        } else {
+            dataSet->relations.insert(it, std::move(rel));
+        }
+    }
+}
+
+void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::Relation& otherRelation) const
+{
+    for (auto &otherMember : otherRelation.members) {
+        const auto it = std::find(relation.members.begin(), relation.members.end(), otherMember);
+        if (it == relation.members.end()) {
+            relation.members.push_back(otherMember);
+        }
     }
 }
 

@@ -44,6 +44,8 @@ private:
      */
     bool mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const;
 
+    void mergeRelation(OSM::Relation &relation, const OSM::Relation &otherRelation) const;
+
     template <typename Elem>
     OSM::Id takeMxOid(Elem &elem) const;
 
@@ -51,6 +53,7 @@ private:
 
     OSM::TagKey m_mxoidKey;
     std::unordered_map<OSM::Id, OSM::Id> m_wayIdMap;
+    std::unordered_map<OSM::Id, OSM::Id> m_relIdMap;
 };
 
 }
