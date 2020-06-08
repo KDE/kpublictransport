@@ -27,31 +27,41 @@ static bool fuzzyEquals(OSM::Coordinate lhs, OSM::Coordinate rhs)
 
 void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
 {
+    m_dataSet = dataSet;
     m_wayIdMap.clear();
     m_relIdMap.clear();
     m_mxoidKey = dataSet->tagKey("mx:oid");
 
-    mergeNodes(dataSet, mergeBuffer);
-    mergeWays(dataSet, mergeBuffer);
-    mergeRelations(dataSet, mergeBuffer);
+    mergeNodes(mergeBuffer);
+    mergeWays(mergeBuffer);
+    mergeRelations(mergeBuffer);
 
     mergeBuffer->clear();
+    std::swap(m_pendingWays, mergeBuffer->ways); // ways we have to try again
+    m_dataSet = nullptr;
 }
 
-void MarbleGeometryAssembler::mergeNodes(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
+void MarbleGeometryAssembler::finalize(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
+{
+    for (auto &way : mergeBuffer->ways) {
+        dataSet->addWay(std::move(way));
+    }
+}
+
+void MarbleGeometryAssembler::mergeNodes(OSM::DataSetMergeBuffer *mergeBuffer)
 {
     // nodes we just take as-is, they are not split/renamed; at worst we get a few extra for split geometry
-    if (dataSet->nodes.empty()) {
-        dataSet->nodes = std::move(mergeBuffer->nodes);
-        std::sort(dataSet->nodes.begin(), dataSet->nodes.end());
+    if (m_dataSet->nodes.empty()) {
+        m_dataSet->nodes = std::move(mergeBuffer->nodes);
+        std::sort(m_dataSet->nodes.begin(), m_dataSet->nodes.end());
     } else {
-        dataSet->nodes.reserve(dataSet->nodes.size() + mergeBuffer->nodes.size());
-        std::move(mergeBuffer->nodes.begin(), mergeBuffer->nodes.end(), std::back_inserter(dataSet->nodes));
+        m_dataSet->nodes.reserve(m_dataSet->nodes.size() + mergeBuffer->nodes.size());
+        std::move(mergeBuffer->nodes.begin(), mergeBuffer->nodes.end(), std::back_inserter(m_dataSet->nodes));
     }
-    std::sort(dataSet->nodes.begin(), dataSet->nodes.end());
+    std::sort(m_dataSet->nodes.begin(), m_dataSet->nodes.end());
 }
 
-void MarbleGeometryAssembler::mergeWays(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
+void MarbleGeometryAssembler::mergeWays(OSM::DataSetMergeBuffer *mergeBuffer)
 {
     // for ways we do:
     // 1. restore the original id
@@ -59,29 +69,40 @@ void MarbleGeometryAssembler::mergeWays(OSM::DataSet *dataSet, OSM::DataSetMerge
 
     for (auto &way : mergeBuffer->ways) {
         if (way.id > 0) { // not a synthetic id
-            dataSet->addWay(std::move(way));
+            m_dataSet->addWay(std::move(way));
             continue;
         }
 
         const OSM::Id mxoid = takeMxOid(way);
         if (mxoid <= 0) { // shouldn't happen?
-            dataSet->addWay(std::move(way));
+            m_dataSet->addWay(std::move(way));
             continue;
         }
 
-        m_wayIdMap[way.id] = mxoid;
+        const auto syntheticId = way.id;
         way.id = mxoid;
 
-        const auto it = std::lower_bound(dataSet->ways.begin(), dataSet->ways.end(), way);
-        if (it != dataSet->ways.end() && (*it).id == way.id) {
-            mergeWay(dataSet, *it, way);
+        const auto it = std::lower_bound(m_dataSet->ways.begin(), m_dataSet->ways.end(), way);
+        if (it != m_dataSet->ways.end() && (*it).id == way.id) {
+            mergeWay(*it, way);
+
+            if (way.nodes.empty()) {
+                // way was fully merged
+                m_wayIdMap[syntheticId] = mxoid;
+            } else {
+                // defer to later (ie. more tiles loaded)
+                way.id = syntheticId;
+                m_pendingWays.push_back(std::move(way));
+            }
+
         } else {
-            dataSet->ways.insert(it, std::move(way));
+            m_wayIdMap[syntheticId] = mxoid;
+            m_dataSet->ways.insert(it, std::move(way));
         }
     }
 }
 
-void MarbleGeometryAssembler::mergeWay(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const
+void MarbleGeometryAssembler::mergeWay(OSM::Way &way, OSM::Way &otherWay) const
 {
     // for merging two ways:
     // - non-synthetic nodes remain unchanged, ways can only be merged on synthetic nodes
@@ -92,18 +113,18 @@ void MarbleGeometryAssembler::mergeWay(const OSM::DataSet *dataSet, OSM::Way &wa
     // - we can assume polygon orientation is preserved by the splitting
 
     if (!way.isClosed() && !otherWay.isClosed()) {
-        mergeLine(dataSet, way, otherWay);
+        mergeLine(way, otherWay);
     } else {
-        way.nodes = mergeArea(dataSet, way, otherWay);
+        way.nodes = mergeArea(way, otherWay);
     }
 }
 
-void MarbleGeometryAssembler::mergeLine(const OSM::DataSet *dataSet, OSM::Way &way, const OSM::Way &otherWay) const
+void MarbleGeometryAssembler::mergeLine(OSM::Way &way, OSM::Way &otherWay) const
 {
-    const auto begin1 = nodeForId(dataSet, way.nodes.front());
-    const auto end1 = nodeForId(dataSet, way.nodes.back());
-    const auto begin2 = nodeForId(dataSet, otherWay.nodes.front());
-    const auto end2 = nodeForId(dataSet, otherWay.nodes.back());
+    const auto begin1 = nodeForId(way.nodes.front());
+    const auto end1 = nodeForId(way.nodes.back());
+    const auto begin2 = nodeForId(otherWay.nodes.front());
+    const auto end2 = nodeForId(otherWay.nodes.back());
     if (!begin1 || !end1 || !begin2 || !end2) {
         qDebug() << "failed to find way nodes!?" << begin1 << end1 << begin2 << end2;;
         return;
@@ -121,10 +142,13 @@ void MarbleGeometryAssembler::mergeLine(const OSM::DataSet *dataSet, OSM::Way &w
         way.nodes.insert(way.nodes.begin(), otherWay.nodes.rbegin(), otherWay.nodes.rend());
     } else {
         qDebug() << "unable to merge line:" << begin1->coordinate << end1->coordinate << begin2->coordinate << end2->coordinate;
+        return;
     }
+
+    otherWay.nodes.clear(); // for the caller to notice we succeeded here
 }
 
-std::vector<OSM::Id> MarbleGeometryAssembler::mergeArea(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const
+std::vector<OSM::Id> MarbleGeometryAssembler::mergeArea(OSM::Way &way, OSM::Way &otherWay) const
 {
     // sanity checks for assumptions below
     if (way.nodes.size() < 3 || otherWay.nodes.size() < 3 || !way.isClosed() || !otherWay.isClosed()) {
@@ -137,22 +161,30 @@ std::vector<OSM::Id> MarbleGeometryAssembler::mergeArea(const OSM::DataSet *data
     otherWay.nodes.pop_back();
 
     std::vector<OSM::Id> nodes;
-    mergeAreaSection(dataSet, nodes, way.nodes, way.nodes.begin(), otherWay.nodes);
+    mergeAreaSection(nodes, way.nodes, way.nodes.begin(), otherWay.nodes);
 
     // re-close the polygon
     if (!nodes.empty()) {
         nodes.push_back(nodes.front());
     }
+
+    // if otherWay is still populated we failed to find a connecting node
+    // this can happen in a number of cases, such as the same area entering a tile
+    // twice but its connecting part still being in an not yet loaded tile
+    // we defer processing those to later, so just re-close the polygon here
+    if (!otherWay.nodes.empty()) {
+        otherWay.nodes.push_back(otherWay.nodes.front());
+    }
     return nodes;
 }
 
-bool MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const
+bool MarbleGeometryAssembler::mergeAreaSection(std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const
 {
     for (auto nodeIt = pathBegin; nodeIt != path.end(); ++nodeIt) {
         if ((*nodeIt) >= 0) { // not synthetic
             continue;
         }
-        const auto node = nodeForId(dataSet, (*nodeIt));
+        const auto node = nodeForId(*nodeIt);
         if (!node) { // should not happen?
             qDebug() << "could not find node" << (*nodeIt);
             continue;
@@ -165,7 +197,7 @@ bool MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std:
                 continue;
             }
 
-            const auto otherNode = nodeForId(dataSet, (*otherNodeIt));
+            const auto otherNode = nodeForId(*otherNodeIt);
             if (!otherNode) {
                 qDebug() << "could not find node" << (*otherNodeIt);
                 continue;
@@ -187,7 +219,7 @@ bool MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std:
             }
             // if otherPath was completely consumed, it would have switched back to us with its closing edge
             // so add the remaining part of path here
-            if (mergeAreaSection(dataSet, assembledPath, otherPath, otherNodeIt, path)) {
+            if (mergeAreaSection(assembledPath, otherPath, otherNodeIt, path)) {
                 qDebug() << "      processing trailing path";
                 std::copy(nodeIt, path.end(), std::back_inserter(assembledPath));
                 std::copy(path.begin(), nodeIt, std::back_inserter(assembledPath));
@@ -204,13 +236,13 @@ bool MarbleGeometryAssembler::mergeAreaSection(const OSM::DataSet *dataSet, std:
 
     // wrap around when starting in the middle (can happen on the secondary path)
     if (!path.empty()) {
-        return mergeAreaSection(dataSet, assembledPath, path, path.begin(), otherPath);
+        return mergeAreaSection(assembledPath, path, path.begin(), otherPath);
     }
 
     return path.empty();
 }
 
-void MarbleGeometryAssembler::mergeRelations(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
+void MarbleGeometryAssembler::mergeRelations(OSM::DataSetMergeBuffer *mergeBuffer)
 {
     // for relations we do:
     // 1. restore the original id
@@ -220,7 +252,7 @@ void MarbleGeometryAssembler::mergeRelations(OSM::DataSet *dataSet, OSM::DataSet
     for (auto &rel : mergeBuffer->relations) {
         const OSM::Id mxoid = takeMxOid(rel);
         if (mxoid <= 0) { // shouldn't happen?
-            dataSet->addRelation(std::move(rel));
+            m_dataSet->addRelation(std::move(rel));
             continue;
         }
 
@@ -245,11 +277,11 @@ void MarbleGeometryAssembler::mergeRelations(OSM::DataSet *dataSet, OSM::DataSet
             }
         }
 
-        const auto it = std::lower_bound(dataSet->relations.begin(), dataSet->relations.end(), rel);
-        if (it != dataSet->relations.end() && (*it).id == rel.id) {
+        const auto it = std::lower_bound(m_dataSet->relations.begin(), m_dataSet->relations.end(), rel);
+        if (it != m_dataSet->relations.end() && (*it).id == rel.id) {
             mergeRelation(*it, rel);
         } else {
-            dataSet->relations.insert(it, std::move(rel));
+            m_dataSet->relations.insert(it, std::move(rel));
         }
     }
 }
@@ -279,10 +311,10 @@ OSM::Id MarbleGeometryAssembler::takeMxOid(Elem &elem) const
     return {};
 }
 
-const OSM::Node* MarbleGeometryAssembler::nodeForId(const OSM::DataSet *dataSet, OSM::Id id) const
+const OSM::Node* MarbleGeometryAssembler::nodeForId(OSM::Id id) const
 {
-    const auto it = std::lower_bound(dataSet->nodes.begin(), dataSet->nodes.end(), id);
-    if (it != dataSet->nodes.end() && (*it).id == id) {
+    const auto it = std::lower_bound(m_dataSet->nodes.begin(), m_dataSet->nodes.end(), id);
+    if (it != m_dataSet->nodes.end() && (*it).id == id) {
         return &(*it);
     }
     return nullptr;

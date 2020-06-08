@@ -29,31 +29,40 @@ namespace KOSMIndoorMap {
 class MarbleGeometryAssembler
 {
 public:
+    /** Merge @p mergeBuffer into @p dataSet.
+     *  Data not mergable at this point (e.g. due to missing connecting tiles)
+     *  remains in @p mergeBuffer.
+     */
     void merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
+    /** Processes remaining elements that couldn't be merged. */
+    void finalize(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
 
 private:
-    void mergeNodes(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
-    void mergeWays(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
-    void mergeRelations(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
+    void mergeNodes(OSM::DataSetMergeBuffer *mergeBuffer);
+    void mergeWays(OSM::DataSetMergeBuffer *mergeBuffer);
+    void mergeRelations(OSM::DataSetMergeBuffer *mergeBuffer);
 
-    void mergeWay(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const;
-    void mergeLine(const OSM::DataSet *dataSet, OSM::Way &way, const OSM::Way &otherWay) const;
-    std::vector<OSM::Id> mergeArea(const OSM::DataSet *dataSet, OSM::Way &way, OSM::Way &otherWay) const;
+    void mergeWay(OSM::Way &way, OSM::Way &otherWay) const;
+    void mergeLine(OSM::Way &way, OSM::Way &otherWay) const;
+    std::vector<OSM::Id> mergeArea(OSM::Way &way, OSM::Way &otherWay) const;
     /**
      * @returns @c true when @p path has been completely processed, @c false otherwise
      */
-    bool mergeAreaSection(const OSM::DataSet *dataSet, std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const;
+    bool mergeAreaSection(std::vector<OSM::Id> &assembledPath, std::vector<OSM::Id> &path, const std::vector<OSM::Id>::iterator &pathBegin, std::vector<OSM::Id> &otherPath) const;
 
     void mergeRelation(OSM::Relation &relation, const OSM::Relation &otherRelation) const;
 
     template <typename Elem>
     OSM::Id takeMxOid(Elem &elem) const;
 
-    const OSM::Node* nodeForId(const OSM::DataSet *dataSet, OSM::Id id) const;
+    const OSM::Node* nodeForId(OSM::Id id) const;
 
+    OSM::DataSet *m_dataSet = nullptr;
     OSM::TagKey m_mxoidKey;
     std::unordered_map<OSM::Id, OSM::Id> m_wayIdMap;
     std::unordered_map<OSM::Id, OSM::Id> m_relIdMap;
+
+    std::vector<OSM::Way> m_pendingWays;
 };
 
 }
