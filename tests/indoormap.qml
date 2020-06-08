@@ -68,6 +68,22 @@ Kirigami.ApplicationWindow {
                 onFloorLevelChanged: floorLevelCombo.currentIndex = map.floorLevels.rowForLevel(map.view.floorLevel);
             }
 
+            QQC2.Slider {
+                id: zoomSlider
+                from: 14.0
+                to: 21.0
+                live: true
+                Layout.preferredWidth: 200
+
+                onValueChanged: {
+                    map.view.setZoomLevel(value, Qt.point(map.width / 2.0, map.height/ 2.0));
+                }
+            }
+            Connections {
+                target: map.view
+                onZoomLevelChanged: zoomSlider.value = map.view.zoomLevel
+            }
+
             QQC2.Label { text: "Coordinate:" }
             QQC2.TextField {
                 id: coordInput

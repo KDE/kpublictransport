@@ -107,6 +107,17 @@ double View::zoomLevel() const
     return - std::log2(dx);
 }
 
+void View::setZoomLevel(double zoom, QPointF screenCenter)
+{
+    auto z = std::pow(2.0, - std::min(zoom, (double)MaxZoomFactor));
+    // TODO use center point
+    const auto dx = ((screenWidth() / SceneWorldSize) * 360.0 * z) - m_viewport.width();
+    const auto dy = ((screenHeight() / SceneWorldSize) * 360.0 * z) - m_viewport.height();
+    m_viewport.adjust(-dx/2.0, -dy/2.0, dx/2.0, dy/2.0);
+    constrainViewToScene();
+    emit transformationChanged();
+}
+
 QRectF View::viewport() const
 {
     return m_viewport;

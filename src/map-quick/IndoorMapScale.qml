@@ -28,7 +28,7 @@ Item {
 
     function updateScale() {
         var d = map.view.mapScreenToMeters(background.width - 2 * __margin);
-        var s = d < 20 ? 5 : d < 100 ? 10 : 20;
+        var s = d < 5 ? 1 : d < 20 ? 5 : d < 100 ? 10 : 20;
         d /= s;
         d = Math.floor(d);
         d *= s;

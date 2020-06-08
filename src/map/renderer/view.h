@@ -53,6 +53,7 @@ class View : public QObject
     Q_PROPERTY(double panWidth READ panWidth NOTIFY transformationChanged)
     Q_PROPERTY(double panHeight READ panHeight NOTIFY transformationChanged)
     Q_PROPERTY(int floorLevel READ level WRITE setLevel NOTIFY floorLevelChanged)
+    Q_PROPERTY(double zoomLevel READ zoomLevel NOTIFY transformationChanged)
 public:
     explicit View(QObject *parent = nullptr);
     ~View();
@@ -79,6 +80,8 @@ public:
 
     /** OSM-compatible zoom level, ie. the 2^level-th subdivision of the scene space. */
     double zoomLevel() const;
+    /** Set the zoom level to @p zoom, and adjusting it around center position @p center. */
+    Q_INVOKABLE void setZoomLevel(double zoom, QPointF screenCenter);
 
     /** The sub-rect of the scene bounding box currently displayed.
      *  Specified in scene coordinates.

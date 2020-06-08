@@ -90,10 +90,8 @@ Item {
                 console.log(pinchHandler.scale, pinchHandler.activeScale, pinchHandler.active, pinchHandler.centroid.pressPosition)
                 if (pinchHandler.activeScale > 2) {
                     map.view.zoomIn(pinchHandler.centroid.pressPosition);
-                    map.update();
                 } else if (pinchHandler.activeScale < 0.5) {
                     map.view.zoomOut(pinchHandler.centroid.pressPosition);
-                    map.update();
                 }
             }
             xAxis.enabled: false
@@ -122,7 +120,6 @@ Item {
                 map.view.zoomOut(Qt.point(wheel.x, wheel.y));
             }
             wheel.accepted = true;
-            map.update();
         }
     }
 
