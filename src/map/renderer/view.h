@@ -113,8 +113,10 @@ public:
     Q_INVOKABLE double mapScreenToMeters(int pixels) const;
 
     void panScreenSpace(QPoint offset);
-    Q_INVOKABLE void zoomIn(QPointF center);
-    Q_INVOKABLE void zoomOut(QPointF center);
+    /** Increase zoom level by one/scale up by 2x around the screen position @p center. */
+    Q_INVOKABLE void zoomIn(QPointF screenCenter);
+    /** Decrease zoom level by one/scale down by 2x around the screen position @p center. */
+    Q_INVOKABLE void zoomOut(QPointF screenCenter);
 
     /** Position of the viewport in pan coordinates. */
     double panX() const;

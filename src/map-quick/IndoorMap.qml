@@ -85,14 +85,12 @@ Item {
         PinchHandler {
             id: pinchHandler
             target: null
-            onScaleChanged: {
-                // TODO
-                console.log(pinchHandler.scale, pinchHandler.activeScale, pinchHandler.active, pinchHandler.centroid.pressPosition)
-                if (pinchHandler.activeScale > 2) {
-                    map.view.zoomIn(pinchHandler.centroid.pressPosition);
-                } else if (pinchHandler.activeScale < 0.5) {
-                    map.view.zoomOut(pinchHandler.centroid.pressPosition);
-                }
+            property double initialZoom
+            onActiveChanged: {
+                initialZoom = map.view.zoomLevel
+            }
+            onActiveScaleChanged: {
+                map.view.setZoomLevel(pinchHandler.initialZoom + Math.log2(pinchHandler.activeScale), pinchHandler.centroid.pressPosition);
             }
             xAxis.enabled: false
             yAxis.enabled: false
@@ -104,7 +102,6 @@ Item {
     Connections {
         target: map.view
         onTransformationChanged: {
-            console.log(map.view.panY, flickable.contentY);
             flickable.contentX = map.view.panX;
             flickable.contentY = map.view.panY;
         }

@@ -110,10 +110,18 @@ double View::zoomLevel() const
 void View::setZoomLevel(double zoom, QPointF screenCenter)
 {
     auto z = std::pow(2.0, - std::min(zoom, (double)MaxZoomFactor));
-    // TODO use center point
     const auto dx = ((screenWidth() / SceneWorldSize) * 360.0 * z) - m_viewport.width();
     const auto dy = ((screenHeight() / SceneWorldSize) * 360.0 * z) - m_viewport.height();
-    m_viewport.adjust(-dx/2.0, -dy/2.0, dx/2.0, dy/2.0);
+
+    const auto centerScene = mapScreenToScene(screenCenter);
+    if (!m_viewport.contains(centerScene)) {
+        return; // invalid input
+    }
+
+    const auto xr = (centerScene.x() - m_viewport.x()) / m_viewport.width();
+    const auto yr = (centerScene.y() - m_viewport.y()) / m_viewport.height();
+
+    m_viewport.adjust(-xr * dx, -yr * dy, (1-xr) * dx, (1-yr) * dy);
     constrainViewToScene();
     emit transformationChanged();
 }
@@ -202,43 +210,14 @@ QTransform View::sceneToScreenTransform() const
     return t;
 }
 
-void View::zoomIn(QPointF center)
+void View::zoomIn(QPointF screenCenter)
 {
-    const auto factor = std::min(2.0, ((m_viewport.width() / 2.0) / (screenWidth() / SceneWorldSize) / 360.0) * (2 << MaxZoomFactor));
-    if (factor <= 1) {
-        return;
-    }
-
-    const auto dx = 0.5 * m_viewport.width() * (factor/2);
-    const auto dy = 0.5 * m_viewport.height() * (factor/2);
-
-    const auto centerScene = mapScreenToScene(center);
-    const auto xr = (centerScene.x() - m_viewport.x()) / m_viewport.width();
-    const auto yr = (centerScene.y() - m_viewport.y()) / m_viewport.height();
-
-    m_viewport.adjust(xr * dx, yr * dy, - (1-xr) * dx, - (1-yr) * dy);
-    constrainViewToScene();
-    qDebug() << zoomLevel();
-    Q_EMIT transformationChanged();
+    setZoomLevel(zoomLevel() + 1, screenCenter);
 }
 
-void View::zoomOut(QPointF center)
+void View::zoomOut(QPointF screenCenter)
 {
-    if (m_bbox.width() <= m_viewport.width() && m_bbox.height() <= m_viewport.height()) {
-        return;
-    }
-
-    const auto dx = m_viewport.width();
-    const auto dy = m_viewport.height();
-
-    const auto centerScene = mapScreenToScene(center);
-    const auto xr = (centerScene.x() - m_viewport.x()) / m_viewport.width();
-    const auto yr = (centerScene.y() - m_viewport.y()) / m_viewport.height();
-
-    m_viewport.adjust(-xr * dx, -yr * dy, (1-xr) * dx, (1-yr) * dy);
-    constrainViewToScene();
-    qDebug() << zoomLevel();
-    Q_EMIT transformationChanged();
+    setZoomLevel(zoomLevel() - 1, screenCenter);
 }
 
 void View::constrainViewToScene()
