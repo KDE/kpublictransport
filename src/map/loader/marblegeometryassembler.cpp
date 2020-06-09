@@ -30,6 +30,7 @@ void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuff
     m_dataSet = dataSet;
     m_wayIdMap.clear();
     m_relIdMap.clear();
+    m_pendingWays.clear();
     m_mxoidKey = dataSet->tagKey("mx:oid");
 
     mergeNodes(mergeBuffer);
@@ -92,6 +93,7 @@ void MarbleGeometryAssembler::mergeWays(OSM::DataSetMergeBuffer *mergeBuffer)
             } else {
                 // defer to later (ie. more tiles loaded)
                 way.id = syntheticId;
+                OSM::setTagValue(way, m_mxoidKey, QString::number(mxoid));
                 m_pendingWays.push_back(std::move(way));
             }
 
