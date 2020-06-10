@@ -19,10 +19,12 @@
 
 using namespace KOSMIndoorMap;
 
+enum { NodeMatchDistance = 11 }; // in 1e7th of a degree
+
 /** Compare two coordinate while accounting for floating point noise. */
 static bool fuzzyEquals(OSM::Coordinate lhs, OSM::Coordinate rhs)
 {
-    return std::abs((int32_t)lhs.latitude - (int32_t)rhs.latitude) < 10 && std::abs((int32_t)lhs.longitude - (int32_t)rhs.longitude) < 10;
+    return std::abs((int32_t)lhs.latitude - (int32_t)rhs.latitude) <= NodeMatchDistance && std::abs((int32_t)lhs.longitude - (int32_t)rhs.longitude) <= NodeMatchDistance;
 }
 
 void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
