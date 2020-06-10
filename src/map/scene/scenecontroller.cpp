@@ -188,6 +188,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             c.setAlphaF(c.alphaF() * fillOpacity);
             item->brush.setColor(c);
         }
+        if (item->brush.color().alphaF() == 0.0) {
+            item->brush.setStyle(Qt::NoBrush);
+        }
 
         addItem(sg, e, level, std::move(baseItem));
     } else if (m_styleResult.hasLineProperties()) {

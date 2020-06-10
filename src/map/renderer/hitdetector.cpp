@@ -27,7 +27,7 @@ using namespace KOSMIndoorMap;
 const SceneGraphItem* HitDetector::itemAt(QPointF pos, const SceneGraph& sg, const View* view) const
 {
     for (auto it = sg.items().rbegin(); it != sg.items().rend(); ++it) {
-        if (!(*it).payload->boundingRect().contains(view->mapScreenToScene(pos))) {
+        if ((*it).payload->renderPhases() == SceneGraphItemPayload::NoPhase || !(*it).payload->boundingRect().contains(view->mapScreenToScene(pos))) {
             continue;
         }
         if (!itemContainsPoint((*it), pos, view)) {
@@ -43,7 +43,7 @@ std::vector<const SceneGraphItem*> HitDetector::itemsAt(QPointF pos, const Scene
 {
     std::vector<const SceneGraphItem*> result;
     for (const auto &item : sg.items()) {
-        if (!item.payload->boundingRect().contains(view->mapScreenToScene(pos))) {
+        if (item.payload->renderPhases() == SceneGraphItemPayload::NoPhase || !item.payload->boundingRect().contains(view->mapScreenToScene(pos))) {
             continue;
         }
         if (!itemContainsPoint(item, pos, view)) {

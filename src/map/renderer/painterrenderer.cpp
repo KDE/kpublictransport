@@ -215,7 +215,6 @@ void PainterRenderer::renderLabel(LabelItem *item)
     if (!item->icon.isNull()) {
         QRectF iconRect(QPointF(0.0, 0.0), item->iconSize);
         iconRect.moveCenter(QPointF(0.0, 0.0));
-        qDebug() << item->icon << iconRect;
         item->icon.paint(m_painter, iconRect.toRect());
     }
 
