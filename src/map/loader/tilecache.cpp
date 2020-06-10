@@ -57,7 +57,11 @@ OSM::BoundingBox Tile::boundingBox() const
     Tile bottomRight = *this;
     ++bottomRight.x;
     ++bottomRight.y;
-    return OSM::BoundingBox(topLeft(), bottomRight.topLeft());
+
+    const auto tl = topLeft();
+    const auto br = bottomRight.topLeft();
+
+    return OSM::BoundingBox(OSM::Coordinate(br.latitude, tl.longitude), OSM::Coordinate(tl.latitude, br.longitude));
 }
 
 

@@ -16,6 +16,7 @@
 */
 
 #include <map/loader/tilecache.h>
+#include <osm/datatypes.h>
 
 #include <QTest>
 
@@ -48,6 +49,17 @@ private Q_SLOTS:
         QCOMPARE(tile.x, x);
         QCOMPARE(tile.y, y);
         QCOMPARE(tile.z, z);
+    }
+
+    void testCoordinateForTile()
+    {
+        Tile t(0, 0, 1);
+        QCOMPARE(t.topLeft().latF(), 85.0511287);
+        QCOMPARE(t.topLeft().lonF(), -180.0);
+        QCOMPARE(t.boundingBox().min.latF(), 0.0);
+        QCOMPARE(t.boundingBox().min.lonF(), -180.0);
+        QCOMPARE(t.boundingBox().max.latF(), 85.0511287);
+        QCOMPARE(t.boundingBox().max.lonF(), 0.0);
     }
 };
 
