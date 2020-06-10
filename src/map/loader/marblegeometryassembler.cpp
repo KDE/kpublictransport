@@ -34,6 +34,7 @@ void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuff
     m_relIdMap.clear();
     m_pendingWays.clear();
     m_mxoidKey = dataSet->tagKey("mx:oid");
+    m_typeKey = dataSet->tagKey("type");
 
     mergeNodes(mergeBuffer);
     mergeWays(mergeBuffer);
@@ -298,6 +299,41 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
             relation.members.push_back(otherMember);
         }
     }
+
+    // multi-polygons can exist entirely out of synthetic polygons, e.g. if the source was a set of lines rather than closed polygons
+    // merging those would not have happened before (as we wouldn't know what to merge it with), so we need to do this here
+    if (OSM::tagValue(relation, m_typeKey) == QLatin1String("multipolygon")) {
+        for (auto it = relation.members.begin(); it != relation.members.end(); ++it) {
+            if ((*it).id > 0 || (*it).type != OSM::Type::Way) {
+                continue;
+            }
+            if ((*it).role != QLatin1String("outer") && (*it).role != QLatin1String("inner")) {
+                continue;
+            }
+
+            auto way = wayForId((*it).id);
+            if (!way || !way->isClosed()) {
+                continue;
+            }
+
+            for (auto it2 = std::next(it); it2 != relation.members.end(); ++it2) {
+                if ((*it2).id > 0 || (*it2).type != OSM::Type::Way || (*it2).role != (*it).role) {
+                    continue;
+                }
+
+                auto otherWay = wayForId((*it2).id);
+                if (!otherWay || !otherWay->isClosed()) {
+                    continue;
+                }
+
+                way->nodes = mergeArea(*way, *otherWay);
+                if (otherWay->nodes.empty()) {
+                    relation.members.erase(it2);
+                    break;
+                }
+            }
+        }
+    }
 }
 
 template<typename Elem>
@@ -319,6 +355,15 @@ const OSM::Node* MarbleGeometryAssembler::nodeForId(OSM::Id id) const
 {
     const auto it = std::lower_bound(m_dataSet->nodes.begin(), m_dataSet->nodes.end(), id);
     if (it != m_dataSet->nodes.end() && (*it).id == id) {
+        return &(*it);
+    }
+    return nullptr;
+}
+
+OSM::Way* MarbleGeometryAssembler::wayForId(OSM::Id id) const
+{
+    const auto it = std::lower_bound(m_dataSet->ways.begin(), m_dataSet->ways.end(), id);
+    if (it != m_dataSet->ways.end() && (*it).id == id) {
         return &(*it);
     }
     return nullptr;
