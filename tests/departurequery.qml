@@ -93,6 +93,11 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
+        id: indoorMapPage
+        IndoorMapPage {}
+    }
+
+    Component {
         id: departureDelegate
         Kirigami.AbstractListItem {
             enabled: departure.disruptionEffect != Disruption.NoService

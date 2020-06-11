@@ -122,6 +122,11 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
+        id: indoorMapPage
+        IndoorMapPage {}
+    }
+
+    Component {
         id: journeyDelegate
         Kirigami.AbstractListItem {
             enabled: modelData.disruptionEffect != Disruption.NoService

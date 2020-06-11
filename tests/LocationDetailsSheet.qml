@@ -59,7 +59,15 @@ Kirigami.OverlaySheet {
         }
         QQC2.ToolButton {
             icon.name: "map-symbolic"
-            text: "View on map"
+            text: "Station Map"
+            onClicked: {
+                applicationWindow().pageStack.push(indoorMapPage, {coordinate: Qt.point(location.longitude, location.latitude)});
+                locationDetailsSheet.sheetOpen = false;
+            }
+        }
+        QQC2.ToolButton {
+            icon.name: "map-globe"
+            text: "View on OSM"
             onClicked: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + locationDetailsSheet.location.latitude + "/" + locationDetailsSheet.location.longitude)
         }
     }

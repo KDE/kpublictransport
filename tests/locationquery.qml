@@ -74,9 +74,14 @@ Kirigami.ApplicationWindow {
         Kirigami.SwipeListItem {
             actions: [
                 Kirigami.Action {
-                    iconName: "map-symbolic"
-                    text: "View on map"
+                    iconName: "map-globe"
+                    text: "View on OSM"
                     onTriggered: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + location.latitude + "/" + location.longitude)
+                },
+                Kirigami.Action {
+                    iconName: "map-symbolic"
+                    text: "Indoor Map"
+                    onTriggered: pageStack.push(indoorMapPage, {coordinate: Qt.point(location.longitude, location.latitude)})
                 }
             ]
             contentItem: ColumnLayout {
@@ -112,6 +117,11 @@ Kirigami.ApplicationWindow {
         BackendPage {
             publicTransportManager: ptMgr
         }
+    }
+
+    Component {
+        id: indoorMapPage
+        IndoorMapPage {}
     }
 
     Component {
