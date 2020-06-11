@@ -24,32 +24,22 @@ import org.kde.kosmindoormap 1.0
 Kirigami.ApplicationWindow {
     title: "OSM Indoor Map QML Test"
 
-    pageStack.initialPage: Kirigami.Page {
-        title: "Indoor Map View"
+    pageStack.initialPage: IndoorMapPage {
+        id: page
 
         actions {
-            left: Kirigami.Action {
-                iconName: "go-down-symbolic"
-                enabled: map.floorLevels.hasFloorLevelBelow(map.view.floorLevel)
-                onTriggered: map.view.floorLevel = map.floorLevels.floorLevelBelow(map.view.floorLevel)
-            }
-            right: Kirigami.Action {
-                iconName: "go-up-symbolic"
-                enabled: map.floorLevels.hasFloorLevelAbove(map.view.floorLevel)
-                onTriggered: map.view.floorLevel = map.floorLevels.floorLevelAbove(map.view.floorLevel)
-            }
             contextualActions: [
                 Kirigami.Action {
                     text: "Light Style"
-                    onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"
+                    onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"
                 },
                 Kirigami.Action {
                     text: "Dark Style"
-                    onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-dark.mapcss"
+                    onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-dark.mapcss"
                 },
                 Kirigami.Action {
                     text: "Diagnostic View"
-                    onTriggered: map.styleSheet = ":/org.kde.kosmindoormap/assets/css/diagnostic.mapcss"
+                    onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/diagnostic.mapcss"
                 }
             ]
         }
@@ -58,14 +48,14 @@ Kirigami.ApplicationWindow {
             QQC2.Label { text: "Floor Level:" }
             QQC2.ComboBox {
                 id: floorLevelCombo
-                model: map.floorLevels
+                model: page.map.floorLevels
                 textRole: "display"
-                Component.onCompleted: currentIndex = map.floorLevels.rowForLevel(map.view.floorLevel);
-                onCurrentIndexChanged: if (currentIndex >= 0) { map.view.floorLevel = map.floorLevels.levelForRow(currentIndex); }
+                currentIndex: page.map.floorLevels.rowForLevel(page.map.view.floorLevel);
+                onCurrentIndexChanged: if (currentIndex >= 0) { page.map.view.floorLevel = page.map.floorLevels.levelForRow(currentIndex); }
             }
             Connections {
-                target: map.view
-                onFloorLevelChanged: floorLevelCombo.currentIndex = map.floorLevels.rowForLevel(map.view.floorLevel);
+                target: page.map.view
+                onFloorLevelChanged: floorLevelCombo.currentIndex = page.map.floorLevels.rowForLevel(page.map.view.floorLevel);
             }
 
             QQC2.Slider {
@@ -76,12 +66,12 @@ Kirigami.ApplicationWindow {
                 Layout.preferredWidth: 200
 
                 onValueChanged: {
-                    map.view.setZoomLevel(value, Qt.point(map.width / 2.0, map.height/ 2.0));
+                    page.map.view.setZoomLevel(value, Qt.point(page.map.width / 2.0, page.map.height/ 2.0));
                 }
             }
             Connections {
-                target: map.view
-                onZoomLevelChanged: zoomSlider.value = map.view.zoomLevel
+                target: page.map.view
+                onZoomLevelChanged: zoomSlider.value = page.map.view.zoomLevel
             }
 
             QQC2.Label { text: "Coordinate:" }
@@ -100,74 +90,11 @@ Kirigami.ApplicationWindow {
                     var c = coordInput.text.match(/(.*)[,;/ ]+(.*)/);
                     var lat = c[1];
                     var lon = c[2];
-                    map.mapLoader.loadForCoordinate(lat, lon);
+                    page.map.mapLoader.loadForCoordinate(lat, lon);
                 }
             }
         }
 
-        Kirigami.OverlaySheet {
-            id: elementDetailsSheet
-            property var element
-
-            header: Kirigami.Heading {
-                text: elementDetailsSheet.element.name
-            }
-
-            ColumnLayout {
-                QQC2.Label {
-                    visible: text != ""
-                    text: elementDetailsSheet.element.tagValue("description");
-                }
-                QQC2.Label {
-                    visible: text != ""
-                    text: elementDetailsSheet.element.tagValue("amenity") + elementDetailsSheet.element.tagValue("shop") + elementDetailsSheet.element.tagValue("tourism") + elementDetailsSheet.element.tagValue("office")
-                }
-                QQC2.Label {
-                    visible: text != ""
-                    text: elementDetailsSheet.element.tagValue("opening_hours");
-                }
-                QQC2.Label {
-                    visible: elementDetailsSheet.element.tagValue("website") != ""
-                    text: "<a href=\"" + elementDetailsSheet.element.tagValue("website") + "\">" + elementDetailsSheet.element.tagValue("website") + "</a>"
-                    onLinkActivated: Qt.openUrlExternally(link)
-                }
-                QQC2.Label {
-                    visible: elementDetailsSheet.element.wikipediaUrl != ""
-                    text: "<a href=\"" + elementDetailsSheet.element.wikipediaUrl + "\">Wikipedia</a>"
-                    onLinkActivated: Qt.openUrlExternally(link)
-                }
-                QQC2.Label {
-                    text: elementDetailsSheet.element.tagValue("addr:street") + " " + elementDetailsSheet.element.tagValue("addr:housenumber") +
-                        "\n" + elementDetailsSheet.element.tagValue("addr:postcode") + " " + elementDetailsSheet.element.tagValue("addr:city") +
-                        "\n" + elementDetailsSheet.element.tagValue("addr:country");
-                }
-            }
-        }
-
-        IndoorMap {
-            id: map
-            anchors.fill: parent
-
-            IndoorMapScale {
-                view: map.view
-                anchors.left: map.left
-                anchors.bottom: map.bottom
-                width: 0.3 * map.width
-            }
-
-            IndoorMapAttributionLabel {
-                anchors.right: map.right
-                anchors.bottom: map.bottom
-            }
-
-            Component.onCompleted: {
-                map.mapLoader.loadForCoordinate(49.44572, 11.08196);
-            }
-
-            onElementPicked: {
-                elementDetailsSheet.element = element;
-                elementDetailsSheet.sheetOpen = true;
-            }
-        }
+        coordinate: Qt.point(11.08196, 49.44572);
     }
 }
