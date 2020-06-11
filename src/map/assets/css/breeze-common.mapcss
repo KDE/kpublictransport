@@ -154,7 +154,16 @@ way[railway=monorail]
 {
     color: #eff0f1;
     dashes: 2,2;
-    width: 1.5; // meter
+    width: 1.5m;
+    casing-width: 3;
+    casing-color: #31363b;
+    linecap: none;
+}
+way[railway=narrow_gauge]
+{
+    color: #eff0f1;
+    dashes: 2,2;
+    width: 1m;
     casing-width: 3;
     casing-color: #31363b;
     linecap: none;
