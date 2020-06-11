@@ -28,6 +28,44 @@ class MarbleGeometryAssemblerTest : public QObject
 {
     Q_OBJECT
 private Q_SLOTS:
+    void testLineMerge()
+    {
+        OSM::DataSet dataSet;
+        OSM::DataSetMergeBuffer mergeBuffer;
+        auto mxoidKey = dataSet.makeTagKey("mx:oid");
+
+        // -1,-1 -> 1,1 split at 0,0
+        ADD_NODE(1, -1.0, -1.0)
+        ADD_NODE(2, 1.0, 1.0)
+
+        ADD_NODE(-1, 0.0, 0.0)
+        ADD_NODE(-2, 0.0, 0.0)
+
+        {
+            OSM::Way w;
+            w.id = 42;
+            w.nodes = {1, -1};
+            dataSet.addWay(std::move(w));
+        }
+        {
+            OSM::Way w;
+            w.id = -23;
+            w.nodes = {-2, 2};
+            OSM::setTagValue(w, mxoidKey, QString::number(42));
+            mergeBuffer.ways.push_back(std::move(w));
+        }
+
+        MarbleGeometryAssembler assembler;
+        assembler.merge(&dataSet, &mergeBuffer);
+
+        QCOMPARE(dataSet.ways.size(), 1);
+        auto &way = dataSet.ways.front();
+        QCOMPARE(way.id, 42);
+        QCOMPARE(way.nodes.size(), 2);
+        QCOMPARE(way.isClosed(), false);
+        QCOMPARE(way.nodes, std::vector<OSM::Id>({1, 2}));
+    }
+
     void testAreaMerge1()
     {
         OSM::DataSet dataSet;

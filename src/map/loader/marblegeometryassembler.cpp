@@ -135,16 +135,19 @@ void MarbleGeometryAssembler::mergeLine(OSM::Way &way, OSM::Way &otherWay) const
         return;
     }
 
-    // TODO drop the extra synthetic nodes
-    way.nodes.reserve(way.nodes.size() + otherWay.nodes.size());
+    way.nodes.reserve(way.nodes.size() + otherWay.nodes.size() - 2);
     if (fuzzyEquals(end1->coordinate, begin2->coordinate)) {
-        std::copy(otherWay.nodes.begin(), otherWay.nodes.end(), std::back_inserter(way.nodes));
+        way.nodes.pop_back();
+        std::copy(std::next(otherWay.nodes.begin()), otherWay.nodes.end(), std::back_inserter(way.nodes));
     } else if (fuzzyEquals(end1->coordinate, end2->coordinate)) {
-        std::copy(otherWay.nodes.rbegin(), otherWay.nodes.rend(), std::back_inserter(way.nodes));
+        way.nodes.pop_back();
+        std::copy(std::next(otherWay.nodes.rbegin()), otherWay.nodes.rend(), std::back_inserter(way.nodes));
     } else if (fuzzyEquals(begin1->coordinate, end2->coordinate)) {
-        way.nodes.insert(way.nodes.begin(), otherWay.nodes.begin(), otherWay.nodes.end());
+        way.nodes.erase(way.nodes.begin());
+        way.nodes.insert(way.nodes.begin(), otherWay.nodes.begin(), std::prev(otherWay.nodes.end()));
     } else if (fuzzyEquals(begin1->coordinate, begin2->coordinate)) {
-        way.nodes.insert(way.nodes.begin(), otherWay.nodes.rbegin(), otherWay.nodes.rend());
+        way.nodes.erase(way.nodes.begin());
+        way.nodes.insert(way.nodes.begin(), otherWay.nodes.rbegin(), std::prev(otherWay.nodes.rend()));
     } else {
         qDebug() << "unable to merge line:" << begin1->coordinate << end1->coordinate << begin2->coordinate << end2->coordinate;
         return;
