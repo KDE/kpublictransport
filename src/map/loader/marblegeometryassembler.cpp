@@ -306,19 +306,23 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
     // multi-polygons can exist entirely out of synthetic polygons, e.g. if the source was a set of lines rather than closed polygons
     // merging those would not have happened before (as we wouldn't know what to merge it with), so we need to do this here
     if (OSM::tagValue(relation, m_typeKey) == QLatin1String("multipolygon")) {
-        for (auto it = relation.members.begin(); it != relation.members.end(); ++it) {
+        for (auto it = relation.members.begin(); it != relation.members.end();) {
             if ((*it).id > 0 || (*it).type != OSM::Type::Way) {
+                ++it;
                 continue;
             }
             if ((*it).role != QLatin1String("outer") && (*it).role != QLatin1String("inner")) {
+                ++it;
                 continue;
             }
 
             auto way = wayForId((*it).id);
             if (!way || !way->isClosed()) {
+                ++it;
                 continue;
             }
 
+            bool merged = false;
             for (auto it2 = std::next(it); it2 != relation.members.end(); ++it2) {
                 if ((*it2).id > 0 || (*it2).type != OSM::Type::Way || (*it2).role != (*it).role) {
                     continue;
@@ -332,8 +336,12 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
                 way->nodes = mergeArea(*way, *otherWay);
                 if (otherWay->nodes.empty()) {
                     relation.members.erase(it2);
+                    merged = true;
                     break;
                 }
+            }
+            if (!merged) {
+                ++it;
             }
         }
     }
