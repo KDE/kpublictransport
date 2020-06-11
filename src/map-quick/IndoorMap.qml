@@ -45,6 +45,7 @@ Item {
     Flickable {
         id: flickable
         boundsBehavior: Flickable.StopAtBounds
+        clip: true
         contentX: map.view.panX
         contentY: map.view.panY
         contentWidth: map.view.panWidth
