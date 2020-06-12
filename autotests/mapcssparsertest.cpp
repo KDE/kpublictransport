@@ -37,6 +37,23 @@ private Q_SLOTS:
         QVERIFY(outFile.open(QFile::WriteOnly));
         style.write(&outFile);
     }
+
+    void testBuiltInStyles_data()
+    {
+        QTest::addColumn<QString>("style");
+
+        QTest::newRow("common") << QStringLiteral(SOURCE_DIR "/../src/map/assets/css/breeze-common.mapcss");
+        QTest::newRow("light") << QStringLiteral(SOURCE_DIR "/../src/map/assets/css/breeze-light.mapcss");
+        QTest::newRow("dark") << QStringLiteral(SOURCE_DIR "/../src/map/assets/css/breeze-dark.mapcss");
+        QTest::newRow("diagnostic") << QStringLiteral(SOURCE_DIR "/../src/map/assets/css/diagnostic.mapcss");
+    }
+    void testBuiltInStyles()
+    {
+        QFETCH(QString, style);
+        MapCSSParser p;
+        const auto s = p.parse(style);
+        QVERIFY(!p.hasError());
+    }
 };
 
 QTEST_GUILESS_MAIN(MapCSSParserTest)
