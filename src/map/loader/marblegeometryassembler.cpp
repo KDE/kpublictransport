@@ -19,7 +19,7 @@
 
 using namespace KOSMIndoorMap;
 
-enum { NodeMatchDistance = 11 }; // in 1e7th of a degree
+enum { NodeMatchDistance = 46 }; // in 1e7th of a degree
 
 /** Compare two coordinate while accounting for floating point noise. */
 static bool fuzzyEquals(OSM::Coordinate lhs, OSM::Coordinate rhs)
