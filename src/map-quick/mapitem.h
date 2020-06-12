@@ -67,6 +67,7 @@ protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
 
 private:
+    void clear();
     void loaderDone();
 
     MapLoader *m_loader = nullptr;

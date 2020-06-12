@@ -65,7 +65,7 @@ void SceneController::updateScene(SceneGraph &sg) const
     sgUpdateTimer.start();
 
     // check if we are set up completely yet (we can't rely on a defined order with QML)
-    if (!m_data || !m_view || !m_styleSheet) {
+    if (!m_view || !m_styleSheet) {
         return;
     }
 
@@ -79,6 +79,11 @@ void SceneController::updateScene(SceneGraph &sg) const
 
     sg.beginSwap();
     updateCanvas(sg);
+
+    if (!m_data) { // if we don't have map data yet, we just need to get canvas styling here
+        sg.endSwap();
+        return;
+    }
 
     // find all intermediate levels below or above the currently selected "full" level
     auto it = m_data->m_levelMap.find(MapLevel(m_view->level()));

@@ -33,6 +33,7 @@ MapItem::MapItem(QQuickItem *parent)
     , m_view(new View(this))
     , m_floorLevelModel(new FloorLevelModel(this))
 {
+    connect(m_loader, &MapLoader::isLoadingChanged, this, &MapItem::clear);
     connect(m_loader, &MapLoader::done, this, &MapItem::loaderDone);
 
     m_view->setScreenSize({100, 100}); // FIXME this breaks view when done too late!
@@ -126,4 +127,16 @@ OSMElement MapItem::elementAt(double x, double y) const
         return OSMElement(item->element);
     }
     return {};
+}
+
+void MapItem::clear()
+{
+    if (!m_loader->isLoading() || m_sg.items().empty()) {
+        return;
+    }
+
+    m_sg.clear();
+    m_controller.setDataSet(nullptr);
+    m_data = MapData();
+    update();
 }
