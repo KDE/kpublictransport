@@ -83,7 +83,7 @@ Kirigami.Page {
         anchors.fill: parent
 
         IndoorMapScale {
-            view: map.view
+            map: map
             anchors.left: map.left
             anchors.bottom: map.bottom
             width: 0.3 * map.width

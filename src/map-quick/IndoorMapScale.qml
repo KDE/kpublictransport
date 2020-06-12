@@ -20,9 +20,10 @@ import QtQuick.Controls 2.12 as QQC2
 
 Item {
     id: root
-    property var view
+    property var map
 
     implicitHeight: background.height
+    visible: !map.mapLoader.isLoading
 
     property int __margin: 2
 
@@ -62,7 +63,7 @@ Item {
     Component.onCompleted: root.updateScale()
 
     Connections {
-        target: root.view
+        target: root.map.view
         onTransformationChanged: root.updateScale();
     }
 }
