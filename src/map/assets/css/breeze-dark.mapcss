@@ -84,9 +84,12 @@ relation[type=multipolygon][building:part=yes]
     fill-color: #80bdc3c7;
 }
 
+area[indoor=area],
 area[indoor=corridor],
+area[building:part=floor],
 area[stairwell],
 relation[type=multipolygon][indoor=corridor],
+relation[type=multipolygon][building:part=floor],
 area[tunnel]
 {
     fill-color: #bdc3c7;
@@ -141,6 +144,7 @@ line[public_transport=platform]
 }
 
 /** Specific elements */
+area[amenity=toilets],
 area[room=toilets],
 relation[type=multipolygon][room=toilets]
 {

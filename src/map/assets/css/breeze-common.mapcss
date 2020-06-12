@@ -178,10 +178,16 @@ way[railway=rail][service=yard]
 /** Buildings */
 area[building],
 area[building:part=yes],
-area[indoor=area]
-relation[type=multipolygon][indoor=area]
+area[building:part=floor],
+area[indoor=area],
+area[indoor=corridor],
+area[stairwell],
+area[tunnel],
+relation[type=multipolygon][indoor=area],
+relation[type=multipolygon][indoor=corridor],
 relation[type=multipolygon][building],
-relation[type=multipolygon][building:part=yes]
+relation[type=multipolygon][building:part=yes],
+relation[type=multipolygon][building:part=floor]
 {
     z-index: -1;
 }
@@ -323,6 +329,7 @@ node|z18-[public_transport=platform_section_sign]
 /** icons */
 node|z18-[vending=public_transport_tickets] { text: "🎫"; }
 
+area|z18-[amenity=toilets],
 area|z18-[room=toilets],
 relation|z16-[type=multipolygon][room=toilets],
 node|z18-[amenity=toilets]
