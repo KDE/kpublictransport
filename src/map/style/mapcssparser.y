@@ -103,6 +103,7 @@ using namespace KOSMIndoorMap;
 %token T_COMMA
 %token T_SPACE
 %token T_DASH
+%token T_PLUS
 %token T_STAR
 %token T_ZOOM
 %token T_UNARY_OP
@@ -127,6 +128,7 @@ using namespace KOSMIndoorMap;
 %type <declaration> Declaration
 %type <strRef> PropertyName
 %type <declaration> PropertyValue
+%type <doubleVal> DoubleValue
 
 %destructor { free($$); } <str>
 %destructor { delete $$; } <rule>
@@ -222,7 +224,7 @@ Test: T_LBRACKET Condition T_RBRACKET { $$ = $2; };
 // TODO incomplete: unary ops, quoted names, regexps
 Condition:
   Key T_BINARY_OP T_IDENT { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3.str, $3.len); }
-| Key T_BINARY_OP T_DOUBLE { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3); }
+| Key T_BINARY_OP DoubleValue { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3); }
 | Key { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); }
 ;
 
@@ -248,10 +250,16 @@ PropertyName:
 PropertyValue:
   T_IDENT { $$ = new MapCSSDeclaration; $$->setIdentifierValue($1.str, $1.len); }
 | T_HEX_COLOR { $$ = new MapCSSDeclaration; $$->setColorRgba($1); }
-| T_DOUBLE T_IDENT { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); $$->setUnit($2.str, $2.len); }
-| T_DOUBLE { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); }
+| DoubleValue T_IDENT { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); $$->setUnit($2.str, $2.len); }
+| DoubleValue { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); }
 | T_DOUBLE T_COMMA T_DOUBLE { $$ = new MapCSSDeclaration; $$->setDashesValue({$1, $3}); } // generalize to n dash distances
 | T_STRING { $$ = new MapCSSDeclaration; $$->setStringValue($1); }
+;
+
+DoubleValue:
+  T_DOUBLE { $$ = $1; }
+| T_DASH T_DOUBLE { $$ = -$2; }
+| T_PLUS T_DOUBLE { $$ = $2; }
 ;
 
 %%

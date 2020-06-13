@@ -52,8 +52,8 @@ HEX         [a-fA-F0-9]
 HEXCOLOR6   "#"{HEX}{6}
 HEXCOLOR8   "#"{HEX}{8}
 
-INTEGER     [-+]?[0-9]+
-DOUBLE      {INTEGER}|[-+]?([0-9]+[.][0-9]*|[0-9]*[.][0-9]+)([eE][-+]?[0-9]+)?
+INTEGER     [0-9]+
+DOUBLE      {INTEGER}|([0-9]+[.][0-9]*|[0-9]*[.][0-9]+)([eE][-+]?[0-9]+)?
 STRING_ELEMENT  [^\\"]|"\\\""|"\\\\"|"\\n"|"\\t"
 STRING      ["]{STRING_ELEMENT}*["]
 
@@ -75,6 +75,7 @@ STRING      ["]{STRING_ELEMENT}*["]
 "," { return T_COMMA; }
 " " { return T_SPACE; }
 "-" { return T_DASH; }
+"+" { return T_PLUS; }
 "|z" { return T_ZOOM; }
 "*" { return T_STAR; }
 

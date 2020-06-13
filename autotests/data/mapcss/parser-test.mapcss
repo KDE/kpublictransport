@@ -39,12 +39,11 @@ line {
 }
 
 // zoom ranges
-// TODO: some of this doesn't really work yet
-// node|z12-13 {}
+node|z12-13 {}
 node|z10 {}
 node|z-10 {}
 node|z10- {}
-//node|z12-13[name] {}
+node|z12-13[name] {}
 node|z14-[name] {}
 
 // font properties
@@ -72,4 +71,9 @@ area[indoor=area] {
     font-size: 16pt;
     width: 42px;
     casing-width: 2m;
+}
+
+// numbers
+* {
+    width: -10.42;
 }
