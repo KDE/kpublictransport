@@ -70,6 +70,15 @@ QString MapCSSParser::fileName() const
     return m_currentFileName;
 }
 
+QString MapCSSParser::errorMessage() const
+{
+    if (!m_error) {
+        return {};
+    }
+
+    return m_errorMsg + QLatin1String(": ") + fileName() + QLatin1Char(':') + QString::number(m_line) + QLatin1Char(':') + QString::number(m_column);
+}
+
 MapCSSStyle MapCSSParser::parse(const QString &fileName)
 {
     m_error = true;
@@ -88,6 +97,8 @@ void MapCSSParser::parse(MapCSSStyle *style, const QString &fileName)
     QFile f(fileName);
     if (!f.open(QFile::ReadOnly)) {
         qWarning() << f.fileName() << f.errorString();
+        m_error = true;
+        m_errorMsg = f.errorString();
         return;
     }
     m_currentFileName = fileName;
@@ -103,6 +114,7 @@ void MapCSSParser::parse(MapCSSStyle *style, const QString &fileName)
     YY_BUFFER_STATE state;
     state = yy_scan_string(b.constData(), scanner);
     if (yyparse(this, scanner)) {
+        m_error = true;
         return;
     }
 
@@ -112,7 +124,7 @@ void MapCSSParser::parse(MapCSSStyle *style, const QString &fileName)
     m_currentStyle = nullptr;
 }
 
-void MapCSSParser::addImport(char* fileName)
+bool MapCSSParser::addImport(char* fileName)
 {
     auto cssFile = QString::fromUtf8(fileName);
     free(fileName);
@@ -123,9 +135,22 @@ void MapCSSParser::addImport(char* fileName)
 
     MapCSSParser p;
     p.parse(m_currentStyle, cssFile);
+    if (p.hasError()) {
+        m_error = p.m_error;
+        m_errorMsg = p.errorMessage();
+    }
+    return !p.hasError();
 }
 
 void MapCSSParser::addRule(MapCSSRule *rule)
 {
     m_currentStyle->m_rules.push_back(std::unique_ptr<MapCSSRule>(rule));
+}
+
+void MapCSSParser::setError(const QString &msg, int line, int column)
+{
+    m_error = true;
+    m_errorMsg = msg;
+    m_line = line;
+    m_column = column;
 }

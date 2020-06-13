@@ -32,6 +32,8 @@ Item {
     property alias floorLevels: map.floorLevels
     /** Access to the view transformation and floor level selection. */
     property alias view: map.view
+    /** There is something preventing displaying a map. */
+    property alias hasError: map.hasError
 
     /** Emitted when a map element has been picked by clicking/tapping on it. */
     signal elementPicked(var element);
@@ -124,5 +126,14 @@ Item {
     QQC2.BusyIndicator {
         anchors.centerIn: parent
         running: map.loader.isLoading
+    }
+
+    QQC2.Label {
+        anchors.fill: parent
+        text: map.errorMessage
+        visible: map.hasError
+        wrapMode: Text.WordWrap
+        horizontalAlignment: Qt.AlignHCenter
+        verticalAlignment: Qt.AlignVCenter
     }
 }

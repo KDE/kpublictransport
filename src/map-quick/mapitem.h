@@ -43,6 +43,11 @@ class MapItem : public QQuickPaintedItem
     Q_PROPERTY(KOSMIndoorMap::View* view READ view CONSTANT)
     Q_PROPERTY(QString styleSheet READ styleSheetName WRITE setStylesheetName NOTIFY styleSheetChanged)
     Q_PROPERTY(KOSMIndoorMap::FloorLevelModel* floorLevels READ floorLevelModel CONSTANT)
+
+    /** There's a loading error (data not found, network issue, broken style sheet, etc). */
+    Q_PROPERTY(bool hasError READ hasError NOTIFY errorChanged)
+    /** Details on the error. */
+    Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorChanged)
 public:
     explicit MapItem(QQuickItem *parent = nullptr);
     ~MapItem();
@@ -59,9 +64,13 @@ public:
 
     Q_INVOKABLE KOSMIndoorMap::OSMElement elementAt(double x, double y) const;
 
+    bool hasError() const;
+    QString errorMessage() const;
+
 Q_SIGNALS:
     void styleSheetChanged();
     void currentFloorLevelChanged();
+    void errorChanged();
 
 protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
@@ -79,6 +88,7 @@ private:
     SceneController m_controller;
     PainterRenderer m_renderer;
     FloorLevelModel *m_floorLevelModel = nullptr;
+    QString m_errorMessage;
 };
 
 }

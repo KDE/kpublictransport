@@ -81,6 +81,13 @@ void MapItem::setStylesheetName(const QString &styleSheet)
 
     MapCSSParser cssParser;
     m_style = cssParser.parse(m_styleSheetName);
+
+    if (cssParser.hasError()) {
+        m_errorMessage = cssParser.errorMessage();
+        emit errorChanged();
+        return;
+    }
+
     m_style.compile(m_data.dataSet());
     m_controller.setStyleSheet(&m_style);
 
@@ -139,4 +146,14 @@ void MapItem::clear()
     m_controller.setDataSet(nullptr);
     m_data = MapData();
     update();
+}
+
+bool MapItem::hasError() const
+{
+    return !m_errorMessage.isEmpty();
+}
+
+QString MapItem::errorMessage() const
+{
+    return m_errorMessage;
 }

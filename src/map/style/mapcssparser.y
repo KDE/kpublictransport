@@ -24,12 +24,11 @@
 #include "style/mapcssselector.h"
 #include "style/mapcssstyle.h"
 
-#include <stdio.h>
-
 void yyerror(YYLTYPE *loc, KOSMIndoorMap::MapCSSParser *parser, yyscan_t scanner, char const* msg)
 {
     (void)scanner;
-    printf("PARSER ERROR: %s at %s:%d:%d\n", msg, qPrintable(parser->fileName()), loc->first_line, loc->first_column);
+    qWarning() << "PARSER ERROR:" << msg << "in" << parser->fileName() << "line:" << loc->first_line << "column:" << loc->first_column;
+    parser->setError(QString::fromUtf8(msg), loc->first_line, loc->first_column);
 }
 
 using namespace KOSMIndoorMap;
@@ -155,9 +154,12 @@ Rule:
 | Import { $$ = nullptr; }
 ;
 
-// TODO propagate errors
 Import:
-  T_KEYWORD_IMPORT T_KEYWORD_URL T_LPAREN T_STRING T_RPAREN T_SEMICOLON { parser->addImport($4); }
+  T_KEYWORD_IMPORT T_KEYWORD_URL T_LPAREN T_STRING T_RPAREN T_SEMICOLON {
+    if (!parser->addImport($4)) {
+        YYABORT;
+    }
+  }
 | T_KEYWORD_IMPORT T_KEYWORD_URL T_LPAREN T_STRING T_RPAREN T_IDENT T_SEMICOLON { parser->addImport($4); }
 ;
 

@@ -23,7 +23,7 @@ Item {
     property var map
 
     implicitHeight: background.height
-    visible: !map.mapLoader.isLoading
+    visible: !map.mapLoader.isLoading && !map.hasError
 
     property int __margin: 2
 

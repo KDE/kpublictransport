@@ -53,6 +53,7 @@ private Q_SLOTS:
         MapCSSParser p;
         const auto s = p.parse(style);
         QVERIFY(!p.hasError());
+        QVERIFY(p.errorMessage().isEmpty());
     }
 };
 
