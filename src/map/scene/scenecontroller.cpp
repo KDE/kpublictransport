@@ -42,8 +42,13 @@ SceneController::~SceneController() = default;
 void SceneController::setDataSet(const MapData *data)
 {
     m_data = data;
-    m_layerTag = data->dataSet().tagKey("layer");
-    m_typeTag = data->dataSet().tagKey("type");
+    if (m_data) {
+        m_layerTag = data->dataSet().tagKey("layer");
+        m_typeTag = data->dataSet().tagKey("type");
+    } else {
+        m_layerTag = {};
+        m_typeTag = {};
+    }
     m_dirty = true;
 }
 
