@@ -83,15 +83,22 @@ OSM::BoundingBox BoundarySearch::boundingBox(const OSM::DataSet& dataSet)
     OSM::BoundingBox bbox = m_bbox;
     OSM::for_each(dataSet, [&](OSM::Element e) {
         // TODO cache the remaining tag keys here too
-        const bool isStation = (e.tagValue(railwayTag) == QLatin1String("station")) || (e.tagValue(buildingTag) == QLatin1String("train_station") || e.tagValue("public_transport") == QLatin1String("platform"));
+        const auto railwayValue = e.tagValue(railwayTag);
+        const bool isStation = railwayValue == QLatin1String("station")
+            || railwayValue == QLatin1String("platform")
+            || e.tagValue(buildingTag) == QLatin1String("train_station")
+            || e.tagValue("public_transport") == QLatin1String("platform");
         const bool isAirport = (e.tagValue(aerowayTag) == QLatin1String("aerodrome"));
         if (!isStation && !isAirport) {
             return;
         }
-        if (!e.boundingBox().isValid()) {
-            e.recomputeBoundingBox(dataSet);
-        }
-        if (OSM::intersects(e.boundingBox(), m_bbox) || m_relevantIds.count(actualId(e, mxoidTag))) {
+
+        e.recomputeBoundingBox(dataSet); // unconditionally as this obviously grows as we load more data
+
+        if (m_relevantIds.count(actualId(e, mxoidTag))) {
+            m_bbox = OSM::unite(m_bbox, e.boundingBox());
+            bbox = OSM::unite(m_bbox, bbox);
+        } else if (OSM::intersects(e.boundingBox(), m_bbox)) {
             bbox = OSM::unite(bbox, e.boundingBox());
         }
     }, OSM::IncludeRelations | OSM::IncludeWays);
