@@ -13,6 +13,7 @@
         "Description[nl]": "Lokaal openbaar vervoer in Baden-Württemberg, Duitsland.",
         "Description[pt]": "Transportes públicos em Baden-Württemberg, Alemanha.",
         "Description[pt_BR]": "Transporte público em Baden-Württemberg, Alemanha.",
+        "Description[sl]": "Javni prevoz v deželi Baden-Württemberg v Nemčiji.",
         "Description[sv]": "Kollektivtrafik i Baden-Württemberg, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у землі Баден-Вюртемберґ, Німеччина.",
         "Description[x-test]": "xxPublic transport in Baden-Württemberg, Germany.xx",
@@ -28,6 +29,7 @@
         "Name[nl]": "bwegt",
         "Name[pt]": "bwegt",
         "Name[pt_BR]": "bwegt",
+        "Name[sl]": "bwegt",
         "Name[sv]": "bwegt",
         "Name[uk]": "bwegt",
         "Name[x-test]": "xxbwegtxx"

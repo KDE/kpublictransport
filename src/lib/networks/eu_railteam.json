@@ -13,6 +13,7 @@
         "Description[pl]": "Połączona usługa europejskich, państwowych operatorów kolejowych",
         "Description[pt]": "Serviço conjunto de operadores de caminhos de ferro nacionais europeus.",
         "Description[pt_BR]": "Serviço conjunto dos operadores ferroviários nacionais europeus.",
+        "Description[sl]": "Skupna služba evropskih nacionalnih železniških prevoznikov.",
         "Description[sv]": "Gemensam tjänst för europeiska nationella järnvägsoperatörer.",
         "Description[uk]": "Загальна служба європейських державних операторів залізниць.",
         "Description[x-test]": "xxJoint service of European national railway operators.xx",
@@ -31,6 +32,7 @@
         "Name[pt]": "Railteam",
         "Name[pt_BR]": "Railteam",
         "Name[sk]": "Railteam",
+        "Name[sl]": "Railteam",
         "Name[sv]": "Railteam",
         "Name[uk]": "Railteam",
         "Name[x-test]": "xxRailteamxx"

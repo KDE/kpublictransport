@@ -14,6 +14,7 @@
         "Description[pt]": "Transportes locais na Nova Gales do Sul, Austrália.",
         "Description[pt_BR]": "Transporte local em Nova Gales do Sul, Austrália.",
         "Description[ru]": "Местный транспорт в Новом Южном Уэльсе, Австралия.",
+        "Description[sl]": "Lokalni prevoz v Novem Južnem Walesu v Avstraliji.",
         "Description[sv]": "Lokal transportoperatör i Nya Sydwales, Australien.",
         "Description[uk]": "Місцевий транспорт у Новому Південному Уельсі, Австралія.",
         "Description[x-test]": "xxLocal transport in New South Wales, Australia.xx",
@@ -29,6 +30,7 @@
         "Name[pl]": "Transport for NSW",
         "Name[pt]": "Transporte para a NSW",
         "Name[pt_BR]": "Transport for NSW",
+        "Name[sl]": "Transport for NSW",
         "Name[sv]": "Transport for NSW",
         "Name[uk]": "Транспорт у Новому Південному Уельсі",
         "Name[x-test]": "xxTransport for NSWxx"

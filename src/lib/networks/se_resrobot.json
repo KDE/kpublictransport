@@ -13,6 +13,7 @@
         "Description[pl]": "Informacje o publicznym transporcie w Szwecji.",
         "Description[pt]": "Informação de transportes públicos da Suécia.",
         "Description[pt_BR]": "Informações sobre transportes públicos na Suécia.",
+        "Description[sl]": "Informacije o javnem prevozu na Švedskem.",
         "Description[sv]": "Information om kollektivtrafik i Sverige.",
         "Description[uk]": "Дані щодо громадського транспорту у Швеції.",
         "Description[x-test]": "xxPublic transport information for Sweden.xx",
@@ -31,6 +32,7 @@
         "Name[pt]": "Resrobot",
         "Name[pt_BR]": "Resrobot",
         "Name[sk]": "Resrobot",
+        "Name[sl]": "Resrobot",
         "Name[sv]": "Resrobot",
         "Name[uk]": "Resrobot",
         "Name[x-test]": "xxResrobotxx"
