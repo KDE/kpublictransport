@@ -48,9 +48,9 @@ IDENTIFIER  {INITIAL}{SUBSEQUENT}*
 SPACE       [ \t\r]+
 
 HEX         [a-fA-F0-9]
-/* TODO: HEXCOLOR3 */
-HEXCOLOR6   "#"{HEX}{6}
 HEXCOLOR8   "#"{HEX}{8}
+HEXCOLOR6   "#"{HEX}{6}
+HEXCOLOR3   "#"{HEX}{3}
 
 INTEGER     [0-9]+
 DOUBLE      {INTEGER}|([0-9]+[.][0-9]*|[0-9]*[.][0-9]+)([eE][-+]?[0-9]+)?
@@ -101,6 +101,11 @@ STRING      ["]{STRING_ELEMENT}*["]
 }
 {HEXCOLOR6}  {
     yylval->uintVal = 0xff000000 | strtol(yytext + 1, nullptr, 16);
+    return T_HEX_COLOR;
+}
+{HEXCOLOR3}  {
+    const int n = strtol(yytext + 1, nullptr, 16);
+    yylval->uintVal = 0xff000000 | (n & 0xf00) << 12 | (n & 0xf00) << 8 | (n & 0x0f0) << 8 | (n & 0x0f0) << 4 | (n & 0x00f) << 4 | (n & 0x00f) << 0;
     return T_HEX_COLOR;
 }
 
