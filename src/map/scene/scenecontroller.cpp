@@ -304,15 +304,23 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     case MapCSSDeclaration::TextOffset:
                         item->offset = decl->doubleValue();
                         break;
+                    case MapCSSDeclaration::MaxWidth:
+                        item->maxWidth = decl->intValue();
+                        break;
                     case MapCSSDeclaration::IconImage:
                         item->icon = QIcon::fromTheme(decl->stringValue()); // TODO icon urls
-                        qDebug() << "icon:" << decl->stringValue() << item->icon;
                         break;
                     case MapCSSDeclaration::IconHeight:
                         item->iconSize.setHeight(decl->doubleValue()); // TODO percent sizes
                         break;
                     case MapCSSDeclaration::IconWidth:
                         item->iconSize.setWidth(decl->doubleValue()); // TODO percent sizes
+                        break;
+                    case MapCSSDeclaration::TextHaloColor:
+                        item->haloColor = decl->colorValue();
+                        break;
+                    case MapCSSDeclaration::TextHaloRadius:
+                        item->haloRadius = decl->doubleValue();
                         break;
                     default:
                         break;

@@ -175,10 +175,15 @@ void PainterRenderer::renderPolyline(PolylineItem *item, SceneGraphItemPayload::
 
 void PainterRenderer::renderLabel(LabelItem *item)
 {
+    m_painter->save();
+    m_painter->translate(m_view->mapSceneToScreen(item->pos));
+    m_painter->rotate(item->angle);
+
+    int textFlags = Qt::AlignHCenter | (item->maxWidth > 0.0 ? Qt::TextWordWrap : Qt::TextSingleLine);
     if (!item->hasFineBbox) {
         if (!item->text.isEmpty()) {
-            QFontMetricsF fm(item->font);
-            item->bbox = fm.boundingRect(item->text);
+            m_painter->setFont(item->font);
+            item->bbox = m_painter->boundingRect(QRectF(QPointF(0.0, 0.0), QSizeF(item->maxWidth, 0.0)), textFlags, item->text);
         } else {
             item->bbox = QRectF();
         }
@@ -190,10 +195,6 @@ void PainterRenderer::renderLabel(LabelItem *item)
         item->bbox.moveCenter(item->pos);
         item->hasFineBbox = true;
     }
-
-    m_painter->save();
-    m_painter->translate(m_view->mapSceneToScreen(item->pos));
-    m_painter->rotate(item->angle);
 
     auto box = item->bbox;
     box.moveCenter({0.0, item->offset});
@@ -224,7 +225,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     if (!item->text.isEmpty()) {
         m_painter->setPen(item->color);
         m_painter->setFont(item->font);
-        m_painter->drawText(box.bottomLeft() - QPointF(0, QFontMetricsF(item->font).descent()), item->text);
+        m_painter->drawText(box, textFlags, item->text);
     }
 
     m_painter->restore();

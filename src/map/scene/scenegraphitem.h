@@ -159,9 +159,13 @@ public:
 
     mutable QRectF bbox;
     bool hasFineBbox = false;
+    int maxWidth = 0;
 
     double angle = 0.0;
     double offset = 0.0;
+
+    QColor haloColor = Qt::transparent;
+    double haloRadius = 0.0;
 };
 
 

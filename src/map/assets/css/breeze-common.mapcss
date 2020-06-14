@@ -317,13 +317,16 @@ node|z18-[public_transport=platform_section_sign]
 }
 
 /** Shops/etc */
-*|z19- [shop],
-*|z19- [amenity=cafe],
-*|z19- [amenity=fast_food],
-*|z19- [amenity=restaurant],
+*|z20- [shop],
+*|z19- [shop=ticket],
+*|z20- [amenity=cafe],
+*|z20- [amenity=car_rental],
+*|z20- [amenity=fast_food],
+*|z20- [amenity=restaurant],
 *|z19- [tourism=information]
 {
     text: name;
+    max-width: 100;
 }
 
 /** icons */
