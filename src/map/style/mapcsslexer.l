@@ -88,6 +88,8 @@ STRING      ["]{STRING_ELEMENT}*["]
 
 "@import" { return T_KEYWORD_IMPORT; }
 "url"     { return T_KEYWORD_URL; }
+"rgba"    { return T_KEYWORD_RGBA; }
+"rgb"     { return T_KEYWORD_RGB; }
 
 {IDENTIFIER} {
     yylval->strRef.str = yytext;

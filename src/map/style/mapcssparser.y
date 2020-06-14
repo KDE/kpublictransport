@@ -110,6 +110,8 @@ using namespace KOSMIndoorMap;
 %token <binaryOp> T_BINARY_OP
 %token T_KEYWORD_IMPORT
 %token T_KEYWORD_URL
+%token T_KEYWORD_RGBA
+%token T_KEYWORD_RGB
 %token <strRef> T_IDENT
 %token <uintVal> T_HEX_COLOR
 %token <str> T_STRING
@@ -246,7 +248,7 @@ PropertyName:
 | T_IDENT T_DASH PropertyName { $$.str = $1.str; $$.len = $3.str - $1.str + $3.len; }
 ;
 
-// TODO incomplete: missing size, url, eval, color is simplified
+// TODO incomplete: missing size, url, eval
 PropertyValue:
   T_IDENT { $$ = new MapCSSDeclaration; $$->setIdentifierValue($1.str, $1.len); }
 | T_HEX_COLOR { $$ = new MapCSSDeclaration; $$->setColorRgba($1); }
@@ -254,6 +256,24 @@ PropertyValue:
 | DoubleValue { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); }
 | T_DOUBLE T_COMMA T_DOUBLE { $$ = new MapCSSDeclaration; $$->setDashesValue({$1, $3}); } // generalize to n dash distances
 | T_STRING { $$ = new MapCSSDeclaration; $$->setStringValue($1); }
+| T_KEYWORD_RGBA T_LPAREN T_DOUBLE[R] T_COMMA T_DOUBLE[G] T_COMMA T_DOUBLE[B] T_COMMA T_DOUBLE[A] T_RPAREN {
+    $$ = new MapCSSDeclaration;
+    uint32_t c = 0;
+    c |= (uint32_t)($A * 255.0) << 24;
+    c |= (uint32_t)($R * 255.0) << 16;
+    c |= (uint32_t)($G * 255.0) << 8;
+    c |= (uint32_t)($B * 255.0) << 0;
+    $$->setColorRgba(c);
+  }
+| T_KEYWORD_RGB T_LPAREN T_DOUBLE[R] T_COMMA T_DOUBLE[G] T_COMMA T_DOUBLE[B] T_RPAREN {
+    $$ = new MapCSSDeclaration;
+    uint32_t c = 0;
+    c |= 0xff << 24;
+    c |= (uint32_t)($R * 255.0) << 16;
+    c |= (uint32_t)($G * 255.0) << 8;
+    c |= (uint32_t)($B * 255.0) << 0;
+    $$->setColorRgba(c);
+  }
 ;
 
 DoubleValue:
