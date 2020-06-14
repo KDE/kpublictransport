@@ -111,10 +111,13 @@ void SceneController::updateScene(SceneGraph &sg) const
         }
     }
 
-    // for each level, update or create scene graph elements
+    // for each level, update or create scene graph elements, after a some basic bounding box check
+    const auto geoBbox = m_view->mapSceneToGeo(m_view->sceneBoundingBox());
     for (auto it = beginIt; it != endIt; ++it) {
         for (auto e : (*it).second) {
-            updateElement(e, (*it).first.numericLevel(), sg);
+            if (OSM::intersects(geoBbox, e.boundingBox())) {
+                updateElement(e, (*it).first.numericLevel(), sg);
+            }
         }
     }
 

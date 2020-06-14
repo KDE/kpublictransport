@@ -60,6 +60,13 @@ OSM::Coordinate View::mapSceneToGeo(QPointF p) const
     );
 }
 
+OSM::BoundingBox View::mapSceneToGeo(const QRectF &box) const
+{
+    const auto c1 = mapSceneToGeo(box.bottomLeft());
+    const auto c2 = mapSceneToGeo(box.topRight());
+    return OSM::BoundingBox(c1, c2);
+}
+
 int View::screenHeight() const
 {
     return m_screenSize.height();

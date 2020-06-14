@@ -63,6 +63,7 @@ public:
     QRectF mapGeoToScene(OSM::BoundingBox box) const;
     /** Map a scene coordinate to a geographic one, ie. apply the inverse mercator projection. */
     OSM::Coordinate mapSceneToGeo(QPointF p) const;
+    OSM::BoundingBox mapSceneToGeo(const QRectF &box) const;
 
     /** Screen-space sizes, ie the size of the on-screen area used for displaying. */
     int screenWidth() const;

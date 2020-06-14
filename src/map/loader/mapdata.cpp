@@ -106,6 +106,7 @@ void MapData::processElements()
     const auto repeatOnTag = m_dataSet.tagKey("repeat_on");
     OSM::for_each(m_dataSet, [this, levelTag, repeatOnTag](auto e) {
         // bbox computation
+        e.recomputeBoundingBox(m_dataSet);
         m_bbox = OSM::unite(e.boundingBox(), m_bbox);
 
         // level parsing

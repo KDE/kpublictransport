@@ -113,14 +113,14 @@ void PainterRenderer::beginPhase(SceneGraphItemPayload::RenderPhase phase)
         case SceneGraphItemPayload::FillPhase:
             m_painter->setPen(Qt::NoPen);
             m_painter->setTransform(m_view->sceneToScreenTransform());
-            m_painter->setClipRect(m_view->viewport());
+            m_painter->setClipRect(m_view->viewport().intersected(m_view->sceneBoundingBox()));
             m_painter->setRenderHint(QPainter::Antialiasing, false);
             break;
         case SceneGraphItemPayload::CasingPhase:
         case SceneGraphItemPayload::StrokePhase:
             m_painter->setBrush(Qt::NoBrush);
             m_painter->setTransform(m_view->sceneToScreenTransform());
-            m_painter->setClipRect(m_view->viewport());
+            m_painter->setClipRect(m_view->viewport().intersected(m_view->sceneBoundingBox()));
             m_painter->setRenderHint(QPainter::Antialiasing, true);
             break;
         case SceneGraphItemPayload::LabelPhase:
