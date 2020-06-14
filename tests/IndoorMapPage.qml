@@ -26,6 +26,11 @@ Kirigami.Page {
     property point coordinate
     property alias map: map
 
+    topPadding: 0
+    bottomPadding: 0
+    leftPadding: 0
+    rightPadding: 0
+
     actions {
         left: Kirigami.Action {
             iconName: "go-down-symbolic"

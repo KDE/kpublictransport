@@ -52,6 +52,7 @@ private:
     void renderMultiPolygon(MultiPolygonItem *item, SceneGraphItemPayload::RenderPhase phase);
     void renderPolyline(PolylineItem *item, SceneGraphItemPayload::RenderPhase phase);
     void renderLabel(LabelItem *item);
+    void renderForeground(const QColor &bgColor);
     void endRender();
 
     double mapToSceneWidth(double width, Unit unit) const;

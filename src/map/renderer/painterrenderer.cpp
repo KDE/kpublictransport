@@ -24,6 +24,7 @@
 #include <QElapsedTimer>
 #include <QFontMetricsF>
 #include <QGuiApplication>
+#include <QLinearGradient>
 #include <QPainter>
 
 using namespace KOSMIndoorMap;
@@ -89,6 +90,7 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
         }
     }
 
+    renderForeground(sg.backgroundColor());
     endRender();
     m_view = nullptr;
 
@@ -226,6 +228,44 @@ void PainterRenderer::renderLabel(LabelItem *item)
     }
 
     m_painter->restore();
+}
+
+void PainterRenderer::renderForeground(const QColor &bgColor)
+{
+    // fade out the map at the end of the scene box, to indicate you can't scroll further
+    m_painter->setClipRect(m_view->mapSceneToScreen(m_view->viewport()));
+    const auto borderWidth = 10;
+
+    QColor c(bgColor);
+    c.setAlphaF(0.75);
+    QLinearGradient gradient;
+    gradient.setColorAt(0, bgColor);
+    gradient.setColorAt(0.2, c);
+    gradient.setColorAt(1, Qt::transparent);
+
+    auto r = m_view->mapSceneToScreen(m_view->sceneBoundingBox());
+    r.setBottom(r.top() + borderWidth);
+    gradient.setStart(r.topLeft());
+    gradient.setFinalStop(r.bottomLeft());
+    m_painter->fillRect(r, gradient);
+
+    r = m_view->mapSceneToScreen(m_view->sceneBoundingBox());
+    r.setTop(r.bottom() - borderWidth);
+    gradient.setStart(r.bottomLeft());
+    gradient.setFinalStop(r.topLeft());
+    m_painter->fillRect(r, gradient);
+
+    r = m_view->mapSceneToScreen(m_view->sceneBoundingBox());
+    r.setRight(r.left() + borderWidth);
+    gradient.setStart(r.topLeft());
+    gradient.setFinalStop(r.topRight());
+    m_painter->fillRect(r, gradient);
+
+    r = m_view->mapSceneToScreen(m_view->sceneBoundingBox());
+    r.setLeft(r.right() - borderWidth);
+    gradient.setStart(r.topRight());
+    gradient.setFinalStop(r.topLeft());
+    m_painter->fillRect(r, gradient);
 }
 
 void PainterRenderer::endRender()

@@ -54,9 +54,6 @@ Item {
         contentHeight: map.view.panHeight
         anchors.fill: parent
 
-        Rectangle { color: "red"; width: 100; height: 100 }
-        Rectangle { color: "green"; width: 100; height: 100; x: flickable.contentWidth - width; y: flickable.contentHeight - height; }
-
         onContentXChanged: {
             if (moving) {
                 map.view.panTopLeft(flickable.contentX, flickable.contentY);

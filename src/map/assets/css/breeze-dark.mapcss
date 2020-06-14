@@ -20,12 +20,12 @@
 @import url("breeze-common.mapcss");
 
 canvas {
-    fill-color: #232629;
+    fill-color: #31363b;
     text-color: #eff0f1;
 }
 
 /** Generic outdoor stuff */
-area[amenity=parking] { fill-color: #31363b; }
+area[amenity=parking] { fill-color: #232629; }
 area[building],
 area[man_made=bridge],
 relation[type=multipolygon][man_made=bridge],
@@ -139,7 +139,7 @@ relation[type=multipolygon][railway=platform]
 
 line[public_transport=platform]
 {
-    color: #31363b;
+    color: #232629;
     width: 1.5; // meter
 }
 
