@@ -148,6 +148,9 @@ QString MapCSSDeclaration::stringValue() const
 
 QColor MapCSSDeclaration::colorValue() const
 {
+    if (!m_colorValue.isValid() && !m_stringValue.isEmpty()) {
+        return QColor(m_stringValue);
+    }
     return m_colorValue;
 }
 
@@ -299,6 +302,10 @@ void MapCSSDeclaration::write(QIODevice *out) const
             out->write(QByteArray::number(d));
             out->write(", ");
         }
+    } else if (!m_stringValue.isEmpty()) {
+        out->write("\"");
+        out->write(m_stringValue.toUtf8()); // this would need to be quoted...
+        out->write("\"");
     } else {
         out->write(m_identValue);
     }
