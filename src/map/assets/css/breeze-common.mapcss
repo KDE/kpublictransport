@@ -200,7 +200,7 @@ relation[type=multipolygon][building=roof]
 
 
 /** Airports */
-way|z15-[aeroway=runway]
+way|z14-[aeroway=runway]
 {
     color: #eff0f1;
     width: 2px;
@@ -212,7 +212,7 @@ way|z15-[aeroway=runway]
     shield-color: #fdbc4b;
     z-index: -10;
 }
-way|z15-[aeroway=runway][width]
+way|z14-[aeroway=runway][width]
 {
     casing-width: width;
 }
@@ -221,7 +221,7 @@ area|z15-[aeroway=helipad]
     text: "H";
     fill-color: #95a5a6;
 }
-way|z15-[aeroway=taxiway]
+way|z14-[aeroway=taxiway]
 {
     color: #fdbc4b;
     width: 1px;
@@ -229,7 +229,7 @@ way|z15-[aeroway=taxiway]
     casing-color: #95a5a6;
     z-index: -20;
 }
-way|z15-[aeroway=taxiway][width]
+way|z14-[aeroway=taxiway][width]
 {
     casing-width: width;
 }
