@@ -184,6 +184,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     int textFlags = Qt::AlignHCenter | (item->maxWidth > 0.0 ? Qt::TextWordWrap : Qt::TextSingleLine);
     if (!item->hasFineBbox) {
         if (!item->text.isEmpty()) {
+            m_painter->setPen(item->color);
             m_painter->setFont(item->font);
             item->bbox = m_painter->boundingRect(QRectF(QPointF(0.0, 0.0), QSizeF(item->maxWidth, 0.0)), textFlags, item->text);
         } else {
