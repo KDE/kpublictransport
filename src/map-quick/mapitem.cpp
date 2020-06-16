@@ -24,6 +24,7 @@
 #include <QGuiApplication>
 #include <QPainter>
 #include <QPalette>
+#include <QQuickWindow>
 
 using namespace KOSMIndoorMap;
 
@@ -104,7 +105,9 @@ void MapItem::geometryChanged(const QRectF &newGeometry, const QRectF &oldGeomet
 {
     QQuickPaintedItem::geometryChanged(newGeometry, oldGeometry);
     m_view->setScreenSize(newGeometry.size().toSize());
-    qDebug() << newGeometry << m_view->zoomLevel();
+    // the scale factor isn't automatically applied to the paint device, only to the input coordinates
+    // so we need to handle this manually here
+    m_view->setDeviceTransform(QTransform::fromScale(window()->devicePixelRatio(), window()->devicePixelRatio()));
 }
 
 void MapItem::loaderDone()

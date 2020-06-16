@@ -105,6 +105,7 @@ void PainterRenderer::beginRender()
 
 void PainterRenderer::renderBackground(const QColor &bgColor)
 {
+    m_painter->setTransform(m_view->deviceTransform());
     m_painter->fillRect(0, 0, m_view->screenWidth(), m_view->screenHeight(), bgColor);
 }
 
@@ -115,19 +116,19 @@ void PainterRenderer::beginPhase(SceneGraphItemPayload::RenderPhase phase)
             Q_UNREACHABLE();
         case SceneGraphItemPayload::FillPhase:
             m_painter->setPen(Qt::NoPen);
-            m_painter->setTransform(m_view->sceneToScreenTransform());
+            m_painter->setTransform(m_view->sceneToScreenTransform() * m_view->deviceTransform());
             m_painter->setClipRect(m_view->viewport().intersected(m_view->sceneBoundingBox()));
             m_painter->setRenderHint(QPainter::Antialiasing, false);
             break;
         case SceneGraphItemPayload::CasingPhase:
         case SceneGraphItemPayload::StrokePhase:
             m_painter->setBrush(Qt::NoBrush);
-            m_painter->setTransform(m_view->sceneToScreenTransform());
+            m_painter->setTransform(m_view->sceneToScreenTransform() * m_view->deviceTransform());
             m_painter->setClipRect(m_view->viewport().intersected(m_view->sceneBoundingBox()));
             m_painter->setRenderHint(QPainter::Antialiasing, true);
             break;
         case SceneGraphItemPayload::LabelPhase:
-            m_painter->setTransform({});
+            m_painter->setTransform(m_view->deviceTransform());
             m_painter->setRenderHint(QPainter::Antialiasing, true);
             break;
     }
@@ -235,6 +236,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
 void PainterRenderer::renderForeground(const QColor &bgColor)
 {
     // fade out the map at the end of the scene box, to indicate you can't scroll further
+    m_painter->setTransform(m_view->deviceTransform());
     m_painter->setClipRect(m_view->mapSceneToScreen(m_view->viewport()));
     const auto borderWidth = 10;
 

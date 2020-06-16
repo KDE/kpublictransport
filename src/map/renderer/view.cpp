@@ -19,8 +19,6 @@
 
 #include <osm/geomath.h>
 
-#include <QTransform>
-
 #include <cmath>
 
 using namespace KOSMIndoorMap;
@@ -306,4 +304,14 @@ void View::panTopLeft(double x, double y)
     m_viewport.moveLeft(m_bbox.x() + m_bbox.width() * (x / panWidth()));
     m_viewport.moveTop(m_bbox.y() + m_bbox.height() * (y / panHeight()));
     constrainViewToScene();
+}
+
+QTransform View::deviceTransform() const
+{
+    return m_deviceTransform;
+}
+
+void View::setDeviceTransform(const QTransform &t)
+{
+    m_deviceTransform = t;
 }

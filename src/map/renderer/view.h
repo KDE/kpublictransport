@@ -23,8 +23,7 @@
 #include <QObject>
 #include <QRectF>
 #include <QSize>
-
-class QTransform;
+#include <QTransform>
 
 namespace KOSMIndoorMap {
 
@@ -129,6 +128,10 @@ public:
     /** Move the viewport to the pan coordinates @p x and @p y. */
     Q_INVOKABLE void panTopLeft(double x, double y);
 
+    /** Device tranformation for manual high DPI scaling. */
+    QTransform deviceTransform() const;
+    void setDeviceTransform(const QTransform &t);
+
 Q_SIGNALS:
     void transformationChanged();
     void floorLevelChanged();
@@ -140,6 +143,7 @@ private:
     QRectF m_bbox;
     QRectF m_viewport;
     QSize m_screenSize;
+    QTransform m_deviceTransform = {};
     int m_level = 0;
 };
 
