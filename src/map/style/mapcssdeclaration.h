@@ -49,7 +49,7 @@ public:
     enum Property {
         Unknown,
 
-        // general properites
+        // general properties
         ZIndex, /// z-order
 
         // line properties
@@ -69,7 +69,7 @@ public:
         CasingLineCap, /// line casing end cap
         CasingLineJoin, /// line casing join style
 
-        // missing here: extrude properites
+        // missing here: extrude properties
 
         // polygon (and canvas) properties
         FillColor, /// area fill color
@@ -99,12 +99,12 @@ public:
         TextHaloColor, /// text halo color
         TextHaloRadius, /// text halo radius
 
-        // shield properites (casing > frame > shield > text)
+        // shield properties (casing > frame > shield > text)
         ShieldColor, /// shield color
         ShieldOpacity, /// shield opacity
         ShieldFrameColor, /// shield frame color
         ShieldFrameWidth, /// shield frame width (0 to disable)
-        ShieldCasingColor, /// schield casing color
+        ShieldCasingColor, /// shield casing color
         ShieldCasingWidth, /// shield  casing width
         ShieldText, /// text to render on the shield
         ShieldImage, /// background image of the shield
