@@ -18,7 +18,7 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
-import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kirigami 2.7 as Kirigami
 import org.kde.kosmindoormap 1.0
 
 Kirigami.Page {
@@ -30,6 +30,10 @@ Kirigami.Page {
     bottomPadding: 0
     leftPadding: 0
     rightPadding: 0
+
+    // prevent swipe to the right changing pages, we want to pan the map instead
+    // TODO in theory we could make this conditional to having panned the map all the way to the right
+    Kirigami.ColumnView.preventStealing: true
 
     actions {
         left: Kirigami.Action {
