@@ -24,5 +24,5 @@ foreach(f IN LISTS kosmindoormapquickplugin_qml)
     file(CREATE_LINK ${CMAKE_CURRENT_SOURCE_DIR}/${f} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/org/kde/kosmindoormap/${f} SYMBOLIC)
 endforeach()
 
-# install(TARGETS kosmindoormapquickplugin DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
-# install(FILES ${kosmindoormapquickplugin_qml} ${quick_SRC} DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
+install(TARGETS kosmindoormapquickplugin DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
+install(FILES ${kosmindoormapquickplugin_qml} ${quick_SRC} DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
