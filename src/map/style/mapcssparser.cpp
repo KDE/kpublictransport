@@ -16,6 +16,7 @@
 */
 
 #include "mapcssparser.h"
+#include "logging.h"
 
 #include "mapcssparser_p.h"
 #include "mapcssscanner.h"
@@ -96,7 +97,7 @@ void MapCSSParser::parse(MapCSSStyle *style, const QString &fileName)
 {
     QFile f(fileName);
     if (!f.open(QFile::ReadOnly)) {
-        qWarning() << f.fileName() << f.errorString();
+        qCWarning(Log) << f.fileName() << f.errorString();
         m_error = true;
         m_errorMsg = f.errorString();
         return;

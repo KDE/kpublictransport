@@ -16,6 +16,7 @@
 */
 
 #include "mapcssdeclaration.h"
+#include "logging.h"
 
 #include <QDebug>
 #include <QIODevice>
@@ -177,7 +178,7 @@ void MapCSSDeclaration::setPropertyName(const char *name, std::size_t len)
         return cmp < 0 || (cmp == 0 && lhsLen < len);
     });
     if (it == std::end(property_types) || std::strncmp((*it).name, name, std::max(len, std::strlen((*it).name))) != 0) {
-        qWarning() << "Unknown property declaration:" << QByteArray::fromRawData(name, len);
+        qCWarning(Log) << "Unknown property declaration:" << QByteArray::fromRawData(name, len);
         m_property = Unknown;
         return;
     }
@@ -271,7 +272,7 @@ void MapCSSDeclaration::setUnit(const char *val, int len)
             return;
         }
     }
-    qWarning() << "unknown unit:" << QByteArray(val, len);
+    qCWarning(Log) << "unknown unit:" << QByteArray(val, len);
     m_unit = NoUnit;
 }
 

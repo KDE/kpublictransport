@@ -17,6 +17,7 @@
 
 #include "painterrenderer.h"
 #include "view.h"
+#include "render-logging.h"
 
 #include "../scene/scenegraph.h"
 
@@ -94,7 +95,7 @@ void PainterRenderer::render(const SceneGraph &sg, View *view)
     endRender();
     m_view = nullptr;
 
-    qDebug() << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.items().size() << "items on" << sg.layerOffsets().size() << "layers";
+    qCDebug(RenderLog) << "rendering took:" << frameTimer.elapsed() << "ms for" << sg.items().size() << "items on" << sg.layerOffsets().size() << "layers";
 }
 
 void PainterRenderer::beginRender()

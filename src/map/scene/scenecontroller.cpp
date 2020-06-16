@@ -16,6 +16,8 @@
 */
 
 #include "scenecontroller.h"
+#include "logging.h"
+#include "render-logging.h"
 
 #include "scenegeometry.h"
 #include "scenegraph.h"
@@ -124,7 +126,7 @@ void SceneController::updateScene(SceneGraph &sg) const
     sg.zSort();
     sg.endSwap();
 
-    qDebug() << "updated scenegraph took" << sgUpdateTimer.elapsed() << "ms";
+    qCDebug(RenderLog) << "updated scenegraph took" << sgUpdateTimer.elapsed() << "ms";
 }
 
 void SceneController::updateCanvas(SceneGraph &sg) const
@@ -346,7 +348,6 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 } else if (item->iconSize.height() <= 0.0) {
                     item->iconSize.setHeight(item->iconSize.width() / aspectRatio);
                 }
-                qDebug() << item->iconSize << iconSourceSize << aspectRatio;
             }
             addItem(sg, e, level, std::move(baseItem));
         }
@@ -549,7 +550,7 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::un
                 item.layer = layer;
             }
         } else {
-            qWarning() << "Invalid layer:" << e.url() << layerStr;
+            qCWarning(Log) << "Invalid layer:" << e.url() << layerStr;
         }
     }
 

@@ -11,7 +11,11 @@ bison_target(mapcssparser
 )
 add_flex_bison_dependency(mapcssscanner mapcssparser)
 
+ecm_qt_declare_logging_category(logging_srcs HEADER logging.h IDENTIFIER KOSMIndoorMap::Log CATEGORY_NAME org.kde.kosmindoormap)
+ecm_qt_declare_logging_category(logging_srcs HEADER render-logging.h IDENTIFIER KOSMIndoorMap::RenderLog CATEGORY_NAME org.kde.kosmindoormap.renderer)
+
 add_library(KOSMIndoorMap STATIC
+    ${logging_srcs}
     assets/assets.qrc
 
     loader/boundarysearch.cpp
@@ -81,3 +85,5 @@ ecm_generate_headers(KOSMIndoorMap_Style_FORWARDING_HEADERS
     REQUIRED_HEADERS KOSMIndoorMap_Style_HEADERS
     RELATIVE style
 )
+
+install(FILES org_kde_kosmindoormap.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})

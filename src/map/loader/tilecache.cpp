@@ -16,6 +16,7 @@
 */
 
 #include "tilecache.h"
+#include "logging.h"
 
 #include <osm/datatypes.h>
 #include <osm/geomath.h>
@@ -121,7 +122,7 @@ void TileCache::downloadNext()
     QDir().mkpath(fi.absolutePath());
     m_output.setFileName(fi.absoluteFilePath() + QLatin1String(".part"));
     if (!m_output.open(QFile::WriteOnly)) {
-        qWarning() << m_output.fileName() << m_output.errorString();
+        qCWarning(Log) << m_output.fileName() << m_output.errorString();
         return;
     }
 
@@ -147,7 +148,7 @@ void TileCache::downloadFinished(QNetworkReply* reply, Tile tile)
     m_output.close();
 
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << reply->errorString() << reply->url();
+        qCWarning(Log) << reply->errorString() << reply->url();
         m_output.remove();
         downloadNext();
         return;

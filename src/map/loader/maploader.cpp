@@ -17,11 +17,11 @@
 
 #include "maploader.h"
 #include "boundarysearch.h"
+#include "logging.h"
 
 #include <osm/element.h>
 #include <osm/o5mparser.h>
 
-#include <QDebug>
 #include <QElapsedTimer>
 #include <QFile>
 
@@ -61,7 +61,7 @@ void MapLoader::loadFromO5m(const QString &fileName)
     OSM::O5mParser p(&ds);
     p.parse(data, f.size());
     m_data.setDataSet(std::move(ds));
-    qDebug() << "o5m loading took" << loadTime.elapsed() << "ms";
+    qCDebug(Log) << "o5m loading took" << loadTime.elapsed() << "ms";
     Q_EMIT done();
 }
 
@@ -111,7 +111,7 @@ void MapLoader::loadTiles()
     p.setMergeBuffer(&m_mergeBuffer);
     for (const auto &tile : m_pendingTiles) {
         const auto fileName = m_tileCache.cachedTile(tile);
-        qDebug() << fileName;
+        qCDebug(Log) << "loading tile" << fileName;
         QFile f(fileName);
         if (!f.open(QFile::ReadOnly)) {
             qWarning() << f.fileName() << f.errorString();
@@ -126,7 +126,7 @@ void MapLoader::loadTiles()
     m_pendingTiles.clear();
 
     const auto bbox = m_boundarySearcher.boundingBox(m_dataSet);
-    qDebug() << "needed bbox:" << bbox << "got:" << m_tileBbox << m_loadedTiles;
+    qCDebug(Log) << "needed bbox:" << bbox << "got:" << m_tileBbox << m_loadedTiles;
 
     // expand left and right
     if (bbox.min.longitude < m_tileBbox.min.longitude) {
@@ -165,7 +165,7 @@ void MapLoader::loadTiles()
     m_data.setDataSet(std::move(m_dataSet));
     m_data.setBoundingBox(bbox);
 
-    qDebug() << "o5m loading took" << loadTime.elapsed() << "ms";
+    qCDebug(Log) << "o5m loading took" << loadTime.elapsed() << "ms";
     Q_EMIT isLoadingChanged();
     Q_EMIT done();
 }
