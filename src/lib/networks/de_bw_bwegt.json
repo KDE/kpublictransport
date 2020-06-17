@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v deželi Baden-Württemberg v Nemčiji.",
         "Description[sv]": "Kollektivtrafik i Baden-Württemberg, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у землі Баден-Вюртемберґ, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Baden-Württemberg, Germany.xx",
         "Name": "bwegt",
         "Name[ca@valencia]": "bwegt",
         "Name[ca]": "bwegt",
@@ -31,8 +30,7 @@
         "Name[pt_BR]": "bwegt",
         "Name[sl]": "bwegt",
         "Name[sv]": "bwegt",
-        "Name[uk]": "bwegt",
-        "Name[x-test]": "xxbwegtxx"
+        "Name[uk]": "bwegt"
     },
     "filter": {
         "geo": [

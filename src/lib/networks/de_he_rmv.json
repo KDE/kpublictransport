@@ -17,7 +17,6 @@
         "Description[sl]": "Lokalni transport na področju Rhein-Main, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i Rhein-Main-området, Tyskland.",
         "Description[uk]": "Місцевий транспорт у регіоні Рейн-Майн, Німеччина.",
-        "Description[x-test]": "xxLocal transport in the Rhein-Main area, Germany.xx",
         "Name": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[ca@valencia]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[ca]": "Rhein-Main-Verkehrsverbund (RMV)",
@@ -36,8 +35,7 @@
         "Name[sk]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[sl]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[sv]": "Rhein-Main-Verkehrsverbund (RMV)",
-        "Name[uk]": "Rhein-Main-Verkehrsverbund (RMV)",
-        "Name[x-test]": "xxRhein-Main-Verkehrsverbund (RMV)xx"
+        "Name[uk]": "Rhein-Main-Verkehrsverbund (RMV)"
     },
     "filter": {
         "geo": [

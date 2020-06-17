@@ -16,7 +16,6 @@
         "Description[sl]": "Lokalni transport v Berlinu in deželi Brandenburg v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i Berlin- och Brandenburg-områdena i Tyskland.",
         "Description[uk]": "Місцевий транспорт у регіонах Берлін та Бранденбург, Німеччина.",
-        "Description[x-test]": "xxLocal transport in the Berlin and Brandenburg regions of Germany.xx",
         "Name": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[ca@valencia]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[ca]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
@@ -35,8 +34,7 @@
         "Name[sk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[sl]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[sv]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
-        "Name[uk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
-        "Name[x-test]": "xxVerkehrsverbund Berlin-Brandenburg (VBB)xx"
+        "Name[uk]": "Verkehrsverbund Berlin-Brandenburg (VBB)"
     },
     "filter": {
         "geo": [

@@ -18,7 +18,6 @@
         "Description[sl]": "Danske nacionalne železnice.",
         "Description[sv]": "Dansk statsjärnväg.",
         "Description[uk]": "Данська державна залізниця.",
-        "Description[x-test]": "xxDanish national railway.xx",
         "Name": "Danske Statsbaner (DSB)",
         "Name[ca@valencia]": "Danske Statsbaner (DSB)",
         "Name[ca]": "Danske Statsbaner (DSB)",
@@ -36,8 +35,7 @@
         "Name[sk]": "Danske Statsbaner (DSB)",
         "Name[sl]": "Danske Statsbaner (DSB)",
         "Name[sv]": "Danske Statsbaner (DSB)",
-        "Name[uk]": "Danske Statsbaner (DSB)",
-        "Name[x-test]": "xxDanske Statsbaner (DSB)xx"
+        "Name[uk]": "Danske Statsbaner (DSB)"
     },
     "filter": {
         "geo": [

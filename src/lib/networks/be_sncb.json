@@ -18,7 +18,6 @@
         "Description[sl]": "Belgijske nacionalne železnice.",
         "Description[sv]": "Belgisk statsjärnväg.",
         "Description[uk]": "Бельгійська державна залізниця.",
-        "Description[x-test]": "xxBelgian national railway.xx",
         "Name": "National Railway Company of Belgium (NMBS/SNCB)",
         "Name[ca@valencia]": "Companyia Nacional de Ferrocarrils de Bèlgica (NMBS/SNCB)",
         "Name[ca]": "Companyia Nacional de Ferrocarrils de Bèlgica (NMBS/SNCB)",
@@ -35,8 +34,7 @@
         "Name[sk]": "National Railway Company of Belgium (NMBS/SNCB)",
         "Name[sl]": "Nacionalna železniška družba Belgije (NMBS/SNCB)",
         "Name[sv]": "Belgiens statsjärnvägsbolag (NMBS/SNCB)",
-        "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)",
-        "Name[x-test]": "xxNational Railway Company of Belgium (NMBS/SNCB)xx"
+        "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)"
     },
     "filter": {
         "geo": [

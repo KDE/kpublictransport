@@ -17,7 +17,6 @@
         "Description[sl]": "Lokalni in državni prevoz na Irskem.",
         "Description[sv]": "Lokal och nationell transportoperatör i Irland.",
         "Description[uk]": "Місцевий і загальнодержавний транспорт у Ірландії.",
-        "Description[x-test]": "xxLocal and national transport in Ireland.xx",
         "Name": "Transport For Ireland",
         "Name[ca@valencia]": "Transport per Irlanda",
         "Name[ca]": "Transport per Irlanda",
@@ -33,8 +32,7 @@
         "Name[pt_BR]": "Transport For Ireland",
         "Name[sl]": "Transport For Ireland",
         "Name[sv]": "Transport For Ireland",
-        "Name[uk]": "Транспорт у Ірландії",
-        "Name[x-test]": "xxTransport For Irelandxx"
+        "Name[uk]": "Транспорт у Ірландії"
     },
     "filter": {
         "geo": [

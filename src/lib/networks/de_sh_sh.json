@@ -17,7 +17,6 @@
         "Description[sl]": "Lokalni prevoz v deželi Schleswig-Holstein, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i Schleswig-Holstein, Tyskland.",
         "Description[uk]": "Місцевий транспорт у землі Шлезвіг-Гольштейн, Німеччина.",
-        "Description[x-test]": "xxLocal transport in Schleswig-Holstein, Germany.xx",
         "Name": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[ca@valencia]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[ca]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
@@ -36,8 +35,7 @@
         "Name[sk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[sl]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[sv]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
-        "Name[uk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
-        "Name[x-test]": "xxNahverkehrsverbund Schleswig-Holstein (NAH.SH)xx"
+        "Name[uk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)"
     },
     "filter": {
         "geo": [

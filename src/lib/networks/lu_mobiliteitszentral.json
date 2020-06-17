@@ -17,7 +17,6 @@
         "Description[sl]": "Javni prevoz v Luksemburgu.",
         "Description[sv]": "Kollektivtrafik i Luxemburg.",
         "Description[uk]": "Дані щодо громадського транспорту у Люксембурзі.",
-        "Description[x-test]": "xxPublic transport in Luxembourg.xx",
         "Name": "Mobilitéitszentral",
         "Name[ca@valencia]": "Mobilitéitszentral",
         "Name[ca]": "Mobilitéitszentral",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Mobilitéitszentral",
         "Name[sl]": "Mobilitéitszentral",
         "Name[sv]": "Mobilitéitszentral",
-        "Name[uk]": "Mobilitéitszentral",
-        "Name[x-test]": "xxMobilitéitszentralxx"
+        "Name[uk]": "Mobilitéitszentral"
     },
     "filter": {
         "geo": [

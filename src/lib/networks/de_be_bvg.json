@@ -16,7 +16,6 @@
         "Description[sl]": "Lokalni prevoznik v Berlinu, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i Berlin, Tyskland.",
         "Description[uk]": "Місцевий транспортний оператор у Берліні, Німеччина.",
-        "Description[x-test]": "xxLocal transport operator in Berlin, Germany.xx",
         "Name": "Berliner Verkehrsbetriebe (BVG)",
         "Name[ca@valencia]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[ca]": "Berliner Verkehrsbetriebe (BVG)",
@@ -36,7 +35,6 @@
         "Name[sl]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[sv]": "Berliner Verkehrsbetriebe (BVG)",
         "Name[uk]": "Berliner Verkehrsbetriebe (BVG)",
-        "Name[x-test]": "xxBerliner Verkehrsbetriebe (BVG)xx",
         "Name[zh_TW]": "Berliner Verkehrsbetriebe (BVG)"
     },
     "filter": {

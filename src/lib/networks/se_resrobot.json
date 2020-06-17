@@ -16,7 +16,6 @@
         "Description[sl]": "Informacije o javnem prevozu na Švedskem.",
         "Description[sv]": "Information om kollektivtrafik i Sverige.",
         "Description[uk]": "Дані щодо громадського транспорту у Швеції.",
-        "Description[x-test]": "xxPublic transport information for Sweden.xx",
         "Name": "Resrobot",
         "Name[ca@valencia]": "Resrobot",
         "Name[ca]": "Resrobot",
@@ -34,8 +33,7 @@
         "Name[sk]": "Resrobot",
         "Name[sl]": "Resrobot",
         "Name[sv]": "Resrobot",
-        "Name[uk]": "Resrobot",
-        "Name[x-test]": "xxResrobotxx"
+        "Name[uk]": "Resrobot"
     },
     "filter": {
         "geo": [

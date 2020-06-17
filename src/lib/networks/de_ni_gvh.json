@@ -17,7 +17,6 @@
         "Description[sl]": "Lokalni prevoz v mestu Hannover in okolici, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i och omkring Hannover, Tyskland.",
         "Description[uk]": "Місцевий транспорт у Ганновері і околицях, Німеччина.",
-        "Description[x-test]": "xxLocal transport in and around Hannover, Germany.xx",
         "Name": "Großraum-Verkehr Hannover (GVH)",
         "Name[ca@valencia]": "Großraum-Verkehr Hannover (GVH)",
         "Name[ca]": "Großraum-Verkehr Hannover (GVH)",
@@ -36,8 +35,7 @@
         "Name[sk]": "Großraum-Verkehr Hannover (GVH)",
         "Name[sl]": "Großraum-Verkehr Hannover (GVH)",
         "Name[sv]": "Großraum-Verkehr Hannover (GVH)",
-        "Name[uk]": "Großraum-Verkehr Hannover (GVH)",
-        "Name[x-test]": "xxGroßraum-Verkehr Hannover (GVH)xx"
+        "Name[uk]": "Großraum-Verkehr Hannover (GVH)"
     },
     "filter": {
         "geo": [

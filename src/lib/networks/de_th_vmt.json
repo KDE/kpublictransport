@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v Turingiji v Nemčiji.",
         "Description[sv]": "Kollektivtrafik i Thuringia, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у Тюрінґії, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Thuringia, Germany.xx",
         "Name": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[ca@valencia]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[ca]": "Verkehrsverbund Mittelthüringen (VMT)",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[sl]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[sv]": "Verkehrsverbund Mittelthüringen (VMT)",
-        "Name[uk]": "Verkehrsverbund Mittelthüringen (VMT)",
-        "Name[x-test]": "xxVerkehrsverbund Mittelthüringen (VMT)xx"
+        "Name[uk]": "Verkehrsverbund Mittelthüringen (VMT)"
     },
     "filter": {
         "geo": [

@@ -16,7 +16,6 @@
         "Description[sl]": "Lokalni javni prevoz v Ulmu in okolici, Nemčija.",
         "Description[sv]": "Lokal kollektivtrafik i och omkring Ulm, Tyskland.",
         "Description[uk]": "Місцевий транспорт в Ульмі і околицях, Німеччина.",
-        "Description[x-test]": "xxLocal public transport in and around Ulm, Germany.xx",
         "Name": "Ulm, Germany",
         "Name[ca@valencia]": "Ulm, Alemanya",
         "Name[ca]": "Ulm, Alemanya",
@@ -33,8 +32,7 @@
         "Name[pt_BR]": "Ulm, Germany",
         "Name[sl]": "Ulm, Nemčija",
         "Name[sv]": "Ulm, Tyskland",
-        "Name[uk]": "Ульм, Німеччина",
-        "Name[x-test]": "xxUlm, Germanyxx"
+        "Name[uk]": "Ульм, Німеччина"
     },
     "attribution": {
         "name": "Verschwörhaus",

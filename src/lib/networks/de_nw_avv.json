@@ -17,7 +17,6 @@
         "Description[sl]": "Lokalni transport v in v okolici mesta Aachen, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i och omkring Aachen, Tyskland.",
         "Description[uk]": "Місцевий транспорт у Аахені і околицях, Німеччина.",
-        "Description[x-test]": "xxLocal transport in and around Aachen, Germany.xx",
         "Name": "Aachener Verkehrsverbund (AVV)",
         "Name[ca@valencia]": "Aachener Verkehrsverbund (AVV)",
         "Name[ca]": "Aachener Verkehrsverbund (AVV)",
@@ -37,7 +36,6 @@
         "Name[sl]": "Aachener Verkehrsverbund (AVV)",
         "Name[sv]": "Aachener Verkehrsverbund (AVV)",
         "Name[uk]": "Aachener Verkehrsverbund (AVV)",
-        "Name[x-test]": "xxAachener Verkehrsverbund (AVV)xx",
         "Name[zh_TW]": "Aachener Verkehrsverbund (AVV)"
     },
     "filter": {

@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v in okoli Los Angelesa, ZDA.",
         "Description[sv]": "Kollektivtrafik i och omkring Los Angeles, USA.",
         "Description[uk]": "Громадський транспорт у Лос-Анджелесі і околицях, США.",
-        "Description[x-test]": "xxPublic transport in and around Los Angeles, US.xx",
         "Name": "Los Angeles Metro",
         "Name[ca@valencia]": "Los Angeles Metro",
         "Name[ca]": "Los Angeles Metro",
@@ -31,8 +30,7 @@
         "Name[pt_BR]": "Metrô de Los Angeles",
         "Name[sl]": "Los Angeles Metro",
         "Name[sv]": "Los Angeles Metro",
-        "Name[uk]": "Метро Лос-Анджелеса",
-        "Name[x-test]": "xxLos Angeles Metroxx"
+        "Name[uk]": "Метро Лос-Анджелеса"
     },
     "filter": {
         "geo": [

@@ -16,7 +16,6 @@
         "Description[sl]": "Lokalni prevoz v Linzu in okolici, v Avstriji.",
         "Description[sv]": "Lokal transportoperatör i och omkring Linz, Österrike.",
         "Description[uk]": "Місцевий транспорт у Лінці і околицях, Австрія.",
-        "Description[x-test]": "xxLocal transport in and around Linz, Austria.xx",
         "Name": "Linz AG",
         "Name[ca@valencia]": "Linz AG",
         "Name[ca]": "Linz AG",
@@ -33,8 +32,7 @@
         "Name[pt_BR]": "Linz AG",
         "Name[sl]": "Linz AG",
         "Name[sv]": "Linz AG",
-        "Name[uk]": "Linz AG",
-        "Name[x-test]": "xxLinz AGxx"
+        "Name[uk]": "Linz AG"
     },
     "filter": {
         "geo": [

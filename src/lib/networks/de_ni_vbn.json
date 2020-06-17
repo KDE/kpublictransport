@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v Bremenu in Spodnji Saški, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Bremen och Niedersachsen, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у Бремені і Нижній Саксонії, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Bremen and Lower Saxony, Germany.xx",
         "Name": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[ca@valencia]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[ca]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[sl]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[sv]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
-        "Name[uk]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
-        "Name[x-test]": "xxVerkehrsverbund Bremen/Niedersachsen (VBN)xx"
+        "Name[uk]": "Verkehrsverbund Bremen/Niedersachsen (VBN)"
     },
     "filter": {
         "geo": [

@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz na Saškem, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Sachsen, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у Саксонії, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Saxony, Germany.xx",
         "Name": "Verkehrsverbund Oberelbe (VVO)",
         "Name[ca@valencia]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[ca]": "Verkehrsverbund Oberelbe (VVO)",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[sl]": "Verkehrsverbund Oberelbe (VVO)",
         "Name[sv]": "Verkehrsverbund Oberelbe (VVO)",
-        "Name[uk]": "Verkehrsverbund Oberelbe (VVO)",
-        "Name[x-test]": "xxVerkehrsverbund Oberelbe (VVO)xx"
+        "Name[uk]": "Verkehrsverbund Oberelbe (VVO)"
     },
     "filter": {
         "geo": [

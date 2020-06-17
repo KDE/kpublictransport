@@ -17,7 +17,6 @@
         "Description[sl]": "Lokalni prevoz v Chicagu in okolici, v državi Illinois, ZDA.",
         "Description[sv]": "Lokal transportoperatör i och omkring Chicago, Illinois, Förenta staterna.",
         "Description[uk]": "Місцевий транспорт у Чикаго і околицях, Іллінойс, США.",
-        "Description[x-test]": "xxLocal transport in and around Chicago, Illinois, United States.xx",
         "Name": "Regional Transport Authority Chicago",
         "Name[ca@valencia]": "Regional Transport Authority Chicago",
         "Name[ca]": "Regional Transport Authority Chicago",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Regional Transport Authority Chicago",
         "Name[sl]": "Regional Transport Authority Chicago",
         "Name[sv]": "Regionala transportmyndigheten Chicago",
-        "Name[uk]": "Регіональна транспортна служба Чикаго",
-        "Name[x-test]": "xxRegional Transport Authority Chicagoxx"
+        "Name[uk]": "Регіональна транспортна служба Чикаго"
     },
     "filter": {
         "geo": [

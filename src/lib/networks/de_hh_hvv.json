@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v Hamburgu v Nemčiji.",
         "Description[sv]": "Kollektivtrafik i Hamburg, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у Гамбурзі, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Hamburg, Germany.xx",
         "Name": "Hamburger Verkehrsverbund (HVV)",
         "Name[ca@valencia]": "Hamburger Verkehrsverbund (HVV)",
         "Name[ca]": "Hamburger Verkehrsverbund (HVV)",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Hamburger Verkehrsverbund (HVV)",
         "Name[sl]": "Hamburger Verkehrsverbund (HVV)",
         "Name[sv]": "Hamburger Verkehrsverbund (HVV)",
-        "Name[uk]": "Hamburger Verkehrsverbund (HVV)",
-        "Name[x-test]": "xxHamburger Verkehrsverbund (HVV)xx"
+        "Name[uk]": "Hamburger Verkehrsverbund (HVV)"
     },
     "filter": {
         "geo": [

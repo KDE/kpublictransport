@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v Saarlandu v Nemčiji.",
         "Description[sv]": "Kollektivtrafik i Saarland, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у землі Саар, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Saarland, Germany.xx",
         "Name": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[ca@valencia]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[ca]": "Saarländischer Verkehrsverbund (saarVV)",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[sl]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[sv]": "Saarländischer Verkehrsverbund (saarVV)",
-        "Name[uk]": "Saarländischer Verkehrsverbund (saarVV)",
-        "Name[x-test]": "xxSaarländischer Verkehrsverbund (saarVV)xx"
+        "Name[uk]": "Saarländischer Verkehrsverbund (saarVV)"
     },
     "filter": {
         "geo": [

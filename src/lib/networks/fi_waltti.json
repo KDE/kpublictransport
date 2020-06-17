@@ -16,7 +16,6 @@
         "Description[sl]": "Javni prevoz v regijah Waltti na Finskem.",
         "Description[sv]": "Kollektivtrafik i Waltti områden i Finland.",
         "Description[uk]": "Громадський транспорт у областях Валтті, Фінляндія.",
-        "Description[x-test]": "xxPublic transport in Waltti regions in Finland.xx",
         "Name": "Waltti",
         "Name[ca@valencia]": "Waltti",
         "Name[ca]": "Waltti",
@@ -32,8 +31,7 @@
         "Name[pt_BR]": "Waltti",
         "Name[sl]": "Waltti",
         "Name[sv]": "Waltti",
-        "Name[uk]": "Waltti",
-        "Name[x-test]": "xxWalttixx"
+        "Name[uk]": "Waltti"
     },
     "filter": {
         "geo": [
