@@ -168,6 +168,9 @@ way[railway=narrow_gauge]
     casing-color: #31363b;
     linecap: none;
 }
+way[railway][gauge] {
+    width: gauge;
+}
 
 way[railway:traffic_mode=freight],
 way[railway=rail][service=yard]
