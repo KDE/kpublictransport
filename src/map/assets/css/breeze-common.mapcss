@@ -322,6 +322,7 @@ node|z18-[public_transport=platform_section_sign]
 /** Shops/etc */
 *|z20- [shop],
 *|z19- [shop=ticket],
+*|z21- [amenity],
 *|z20- [amenity=cafe],
 *|z20- [amenity=car_rental],
 *|z20- [amenity=fast_food],
