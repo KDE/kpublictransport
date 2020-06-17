@@ -203,7 +203,7 @@ QString MapData::levelName(OSM::Element e)
 
     if (e.type() == OSM::Type::Relation) {
         const auto isLevelRel = std::all_of(e.relation()->members.begin(), e.relation()->members.end(), [](const auto &mem) {
-            return mem.role == QLatin1String("shell") || mem.role == QLatin1String("buildingpart");
+            return std::strcmp(mem.role.name(), "shell") == 0 || std::strcmp(mem.role.name(), "buildingpart") == 0;
         });
         if (isLevelRel) {
             return e.tagValue(m_nameTag);

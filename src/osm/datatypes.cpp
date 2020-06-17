@@ -28,33 +28,55 @@ DataSet::~DataSet()
 
 DataSet& DataSet::operator=(DataSet &&) = default;
 
-TagKey DataSet::makeTagKey(const char *keyName, DataSet::TagKeyMemory keyMemOpt)
+template<typename T>
+T DataSet::makeStringKey(const char *name, DataSet::StringMemory memOpt, std::vector<T> &registry)
 {
-    const auto it = std::lower_bound(m_tagKeyRegistry.begin(), m_tagKeyRegistry.end(), keyName, [](TagKey lhs, const char *rhs) {
+    const auto it = std::lower_bound(registry.begin(), registry.end(), name, [](T lhs, const char *rhs) {
         return std::strcmp(lhs.key, rhs) < 0;
     });
-    if (it == m_tagKeyRegistry.end() || std::strcmp((*it).key, keyName) != 0) {
-        if (keyMemOpt == TagKeyIsTransient) {
-            auto s = strdup(keyName);
+    if (it == registry.end() || std::strcmp((*it).key, name) != 0) {
+        if (memOpt == StringIsTransient) {
+            auto s = strdup(name);
             m_stringPool.push_back(s);
-            keyName = s;
+            name = s;
         }
-        TagKey k(keyName);
-        m_tagKeyRegistry.insert(it, k);
+        T k(name);
+        registry.insert(it, k);
         return k;
+    }
+    return (*it);
+}
+
+TagKey DataSet::makeTagKey(const char *keyName, DataSet::StringMemory keyMemOpt)
+{
+    return makeStringKey(keyName, keyMemOpt, m_tagKeyRegistry);
+}
+
+Role DataSet::makeRole(const char *roleName, DataSet::StringMemory memOpt)
+{
+    return makeStringKey(roleName, memOpt, m_roleRegistry);
+}
+
+template <typename T>
+T DataSet::stringKey(const char *name, const std::vector<T> &registry) const
+{
+    const auto it = std::lower_bound(registry.begin(), registry.end(), name, [](T lhs, const char *rhs) {
+        return std::strcmp(lhs.key, rhs) < 0;
+    });
+    if (it == registry.end() || std::strcmp((*it).key, name) != 0) {
+        return {};
     }
     return (*it);
 }
 
 TagKey DataSet::tagKey(const char *keyName) const
 {
-    const auto it = std::lower_bound(m_tagKeyRegistry.begin(), m_tagKeyRegistry.end(), keyName, [](TagKey lhs, const char *rhs) {
-        return std::strcmp(lhs.key, rhs) < 0;
-    });
-    if (it == m_tagKeyRegistry.end() || std::strcmp((*it).key, keyName) != 0) {
-        return {};
-    }
-    return (*it);
+    return stringKey(keyName, m_tagKeyRegistry);
+}
+
+Role DataSet::role(const char *roleName) const
+{
+    return stringKey(roleName, m_roleRegistry);
 }
 
 void DataSet::addNode(Node &&node)

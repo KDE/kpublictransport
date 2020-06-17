@@ -311,7 +311,8 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
                 ++it;
                 continue;
             }
-            if ((*it).role != QLatin1String("outer") && (*it).role != QLatin1String("inner")) {
+            // TODO look up role names once via DataSet::role
+            if (std::strcmp((*it).role.name(), "outer") != 0 && std::strcmp((*it).role.name(), "inner") != 0) {
                 ++it;
                 continue;
             }

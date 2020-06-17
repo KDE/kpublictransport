@@ -120,7 +120,7 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
             } else {
                 member.type = Type::Relation;
             }
-            member.role = reader.attributes().value(QLatin1String("role")).toString(); // TODO shared value pool for these values
+            member.role = m_dataSet->makeRole(reader.attributes().value(QLatin1String("role")).toUtf8().constData(), DataSet::StringIsTransient);
             rel.members.push_back(std::move(member));
         }
         reader.skipCurrentElement();
@@ -132,7 +132,7 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
 template <typename T>
 void XmlParser::parseTag(QXmlStreamReader &reader, T &elem)
 {
-    const auto key = m_dataSet->makeTagKey(reader.attributes().value(QLatin1String("k")).toString().toUtf8().constData(), OSM::DataSet::TagKeyIsTransient);
+    const auto key = m_dataSet->makeTagKey(reader.attributes().value(QLatin1String("k")).toString().toUtf8().constData(), OSM::DataSet::StringIsTransient);
     OSM::setTagValue(elem, key, reader.attributes().value(QLatin1String("v")).toString());
 }
 

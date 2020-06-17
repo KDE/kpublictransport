@@ -374,7 +374,7 @@ QPainterPath SceneController::createPath(const OSM::Element e, QPolygonF &outerP
     path.addPolygon(outerPath); // assemble the outer polygon, which can be represented as a set of unsorted lines here even
 
     for (const auto &mem : e.relation()->members) {
-        const bool isInner = mem.role == QLatin1String("inner");
+        const bool isInner = std::strcmp(mem.role.name(), "inner") == 0;
         if (mem.type != OSM::Type::Way || !isInner) {
             continue;
         }

@@ -221,7 +221,7 @@ std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
             // collect the relevant ways
             std::vector<const Way*> ways;
             for (const auto &member : relation()->members) {
-                if (member.role != QLatin1String("outer")) {
+                if (std::strcmp(member.role.name(), "outer") != 0) {
                     continue;
                 }
                 const auto it = std::lower_bound(dataSet.ways.begin(), dataSet.ways.end(), member.id);

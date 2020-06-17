@@ -119,7 +119,7 @@ void MapWidget::mouseReleaseEvent(QMouseEvent *event)
                     break;
                 case OSM::Type::Relation:
                     for (const auto &mem : item->element.relation()->members) {
-                        qDebug() << "      " << mem.role << (int)mem.type << mem.id;
+                        qDebug() << "      " << mem.role.name() << (int)mem.type << mem.id;
                     }
                     break;
             }

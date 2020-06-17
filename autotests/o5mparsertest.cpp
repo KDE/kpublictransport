@@ -175,10 +175,10 @@ private Q_SLOTS:
         QCOMPARE(rel.id, 2952ll);
         QCOMPARE(rel.members.size(), 2);
         QCOMPARE(rel.members[0].id, 11560506ll);
-        QCOMPARE(rel.members[0].role, QStringLiteral("inner"));
+        QCOMPARE(rel.members[0].role.name(), "inner");
         QCOMPARE(rel.members[0].type, OSM::Type::Way);
         QCOMPARE(rel.members[1].id, 25873183ll);
-        QCOMPARE(rel.members[1].role, QStringLiteral("inner"));
+        QCOMPARE(rel.members[1].role.name(), "inner");
         QCOMPARE(rel.members[1].type, OSM::Type::Way);
         QCOMPARE(rel.tags.size(), 1);
         QCOMPARE(rel.tags[0].key.name(), "type");

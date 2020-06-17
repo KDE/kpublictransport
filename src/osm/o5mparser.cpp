@@ -199,7 +199,7 @@ void O5mParser::readTagOrBbox(Elem &e, const uint8_t *&it, const uint8_t *endIt)
     }
 
     OSM::Tag tag;
-    tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::TagKeyIsTransient); // TODO make use of mmap'ed data for this
+    tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::StringIsTransient); // TODO make use of mmap'ed data for this
     tag.value = QString::fromUtf8(tagData.second);
     OSM::setTag(e, std::move(tag));
 }
@@ -219,7 +219,7 @@ void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
     while (it < end) {
         OSM::Tag tag;
         const auto tagData = readStringPair(it, end);
-        tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::TagKeyIsTransient); // TODO use the fact this is mmap'ed data here
+        tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::StringIsTransient); // TODO use the fact this is mmap'ed data here
         tag.value = QString::fromUtf8(tagData.second);
         OSM::setTag(node, std::move(tag));
     }
@@ -282,7 +282,7 @@ void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
                 mem.type = OSM::Type::Relation;
                 break;
         }
-        mem.role = QString::fromUtf8(typeAndRole + 1);
+        mem.role = m_dataSet->makeRole(typeAndRole + 1, DataSet::StringIsTransient);
 
         rel.members.push_back(std::move(mem));
     }

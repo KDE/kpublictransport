@@ -58,16 +58,16 @@ private Q_SLOTS:
         QCOMPARE(nullKey, ds.tagKey("akey"));
         QCOMPARE(nullKey.isNull(), true);
 
-        const auto key1 = ds.makeTagKey("akey", OSM::DataSet::TagKeyIsPersistent);
-        QCOMPARE(key1, ds.makeTagKey("akey", OSM::DataSet::TagKeyIsPersistent));
+        const auto key1 = ds.makeTagKey("akey", OSM::DataSet::StringIsPersistent);
+        QCOMPARE(key1, ds.makeTagKey("akey", OSM::DataSet::StringIsPersistent));
         QCOMPARE(key1, ds.tagKey("akey"));
         QCOMPARE(key1.isNull(), false);
         QCOMPARE(key1.name(), "akey");
         QVERIFY(key1 != nullKey);
 
-        const auto key2 = ds.makeTagKey("bkey", OSM::DataSet::TagKeyIsTransient);
+        const auto key2 = ds.makeTagKey("bkey", OSM::DataSet::StringIsTransient);
         QVERIFY(key1 != key2);
-        QCOMPARE(key2, ds.makeTagKey("bkey", OSM::DataSet::TagKeyIsTransient));
+        QCOMPARE(key2, ds.makeTagKey("bkey", OSM::DataSet::StringIsTransient));
 
         OSM::Node node;
         OSM::setTagValue(node, key1, QStringLiteral("avalue"));

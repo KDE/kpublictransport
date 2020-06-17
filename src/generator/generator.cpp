@@ -122,7 +122,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 #endif
         for (const auto &ref : refs) {
             auto rel = *it;
-            const auto tagKey = dataSet.makeTagKey("ref", OSM::DataSet::TagKeyIsPersistent);
+            const auto tagKey = dataSet.makeTagKey("ref", OSM::DataSet::StringIsPersistent);
             OSM::setTagValue(rel, tagKey, ref);
             dataSet.relations.push_back(rel);
         }

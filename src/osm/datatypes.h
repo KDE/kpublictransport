@@ -177,27 +177,34 @@ constexpr inline uint32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbo
     return bbox1.max.longitude < bbox2.min.longitude ? bbox2.min.longitude - bbox1.max.longitude : bbox1.min.longitude - bbox2.max.longitude;
 }
 
-
-/** A key of an OSM tag.
- *  See DataSet::tagKey().
- */
-class TagKey
+/** Base class for unique string keys. */
+class StringKey
 {
 public:
-    constexpr inline TagKey() = default;
+    constexpr inline StringKey() = default;
     constexpr inline const char* name() const { return key; }
     constexpr inline bool isNull() const { return !key; }
 
     // yes, pointer compare is enough here
-    inline constexpr bool operator<(TagKey other) const { return key < other.key; }
-    inline constexpr bool operator==(TagKey other) const { return key == other.key; }
-    inline constexpr bool operator!=(TagKey other) const { return key != other.key; }
+    inline constexpr bool operator<(StringKey other) const { return key < other.key; }
+    inline constexpr bool operator==(StringKey other) const { return key == other.key; }
+    inline constexpr bool operator!=(StringKey other) const { return key != other.key; }
 
 private:
     friend class DataSet;
-    explicit constexpr inline TagKey(const char *keyData) : key(keyData) {}
+    explicit constexpr inline StringKey(const char *keyData) : key(keyData) {}
 
     const char* key = nullptr;
+};
+
+/** A key of an OSM tag.
+ *  See DataSet::tagKey().
+ */
+class TagKey : public StringKey
+{
+private:
+    using StringKey::StringKey;
+    friend class DataSet;
 };
 
 /** An OSM element tag. */
@@ -244,6 +251,16 @@ enum class Type : uint8_t {
     Relation
 };
 
+/** A relation role name key.
+ *  See DataSet::role().
+ */
+class Role : public StringKey
+{
+private:
+    using StringKey::StringKey;
+    friend class DataSet;
+};
+
 /** A member in a relation. */
 // TODO this has 7 byte padding, can we make this more efficient?
 class Member {
@@ -251,7 +268,7 @@ public:
     inline bool operator==(const Member &other) const { return id == other.id && type == other.type && role == other.role; }
 
     Id id;
-    QString role;
+    Role role;
     Type type;
 };
 
@@ -289,21 +306,34 @@ public:
      */
     TagKey tagKey(const char *keyName) const;
 
-    enum TagKeyMemory { TagKeyIsPersistent, TagKeyIsTransient };
+    enum StringMemory { StringIsPersistent, StringIsTransient };
     /** Create a tag key for the given tag name. If none exist yet a new one is created.
      *  Use this for creating tags, not for lookup, prefer tagKey() for that.
      *  @param keyMemOpt specifies whether @p keyName is persisent for the lifetime of this
      *  instance and thus can be used without requiring a copy. If the memory is transient
      *  the string is copied if needed, and released in the DataSet destructor.
      */
-    TagKey makeTagKey(const char *keyName, TagKeyMemory keyMemOpt = TagKeyIsTransient);
+    TagKey makeTagKey(const char *keyName, StringMemory keyMemOpt = StringIsTransient);
+
+    /** Looks up a role name key.
+     *  @see tagKey()
+     */
+    Role role(const char *roleName) const;
+    /** Creates a role name key.
+     *  @see makeTagKey()
+     */
+    Role makeRole(const char *roleName, StringMemory memOpt = StringIsTransient);
 
     std::vector<Node> nodes;
     std::vector<Way> ways;
     std::vector<Relation> relations;
 
 private:
+    template <typename T> T stringKey(const char *name, const std::vector<T> &registry) const;
+    template <typename T> T makeStringKey(const char *name, StringMemory memOpt, std::vector<T> &registry);
+
     std::vector<TagKey> m_tagKeyRegistry;
+    std::vector<Role> m_roleRegistry;
     std::vector<char*> m_stringPool;
 };
 
