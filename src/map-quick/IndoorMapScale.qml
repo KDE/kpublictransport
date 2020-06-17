@@ -66,4 +66,8 @@ Item {
         target: root.map.view
         onTransformationChanged: root.updateScale();
     }
+    Connections {
+        target: root
+        onWidthChanged: root.updateScale();
+    }
 }
