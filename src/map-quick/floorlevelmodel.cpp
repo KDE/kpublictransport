@@ -116,3 +116,23 @@ int FloorLevelModel::floorLevelAbove(int level) const
     }
     return 0;
 }
+
+bool FloorLevelModel::hasName(int level) const
+{
+    for (auto it = m_level.begin(); it != m_level.end(); ++it) {
+        if ((*it).numericLevel() == level) {
+            return (*it).hasName();
+        }
+    }
+    return false;
+}
+
+QString FloorLevelModel::name(int level) const
+{
+    for (auto it = m_level.begin(); it != m_level.end(); ++it) {
+        if ((*it).numericLevel() == level) {
+            return (*it).name();
+        }
+    }
+    return {};
+}

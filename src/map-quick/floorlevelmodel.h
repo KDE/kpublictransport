@@ -54,6 +54,16 @@ public:
     /** Returns the floor level above @p level. */
     Q_INVOKABLE int floorLevelAbove(int level) const;
 
+    /** Returns whether the given floor level has an explicit name
+     *  obtained from the OSM data.
+     */
+    Q_INVOKABLE bool hasName(int level) const;
+    /** Returns the name for the floor @p level.
+     *  This is either an explicitly determined name from the OSM data
+     *  or a numeric representation of the floor.
+     */
+    Q_INVOKABLE QString name(int level) const;
+
 private:
     std::vector<MapLevel> m_level;
 };

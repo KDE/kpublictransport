@@ -22,7 +22,7 @@ import org.kde.kirigami 2.7 as Kirigami
 import org.kde.kosmindoormap 1.0
 
 Kirigami.Page {
-    title: "Indoor Map View"
+    title: map.floorLevels.hasName(map.view.floorLevel) ? map.floorLevels.name(map.view.floorLevel) : ("Floor " + map.floorLevels.name(map.view.floorLevel));
     property point coordinate
     property alias map: map
 
