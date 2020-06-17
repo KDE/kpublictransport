@@ -194,10 +194,15 @@ void MapData::addElement(int level, OSM::Element e)
     }
 }
 
+static bool isPlausibleLevelName(const QString &s)
+{
+    return !s.isEmpty() && !s.contains(QLatin1Char(';'));
+}
+
 QString MapData::levelName(OSM::Element e)
 {
     const auto n = e.tagValue(m_levelRefTag);
-    if (!n.isEmpty()) {
+    if (isPlausibleLevelName(n)) {
         return n;
     }
 
@@ -206,7 +211,10 @@ QString MapData::levelName(OSM::Element e)
             return std::strcmp(mem.role.name(), "shell") == 0 || std::strcmp(mem.role.name(), "buildingpart") == 0;
         });
         if (isLevelRel) {
-            return e.tagValue(m_nameTag);
+            const auto n = e.tagValue(m_nameTag);
+            if (isPlausibleLevelName(n)) {
+                return n;
+            }
         }
     }
 
