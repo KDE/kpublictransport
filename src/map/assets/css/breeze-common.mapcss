@@ -327,10 +327,12 @@ node|z18-[public_transport=platform_section_sign]
 *|z20- [amenity=car_rental],
 *|z20- [amenity=fast_food],
 *|z20- [amenity=restaurant],
+*|z21- [indoor=room],
 *|z19- [tourism=information]
 {
     text: name;
     max-width: 100;
+    text-halo-radius: 2.0;
 }
 
 /** icons */

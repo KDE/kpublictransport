@@ -16,6 +16,7 @@
 */
 
 #include "painterrenderer.h"
+#include "stackblur.h"
 #include "view.h"
 #include "render-logging.h"
 
@@ -25,6 +26,7 @@
 #include <QElapsedTimer>
 #include <QFontMetricsF>
 #include <QGuiApplication>
+#include <QImage>
 #include <QLinearGradient>
 #include <QPainter>
 
@@ -222,6 +224,23 @@ void PainterRenderer::renderLabel(LabelItem *item)
         QRectF iconRect(QPointF(0.0, 0.0), item->iconSize);
         iconRect.moveCenter(QPointF(0.0, 0.0));
         item->icon.paint(m_painter, iconRect.toRect());
+    }
+
+    // draw text halo
+    if (item->haloRadius > 0.0 && item->haloColor.alphaF() > 0.0) {
+        const auto haloBox = box.adjusted(-item->haloRadius, -item->haloRadius, item->haloRadius, item->haloRadius);
+        QImage haloBuffer(haloBox.size().toSize(), QImage::Format_ARGB32);
+        haloBuffer.fill(Qt::transparent);
+        QPainter haloPainter(&haloBuffer);
+        haloPainter.setPen(item->haloColor);
+        haloPainter.setFont(item->font);
+        auto haloTextRect = box;
+        haloTextRect.moveTopLeft({item->haloRadius, item->haloRadius});
+        haloPainter.drawText(haloTextRect, textFlags, item->text);
+        StackBlur::blur(haloBuffer, item->haloRadius);
+        haloPainter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+        haloPainter.fillRect(haloBuffer.rect(), item->haloColor);
+        m_painter->drawImage(haloBox, haloBuffer);
     }
 
     // draw text

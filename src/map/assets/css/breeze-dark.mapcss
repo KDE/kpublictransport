@@ -144,6 +144,15 @@ line[public_transport=platform]
     width: 1.5; // meter
 }
 
+/** General amenities/shops/etc. */
+* [amenity],
+* [indoor],
+* [shop],
+* [tourism]
+{
+    text-halo-color: #31363b;
+}
+
 /** Specific elements */
 area[amenity=toilets],
 area[room=toilets],
@@ -167,6 +176,7 @@ area[tourism=information]
 }
 
 /** Restricted access, disused, etc: keep this last. */
+area[indoor=room][access=no],
 area[indoor=room][access=private],
 area[shop=vacant]
 {

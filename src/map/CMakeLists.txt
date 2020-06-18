@@ -26,6 +26,7 @@ add_library(KOSMIndoorMap STATIC
 
     renderer/hitdetector.cpp
     renderer/painterrenderer.cpp
+    renderer/stackblur.cpp
     renderer/view.cpp
 
     scene/scenecontroller.cpp
