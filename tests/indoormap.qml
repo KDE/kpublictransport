@@ -87,7 +87,7 @@ Kirigami.ApplicationWindow {
             QQC2.Button {
                 text: ">"
                 onClicked: {
-                    var c = coordInput.text.match(/(.*)[,;/ ]+(.*)/);
+                    var c = coordInput.text.match(/([\d\.-]+)[,;/ ]+([\d\.-]*)/);
                     var lat = c[1];
                     var lon = c[2];
                     page.map.mapLoader.loadForCoordinate(lat, lon);
