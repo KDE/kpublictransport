@@ -16,6 +16,7 @@
         "Description[sl]": "Regionalni javni transport v vzhodni Avstriji.",
         "Description[sv]": "Lokal kollektivtrafik i östra Österrike.",
         "Description[uk]": "Місцевий транспорт у східній Австрії.",
+        "Description[x-test]": "xxRegional public transport in eastern Austria.xx",
         "Name": "Verkehrsverbund Ostregion (VOR)",
         "Name[ca@valencia]": "Verkehrsverbund Ostregion (VOR)",
         "Name[ca]": "Verkehrsverbund Ostregion (VOR)",
@@ -32,7 +33,8 @@
         "Name[pt_BR]": "Verkehrsverbund Ostregion (VOR)",
         "Name[sl]": "Verkehrsverbund Ostregion (VOR)",
         "Name[sv]": "Verkehrsverbund Ostregion (VOR)",
-        "Name[uk]": "Verkehrsverbund Ostregion (VOR)"
+        "Name[uk]": "Verkehrsverbund Ostregion (VOR)",
+        "Name[x-test]": "xxVerkehrsverbund Ostregion (VOR)xx"
     },
     "filter": {
         "geo": [

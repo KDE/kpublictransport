@@ -17,6 +17,7 @@
         "Description[sl]": "Lokalni prevoz v Münchnu in okolici, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i och omkring München, Tyskland.",
         "Description[uk]": "Місцевий транспорт у Мюнхені і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Munich, Germany.xx",
         "Name": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[ca@valencia]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[ca]": "Münchener Verkehrs- und Tarifverbund (MVV)",
@@ -35,7 +36,8 @@
         "Name[sk]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[sl]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[sv]": "Münchener Verkehrs- und Tarifverbund (MVV)",
-        "Name[uk]": "Münchener Verkehrs- und Tarifverbund (MVV)"
+        "Name[uk]": "Münchener Verkehrs- und Tarifverbund (MVV)",
+        "Name[x-test]": "xxMünchener Verkehrs- und Tarifverbund (MVV)xx"
     },
     "filter": {
         "geo": [

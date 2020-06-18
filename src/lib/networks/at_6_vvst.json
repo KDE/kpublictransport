@@ -16,6 +16,7 @@
         "Description[sl]": "Regionalni prevoz na Štajerskem v Avstriji.",
         "Description[sv]": "Lokal transportoperatör i Styria, Österrike.",
         "Description[uk]": "Місцевий транспорт у Штирії, Австрія.",
+        "Description[x-test]": "xxRegional transport in Styria, Austria.xx",
         "Name": "Verkehrsverbund Steiermark (VVSt)",
         "Name[ca@valencia]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[ca]": "Verkehrsverbund Steiermark (VVSt)",
@@ -32,7 +33,8 @@
         "Name[pt_BR]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[sl]": "Verkehrsverbund Steiermark (VVSt)",
         "Name[sv]": "Verkehrsverbund Steiermark (VVSt)",
-        "Name[uk]": "Verkehrsverbund Steiermark (VVSt)"
+        "Name[uk]": "Verkehrsverbund Steiermark (VVSt)",
+        "Name[x-test]": "xxVerkehrsverbund Steiermark (VVSt)xx"
     },
     "filter": {
         "geo": [

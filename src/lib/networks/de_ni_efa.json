@@ -16,6 +16,7 @@
         "Description[sl]": "Javni prevoz v Spodnji Saški, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Niedersachsen, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у Нижній Саксонії, Німеччина.",
+        "Description[x-test]": "xxPublic transport in Lower Saxony, Germany.xx",
         "Name": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[ca@valencia]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[ca]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
@@ -30,7 +31,8 @@
         "Name[pt_BR]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[sl]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[sv]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
-        "Name[uk]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen"
+        "Name[uk]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
+        "Name[x-test]": "xxElektronische Fahrplanauskunft für Niedersachsen und Bremenxx"
     },
     "filter": {
         "geo": [

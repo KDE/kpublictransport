@@ -16,6 +16,7 @@
         "Description[sl]": "Lokalni prevoz na Bavarskem v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i Bayern, Tyskland.",
         "Description[uk]": "Місцевий транспорт у Баварії, Німеччина.",
+        "Description[x-test]": "xxLocal transport in Bavaria, Germany.xx",
         "Name": "Bayern Fahrplan",
         "Name[ca@valencia]": "Bayern Fahrplan",
         "Name[ca]": "Bayern Fahrplan",
@@ -32,7 +33,8 @@
         "Name[pt_BR]": "Bayern Fahrplan",
         "Name[sl]": "Bayern Fahrplan",
         "Name[sv]": "Bayern Fahrplan",
-        "Name[uk]": "Bayern Fahrplan"
+        "Name[uk]": "Bayern Fahrplan",
+        "Name[x-test]": "xxBayern Fahrplanxx"
     },
     "filter": {
         "geo": [

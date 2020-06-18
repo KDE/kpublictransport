@@ -16,6 +16,7 @@
         "Description[sl]": "Regionalni javni prevoz v Vorarlbergu, Avstrija.",
         "Description[sv]": "Lokal kollektivtrafik i Vorarlberg, Österrike.",
         "Description[uk]": "Місцевий транспорт у Форарльберзі, Австралія.",
+        "Description[x-test]": "xxRegional public transport in Vorarlberg, Austria.xx",
         "Name": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[ca@valencia]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[ca]": "Verkehrsverbund Vorarlberg (VVV)",
@@ -32,7 +33,8 @@
         "Name[pt_BR]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[sl]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[sv]": "Verkehrsverbund Vorarlberg (VVV)",
-        "Name[uk]": "Verkehrsverbund Vorarlberg (VVV)"
+        "Name[uk]": "Verkehrsverbund Vorarlberg (VVV)",
+        "Name[x-test]": "xxVerkehrsverbund Vorarlberg (VVV)xx"
     },
     "filter": {
         "geo": [

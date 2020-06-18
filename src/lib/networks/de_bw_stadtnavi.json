@@ -14,6 +14,7 @@
         "Description[sl]": "Lokalni javni prevoz v in okoli Herrenberga v Nemčiji.",
         "Description[sv]": "Lokal kollektivtrafik i och omkring Herrenberg, Tyskland.",
         "Description[uk]": "Місцевий транспорт у Герренберзі і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal public transport in and around Herrenberg, Germany.xx",
         "Name": "Stadtnavi",
         "Name[ca]": "Stadtnavi",
         "Name[cs]": "Stadtnavi",
@@ -27,7 +28,8 @@
         "Name[pt_BR]": "Stadtnavi",
         "Name[sl]": "Stadtnavi",
         "Name[sv]": "Stadtnavi",
-        "Name[uk]": "Stadtnavi"
+        "Name[uk]": "Stadtnavi",
+        "Name[x-test]": "xxStadtnavixx"
     },
     "attribution": {
         "name": "Stadtnavi",

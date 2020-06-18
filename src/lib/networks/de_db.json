@@ -16,6 +16,7 @@
         "Description[sl]": "Nemška državna železnica, pokriva lokalne in medkrajevne storitve v Nemčiji in sosednjih državah.",
         "Description[sv]": "Tysk statsjärnväg, täcker lokala och långdistanstrafik i Tyskland och angränsande länder.",
         "Description[uk]": "Німецька державна залізниця. Маршрути у Німеччині та сусідніх країнах.",
+        "Description[x-test]": "xxGerman national railway, covers local and long-distance services in Germany and neighbouring countries.xx",
         "Name": "Deutsche Bahn (DB)",
         "Name[ca@valencia]": "Deutsche Bahn (DB)",
         "Name[ca]": "Deutsche Bahn (DB)",
@@ -35,6 +36,7 @@
         "Name[sl]": "Deutsche Bahn (DB)",
         "Name[sv]": "Deutsche Bahn (DB)",
         "Name[uk]": "Deutsche Bahn (DB)",
+        "Name[x-test]": "xxDeutsche Bahn (DB)xx",
         "Name[zh_TW]": "Deutsche Bahn (DB)"
     },
     "filter": {

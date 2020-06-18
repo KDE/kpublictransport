@@ -16,6 +16,7 @@
         "Description[sl]": "Javni prevoz v mestu Portland in Oregon, ZDA.",
         "Description[sv]": "Kollektivtrafik i och omkring Portland, Oregon, USA.",
         "Description[uk]": "Громадський транспорт у Портленді і околицях, Орегон, США.",
+        "Description[x-test]": "xxPublic transport in and around Portland, Oregon, US.xx",
         "Name": "TriMet",
         "Name[ca@valencia]": "TriMet",
         "Name[ca]": "TriMet",
@@ -31,7 +32,8 @@
         "Name[ru]": "TriMet",
         "Name[sl]": "TriMet",
         "Name[sv]": "TriMet",
-        "Name[uk]": "TriMet"
+        "Name[uk]": "TriMet",
+        "Name[x-test]": "xxTriMetxx"
     },
     "filter": {
         "geo": [

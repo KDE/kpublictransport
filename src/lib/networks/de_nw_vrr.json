@@ -17,6 +17,7 @@
         "Description[sl]": "Lokalni transport v področju Rhein-Ruhr v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i Rhein-Ruhr-området, Tyskland.",
         "Description[uk]": "Місцевий транспорт у регіоні Рейн-Рур, Німеччина.",
+        "Description[x-test]": "xxLocal transport in the Rhein-Ruhr area, Germany.xx",
         "Name": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[ca@valencia]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[ca]": "Verkehrsverbund Rhein-Ruhr (VRR)",
@@ -35,7 +36,8 @@
         "Name[sk]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[sl]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[sv]": "Verkehrsverbund Rhein-Ruhr (VRR)",
-        "Name[uk]": "Verkehrsverbund Rhein-Ruhr (VRR)"
+        "Name[uk]": "Verkehrsverbund Rhein-Ruhr (VRR)",
+        "Name[x-test]": "xxVerkehrsverbund Rhein-Ruhr (VRR)xx"
     },
     "filter": {
         "geo": [

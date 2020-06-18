@@ -16,6 +16,7 @@
         "Description[sl]": "Javni prevoz v Mecklenburg-Zahodna Pomerania, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Mecklenburg-Vorpommern, Tyskland.",
         "Description[uk]": "Дані щодо громадського транспорту у землі Мекленбурґ-Західна Померанія, Німеччина.",
+        "Description[x-test]": "xxPublic transport in Mecklenburg-Western Pomerania, Germany.xx",
         "Name": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[ca@valencia]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[ca]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
@@ -31,7 +32,8 @@
         "Name[pt_BR]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[sl]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
         "Name[sv]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
-        "Name[uk]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)"
+        "Name[uk]": "Verkehrsgesellschaft Mecklenburg-Vorpommern (VMV)",
+        "Name[x-test]": "xxVerkehrsgesellschaft Mecklenburg-Vorpommern (VMV)xx"
     },
     "filter": {
         "geo": [

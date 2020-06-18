@@ -16,6 +16,7 @@
         "Description[sl]": "Javni prevoz v in okoli Atlante, Georgia, ZDA.",
         "Description[sv]": "Lokal transportoperatör i och omkring Atlanta, Georgia, USA.",
         "Description[uk]": "Громадський транспорт у Атланті і околицях, Джорджія, США.",
+        "Description[x-test]": "xxPublic transport in and around Atlanta, Georgia, US.xx",
         "Name": "Marta",
         "Name[ca@valencia]": "Marta",
         "Name[ca]": "Marta",
@@ -31,7 +32,8 @@
         "Name[pt_BR]": "Marta",
         "Name[sl]": "Marta",
         "Name[sv]": "Marta",
-        "Name[uk]": "Marta"
+        "Name[uk]": "Marta",
+        "Name[x-test]": "xxMartaxx"
     },
     "filter": {
         "geo": [

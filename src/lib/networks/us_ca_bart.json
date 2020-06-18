@@ -16,6 +16,7 @@
         "Description[sl]": "Lokalni prevoz v zalivu v Kaliforniji, Združene države Amerike.",
         "Description[sv]": "Lokal transportoperatör i San Francisco-bukten, Förenta staterna.",
         "Description[uk]": "Місцевий транспорт у регіоні затоки, Каліфорнія, США.",
+        "Description[x-test]": "xxLocal transport in the bay area in California, United States.xx",
         "Name": "Bay Area Rapid Transit (BART)",
         "Name[ca@valencia]": "Bay Area Rapid Transit (BART)",
         "Name[ca]": "Bay Area Rapid Transit (BART)",
@@ -30,7 +31,8 @@
         "Name[pt_BR]": "Bay Area Rapid Transit (BART)",
         "Name[sl]": "Bay Area Rapid Transit (BART)",
         "Name[sv]": "Bay Area Rapid Transit (BART)",
-        "Name[uk]": "Bay Area Rapid Transit (BART)"
+        "Name[uk]": "Bay Area Rapid Transit (BART)",
+        "Name[x-test]": "xxBay Area Rapid Transit (BART)xx"
     },
     "filter": {
         "geo": [

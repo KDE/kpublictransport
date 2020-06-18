@@ -16,6 +16,7 @@
         "Description[sl]": "Regionalni javni prevoz v Salzburgu, Avstrija.",
         "Description[sv]": "Lokal kollektivtrafik i Salzburg, Österrike.",
         "Description[uk]": "Місцевий транспорт у Зальцбурзі, Австралія.",
+        "Description[x-test]": "xxRegional public transport in Salzburg, Austria.xx",
         "Name": "Salzburger Verkehrsverbund (SVV)",
         "Name[ca@valencia]": "Salzburger Verkehrsverbund (SVV)",
         "Name[ca]": "Salzburger Verkehrsverbund (SVV)",
@@ -32,7 +33,8 @@
         "Name[pt_BR]": "Salzburger Verkehrsverbund (SVV)",
         "Name[sl]": "Salzburger Verkehrsverbund (SVV)",
         "Name[sv]": "Salzburger Verkehrsverbund (SVV)",
-        "Name[uk]": "Salzburger Verkehrsverbund (SVV)"
+        "Name[uk]": "Salzburger Verkehrsverbund (SVV)",
+        "Name[x-test]": "xxSalzburger Verkehrsverbund (SVV)xx"
     },
     "filter": {
         "geo": [

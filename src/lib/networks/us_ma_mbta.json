@@ -16,6 +16,7 @@
         "Description[sl]": "Javni prevoz v Bostonu in okolici, Massachusetts, ZDA.",
         "Description[sv]": "Kollektivtrafik i och omkring Boston, Massachusetts, USA.",
         "Description[uk]": "Громадський транспорт у Бостоні і околицях, Массачусетс, США.",
+        "Description[x-test]": "xxPublic transport in and around Boston, Massachusetts, US.xx",
         "Name": "Massachusetts Bay Transportation Authority (MBTA)",
         "Name[ca@valencia]": "Massachusetts Bay Transportation Authority (MBTA)",
         "Name[ca]": "Massachusetts Bay Transportation Authority (MBTA)",
@@ -29,7 +30,8 @@
         "Name[pt_BR]": "Massachusetts Bay Transportation Authority (MBTA)",
         "Name[sl]": "Massachusetts Bay Transportation Authority (MBTA)",
         "Name[sv]": "Massachusetts Bay Transportation Authority (MBTA)",
-        "Name[uk]": "Транспортна адміністрація затоки Массачусетс (MBTA)"
+        "Name[uk]": "Транспортна адміністрація затоки Массачусетс (MBTA)",
+        "Name[x-test]": "xxMassachusetts Bay Transportation Authority (MBTA)xx"
     },
     "filter": {
         "geo": [

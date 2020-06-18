@@ -16,6 +16,7 @@
         "Description[sl]": "Javni transport na Norveškem.",
         "Description[sv]": "Kollektivtrafik i Norge.",
         "Description[uk]": "Громадський транспорт у Норвегії.",
+        "Description[x-test]": "xxPublic transport in Norway.xx",
         "Name": "Entur",
         "Name[ca@valencia]": "Entur",
         "Name[ca]": "Entur",
@@ -31,7 +32,8 @@
         "Name[pt_BR]": "Entur",
         "Name[sl]": "Entur",
         "Name[sv]": "Entur",
-        "Name[uk]": "Entur"
+        "Name[uk]": "Entur",
+        "Name[x-test]": "xxEnturxx"
     },
     "attribution": {
         "license": "Norwegian Licence for Open Government Data (NLOD)",

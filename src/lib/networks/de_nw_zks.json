@@ -16,6 +16,7 @@
         "Description[sl]": "Javni prevoz v deželi Severno Porenje-Vestfalija, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Nordrhein-Westfalen, Tyskland.",
         "Description[uk]": "Громадський транспорт у землі Північна Рейн-Вестфалія, Німеччина.",
+        "Description[x-test]": "xxPublic transport in North Rhine-Westphalia, Germany.xx",
         "Name": "Delfi NRW",
         "Name[ca@valencia]": "Delfi NRW",
         "Name[ca]": "Delfi NRW",
@@ -30,7 +31,8 @@
         "Name[pt_BR]": "Delfi NRW",
         "Name[sl]": "Delfi NRW",
         "Name[sv]": "Delfi NRW",
-        "Name[uk]": "Delfi NRW"
+        "Name[uk]": "Delfi NRW",
+        "Name[x-test]": "xxDelfi NRWxx"
     },
     "filter": {
         "geo": [

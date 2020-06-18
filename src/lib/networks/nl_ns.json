@@ -18,6 +18,7 @@
         "Description[sl]": "Nizozemske nacionalne železnice.",
         "Description[sv]": "Holländsk statsjärnväg.",
         "Description[uk]": "Нідерландська державна залізниця.",
+        "Description[x-test]": "xxDutch national railway.xx",
         "Name": "Nederlandse Spoorwegen (NS)",
         "Name[ca@valencia]": "Nederlandse Spoorwegen (NS)",
         "Name[ca]": "Nederlandse Spoorwegen (NS)",
@@ -35,7 +36,8 @@
         "Name[sk]": "Nederlandse Spoorwegen (NS)",
         "Name[sl]": "Nederlandse Spoorwegen (NS)",
         "Name[sv]": "Nederlandse Spoorwegen (NS)",
-        "Name[uk]": "Nederlandse Spoorwegen (NS)"
+        "Name[uk]": "Nederlandse Spoorwegen (NS)",
+        "Name[x-test]": "xxNederlandse Spoorwegen (NS)xx"
     },
     "filter": {
         "geo": [

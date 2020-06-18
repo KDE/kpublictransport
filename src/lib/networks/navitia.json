@@ -16,6 +16,7 @@
         "Description[sl]": "Ponudnik podatkov o prostem programju in odprtih transportnih podatkih.",
         "Description[sv]": "Världsomspännande leverantör av öppen transportinformation med fri programvara",
         "Description[uk]": "Всесвітнє джерело відкритих даних щодо транспорту для вільного програмного забезпечення.",
+        "Description[x-test]": "xxWorld-wide Free Software and Open Data transport data provider.xx",
         "Name": "Navitia",
         "Name[ca@valencia]": "Navitia",
         "Name[ca]": "Navitia",
@@ -34,6 +35,7 @@
         "Name[sl]": "Navitia",
         "Name[sv]": "Navitia",
         "Name[uk]": "Navitia",
+        "Name[x-test]": "xxNavitiaxx",
         "Name[zh_TW]": "Navitia"
     },
     "attribution": {

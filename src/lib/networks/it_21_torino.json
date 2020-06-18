@@ -16,6 +16,7 @@
         "Description[sl]": "Lokalni javni prevoz v in okoli Torina v Italiji.",
         "Description[sv]": "Lokal transportoperatör i och omkring Torino, Italien.",
         "Description[uk]": "Місцевий транспорт у Туріні і околицях, Італія.",
+        "Description[x-test]": "xxLocal public transport in and around Torino, Italy.xx",
         "Name": "Muoversi a Torino",
         "Name[ca@valencia]": "Muoversi a Torino",
         "Name[ca]": "Muoversi a Torino",
@@ -29,7 +30,8 @@
         "Name[pt_BR]": "Muoversi a Torino",
         "Name[sl]": "Muoversi a Torino",
         "Name[sv]": "Muoversi a Torino",
-        "Name[uk]": "Muoversi a Torino"
+        "Name[uk]": "Muoversi a Torino",
+        "Name[x-test]": "xxMuoversi a Torinoxx"
     },
     "filter": {
         "geo": [

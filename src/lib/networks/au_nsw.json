@@ -17,6 +17,7 @@
         "Description[sl]": "Lokalni prevoz v Novem Južnem Walesu v Avstraliji.",
         "Description[sv]": "Lokal transportoperatör i Nya Sydwales, Australien.",
         "Description[uk]": "Місцевий транспорт у Новому Південному Уельсі, Австралія.",
+        "Description[x-test]": "xxLocal transport in New South Wales, Australia.xx",
         "Name": "Transport for NSW",
         "Name[ca@valencia]": "Transport per NSW",
         "Name[ca]": "Transport per NSW",
@@ -31,7 +32,8 @@
         "Name[pt_BR]": "Transport for NSW",
         "Name[sl]": "Transport for NSW",
         "Name[sv]": "Transport for NSW",
-        "Name[uk]": "Транспорт у Новому Південному Уельсі"
+        "Name[uk]": "Транспорт у Новому Південному Уельсі",
+        "Name[x-test]": "xxTransport for NSWxx"
     },
     "filter": {
         "geo": [

@@ -16,6 +16,7 @@
         "Description[sl]": "Lokalni javni prevoz v mestu Münster in okolici v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i och omkring Münster, Tyskland.",
         "Description[uk]": "Місцевий транспорт у Мюнстері і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal public transport in and around Münster, Germany.xx",
         "Name": "Münster, Germany",
         "Name[ca@valencia]": "Münster, Alemanya",
         "Name[ca]": "Münster, Alemanya",
@@ -32,7 +33,8 @@
         "Name[pt_BR]": "Münster, Alemanha",
         "Name[sl]": "Münster, Nemčija",
         "Name[sv]": "Münster, Tyskland",
-        "Name[uk]": "Мюнстер, Німеччина"
+        "Name[uk]": "Мюнстер, Німеччина",
+        "Name[x-test]": "xxMünster, Germanyxx"
     },
     "attribution": {
         "name": "Code for Münster",
