@@ -194,7 +194,8 @@ void PainterRenderer::renderLabel(LabelItem *item)
         }
 
         if (!item->icon.isNull()) {
-            item->bbox = item->bbox.united(QRectF(QPointF(0.0, 0.0), item->iconSize));
+            item->bbox.setHeight(item->bbox.height() + item->iconSize.height());
+            item->bbox.setWidth(std::max(item->bbox.width(), item->iconSize.width()));
         }
 
         item->bbox.moveCenter(item->pos);
@@ -222,9 +223,10 @@ void PainterRenderer::renderLabel(LabelItem *item)
     // draw icon
     if (!item->icon.isNull()) {
         QRectF iconRect(QPointF(0.0, 0.0), item->iconSize);
-        iconRect.moveCenter(QPointF(0.0, 0.0));
+        iconRect.moveCenter(QPointF(0.0, -(box.height() - item->iconSize.height()) / 2.0));
         item->icon.paint(m_painter, iconRect.toRect());
     }
+    box.moveTop(box.top() + item->iconSize.height());
 
     // draw text halo
     if (item->haloRadius > 0.0 && item->haloColor.alphaF() > 0.0) {
