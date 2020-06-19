@@ -162,7 +162,8 @@ relation[type=multipolygon][room=toilets]
 }
 
 area[building:part=elevator],
-area[highway=elevator]
+area[highway=elevator],
+area[room=elevator]
 {
     fill-color: #006e28;
     color: #31363b;
