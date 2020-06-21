@@ -61,3 +61,8 @@ QString OSMElement::tagValue(const QString &key) const
 {
     return m_element.tagValue(key.toUtf8().constData());
 }
+
+OSM::Element OSMElement::element() const
+{
+    return m_element;
+}

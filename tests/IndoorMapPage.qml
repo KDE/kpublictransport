@@ -48,41 +48,65 @@ Kirigami.Page {
         }
     }
 
+    OSMElementInformationModel {
+        id: infoModel
+        debug: true
+    }
+
+    Component {
+        id: infoStringDelegate
+        Row {
+            QQC2.Label {
+                visible: row.keyLabel != ""
+                text: row.keyLabel + ": "
+                color: row.key == OSMElementInformationModel.DebugKey ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+            }
+            QQC2.Label {
+                text: row.value
+                color: row.key == OSMElementInformationModel.DebugKey ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+            }
+        }
+    }
+
+    Component {
+        id: infoAddressDelegate
+        QQC2.Label {
+            text: (row.value.street + " " + row.value.houseNumber + "\n" + row.value.postalCode + row.value.city + "\n" + row.value.country).trim()
+        }
+    }
+
     Kirigami.OverlaySheet {
         id: elementDetailsSheet
-        property var element
 
         header: Kirigami.Heading {
             text: elementDetailsSheet.element.name
+            height: implicitHight + Kirigami.Units.largeSpacing
+            verticalAlignment: Qt.AlignBottom
         }
 
-        ColumnLayout {
-            QQC2.Label {
-                visible: text != ""
-                text: elementDetailsSheet.element.tagValue("description");
+        ListView {
+            model: infoModel
+
+            section.property: "category"
+            section.delegate: Kirigami.Heading {
+                level: 4
+                text: section
+                color: section == "Debug" ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
             }
-            QQC2.Label {
-                visible: text != ""
-                text: elementDetailsSheet.element.tagValue("amenity") + elementDetailsSheet.element.tagValue("shop") + elementDetailsSheet.element.tagValue("tourism") + elementDetailsSheet.element.tagValue("office")
-            }
-            QQC2.Label {
-                visible: text != ""
-                text: elementDetailsSheet.element.tagValue("opening_hours");
-            }
-            QQC2.Label {
-                visible: elementDetailsSheet.element.tagValue("website") != ""
-                text: "<a href=\"" + elementDetailsSheet.element.tagValue("website") + "\">" + elementDetailsSheet.element.tagValue("website") + "</a>"
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
-            QQC2.Label {
-                visible: elementDetailsSheet.element.wikipediaUrl != ""
-                text: "<a href=\"" + elementDetailsSheet.element.wikipediaUrl + "\">Wikipedia</a>"
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
-            QQC2.Label {
-                text: elementDetailsSheet.element.tagValue("addr:street") + " " + elementDetailsSheet.element.tagValue("addr:housenumber") +
-                    "\n" + elementDetailsSheet.element.tagValue("addr:postcode") + " " + elementDetailsSheet.element.tagValue("addr:city") +
-                    "\n" + elementDetailsSheet.element.tagValue("addr:country");
+            section.criteria: ViewSection.FullString
+            section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
+
+            delegate: Loader {
+                property var row: model
+                sourceComponent: {
+                    switch (row.type) {
+                        case OSMElementInformationModel.Link: // TODO
+                        case OSMElementInformationModel.String:
+                            return infoStringDelegate;
+                        case OSMElementInformationModel.PostalAddress:
+                            return infoAddressDelegate;
+                    }
+                }
             }
         }
     }
@@ -104,7 +128,7 @@ Kirigami.Page {
         }
 
         onElementPicked: {
-            elementDetailsSheet.element = element;
+            infoModel.element = element;
             elementDetailsSheet.sheetOpen = true;
         }
     }

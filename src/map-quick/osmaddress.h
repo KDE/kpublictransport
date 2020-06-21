@@ -15,37 +15,33 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef KOSMINDOORMAP_OSMELEMENT_H
-#define KOSMINDOORMAP_OSMELEMENT_H
+#ifndef KOSMINDOORMAP_OSMADDRESS_H
+#define KOSMINDOORMAP_OSMADDRESS_H
 
 #include <osm/element.h>
 
-#include <QMetaType>
-#include <QUrl>
-
 namespace KOSMIndoorMap {
 
-/** QML wrapper around an OSM element. */
-class OSMElement
+/** Postal address from OSM data. */
+class OSMAddress
 {
     Q_GADGET
-    Q_PROPERTY(bool isNull READ isNull)
-    Q_PROPERTY(QString name READ name)
-    /** Assembled URL from the "wikipedia" tag value. */
-    Q_PROPERTY(QUrl wikipediaUrl READ wikipediaUrl)
+    Q_PROPERTY(QString street READ street)
+    Q_PROPERTY(QString houseNumber READ houseNumber)
+    Q_PROPERTY(QString postalCode READ postalCode)
+    Q_PROPERTY(QString city READ city)
+    Q_PROPERTY(QString country READ country)
+
 public:
-    OSMElement();
-    explicit OSMElement(OSM::Element e);
-    ~OSMElement();
+    explicit OSMAddress();
+    explicit OSMAddress(OSM::Element elem);
+    ~OSMAddress();
 
-    bool isNull() const;
-    QString name() const;
-    QUrl wikipediaUrl() const;
-
-    Q_INVOKABLE QString tagValue(const QString &key) const;
-
-    // @internal
-    OSM::Element element() const;
+    QString street() const;
+    QString houseNumber() const;
+    QString postalCode() const;
+    QString city() const;
+    QString country() const;
 
 private:
     OSM::Element m_element;
@@ -53,6 +49,6 @@ private:
 
 }
 
-Q_DECLARE_METATYPE(KOSMIndoorMap::OSMElement)
+Q_DECLARE_METATYPE(KOSMIndoorMap::OSMAddress)
 
-#endif // KOSMINDOORMAP_OSMELEMENT_H
+#endif // KOSMINDOORMAP_OSMADDRESS_H

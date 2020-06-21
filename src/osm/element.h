@@ -35,6 +35,7 @@ public:
     inline T* get() const { return reinterpret_cast<T*>(m_data & ~TagMask); }
     inline uint8_t tag() const { return m_data & TagMask; }
     inline operator bool() const { return (m_data & ~TagMask); }
+    inline bool operator==(TaggedPointer<T> other) const { return m_data == other.m_data; }
 
 private:
     enum { TagMask = 0x3 };
@@ -53,6 +54,8 @@ public:
     inline Element(const Way *way) : m_elem(way, static_cast<uint8_t>(Type::Way)) {}
     inline Element(const Relation *relation) : m_elem(relation, static_cast<uint8_t>(Type::Relation)) {}
 
+    inline bool operator==(Element other) const { return m_elem == other.m_elem; }
+
     inline Type type() const { return static_cast<Type>(m_elem.tag()); }
     inline const Node* node() const { return static_cast<const Node*>(m_elem.get()); }
     inline const Way* way() const { return static_cast<const Way*>(m_elem.get()); }
@@ -64,6 +67,9 @@ public:
     QString tagValue(TagKey key) const;
     QString tagValue(const char *keyName) const;
     QString tagValue(const char *keyName, const QLocale &locale) const;
+    /** Returns the value of the first non-empty tag. */
+    template <typename ...Args> QString tagValue(const char *keyName, Args... args) const;
+
     std::vector<Tag>::const_iterator tagsBegin() const;
     std::vector<Tag>::const_iterator tagsEnd() const;
     QString url() const;
@@ -83,6 +89,16 @@ public:
 private:
     Internal::TaggedPointer<const void> m_elem;
 };
+
+template <typename ...Args>
+QString Element::tagValue(const char *keyName, Args... args) const
+{
+    const auto v = tagValue(keyName);
+    if (!v.isEmpty()) {
+        return v;
+    }
+    return tagValue(args...);
+}
 
 enum ForeachFlag : uint8_t {
     IncludeRelations = 1,

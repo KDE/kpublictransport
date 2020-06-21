@@ -15,23 +15,39 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "kosmindoormapquickplugin.h"
-#include "mapitem.h"
 #include "osmaddress.h"
-#include "osmelement.h"
-#include "osmelementinformationmodel.h"
 
 using namespace KOSMIndoorMap;
 
-void KOSMIndoorMapQuickPlugin::registerTypes(const char *uri)
+OSMAddress::OSMAddress() = default;
+OSMAddress::OSMAddress(OSM::Element elem)
+    : m_element(elem)
 {
-    Q_UNUSED(uri);
-    qRegisterMetaType<OSMAddress>();
-    qRegisterMetaType<OSMElement>();
+}
 
-    qmlRegisterUncreatableType<OSMAddress>("org.kde.kosmindoormap", 1, 0, "OSMAddress", {});
-    qmlRegisterUncreatableType<OSMElement>("org.kde.kosmindoormap", 1, 0, "OSMElement", {});
+OSMAddress::~OSMAddress() = default;
 
-    qmlRegisterType<MapItem>("org.kde.kosmindoormap", 1, 0, "MapItemImpl");
-    qmlRegisterType<OSMElementInformationModel>("org.kde.kosmindoormap", 1, 0, "OSMElementInformationModel");
+QString OSMAddress::street() const
+{
+    return m_element.tagValue("addr:street", "contact:street");
+}
+
+QString OSMAddress::houseNumber() const
+{
+    return m_element.tagValue("addr:housenumber", "contact:housenumber");
+}
+
+QString OSMAddress::postalCode() const
+{
+    return m_element.tagValue("addr:postcode", "contact:postcode");
+}
+
+QString OSMAddress::city() const
+{
+    return m_element.tagValue("addr:city", "contact:city");
+}
+
+QString OSMAddress::country() const
+{
+    return m_element.tagValue("addr:country", "contact:country");
 }

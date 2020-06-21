@@ -2,7 +2,9 @@ set(kosmindoormapquickplugin_SRC
     kosmindoormapquickplugin.cpp
     floorlevelmodel.cpp
     mapitem.cpp
+    osmaddress.cpp
     osmelement.cpp
+    osmelementinformationmodel.cpp
 )
 set(kosmindoormapquickplugin_qml
     qmldir
