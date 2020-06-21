@@ -37,6 +37,7 @@ static constexpr const OSMElementInformationModel::Type type_map[] = {
     OSMElementInformationModel::Link,          // Email
     OSMElementInformationModel::Link,          // Website
     OSMElementInformationModel::String,        // Wheelchair
+    OSMElementInformationModel::String,        // Operator
     OSMElementInformationModel::String,        // DebugKey
 };
 
@@ -66,6 +67,15 @@ void OSMElementInformationModel::setElement(const OSMElement &element)
     }
     endResetModel();
     emit elementChanged();
+}
+
+QString OSMElementInformationModel::name() const
+{
+    const auto n = m_element.tagValue("name", QLocale());
+    if (!n.isEmpty()) {
+        return n;
+    }
+    return valueForKey(Category).toString();
 }
 
 int OSMElementInformationModel::rowCount(const QModelIndex &parent) const
@@ -131,9 +141,11 @@ struct {
     M("contact:street", Address, Contact),
     M("contact:website", Website, Contact),
     M("cuisine", Cuisine, Main),
+    M("email", Email, Contact),
     M("phone", Phone, Contact),
     M("office", Category, Main),
     M("opening_hours", OpeningHours, Main),
+    M("operator", OperatorName, Operator),
     M("room", Category, Main),
     M("url", Website, Contact),
     M("shop", Category, Main),
@@ -145,7 +157,12 @@ struct {
 
 void OSMElementInformationModel::reload()
 {
+    bool hasName = false;
     for (auto it = m_element.tagsBegin(); it != m_element.tagsEnd(); ++it) {
+        if (std::strncmp((*it).key.name(), "name", 4) == 0) {
+            hasName = true;
+            continue;
+        }
         for (const auto &simpleKey : simple_key_map) {
             if (std::strcmp((*it).key.name(), simpleKey.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [simpleKey](auto info) { return info.key == simpleKey.key; })) {
                 m_infos.push_back(Info{simpleKey.key, simpleKey.category});
@@ -156,6 +173,11 @@ void OSMElementInformationModel::reload()
 
     std::sort(m_infos.begin(), m_infos.end());
 
+    // we use the categories as header if there is no name, so don't duplicate that
+    if (!hasName && !m_infos.empty() && m_infos[0].key == Category) {
+        m_infos.erase(m_infos.begin());
+    }
+
     if (m_debug) {
         const auto count = std::distance(m_element.tagsBegin(), m_element.tagsEnd());
         std::fill_n(std::back_inserter(m_infos), count, Info{ DebugKey, DebugCategory });
@@ -165,14 +187,11 @@ void OSMElementInformationModel::reload()
 QString OSMElementInformationModel::categoryLabel(OSMElementInformationModel::KeyCategory cat) const
 {
     switch (cat) {
-        case Main:
-            return {};
-        case DebugCategory:
-            return QStringLiteral("Debug");
-        case Accessibility:
-            return tr("Accessibility");
-        case Contact:
-            return tr("Contact");
+        case Main:          return {};
+        case Contact:       return tr("Contact");
+        case Accessibility: return tr("Accessibility");
+        case Operator:      return tr("Operator");
+        case DebugCategory: return QStringLiteral("Debug");
     }
     return {};
 }
@@ -202,6 +221,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Email: return tr("Email");
         case Website: return tr("Website");
         case Wheelchair: return tr("Wheelchair access");
+        case OperatorName: return {};
         case DebugKey: return {};
     }
     return {};
@@ -217,35 +237,78 @@ struct {
     const char *code;
     const char *name;
 } static constexpr const amenity_map[] = {
+    { "alcohol",  QT_TRANSLATE_NOOP("amenity/shop", "Alcohol") },
     { "atm",  QT_TRANSLATE_NOOP("amenity/shop", "ATM") },
     { "bakery",  QT_TRANSLATE_NOOP("amenity/shop", "Bakery") },
     { "bank",  QT_TRANSLATE_NOOP("amenity/shop", "Bank") },
     { "bar",  QT_TRANSLATE_NOOP("amenity/shop", "Bar") },
     { "beauty",  QT_TRANSLATE_NOOP("amenity/shop", "Beauty") },
+    { "bicycle_parking",  QT_TRANSLATE_NOOP("amenity/shop", "Bicycle Parking") },
+    { "bureau_de_change", QT_TRANSLATE_NOOP("amenity/shop", "Bureau de Change") },
     { "books",  QT_TRANSLATE_NOOP("amenity/shop", "Books") },
+    { "boutique",  QT_TRANSLATE_NOOP("amenity/shop", "Boutique") },
+    { "butcher",  QT_TRANSLATE_NOOP("amenity/shop", "Butcher") },
     { "cafe",  QT_TRANSLATE_NOOP("amenity/shop", "Cafe") },
     { "car_rental",  QT_TRANSLATE_NOOP("amenity/shop", "Car Rental") },
     { "chemist",  QT_TRANSLATE_NOOP("amenity/shop", "Chemist") },
-    { "confectionery",  QT_TRANSLATE_NOOP("amenity/shop", "Confectionery") },
+    { "chocolate",  QT_TRANSLATE_NOOP("amenity/shop", "Chocolate") },
     { "clothes",  QT_TRANSLATE_NOOP("amenity/shop", "Clothes") },
+    { "coffee",  QT_TRANSLATE_NOOP("amenity/shop", "Coffee") },
+    { "confectionery",  QT_TRANSLATE_NOOP("amenity/shop", "Confectionery") },
     { "convenience",  QT_TRANSLATE_NOOP("amenity/shop", "Convenience Store") },
+    { "cosmetics",  QT_TRANSLATE_NOOP("amenity/shop", "Cosmetics") },
+    { "department_store", QT_TRANSLATE_NOOP("amenity/shop", "Department Store") },
+    { "dry_cleaning",  QT_TRANSLATE_NOOP("amenity/shop", "Dry Cleaning") },
+    { "electronics",  QT_TRANSLATE_NOOP("amenity/shop", "Electronics") },
+    { "fashion",  QT_TRANSLATE_NOOP("amenity/shop", "Fashion") },
     { "fast_food",  QT_TRANSLATE_NOOP("amenity/shop", "Fast Food") },
     { "florist",  QT_TRANSLATE_NOOP("amenity/shop", "Florist") },
+    { "food_court",  QT_TRANSLATE_NOOP("amenity/shop", "Food Court") },
     { "gift",  QT_TRANSLATE_NOOP("amenity/shop", "Gift Shop") },
     { "hairdresser",  QT_TRANSLATE_NOOP("amenity/shop", "Hairdresser") },
+    { "hostel",  QT_TRANSLATE_NOOP("amenity/shop", "Hostel") },
+    { "hotel",  QT_TRANSLATE_NOOP("amenity/shop", "Hotel") },
     { "ice_cream",  QT_TRANSLATE_NOOP("amenity/shop", "Ice Cream") },
+    { "information",  QT_TRANSLATE_NOOP("amenity/shop", "Information") },
     { "jewelry",  QT_TRANSLATE_NOOP("amenity/shop", "Jewelry") },
     { "kiosk",  QT_TRANSLATE_NOOP("amenity/shop", "Kiosk") },
+    { "laundry",  QT_TRANSLATE_NOOP("amenity/shop", "Laundry") },
+    { "lockers",  QT_TRANSLATE_NOOP("amenity/shop", "Locker") },
+    { "locksmith",  QT_TRANSLATE_NOOP("amenity/shop", "Locksmith") },
+    { "lost_and_found",  QT_TRANSLATE_NOOP("amenity/shop", "Lost & Found") },
+    { "lost_property",  QT_TRANSLATE_NOOP("amenity/shop", "Lost & Found") },
+    { "luggage_locker",  QT_TRANSLATE_NOOP("amenity/shop", "Locker") },
+    { "mall",  QT_TRANSLATE_NOOP("amenity/shop", "Mall") },
     { "mobile_phone",  QT_TRANSLATE_NOOP("amenity/shop", "Mobile Phone") },
+    { "museum",  QT_TRANSLATE_NOOP("amenity/shop", "Museum") },
+    { "newsagent",  QT_TRANSLATE_NOOP("amenity/shop", "Newsagent") },
+    { "office",  QT_TRANSLATE_NOOP("amenity/shop", "Office") },
+    { "optician",  QT_TRANSLATE_NOOP("amenity/shop", "Optician") },
     { "parking",  QT_TRANSLATE_NOOP("amenity/shop", "Parking") },
+    { "pastry",  QT_TRANSLATE_NOOP("amenity/shop", "Pastry") },
+    { "perfumery",  QT_TRANSLATE_NOOP("amenity/shop", "Perfumery") },
     { "pharmacy",  QT_TRANSLATE_NOOP("amenity/shop", "Pharmacy") },
+    { "police",  QT_TRANSLATE_NOOP("amenity/shop", "Police") },
+    { "post_office",  QT_TRANSLATE_NOOP("amenity/shop", "Post Office") },
     { "pub",  QT_TRANSLATE_NOOP("amenity/shop", "Pub") },
     { "restaurant",  QT_TRANSLATE_NOOP("amenity/shop", "Restaurant") },
     { "shoes",  QT_TRANSLATE_NOOP("amenity/shop", "Shoes") },
+    { "shop",  QT_TRANSLATE_NOOP("amenity/shop", "Shop") },
+    { "social_facility",  QT_TRANSLATE_NOOP("amenity/shop", "Social Facility") },
+    { "souveniers",  QT_TRANSLATE_NOOP("amenity/shop", "Souveniers") },
     { "supermarket",  QT_TRANSLATE_NOOP("amenity/shop", "Supermarket") },
+    { "stationery",  QT_TRANSLATE_NOOP("amenity/shop", "Stationery") },
+    { "tailor",  QT_TRANSLATE_NOOP("amenity/shop", "Tailor") },
+    { "tatoo",  QT_TRANSLATE_NOOP("amenity/shop", "Tattoo") },
     { "taxi",  QT_TRANSLATE_NOOP("amenity/shop", "Taxi") },
+    { "tea",  QT_TRANSLATE_NOOP("amenity/shop", "Tea") },
+    { "ticket",  QT_TRANSLATE_NOOP("amenity/shop", "Ticket") },
+    { "tobacco",  QT_TRANSLATE_NOOP("amenity/shop", "Tobacco") },
     { "toilets",  QT_TRANSLATE_NOOP("amenity/shop", "Toilets") },
+    { "toys",  QT_TRANSLATE_NOOP("amenity/shop", "Toys") },
     { "travel_agency",  QT_TRANSLATE_NOOP("amenity/shop", "Travel Agency") },
+    { "waiting",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
+    { "waiting_area",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
 };
 
 // TODO expand this, see https://taginfo.openstreetmap.org/keys/cuisine#values
@@ -263,6 +326,7 @@ struct {
     { "chicken", QT_TRANSLATE_NOOP("cuisine", "Chicken") },
     { "chinese", QT_TRANSLATE_NOOP("cuisine", "Chinese") },
     { "coffee_shop", QT_TRANSLATE_NOOP("cuisine", "Coffee Shop") },
+    { "cookies", QT_TRANSLATE_NOOP("cuisine", "Cookies") },
     { "crepe", QT_TRANSLATE_NOOP("cuisine", "Crêpe") },
     { "donut", QT_TRANSLATE_NOOP("cuisine", "Donut") },
     { "fish", QT_TRANSLATE_NOOP("cuisine", "Fish") },
@@ -356,7 +420,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         case OpeningHours: return m_element.tagValue("opening_hours");
         case Address: return QVariant::fromValue(OSMAddress(m_element));
         case Phone: return m_element.tagValue("contact:phone", "phone"); // TODO make this a link
-        case Email: return m_element.tagValue("contact:email"); // TODO make this a link
+        case Email: return m_element.tagValue("contact:email", "email"); // TODO make this a link
         case Website:
             return m_element.tagValue("website", "contact:website", "url");
         case Wheelchair:
@@ -368,6 +432,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             }
             return a;
         }
+        case OperatorName: return m_element.tagValue("operator");
         case DebugKey: return {};
     }
     return {};

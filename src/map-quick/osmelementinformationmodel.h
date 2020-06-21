@@ -33,6 +33,7 @@ class OSMElementInformationModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(KOSMIndoorMap::OSMElement element READ element WRITE setElement NOTIFY elementChanged)
+    Q_PROPERTY(QString name READ name NOTIFY elementChanged)
     Q_PROPERTY(bool debug MEMBER m_debug)
 
 public:
@@ -50,6 +51,7 @@ public:
         Main,
         Contact,
         Accessibility,
+        Operator,
         DebugCategory
     };
     enum Key {
@@ -61,6 +63,7 @@ public:
         Email,
         Website,
         Wheelchair,
+        OperatorName,
         DebugKey,
     };
     Q_ENUM(Key)
@@ -73,6 +76,8 @@ public:
 
     OSMElement element() const;
     void setElement(const OSMElement &element);
+
+    QString name() const;
 
     int rowCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role) const override;

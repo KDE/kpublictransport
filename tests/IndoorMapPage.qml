@@ -79,9 +79,7 @@ Kirigami.Page {
         id: elementDetailsSheet
 
         header: Kirigami.Heading {
-            text: elementDetailsSheet.element.name
-            height: implicitHight + Kirigami.Units.largeSpacing
-            verticalAlignment: Qt.AlignBottom
+            text: infoModel.name
         }
 
         ListView {
@@ -92,6 +90,8 @@ Kirigami.Page {
                 level: 4
                 text: section
                 color: section == "Debug" ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+                height: implicitHeight + Kirigami.Units.largeSpacing
+                verticalAlignment: Qt.AlignBottom
             }
             section.criteria: ViewSection.FullString
             section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
@@ -129,7 +129,9 @@ Kirigami.Page {
 
         onElementPicked: {
             infoModel.element = element;
-            elementDetailsSheet.sheetOpen = true;
+            if (infoModel.name != "" || infoModel.debug) {
+                elementDetailsSheet.sheetOpen = true;
+            }
         }
     }
 
