@@ -59,11 +59,27 @@ Kirigami.Page {
             QQC2.Label {
                 visible: row.keyLabel != ""
                 text: row.keyLabel + ": "
-                color: row.key == OSMElementInformationModel.DebugKey ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+                color: row.category == OSMElementInformationModel.DebugCategory ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
             }
             QQC2.Label {
                 text: row.value
-                color: row.key == OSMElementInformationModel.DebugKey ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+                color: row.category == OSMElementInformationModel.DebugCategory ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+            }
+        }
+    }
+
+    Component {
+        id: infoLinkDelegate
+        Row {
+            QQC2.Label {
+                visible: row.keyLabel != ""
+                text: row.keyLabel + ": "
+                color: row.category == OSMElementInformationModel.DebugCategory ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+            }
+            QQC2.Label {
+                text: "<a href=\"" + row.url + "\">" + row.value + "</a>"
+                color: row.category == OSMElementInformationModel.DebugCategory ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
+                onLinkActivated: Qt.openUrlExternally(link)
             }
         }
     }
@@ -85,7 +101,7 @@ Kirigami.Page {
         ListView {
             model: infoModel
 
-            section.property: "category"
+            section.property: "categoryLabel"
             section.delegate: Kirigami.Heading {
                 level: 4
                 text: section
@@ -100,7 +116,8 @@ Kirigami.Page {
                 property var row: model
                 sourceComponent: {
                     switch (row.type) {
-                        case OSMElementInformationModel.Link: // TODO
+                        case OSMElementInformationModel.Link:
+                            return infoLinkDelegate;
                         case OSMElementInformationModel.String:
                             return infoStringDelegate;
                         case OSMElementInformationModel.PostalAddress:

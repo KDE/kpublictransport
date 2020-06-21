@@ -44,7 +44,9 @@ public:
         KeyRole = Qt::UserRole,
         KeyLabelRole,
         ValueRole,
+        ValueUrlRole,
         CategoryRole,
+        CategoryLabelRole,
         TypeRole,
     };
     enum KeyCategory {
@@ -52,8 +54,9 @@ public:
         Contact,
         Accessibility,
         Operator,
-        DebugCategory
+        DebugCategory,
     };
+    Q_ENUM(KeyCategory)
     enum Key {
         Category,
         Cuisine,
@@ -64,6 +67,7 @@ public:
         Website,
         Wheelchair,
         OperatorName,
+        DebugLink,
         DebugKey,
     };
     Q_ENUM(Key)
@@ -93,6 +97,7 @@ private:
     QString debugTagValue(int row) const;
     QString keyName(Key key) const;
     QVariant valueForKey(Key key) const;
+    QString urlify(const QString &s, Key key) const;
 
     OSM::Element m_element;
 

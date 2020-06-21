@@ -38,8 +38,11 @@ static constexpr const OSMElementInformationModel::Type type_map[] = {
     OSMElementInformationModel::Link,          // Website
     OSMElementInformationModel::String,        // Wheelchair
     OSMElementInformationModel::String,        // Operator
+    OSMElementInformationModel::Link,          // DebugLink
     OSMElementInformationModel::String,        // DebugKey
 };
+
+static_assert((sizeof(type_map) / sizeof(type_map[0])) == OSMElementInformationModel::DebugKey + 1, "");
 
 OSMElementInformationModel::OSMElementInformationModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -108,7 +111,11 @@ QVariant OSMElementInformationModel::data(const QModelIndex &index, int role) co
                 return debugTagValue(index.row());
             }
             return valueForKey(info.key);
+        case ValueUrlRole:
+            return urlify(valueForKey(info.key).toString(), info.key);
         case CategoryRole:
+            return info.category;
+        case CategoryLabelRole:
             return categoryLabel(info.category);
     }
 
@@ -121,7 +128,9 @@ QHash<int, QByteArray> OSMElementInformationModel::roleNames() const
     r.insert(KeyRole, "key");
     r.insert(KeyLabelRole, "keyLabel");
     r.insert(ValueRole, "value");
+    r.insert(ValueUrlRole, "url");
     r.insert(CategoryRole, "category");
+    r.insert(CategoryLabelRole, "categoryLabel");
     r.insert(TypeRole, "type");
     return r;
 }
@@ -179,6 +188,7 @@ void OSMElementInformationModel::reload()
     }
 
     if (m_debug) {
+        m_infos.push_back(Info{ DebugLink, DebugCategory });
         const auto count = std::distance(m_element.tagsBegin(), m_element.tagsEnd());
         std::fill_n(std::back_inserter(m_infos), count, Info{ DebugKey, DebugCategory });
     }
@@ -222,6 +232,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Website: return tr("Website");
         case Wheelchair: return tr("Wheelchair access");
         case OperatorName: return {};
+        case DebugLink: return QStringLiteral("OSM");
         case DebugKey: return {};
     }
     return {};
@@ -419,10 +430,9 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         }
         case OpeningHours: return m_element.tagValue("opening_hours");
         case Address: return QVariant::fromValue(OSMAddress(m_element));
-        case Phone: return m_element.tagValue("contact:phone", "phone"); // TODO make this a link
-        case Email: return m_element.tagValue("contact:email", "email"); // TODO make this a link
-        case Website:
-            return m_element.tagValue("website", "contact:website", "url");
+        case Phone: return m_element.tagValue("contact:phone", "phone");
+        case Email: return m_element.tagValue("contact:email", "email");
+        case Website: return m_element.tagValue("website", "contact:website", "url");
         case Wheelchair:
         {
             const auto a = m_element.tagValue("wheelchair"); // TODO decode and translate
@@ -433,7 +443,38 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             return a;
         }
         case OperatorName: return m_element.tagValue("operator");
+        case DebugLink: return m_element.url();
         case DebugKey: return {};
     }
+    return {};
+}
+
+QString OSMElementInformationModel::urlify(const QString& s, OSMElementInformationModel::Key key) const
+{
+    switch (key) {
+        case Email:
+            if (!s.startsWith(QLatin1String("mailto:"))) {
+                return QLatin1String("mailto:") + s;
+            }
+            return s;
+        case Phone:
+        {
+            if (s.startsWith(QLatin1String("tel:"))) {
+                return s;
+            }
+            QString e = QLatin1String("tel:") + s;
+            e.remove(QLatin1Char(' '));
+            return e;
+        }
+        case Website:
+        case DebugLink:
+            if (s.startsWith(QLatin1String("http"))) {
+                return s;
+            }
+            return QLatin1String("https://") + s;
+        default:
+            return {};
+    }
+
     return {};
 }
