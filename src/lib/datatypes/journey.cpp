@@ -19,6 +19,7 @@
 #include "journeyutil_p.h"
 #include "json_p.h"
 #include "datatypes_p.h"
+#include "loadutil_p.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
 #include "platformutils_p.h"
@@ -415,6 +416,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     }
 
     res.d->co2Emission = std::max(lhs.d->co2Emission, rhs.d->co2Emission);
+    res.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
 
     return res;
 }

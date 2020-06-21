@@ -46,6 +46,7 @@ set(kpublictransport_srcs
     datatypes/line.cpp
     datatypes/lineutil.cpp
     datatypes/load.cpp
+    datatypes/loadutil.cpp
     datatypes/location.cpp
     datatypes/locationutil.cpp
     datatypes/mergeutil.cpp
