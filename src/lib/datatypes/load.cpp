@@ -17,6 +17,7 @@
 
 #include "load.h"
 #include "datatypes_p.h"
+#include "json_p.h"
 
 using namespace KPublicTransport;
 
@@ -32,5 +33,25 @@ public:
 KPUBLICTRANSPORT_MAKE_GADGET(LoadInfo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LoadInfo, Load::Category, load, setLoad)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LoadInfo, QString, seatingClass, setSeatingClass)
+
+QJsonObject LoadInfo::toJson(const LoadInfo &info)
+{
+    return Json::toJson(info);
+}
+
+QJsonArray LoadInfo::toJson(const std::vector<LoadInfo> &loadInfos)
+{
+    return Json::toJson(loadInfos);
+}
+
+LoadInfo LoadInfo::fromJson(const QJsonObject &obj)
+{
+    return Json::fromJson<LoadInfo>(obj);
+}
+
+std::vector<LoadInfo> LoadInfo::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<LoadInfo>(array);
+}
 
 #include "moc_load.cpp"

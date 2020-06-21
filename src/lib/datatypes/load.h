@@ -56,6 +56,14 @@ class LoadInfo
     KPUBLICTRANSPORT_PROPERTY(QString, seatingClass, setSeatingClass)
     // TODO vehicle section, once we have a backend reporting this (SBB has that in theory I think)
 public:
+    /** Serializes one load information object to JSON. */
+    static QJsonObject toJson(const LoadInfo &info);
+    /** Serializes a vector of load information objects to JSON. */
+    static QJsonArray toJson(const std::vector<LoadInfo> &loadInfos);
+    /** Deserialize an object from JSON. */
+    static LoadInfo fromJson(const QJsonObject &obj);
+    /** Deserialize a list of load information from JSON. */
+    static std::vector<LoadInfo> fromJson(const QJsonArray &array);
 };
 
 }

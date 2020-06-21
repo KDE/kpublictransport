@@ -442,6 +442,9 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
         if (!section.intermediateStops().empty()) {
             obj.insert(QStringLiteral("intermediateStops"), Stopover::toJson(section.intermediateStops()));
         }
+        if (!section.loadInformation().empty()) {
+            obj.insert(QStringLiteral("load"), LoadInfo::toJson(section.loadInformation()));
+        }
     }
     if (section.d->co2Emission < 0) {
         obj.remove(QLatin1String("co2Emission"));
@@ -465,6 +468,7 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setTo(Location::fromJson(obj.value(QLatin1String("to")).toObject()));
     section.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
     section.setIntermediateStops(Stopover::fromJson(obj.value(QLatin1String("intermediateStops")).toArray()));
+    section.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
     return section;
 }
 
