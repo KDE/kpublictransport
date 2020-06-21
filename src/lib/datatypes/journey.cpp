@@ -51,6 +51,7 @@ public:
     QStringList notes;
     std::vector<Stopover> intermediateStops;
     int co2Emission = -1;
+    std::vector<LoadInfo> loadInformation;
 
     int estimatedDistance() const;
 };
@@ -312,6 +313,31 @@ void JourneySection::setCo2Emission(int value)
 {
     d.detach();
     d->co2Emission = value;
+}
+
+const std::vector<LoadInfo>& JourneySection::loadInformation() const
+{
+    return d->loadInformation;
+}
+
+std::vector<LoadInfo>&& JourneySection::takeLoadInformation()
+{
+    d.detach();
+    return std::move(d->loadInformation);
+}
+
+void JourneySection::setLoadInformation(std::vector<LoadInfo> &&loadInfo)
+{
+    d.detach();
+    d->loadInformation = std::move(loadInfo);
+}
+
+QVariantList JourneySection::loadInformationVariant() const
+{
+    QVariantList l;
+    l.reserve(d->loadInformation.size());
+    std::transform(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l), [](const auto &load) { return QVariant::fromValue(load); });
+    return l;
 }
 
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)

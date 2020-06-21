@@ -21,6 +21,7 @@
 #include "datatypes.h"
 #include "disruption.h"
 #include "line.h"
+#include "load.h"
 #include "location.h"
 
 #include <QDateTime>
@@ -113,6 +114,11 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
      */
     KPUBLICTRANSPORT_PROPERTY(int, co2Emission, setCo2Emission)
 
+    /** Vehicle load information for this journey section.
+     *  Contains LoadInfo objects for consumption by QML.
+     */
+    Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant)
+
 public:
     /** Mode of transport. */
     enum Mode {
@@ -162,6 +168,13 @@ public:
      */
     Stopover arrival() const;
 
+    /** Vehicle load information for this journey section, if available. */
+    const std::vector<LoadInfo>& loadInformation() const;
+    /** Moves the load information out of this object for modification. */
+    std::vector<LoadInfo>&& takeLoadInformation();
+    /** Set the vehicle load information for this journey section. */
+    void setLoadInformation(std::vector<LoadInfo>&& loadInfo);
+
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
     static bool isSame(const JourneySection &lhs, const JourneySection &rhs);
 
@@ -181,6 +194,7 @@ public:
 
 private:
     QVariantList intermediateStopsVariant() const;
+    QVariantList loadInformationVariant() const;
 };
 
 class JourneyPrivate;

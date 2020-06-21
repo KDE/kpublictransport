@@ -259,6 +259,43 @@ Kirigami.ApplicationWindow {
                             visible: modelData.hasExpectedArrivalTime
                         }
                     }
+                    RowLayout {
+                        visible: modelData.loadInformation.length > 0
+                        QQC2.Label {
+                            text: "Load: ";
+                        }
+                        Repeater {
+                            model: modelData.loadInformation
+                            RowLayout {
+                                QQC2.Label {
+                                    text: {
+                                        switch (modelData.load) {
+                                            case Load.Low: return "Low";
+                                            case Load.Medium: return "Medium";
+                                            case Load.High: return "High";
+                                            case Load.Full: return "Full";
+                                            default: return "?"
+                                        }
+                                    }
+                                    color: {
+                                        switch (modelData.load) {
+                                            case Load.Low: return Kirigami.Theme.positiveTextColor;
+                                            case Load.Medium: return Kirigami.Theme.neutralTextColor;
+                                            case Load.High:
+                                            case Load.Full:
+                                                return Kirigami.Theme.negativeTextColor;
+                                            default:
+                                                return Kirigami.Theme.textColor;
+                                        }
+                                    }
+                                }
+                                QQC2.Label {
+                                    text: "(class " + modelData.seatingClass + ")"
+                                    visible: modelData.seatingClass != ""
+                                }
+                            }
+                        }
+                    }
                     QQC2.Label {
                         text: modelData.notes.join("<br/>")
                         textFormat: Text.RichText

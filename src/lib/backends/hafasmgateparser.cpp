@@ -146,6 +146,30 @@ static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<
     }
 }
 
+static constexpr const Load::Category load_value_map[] = {
+    Load::Unknown,
+    Load::Low, // 1
+    Load::Medium, // 2
+    Load::High, // 3
+    Load::Full // 4
+};
+
+static std::vector<LoadInfo> parseLoadInformation(const QJsonArray &tcocL)
+{
+    std::vector<LoadInfo> loadInfos;
+    loadInfos.reserve(tcocL.size());
+    for (const auto &tcocV : tcocL) {
+        const auto tcocObj = tcocV.toObject();
+        LoadInfo loadInfo;
+        const auto r = qBound(0, tcocObj.value(QLatin1String("r")).toInt(), 4);
+        loadInfo.setLoad(load_value_map[r]);
+        const auto c = tcocObj.value(QLatin1String("c")).toString();
+        loadInfo.setSeatingClass(c == QLatin1String("FIRST") ? QStringLiteral("1") : QStringLiteral("2"));
+        loadInfos.push_back(std::move(loadInfo));
+    }
+    return loadInfos;
+}
+
 std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) const
 {
     std::vector<Location> locs;
@@ -360,6 +384,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
+    const auto loadInfos = parseLoadInformation(commonObj.value(QLatin1String("tcocL")).toArray());
 
     std::vector<Journey> res;
     const auto outConL = obj.value(QLatin1String("outConL")).toArray();
@@ -446,6 +471,18 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                 }
 
                 parseMessageList(section, jnyObj, remarks, warnings);
+
+                const auto dTrnCmpSX = dep.value(QLatin1String("dTrnCmpSX")).toObject();
+                const auto tcocX = dTrnCmpSX.value(QLatin1String("tcocX")).toArray();
+                std::vector<LoadInfo> load;
+                load.reserve(tcocX.size());
+                for (const auto &v : tcocX) {
+                    const auto i = v.toInt();
+                    if (i >= 0 && i < (int)loadInfos.size()) {
+                        load.push_back(loadInfos[i]);
+                    }
+                }
+                section.setLoadInformation(std::move(load));
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
                 section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());

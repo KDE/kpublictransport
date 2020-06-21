@@ -43,6 +43,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::StopoverRequest>("KPublicTransport::DepartureRequest");
 
     qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
+    qmlRegisterUncreatableMetaObject(KPublicTransport::Load::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Load", {});
 
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});

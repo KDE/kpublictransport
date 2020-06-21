@@ -45,6 +45,7 @@ set(kpublictransport_srcs
     datatypes/json.cpp
     datatypes/line.cpp
     datatypes/lineutil.cpp
+    datatypes/load.cpp
     datatypes/location.cpp
     datatypes/locationutil.cpp
     datatypes/mergeutil.cpp
@@ -125,6 +126,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Disruption
         Journey
         Line
+        Load
         Location
         Platform
         Stopover
