@@ -52,6 +52,7 @@ public:
     enum KeyCategory {
         Main,
         Contact,
+        Payment,
         Accessibility,
         Operator,
         DebugCategory,
@@ -59,12 +60,18 @@ public:
     Q_ENUM(KeyCategory)
     enum Key {
         Category,
+        OldName,
         Cuisine,
         OpeningHours,
+        Fee,
+        Wikipedia,
         Address,
         Phone,
         Email,
         Website,
+        PaymentCash,
+        PaymentDebitCard,
+        PaymentCreditCard,
         Wheelchair,
         OperatorName,
         DebugLink,
@@ -80,6 +87,7 @@ public:
 
     OSMElement element() const;
     void setElement(const OSMElement &element);
+    Q_INVOKABLE void clear();
 
     QString name() const;
 
@@ -97,7 +105,8 @@ private:
     QString debugTagValue(int row) const;
     QString keyName(Key key) const;
     QVariant valueForKey(Key key) const;
-    QString urlify(const QString &s, Key key) const;
+    QVariant urlify(const QVariant &v, Key key) const;
+    QString paymentMethodList(Key key) const;
 
     OSM::Element m_element;
 

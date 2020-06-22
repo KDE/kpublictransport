@@ -87,7 +87,7 @@ Kirigami.Page {
     Component {
         id: infoAddressDelegate
         QQC2.Label {
-            text: (row.value.street + " " + row.value.houseNumber + "\n" + row.value.postalCode + row.value.city + "\n" + row.value.country).trim()
+            text: (row.value.street + " " + row.value.houseNumber + "\n" + row.value.postalCode + " " + row.value.city + "\n" + row.value.country).trim()
         }
     }
 
@@ -124,6 +124,12 @@ Kirigami.Page {
                             return infoAddressDelegate;
                     }
                 }
+            }
+        }
+
+        onSheetOpenChanged: {
+            if (sheetOpen == false) {
+                infoModel.clear()
             }
         }
     }

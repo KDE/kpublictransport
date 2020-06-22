@@ -29,7 +29,7 @@ OSMAddress::~OSMAddress() = default;
 
 QString OSMAddress::street() const
 {
-    return m_element.tagValue("addr:street", "contact:street");
+    return m_element.tagValue("addr:street", "contact:street", "addr:housename");
 }
 
 QString OSMAddress::houseNumber() const
