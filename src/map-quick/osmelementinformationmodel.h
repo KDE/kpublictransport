@@ -62,6 +62,8 @@ public:
         Category,
         OldName,
         Cuisine,
+        Diet,
+        Takeaway,
         OpeningHours,
         Fee,
         Wikipedia,
@@ -70,10 +72,13 @@ public:
         Email,
         Website,
         PaymentCash,
+        PaymentDigital,
         PaymentDebitCard,
         PaymentCreditCard,
+        PaymentStoredValueCard,
         Wheelchair,
         OperatorName,
+        OperatorWikipedia,
         DebugLink,
         DebugKey,
     };
@@ -107,6 +112,8 @@ private:
     QVariant valueForKey(Key key) const;
     QVariant urlify(const QVariant &v, Key key) const;
     QString paymentMethodList(Key key) const;
+    QString paymentMethodValue(Key key) const;
+    QUrl wikipediaUrl(const QString &wp) const;
 
     OSM::Element m_element;
 

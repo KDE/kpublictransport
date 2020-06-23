@@ -28,28 +28,6 @@ bool OSMElementInformationModel::Info::operator<(OSMElementInformationModel::Inf
     return category < other.category;
 }
 
-static constexpr const OSMElementInformationModel::Type type_map[] = {
-    OSMElementInformationModel::String,        // Category
-    OSMElementInformationModel::String,        // OldName
-    OSMElementInformationModel::String,        // Cuisine
-    OSMElementInformationModel::String,        // OpeningHours
-    OSMElementInformationModel::String,        // Fee
-    OSMElementInformationModel::Link,          // Wikipedia
-    OSMElementInformationModel::PostalAddress, // Address
-    OSMElementInformationModel::Link,          // Phone
-    OSMElementInformationModel::Link,          // Email
-    OSMElementInformationModel::Link,          // Website
-    OSMElementInformationModel::String,        // PaymentCash
-    OSMElementInformationModel::String,        // PaymentDebitCard
-    OSMElementInformationModel::String,        // PaymentCreditCard
-    OSMElementInformationModel::String,        // Wheelchair
-    OSMElementInformationModel::String,        // Operator
-    OSMElementInformationModel::Link,          // DebugLink
-    OSMElementInformationModel::String,        // DebugKey
-};
-
-static_assert((sizeof(type_map) / sizeof(type_map[0])) == OSMElementInformationModel::DebugKey + 1, "");
-
 OSMElementInformationModel::OSMElementInformationModel(QObject *parent)
     : QAbstractListModel(parent)
 {
@@ -116,7 +94,19 @@ QVariant OSMElementInformationModel::data(const QModelIndex &index, int role) co
     const auto info = m_infos[index.row()];
     switch (role) {
         case TypeRole:
-            return type_map[info.key];
+            switch (info.key) {
+                case Wikipedia:
+                case Phone:
+                case Email:
+                case Website:
+                case OperatorWikipedia:
+                case DebugLink:
+                    return Link;
+                case Address:
+                    return PostalAddress;
+                default:
+                    return String;
+            }
         case KeyRole:
             return info.key;
         case KeyLabelRole:
@@ -163,6 +153,7 @@ struct {
     M("addr:city", Address, Contact),
     M("addr:street", Address, Contact),
     M("amenity", Category, Main),
+    M("brand:wikipedia", Wikipedia, Main),
     M("charge", Fee, Main),
     M("contact:city", Address, Contact),
     M("contact:email", Email, Contact),
@@ -172,25 +163,35 @@ struct {
     M("cuisine", Cuisine, Main),
     M("email", Email, Contact),
     M("fee", Fee, Main),
-    M("payment:account_cards", PaymentDebitCard, Payment),
     M("payment:cash", PaymentCash, Payment),
     M("payment:coins", PaymentCash, Payment),
-    M("payment:credit_cards", PaymentCreditCard, Payment),
-    M("payment:debit_cards", PaymentDebitCard, Payment),
     M("payment:notes", PaymentCash, Payment),
     M("phone", Phone, Contact),
     M("office", Category, Main),
     M("old_name", OldName, Main),
     M("opening_hours", OpeningHours, Main),
     M("operator", OperatorName, Operator),
+    M("operator:wikipedia", OperatorWikipedia, Operator),
     M("room", Category, Main),
     M("url", Website, Contact),
     M("shop", Category, Main),
+    M("takeaway", Takeaway, Main),
     M("tourism", Category, Main),
     M("website", Website, Contact),
     M("wheelchair", Wheelchair, Accessibility),
 };
 #undef M
+
+// generic payment types (excluding cash, that's handled separately)
+struct {
+    const char *name;
+    OSMElementInformationModel::Key key;
+} static constexpr const payment_generic_type_map[] = {
+    { "payment:account_cards", OSMElementInformationModel::PaymentDebitCard },
+    { "payment:credit_cards", OSMElementInformationModel::PaymentCreditCard },
+    { "payment:debit_cards", OSMElementInformationModel::PaymentDebitCard },
+    { "payment:electronic_purses", OSMElementInformationModel::PaymentStoredValueCard },
+};
 
 // payment vendor types only, generic ones go into the list above and are handled separately
 struct {
@@ -198,14 +199,31 @@ struct {
     OSMElementInformationModel::Key key;
     const char *label;
 } static constexpr const payment_type_map[] = {
-    { "payment:american_express", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_N_NOOP("payment method", "American Express") },
-    { "payment:diners_club", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_N_NOOP("payment method", "Diners Club") },
-    { "payment:jcb", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_N_NOOP("payment method", "JCB") },
-    { "payment:girocard", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_N_NOOP("payment method", "Girocard") },
-    { "payment:maestro", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_N_NOOP("payment method", "Maestro") },
-    { "payment:mastercard", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_N_NOOP("payment method", "Mastercard") },
-    { "payment:v_pay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_N_NOOP("payment method", "V Pay") },
-    { "payment:visa", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_N_NOOP("payment method", "Visa") },
+    { "payment:american_express", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "American Express") },
+    { "payment:apple_pay", OSMElementInformationModel::PaymentDigital, QT_TRANSLATE_NOOP("payment method", "Apple Pay") },
+    { "payment:diners_club", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Diners Club") },
+    { "payment:discover_card", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Discover Card") },
+    { "payment:jcb", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "JCB") },
+    { "payment:girocard", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_NOOP("payment method", "Girocard") },
+    { "payment:google_pay", OSMElementInformationModel::PaymentDigital, QT_TRANSLATE_NOOP("payment method", "Google Pay") },
+    { "payment:maestro", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_NOOP("payment method", "Maestro") },
+    { "payment:mastercard", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Mastercard") },
+    { "payment:unionpay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "UnionPay") },
+    { "payment:v_pay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "V Pay") },
+    { "payment:vpay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "V Pay") },
+    { "payment:visa", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Visa") },
+};
+
+// diet types offered at restaurants
+struct {
+    const char *name;
+    const char *label;
+} static constexpr const diet_type_map[] = {
+    { "diet:gluten_free", QT_TRANSLATE_NOOP("diet type", "gluten free") },
+    { "diet:halal", QT_TRANSLATE_NOOP("diet type", "halal") },
+    { "diet:kosher", QT_TRANSLATE_NOOP("diet type", "kosher") },
+    { "diet:vegan", QT_TRANSLATE_NOOP("diet type", "vegan") },
+    { "diet:vegetarian", QT_TRANSLATE_NOOP("diet type", "vegetarian") },
 };
 
 void OSMElementInformationModel::reload()
@@ -226,9 +244,21 @@ void OSMElementInformationModel::reload()
                 break;
             }
         }
+        for (const auto &payment : payment_generic_type_map) {
+            if (std::strcmp((*it).key.name(), payment.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [payment](auto info) { return info.key == payment.key; })) {
+                m_infos.push_back(Info{payment.key, Payment});
+                break;
+            }
+        }
         for (const auto &payment : payment_type_map) {
             if (std::strcmp((*it).key.name(), payment.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [payment](auto info) { return info.key == payment.key; })) {
                 m_infos.push_back(Info{payment.key, Payment});
+                break;
+            }
+        }
+        for (const auto &diet: diet_type_map) {
+            if (std::strcmp((*it).key.name(), diet.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [](auto info) { return info.key == Diet; })) {
+                m_infos.push_back(Info{Diet, Main});
                 break;
             }
         }
@@ -281,6 +311,8 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Category: return {};
         case OldName: return tr("Fomerly");
         case Cuisine: return tr("Cuisine");
+        case Diet: return tr("Diet");
+        case Takeaway: return tr("Takeaway");
         case OpeningHours: return tr("Opening hours");
         case Fee: return tr("Fee");
         case Wikipedia: return {};
@@ -289,10 +321,13 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Email: return tr("Email");
         case Website: return tr("Website");
         case PaymentCash: return tr("Cash");
+        case PaymentDigital: return tr("Digital");
         case PaymentDebitCard: return tr("Debit Cards");
         case PaymentCreditCard: return tr("Credit Cards");
+        case PaymentStoredValueCard: return tr("Stored Value Cards");
         case Wheelchair: return tr("Wheelchair access");
         case OperatorName: return {};
+        case OperatorWikipedia: return {};
         case DebugLink: return QStringLiteral("OSM");
         case DebugKey: return {};
     }
@@ -356,9 +391,11 @@ struct {
     { "hotel",  QT_TRANSLATE_NOOP("amenity/shop", "Hotel") },
     { "ice_cream",  QT_TRANSLATE_NOOP("amenity/shop", "Ice Cream") },
     { "information",  QT_TRANSLATE_NOOP("amenity/shop", "Information") },
+    { "interior_decoration",  QT_TRANSLATE_NOOP("amenity/shop", "Interior Decoration") },
     { "jewelry",  QT_TRANSLATE_NOOP("amenity/shop", "Jewelry") },
     { "kiosk",  QT_TRANSLATE_NOOP("amenity/shop", "Kiosk") },
     { "laundry",  QT_TRANSLATE_NOOP("amenity/shop", "Laundry") },
+    { "library", QT_TRANSLATE_NOOP("amenity/shop", "Library") },
     { "lockers",  QT_TRANSLATE_NOOP("amenity/shop", "Locker") },
     { "locksmith",  QT_TRANSLATE_NOOP("amenity/shop", "Locksmith") },
     { "lost_and_found",  QT_TRANSLATE_NOOP("amenity/shop", "Lost & Found") },
@@ -381,6 +418,7 @@ struct {
     { "post_box", QT_TRANSLATE_NOOP("amenity/shop", "Post Box") },
     { "post_office",  QT_TRANSLATE_NOOP("amenity/shop", "Post Office") },
     { "pub",  QT_TRANSLATE_NOOP("amenity/shop", "Pub") },
+    { "public_transport_tickets", QT_TRANSLATE_NOOP("amenity/shop", "Public Transport Tickets") },
     { "restaurant",  QT_TRANSLATE_NOOP("amenity/shop", "Restaurant") },
     { "school",  QT_TRANSLATE_NOOP("amenity/shop", "School") },
     { "shoes",  QT_TRANSLATE_NOOP("amenity/shop", "Shoes") },
@@ -479,6 +517,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             l += m_element.tagValue("amenity").split(QLatin1Char(';'), Qt::SkipEmptyParts);
             l += m_element.tagValue("shop").split(QLatin1Char(';'), Qt::SkipEmptyParts);
             l += m_element.tagValue("tourism").split(QLatin1Char(';'), Qt::SkipEmptyParts);
+            l += m_element.tagValue("vending").split(QLatin1Char(';'), Qt::SkipEmptyParts);
             l += m_element.tagValue("office").split(QLatin1Char(';'), Qt::SkipEmptyParts);
             if (l.isEmpty()) {
                 l += m_element.tagValue("room").split(QLatin1Char(';'), Qt::SkipEmptyParts);
@@ -488,7 +527,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
 
             for (auto it = l.begin(); it != l.end();) {
                 (*it) = (*it).trimmed();
-                if ((*it) == QLatin1String("yes")) {
+                if ((*it) == QLatin1String("yes") || (*it) == QLatin1String("vending_machine")) {
                     it = l.erase(it);
                     continue;
                 }
@@ -522,6 +561,22 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             std::sort(l.begin(), l.end());
             return QLocale().createSeparatedList(l);
         }
+        case Diet:
+        {
+            QStringList l;
+            for (const auto &d : diet_type_map) {
+                const auto v = m_element.tagValue(d.name);
+                if (v == QLatin1String("yes")) {
+                    l.push_back(tr(d.label, "diet type"));
+                } else if (v == QLatin1String("only")) {
+                    l.push_back(tr("only %1").arg(tr(d.label, "diet type")));
+                } else if (v == QLatin1String("no")) {
+                    l.push_back(tr("no %1").arg(tr(d.label, "diet type")));
+                }
+            }
+            return QLocale().createSeparatedList(l);
+        }
+        case Takeaway: return m_element.tagValue("takeaway"); // TODO decode (yes/only/no) and translate
         case OpeningHours: return m_element.tagValue("opening_hours");
         case Fee:
         {
@@ -535,26 +590,9 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             }
             return s;
         }
-        case Wikipedia:
-        {
-            const auto wp = m_element.tagValue("wikipedia", QLocale());
-            if (wp.isEmpty()) {
-                return {};
-            }
-
-            const auto idx = wp.indexOf(QLatin1Char(':'));
-            if (idx < 0) {
-                return {};
-            }
-
-            QUrl url;
-            url.setScheme(QStringLiteral("https"));
-            url.setHost(wp.leftRef(idx) + QLatin1String(".wikipedia.org"));
-            url.setPath(QLatin1String("/wiki/") + wp.midRef(idx + 1));
-            return url;
-        }
+        case Wikipedia: return wikipediaUrl(m_element.tagValue("wikipedia", "brand:wikipedia", QLocale()));
         case Address: return QVariant::fromValue(OSMAddress(m_element));
-        case Phone: return m_element.tagValue("contact:phone", "phone");
+        case Phone: return m_element.tagValue("contact:phone", "phone", "telephone");
         case Email: return m_element.tagValue("contact:email", "email");
         case Website: return m_element.tagValue("website", "contact:website", "url");
         case PaymentCash:
@@ -575,22 +613,11 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             }
             return tr("no");
         }
+        case PaymentDigital:
         case PaymentDebitCard:
-        {
-            const auto s = paymentMethodList(PaymentDebitCard);
-            if (!s.isEmpty()) {
-                return s;
-            }
-            return m_element.tagValue("payment:debit_cards", "payment:account_cards"); // TODO decode bool
-        }
         case PaymentCreditCard:
-        {
-            const auto s = paymentMethodList(PaymentCreditCard);
-            if (!s.isEmpty()) {
-                return s;
-            }
-            return m_element.tagValue("payment:credit_cards"); // TODO decode bool
-        }
+        case PaymentStoredValueCard:
+            return paymentMethodValue(key);
         case Wheelchair:
         {
             const auto a = m_element.tagValue("wheelchair"); // TODO decode and translate
@@ -601,6 +628,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             return a;
         }
         case OperatorName: return m_element.tagValue("operator");
+        case OperatorWikipedia: return wikipediaUrl(m_element.tagValue("operator:wikipedia", QLocale()));
         case DebugLink: return m_element.url();
         case DebugKey: return {};
     }
@@ -655,4 +683,41 @@ QString OSMElementInformationModel::paymentMethodList(OSMElementInformationModel
     }
     std::sort(l.begin(), l.end());
     return QLocale().createSeparatedList(l);
+}
+
+QString OSMElementInformationModel::paymentMethodValue(OSMElementInformationModel::Key key) const
+{
+    const auto s = paymentMethodList(key);
+    if (!s.isEmpty()) {
+        return s;
+    }
+
+    for (const auto &payment : payment_generic_type_map) {
+        if (payment.key != key) {
+            continue;
+        }
+        const auto s = m_element.tagValue(payment.name);
+        if (!s.isEmpty()) {
+            return s;
+        }
+    }
+    return {};
+}
+
+QUrl OSMElementInformationModel::wikipediaUrl(const QString &wp) const
+{
+    if (wp.isEmpty()) {
+        return {};
+    }
+
+    const auto idx = wp.indexOf(QLatin1Char(':'));
+    if (idx < 0) {
+        return {};
+    }
+
+    QUrl url;
+    url.setScheme(QStringLiteral("https"));
+    url.setHost(wp.leftRef(idx) + QLatin1String(".wikipedia.org"));
+    url.setPath(QLatin1String("/wiki/") + wp.midRef(idx + 1));
+    return url;
 }

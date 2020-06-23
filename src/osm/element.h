@@ -69,6 +69,7 @@ public:
     QString tagValue(const char *keyName, const QLocale &locale) const;
     /** Returns the value of the first non-empty tag. */
     template <typename ...Args> QString tagValue(const char *keyName, Args... args) const;
+    template <typename ...Args> QString tagValue(const char *keyName, Args... args, const QLocale &locale) const;
 
     std::vector<Tag>::const_iterator tagsBegin() const;
     std::vector<Tag>::const_iterator tagsEnd() const;
@@ -98,6 +99,16 @@ QString Element::tagValue(const char *keyName, Args... args) const
         return v;
     }
     return tagValue(args...);
+}
+
+template <typename ...Args>
+QString Element::tagValue(const char *keyName, Args... args, const QLocale &locale) const
+{
+    const auto v = tagValue(keyName, locale);
+    if (!v.isEmpty()) {
+        return v;
+    }
+    return tagValue(args..., locale);
 }
 
 enum ForeachFlag : uint8_t {
