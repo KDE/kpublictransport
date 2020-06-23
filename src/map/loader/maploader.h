@@ -42,7 +42,7 @@ public:
     ~MapLoader();
 
     /** Load a single O5M file. */
-    void loadFromO5m(const QString &fileName);
+    Q_INVOKABLE void loadFromO5m(const QString &fileName);
     /** Load map for the given coordinates.
      *  This can involve online access.
      */

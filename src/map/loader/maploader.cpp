@@ -24,6 +24,7 @@
 
 #include <QElapsedTimer>
 #include <QFile>
+#include <QUrl>
 
 enum {
     TileZoomLevel = 17
@@ -50,7 +51,7 @@ void MapLoader::loadFromO5m(const QString &fileName)
     QElapsedTimer loadTime;
     loadTime.start();
 
-    QFile f(fileName);
+    QFile f(QUrl::fromUserInput(fileName).toLocalFile());
     if (!f.open(QFile::ReadOnly)) {
         qCritical() << f.fileName() << f.errorString();
         return;

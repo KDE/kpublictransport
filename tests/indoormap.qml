@@ -18,14 +18,36 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
+import Qt.labs.platform 1.0 as Platform
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kosmindoormap 1.0
 
 Kirigami.ApplicationWindow {
     title: "OSM Indoor Map QML Test"
 
+    globalDrawer: Kirigami.GlobalDrawer {
+        title: i18n("Indoor Map")
+        titleIcon: "map-symbolic"
+        isMenu: true
+        actions: [
+            Kirigami.Action {
+                text: "Open O5M File"
+                onTriggered: fileDialog.open()
+            }
+        ]
+    }
+
+    Platform.FileDialog {
+        id: fileDialog
+        title: "Open O5M File"
+        fileMode: Platform.FileDialog.OpenFile
+        nameFilters: ["o5m file (*.o5m)"]
+        onAccepted: page.map.mapLoader.loadFromO5m(fileDialog.file);
+    }
+
     pageStack.initialPage: IndoorMapPage {
         id: page
+        debug: debugAction.checked
 
         actions {
             contextualActions: [
@@ -40,6 +62,12 @@ Kirigami.ApplicationWindow {
                 Kirigami.Action {
                     text: "Diagnostic View"
                     onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/diagnostic.mapcss"
+                },
+                Kirigami.Action {
+                    id: debugAction
+                    text: "Debug Info Model"
+                    checkable: true
+                    checked: false
                 }
             ]
         }

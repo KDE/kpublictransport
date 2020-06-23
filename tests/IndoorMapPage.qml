@@ -25,6 +25,7 @@ Kirigami.Page {
     title: map.floorLevels.hasName(map.view.floorLevel) ? map.floorLevels.name(map.view.floorLevel) : ("Floor " + map.floorLevels.name(map.view.floorLevel));
     property point coordinate
     property alias map: map
+    property alias debug: infoModel.debug
 
     topPadding: 0
     bottomPadding: 0
@@ -103,6 +104,7 @@ Kirigami.Page {
 
             section.property: "categoryLabel"
             section.delegate: Kirigami.Heading {
+                x: Kirigami.Units.largeSpacing
                 level: 4
                 text: section
                 color: section == "Debug" ? Kirigami.Theme.disabledTextColor : Kirigami.Theme.textColor
@@ -114,6 +116,7 @@ Kirigami.Page {
 
             delegate: Loader {
                 property var row: model
+                x: Kirigami.Units.largeSpacing
                 sourceComponent: {
                     switch (row.type) {
                         case OSMElementInformationModel.Link:
