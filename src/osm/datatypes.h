@@ -390,7 +390,19 @@ inline QString tagValue(const Elem& elem, const char *keyName, const QLocale &lo
         }
     }
 
-    return tagValue(elem, keyName);
+    // fall back to generic value, if present
+    const auto v = tagValue(elem, keyName);
+    if (!v.isEmpty()) {
+        return v;
+    }
+
+    // check if there is at least one in any language we can use
+    key.resize(baseLen);
+    const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [key, baseLen](const auto &tag) { return std::strncmp(tag.key.name(), key.constData(), baseLen) == 0; });
+    if (it != elem.tags.end()) {
+        return (*it).value;
+    }
+    return {};
 }
 
 /** Inserts a new tag, or replaces an existing one with the same key. */
