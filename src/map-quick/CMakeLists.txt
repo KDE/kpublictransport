@@ -1,11 +1,15 @@
-set(kosmindoormapquickplugin_SRC
-    kosmindoormapquickplugin.cpp
+add_library(KOSMIndoorMapQuick STATIC
     floorlevelmodel.cpp
     mapitem.cpp
     osmaddress.cpp
     osmelement.cpp
     osmelementinformationmodel.cpp
 )
+target_link_libraries(KOSMIndoorMapQuick PUBLIC
+    Qt5::Quick
+    KOSMIndoorMap
+)
+
 set(kosmindoormapquickplugin_qml
     qmldir
     IndoorMap.qml
@@ -13,10 +17,9 @@ set(kosmindoormapquickplugin_qml
     IndoorMapScale.qml
 )
 
-add_library(kosmindoormapquickplugin ${kosmindoormapquickplugin_SRC})
+add_library(kosmindoormapquickplugin kosmindoormapquickplugin.cpp)
 target_link_libraries(kosmindoormapquickplugin
-    Qt5::Quick
-    KOSMIndoorMap
+    KOSMIndoorMapQuick
 )
 
 # make examples work without installation

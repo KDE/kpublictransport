@@ -222,6 +222,7 @@ struct {
     { "diet:gluten_free", QT_TRANSLATE_NOOP("diet type", "gluten free") },
     { "diet:halal", QT_TRANSLATE_NOOP("diet type", "halal") },
     { "diet:kosher", QT_TRANSLATE_NOOP("diet type", "kosher") },
+    { "diet:lactose_free", QT_TRANSLATE_NOOP("diet type", "lactose free") },
     { "diet:vegan", QT_TRANSLATE_NOOP("diet type", "vegan") },
     { "diet:vegetarian", QT_TRANSLATE_NOOP("diet type", "vegetarian") },
 };

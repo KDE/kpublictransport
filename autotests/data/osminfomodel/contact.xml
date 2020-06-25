@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="addr:street" v="Prinzenstraße"/>
+        <tag k="addr:housenumber" v="85 F"/>
+        <tag k="addr:postcode" v="10969"/>
+        <tag k="addr:city" v="Berlin"/>
+        <tag k="addr:state" v="BE"/>
+        <tag k="addr:country" v="DE"/>
+        <tag k="contact:email" v="null@kde.org"/>
+        <tag k="contact:phone" v="+49 30 123 456789 0"/>
+        <tag k="contact:fax" v="+49 30 987 654 321"/>
+        <tag k="contact:twitter" v="https://twitter.com/kdecommunity"/>
+        <tag k="website" v="https://www.kde.org"/>
+        <tag k="room" v="office"/>
+        <tag k="tourism" v="attraction"/>
+        <tag k="name" v="KDE Presidential Palace"/>
+    </node>
+</osm>
+

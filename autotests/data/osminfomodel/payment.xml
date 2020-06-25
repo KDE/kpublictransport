@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="room" v="shop"/>
+        <tag k="shop" v="pastry"/>
+        <tag k="name" v="The Pastry Shop"/>
+        <tag k="payment:notes" v="yes"/>
+        <tag k="payment:coins" v="yes"/>
+        <tag k="payment:electronic_purses" v="yes"/>
+        <tag k="payment:girocard" v="yes"/>
+        <tag k="payment:maestro" v="no"/>
+        <tag k="payment:american_express" v="no"/>
+        <tag k="payment:mastercard" v="yes"/>
+        <tag k="payment:visa" v="yes"/>
+        <tag k="payment:clipper" v="yes"/>
+        <tag k="payment:oyster" v="yes"/>
+        <tag k="payment:bitcoin" v="no"/>
+        <tag k="payment:apple_pay" v="no"/>
+        <tag k="payment:google_pay" v="yes"/>
+        <tag k="payment:contactless" v="yes"/>
+    </node>
+</osm>
+

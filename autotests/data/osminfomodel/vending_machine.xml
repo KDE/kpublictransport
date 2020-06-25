@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="amenity" v="vending_machine"/>
+        <tag k="vending" v="public_transport_tickets"/>
+        <tag k="operator" v="Deutsche Bahn"/>
+        <tag k="operator:wikipedia" v="de:Deutsche Bahn"/>
+        <tag k="network" v="BVG"/>
+    </node>
+</osm>

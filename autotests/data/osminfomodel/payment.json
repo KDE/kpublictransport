@@ -1,0 +1,33 @@
+{
+    "content": [
+        {
+            "value": "Pastry"
+        },
+        {
+            "categoryLabel": "Payment",
+            "keyLabel": "Cash",
+            "value": "yes"
+        },
+        {
+            "categoryLabel": "Payment",
+            "keyLabel": "Digital",
+            "value": "Google Pay"
+        },
+        {
+            "categoryLabel": "Payment",
+            "keyLabel": "Debit Cards",
+            "value": "Girocard"
+        },
+        {
+            "categoryLabel": "Payment",
+            "keyLabel": "Credit Cards",
+            "value": "Mastercard, Visa"
+        },
+        {
+            "categoryLabel": "Payment",
+            "keyLabel": "Stored Value Cards",
+            "value": "yes"
+        }
+    ],
+    "name": "The Pastry Shop"
+}

@@ -1,0 +1,34 @@
+{
+    "content": [
+        {
+            "value": "Restaurant"
+        },
+        {
+            "keyLabel": "Cuisine",
+            "value": "French, Italian"
+        },
+        {
+            "keyLabel": "Diet",
+            "value": "vegan, only vegetarian"
+        },
+        {
+            "keyLabel": "Takeaway",
+            "value": "no"
+        },
+        {
+            "keyLabel": "Opening hours",
+            "value": "12:00-23:00"
+        },
+        {
+            "categoryLabel": "Payment",
+            "keyLabel": "Credit Cards",
+            "value": "yes"
+        },
+        {
+            "categoryLabel": "Accessibility",
+            "keyLabel": "Wheelchair access",
+            "value": "yes"
+        }
+    ],
+    "name": "The Restaurant"
+}

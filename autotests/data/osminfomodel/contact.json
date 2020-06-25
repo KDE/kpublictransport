@@ -1,0 +1,30 @@
+{
+    "content": [
+        {
+            "value": "Attraction"
+        },
+        {
+            "categoryLabel": "Contact",
+            "keyLabel": "Address"
+        },
+        {
+            "categoryLabel": "Contact",
+            "keyLabel": "Phone",
+            "url": "tel:+49301234567890",
+            "value": "+49 30 123 456789 0"
+        },
+        {
+            "categoryLabel": "Contact",
+            "keyLabel": "Email",
+            "url": "mailto:null@kde.org",
+            "value": "null@kde.org"
+        },
+        {
+            "categoryLabel": "Contact",
+            "keyLabel": "Website",
+            "url": "https://www.kde.org",
+            "value": "https://www.kde.org"
+        }
+    ],
+    "name": "KDE Presidential Palace"
+}

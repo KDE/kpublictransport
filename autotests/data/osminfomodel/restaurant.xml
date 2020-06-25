@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="amenity" v="restaurant"/>
+        <tag k="cuisine" v="french;italian"/>
+        <tag k="takeaway" v="no"/>
+        <tag k="opening_hours" v="12:00-23:00"/>
+        <tag k="seating" v="yes"/>
+        <tag k="name" v="The Restaurant"/>
+        <tag k="toilets" v="yes"/>
+        <tag k="wheelchair" v="yes"/>
+        <tag k="payment:credit_cards" v="yes"/>
+        <tag k="diet:vegetarian" v="only"/>
+        <tag k="diet:vegan" v="yes"/>
+    </node>
+</osm>
