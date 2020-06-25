@@ -33,6 +33,10 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: "Open O5M File"
                 onTriggered: fileDialog.open()
+            },
+            Kirigami.Action {
+                text: "Open MapCSS Stylesheet"
+                onTriggered: mapcssDialog.open()
             }
         ]
     }
@@ -43,6 +47,13 @@ Kirigami.ApplicationWindow {
         fileMode: Platform.FileDialog.OpenFile
         nameFilters: ["o5m file (*.o5m)"]
         onAccepted: page.map.mapLoader.loadFromO5m(fileDialog.file);
+    }
+    Platform.FileDialog {
+        id: mapcssDialog
+        title: "Open MapCSS Stylesheet"
+        fileMode: Platform.FileDialog.OpenFile
+        nameFilters: ["MapCSS stylesheet (*.mapcss)"]
+        onAccepted: page.map.styleSheet = mapcssDialog.file
     }
 
     pageStack.initialPage: IndoorMapPage {

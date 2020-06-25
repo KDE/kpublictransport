@@ -75,10 +75,11 @@ QString MapItem::styleSheetName() const
 
 void MapItem::setStylesheetName(const QString &styleSheet)
 {
-    if (m_styleSheetName == styleSheet) {
+    const auto styleUrl = QUrl::fromUserInput(styleSheet);
+    if (m_styleSheetName == styleUrl.toLocalFile()) {
         return;
     }
-    m_styleSheetName = styleSheet;
+    m_styleSheetName = styleUrl.toLocalFile();
 
     MapCSSParser cssParser;
     m_style = cssParser.parse(m_styleSheetName);
