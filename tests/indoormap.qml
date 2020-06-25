@@ -37,6 +37,14 @@ Kirigami.ApplicationWindow {
             Kirigami.Action {
                 text: "Open MapCSS Stylesheet"
                 onTriggered: mapcssDialog.open()
+            },
+            Kirigami.Action {
+                text: "Reload Stylesheet"
+                onTriggered: {
+                    var s = page.map.styleSheet;
+                    page.map.styleSheet = "";
+                    page.map.styleSheet = s;
+                }
             }
         ]
     }

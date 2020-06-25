@@ -81,11 +81,6 @@ line[waterway]
     opacity: 0.5;
 }
 
-node
-{
-    color: #0000ff;
-}
-
 * {
     text: name;
     text-color: #00ffff;

@@ -80,14 +80,17 @@ void MapItem::setStylesheetName(const QString &styleSheet)
         return;
     }
     m_styleSheetName = styleUrl.toLocalFile();
+    m_style = MapCSSStyle();
 
-    MapCSSParser cssParser;
-    m_style = cssParser.parse(m_styleSheetName);
+    if (!m_styleSheetName.isEmpty()) {
+        MapCSSParser cssParser;
+        m_style = cssParser.parse(m_styleSheetName);
 
-    if (cssParser.hasError()) {
-        m_errorMessage = cssParser.errorMessage();
-        emit errorChanged();
-        return;
+        if (cssParser.hasError()) {
+            m_errorMessage = cssParser.errorMessage();
+            emit errorChanged();
+            return;
+        }
     }
 
     m_style.compile(m_data.dataSet());
