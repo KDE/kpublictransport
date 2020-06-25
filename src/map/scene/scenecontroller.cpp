@@ -66,6 +66,11 @@ void SceneController::setView(const View *view)
     m_dirty = true;
 }
 
+static bool isTaglessNode(OSM::Element e)
+{
+    return e.type() == OSM::Type::Node && std::distance(e.tagsBegin(), e.tagsEnd()) == 0;
+}
+
 void SceneController::updateScene(SceneGraph &sg) const
 {
     QElapsedTimer sgUpdateTimer;
@@ -117,7 +122,10 @@ void SceneController::updateScene(SceneGraph &sg) const
     const auto geoBbox = m_view->mapSceneToGeo(m_view->sceneBoundingBox());
     for (auto it = beginIt; it != endIt; ++it) {
         for (auto e : (*it).second) {
-            if (OSM::intersects(geoBbox, e.boundingBox())) {
+            // tag-less nodes cannot practically result in visual effects, so we can skip MapCSS evaluation for them
+            // this cuts CSS eval cost in half
+            // (in theory you could have a label set on them, but that makes no sense)
+            if (OSM::intersects(geoBbox, e.boundingBox()) && !isTaglessNode(e)) {
                 updateElement(e, (*it).first.numericLevel(), sg);
             }
         }
