@@ -29,6 +29,14 @@
 
 using namespace KOSMIndoorMap;
 
+void initLocale()
+{
+    qputenv("LC_ALL", "C");
+    qputenv("TZ", "UTC");
+}
+
+Q_CONSTRUCTOR_FUNCTION(initLocale)
+
 class OSMElementInfoModelTest : public QObject
 {
     Q_OBJECT
