@@ -47,6 +47,11 @@ QString OSMAddress::city() const
     return m_element.tagValue("addr:city", "contact:city");
 }
 
+QString OSMAddress::state() const
+{
+    return m_element.tagValue("addr:state");
+}
+
 QString OSMAddress::country() const
 {
     return m_element.tagValue("addr:country", "contact:country");

@@ -30,6 +30,7 @@ class OSMAddress
     Q_PROPERTY(QString houseNumber READ houseNumber)
     Q_PROPERTY(QString postalCode READ postalCode)
     Q_PROPERTY(QString city READ city)
+    Q_PROPERTY(QString state READ state)
     Q_PROPERTY(QString country READ country)
 
 public:
@@ -41,6 +42,7 @@ public:
     QString houseNumber() const;
     QString postalCode() const;
     QString city() const;
+    QString state() const;
     QString country() const;
 
 private:
