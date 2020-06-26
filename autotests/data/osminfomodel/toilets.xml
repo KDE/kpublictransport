@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="amenity" v="toilets"/>
+        <tag k="opening_hours" v="24/7"/>
+        <tag k="wheelchair" v="yes"/>
+        <tag k="payment:coins" v="yes"/>
+        <tag k="fee" v="yes"/>
+        <tag k="charge" v="0.50 EUR"/>
+        <tag k="changing_table" v="yes"/>
+        <tag k="changing_table:location" v="female_toilet"/>
+        <tag k="changing_table:fee" v="no"/>
+        <tag k="changing_table:count" v="2"/>
+        <tag k="emergency" v="defibrillator"/>
+        <tag k="male" v="no"/>
+        <tag k="female" v="yes"/>
+        <tag k="shower" v="yes"/>
+    </node>
+</osm>

@@ -4,6 +4,11 @@
             "categoryLabel": "Accessibility",
             "keyLabel": "Wheelchair access",
             "value": "yes (description in the wrong language)"
+        },
+        {
+             "categoryLabel": "Accessibility",
+             "keyLabel": "Central key",
+             "value": "eurokey"
         }
     ],
     "name": "Toilets"

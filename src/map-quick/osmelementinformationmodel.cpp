@@ -154,6 +154,8 @@ struct {
     M("addr:street", Address, Contact),
     M("amenity", Category, Main),
     M("brand:wikipedia", Wikipedia, Main),
+    M("centralkey", CentralKey, Accessibility),
+    M("changing_table", DiaperChangingTable, Main),
     M("charge", Fee, Main),
     M("contact:city", Address, Contact),
     M("contact:email", Email, Contact),
@@ -161,6 +163,7 @@ struct {
     M("contact:street", Address, Contact),
     M("contact:website", Website, Contact),
     M("cuisine", Cuisine, Main),
+    M("diaper", DiaperChangingTable, Main),
     M("email", Email, Contact),
     M("fee", Fee, Main),
     M("payment:cash", PaymentCash, Payment),
@@ -316,6 +319,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Takeaway: return tr("Takeaway");
         case OpeningHours: return tr("Opening hours");
         case Fee: return tr("Fee");
+        case DiaperChangingTable: return tr("Diaper changing table");
         case Wikipedia: return {};
         case Address: return tr("Address");
         case Phone: return tr("Phone");
@@ -327,6 +331,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case PaymentCreditCard: return tr("Credit Cards");
         case PaymentStoredValueCard: return tr("Stored Value Cards");
         case Wheelchair: return tr("Wheelchair access");
+        case CentralKey: return tr("Central key");
         case OperatorName: return {};
         case OperatorWikipedia: return {};
         case DebugLink: return QStringLiteral("OSM");
@@ -374,6 +379,7 @@ struct {
     { "convenience",  QT_TRANSLATE_NOOP("amenity/shop", "Convenience Store") },
     { "copyshop", QT_TRANSLATE_NOOP("amenity/shop", "Copy Shop") },
     { "cosmetics",  QT_TRANSLATE_NOOP("amenity/shop", "Cosmetics") },
+    { "courthouse", QT_TRANSLATE_NOOP("amenity/shop", "Court House") },
     { "deli", QT_TRANSLATE_NOOP("amenity/shop", "Deli") },
     { "department_store", QT_TRANSLATE_NOOP("amenity/shop", "Department Store") },
     { "doctors", QT_TRANSLATE_NOOP("amenity/shop", "Doctor") },
@@ -415,6 +421,8 @@ struct {
     { "perfumery",  QT_TRANSLATE_NOOP("amenity/shop", "Perfumery") },
     { "pet",  QT_TRANSLATE_NOOP("amenity/shop", "Pet") },
     { "pharmacy",  QT_TRANSLATE_NOOP("amenity/shop", "Pharmacy") },
+    { "photo", QT_TRANSLATE_NOOP("amenity/shop", "Photo") },
+    { "place_of_worship", QT_TRANSLATE_NOOP("amenity/shop", "Place of Worship") },
     { "police",  QT_TRANSLATE_NOOP("amenity/shop", "Police") },
     { "post_box", QT_TRANSLATE_NOOP("amenity/shop", "Post Box") },
     { "post_office",  QT_TRANSLATE_NOOP("amenity/shop", "Post Office") },
@@ -433,11 +441,13 @@ struct {
     { "tatoo",  QT_TRANSLATE_NOOP("amenity/shop", "Tattoo") },
     { "taxi",  QT_TRANSLATE_NOOP("amenity/shop", "Taxi") },
     { "tea",  QT_TRANSLATE_NOOP("amenity/shop", "Tea") },
+    { "theatre", QT_TRANSLATE_NOOP("amenity/shop", "Theatre") },
     { "ticket",  QT_TRANSLATE_NOOP("amenity/shop", "Ticket") },
     { "tobacco",  QT_TRANSLATE_NOOP("amenity/shop", "Tobacco") },
     { "toilets",  QT_TRANSLATE_NOOP("amenity/shop", "Toilets") },
     { "toys",  QT_TRANSLATE_NOOP("amenity/shop", "Toys") },
     { "travel_agency",  QT_TRANSLATE_NOOP("amenity/shop", "Travel Agency") },
+    { "university", QT_TRANSLATE_NOOP("amenity/shop", "University") },
     { "waiting",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
     { "waiting_area",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
     { "wine", QT_TRANSLATE_NOOP("amenity/shop", "Wine") },
@@ -575,7 +585,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
                     l.push_back(tr("no %1").arg(tr(d.label, "diet type")));
                 }
             }
-            return QLocale().createSeparatedList(l);
+            return l.join(QLatin1String(", "));
         }
         case Takeaway: return m_element.tagValue("takeaway"); // TODO decode (yes/only/no) and translate
         case OpeningHours: return m_element.tagValue("opening_hours");
@@ -591,6 +601,10 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             }
             return s;
         }
+        case DiaperChangingTable:
+            // TODO bool value translation
+            // TODO look for changing_table:location too
+            return m_element.tagValue("changing_table", "diaper");
         case Wikipedia: return wikipediaUrl(m_element.tagValue("wikipedia", "brand:wikipedia", QLocale()));
         case Address: return QVariant::fromValue(OSMAddress(m_element));
         case Phone: return m_element.tagValue("contact:phone", "phone", "telephone");
@@ -628,6 +642,9 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             }
             return a;
         }
+        case CentralKey:
+            // translate enum values
+            return m_element.tagValue("centralkey");
         case OperatorName: return m_element.tagValue("operator");
         case OperatorWikipedia: return wikipediaUrl(m_element.tagValue("operator:wikipedia", QLocale()));
         case DebugLink: return m_element.url();

@@ -31,7 +31,7 @@ using namespace KOSMIndoorMap;
 
 void initLocale()
 {
-    qputenv("LC_ALL", "C");
+    qputenv("LC_ALL", "en_US.utf-8");
     qputenv("TZ", "UTC");
 }
 
