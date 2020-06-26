@@ -62,6 +62,9 @@ void O5mParser::setMergeBuffer(DataSetMergeBuffer *buffer)
 
 void O5mParser::parse(const uint8_t* data, std::size_t len)
 {
+    std::fill(m_stringLookupTable.begin(), m_stringLookupTable.end(), nullptr);
+    resetDeltaCodingState();
+
     const auto endIt = data + len;
     for (auto it = data; it < endIt - 1;) {
         const auto blockType = (*it);
@@ -150,6 +153,9 @@ std::pair<const char*, const char*> O5mParser::readStringPair(const uint8_t *&it
     auto ref = readUnsigned(it, endIt);
     if (ref) {
         const auto s = m_stringLookupTable[(m_stringLookupPosition + O5M_STRING_TABLE_SIZE - ref) % O5M_STRING_TABLE_SIZE];
+        if (!s) {
+            return {};
+        }
         const auto len1 = std::strlen(s);
         return std::make_pair(s, s + len1 + 1);
     } else {
@@ -185,6 +191,9 @@ template<typename Elem>
 void O5mParser::readTagOrBbox(Elem &e, const uint8_t *&it, const uint8_t *endIt)
 {
     const auto tagData = readStringPair(it, endIt);
+    if (!tagData.first) {
+        return;
+    }
     if (std::strcmp(tagData.first, "bBox") == 0) {
         char *next = nullptr;
         const auto lon1 = std::strtod(tagData.second, &next);
@@ -219,9 +228,11 @@ void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
     while (it < end) {
         OSM::Tag tag;
         const auto tagData = readStringPair(it, end);
-        tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::StringIsTransient); // TODO use the fact this is mmap'ed data here
-        tag.value = QString::fromUtf8(tagData.second);
-        OSM::setTag(node, std::move(tag));
+        if (tagData.first) {
+            tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::StringIsTransient); // TODO use the fact this is mmap'ed data here
+            tag.value = QString::fromUtf8(tagData.second);
+            OSM::setTag(node, std::move(tag));
+        }
     }
 
     m_mergeBuffer ? m_mergeBuffer->nodes.push_back(std::move(node)) : m_dataSet->addNode(std::move(node));
