@@ -18,6 +18,7 @@
 #include "stopover.h"
 #include "datatypes_p.h"
 #include "json_p.h"
+#include "loadutil_p.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
 #include "platformutils_p.h"
@@ -41,6 +42,7 @@ public:
     Route route;
     Location stopPoint;
     QStringList notes;
+    std::vector<LoadInfo> loadInformation;
 };
 }
 
@@ -129,6 +131,31 @@ void Stopover::addNotes(const QStringList &notes)
     }
 }
 
+const std::vector<LoadInfo>& Stopover::loadInformation() const
+{
+    return d->loadInformation;
+}
+
+std::vector<LoadInfo>&& Stopover::takeLoadInformation()
+{
+    d.detach();
+    return std::move(d->loadInformation);
+}
+
+void Stopover::setLoadInformation(std::vector<LoadInfo> &&loadInfo)
+{
+    d.detach();
+    d->loadInformation = std::move(loadInfo);
+}
+
+QVariantList Stopover::loadInformationVariant() const
+{
+    QVariantList l;
+    l.reserve(d->loadInformation.size());
+    std::transform(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l), [](const auto &load) { return QVariant::fromValue(load); });
+    return l;
+}
+
 bool Stopover::isSame(const Stopover &lhs, const Stopover &rhs)
 {
     // same time is mandatory
@@ -180,6 +207,7 @@ Stopover Stopover::merge(const Stopover &lhs, const Stopover &rhs)
     dep.setStopPoint(Location::merge(lhs.stopPoint(), rhs.stopPoint()));
     dep.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
     dep.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
+    dep.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
     return dep;
 }
 
@@ -193,6 +221,9 @@ QJsonObject Stopover::toJson(const Stopover &dep)
     const auto locObj = Location::toJson(dep.stopPoint());
     if (!locObj.empty()) {
         obj.insert(QStringLiteral("stopPoint"), locObj);
+    }
+    if (!dep.loadInformation().empty()) {
+        obj.insert(QStringLiteral("load"), LoadInfo::toJson(dep.loadInformation()));
     }
 
     if (obj.size() == 1) { // only the disruption enum, ie. this is an empty object
@@ -211,6 +242,7 @@ Stopover Stopover::fromJson(const QJsonObject &obj)
     auto dep = Json::fromJson<Stopover>(obj);
     dep.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
     dep.setStopPoint(Location::fromJson(obj.value(QLatin1String("stopPoint")).toObject()));
+    dep.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
     StopoverUtil::applyMetaData(dep, false);
     return dep;
 }

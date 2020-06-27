@@ -376,6 +376,21 @@ std::vector<Journey> HafasMgateParser::parseJourneys(const QByteArray &data) con
     return {};
 }
 
+static std::vector<LoadInfo> parseLoad(const QJsonObject &obj, const std::vector<LoadInfo> &loadInfos)
+{
+    const auto dTrnCmpSX = obj.value(QLatin1String("dTrnCmpSX")).toObject();
+    const auto tcocX = dTrnCmpSX.value(QLatin1String("tcocX")).toArray();
+    std::vector<LoadInfo> load;
+    load.reserve(tcocX.size());
+    for (const auto &v : tcocX) {
+        const auto i = v.toInt();
+        if (i >= 0 && i < (int)loadInfos.size()) {
+            load.push_back(loadInfos[i]);
+        }
+    }
+    return load;
+}
+
 std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) const
 {
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
@@ -465,24 +480,14 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                         stop.setExpectedArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeR")), stopObj.value(QLatin1String("aTZOffset"))));
                         stop.setScheduledPlatform(stopObj.value(QLatin1String("dPlatfS")).toString());
                         stop.setExpectedPlatform(stopObj.value(QLatin1String("dPlatfR")).toString());
+                        stop.setLoadInformation(parseLoad(stopObj, loadInfos));
                         stops.push_back(stop);
                     }
                     section.setIntermediateStops(std::move(stops));
                 }
 
                 parseMessageList(section, jnyObj, remarks, warnings);
-
-                const auto dTrnCmpSX = dep.value(QLatin1String("dTrnCmpSX")).toObject();
-                const auto tcocX = dTrnCmpSX.value(QLatin1String("tcocX")).toArray();
-                std::vector<LoadInfo> load;
-                load.reserve(tcocX.size());
-                for (const auto &v : tcocX) {
-                    const auto i = v.toInt();
-                    if (i >= 0 && i < (int)loadInfos.size()) {
-                        load.push_back(loadInfos[i]);
-                    }
-                }
-                section.setLoadInformation(std::move(load));
+                section.setLoadInformation(parseLoad(dep, loadInfos));
             } else if (typeStr == QLatin1String("WALK")) {
                 section.setMode(JourneySection::Walking);
                 section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());

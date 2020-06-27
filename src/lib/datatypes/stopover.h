@@ -21,6 +21,7 @@
 #include "datatypes.h"
 #include "disruption.h"
 #include "line.h"
+#include "load.h"
 #include "location.h"
 
 class QDateTime;
@@ -76,6 +77,11 @@ class KPUBLICTRANSPORT_EXPORT Stopover
     /** General human-readable notes on this service, e.g. details about a disruption. */
     KPUBLICTRANSPORT_PROPERTY(QStringList, notes, setNotes)
 
+    /** Vehicle load information for departure from this stopover
+     *  Contains LoadInfo objects for consumption by QML.
+     */
+    Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant STORED false)
+
 public:
     bool hasExpectedArrivalTime() const;
     int arrivalDelay() const;
@@ -87,6 +93,13 @@ public:
     /** Adds a note. This will check for duplicates and normalize the notes. */
     void addNote(const QString &note);
     void addNotes(const QStringList &notes);
+
+    /** Expected vehicle load for departing from this stopover. */
+    const std::vector<LoadInfo>& loadInformation() const;
+    /** Moves the load information out of this object for modification. */
+    std::vector<LoadInfo>&& takeLoadInformation();
+    /** Set the expected vehicle load information for departing from this stopover. */
+    void setLoadInformation(std::vector<LoadInfo>&& loadInfo);
 
     /** Checks if to instances refer to the same departure (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Stopover &lhs, const Stopover &rhs);
@@ -104,6 +117,9 @@ public:
     static Stopover fromJson(const QJsonObject &obj);
     /** Deserialize a list of departures from JSON. */
     static std::vector<Stopover> fromJson(const QJsonArray &array);
+
+private:
+    QVariantList loadInformationVariant() const;
 };
 
 }

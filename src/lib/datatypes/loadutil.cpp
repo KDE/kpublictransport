@@ -17,6 +17,8 @@
 
 #include "loadutil_p.h"
 
+#include <QDebug>
+
 using namespace KPublicTransport;
 
 std::vector<LoadInfo> LoadUtil::merge(const std::vector<LoadInfo> &lhs, const std::vector<LoadInfo> &rhs)
@@ -29,5 +31,5 @@ std::vector<LoadInfo> LoadUtil::merge(const std::vector<LoadInfo> &lhs, const st
     }
 
     // TODO
-    return {};
+    return lhs;
 }

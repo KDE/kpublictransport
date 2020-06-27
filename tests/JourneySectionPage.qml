@@ -148,7 +148,7 @@ Kirigami.Page {
                     QQC2.Label {
                         Layout.column: 3
                         Layout.row: 0
-                        Layout.rowSpan: 2
+                        Layout.rowSpan: loadData.visible ? 1 : 2
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         text: "<a href=\"#loc\">" + stop.stopPoint.name + "</a>" + (stop.route.line.mode == Line.LongDistanceTrain ? " (<a href=\"#layout\">vehicle</a>)" : "")
@@ -159,6 +159,48 @@ Kirigami.Page {
                                 locationDetailsSheet.sheetOpen = true;
                             } else if (link == "#layout") {
                                 applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": stop });
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        id: loadData
+                        Layout.column: 3
+                        Layout.row: 1
+                        Layout.fillWidth: true
+                        visible: stop.loadInformation.length > 0
+                        QQC2.Label {
+                            text: "Load: ";
+                        }
+                        Repeater {
+                            model: stop.loadInformation
+                            RowLayout {
+                                QQC2.Label {
+                                    text: {
+                                        switch (modelData.load) {
+                                            case Load.Low: return "Low";
+                                            case Load.Medium: return "Medium";
+                                            case Load.High: return "High";
+                                            case Load.Full: return "Full";
+                                            default: return "?"
+                                        }
+                                    }
+                                    color: {
+                                        switch (modelData.load) {
+                                            case Load.Low: return Kirigami.Theme.positiveTextColor;
+                                            case Load.Medium: return Kirigami.Theme.neutralTextColor;
+                                            case Load.High:
+                                            case Load.Full:
+                                                return Kirigami.Theme.negativeTextColor;
+                                            default:
+                                                return Kirigami.Theme.textColor;
+                                        }
+                                    }
+                                }
+                                QQC2.Label {
+                                    text: "(class " + modelData.seatingClass + ")"
+                                    visible: modelData.seatingClass != ""
+                                }
                             }
                         }
                     }

@@ -117,7 +117,7 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     /** Vehicle load information for this journey section.
      *  Contains LoadInfo objects for consumption by QML.
      */
-    Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant)
+    Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant STORED false)
 
 public:
     /** Mode of transport. */
