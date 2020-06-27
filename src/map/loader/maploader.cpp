@@ -42,6 +42,7 @@ MapLoader::MapLoader(QObject *parent)
 {
     initResources();
     connect(&m_tileCache, &TileCache::tileLoaded, this, &MapLoader::downloadFinished);
+    connect(&m_tileCache, &TileCache::tileError, this, &MapLoader::downloadFailed);
 }
 
 MapLoader::~MapLoader() = default;
@@ -51,6 +52,7 @@ void MapLoader::loadFromO5m(const QString &fileName)
     QElapsedTimer loadTime;
     loadTime.start();
 
+    m_errorMessage.clear();
     QFile f(QUrl::fromUserInput(fileName).toLocalFile());
     if (!f.open(QFile::ReadOnly)) {
         qCritical() << f.fileName() << f.errorString();
@@ -71,6 +73,7 @@ void MapLoader::loadForCoordinate(double lat, double lon)
     m_tileBbox = {};
     m_pendingTiles.clear();
     m_boundarySearcher.init(OSM::Coordinate(lat, lon));
+    m_errorMessage.clear();
 
     const auto tile = Tile::fromCoordinate(lat, lon, TileZoomLevel);
     m_pendingTiles.push_back(tile);
@@ -171,7 +174,26 @@ void MapLoader::loadTiles()
     Q_EMIT done();
 }
 
+void MapLoader::downloadFailed(Tile tile, const QString& errorMessage)
+{
+    Q_UNUSED(tile);
+    m_errorMessage = errorMessage;
+    m_tileCache.cancelPending();
+    Q_EMIT isLoadingChanged();
+    Q_EMIT done();
+}
+
 bool MapLoader::isLoading() const
 {
     return m_tileCache.pendingDownloads() > 0;
+}
+
+bool MapLoader::hasError() const
+{
+    return !m_errorMessage.isEmpty();
+}
+
+QString MapLoader::errorMessage() const
+{
+    return m_errorMessage;
 }

@@ -150,11 +150,11 @@ void TileCache::downloadFinished(QNetworkReply* reply, Tile tile)
     if (reply->error() != QNetworkReply::NoError) {
         qCWarning(Log) << reply->errorString() << reply->url();
         m_output.remove();
+        Q_EMIT tileError(tile, reply->errorString());
         downloadNext();
         return;
     }
 
-    m_output.close();
     m_output.rename(cachePath(tile));
 
     Q_EMIT tileLoaded(tile);
@@ -164,4 +164,9 @@ void TileCache::downloadFinished(QNetworkReply* reply, Tile tile)
 int TileCache::pendingDownloads() const
 {
     return m_pendingDownloads.size() + (m_output.isOpen() ? 1 : 0);
+}
+
+void TileCache::cancelPending()
+{
+    m_pendingDownloads.clear();
 }

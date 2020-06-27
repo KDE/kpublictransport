@@ -118,14 +118,19 @@ void MapItem::loaderDone()
 {
     m_floorLevelModel->setMapData(nullptr);
     m_sg.clear();
-    m_data = m_loader->takeData();
-    m_view->setSceneBoundingBox(m_data.boundingBox());
-    m_controller.setDataSet(&m_data);
-    m_style.compile(m_data.dataSet());
-    m_controller.setStyleSheet(&m_style);
-    m_view->setLevel(0);
-    m_floorLevelModel->setMapData(&m_data);
-    m_view->floorLevelChanged();
+
+    if (!m_loader->hasError()) {
+        m_data = m_loader->takeData();
+        m_view->setSceneBoundingBox(m_data.boundingBox());
+        m_controller.setDataSet(&m_data);
+        m_style.compile(m_data.dataSet());
+        m_controller.setStyleSheet(&m_style);
+        m_view->setLevel(0);
+        m_floorLevelModel->setMapData(&m_data);
+        m_view->floorLevelChanged();
+    }
+
+    Q_EMIT errorChanged();
     update();
 }
 
@@ -157,10 +162,10 @@ void MapItem::clear()
 
 bool MapItem::hasError() const
 {
-    return !m_errorMessage.isEmpty();
+    return !m_errorMessage.isEmpty() || m_loader->hasError();
 }
 
 QString MapItem::errorMessage() const
 {
-    return m_errorMessage;
+    return m_errorMessage.isEmpty() ? m_loader->errorMessage() : m_errorMessage;
 }

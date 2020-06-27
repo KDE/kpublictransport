@@ -55,6 +55,9 @@ public:
 
     bool isLoading() const;
 
+    bool hasError() const;
+    QString errorMessage() const;
+
 Q_SIGNALS:
     /** Emitted when the requested data has been loaded. */
     void done();
@@ -63,6 +66,7 @@ Q_SIGNALS:
 private:
     void downloadTiles();
     void downloadFinished();
+    void downloadFailed(Tile tile, const QString &errorMessage);
     void loadTiles();
 
     OSM::DataSet m_dataSet;
@@ -74,6 +78,8 @@ private:
     QRect m_loadedTiles;
     std::vector<Tile> m_pendingTiles;
     BoundarySearch m_boundarySearcher;
+
+    QString m_errorMessage;
 };
 
 }

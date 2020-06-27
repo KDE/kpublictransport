@@ -73,8 +73,12 @@ public:
     /** Number of pending downloads. */
     int pendingDownloads() const;
 
+    /** Cancel all pending downloads. */
+    void cancelPending();
+
 Q_SIGNALS:
     void tileLoaded(Tile tile);
+    void tileError(Tile tile, const QString &errorMessage);
 
 private:
     QString cachePath(Tile tile) const;
