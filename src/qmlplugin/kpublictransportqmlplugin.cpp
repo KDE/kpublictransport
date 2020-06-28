@@ -36,6 +36,7 @@
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
+    qRegisterMetaType<KPublicTransport::LoadInfo>();
     qRegisterMetaType<KPublicTransport::Location>();
     qRegisterMetaType<KPublicTransport::Platform>();
     qRegisterMetaType<KPublicTransport::Stopover>();

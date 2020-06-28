@@ -45,7 +45,7 @@ class LoadInfoPrivate;
  *  specifiers for which part of the vehicle this applies to,
  *  such as the class or vehicle section.
  */
-class LoadInfo
+class KPUBLICTRANSPORT_EXPORT LoadInfo
 {
     KPUBLICTRANSPORT_GADGET(LoadInfo)
     /** Load category. */
