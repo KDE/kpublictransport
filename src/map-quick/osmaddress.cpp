@@ -29,30 +29,30 @@ OSMAddress::~OSMAddress() = default;
 
 QString OSMAddress::street() const
 {
-    return m_element.tagValue("addr:street", "contact:street", "addr:housename");
+    return QString::fromUtf8(m_element.tagValue("addr:street", "contact:street", "addr:housename"));
 }
 
 QString OSMAddress::houseNumber() const
 {
-    return m_element.tagValue("addr:housenumber", "contact:housenumber");
+    return QString::fromUtf8(m_element.tagValue("addr:housenumber", "contact:housenumber"));
 }
 
 QString OSMAddress::postalCode() const
 {
-    return m_element.tagValue("addr:postcode", "contact:postcode");
+    return QString::fromUtf8(m_element.tagValue("addr:postcode", "contact:postcode"));
 }
 
 QString OSMAddress::city() const
 {
-    return m_element.tagValue("addr:city", "contact:city");
+    return QString::fromUtf8(m_element.tagValue("addr:city", "contact:city"));
 }
 
 QString OSMAddress::state() const
 {
-    return m_element.tagValue("addr:state");
+    return QString::fromUtf8(m_element.tagValue("addr:state"));
 }
 
 QString OSMAddress::country() const
 {
-    return m_element.tagValue("addr:country", "contact:country");
+    return QString::fromUtf8(m_element.tagValue("addr:country", "contact:country"));
 }

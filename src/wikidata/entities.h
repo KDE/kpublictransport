@@ -36,6 +36,7 @@ public:
     explicit inline constexpr Identifier() {}
     explicit inline constexpr Identifier(T id) : m_id(id) {}
     explicit inline Identifier(const QString &id) : m_id(fromString(id).m_id) {}
+    explicit inline Identifier(const QByteArray &id) : m_id(fromString(id).m_id) {}
 
     inline constexpr bool isValid() const
     {
@@ -71,6 +72,13 @@ private:
         }
         return Identifier(id.midRef(1).toULongLong());
     }
+    static inline Identifier fromString(const QByteArray &id)
+    {
+        if (!id.startsWith(Prefix)) {
+            return Identifier();
+        }
+        return Identifier(id.mid(1).toULongLong());
+    }
 };
 
 /** Wikidata item identifier. */
@@ -80,6 +88,7 @@ public:
     explicit inline constexpr Q() = default;
     explicit inline constexpr Q(uint64_t id) : Identifier(id) {}
     explicit inline Q(const QString &id) : Identifier(id) {}
+    explicit inline Q(const QByteArray &id) : Identifier(id) {}
 };
 
 /** Wikidata property identifier. */

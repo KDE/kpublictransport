@@ -51,7 +51,7 @@ private Q_SLOTS:
             OSM::Way w;
             w.id = -23;
             w.nodes = {-2, 2};
-            OSM::setTagValue(w, mxoidKey, QString::number(42));
+            OSM::setTagValue(w, mxoidKey, QByteArray::number(42));
             mergeBuffer.ways.push_back(std::move(w));
         }
 
@@ -93,7 +93,7 @@ private Q_SLOTS:
             OSM::Way w;
             w.id = -23;
             w.nodes = { 3, 4, -3, -4, 3};
-            OSM::setTagValue(w, mxoidKey, QString::number(42));
+            OSM::setTagValue(w, mxoidKey, QByteArray::number(42));
             mergeBuffer.ways.push_back(std::move(w));
         }
 
@@ -113,7 +113,7 @@ private Q_SLOTS:
             OSM::Way w;
             w.id = -23;
             w.nodes = {-2, -1, 1, 2, -2};
-            OSM::setTagValue(w, mxoidKey, QString::number(42));
+            OSM::setTagValue(w, mxoidKey, QByteArray::number(42));
             mergeBuffer.ways = {w};
         }
         assembler.merge(&dataSet, &mergeBuffer);
@@ -153,7 +153,7 @@ private Q_SLOTS:
             OSM::Way w;
             w.id = -23;
             w.nodes = { 3, 4, 2, -3, -4, 3 };
-            OSM::setTagValue(w, mxoidKey, QString::number(42));
+            OSM::setTagValue(w, mxoidKey, QByteArray::number(42));
             mergeBuffer.ways.push_back(std::move(w));
         }
 

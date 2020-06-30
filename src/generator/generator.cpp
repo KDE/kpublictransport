@@ -110,17 +110,16 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     // expand multi-line relations
     for (auto it = dataSet.relations.begin(); it != dataSet.relations.end();) {
         const auto ref = OSM::tagValue(*it, "ref");
-        if (!ref.contains(QLatin1Char(';'))) {
+        if (!ref.contains(';')) {
             ++it;
             continue;
         }
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-        const auto refs = ref.split(QLatin1Char(';'), QString::SkipEmptyParts);
-#else
-        const auto refs = ref.split(QLatin1Char(';'), Qt::SkipEmptyParts);
-#endif
+        const auto refs = ref.split(';');
         for (const auto &ref : refs) {
+            if (ref.isEmpty()) {
+                continue;
+            }
             auto rel = *it;
             const auto tagKey = dataSet.makeTagKey("ref", OSM::DataSet::StringIsPersistent);
             OSM::setTagValue(rel, tagKey, ref);
@@ -132,7 +131,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
 
     // split relations into route_master elements and route elements
     auto splitIt = std::partition(dataSet.relations.begin(), dataSet.relations.end(), [](const auto &rel) {
-        return OSM::tagValue(rel, "type") == QLatin1String("route_master");
+        return OSM::tagValue(rel, "type") == "route_master";
     });
     sort(splitIt, dataSet.relations.end());
     const auto routeMasterCount = std::distance(dataSet.relations.begin(), splitIt);

@@ -168,7 +168,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     if (m_styleResult.hasAreaProperties()) {
         PolygonBaseItem *item = nullptr;
         std::unique_ptr<SceneGraphItemPayload> baseItem;
-        if (e.type() == OSM::Type::Relation && e.tagValue(m_typeTag) == QLatin1String("multipolygon")) {
+        if (e.type() == OSM::Type::Relation && e.tagValue(m_typeTag) == "multipolygon") {
             baseItem = sg.findOrCreatePayload<MultiPolygonItem>(e, level);
             auto i = static_cast<MultiPolygonItem*>(baseItem.get());
             if (i->path.isEmpty()) {
@@ -248,7 +248,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
 
         if (textDecl) {
             if (!textDecl->keyValue().isEmpty()) {
-                text = e.tagValue(textDecl->keyValue().constData(), QLocale());
+                text = QString::fromUtf8(e.tagValue(textDecl->keyValue().constData(), QLocale()));
             } else {
                 text = textDecl->stringValue();
             }
@@ -515,7 +515,7 @@ double SceneController::penWidth(OSM::Element e, const MapCSSDeclaration *decl, 
     // referenced value from a tag value
     // see https://wiki.openstreetmap.org/wiki/Map_Features/Units
     double unitConversionFactor = 1.0;
-    const auto value = e.tagValue(decl->keyValue().constData()).toUtf8().constData();
+    const auto value = e.tagValue(decl->keyValue().constData()).constData();
     const auto valueLen = std::strlen(value);
 
     char* numEnd;

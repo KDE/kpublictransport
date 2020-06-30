@@ -182,7 +182,7 @@ private Q_SLOTS:
         QCOMPARE(rel.members[1].type, OSM::Type::Way);
         QCOMPARE(rel.tags.size(), 1);
         QCOMPARE(rel.tags[0].key.name(), "type");
-        QCOMPARE(rel.tags[0].value, QStringLiteral("multipolygon"));
+        QCOMPARE(rel.tags[0].value, "multipolygon");
     }
 };
 

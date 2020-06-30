@@ -74,7 +74,7 @@ public:
 
 private:
     void processElements();
-    void parseLevel(QString &&level, OSM::Element e);
+    void parseLevel(QByteArray &&level, OSM::Element e);
     void addElement(int level, OSM::Element e);
     QString levelName(OSM::Element e);
     void filterLevels();

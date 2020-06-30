@@ -62,7 +62,7 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
             }
             break;
         case Line:
-            if (state.element.type() != OSM::Type::Way || (state.element.way()->isClosed() && state.element.tagValue(m_areaKey) == QLatin1String("yes"))) {
+            if (state.element.type() != OSM::Type::Way || (state.element.way()->isClosed() && state.element.tagValue(m_areaKey) == "yes")) {
                 return false;
             }
             break;

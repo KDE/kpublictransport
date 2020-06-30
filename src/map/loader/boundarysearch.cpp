@@ -84,11 +84,11 @@ OSM::BoundingBox BoundarySearch::boundingBox(const OSM::DataSet& dataSet)
     OSM::for_each(dataSet, [&](OSM::Element e) {
         // TODO cache the remaining tag keys here too
         const auto railwayValue = e.tagValue(railwayTag);
-        const bool isStation = railwayValue == QLatin1String("station")
-            || railwayValue == QLatin1String("platform")
-            || e.tagValue(buildingTag) == QLatin1String("train_station")
-            || e.tagValue("public_transport") == QLatin1String("platform");
-        const bool isAirport = (e.tagValue(aerowayTag) == QLatin1String("aerodrome"));
+        const bool isStation = railwayValue == "station"
+            || railwayValue == "platform"
+            || e.tagValue(buildingTag) == "train_station"
+            || e.tagValue("public_transport") == "platform";
+        const bool isAirport = (e.tagValue(aerowayTag) == "aerodrome");
         if (!isStation && !isAirport) {
             return;
         }

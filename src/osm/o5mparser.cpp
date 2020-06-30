@@ -209,7 +209,7 @@ void O5mParser::readTagOrBbox(Elem &e, const uint8_t *&it, const uint8_t *endIt)
 
     OSM::Tag tag;
     tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::StringIsTransient); // TODO make use of mmap'ed data for this
-    tag.value = QString::fromUtf8(tagData.second);
+    tag.value = QByteArray(tagData.second);
     OSM::setTag(e, std::move(tag));
 }
 
@@ -230,7 +230,7 @@ void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
         const auto tagData = readStringPair(it, end);
         if (tagData.first) {
             tag.key = m_dataSet->makeTagKey(tagData.first, DataSet::StringIsTransient); // TODO use the fact this is mmap'ed data here
-            tag.value = QString::fromUtf8(tagData.second);
+            tag.value = QByteArray(tagData.second);
             OSM::setTag(node, std::move(tag));
         }
     }

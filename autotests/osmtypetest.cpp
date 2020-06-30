@@ -70,15 +70,15 @@ private Q_SLOTS:
         QCOMPARE(key2, ds.makeTagKey("bkey", OSM::DataSet::StringIsTransient));
 
         OSM::Node node;
-        OSM::setTagValue(node, key1, QStringLiteral("avalue"));
-        OSM::setTagValue(node, key2, QStringLiteral("bvalue-1"));
-        OSM::setTagValue(node, key2, QStringLiteral("bvalue"));
+        OSM::setTagValue(node, key1, "avalue");
+        OSM::setTagValue(node, key2, "bvalue-1");
+        OSM::setTagValue(node, key2, "bvalue");
 
-        QCOMPARE(OSM::tagValue(node, key1), QLatin1String("avalue"));
-        QCOMPARE(OSM::tagValue(node, key2), QLatin1String("bvalue"));
+        QCOMPARE(OSM::tagValue(node, key1), "avalue");
+        QCOMPARE(OSM::tagValue(node, key2), "bvalue");
 
-        QCOMPARE(OSM::tagValue(node, "bkey"), QLatin1String("bvalue"));
-        QCOMPARE(OSM::tagValue(node, "akey"), QLatin1String("avalue"));
+        QCOMPARE(OSM::tagValue(node, "bkey"), "bvalue");
+        QCOMPARE(OSM::tagValue(node, "akey"), "avalue");
     }
 };
 

@@ -47,21 +47,21 @@ bool LineInfo::isUseful(const LineInfo& info)
     return false;
 }
 
-static LineInfo::Mode lineModeStringToMode(const QString &s)
+static LineInfo::Mode lineModeStringToMode(const QByteArray &s)
 {
-   if (s == QLatin1String("subway")) {
+   if (s == "subway") {
         return LineInfo::Subway;
     }
-    if (s == QLatin1String("tram")) {
+    if (s == "tram") {
         return LineInfo::Tram;
     }
-    if (s == QLatin1String("light_rail") || s == QLatin1String("commuter") || s == QLatin1String("suburban")) {
+    if (s == "light_rail" || s == "commuter" || s == "suburban") {
         return LineInfo::RapidTransit;
     }
-    if (s == QLatin1String("national") || s == QLatin1String("long_distance") || s == QLatin1String("international") || s == QLatin1String("high_speed")) {
+    if (s == "national" || s == "long_distance" || s == "international" || s == "high_speed") {
         return LineInfo::LongDistance;
     }
-    if (s == QLatin1String("regional")) {
+    if (s == "regional") {
         return LineInfo::LocalTrain;
     }
     return LineInfo::Unknown;
@@ -87,14 +87,14 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
 
     // check for under constructions or out-of-service tags
     const auto underConstruction = OSM::tagValue(rel, "construction");
-    if (underConstruction == QLatin1String("yes")) {
+    if (underConstruction == "yes") {
         return info;
     }
 
-    info.name = OSM::tagValue(rel, "ref");
+    info.name = QString::fromUtf8(OSM::tagValue(rel, "ref"));
     const auto colStr = OSM::tagValue(rel, "colour");
     if (!colStr.isEmpty()) {
-        info.color = QColor(colStr);
+        info.color = QColor(QString::fromUtf8(colStr));
     }
     info.wdId = Wikidata::Q(OSM::tagValue(rel, "wikidata"));
     info.mode = determineMode(rel);

@@ -125,7 +125,7 @@ void MapData::processElements()
 
 // @see https://wiki.openstreetmap.org/wiki/Key:level
 // @see https://wiki.openstreetmap.org/wiki/Simple_Indoor_Tagging#Multi-level_features_and_repeated_features
-void MapData::parseLevel(QString &&level, OSM::Element e)
+void MapData::parseLevel(QByteArray &&level, OSM::Element e)
 {
     int rangeBegin = std::numeric_limits<int>::max();
     int numStartIdx = -1;
@@ -133,19 +133,19 @@ void MapData::parseLevel(QString &&level, OSM::Element e)
     for (int i = 0; i < level.size(); ++i) {
         auto c = level[i];
 
-        if (c == QLatin1Char(',')) { // fix decimal separator errors
-            c = QLatin1Char('.');
+        if (c == ',') { // fix decimal separator errors
+            c = '.';
         }
 
-        if (c.isDigit() || c == QLatin1Char('.')) {
+        if (std::isdigit(c) || c == '.') {
             if (numStartIdx < 0) {
                 numStartIdx = i;
             }
             continue;
         }
 
-        if (c == QLatin1Char(';')) {
-            const auto l = QStringRef(&level, numStartIdx, i - numStartIdx).toFloat() * 10;
+        if (c == ';') {
+            const auto l = std::atof(level.constData() + numStartIdx) * 10;
             if (rangeBegin < l) {
                 for (int j = rangeBegin; j < l; j += 10) {
                     addElement(j, e);
@@ -162,13 +162,13 @@ void MapData::parseLevel(QString &&level, OSM::Element e)
             if (numStartIdx < 0) {
                 numStartIdx = i;
             } else {
-                rangeBegin = QStringRef(&level, numStartIdx, i - numStartIdx).toFloat() * 10;
+                rangeBegin = std::atof(level.constData() + numStartIdx) * 10;
                 numStartIdx = -1;
             }
         }
     }
 
-    const auto l = QStringRef(&level, numStartIdx, level.size() - numStartIdx).toFloat() * 10;
+    const auto l = std::atof(level.constData() + numStartIdx) * 10;
     if (rangeBegin < l) {
         for (int j = rangeBegin; j < l; j += 10) {
             addElement(j, e);
@@ -194,16 +194,16 @@ void MapData::addElement(int level, OSM::Element e)
     }
 }
 
-static bool isPlausibleLevelName(const QString &s)
+static bool isPlausibleLevelName(const QByteArray &s)
 {
-    return !s.isEmpty() && !s.contains(QLatin1Char(';'));
+    return !s.isEmpty() && !s.contains(';');
 }
 
 QString MapData::levelName(OSM::Element e)
 {
     const auto n = e.tagValue(m_levelRefTag);
     if (isPlausibleLevelName(n)) {
-        return n;
+        return QString::fromUtf8(n);
     }
 
     if (e.type() == OSM::Type::Relation) {
@@ -213,7 +213,7 @@ QString MapData::levelName(OSM::Element e)
         if (isLevelRel) {
             const auto n = e.tagValue(m_nameTag);
             if (isPlausibleLevelName(n)) {
-                return n;
+                return QString::fromUtf8(n);
             }
         }
     }
@@ -227,7 +227,7 @@ void MapData::filterLevels()
     const auto typeTag = m_dataSet.tagKey("type");
     for (auto it = m_levelMap.begin(); it != m_levelMap.end();) {
         const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [typeTag](auto e) {
-            return e.type() == OSM::Type::Node || (e.type() == OSM::Type::Relation && e.tagValue(typeTag) != QLatin1String("multipolygon"));
+            return e.type() == OSM::Type::Node || (e.type() == OSM::Type::Relation && e.tagValue(typeTag) != "multipolygon");
         });
         if (isNonVisual) {
             it = m_levelMap.erase(it);

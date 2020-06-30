@@ -96,7 +96,7 @@ void MarbleGeometryAssembler::mergeWays(OSM::DataSetMergeBuffer *mergeBuffer)
             } else {
                 // defer to later (ie. more tiles loaded)
                 way.id = syntheticId;
-                OSM::setTagValue(way, m_mxoidKey, QString::number(mxoid));
+                OSM::setTagValue(way, m_mxoidKey, QByteArray::number((qlonglong)mxoid));
                 m_pendingWays.push_back(std::move(way));
             }
 
@@ -305,7 +305,7 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
 
     // multi-polygons can exist entirely out of synthetic polygons, e.g. if the source was a set of lines rather than closed polygons
     // merging those would not have happened before (as we wouldn't know what to merge it with), so we need to do this here
-    if (OSM::tagValue(relation, m_typeKey) == QLatin1String("multipolygon")) {
+    if (OSM::tagValue(relation, m_typeKey) == "multipolygon") {
         for (auto it = relation.members.begin(); it != relation.members.end();) {
             if ((*it).id > 0 || (*it).type != OSM::Type::Way) {
                 ++it;

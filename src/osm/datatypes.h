@@ -18,6 +18,7 @@
 #ifndef OSM_DATATYPES_H
 #define OSM_DATATYPES_H
 
+#include <QByteArray>
 #include <QDebug>
 #include <QLocale>
 #include <QString>
@@ -213,7 +214,7 @@ public:
     inline constexpr bool operator<(const Tag &other) const { return key < other.key; }
 
     TagKey key;
-    QString value;
+    QByteArray value;
 };
 
 /** An OSM node. */
@@ -339,7 +340,7 @@ private:
 
 /** Returns the tag value for @p key of @p elem. */
 template <typename Elem>
-inline QString tagValue(const Elem& elem, TagKey key)
+inline QByteArray tagValue(const Elem& elem, TagKey key)
 {
     const auto it = std::lower_bound(elem.tags.begin(), elem.tags.end(), key, [](const auto &lhs, const auto &rhs) { return lhs.key < rhs; });
     if (it != elem.tags.end() && (*it).key == key) {
@@ -353,7 +354,7 @@ inline QString tagValue(const Elem& elem, TagKey key)
  *  Where possible avoid this in favor of tagValue().
  */
 template <typename Elem>
-inline QString tagValue(const Elem& elem, const char *keyName)
+inline QByteArray tagValue(const Elem& elem, const char *keyName)
 {
     const auto it = std::find_if(elem.tags.begin(), elem.tags.end(), [keyName](const auto &tag) { return std::strcmp(tag.key.name(), keyName) == 0; });
     if (it != elem.tags.end()) {
@@ -366,7 +367,7 @@ inline QString tagValue(const Elem& elem, const char *keyName)
  *  @warning This is slow due to doing a linear search and string comparissons.
  */
 template <typename Elem>
-inline QString tagValue(const Elem& elem, const char *keyName, const QLocale &locale)
+inline QByteArray tagValue(const Elem& elem, const char *keyName, const QLocale &locale)
 {
     QByteArray key(keyName);
     key.push_back(':');
@@ -419,7 +420,7 @@ inline void setTag(Elem &elem, Tag &&tag)
 
 /** Inserts a new tag, or updates an existing one. */
 template <typename Elem>
-inline void setTagValue(Elem &elem, TagKey key, const QString &value)
+inline void setTagValue(Elem &elem, TagKey key, const QByteArray &value)
 {
     Tag tag{ key, value };
     setTag(elem, std::move(tag));

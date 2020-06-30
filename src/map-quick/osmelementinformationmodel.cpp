@@ -70,7 +70,7 @@ void OSMElementInformationModel::clear()
 
 QString OSMElementInformationModel::name() const
 {
-    const auto n = m_element.tagValue("name", QLocale());
+    const auto n = QString::fromUtf8(m_element.tagValue("name", QLocale()));
     if (!n.isEmpty()) {
         return n;
     }
@@ -306,7 +306,7 @@ QString OSMElementInformationModel::debugTagValue(int row) const
 {
     const auto tagCount = std::distance(m_element.tagsBegin(), m_element.tagsEnd());
     const auto tagIdx = row - (rowCount() - tagCount);
-    return (*(m_element.tagsBegin() + tagIdx)).value;
+    return QString::fromUtf8((*(m_element.tagsBegin() + tagIdx)).value);
 }
 
 QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key) const
@@ -524,75 +524,85 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
     switch (key) {
         case Category:
         {
-            QStringList l;
-            l += m_element.tagValue("amenity").split(QLatin1Char(';'), Qt::SkipEmptyParts);
-            l += m_element.tagValue("shop").split(QLatin1Char(';'), Qt::SkipEmptyParts);
-            l += m_element.tagValue("tourism").split(QLatin1Char(';'), Qt::SkipEmptyParts);
-            l += m_element.tagValue("vending").split(QLatin1Char(';'), Qt::SkipEmptyParts);
-            l += m_element.tagValue("office").split(QLatin1Char(';'), Qt::SkipEmptyParts);
+            QList<QByteArray> l;
+            l += m_element.tagValue("amenity").split(';');
+            l += m_element.tagValue("shop").split(';');
+            l += m_element.tagValue("tourism").split(';');
+            l += m_element.tagValue("vending").split(';');
+            l += m_element.tagValue("office").split(';');
             if (l.isEmpty()) {
-                l += m_element.tagValue("room").split(QLatin1Char(';'), Qt::SkipEmptyParts);
+                l += m_element.tagValue("room").split(';');
             }
+            QStringList out;
+            out.reserve(l.size());
 
             // TODO drop general categories if specific ones are available (e.g. restaurant vs fast_food)
 
-            for (auto it = l.begin(); it != l.end();) {
+            for (auto it = l.begin(); it != l.end();++it) {
                 (*it) = (*it).trimmed();
-                if ((*it) == QLatin1String("yes") || (*it) == QLatin1String("vending_machine")) {
-                    it = l.erase(it);
+                if ((*it).isEmpty() || (*it) == "yes" || (*it) == "vending_machine") {
                     continue;
                 }
-                const auto s = (*it).toUtf8();
+                bool found = false;
                 for (const auto &a : amenity_map) {
-                    if (std::strcmp(s.constData(), a.code) == 0) {
-                        (*it) = tr(a.name, "amenity/shop");
+                    if (std::strcmp((*it).constData(), a.code) == 0) {
+                        found = true;
+                        out.push_back(tr(a.name, "amenity/shop"));
                         break;
                     }
                 }
-                ++it;
+                if (!found) {
+                    out.push_back(QString::fromUtf8(*it));
+                }
             }
 
-            std::sort(l.begin(), l.end());
-            l.erase(std::unique(l.begin(), l.end()), l.end());
-            return QLocale().createSeparatedList(l);
+            std::sort(out.begin(), out.end());
+            out.erase(std::unique(out.begin(), out.end()), out.end());
+            return QLocale().createSeparatedList(out);
         }
-        case OldName: return m_element.tagValue("old_name");
+        case OldName: return QString::fromUtf8(m_element.tagValue("old_name"));
         case Cuisine:
         {
-            auto l = m_element.tagValue("cuisine").split(QLatin1Char(';'));
-            for (auto &s : l) {
-                const auto code = s.toUtf8();
+            auto l = m_element.tagValue("cuisine").split(';');
+            QStringList out;
+            out.reserve(l.size());
+            for (auto &code : l) {
+                bool found = false;
                 for (const auto &c : cuisine_map) {
                     if (std::strcmp(code.constData(), c.code) == 0) {
-                        s = tr(c.name, "cuisine");
+                        found = true;
+                        out.push_back(tr(c.name, "cuisine"));
                         break;
                     }
                 }
+                if (!found) {
+                    out.push_back(QString::fromUtf8(code));
+                }
             }
-            std::sort(l.begin(), l.end());
-            return QLocale().createSeparatedList(l);
+            std::sort(out.begin(), out.end());
+            return QLocale().createSeparatedList(out);
         }
         case Diet:
         {
             QStringList l;
             for (const auto &d : diet_type_map) {
                 const auto v = m_element.tagValue(d.name);
-                if (v == QLatin1String("yes")) {
+                if (v == "yes") {
                     l.push_back(tr(d.label, "diet type"));
-                } else if (v == QLatin1String("only")) {
+                } else if (v == "only") {
                     l.push_back(tr("only %1").arg(tr(d.label, "diet type")));
-                } else if (v == QLatin1String("no")) {
+                } else if (v == "no") {
                     l.push_back(tr("no %1").arg(tr(d.label, "diet type")));
                 }
             }
             return l.join(QLatin1String(", "));
         }
-        case Takeaway: return m_element.tagValue("takeaway"); // TODO decode (yes/only/no) and translate
-        case OpeningHours: return m_element.tagValue("opening_hours");
+        case Takeaway: return QString::fromUtf8(m_element.tagValue("takeaway")); // TODO decode (yes/only/no) and translate
+        case OpeningHours: return QString::fromUtf8(m_element.tagValue("opening_hours"));
         case Fee:
         {
-            auto s = m_element.tagValue("fee"); // TODO decode boolean
-            const auto charge = m_element.tagValue("charge");
+            auto s = QString::fromUtf8(m_element.tagValue("fee")); // TODO decode boolean
+            const auto charge = QString::fromUtf8(m_element.tagValue("charge"));
             if (s.isEmpty()) {
                 return charge;
             }
@@ -604,12 +614,12 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         case DiaperChangingTable:
             // TODO bool value translation
             // TODO look for changing_table:location too
-            return m_element.tagValue("changing_table", "diaper");
+            return QString::fromUtf8(m_element.tagValue("changing_table", "diaper"));
         case Wikipedia: return wikipediaUrl(m_element.tagValue("wikipedia", "brand:wikipedia", QLocale()));
         case Address: return QVariant::fromValue(OSMAddress(m_element));
-        case Phone: return m_element.tagValue("contact:phone", "phone", "telephone");
-        case Email: return m_element.tagValue("contact:email", "email");
-        case Website: return m_element.tagValue("website", "contact:website", "url");
+        case Phone: return QString::fromUtf8(m_element.tagValue("contact:phone", "phone", "telephone"));
+        case Email: return QString::fromUtf8(m_element.tagValue("contact:email", "email"));
+        case Website: return QString::fromUtf8(m_element.tagValue("website", "contact:website", "url"));
         case PaymentCash:
         {
             const auto coins = m_element.tagValue("payment:coins");
@@ -617,13 +627,13 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             if (coins.isEmpty() && notes.isEmpty()) {
                 return m_element.tagValue("payment:cash"); // TODO decode bool
             }
-            if (coins == QLatin1String("yes") && notes == QLatin1String("yes")) {
+            if (coins == "yes" && notes == "yes") {
                 return tr("yes");
             }
-            if (coins == QLatin1String("yes")) {
+            if (coins == "yes") {
                 return tr("coins only");
             }
-            if (notes == QLatin1String("yes")) {
+            if (notes == "yes") {
                 return tr("notes only");
             }
             return tr("no");
@@ -635,8 +645,8 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             return paymentMethodValue(key);
         case Wheelchair:
         {
-            const auto a = m_element.tagValue("wheelchair"); // TODO decode and translate
-            const auto d = m_element.tagValue("wheelchair:description", QLocale());
+            const auto a = QString::fromUtf8(m_element.tagValue("wheelchair")); // TODO decode and translate
+            const auto d = QString::fromUtf8(m_element.tagValue("wheelchair:description", QLocale()));
             if (!d.isEmpty()) {
                 return QString(a + QLatin1String(" (") + d + QLatin1Char(')'));
             }
@@ -644,8 +654,8 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         }
         case CentralKey:
             // translate enum values
-            return m_element.tagValue("centralkey");
-        case OperatorName: return m_element.tagValue("operator");
+            return QString::fromUtf8(m_element.tagValue("centralkey"));
+        case OperatorName: return QString::fromUtf8(m_element.tagValue("operator"));
         case OperatorWikipedia: return wikipediaUrl(m_element.tagValue("operator:wikipedia", QLocale()));
         case DebugLink: return m_element.url();
         case DebugKey: return {};
@@ -695,7 +705,7 @@ QString OSMElementInformationModel::paymentMethodList(OSMElementInformationModel
         if (payment.key != key) {
             continue;
         }
-        if (m_element.tagValue(payment.name) == QLatin1String("yes")) {
+        if (m_element.tagValue(payment.name) == "yes") {
             l.push_back(tr(payment.label, "payment method"));
         }
     }
@@ -716,26 +726,27 @@ QString OSMElementInformationModel::paymentMethodValue(OSMElementInformationMode
         }
         const auto s = m_element.tagValue(payment.name);
         if (!s.isEmpty()) {
-            return s;
+            return QString::fromUtf8(s);
         }
     }
     return {};
 }
 
-QUrl OSMElementInformationModel::wikipediaUrl(const QString &wp) const
+QUrl OSMElementInformationModel::wikipediaUrl(const QByteArray &wp) const
 {
     if (wp.isEmpty()) {
         return {};
     }
 
-    const auto idx = wp.indexOf(QLatin1Char(':'));
+    const auto s = QString::fromUtf8(wp);
+    const auto idx = s.indexOf(QLatin1Char(':'));
     if (idx < 0) {
         return {};
     }
 
     QUrl url;
     url.setScheme(QStringLiteral("https"));
-    url.setHost(wp.leftRef(idx) + QLatin1String(".wikipedia.org"));
-    url.setPath(QLatin1String("/wiki/") + wp.midRef(idx + 1));
+    url.setHost(s.leftRef(idx) + QLatin1String(".wikipedia.org"));
+    url.setPath(QLatin1String("/wiki/") + s.midRef(idx + 1));
     return url;
 }

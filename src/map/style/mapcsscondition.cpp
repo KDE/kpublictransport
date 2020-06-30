@@ -27,7 +27,7 @@ MapCSSCondition::MapCSSCondition() = default;
 MapCSSCondition::MapCSSCondition(MapCSSCondition &&) = default;
 MapCSSCondition::~MapCSSCondition() = default;
 
-static double toNumber(const QString &val)
+static double toNumber(const QByteArray &val)
 {
     bool res = false;
     const auto n = val.toDouble(&res);
@@ -70,7 +70,7 @@ void MapCSSCondition::setOperation(MapCSSCondition::Operator op)
 
 void MapCSSCondition::setValue(const char *value, int len)
 {
-    m_value = QString::fromUtf8(value, len);
+    m_value = QByteArray(value, len);
 }
 
 void MapCSSCondition::setValue(double val)
@@ -96,7 +96,7 @@ void MapCSSCondition::write(QIODevice *out) const
     if (m_numericValue != NAN && m_value.isEmpty()) {
         out->write(QByteArray::number(m_numericValue));
     } else {
-        out->write(m_value.toUtf8());
+        out->write(m_value);
     }
 
     out->write("]");

@@ -133,7 +133,7 @@ template <typename T>
 void XmlParser::parseTag(QXmlStreamReader &reader, T &elem)
 {
     const auto key = m_dataSet->makeTagKey(reader.attributes().value(QLatin1String("k")).toString().toUtf8().constData(), OSM::DataSet::StringIsTransient);
-    OSM::setTagValue(elem, key, reader.attributes().value(QLatin1String("v")).toString());
+    OSM::setTagValue(elem, key, reader.attributes().value(QLatin1String("v")).toUtf8());
 }
 
 template <typename T>

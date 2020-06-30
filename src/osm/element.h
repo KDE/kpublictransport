@@ -64,12 +64,12 @@ public:
 
     Coordinate center() const;
     BoundingBox boundingBox() const;
-    QString tagValue(TagKey key) const;
-    QString tagValue(const char *keyName) const;
-    QString tagValue(const char *keyName, const QLocale &locale) const;
+    QByteArray tagValue(TagKey key) const;
+    QByteArray tagValue(const char *keyName) const;
+    QByteArray tagValue(const char *keyName, const QLocale &locale) const;
     /** Returns the value of the first non-empty tag. */
-    template <typename ...Args> QString tagValue(const char *keyName, Args... args) const;
-    template <typename ...Args> QString tagValue(const char *keyName, Args... args, const QLocale &locale) const;
+    template <typename ...Args> QByteArray tagValue(const char *keyName, Args... args) const;
+    template <typename ...Args> QByteArray tagValue(const char *keyName, Args... args, const QLocale &locale) const;
 
     std::vector<Tag>::const_iterator tagsBegin() const;
     std::vector<Tag>::const_iterator tagsEnd() const;
@@ -92,7 +92,7 @@ private:
 };
 
 template <typename ...Args>
-QString Element::tagValue(const char *keyName, Args... args) const
+QByteArray Element::tagValue(const char *keyName, Args... args) const
 {
     const auto v = tagValue(keyName);
     if (!v.isEmpty()) {
@@ -102,7 +102,7 @@ QString Element::tagValue(const char *keyName, Args... args) const
 }
 
 template <typename ...Args>
-QString Element::tagValue(const char *keyName, Args... args, const QLocale &locale) const
+QByteArray Element::tagValue(const char *keyName, Args... args, const QLocale &locale) const
 {
     const auto v = tagValue(keyName, locale);
     if (!v.isEmpty()) {

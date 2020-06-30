@@ -66,7 +66,7 @@ BoundingBox Element::boundingBox() const
     return {};
 }
 
-QString Element::tagValue(TagKey key) const
+QByteArray Element::tagValue(TagKey key) const
 {
     switch (type()) {
         case Type::Null:
@@ -82,7 +82,7 @@ QString Element::tagValue(TagKey key) const
     return {};
 }
 
-QString Element::tagValue(const char *keyName) const
+QByteArray Element::tagValue(const char *keyName) const
 {
     switch (type()) {
         case Type::Null:
@@ -98,7 +98,7 @@ QString Element::tagValue(const char *keyName) const
     return {};
 }
 
-QString Element::tagValue(const char *keyName, const QLocale &locale) const
+QByteArray Element::tagValue(const char *keyName, const QLocale &locale) const
 {
     switch (type()) {
         case Type::Null:
@@ -214,7 +214,7 @@ std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
         }
         case Type::Relation:
         {
-            if (tagValue("type") != QLatin1String("multipolygon")) {
+            if (tagValue("type") != "multipolygon") {
                 return {};
             }
 

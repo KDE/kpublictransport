@@ -115,7 +115,7 @@ private:
     QVariant urlify(const QVariant &v, Key key) const;
     QString paymentMethodList(Key key) const;
     QString paymentMethodValue(Key key) const;
-    QUrl wikipediaUrl(const QString &wp) const;
+    QUrl wikipediaUrl(const QByteArray &wp) const;
 
     OSM::Element m_element;
 

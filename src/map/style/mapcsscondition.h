@@ -68,7 +68,7 @@ public:
 private:
     OSM::TagKey m_tagKey;
     QByteArray m_key;
-    QString m_value;
+    QByteArray m_value;
     double m_numericValue = NAN;
     Operator m_op = None;
 };

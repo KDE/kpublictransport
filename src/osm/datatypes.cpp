@@ -114,7 +114,7 @@ template <typename T>
 static QString actualIdString(const T &elem)
 {
     const auto mxoid = OSM::tagValue(elem, "mx:oid");
-    return mxoid.isEmpty() ? QString::number(elem.id) : mxoid;
+    return mxoid.isEmpty() ? QString::number(elem.id) : QString::fromUtf8(mxoid);
 }
 
 QString OSM::Node::url() const
