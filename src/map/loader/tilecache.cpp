@@ -102,8 +102,15 @@ void TileCache::downloadTile(Tile tile)
 
 QString TileCache::cachePath(Tile tile) const
 {
-    return QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)
-        + QLatin1String("/org.kde.osm/vectorosm/")
+    QString base;
+    if (!qEnvironmentVariableIsSet("KOSMINDOORMAP_CACHE_PATH")) {
+        base = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)
+            + QLatin1String("/org.kde.osm/vectorosm/");
+    } else {
+        base = qEnvironmentVariable("KOSMINDOORMAP_CACHE_PATH");
+    }
+
+    return base
         + QString::number(tile.z) + QLatin1Char('/')
         + QString::number(tile.x) + QLatin1Char('/')
         + QString::number(tile.y) + QLatin1String(".o5m");
