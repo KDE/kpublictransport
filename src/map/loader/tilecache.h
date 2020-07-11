@@ -76,6 +76,9 @@ public:
     /** Cancel all pending downloads. */
     void cancelPending();
 
+    /** Expire old cached tiles. */
+    void expire();
+
 Q_SIGNALS:
     void tileLoaded(Tile tile);
     void tileError(Tile tile, const QString &errorMessage);

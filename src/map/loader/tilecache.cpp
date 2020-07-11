@@ -22,6 +22,7 @@
 #include <osm/geomath.h>
 
 #include <QDir>
+#include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
 #include <QNetworkAccessManager>
@@ -176,4 +177,28 @@ int TileCache::pendingDownloads() const
 void TileCache::cancelPending()
 {
     m_pendingDownloads.clear();
+}
+
+static void expireRecursive(const QString &path)
+{
+    QDirIterator it(path, QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    while (it.hasNext()) {
+        it.next();
+
+        if (it.fileInfo().isDir()) {
+            expireRecursive(it.filePath());
+            if (QDir(it.filePath()).isEmpty()) {
+                qCDebug(Log) << "removing empty tile directory" << it.fileName();
+                QDir(path).rmdir(it.filePath());
+            }
+        } else if (it.fileInfo().lastModified().daysTo(QDateTime::currentDateTimeUtc()) > 14) {
+            qCDebug(Log) << "removing expired tile" << it.filePath();
+            QDir(path).remove(it.filePath());
+        }
+    }
+}
+void TileCache::expire()
+{
+    const QString base = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.osm/vectorosm/");
+    expireRecursive(base);
 }

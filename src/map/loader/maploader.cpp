@@ -43,6 +43,7 @@ MapLoader::MapLoader(QObject *parent)
     initResources();
     connect(&m_tileCache, &TileCache::tileLoaded, this, &MapLoader::downloadFinished);
     connect(&m_tileCache, &TileCache::tileError, this, &MapLoader::downloadFailed);
+    m_tileCache.expire();
 }
 
 MapLoader::~MapLoader() = default;
