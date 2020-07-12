@@ -28,6 +28,13 @@ area[natural=water]
     fill-color: #103daee9;
     z-index: -1000;
 }
+way[waterway]
+{
+    color: #103daee9;
+    z-index: -1000;
+    width: 1m;
+}
+
 *[leisure=park],
 *[landuse=farmland],
 *[landuse=forest],
