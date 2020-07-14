@@ -54,7 +54,7 @@ void MapLoader::loadFromO5m(const QString &fileName)
     loadTime.start();
 
     m_errorMessage.clear();
-    QFile f(QUrl::fromUserInput(fileName).toLocalFile());
+    QFile f(fileName.contains(QLatin1Char(':')) ? QUrl::fromUserInput(fileName).toLocalFile() : fileName);
     if (!f.open(QFile::ReadOnly)) {
         qCritical() << f.fileName() << f.errorString();
         return;
