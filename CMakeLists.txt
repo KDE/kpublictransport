@@ -37,6 +37,9 @@ set_package_properties(FLEX PROPERTIES TYPE RECOMMENDED PURPOSE "MapCSS parser f
 find_package(BISON)
 set_package_properties(BISON PROPERTIES TYPE RECOMMENDED PURPOSE "MapCSS parser for indoor map rendering.")
 
+find_package(Protobuf)
+set_package_properties(Protobuf PROPERTIES TYPE OPTIONAL PURPOSE "Parsing of OSM PBF files.")
+
 if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
    add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050d00)
    add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054400)

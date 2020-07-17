@@ -21,6 +21,7 @@
 
 #include <osm/element.h>
 #include <osm/o5mparser.h>
+#include <osm/osmpbfparser.h>
 
 #include <QElapsedTimer>
 #include <QFile>
@@ -62,8 +63,13 @@ void MapLoader::loadFromO5m(const QString &fileName)
     const auto data = f.map(0, f.size());
 
     OSM::DataSet ds;
-    OSM::O5mParser p(&ds);
-    p.parse(data, f.size());
+    if (fileName.endsWith(QLatin1String(".osm.pbf"))) {
+        OSM::OsmPbfParser p(&ds);
+        p.parse(data, f.size());
+    } else {
+        OSM::O5mParser p(&ds);
+        p.parse(data, f.size());
+    }
     m_data.setDataSet(std::move(ds));
     qCDebug(Log) << "o5m loading took" << loadTime.elapsed() << "ms";
     Q_EMIT done();
