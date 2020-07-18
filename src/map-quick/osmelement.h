@@ -31,8 +31,6 @@ class OSMElement
     Q_GADGET
     Q_PROPERTY(bool isNull READ isNull)
     Q_PROPERTY(QString name READ name)
-    /** Assembled URL from the "wikipedia" tag value. */
-    Q_PROPERTY(QUrl wikipediaUrl READ wikipediaUrl)
 public:
     OSMElement();
     explicit OSMElement(OSM::Element e);
@@ -40,7 +38,6 @@ public:
 
     bool isNull() const;
     QString name() const;
-    QUrl wikipediaUrl() const;
 
     Q_INVOKABLE QString tagValue(const QString &key) const;
 
