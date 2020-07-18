@@ -34,6 +34,8 @@ Item {
     property alias view: map.view
     /** There is something preventing displaying a map. */
     property alias hasError: map.hasError
+    /** Access to the map data, for feeding into content-specific models. */
+    property alias mapData: map.mapData
 
     /** Emitted when a map element has been picked by clicking/tapping on it. */
     signal elementPicked(var element);

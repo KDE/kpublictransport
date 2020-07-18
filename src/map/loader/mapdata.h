@@ -21,6 +21,8 @@
 #include <osm/datatypes.h>
 #include <osm/element.h>
 
+#include <QMetaType>
+
 #include <map>
 #include <vector>
 
@@ -87,5 +89,7 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(const KOSMIndoorMap::MapData*)
 
 #endif // KOSMINDOORMAP_MAPDATA_H

@@ -33,6 +33,8 @@
 
 namespace KOSMIndoorMap {
 
+class MapData;
+
 /** Map renderer for the IndoorMap QML item.
  *  @internal Do not use directly!
  */
@@ -48,6 +50,8 @@ class MapItem : public QQuickPaintedItem
     Q_PROPERTY(bool hasError READ hasError NOTIFY errorChanged)
     /** Details on the error. */
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorChanged)
+
+    Q_PROPERTY(const KOSMIndoorMap::MapData* mapData READ mapData NOTIFY mapDataChanged)
 public:
     explicit MapItem(QQuickItem *parent = nullptr);
     ~MapItem();
@@ -68,6 +72,7 @@ public:
     QString errorMessage() const;
 
 Q_SIGNALS:
+    void mapDataChanged();
     void styleSheetChanged();
     void currentFloorLevelChanged();
     void errorChanged();
@@ -78,6 +83,7 @@ protected:
 private:
     void clear();
     void loaderDone();
+    const MapData* mapData() const;
 
     MapLoader *m_loader = nullptr;
     MapData m_data;

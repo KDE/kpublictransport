@@ -128,6 +128,7 @@ void MapItem::loaderDone()
         m_view->setLevel(0);
         m_floorLevelModel->setMapData(&m_data);
         m_view->floorLevelChanged();
+        emit mapDataChanged();
     }
 
     Q_EMIT errorChanged();
@@ -157,6 +158,7 @@ void MapItem::clear()
     m_sg.clear();
     m_controller.setDataSet(nullptr);
     m_data = MapData();
+    emit mapDataChanged();
     update();
 }
 
@@ -168,4 +170,12 @@ bool MapItem::hasError() const
 QString MapItem::errorMessage() const
 {
     return m_errorMessage.isEmpty() ? m_loader->errorMessage() : m_errorMessage;
+}
+
+const MapData* MapItem::mapData() const
+{
+    if (m_data.m_levelMap.empty()) {
+        return nullptr;
+    }
+    return &m_data;
 }
