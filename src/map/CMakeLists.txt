@@ -18,6 +18,8 @@ add_library(KOSMIndoorMap STATIC
     ${logging_srcs}
     assets/assets.qrc
 
+    content/gatemodel.cpp
+
     loader/boundarysearch.cpp
     loader/mapdata.cpp
     loader/maploader.cpp
@@ -53,6 +55,13 @@ target_link_libraries(KOSMIndoorMap
     PRIVATE Qt5::Network
 )
 
+ecm_generate_headers(KOSMIndoorMap_Content_FORWARDING_HEADERS
+    HEADER_NAMES
+        GateModel
+    PREFIX KOSMIndoorMap
+    REQUIRED_HEADERS KOSMIndoorMap_Content_HEADERS
+    RELATIVE content
+)
 ecm_generate_headers(KOSMIndoorMap_Loader_FORWARDING_HEADERS
     HEADER_NAMES
         MapLoader

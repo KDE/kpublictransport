@@ -87,8 +87,41 @@ Kirigami.ApplicationWindow {
                     text: "Debug Info Model"
                     checkable: true
                     checked: false
+                },
+                Kirigami.Action {
+                    id: gateAction
+                    text: "Find Gate"
+                    onTriggered: gateSheet.sheetOpen = true
                 }
             ]
+        }
+
+        GateModel {
+            id: gateModel
+            mapData: page.map.mapData
+        }
+
+        Kirigami.OverlaySheet {
+            id: gateSheet
+
+            header: Kirigami.Heading {
+                text: "Find Gate"
+            }
+
+            ListView {
+                model: gateModel
+
+                delegate: Kirigami.BasicListItem {
+                    text: model.display
+                    highlighted: false
+                    onClicked: {
+                        page.map.view.floorLevel = model.level
+                        page.map.view.centerOnGeoCoordinate(model.coordinate);
+                        page.map.view.setZoomLevel(18, Qt.point(page.map.width / 2.0, page.map.height/ 2.0));
+                        gateSheet.sheetOpen = false
+                    }
+                }
+            }
         }
 
         header: RowLayout {
