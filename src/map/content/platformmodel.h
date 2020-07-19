@@ -17,7 +17,9 @@ namespace KOSMIndoorMap {
 class MapData;
 
 /** A railway platform/track. */
-struct Platform {
+class Platform {
+    Q_GADGET
+public:
     OSM::Element element;
     QString name;
     int level = 0;
@@ -27,7 +29,9 @@ struct Platform {
         Tram,
         Bus,
     };
-    Mode mode;
+    Mode mode = Rail;
+
+    Q_ENUM(Mode)
 };
 
 /** A railway platform section. */
@@ -51,6 +55,7 @@ public:
     enum Role {
         CoordinateRole = Qt::UserRole,
         LevelRole,
+        TransportModeRole,
     };
 
     int rowCount(const QModelIndex &parent) const override;
@@ -73,5 +78,7 @@ private:
 };
 
 }
+
+Q_DECLARE_METATYPE(KOSMIndoorMap::Platform)
 
 #endif // KOSMINDOORMAP_PLATFORMMODEL_H

@@ -66,6 +66,8 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
             return QPointF(platform.element.center().lonF(), platform.element.center().latF());
         case LevelRole:
             return platform.level;
+        case TransportModeRole:
+            return platform.mode;
     }
 
     return {};
@@ -76,6 +78,7 @@ QHash<int, QByteArray> PlatformModel::roleNames() const
     auto n = QAbstractListModel::roleNames();
     n.insert(CoordinateRole, "coordinate");
     n.insert(LevelRole, "level");
+    n.insert(TransportModeRole, "mode");
     return n;
 }
 
@@ -98,8 +101,8 @@ void PlatformModel::populateModel()
                 continue;
             }
             const auto railway = e.tagValue(railwayKey);
-            if (railway == "rail" || railway == "light_rail") {
-                OSM::for_each_node(m_data->dataSet(), *e.way(), [this, ptKey, railwayKey, &it](const auto &node) {
+            if (!railway.isEmpty()) {
+                OSM::for_each_node(m_data->dataSet(), *e.way(), [&](const auto &node) {
                     if (OSM::tagValue(node, railwayKey) == "buffer_stop") {
                         return;
                     }
@@ -109,7 +112,18 @@ void PlatformModel::populateModel()
                         Platform platform;
                         platform.element = OSM::Element(&node);
                         platform.level = (*it).first.numericLevel();
-                        platform.name = QString::fromUtf8(platform.element.tagValue("local_ref", "ref", QLocale()));
+                        platform.name = QString::fromUtf8(platform.element.tagValue("local_ref", "ref"));
+
+                        if (railway == "rail" || railway == "light_rail") {
+                            platform.mode = Platform::Rail;
+                        } else if (railway == "subway") {
+                            platform.mode = Platform::Subway;
+                        } else if (railway == "tram") {
+                            platform.mode = Platform::Tram;
+                        } else {
+                            return;
+                        }
+
                         addPlatform(std::move(platform));
                     }
                 });
@@ -135,8 +149,11 @@ void PlatformModel::addPlatform(Platform &&platform)
 
 bool PlatformModel::comparePlatform(const Platform &lhs, const Platform &rhs)
 {
-    if (lhs.name == rhs.name) {
-        return lhs.element.id() < rhs.element.id();
+    if (lhs.mode == rhs.mode) {
+        if (lhs.name == rhs.name) {
+            return lhs.element.id() < rhs.element.id();
+        }
+        return m_collator.compare(lhs.name, rhs.name) < 0;
     }
-    return m_collator.compare(lhs.name, rhs.name) < 0;
+    return lhs.mode < rhs.mode;
 }

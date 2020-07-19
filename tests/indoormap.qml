@@ -116,6 +116,23 @@ Kirigami.ApplicationWindow {
             ListView {
                 model: platformModel
 
+                section.property: "mode"
+                section.delegate: Kirigami.Heading {
+                    x: Kirigami.Units.largeSpacing
+                    level: 4
+                    text: switch(parseInt(section)) {
+                        case Platform.Rail: return "Railway";
+                        case Platform.Subway: return "Subway";
+                        case Platform.Tram: return "Tramway";
+                        case Platform.Bus: return "Bus";
+                        default: console.log(section, Platform.Rail); return section;
+                    }
+                    height: implicitHeight + Kirigami.Units.largeSpacing
+                    verticalAlignment: Qt.AlignBottom
+                }
+                section.criteria: ViewSection.FullString
+                section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
+
                 delegate: Kirigami.BasicListItem {
                     text: model.display
                     highlighted: false
