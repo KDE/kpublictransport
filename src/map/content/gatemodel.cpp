@@ -6,6 +6,7 @@
 
 #include "gatemodel.h"
 
+#include <QCollator>
 #include <QDebug>
 #include <QPointF>
 
@@ -102,8 +103,12 @@ void GateModel::populateModel()
         }
     }
 
-    std::sort(m_gates.begin(), m_gates.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs.name() < rhs.name();
+    QCollator c{QLocale()};
+    c.setNumericMode(true);
+    c.setIgnorePunctuation(true);
+    c.setCaseSensitivity(Qt::CaseInsensitive);
+    std::sort(m_gates.begin(), m_gates.end(), [&c](const auto &lhs, const auto &rhs) {
+        return c.compare(lhs.name(), rhs.name()) < 0;
     });
 
     qDebug() << m_gates.size() << "gates found";

@@ -10,6 +10,7 @@
 #include <osm/element.h>
 
 #include <QAbstractListModel>
+#include <QCollator>
 
 namespace KOSMIndoorMap {
 
@@ -63,8 +64,11 @@ private:
     void populateModel();
     void addPlatform(Platform &&platform);
 
+    static bool comparePlatform(const Platform &lhs, const Platform &rhs);
+
     std::vector<Platform> m_platforms;
     const MapData *m_data = nullptr;
+    static QCollator m_collator;
     bool m_searchDone = false;
 };
 

@@ -8,24 +8,20 @@
 
 #include <KOSMIndoorMap/MapData>
 
+#include <QCollator>
 #include <QPointF>
 
 using namespace KOSMIndoorMap;
 
-namespace KOSMIndoorMap {
-static bool operator<(const Platform &lhs, const Platform &rhs)
-{
-    if (lhs.name == rhs.name) {
-        return lhs.element.id() < rhs.element.id();
-    }
-    return lhs.name < rhs.name;
-}
-}
-
+QCollator PlatformModel::m_collator;
 
 PlatformModel::PlatformModel(QObject* parent) :
     QAbstractListModel(parent)
 {
+    m_collator.setLocale(QLocale());
+    m_collator.setNumericMode(true);
+    m_collator.setIgnorePunctuation(true);
+    m_collator.setCaseSensitivity(Qt::CaseInsensitive);
 }
 
 PlatformModel::~PlatformModel() = default;
@@ -126,9 +122,17 @@ void PlatformModel::addPlatform(Platform &&platform)
         return;
     }
 
-    auto it = std::lower_bound(m_platforms.begin(), m_platforms.end(), platform);
+    auto it = std::lower_bound(m_platforms.begin(), m_platforms.end(), platform, comparePlatform);
     if (it != m_platforms.end() && (*it).element.id() == platform.element.id()) {
         return;
     }
     m_platforms.insert(it, std::move(platform));
+}
+
+bool PlatformModel::comparePlatform(const Platform &lhs, const Platform &rhs)
+{
+    if (lhs.name == rhs.name) {
+        return lhs.element.id() < rhs.element.id();
+    }
+    return m_collator.compare(lhs.name, rhs.name) < 0;
 }
