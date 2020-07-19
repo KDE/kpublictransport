@@ -18,7 +18,7 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
-import Qt.labs.platform 1.0 as Platform
+import Qt.labs.platform 1.0 as QPlatform
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kosmindoormap 1.0
 
@@ -49,17 +49,17 @@ Kirigami.ApplicationWindow {
         ]
     }
 
-    Platform.FileDialog {
+    QPlatform.FileDialog {
         id: fileDialog
         title: "Open O5M File"
-        fileMode: Platform.FileDialog.OpenFile
+        fileMode: QPlatform.FileDialog.OpenFile
         nameFilters: ["o5m file (*.o5m)"]
         onAccepted: page.map.mapLoader.loadFromO5m(fileDialog.file);
     }
-    Platform.FileDialog {
+    QPlatform.FileDialog {
         id: mapcssDialog
         title: "Open MapCSS Stylesheet"
-        fileMode: Platform.FileDialog.OpenFile
+        fileMode: QPlatform.FileDialog.OpenFile
         nameFilters: ["MapCSS stylesheet (*.mapcss)"]
         onAccepted: page.map.styleSheet = mapcssDialog.file
     }
