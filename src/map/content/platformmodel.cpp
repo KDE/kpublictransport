@@ -99,7 +99,11 @@ void PlatformModel::populateModel()
             }
             const auto railway = e.tagValue(railwayKey);
             if (railway == "rail" || railway == "light_rail") {
-                OSM::for_each_node(m_data->dataSet(), *e.way(), [this, ptKey, &it](const auto &node) {
+                OSM::for_each_node(m_data->dataSet(), *e.way(), [this, ptKey, railwayKey, &it](const auto &node) {
+                    if (OSM::tagValue(node, railwayKey) == "buffer_stop") {
+                        return;
+                    }
+
                     const auto pt = OSM::tagValue(node, ptKey);
                     if (pt == "stop_point" || pt == "stop_position") {
                         Platform platform;
