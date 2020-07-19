@@ -132,6 +132,9 @@ public:
     QTransform deviceTransform() const;
     void setDeviceTransform(const QTransform &t);
 
+    /** Center the view on the given geo-coordinate. */
+    Q_INVOKABLE void centerOnGeoCoordinate(QPointF geoCoord);
+
 Q_SIGNALS:
     void transformationChanged();
     void floorLevelChanged();

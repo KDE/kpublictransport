@@ -315,3 +315,11 @@ void View::setDeviceTransform(const QTransform &t)
 {
     m_deviceTransform = t;
 }
+
+void View::centerOnGeoCoordinate(QPointF geoCoord)
+{
+    const auto sceneCenter = mapGeoToScene(OSM::Coordinate(geoCoord.y(), geoCoord.x()));
+    m_viewport.moveCenter(sceneCenter);
+    constrainViewToScene();
+    emit transformationChanged();
+}
