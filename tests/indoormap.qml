@@ -89,11 +89,44 @@ Kirigami.ApplicationWindow {
                     checked: false
                 },
                 Kirigami.Action {
+                    id: platformAction
+                    text: "Find Platform"
+                    onTriggered: platformSheet.sheetOpen = true
+                },
+                Kirigami.Action {
                     id: gateAction
                     text: "Find Gate"
                     onTriggered: gateSheet.sheetOpen = true
                 }
             ]
+        }
+
+        PlatformModel {
+            id: platformModel
+            mapData: page.map.mapData
+        }
+
+        Kirigami.OverlaySheet {
+            id: platformSheet
+
+            header: Kirigami.Heading {
+                text: "Find Platform"
+            }
+
+            ListView {
+                model: platformModel
+
+                delegate: Kirigami.BasicListItem {
+                    text: model.display
+                    highlighted: false
+                    onClicked: {
+                        page.map.view.floorLevel = model.level
+                        page.map.view.centerOnGeoCoordinate(model.coordinate);
+                        page.map.view.setZoomLevel(19, Qt.point(page.map.width / 2.0, page.map.height/ 2.0));
+                        platformSheet.sheetOpen = false
+                    }
+                }
+            }
         }
 
         GateModel {

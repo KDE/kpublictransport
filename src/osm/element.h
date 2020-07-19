@@ -139,6 +139,17 @@ inline void for_each(const DataSet &dataSet, Func func, uint8_t flags = IterateA
 }
 
 template <typename Func>
+inline void for_each_node(const DataSet &dataSet, const Way &way, Func func)
+{
+    for (auto nodeId : way.nodes) {
+        const auto it = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), nodeId);
+        if (it != dataSet.nodes.end() && (*it).id == nodeId) {
+            func(*it);
+        }
+    }
+}
+
+template <typename Func>
 inline void for_each_member(const DataSet &dataSet, const Relation &rel, Func func)
 {
     for (const auto &mem : rel.members) {

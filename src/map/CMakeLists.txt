@@ -19,6 +19,7 @@ add_library(KOSMIndoorMap STATIC
     assets/assets.qrc
 
     content/gatemodel.cpp
+    content/platformmodel.cpp
 
     loader/boundarysearch.cpp
     loader/mapdata.cpp
@@ -58,6 +59,7 @@ target_link_libraries(KOSMIndoorMap
 ecm_generate_headers(KOSMIndoorMap_Content_FORWARDING_HEADERS
     HEADER_NAMES
         GateModel
+        PlatformModel
     PREFIX KOSMIndoorMap
     REQUIRED_HEADERS KOSMIndoorMap_Content_HEADERS
     RELATIVE content
