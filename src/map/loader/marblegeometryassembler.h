@@ -50,6 +50,7 @@ private:
     void mergeWays(std::vector<OSM::Way> &ways);
     void mergeRelations(OSM::DataSetMergeBuffer *mergeBuffer);
 
+    void remapWayNodes(std::vector<OSM::Way> &ways) const;
     void mergeWay(OSM::Way &way, OSM::Way &otherWay) const;
     void mergeLine(OSM::Way &way, OSM::Way &otherWay) const;
     std::vector<OSM::Id> mergeArea(OSM::Way &way, OSM::Way &otherWay) const;
@@ -69,10 +70,13 @@ private:
     OSM::DataSet *m_dataSet = nullptr;
     OSM::TagKey m_mxoidKey;
     OSM::TagKey m_typeKey;
+    std::unordered_map<OSM::Id, OSM::Id> m_nodeIdMap;
     std::unordered_map<OSM::Id, OSM::Id> m_wayIdMap;
     std::unordered_map<OSM::Id, OSM::Id> m_relIdMap;
 
     std::vector<OSM::Way> m_pendingWays;
+
+    static OSM::Id s_nextInternalId;
 };
 
 }

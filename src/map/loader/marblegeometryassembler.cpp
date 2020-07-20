@@ -29,6 +29,8 @@ static bool fuzzyEquals(OSM::Coordinate lhs, OSM::Coordinate rhs)
     return std::abs((int32_t)lhs.latitude - (int32_t)rhs.latitude) <= NodeMatchDistance && std::abs((int32_t)lhs.longitude - (int32_t)rhs.longitude) <= NodeMatchDistance;
 }
 
+OSM::Id MarbleGeometryAssembler::s_nextInternalId = -(1ll << 32); // try to stay out of the way of the number space used by Marble tiles
+
 MarbleGeometryAssembler::MarbleGeometryAssembler() = default;
 MarbleGeometryAssembler::~MarbleGeometryAssembler() = default;
 
@@ -43,6 +45,7 @@ void MarbleGeometryAssembler::setDataSet(OSM::DataSet* dataSet)
 void MarbleGeometryAssembler::merge(OSM::DataSetMergeBuffer *mergeBuffer)
 {
     assert(m_dataSet);
+    m_nodeIdMap.clear();
     m_wayIdMap.clear();
     m_relIdMap.clear();
 
@@ -50,6 +53,7 @@ void MarbleGeometryAssembler::merge(OSM::DataSetMergeBuffer *mergeBuffer)
     std::swap(m_pendingWays, prevPendingWays);
 
     mergeNodes(mergeBuffer);
+    remapWayNodes(mergeBuffer->ways);
     mergeWays(mergeBuffer->ways);
     mergeWays(prevPendingWays);
     mergeRelations(mergeBuffer);
@@ -66,15 +70,29 @@ void MarbleGeometryAssembler::finalize()
 
 void MarbleGeometryAssembler::mergeNodes(OSM::DataSetMergeBuffer *mergeBuffer)
 {
-    // nodes we just take as-is, they are not split/renamed; at worst we get a few extra for split geometry
+    // nodes of the first batch are just taken as-is
     if (m_dataSet->nodes.empty()) {
         m_dataSet->nodes = std::move(mergeBuffer->nodes);
         std::sort(m_dataSet->nodes.begin(), m_dataSet->nodes.end());
-    } else {
-        m_dataSet->nodes.reserve(m_dataSet->nodes.size() + mergeBuffer->nodes.size());
-        std::move(mergeBuffer->nodes.begin(), mergeBuffer->nodes.end(), std::back_inserter(m_dataSet->nodes));
+        return;
     }
-    std::sort(m_dataSet->nodes.begin(), m_dataSet->nodes.end());
+
+    // for all subsequent batches we have to check for colliding synthetic ids, and if necessary remap those
+    m_dataSet->nodes.reserve(m_dataSet->nodes.size() + mergeBuffer->nodes.size());
+
+    for (auto &node : mergeBuffer->nodes) {
+        const auto it = std::lower_bound(m_dataSet->nodes.begin(), m_dataSet->nodes.end(), node);
+        if (it != m_dataSet->nodes.end() && (*it).id == node.id) {
+            if (node.id < 0) { // synthetic id collision, remap that
+                node.id = s_nextInternalId++;
+                m_nodeIdMap[(*it).id] = node.id;
+                m_dataSet->addNode(std::move(node));
+            }
+            // non-synthetic collisions are expected to be real duplicates, so nothing to do there
+        } else {
+            m_dataSet->nodes.insert(it, std::move(node));
+        }
+    }
 }
 
 void MarbleGeometryAssembler::mergeWays(std::vector<OSM::Way> &ways)
@@ -115,6 +133,25 @@ void MarbleGeometryAssembler::mergeWays(std::vector<OSM::Way> &ways)
         } else {
             m_wayIdMap[syntheticId] = mxoid;
             m_dataSet->ways.insert(it, std::move(way));
+        }
+    }
+}
+
+void MarbleGeometryAssembler::remapWayNodes(std::vector<OSM::Way> &ways) const
+{
+    if (m_nodeIdMap.empty()) {
+        return;
+    }
+
+    for (auto &way : ways) {
+        for (auto &id : way.nodes) {
+            if (id > 0) {
+                continue;
+            }
+            const auto it = m_nodeIdMap.find(id);
+            if (it != m_nodeIdMap.end()) {
+                id = (*it).second;
+            }
         }
     }
 }
@@ -284,7 +321,12 @@ void MarbleGeometryAssembler::mergeRelations(OSM::DataSetMergeBuffer *mergeBuffe
                 continue;
             }
 
-            if (member.type == OSM::Type::Way) {
+            if (member.type == OSM::Type::Node) {
+                const auto it = m_nodeIdMap.find(member.id);
+                if (it != m_nodeIdMap.end()) {
+                    member.id = (*it).second;
+                }
+            } else if (member.type == OSM::Type::Way) {
                 const auto it = m_wayIdMap.find(member.id);
                 if (it != m_wayIdMap.end()) {
                     member.id = (*it).second;
