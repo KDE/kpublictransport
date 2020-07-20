@@ -29,13 +29,21 @@ namespace KOSMIndoorMap {
 class MarbleGeometryAssembler
 {
 public:
+    MarbleGeometryAssembler();
+    ~MarbleGeometryAssembler();
+
+    /** Set the dataset to merge into.
+     *  Has to be called before the first call to merge().
+     */
+    void setDataSet(OSM::DataSet *dataSet);
+
     /** Merge @p mergeBuffer into @p dataSet.
      *  Data not mergable at this point (e.g. due to missing connecting tiles)
      *  remains in @p mergeBuffer.
      */
-    void merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
+    void merge(OSM::DataSetMergeBuffer *mergeBuffer);
     /** Processes remaining elements that couldn't be merged. */
-    void finalize(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer);
+    void finalize(OSM::DataSetMergeBuffer *mergeBuffer);
 
 private:
     void mergeNodes(OSM::DataSetMergeBuffer *mergeBuffer);

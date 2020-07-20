@@ -56,7 +56,8 @@ private Q_SLOTS:
         }
 
         MarbleGeometryAssembler assembler;
-        assembler.merge(&dataSet, &mergeBuffer);
+        assembler.setDataSet(&dataSet);
+        assembler.merge(&mergeBuffer);
 
         QCOMPARE(dataSet.ways.size(), 1);
         auto &way = dataSet.ways.front();
@@ -98,7 +99,8 @@ private Q_SLOTS:
         }
 
         MarbleGeometryAssembler assembler;
-        assembler.merge(&dataSet, &mergeBuffer);
+        assembler.setDataSet(&dataSet);
+        assembler.merge(&mergeBuffer);
 
         QCOMPARE(dataSet.ways.size(), 1);
         auto &way = dataSet.ways.front();
@@ -116,7 +118,7 @@ private Q_SLOTS:
             OSM::setTagValue(w, mxoidKey, QByteArray::number(42));
             mergeBuffer.ways = {w};
         }
-        assembler.merge(&dataSet, &mergeBuffer);
+        assembler.merge(&mergeBuffer);
 
         QCOMPARE(dataSet.ways.size(), 1);
         way = dataSet.ways.front();
@@ -158,7 +160,8 @@ private Q_SLOTS:
         }
 
         MarbleGeometryAssembler assembler;
-        assembler.merge(&dataSet, &mergeBuffer);
+        assembler.setDataSet(&dataSet);
+        assembler.merge(&mergeBuffer);
 
         QCOMPARE(dataSet.ways.size(), 1);
         auto &way = dataSet.ways.front();

@@ -17,6 +17,8 @@
 
 #include "marblegeometryassembler.h"
 
+#include <cassert>
+
 using namespace KOSMIndoorMap;
 
 enum { NodeMatchDistance = 46 }; // in 1e7th of a degree
@@ -27,14 +29,23 @@ static bool fuzzyEquals(OSM::Coordinate lhs, OSM::Coordinate rhs)
     return std::abs((int32_t)lhs.latitude - (int32_t)rhs.latitude) <= NodeMatchDistance && std::abs((int32_t)lhs.longitude - (int32_t)rhs.longitude) <= NodeMatchDistance;
 }
 
-void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
+MarbleGeometryAssembler::MarbleGeometryAssembler() = default;
+MarbleGeometryAssembler::~MarbleGeometryAssembler() = default;
+
+void MarbleGeometryAssembler::setDataSet(OSM::DataSet* dataSet)
 {
+    assert(dataSet);
     m_dataSet = dataSet;
+    m_mxoidKey = m_dataSet->makeTagKey("mx:oid");
+    m_typeKey = m_dataSet->makeTagKey("type");
+}
+
+void MarbleGeometryAssembler::merge(OSM::DataSetMergeBuffer *mergeBuffer)
+{
+    assert(m_dataSet);
     m_wayIdMap.clear();
     m_relIdMap.clear();
     m_pendingWays.clear();
-    m_mxoidKey = dataSet->tagKey("mx:oid");
-    m_typeKey = dataSet->tagKey("type");
 
     mergeNodes(mergeBuffer);
     mergeWays(mergeBuffer);
@@ -42,13 +53,12 @@ void MarbleGeometryAssembler::merge(OSM::DataSet *dataSet, OSM::DataSetMergeBuff
 
     mergeBuffer->clear();
     std::swap(m_pendingWays, mergeBuffer->ways); // ways we have to try again
-    m_dataSet = nullptr;
 }
 
-void MarbleGeometryAssembler::finalize(OSM::DataSet *dataSet, OSM::DataSetMergeBuffer *mergeBuffer)
+void MarbleGeometryAssembler::finalize(OSM::DataSetMergeBuffer *mergeBuffer)
 {
     for (auto &way : mergeBuffer->ways) {
-        dataSet->addWay(std::move(way));
+        m_dataSet->addWay(std::move(way));
     }
 }
 

@@ -81,6 +81,7 @@ void MapLoader::loadForCoordinate(double lat, double lon)
     m_pendingTiles.clear();
     m_boundarySearcher.init(OSM::Coordinate(lat, lon));
     m_errorMessage.clear();
+    m_marbleMerger.setDataSet(&m_dataSet);
 
     const auto tile = Tile::fromCoordinate(lat, lon, TileZoomLevel);
     m_pendingTiles.push_back(tile);
@@ -130,7 +131,7 @@ void MapLoader::loadTiles()
         }
         const auto data = f.map(0, f.size());
         p.parse(data, f.size());
-        m_marbleMerger.merge(&m_dataSet, &m_mergeBuffer);
+        m_marbleMerger.merge(&m_mergeBuffer);
 
         m_tileBbox = OSM::unite(m_tileBbox, tile.boundingBox());
     }
@@ -172,7 +173,7 @@ void MapLoader::loadTiles()
         return;
     }
 
-    m_marbleMerger.finalize(&m_dataSet, &m_mergeBuffer);
+    m_marbleMerger.finalize(&m_mergeBuffer);
     m_data.setDataSet(std::move(m_dataSet));
     m_data.setBoundingBox(bbox);
 
