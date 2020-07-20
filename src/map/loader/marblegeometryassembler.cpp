@@ -45,19 +45,21 @@ void MarbleGeometryAssembler::merge(OSM::DataSetMergeBuffer *mergeBuffer)
     assert(m_dataSet);
     m_wayIdMap.clear();
     m_relIdMap.clear();
-    m_pendingWays.clear();
+
+    std::vector<OSM::Way> prevPendingWays;
+    std::swap(m_pendingWays, prevPendingWays);
 
     mergeNodes(mergeBuffer);
-    mergeWays(mergeBuffer);
+    mergeWays(mergeBuffer->ways);
+    mergeWays(prevPendingWays);
     mergeRelations(mergeBuffer);
 
     mergeBuffer->clear();
-    std::swap(m_pendingWays, mergeBuffer->ways); // ways we have to try again
 }
 
-void MarbleGeometryAssembler::finalize(OSM::DataSetMergeBuffer *mergeBuffer)
+void MarbleGeometryAssembler::finalize()
 {
-    for (auto &way : mergeBuffer->ways) {
+    for (auto &way : m_pendingWays) {
         m_dataSet->addWay(std::move(way));
     }
 }
@@ -75,14 +77,14 @@ void MarbleGeometryAssembler::mergeNodes(OSM::DataSetMergeBuffer *mergeBuffer)
     std::sort(m_dataSet->nodes.begin(), m_dataSet->nodes.end());
 }
 
-void MarbleGeometryAssembler::mergeWays(OSM::DataSetMergeBuffer *mergeBuffer)
+void MarbleGeometryAssembler::mergeWays(std::vector<OSM::Way> &ways)
 {
     // for ways we do:
     // 1. restore the original id
     // 2. if a way with that id already exists, we merge with the geometry of the existing one
 
-    for (auto &way : mergeBuffer->ways) {
-        if (way.id > 0) { // not a synthetic id
+    for (auto &way : ways) {
+        if (way.id > 0 || way.nodes.empty()) { // not a synthetic id
             m_dataSet->addWay(std::move(way));
             continue;
         }

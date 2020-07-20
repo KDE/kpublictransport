@@ -43,11 +43,11 @@ public:
      */
     void merge(OSM::DataSetMergeBuffer *mergeBuffer);
     /** Processes remaining elements that couldn't be merged. */
-    void finalize(OSM::DataSetMergeBuffer *mergeBuffer);
+    void finalize();
 
 private:
     void mergeNodes(OSM::DataSetMergeBuffer *mergeBuffer);
-    void mergeWays(OSM::DataSetMergeBuffer *mergeBuffer);
+    void mergeWays(std::vector<OSM::Way> &ways);
     void mergeRelations(OSM::DataSetMergeBuffer *mergeBuffer);
 
     void mergeWay(OSM::Way &way, OSM::Way &otherWay) const;

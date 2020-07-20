@@ -173,7 +173,7 @@ void MapLoader::loadTiles()
         return;
     }
 
-    m_marbleMerger.finalize(&m_mergeBuffer);
+    m_marbleMerger.finalize();
     m_data.setDataSet(std::move(m_dataSet));
     m_data.setBoundingBox(bbox);
 
