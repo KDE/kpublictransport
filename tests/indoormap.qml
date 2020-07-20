@@ -134,7 +134,11 @@ Kirigami.ApplicationWindow {
                 section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
 
                 delegate: Kirigami.BasicListItem {
-                    text: model.display
+                    text: {
+                        if (model.lines.length == 0)
+                            return model.display;
+                        return model.display + " (" + model.lines.join(", ") + ")";
+                    }
                     highlighted: false
                     onClicked: {
                         page.map.view.floorLevel = model.level

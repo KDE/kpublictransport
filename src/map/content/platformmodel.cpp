@@ -68,6 +68,8 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
             return platform.level;
         case TransportModeRole:
             return platform.mode;
+        case LinesRole:
+            return platform.lines;
     }
 
     return {};
@@ -79,6 +81,7 @@ QHash<int, QByteArray> PlatformModel::roleNames() const
     n.insert(CoordinateRole, "coordinate");
     n.insert(LevelRole, "level");
     n.insert(TransportModeRole, "mode");
+    n.insert(LinesRole, "lines");
     return n;
 }
 
@@ -90,8 +93,8 @@ void PlatformModel::populateModel()
     m_searchDone = true;
 
     const auto railwayKey = m_data->dataSet().tagKey("railway");
-    const auto ptKey = m_data->dataSet().tagKey("public_transport");
-    if (ptKey.isNull() && railwayKey.isNull()) {
+    m_ptKey = m_data->dataSet().tagKey("public_transport");
+    if (m_ptKey.isNull() && railwayKey.isNull()) {
         return;
     }
 
@@ -107,7 +110,7 @@ void PlatformModel::populateModel()
                         return;
                     }
 
-                    const auto pt = OSM::tagValue(node, ptKey);
+                    const auto pt = OSM::tagValue(node, m_ptKey);
                     if (pt == "stop_point" || pt == "stop_position") {
                         Platform platform;
                         platform.element = OSM::Element(&node);
@@ -131,7 +134,61 @@ void PlatformModel::populateModel()
         }
     }
 
+    const auto routeKey = m_data->dataSet().tagKey("route");
+    OSM::for_each(m_data->dataSet(), [this, routeKey](OSM::Element e) {
+        const auto route = e.tagValue(routeKey);
+        if (route.isEmpty() || route == "tracks") {
+            return;
+        }
+        scanRoute(e, e);
+    }, OSM::IncludeRelations);
+
     qDebug() << m_platforms.size() << "platforms found";
+}
+
+void PlatformModel::scanRoute(OSM::Element e, OSM::Element route)
+{
+    switch (e.type()) {
+        case OSM::Type::Null:
+            return;
+        case OSM::Type::Node:
+            scanRoute(*e.node(), route);
+            break;
+        case OSM::Type::Way:
+            OSM::for_each_node(m_data->dataSet(), *e.way(), [this, route](const OSM::Node &node) {
+                scanRoute(node, route);
+            });
+            break;
+        case OSM::Type::Relation:
+            OSM::for_each_member(m_data->dataSet(), *e.relation(), [this, route](OSM::Element e) {
+                scanRoute(e, route);
+            });
+            break;
+    }
+}
+
+void PlatformModel::scanRoute(const OSM::Node& node, OSM::Element route)
+{
+    const auto pt = OSM::tagValue(node, m_ptKey);
+    if (pt.isEmpty()) {
+        return;
+    }
+
+    for (auto &p : m_platforms) {
+        if (p.element.id() == node.id) {
+            const auto l = QString::fromUtf8(route.tagValue("ref")).split(QLatin1Char(';'));
+            for (const auto &lineName : l) {
+                if (lineName.isEmpty()) {
+                    continue;
+                }
+                const auto it = std::lower_bound(p.lines.begin(), p.lines.end(), lineName, m_collator);
+                if (it == p.lines.end() || (*it) != lineName) {
+                    p.lines.insert(it, lineName);
+                }
+            }
+            break;
+        }
+    }
 }
 
 void PlatformModel::addPlatform(Platform &&platform)

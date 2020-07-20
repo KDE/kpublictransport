@@ -30,6 +30,7 @@ public:
         Bus,
     };
     Mode mode = Rail;
+    QStringList lines;
 
     Q_ENUM(Mode)
 };
@@ -56,6 +57,7 @@ public:
         CoordinateRole = Qt::UserRole,
         LevelRole,
         TransportModeRole,
+        LinesRole,
     };
 
     int rowCount(const QModelIndex &parent) const override;
@@ -67,6 +69,8 @@ Q_SIGNALS:
 
 private:
     void populateModel();
+    void scanRoute(OSM::Element e, OSM::Element route);
+    void scanRoute(const OSM::Node &node, OSM::Element route);
     void addPlatform(Platform &&platform);
 
     static bool comparePlatform(const Platform &lhs, const Platform &rhs);
@@ -75,6 +79,8 @@ private:
     const MapData *m_data = nullptr;
     static QCollator m_collator;
     bool m_searchDone = false;
+
+    OSM::TagKey m_ptKey;
 };
 
 }
