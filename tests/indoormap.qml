@@ -54,7 +54,7 @@ Kirigami.ApplicationWindow {
         title: "Open O5M File"
         fileMode: QPlatform.FileDialog.OpenFile
         nameFilters: ["o5m file (*.o5m)"]
-        onAccepted: page.map.mapLoader.loadFromO5m(fileDialog.file);
+        onAccepted: page.map.mapLoader.loadFromFile(fileDialog.file);
     }
     QPlatform.FileDialog {
         id: mapcssDialog

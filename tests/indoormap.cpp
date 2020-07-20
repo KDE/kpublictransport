@@ -171,8 +171,8 @@ int main(int argc, char **argv)
     QCommandLineParser parser;
     QCommandLineOption coordOpt({QStringLiteral("coordinate"), QStringLiteral("c")}, QStringLiteral("coordinate of the location to load"), QStringLiteral("lat,lon"));
     parser.addOption(coordOpt);
-    QCommandLineOption o5mOpt({QStringLiteral("o5m")}, QStringLiteral("o5m file to load"), QStringLiteral("o5m file"));
-    parser.addOption(o5mOpt);
+    QCommandLineOption fileOpt({QStringLiteral("file"), QStringLiteral("f")}, QStringLiteral("O5M or OSM PBF file to load"), QStringLiteral("file"));
+    parser.addOption(fileOpt);
     parser.addHelpOption();
     parser.addVersionOption();
     parser.process(app);
@@ -213,8 +213,8 @@ int main(int argc, char **argv)
         levelBox->setCurrentText(QLatin1String("0"));
     });
 
-    if (parser.isSet(o5mOpt)) {
-        loader.loadFromO5m(parser.value(o5mOpt));
+    if (parser.isSet(fileOpt)) {
+        loader.loadFromFile(parser.value(fileOpt));
     } else if (parser.isSet(coordOpt)) {
         const auto s = parser.value(coordOpt).split(QRegularExpression(QStringLiteral("[,/;]")));
         loader.loadForCoordinate(s.at(0).toDouble(), s.at(1).toDouble());

@@ -49,7 +49,7 @@ MapLoader::MapLoader(QObject *parent)
 
 MapLoader::~MapLoader() = default;
 
-void MapLoader::loadFromO5m(const QString &fileName)
+void MapLoader::loadFromFile(const QString &fileName)
 {
     QElapsedTimer loadTime;
     loadTime.start();

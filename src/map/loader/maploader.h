@@ -41,8 +41,8 @@ public:
     explicit MapLoader(QObject *parent = nullptr);
     ~MapLoader();
 
-    /** Load a single O5M file. */
-    Q_INVOKABLE void loadFromO5m(const QString &fileName);
+    /** Load a single O5M or OSM PBF file. */
+    Q_INVOKABLE void loadFromFile(const QString &fileName);
     /** Load map for the given coordinates.
      *  This can involve online access.
      */
