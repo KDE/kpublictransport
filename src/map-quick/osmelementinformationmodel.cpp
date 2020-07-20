@@ -327,9 +327,9 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Website: return tr("Website");
         case PaymentCash: return tr("Cash");
         case PaymentDigital: return tr("Digital");
-        case PaymentDebitCard: return tr("Debit Cards");
-        case PaymentCreditCard: return tr("Credit Cards");
-        case PaymentStoredValueCard: return tr("Stored Value Cards");
+        case PaymentDebitCard: return tr("Debit cards");
+        case PaymentCreditCard: return tr("Credit cards");
+        case PaymentStoredValueCard: return tr("Stored value cards");
         case Wheelchair: return tr("Wheelchair access");
         case CentralKey: return tr("Central key");
         case OperatorName: return {};

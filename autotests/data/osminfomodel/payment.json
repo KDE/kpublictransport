@@ -15,17 +15,17 @@
         },
         {
             "categoryLabel": "Payment",
-            "keyLabel": "Debit Cards",
+            "keyLabel": "Debit cards",
             "value": "Girocard"
         },
         {
             "categoryLabel": "Payment",
-            "keyLabel": "Credit Cards",
+            "keyLabel": "Credit cards",
             "value": "Mastercard and Visa"
         },
         {
             "categoryLabel": "Payment",
-            "keyLabel": "Stored Value Cards",
+            "keyLabel": "Stored value cards",
             "value": "yes"
         }
     ],
