@@ -117,7 +117,7 @@ void PlatformModel::populateModel()
                     if (pt == "stop_point" || pt == "stop_position") {
                         Platform platform;
                         platform.element = OSM::Element(&node);
-                        platform.level = (*it).first.numericLevel();
+                        platform.level = qRound((*it).first.numericLevel() / 10.0) * 10;
                         platform.name = QString::fromUtf8(platform.element.tagValue("local_ref", "ref"));
 
                         if (railway == "rail" || railway == "light_rail") {
