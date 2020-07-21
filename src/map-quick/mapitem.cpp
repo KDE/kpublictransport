@@ -159,6 +159,7 @@ void MapItem::clear()
     m_controller.setDataSet(nullptr);
     m_data = MapData();
     emit mapDataChanged();
+    emit errorChanged();
     update();
 }
 
