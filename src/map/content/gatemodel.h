@@ -17,9 +17,8 @@ namespace KOSMIndoorMap {
 
 /** An airport gate. */
 struct Gate {
-    QString name() const;
-
     OSM::Element element;
+    QString name;
     int level = 0;
 };
 

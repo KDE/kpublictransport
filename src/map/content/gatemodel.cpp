@@ -12,12 +12,6 @@
 
 using namespace KOSMIndoorMap;
 
-QString Gate::name() const
-{
-    return QString::fromUtf8(element.tagValue("ref", QLocale()));
-}
-
-
 GateModel::GateModel(QObject *parent)
     : QAbstractListModel(parent)
 {
@@ -60,7 +54,7 @@ QVariant GateModel::data(const QModelIndex &index, int role) const
     const auto &gate = m_gates[index.row()];
     switch (role) {
         case Qt::DisplayRole:
-            return gate.name();
+            return gate.name;
         case CoordinateRole:
             return QPointF(gate.element.center().lonF(), gate.element.center().latF());
         case LevelRole:
@@ -96,10 +90,18 @@ void GateModel::populateModel()
                 continue;
             }
 
-            Gate gate;
-            gate.element = e;
-            gate.level = (*it).first.numericLevel();
-            m_gates.push_back(gate);
+            const auto l = e.tagValue("ref").split(';');
+            for (const auto &n : l) {
+                if (n.isEmpty()) {
+                    continue;
+                }
+
+                Gate gate;
+                gate.name = QString::fromUtf8(n);
+                gate.element = e;
+                gate.level = (*it).first.numericLevel();
+                m_gates.push_back(gate);
+            }
         }
     }
 
@@ -108,7 +110,7 @@ void GateModel::populateModel()
     c.setIgnorePunctuation(true);
     c.setCaseSensitivity(Qt::CaseInsensitive);
     std::sort(m_gates.begin(), m_gates.end(), [&c](const auto &lhs, const auto &rhs) {
-        return c.compare(lhs.name(), rhs.name()) < 0;
+        return c.compare(lhs.name, rhs.name) < 0;
     });
 
     qDebug() << m_gates.size() << "gates found";
