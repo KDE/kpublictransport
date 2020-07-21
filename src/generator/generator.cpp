@@ -20,7 +20,7 @@
 
 #include "../lib/datatypes/linecompare_p.h"
 
-#include <osm/xmlparser.h>
+#include <osm/o5mparser.h>
 #include <osm/ztile.h>
 
 #include <wikidataquery.h>
@@ -869,7 +869,7 @@ int main(int argc, char **argv)
     parser.addHelpOption();
     QCommandLineOption outFileOption({ QStringLiteral("o") }, QStringLiteral("Output file name"), QStringLiteral("out"));
     parser.addOption(outFileOption);
-    QCommandLineOption osmInputOption({ QStringLiteral("i") }, QStringLiteral("OSM input file"),  QStringLiteral("osm-in"));
+    QCommandLineOption osmInputOption({ QStringLiteral("i") }, QStringLiteral("O5M input file"),  QStringLiteral("o5m-in"));
     parser.addOption(osmInputOption);
     parser.process(app);
 
@@ -885,8 +885,8 @@ int main(int argc, char **argv)
         QCoreApplication::exit(1);
     }
     OSM::DataSet dataSet;
-    OSM::XmlParser p(&dataSet);
-    p.parse(&f);
+    OSM::O5mParser p(&dataSet);
+    p.parse(f.map(0, f.size()), f.size());
 
     Generator generator;
     generator.out = &out;

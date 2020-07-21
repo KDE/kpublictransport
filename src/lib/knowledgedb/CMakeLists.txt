@@ -16,14 +16,11 @@ osm_convert(INPUT routes.o5m OUTPUT routes-bbox.o5m ADD_BBOX ON)
 # this is merely to speed up the code generator, by reducing the resulting XML output to manageable sizes
 osm_filter(INPUT routes-bbox.o5m OUTPUT routes-only.o5m FILTER --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram or route_master=light_rail\" --ignore-dependencies)
 
-# convert the output to OSM XML format, so the code generator can consume it
-osm_convert(INPUT routes-only.o5m OUTPUT routes-only.osm)
-
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/linemetadata_data.cpp
     COMMAND
-        line-data-generator -o ${CMAKE_CURRENT_SOURCE_DIR}/linemetadata_data.cpp -i ${OSM_PLANET_DIR}/routes-only.osm
+        line-data-generator -o ${CMAKE_CURRENT_SOURCE_DIR}/linemetadata_data.cpp -i ${OSM_PLANET_DIR}/routes-only.o5m
     DEPENDS
-        line-data-generator ${OSM_PLANET_DIR}/routes-only.osm
+        line-data-generator ${OSM_PLANET_DIR}/routes-only.o5m
 )
 add_custom_target(rebuild-knowledgedb DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/linemetadata_data.cpp)
