@@ -20,6 +20,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
 import Qt.labs.platform 1.0 as QPlatform
 import org.kde.kirigami 2.0 as Kirigami
+import org.kde.kpublictransport 1.0 as PublicTransport
 import org.kde.kosmindoormap 1.0
 
 Kirigami.ApplicationWindow {
@@ -106,6 +107,49 @@ Kirigami.ApplicationWindow {
             mapData: page.map.mapData
         }
 
+        Component {
+            id: platformDelegate
+            Kirigami.AbstractListItem {
+                property var platform: model
+                Row {
+                    QQC2.Label { text: platform.lines.length == 0 ? platform.display : (platform.display + " - "); }
+                    Repeater {
+                        model: platform.lines
+                        delegate: Row {
+                            Kirigami.Icon {
+                                id: icon
+                                height: Kirigami.Units.iconSizes.small
+                                width: implicitWidth
+                                visible: source != ""
+                                source: {
+                                    switch (platform.mode) {
+                                        case Platform.Rail:
+                                            return PublicTransport.LineMetaData.lookup(modelData, platform.coordinate.y, platform.coordinate.x, PublicTransport.Line.Train, true).logo;
+                                        case Platform.Tram:
+                                            return PublicTransport.LineMetaData.lookup(modelData, platform.coordinate.y, platform.coordinate.x, PublicTransport.Line.Tramway, true).logo;
+                                        case Platform.Subway:
+                                            return PublicTransport.LineMetaData.lookup(modelData, platform.coordinate.y, platform.coordinate.x, PublicTransport.Line.Metro, true).logo;
+                                    }
+                                    return "";
+                                }
+                            }
+                            QQC2.Label {
+                                text: modelData + " "
+                                visible: icon.source == ""
+                            }
+                        }
+                    }
+                }
+                highlighted: false
+                onClicked: {
+                    page.map.view.floorLevel = model.level
+                    page.map.view.centerOnGeoCoordinate(model.coordinate);
+                    page.map.view.setZoomLevel(19, Qt.point(page.map.width / 2.0, page.map.height/ 2.0));
+                    platformSheet.sheetOpen = false
+                }
+            }
+        }
+
         Kirigami.OverlaySheet {
             id: platformSheet
 
@@ -133,20 +177,7 @@ Kirigami.ApplicationWindow {
                 section.criteria: ViewSection.FullString
                 section.labelPositioning: ViewSection.CurrentLabelAtStart | ViewSection.InlineLabels
 
-                delegate: Kirigami.BasicListItem {
-                    text: {
-                        if (model.lines.length == 0)
-                            return model.display;
-                        return model.display + " (" + model.lines.join(", ") + ")";
-                    }
-                    highlighted: false
-                    onClicked: {
-                        page.map.view.floorLevel = model.level
-                        page.map.view.centerOnGeoCoordinate(model.coordinate);
-                        page.map.view.setZoomLevel(19, Qt.point(page.map.width / 2.0, page.map.height/ 2.0));
-                        platformSheet.sheetOpen = false
-                    }
-                }
+                delegate: platformDelegate
             }
         }
 

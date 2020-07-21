@@ -18,6 +18,8 @@
 #ifndef KPUBLICTRANSPORT_ASSETREPOSITORY_P_H
 #define KPUBLICTRANSPORT_ASSETREPOSITORY_P_H
 
+#include "kpublictransport_export.h"
+
 #include <QObject>
 #include <QUrl>
 
@@ -30,7 +32,7 @@ namespace KPublicTransport {
 /**
  * Access and downloading of line logos.
  */
-class AssetRepository : public QObject
+class KPUBLICTRANSPORT_EXPORT AssetRepository : public QObject
 {
     Q_OBJECT
 public:

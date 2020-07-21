@@ -1,5 +1,6 @@
 set(kpublictransportqmlplugin_SRC
     kpublictransportqmlplugin.cpp
+    linemetadatawrapper.cpp
 )
 
 add_library(kpublictransportqmlplugin ${kpublictransportqmlplugin_SRC})

@@ -14,7 +14,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+
 #include "kpublictransportqmlplugin.h"
+#include "linemetadatawrapper.h"
 
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -36,6 +38,7 @@
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
+    qRegisterMetaType<KPublicTransport::Line>();
     qRegisterMetaType<KPublicTransport::LoadInfo>();
     qRegisterMetaType<KPublicTransport::Location>();
     qRegisterMetaType<KPublicTransport::Platform>();
@@ -67,4 +70,8 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterType<KPublicTransport::VehicleLayoutQueryModel>("org.kde.kpublictransport", 1, 0, "VehicleLayoutQueryModel");
     // backward compat
     qmlRegisterType<KPublicTransport::StopoverQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
+
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMetaData", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(KPublicTransport::LineMetaDataWrapper());
+    });
 }
