@@ -106,6 +106,9 @@ void PlatformModel::populateModel()
             const auto railway = e.tagValue(railwayKey);
             if (!railway.isEmpty()) {
                 OSM::for_each_node(m_data->dataSet(), *e.way(), [&](const auto &node) {
+                    if (!OSM::contains(m_data->boundingBox(), node.coordinate)) {
+                        return;
+                    }
                     if (OSM::tagValue(node, railwayKey) == "buffer_stop") {
                         return;
                     }
