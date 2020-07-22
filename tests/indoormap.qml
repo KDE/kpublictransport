@@ -64,6 +64,7 @@ Kirigami.ApplicationWindow {
         nameFilters: ["MapCSS stylesheet (*.mapcss)"]
         onAccepted: page.map.styleSheet = mapcssDialog.file
     }
+    PublicTransport.Manager { id: ptMgr }
 
     pageStack.initialPage: IndoorMapPage {
         id: page
