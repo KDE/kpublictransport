@@ -21,6 +21,7 @@ class Platform {
     Q_GADGET
 public:
     OSM::Element element;
+    OSM::Element track;
     QString name;
     int level = 0;
     enum Mode {

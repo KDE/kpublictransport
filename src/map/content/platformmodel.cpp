@@ -117,8 +117,9 @@ void PlatformModel::populateModel()
                     if (pt == "stop_point" || pt == "stop_position") {
                         Platform platform;
                         platform.element = OSM::Element(&node);
+                        platform.track = e;
                         platform.level = qRound((*it).first.numericLevel() / 10.0) * 10;
-                        platform.name = QString::fromUtf8(platform.element.tagValue("local_ref", "ref"));
+                        platform.name = QString::fromUtf8(platform.element.tagValue("local_ref", "ref", "name"));
 
                         if (railway == "rail" || railway == "light_rail") {
                             platform.mode = Platform::Rail;
@@ -202,8 +203,25 @@ void PlatformModel::addPlatform(Platform &&platform)
 
     auto it = std::lower_bound(m_platforms.begin(), m_platforms.end(), platform, comparePlatform);
     if (it != m_platforms.end() && (*it).element.id() == platform.element.id()) {
+        // already present
         return;
     }
+
+    // look for other stops on the same track we can merge with (and that might have better names)
+    const auto newRef = platform.element.tagValue("local_ref", "ref");
+    for (auto &p : m_platforms) {
+        if (p.track == platform.track) {
+            const auto oldRef = p.element.tagValue("local_ref", "ref");
+            if (oldRef.isEmpty() && !newRef.isEmpty()) {
+                p = platform;
+                std::sort(m_platforms.begin(), m_platforms.end(), comparePlatform);
+                return;
+            } else if (newRef.isEmpty()) {
+                return;
+            }
+        }
+    }
+
     m_platforms.insert(it, std::move(platform));
 }
 
