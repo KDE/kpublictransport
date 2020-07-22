@@ -51,6 +51,8 @@ private:
     bool itemContainsPoint(const PolygonItem *item, QPointF scenePos) const;
     bool itemContainsPoint(const PolylineItem *item, QPointF scenePos, const View *view) const;
     bool itemContainsPoint(const LabelItem *item, QPointF screenPos, const View *view) const;
+
+    float itemFillAlpha(const SceneGraphItem *item) const;
 };
 
 }

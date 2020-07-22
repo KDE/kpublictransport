@@ -22,21 +22,35 @@
 #include "../scene/scenegeometry.h"
 #include "view.h"
 
+#include <QBrush>
+
 using namespace KOSMIndoorMap;
 
 const SceneGraphItem* HitDetector::itemAt(QPointF pos, const SceneGraph& sg, const View* view) const
 {
-    for (auto it = sg.items().rbegin(); it != sg.items().rend(); ++it) {
-        if ((*it).payload->renderPhases() == SceneGraphItemPayload::NoPhase || !(*it).payload->boundingRect().contains(view->mapScreenToScene(pos))) {
-            continue;
-        }
-        if (!itemContainsPoint((*it), pos, view)) {
-            continue;
-        }
-        return &(*it);
+    auto items = itemsAt(pos, sg, view);
+    if (items.empty()) {
+        return nullptr;
+    }
+    if (items.size() == 1) {
+        return items[0];
     }
 
-    return nullptr;
+    // multiple candidates
+    // (1) top element is non-transparent, use that:
+    const auto top = items.back();
+    qDebug() << top->element.url() << itemFillAlpha(top);
+    if (itemFillAlpha(top) >= 0.5f) {
+        return top;
+    }
+
+    // (2) in presence of transparency, use the smallest item at this position
+    std::sort(items.begin(), items.end(), [](auto lhs, auto rhs) {
+        const auto lhsBbox = lhs->payload->boundingRect();
+        const auto rhsBbox = rhs->payload->boundingRect();
+        return (lhsBbox.width() * lhsBbox.height()) < (rhsBbox.width() * rhsBbox.height());
+    });
+    return items.front();
 }
 
 std::vector<const SceneGraphItem*> HitDetector::itemsAt(QPointF pos, const SceneGraph &sg, const View *view) const
@@ -107,4 +121,15 @@ bool HitDetector::itemContainsPoint(const LabelItem *item, QPointF screenPos, co
     auto hitBox = item->bbox;
     hitBox.moveCenter(view->mapSceneToScreen(hitBox.center()));
     return hitBox.contains(screenPos);
+}
+
+float HitDetector::itemFillAlpha(const SceneGraphItem *item) const
+{
+    if (const auto i = dynamic_cast<PolygonItem*>(item->payload.get())) {
+        return i->brush.color().alphaF();
+    }
+    if (const auto i = dynamic_cast<MultiPolygonItem*>(item->payload.get())) {
+        return i->brush.color().alphaF();
+    }
+    return 1.0f;
 }
