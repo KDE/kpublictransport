@@ -56,6 +56,12 @@ private Q_SLOTS:
 
     void testModel()
     {
+        // verify the locale matches what the test data expects
+        // this is a workaround for test failures on OBS
+        if (QLocale().createSeparatedList({QStringLiteral("A"), QStringLiteral("B")}) != QLatin1String("A and B")) {
+            QSKIP("locale doesn't behave as expected!");
+        }
+
         QFETCH(QString, osmFile);
         QFETCH(QString, modelFile);
 
