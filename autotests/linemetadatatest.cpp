@@ -51,14 +51,14 @@ private Q_SLOTS:
         QTest::newRow("Brussels S10") << 50.83 << 4.33 << s("S10") << Line::RapidTransit << QColor(0xffff1f20) << QString() << s("NMBS%20S-Trein%20logo.svg");
         QTest::newRow("Paris RER C") << 48.84 << 2.37 << s("C") << Line::RapidTransit << QColor(0xfffcd946) << s("Paris%20RER%20C%20icon.svg") << s("RER.svg");
         QTest::newRow("Paris RER D") << 48.84 << 2.37 << s("D") << Line::RapidTransit << QColor(0xff5e9620) << s("Paris%20RER%20D%20icon.svg") << s("RER.svg");
-        QTest::newRow("Paris Metro 1") << 48.84 << 2.37 << s("1") << Line::Metro << QColor(0xfff2c931) << s("Paris%20m%201%20jms.svg") << s("Metro-M.svg");
+        QTest::newRow("Paris Metro 1") << 48.84 << 2.37 << s("1") << Line::Metro << QColor(0xfff2c931) << s("Paris%20Metro%201.svg") << s("Metro-M.svg");
         QTest::newRow("Milano M5") << 45.48 << 9.18 << s("M5") << Line::Metro << QColor(0xff7956a3) << s("Milano%20linea%20M5.svg") << s("Logo%20Metropolitane%20Italia.svg");
         QTest::newRow("Milano S1") << 45.48 << 9.18 << s("S1") << Line::RapidTransit << QColor(0xffde3d30) << s("Milano%20S1.svg") << s("Linee%20S%20di%20Milano.svg");
         QTest::newRow("Hannover S1") << 52.37 << 9.74 << s("S1") << Line::RapidTransit << QColor(0xff7760b0) << QString() << s("S-Bahn-Logo.svg");
         QTest::newRow("Magdeburg S1") << 52.13 << 11.62 << s("S 1") << Line::RapidTransit << QColor(0xff408040) << QString() << s("S-Bahn-Logo.svg");
         QTest::newRow("Magdeburg 1") << 52.13 << 11.62 << s("1") << Line::Tramway << QColor(0xffb6005c) << QString() << QString();
         QTest::newRow("Vienna U1") << 48.18 << 16.37 << s("U1") << Line::Metro << QColor(0xffe20613) << s("Wien%20U1.svg") << s("U-Bahn%20Wien.svg");
-        QTest::newRow("Vienna S1") << 48.18 << 16.37 << s("S1") << Line::RapidTransit << QColor(0xff343593) << QString() << s("S-Bahn-Austria.svg");
+        QTest::newRow("Vienna S1") << 48.18 << 16.37 << s("S1") << Line::RapidTransit << QColor(0xff343593) << QString() << s("S-Bahn%20Austria.svg");
         QTest::newRow("Hamburg U1") << 53.55 << 10.0 << s("U1") << Line::Metro << QColor(0xff0066b3) << s("Hamburg%20U1.svg") << s("U-Bahn.svg");
         QTest::newRow("Hamburg S1") << 53.55 << 10.0 << s("S1") << Line::RapidTransit << QColor(0xff33b540) << s("Hamburg%20S1.svg") << s("S-Bahn-Logo.svg");
         QTest::newRow("Copenhagen A") << 55.67 << 12.56 << s("A") << Line::RapidTransit << QColor(0xff00bfff) << s("S-train%20service%20A.svg") << s("S-tog.svg");
@@ -87,7 +87,6 @@ private Q_SLOTS:
         QCOMPARE(l.color(), color);
 
         if (logo.isEmpty()) {
-            QEXPECT_FAIL("Vienna S1", "waiting for OSM update", Continue);
             QCOMPARE(l.logoUrl(), QUrl());
         } else {
             QEXPECT_FAIL("Munich S3", "waiting for OSM update", Continue);
@@ -97,7 +96,6 @@ private Q_SLOTS:
         if (product.isEmpty()) {
             QCOMPARE(l.modeLogoUrl(), QUrl());
         } else {
-            QEXPECT_FAIL("Vienna S1", "waiting for OSM update", Continue);
             QCOMPARE(l.modeLogoUrl().toString(QUrl::FullyEncoded), QString(QLatin1String("https://commons.wikimedia.org/wiki/Special:Redirect/file/") + product));
         }
     }
