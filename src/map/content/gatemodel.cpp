@@ -35,6 +35,11 @@ void GateModel::setMapData(const MapData* data)
     emit mapDataChanged();
 }
 
+bool GateModel::isEmpty() const
+{
+    return rowCount() == 0;
+}
+
 int GateModel::rowCount(const QModelIndex &parent) const
 {
     const_cast<GateModel*>(this)->populateModel();

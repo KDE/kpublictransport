@@ -94,11 +94,13 @@ Kirigami.ApplicationWindow {
                     id: platformAction
                     text: "Find Platform"
                     onTriggered: platformSheet.sheetOpen = true
+                    visible: !platformModel.isEmpty
                 },
                 Kirigami.Action {
                     id: gateAction
                     text: "Find Gate"
                     onTriggered: gateSheet.sheetOpen = true
+                    visible: !gateModel.isEmpty
                 }
             ]
         }

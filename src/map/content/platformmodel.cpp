@@ -42,6 +42,11 @@ void PlatformModel::setMapData(const MapData* data)
     emit mapDataChanged();
 }
 
+bool PlatformModel::isEmpty() const
+{
+    return rowCount() == 0;
+}
+
 int PlatformModel::rowCount(const QModelIndex &parent) const
 {
     const_cast<PlatformModel*>(this)->populateModel();

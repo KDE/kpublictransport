@@ -46,6 +46,7 @@ class PlatformModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(const KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)
+    Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY mapDataChanged)
 
 public:
     explicit PlatformModel(QObject *parent = nullptr);
@@ -54,6 +55,8 @@ public:
     const MapData* mapData() const;
     void setMapData(const MapData *data);
 
+    bool isEmpty() const;
+
     enum Role {
         CoordinateRole = Qt::UserRole,
         LevelRole,
@@ -61,7 +64,7 @@ public:
         LinesRole,
     };
 
-    int rowCount(const QModelIndex &parent) const override;
+    int rowCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
