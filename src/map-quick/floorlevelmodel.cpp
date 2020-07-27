@@ -24,6 +24,7 @@ using namespace KOSMIndoorMap;
 FloorLevelModel::FloorLevelModel(QObject *parent)
     : QAbstractListModel(parent)
 {
+    connect(this, &QAbstractItemModel::modelReset, this, &FloorLevelModel::contentChanged);
 }
 
 FloorLevelModel::~FloorLevelModel() = default;
@@ -135,4 +136,9 @@ QString FloorLevelModel::name(int level) const
         }
     }
     return {};
+}
+
+bool FloorLevelModel::hasFloorLevels() const
+{
+    return rowCount() > 1;
 }

@@ -31,13 +31,15 @@ class MapLevel;
 class FloorLevelModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(bool hasFloorLevels READ hasFloorLevels NOTIFY contentChanged)
+
 public:
     explicit FloorLevelModel(QObject *parent = nullptr);
     ~FloorLevelModel();
 
     void setMapData(MapData *data);
 
-    int rowCount(const QModelIndex &parent) const override;
+    int rowCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role) const override;
 
     /** Maps a floor level to a model row index. */
@@ -63,6 +65,12 @@ public:
      *  or a numeric representation of the floor.
      */
     Q_INVOKABLE QString name(int level) const;
+
+    /** We have more than the base/outdoor floor levels. */
+    bool hasFloorLevels() const;
+
+Q_SIGNALS:
+    void contentChanged();
 
 private:
     std::vector<MapLevel> m_level;
