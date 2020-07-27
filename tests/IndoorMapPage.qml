@@ -121,10 +121,10 @@ Kirigami.Page {
                     switch (row.type) {
                         case OSMElementInformationModel.Link:
                             return infoLinkDelegate;
-                        case OSMElementInformationModel.String:
-                            return infoStringDelegate;
                         case OSMElementInformationModel.PostalAddress:
                             return infoAddressDelegate;
+                        default:
+                            return infoStringDelegate;
                     }
                 }
             }

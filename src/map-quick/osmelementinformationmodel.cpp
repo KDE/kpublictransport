@@ -104,6 +104,8 @@ QVariant OSMElementInformationModel::data(const QModelIndex &index, int role) co
                     return Link;
                 case Address:
                     return PostalAddress;
+                case OpeningHours:
+                    return OpeningHoursType;
                 default:
                     return String;
             }

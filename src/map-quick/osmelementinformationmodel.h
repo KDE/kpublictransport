@@ -89,6 +89,7 @@ public:
         String,
         Link,
         PostalAddress,
+        OpeningHoursType,
     };
     Q_ENUM(Type)
 
