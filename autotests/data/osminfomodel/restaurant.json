@@ -1,8 +1,6 @@
 {
+    "category": "Restaurant",
     "content": [
-        {
-            "value": "Restaurant"
-        },
         {
             "keyLabel": "Cuisine",
             "value": "French and Italian"

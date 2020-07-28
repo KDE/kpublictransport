@@ -1,8 +1,6 @@
 {
+    "category": "Attraction",
     "content": [
-        {
-            "value": "Attraction"
-        },
         {
             "categoryLabel": "Contact",
             "keyLabel": "Address"

@@ -70,11 +70,12 @@ void OSMElementInformationModel::clear()
 
 QString OSMElementInformationModel::name() const
 {
-    const auto n = QString::fromUtf8(m_element.tagValue("name", QLocale()));
-    if (!n.isEmpty()) {
-        return n;
-    }
-    return valueForKey(Category).toString();
+    return valueForKey(m_nameKey).toString();
+}
+
+QString OSMElementInformationModel::category() const
+{
+    return valueForKey(m_categoryKey).toString();
 }
 
 int OSMElementInformationModel::rowCount(const QModelIndex &parent) const
@@ -234,10 +235,12 @@ struct {
 
 void OSMElementInformationModel::reload()
 {
-    bool hasName = false;
+    m_nameKey = NoKey;
+    m_categoryKey = NoKey;
+
     for (auto it = m_element.tagsBegin(); it != m_element.tagsEnd(); ++it) {
         if (std::strncmp((*it).key.name(), "name", 4) == 0) {
-            hasName = true;
+            m_nameKey = Name;
             continue;
         }
         if (std::strncmp((*it).key.name(), "wikipedia", 9) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [](auto info) { return info.key == Wikipedia; })) {
@@ -273,8 +276,13 @@ void OSMElementInformationModel::reload()
     std::sort(m_infos.begin(), m_infos.end());
 
     // we use the categories as header if there is no name, so don't duplicate that
-    if (!hasName && !m_infos.empty() && m_infos[0].key == Category) {
+    if (!m_infos.empty() && m_infos[0].key == Category) {
         m_infos.erase(m_infos.begin());
+        if (m_nameKey == NoKey) {
+            m_nameKey = Category;
+        } else {
+            m_categoryKey = Category;
+        }
     }
 
     if (m_debug) {
@@ -287,6 +295,7 @@ void OSMElementInformationModel::reload()
 QString OSMElementInformationModel::categoryLabel(OSMElementInformationModel::KeyCategory cat) const
 {
     switch (cat) {
+        case Header:
         case Main:          return {};
         case Contact:       return tr("Contact");
         case Payment:       return tr("Payment");
@@ -314,6 +323,8 @@ QString OSMElementInformationModel::debugTagValue(int row) const
 QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key) const
 {
     switch (key) {
+        case NoKey:
+        case Name:
         case Category: return {};
         case OldName: return tr("Fomerly");
         case Cuisine: return tr("Cuisine");
@@ -444,7 +455,7 @@ struct {
     { "taxi",  QT_TRANSLATE_NOOP("amenity/shop", "Taxi") },
     { "tea",  QT_TRANSLATE_NOOP("amenity/shop", "Tea") },
     { "theatre", QT_TRANSLATE_NOOP("amenity/shop", "Theatre") },
-    { "ticket",  QT_TRANSLATE_NOOP("amenity/shop", "Ticket") },
+    { "ticket",  QT_TRANSLATE_NOOP("amenity/shop", "Tickets") },
     { "tobacco",  QT_TRANSLATE_NOOP("amenity/shop", "Tobacco") },
     { "toilets",  QT_TRANSLATE_NOOP("amenity/shop", "Toilets") },
     { "toys",  QT_TRANSLATE_NOOP("amenity/shop", "Toys") },
@@ -452,6 +463,7 @@ struct {
     { "university", QT_TRANSLATE_NOOP("amenity/shop", "University") },
     { "waiting",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
     { "waiting_area",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
+    { "waiting_room", QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
     { "wine", QT_TRANSLATE_NOOP("amenity/shop", "Wine") },
 };
 
@@ -524,6 +536,8 @@ struct {
 QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key key) const
 {
     switch (key) {
+        case NoKey: return {};
+        case Name: return QString::fromUtf8(m_element.tagValue("name", QLocale()));
         case Category:
         {
             QList<QByteArray> l;

@@ -1,5 +1,4 @@
 {
-    "category": "Fast Food",
     "content": [
         {
             "keyLabel": "Cuisine",
@@ -18,5 +17,6 @@
             "value": "12:00-23:00"
         }
     ],
-    "name": "Burger Place"
+    "name": "Fast Food"
 }
+

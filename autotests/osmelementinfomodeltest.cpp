@@ -79,6 +79,9 @@ private Q_SLOTS:
 
         QJsonObject top;
         top.insert(QStringLiteral("name"), model.name());
+        if (!model.category().isEmpty()) {
+            top.insert(QStringLiteral("category"), model.category());
+        }
         QJsonArray modelContent;
         for (int row = 0; row < model.rowCount(); ++row) {
             const auto idx = model.index(row);

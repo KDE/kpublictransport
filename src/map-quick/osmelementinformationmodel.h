@@ -34,6 +34,7 @@ class OSMElementInformationModel : public QAbstractListModel
     Q_OBJECT
     Q_PROPERTY(KOSMIndoorMap::OSMElement element READ element WRITE setElement NOTIFY elementChanged)
     Q_PROPERTY(QString name READ name NOTIFY elementChanged)
+    Q_PROPERTY(QString category READ category NOTIFY elementChanged)
     Q_PROPERTY(bool debug MEMBER m_debug)
 
 public:
@@ -50,6 +51,7 @@ public:
         TypeRole,
     };
     enum KeyCategory {
+        Header,
         Main,
         Contact,
         Payment,
@@ -59,6 +61,8 @@ public:
     };
     Q_ENUM(KeyCategory)
     enum Key {
+        NoKey,
+        Name,
         Category,
         OldName,
         Cuisine,
@@ -98,6 +102,7 @@ public:
     Q_INVOKABLE void clear();
 
     QString name() const;
+    QString category() const;
 
     int rowCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role) const override;
@@ -127,6 +132,8 @@ private:
         bool operator<(Info other) const;
     };
     std::vector<Info> m_infos;
+    Key m_nameKey = NoKey;
+    Key m_categoryKey = NoKey;
     bool m_debug = false;
 };
 

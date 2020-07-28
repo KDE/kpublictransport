@@ -1,8 +1,6 @@
 {
+    "category": "Pastry",
     "content": [
-        {
-            "value": "Pastry"
-        },
         {
             "categoryLabel": "Payment",
             "keyLabel": "Cash",
