@@ -362,5 +362,8 @@ node|z18-[amenity=toilets]
 }
 
 node|z18-[amenity=atm] { text: "🏧"; }
+*|z18-21[amenity=pharmacy] { text: "⚕"; }
 
-*|z18-[amenity=pharmacy] { text: "⚕"; }
+// hide information boards as their names clutter the vie
+// showing an icon instead would be better, but we don't have one yet
+node[information=board] { text: ""; }

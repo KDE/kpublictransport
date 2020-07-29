@@ -99,6 +99,7 @@ area[tunnel]
 area[stairwell] { color: #e0dfde; width: 0; }
 
 area[indoor=room],
+area[indoor=yes][amenity],
 area[shop],
 relation[type=multipolygon][indoor=room]
 {
