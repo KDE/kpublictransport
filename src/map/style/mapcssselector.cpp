@@ -47,7 +47,7 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
     if (m_zoomLow > 0 && state.zoomLevel < m_zoomLow) {
         return false;
     }
-    if (m_zoomHigh > 0 && std::ceil(state.zoomLevel) > m_zoomHigh) {
+    if (m_zoomHigh > 0 && state.zoomLevel >= m_zoomHigh) {
         return false;
     }
 
