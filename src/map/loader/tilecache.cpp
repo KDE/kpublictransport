@@ -135,9 +135,17 @@ void TileCache::downloadNext()
     }
 
     QUrl url;
-    url.setScheme(QStringLiteral("https"));
-    url.setHost(QStringLiteral("maps.kde.org"));
-    url.setPath(QLatin1String("/earth/vectorosm/v1/") + QString::number(tile.z) + QLatin1Char('/') + QString::number(tile.x) + QLatin1Char('/') + QString::number(tile.y) + QLatin1String(".o5m"));
+    if (qEnvironmentVariableIsSet("KOSMINDOORMAP_TILESERVER")) {
+        url = QUrl(qEnvironmentVariable("KOSMINDOORMAP_TILESERVER"));
+    } else {
+        url.setScheme(QStringLiteral("https"));
+        url.setHost(QStringLiteral("maps.kde.org"));
+        url.setPath(QStringLiteral("/earth/vectorosm/v1/"));
+    }
+
+    url.setPath(url.path() + QString::number(tile.z) + QLatin1Char('/')
+        + QString::number(tile.x) + QLatin1Char('/')
+        + QString::number(tile.y) + QLatin1String(".o5m"));
 
     QNetworkRequest req(url);
     auto reply = m_nam->get(req);
