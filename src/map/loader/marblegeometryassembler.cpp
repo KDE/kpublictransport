@@ -53,6 +53,7 @@ void MarbleGeometryAssembler::merge(OSM::DataSetMergeBuffer *mergeBuffer)
     std::swap(m_pendingWays, prevPendingWays);
 
     mergeNodes(mergeBuffer);
+    deduplicateWays(mergeBuffer->ways);
     remapWayNodes(mergeBuffer->ways);
     mergeWays(mergeBuffer->ways);
     mergeWays(prevPendingWays);
@@ -135,6 +136,31 @@ void MarbleGeometryAssembler::mergeWays(std::vector<OSM::Way> &ways)
             m_dataSet->ways.insert(it, std::move(way));
         }
     }
+}
+
+void MarbleGeometryAssembler::deduplicateWays(std::vector<OSM::Way>& ways)
+{
+    for (auto it = ways.begin(); it != ways.end();) {
+        if ((*it).id > 0) {
+            ++it;
+            continue;
+        }
+        const OSM::Id mxoid = OSM::tagValue(*it, m_mxoidKey).toLongLong();
+        if (mxoid == 0) {
+            ++it;
+            continue;
+        }
+
+        const auto it2 = m_duplicateWays.find(mxoid);
+        if (it2 != m_duplicateWays.end()) {
+            m_wayIdMap[(*it).id] = mxoid;
+            it = ways.erase(it);
+        } else {
+            m_duplicateWays.insert(mxoid);
+            ++it;
+        }
+    }
+    m_duplicateWays.clear();
 }
 
 void MarbleGeometryAssembler::remapWayNodes(std::vector<OSM::Way> &ways) const

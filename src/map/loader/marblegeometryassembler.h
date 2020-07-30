@@ -22,6 +22,7 @@
 #include <osm/datasetmergebuffer.h>
 
 #include <unordered_map>
+#include <unordered_set>
 
 namespace KOSMIndoorMap {
 
@@ -50,6 +51,7 @@ private:
     void mergeWays(std::vector<OSM::Way> &ways);
     void mergeRelations(OSM::DataSetMergeBuffer *mergeBuffer);
 
+    void deduplicateWays(std::vector<OSM::Way> &ways);
     void remapWayNodes(std::vector<OSM::Way> &ways) const;
     void mergeWay(OSM::Way &way, OSM::Way &otherWay) const;
     void mergeLine(OSM::Way &way, OSM::Way &otherWay) const;
@@ -74,6 +76,7 @@ private:
     std::unordered_map<OSM::Id, OSM::Id> m_wayIdMap;
     std::unordered_map<OSM::Id, OSM::Id> m_relIdMap;
 
+    std::unordered_set<OSM::Id> m_duplicateWays;
     std::vector<OSM::Way> m_pendingWays;
 
     static OSM::Id s_nextInternalId;
