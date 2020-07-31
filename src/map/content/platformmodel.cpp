@@ -37,9 +37,10 @@ void PlatformModel::setMapData(const MapData* data)
     beginResetModel();
     m_platforms.clear();
     m_data = data;
-    m_searchDone = false;
+    populateModel();
     endResetModel();
     emit mapDataChanged();
+    matchPlatforms();
 }
 
 bool PlatformModel::isEmpty() const
@@ -49,7 +50,6 @@ bool PlatformModel::isEmpty() const
 
 int PlatformModel::rowCount(const QModelIndex &parent) const
 {
-    const_cast<PlatformModel*>(this)->populateModel();
     if (parent.isValid()) {
         return 0;
     }
@@ -75,6 +75,10 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
             return platform.mode;
         case LinesRole:
             return platform.lines;
+        case ArrivalPlatformRole:
+            return index.row() == m_arrivalPlatformRow;
+        case DeparturePlatformRole:
+            return index.row() == m_departurePlatformRow;
     }
 
     return {};
@@ -87,15 +91,16 @@ QHash<int, QByteArray> PlatformModel::roleNames() const
     n.insert(LevelRole, "level");
     n.insert(TransportModeRole, "mode");
     n.insert(LinesRole, "lines");
+    n.insert(ArrivalPlatformRole, "isArrivalPlatform");
+    n.insert(DeparturePlatformRole, "isDeparturePlatform");
     return n;
 }
 
 void PlatformModel::populateModel()
 {
-    if (m_searchDone || !m_data) {
+    if (!m_data) {
         return;
     }
-    m_searchDone = true;
 
     const auto railwayKey = m_data->dataSet().tagKey("railway");
     m_ptKey = m_data->dataSet().tagKey("public_transport");
@@ -240,3 +245,58 @@ bool PlatformModel::comparePlatform(const Platform &lhs, const Platform &rhs)
     }
     return lhs.mode < rhs.mode;
 }
+
+void PlatformModel::setArrivalPlatform(const QString &name, Platform::Mode mode)
+{
+    m_arrivalPlatform.name = name;
+    m_arrivalPlatform.mode = mode;
+    matchPlatforms();
+}
+
+void PlatformModel::setDeparturePlatform(const QString &name, Platform::Mode mode)
+{
+    m_departurePlatform.name = name;
+    m_departurePlatform.mode = mode;
+    matchPlatforms();
+}
+
+int PlatformModel::arrivalPlatformRow() const
+{
+    return m_arrivalPlatformRow;
+}
+
+int PlatformModel::departurePlatformRow() const
+{
+    return m_departurePlatformRow;
+}
+
+void PlatformModel::matchPlatforms()
+{
+    m_arrivalPlatformRow = matchPlatform(m_arrivalPlatform);
+    m_departurePlatformRow = matchPlatform(m_departurePlatform);
+    emit platformIndexChanged();
+    if (m_arrivalPlatformRow >= 0) {
+        emit dataChanged(index(m_arrivalPlatformRow, 0), index(m_arrivalPlatformRow, 0));
+    }
+    if (m_departurePlatformRow >= 0) {
+        emit dataChanged(index(m_departurePlatformRow, 0), index(m_departurePlatformRow, 0));
+    }
+}
+
+int PlatformModel::matchPlatform(const Platform &platform) const
+{
+    if (platform.name.isEmpty()) {
+        return -1;
+    }
+
+    int i = 0;
+    for (const auto &p : m_platforms) {
+        if (p.name == platform.name && p.mode == platform.mode) { // TODO this needs to be a bit more complex to also handle platform section
+            return i;
+        }
+        ++i;
+    }
+    return -1;
+}
+
+#include "moc_platformmodel.cpp"

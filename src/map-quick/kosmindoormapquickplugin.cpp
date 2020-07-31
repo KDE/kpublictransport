@@ -32,6 +32,7 @@ void KOSMIndoorMapQuickPlugin::registerTypes(const char *uri)
     qRegisterMetaType<OSMAddress>();
     qRegisterMetaType<OSMElement>();
     qRegisterMetaType<const MapData*>();
+    qRegisterMetaType<Platform::Mode>();
 
     qmlRegisterUncreatableType<OSMAddress>("org.kde.kosmindoormap", 1, 0, "OSMAddress", {});
     qmlRegisterUncreatableType<OSMElement>("org.kde.kosmindoormap", 1, 0, "OSMElement", {});
