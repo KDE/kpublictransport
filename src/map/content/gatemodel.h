@@ -23,13 +23,19 @@ struct Gate {
 };
 
 
-/** Lists all airport gates found in current map. */
+/** Lists all airport gates found in the current map.
+ *  This also contains the concept of (optional) arrival/departure gates,
+ *  for matching gate names from other sources and highlighting those in the output.
+ */
 class GateModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(const KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY mapDataChanged)
 
+    /** Row indexes of the matched arrival/departure gates, if found and/or set, otherwise @c -1. */
+    Q_PROPERTY(int arrivalGateRow READ arrivalGateRow NOTIFY gateIndexChanged)
+    Q_PROPERTY(int departureGateRow READ departureGateRow NOTIFY gateIndexChanged)
 public:
     explicit GateModel(QObject *parent = nullptr);
     ~GateModel();
@@ -42,21 +48,38 @@ public:
     enum Role {
         CoordinateRole = Qt::UserRole,
         LevelRole,
+        ArrivalGateRole,
+        DepartureGateRole,
     };
+    Q_ENUM(Role)
 
     int rowCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex & index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
+    /** Match arrival/departure gates against what we found in the map data. */
+    Q_INVOKABLE void setArrivalGate(const QString &name);
+    Q_INVOKABLE void setDepartureGate(const QString &name);
+
+    int arrivalGateRow() const;
+    int departureGateRow() const;
+
 Q_SIGNALS:
     void mapDataChanged();
+    void gateIndexChanged();
 
 private:
     void populateModel();
+    void matchGates();
+    int matchGate(const QString &name) const;
 
     std::vector<Gate> m_gates;
     const MapData *m_data = nullptr;
-    bool m_searchDone = false;
+
+    QString m_arrivalGate;
+    QString m_departureGate;
+    int m_arrivalGateRow = -1;
+    int m_departureGateRow = -1;
 };
 
 }

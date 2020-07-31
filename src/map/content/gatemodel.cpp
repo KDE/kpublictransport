@@ -30,9 +30,10 @@ void GateModel::setMapData(const MapData* data)
     beginResetModel();
     m_gates.clear();
     m_data = data;
-    m_searchDone = false;
+    populateModel();
     endResetModel();
     emit mapDataChanged();
+    matchGates();
 }
 
 bool GateModel::isEmpty() const
@@ -42,7 +43,6 @@ bool GateModel::isEmpty() const
 
 int GateModel::rowCount(const QModelIndex &parent) const
 {
-    const_cast<GateModel*>(this)->populateModel();
     if (parent.isValid()) {
         return 0;
     }
@@ -64,6 +64,10 @@ QVariant GateModel::data(const QModelIndex &index, int role) const
             return QPointF(gate.element.center().lonF(), gate.element.center().latF());
         case LevelRole:
             return gate.level;
+        case ArrivalGateRole:
+            return index.row() == m_arrivalGateRow;
+        case DepartureGateRole:
+            return index.row() == m_departureGateRow;
     }
 
     return {};
@@ -74,15 +78,16 @@ QHash<int, QByteArray> GateModel::roleNames() const
     auto n = QAbstractListModel::roleNames();
     n.insert(CoordinateRole, "coordinate");
     n.insert(LevelRole, "level");
+    n.insert(ArrivalGateRole, "isArrivalGate");
+    n.insert(DepartureGateRole, "isDepartureGate");
     return n;
 }
 
 void GateModel::populateModel()
 {
-    if (m_searchDone || !m_data) {
+    if (!m_data) {
         return;
     }
-    m_searchDone = true;
 
     const auto aerowayKey = m_data->dataSet().tagKey("aeroway");
     if (aerowayKey.isNull()) { // not looking at an airport at all here
@@ -119,4 +124,57 @@ void GateModel::populateModel()
     });
 
     qDebug() << m_gates.size() << "gates found";
+}
+
+void GateModel::setArrivalGate(const QString &name)
+{
+    m_arrivalGate = name;
+    matchGates();
+}
+
+void GateModel::setDepartureGate(const QString &name)
+{
+    m_departureGate = name;
+    matchGates();
+}
+
+int GateModel::arrivalGateRow() const
+{
+    return m_arrivalGateRow;
+}
+
+int GateModel::departureGateRow() const
+{
+    return m_departureGateRow;
+}
+
+void GateModel::matchGates()
+{
+    m_arrivalGateRow = matchGate(m_arrivalGate);
+    m_departureGateRow = matchGate(m_departureGate);
+    emit gateIndexChanged();
+    if (m_arrivalGateRow >= 0) {
+        emit dataChanged(index(m_arrivalGateRow, 0), index(m_arrivalGateRow, 0));
+    }
+    if (m_departureGateRow >= 0) {
+        emit dataChanged(index(m_departureGateRow, 0), index(m_departureGateRow, 0));
+    }
+}
+
+
+int GateModel::matchGate(const QString &name) const
+{
+    if (name.isEmpty()) {
+        return -1;
+    }
+
+    int i = 0;
+    for (const auto &g : m_gates) {
+        if (g.name == name) {
+            return i;
+        }
+        ++i;
+    }
+
+    return -1;
 }
