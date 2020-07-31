@@ -100,7 +100,10 @@ void MapLoader::downloadTiles()
         m_tileCache.ensureCached(tile);
     }
     if (m_tileCache.pendingDownloads() == 0) {
-        loadTiles();
+        // still go through the event loop when having everything cached already
+        // this makes outside behavior more identical in both cases, and avoids
+        // signal connection races etc.
+        QMetaObject::invokeMethod(this, &MapLoader::loadTiles, Qt::QueuedConnection);
     } else {
         Q_EMIT isLoadingChanged();
     }
