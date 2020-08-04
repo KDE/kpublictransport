@@ -196,12 +196,12 @@ void OsmPbfParser::parseRelations(const OSMPBF::PrimitiveBlock &block, const OSM
 
             idDelta += r.memids(j);
             mem.id = idDelta;
-            mem.role = m_dataSet->makeRole(block.stringtable().s(r.roles_sid(j)).data());
+            mem.setRole(m_dataSet->makeRole(block.stringtable().s(r.roles_sid(j)).data()));
             const auto type = r.types(j);
             switch (type) {
-                case OSMPBF::Relation_MemberType_NODE: mem.type = OSM::Type::Node; break;
-                case OSMPBF::Relation_MemberType_WAY:  mem.type = OSM::Type::Way; break;
-                case OSMPBF::Relation_MemberType_RELATION: mem.type = OSM::Type::Relation; break;
+                case OSMPBF::Relation_MemberType_NODE: mem.setType(OSM::Type::Node); break;
+                case OSMPBF::Relation_MemberType_WAY:  mem.setType(OSM::Type::Way); break;
+                case OSMPBF::Relation_MemberType_RELATION: mem.setType(OSM::Type::Relation); break;
             }
 
             rel.members.push_back(std::move(mem));

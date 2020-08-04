@@ -18,6 +18,8 @@
 #ifndef OSM_DATATYPES_H
 #define OSM_DATATYPES_H
 
+#include "internal.h"
+
 #include <QByteArray>
 #include <QDebug>
 #include <QLocale>
@@ -30,6 +32,7 @@
 namespace OSM {
 
 class DataSet;
+class Member;
 
 /** OSM element identifier. */
 typedef int64_t Id;
@@ -193,6 +196,7 @@ public:
 
 private:
     friend class DataSet;
+    friend class Member;
     explicit constexpr inline StringKey(const char *keyData) : key(keyData) {}
 
     const char* key = nullptr;
@@ -259,18 +263,35 @@ class Role : public StringKey
 {
 private:
     using StringKey::StringKey;
-    friend class DataSet;
 };
 
 /** A member in a relation. */
-// TODO this has 7 byte padding, can we make this more efficient?
 class Member {
 public:
-    inline bool operator==(const Member &other) const { return id == other.id && type == other.type && role == other.role; }
+    inline bool operator==(const Member &other) const { return id == other.id && m_roleAndType == other.m_roleAndType; }
 
     Id id;
-    Role role;
-    Type type;
+
+    constexpr inline Role role() const
+    {
+        return Role(m_roleAndType.get());
+    }
+    constexpr inline void setRole(Role role)
+    {
+        m_roleAndType.set(role.name());
+    }
+
+    constexpr inline Type type() const
+    {
+        return static_cast<Type>(m_roleAndType.tag());
+    }
+    constexpr inline void setType(Type type)
+    {
+        m_roleAndType.setTag(static_cast<uint8_t>(type));
+    }
+
+private:
+    Internal::TaggedPointer<const char> m_roleAndType;
 };
 
 /** An OSM relation. */

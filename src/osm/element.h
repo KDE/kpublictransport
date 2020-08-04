@@ -19,29 +19,11 @@
 #define OSM_ELEMENT_H
 
 #include "datatypes.h"
+#include "internal.h"
 
 #include <cstdint>
 
 namespace OSM {
-
-namespace Internal {
-template <typename T> class TaggedPointer
-{
-public:
-    explicit inline constexpr TaggedPointer(T *ptr, uint8_t tag)
-        : m_data(reinterpret_cast<std::uintptr_t>(ptr) | (tag & TagMask))
-    {}
-
-    inline T* get() const { return reinterpret_cast<T*>(m_data & ~TagMask); }
-    inline uint8_t tag() const { return m_data & TagMask; }
-    inline operator bool() const { return (m_data & ~TagMask); }
-    inline bool operator==(TaggedPointer<T> other) const { return m_data == other.m_data; }
-
-private:
-    enum { TagMask = 0x3 };
-    std::uintptr_t m_data;
-};
-}
 
 /** A reference to any of OSM::Node/OSM::Way/OSM::Relation.
  *  Lifetime of the referenced object needs to extend beyond the lifetime of this.
@@ -153,7 +135,7 @@ template <typename Func>
 inline void for_each_member(const DataSet &dataSet, const Relation &rel, Func func)
 {
     for (const auto &mem : rel.members) {
-        switch (mem.type) {
+        switch (mem.type()) {
             case Type::Null:
                 break;
             case Type::Node:

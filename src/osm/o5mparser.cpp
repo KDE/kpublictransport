@@ -282,18 +282,18 @@ void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
         switch (typeAndRole[0]) {
             case O5M_MEMTYPE_NODE:
                 mem.id = m_relNodeMemberIdDelta += memId;
-                mem.type = OSM::Type::Node;
+                mem.setType(OSM::Type::Node);
                 break;
             case O5M_MEMTYPE_WAY:
                 mem.id = m_relWayMemberIdDelta += memId;
-                mem.type = OSM::Type::Way;
+                mem.setType(OSM::Type::Way);
                 break;
             case O5M_MEMTYPE_RELATION:
                 mem.id = m_relRelMemberIdDelta += memId;
-                mem.type = OSM::Type::Relation;
+                mem.setType(OSM::Type::Relation);
                 break;
         }
-        mem.role = m_dataSet->makeRole(typeAndRole + 1, DataSet::StringIsTransient);
+        mem.setRole(m_dataSet->makeRole(typeAndRole + 1, DataSet::StringIsTransient));
 
         rel.members.push_back(std::move(mem));
     }

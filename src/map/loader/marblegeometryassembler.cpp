@@ -347,17 +347,17 @@ void MarbleGeometryAssembler::mergeRelations(OSM::DataSetMergeBuffer *mergeBuffe
                 continue;
             }
 
-            if (member.type == OSM::Type::Node) {
+            if (member.type() == OSM::Type::Node) {
                 const auto it = m_nodeIdMap.find(member.id);
                 if (it != m_nodeIdMap.end()) {
                     member.id = (*it).second;
                 }
-            } else if (member.type == OSM::Type::Way) {
+            } else if (member.type() == OSM::Type::Way) {
                 const auto it = m_wayIdMap.find(member.id);
                 if (it != m_wayIdMap.end()) {
                     member.id = (*it).second;
                 }
-            } else if (member.type == OSM::Type::Relation) {
+            } else if (member.type() == OSM::Type::Relation) {
                 const auto it = m_relIdMap.find(member.id);
                 if (it != m_relIdMap.end()) {
                     member.id = (*it).second;
@@ -387,12 +387,12 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
     // merging those would not have happened before (as we wouldn't know what to merge it with), so we need to do this here
     if (OSM::tagValue(relation, m_typeKey) == "multipolygon") {
         for (auto it = relation.members.begin(); it != relation.members.end();) {
-            if ((*it).id > 0 || (*it).type != OSM::Type::Way) {
+            if ((*it).id > 0 || (*it).type() != OSM::Type::Way) {
                 ++it;
                 continue;
             }
             // TODO look up role names once via DataSet::role
-            if (std::strcmp((*it).role.name(), "outer") != 0 && std::strcmp((*it).role.name(), "inner") != 0) {
+            if (std::strcmp((*it).role().name(), "outer") != 0 && std::strcmp((*it).role().name(), "inner") != 0) {
                 ++it;
                 continue;
             }
@@ -405,7 +405,7 @@ void MarbleGeometryAssembler::mergeRelation(OSM::Relation& relation, const OSM::
 
             bool merged = false;
             for (auto it2 = std::next(it); it2 != relation.members.end(); ++it2) {
-                if ((*it2).id > 0 || (*it2).type != OSM::Type::Way || (*it2).role != (*it).role) {
+                if ((*it2).id > 0 || (*it2).type() != OSM::Type::Way || (*it2).role() != (*it).role()) {
                     continue;
                 }
 
