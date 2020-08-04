@@ -84,6 +84,7 @@ public:
         Wheelchair,
         CentralKey,
         OperatorName,
+        Network,
         OperatorWikipedia,
         DebugLink,
         DebugKey,

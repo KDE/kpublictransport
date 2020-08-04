@@ -169,6 +169,7 @@ struct {
     M("diaper", DiaperChangingTable, Main),
     M("email", Email, Contact),
     M("fee", Fee, Main),
+    M("network", Network, Operator),
     M("payment:cash", PaymentCash, Payment),
     M("payment:coins", PaymentCash, Payment),
     M("payment:notes", PaymentCash, Payment),
@@ -346,6 +347,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Wheelchair: return tr("Wheelchair access");
         case CentralKey: return tr("Central key");
         case OperatorName: return {};
+        case Network: return tr("Network", "transport network");
         case OperatorWikipedia: return {};
         case DebugLink: return QStringLiteral("OSM");
         case DebugKey: return {};
@@ -676,6 +678,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             // translate enum values
             return QString::fromUtf8(m_element.tagValue("centralkey"));
         case OperatorName: return QString::fromUtf8(m_element.tagValue("operator"));
+        case Network: return QString::fromUtf8(m_element.tagValue("network"));
         case OperatorWikipedia: return wikipediaUrl(m_element.tagValue("operator:wikipedia", QLocale()));
         case DebugLink: return m_element.url();
         case DebugKey: return {};
