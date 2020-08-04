@@ -576,7 +576,11 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             out.erase(std::unique(out.begin(), out.end()), out.end());
             return QLocale().createSeparatedList(out);
         }
-        case OldName: return QString::fromUtf8(m_element.tagValue("old_name"));
+        case OldName:
+        {
+            const auto l = QString::fromUtf8(m_element.tagValue("old_name")).split(QLatin1Char(';'));;
+            return l.join(QLatin1String(", "));
+        }
         case Cuisine:
         {
             auto l = m_element.tagValue("cuisine").split(';');
