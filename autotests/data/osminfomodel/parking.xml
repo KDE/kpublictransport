@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="amenity" v="parking"/>
+        <tag k="parking" v="multi-storey"/>
+        <tag k="fee" v="yes"/>
+        <tag k="access" v="customers"/>
+        <tag k="capacity" v="1200"/>
+        <tag k="capacity:disabled" v="10"/>
+        <tag k="capacity:women" v="yes"/>
+        <tag k="maxstay" v="2h"/>
+        <tag k="supervised" v="yes"/>
+    </node>
+</osm>

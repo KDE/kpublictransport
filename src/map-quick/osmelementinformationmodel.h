@@ -70,6 +70,11 @@ public:
         Takeaway,
         OpeningHours,
         Fee,
+        Capacity,
+        CapacityDisabled,
+        CapacityWomen,
+        CapacityParent,
+        CapacityCharing,
         DiaperChangingTable,
         Wikipedia,
         Address,
@@ -123,6 +128,7 @@ private:
     QString paymentMethodList(Key key) const;
     QString paymentMethodValue(Key key) const;
     QUrl wikipediaUrl(const QByteArray &wp) const;
+    QString capacitryValue(const char *prop) const;
 
     OSM::Element m_element;
 

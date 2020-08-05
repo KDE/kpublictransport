@@ -157,6 +157,11 @@ struct {
     M("addr:street", Address, Contact),
     M("amenity", Category, Main),
     M("brand:wikipedia", Wikipedia, Main),
+    M("capacity", Capacity, Main),
+    M("capacity:charging", CapacityCharing, Main),
+    M("capacity:disabled", CapacityDisabled, Main),
+    M("capacity:parent", CapacityParent, Main),
+    M("capacity:women", CapacityWomen, Main),
     M("centralkey", CentralKey, Accessibility),
     M("changing_table", DiaperChangingTable, Main),
     M("charge", Fee, Main),
@@ -333,6 +338,11 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Takeaway: return tr("Takeaway");
         case OpeningHours: return tr("Opening hours");
         case Fee: return tr("Fee");
+        case Capacity: return tr("Capacity");
+        case CapacityDisabled: return tr("Disabled parking spaces");
+        case CapacityWomen: return tr("Women parking spaces");
+        case CapacityParent: return tr("Parent parking spaces");
+        case CapacityCharing: return tr("Parking spaces for charging");
         case DiaperChangingTable: return tr("Diaper changing table");
         case Wikipedia: return {};
         case Address: return tr("Address");
@@ -633,6 +643,11 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
             }
             return s;
         }
+        case Capacity: return QString::fromUtf8(m_element.tagValue("capacity"));
+        case CapacityDisabled: return capacitryValue("capacity:disabled");
+        case CapacityWomen: return capacitryValue("capacity:women");
+        case CapacityParent: return capacitryValue("capacity:parent");
+        case CapacityCharing: return capacitryValue("capacity:charging");
         case DiaperChangingTable:
             // TODO bool value translation
             // TODO look for changing_table:location too
@@ -772,4 +787,16 @@ QUrl OSMElementInformationModel::wikipediaUrl(const QByteArray &wp) const
     url.setHost(s.leftRef(idx) + QLatin1String(".wikipedia.org"));
     url.setPath(QLatin1String("/wiki/") + s.midRef(idx + 1));
     return url;
+}
+
+QString OSMElementInformationModel::capacitryValue(const char *prop) const
+{
+    const auto v = m_element.tagValue(prop);
+    if (v == "yes") {
+        return tr("yes");
+    }
+    if (v == "no") {
+        return tr("no");
+    }
+    return QString::fromUtf8(v);
 }

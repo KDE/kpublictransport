@@ -1,0 +1,22 @@
+{
+    "content": [
+        {
+            "keyLabel": "Fee",
+            "value": "yes"
+        },
+        {
+            "keyLabel": "Capacity",
+            "value": "1200"
+        },
+        {
+            "keyLabel": "Disabled parking spaces",
+            "value": "10"
+        },
+        {
+            "keyLabel": "Women parking spaces",
+            "value": "yes"
+        }
+
+    ],
+    "name": "Parking"
+}
