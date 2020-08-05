@@ -236,7 +236,7 @@ std::vector<OSM::Id> MarbleGeometryAssembler::mergeArea(OSM::Way &way, OSM::Way 
     // sanity checks for assumptions below
     if (way.nodes.size() < 3 || otherWay.nodes.size() < 3 || !way.isClosed() || !otherWay.isClosed()) {
         qWarning() << "got invalid polygons!" << way.url() << way.nodes.size() << way.isClosed() << otherWay.url() << otherWay.nodes.size() << otherWay.isClosed();
-        return way.nodes.empty() ? way.nodes : otherWay.nodes;
+        return way.nodes.empty() ? std::move(way.nodes) : std::move(otherWay.nodes);
     }
 
     // "open" the closed polygons (otherwise we have to special-case the closing edges in both ways below)
