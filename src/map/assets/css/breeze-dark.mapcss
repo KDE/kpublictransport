@@ -91,7 +91,7 @@ area[stairwell],
 relation[type=multipolygon][indoor=area],
 relation[type=multipolygon][indoor=corridor],
 relation[type=multipolygon][building:part=floor],
-area[tunnel]
+area[tunnel=yes]
 {
     fill-color: #bdc3c7;
 }
