@@ -1,6 +1,10 @@
 {
     "content": [
         {
+            "keyLabel": "Opening hours",
+            "value": "Mo 18:00-20:00"
+        },
+        {
             "keyLabel": "Fee",
             "value": "yes"
         },
@@ -15,8 +19,11 @@
         {
             "keyLabel": "Women parking spaces",
             "value": "yes"
+        },
+        {
+            "keyLabel": "Maximum stay",
+            "value": "2h"
         }
-
     ],
     "name": "Parking"
 }

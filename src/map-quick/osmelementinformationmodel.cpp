@@ -70,12 +70,12 @@ void OSMElementInformationModel::clear()
 
 QString OSMElementInformationModel::name() const
 {
-    return valueForKey(m_nameKey).toString();
+    return valueForKey(Info{m_nameKey, Header}).toString();
 }
 
 QString OSMElementInformationModel::category() const
 {
-    return valueForKey(m_categoryKey).toString();
+    return valueForKey(Info{m_categoryKey, Header}).toString();
 }
 
 int OSMElementInformationModel::rowCount(const QModelIndex &parent) const
@@ -121,10 +121,10 @@ QVariant OSMElementInformationModel::data(const QModelIndex &index, int role) co
             switch (info.key) {
                 case DebugKey: return debugTagValue(index.row());
                 case Wikipedia: return tr("Wikipedia");
-                default: return valueForKey(info.key);
+                default: return valueForKey(info);
             }
         case ValueUrlRole:
-            return urlify(valueForKey(info.key), info.key);
+            return urlify(valueForKey(info), info.key);
         case CategoryRole:
             return info.category;
         case CategoryLabelRole:
@@ -155,13 +155,13 @@ struct {
 } static constexpr const simple_key_map[] = {
     M("addr:city", Address, Contact),
     M("addr:street", Address, Contact),
-    M("amenity", Category, Main),
+    M("amenity", Category, Header),
     M("brand:wikipedia", Wikipedia, Main),
-    M("capacity", Capacity, Main),
-    M("capacity:charging", CapacityCharing, Main),
-    M("capacity:disabled", CapacityDisabled, Main),
-    M("capacity:parent", CapacityParent, Main),
-    M("capacity:women", CapacityWomen, Main),
+    M("capacity", Capacity, Parking),
+    M("capacity:charging", CapacityCharing, Parking),
+    M("capacity:disabled", CapacityDisabled, Parking),
+    M("capacity:parent", CapacityParent, Parking),
+    M("capacity:women", CapacityWomen, Parking),
     M("centralkey", CentralKey, Accessibility),
     M("changing_table", DiaperChangingTable, Main),
     M("charge", Fee, Main),
@@ -173,22 +173,25 @@ struct {
     M("cuisine", Cuisine, Main),
     M("diaper", DiaperChangingTable, Main),
     M("email", Email, Contact),
-    M("fee", Fee, Main),
+    M("fee", Fee, UnresolvedCategory),
     M("network", Network, Operator),
+    M("maxstay", MaxStay, Parking),
+    M("office", Category, Header),
+    M("old_name", OldName, Main),
+    M("opening_hours", OpeningHours, UnresolvedCategory),
+    M("operator", OperatorName, Operator),
+    M("operator:wikipedia", OperatorWikipedia, Operator),
+    M("parking:fee", Fee, Parking),
     M("payment:cash", PaymentCash, Payment),
     M("payment:coins", PaymentCash, Payment),
     M("payment:notes", PaymentCash, Payment),
     M("phone", Phone, Contact),
-    M("office", Category, Main),
-    M("old_name", OldName, Main),
-    M("opening_hours", OpeningHours, Main),
-    M("operator", OperatorName, Operator),
-    M("operator:wikipedia", OperatorWikipedia, Operator),
-    M("room", Category, Main),
+    M("room", Category, Header),
     M("url", Website, Contact),
-    M("shop", Category, Main),
+    M("shop", Category, Header),
     M("takeaway", Takeaway, Main),
-    M("tourism", Category, Main),
+    M("toilets:fee", Fee, Toilets),
+    M("tourism", Category, Header),
     M("website", Website, Contact),
     M("wheelchair", Wheelchair, Accessibility),
 };
@@ -250,7 +253,7 @@ void OSMElementInformationModel::reload()
             continue;
         }
         if (std::strncmp((*it).key.name(), "wikipedia", 9) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [](auto info) { return info.key == Wikipedia; })) {
-            m_infos.push_back(Info{Wikipedia, Main});
+            m_infos.push_back(Info{Wikipedia, UnresolvedCategory});
             continue;
         }
         for (const auto &simpleKey : simple_key_map) {
@@ -280,16 +283,23 @@ void OSMElementInformationModel::reload()
     }
 
     std::sort(m_infos.begin(), m_infos.end());
+    resolveCategories();
+    resolveHeaders();
 
-    // we use the categories as header if there is no name, so don't duplicate that
-    if (!m_infos.empty() && m_infos[0].key == Category) {
-        m_infos.erase(m_infos.begin());
-        if (m_nameKey == NoKey) {
-            m_nameKey = Category;
-        } else {
-            m_categoryKey = Category;
+    // if we don't have a primary group, promote a suitable secondary one
+    for (auto cat : {Parking, Toilets}) {
+        if (promoteMainCategory(cat)) {
+            break;
         }
     }
+
+    // resolve all remaining unresolved elements to the primary category
+    for (auto &info : m_infos) {
+        if (info.category == UnresolvedCategory) {
+            info.category = Main;
+        }
+    }
+    std::sort(m_infos.begin(), m_infos.end());
 
     if (m_debug) {
         m_infos.push_back(Info{ DebugLink, DebugCategory });
@@ -298,14 +308,98 @@ void OSMElementInformationModel::reload()
     }
 }
 
+void OSMElementInformationModel::resolveCategories()
+{
+    if (m_infos.empty() || m_infos[0].category != UnresolvedCategory) {
+        return;
+    }
+    for (auto &info : m_infos) {
+        if (info.category != UnresolvedCategory) {
+            break;
+        }
+        switch (info.key) {
+            case Fee:
+                if (m_element.tagValue("parking:fee").isEmpty() && (!m_element.tagValue("parking").isEmpty()
+                    || m_element.tagValue("amenity") == "parking" || m_element.tagValue("amenity") == "bicycle_parking"))
+                {
+                    info.category = Parking;
+                } else if (m_element.tagValue("toilets:fee").isEmpty() && m_element.tagValue("toilets") == "yes") {
+                    info.category = Toilets;
+                } else {
+                    info.category = Main;
+                }
+                break;
+            default:
+            {
+                // for anything else: if it's not clearly something we have a secondary group for, resovle it to Main
+                const auto amenity = m_element.tagValue("amenity");
+                if ((amenity != "parking" && amenity != "toilets")
+                    || !m_element.tagValue("office").isEmpty()
+                    || !m_element.tagValue("room").isEmpty()
+                    || !m_element.tagValue("shop").isEmpty()
+                    || !m_element.tagValue("tourism").isEmpty()) {
+                    info.category = Main;
+                }
+                break;
+            }
+        }
+    }
+    std::sort(m_infos.begin(), m_infos.end());
+}
+
+void OSMElementInformationModel::resolveHeaders()
+{
+    // we use the categories as header if there is no name, so don't duplicate that
+    const auto it = std::find_if(m_infos.begin(), m_infos.end(), [](Info info) {
+        return info.key == Category;
+    });
+    if (it == m_infos.end()) {
+        return;
+    }
+
+    m_infos.erase(it);
+    if (m_nameKey == NoKey) {
+        m_nameKey = Category;
+    } else {
+        m_categoryKey = Category;
+    }
+}
+
+bool OSMElementInformationModel::promoteMainCategory(OSMElementInformationModel::KeyCategory cat)
+{
+    const auto hasMain = std::any_of(m_infos.begin(), m_infos.end(), [](const auto &info) {
+        return info.category == Main;
+    });
+
+    if (hasMain) {
+        return true;
+    }
+
+    bool didPromote = false;
+    for (auto &info : m_infos) {
+        if (info.category == cat) {
+            info.category = Main;
+            didPromote = true;
+        }
+    }
+
+    if (didPromote) {
+        std::sort(m_infos.begin(), m_infos.end());
+    }
+    return didPromote;
+}
+
 QString OSMElementInformationModel::categoryLabel(OSMElementInformationModel::KeyCategory cat) const
 {
     switch (cat) {
+        case UnresolvedCategory:
         case Header:
         case Main:          return {};
         case Contact:       return tr("Contact");
         case Payment:       return tr("Payment");
+        case Toilets:       return tr("Toilets");
         case Accessibility: return tr("Accessibility");
+        case Parking:       return tr("Parking");
         case Operator:      return tr("Operator");
         case DebugCategory: return QStringLiteral("Debug");
     }
@@ -343,6 +437,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case CapacityWomen: return tr("Women parking spaces");
         case CapacityParent: return tr("Parent parking spaces");
         case CapacityCharing: return tr("Parking spaces for charging");
+        case MaxStay: return tr("Maximum stay");
         case DiaperChangingTable: return tr("Diaper changing table");
         case Wikipedia: return {};
         case Address: return tr("Address");
@@ -545,9 +640,9 @@ struct {
     { "vietnamese", QT_TRANSLATE_NOOP("cuisine", "Vietnamese") },
 };
 
-QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key key) const
+QVariant OSMElementInformationModel::valueForKey(Info info) const
 {
-    switch (key) {
+    switch (info.key) {
         case NoKey: return {};
         case Name: return QString::fromUtf8(m_element.tagValue("name", QLocale()));
         case Category:
@@ -633,7 +728,13 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         case OpeningHours: return QString::fromUtf8(m_element.tagValue("opening_hours"));
         case Fee:
         {
-            auto s = QString::fromUtf8(m_element.tagValue("fee")); // TODO decode boolean
+            QByteArray fee;
+            switch (info.category) {
+                case Parking: fee = m_element.tagValue("parking:fee", "fee"); break;
+                case Toilets: fee = m_element.tagValue("toilets:fee", "fee"); break;
+                default: fee = m_element.tagValue("fee");
+            }
+            auto s = QString::fromUtf8(fee);
             const auto charge = QString::fromUtf8(m_element.tagValue("charge"));
             if (s.isEmpty()) {
                 return charge;
@@ -648,6 +749,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         case CapacityWomen: return capacitryValue("capacity:women");
         case CapacityParent: return capacitryValue("capacity:parent");
         case CapacityCharing: return capacitryValue("capacity:charging");
+        case MaxStay: return QString::fromUtf8(m_element.tagValue("maxstay"));
         case DiaperChangingTable:
             // TODO bool value translation
             // TODO look for changing_table:location too
@@ -679,7 +781,7 @@ QVariant OSMElementInformationModel::valueForKey(OSMElementInformationModel::Key
         case PaymentDebitCard:
         case PaymentCreditCard:
         case PaymentStoredValueCard:
-            return paymentMethodValue(key);
+            return paymentMethodValue(info.key);
         case Wheelchair:
         {
             const auto a = QString::fromUtf8(m_element.tagValue("wheelchair")); // TODO decode and translate

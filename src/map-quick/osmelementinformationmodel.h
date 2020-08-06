@@ -51,11 +51,14 @@ public:
         TypeRole,
     };
     enum KeyCategory {
+        UnresolvedCategory,
         Header,
         Main,
         Contact,
         Payment,
+        Toilets,
         Accessibility,
+        Parking,
         Operator,
         DebugCategory,
     };
@@ -75,6 +78,7 @@ public:
         CapacityWomen,
         CapacityParent,
         CapacityCharing,
+        MaxStay,
         DiaperChangingTable,
         Wikipedia,
         Address,
@@ -118,12 +122,19 @@ Q_SIGNALS:
     void elementChanged();
 
 private:
+    struct Info;
+
     void reload();
+    /** Resolve elements who's group depends on context. */
+    void resolveCategories();
+    /** Make sure we have at least one naming element. */
+    void resolveHeaders();
+    bool promoteMainCategory(KeyCategory cat);
     QString categoryLabel(KeyCategory cat) const;
     QString debugTagKey(int row) const;
     QString debugTagValue(int row) const;
     QString keyName(Key key) const;
-    QVariant valueForKey(Key key) const;
+    QVariant valueForKey(Info info) const;
     QVariant urlify(const QVariant &v, Key key) const;
     QString paymentMethodList(Key key) const;
     QString paymentMethodValue(Key key) const;

@@ -8,6 +8,9 @@
         <tag k="seating" v="yes"/>
         <tag k="name" v="The Restaurant"/>
         <tag k="toilets" v="yes"/>
+        <tag k="toilets:access" v="customers"/>
+        <tag k="toilets:wheelchair" v="yes"/>
+        <tag k="toilets:fee" v="no"/>
         <tag k="wheelchair" v="yes"/>
         <tag k="payment:credit_cards" v="yes"/>
         <tag k="diet:vegetarian" v="only"/>

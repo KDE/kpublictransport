@@ -9,5 +9,7 @@
         <tag k="diet:vegetarian" v="no"/>
         <tag k="room" v="restaurant"/>
         <tag k="name" v="Burger Place"/>
+        <tag k="parking" v="surface"/>
+        <tag k="parking:fee" v="yes"/>
     </node>
 </osm>

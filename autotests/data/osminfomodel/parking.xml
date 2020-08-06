@@ -10,5 +10,6 @@
         <tag k="capacity:women" v="yes"/>
         <tag k="maxstay" v="2h"/>
         <tag k="supervised" v="yes"/>
+        <tag k="opening_hours" v="Mo 18:00-20:00"/>
     </node>
 </osm>
