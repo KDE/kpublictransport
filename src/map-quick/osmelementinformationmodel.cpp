@@ -157,9 +157,12 @@ QHash<int, QByteArray> OSMElementInformationModel::roleNames() const
 
 #define M(name, key, category) { name, OSMElementInformationModel::key, OSMElementInformationModel::category }
 struct {
-    const char *name;
-    OSMElementInformationModel::Key key;
-    OSMElementInformationModel::KeyCategory category;
+    const char *keyName;
+    OSMElementInformationModel::Key m_key;
+    OSMElementInformationModel::KeyCategory m_category;
+
+    constexpr inline OSMElementInformationModel::Key key() const { return m_key; }
+    constexpr inline OSMElementInformationModel::KeyCategory category() const { return m_category; }
 } static constexpr const simple_key_map[] = {
     M("addr:city", Address, Contact),
     M("addr:street", Address, Contact),
@@ -182,8 +185,8 @@ struct {
     M("diaper", DiaperChangingTable, Main),
     M("email", Email, Contact),
     M("fee", Fee, UnresolvedCategory),
-    M("network", Network, Operator),
     M("maxstay", MaxStay, Parking),
+    M("network", Network, Operator),
     M("office", Category, Header),
     M("old_name", OldName, Main),
     M("opening_hours", OpeningHours, UnresolvedCategory),
@@ -195,61 +198,28 @@ struct {
     M("payment:notes", PaymentCash, Payment),
     M("phone", Phone, Contact),
     M("room", Category, Header),
-    M("url", Website, Contact),
     M("shop", Category, Header),
     M("takeaway", Takeaway, Main),
     M("toilets:fee", Fee, Toilets),
     M("toilets:wheelchair", Wheelchair, Toilets),
     M("tourism", Category, Header),
+    M("url", Website, Contact),
     M("website", Website, Contact),
     M("wheelchair", Wheelchair, Accessibility),
 };
 #undef M
+static_assert(isSortedLookupTable(simple_key_map), "key map is not sorted!");
 
-// generic payment types (excluding cash, that's handled separately)
-struct {
-    const char *name;
-    OSMElementInformationModel::Key key;
-} static constexpr const payment_generic_type_map[] = {
-    { "payment:account_cards", OSMElementInformationModel::PaymentDebitCard },
-    { "payment:credit_cards", OSMElementInformationModel::PaymentCreditCard },
-    { "payment:debit_cards", OSMElementInformationModel::PaymentDebitCard },
-    { "payment:electronic_purses", OSMElementInformationModel::PaymentStoredValueCard },
-};
-
-// payment vendor types only, generic ones go into the list above and are handled separately
-struct {
-    const char *name;
-    OSMElementInformationModel::Key key;
-    const char *label;
-} static constexpr const payment_type_map[] = {
-    { "payment:american_express", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "American Express") },
-    { "payment:apple_pay", OSMElementInformationModel::PaymentDigital, QT_TRANSLATE_NOOP("payment method", "Apple Pay") },
-    { "payment:diners_club", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Diners Club") },
-    { "payment:discover_card", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Discover Card") },
-    { "payment:jcb", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "JCB") },
-    { "payment:girocard", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_NOOP("payment method", "Girocard") },
-    { "payment:google_pay", OSMElementInformationModel::PaymentDigital, QT_TRANSLATE_NOOP("payment method", "Google Pay") },
-    { "payment:maestro", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_NOOP("payment method", "Maestro") },
-    { "payment:mastercard", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Mastercard") },
-    { "payment:unionpay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "UnionPay") },
-    { "payment:v_pay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "V Pay") },
-    { "payment:vpay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "V Pay") },
-    { "payment:visa", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("payment method", "Visa") },
-};
-
-// diet types offered at restaurants
-struct {
-    const char *name;
-    const char *label;
-} static constexpr const diet_type_map[] = {
-    { "diet:gluten_free", QT_TRANSLATE_NOOP("diet type", "gluten free") },
-    { "diet:halal", QT_TRANSLATE_NOOP("diet type", "halal") },
-    { "diet:kosher", QT_TRANSLATE_NOOP("diet type", "kosher") },
-    { "diet:lactose_free", QT_TRANSLATE_NOOP("diet type", "lactose free") },
-    { "diet:vegan", QT_TRANSLATE_NOOP("diet type", "vegan") },
-    { "diet:vegetarian", QT_TRANSLATE_NOOP("diet type", "vegetarian") },
-};
+template <typename KeyMapEntry, std::size_t N>
+void OSMElementInformationModel::addEntryForKey(const char *keyName, const KeyMapEntry(&map)[N])
+{
+    const auto it = std::lower_bound(std::begin(map), std::end(map), keyName, [](const auto &lhs, auto rhs) {
+        return std::strcmp(lhs.keyName, rhs) < 0;
+    });
+    if (it != std::end(map) && std::strcmp((*it).keyName, keyName) == 0) {
+        m_infos.push_back(Info{(*it).key(), (*it).category()});
+    }
+}
 
 void OSMElementInformationModel::reload()
 {
@@ -265,30 +235,10 @@ void OSMElementInformationModel::reload()
             m_infos.push_back(Info{Wikipedia, UnresolvedCategory});
             continue;
         }
-        for (const auto &simpleKey : simple_key_map) {
-            if (std::strcmp((*it).key.name(), simpleKey.name) == 0) {
-                m_infos.push_back(Info{simpleKey.key, simpleKey.category});
-                break;
-            }
-        }
-        for (const auto &payment : payment_generic_type_map) {
-            if (std::strcmp((*it).key.name(), payment.name) == 0) {
-                m_infos.push_back(Info{payment.key, Payment});
-                break;
-            }
-        }
-        for (const auto &payment : payment_type_map) {
-            if (std::strcmp((*it).key.name(), payment.name) == 0) {
-                m_infos.push_back(Info{payment.key, Payment});
-                break;
-            }
-        }
-        for (const auto &diet: diet_type_map) {
-            if (std::strcmp((*it).key.name(), diet.name) == 0) {
-                m_infos.push_back(Info{Diet, Main});
-                break;
-            }
-        }
+        addEntryForKey((*it).key.name(), simple_key_map);
+        addEntryForKey((*it).key.name(), payment_generic_type_map);
+        addEntryForKey((*it).key.name(), payment_type_map);
+        addEntryForKey((*it).key.name(), diet_type_map);
     }
 
     std::sort(m_infos.begin(), m_infos.end());
@@ -523,13 +473,14 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
         {
             QStringList l;
             for (const auto &d : diet_type_map) {
-                const auto v = m_element.tagValue(d.name);
+                const auto v = m_element.tagValue(d.keyName);
+                const auto label = QCoreApplication::translate("OSM::diet_type", d.label);
                 if (v == "yes") {
-                    l.push_back(tr(d.label, "diet type"));
+                    l.push_back(label);
                 } else if (v == "only") {
-                    l.push_back(tr("only %1").arg(tr(d.label, "diet type")));
+                    l.push_back(tr("only %1").arg(label));
                 } else if (v == "no") {
-                    l.push_back(tr("no %1").arg(tr(d.label, "diet type")));
+                    l.push_back(tr("no %1").arg(label));
                 }
             }
             return l.join(QLatin1String(", "));
@@ -658,11 +609,11 @@ QString OSMElementInformationModel::paymentMethodList(OSMElementInformationModel
 {
     QStringList l;
     for (const auto &payment : payment_type_map) {
-        if (payment.key != key) {
+        if (payment.key() != key) {
             continue;
         }
-        if (m_element.tagValue(payment.name) == "yes") {
-            l.push_back(tr(payment.label, "payment method"));
+        if (m_element.tagValue(payment.keyName) == "yes") {
+            l.push_back(QCoreApplication::translate("OSM::payment_method", payment.label));
         }
     }
     std::sort(l.begin(), l.end());
@@ -677,10 +628,10 @@ QString OSMElementInformationModel::paymentMethodValue(OSMElementInformationMode
     }
 
     for (const auto &payment : payment_generic_type_map) {
-        if (payment.key != key) {
+        if (payment.key() != key) {
             continue;
         }
-        const auto s = m_element.tagValue(payment.name);
+        const auto s = m_element.tagValue(payment.keyName);
         if (!s.isEmpty()) {
             return QString::fromUtf8(s);
         }

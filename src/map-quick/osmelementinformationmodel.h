@@ -141,6 +141,9 @@ private:
     QUrl wikipediaUrl(const QByteArray &wp) const;
     QString capacitryValue(const char *prop) const;
 
+    template <typename KeyMapEntry, std::size_t N>
+    void addEntryForKey(const char *keyName, const KeyMapEntry(&map)[N]);
+
     OSM::Element m_element;
 
     struct Info {

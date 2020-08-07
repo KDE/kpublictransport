@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "osmelementinformationmodel.h"
 #include "osmelementinformationmodel_p.h"
 
 namespace KOSMIndoorMap {
@@ -184,6 +185,62 @@ static constexpr const ValueMapEntry cuisine_map[] = {
     { "vietnamese", QT_TRANSLATE_NOOP("OSM::cuisine", "Vietnamese") },
 };
 static_assert(isSortedLookupTable(cuisine_map), "cuising map is not sorted!");
+
+// diet types offered at restaurants
+struct {
+    const char *keyName;
+    const char *label;
+
+    constexpr inline OSMElementInformationModel::Key key() const { return OSMElementInformationModel::Diet; }
+    constexpr inline OSMElementInformationModel::KeyCategory category() const { return OSMElementInformationModel::Main; }
+} static constexpr const diet_type_map[] = {
+    { "diet:gluten_free", QT_TRANSLATE_NOOP("OSM::diet_type", "gluten free") },
+    { "diet:halal", QT_TRANSLATE_NOOP("OSM::diet_type", "halal") },
+    { "diet:kosher", QT_TRANSLATE_NOOP("OSM::diet_type", "kosher") },
+    { "diet:lactose_free", QT_TRANSLATE_NOOP("OSM::diet_type", "lactose free") },
+    { "diet:vegan", QT_TRANSLATE_NOOP("OSM::diet_type", "vegan") },
+    { "diet:vegetarian", QT_TRANSLATE_NOOP("OSM::diet_type", "vegetarian") },
+};
+static_assert(isSortedLookupTable(diet_type_map), "diet type map is not sorted!");
+
+// generic payment types (excluding cash, that's handled separately)
+struct {
+    const char *keyName;
+    OSMElementInformationModel::Key m_key;
+
+    constexpr inline OSMElementInformationModel::Key key() const { return m_key; }
+    constexpr inline OSMElementInformationModel::KeyCategory category() const { return OSMElementInformationModel::Payment; }
+} static constexpr const payment_generic_type_map[] = {
+    { "payment:account_cards", OSMElementInformationModel::PaymentDebitCard },
+    { "payment:credit_cards", OSMElementInformationModel::PaymentCreditCard },
+    { "payment:debit_cards", OSMElementInformationModel::PaymentDebitCard },
+    { "payment:electronic_purses", OSMElementInformationModel::PaymentStoredValueCard },
+};
+static_assert(isSortedLookupTable(payment_generic_type_map), "generic payment type map is not sorted!");
+
+// payment vendor types only, generic ones go into the list above and are handled separately
+struct {
+    const char *keyName;
+    OSMElementInformationModel::Key m_key;
+    const char *label;
+
+    constexpr inline OSMElementInformationModel::Key key() const { return m_key; }
+    constexpr inline OSMElementInformationModel::KeyCategory category() const { return OSMElementInformationModel::Payment; }
+} static constexpr const payment_type_map[] = {
+    { "payment:american_express", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "American Express") },
+    { "payment:apple_pay", OSMElementInformationModel::PaymentDigital, QT_TRANSLATE_NOOP("OSM::payment_method", "Apple Pay") },
+    { "payment:diners_club", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "Diners Club") },
+    { "payment:discover_card", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "Discover Card") },
+    { "payment:jcb", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "JCB") },
+    { "payment:girocard", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_NOOP("OSM::payment_method", "Girocard") },
+    { "payment:google_pay", OSMElementInformationModel::PaymentDigital, QT_TRANSLATE_NOOP("OSM::payment_method", "Google Pay") },
+    { "payment:maestro", OSMElementInformationModel::PaymentDebitCard, QT_TRANSLATE_NOOP("OSM::payment_method", "Maestro") },
+    { "payment:mastercard", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "Mastercard") },
+    { "payment:unionpay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "UnionPay") },
+    { "payment:v_pay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "V Pay") },
+    { "payment:vpay", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "V Pay") },
+    { "payment:visa", OSMElementInformationModel::PaymentCreditCard, QT_TRANSLATE_NOOP("OSM::payment_method", "Visa") },
+};
 
 static constexpr const ValueMapEntry wheelchair_map[] = {
     { "limited", QT_TRANSLATE_NOOP("OSM::wheelchair_access", "limited") },
