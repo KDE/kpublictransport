@@ -167,14 +167,14 @@ struct {
     M("addr:city", Address, Contact),
     M("addr:street", Address, Contact),
     M("amenity", Category, Header),
-    M("brand:wikipedia", Wikipedia, Main),
+    M("brand:wikipedia", Wikipedia, UnresolvedCategory),
     M("capacity", Capacity, Parking),
     M("capacity:charging", CapacityCharing, Parking),
     M("capacity:disabled", CapacityDisabled, Parking),
     M("capacity:parent", CapacityParent, Parking),
     M("capacity:women", CapacityWomen, Parking),
     M("centralkey", CentralKey, Accessibility),
-    M("changing_table", DiaperChangingTable, Main),
+    M("changing_table", DiaperChangingTable, UnresolvedCategory),
     M("charge", Fee, UnresolvedCategory),
     M("contact:city", Address, Contact),
     M("contact:email", Email, Contact),
@@ -182,13 +182,13 @@ struct {
     M("contact:street", Address, Contact),
     M("contact:website", Website, Contact),
     M("cuisine", Cuisine, Main),
-    M("diaper", DiaperChangingTable, Main),
+    M("diaper", DiaperChangingTable, UnresolvedCategory),
     M("email", Email, Contact),
     M("fee", Fee, UnresolvedCategory),
     M("maxstay", MaxStay, Parking),
     M("network", Network, Operator),
     M("office", Category, Header),
-    M("old_name", OldName, Main),
+    M("old_name", OldName, UnresolvedCategory),
     M("opening_hours", OpeningHours, UnresolvedCategory),
     M("operator", OperatorName, Operator),
     M("operator:wikipedia", OperatorWikipedia, Operator),
@@ -260,6 +260,7 @@ void OSMElementInformationModel::reload()
         }
     }
     std::sort(m_infos.begin(), m_infos.end());
+    m_infos.erase(std::unique(m_infos.begin(), m_infos.end()), m_infos.end());
 
     if (m_debug) {
         m_infos.push_back(Info{ DebugLink, DebugCategory });
@@ -283,7 +284,7 @@ void OSMElementInformationModel::resolveCategories()
                     || m_element.tagValue("amenity") == "parking" || m_element.tagValue("amenity") == "bicycle_parking"))
                 {
                     info.category = Parking;
-                } else if (m_element.tagValue("toilets:fee").isEmpty() && m_element.tagValue("toilets") == "yes") {
+                } else if (m_element.tagValue("toilets:fee").isEmpty() && (m_element.tagValue("toilets") == "yes" || m_element.tagValue("amenity") == "toilets")) {
                     info.category = Toilets;
                 } else {
                     info.category = Main;
@@ -295,7 +296,7 @@ void OSMElementInformationModel::resolveCategories()
                 const auto amenity = m_element.tagValue("amenity");
                 if ((amenity != "parking" && amenity != "toilets")
                     || !m_element.tagValue("office").isEmpty()
-                    || !m_element.tagValue("room").isEmpty()
+                    || (!m_element.tagValue("room").isEmpty() && m_element.tagValue("room") != "toilets")
                     || !m_element.tagValue("shop").isEmpty()
                     || !m_element.tagValue("tourism").isEmpty()) {
                     info.category = Main;
@@ -338,7 +339,7 @@ bool OSMElementInformationModel::promoteMainCategory(OSMElementInformationModel:
     bool didPromote = false;
     for (auto &info : m_infos) {
         if (info.category == cat) {
-            info.category = Main;
+            info.category = (info.key == Wheelchair ? Accessibility : Main);
             didPromote = true;
         }
     }
