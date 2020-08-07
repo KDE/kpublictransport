@@ -16,6 +16,8 @@
 */
 
 #include "osmelementinformationmodel.h"
+#include "osmelementinformationmodel_p.h"
+#include "osmelementinformationmodel_data.cpp"
 #include "osmaddress.h"
 
 using namespace KOSMIndoorMap;
@@ -27,6 +29,12 @@ bool OSMElementInformationModel::Info::operator<(OSMElementInformationModel::Inf
     }
     return category < other.category;
 }
+
+bool OSMElementInformationModel::Info::operator==(OSMElementInformationModel::Info other) const
+{
+    return category == other.category && key == other.key;
+}
+
 
 OSMElementInformationModel::OSMElementInformationModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -164,7 +172,7 @@ struct {
     M("capacity:women", CapacityWomen, Parking),
     M("centralkey", CentralKey, Accessibility),
     M("changing_table", DiaperChangingTable, Main),
-    M("charge", Fee, Main),
+    M("charge", Fee, UnresolvedCategory),
     M("contact:city", Address, Contact),
     M("contact:email", Email, Contact),
     M("contact:phone", Phone, Contact),
@@ -191,6 +199,7 @@ struct {
     M("shop", Category, Header),
     M("takeaway", Takeaway, Main),
     M("toilets:fee", Fee, Toilets),
+    M("toilets:wheelchair", Wheelchair, Toilets),
     M("tourism", Category, Header),
     M("website", Website, Contact),
     M("wheelchair", Wheelchair, Accessibility),
@@ -252,30 +261,30 @@ void OSMElementInformationModel::reload()
             m_nameKey = Name;
             continue;
         }
-        if (std::strncmp((*it).key.name(), "wikipedia", 9) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [](auto info) { return info.key == Wikipedia; })) {
+        if (std::strncmp((*it).key.name(), "wikipedia", 9) == 0) {
             m_infos.push_back(Info{Wikipedia, UnresolvedCategory});
             continue;
         }
         for (const auto &simpleKey : simple_key_map) {
-            if (std::strcmp((*it).key.name(), simpleKey.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [simpleKey](auto info) { return info.key == simpleKey.key; })) {
+            if (std::strcmp((*it).key.name(), simpleKey.name) == 0) {
                 m_infos.push_back(Info{simpleKey.key, simpleKey.category});
                 break;
             }
         }
         for (const auto &payment : payment_generic_type_map) {
-            if (std::strcmp((*it).key.name(), payment.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [payment](auto info) { return info.key == payment.key; })) {
+            if (std::strcmp((*it).key.name(), payment.name) == 0) {
                 m_infos.push_back(Info{payment.key, Payment});
                 break;
             }
         }
         for (const auto &payment : payment_type_map) {
-            if (std::strcmp((*it).key.name(), payment.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [payment](auto info) { return info.key == payment.key; })) {
+            if (std::strcmp((*it).key.name(), payment.name) == 0) {
                 m_infos.push_back(Info{payment.key, Payment});
                 break;
             }
         }
         for (const auto &diet: diet_type_map) {
-            if (std::strcmp((*it).key.name(), diet.name) == 0 && !std::any_of(m_infos.begin(), m_infos.end(), [](auto info) { return info.key == Diet; })) {
+            if (std::strcmp((*it).key.name(), diet.name) == 0) {
                 m_infos.push_back(Info{Diet, Main});
                 break;
             }
@@ -283,6 +292,7 @@ void OSMElementInformationModel::reload()
     }
 
     std::sort(m_infos.begin(), m_infos.end());
+    m_infos.erase(std::unique(m_infos.begin(), m_infos.end()), m_infos.end());
     resolveCategories();
     resolveHeaders();
 
@@ -460,186 +470,6 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
     return {};
 }
 
-// TODO expand this, see:
-// - https://taginfo.openstreetmap.org/keys/?key=amenity#values
-// - https://taginfo.openstreetmap.org/keys/?key=shop#values
-// - https://taginfo.openstreetmap.org/keys/?key=tourism#values
-// - parts of https://taginfo.openstreetmap.org/keys/?key=office#values
-// - parts of https://taginfo.openstreetmap.org/keys/?key=room#values
-struct {
-    const char *code;
-    const char *name;
-} static constexpr const amenity_map[] = {
-    { "alcohol",  QT_TRANSLATE_NOOP("amenity/shop", "Alcohol") },
-    { "atm",  QT_TRANSLATE_NOOP("amenity/shop", "ATM") },
-    { "attraction", QT_TRANSLATE_NOOP("amenity/shop", "Attraction") },
-    { "bakery",  QT_TRANSLATE_NOOP("amenity/shop", "Bakery") },
-    { "bag", QT_TRANSLATE_NOOP("amenity/shop", "Bag") },
-    { "bank",  QT_TRANSLATE_NOOP("amenity/shop", "Bank") },
-    { "bar",  QT_TRANSLATE_NOOP("amenity/shop", "Bar") },
-    { "beauty",  QT_TRANSLATE_NOOP("amenity/shop", "Beauty") },
-    { "beverages", QT_TRANSLATE_NOOP("amenity/shop", "Beverages") },
-    { "bicycle",  QT_TRANSLATE_NOOP("amenity/shop", "Bicycle") },
-    { "bicycle_parking",  QT_TRANSLATE_NOOP("amenity/shop", "Bicycle Parking") },
-    { "bicycle_rental",  QT_TRANSLATE_NOOP("amenity/shop", "Bicycle Rental") },
-    { "bureau_de_change", QT_TRANSLATE_NOOP("amenity/shop", "Bureau de Change") },
-    { "books",  QT_TRANSLATE_NOOP("amenity/shop", "Books") },
-    { "boutique",  QT_TRANSLATE_NOOP("amenity/shop", "Boutique") },
-    { "butcher",  QT_TRANSLATE_NOOP("amenity/shop", "Butcher") },
-    { "cafe",  QT_TRANSLATE_NOOP("amenity/shop", "Cafe") },
-    { "car_rental",  QT_TRANSLATE_NOOP("amenity/shop", "Car Rental") },
-    { "car_sharing", QT_TRANSLATE_NOOP("amenity/shop", "Car Sharing") },
-    { "chemist",  QT_TRANSLATE_NOOP("amenity/shop", "Chemist") },
-    { "chocolate",  QT_TRANSLATE_NOOP("amenity/shop", "Chocolate") },
-    { "cinema",  QT_TRANSLATE_NOOP("amenity/shop", "Cinema") },
-    { "clothes",  QT_TRANSLATE_NOOP("amenity/shop", "Clothes") },
-    { "coffee",  QT_TRANSLATE_NOOP("amenity/shop", "Coffee") },
-    { "computer",  QT_TRANSLATE_NOOP("amenity/shop", "Computer") },
-    { "confectionery",  QT_TRANSLATE_NOOP("amenity/shop", "Confectionery") },
-    { "convenience",  QT_TRANSLATE_NOOP("amenity/shop", "Convenience Store") },
-    { "copyshop", QT_TRANSLATE_NOOP("amenity/shop", "Copy Shop") },
-    { "cosmetics",  QT_TRANSLATE_NOOP("amenity/shop", "Cosmetics") },
-    { "courthouse", QT_TRANSLATE_NOOP("amenity/shop", "Court House") },
-    { "deli", QT_TRANSLATE_NOOP("amenity/shop", "Deli") },
-    { "department_store", QT_TRANSLATE_NOOP("amenity/shop", "Department Store") },
-    { "doctors", QT_TRANSLATE_NOOP("amenity/shop", "Doctor") },
-    { "dry_cleaning",  QT_TRANSLATE_NOOP("amenity/shop", "Dry Cleaning") },
-    { "electronics",  QT_TRANSLATE_NOOP("amenity/shop", "Electronics") },
-    { "fashion",  QT_TRANSLATE_NOOP("amenity/shop", "Fashion") },
-    { "fast_food",  QT_TRANSLATE_NOOP("amenity/shop", "Fast Food") },
-    { "florist",  QT_TRANSLATE_NOOP("amenity/shop", "Florist") },
-    { "food_court",  QT_TRANSLATE_NOOP("amenity/shop", "Food Court") },
-    { "furniture",  QT_TRANSLATE_NOOP("amenity/shop", "Furniture") },
-    { "gift",  QT_TRANSLATE_NOOP("amenity/shop", "Gift Shop") },
-    { "guest_house", QT_TRANSLATE_NOOP("amenity/shop", "Guest House") },
-    { "hairdresser",  QT_TRANSLATE_NOOP("amenity/shop", "Hairdresser") },
-    { "hospital",  QT_TRANSLATE_NOOP("amenity/shop", "Hospital") },
-    { "hostel",  QT_TRANSLATE_NOOP("amenity/shop", "Hostel") },
-    { "hotel",  QT_TRANSLATE_NOOP("amenity/shop", "Hotel") },
-    { "ice_cream",  QT_TRANSLATE_NOOP("amenity/shop", "Ice Cream") },
-    { "information",  QT_TRANSLATE_NOOP("amenity/shop", "Information") },
-    { "interior_decoration",  QT_TRANSLATE_NOOP("amenity/shop", "Interior Decoration") },
-    { "jewelry",  QT_TRANSLATE_NOOP("amenity/shop", "Jewelry") },
-    { "kiosk",  QT_TRANSLATE_NOOP("amenity/shop", "Kiosk") },
-    { "laundry",  QT_TRANSLATE_NOOP("amenity/shop", "Laundry") },
-    { "library", QT_TRANSLATE_NOOP("amenity/shop", "Library") },
-    { "lockers",  QT_TRANSLATE_NOOP("amenity/shop", "Locker") },
-    { "locksmith",  QT_TRANSLATE_NOOP("amenity/shop", "Locksmith") },
-    { "lost_and_found",  QT_TRANSLATE_NOOP("amenity/shop", "Lost & Found") },
-    { "lost_property",  QT_TRANSLATE_NOOP("amenity/shop", "Lost & Found") },
-    { "luggage_locker",  QT_TRANSLATE_NOOP("amenity/shop", "Locker") },
-    { "mall",  QT_TRANSLATE_NOOP("amenity/shop", "Mall") },
-    { "mobile_phone",  QT_TRANSLATE_NOOP("amenity/shop", "Mobile Phone") },
-    { "money_transfer", QT_TRANSLATE_NOOP("amenity/shop", "Money Transfer") },
-    { "museum",  QT_TRANSLATE_NOOP("amenity/shop", "Museum") },
-    { "newsagent",  QT_TRANSLATE_NOOP("amenity/shop", "Newsagent") },
-    { "office",  QT_TRANSLATE_NOOP("amenity/shop", "Office") },
-    { "optician",  QT_TRANSLATE_NOOP("amenity/shop", "Optician") },
-    { "outdoor", QT_TRANSLATE_NOOP("amenity/shop", "Outdoor") },
-    { "parking",  QT_TRANSLATE_NOOP("amenity/shop", "Parking") },
-    { "pastry",  QT_TRANSLATE_NOOP("amenity/shop", "Pastry") },
-    { "perfumery",  QT_TRANSLATE_NOOP("amenity/shop", "Perfumery") },
-    { "pet",  QT_TRANSLATE_NOOP("amenity/shop", "Pet") },
-    { "pharmacy",  QT_TRANSLATE_NOOP("amenity/shop", "Pharmacy") },
-    { "photo", QT_TRANSLATE_NOOP("amenity/shop", "Photo") },
-    { "place_of_worship", QT_TRANSLATE_NOOP("amenity/shop", "Place of Worship") },
-    { "police",  QT_TRANSLATE_NOOP("amenity/shop", "Police") },
-    { "post_box", QT_TRANSLATE_NOOP("amenity/shop", "Post Box") },
-    { "post_office",  QT_TRANSLATE_NOOP("amenity/shop", "Post Office") },
-    { "pub",  QT_TRANSLATE_NOOP("amenity/shop", "Pub") },
-    { "public_transport_tickets", QT_TRANSLATE_NOOP("amenity/shop", "Public Transport Tickets") },
-    { "restaurant",  QT_TRANSLATE_NOOP("amenity/shop", "Restaurant") },
-    { "school",  QT_TRANSLATE_NOOP("amenity/shop", "School") },
-    { "shoes",  QT_TRANSLATE_NOOP("amenity/shop", "Shoes") },
-    { "shop",  QT_TRANSLATE_NOOP("amenity/shop", "Shop") },
-    { "social_facility",  QT_TRANSLATE_NOOP("amenity/shop", "Social Facility") },
-    { "souveniers",  QT_TRANSLATE_NOOP("amenity/shop", "Souveniers") },
-    { "sports", QT_TRANSLATE_NOOP("amenity/shop", "Sports") },
-    { "supermarket",  QT_TRANSLATE_NOOP("amenity/shop", "Supermarket") },
-    { "stationery",  QT_TRANSLATE_NOOP("amenity/shop", "Stationery") },
-    { "tailor",  QT_TRANSLATE_NOOP("amenity/shop", "Tailor") },
-    { "tatoo",  QT_TRANSLATE_NOOP("amenity/shop", "Tattoo") },
-    { "taxi",  QT_TRANSLATE_NOOP("amenity/shop", "Taxi") },
-    { "tea",  QT_TRANSLATE_NOOP("amenity/shop", "Tea") },
-    { "theatre", QT_TRANSLATE_NOOP("amenity/shop", "Theatre") },
-    { "ticket",  QT_TRANSLATE_NOOP("amenity/shop", "Tickets") },
-    { "tobacco",  QT_TRANSLATE_NOOP("amenity/shop", "Tobacco") },
-    { "toilets",  QT_TRANSLATE_NOOP("amenity/shop", "Toilets") },
-    { "toys",  QT_TRANSLATE_NOOP("amenity/shop", "Toys") },
-    { "travel_agency",  QT_TRANSLATE_NOOP("amenity/shop", "Travel Agency") },
-    { "university", QT_TRANSLATE_NOOP("amenity/shop", "University") },
-    { "waiting",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
-    { "waiting_area",  QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
-    { "waiting_room", QT_TRANSLATE_NOOP("amenity/shop", "Waiting Area") },
-    { "wine", QT_TRANSLATE_NOOP("amenity/shop", "Wine") },
-};
-
-// TODO expand this, see https://taginfo.openstreetmap.org/keys/cuisine#values
-struct {
-    const char *code;
-    const char *name;
-} static constexpr const cuisine_map[] = {
-    { "american", QT_TRANSLATE_NOOP("cuisine", "American") },
-    { "arab", QT_TRANSLATE_NOOP("cuisine", "Arab") },
-    { "argentinian", QT_TRANSLATE_NOOP("cuisine", "Argentinian") },
-    { "asian", QT_TRANSLATE_NOOP("cuisine", "Asian") },
-    { "austrian", QT_TRANSLATE_NOOP("cuisine", "Austrian") },
-    { "barbecue", QT_TRANSLATE_NOOP("cuisine", "BBQ") },
-    { "bbq", QT_TRANSLATE_NOOP("cuisine", "BBQ") },
-    { "breakfast", QT_TRANSLATE_NOOP("cuisine", "Breakfast") },
-    { "burger", QT_TRANSLATE_NOOP("cuisine", "Burger") },
-    { "cake", QT_TRANSLATE_NOOP("cuisine", "Cake") },
-    { "chicken", QT_TRANSLATE_NOOP("cuisine", "Chicken") },
-    { "chinese", QT_TRANSLATE_NOOP("cuisine", "Chinese") },
-    { "coffee_shop", QT_TRANSLATE_NOOP("cuisine", "Coffee Shop") },
-    { "cookies", QT_TRANSLATE_NOOP("cuisine", "Cookies") },
-    { "crepe", QT_TRANSLATE_NOOP("cuisine", "Crêpe") },
-    { "donut", QT_TRANSLATE_NOOP("cuisine", "Donut") },
-    { "falafel", QT_TRANSLATE_NOOP("cuisine", "Falafel") },
-    { "fish", QT_TRANSLATE_NOOP("cuisine", "Fish") },
-    { "fish_and_chips", QT_TRANSLATE_NOOP("cuisine", "Fish & Chips") },
-    { "french", QT_TRANSLATE_NOOP("cuisine", "French") },
-    { "german", QT_TRANSLATE_NOOP("cuisine", "German") },
-    { "greek", QT_TRANSLATE_NOOP("cuisine", "Greek") },
-    { "ice_cream", QT_TRANSLATE_NOOP("cuisine", "Ice Cream") },
-    { "indian", QT_TRANSLATE_NOOP("cuisine", "Indian") },
-    { "indonesian", QT_TRANSLATE_NOOP("cuisine", "Indonesian") },
-    { "international", QT_TRANSLATE_NOOP("cuisine", "International") },
-    { "italian", QT_TRANSLATE_NOOP("cuisine", "Italian") },
-    { "italian_pizza", QT_TRANSLATE_NOOP("cuisine", "Pizza") },
-    { "japanese", QT_TRANSLATE_NOOP("cuisine", "Japanese") },
-    { "juice", QT_TRANSLATE_NOOP("cuisine", "Juice") },
-    { "kebab", QT_TRANSLATE_NOOP("cuisine", "Kebab") },
-    { "korean", QT_TRANSLATE_NOOP("cuisine", "Korean") },
-    { "lebanese", QT_TRANSLATE_NOOP("cuisine", "Lebanese") },
-    { "local", QT_TRANSLATE_NOOP("cuisine", "Local") },
-    { "mediterranean", QT_TRANSLATE_NOOP("cuisine", "Mediterranean") },
-    { "mexican", QT_TRANSLATE_NOOP("cuisine", "Mexican") },
-    { "noodle", QT_TRANSLATE_NOOP("cuisine", "Noodle") },
-    { "pakistani",  QT_TRANSLATE_NOOP("cuisine", "Pakistani") },
-    { "pancake", QT_TRANSLATE_NOOP("cuisine", "Pancake") },
-    { "pasta", QT_TRANSLATE_NOOP("cuisine", "Pasta") },
-    { "pizza", QT_TRANSLATE_NOOP("cuisine", "Pizza") },
-    { "polish", QT_TRANSLATE_NOOP("cuisine", "Polish") },
-    { "portuguese", QT_TRANSLATE_NOOP("cuisine", "Portuguese") },
-    { "ramen", QT_TRANSLATE_NOOP("cuisine", "Ramen") },
-    { "regional", QT_TRANSLATE_NOOP("cuisine", "Regional") },
-    { "salad", QT_TRANSLATE_NOOP("cuisine", "Salad") },
-    { "sandwich", QT_TRANSLATE_NOOP("cuisine", "Sandwich") },
-    { "sausage", QT_TRANSLATE_NOOP("cuisine", "Sausage") },
-    { "seafood", QT_TRANSLATE_NOOP("cuisine", "Seafood") },
-    { "soup", QT_TRANSLATE_NOOP("cuisine", "Soup") },
-    { "spanish", QT_TRANSLATE_NOOP("cuisine", "Spanish") },
-    { "steak", QT_TRANSLATE_NOOP("cuisine", "Steak") },
-    { "steak_house", QT_TRANSLATE_NOOP("cuisine", "Steak") },
-    { "sushi", QT_TRANSLATE_NOOP("cuisine", "Sushi") },
-    { "tapas", QT_TRANSLATE_NOOP("cuisine", "Tapas") },
-    { "thai", QT_TRANSLATE_NOOP("cuisine", "Thai") },
-    { "turkish", QT_TRANSLATE_NOOP("cuisine", "Turkish") },
-    { "vegetarian", QT_TRANSLATE_NOOP("cuisine", "Vegetarian") },
-    { "vietnamese", QT_TRANSLATE_NOOP("cuisine", "Vietnamese") },
-};
-
 QVariant OSMElementInformationModel::valueForKey(Info info) const
 {
     switch (info.key) {
@@ -666,17 +496,7 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
                 if ((*it).isEmpty() || (*it) == "yes" || (*it) == "vending_machine") {
                     continue;
                 }
-                bool found = false;
-                for (const auto &a : amenity_map) {
-                    if (std::strcmp((*it).constData(), a.code) == 0) {
-                        found = true;
-                        out.push_back(tr(a.name, "amenity/shop"));
-                        break;
-                    }
-                }
-                if (!found) {
-                    out.push_back(QString::fromUtf8(*it));
-                }
+                out.push_back(translateValue((*it).constData(), amenity_map, "OSM::amenity/shop"));
             }
 
             std::sort(out.begin(), out.end());
@@ -694,17 +514,7 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
             QStringList out;
             out.reserve(l.size());
             for (auto &code : l) {
-                bool found = false;
-                for (const auto &c : cuisine_map) {
-                    if (std::strcmp(code.constData(), c.code) == 0) {
-                        found = true;
-                        out.push_back(tr(c.name, "cuisine"));
-                        break;
-                    }
-                }
-                if (!found) {
-                    out.push_back(QString::fromUtf8(code));
-                }
+                out.push_back(translateValue(code.constData(), cuisine_map, "OSM::cuisine"));
             }
             std::sort(out.begin(), out.end());
             return QLocale().createSeparatedList(out);
@@ -784,7 +594,13 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
             return paymentMethodValue(info.key);
         case Wheelchair:
         {
-            const auto a = QString::fromUtf8(m_element.tagValue("wheelchair")); // TODO decode and translate
+            QByteArray wheelchair;
+            if (info.category == Toilets) {
+                wheelchair = m_element.tagValue("toilets:wheelchair", "wheelchair");
+            } else {
+                wheelchair = m_element.tagValue("wheelchair");
+            }
+            const auto a = translateValue(wheelchair.constData(), wheelchair_map, "OSM::wheelchair_access");
             const auto d = QString::fromUtf8(m_element.tagValue("wheelchair:description", QLocale()));
             if (!d.isEmpty()) {
                 return QString(a + QLatin1String(" (") + d + QLatin1Char(')'));

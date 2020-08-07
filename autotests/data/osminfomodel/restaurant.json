@@ -28,6 +28,11 @@
             "value": "no"
         },
         {
+            "categoryLabel": "Toilets",
+            "keyLabel": "Wheelchair access",
+            "value": "yes"
+        },
+        {
             "categoryLabel": "Accessibility",
             "keyLabel": "Wheelchair access",
             "value": "yes"

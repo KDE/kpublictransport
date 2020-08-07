@@ -13,7 +13,7 @@
         <tag k="parking" v="underground"/>
         <tag k="shop" v="mall"/>
         <tag k="toilets" v="yes"/>
-        <tag k="toilets:wheelchair" v="yes"/>
+        <tag k="toilets:wheelchair" v="limited"/>
         <tag k="wheelchair" v="yes"/>
         <tag k="wikipedia" v="en:Shopping_mall"/>
         <tag k="opening_hours" v="Tu 10:00-14:00"/>

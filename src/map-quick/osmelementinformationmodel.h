@@ -148,6 +148,7 @@ private:
         KeyCategory category;
 
         bool operator<(Info other) const;
+        bool operator==(Info other) const;
     };
     std::vector<Info> m_infos;
     Key m_nameKey = NoKey;

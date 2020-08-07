@@ -10,6 +10,11 @@
             "value": "Wikipedia"
         },
         {
+            "categoryLabel": "Toilets",
+            "keyLabel": "Wheelchair access",
+            "value": "limited"
+        },
+        {
             "categoryLabel": "Accessibility",
             "keyLabel": "Wheelchair access",
             "value": "yes"
