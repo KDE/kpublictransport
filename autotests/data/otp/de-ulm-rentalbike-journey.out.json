@@ -1,0 +1,170 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 335,
+                "from": {
+                    "latitude": 48.39952087402344,
+                    "longitude": 9.982660293579102,
+                    "name": "Origin"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-08-08T09:24:58Z",
+                "scheduledDepartureTime": "2020-08-08T09:18:32Z",
+                "to": {
+                    "latitude": 48.40037536621094,
+                    "longitude": 9.9856595993042,
+                    "name": "Bürgerdienste"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 2,
+                "from": {
+                    "latitude": 48.40037536621094,
+                    "longitude": 9.9856595993042,
+                    "name": "Bürgerdienste"
+                },
+                "mode": "RentedVehicle",
+                "rentalVehicle": {
+                    "network": "openbike",
+                    "type": "Bicycle"
+                },
+                "scheduledArrivalTime": "2020-08-08T09:24:59Z",
+                "scheduledDepartureTime": "2020-08-08T09:24:58Z",
+                "to": {
+                    "latitude": 48.40039825439453,
+                    "longitude": 9.985642433166504,
+                    "name": "path"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 26,
+                "from": {
+                    "latitude": 48.40039825439453,
+                    "longitude": 9.985642433166504,
+                    "name": "path"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-08-08T09:25:25Z",
+                "scheduledDepartureTime": "2020-08-08T09:24:59Z",
+                "to": {
+                    "latitude": 48.40049743652344,
+                    "longitude": 9.985969543457031,
+                    "name": "path"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 895,
+                "from": {
+                    "latitude": 48.40049743652344,
+                    "longitude": 9.985969543457031,
+                    "name": "path"
+                },
+                "mode": "RentedVehicle",
+                "rentalVehicle": {
+                    "type": "Bicycle"
+                },
+                "scheduledArrivalTime": "2020-08-08T09:30:10Z",
+                "scheduledDepartureTime": "2020-08-08T09:25:25Z",
+                "to": {
+                    "latitude": 48.396400451660156,
+                    "longitude": 9.990229606628418,
+                    "name": "Destination"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 247,
+                "from": {
+                    "latitude": 48.39952087402344,
+                    "longitude": 9.982660293579102,
+                    "name": "Origin"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-08-08T09:28:00Z",
+                "scheduledDepartureTime": "2020-08-08T09:24:02Z",
+                "to": {
+                    "identifier": {
+                        "gtfs": "1:de:08421:1008:1:2"
+                    },
+                    "latitude": 48.399295806884766,
+                    "longitude": 9.984164237976074,
+                    "name": "Ulm Hauptbahnhof"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 1720,
+                "from": {
+                    "identifier": {
+                        "gtfs": "1:de:08421:1008:1:2"
+                    },
+                    "latitude": 48.399295806884766,
+                    "longitude": 9.984164237976074,
+                    "name": "Ulm Hauptbahnhof"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2020-08-08T09:30:00Z",
+                        "scheduledDepartureTime": "2020-08-08T09:30:00Z",
+                        "stopPoint": {
+                            "identifier": {
+                                "gtfs": "1:de:08421:1001:0:1"
+                            },
+                            "latitude": 48.397186279296875,
+                            "longitude": 9.987756729125977,
+                            "name": "Ulm Steinerne Brücke"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "Wissenschaftsstadt - Wiley / Ludwigsfeld",
+                    "line": {
+                        "mode": "Bus",
+                        "name": "5"
+                    }
+                },
+                "scheduledArrivalTime": "2020-08-08T09:32:00Z",
+                "scheduledDepartureTime": "2020-08-08T09:28:00Z",
+                "to": {
+                    "identifier": {
+                        "gtfs": "1:de:08421:1002:1:1"
+                    },
+                    "latitude": 48.397403717041016,
+                    "longitude": 9.992769241333008,
+                    "name": "Ulm Rathaus"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 235,
+                "from": {
+                    "identifier": {
+                        "gtfs": "1:de:08421:1002:1:1"
+                    },
+                    "latitude": 48.397403717041016,
+                    "longitude": 9.992769241333008,
+                    "name": "Ulm Rathaus"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2020-08-08T09:35:24Z",
+                "scheduledDepartureTime": "2020-08-08T09:32:00Z",
+                "to": {
+                    "latitude": 48.396400451660156,
+                    "longitude": 9.990229606628418,
+                    "name": "Destination"
+                }
+            }
+        ]
+    }
+]

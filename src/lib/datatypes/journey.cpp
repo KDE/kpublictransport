@@ -23,6 +23,8 @@
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
 #include "platformutils_p.h"
+#include "rentalvehicle.h"
+#include "rentalvehicleutil_p.h"
 #include "stopover.h"
 
 #include <QDebug>
@@ -53,6 +55,7 @@ public:
     std::vector<Stopover> intermediateStops;
     int co2Emission = -1;
     std::vector<LoadInfo> loadInformation;
+    RentalVehicle rentalVehicle;
 
     int estimatedDistance() const;
 };
@@ -76,6 +79,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, to, setTo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, RentalVehicle, rentalVehicle, setRentalVehicle)
 
 int JourneySectionPrivate::estimatedDistance() const
 {
@@ -278,6 +282,7 @@ Stopover JourneySection::arrival() const
 
 int JourneySection::co2Emission() const
 {
+    // TODO handle rental vehicles and ride sharing in here!
     if (d->co2Emission >= 0) {
         return d->co2Emission;
     }
@@ -417,6 +422,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
     res.d->co2Emission = std::max(lhs.d->co2Emission, rhs.d->co2Emission);
     res.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
+    res.d->rentalVehicle = RentalVehicleUtil::merge(lhs.d->rentalVehicle, rhs.d->rentalVehicle);
 
     return res;
 }
@@ -449,6 +455,9 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
     if (section.d->co2Emission < 0) {
         obj.remove(QLatin1String("co2Emission"));
     }
+    if (section.rentalVehicle().type() != RentalVehicle::Unknown) {
+        obj.insert(QStringLiteral("rentalVehicle"), RentalVehicle::toJson(section.rentalVehicle()));
+    }
 
     if (obj.size() <= 3) { // only the disruption and mode enums and distance, ie. this is an empty object
         return {};
@@ -469,6 +478,7 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
     section.setIntermediateStops(Stopover::fromJson(obj.value(QLatin1String("intermediateStops")).toArray()));
     section.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
+    section.setRentalVehicle(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
     return section;
 }
 

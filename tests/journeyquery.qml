@@ -180,6 +180,15 @@ Kirigami.ApplicationWindow {
                             case JourneySection.Walking: return "🚶";
                             case JourneySection.Waiting: return "⌛";
                             case JourneySection.Transfer: return "⇄";
+                            case JourneySection.RentedVehicle:
+                            {
+                                switch (modelData.rentalVehicle.type) {
+                                    case RentalVehicle.Bicycle: return "🚲";
+                                    case RentalVehicle.ElectricScooter: return "🛴";
+                                    case RentalVehicle.Car: return "🚗";
+                                    default: return "?";
+                                }
+                            }
                             default: return "?";
                         }
                     }
@@ -232,6 +241,8 @@ Kirigami.ApplicationWindow {
                                 return "Transfer " + displayDuration(modelData.duration)  + " / " + displayDistance(modelData.distance)
                             case JourneySection.Waiting:
                                 return "Wait " + displayDuration(modelData.duration)
+                            case JourneySection.RentedVehicle:
+                                return modelData.rentalVehicle.network;
                             return "???";
                         }}
                     }

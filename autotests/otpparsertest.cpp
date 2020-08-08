@@ -19,6 +19,7 @@
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 
 #include <QFile>
@@ -50,6 +51,7 @@ private Q_SLOTS:
         qputenv("TZ", "UTC");
         QLocale::setDefault(QLocale(QLocale::Swedish, QLocale::Finland));
         qRegisterMetaType<Disruption::Effect>();
+        qRegisterMetaType<RentalVehicle>();
     }
 
     void testParseLocationByCoordinate_data()
@@ -150,6 +152,9 @@ private Q_SLOTS:
         QTest::newRow("no-entur-journey")
             << s(SOURCE_DIR "/data/otp/no-entur-journey.in.json")
             << s(SOURCE_DIR "/data/otp/no-entur-journey.out.json");
+        QTest::newRow("de-ulm-rentalbike-journey")
+            << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.in.json")
+            << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.out.json");
     }
 
     void testParseJourney()

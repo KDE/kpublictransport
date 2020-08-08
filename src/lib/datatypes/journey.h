@@ -31,6 +31,7 @@
 namespace KPublicTransport {
 
 class JourneySectionPrivate;
+class RentalVehicle;
 class Stopover;
 
 /** A segment of a journey plan. */
@@ -119,6 +120,9 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
      */
     Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant STORED false)
 
+    /** Information about a rental vehicle, for sections using one. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle, rentalVehicle, setRentalVehicle)
+
 public:
     /** Mode of transport. */
     enum Mode {
@@ -126,7 +130,8 @@ public:
         PublicTransport,
         Transfer,
         Walking,
-        Waiting
+        Waiting,
+        RentedVehicle, ///< free floating or dock-based rental bike service, electric scooters, car sharing services, ie. any vehicle you drive yourself but that isn't your own
     };
     Q_ENUM(Mode)
     Mode mode() const;

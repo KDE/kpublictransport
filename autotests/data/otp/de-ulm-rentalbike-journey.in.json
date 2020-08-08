@@ -1,0 +1,251 @@
+{
+    "plan": {
+      "itineraries": [
+        {
+          "legs": [
+            {
+              "startTime": 1596878312000,
+              "endTime": 1596878698000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 335.44299999999987,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 48.39952087402344,
+                "lon": 9.982660293579102,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Bürgerdienste",
+                "lat": 48.400374,
+                "lon": 9.98566,
+                "stop": null,
+                "bikeRentalStation": {
+                  "id": "QmlrZVJlbnRhbFN0YXRpb246Nw==",
+                  "stationId": "7",
+                  "networks": [
+                    "openbike"
+                  ],
+                  "bikesAvailable": 2
+                }
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1596878698000,
+              "endTime": 1596878699000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 0,
+              "mode": "BICYCLE",
+              "transitLeg": false,
+              "from": {
+                "name": "Bürgerdienste",
+                "lat": 48.400374,
+                "lon": 9.98566,
+                "stop": null,
+                "bikeRentalStation": {
+                  "id": "QmlrZVJlbnRhbFN0YXRpb246Nw==",
+                  "networks": [
+                    "openbike"
+                  ],
+                  "bikesAvailable": 2,
+                  "spacesAvailable": 8
+                }
+              },
+              "to": {
+                "name": "path",
+                "lat": 48.400399231901375,
+                "lon": 9.985642661495206,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1596878699000,
+              "endTime": 1596878725000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 26.513,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "path",
+                "lat": 48.400399231901375,
+                "lon": 9.985642661495206,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "path",
+                "lat": 48.4004982,
+                "lon": 9.9859694,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1596878725000,
+              "endTime": 1596879010000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 895.204,
+              "mode": "BICYCLE",
+              "transitLeg": false,
+              "from": {
+                "name": "path",
+                "lat": 48.4004982,
+                "lon": 9.9859694,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 48.396400451660156,
+                "lon": 9.990229606628418,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            }
+          ]
+        },
+        {
+          "legs": [
+            {
+              "startTime": 1596878642000,
+              "endTime": 1596878880000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 247.89299999999997,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 48.39952087402344,
+                "lon": 9.982660293579102,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Ulm Hauptbahnhof",
+                "lat": 48.399294,
+                "lon": 9.984164,
+                "stop": {
+                  "id": "1:de:08421:1008:1:2",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1596878880000,
+              "endTime": 1596879120000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1720.4647097682664,
+              "mode": "BUS",
+              "transitLeg": true,
+              "from": {
+                "name": "Ulm Hauptbahnhof",
+                "lat": 48.399294,
+                "lon": 9.984164,
+                "stop": {
+                  "id": "1:de:08421:1008:1:2",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Ulm Rathaus",
+                "lat": 48.397403,
+                "lon": 9.992769,
+                "stop": {
+                  "id": "1:de:08421:1002:1:1",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "trip": {
+                "route": {
+                  "type": 3,
+                  "desc": null,
+                  "shortName": "5",
+                  "longName": "Ludwigsfeld / Wiley - Wissenschaftsstadt",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "Wissenschaftsstadt - Wiley / Ludwigsfeld",
+                "tripShortName": null
+              },
+              "intermediateStops": [
+                {
+                  "stop": {
+                    "id": "1:de:08421:1001:0:1",
+                    "name": "Ulm Steinerne Brücke",
+                    "lat": 48.397188,
+                    "lon": 9.987757,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1596879000000,
+                  "scheduledDepartureTime": 1596879000000
+                }
+              ]
+            },
+            {
+              "startTime": 1596879120000,
+              "endTime": 1596879324000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 235.94299999999996,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Ulm Rathaus",
+                "lat": 48.397403,
+                "lon": 9.992769,
+                "stop": {
+                  "id": "1:de:08421:1002:1:1",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 48.396400451660156,
+                "lon": 9.990229606628418,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            }
+          ]
+        }
+      ]
+    }
+}

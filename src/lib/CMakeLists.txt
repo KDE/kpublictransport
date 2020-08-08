@@ -53,6 +53,8 @@ set(kpublictransport_srcs
     datatypes/notesutil.cpp
     datatypes/platform.cpp
     datatypes/platformutils.cpp
+    datatypes/rentalvehicle.cpp
+    datatypes/rentalvehicleutil.cpp
     datatypes/stopover.cpp
     datatypes/stopoverutil.cpp
     datatypes/vehicle.cpp
@@ -129,6 +131,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Line
         Load
         Location
+        RentalVehicle
         Platform
         Stopover
         Vehicle

@@ -19,6 +19,7 @@
 #include "gtfs/hvt.h"
 
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 
 #include <QColor>
@@ -326,14 +327,18 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
 
     const auto fromObj = obj.value(QLatin1String("from")).toObject();
     const auto fromStop = fromObj.value(QLatin1String("stop")).toObject();
-    auto from = parseLocation(fromStop);
+    const auto fromBikeRental = fromObj.value(QLatin1String("bikeRentalStation")).toObject();
+    auto from = parseLocation(fromBikeRental);
+    from = parseLocation(fromStop);
     from = parseLocation(fromObj, from);
     section.setFrom(from);
     section.setScheduledDeparturePlatform(fromStop.value(QLatin1String("platformCode")).toString());
 
     const auto toObj = obj.value(QLatin1String("to")).toObject();
     const auto toStop = toObj.value(QLatin1String("stop")).toObject();
-    auto to = parseLocation(toStop);
+    const auto toBikeRental = toObj.value(QLatin1String("bikeRentalStation")).toObject();
+    auto to = parseLocation(toBikeRental);
+    to = parseLocation(toStop);
     to = parseLocation(toObj, to);
     section.setTo(to);
     section.setScheduledDeparturePlatform(toStop.value(QLatin1String("platformCode")).toString());
@@ -344,7 +349,18 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         section.setMode(JourneySection::PublicTransport);
         section.setRoute(detectAndParseRoute(obj));
     } else {
-        section.setMode(JourneySection::Walking);
+        if (obj.value(QLatin1String("mode")).toString() == QLatin1String("BICYCLE")) {
+            section.setMode(JourneySection::RentedVehicle);
+            RentalVehicle v;
+            v.setType(RentalVehicle::Bicycle);
+            const auto networks = fromBikeRental.value(QLatin1String("networks")).toArray();
+            if (!networks.isEmpty()) {
+                v.setNetwork(networks.at(0).toString());
+            }
+            section.setRentalVehicle(v);
+        } else {
+            section.setMode(JourneySection::Walking);
+        }
     }
 
     section.addNotes(m_alerts);

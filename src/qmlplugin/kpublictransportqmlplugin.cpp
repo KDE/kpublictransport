@@ -30,6 +30,7 @@
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/Platform>
+#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/StopoverRequest>
 #include <KPublicTransport/StopoverQueryModel>
 #include <KPublicTransport/Vehicle>
@@ -42,6 +43,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::LoadInfo>();
     qRegisterMetaType<KPublicTransport::Location>();
     qRegisterMetaType<KPublicTransport::Platform>();
+    qRegisterMetaType<KPublicTransport::RentalVehicle>();
     qRegisterMetaType<KPublicTransport::Stopover>();
     // backward compat
     qRegisterMetaType<KPublicTransport::StopoverRequest>("KPublicTransport::DepartureRequest");
@@ -54,6 +56,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableType<KPublicTransport::Vehicle>("org.kde.kpublictransport", 1, 0, "Vehicle", {});
     qmlRegisterUncreatableType<KPublicTransport::VehicleSection>("org.kde.kpublictransport", 1, 0, "VehicleSection", {});
     qmlRegisterUncreatableType<KPublicTransport::Platform>("org.kde.kpublictransport", 1, 0, "Platform", {});
+    qmlRegisterUncreatableType<KPublicTransport::RentalVehicle>("org.kde.kpublictransport", 1, 0, "RentalVehicle", {});
 
     qmlRegisterUncreatableType<KPublicTransport::JourneyRequest>("org.kde.kpublictransport", 1, 0, "JourneyRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::LocationRequest>("org.kde.kpublictransport", 1, 0, "LocationRequest", {});
