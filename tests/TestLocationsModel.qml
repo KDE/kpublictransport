@@ -98,6 +98,7 @@ ListModel {
     ListElement { label: "Atlanta Airport Station"; lat: 33.64089; lon: -84.44674 }
     ListElement { label: "Atlanta Five Points"; lat: 33.75401; lon: -84.39170 }
 
+    ListElement { label: "Stuttgart Hauptbahnhof"; lat: 48.78357; lon: 9.18146 }
     ListElement { label: "Ulm Hauptbahnhof"; lat: 48.39952; lon: 9.98266 }
     ListElement { label: "Verschwörhaus Ulm"; lat: 48.3964; lon: 9.99023 }
     ListElement { label: "Herrenberg Bahnhof"; lat: 48.59409; lon: 8.86291 }

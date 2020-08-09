@@ -1,0 +1,403 @@
+{
+    "plan": {
+      "itineraries": [
+        {
+          "legs": [
+            {
+              "startTime": 1597025619000,
+              "endTime": 1597026010000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 459.252,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Origin",
+                "lat": 48.645301818847656,
+                "lon": 8.897701263427734,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Gärtringen, Feuerwehrgerätehaus",
+                "lat": 48.6426228711,
+                "lon": 8.8950473145,
+                "stop": {
+                  "id": "mfdz:5007052",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1597026010000,
+              "endTime": 1597027851000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 31186.207146365785,
+              "mode": "CARPOOL",
+              "transitLeg": true,
+              "from": {
+                "name": "Gärtringen, Feuerwehrgerätehaus",
+                "lat": 48.6426228711,
+                "lon": 8.8950473145,
+                "stop": {
+                  "id": "mfdz:5007052",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Stuttgart, Dorotheenstraße",
+                "lat": 48.7752365486,
+                "lon": 9.1819546518,
+                "stop": {
+                  "id": "mfdz:5006023",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "trip": {
+                "route": {
+                  "type": 1700,
+                  "desc": null,
+                  "shortName": null,
+                  "longName": "Deckenpfronn nach 71364 Winnenden",
+                  "color": null,
+                  "textColor": null,
+                  "alerts": []
+                },
+                "tripHeadsign": "Winnenden",
+                "tripShortName": null
+              },
+              "intermediateStops": [
+                {
+                  "stop": {
+                    "id": "mfdz:5004727",
+                    "name": "Gärtringen, Rathaus",
+                    "lat": 48.6418648632,
+                    "lon": 8.9023221048,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026079000,
+                  "scheduledDepartureTime": 1597026079000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:tmp-756",
+                    "name": "71116 Gärtringen",
+                    "lat": 48.641586,
+                    "lon": 8.9029165,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026089000,
+                  "scheduledDepartureTime": 1597026089000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5004752",
+                    "name": "Ehningen, Abzweig (K1077)",
+                    "lat": 48.655498508099996,
+                    "lon": 8.9446168851,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026328000,
+                  "scheduledDepartureTime": 1597026328000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5004716",
+                    "name": "Böblingen, Herrenberger Straße",
+                    "lat": 48.677380479199996,
+                    "lon": 8.9848141153,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026544000,
+                  "scheduledDepartureTime": 1597026544000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5004707",
+                    "name": "Böblingen, Kremser Straße",
+                    "lat": 48.6797372506,
+                    "lon": 8.9927167728,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026583000,
+                  "scheduledDepartureTime": 1597026583000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5003106",
+                    "name": "Böblingen, Breslauer Straße",
+                    "lat": 48.68140104209999,
+                    "lon": 8.9973066149,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026607000,
+                  "scheduledDepartureTime": 1597026607000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5004702",
+                    "name": "Böblingen, Steinbeisstraße",
+                    "lat": 48.6816436898,
+                    "lon": 9.0056583858,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026661000,
+                  "scheduledDepartureTime": 1597026661000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:tmp-176",
+                    "name": "Böblingen",
+                    "lat": 48.6813312,
+                    "lon": 9.0088299,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026699000,
+                  "scheduledDepartureTime": 1597026699000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5003126",
+                    "name": "Böblingen, Parkstraße (Landratsamt)",
+                    "lat": 48.6837747568,
+                    "lon": 9.008116757,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026734000,
+                  "scheduledDepartureTime": 1597026734000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5003105",
+                    "name": "Böblingen, Elbenplatz",
+                    "lat": 48.6849346242,
+                    "lon": 9.0100997854,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026754000,
+                  "scheduledDepartureTime": 1597026754000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5003112",
+                    "name": "Böblingen, Friedrich-List-Platz",
+                    "lat": 48.6877943375,
+                    "lon": 9.0090274297,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597026781000,
+                  "scheduledDepartureTime": 1597026781000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5002580",
+                    "name": "Stuttgart, Johannesgraben",
+                    "lat": 48.73950664149999,
+                    "lon": 9.105403706699999,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597027264000,
+                  "scheduledDepartureTime": 1597027264000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5002604",
+                    "name": "Stuttgart, Knappenweg",
+                    "lat": 48.745937626999996,
+                    "lon": 9.113358141400001,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597027325000,
+                  "scheduledDepartureTime": 1597027325000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5006020",
+                    "name": "Stuttgart, Österreichischer Platz",
+                    "lat": 48.7706420291,
+                    "lon": 9.175802535599999,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597027796000,
+                  "scheduledDepartureTime": 1597027796000
+                },
+                {
+                  "stop": {
+                    "id": "mfdz:5006074",
+                    "name": "Stuttgart, Rathaus",
+                    "lat": 48.7737560712,
+                    "lon": 9.1798813295,
+                    "platformCode": null,
+                    "timezone": null
+                  },
+                  "scheduledArrivalTime": 1597027833000,
+                  "scheduledDepartureTime": 1597027833000
+                }
+              ]
+            },
+            {
+              "startTime": 1597027851000,
+              "endTime": 1597027967000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 58.307,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Stuttgart, Dorotheenstraße",
+                "lat": 48.7752365486,
+                "lon": 9.1819546518,
+                "stop": {
+                  "id": "mfdz:5006023",
+                  "platformCode": null,
+                  "timezone": null
+                },
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Charlottenplatz / Dorotheenstr.",
+                "lat": 48.77566,
+                "lon": 9.18208,
+                "stop": null,
+                "bikeRentalStation": {
+                  "id": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ==",
+                  "stationId": "1A906F73C5C6142F68EF0B4D04F7D59F69260DD9",
+                  "networks": [
+                    "regiorad"
+                  ],
+                  "bikesAvailable": 12
+                }
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1597027967000,
+              "endTime": 1597028415000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1227.9299999999998,
+              "mode": "BICYCLE",
+              "transitLeg": false,
+              "from": {
+                "name": "Charlottenplatz / Dorotheenstr.",
+                "lat": 48.77566,
+                "lon": 9.18208,
+                "stop": null,
+                "bikeRentalStation": {
+                  "id": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ==",
+                  "networks": [
+                    "regiorad"
+                  ],
+                  "bikesAvailable": 12,
+                  "spacesAvailable": 99
+                }
+              },
+              "to": {
+                "name": "corner of path and open area",
+                "lat": 48.782593500000004,
+                "lon": 9.181904900000001,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1597028419000,
+              "endTime": 1597028420000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 0,
+              "mode": "BICYCLE",
+              "transitLeg": false,
+              "from": {
+                "name": "open area",
+                "lat": 48.78257223002545,
+                "lon": 9.181889278625992,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "to": {
+                "name": "Königstraße / Arnulf-Klett-Platz",
+                "lat": 48.782572,
+                "lon": 9.18189,
+                "stop": null,
+                "bikeRentalStation": {
+                  "id": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ==",
+                  "stationId": "7EBB5875DE3F16437FC62A37E38607425D87A3CE",
+                  "networks": [
+                    "regiorad"
+                  ],
+                  "bikesAvailable": 23
+                }
+              },
+              "trip": null,
+              "intermediateStops": []
+            },
+            {
+              "startTime": 1597028420000,
+              "endTime": 1597028609000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 158.726,
+              "mode": "WALK",
+              "transitLeg": false,
+              "from": {
+                "name": "Königstraße / Arnulf-Klett-Platz",
+                "lat": 48.782572,
+                "lon": 9.18189,
+                "stop": null,
+                "bikeRentalStation": {
+                  "id": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ==",
+                  "networks": [
+                    "regiorad"
+                  ],
+                  "bikesAvailable": 23,
+                  "spacesAvailable": 99
+                }
+              },
+              "to": {
+                "name": "Destination",
+                "lat": 48.7835693359375,
+                "lon": 9.1814603805542,
+                "stop": null,
+                "bikeRentalStation": null
+              },
+              "trip": null,
+              "intermediateStops": []
+            }
+          ]
+        }
+      ]
+    }
+}

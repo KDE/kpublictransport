@@ -353,9 +353,14 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
             section.setMode(JourneySection::RentedVehicle);
             RentalVehicle v;
             v.setType(RentalVehicle::Bicycle);
-            const auto networks = fromBikeRental.value(QLatin1String("networks")).toArray();
+            auto networks = fromBikeRental.value(QLatin1String("networks")).toArray();
             if (!networks.isEmpty()) {
                 v.setNetwork(networks.at(0).toString());
+            } else {
+                networks = toBikeRental.value(QLatin1String("networks")).toArray();
+                if (!networks.isEmpty()) {
+                    v.setNetwork(networks.at(0).toString());
+                }
             }
             section.setRentalVehicle(v);
         } else {
