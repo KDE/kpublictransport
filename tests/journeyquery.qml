@@ -184,7 +184,9 @@ Kirigami.ApplicationWindow {
                             {
                                 switch (modelData.rentalVehicle.type) {
                                     case RentalVehicle.Bicycle: return "🚲";
-                                    case RentalVehicle.ElectricScooter: return "🛴";
+                                    case RentalVehicle.Pedelec: return "🚲";
+                                    case RentalVehicle.ElectricKickScooter: return "🛴";
+                                    case RentalVehicle.ElectricMoped: return "🛵";
                                     case RentalVehicle.Car: return "🚗";
                                     default: return "?";
                                 }

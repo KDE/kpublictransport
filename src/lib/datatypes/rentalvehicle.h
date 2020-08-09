@@ -15,9 +15,13 @@ class RentalVehiclePrivate;
 
 /** An individual rental vehicle used on a JourneySection, ie. a vehicle you don't own yourself but have to drive yourself.
  *  This can be:
- *  - free floating or dock-based rental bikes
+ *  - free floating or dock-based rental bikes, with or without electric assistance
  *  - car sharing (but not ride sharing)
- *  - electric scooters
+ *  - electric (kick) scooters
+ *  - electric motorcycles (scooters)
+ *
+ *  @see GBFS: https://github.com/NABSA/gbfs/blob/v2.1-RC/gbfs.md#vehicle_typesjson-added-in-v21-rc
+ *  @see MDS: https://github.com/openmobilityfoundation/mobility-data-specification/blob/master/provider/README.md#vehicle-types
  */
 class KPUBLICTRANSPORT_EXPORT RentalVehicle
 {
@@ -26,9 +30,12 @@ public:
     /** Type of vehicle. */
     enum VehicleType {
         Unknown,
-        Bicycle,
-        ElectricScooter,
-        Car,
+        Bicycle, ///< human-powered bicylce
+        Pedelec, ///< bicycle with electric assistance
+        ElectricKickScooter, ///< "e scooter", electrically assisted kick scooters, not to be confused with motorcycle-like scooters
+        ElectricScooter [[deprecated("use ElectricKickScooter")]] = ElectricKickScooter,
+        ElectricMoped, ///< motorcycle-like electric scooters
+        Car, ///< electrical- or combustion-powered car
     };
     Q_ENUM(VehicleType)
 
