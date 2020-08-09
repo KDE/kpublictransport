@@ -62,7 +62,8 @@
         ]
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/"
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/",
+        "supportedModes": "BICYCLE_RENT,BUS,RAIL,SUBWAY,TRAM,WALK"
     },
     "timezone": "Europe/Helsinki",
     "type": "otp_graphql"

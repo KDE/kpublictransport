@@ -57,7 +57,8 @@
         ]
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/"
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/",
+        "supportedModes": "BICYCLE_RENT,BUS,RAIL,SUBWAY,TRAM,WALK"
     },
     "timezone": "Europe/Helsinki",
     "type": "otp_graphql"

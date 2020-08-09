@@ -32,6 +32,7 @@ class OpenTripPlannerGraphQLBackend : public AbstractBackend
     Q_GADGET
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString apiVersion MEMBER m_apiVersion)
+    Q_PROPERTY(QString supportedModes MEMBER m_supportedModes)
     Q_PROPERTY(QJsonValue extraHttpHeaders WRITE setExtraHttpHeaders)
 
 public:
@@ -53,6 +54,7 @@ private:
 
     QString m_endpoint;
     QString m_apiVersion;
+    QString m_supportedModes = QStringLiteral("BUS,RAIL,SUBWAY,TRAM,WALK");
     std::vector<std::pair<QByteArray, QByteArray>> m_extraHeaders;
 };
 

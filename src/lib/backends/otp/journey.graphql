@@ -5,7 +5,8 @@ query journeys(
   $toLon: Float!,
   $date: String!,
   $time: String!,
-  $arriveBy: Boolean!
+  $arriveBy: Boolean!,
+  $modes: String!
 ) {
   plan (
         from: { lat: $fromLat, lon: $fromLon }
@@ -14,7 +15,7 @@ query journeys(
         time: $time
         arriveBy: $arriveBy
         numItineraries: 3
-        modes: "BICYCLE_RENT,BUS,RAIL,TRAM,WALK"
+        modes: $modes
     ) {
         itineraries {
             legs {
