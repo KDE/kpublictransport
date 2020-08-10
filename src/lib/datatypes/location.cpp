@@ -20,6 +20,7 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
+#include "rentalvehicleutil_p.h"
 
 #include <QDebug>
 #include <QHash>
@@ -48,6 +49,8 @@ public:
     QString locality;
     QString region;
     QString country;
+
+    RentalVehicleStation rentalVehicleStation;
 };
 
 }
@@ -61,6 +64,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, region, setRegion)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, country, setCountry)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, RentalVehicleStation, rentalVehicleStation, setRentalVehicleStation)
 
 void Location::setCoordinate(float latitude, float longitude)
 {
@@ -242,6 +246,11 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return true;
     }
 
+    if (lhs.rentalVehicleStation().isValid() && rhs.rentalVehicleStation().isValid()
+        && !RentalVehicleStation::isSame(lhs.rentalVehicleStation(), rhs.rentalVehicleStation())) {
+        return false;
+    }
+
     // name
     if (isSameName(lhs.name(), rhs.name())) {
         return true;
@@ -335,6 +344,8 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     l.setRegion(MergeUtil::mergeString(lhs.region(), rhs.region()));
     l.setCountry(MergeUtil::mergeString(lhs.country(), rhs.country()));
 
+    l.setRentalVehicleStation(RentalVehicleUtil::merge(lhs.rentalVehicleStation(), rhs.rentalVehicleStation()));
+
     return l;
 }
 
@@ -374,6 +385,10 @@ QJsonObject Location::toJson(const Location &loc)
         obj.insert(QStringLiteral("identifier"), ids);
     }
 
+    if (loc.rentalVehicleStation().isValid()) {
+        obj.insert(QStringLiteral("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
+    }
+
     return obj;
 }
 
@@ -394,6 +409,8 @@ Location Location::fromJson(const QJsonObject &obj)
     for (auto it = ids.begin(); it != ids.end(); ++it) {
         loc.setIdentifier(it.key(), it.value().toString());
     }
+
+    loc.setRentalVehicleStation(RentalVehicleStation::fromJson(obj.value(QLatin1String("rentalVehicleStation")).toObject()));
 
     return loc;
 }

@@ -265,7 +265,11 @@
                 "to": {
                     "latitude": 48.77566146850586,
                     "longitude": 9.182080268859863,
-                    "name": "Charlottenplatz / Dorotheenstr."
+                    "name": "Charlottenplatz / Dorotheenstr.",
+                    "rentalVehicleStation": {
+                        "availableVehicles": 12,
+                        "capacity": -1
+                    }
                 }
             },
             {
@@ -274,11 +278,17 @@
                 "from": {
                     "latitude": 48.77566146850586,
                     "longitude": 9.182080268859863,
-                    "name": "Charlottenplatz / Dorotheenstr."
+                    "name": "Charlottenplatz / Dorotheenstr.",
+                    "rentalVehicleStation": {
+                        "availableVehicles": 12,
+                        "capacity": 99
+                    }
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
-                    "network": "regiorad",
+                    "network": {
+                        "name": "regiorad"
+                    },
                     "type": "Bicycle"
                 },
                 "scheduledArrivalTime": "2020-08-10T03:00:15Z",
@@ -299,7 +309,9 @@
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
-                    "network": "regiorad",
+                    "network": {
+                        "name": "regiorad"
+                    },
                     "type": "Bicycle"
                 },
                 "scheduledArrivalTime": "2020-08-10T03:00:20Z",
@@ -307,7 +319,11 @@
                 "to": {
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
-                    "name": "Königstraße / Arnulf-Klett-Platz"
+                    "name": "Königstraße / Arnulf-Klett-Platz",
+                    "rentalVehicleStation": {
+                        "availableVehicles": 23,
+                        "capacity": -1
+                    }
                 }
             },
             {
@@ -316,7 +332,11 @@
                 "from": {
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
-                    "name": "Königstraße / Arnulf-Klett-Platz"
+                    "name": "Königstraße / Arnulf-Klett-Platz",
+                    "rentalVehicleStation": {
+                        "availableVehicles": 23,
+                        "capacity": 99
+                    }
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-08-10T03:03:29Z",

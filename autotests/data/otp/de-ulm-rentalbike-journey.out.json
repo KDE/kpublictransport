@@ -15,7 +15,11 @@
                 "to": {
                     "latitude": 48.40037536621094,
                     "longitude": 9.9856595993042,
-                    "name": "Bürgerdienste"
+                    "name": "Bürgerdienste",
+                    "rentalVehicleStation": {
+                        "availableVehicles": 2,
+                        "capacity": -1
+                    }
                 }
             },
             {
@@ -24,11 +28,17 @@
                 "from": {
                     "latitude": 48.40037536621094,
                     "longitude": 9.9856595993042,
-                    "name": "Bürgerdienste"
+                    "name": "Bürgerdienste",
+                    "rentalVehicleStation": {
+                        "availableVehicles": 2,
+                        "capacity": 8
+                    }
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
-                    "network": "openbike",
+                    "network": {
+                        "name": "openbike"
+                    },
                     "type": "Bicycle"
                 },
                 "scheduledArrivalTime": "2020-08-08T09:24:59Z",

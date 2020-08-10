@@ -56,6 +56,7 @@ public:
     std::vector<Journey> parseJourneys(const QJsonObject &obj) const;
 
 private:
+    RentalVehicleStation parseRentalVehicleStation(const QJsonObject &obj) const;
     Location parseLocation(const QJsonObject &obj, Location loc = {}) const;
     void parseAlerts(const QJsonArray &alertsArray) const;
     Line parseLine(const QJsonObject &obj) const;

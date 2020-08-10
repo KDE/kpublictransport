@@ -19,6 +19,7 @@
 #define KPUBLICTRANSPORT_LOCATION_H
 
 #include "datatypes.h"
+#include "rentalvehicle.h"
 
 class QJsonArray;
 class QJsonObject;
@@ -55,6 +56,9 @@ class KPUBLICTRANSPORT_EXPORT Location
     Q_PROPERTY(bool hasCoordinate READ hasCoordinate STORED false)
 
     // TODO: type, id
+
+    /** Rental vehicle dock information, if applicable for this location. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleStation, rentalVehicleStation, setRentalVehicleStation)
 
 public:
     void setCoordinate(float latitude, float longitude);

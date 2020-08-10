@@ -37,6 +37,21 @@ OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType)
 
 OpenTripPlannerParser::~OpenTripPlannerParser() = default;
 
+RentalVehicleStation OpenTripPlannerParser::parseRentalVehicleStation(const QJsonObject &obj) const
+{
+    RentalVehicleStation s;
+    // TODO id
+    const auto networks = obj.value(QLatin1String("networks")).toArray();
+    if (!networks.empty()) {
+        RentalVehicleNetwork n;
+        n.setName(networks.at(0).toString());
+        s.setNetwork(n);
+    }
+    s.setCapacity(obj.value(QLatin1String("spacesAvailable")).toInt(-1));
+    s.setAvailableVehicles(obj.value(QLatin1String("bikesAvailable")).toInt(-1));
+    return s;
+}
+
 Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj, Location loc) const
 {
     const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
@@ -57,6 +72,12 @@ Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj, Location l
     if (!id.isEmpty()) {
         loc.setIdentifier(m_identifierType, id);
     }
+
+    const auto bss = obj.value(QLatin1String("bikeRentalStation")).toObject();
+    if (!bss.isEmpty()) {
+        loc.setRentalVehicleStation(parseRentalVehicleStation(bss));
+    }
+
     return loc;
 }
 
@@ -352,16 +373,18 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         if (obj.value(QLatin1String("mode")).toString() == QLatin1String("BICYCLE")) {
             section.setMode(JourneySection::RentedVehicle);
             RentalVehicle v;
+            RentalVehicleNetwork n;
             v.setType(RentalVehicle::Bicycle);
             auto networks = fromBikeRental.value(QLatin1String("networks")).toArray();
             if (!networks.isEmpty()) {
-                v.setNetwork(networks.at(0).toString());
+                n.setName(networks.at(0).toString());
             } else {
                 networks = toBikeRental.value(QLatin1String("networks")).toArray();
                 if (!networks.isEmpty()) {
-                    v.setNetwork(networks.at(0).toString());
+                    n.setName(networks.at(0).toString());
                 }
             }
+            v.setNetwork(n);
             section.setRentalVehicle(v);
         } else {
             section.setMode(JourneySection::Walking);

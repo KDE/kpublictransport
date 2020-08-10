@@ -244,7 +244,7 @@ Kirigami.ApplicationWindow {
                             case JourneySection.Waiting:
                                 return "Wait " + displayDuration(modelData.duration)
                             case JourneySection.RentedVehicle:
-                                return modelData.rentalVehicle.network;
+                                return modelData.rentalVehicle.network.name;
                             return "???";
                         }}
                     }

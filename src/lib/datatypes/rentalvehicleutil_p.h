@@ -10,10 +10,14 @@
 namespace KPublicTransport {
 
 class RentalVehicle;
+class RentalVehicleNetwork;
+class RentalVehicleStation;
 
 /** Internal helpers for rental vehicles. */
 namespace RentalVehicleUtil
 {
+    RentalVehicleNetwork merge(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
+    RentalVehicleStation merge(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
     RentalVehicle merge(const RentalVehicle &lhs, const RentalVehicle &rhs);
 }
 
