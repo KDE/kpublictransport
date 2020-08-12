@@ -12,10 +12,10 @@
 
 #include <QJsonDocument>
 #include <QObject>
+#include <QUrl>
 
 class QNetworkAccessManager;
 class QNetworkReply;
-class QUrl;
 
 namespace KPublicTransport {
 

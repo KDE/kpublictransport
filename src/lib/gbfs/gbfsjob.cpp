@@ -12,7 +12,6 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkReply>
-#include <QUrl>
 
 #include <cassert>
 #include <cmath>
