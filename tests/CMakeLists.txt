@@ -10,6 +10,9 @@ target_link_libraries(locationquery KPublicTransport Qt5::Quick Qt5::Widgets)
 add_executable(locationcompleter locationcompleter.cpp)
 target_link_libraries(locationcompleter KPublicTransport Qt5::Widgets)
 
+add_executable(gbfsdiscover gbfsdiscover.cpp)
+target_link_libraries(gbfsdiscover KPublicTransport Qt5::Network)
+
 add_executable(graphql-cli graphql-cli.cpp)
 target_link_libraries(graphql-cli KGraphQL)
 

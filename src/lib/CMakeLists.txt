@@ -60,6 +60,10 @@ set(kpublictransport_srcs
     datatypes/vehicle.cpp
     datatypes/vehiclelayoutresult.cpp
 
+    gbfs/gbfs.cpp
+    gbfs/gbfsjob.cpp
+    gbfs/gbfsstore.cpp
+
     gtfs/hvt.cpp
 
     knowledgedb/linemetadata.cpp
