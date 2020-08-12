@@ -6,6 +6,8 @@
 
 #include "gbfsstore.h"
 
+#include <QDateTime>
+#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -13,6 +15,7 @@
 #include <QJsonObject>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QUrl>
 
 #include <cassert>
 #include <chrono>
