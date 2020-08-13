@@ -63,8 +63,37 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
     //qDebug() << QJsonDocument(top).toJson();
 
     const auto data = top.value(QLatin1String("data")).toObject();
-    // TODO pick the best language
-    const auto feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
+    // pick the feeds with the best language for our current locale
+    QJsonArray feeds;
+    if (data.size() == 1) {
+        // only one set of feeds
+        qDebug() << "only one set of feeds found";
+        feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
+    } else if (!data.empty()) {
+        const auto localeLangs = QLocale().uiLanguages();
+        for (const auto &l : localeLangs) {
+            feeds = data.value(l).toObject().value(QLatin1String("feeds")).toArray();
+            if (feeds.isEmpty()) {
+                feeds = data.value(l.toLower()).toObject().value(QLatin1String("feeds")).toArray();
+            }
+            if (feeds.empty() && l.size() > 2 && l[2] == QLatin1Char('-')) {
+                feeds = data.value(l.left(2)).toObject().value(QLatin1String("feeds")).toArray();
+            }
+            if (!feeds.empty()) {
+                break;
+            }
+        }
+        // take the first one if we haven't found a better match
+        if (feeds.empty()) {
+            qDebug() << "picking first language, as none matches" << localeLangs;
+            feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
+        }
+    }
+    if (feeds.empty()) {
+        qWarning() << "no feeds found!?";
+        qWarning().noquote() << m_discoverDoc.toJson();
+    }
+
     for (const auto &feedVal : feeds) {
         const auto feed = feedVal.toObject();
         const auto name = feed.value(QLatin1String("name")).toString();
