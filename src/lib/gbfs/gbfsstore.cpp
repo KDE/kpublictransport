@@ -88,7 +88,7 @@ void GBFSStore::storeData(GBFS::FileType type, const QJsonDocument &doc)
         qWarning() << f.errorString() << f.fileName();
         return;
     }
-    f.write(doc.toJson());
+    f.write(doc.toJson(QJsonDocument::Compact));
     f.close();
 
     // mtime changes need to be done without content changes to take effect

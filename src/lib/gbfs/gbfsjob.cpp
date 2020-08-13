@@ -165,7 +165,7 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
     // TODO error handling
 
     const auto doc = QJsonDocument::fromJson(reply->readAll());
-    qDebug().noquote() << doc.toJson();
+    //qDebug().noquote() << doc.toJson();
     m_store.storeData(type, doc);
     parseData(doc, type);
 }
@@ -176,6 +176,9 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
         case GBFS::StationInformation:
             parseStationInformation(doc);
             break;
+        case GBFS::FreeBikeStatus:
+            parseFreeBikeStatus(doc);
+            break;
         default:
             break;
     }
@@ -184,6 +187,26 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)
 {
     const auto stations = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
+    for (const auto &statVal : stations) {
+        const auto station = statVal.toObject();
+        const auto lat = station.value(QLatin1String("lat")).toDouble(NAN);
+        if (!std::isnan(lat)) {
+            m_minLat = std::min(m_minLat, lat);
+            m_maxLat = std::max(m_minLat, lat);
+        }
+        const auto lon = station.value(QLatin1String("lon")).toDouble(NAN);
+        if (!std::isnan(lon)) {
+            m_minLon = std::min(m_minLon, lon);
+            m_maxLon = std::max(m_maxLon, lon);
+        }
+    }
+
+    qDebug() << "station bounding box:" << m_minLat << m_minLon << m_maxLat << m_maxLon;
+}
+
+void GBFSJob::parseFreeBikeStatus(const QJsonDocument &doc)
+{
+    const auto stations = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
     for (const auto &statVal : stations) {
         const auto station = statVal.toObject();
         const auto lat = station.value(QLatin1String("lat")).toDouble(NAN);

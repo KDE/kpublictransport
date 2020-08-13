@@ -39,6 +39,7 @@ private:
     void fetchFinished(QNetworkReply *reply, GBFS::FileType type);
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
     void parseStationInformation(const QJsonDocument &doc);
+    void parseFreeBikeStatus(const QJsonDocument &doc);
 
     QNetworkAccessManager *m_nam = nullptr;
     GBFSStore m_store;
