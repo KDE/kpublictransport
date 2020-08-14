@@ -116,18 +116,17 @@ void SceneGraph::recomputeLayerIndex()
         return;
     }
 
-    auto prevLayer = m_items.front().layer;
     auto prevIndex = 0;
     for (auto it = m_items.begin(); it != m_items.end();) {
-        it = std::upper_bound(it, m_items.end(), prevLayer, [](const auto &lhs, const auto &rhs) {
-            return lhs < rhs.layer;
+        it = std::upper_bound(it, m_items.end(), *it, [](const auto &lhs, const auto &rhs) {
+            if (lhs.level == rhs.level) {
+                return lhs.layer < rhs.layer;
+            }
+            return lhs.level < rhs.level;
         });
         const auto nextIndex = std::distance(m_items.begin(), it);
         m_layerOffsets.push_back(std::make_pair(prevIndex, nextIndex));
         prevIndex = nextIndex;
-        if (it != m_items.end()) {
-            prevLayer = (*it).layer;
-        }
     }
 }
 
