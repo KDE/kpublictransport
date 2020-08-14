@@ -55,6 +55,7 @@ private:
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
     void parseStationInformation(const QJsonDocument &doc);
     void parseFreeBikeStatus(const QJsonDocument &doc);
+    void computeBoundingBox(const QJsonArray &array);
 
     QNetworkAccessManager *m_nam = nullptr;
     GBFSStore m_store;

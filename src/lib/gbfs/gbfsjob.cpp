@@ -6,6 +6,8 @@
 
 #include "gbfsjob.h"
 
+#include <KPublicTransport/Location>
+
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -223,39 +225,90 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)
 {
     const auto stations = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
-    for (const auto &statVal : stations) {
-        const auto station = statVal.toObject();
-        const auto lat = station.value(QLatin1String("lat")).toDouble(NAN);
-        if (!std::isnan(lat)) {
-            m_minLat = std::min(m_minLat, lat);
-            m_maxLat = std::max(m_minLat, lat);
-        }
-        const auto lon = station.value(QLatin1String("lon")).toDouble(NAN);
-        if (!std::isnan(lon)) {
-            m_minLon = std::min(m_minLon, lon);
-            m_maxLon = std::max(m_maxLon, lon);
-        }
-    }
-
+    computeBoundingBox(stations);
+    qDebug() << stations.size() << "stations/docks";
     qDebug() << "station bounding box:" << m_minLat << m_minLon << m_maxLat << m_maxLon;
 }
 
 void GBFSJob::parseFreeBikeStatus(const QJsonDocument &doc)
 {
-    const auto stations = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
-    for (const auto &statVal : stations) {
+    const auto bikes = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
+    computeBoundingBox(bikes);
+    qDebug() << bikes.size() << "free floating vehicles";
+    qDebug() << "station bounding box:" << m_minLat << m_minLon << m_maxLat << m_maxLon;
+}
+
+static void filterOutliers(const std::vector<double> &values, double &minVal, double &maxVal, const std::function<double(double, double)> &distFunc)
+{
+    // first step: primitive distance-based trimming at the extremes
+    auto beginIt = values.begin();
+    while(std::next(beginIt) != values.end()) {
+        if (distFunc(*beginIt, *std::next(beginIt)) > 50'000) {
+            ++beginIt;
+        } else {
+            break;
+        }
+    }
+    auto endIt = std::prev(values.end());
+    while(endIt != beginIt && std::prev(endIt) != beginIt) {
+        if (distFunc(*endIt, *std::prev(endIt)) > 50'000) {
+            --endIt;
+        } else {
+            break;
+        }
+    }
+    ++endIt;
+
+    // second step: standard deviation
+    const auto n = std::distance(beginIt, endIt);
+    const auto mean = std::accumulate(beginIt, endIt, 0.0, [n](auto a, auto b) { return a + b / n; });
+    auto sigma = std::accumulate(beginIt, endIt, 0.0, [n](auto a, auto b) {
+        return a + (std::pow(b, 2.0) / n);
+    });
+    sigma = std::sqrt(sigma - std::pow(mean, 2.0)) * 3.0;
+    minVal = std::min(minVal, std::max(mean - sigma, values.front())); // clamp by 3 sigma, but don't exceed the input range when not needed
+    maxVal = std::max(maxVal, std::min(mean + sigma, values.back()));
+}
+
+void GBFSJob::computeBoundingBox(const QJsonArray &array)
+{
+    std::vector<double> lats, lons;
+    lats.reserve(array.size());
+    lons.reserve(array.size());
+
+    for (const auto &statVal : array) {
         const auto station = statVal.toObject();
         const auto lat = station.value(QLatin1String("lat")).toDouble(NAN);
-        if (!std::isnan(lat)) {
-            m_minLat = std::min(m_minLat, lat);
-            m_maxLat = std::max(m_minLat, lat);
+        if (!std::isnan(lat) && lat >= -90.0 && lat <= 90.0) {
+            lats.push_back(lat);
         }
         const auto lon = station.value(QLatin1String("lon")).toDouble(NAN);
-        if (!std::isnan(lon)) {
-            m_minLon = std::min(m_minLon, lon);
-            m_maxLon = std::max(m_maxLon, lon);
+        if (!std::isnan(lon) && lon >= -180.0 && lon <= 180.0) {
+            lons.push_back(lon);
         }
     }
 
-    qDebug() << "station bounding box:" << m_minLat << m_minLon << m_maxLat << m_maxLon;
+    std::sort(lats.begin(), lats.end());
+    std::sort(lons.begin(), lons.end());
+    if (lats.empty() || lons.empty()) {
+        return;
+    }
+
+    // covered area is reasonable, take as-is
+    if (Location::distance(lats.front(), lons.front(), lats.back(), lons.back()) <= 50'000) {
+        qDebug() << "coordinates look plausible, skipping outlier filter";
+        m_minLat = lats.front();
+        m_minLon = lons.front();
+        m_maxLat = lats.back();
+        m_maxLon = lons.back();
+        return;
+    }
+
+    // try to filter out outliers
+    qDebug() << "performing outlier filtering";
+    filterOutliers(lats, m_minLat, m_maxLat, [](auto lat1, auto lat2) { return Location::distance(lat1, 0.0, lat2, 0.0); });
+    filterOutliers(lons, m_minLon, m_maxLon, [this](auto lon1, auto lon2) {
+        const auto lat = (m_maxLat - m_minLat) / 2.0;
+        return Location::distance(lat, lon1, lat, lon2);
+    });
 }
