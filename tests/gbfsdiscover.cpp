@@ -23,7 +23,16 @@ int main(int argc, char** argv)
     QStandardPaths::setTestModeEnabled(true);
 
     GBFSJob job(&nam);
-    job.discover(QUrl(app.arguments().at(1)));
+    int exitCode = -1;
+    QObject::connect(&job, &GBFSJob::finished, &app, [&]() {
+        if (job.error() != GBFSJob::NoError) {
+            qWarning() << job.error() << job.errorMessage();
+            app.exit(exitCode = 1);
+        } else {
+            app.exit(exitCode = 0);
+        }
+    });
+    job.discoverAndUpdate(QUrl(app.arguments().at(1)));
 
-    return app.exec();
+    return exitCode < 0 ? app.exec() : exitCode;
 }

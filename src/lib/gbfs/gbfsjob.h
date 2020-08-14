@@ -30,7 +30,22 @@ public:
     explicit GBFSJob(QNetworkAccessManager *nam, QObject *parent = nullptr);
     ~GBFSJob();
 
-    void discover(const QUrl &url);
+    /** Perform GBFS auto-discovery based on the given @p url and update the local state as far as necessary. */
+    void discoverAndUpdate(const QUrl &url);
+
+    enum Error {
+        NoError,
+        NetworkError,
+        DataError,
+    };
+    Error error() const;
+    QString errorMessage() const;
+
+Q_SIGNALS:
+    /** Emitted when the discovery and/or update process has finished.
+     *  This can be immediately (if everything is still up to date).
+     */
+    void finished();
 
 private:
     void discoverFinished(QNetworkReply *reply);
@@ -47,6 +62,10 @@ private:
     QJsonDocument m_discoverDoc;
 
     double m_minLat = 90.0, m_maxLat = -90.0, m_minLon = 180.0, m_maxLon = -180.0;
+
+    QString m_errorMsg;
+    Error m_error = NoError;
+    int m_pendingJobs = 0;
 };
 
 }

@@ -27,7 +27,17 @@ GBFSJob::GBFSJob(QNetworkAccessManager *nam, QObject *parent)
 
 GBFSJob::~GBFSJob() = default;
 
-void GBFSJob::discover(const QUrl &url)
+GBFSJob::Error GBFSJob::error() const
+{
+    return m_error;
+}
+
+QString GBFSJob::errorMessage() const
+{
+    return m_errorMsg;
+}
+
+void GBFSJob::discoverAndUpdate(const QUrl &url)
 {
     m_discoverUrl = url;
 
@@ -51,7 +61,12 @@ void GBFSJob::discover(const QUrl &url)
 void GBFSJob::discoverFinished(QNetworkReply *reply)
 {
     reply->deleteLater();
-    // TODO error handling
+    if (reply->error() != QNetworkReply::NoError) {
+        m_error = NetworkError;
+        m_errorMsg = reply->errorString();
+        emit finished();
+        return;
+    }
 
     m_discoverDoc = QJsonDocument::fromJson(reply->readAll());
     parseDiscoverData(true);
@@ -120,6 +135,7 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
                         qDebug() << "fetching" << name;
                         auto reply = m_nam->get(QNetworkRequest(url));
                         connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
+                        ++m_pendingJobs;
                     } else {
                         qDebug() << "reusing cached" << name;
                         parseData(m_store.loadData(type), type);
@@ -133,12 +149,21 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
             }
         }
     }
+
+    if (!sysInfoOnly && m_pendingJobs == 0) {
+        emit finished();
+    }
 }
 
 void GBFSJob::systemInformationFinished(QNetworkReply *reply)
 {
     reply->deleteLater();
-    // TODO error handling
+    if (reply->error() != QNetworkReply::NoError) {
+        m_error = NetworkError;
+        m_errorMsg = reply->errorString();
+        emit finished();
+        return;
+    }
 
     const auto sysInfoDoc = QJsonDocument::fromJson(reply->readAll());
     qDebug().noquote() << sysInfoDoc.toJson();
@@ -162,12 +187,23 @@ void GBFSJob::systemInformationFinished(QNetworkReply *reply)
 void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
 {
     reply->deleteLater();
-    // TODO error handling
+    --m_pendingJobs;
+
+    if (reply->error() != QNetworkReply::NoError) {
+        m_error = NetworkError;
+        m_errorMsg = reply->errorString();
+        emit finished();
+        return;
+    }
 
     const auto doc = QJsonDocument::fromJson(reply->readAll());
     //qDebug().noquote() << doc.toJson();
     m_store.storeData(type, doc);
     parseData(doc, type);
+
+    if (m_pendingJobs == 0) {
+        emit finished();
+    }
 }
 
 void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
