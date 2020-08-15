@@ -148,9 +148,9 @@ protected:
         reply->addResult(std::forward<Args>(args)...);
     }
 
-    template <typename T> inline static void addError(T *reply, const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
+    template <typename T> inline void addError(T *reply, Reply::Error error, const QString &errorMsg) const
     {
-        reply->addError(backend, error, errorMsg);
+        reply->addError(this, error, errorMsg);
     }
 
     static void addAttributions(Reply *reply, std::vector<Attribution> &&attributions);

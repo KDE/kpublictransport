@@ -86,14 +86,14 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseStopFinderResponse(data);
         if (p->error() != Reply::NoError) {
-            addError(reply, this, p->error(), p->errorMessage());
+            addError(reply, p->error(), p->errorMessage());
         } else {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
@@ -147,14 +147,14 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseDmResponse(data);
         if (p->error() != Reply::NoError) {
-            addError(reply, this, p->error(), p->errorMessage());
+            addError(reply, p->error(), p->errorMessage());
         } else {
             addResult(reply, this, std::move(res));
         }
@@ -217,14 +217,14 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseTripResponse(data);
         if (p->error() != Reply::NoError) {
-            addError(reply, this, p->error(), p->errorMessage());
+            addError(reply, p->error(), p->errorMessage());
         } else {
             addResult(reply, this, std::move(res));
         }

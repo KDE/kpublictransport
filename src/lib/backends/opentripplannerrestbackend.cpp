@@ -77,7 +77,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
             logReply(reply, netReply, data);
 
             if (netReply->error() != QNetworkReply::NoError) {
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 return;
             }
             OpenTripPlannerParser p(backendId());
@@ -103,7 +103,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
             logReply(reply, netReply, data);
 
             if (netReply->error() != QNetworkReply::NoError) {
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 return;
             }
             OpenTripPlannerParser p(backendId());
@@ -134,7 +134,7 @@ bool OpenTripPlannerRestBackend::queryStopover(const StopoverRequest &req, Stopo
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         OpenTripPlannerParser p(backendId());
@@ -173,7 +173,7 @@ bool OpenTripPlannerRestBackend::queryJourney(const JourneyRequest &req, Journey
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         OpenTripPlannerParser p(backendId());

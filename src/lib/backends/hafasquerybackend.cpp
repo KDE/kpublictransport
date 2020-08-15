@@ -98,13 +98,13 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
         qDebug() << netReply->request().url();
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
         auto res = m_parser.parseGetStopResponse(data);
         if (m_parser.error() != Reply::NoError) {
-            addError(reply, this, m_parser.error(), m_parser.errorMessage());
+            addError(reply, m_parser.error(), m_parser.errorMessage());
         } else {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
@@ -137,13 +137,13 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         qDebug() << netReply->request().url();
         auto res = m_parser.parseQueryLocationResponse(data);
         if (m_parser.error() != Reply::NoError) {
-            addError(reply, this, m_parser.error(), m_parser.errorMessage());
+            addError(reply, m_parser.error(), m_parser.errorMessage());
         } else {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
             addResult(reply, std::move(res));
@@ -184,12 +184,12 @@ bool HafasQueryBackend::queryStopover(const StopoverRequest &request, StopoverRe
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
         auto res = m_parser.parseStationBoardResponse(data, reply->request().mode() == StopoverRequest::QueryArrival);
         if (m_parser.error() != Reply::NoError) {
-            addError(reply, this, m_parser.error(), m_parser.errorMessage());
+            addError(reply, m_parser.error(), m_parser.errorMessage());
         } else {
             addResult(reply, this, std::move(res));
         }
@@ -250,13 +250,13 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, this, Reply::NetworkError, netReply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
         auto res = m_parser.parseQueryJourneyResponse(data);
         if (m_parser.error() != Reply::NoError) {
-            addError(reply, this, m_parser.error(), m_parser.errorMessage());
+            addError(reply, m_parser.error(), m_parser.errorMessage());
         } else {
             addResult(reply, this, std::move(res));
         }

@@ -88,13 +88,13 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
                 Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.departure}, {}, std::chrono::minutes(2));
                 addResult(reply, p.vehicle, p.platform, p.departure);
             } else {
-                addError(reply, this, p.error, p.errorMessage);
+                addError(reply, p.error, p.errorMessage);
                 if (p.error == Reply::NotFoundError) {
                     Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), std::chrono::hours(24));
                 }
             }
         } else {
-            addError(reply, this, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, reply->errorString());
         }
         netReply->deleteLater();
     });

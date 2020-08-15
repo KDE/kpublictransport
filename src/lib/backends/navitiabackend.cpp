@@ -102,10 +102,10 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, this, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
+                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 break;
             default:
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
@@ -160,10 +160,10 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, this, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
+                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 break;
             default:
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
@@ -222,10 +222,10 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
                 break;
             }
             case QNetworkReply::ContentNotFoundError:
-                addError(reply, this, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
+                addError(reply, Reply::NotFoundError, NavitiaParser::parseErrorMessage(data));
                 break;
             default:
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();

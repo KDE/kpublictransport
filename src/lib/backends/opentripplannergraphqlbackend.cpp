@@ -70,7 +70,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
     KGraphQL::query(gqlReq, nam, [this, req, reply](const KGraphQLReply &gqlReply) {
         logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
-            addError(reply, this, Reply::NetworkError, gqlReply.errorString());
+            addError(reply, Reply::NetworkError, gqlReply.errorString());
             return;
         }
 
@@ -105,7 +105,7 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
     KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
         logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
-            addError(reply, this, Reply::NetworkError, gqlReply.errorString());
+            addError(reply, Reply::NetworkError, gqlReply.errorString());
         } else {
             OpenTripPlannerParser p(backendId());
             addResult(reply, this, p.parseDepartures(gqlReply.data()));
@@ -139,7 +139,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
         logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
         if (gqlReply.error() != KGraphQLReply::NoError) {
-            addError(reply, this, Reply::NetworkError, gqlReply.errorString());
+            addError(reply, Reply::NetworkError, gqlReply.errorString());
         } else {
             OpenTripPlannerParser p(backendId());
             addResult(reply, this, p.parseJourneys(gqlReply.data()));

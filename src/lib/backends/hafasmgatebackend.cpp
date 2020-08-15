@@ -138,12 +138,12 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
                 if (m_parser.error() == Reply::NoError) {
                     addResult(reply, this, std::move(res));
                 } else {
-                    addError(reply, this, m_parser.error(), m_parser.errorMessage());
+                    addError(reply, m_parser.error(), m_parser.errorMessage());
                 }
                 break;
             }
             default:
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
@@ -204,14 +204,14 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
             {
                 auto result = m_parser.parseDepartures(data);
                 if (m_parser.error() != Reply::NoError) {
-                    addError(reply, this, m_parser.error(), m_parser.errorMessage());
+                    addError(reply, m_parser.error(), m_parser.errorMessage());
                 } else {
                     addResult(reply, this, std::move(result));
                 }
                 break;
             }
             default:
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
@@ -240,12 +240,12 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
                     Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
                     addResult(reply, std::move(res));
                 } else {
-                    addError(reply, this, m_parser.error(), m_parser.errorMessage());
+                    addError(reply, m_parser.error(), m_parser.errorMessage());
                 }
                 break;
             }
             default:
-                addError(reply, this, Reply::NetworkError, netReply->errorString());
+                addError(reply, Reply::NetworkError, netReply->errorString());
                 break;
         }
         netReply->deleteLater();
