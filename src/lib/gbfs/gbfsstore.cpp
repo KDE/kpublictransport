@@ -92,7 +92,7 @@ void GBFSStore::storeData(GBFS::FileType type, const QJsonDocument &doc)
     f.close();
 
     // mtime changes need to be done without content changes to take effect
-    const auto ttl = std::max(std::chrono::seconds(std::max(0, doc.object().value(QLatin1String("ttl")).toInt())), file_ttl_map[type].ttl);
+    const auto ttl = std::max(std::chrono::seconds(doc.object().value(QLatin1String("ttl")).toInt()), file_ttl_map[type].ttl);
     f.open(QFile::WriteOnly | QFile::Append);
     f.setFileTime(QDateTime::currentDateTimeUtc().addSecs(ttl.count()), QFile::FileModificationTime);
     f.close();
