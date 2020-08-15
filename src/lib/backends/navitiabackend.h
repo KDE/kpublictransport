@@ -39,6 +39,7 @@ class NavitiaBackend : public AbstractBackend
 public:
     NavitiaBackend();
 
+    static inline constexpr const char* type() { return "navitia"; }
     Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;

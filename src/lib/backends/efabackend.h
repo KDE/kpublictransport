@@ -53,6 +53,7 @@ public:
     EfaBackend();
     ~EfaBackend();
 
+    static inline constexpr const char* type() { return "efa"; }
     Capabilities capabilities() const override;
     bool needsLocationQuery(const Location  &loc, AbstractBackend::QueryType type) const override;
     bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;

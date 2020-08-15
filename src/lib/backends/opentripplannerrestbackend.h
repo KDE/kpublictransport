@@ -32,6 +32,7 @@ public:
     OpenTripPlannerRestBackend();
     ~OpenTripPlannerRestBackend();
 
+    static inline constexpr const char* type() { return "otp_rest"; }
     Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
