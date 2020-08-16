@@ -64,7 +64,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
         QUrlQuery query;
         query.addQueryItem(QStringLiteral("lat"), QString::number(req.latitude()));
         query.addQueryItem(QStringLiteral("lon"), QString::number(req.longitude()));
-        query.addQueryItem(QStringLiteral("radius"), QStringLiteral("500")); //  TODO
+        query.addQueryItem(QStringLiteral("radius"), QString::number(std::max(1, req.maximumDistance())));
 
         QUrl url(m_endpoint + QLatin1String("index/stops"));
         url.setQuery(query);

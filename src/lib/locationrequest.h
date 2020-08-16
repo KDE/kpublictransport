@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Datatypes>
+
 #include <QMetaType>
 #include <QSharedDataPointer>
 
@@ -35,7 +37,7 @@ class LocationRequestPrivate;
  */
 class KPUBLICTRANSPORT_EXPORT LocationRequest
 {
-    Q_GADGET
+    KPUBLICTRANSPORT_GADGET(LocationRequest)
     /** Location object containing the search parameters. */
     Q_PROPERTY(KPublicTransport::Location location READ location WRITE setLocation)
     // TODO deprecated those?
@@ -44,16 +46,22 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
     Q_PROPERTY(QString name READ name WRITE setName STORED false)
     Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
 
+    /** When searching by coordinate, the expected maximum distance of the results in meters.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results comply with this constraint.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, maximumDistance, setMaximumDistance)
+    /** The maximum amount of expected results.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results comply with this constraint.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, maximumResults, setMaximumResults)
+
 public:
-    LocationRequest();
     /** Create a LocationRequest from @p locaction.
      *  Whatever fields set in @p location will be used for the search request.
      */
     LocationRequest(const Location &locaction);
-    LocationRequest(LocationRequest&&) noexcept;
-    LocationRequest(const LocationRequest&);
-    ~LocationRequest();
-    LocationRequest& operator=(const LocationRequest&);
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     bool isValid() const;
@@ -96,8 +104,6 @@ public:
     ///@cond internal
     static QJsonObject toJson(const LocationRequest &req);
     ///@endcond
-private:
-    QExplicitlySharedDataPointer<LocationRequestPrivate> d;
 };
 
 }

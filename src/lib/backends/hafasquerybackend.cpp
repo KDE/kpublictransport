@@ -85,7 +85,7 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
     query.addQueryItem(QStringLiteral("getstop"), QStringLiteral("1"));
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0A"), QStringLiteral("255"));
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0G"), request.name()); // TODO apps are seen to append '?' here
-    query.addQueryItem(QStringLiteral("REQ0JourneyStopsB"), QStringLiteral("12")); // TODO max results
+    query.addQueryItem(QStringLiteral("REQ0JourneyStopsB"), QString::number(std::max(1, request.maximumResults())));
     url.setQuery(query);
 
     const QNetworkRequest netRequest(url);
@@ -124,8 +124,8 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     query.addQueryItem(QStringLiteral("tpl"), QStringLiteral("stop2json"));
     query.addQueryItem(QStringLiteral("look_x"), QString::number((int)(request.longitude() * 1000000)));
     query.addQueryItem(QStringLiteral("look_y"), QString::number((int)(request.latitude() * 1000000)));
-    query.addQueryItem(QStringLiteral("look_maxdist"), QStringLiteral("5000")); // TODO max dist
-    query.addQueryItem(QStringLiteral("look_maxno"), QStringLiteral("12")); // TODO max results
+    query.addQueryItem(QStringLiteral("look_maxdist"), QString::number(std::max(1, request.maximumDistance())));
+    query.addQueryItem(QStringLiteral("look_maxno"), QString::number(std::max(1, request.maximumResults())));
     url.setQuery(query);
 
     const QNetworkRequest netRequest(url);

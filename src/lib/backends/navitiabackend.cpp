@@ -182,14 +182,14 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
     query.addQueryItem(QStringLiteral("depth"), QStringLiteral("1")); // 1 so administrative region elements are included
     query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
-    // TODO count
+    query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
 
     if (req.hasCoordinate()) {
         url.setPath(
             QStringLiteral("/v1/coord/") + QString::number(req.longitude()) + QLatin1Char(';') + QString::number(req.latitude()) +
             QStringLiteral("/places_nearby")
         );
-        // TODO distance
+        query.addQueryItem(QStringLiteral("distance"), QString::number(std::max(1, req.maximumDistance())));
     } else if (!req.name().isEmpty()) {
         url.setPath(QStringLiteral("/v1/places"));
         query.addQueryItem(QStringLiteral("q"), req.name());

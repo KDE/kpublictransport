@@ -16,6 +16,7 @@
 */
 
 #include "locationrequest.h"
+#include "datatypes/datatypes_p.h"
 #include "datatypes/json_p.h"
 #include "datatypes/location.h"
 #include "datatypes/locationutil_p.h"
@@ -32,24 +33,20 @@ class LocationRequestPrivate : public QSharedData {
 public:
     Location location;
     QStringList backendIds;
+    int maximumDistance = 1000;
+    int maximumResults = 10;
 };
 }
 
-LocationRequest::LocationRequest()
-    : d(new LocationRequestPrivate)
-{
-}
+KPUBLICTRANSPORT_MAKE_GADGET(LocationRequest)
+KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumDistance, setMaximumDistance)
+KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumResults, setMaximumResults)
 
 LocationRequest::LocationRequest(const Location &locaction)
     : d(new LocationRequestPrivate)
 {
     d->location = locaction;
 }
-
-LocationRequest::LocationRequest(LocationRequest&&) noexcept = default;
-LocationRequest::LocationRequest(const LocationRequest&) = default;
-LocationRequest::~LocationRequest() = default;
-LocationRequest& LocationRequest::operator=(const LocationRequest&) = default;
 
 bool LocationRequest::isValid() const
 {
@@ -136,3 +133,5 @@ void LocationRequest::setBackendIds(const QStringList &backendIds)
     d.detach();
     d->backendIds = backendIds;
 }
+
+#include "moc_locationrequest.cpp"

@@ -74,7 +74,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     }
 
     query.addQueryItem(QStringLiteral("anyObjFilter_sf"), QStringLiteral("2")); // bitfield, "2" is the flag for stops
-    query.addQueryItem(QStringLiteral("anyMaxSizeHitList"), QStringLiteral("12")); // TODO
+    query.addQueryItem(QStringLiteral("anyMaxSizeHitList"), QString::number(std::max(1, request.maximumResults())));
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);

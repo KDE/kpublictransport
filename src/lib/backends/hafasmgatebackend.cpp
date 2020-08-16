@@ -345,14 +345,14 @@ QNetworkReply* HafasMgateBackend::postLocationQuery(const LocationRequest &req, 
         coord.insert(QStringLiteral("y"), (int)(req.latitude() * 1000000));
         QJsonObject ring;
         ring.insert(QStringLiteral("cCrd"), coord);
-        ring.insert(QStringLiteral("maxDist"), 20000); // not sure which unit...
+        ring.insert(QStringLiteral("maxDist"), std::max(1, req.maximumDistance()));
 
         QJsonObject reqObj;
         reqObj.insert(QStringLiteral("ring"), ring);
         // ### make this configurable in LocationRequest
         reqObj.insert(QStringLiteral("getStops"), true);
         reqObj.insert(QStringLiteral("getPOIs"), false);
-        reqObj.insert(QStringLiteral("maxLoc"), 12);
+        reqObj.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
 
         methodObj.insert(QStringLiteral("cfg"), cfg);
         methodObj.insert(QStringLiteral("meth"), QLatin1String("LocGeoPos"));
@@ -369,8 +369,7 @@ QNetworkReply* HafasMgateBackend::postLocationQuery(const LocationRequest &req, 
         QJsonObject input;
         input.insert(QStringLiteral("field"), QLatin1String("S"));
         input.insert(QStringLiteral("loc"), loc);
-        // ### make this configurable in LocationRequest
-        input.insert(QStringLiteral("maxLoc"), 12);
+        input.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
 
         QJsonObject reqObj;
         reqObj.insert(QStringLiteral("input"), input);
