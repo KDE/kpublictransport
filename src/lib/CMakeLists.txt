@@ -62,6 +62,7 @@ set(kpublictransport_srcs
 
     gbfs/gbfs.cpp
     gbfs/gbfsjob.cpp
+    gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
 
     gtfs/hvt.cpp

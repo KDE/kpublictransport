@@ -13,7 +13,6 @@
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QSettings>
 #include <QStandardPaths>
 #include <QUrl>
 
@@ -42,25 +41,6 @@ GBFSStore::GBFSStore(const QString &systemId)
 }
 
 GBFSStore::~GBFSStore() = default;
-
-static QString encodeIdMapKey(const QUrl &url)
-{
-    return QString::fromUtf8(QUrl::toPercentEncoding(url.toString()));
-}
-
-QString GBFSStore::systemIdForUrl(const QUrl &url)
-{
-    QSettings settings(QSettings::UserScope, QStringLiteral("KDE"), QStringLiteral("org.kde.kpublictransport.gbfs"));
-    settings.beginGroup(QStringLiteral("SystemIdMap"));
-    return settings.value(encodeIdMapKey(url)).toString();
-}
-
-void GBFSStore::setSystemIdForUrl(const QUrl &url, const QString &systemId)
-{
-    QSettings settings(QSettings::UserScope, QStringLiteral("KDE"), QStringLiteral("org.kde.kpublictransport.gbfs"));
-    settings.beginGroup(QStringLiteral("SystemIdMap"));
-    return settings.setValue(encodeIdMapKey(url), systemId);
-}
 
 bool GBFSStore::isValid() const
 {
@@ -117,7 +97,7 @@ void GBFSStore::expire()
 QString GBFSStore::fileName(GBFS::FileType type) const
 {
     assert(!m_systemId.isEmpty());
-    QString path = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/gbfs/") + m_systemId;
+    QString path = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/gbfs/feeds/") + m_systemId;
     QDir().mkpath(path);
     path += QLatin1Char('/') + QString::fromUtf8(GBFS::keyNameForType(type)) + QLatin1String(".json");
     return path;

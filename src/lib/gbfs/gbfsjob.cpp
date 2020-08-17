@@ -39,24 +39,27 @@ QString GBFSJob::errorMessage() const
     return m_errorMsg;
 }
 
-void GBFSJob::discoverAndUpdate(const QUrl &url)
+GBFSService GBFSJob::service() const
 {
-    m_discoverUrl = url;
+    return m_service;
+}
 
-    const auto sysId = GBFSStore::systemIdForUrl(url);
-    if (!sysId.isEmpty()) {
-        m_store = GBFSStore(sysId);
+void GBFSJob::discoverAndUpdate(const GBFSService &service)
+{
+    m_service = service;
+    if (!m_service.systemId.isEmpty()) {
+        m_store = GBFSStore(m_service.systemId);
 
         if (m_store.hasCurrentData(GBFS::Discovery)) {
-            qDebug() << "reusing cached discovery data" << sysId;
+            qDebug() << "reusing cached discovery data" << m_service.systemId;
             m_discoverDoc = m_store.loadData(GBFS::Discovery);
             parseDiscoverData(true);
             return;
         }
     }
 
-    qDebug() << "fetching discovery data" << url;
-    auto reply = m_nam->get(QNetworkRequest(url));
+    qDebug() << "fetching discovery data" << m_service.discoveryUrl;
+    auto reply = m_nam->get(QNetworkRequest(m_service.discoveryUrl));
     connect(reply, &QNetworkReply::finished, this, [this, reply]() { discoverFinished(reply); });
 }
 
@@ -153,7 +156,7 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
     }
 
     if (!sysInfoOnly && m_pendingJobs == 0) {
-        emit finished();
+        finalize();
     }
 }
 
@@ -176,9 +179,7 @@ void GBFSJob::systemInformationFinished(QNetworkReply *reply)
         qWarning() << "could not determine systemId!";
         return;
     }
-    if (!m_discoverUrl.isEmpty()) {
-        GBFSStore::setSystemIdForUrl(m_discoverUrl, systemId);
-    }
+    m_service.systemId = systemId;
     m_store = GBFSStore(systemId);
     m_store.storeData(GBFS::Discovery, m_discoverDoc);
     m_store.storeData(GBFS::SystemInformation, sysInfoDoc);
@@ -204,7 +205,7 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
     parseData(doc, type);
 
     if (m_pendingJobs == 0) {
-        emit finished();
+        finalize();
     }
 }
 
@@ -311,4 +312,13 @@ void GBFSJob::computeBoundingBox(const QJsonArray &array)
         const auto lat = (m_maxLat - m_minLat) / 2.0;
         return Location::distance(lat, lon1, lat, lon2);
     });
+}
+
+void GBFSJob::finalize()
+{
+    if (m_maxLat > m_minLat && m_maxLon > m_minLon) {
+        m_service.boundingBox = QRectF(QPointF(m_minLon, m_minLat), QPointF(m_maxLon, m_maxLat));
+    }
+    GBFSServiceRepository::store(m_service);
+    emit finished();
 }

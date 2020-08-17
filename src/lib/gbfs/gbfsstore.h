@@ -26,11 +26,6 @@ public:
     explicit GBFSStore(const QString &systemId);
     ~GBFSStore();
 
-    /** Map discovery URL to system id, if that mapping is already known. */
-    static QString systemIdForUrl(const QUrl &url);
-    /** Adds a discovery URL to system id mapping. */
-    static void setSystemIdForUrl(const QUrl &url, const QString &systemId);
-
     /** Store is set up with a system id and is thus usable. */
     bool isValid() const;
 

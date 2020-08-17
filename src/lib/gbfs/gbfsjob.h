@@ -8,6 +8,7 @@
 #define KPUBLICTRANSPORT_GBFSJOB_H
 
 #include "kpublictransport_export.h"
+#include "gbfsservice.h"
 #include "gbfsstore.h"
 
 #include <QJsonDocument>
@@ -31,7 +32,10 @@ public:
     ~GBFSJob();
 
     /** Perform GBFS auto-discovery based on the given @p url and update the local state as far as necessary. */
-    void discoverAndUpdate(const QUrl &url);
+    void discoverAndUpdate(const GBFSService &service);
+
+    /** The service that is updated, or which has been discovered. */
+    GBFSService service() const;
 
     enum Error {
         NoError,
@@ -56,10 +60,11 @@ private:
     void parseStationInformation(const QJsonDocument &doc);
     void parseFreeBikeStatus(const QJsonDocument &doc);
     void computeBoundingBox(const QJsonArray &array);
+    void finalize();
 
     QNetworkAccessManager *m_nam = nullptr;
+    GBFSService m_service;
     GBFSStore m_store;
-    QUrl m_discoverUrl;
     QJsonDocument m_discoverDoc;
 
     double m_minLat = 90.0, m_maxLat = -90.0, m_minLon = 180.0, m_maxLon = -180.0;

@@ -6,21 +6,38 @@
 
 #include <gbfs/gbfsjob.h>
 
+#include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QNetworkAccessManager>
-#include <QStandardPaths>
 #include <QUrl>
+
+#include <iostream>
 
 using namespace KPublicTransport;
 
 int main(int argc, char** argv)
 {
     QCoreApplication app(argc, argv);
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    QCommandLineOption listOpt(QStringLiteral("list"), QStringLiteral("list all known services"));
+    parser.addOption(listOpt);
+    QCommandLineOption discoverOpt(QStringLiteral("discover"), QStringLiteral("perform discovery on the given GBFS feed"), QStringLiteral("url"));
+    parser.addOption(discoverOpt);
+    parser.process(app);
+
+    const auto& services = GBFSServiceRepository::services();
+    if (parser.isSet(listOpt)) {
+        for (const auto &s : services) {
+            std::cout << qPrintable(s.systemId) << " (" << qPrintable(s.discoveryUrl.toString()) << ") - ["
+                << s.boundingBox.topLeft().x() << "," << s.boundingBox.topLeft().y() << "|"
+                << s.boundingBox.bottomRight().x() << "," << s.boundingBox.bottomRight().y() << "]" << std::endl;
+        }
+        return 0;
+    }
 
     QNetworkAccessManager nam;
     nam.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
-
-    QStandardPaths::setTestModeEnabled(true);
 
     GBFSJob job(&nam);
     int exitCode = -1;
@@ -32,7 +49,17 @@ int main(int argc, char** argv)
             app.exit(exitCode = 0);
         }
     });
-    job.discoverAndUpdate(QUrl(app.arguments().at(1)));
+
+    GBFSService service;
+    service.discoveryUrl = QUrl(parser.value(discoverOpt));
+
+    for (const auto &s : services) {
+        if (s.discoveryUrl == service.discoveryUrl) {
+            service = s;
+            break;
+        }
+    }
+    job.discoverAndUpdate(service);
 
     return exitCode < 0 ? app.exec() : exitCode;
 }
