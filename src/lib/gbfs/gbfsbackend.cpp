@@ -14,6 +14,7 @@
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/RentalVehicle>
 
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
