@@ -23,6 +23,7 @@
 #include <QDebug>
 #include <QMetaObject>
 #include <QMetaProperty>
+#include <QRectF>
 #include <QTimeZone>
 #include <QUrl>
 #include <QVariant>
@@ -68,6 +69,16 @@ static QJsonValue variantToJson(const QVariant &v)
         {
             const auto url = v.toUrl();
             return url.isValid() ? url.toString() : QJsonValue();
+        }
+        case QVariant::RectF:
+        {
+            const auto r = v.toRectF();
+            QJsonObject obj;
+            obj.insert(QStringLiteral("x1"), r.topLeft().x());
+            obj.insert(QStringLiteral("y1"), r.topLeft().y());
+            obj.insert(QStringLiteral("x2"), r.bottomRight().x());
+            obj.insert(QStringLiteral("y2"), r.bottomRight().y());
+            return obj;
         }
     }
 
@@ -156,6 +167,14 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
                 l.push_back(av.toString());
             }
             return l;
+        }
+        case QVariant::RectF:
+        {
+            const auto obj = v.toObject();
+            QRectF r;
+            r.setTopLeft(QPointF(obj.value(QLatin1String("x1")).toDouble(), obj.value(QLatin1String("y1")).toDouble()));
+            r.setBottomRight(QPointF(obj.value(QLatin1String("x2")).toDouble(), obj.value(QLatin1String("y2")).toDouble()));
+            return r;
         }
     }
 
