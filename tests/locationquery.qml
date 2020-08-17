@@ -106,6 +106,11 @@ Kirigami.ApplicationWindow {
                     text: "Lat: " + location.latitude + " Lon: " + location.longitude
                 }
                 QQC2.Label {
+                    text: location.rentalVehicleStation.network.name + " (" + location.rentalVehicleStation.availableVehicles
+                        + "/" + location.rentalVehicleStation.capacity + ")"
+                    visible: location.rentalVehicleStation.isValid
+                }
+                QQC2.Label {
                     text: "Identifiers: " + ExampleUtil.locationIds(location)
                 }
             }
@@ -149,6 +154,19 @@ Kirigami.ApplicationWindow {
                             manager: ptMgr
                         }
                         enabled: backendBox.checked
+                    }
+                }
+
+                RowLayout {
+                    QQC2.Label { text: "Results:" }
+                    QQC2.TextField {
+                        id: maxResults
+                        text: "10"
+                    }
+                    QQC2.Label { text: "Distance:" }
+                    QQC2.TextField {
+                        id: maxDist
+                        text: "1000"
                     }
                 }
 
@@ -197,6 +215,8 @@ Kirigami.ApplicationWindow {
                             locationModel.request.longitude = lonQuery.text;
                             locationModel.request.name = "";
                             locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            locationModel.request.maximumResults = maxResults.text;
+                            locationModel.request.maximumDistance = maxDist.text;
                         }
                     }
                 }

@@ -46,6 +46,7 @@
 #include "backends/navitiabackend.h"
 #include "backends/opentripplannergraphqlbackend.h"
 #include "backends/opentripplannerrestbackend.h"
+#include "gbfs/gbfsbackend.h"
 
 #include <QDirIterator>
 #include <QJsonArray>
@@ -195,7 +196,8 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         HafasMgateBackend,
         HafasQueryBackend,
         EfaBackend,
-        DeutscheBahnBackend
+        DeutscheBahnBackend,
+        GBFSBackend
     >(type, obj);
 }
 

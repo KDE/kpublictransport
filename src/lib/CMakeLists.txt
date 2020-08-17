@@ -61,6 +61,7 @@ set(kpublictransport_srcs
     datatypes/vehiclelayoutresult.cpp
 
     gbfs/gbfs.cpp
+    gbfs/gbfsbackend.cpp
     gbfs/gbfsjob.cpp
     gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
