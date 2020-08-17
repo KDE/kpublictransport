@@ -20,7 +20,7 @@ RentalVehicleStation RentalVehicleUtil::merge(const RentalVehicleStation &lhs, c
     auto s = lhs;
     s.setNetwork(RentalVehicleUtil::merge(lhs.network(), rhs.network()));
     s.setCapacity(std::max(lhs.capacity(), rhs.capacity()));
-    s.setAvailableVehicles(std::max(lhs.capacity(), rhs.capacity()));
+    s.setAvailableVehicles(std::max(lhs.availableVehicles(), rhs.availableVehicles()));
     return s;
 }
 
