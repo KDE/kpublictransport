@@ -1,0 +1,7 @@
+{
+    "KPlugin": {
+        "Description": "Generic support for bike or scooter sharing services following the GBFS standard.",
+        "Name": "Shared bikes/scooters"
+    },
+    "type": "gbfs"
+}

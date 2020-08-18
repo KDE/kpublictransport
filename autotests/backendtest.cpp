@@ -68,11 +68,11 @@ private Q_SLOTS:
             QVERIFY(idx.data(BackendModel::BackendEnabledRole).toBool());
         }
 
-        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("navitia")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_navitia")), true);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), true);
         for (auto i = 0; i < model.rowCount(); ++i) {
             const auto idx = model.index(i, 0);
-            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("navitia")) {
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("un_navitia")) {
                 model.setData(idx, Qt::Unchecked, Qt::CheckStateRole);
                 model.setData(idx, true, BackendModel::BackendEnabledRole);
 
@@ -87,18 +87,18 @@ private Q_SLOTS:
             }
         }
         QCOMPARE(dataChangedSpy.size(), 4);
-        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("navitia")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_navitia")), true);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), false);
 
-        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("navitia")));
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("un_navitia")));
         QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("fr_sncf")));
-        mgr.setBackendEnabled(QStringLiteral("navitia"), true);
+        mgr.setBackendEnabled(QStringLiteral("un_navitia"), true);
         mgr.setBackendEnabled(QStringLiteral("fr_sncf"), false);
-        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("navitia")));
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("un_navitia")));
         QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("fr_sncf")));
-        mgr.setBackendEnabled(QStringLiteral("navitia"), false);
+        mgr.setBackendEnabled(QStringLiteral("un_navitia"), false);
         mgr.setBackendEnabled(QStringLiteral("fr_sncf"), true);
-        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("navitia")));
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("un_navitia")));
         QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("fr_sncf")));
     }
 };

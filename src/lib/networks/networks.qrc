@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/networks">
         <!-- global/generic providers -->
-        <file>navitia.json</file>
+        <file>un_navitia.json</file>
 
         <!-- national providers -->
         <file>at_oebb.json</file>
