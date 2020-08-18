@@ -37,7 +37,7 @@ Kirigami.OverlaySheet {
                     onLinkActivated: Qt.openUrlExternally(link)
                 }
                 QQC2.Label {
-                    text: "License: <a href=\"" + modelData.licenseUrl + "\">" + modelData.license + "</a>"
+                    text: "License: <a href=\"" + modelData.licenseUrl + "\">" + (modelData.license != "" ? modeData.license : modelData.licenseUrl) + "</a>"
                     onLinkActivated: Qt.openUrlExternally(link)
                     // FIXME this makes OverlaySheet go completely crazy when we have more entries than fit on the screen
                     //visible: modelData.hasLicense

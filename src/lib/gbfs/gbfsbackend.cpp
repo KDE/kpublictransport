@@ -9,6 +9,7 @@
 #include "gbfsstore.h"
 #include "gbfsjob.h"
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
@@ -44,10 +45,11 @@ struct QueryContext {
     bool hasError = false;
     int pendingJobs = 0;
     std::vector<Location> result;
+    std::vector<Attribution> attributions;
     QString errorMessage;
 };
 
-static void appendResults(const GBFSService &service, const LocationRequest &req, std::vector<Location> &result)
+static void appendResults(const GBFSService &service, const LocationRequest &req, QueryContext *context)
 {
     GBFSStore store(service.systemId);
 
@@ -80,7 +82,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setRentalVehicleStation(s);
 
         selectedStationIds.push_back(stationId);
-        result.push_back(loc);
+        context->result.push_back(loc);
     }
 
     const auto statusDoc = store.loadData(GBFS::StationStatus);
@@ -93,10 +95,26 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             continue;
         }
 
-        auto &loc = result[result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
+        auto &loc = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
         auto s = loc.rentalVehicleStation();
         s.setAvailableVehicles(stat.value(QLatin1String("num_bikes_available")).toInt(-1));
         loc.setRentalVehicleStation(s);
+    }
+
+    Attribution attr;
+    attr.setLicense(sysInfo.value(QLatin1String("license_id")).toString());
+    attr.setLicenseUrl(QUrl(sysInfo.value(QLatin1String("license_url")).toString()));
+    attr.setName(sysInfo.value(QLatin1String("attribution_organization_name")).toString());
+    if (attr.name().isEmpty()) {
+        attr.setName(network.name());
+    }
+    attr.setUrl(QUrl(sysInfo.value(QLatin1String("attribution_url")).toString()));
+    if (attr.url().isEmpty()) {
+        attr.setUrl(QUrl(sysInfo.value(QLatin1String("url")).toString()));
+    }
+
+    if (!attr.isEmpty()) {
+        context->attributions.push_back(std::move(attr));
     }
 }
 
@@ -127,7 +145,7 @@ bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply
                 context->errorMessage = updateJob->errorMessage();
                 context->hasError = true;
             } else {
-                appendResults(updateJob->service(), req, context->result);
+                appendResults(updateJob->service(), req, context);
             }
 
             if (context->pendingJobs == 0 &&  !context->stillStarting) {
@@ -144,6 +162,7 @@ bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply
 
     if (context && context->pendingJobs == 0) {
         if (!context->result.empty()) {
+            addAttributions(reply, std::move(context->attributions));
             addResult(reply, std::move(context->result));
         }
         delete context;
