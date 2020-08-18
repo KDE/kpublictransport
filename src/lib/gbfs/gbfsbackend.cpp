@@ -59,6 +59,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     const auto stationsDoc = store.loadData(GBFS::StationInformation);
     const auto stations = stationsDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
 
+    std::vector<QString> selectedStationIds;
     for (const auto stationV : stations) {
         const auto station = stationV.toObject();
         const auto lat = station.value(QLatin1String("lat")).toDouble();
@@ -69,15 +70,33 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         Location loc;
         loc.setCoordinate(lat, lon);
         loc.setName(station.value(QLatin1String("name")).toString());
-        loc.setIdentifier(service.systemId, station.value(QLatin1String("station_id")).toString());
+        const auto stationId = station.value(QLatin1String("station_id")).toString();
+        loc.setIdentifier(service.systemId, stationId);
+        // TODO cover more properties
 
         RentalVehicleStation s;
         s.setNetwork(network);
-        s.setCapacity(station.value(QLatin1String("capacity")).toInt());
+        s.setCapacity(station.value(QLatin1String("capacity")).toInt(-1));
         loc.setRentalVehicleStation(s);
 
-        // TODO more properties and live data
+        selectedStationIds.push_back(stationId);
         result.push_back(loc);
+    }
+
+    const auto statusDoc = store.loadData(GBFS::StationStatus);
+    const auto status = statusDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
+    for (const auto statV : status) {
+        const auto stat = statV.toObject();
+        const auto id = stat.value(QLatin1String("station_id")).toString();
+        const auto it = std::find(selectedStationIds.begin(), selectedStationIds.end(), id);
+        if (it == selectedStationIds.end()) {
+            continue;
+        }
+
+        auto &loc = result[result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
+        auto s = loc.rentalVehicleStation();
+        s.setAvailableVehicles(stat.value(QLatin1String("num_bikes_available")).toInt(-1));
+        loc.setRentalVehicleStation(s);
     }
 }
 
