@@ -14,7 +14,8 @@
                 },
                 "latitude": 50.107139587402344,
                 "longitude": 8.663784980773926,
-                "name": "Frankfurt(Main)Hbf"
+                "name": "Frankfurt(Main)Hbf",
+                "type": "Stop"
             },
             "direction": "Frankfurt(Main)Hbf",
             "line": {
@@ -30,7 +31,8 @@
             },
             "latitude": 50.94298553466797,
             "longitude": 6.958594799041748,
-            "name": "Köln Hbf"
+            "name": "Köln Hbf",
+            "type": "Stop"
         }
     },
     {
@@ -50,7 +52,8 @@
                 },
                 "latitude": 50.93975830078125,
                 "longitude": 6.977822780609131,
-                "name": "Köln Messe/Deutz"
+                "name": "Köln Messe/Deutz",
+                "type": "Stop"
             },
             "direction": "Köln Messe/Deutz",
             "line": {
@@ -67,7 +70,8 @@
             },
             "latitude": 50.94298553466797,
             "longitude": 6.958594799041748,
-            "name": "Köln Hbf"
+            "name": "Köln Hbf",
+            "type": "Stop"
         }
     },
     {
@@ -87,7 +91,8 @@
                 },
                 "latitude": 50.2240104675293,
                 "longitude": 6.660368919372559,
-                "name": "Gerolstein"
+                "name": "Gerolstein",
+                "type": "Stop"
             },
             "direction": "Gerolstein",
             "line": {
@@ -104,7 +109,8 @@
             },
             "latitude": 50.94298553466797,
             "longitude": 6.958594799041748,
-            "name": "Köln Hbf"
+            "name": "Köln Hbf",
+            "type": "Stop"
         }
     }
 ]

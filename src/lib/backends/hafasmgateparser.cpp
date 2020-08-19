@@ -186,6 +186,7 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
 
         Location loc;
         loc.setName(locObj.value(QLatin1String("name")).toString());
+        loc.setType(locObj.value(QLatin1String("type")).toString() == QLatin1Char('S') ? Location::Stop : Location::Place);
         setLocationIdentifier(loc, locObj.value(QLatin1String("extId")).toString());
         const auto coordObj = locObj.value(QLatin1String("crd")).toObject();
         loc.setCoordinate(coordObj.value(QLatin1String("y")).toDouble() / 1000000.0, coordObj.value(QLatin1String("x")).toDouble() / 1000000.0);
