@@ -117,8 +117,12 @@ static Location parseLocation(const QJsonObject &obj)
 
 static Location parseWrappedLocation(const QJsonObject &obj)
 {
-    auto loc = parseLocation(obj.value(obj.value(QLatin1String("embedded_type")).toString()).toObject());
+    const auto type = obj.value(QLatin1String("embedded_type")).toString();
+    auto loc = parseLocation(obj.value(type).toObject());
     loc.setName(obj.value(QLatin1String("name")).toString());
+    if (type == QLatin1String("stop_area") || type == QLatin1String("stop_point")) {
+        loc.setType(Location::Stop);
+    }
     return loc;
 }
 
