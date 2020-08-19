@@ -113,7 +113,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         attr.setUrl(QUrl(sysInfo.value(QLatin1String("url")).toString()));
     }
 
-    if (!attr.isEmpty()) {
+    if (attr.hasLicense()) {
         context->attributions.push_back(std::move(attr));
     }
 }
