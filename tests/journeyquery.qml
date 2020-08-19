@@ -114,6 +114,15 @@ Kirigami.ApplicationWindow {
         return Math.floor(dist/1000) + "km";
     }
 
+    function locationName(loc)
+    {
+        switch(loc.type) {
+            case Location.Stop: return "🚏 " + loc.name;
+            case Location.RentedVehicleStation: return "🚲 " + loc.name;
+            case Location.Place: return loc.name;
+        }
+    }
+
     Component {
         id: vehicleLayoutPage
         VehicleLayoutPage {
@@ -202,7 +211,7 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     RowLayout {
                         QQC2.Label {
-                            text: "From: <a href=\"#from\">" + modelData.from.name + "</a> Platform: " + modelData.scheduledDeparturePlatform
+                            text: "From: <a href=\"#from\">" + locationName(modelData.from) + "</a> Platform: " + modelData.scheduledDeparturePlatform
                             onLinkActivated: {
                                 locationDetailsSheet.location = modelData.from;
                                 locationDetailsSheet.sheetOpen = true;
@@ -250,7 +259,7 @@ Kirigami.ApplicationWindow {
                     }
                     RowLayout {
                         QQC2.Label {
-                            text: "To: <a href=\"#to\">" + modelData.to.name + "</a> Platform: " + modelData.scheduledArrivalPlatform
+                            text: "To: <a href=\"#to\">" + locationName(modelData.to) + "</a> Platform: " + modelData.scheduledArrivalPlatform
                             onLinkActivated: {
                                 locationDetailsSheet.location = modelData.to;
                                 locationDetailsSheet.sheetOpen = true;

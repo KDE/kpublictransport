@@ -35,6 +35,20 @@ class LocationPrivate;
 class KPUBLICTRANSPORT_EXPORT Location
 {
     KPUBLICTRANSPORT_GADGET(Location)
+public:
+    /** Type of location. */
+    enum Type {
+        Place = 0, ///< a location that isn't of any specific type
+        Stop = 1, ///< a public transport stop (train station, bus stop, etc)
+        RentedVehicleStation = 2, ///< a pick-up/drop-off point for dock-based rental bike/scooter systems
+    };
+    Q_ENUM(Type)
+    Q_DECLARE_FLAGS(Types, Type)
+    Q_FLAG(Types)
+
+    /** Location type. */
+    KPUBLICTRANSPORT_PROPERTY(Type, type, setType)
+
     /** Human-readable name of the location. */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
     /** Latitude of the location, in degree, NaN if unknown. */
@@ -54,8 +68,6 @@ class KPUBLICTRANSPORT_EXPORT Location
     KPUBLICTRANSPORT_PROPERTY(QString, country, setCountry)
 
     Q_PROPERTY(bool hasCoordinate READ hasCoordinate STORED false)
-
-    // TODO: type, id
 
     /** Rental vehicle dock information, if applicable for this location. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleStation, rentalVehicleStation, setRentalVehicleStation)
@@ -106,6 +118,7 @@ public:
 
 }
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::Location::Types)
 Q_DECLARE_METATYPE(KPublicTransport::Location)
 
 #endif // KPUBLICTRANSPORT_LOCATION_H

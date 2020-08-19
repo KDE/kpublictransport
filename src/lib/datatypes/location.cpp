@@ -38,6 +38,7 @@ namespace KPublicTransport {
 class LocationPrivate : public QSharedData
 {
 public:
+    Location::Type type = Location::Place;
     QString name;
     float latitude = NAN;
     float longitude = NAN;
@@ -56,6 +57,7 @@ public:
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(Location)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, Location::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, latitude, setLatitude)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, longitude, setLongitude)
@@ -227,6 +229,10 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
     if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist > 1000) {
         return false;
     }
+    // incompatible types are also unmergable
+    if (lhs.type() != Place && rhs.type() != Place && lhs.type() != rhs.type()) {
+        return false;
+    }
 
     // ids
     const auto lhsIds = lhs.identifiers();
@@ -316,6 +322,7 @@ static float mergeCoordinate(float lhs, float rhs)
 Location Location::merge(const Location &lhs, const Location &rhs)
 {
     Location l(lhs);
+    l.setType(std::max(lhs.type(), rhs.type()));
 
     // merge identifiers
     const auto rhsIds = rhs.identifiers();
@@ -375,6 +382,9 @@ QJsonObject Location::toJson(const Location &loc)
     auto obj = Json::toJson(loc);
     if (loc.timeZone().isValid()) {
         obj.insert(QStringLiteral("timezone"), QString::fromUtf8(loc.timeZone().id()));
+    }
+    if (loc.type() == Location::Place) {
+        obj.remove(QLatin1String("type"));
     }
 
     if (!loc.d->ids.isEmpty()) {

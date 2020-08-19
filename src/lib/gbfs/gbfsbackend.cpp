@@ -70,6 +70,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
             continue;
         }
         Location loc;
+        loc.setType(Location::RentedVehicleStation);
         loc.setCoordinate(lat, lon);
         loc.setName(station.value(QLatin1String("name")).toString());
         const auto stationId = station.value(QLatin1String("station_id")).toString();

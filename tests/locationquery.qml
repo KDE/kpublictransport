@@ -88,7 +88,13 @@ Kirigami.ApplicationWindow {
                 id: delegateLayout
                 Layout.fillWidth: true
                 QQC2.Label {
-                    text: location.name
+                    text: {
+                        switch (location.type) {
+                            case Location.Stop: return "🚏 " + location.name;
+                            case Location.RentedVehicleStation: return "🚲 " + location.name;
+                            case Location.Place: return location.name;
+                        }
+                    }
                 }
                 QQC2.Label {
                     text: location.streetAddress
