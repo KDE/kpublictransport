@@ -13,26 +13,34 @@
                 "scheduledArrivalTime": "2020-08-08T09:24:58Z",
                 "scheduledDepartureTime": "2020-08-08T09:18:32Z",
                 "to": {
+                    "identifier": {
+                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
+                    },
                     "latitude": 48.40037536621094,
                     "longitude": 9.9856595993042,
                     "name": "Bürgerdienste",
                     "rentalVehicleStation": {
                         "availableVehicles": 2,
                         "capacity": -1
-                    }
+                    },
+                    "type": "RentedVehicleStation"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 2,
                 "from": {
+                    "identifier": {
+                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
+                    },
                     "latitude": 48.40037536621094,
                     "longitude": 9.9856595993042,
                     "name": "Bürgerdienste",
                     "rentalVehicleStation": {
                         "availableVehicles": 2,
                         "capacity": 8
-                    }
+                    },
+                    "type": "RentedVehicleStation"
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
@@ -107,7 +115,8 @@
                     },
                     "latitude": 48.399295806884766,
                     "longitude": 9.984164237976074,
-                    "name": "Ulm Hauptbahnhof"
+                    "name": "Ulm Hauptbahnhof",
+                    "type": "Stop"
                 }
             },
             {
@@ -119,7 +128,8 @@
                     },
                     "latitude": 48.399295806884766,
                     "longitude": 9.984164237976074,
-                    "name": "Ulm Hauptbahnhof"
+                    "name": "Ulm Hauptbahnhof",
+                    "type": "Stop"
                 },
                 "intermediateStops": [
                     {
@@ -132,7 +142,8 @@
                             },
                             "latitude": 48.397186279296875,
                             "longitude": 9.987756729125977,
-                            "name": "Ulm Steinerne Brücke"
+                            "name": "Ulm Steinerne Brücke",
+                            "type": "Stop"
                         }
                     }
                 ],
@@ -152,7 +163,8 @@
                     },
                     "latitude": 48.397403717041016,
                     "longitude": 9.992769241333008,
-                    "name": "Ulm Rathaus"
+                    "name": "Ulm Rathaus",
+                    "type": "Stop"
                 }
             },
             {
@@ -164,7 +176,8 @@
                     },
                     "latitude": 48.397403717041016,
                     "longitude": 9.992769241333008,
-                    "name": "Ulm Rathaus"
+                    "name": "Ulm Rathaus",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-08-08T09:35:24Z",

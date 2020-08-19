@@ -20,7 +20,8 @@
             },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
-            "name": "TAMPERE"
+            "name": "TAMPERE",
+            "type": "Stop"
         }
     },
     {
@@ -42,7 +43,8 @@
             },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
-            "name": "TAMPERE"
+            "name": "TAMPERE",
+            "type": "Stop"
         }
     },
     {
@@ -62,7 +64,8 @@
             },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
-            "name": "TAMPERE"
+            "name": "TAMPERE",
+            "type": "Stop"
         }
     }
 ]

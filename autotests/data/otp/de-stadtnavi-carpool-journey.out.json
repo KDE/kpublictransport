@@ -18,7 +18,8 @@
                     },
                     "latitude": 48.64262390136719,
                     "longitude": 8.895047187805176,
-                    "name": "Gärtringen, Feuerwehrgerätehaus"
+                    "name": "Gärtringen, Feuerwehrgerätehaus",
+                    "type": "Stop"
                 }
             },
             {
@@ -30,7 +31,8 @@
                     },
                     "latitude": 48.64262390136719,
                     "longitude": 8.895047187805176,
-                    "name": "Gärtringen, Feuerwehrgerätehaus"
+                    "name": "Gärtringen, Feuerwehrgerätehaus",
+                    "type": "Stop"
                 },
                 "intermediateStops": [
                     {
@@ -43,7 +45,8 @@
                             },
                             "latitude": 48.64186477661133,
                             "longitude": 8.902321815490723,
-                            "name": "Gärtringen, Rathaus"
+                            "name": "Gärtringen, Rathaus",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -56,7 +59,8 @@
                             },
                             "latitude": 48.64158630371094,
                             "longitude": 8.90291690826416,
-                            "name": "71116 Gärtringen"
+                            "name": "71116 Gärtringen",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -69,7 +73,8 @@
                             },
                             "latitude": 48.65549850463867,
                             "longitude": 8.94461727142334,
-                            "name": "Ehningen, Abzweig (K1077)"
+                            "name": "Ehningen, Abzweig (K1077)",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -82,7 +87,8 @@
                             },
                             "latitude": 48.6773796081543,
                             "longitude": 8.984813690185547,
-                            "name": "Böblingen, Herrenberger Straße"
+                            "name": "Böblingen, Herrenberger Straße",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -95,7 +101,8 @@
                             },
                             "latitude": 48.67973709106445,
                             "longitude": 8.992716789245605,
-                            "name": "Böblingen, Kremser Straße"
+                            "name": "Böblingen, Kremser Straße",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -108,7 +115,8 @@
                             },
                             "latitude": 48.681400299072266,
                             "longitude": 8.997306823730469,
-                            "name": "Böblingen, Breslauer Straße"
+                            "name": "Böblingen, Breslauer Straße",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -121,7 +129,8 @@
                             },
                             "latitude": 48.681644439697266,
                             "longitude": 9.005658149719238,
-                            "name": "Böblingen, Steinbeisstraße"
+                            "name": "Böblingen, Steinbeisstraße",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -134,7 +143,8 @@
                             },
                             "latitude": 48.681331634521484,
                             "longitude": 9.008830070495605,
-                            "name": "Böblingen"
+                            "name": "Böblingen",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -147,7 +157,8 @@
                             },
                             "latitude": 48.683773040771484,
                             "longitude": 9.008116722106934,
-                            "name": "Böblingen, Parkstraße (Landratsamt)"
+                            "name": "Böblingen, Parkstraße (Landratsamt)",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -160,7 +171,8 @@
                             },
                             "latitude": 48.6849365234375,
                             "longitude": 9.010099411010742,
-                            "name": "Böblingen, Elbenplatz"
+                            "name": "Böblingen, Elbenplatz",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -173,7 +185,8 @@
                             },
                             "latitude": 48.68779373168945,
                             "longitude": 9.009027481079102,
-                            "name": "Böblingen, Friedrich-List-Platz"
+                            "name": "Böblingen, Friedrich-List-Platz",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -186,7 +199,8 @@
                             },
                             "latitude": 48.739505767822266,
                             "longitude": 9.105403900146484,
-                            "name": "Stuttgart, Johannesgraben"
+                            "name": "Stuttgart, Johannesgraben",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -199,7 +213,8 @@
                             },
                             "latitude": 48.74593734741211,
                             "longitude": 9.113358497619629,
-                            "name": "Stuttgart, Knappenweg"
+                            "name": "Stuttgart, Knappenweg",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -212,7 +227,8 @@
                             },
                             "latitude": 48.7706413269043,
                             "longitude": 9.175802230834961,
-                            "name": "Stuttgart, Österreichischer Platz"
+                            "name": "Stuttgart, Österreichischer Platz",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -225,7 +241,8 @@
                             },
                             "latitude": 48.77375793457031,
                             "longitude": 9.17988109588623,
-                            "name": "Stuttgart, Rathaus"
+                            "name": "Stuttgart, Rathaus",
+                            "type": "Stop"
                         }
                     }
                 ],
@@ -245,7 +262,8 @@
                     },
                     "latitude": 48.775238037109375,
                     "longitude": 9.181954383850098,
-                    "name": "Stuttgart, Dorotheenstraße"
+                    "name": "Stuttgart, Dorotheenstraße",
+                    "type": "Stop"
                 }
             },
             {
@@ -257,32 +275,41 @@
                     },
                     "latitude": 48.775238037109375,
                     "longitude": 9.181954383850098,
-                    "name": "Stuttgart, Dorotheenstraße"
+                    "name": "Stuttgart, Dorotheenstraße",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-08-10T02:52:47Z",
                 "scheduledDepartureTime": "2020-08-10T02:50:51Z",
                 "to": {
+                    "identifier": {
+                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
+                    },
                     "latitude": 48.77566146850586,
                     "longitude": 9.182080268859863,
                     "name": "Charlottenplatz / Dorotheenstr.",
                     "rentalVehicleStation": {
                         "availableVehicles": 12,
                         "capacity": -1
-                    }
+                    },
+                    "type": "RentedVehicleStation"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 1227,
                 "from": {
+                    "identifier": {
+                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
+                    },
                     "latitude": 48.77566146850586,
                     "longitude": 9.182080268859863,
                     "name": "Charlottenplatz / Dorotheenstr.",
                     "rentalVehicleStation": {
                         "availableVehicles": 12,
                         "capacity": 99
-                    }
+                    },
+                    "type": "RentedVehicleStation"
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
@@ -317,26 +344,34 @@
                 "scheduledArrivalTime": "2020-08-10T03:00:20Z",
                 "scheduledDepartureTime": "2020-08-10T03:00:19Z",
                 "to": {
+                    "identifier": {
+                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
+                    },
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
                     "name": "Königstraße / Arnulf-Klett-Platz",
                     "rentalVehicleStation": {
                         "availableVehicles": 23,
                         "capacity": -1
-                    }
+                    },
+                    "type": "RentedVehicleStation"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 158,
                 "from": {
+                    "identifier": {
+                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
+                    },
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
                     "name": "Königstraße / Arnulf-Klett-Platz",
                     "rentalVehicleStation": {
                         "availableVehicles": 23,
                         "capacity": 99
-                    }
+                    },
+                    "type": "RentedVehicleStation"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-08-10T03:03:29Z",

@@ -20,7 +20,8 @@
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
                     "name": "Nydalen",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -35,7 +36,8 @@
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
                     "name": "Nydalen",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -56,7 +58,8 @@
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
                     "name": "Nationaltheatret",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -69,7 +72,8 @@
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
                     "name": "Nationaltheatret",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T13:44:29+01:00",
@@ -82,7 +86,8 @@
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
                     "name": "Nationaltheatret stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -97,7 +102,8 @@
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
                     "name": "Nationaltheatret stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -118,7 +124,8 @@
                     "latitude": 60.192955017089844,
                     "longitude": 11.097078323364258,
                     "name": "Oslo Lufthavn stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -131,7 +138,8 @@
                     "latitude": 60.192955017089844,
                     "longitude": 11.097078323364258,
                     "name": "Oslo Lufthavn stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T14:17:28+01:00",
@@ -165,7 +173,8 @@
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
                     "name": "Nydalen",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -180,7 +189,8 @@
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
                     "name": "Nydalen",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "PublicTransport",
                 "notes": [
@@ -204,7 +214,8 @@
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
                     "name": "Nationaltheatret",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -217,7 +228,8 @@
                     "latitude": 59.915321350097656,
                     "longitude": 10.732219696044922,
                     "name": "Nationaltheatret",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T13:49:21+01:00",
@@ -230,7 +242,8 @@
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
                     "name": "Nationaltheatret stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -245,7 +258,8 @@
                     "latitude": 59.91536331176758,
                     "longitude": 10.727551460266113,
                     "name": "Nationaltheatret stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -266,7 +280,8 @@
                     "latitude": 60.19298553466797,
                     "longitude": 11.096880912780762,
                     "name": "Oslo Lufthavn stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 }
             },
             {
@@ -279,7 +294,8 @@
                     "latitude": 60.19298553466797,
                     "longitude": 11.096880912780762,
                     "name": "Oslo Lufthavn stasjon",
-                    "timezone": "Europe/Oslo"
+                    "timezone": "Europe/Oslo",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-12T14:22:18+01:00",

@@ -5,7 +5,8 @@
         },
         "latitude": 60.219234466552734,
         "longitude": 24.813289642333984,
-        "name": "Leppävaara"
+        "name": "Leppävaara",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -13,7 +14,8 @@
         },
         "latitude": 60.219425201416016,
         "longitude": 24.8145751953125,
-        "name": "Leppävaaran asema"
+        "name": "Leppävaaran asema",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -21,7 +23,8 @@
         },
         "latitude": 60.22132110595703,
         "longitude": 24.81134033203125,
-        "name": "Läkkisepänkuja"
+        "name": "Läkkisepänkuja",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -29,7 +32,8 @@
         },
         "latitude": 60.220951080322266,
         "longitude": 24.809860229492188,
-        "name": "Läkkisepänkuja"
+        "name": "Läkkisepänkuja",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -37,7 +41,8 @@
         },
         "latitude": 60.22154998779297,
         "longitude": 24.814233779907227,
-        "name": "Konstaapelinkatu"
+        "name": "Konstaapelinkatu",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -45,6 +50,7 @@
         },
         "latitude": 60.22170639038086,
         "longitude": 24.814132690429688,
-        "name": "Konstaapelinkatu"
+        "name": "Konstaapelinkatu",
+        "type": "Stop"
     }
 ]

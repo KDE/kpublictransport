@@ -52,16 +52,19 @@ RentalVehicleStation OpenTripPlannerParser::parseRentalVehicleStation(const QJso
     return s;
 }
 
-Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj, Location loc) const
+void OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Location &loc) const
 {
     const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
     if (!parentObj.isEmpty()) {
-        return parseLocation(parentObj, loc);
+        loc.setType(Location::Stop);
+        return parseLocationFragment(parentObj, loc);
     }
 
-    loc.setName(obj.value(QLatin1String("name")).toString());
-    loc.setLatitude(obj.value(QLatin1String("lat")).toDouble());
-    loc.setLongitude(obj.value(QLatin1String("lon")).toDouble());
+    if (loc.name().isEmpty()) {
+        loc.setName(obj.value(QLatin1String("name")).toString());
+    }
+    loc.setLatitude(obj.value(QLatin1String("lat")).toDouble(loc.latitude()));
+    loc.setLongitude(obj.value(QLatin1String("lon")).toDouble(loc.longitude()));
 
     const auto tzId = obj.value(QLatin1String("timezone")).toString();
     if (!tzId.isEmpty()) {
@@ -75,9 +78,23 @@ Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj, Location l
 
     const auto bss = obj.value(QLatin1String("bikeRentalStation")).toObject();
     if (!bss.isEmpty()) {
+        loc.setType(Location::RentedVehicleStation);
         loc.setRentalVehicleStation(parseRentalVehicleStation(bss));
     }
+}
 
+Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
+{
+    const auto stop = obj.value(QLatin1String("stop")).toObject();
+    const auto bikeRental = obj.value(QLatin1String("bikeRentalStation")).toObject();
+
+    Location loc;
+    parseLocationFragment(bikeRental, loc);
+    if (!stop.empty()) {
+        loc.setType(Location::Stop);
+        parseLocationFragment(stop, loc);
+    }
+    parseLocationFragment(obj, loc);
     return loc;
 }
 
@@ -87,7 +104,7 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJ
     const auto stopArray = obj.value(QLatin1String("stopsByRadius")).toObject().value(QLatin1String("edges")).toArray();
     locs.reserve(stopArray.size());
     for (const auto &stop : stopArray) {
-        locs.push_back(parseLocation(stop.toObject().value(QLatin1String("node")).toObject().value(QLatin1String("stop")).toObject()));
+        locs.push_back(parseLocation(stop.toObject().value(QLatin1String("node")).toObject()));
     }
 
     // deduplicate elements, which we get due to searching for stops rather than stations
@@ -281,7 +298,7 @@ Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
 
 void OpenTripPlannerParser::parseDeparturesForStop(const QJsonObject &obj, std::vector<Stopover> &deps) const
 {
-    const auto loc = parseLocation(obj.value(QLatin1String("stop")).toObject());
+    const auto loc = parseLocation(obj);
     const auto stopTimes = obj.value(QLatin1String("stoptimes")).toArray();
     for (const auto &stopTime : stopTimes) {
         auto dep = parseDeparture(stopTime.toObject());
@@ -349,18 +366,14 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     const auto fromObj = obj.value(QLatin1String("from")).toObject();
     const auto fromStop = fromObj.value(QLatin1String("stop")).toObject();
     const auto fromBikeRental = fromObj.value(QLatin1String("bikeRentalStation")).toObject();
-    auto from = parseLocation(fromBikeRental);
-    from = parseLocation(fromStop);
-    from = parseLocation(fromObj, from);
+    const auto from = parseLocation(fromObj);
     section.setFrom(from);
     section.setScheduledDeparturePlatform(fromStop.value(QLatin1String("platformCode")).toString());
 
     const auto toObj = obj.value(QLatin1String("to")).toObject();
     const auto toStop = toObj.value(QLatin1String("stop")).toObject();
     const auto toBikeRental = toObj.value(QLatin1String("bikeRentalStation")).toObject();
-    auto to = parseLocation(toBikeRental);
-    to = parseLocation(toStop);
-    to = parseLocation(toObj, to);
+    const auto to = parseLocation(toObj);
     section.setTo(to);
     section.setScheduledDeparturePlatform(toStop.value(QLatin1String("platformCode")).toString());
 
@@ -399,8 +412,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     stops.reserve(stopsA.size());
     for (const auto &stopV : stopsA) {
         const auto stopObj = stopV.toObject();
-        const auto locObj = stopObj.value(QLatin1String("stop")).toObject();
-        const auto loc = parseLocation(locObj);
+        const auto loc = parseLocation(stopObj);
 
         Stopover stop;
         stop.setStopPoint(loc);

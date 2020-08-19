@@ -57,7 +57,8 @@ public:
 
 private:
     RentalVehicleStation parseRentalVehicleStation(const QJsonObject &obj) const;
-    Location parseLocation(const QJsonObject &obj, Location loc = {}) const;
+    void parseLocationFragment(const QJsonObject &obj, Location &loc) const;
+    Location parseLocation(const QJsonObject &obj) const;
     void parseAlerts(const QJsonArray &alertsArray) const;
     Line parseLine(const QJsonObject &obj) const;
     Route parseRoute(const QJsonObject &obj) const;
