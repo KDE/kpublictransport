@@ -174,6 +174,7 @@ bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply
         return false;
     } else if (context) {
         context->stillStarting = false;
+        return true;
     }
-    return true;
+    return false;
 }
