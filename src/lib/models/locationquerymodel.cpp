@@ -35,6 +35,7 @@ class LocationQueryModelPrivate : public AbstractQueryModelPrivate
 public:
     void doQuery() override;
     void mergeResults(const std::vector<Location> &newLocations);
+    bool isFiltered(const Location &loc) const;
 
     std::vector<Location> m_locations;
 
@@ -66,11 +67,28 @@ void LocationQueryModelPrivate::doQuery()
     });
 }
 
+bool LocationQueryModelPrivate::isFiltered(const Location &loc) const
+{
+    if (m_request.types() != Location::Place && loc.type() != Location::Place && (loc.type() & m_request.types()) == 0) {
+        return true;
+    }
+
+    if (m_request.hasCoordinate() && m_request.maximumDistance() > 0) {
+        return Location::distance(m_request.latitude(), m_request.longitude(), loc.latitude(), loc.longitude()) > m_request.maximumDistance();
+    }
+
+    return false;
+}
+
 void LocationQueryModelPrivate::mergeResults(const std::vector<Location> &newLocations)
 {
     Q_Q(LocationQueryModel);
 
     for (const auto &loc : newLocations) {
+        if (isFiltered(loc)) {
+            continue;
+        }
+
         // lacking an actual useful ordering, we need to do a full search for merging
         // LocationUtil::sortLessThan provides an order, but proximity there does not imply
         // always all merge candidates are nearby unfortunately (e.g. in cases of native
