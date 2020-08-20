@@ -1,5 +1,5 @@
-query stopsByCoordinate($lat: Float!, $lon: Float!) {
-  stopsByRadius(lat: $lat, lon: $lon, radius: 1000) {
+query stopsByCoordinate($lat: Float!, $lon: Float!, $radius: Int!) {
+  stopsByRadius(lat: $lat, lon: $lon, radius: $radius) {
     edges {
       node {
         stop {

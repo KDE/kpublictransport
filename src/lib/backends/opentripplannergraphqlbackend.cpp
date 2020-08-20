@@ -59,6 +59,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));
         gqlReq.setVariable(QStringLiteral("lat"), req.latitude());
         gqlReq.setVariable(QStringLiteral("lon"), req.longitude());
+        gqlReq.setVariable(QStringLiteral("radius"), req.maximumDistance());
     } else {
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByName.graphql")));
         gqlReq.setVariable(QStringLiteral("name"), req.name());
