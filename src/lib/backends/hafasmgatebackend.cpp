@@ -335,6 +335,10 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
 
 QNetworkReply* HafasMgateBackend::postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & Location::Stop) == 0) {
+        return nullptr;
+    }
+
     QJsonObject methodObj;
     if (req.hasCoordinate()) {
         QJsonObject cfg;

@@ -174,6 +174,10 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
 
 bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & Location::Stop) == 0) {
+        return false;
+    }
+
     QUrl url;
     url.setScheme(QStringLiteral("https"));
     url.setHost(m_endpoint);

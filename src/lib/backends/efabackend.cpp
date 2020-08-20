@@ -55,7 +55,7 @@ bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryT
 
 bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (request.name().isEmpty() && !request.hasCoordinate()) {
+    if ((request.name().isEmpty() && !request.hasCoordinate()) || (request.types() & Location::Stop) == 0) {
         return false;
     }
 

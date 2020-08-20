@@ -21,6 +21,7 @@
 #include "kpublictransport_export.h"
 
 #include <KPublicTransport/Datatypes>
+#include <KPublicTransport/Location>
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -29,7 +30,6 @@ class QJsonObject;
 
 namespace KPublicTransport {
 
-class Location;
 class LocationRequestPrivate;
 
 /** Describes a location search.
@@ -56,6 +56,11 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
      *  that all results comply with this constraint.
      */
     KPUBLICTRANSPORT_PROPERTY(int, maximumResults, setMaximumResults)
+    /** The type of locations you are interested in.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results comply with this constraint.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location::Types, types, setTypes)
 
 public:
     /** Create a LocationRequest from @p locaction.

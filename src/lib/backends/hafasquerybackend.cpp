@@ -67,6 +67,10 @@ bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) 
 
 bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((request.types() & Location::Stop) == 0) {
+        return false;
+    }
+
     if (request.hasCoordinate()) {
         return queryLocationByCoordinate(request, reply, nam);
     }

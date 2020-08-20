@@ -176,6 +176,19 @@ Kirigami.ApplicationWindow {
                     }
                 }
 
+                RowLayout {
+                    QQC2.CheckBox {
+                        id: includeStops
+                        checked: true
+                        text: "Public Transport Stops"
+                    }
+                    QQC2.CheckBox {
+                        id: includeDocks
+                        checked: true
+                        text: "Rental Vehicle Stations"
+                    }
+                }
+
                 QQC2.ComboBox {
                     id: exampleSelector
                     Layout.fillWidth: true
@@ -223,6 +236,8 @@ Kirigami.ApplicationWindow {
                             locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             locationModel.request.maximumResults = maxResults.text;
                             locationModel.request.maximumDistance = maxDist.text;
+                            locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
+                                | (includeDocks.checked ? Location.RentedVehicleStation : Location.Place);
                         }
                     }
                 }

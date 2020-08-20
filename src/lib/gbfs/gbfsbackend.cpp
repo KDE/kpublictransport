@@ -121,6 +121,10 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
 bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & Location::RentedVehicleStation) == 0) {
+        return false;
+    }
+
     // (1) find all applicable services
     // (2) fetch updates where needed
     // (3) look for matching locations in their data

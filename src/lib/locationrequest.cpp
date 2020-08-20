@@ -18,7 +18,6 @@
 #include "locationrequest.h"
 #include "datatypes/datatypes_p.h"
 #include "datatypes/json_p.h"
-#include "datatypes/location.h"
 #include "datatypes/locationutil_p.h"
 
 #include <QSharedData>
@@ -35,12 +34,14 @@ public:
     QStringList backendIds;
     int maximumDistance = 1000;
     int maximumResults = 10;
+    Location::Types types = Location::Stop | Location::RentedVehicleStation;
 };
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(LocationRequest)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumDistance, setMaximumDistance)
 KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, int, maximumResults, setMaximumResults)
+KPUBLICTRANSPORT_MAKE_PROPERTY(LocationRequest, Location::Types, types, setTypes)
 
 LocationRequest::LocationRequest(const Location &locaction)
     : d(new LocationRequestPrivate)
