@@ -38,8 +38,25 @@ class Stopover;
 class KPUBLICTRANSPORT_EXPORT JourneySection
 {
     KPUBLICTRANSPORT_GADGET(JourneySection)
+
+public:
+    /** Mode of transport.
+     *  These categories are fairly coarse, for a more detailed break-down of PublicTransport see Line::Mode.
+     */
+    enum Mode {
+        Invalid = 0,
+        PublicTransport = 1,
+        Transfer = 2,
+        Walking = 4,
+        Waiting = 8,
+        RentedVehicle = 16, ///< free floating or dock-based rental bike service, electric scooters, car sharing services, ie. any vehicle you drive yourself but that isn't your own
+    };
+    Q_ENUM(Mode)
+    Q_DECLARE_FLAGS(Modes, Mode)
+    Q_FLAG(Modes)
+
     /** Mode of transport for this section. */
-    Q_PROPERTY(Mode mode READ mode WRITE setMode)
+    KPUBLICTRANSPORT_PROPERTY(Mode, mode, setMode)
 
     /** Planned departure time. */
     KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
@@ -124,19 +141,6 @@ class KPUBLICTRANSPORT_EXPORT JourneySection
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle, rentalVehicle, setRentalVehicle)
 
 public:
-    /** Mode of transport. */
-    enum Mode {
-        Invalid,
-        PublicTransport,
-        Transfer,
-        Walking,
-        Waiting,
-        RentedVehicle, ///< free floating or dock-based rental bike service, electric scooters, car sharing services, ie. any vehicle you drive yourself but that isn't your own
-    };
-    Q_ENUM(Mode)
-    Mode mode() const;
-    void setMode(Mode mode);
-
     bool hasExpectedDepartureTime() const;
     int departureDelay() const;
     bool hasExpectedArrivalTime() const;
@@ -274,6 +278,7 @@ private:
 
 }
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::JourneySection::Modes)
 Q_DECLARE_METATYPE(KPublicTransport::JourneySection)
 Q_DECLARE_METATYPE(KPublicTransport::Journey)
 
