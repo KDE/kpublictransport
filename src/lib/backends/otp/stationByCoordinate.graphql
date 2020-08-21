@@ -1,22 +1,43 @@
-query stopsByCoordinate($lat: Float!, $lon: Float!, $radius: Int!) {
-  stopsByRadius(lat: $lat, lon: $lon, radius: $radius) {
-    edges {
-      node {
-        stop {
-          id: gtfsId
-          name
-          lat
-          lon
-          timezone
-          parentStation {
-            id: gtfsId
-            name
-            lat
-            lon
-            timezone
-          }
+query stopsByCoordinate(
+    $lat: Float!,
+    $lon: Float!,
+    $radius: Int!,
+    $maxResults: Int!,
+    $placeType: [FilterPlaceType]!
+) {
+    stopsByRadius: nearest(
+        lat: $lat,
+        lon: $lon,
+        maxDistance: $radius,
+        maxResults: $maxResults,
+        filterByPlaceTypes: $placeType
+    ) {
+        edges {
+            node {
+                stop: place { ...on Stop {
+                    id: gtfsId
+                    name
+                    lat
+                    lon
+                    timezone
+                    parentStation {
+                        id: gtfsId
+                        name
+                        lat
+                        lon
+                        timezone
+                    }
+                }}
+                bikeRentalStation: place { ...on BikeRentalStation {
+                    id
+                    name
+                    lat
+                    lon
+                    networks,
+                    bikesAvailable,
+                    spacesAvailable
+                }}
+            }
         }
-      }
     }
-  }
 }

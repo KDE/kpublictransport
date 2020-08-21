@@ -60,6 +60,16 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         gqlReq.setVariable(QStringLiteral("lat"), req.latitude());
         gqlReq.setVariable(QStringLiteral("lon"), req.longitude());
         gqlReq.setVariable(QStringLiteral("radius"), req.maximumDistance());
+        gqlReq.setVariable(QStringLiteral("maxResults"), req.maximumResults());
+        QJsonArray placeTypeFilter;
+        if (req.types() & Location::Stop) {
+            placeTypeFilter.push_back(QStringLiteral("STOP"));
+        }
+        if (req.types() & Location::RentedVehicleStation) {
+            placeTypeFilter.push_back(QStringLiteral("BICYCLE_RENT"));
+        }
+        // TODO: also supports BIKE_PARK, CAR_PARK
+        gqlReq.setVariable(QStringLiteral("placeType"), placeTypeFilter);
     } else {
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByName.graphql")));
         gqlReq.setVariable(QStringLiteral("name"), req.name());
