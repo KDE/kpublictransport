@@ -43,6 +43,7 @@ public:
     std::vector<RequestContext> contexts;
     QStringList backendIds;
     bool downloadAssets = false;
+    JourneySection::Modes modes = JourneySection::PublicTransport | JourneySection::RentedVehicle;
 };
 }
 
@@ -51,6 +52,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, Location, from, setFrom)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, Location, to, setTo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, JourneyRequest::DateTimeMode, dateTimeMode, setDateTimeMode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, downloadAssets, setDownloadAssets)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, JourneySection::Modes, modes, setModes)
 
 JourneyRequest::JourneyRequest(const Location &from, const Location &to)
     : d(new JourneyRequestPrivate)

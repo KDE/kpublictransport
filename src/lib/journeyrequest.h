@@ -21,6 +21,7 @@
 #include "kpublictransport_export.h"
 
 #include <KPublicTransport/Datatypes>
+#include <KPublicTransport/Journey>
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -51,6 +52,12 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, to, setTo)
     /** Date/time at which the journey should start/end. */
     KPUBLICTRANSPORT_PROPERTY(QDateTime, dateTime, setDateTime)
+
+    /** Modes of transportation that should be considered for this query.
+     *  Only transit modes matter (public transport, rented vehicles, etc),
+     *  values for tranfers/waits/etc are ignored.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::JourneySection::Modes, modes, setModes)
 
 public:
     enum DateTimeMode {

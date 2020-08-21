@@ -378,6 +378,19 @@ Kirigami.ApplicationWindow {
                     }
                 }
 
+                RowLayout {
+                    QQC2.CheckBox {
+                        id: ptMode
+                        checked: true
+                        text: "Public Transport"
+                    }
+                    QQC2.CheckBox {
+                        id: rentalMode
+                        checked: true
+                        text: "Retal Vehicles"
+                    }
+                }
+
                 QQC2.ComboBox {
                     id: fromSelector
                     Layout.fillWidth: true
@@ -449,6 +462,8 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
                             journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             journeyModel.request.downloadAssets = true
+                            journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
+                                | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
                         }
                     }
                     QQC2.Button {
@@ -468,6 +483,8 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
                             journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             journeyModel.request.downloadAssets = true
+                            journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
+                                | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
                         }
                     }
                     QQC2.Button {
@@ -487,6 +504,8 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
                             journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
                             journeyModel.request.downloadAssets = true
+                            journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
+                                | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
                         }
                     }
                     QQC2.Button {
