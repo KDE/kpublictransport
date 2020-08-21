@@ -17,6 +17,7 @@
 
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
+#include "datatypes/datatypes_p.h"
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
 
@@ -45,10 +46,11 @@ public:
 };
 }
 
-JourneyRequest::JourneyRequest() :
-    d(new JourneyRequestPrivate)
-{
-}
+KPUBLICTRANSPORT_MAKE_GADGET(JourneyRequest)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, Location, from, setFrom)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, Location, to, setTo)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, JourneyRequest::DateTimeMode, dateTimeMode, setDateTimeMode)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, downloadAssets, setDownloadAssets)
 
 JourneyRequest::JourneyRequest(const Location &from, const Location &to)
     : d(new JourneyRequestPrivate)
@@ -57,36 +59,9 @@ JourneyRequest::JourneyRequest(const Location &from, const Location &to)
     d->to = to;
 }
 
-JourneyRequest::JourneyRequest(JourneyRequest&&) noexcept = default;
-JourneyRequest::JourneyRequest(const JourneyRequest&) = default;
-JourneyRequest::~JourneyRequest() = default;
-JourneyRequest& JourneyRequest::operator=(const JourneyRequest&) = default;
-
 bool JourneyRequest::isValid() const
 {
     return !d->to.isEmpty() && !d->from.isEmpty();
-}
-
-Location JourneyRequest::from() const
-{
-    return d->from;
-}
-
-void JourneyRequest::setFrom(const Location &from)
-{
-    d.detach();
-    d->from = from;
-}
-
-Location JourneyRequest::to() const
-{
-    return d->to;
-}
-
-void JourneyRequest::setTo(const Location &to)
-{
-    d.detach();
-    d->to = to;
 }
 
 QDateTime JourneyRequest::dateTime() const
@@ -101,17 +76,6 @@ void JourneyRequest::setDateTime(const QDateTime& dt)
 {
     d.detach();
     d->dateTime = dt;
-}
-
-JourneyRequest::DateTimeMode JourneyRequest::dateTimeMode() const
-{
-    return d->dateTimeMode;
-}
-
-void JourneyRequest::setDateTimeMode(JourneyRequest::DateTimeMode mode)
-{
-    d.detach();
-    d->dateTimeMode = mode;
 }
 
 void JourneyRequest::setDepartureTime(const QDateTime &dt)
@@ -178,17 +142,6 @@ void JourneyRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
-}
-
-bool JourneyRequest::downloadAssets() const
-{
-    return d->downloadAssets;
-}
-
-void JourneyRequest::setDownloadAssets(bool downloadAssets)
-{
-    d.detach();
-    d->downloadAssets = downloadAssets;
 }
 
 QString JourneyRequest::cacheKey() const

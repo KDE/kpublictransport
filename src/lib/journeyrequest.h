@@ -20,6 +20,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Datatypes>
+
 #include <QMetaType>
 #include <QSharedDataPointer>
 
@@ -41,49 +43,38 @@ class RequestContext;
  */
 class KPUBLICTRANSPORT_EXPORT JourneyRequest
 {
-    Q_GADGET
-    Q_PROPERTY(KPublicTransport::Location from READ from WRITE setFrom)
-    Q_PROPERTY(KPublicTransport::Location to READ to WRITE setTo)
-    Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
-    Q_PROPERTY(DateTimeMode dateTimeMode READ dateTimeMode WRITE setDateTimeMode)
-    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
-    Q_PROPERTY(bool downloadAssets READ downloadAssets WRITE setDownloadAssets)
-
-public:
-    JourneyRequest();
-    /** Search a journey from @p from to @p to. */
-    JourneyRequest(const Location &from, const Location &to);
-    JourneyRequest(JourneyRequest&&) noexcept;
-    JourneyRequest(const JourneyRequest &);
-    ~JourneyRequest();
-    JourneyRequest& operator=(const JourneyRequest&);
-
-    /** Returns @c true if this is a valid request, that is, it has enough parameters set to perform a query. */
-    bool isValid() const;
+    KPUBLICTRANSPORT_GADGET(JourneyRequest)
 
     /** The starting point of the journey search. */
-    Location from() const;
-    /** Set the starting point for the journey. */
-    void setFrom(const Location &from);
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, from, setFrom)
     /** The journey destination. */
-    Location to() const;
-    /** Set the destination of the journey. */
-    void setTo(const Location &to);
-
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, to, setTo)
     /** Date/time at which the journey should start/end. */
-    QDateTime dateTime() const;
-    /** Sets the date/time at which the journey should start/end. */
-    void setDateTime(const QDateTime &dt);
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, dateTime, setDateTime)
+
+public:
     enum DateTimeMode {
         Arrival, ///< dateTime() represents the desired arriva time.
         Departure ///< dateTime() represents the desired departure time.
     };
     Q_ENUM(DateTimeMode)
+    /** Controls whether to search for journeys starting or ending at the given time. */
+    KPUBLICTRANSPORT_PROPERTY(DateTimeMode, dateTimeMode, setDateTimeMode)
 
-    /** Returns whether to search for journeys starting or ending at the given time. */
-    DateTimeMode dateTimeMode() const;
-    /** Sets whether to search for journeys starting or ending at the given time. */
-    void setDateTimeMode(DateTimeMode mode);
+    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
+
+    /** Download graphic assets such as line logos for the data requested here.
+     *  Default: @c false
+     */
+    KPUBLICTRANSPORT_PROPERTY(bool, downloadAssets, setDownloadAssets)
+
+public:
+    /** Search a journey from @p from to @p to. */
+    JourneyRequest(const Location &from, const Location &to);
+
+    /** Returns @c true if this is a valid request, that is, it has enough parameters set to perform a query. */
+    bool isValid() const;
+
     /** Set the desired departure time.
      *  This is mutually exclusive to setting a desired arrival time.
      */
@@ -103,13 +94,6 @@ public:
      */
     void setBackendIds(const QStringList &backendIds);
 
-    /** Download graphic assets such as line logos for the data requested here. */
-    bool downloadAssets() const;
-    /** Enable downloading of graphic assets.
-     *  Default: @c false
-     */
-    void setDownloadAssets(bool downloadAssets);
-
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
 
@@ -125,8 +109,6 @@ private:
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);
     Q_DECL_HIDDEN void purgeLoops(const JourneyRequest &baseRequest);
-
-    QExplicitlySharedDataPointer<JourneyRequestPrivate> d;
 };
 
 }
