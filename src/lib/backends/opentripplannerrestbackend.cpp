@@ -150,6 +150,10 @@ bool OpenTripPlannerRestBackend::queryStopover(const StopoverRequest &req, Stopo
 
 bool OpenTripPlannerRestBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.modes() & JourneySection::PublicTransport) == 0) {
+        return false;
+    }
+
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("fromPlace"), locationToQuery(req.from()));
     query.addQueryItem(QStringLiteral("toPlace"), locationToQuery(req.to()));

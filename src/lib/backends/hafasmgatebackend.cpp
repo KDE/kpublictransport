@@ -91,15 +91,24 @@ QJsonObject HafasMgateBackend::locationToJson(const Location &loc) const
 
 bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((request.modes() & JourneySection::PublicTransport) == 0) {
+        return false;
+    }
+
     QJsonObject tripSearch;
     {
         QJsonObject cfg;
         cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
 
+        const auto depLoc = locationToJson(request.from());
+        const auto arrLoc = locationToJson(request.to());
+        if (depLoc.isEmpty() || arrLoc.isEmpty()) {
+            return false;
+        }
         QJsonArray depLocL;
-        depLocL.push_back(locationToJson(request.from()));
+        depLocL.push_back(depLoc);
         QJsonArray arrLocL;
-        arrLocL.push_back(locationToJson(request.to()));
+        arrLocL.push_back(arrLoc);
 
         QJsonObject req;
         req.insert(QStringLiteral("arrLocL"), arrLocL);

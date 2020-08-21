@@ -99,7 +99,6 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
         netReply->deleteLater();
-        qDebug() << netReply->request().url();
 
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
@@ -144,7 +143,6 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
             addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
-        qDebug() << netReply->request().url();
         auto res = m_parser.parseQueryLocationResponse(data);
         if (m_parser.error() != Reply::NoError) {
             addError(reply, m_parser.error(), m_parser.errorMessage());
@@ -182,7 +180,6 @@ bool HafasQueryBackend::queryStopover(const StopoverRequest &request, StopoverRe
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
-        qDebug() << netReply->request().url();
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -222,6 +219,10 @@ QString HafasQueryBackend::locationId(const Location &loc) const
 
 bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((request.modes() & JourneySection::PublicTransport) == 0) {
+        return false;
+    }
+
     const auto fromId = locationId(request.from());
     const auto toId = locationId(request.to());
     if (fromId.isEmpty() || toId.isEmpty()) {
@@ -248,7 +249,6 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
-        qDebug() << netReply->request().url();
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);

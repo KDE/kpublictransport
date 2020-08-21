@@ -53,6 +53,9 @@ bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::Qu
 
 bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.modes() & JourneySection::PublicTransport) == 0) {
+        return false;
+    }
     if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
         return false;
     }

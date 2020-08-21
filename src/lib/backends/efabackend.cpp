@@ -165,6 +165,10 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
 
 bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((request.modes() & JourneySection::PublicTransport) == 0) {
+        return false;
+    }
+
     const auto fromId = request.from().identifier(locationIdentifierType());
     const auto toId = request.to().identifier(locationIdentifierType());
     if ((fromId.isEmpty() && !request.from().hasCoordinate()) || (toId.isEmpty() && !request.to().hasCoordinate())) {
