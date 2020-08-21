@@ -337,6 +337,18 @@ void ManagerPrivate::resolveLocation(LocationRequest &&locReq, const AbstractBac
     });
 }
 
+static Location::Types locationTypesForJourneyRequest(const JourneyRequest &req)
+{
+    Location::Types t = Location::Place;
+    if (req.modes() & JourneySection::PublicTransport) {
+        t |= Location::Stop;
+    }
+    if (req.modes() & JourneySection::RentedVehicle) {
+        t |= Location::RentedVehicleStation;
+    }
+    return t;
+}
+
 bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyRequest &req, JourneyReply *reply)
 {
     if (shouldSkipBackend(backend, req)) {
@@ -366,6 +378,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     // resolve locations if needed
     if (backend->needsLocationQuery(req.from(), AbstractBackend::QueryType::Journey)) {
         LocationRequest fromReq(req.from());
+        fromReq.setTypes(locationTypesForJourneyRequest(req));
         resolveLocation(std::move(fromReq), backend, [reply, backend, req, this](const Location &loc) {
             auto jnyRequest = req;
             const auto fromLoc = Location::merge(jnyRequest.from(), loc);
@@ -373,6 +386,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
             if (backend->needsLocationQuery(jnyRequest.to(), AbstractBackend::QueryType::Journey)) {
                 LocationRequest toReq(jnyRequest.to());
+                toReq.setTypes(locationTypesForJourneyRequest(req));
                 resolveLocation(std::move(toReq), backend, [jnyRequest, reply, backend, this](const Location &loc) {
                     auto jnyReq = jnyRequest;
                     const auto toLoc = Location::merge(jnyRequest.to(), loc);
@@ -395,6 +409,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
     if (backend->needsLocationQuery(req.to(), AbstractBackend::QueryType::Journey)) {
         LocationRequest toReq(req.to());
+        toReq.setTypes(locationTypesForJourneyRequest(req));
         resolveLocation(std::move(toReq), backend, [req, toReq, reply, backend, this](const Location &loc) {
             const auto toLoc = Location::merge(req.to(), loc);
             auto jnyRequest = req;
