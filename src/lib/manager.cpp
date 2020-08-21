@@ -82,7 +82,7 @@ public:
 
     template <typename RequestT> bool shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const;
 
-    void resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
+    void resolveLocation(LocationRequest &&locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
     bool queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply);
 
@@ -300,7 +300,7 @@ bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend, const Req
 
 // IMPORTANT callback must not be called directly, but only via queued invocation,
 // our callers rely on that to not mess up sync/async response handling
-void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const AbstractBackend *backend, const std::function<void(const Location&)> &callback)
+void ManagerPrivate::resolveLocation(LocationRequest &&locReq, const AbstractBackend *backend, const std::function<void(const Location&)> &callback)
 {
     // check if this location query is cached already
     const auto cacheEntry = Cache::lookupLocation(backend->backendId(), locReq.cacheKey());
@@ -320,6 +320,7 @@ void ManagerPrivate::resolveLocation(const LocationRequest &locReq, const Abstra
     }
 
     // actually do the location query
+    locReq.setMaximumResults(1);
     auto locReply = new LocationReply(locReq, q);
     if (backend->queryLocation(locReq, locReply, nam())) {
         locReply->setPendingOps(1);
@@ -365,14 +366,14 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
     // resolve locations if needed
     if (backend->needsLocationQuery(req.from(), AbstractBackend::QueryType::Journey)) {
         LocationRequest fromReq(req.from());
-        resolveLocation(fromReq, backend, [reply, backend, req, this](const Location &loc) {
+        resolveLocation(std::move(fromReq), backend, [reply, backend, req, this](const Location &loc) {
             auto jnyRequest = req;
             const auto fromLoc = Location::merge(jnyRequest.from(), loc);
             jnyRequest.setFrom(fromLoc);
 
             if (backend->needsLocationQuery(jnyRequest.to(), AbstractBackend::QueryType::Journey)) {
                 LocationRequest toReq(jnyRequest.to());
-                resolveLocation(toReq, backend, [jnyRequest, reply, backend, this](const Location &loc) {
+                resolveLocation(std::move(toReq), backend, [jnyRequest, reply, backend, this](const Location &loc) {
                     auto jnyReq = jnyRequest;
                     const auto toLoc = Location::merge(jnyRequest.to(), loc);
                     jnyReq.setTo(toLoc);
@@ -394,7 +395,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
     if (backend->needsLocationQuery(req.to(), AbstractBackend::QueryType::Journey)) {
         LocationRequest toReq(req.to());
-        resolveLocation(toReq, backend, [req, toReq, reply, backend, this](const Location &loc) {
+        resolveLocation(std::move(toReq), backend, [req, toReq, reply, backend, this](const Location &loc) {
             const auto toLoc = Location::merge(req.to(), loc);
             auto jnyRequest = req;
             jnyRequest.setTo(toLoc);
@@ -442,7 +443,8 @@ bool ManagerPrivate::queryStopover(const AbstractBackend *backend, const Stopove
     if (backend->needsLocationQuery(req.stop(), AbstractBackend::QueryType::Departure)) {
         qCDebug(Log) << "Backend needs location query first:" << backend->backendId();
         LocationRequest locReq(req.stop());
-        resolveLocation(locReq, backend, [reply, req, backend, this](const Location &loc) {
+        locReq.setTypes(Location::Stop); // Stopover can never refer to other location types
+        resolveLocation(std::move(locReq), backend, [reply, req, backend, this](const Location &loc) {
             const auto depLoc = Location::merge(req.stop(), loc);
             auto depRequest = req;
             depRequest.setStop(depLoc);
