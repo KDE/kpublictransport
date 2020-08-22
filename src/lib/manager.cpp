@@ -233,7 +233,15 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         if (it.value().isObject()) {
             mp.writeOnGadget(backend, it.value().toObject());
         } else if (it.value().isArray()) {
-            mp.writeOnGadget(backend, it.value().toArray());
+            const auto a = it.value().toArray();
+            if (mp.userType() == QVariant::StringList) {
+                QStringList l;
+                l.reserve(a.size());
+                std::transform(a.begin(), a.end(), std::back_inserter(l), [](const auto &v) { return v.toString(); });
+                mp.writeOnGadget(backend, l);
+            } else {
+                mp.writeOnGadget(backend, it.value().toArray());
+            }
         } else {
             mp.writeOnGadget(backend, it.value().toVariant());
         }

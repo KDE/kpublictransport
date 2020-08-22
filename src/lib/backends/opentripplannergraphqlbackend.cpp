@@ -142,7 +142,27 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("time"), dt.toString(QStringLiteral("hh:mm:ss")));
     gqlReq.setVariable(QStringLiteral("dateTime"), dt.toString(Qt::ISODate));
     gqlReq.setVariable(QStringLiteral("arriveBy"), req.dateTimeMode() == JourneyRequest::Arrival);
-    gqlReq.setVariable(QStringLiteral("modes"), m_supportedModes);
+
+    QJsonArray modes;
+    QJsonObject walkMode;
+    walkMode.insert(QStringLiteral("mode"), QStringLiteral("WALK"));
+    modes.push_back(walkMode);
+    if (req.modes() & JourneySection::PublicTransport) {
+        for (const auto &mode : m_supportedTransitModes) {
+            QJsonObject transitMode;
+            transitMode.insert(QStringLiteral("mode"), mode);
+            modes.push_back(transitMode);
+        }
+    }
+    if (req.modes() & JourneySection::RentedVehicle) {
+        for (const auto &mode : m_supportedRentalModes) {
+            QJsonObject rentMode;
+            rentMode.insert(QStringLiteral("mode"), mode);
+            rentMode.insert(QStringLiteral("qualifier"), QStringLiteral("RENT"));
+            modes.push_back(rentMode);
+        }
+    }
+    gqlReq.setVariable(QStringLiteral("modes"), modes);
 
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());

@@ -60,7 +60,7 @@
     "options": {
         "apiVersion": "no-stations",
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
-        "supportedModes": "BICYCLE_RENT,BUS,CARPOOL,RAIL,SUBWAY,TRAM,WALK"
+        "supportedTransitModes": ["TRANSIT", "CARPOOL"]
     },
     "timezone": "Europe/Berlin",
     "type": "otp_graphql"

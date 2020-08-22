@@ -63,7 +63,7 @@
     "options": {
         "apiVersion": "no-stations",
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",
-        "supportedModes": "BICYCLE_RENT,BUS,CARPOOL,RAIL,SUBWAY,TRAM,WALK"
+        "supportedTransitModes": ["TRANSIT", "CARPOOL"]
     },
     "timezone": "Europe/Berlin",
     "type": "otp_graphql"
