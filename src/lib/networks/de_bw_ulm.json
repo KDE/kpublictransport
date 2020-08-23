@@ -63,7 +63,10 @@
     "options": {
         "apiVersion": "no-stations",
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",
-        "supportedTransitModes": ["TRANSIT", "CARPOOL"]
+        "supportedTransitModes": [
+            "TRANSIT",
+            "CARPOOL"
+        ]
     },
     "timezone": "Europe/Berlin",
     "type": "otp_graphql"
