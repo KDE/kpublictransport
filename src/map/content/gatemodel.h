@@ -47,6 +47,7 @@ public:
 
     enum Role {
         CoordinateRole = Qt::UserRole,
+        ElementRole,
         LevelRole,
         ArrivalGateRole,
         DepartureGateRole,

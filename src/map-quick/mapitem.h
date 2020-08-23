@@ -52,6 +52,9 @@ class MapItem : public QQuickPaintedItem
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorChanged)
 
     Q_PROPERTY(const KOSMIndoorMap::MapData* mapData READ mapData NOTIFY mapDataChanged)
+
+    /** Sources for overlays that should be rendered on top of the map. */
+    Q_PROPERTY(QVariant overlaySources READ overlaySources WRITE setOverlaySources NOTIFY overlaySourcesChanged)
 public:
     explicit MapItem(QQuickItem *parent = nullptr);
     ~MapItem();
@@ -76,6 +79,7 @@ Q_SIGNALS:
     void styleSheetChanged();
     void currentFloorLevelChanged();
     void errorChanged();
+    void overlaySourcesChanged();
 
 protected:
     void geometryChanged(const QRectF &newGeometry, const QRectF &oldGeometry) override;
@@ -84,6 +88,10 @@ private:
     void clear();
     void loaderDone();
     const MapData* mapData() const;
+    QVariant overlaySources() const;
+    void setOverlaySources(const QVariant &overlays);
+
+    void addOverlaySource(std::vector<OverlaySource> &overlaySources, const QVariant &source);
 
     MapLoader *m_loader = nullptr;
     MapData m_data;
@@ -95,6 +103,7 @@ private:
     PainterRenderer m_renderer;
     FloorLevelModel *m_floorLevelModel = nullptr;
     QString m_errorMessage;
+    QVariant m_overlaySources;
 };
 
 }

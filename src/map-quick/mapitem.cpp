@@ -19,6 +19,7 @@
 
 #include <KOSMIndoorMap/HitDetector>
 #include <KOSMIndoorMap/MapCSSParser>
+#include <KOSMIndoorMap/OverlaySource>
 
 #include <QDebug>
 #include <QGuiApplication>
@@ -179,4 +180,40 @@ const MapData* MapItem::mapData() const
         return nullptr;
     }
     return &m_data;
+}
+
+QVariant MapItem::overlaySources() const
+{
+    return m_overlaySources;
+}
+
+void MapItem::setOverlaySources(const QVariant &overlays)
+{
+    std::vector<OverlaySource> sources;
+    if (overlays.canConvert<QVariantList>()) {
+        const auto l = overlays.value<QVariantList>();
+        for (const auto &v : l) {
+            addOverlaySource(sources, v);
+        }
+    } else {
+        addOverlaySource(sources, overlays);
+    }
+
+    m_controller.setOverlaySources(std::move(sources));
+    emit overlaySourcesChanged();
+}
+
+void MapItem::addOverlaySource(std::vector<OverlaySource> &overlaySources, const QVariant &source)
+{
+    const auto obj = source.value<QObject*>();
+    if (auto model = qobject_cast<QAbstractItemModel*>(obj)) {
+        OverlaySource overlay(model);
+        overlay.setUpdateCallback(this, [this]() {
+            m_controller.overlaySourceUpdated();
+            update();
+        });
+        overlaySources.push_back(std::move(overlay));
+    } else {
+        qWarning() << "unsupported overlay source:" << source << obj;
+    }
 }

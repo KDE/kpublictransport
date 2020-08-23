@@ -19,6 +19,7 @@
 #include "logging.h"
 #include "render-logging.h"
 
+#include "overlaysource.h"
 #include "scenegeometry.h"
 #include "scenegraph.h"
 
@@ -63,6 +64,18 @@ void SceneController::setStyleSheet(const MapCSSStyle *styleSheet)
 void SceneController::setView(const View *view)
 {
     m_view = view;
+    m_dirty = true;
+}
+
+void SceneController::setOverlaySources(std::vector<OverlaySource> &&overlays)
+{
+    m_overlaySources = std::move(overlays);
+    m_dirty = true;
+}
+
+void SceneController::overlaySourceUpdated()
+{
+    // TODO we could potentially do this more fine-grained?
     m_dirty = true;
 }
 
@@ -130,6 +143,17 @@ void SceneController::updateScene(SceneGraph &sg) const
             }
         }
     }
+
+    // update overlay elements
+    m_overlay = true;
+    for (const auto &overlaySource : m_overlaySources) {
+        overlaySource.forEach(m_view->level(), [this, &geoBbox, &sg](OSM::Element e, int floorLevel) {
+            if (OSM::intersects(geoBbox, e.boundingBox()) && e.type() != OSM::Type::Null && !isTaglessNode(e)) {
+                updateElement(e, floorLevel, sg);
+            }
+        });
+    }
+    m_overlay = false;
 
     sg.zSort();
     sg.endSwap();
@@ -564,27 +588,31 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::un
     item.payload = std::move(payload);
 
     // get the OSM layer, if set
-    const auto layerStr = e.tagValue(m_layerTag);
-    if (!layerStr.isEmpty()) {
-        bool success = false;
-        const auto layer = layerStr.toInt(&success);
-        if (success) {
+    if (!m_overlay) {
+        const auto layerStr = e.tagValue(m_layerTag);
+        if (!layerStr.isEmpty()) {
+            bool success = false;
+            const auto layer = layerStr.toInt(&success);
+            if (success) {
 
-            // ### Ignore layer information when it matches the level
-            // This is very wrong according to the specification, however it looks that in many places
-            // layer and level tags aren't correctly filled, possibly a side-effect of layer pre-dating
-            // level and layers not having been properly updated when retrofitting level information
-            // Strictly following the MapCSS rendering order yields sub-optimal results in that case, with
-            // relevant elements being hidden.
-            //
-            // Ideally we find a way to detect the presence of that problem, and only then enabling this
-            // workaround, but until we have this, this seems to produce better results in all tests.
-            if (level != layer * 10) {
-                item.layer = layer;
+                // ### Ignore layer information when it matches the level
+                // This is very wrong according to the specification, however it looks that in many places
+                // layer and level tags aren't correctly filled, possibly a side-effect of layer pre-dating
+                // level and layers not having been properly updated when retrofitting level information
+                // Strictly following the MapCSS rendering order yields sub-optimal results in that case, with
+                // relevant elements being hidden.
+                //
+                // Ideally we find a way to detect the presence of that problem, and only then enabling this
+                // workaround, but until we have this, this seems to produce better results in all tests.
+                if (level != layer * 10) {
+                    item.layer = layer;
+                }
+            } else {
+                qCWarning(Log) << "Invalid layer:" << e.url() << layerStr;
             }
-        } else {
-            qCWarning(Log) << "Invalid layer:" << e.url() << layerStr;
         }
+    } else {
+        item.layer = std::numeric_limits<int>::max();
     }
 
     sg.addItem(std::move(item));

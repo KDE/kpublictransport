@@ -69,6 +69,8 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
             return platform.name;
         case CoordinateRole:
             return QPointF(platform.element.center().lonF(), platform.element.center().latF());
+        case ElementRole:
+            return QVariant::fromValue(platform.element);
         case LevelRole:
             return platform.level;
         case TransportModeRole:
@@ -88,6 +90,7 @@ QHash<int, QByteArray> PlatformModel::roleNames() const
 {
     auto n = QAbstractListModel::roleNames();
     n.insert(CoordinateRole, "coordinate");
+    n.insert(ElementRole, "osmElement");
     n.insert(LevelRole, "level");
     n.insert(TransportModeRole, "mode");
     n.insert(LinesRole, "lines");

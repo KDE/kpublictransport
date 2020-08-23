@@ -168,4 +168,6 @@ inline void for_each_member(const DataSet &dataSet, const Relation &rel, Func fu
 
 }
 
+Q_DECLARE_METATYPE(OSM::Element)
+
 #endif // OSM_ELEMENT_H

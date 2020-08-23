@@ -32,6 +32,7 @@ add_library(KOSMIndoorMap STATIC
     renderer/stackblur.cpp
     renderer/view.cpp
 
+    scene/overlaysource.cpp
     scene/scenecontroller.cpp
     scene/scenegeometry.cpp
     scene/scenegraph.cpp
@@ -83,6 +84,7 @@ ecm_generate_headers(KOSMIndoorMap_Renderer_FORWARDING_HEADERS
 )
 ecm_generate_headers(KOSMIndoorMap_Scene_FORWARDING_HEADERS
     HEADER_NAMES
+        OverlaySource
         SceneController
         SceneGraph
     PREFIX KOSMIndoorMap

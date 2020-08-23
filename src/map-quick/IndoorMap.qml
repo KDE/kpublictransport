@@ -36,6 +36,8 @@ Item {
     property alias hasError: map.hasError
     /** Access to the map data, for feeding into content-specific models. */
     property alias mapData: map.mapData
+    /** Access to overlay sources. */
+    property alias overlaySources: map.overlaySources
 
     /** Emitted when a map element has been picked by clicking/tapping on it. */
     signal elementPicked(var element);

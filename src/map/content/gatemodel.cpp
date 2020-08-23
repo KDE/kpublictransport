@@ -62,6 +62,8 @@ QVariant GateModel::data(const QModelIndex &index, int role) const
             return gate.name;
         case CoordinateRole:
             return QPointF(gate.element.center().lonF(), gate.element.center().latF());
+        case ElementRole:
+            return QVariant::fromValue(gate.element);
         case LevelRole:
             return gate.level;
         case ArrivalGateRole:
@@ -77,6 +79,7 @@ QHash<int, QByteArray> GateModel::roleNames() const
 {
     auto n = QAbstractListModel::roleNames();
     n.insert(CoordinateRole, "coordinate");
+    n.insert(ElementRole, "osmElement");
     n.insert(LevelRole, "level");
     n.insert(ArrivalGateRole, "isArrivalGate");
     n.insert(DepartureGateRole, "isDepartureGate");

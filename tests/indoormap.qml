@@ -212,6 +212,8 @@ Kirigami.ApplicationWindow {
             }
         }
 
+        map.overlaySources: [ gateModel, platformModel ]
+
         header: RowLayout {
             QQC2.Label { text: "Floor Level:" }
             QQC2.ComboBox {

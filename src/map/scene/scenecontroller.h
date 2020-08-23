@@ -37,6 +37,7 @@ namespace KOSMIndoorMap {
 
 class MapData;
 class MapCSSStyle;
+class OverlaySource;
 class SceneGraph;
 class View;
 
@@ -50,6 +51,9 @@ public:
     void setDataSet(const MapData *data);
     void setStyleSheet(const MapCSSStyle *styleSheet);
     void setView(const View *view);
+    void setOverlaySources(std::vector<OverlaySource> &&overlays);
+    /** Overlay dirty state tracking. */
+    void overlaySourceUpdated();
 
     /** Creates or updates @p sg based on the currently set style and view settings.
      *  When possible, provide the scene graph of the previous run to re-use scene graph elements that didn't change.
@@ -77,6 +81,7 @@ private:
     const MapData *m_data = nullptr;
     const MapCSSStyle *m_styleSheet = nullptr;
     const View *m_view = nullptr;
+    std::vector<OverlaySource> m_overlaySources;
 
     mutable MapCSSResult m_styleResult;
     mutable QColor m_defaultTextColor;
@@ -87,6 +92,7 @@ private:
     OSM::TagKey m_typeTag;
 
     mutable bool m_dirty = true;
+    mutable bool m_overlay = false;
 };
 
 }
