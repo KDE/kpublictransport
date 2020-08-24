@@ -22,6 +22,7 @@ import Qt.labs.platform 1.0 as QPlatform
 import org.kde.kirigami 2.0 as Kirigami
 import org.kde.kpublictransport 1.0 as PublicTransport
 import org.kde.kosmindoormap 1.0
+import org.kde.kosmindoormap.kpublictransport 1.0
 
 Kirigami.ApplicationWindow {
     title: "OSM Indoor Map QML Test"
@@ -212,7 +213,16 @@ Kirigami.ApplicationWindow {
             }
         }
 
-        map.overlaySources: [ gateModel, platformModel ]
+        LocationQueryOverlayProxyModel {
+            id: locationModel
+            sourceModel: PublicTransport.LocationQueryModel {
+                id: locationQuery
+                manager: ptMgr
+            }
+            mapData: page.map.mapData
+        }
+
+        map.overlaySources: [ gateModel, platformModel, locationModel ]
 
         header: RowLayout {
             QQC2.Label { text: "Floor Level:" }
@@ -261,6 +271,10 @@ Kirigami.ApplicationWindow {
                     var lat = c[1];
                     var lon = c[2];
                     page.map.mapLoader.loadForCoordinate(lat, lon);
+                    locationQuery.request.latitude = lat;
+                    locationQuery.request.longitude = lon;
+                    locationQuery.request.maximumDistance = 1000; // TODO
+                    locationQuery.request.types = PublicTransport.Location.RentedVehicleStation;
                 }
             }
         }

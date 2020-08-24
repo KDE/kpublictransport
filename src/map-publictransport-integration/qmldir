@@ -1,0 +1,3 @@
+module org.kde.kosmindoormap.kpublictransport
+plugin kosmindoormap_kpublictransport_integration_plugin
+classname KOSMIndoorMapKPublicTransportIntegrationPlugin

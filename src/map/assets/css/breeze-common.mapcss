@@ -368,3 +368,14 @@ node|z18-[amenity=atm] { text: "🏧"; }
 // hide information boards as their names clutter the vie
 // showing an icon instead would be better, but we don't have one yet
 node[information=board] { text: ""; }
+
+
+// bicycle rental live data (WIP, this should be matched against regular bicycle_rental nodes)
+node|z18-[mx:overlay=bike_rental] {
+    text: available;
+    text-color: #27ae60;
+    icon-image: "bicycle_rental";
+}
+node|z18-[mx:overlay=bike_rental][available=0] {
+    text-color: #da4453;
+}
