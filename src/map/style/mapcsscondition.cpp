@@ -48,8 +48,8 @@ bool MapCSSCondition::matches(const MapCSSState &state) const
     const auto v = state.element.tagValue(m_tagKey);
     switch (m_op) {
         case None: return !v.isEmpty();
-        case Equal: return v == m_value;
-        case NotEqual: return v != m_value;
+        case Equal: return std::isnan(m_numericValue) ? v == m_value : toNumber(v) == m_numericValue;
+        case NotEqual: return std::isnan(m_numericValue) ? v != m_value : toNumber(v) != m_numericValue;
         case LessThan: return toNumber(v) < m_numericValue;
         case GreaterThan: return toNumber(v) > m_numericValue;
         case LessOrEqual: return toNumber(v) <= m_numericValue;
