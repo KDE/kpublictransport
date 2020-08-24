@@ -25,7 +25,11 @@ canvas {
 }
 
 /** Generic outdoor stuff */
-area[amenity=parking] { fill-color: #232629; }
+area[amenity=parking],
+area[amenity=bicycle_parking]
+{
+    fill-color: #232629;
+}
 area[building],
 area[man_made=bridge],
 relation[type=multipolygon][man_made=bridge],
