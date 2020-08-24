@@ -34,4 +34,4 @@ else()
 endif()
 
 install(TARGETS kosmindoormapquickplugin DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
-install(FILES ${kosmindoormapquickplugin_qml} ${quick_SRC} DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
+install(FILES ${kosmindoormapquickplugin_qml} DESTINATION ${QML_INSTALL_DIR}/org/kde/kosmindoormap)
