@@ -48,7 +48,7 @@ struct PlatformSection {
 class PlatformModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(const KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)
+    Q_PROPERTY(KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)
     Q_PROPERTY(bool isEmpty READ isEmpty NOTIFY mapDataChanged)
 
     /** Row indexes of the matched arrival/departure platforms, if found and/or set, otherwise @c -1. */
@@ -58,8 +58,8 @@ public:
     explicit PlatformModel(QObject *parent = nullptr);
     ~PlatformModel();
 
-    const MapData* mapData() const;
-    void setMapData(const MapData *data);
+    MapData* mapData() const;
+    void setMapData(MapData *data);
 
     bool isEmpty() const;
 
@@ -100,7 +100,7 @@ private:
     static bool comparePlatform(const Platform &lhs, const Platform &rhs);
 
     std::vector<Platform> m_platforms;
-    const MapData *m_data = nullptr;
+    MapData *m_data = nullptr;
     static QCollator m_collator;
 
     OSM::TagKey m_ptKey;

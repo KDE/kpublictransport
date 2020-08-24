@@ -19,12 +19,12 @@ GateModel::GateModel(QObject *parent)
 
 GateModel::~GateModel() = default;
 
-const MapData* GateModel::mapData() const
+MapData* GateModel::mapData() const
 {
     return m_data;
 }
 
-void GateModel::setMapData(const MapData* data)
+void GateModel::setMapData(MapData* data)
 {
     // ### do not check for m_data != data, this does not actually change!
     beginResetModel();

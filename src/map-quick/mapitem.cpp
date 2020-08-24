@@ -174,7 +174,7 @@ QString MapItem::errorMessage() const
     return m_errorMessage.isEmpty() ? m_loader->errorMessage() : m_errorMessage;
 }
 
-const MapData* MapItem::mapData() const
+MapData* MapItem::mapData()
 {
     if (m_data.m_levelMap.empty()) {
         return nullptr;

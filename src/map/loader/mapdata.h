@@ -66,6 +66,7 @@ public:
     MapData& operator=(MapData&&);
 
     const OSM::DataSet& dataSet() const;
+    OSM::DataSet& dataSet();
     void setDataSet(OSM::DataSet &&dataSet);
 
     OSM::BoundingBox boundingBox() const;
@@ -90,6 +91,6 @@ private:
 
 }
 
-Q_DECLARE_METATYPE(const KOSMIndoorMap::MapData*)
+Q_DECLARE_METATYPE(KOSMIndoorMap::MapData*)
 
 #endif // KOSMINDOORMAP_MAPDATA_H

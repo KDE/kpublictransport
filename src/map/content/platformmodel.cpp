@@ -26,12 +26,12 @@ PlatformModel::PlatformModel(QObject* parent) :
 
 PlatformModel::~PlatformModel() = default;
 
-const MapData* PlatformModel::mapData() const
+MapData* PlatformModel::mapData() const
 {
     return m_data;
 }
 
-void PlatformModel::setMapData(const MapData* data)
+void PlatformModel::setMapData(MapData* data)
 {
     // ### do not check for m_data != data, this does not actually change!
     beginResetModel();

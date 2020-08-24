@@ -76,6 +76,11 @@ const OSM::DataSet& MapData::dataSet() const
     return m_dataSet;
 }
 
+OSM::DataSet& MapData::dataSet()
+{
+    return m_dataSet;
+}
+
 void MapData::setDataSet(OSM::DataSet &&dataSet)
 {
     m_dataSet = std::move(dataSet);

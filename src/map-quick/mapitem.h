@@ -51,7 +51,7 @@ class MapItem : public QQuickPaintedItem
     /** Details on the error. */
     Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY errorChanged)
 
-    Q_PROPERTY(const KOSMIndoorMap::MapData* mapData READ mapData NOTIFY mapDataChanged)
+    Q_PROPERTY(KOSMIndoorMap::MapData* mapData READ mapData NOTIFY mapDataChanged)
 
     /** Sources for overlays that should be rendered on top of the map. */
     Q_PROPERTY(QVariant overlaySources READ overlaySources WRITE setOverlaySources NOTIFY overlaySourcesChanged)
@@ -87,7 +87,7 @@ protected:
 private:
     void clear();
     void loaderDone();
-    const MapData* mapData() const;
+    MapData* mapData();
     QVariant overlaySources() const;
     void setOverlaySources(const QVariant &overlays);
 
