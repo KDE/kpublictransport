@@ -58,9 +58,10 @@ area|z17-[amenity=parking][access=private]
 {
     text: "🚫";
 }
-*|z17-[amenity=bicycle_parking]
+*|z18-[amenity=bicycle_parking]
 {
-    text: "🚲";
+    icon-image: "bicycle_parking";
+    text-color: #3daee9;
 }
 
 /** Roads */

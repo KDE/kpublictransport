@@ -302,12 +302,14 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
 
             double textOpacity = 1.0;
             double shieldOpacity = 1.0;
+            IconData iconData;
             for (auto decl : m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
                 applyFontStyle(decl, item->font);
                 switch (decl->property()) {
                     case MapCSSDeclaration::TextColor:
                         item->color = decl->colorValue();
+                        iconData.color = decl->colorValue(); // TODO use a separate declaration for this
                         break;
                     case MapCSSDeclaration::TextOpacity:
                         textOpacity = decl->doubleValue();
@@ -342,7 +344,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         item->maxWidth = decl->intValue();
                         break;
                     case MapCSSDeclaration::IconImage:
-                        item->icon = QIcon::fromTheme(decl->stringValue()); // TODO icon urls
+                        iconData.name = decl->stringValue();
                         break;
                     case MapCSSDeclaration::IconHeight:
                         item->iconSize.setHeight(decl->doubleValue()); // TODO percent sizes
@@ -369,6 +371,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 auto c = item->shieldColor;
                 c.setAlphaF(c.alphaF() * shieldOpacity);
                 item->shieldColor = c;
+            }
+            if (!iconData.name.isEmpty()) {
+                item->icon = m_iconLoader.loadIcon(iconData);
             }
             if (!item->icon.isNull()) {
                 const auto iconSourceSize = item->icon.availableSizes().at(0);

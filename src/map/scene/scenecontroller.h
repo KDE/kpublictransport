@@ -20,6 +20,7 @@
 
 #include "scenegraphitem.h"
 #include "../style/mapcssresult.h"
+#include "iconloader.h"
 
 #include <osm/datatypes.h>
 
@@ -87,6 +88,7 @@ private:
     mutable QColor m_defaultTextColor;
     mutable QFont m_defaultFont;
     mutable QPolygonF m_labelPlacementPath;
+    IconLoader m_iconLoader;
 
     OSM::TagKey m_layerTag;
     OSM::TagKey m_typeTag;

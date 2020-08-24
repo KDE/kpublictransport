@@ -4,5 +4,7 @@
         <file>css/breeze-dark.mapcss</file>
         <file>css/breeze-light.mapcss</file>
         <file>css/diagnostic.mapcss</file>
+
+        <file>icons/bicycle_parking.svg</file>
     </qresource>
 </RCC>

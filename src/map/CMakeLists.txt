@@ -32,6 +32,7 @@ add_library(KOSMIndoorMap STATIC
     renderer/stackblur.cpp
     renderer/view.cpp
 
+    scene/iconloader.cpp
     scene/overlaysource.cpp
     scene/scenecontroller.cpp
     scene/scenegeometry.cpp
