@@ -49,38 +49,22 @@ way[waterway][width] { width: width; }
     z-index: -999;
 }
 
-area|z17-[amenity=parking]
+/** Generic labeling */
+*|z20- [shop],
+*|z19- [shop=ticket],
+*|z21- [amenity][name],
+*|z20- [amenity=cafe],
+*|z20- [amenity=car_rental],
+*|z20- [amenity=fast_food],
+*|z20- [amenity=restaurant],
+*|z21- [indoor=room],
+*|z19- [tourism=information]
 {
-    text: "P";
-    text-color: #3daee9;
-    font-weight: bold;
+    text: name;
+    max-width: 100;
+    text-halo-radius: 2.0;
 }
-area|z17-[amenity=parking][access=private]
-{
-    text: "🚫";
-}
-*|z18-[amenity=bicycle_parking]
-{
-    icon-image: "bicycle_parking";
-    icon-color: #3daee9;
-}
-// bicycle rental
-node|z18-[amenity=bicycle_rental] {
-    icon-color: #3daee9;
-    icon-image: "bicycle_rental";
-}
-node|z18-[amenity=bicycle_rental][mx:realtime_available=0] {
-    icon-color: #da4453;
-    text: mx:realtime_available;
-    text-color: #da4453;
-    text-offset: 9;
-}
-node|z18-[amenity=bicycle_rental][mx:realtime_available>0] {
-    icon-color: #27ae60;
-    text: mx:realtime_available;
-    text-color: #27ae60;
-    text-offset: 9;
-}
+
 
 /** Roads */
 line[highway=motorway],
@@ -353,20 +337,52 @@ node|z18-[public_transport=platform_section_sign]
     shield-casing-width: 1;
 }
 
-/** Shops/etc */
-*|z20- [shop],
-*|z19- [shop=ticket],
-*|z21- [amenity][name],
-*|z20- [amenity=cafe],
-*|z20- [amenity=car_rental],
-*|z20- [amenity=fast_food],
-*|z20- [amenity=restaurant],
-*|z21- [indoor=room],
-*|z19- [tourism=information]
+/** Specific amenities/shops/etc */
+
+// parking
+area|z17-[amenity=parking]
 {
-    text: name;
-    max-width: 100;
-    text-halo-radius: 2.0;
+    icon-image: "parking";
+    icon-color: #3daee9;
+}
+area|z17-[amenity=parking][access=private]
+{
+    icon-color: #7f8c8d;
+}
+area|z-20[amenity=parking][access=private]
+{
+    icon-opacity: 0.0;
+}
+
+*|z18-[amenity=bicycle_parking]
+{
+    icon-image: "bicycle_parking";
+    icon-color: #3daee9;
+}
+
+// bicycle rental
+node|z18-[amenity=bicycle_rental] {
+    icon-color: #3daee9;
+    icon-image: "bicycle_rental";
+    text: ""; // suppress generic names messing up the layouting when we have realtime data (see below)
+}
+node|z18-[amenity=bicycle_rental][mx:realtime_available=0] {
+    icon-color: #da4453;
+    text: mx:realtime_available;
+    text-color: #da4453;
+    text-offset: 9;
+}
+node|z18-[amenity=bicycle_rental][mx:realtime_available>0] {
+    icon-color: #27ae60;
+    text: mx:realtime_available;
+    text-color: #27ae60;
+    text-offset: 9;
+}
+
+// charging stations
+node|z19-[amenity=charging_station] {
+    icon-color: #3daee9;
+    icon-image: "charging_station";
 }
 
 /** icons */
@@ -374,10 +390,11 @@ node|z18-[vending=public_transport_tickets] { text: "🎫"; }
 
 area|z18-[amenity=toilets],
 area|z18-[room=toilets],
-relation|z16-[type=multipolygon][room=toilets],
-node|z18-[amenity=toilets]
+relation|z16-[type=multipolygon][room=toilets]
 {
     icon-image: "toilets";
+}
+node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have the same color as the room already
     icon-color: #3daee9;
 }
 *[amenity=toilets][access=private],
