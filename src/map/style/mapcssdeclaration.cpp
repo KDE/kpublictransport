@@ -49,6 +49,7 @@ struct {
     { "font-style", MapCSSDeclaration::FontStyle, MapCSSDeclaration::NoFlag },
     { "font-variant", MapCSSDeclaration::FontVariant, MapCSSDeclaration::NoFlag },
     { "font-weight", MapCSSDeclaration::FontWeight, MapCSSDeclaration::NoFlag },
+    { "icon-color", MapCSSDeclaration::IconColor, MapCSSDeclaration::NoFlag },
     { "icon-height", MapCSSDeclaration::IconWidth, MapCSSDeclaration::NoFlag },
     { "icon-image", MapCSSDeclaration::IconImage, MapCSSDeclaration::LabelProperty },
     { "icon-opacity", MapCSSDeclaration::IconOpacity, MapCSSDeclaration::NoFlag },

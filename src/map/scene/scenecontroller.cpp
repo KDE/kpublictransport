@@ -309,7 +309,6 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 switch (decl->property()) {
                     case MapCSSDeclaration::TextColor:
                         item->color = decl->colorValue();
-                        iconData.color = decl->colorValue(); // TODO use a separate declaration for this
                         break;
                     case MapCSSDeclaration::TextOpacity:
                         textOpacity = decl->doubleValue();
@@ -352,6 +351,16 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     case MapCSSDeclaration::IconWidth:
                         item->iconSize.setWidth(decl->doubleValue()); // TODO percent sizes
                         break;
+                    case MapCSSDeclaration::IconColor:
+                    {
+                        const auto alpha = iconData.color.alphaF();
+                        iconData.color = decl->colorValue().rgb();
+                        iconData.color.setAlphaF(alpha);
+                        break;
+                    }
+                    case MapCSSDeclaration::IconOpacity:
+                        iconData.color.setAlphaF(decl->doubleValue());
+                        break;
                     case MapCSSDeclaration::TextHaloColor:
                         item->haloColor = decl->colorValue();
                         break;
@@ -372,7 +381,10 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 c.setAlphaF(c.alphaF() * shieldOpacity);
                 item->shieldColor = c;
             }
-            if (!iconData.name.isEmpty()) {
+            if (!iconData.name.isEmpty() && iconData.color.alphaF() > 0.0) {
+                if (!iconData.color.isValid()) {
+                    iconData.color = m_defaultTextColor;
+                }
                 item->icon = m_iconLoader.loadIcon(iconData);
             }
             if (!item->icon.isNull()) {

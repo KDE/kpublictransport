@@ -81,6 +81,7 @@ public:
         IconWidth, /// icon width
         IconHeight, /// icon height
         IconOpacity, /// icon opacity
+        IconColor, /// for colorized SVGs, non-standard extension
 
         // label properties
         FontFamily, /// font name
