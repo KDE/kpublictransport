@@ -250,7 +250,7 @@ PropertyName:
 
 // TODO incomplete: missing size, url, eval
 PropertyValue:
-  T_IDENT { $$ = new MapCSSDeclaration; $$->setIdentifierValue($1.str, $1.len); }
+  Key { $$ = new MapCSSDeclaration; $$->setIdentifierValue($1.str, $1.len); }
 | T_HEX_COLOR { $$ = new MapCSSDeclaration; $$->setColorRgba($1); }
 | DoubleValue T_IDENT { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); $$->setUnit($2.str, $2.len); }
 | DoubleValue { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); }

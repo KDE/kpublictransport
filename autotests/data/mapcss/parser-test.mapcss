@@ -20,6 +20,7 @@ area[railway=platform] node[sign]
 node[building:part][building:part=elevator]
 {
     opacity: 1;
+    color: building:color;
 }
 
 // text properties
