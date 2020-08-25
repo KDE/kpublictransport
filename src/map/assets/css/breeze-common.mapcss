@@ -359,7 +359,18 @@ area|z18-[room=toilets],
 relation|z16-[type=multipolygon][room=toilets],
 node|z18-[amenity=toilets]
 {
-    text: "🚻";
+    icon-image: "toilets";
+    icon-color: #3daee9;
+}
+*[amenity=toilets][access=private],
+*[room=toilets][access=private]
+{
+    icon-color: #7f8c8d;
+}
+*|z-21[amenity=toilets][access=private],
+*|z-21[room=toilets][access=private]
+{
+    icon-opacity: 0.0;
 }
 
 node|z18-[amenity=atm] { text: "🏧"; }

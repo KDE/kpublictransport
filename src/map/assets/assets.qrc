@@ -7,5 +7,6 @@
 
         <file>icons/bicycle_parking.svg</file>
         <file>icons/bicycle_rental.svg</file>
+        <file>icons/toilets.svg</file>
     </qresource>
 </RCC>
