@@ -8,6 +8,7 @@
 
 #include <QBuffer>
 #include <QByteArray>
+#include <QDebug>
 #include <QFile>
 #include <QGuiApplication>
 #include <QIcon>
