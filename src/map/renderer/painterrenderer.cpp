@@ -223,7 +223,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     // draw icon
     if (!item->icon.isNull()) {
         QRectF iconRect(QPointF(0.0, 0.0), item->iconSize);
-        iconRect.moveCenter(QPointF(0.0, -(box.height() - item->iconSize.height()) / 2.0));
+        iconRect.moveCenter(QPointF(0.0, -((box.height() - item->iconSize.height()) / 2.0) + item->offset));
         item->icon.paint(m_painter, iconRect.toRect());
     }
     box.moveTop(box.top() + item->iconSize.height());
