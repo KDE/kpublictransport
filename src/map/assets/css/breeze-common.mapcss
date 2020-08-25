@@ -34,6 +34,7 @@ way[waterway]
     z-index: -1000;
     width: 1m;
 }
+way[waterway][width] { width: width; }
 
 *[leisure=park],
 *[landuse=farmland],
