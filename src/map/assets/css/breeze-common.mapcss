@@ -62,7 +62,24 @@ area|z17-[amenity=parking][access=private]
 *|z18-[amenity=bicycle_parking]
 {
     icon-image: "bicycle_parking";
-    text-color: #3daee9;
+    icon-color: #3daee9;
+}
+// bicycle rental
+node|z18-[amenity=bicycle_rental] {
+    icon-color: #3daee9;
+    icon-image: "bicycle_rental";
+}
+node|z18-[amenity=bicycle_rental][mx:realtime_available=0] {
+    icon-color: #da4453;
+    text: mx:realtime_available;
+    text-color: #da4453;
+    text-offset: 9;
+}
+node|z18-[amenity=bicycle_rental][mx:realtime_available>0] {
+    icon-color: #27ae60;
+    text: mx:realtime_available;
+    text-color: #27ae60;
+    text-offset: 9;
 }
 
 /** Roads */
@@ -339,7 +356,7 @@ node|z18-[public_transport=platform_section_sign]
 /** Shops/etc */
 *|z20- [shop],
 *|z19- [shop=ticket],
-*|z21- [amenity],
+*|z21- [amenity][name],
 *|z20- [amenity=cafe],
 *|z20- [amenity=car_rental],
 *|z20- [amenity=fast_food],
@@ -380,14 +397,3 @@ node|z18-[amenity=atm] { text: "🏧"; }
 // hide information boards as their names clutter the vie
 // showing an icon instead would be better, but we don't have one yet
 node[information=board] { text: ""; }
-
-
-// bicycle rental live data (WIP, this should be matched against regular bicycle_rental nodes)
-node|z18-[mx:overlay=bike_rental] {
-    text: available;
-    text-color: #27ae60;
-    icon-image: "bicycle_rental";
-}
-node|z18-[mx:overlay=bike_rental][available=0] {
-    text-color: #da4453;
-}

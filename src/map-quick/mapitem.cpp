@@ -201,6 +201,7 @@ void MapItem::setOverlaySources(const QVariant &overlays)
 
     m_controller.setOverlaySources(std::move(sources));
     emit overlaySourcesChanged();
+    update();
 }
 
 void MapItem::addOverlaySource(std::vector<OverlaySource> &overlaySources, const QVariant &source)

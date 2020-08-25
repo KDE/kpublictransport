@@ -109,6 +109,12 @@ void DataSet::addRelation(Relation &&rel)
     relations.insert(it, std::move(rel));
 }
 
+OSM::Id DataSet::nextInternalId() const
+{
+    static OSM::Id nextId = 0;
+    return --nextId;
+}
+
 // resolve ids for elements split in Marble vector tiles
 template <typename T>
 static QString actualIdString(const T &elem)

@@ -52,6 +52,14 @@ Q_SIGNALS:
 
 private:
     void initialize();
+    OSM::Node nodeForRow(int row) const;
+
+    struct {
+        OSM::TagKey amenity;
+        OSM::TagKey capacity;
+        OSM::TagKey realtimeAvailable;
+        OSM::TagKey network;
+    } m_tagKeys;
 
     std::vector<OSM::Node> m_nodes;
     MapData *m_data = nullptr;

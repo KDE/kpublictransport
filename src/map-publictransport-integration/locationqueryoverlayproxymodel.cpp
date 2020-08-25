@@ -10,6 +10,7 @@
 #include <KPublicTransport/LocationQueryModel>
 
 #include <osm/element.h>
+#include <osm/geomath.h>
 
 using namespace KOSMIndoorMap;
 using namespace KPublicTransport;
@@ -31,6 +32,14 @@ void LocationQueryOverlayProxyModel::setMapData(MapData* data)
     // ### do not check for m_data != data, this does not actually change!
     beginResetModel();
     m_data = data;
+
+    if (m_data) {
+        m_tagKeys.amenity = m_data->dataSet().makeTagKey("amenity");
+        m_tagKeys.capacity = m_data->dataSet().makeTagKey("capacity");
+        m_tagKeys.realtimeAvailable = m_data->dataSet().makeTagKey("mx:realtime_available");
+        m_tagKeys.network = m_data->dataSet().makeTagKey("network");
+    }
+
     initialize();
     endResetModel();
     emit mapDataChanged();
@@ -49,8 +58,40 @@ void LocationQueryOverlayProxyModel::setSourceModel(QAbstractItemModel *sourceMo
     beginResetModel();
     m_sourceModel = sourceModel;
     initialize();
-    // TODO watch for changes
     endResetModel();
+
+    connect(m_sourceModel, &QAbstractItemModel::modelReset, this, [this]() {
+        beginResetModel();
+        initialize();
+        endResetModel();
+    });
+    connect(m_sourceModel, &QAbstractItemModel::rowsInserted, this, [this](const QModelIndex &parent, int first, int last) {
+        if (parent.isValid() || !m_data) {
+            return;
+        }
+        beginInsertRows({}, first, last);
+        for (int i = first; i <= last; ++i) {
+            m_nodes.insert(m_nodes.begin() + i, nodeForRow(i));
+        }
+        endInsertRows();
+    });
+    connect(m_sourceModel, &QAbstractItemModel::rowsRemoved, this, [this](const QModelIndex &parent, int first, int last) {
+        if (parent.isValid() || !m_data) {
+            return;
+        }
+        beginRemoveRows({}, first, last);
+        m_nodes.erase(m_nodes.begin() + first, m_nodes.begin() + last);
+        endRemoveRows();
+    });
+    connect(m_sourceModel, &QAbstractItemModel::dataChanged, this, [this](const QModelIndex &first, const QModelIndex &last) {
+        if (first.parent().isValid() || last.parent().isValid() || !m_data) {
+            return;
+        }
+        for (int i = first.row(); i <= last.row(); ++i) {
+            m_nodes[i] = nodeForRow(i);
+        }
+        emit dataChanged(index(first.row(), 0), index(last.row(), 0));
+    });
 }
 
 int LocationQueryOverlayProxyModel::rowCount(const QModelIndex &parent) const
@@ -87,29 +128,41 @@ QHash<int, QByteArray> LocationQueryOverlayProxyModel::roleNames() const
 
 void LocationQueryOverlayProxyModel::initialize()
 {
-    static OSM::Id nextId = -1;
     if (!m_data || !m_sourceModel) {
         return;
     }
-
-    const auto overlayTag = m_data->dataSet().makeTagKey("mx:overlay");
-    const auto capacityTag = m_data->dataSet().makeTagKey("capacity");
-    const auto availableTag = m_data->dataSet().makeTagKey("available");
 
     m_nodes.clear();
     const auto rows = m_sourceModel->rowCount();
     m_nodes.reserve(rows);
     for (int i = 0; i < rows; ++i) {
-        const auto idx = m_sourceModel->index(i, 0);
-        const auto loc = idx.data(LocationQueryModel::LocationRole).value<Location>();
-
-        OSM::Node node;
-        node.id = --nextId;
-        node.coordinate = OSM::Coordinate(loc.latitude(), loc.longitude());
-        OSM::setTagValue(node, overlayTag, "bike_rental");
-        OSM::setTagValue(node, capacityTag, QByteArray::number(loc.rentalVehicleStation().capacity()));
-        OSM::setTagValue(node, availableTag, QByteArray::number(loc.rentalVehicleStation().availableVehicles()));
-
-        m_nodes.push_back(std::move(node));
+        m_nodes.push_back(nodeForRow(i));
     }
+}
+
+OSM::Node LocationQueryOverlayProxyModel::nodeForRow(int row) const
+{
+    const auto idx = m_sourceModel->index(row, 0);
+    const auto loc = idx.data(LocationQueryModel::LocationRole).value<Location>();
+
+    OSM::Node node;
+    node.coordinate = OSM::Coordinate(loc.latitude(), loc.longitude());
+
+    // try to find a matching node in the base OSM data
+    for (const auto &n : m_data->dataSet().nodes) {
+        if (OSM::distance(n.coordinate, node.coordinate) < 10 && OSM::tagValue(n, m_tagKeys.amenity) == "bicycle_rental") {
+            qDebug() << "found matching node, cloning that!" << n.url();
+            node = n;
+            break;
+        }
+    }
+
+    node.id = m_data->dataSet().nextInternalId();
+    OSM::setTagValue(node, m_tagKeys.amenity, "bicycle_rental");
+    OSM::setTagValue(node, m_tagKeys.capacity, QByteArray::number(loc.rentalVehicleStation().capacity()));
+    OSM::setTagValue(node, m_tagKeys.realtimeAvailable, QByteArray::number(loc.rentalVehicleStation().availableVehicles()));
+    if (OSM::tagValue(node, m_tagKeys.network).isEmpty()) {
+        OSM::setTagValue(node, m_tagKeys.network, loc.rentalVehicleStation().network().name().toUtf8());
+    }
+    return node;
 }

@@ -346,6 +346,9 @@ public:
      */
     Role makeRole(const char *roleName, StringMemory memOpt = StringIsTransient);
 
+    /** Create a unique id for internal use (ie. one that will not clash with official OSM ids). */
+    Id nextInternalId() const;
+
     std::vector<Node> nodes;
     std::vector<Way> ways;
     std::vector<Relation> relations;
