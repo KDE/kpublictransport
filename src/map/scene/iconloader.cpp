@@ -32,7 +32,11 @@ QIcon IconLoader::loadIcon(const IconData &iconData) const
     // TODO file system URLs
 
     // XDG icons
-    return QIcon::fromTheme(iconData.name);
+    const auto icon = QIcon::fromTheme(iconData.name);
+    if (icon.isNull()) {
+        qWarning() << "Failed to find icon:" << iconData.name;
+    }
+    return icon;
 }
 
 QIcon IconLoader::loadSvgAsset(QIODevice *svgFile, const IconData &iconData) const
