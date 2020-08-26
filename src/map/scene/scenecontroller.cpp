@@ -343,7 +343,11 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         item->maxWidth = decl->intValue();
                         break;
                     case MapCSSDeclaration::IconImage:
-                        iconData.name = decl->stringValue();
+                        if (!decl->keyValue().isEmpty()) {
+                            iconData.name = QString::fromUtf8(e.tagValue(decl->keyValue().constData()));
+                        } else {
+                            iconData.name = decl->stringValue();
+                        }
                         break;
                     case MapCSSDeclaration::IconHeight:
                         item->iconSize.setHeight(decl->doubleValue()); // TODO percent sizes
