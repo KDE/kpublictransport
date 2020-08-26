@@ -340,16 +340,16 @@ node|z18-[public_transport=platform_section_sign]
 /** Specific amenities/shops/etc */
 
 // parking
-area|z17-[amenity=parking]
+*|z17-[amenity=parking]
 {
     icon-image: "parking";
     icon-color: #3daee9;
 }
-area|z17-[amenity=parking][access=private]
+*|z17-[amenity=parking][access=private]
 {
     icon-color: #7f8c8d;
 }
-area|z-20[amenity=parking][access=private]
+*|z-20[amenity=parking][access=private]
 {
     icon-opacity: 0.0;
 }
@@ -388,6 +388,16 @@ node|z19-[amenity=charging_station] {
 /** icons */
 node|z18-[vending=public_transport_tickets] { text: "🎫"; }
 
+// other car-related transportation
+*|z19-[amenity=car_rental],
+*|z18-[amenity=taxi]
+{
+    icon-color: #3daee9;
+    icon-image: amenity;
+}
+*|z21-[amenity=taxi] { text: ""; }
+
+// restrooms
 area|z18-[amenity=toilets],
 area|z18-[room=toilets],
 relation|z16-[type=multipolygon][room=toilets]
@@ -408,8 +418,66 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
     icon-opacity: 0.0;
 }
 
-node|z18-[amenity=atm] { text: "🏧"; }
-*|z18-21[amenity=pharmacy] { text: "⚕"; }
+// accommodation
+*|z18- [tourism=hotel],
+*|z18- [tourism=hostel]
+{
+    icon-color: #3daee9;
+    icon-image: tourism;
+}
+*|z20- [tourism=hotel],
+*|z20- [tourism=hostel]
+{
+    text: name;
+    max-width: 150;
+    text-halo-radius: 2.0;
+}
+
+// food
+*|z19- [amenity=bar],
+*|z19- [amenity=cafe],
+*|z19- [amenity=fast_food],
+*|z19- [amenity=pub],
+*|z19- [amenity=restaurant]
+{
+    icon-image: amenity;
+    icon-color: #fdbc4b;
+}
+
+// shops
+*|z19- [shop=bakery],
+*|z19- [shop=chemist],
+*|z19- [shop=coffee],
+*|z19- [shop=convenience],
+*|z19- [shop=newsagent],
+*|z18- [shop=supermarket]
+{
+    icon-image: shop;
+    icon-color: #9b59b6;
+}
+
+// health
+*|z18- [amenity=pharmacy]
+{
+    icon-image: amenity;
+    icon-color: #ed1515;
+}
+
+// other amenities
+node|z19- [amenity=atm]
+{
+    text: "";
+    icon-image: amenity;
+    icon-color: #7d8025;
+}
+
+// static elements
+node|z20- [amenity=bench],
+node|z20- [amenity=waste_basket]
+{
+    icon-image: amenity;
+    icon-color: #4d4d4d;
+}
 
 // hide information boards as their names clutter the vie
 // showing an icon instead would be better, but we don't have one yet
