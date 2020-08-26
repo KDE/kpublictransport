@@ -1,0 +1,20 @@
+{
+    "category": "Charging Station",
+    "content": [
+        {
+            "keyLabel": "Socket",
+            "value": "Chademo and Type 2"
+        },
+        {
+            "categoryLabel": "Parking",
+            "keyLabel": "Fee",
+            "value": "no"
+        },
+        {
+            "categoryLabel": "Parking",
+            "keyLabel": "Capacity",
+            "value": "2"
+        }
+    ],
+    "name": "Some Company"
+}

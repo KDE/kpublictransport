@@ -251,4 +251,23 @@ static constexpr const ValueMapEntry wheelchair_map[] = {
 };
 static_assert(isSortedLookupTable(wheelchair_map), "wheelchair access map is not sorted!");
 
+// socket types for charging stations
+struct {
+    const char *keyName;
+    OSMElementInformationModel::Key m_key;
+    const char *label;
+
+    constexpr inline OSMElementInformationModel::Key key() const { return m_key; }
+    constexpr inline OSMElementInformationModel::KeyCategory category() const { return OSMElementInformationModel::Main; }
+} static constexpr const socket_type_map[] = {
+    { "socket:chademo", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Chademo") },
+    { "socket:schuko", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Schuko") },
+    { "socket:tesla_standard", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla") },
+    { "socket:tesla_supercharger", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla Supercharger") },
+    { "socket:tesla_supercharger_ccs", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla Supercharger CCS") },
+    { "socket:type2", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2") },
+    { "socket:type2_cable", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 cable") },
+    { "socket:type2_combo", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 CCS") },
+};
+
 }

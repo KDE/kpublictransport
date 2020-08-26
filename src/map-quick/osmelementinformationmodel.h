@@ -71,6 +71,7 @@ public:
         Cuisine,
         Diet,
         Takeaway,
+        Socket,
         OpeningHours,
         Fee,
         Capacity,

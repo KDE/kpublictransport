@@ -239,6 +239,7 @@ void OSMElementInformationModel::reload()
         addEntryForKey((*it).key.name(), payment_generic_type_map);
         addEntryForKey((*it).key.name(), payment_type_map);
         addEntryForKey((*it).key.name(), diet_type_map);
+        addEntryForKey((*it).key.name(), socket_type_map);
     }
 
     std::sort(m_infos.begin(), m_infos.end());
@@ -404,6 +405,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Cuisine: return tr("Cuisine");
         case Diet: return tr("Diet");
         case Takeaway: return tr("Takeaway");
+        case Socket: return tr("Socket");
         case OpeningHours: return tr("Opening hours");
         case Fee: return tr("Fee");
         case Capacity: return tr("Capacity");
@@ -500,6 +502,22 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
             return l.join(QLatin1String(", "));
         }
         case Takeaway: return QString::fromUtf8(m_element.tagValue("takeaway")); // TODO decode (yes/only/no) and translate
+        case Socket:
+        {
+            QStringList l;
+            for (const auto &socket : socket_type_map) {
+                const auto value = m_element.tagValue(socket.keyName);
+                if (value.isEmpty() || value == "no") {
+                    continue;
+                }
+
+                auto s = QCoreApplication::translate("OSM::charging_station_socket", socket.label);
+                // TODO add current, output, number of sockets
+
+                l.push_back(s);
+            }
+            return QLocale().createSeparatedList(l);
+        }
         case OpeningHours: return QString::fromUtf8(m_element.tagValue("opening_hours"));
         case Fee:
         {
