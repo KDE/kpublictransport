@@ -3,7 +3,11 @@
     "content": [
         {
             "keyLabel": "Socket",
-            "value": "Chademo and Type 2"
+            "value": "Chademo (32 A, 50 kW) and Type 2 (2)"
+        },
+        {
+            "keyLabel": "Authentication",
+            "value": "membership card and SMS"
         },
         {
             "categoryLabel": "Parking",

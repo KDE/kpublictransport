@@ -74,6 +74,7 @@ public:
         Socket,
         OpeningHours,
         Fee,
+        Authentication,
         Capacity,
         CapacityDisabled,
         CapacityWomen,

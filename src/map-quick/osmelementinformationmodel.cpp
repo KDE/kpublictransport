@@ -20,6 +20,8 @@
 #include "osmelementinformationmodel_data.cpp"
 #include "osmaddress.h"
 
+#include <cctype>
+
 using namespace KOSMIndoorMap;
 
 bool OSMElementInformationModel::Info::operator<(OSMElementInformationModel::Info other) const
@@ -240,6 +242,7 @@ void OSMElementInformationModel::reload()
         addEntryForKey((*it).key.name(), payment_type_map);
         addEntryForKey((*it).key.name(), diet_type_map);
         addEntryForKey((*it).key.name(), socket_type_map);
+        addEntryForKey((*it).key.name(), authentication_type_map);
     }
 
     std::sort(m_infos.begin(), m_infos.end());
@@ -408,6 +411,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Socket: return tr("Socket");
         case OpeningHours: return tr("Opening hours");
         case Fee: return tr("Fee");
+        case Authentication: return tr("Authentication");
         case Capacity: return tr("Capacity");
         case CapacityDisabled: return tr("Disabled parking spaces");
         case CapacityWomen: return tr("Women parking spaces");
@@ -512,8 +516,32 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
                 }
 
                 auto s = QCoreApplication::translate("OSM::charging_station_socket", socket.label);
-                // TODO add current, output, number of sockets
 
+                QStringList details;
+                if (value != "yes") {
+                    details.push_back(QString::fromUtf8(value));
+                }
+
+                const auto current = m_element.tagValue(QByteArray(socket.keyName + QByteArray(":current")).constData());
+                if (!current.isEmpty()) {
+                    if (std::all_of(current.begin(), current.end(), [](char c) { return std::isdigit(c); })) {
+                        details.push_back(tr("%1 A").arg(QString::fromUtf8(current)));
+                    } else {
+                        details.push_back(QString::fromUtf8(current));
+                    }
+                }
+                const auto output = m_element.tagValue(QByteArray(socket.keyName + QByteArray(":output")).constData());
+                if (!output.isEmpty()) {
+                    if (std::all_of(output.begin(), output.end(), [](char c) { return std::isdigit(c); })) {
+                        details.push_back(tr("%1 kW").arg(QString::fromUtf8(output)));
+                    } else {
+                        details.push_back(QString::fromUtf8(output));
+                    }
+                }
+
+                if (!details.empty()) {
+                    s += QLatin1String(" (") + details.join(QLatin1String(", ")) + QLatin1Char(')');
+                }
                 l.push_back(s);
             }
             return QLocale().createSeparatedList(l);
@@ -536,6 +564,18 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
                 s += QLatin1String(" (") + charge + QLatin1Char(')');
             }
             return s;
+        }
+        case Authentication:
+        {
+            QStringList l;
+            for (const auto &auth : authentication_type_map) {
+                const auto v = m_element.tagValue(auth.keyName);
+                if (v.isEmpty() || v == "no") {
+                    continue;
+                }
+                l.push_back(QCoreApplication::translate("OSM::charging_station_authentication", auth.label));
+            }
+            return QLocale().createSeparatedList(l);
         }
         case Capacity: return QString::fromUtf8(m_element.tagValue("capacity"));
         case CapacityDisabled: return capacitryValue("capacity:disabled");

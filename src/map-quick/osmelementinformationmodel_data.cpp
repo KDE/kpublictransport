@@ -254,20 +254,34 @@ static_assert(isSortedLookupTable(wheelchair_map), "wheelchair access map is not
 // socket types for charging stations
 struct {
     const char *keyName;
-    OSMElementInformationModel::Key m_key;
     const char *label;
 
-    constexpr inline OSMElementInformationModel::Key key() const { return m_key; }
+    constexpr inline OSMElementInformationModel::Key key() const { return OSMElementInformationModel::Socket; }
     constexpr inline OSMElementInformationModel::KeyCategory category() const { return OSMElementInformationModel::Main; }
 } static constexpr const socket_type_map[] = {
-    { "socket:chademo", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Chademo") },
-    { "socket:schuko", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Schuko") },
-    { "socket:tesla_standard", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla") },
-    { "socket:tesla_supercharger", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla Supercharger") },
-    { "socket:tesla_supercharger_ccs", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla Supercharger CCS") },
-    { "socket:type2", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2") },
-    { "socket:type2_cable", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 cable") },
-    { "socket:type2_combo", OSMElementInformationModel::Socket, QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 CCS") },
+    { "socket:chademo", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Chademo") },
+    { "socket:schuko", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Schuko") },
+    { "socket:tesla_standard", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla") },
+    { "socket:tesla_supercharger", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla Supercharger") },
+    { "socket:tesla_supercharger_ccs", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Tesla Supercharger CCS") },
+    { "socket:type2", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2") },
+    { "socket:type2_cable", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 cable") },
+    { "socket:type2_combo", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 CCS") },
+};
+
+// charging station authentication methods
+struct {
+    const char *keyName;
+    const char *label;
+
+    constexpr inline OSMElementInformationModel::Key key() const { return OSMElementInformationModel::Authentication; }
+    constexpr inline OSMElementInformationModel::KeyCategory category() const { return OSMElementInformationModel::Main; }
+} static constexpr const authentication_type_map[] = {
+    { "authentication:app", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "app") },
+    { "authentication:membership_card", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "membership card") },
+    { "authentication:nfc", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "NFC") },
+    { "authentication:none", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "none") },
+    { "authentication:short_message", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "SMS") },
 };
 
 }
