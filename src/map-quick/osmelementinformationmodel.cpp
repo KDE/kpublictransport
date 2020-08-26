@@ -228,7 +228,7 @@ void OSMElementInformationModel::reload()
 
     for (auto it = m_element.tagsBegin(); it != m_element.tagsEnd(); ++it) {
         if (std::strncmp((*it).key.name(), "name", 4) == 0) {
-            m_nameKey = Name;
+            m_infos.push_back(Info{Name, Header});
             continue;
         }
         if (std::strncmp((*it).key.name(), "wikipedia", 9) == 0) {
@@ -310,20 +310,33 @@ void OSMElementInformationModel::resolveCategories()
 
 void OSMElementInformationModel::resolveHeaders()
 {
+    for (auto key : { Name, Network, OperatorName, Category }) {
+        if (m_nameKey != NoKey) {
+            break;
+        }
+
+        const auto it = std::find_if(m_infos.begin(), m_infos.end(), [key](Info info) {
+            return info.key == key;
+        });
+        if (it == m_infos.end()) {
+            continue;
+        }
+
+        m_nameKey = (*it).key;
+        m_infos.erase(it);
+        break;
+    }
+
     // we use the categories as header if there is no name, so don't duplicate that
     const auto it = std::find_if(m_infos.begin(), m_infos.end(), [](Info info) {
         return info.key == Category;
     });
-    if (it == m_infos.end()) {
+    if (it == m_infos.end() || m_nameKey == Category) {
         return;
     }
 
     m_infos.erase(it);
-    if (m_nameKey == NoKey) {
-        m_nameKey = Category;
-    } else {
-        m_categoryKey = Category;
-    }
+    m_categoryKey = Category;
 }
 
 bool OSMElementInformationModel::promoteMainCategory(OSMElementInformationModel::KeyCategory cat)

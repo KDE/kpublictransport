@@ -1,4 +1,5 @@
 {
+    "category": "Public Transport Tickets",
     "content": [
         {
             "categoryLabel": "Operator",
@@ -6,14 +7,9 @@
         },
         {
             "categoryLabel": "Operator",
-            "keyLabel": "Network",
-            "value": "BVG"
-        },
-        {
-            "categoryLabel": "Operator",
             "url": "https://de.wikipedia.org/wiki/Deutsche Bahn",
             "value": "https://de.wikipedia.org/wiki/Deutsche Bahn"
         }
     ],
-    "name": "Public Transport Tickets"
+    "name": "BVG"
 }
