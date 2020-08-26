@@ -437,6 +437,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [amenity=bar],
 *|z19- [amenity=cafe],
 *|z19- [amenity=fast_food],
+*|z19- [amenity=ice_cream],
 *|z19- [amenity=pub],
 *|z19- [amenity=restaurant]
 {
@@ -445,16 +446,36 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // shops
+*|z19- [amenity=bank]
+{
+    icon-image: amenity;
+    icon-color: #9b59b6;
+}
 *|z19- [shop=bakery],
+*|z19- [shop=bank],
 *|z19- [shop=chemist],
+*|z19- [shop=clothes],
 *|z19- [shop=coffee],
 *|z19- [shop=convenience],
+*|z19- [shop=cosmetics],
+*|z19- [shop=electronics],
+*|z19- [shop=florist],
+*|z19- [shop=gift],
+*|z19- [shop=hairdresser],
+*|z19- [shop=jewelry],
+*|z19- [shop=kiosk],
+*|z19- [shop=mobile_phone],
 *|z19- [shop=newsagent],
+*|z19- [shop=optician],
+*|z19- [shop=perfumery],
+*|z19- [shop=shoes],
 *|z18- [shop=supermarket]
 {
     icon-image: shop;
     icon-color: #9b59b6;
 }
+*|z19- [shop=cosmetics] { icon-image: "perfumery"; }
+*|z19- [shop=kiosk] { icon-image: "newsagent"; }
 
 // health
 *|z18- [amenity=pharmacy]
@@ -464,11 +485,20 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // other amenities
-node|z19- [amenity=atm]
+node|z19- [amenity=atm],
+node|z19- [amenity=drinking_water],
+*|z19- [amenity=place_of_worship],
+*|z19- [amenity=police],
+*|z19- [amenity=post_office],
+*|z19- [amenity=social_facility]
 {
-    text: "";
     icon-image: amenity;
     icon-color: #7d8025;
+}
+node|z19- [amenity=atm],
+node|z19- [amenity=drinking_water]
+{
+    text: "";
 }
 
 // static elements
