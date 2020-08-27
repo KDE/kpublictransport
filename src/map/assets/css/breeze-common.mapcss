@@ -43,6 +43,8 @@ way[waterway][width] { width: width; }
 *[landuse=village_green],
 *[landuse=allotments],
 *[landuse=cemetery],
+*[landuse=meadow],
+*[natural=grassland],
 *[natural=wood]
 {
     fill-color: #1027ae60;
