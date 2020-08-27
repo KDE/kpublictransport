@@ -449,52 +449,54 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // shops
-*|z19- [amenity=bank]
-{
-    icon-image: amenity;
-    icon-color: #9b59b6;
-}
+* [shop] { icon-color: #9b59b6; }
+
+*|z19- [shop=alcohol],
+*|z19- [shop=bag],
 *|z19- [shop=bakery],
-*|z19- [shop=bank],
 *|z19- [shop=beauty],
-*|z19- [shop=books],
+*|z19- [shop=beverages],
 *|z19- [shop=butcher],
 *|z19- [shop=chemist],
 *|z19- [shop=clothes],
 *|z19- [shop=coffee],
 *|z19- [shop=confectionery],
 *|z19- [shop=convenience],
-*|z19- [shop=cosmetics],
 *|z19- [shop=deli],
 *|z18- [shop=department_store],
-*|z19- [shop=dry_cleaning],
 *|z19- [shop=electronics],
 *|z19- [shop=florist],
 *|z19- [shop=gift],
 *|z19- [shop=greengrocer],
 *|z19- [shop=hairdresser],
+*|z19- [shop=interior_decoration],
 *|z19- [shop=jewelry],
-*|z19- [shop=kiosk],
 *|z19- [shop=laundry],
 *|z19- [shop=mobile_phone],
 *|z19- [shop=newsagent],
 *|z19- [shop=optician],
+*|z19- [shop=outdoor],
 *|z19- [shop=perfumery],
+*|z19- [shop=pet],
+*|z19- [shop=photo],
 *|z19- [shop=shoes],
+*|z19- [shop=sports],
 *|z19- [shop=stationery],
 *|z18- [shop=supermarket],
 *|z19- [shop=ticket],
 *|z19- [shop=tobacco],
+*|z19- [shop=toys],
 *|z19- [shop=travel_agency],
 *|z19- [shop=variety_store]
 {
     icon-image: shop;
-    icon-color: #9b59b6;
 }
 *|z19- [shop=books] { icon-image: "library"; }
 *|z19- [shop=cosmetics] { icon-image: "perfumery"; }
 *|z19- [shop=dry_cleaning] { icon-image: "laundry"; }
 *|z19- [shop=kiosk] { icon-image: "newsagent"; }
+*|z19- [shop=pastry] { icon-image: "confectionery"; }
+*|z19- [shop=wine] { icon-image: "alcohol"; }
 
 // health
 *|z18- [amenity=doctors],
@@ -505,8 +507,11 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // other amenities
+*|z19- [amenity=bank],
+*|z19- [amenity=bureau_de_change],
 node|z19- [amenity=atm],
 node|z19- [amenity=drinking_water],
+*|z19- [amenity=internet_cafe],
 *|z19- [amenity=library],
 *|z19- [amenity=place_of_worship],
 *|z19- [amenity=police],
@@ -516,6 +521,17 @@ node|z19- [amenity=drinking_water],
     icon-image: amenity;
     icon-color: #7d8025;
 }
+*|z19- [shop=bank]
+{
+    icon-image: shop;
+    icon-color: #7d8025;
+}
+node|z19- [vending=parking_tickets]
+{
+    icon-image: vending;
+    icon-color: #7d8025;
+}
+
 node|z19- [amenity=atm],
 node|z19- [amenity=drinking_water]
 {

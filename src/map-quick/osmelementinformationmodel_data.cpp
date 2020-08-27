@@ -67,6 +67,7 @@ static constexpr const ValueMapEntry amenity_map[] = {
     { "ice_cream", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Ice Cream") },
     { "information", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Information") },
     { "interior_decoration", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Interior Decoration") },
+    { "internet_cafe", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Internet Cafe") },
     { "jewelry", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Jewelry") },
     { "kiosk", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Kiosk") },
     { "laundry", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Laundry") },
@@ -85,6 +86,7 @@ static constexpr const ValueMapEntry amenity_map[] = {
     { "optician", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Optician") },
     { "outdoor", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Outdoor") },
     { "parking", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Parking") },
+    { "parking_tickets", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Parking Tickets") },
     { "pastry", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Pastry") },
     { "perfumery", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Perfumery") },
     { "pet", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Pet") },
@@ -285,6 +287,7 @@ struct {
     { "authentication:membership_card", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "membership card") },
     { "authentication:nfc", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "NFC") },
     { "authentication:none", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "none") },
+    { "authentication:phone_call", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "phone call") },
     { "authentication:short_message", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "SMS") },
 };
 static_assert(isSortedLookupTable(authentication_type_map), "authentication type map is not sorted!");

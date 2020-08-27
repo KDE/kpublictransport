@@ -5,14 +5,18 @@
         <file>css/breeze-light.mapcss</file>
         <file>css/diagnostic.mapcss</file>
 
+        <file>icons/alcohol.svg</file>
         <file>icons/atm.svg</file>
+        <file>icons/bag.svg</file>
         <file>icons/bakery.svg</file>
         <file>icons/bank.svg</file>
         <file>icons/bar.svg</file>
         <file>icons/beauty.svg</file>
         <file>icons/bench.svg</file>
+        <file>icons/beverages.svg</file>
         <file>icons/bicycle_parking.svg</file>
         <file>icons/bicycle_rental.svg</file>
+        <file>icons/bureau_de_change.svg</file>
         <file>icons/butcher.svg</file>
         <file>icons/cafe.svg</file>
         <file>icons/car_rental.svg</file>
@@ -35,6 +39,8 @@
         <file>icons/hostel.svg</file>
         <file>icons/hotel.svg</file>
         <file>icons/ice_cream.svg</file>
+        <file>icons/interior_decoration.svg</file>
+        <file>icons/internet_cafe.svg</file>
         <file>icons/jewelry.svg</file>
         <file>icons/laundry.svg</file>
         <file>icons/library.svg</file>
@@ -42,9 +48,13 @@
         <file>icons/newsagent.svg</file>
         <file>icons/restaurant.svg</file>
         <file>icons/optician.svg</file>
+        <file>icons/outdoor.svg</file>
+        <file>icons/pet.svg</file>
         <file>icons/parking.svg</file>
+        <file>icons/parking_tickets.svg</file>
         <file>icons/perfumery.svg</file>
         <file>icons/pharmacy.svg</file>
+        <file>icons/photo.svg</file>
         <file>icons/place_of_worship.svg</file>
         <file>icons/police.svg</file>
         <file>icons/post_office.svg</file>
@@ -52,12 +62,14 @@
         <file>icons/shelter.svg</file>
         <file>icons/shoes.svg</file>
         <file>icons/social_facility.svg</file>
+        <file>icons/sports.svg</file>
         <file>icons/stationery.svg</file>
         <file>icons/supermarket.svg</file>
         <file>icons/taxi.svg</file>
         <file>icons/ticket.svg</file>
         <file>icons/tobacco.svg</file>
         <file>icons/toilets.svg</file>
+        <file>icons/toys.svg</file>
         <file>icons/travel_agency.svg</file>
         <file>icons/variety_store.svg</file>
         <file>icons/waste_basket.svg</file>
