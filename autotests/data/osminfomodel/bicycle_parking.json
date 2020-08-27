@@ -1,0 +1,17 @@
+{
+    "content": [
+        {
+            "keyLabel": "Fee",
+            "value": "no"
+        },
+        {
+            "keyLabel": "Bicycle parking",
+            "value": "stands"
+        },
+        {
+            "keyLabel": "Capacity",
+            "value": "10"
+        }
+    ],
+    "name": "Bicycle Parking"
+}

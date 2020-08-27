@@ -268,6 +268,7 @@ struct {
     { "socket:type2_cable", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 cable") },
     { "socket:type2_combo", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 CCS") },
 };
+static_assert(isSortedLookupTable(socket_type_map), "socket type map is not sorted!");
 
 // charging station authentication methods
 struct {
@@ -283,5 +284,22 @@ struct {
     { "authentication:none", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "none") },
     { "authentication:short_message", QT_TRANSLATE_NOOP("OSM::charging_station_authentication", "SMS") },
 };
+static_assert(isSortedLookupTable(authentication_type_map), "authentication type map is not sorted!");
+
+// bicycle parking values
+// see https://taginfo.openstreetmap.org/keys/?key=bicycle_parking#values
+static constexpr const ValueMapEntry bicycle_parking_map[] = {
+    { "anchors", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "anchors") },
+    { "bollard", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "bollard") },
+    { "building", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "building") },
+    { "ground_slots", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "ground slots") },
+    { "lockers", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "lockers") },
+    { "racks", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "racks") },
+    { "shed", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "shed") },
+    { "stands", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "stands") },
+    { "wall_loops", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "wall loops") },
+    { "wide_stands", QT_TRANSLATE_NOOP("OSM::bicycle_parking", "wide stands") },
+};
+static_assert(isSortedLookupTable(bicycle_parking_map), "bicycle parking map is not sorted!");
 
 }

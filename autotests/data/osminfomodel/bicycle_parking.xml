@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm>
+    <node id="1" lat="0.0" lon="0.0">
+        <tag k="amenity" v="bicycle_parking"/>
+        <tag k="covered" v="yes"/>
+        <tag k="fee" v="no"/>
+        <tag k="access" v="customers"/>
+        <tag k="capacity" v="10"/>
+        <tag k="supervised" v="no"/>
+        <tag k="bicycle_parking" v="stands"/>
+    </node>
+</osm>

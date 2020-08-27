@@ -169,6 +169,7 @@ struct {
     M("addr:city", Address, Contact),
     M("addr:street", Address, Contact),
     M("amenity", Category, Header),
+    M("bicycle_parking", BicycleParking, Parking),
     M("brand:wikipedia", Wikipedia, UnresolvedCategory),
     M("capacity", Capacity, Parking),
     M("capacity:charging", CapacityCharing, Parking),
@@ -412,6 +413,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case OpeningHours: return tr("Opening hours");
         case Fee: return tr("Fee");
         case Authentication: return tr("Authentication");
+        case BicycleParking: return tr("Bicycle parking");
         case Capacity: return tr("Capacity");
         case CapacityDisabled: return tr("Disabled parking spaces");
         case CapacityWomen: return tr("Women parking spaces");
@@ -576,6 +578,11 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
                 l.push_back(QCoreApplication::translate("OSM::charging_station_authentication", auth.label));
             }
             return QLocale().createSeparatedList(l);
+        }
+        case BicycleParking:
+        {
+            const auto v = m_element.tagValue("bicycle_parking");
+            return translateValue(v.constData(), bicycle_parking_map, "OSM::bicycle_parking");
         }
         case Capacity: return QString::fromUtf8(m_element.tagValue("capacity"));
         case CapacityDisabled: return capacitryValue("capacity:disabled");

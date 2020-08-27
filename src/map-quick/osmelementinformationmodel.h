@@ -75,6 +75,7 @@ public:
         OpeningHours,
         Fee,
         Authentication,
+        BicycleParking,
         Capacity,
         CapacityDisabled,
         CapacityWomen,
