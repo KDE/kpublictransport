@@ -208,7 +208,9 @@ relation[type=multipolygon][building:part=floor]
 }
 
 area[building=roof],
-relation[type=multipolygon][building=roof]
+area[building:part=roof],
+relation[type=multipolygon][building=roof],
+relation[type=multipolygon][building:part=roof]
 {
     fill-opacity: 0;
 }
