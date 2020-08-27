@@ -170,6 +170,7 @@ struct {
     M("addr:street", Address, Contact),
     M("amenity", Category, Header),
     M("bicycle_parking", BicycleParking, Parking),
+    M("brand", Name, Header),
     M("brand:wikipedia", Wikipedia, UnresolvedCategory),
     M("capacity", Capacity, Parking),
     M("capacity:charging", CapacityCharing, Parking),
@@ -446,7 +447,7 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
 {
     switch (info.key) {
         case NoKey: return {};
-        case Name: return QString::fromUtf8(m_element.tagValue("name", QLocale()));
+        case Name: return QString::fromUtf8(m_element.tagValue("name", "brand", QLocale()));
         case Category:
         {
             QList<QByteArray> l;
