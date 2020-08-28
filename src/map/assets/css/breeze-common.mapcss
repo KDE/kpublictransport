@@ -21,9 +21,12 @@
 relation[type=multipolygon][water],
 relation[type=multipolygon][waterway],
 relation[type=multipolygon][natural=water],
+relation[type=multipolygon][landuse=basin],
 area[water],
 area[waterway],
-area[natural=water]
+area[natural=water],
+area[amenity=fountain],
+area[landuse=basin]
 {
     fill-color: #103daee9;
     z-index: -1000;
@@ -35,6 +38,11 @@ way[waterway]
     width: 1m;
 }
 way[waterway][width] { width: width; }
+
+*|z18- [amenity=fountain] {
+    icon-image: amenity;
+    icon-color: #2980b9;
+}
 
 *[leisure=park],
 *[landuse=farmland],
@@ -60,7 +68,8 @@ way[waterway][width] { width: width; }
 *|z20- [amenity=fast_food],
 *|z20- [amenity=restaurant],
 *|z21- [indoor=room],
-*|z19- [tourism=information]
+*|z19- [tourism=information],
+*|z21- [tourism]
 {
     text: name;
     max-width: 100;
@@ -358,9 +367,10 @@ node|z18-[public_transport=platform_section_sign]
     icon-opacity: 0.0;
 }
 
-*|z18-[amenity=bicycle_parking]
+*|z18-[amenity=bicycle_parking],
+*|z18-[amenity=motorcycle_parking]
 {
-    icon-image: "bicycle_parking";
+    icon-image: amenity;
     icon-color: #3daee9;
 }
 
@@ -457,51 +467,68 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=bag],
 *|z19- [shop=bakery],
 *|z19- [shop=beauty],
+*|z19- [shop=bed],
 *|z19- [shop=beverages],
+*|z19- [shop=bicycle],
 *|z19- [shop=butcher],
+*|z19- [shop=car],
 *|z19- [shop=chemist],
 *|z19- [shop=clothes],
 *|z19- [shop=coffee],
+*|z19- [shop=computer],
 *|z19- [shop=confectionery],
 *|z19- [shop=convenience],
+*|z19- [shop=copyshop],
 *|z19- [shop=deli],
 *|z18- [shop=department_store],
 *|z19- [shop=electronics],
 *|z19- [shop=florist],
+*|z19- [shop=furniture],
 *|z19- [shop=gift],
 *|z19- [shop=greengrocer],
 *|z19- [shop=hairdresser],
+*|z19- [shop=hifi],
+*|z19- [shop=houseware],
 *|z19- [shop=interior_decoration],
 *|z19- [shop=jewelry],
 *|z19- [shop=laundry],
+*|z19- [shop=medical_supply],
 *|z19- [shop=mobile_phone],
+*|z19- [shop=music],
 *|z19- [shop=newsagent],
 *|z19- [shop=optician],
 *|z19- [shop=outdoor],
 *|z19- [shop=perfumery],
 *|z19- [shop=pet],
 *|z19- [shop=photo],
+*|z19- [shop=seafood],
 *|z19- [shop=shoes],
 *|z19- [shop=sports],
 *|z19- [shop=stationery],
 *|z18- [shop=supermarket],
+*|z19- [shop=tea],
 *|z19- [shop=ticket],
 *|z19- [shop=tobacco],
 *|z19- [shop=toys],
 *|z19- [shop=travel_agency],
+*|z19- [shop=video_games],
 *|z19- [shop=variety_store]
 {
     icon-image: shop;
 }
 *|z19- [shop=books] { icon-image: "library"; }
+*|z19- [shop=chocolate] { icon-image: "confectionery"; }
 *|z19- [shop=cosmetics] { icon-image: "perfumery"; }
 *|z19- [shop=dry_cleaning] { icon-image: "laundry"; }
+*|z19- [shop=farm] { icon-image: "greengrocer"; }
 *|z19- [shop=kiosk] { icon-image: "newsagent"; }
 *|z19- [shop=pastry] { icon-image: "confectionery"; }
 *|z19- [shop=wine] { icon-image: "alcohol"; }
 
 // health
-*|z18- [amenity=doctors],
+*|z19- [amenity=dentist],
+*|z19- [amenity=doctors],
+*|z17- [amenity=hospital],
 *|z18- [amenity=pharmacy]
 {
     icon-image: amenity;
@@ -517,8 +544,10 @@ node|z19- [amenity=drinking_water],
 *|z19- [amenity=library],
 *|z19- [amenity=place_of_worship],
 *|z19- [amenity=police],
+node|z20- [amenity=post_box],
 *|z19- [amenity=post_office],
-*|z19- [amenity=social_facility]
+*|z19- [amenity=social_facility],
+*|z19- [amenity=theatre]
 {
     icon-image: amenity;
     icon-color: #7d8025;
@@ -531,6 +560,11 @@ node|z19- [amenity=drinking_water],
 node|z19- [vending=parking_tickets]
 {
     icon-image: vending;
+    icon-color: #7d8025;
+}
+*|z19- [tourism=museum]
+{
+    icon-image: tourism;
     icon-color: #7d8025;
 }
 
@@ -548,7 +582,14 @@ node|z20- [amenity=waste_basket]
     icon-image: amenity;
     icon-color: #4d4d4d;
 }
+node|z20- [information=board],
+node|z20- [information=guidepost],
+node|z20- [information=terminal]
+{
+    icon-image: information;
+    icon-color: #4d4d4d;
+}
 
 // hide information boards as their names clutter the vie
 // showing an icon instead would be better, but we don't have one yet
-node[information=board] { text: ""; }
+node[information] { text: ""; }
