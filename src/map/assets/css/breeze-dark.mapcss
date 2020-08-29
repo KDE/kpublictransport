@@ -136,7 +136,8 @@ line[highway=steps][conveying=reversible]
 /** Railway stuff */
 area[railway=platform],
 area[public_transport=platform],
-relation[type=multipolygon][railway=platform]
+relation[type=multipolygon][railway=platform],
+relation[type=multipolygon][public_transport=platform]
 {
     fill-color: #607080;
     color: #bdc3c7;

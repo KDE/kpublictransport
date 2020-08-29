@@ -311,6 +311,7 @@ node|z18-[aeroway=gate]
 area|z17-[railway=platform],
 area|z17-[public_transport=platform],
 relation|z17-[type=multipolygon][railway=platform],
+relation[type=multipolygon][public_transport=platform],
 way|z17-[public_transport=platform]
 {
     text: name;
@@ -322,6 +323,7 @@ way|z17-[public_transport=platform]
 area|z19-[railway=platform],
 area|z19-[public_transport=platform],
 relation|z19-[type=multipolygon][railway=platform],
+relation|z19-[type=multipolygon][public_transport=platform],
 way|z19-[public_transport=platform]
 {
     font-size: 16;
