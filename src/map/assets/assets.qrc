@@ -11,6 +11,7 @@
         <file>icons/bakery.svg</file>
         <file>icons/bank.svg</file>
         <file>icons/bar.svg</file>
+        <file>icons/bbq.svg</file>
         <file>icons/beauty.svg</file>
         <file>icons/bed.svg</file>
         <file>icons/bench.svg</file>
@@ -18,12 +19,14 @@
         <file>icons/bicycle.svg</file>
         <file>icons/bicycle_parking.svg</file>
         <file>icons/bicycle_rental.svg</file>
+        <file>icons/biergarten.svg</file>
         <file>icons/board.svg</file>
         <file>icons/bureau_de_change.svg</file>
         <file>icons/butcher.svg</file>
         <file>icons/cafe.svg</file>
         <file>icons/car.svg</file>
         <file>icons/car_rental.svg</file>
+        <file>icons/car_repair.svg</file>
         <file>icons/charging_station.svg</file>
         <file>icons/chemist.svg</file>
         <file>icons/clothes.svg</file>
@@ -36,14 +39,19 @@
         <file>icons/dentist.svg</file>
         <file>icons/department_store.svg</file>
         <file>icons/doctors.svg</file>
+        <file>icons/doityourself.svg</file>
         <file>icons/drinking_water.svg</file>
         <file>icons/electronics.svg</file>
+        <file>icons/emergency_phone.svg</file>
         <file>icons/fast_food.svg</file>
+        <file>icons/firepit.svg</file>
         <file>icons/florist.svg</file>
         <file>icons/fountain.svg</file>
         <file>icons/furniture.svg</file>
+        <file>icons/garden_centre.svg</file>
         <file>icons/gift.svg</file>
         <file>icons/greengrocer.svg</file>
+        <file>icons/guest_house.svg</file>
         <file>icons/guidepost.svg</file>
         <file>icons/hairdresser.svg</file>
         <file>icons/hifi.svg</file>
@@ -57,26 +65,32 @@
         <file>icons/jewelry.svg</file>
         <file>icons/laundry.svg</file>
         <file>icons/library.svg</file>
+        <file>icons/map.svg</file>
         <file>icons/medical_supply.svg</file>
+        <file>icons/miniature_golf.svg</file>
         <file>icons/mobile_phone.svg</file>
         <file>icons/motorcycle_parking.svg</file>
         <file>icons/museum.svg</file>
         <file>icons/music.svg</file>
+        <file>icons/musical_instrument.svg</file>
         <file>icons/newsagent.svg</file>
         <file>icons/restaurant.svg</file>
         <file>icons/optician.svg</file>
         <file>icons/outdoor.svg</file>
-        <file>icons/pet.svg</file>
+        <file>icons/paint.svg</file>
         <file>icons/parking.svg</file>
         <file>icons/parking_tickets.svg</file>
         <file>icons/perfumery.svg</file>
+        <file>icons/pet.svg</file>
         <file>icons/pharmacy.svg</file>
         <file>icons/photo.svg</file>
         <file>icons/place_of_worship.svg</file>
+        <file>icons/playground.svg</file>
         <file>icons/police.svg</file>
         <file>icons/post_box.svg</file>
         <file>icons/post_office.svg</file>
         <file>icons/pub.svg</file>
+        <file>icons/recycling.svg</file>
         <file>icons/seafood.svg</file>
         <file>icons/shelter.svg</file>
         <file>icons/shoes.svg</file>
