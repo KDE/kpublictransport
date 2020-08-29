@@ -407,9 +407,24 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 opt.setWrapMode(item->text.textWidth() > 0.0 ? QTextOption::WordWrap : QTextOption::NoWrap);
                 item->text.setTextOption(opt);
                 item->text.prepare({}, item->font);
+
+                // discard labels that are longer than the line they are aligned with
+                if (m_styleResult.hasLineProperties() && m_labelPlacementPath.size() > 1 && item->angle != 0.0) {
+                    const auto sceneLen = SceneGeometry::polylineLength(m_labelPlacementPath);
+                    const auto sceneP1 = m_view->viewport().topLeft();
+                    const auto sceneP2 = QPointF(sceneP1.x() + sceneLen, sceneP1.y());
+                    const auto screenP1 = m_view->mapSceneToScreen(sceneP1);
+                    const auto screenP2 = m_view->mapSceneToScreen(sceneP2);
+                    const auto screenLen = screenP2.x() - screenP1.x();
+                    if (screenLen < item->text.size().width()) {
+                        item->text = {};
+                    }
+                }
             }
 
-            addItem(sg, e, level, std::move(baseItem));
+            if (!item->icon.isNull() || !item->text.text().isEmpty()) {
+                addItem(sg, e, level, std::move(baseItem));
+            }
         }
     }
 }
