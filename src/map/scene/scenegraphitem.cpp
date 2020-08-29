@@ -18,7 +18,6 @@
 #include "scenegraphitem.h"
 
 #include <QDebug>
-#include <QFontMetrics>
 
 using namespace KOSMIndoorMap;
 
@@ -69,12 +68,17 @@ uint8_t LabelItem::renderPhases() const
 
 QRectF LabelItem::boundingRect() const
 {
-    if (bbox.isValid()) {
-        return bbox;
+    QRectF bbox;
+    if (!text.text().isEmpty()) {
+        bbox = QRectF(QPointF(0.0, 0.0), text.size());
+    }
+    if (!icon.isNull()) {
+        bbox.setHeight(bbox.height() + iconSize.height());
+        bbox.setWidth(std::max(bbox.width(), iconSize.width()));
     }
 
-    QFontMetricsF fm(font);
-    bbox = QRectF(QPointF(0, 0), QSizeF(std::max(fm.maxWidth() * text.size(), iconSize.width()), fm.lineSpacing() * text.size() + iconSize.height()));
     bbox.moveCenter(pos);
+    const auto shieldSize = std::max(frameWidth, haloRadius) + casingWidth;
+    bbox.adjust(-shieldSize, -shieldSize, shieldSize, shieldSize);
     return bbox;
 }

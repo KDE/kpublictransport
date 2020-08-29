@@ -183,26 +183,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
     m_painter->translate(m_view->mapSceneToScreen(item->pos));
     m_painter->rotate(item->angle);
 
-    int textFlags = Qt::AlignHCenter | (item->maxWidth > 0.0 ? Qt::TextWordWrap : Qt::TextSingleLine);
-    if (!item->hasFineBbox) {
-        if (!item->text.isEmpty()) {
-            m_painter->setPen(item->color);
-            m_painter->setFont(item->font);
-            item->bbox = m_painter->boundingRect(QRectF(QPointF(0.0, 0.0), QSizeF(item->maxWidth, 0.0)), textFlags, item->text);
-        } else {
-            item->bbox = QRectF();
-        }
-
-        if (!item->icon.isNull()) {
-            item->bbox.setHeight(item->bbox.height() + item->iconSize.height());
-            item->bbox.setWidth(std::max(item->bbox.width(), item->iconSize.width()));
-        }
-
-        item->bbox.moveCenter(item->pos);
-        item->hasFineBbox = true;
-    }
-
-    auto box = item->bbox;
+    auto box = item->boundingRect();
     box.moveCenter({0.0, item->offset});
 
     // draw shield
@@ -238,7 +219,7 @@ void PainterRenderer::renderLabel(LabelItem *item)
         haloPainter.setFont(item->font);
         auto haloTextRect = box;
         haloTextRect.moveTopLeft({item->haloRadius, item->haloRadius});
-        haloPainter.drawText(haloTextRect, textFlags, item->text);
+        haloPainter.drawStaticText(haloTextRect.topLeft(), item->text);
         StackBlur::blur(haloBuffer, item->haloRadius);
         haloPainter.setCompositionMode(QPainter::CompositionMode_SourceIn);
         haloPainter.fillRect(haloBuffer.rect(), item->haloColor);
@@ -246,10 +227,10 @@ void PainterRenderer::renderLabel(LabelItem *item)
     }
 
     // draw text
-    if (!item->text.isEmpty()) {
+    if (!item->text.text().isEmpty()) {
         m_painter->setPen(item->color);
         m_painter->setFont(item->font);
-        m_painter->drawText(box, textFlags, item->text);
+        m_painter->drawStaticText(box.topLeft(), item->text);
     }
 
     m_painter->restore();

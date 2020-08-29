@@ -283,9 +283,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         if (!text.isEmpty() || iconDecl) {
             auto baseItem = sg.findOrCreatePayload<LabelItem>(e, level);
             auto item = static_cast<LabelItem*>(baseItem.get());
-            item->text = text;
-            item->hasFineBbox = false;
-            item->bbox = {};
+            item->text.setText(text);
             item->font = m_defaultFont;
             item->color = m_defaultTextColor;
 
@@ -340,7 +338,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         item->offset = decl->doubleValue();
                         break;
                     case MapCSSDeclaration::MaxWidth:
-                        item->maxWidth = decl->intValue();
+                        item->text.setTextWidth(decl->intValue());
                         break;
                     case MapCSSDeclaration::IconImage:
                         if (!decl->keyValue().isEmpty()) {
@@ -402,6 +400,15 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                     item->iconSize.setHeight(item->iconSize.width() / aspectRatio);
                 }
             }
+
+            if (!item->text.text().isEmpty()) {
+                QTextOption opt;
+                opt.setAlignment(Qt::AlignHCenter);
+                opt.setWrapMode(item->text.textWidth() > 0.0 ? QTextOption::WordWrap : QTextOption::NoWrap);
+                item->text.setTextOption(opt);
+                item->text.prepare({}, item->font);
+            }
+
             addItem(sg, e, level, std::move(baseItem));
         }
     }

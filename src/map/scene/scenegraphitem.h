@@ -27,6 +27,7 @@
 #include <QPainterPath>
 #include <QPen>
 #include <QPolygonF>
+#include <QStaticText>
 #include <QString>
 
 #include <memory>
@@ -144,9 +145,9 @@ public:
     QRectF boundingRect() const override;
 
     QPointF pos;
-    QString text;
     QColor color;
     QFont font;
+    QStaticText text;
 
     QIcon icon;
     QSizeF iconSize;
@@ -156,10 +157,6 @@ public:
     double frameWidth = 0.0;
     QColor frameColor = Qt::transparent;
     QColor shieldColor = Qt::transparent;
-
-    mutable QRectF bbox;
-    bool hasFineBbox = false;
-    int maxWidth = 0;
 
     double angle = 0.0;
     double offset = 0.0;

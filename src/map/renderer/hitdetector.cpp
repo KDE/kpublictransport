@@ -118,7 +118,7 @@ bool HitDetector::itemContainsPoint(const PolylineItem *item, QPointF scenePos, 
 
 bool HitDetector::itemContainsPoint(const LabelItem *item, QPointF screenPos, const View *view) const
 {
-    auto hitBox = item->bbox;
+    auto hitBox = item->boundingRect();
     hitBox.moveCenter(view->mapSceneToScreen(hitBox.center()));
     return hitBox.contains(screenPos);
 }
