@@ -71,7 +71,8 @@ way[waterway][width] { width: width; }
 *|z21- [indoor=room],
 *|z21- [leisure],
 *|z19- [tourism=information],
-*|z21- [tourism]
+*|z21- [tourism],
+*|z19- [shop=mall]
 {
     text: name;
     max-width: 100;
