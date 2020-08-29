@@ -11,23 +11,45 @@
 #include <QDebug>
 #include <QFile>
 #include <QGuiApplication>
-#include <QIcon>
 #include <QImageReader>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
 using namespace KOSMIndoorMap;
 
+static bool operator<(const IconData &lhs, const IconData &rhs)
+{
+    if (lhs.name == rhs.name) {
+        if (lhs.color.rgb() == rhs.color.rgb()) {
+            return lhs.size.width() < rhs.size.width();
+        }
+        return lhs.color.rgb() < rhs.color.rgb();
+    }
+    return lhs.name < rhs.name;
+}
+
+static bool operator==(const IconData &lhs, const IconData &rhs)
+{
+    return lhs.name == rhs.name && lhs.color == rhs.color && lhs.size == rhs.size;
+}
+
 QIcon IconLoader::loadIcon(const IconData &iconData) const
 {
-//     qDebug() << "loading" << iconData.name << iconData.color << iconData.size;
-    // TODO we might want to add a cache here for the colorized SVG icons...
+    // check our cache
+    auto it = std::lower_bound(m_cache.begin(), m_cache.end(), iconData, [](const auto &lhs, const auto &rhs) { return lhs.data < rhs; });
+    if (it != m_cache.end() && (*it).data == iconData) {
+        return (*it).icon;
+    }
 
     // check if it's one of our bundled assets
     const QString path = QLatin1String(":/org.kde.kosmindoormap/assets/icons/") + iconData.name + QLatin1String(".svg");
     QFile f(path);
     if (f.open(QFile::ReadOnly)) {
-        return loadSvgAsset(&f, iconData);
+        CacheEntry entry;
+        entry.data = iconData;
+        entry.icon = loadSvgAsset(&f, iconData);
+        it = m_cache.insert(it, std::move(entry));
+        return (*it).icon;
     }
 
     // TODO file system URLs

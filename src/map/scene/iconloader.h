@@ -8,10 +8,12 @@
 #define KOSMINDOORMAP_ICONLOADER_H
 
 #include <QColor>
+#include <QIcon>
 #include <QSizeF>
 #include <QString>
 
-class QIcon;
+#include <vector>
+
 class QIODevice;
 
 namespace KOSMIndoorMap {
@@ -32,6 +34,12 @@ public:
 
 private:
     QIcon loadSvgAsset(QIODevice *svgFile, const IconData &iconData) const;
+
+    struct CacheEntry {
+        IconData data;
+        QIcon icon;
+    };
+    mutable std::vector<CacheEntry> m_cache;
 };
 
 }
