@@ -6,6 +6,7 @@
         <file>css/diagnostic.mapcss</file>
 
         <file>icons/alcohol.svg</file>
+        <file>icons/art.svg</file>
         <file>icons/atm.svg</file>
         <file>icons/bag.svg</file>
         <file>icons/bakery.svg</file>
@@ -29,12 +30,14 @@
         <file>icons/car_repair.svg</file>
         <file>icons/charging_station.svg</file>
         <file>icons/chemist.svg</file>
+        <file>icons/cinema.svg</file>
         <file>icons/clothes.svg</file>
         <file>icons/coffee.svg</file>
         <file>icons/computer.svg</file>
         <file>icons/confectionery.svg</file>
         <file>icons/convenience.svg</file>
         <file>icons/copyshop.svg</file>
+        <file>icons/courthouse.svg</file>
         <file>icons/deli.svg</file>
         <file>icons/dentist.svg</file>
         <file>icons/department_store.svg</file>
@@ -43,6 +46,7 @@
         <file>icons/drinking_water.svg</file>
         <file>icons/electronics.svg</file>
         <file>icons/emergency_phone.svg</file>
+        <file>icons/fabric.svg</file>
         <file>icons/fast_food.svg</file>
         <file>icons/firepit.svg</file>
         <file>icons/florist.svg</file>
@@ -50,6 +54,7 @@
         <file>icons/furniture.svg</file>
         <file>icons/garden_centre.svg</file>
         <file>icons/gift.svg</file>
+        <file>icons/golf_course.svg</file>
         <file>icons/greengrocer.svg</file>
         <file>icons/guest_house.svg</file>
         <file>icons/guidepost.svg</file>
@@ -77,6 +82,7 @@
         <file>icons/restaurant.svg</file>
         <file>icons/optician.svg</file>
         <file>icons/outdoor.svg</file>
+        <file>icons/outdoor_seating.svg</file>
         <file>icons/paint.svg</file>
         <file>icons/parking.svg</file>
         <file>icons/parking_tickets.svg</file>
@@ -90,6 +96,7 @@
         <file>icons/post_box.svg</file>
         <file>icons/post_office.svg</file>
         <file>icons/pub.svg</file>
+        <file>icons/public_transport_tickets.svg</file>
         <file>icons/recycling.svg</file>
         <file>icons/seafood.svg</file>
         <file>icons/shelter.svg</file>
@@ -105,10 +112,12 @@
         <file>icons/ticket.svg</file>
         <file>icons/tobacco.svg</file>
         <file>icons/toilets.svg</file>
+        <file>icons/townhall.svg</file>
         <file>icons/toys.svg</file>
         <file>icons/travel_agency.svg</file>
         <file>icons/variety_store.svg</file>
         <file>icons/video_games.svg</file>
+        <file>icons/viewpoint.svg</file>
         <file>icons/waste_basket.svg</file>
     </qresource>
 </RCC>

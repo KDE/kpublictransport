@@ -45,6 +45,8 @@ way[waterway][width] { width: width; }
 }
 
 *[leisure=park],
+area[leisure=pitch],
+area[leisure=playground],
 *[landuse=farmland],
 *[landuse=forest],
 *[landuse=grass],
@@ -54,9 +56,17 @@ way[waterway][width] { width: width; }
 *[landuse=cemetery],
 *[landuse=meadow],
 *[natural=grassland],
-*[natural=wood]
+*[natural=wood],
+area[surface=grass]
 {
     fill-color: #1027ae60;
+    z-index: -999;
+}
+
+area[natural=beach],
+area[natural=sand]
+{
+    fill-color: #20fdbc4b;
     z-index: -999;
 }
 
@@ -357,6 +367,16 @@ node|z18-[public_transport=platform_section_sign]
 
 /** Specific amenities/shops/etc */
 
+// ticket machines
+node|z20-[vending=public_transport_tickets] {
+    icon-image: vending;
+    icon-color: #fcfcfc;
+    shield-color: #1d99f3;
+    shield-casing-color: #fcfcfc;
+    shield-casing-width: 1;
+    text: "";
+}
+
 // parking
 *|z17-[amenity=parking]
 {
@@ -403,9 +423,6 @@ node|z19-[amenity=charging_station] {
     icon-color: #3daee9;
     icon-image: "charging_station";
 }
-
-/** icons */
-node|z18-[vending=public_transport_tickets] { text: "🎫"; }
 
 // other car-related transportation
 *|z19-[amenity=car_rental],
@@ -471,6 +488,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 * [shop] { icon-color: #9b59b6; }
 
 *|z19- [shop=alcohol],
+*|z20- [shop=art],
 *|z19- [shop=bag],
 *|z19- [shop=bakery],
 *|z19- [shop=beauty],
@@ -491,6 +509,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z18- [shop=department_store],
 *|z19- [shop=doityourself],
 *|z19- [shop=electronics],
+*|z20- [shop=fabric],
 *|z19- [shop=florist],
 *|z19- [shop=furniture],
 *|z19- [shop=garden_centre],
@@ -548,7 +567,9 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // leisure elements
+*|z18- [leisure=golf_course],
 *|z19- [leisure=miniature_golf],
+*|z20- [leisure=outdoor_seating],
 *|z18- [leisure=playground]
 {
     icon-image: leisure;
@@ -556,10 +577,12 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // other amenities
+node|z19- [amenity=atm],
 *|z19- [amenity=bank],
 *|z19- [amenity=bbq],
 *|z19- [amenity=bureau_de_change],
-node|z19- [amenity=atm],
+*|z19- [amenity=cinema],
+*|z20- [amenity=courthouse],
 node|z19- [amenity=drinking_water],
 *|z19- [amenity=internet_cafe],
 *|z19- [amenity=library],
@@ -568,7 +591,8 @@ node|z19- [amenity=drinking_water],
 node|z20- [amenity=post_box],
 *|z19- [amenity=post_office],
 *|z19- [amenity=social_facility],
-*|z19- [amenity=theatre]
+*|z19- [amenity=theatre],
+*|z20- [amenity=townhall]
 {
     icon-image: amenity;
     icon-color: #7d8025;
@@ -583,7 +607,8 @@ node|z19- [vending=parking_tickets]
     icon-image: vending;
     icon-color: #7d8025;
 }
-*|z19- [tourism=museum]
+*|z19- [tourism=museum],
+*|z20- [tourism=viewpoint]
 {
     icon-image: tourism;
     icon-color: #7d8025;
