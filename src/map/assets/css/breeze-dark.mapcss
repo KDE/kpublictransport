@@ -20,7 +20,6 @@ area[amenity=bicycle_parking]
 }
 area[building],
 area[man_made=bridge],
-relation[type=multipolygon][man_made=bridge],
 area[railway=loading_ramp]
 {
     fill-color: #20bdc3c7;
@@ -70,8 +69,8 @@ line[highway=pedestrian]
 
 /** Generic building stuff */
 area[indoor],
-relation[type=multipolygon][building],
-relation[type=multipolygon][building:part=yes]
+area[building],
+area[building:part=yes][!roof:shape]
 {
     fill-color: #80bdc3c7;
 }
@@ -80,9 +79,6 @@ area[indoor=area],
 area[indoor=corridor],
 area[building:part=floor],
 area[stairwell],
-relation[type=multipolygon][indoor=area],
-relation[type=multipolygon][indoor=corridor],
-relation[type=multipolygon][building:part=floor],
 area[tunnel=yes]
 {
     fill-color: #bdc3c7;
@@ -92,8 +88,7 @@ area[stairwell] { color: #7f8c8d; width: 0; }
 
 area[indoor=room],
 area[indoor=yes][amenity],
-area[shop],
-relation[type=multipolygon][indoor=room]
+area[shop]
 {
     fill-color: #7f8c8d;
     color: #000000;
@@ -123,9 +118,7 @@ line[highway=steps][conveying=reversible]
 
 /** Railway stuff */
 area[railway=platform],
-area[public_transport=platform],
-relation[type=multipolygon][railway=platform],
-relation[type=multipolygon][public_transport=platform]
+area[public_transport=platform]
 {
     fill-color: #607080;
     color: #bdc3c7;
@@ -149,8 +142,7 @@ line[public_transport=platform]
 
 /** Specific elements */
 area[amenity=toilets],
-area[room=toilets],
-relation[type=multipolygon][room=toilets]
+area[room=toilets]
 {
     fill-color: #3daee9;
 }

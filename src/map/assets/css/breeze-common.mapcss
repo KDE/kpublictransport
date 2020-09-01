@@ -7,10 +7,6 @@
 /* common definitions between light and dark style */
 
 /** Various outdoor stuff. */
-relation[type=multipolygon][water],
-relation[type=multipolygon][waterway],
-relation[type=multipolygon][natural=water],
-relation[type=multipolygon][landuse=basin],
 area[water],
 area[waterway],
 area[natural=water],
@@ -208,20 +204,13 @@ area[building:part=floor],
 area[indoor=area],
 area[indoor=corridor],
 area[stairwell],
-area[tunnel],
-relation[type=multipolygon][indoor=area],
-relation[type=multipolygon][indoor=corridor],
-relation[type=multipolygon][building],
-relation[type=multipolygon][building:part=yes],
-relation[type=multipolygon][building:part=floor]
+area[tunnel]
 {
     z-index: -1;
 }
 
 area[building=roof],
-area[building:part=roof],
-relation[type=multipolygon][building=roof],
-relation[type=multipolygon][building:part=roof]
+area[building:part=roof]
 {
     fill-opacity: 0;
 }
@@ -295,8 +284,7 @@ node|z19-[aeroway=parking_position]
     text: ref;
 }
 
-area|z16-[aeroway=terminal],
-relation|z16-[type=multipolygon][aeroway=terminal]
+area|z16-[aeroway=terminal]
 {
     text: name;
 }
@@ -310,8 +298,6 @@ node|z18-[aeroway=gate]
 /** Platforms */
 area|z17-[railway=platform],
 area|z17-[public_transport=platform],
-relation|z17-[type=multipolygon][railway=platform],
-relation[type=multipolygon][public_transport=platform],
 way|z17-[public_transport=platform]
 {
     text: name;
@@ -322,8 +308,6 @@ way|z17-[public_transport=platform]
 }
 area|z19-[railway=platform],
 area|z19-[public_transport=platform],
-relation|z19-[type=multipolygon][railway=platform],
-relation|z19-[type=multipolygon][public_transport=platform],
 way|z19-[public_transport=platform]
 {
     font-size: 16;
@@ -331,7 +315,6 @@ way|z19-[public_transport=platform]
 
 area|z17-[railway=platform][ref],
 area|z17-[public_transport=platform][ref],
-relation|z17-[type=multipolygon][railway=platform][ref],
 way|z17-[public_transport=platform][ref]
 {
     text: ref;
@@ -339,7 +322,6 @@ way|z17-[public_transport=platform][ref]
 
 area|z17-[railway=platform][local_ref],
 area|z17-[public_transport=platform][local_ref],
-relation|z17-[type=multipolygon][railway=platform][local_ref],
 way|z17-[public_transport=platform][local_ref]
 {
     text: local_ref;
@@ -424,8 +406,7 @@ node|z19-[amenity=charging_station] {
 
 // restrooms
 area|z18-[amenity=toilets],
-area|z18-[room=toilets],
-relation|z16-[type=multipolygon][room=toilets]
+area|z18-[room=toilets]
 {
     icon-image: "toilets";
 }

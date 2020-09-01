@@ -25,6 +25,7 @@ MapCSSBasicSelector::~MapCSSBasicSelector() = default;
 void MapCSSBasicSelector::compile(const OSM::DataSet &dataSet)
 {
     m_areaKey = dataSet.tagKey("area");
+    m_typeKey = dataSet.tagKey("type");
     for (const auto &c : conditions) {
         c->compile(dataSet);
     }
@@ -44,10 +45,21 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
         case Node: if (state.element.type() != OSM::Type::Node) return false; break;
         case Way: if (state.element.type() != OSM::Type::Way) return false; break;
         case Relation: if (state.element.type() != OSM::Type::Relation) return false; break;
-        // TODO should this include multi-polygon relations?
         case Area:
-            if (state.element.type() != OSM::Type::Way || !state.element.way()->isClosed())  {
-                return false;
+            switch (state.element.type()) {
+                case OSM::Type::Null:
+                case OSM::Type::Node:
+                    return false;
+                case OSM::Type::Way:
+                    if (!state.element.way()->isClosed()) {
+                        return false;
+                    }
+                    break;
+                case OSM::Type::Relation:
+                    if (state.element.tagValue(m_typeKey) != "multipolygon") {
+                        return false;
+                    }
+                    break;
             }
             break;
         case Line:

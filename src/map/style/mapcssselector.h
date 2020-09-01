@@ -69,6 +69,7 @@ public:
 
     std::vector<std::unique_ptr<MapCSSCondition>> conditions;
     OSM::TagKey m_areaKey;
+    OSM::TagKey m_typeKey;
     int m_zoomLow = 0;
     int m_zoomHigh = 0;
 };
