@@ -67,6 +67,7 @@ STRING      ["]{STRING_ELEMENT}*["]
 "+" { return T_PLUS; }
 "|z" { return T_ZOOM; }
 "*" { return T_STAR; }
+"!" { return T_EXCLAMATION_MARK; }
 
 "="  { yylval->binaryOp = MapCSSCondition::Equal; return T_BINARY_OP; }
 "!=" { yylval->binaryOp = MapCSSCondition::NotEqual; return T_BINARY_OP; }

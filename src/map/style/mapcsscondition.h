@@ -38,7 +38,8 @@ public:
     bool matches(const MapCSSState &state) const;
 
     enum Operator {
-        None,
+        KeySet,
+        KeyNotSet,
         Equal,
         NotEqual,
         LessThan,
@@ -59,7 +60,7 @@ private:
     QByteArray m_key;
     QByteArray m_value;
     double m_numericValue = NAN;
-    Operator m_op = None;
+    Operator m_op = KeySet;
 };
 
 /** @internal intermediate AST node used during parsing */

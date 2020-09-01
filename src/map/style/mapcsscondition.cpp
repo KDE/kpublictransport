@@ -36,7 +36,8 @@ bool MapCSSCondition::matches(const MapCSSState &state) const
 
     const auto v = state.element.tagValue(m_tagKey);
     switch (m_op) {
-        case None: return !v.isEmpty();
+        case KeySet: return !v.isEmpty();
+        case KeyNotSet: return v.isEmpty();
         case Equal: return std::isnan(m_numericValue) ? v == m_value : toNumber(v) == m_numericValue;
         case NotEqual: return std::isnan(m_numericValue) ? v != m_value : toNumber(v) != m_numericValue;
         case LessThan: return toNumber(v) < m_numericValue;
@@ -70,10 +71,13 @@ void MapCSSCondition::setValue(double val)
 void MapCSSCondition::write(QIODevice *out) const
 {
     out->write("[");
+    if (m_op == KeyNotSet) { out->write("!"); }
     out->write(m_key);
 
     switch (m_op) {
-        case None: out->write("]"); return;
+        case KeySet:
+        case KeyNotSet:
+            out->write("]"); return;
         case Equal: out->write("="); break;
         case NotEqual: out->write("!="); break;
         case LessThan: out->write("<"); break;

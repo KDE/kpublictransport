@@ -88,3 +88,8 @@ area[indoor=area] {
     shield-casing-color: rgba(0.75, 1.0, 0.25, 0.5);
     color: "red";
 }
+
+// key not set condition
+area [!shop] {
+    opacity: 0.0;
+}

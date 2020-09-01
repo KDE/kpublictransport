@@ -95,7 +95,7 @@ using namespace KOSMIndoorMap;
 %token T_PLUS
 %token T_STAR
 %token T_ZOOM
-%token T_UNARY_OP
+%token T_EXCLAMATION_MARK
 %token <binaryOp> T_BINARY_OP
 %token T_KEYWORD_IMPORT
 %token T_KEYWORD_URL
@@ -216,7 +216,8 @@ Test: T_LBRACKET Condition T_RBRACKET { $$ = $2; };
 Condition:
   Key T_BINARY_OP T_IDENT { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3.str, $3.len); }
 | Key T_BINARY_OP DoubleValue { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3); }
-| Key { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); }
+| T_EXCLAMATION_MARK Key { $$ = new MapCSSCondition; $$->setOperation(MapCSSCondition::KeyNotSet); $$->setKey($2.str, $2.len); }
+| Key { $$ = new MapCSSCondition; $$->setOperation(MapCSSCondition::KeySet); $$->setKey($1.str, $1.len); }
 ;
 
 Key:
