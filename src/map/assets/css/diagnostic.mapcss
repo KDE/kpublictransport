@@ -17,8 +17,6 @@ area
     color: #ff808080;
     width: 0;
 }
-relation[type=multipolygon][water],
-relation[type=multipolygon][natural=water],
 area[water],
 area[natural=water]
 {
@@ -31,19 +29,15 @@ area[natural=water]
 relation[type=multipolygon]
 {
     fill-color: #40ffff00;
-    color: #ff808080;
-    width: 0;
 }
 
-area[layer>0],
-relation[type=multipolygon][layer>0]
+area[layer>0]
 {
     color: #80ff00ff;
     dashes: 5,5;
     width: 2;
 }
-area[layer<0],
-relation[type=multipolygon][layer<0]
+area[layer<0]
 {
     color: #8000ffff;
     dashes: 5,5;

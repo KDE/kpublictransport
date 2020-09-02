@@ -68,9 +68,9 @@ void SceneController::overlaySourceUpdated()
     m_dirty = true;
 }
 
-static bool isTaglessNode(OSM::Element e)
+static inline bool isTagless(OSM::Element e)
 {
-    return e.type() == OSM::Type::Node && std::distance(e.tagsBegin(), e.tagsEnd()) == 0;
+    return std::distance(e.tagsBegin(), e.tagsEnd()) == 0;
 }
 
 void SceneController::updateScene(SceneGraph &sg) const
@@ -124,10 +124,10 @@ void SceneController::updateScene(SceneGraph &sg) const
     const auto geoBbox = m_view->mapSceneToGeo(m_view->sceneBoundingBox());
     for (auto it = beginIt; it != endIt; ++it) {
         for (auto e : (*it).second) {
-            // tag-less nodes cannot practically result in visual effects, so we can skip MapCSS evaluation for them
+            // tag-less elements cannot practically result in visual effects, so we can skip MapCSS evaluation for them
             // this cuts CSS eval cost in half
-            // (in theory you could have a label set on them, but that makes no sense)
-            if (OSM::intersects(geoBbox, e.boundingBox()) && !isTaglessNode(e)) {
+            // (in theory you could have a static label set on them, but that makes no sense)
+            if (!isTagless(e) && OSM::intersects(geoBbox, e.boundingBox())) {
                 updateElement(e, (*it).first.numericLevel(), sg);
             }
         }
@@ -137,7 +137,7 @@ void SceneController::updateScene(SceneGraph &sg) const
     m_overlay = true;
     for (const auto &overlaySource : m_overlaySources) {
         overlaySource.forEach(m_view->level(), [this, &geoBbox, &sg](OSM::Element e, int floorLevel) {
-            if (OSM::intersects(geoBbox, e.boundingBox()) && e.type() != OSM::Type::Null && !isTaglessNode(e)) {
+            if (OSM::intersects(geoBbox, e.boundingBox()) && e.type() != OSM::Type::Null && !isTagless(e)) {
                 updateElement(e, floorLevel, sg);
             }
         });
