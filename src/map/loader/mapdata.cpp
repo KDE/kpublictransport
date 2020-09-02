@@ -219,9 +219,22 @@ void MapData::filterLevels()
 {
     // remove all-node levels as we can't display anything meaningfully there
     const auto typeTag = m_dataSet.tagKey("type");
+    const auto buildingTag = m_dataSet.tagKey("building");
     for (auto it = m_levelMap.begin(); it != m_levelMap.end();) {
-        const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [typeTag](auto e) {
-            return e.type() == OSM::Type::Node || (e.type() == OSM::Type::Relation && e.tagValue(typeTag) != "multipolygon");
+        const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [typeTag, buildingTag](auto e) {
+            switch (e.type()) {
+                case OSM::Type::Null:
+                case OSM::Type::Node:
+                    return true;
+                case OSM::Type::Relation:
+                    if (e.tagValue(typeTag) != "multipolygon") {
+                        return true;
+                    }
+                    [[fallthrough]];
+                case OSM::Type::Way:
+                    return e.tagValue(buildingTag) == "roof";
+            }
+            return true;
         });
         if (isNonVisual) {
             it = m_levelMap.erase(it);
