@@ -29,19 +29,20 @@ way[waterway][width] { width: width; }
     icon-color: #2980b9;
 }
 
-*[leisure=park],
+area[leisure=park],
 area[leisure=pitch],
 area[leisure=playground],
-*[landuse=farmland],
-*[landuse=forest],
-*[landuse=grass],
-*[landuse=recreation_ground],
-*[landuse=village_green],
-*[landuse=allotments],
-*[landuse=cemetery],
-*[landuse=meadow],
-*[natural=grassland],
-*[natural=wood],
+area[landuse=farmland],
+area[landuse=forest],
+area[landuse=grass],
+area[landuse=recreation_ground],
+area[landuse=village_green],
+area[landuse=allotments],
+area[landuse=cemetery],
+area[landuse=meadow],
+area[natural=grassland],
+area[natural=scrub],
+area[natural=wood],
 area[surface=grass]
 {
     fill-color: #1027ae60;
@@ -67,13 +68,27 @@ area[natural=sand]
 *|z21- [leisure],
 *|z19- [tourism=information],
 *|z21- [tourism],
-*|z19- [shop=mall]
+*|z19- [shop=mall],
+*|z21- [historic]
 {
     text: name;
     max-width: 100;
     text-halo-radius: 2.0;
 }
 
+
+/** Ferries */
+*|z17- [amenity=ferry_terminal]
+{
+    icon-image: amenity;
+    icon-color: #3daee9;
+}
+line[route=ferry]
+{
+    color: #803daee9;
+    dashes: 2,2;
+    width: 3px;
+}
 
 /** Roads */
 line[highway=motorway],
@@ -397,12 +412,14 @@ node|z19-[amenity=charging_station] {
 
 // other car-related transportation
 *|z19-[amenity=car_rental],
+*|z19-[amenity=car_sharing],
 *|z18-[amenity=taxi]
 {
     icon-color: #3daee9;
     icon-image: amenity;
 }
 *|z21-[amenity=taxi] { text: ""; }
+*|z19-[amenity=car_sharing] { icon-image: "car_rental"; } // TODO needs a better icon
 
 // restrooms
 area|z18-[amenity=toilets],
@@ -552,6 +569,7 @@ node|z19- [amenity=atm],
 *|z19- [amenity=bbq],
 *|z19- [amenity=bureau_de_change],
 *|z19- [amenity=cinema],
+*|z20- [amenity=community_centre],
 *|z20- [amenity=courthouse],
 node|z19- [amenity=drinking_water],
 *|z19- [amenity=internet_cafe],
@@ -609,6 +627,7 @@ node|z20- [amenity=waste_basket]
     icon-image: amenity;
     icon-color: #4d4d4d;
 }
+
 node|z20- [information=board],
 node|z20- [information=guidepost],
 node|z20- [information=map],
@@ -617,7 +636,18 @@ node|z20- [information=terminal]
     icon-image: information;
     icon-color: #4d4d4d;
 }
-
 // hide information boards as their names clutter the vie
 // showing an icon instead would be better, but we don't have one yet
 node[information] { text: ""; }
+
+*|z20- [historic=memorial]
+{
+    icon-image: historic;
+    icon-color: #4d4d4d;
+}
+
+*|z20- [tourism=artwork]
+{
+    icon-image: tourism;
+    icon-color: #4d4d4d;
+}

@@ -58,6 +58,7 @@ static constexpr const ValueMapEntry amenity_map[] = {
     { "electronics", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Electronics") },
     { "fashion", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Fashion") },
     { "fast_food", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Fast Food") },
+    { "ferry_terminal", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Ferry Terminal") },
     { "florist", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Florist") },
     { "food_court", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Food Court") },
     { "fountain", QT_TRANSLATE_NOOP("OSM::amenity/shop", "Fountain") },

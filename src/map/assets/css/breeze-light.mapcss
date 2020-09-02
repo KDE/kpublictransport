@@ -20,6 +20,7 @@ area[amenity=bicycle_parking]
 }
 area[building],
 area[man_made=bridge],
+area[man_made=pier],
 area[railway=loading_ramp]
 {
     fill-color: #80dad9d8;
@@ -98,6 +99,11 @@ area[shop]
 area[indoor=wall]
 {
     fill-color: #888786;
+}
+line[indoor=wall]
+{
+    color: #888786;
+    width: 0;
 }
 
 line [highway=steps] {

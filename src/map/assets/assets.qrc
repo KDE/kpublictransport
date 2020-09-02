@@ -7,6 +7,7 @@
 
         <file>icons/alcohol.svg</file>
         <file>icons/art.svg</file>
+        <file>icons/artwork.svg</file>
         <file>icons/atm.svg</file>
         <file>icons/bag.svg</file>
         <file>icons/bakery.svg</file>
@@ -34,6 +35,7 @@
         <file>icons/clothes.svg</file>
         <file>icons/coffee.svg</file>
         <file>icons/computer.svg</file>
+        <file>icons/community_centre.svg</file>
         <file>icons/confectionery.svg</file>
         <file>icons/convenience.svg</file>
         <file>icons/copyshop.svg</file>
@@ -48,6 +50,7 @@
         <file>icons/emergency_phone.svg</file>
         <file>icons/fabric.svg</file>
         <file>icons/fast_food.svg</file>
+        <file>icons/ferry_terminal.svg</file>
         <file>icons/firepit.svg</file>
         <file>icons/florist.svg</file>
         <file>icons/fountain.svg</file>
@@ -72,6 +75,7 @@
         <file>icons/library.svg</file>
         <file>icons/map.svg</file>
         <file>icons/medical_supply.svg</file>
+        <file>icons/memorial.svg</file>
         <file>icons/miniature_golf.svg</file>
         <file>icons/mobile_phone.svg</file>
         <file>icons/motorcycle_parking.svg</file>
