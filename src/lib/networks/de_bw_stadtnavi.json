@@ -37,6 +37,7 @@
         "name": "Stadtnavi",
         "url": "https://stadtnavi.de/"
     },
+    "comment": "See https://github.com/stadtnavi/digitransit-ui/blob/master/app/configurations/config.hb.js for their rental vehicle config and https://github.com/stadtnavi/static-gbfs-feeds for their dummy GBFS feeds that we ignore below",
     "filter": {
         "geo": [
             [
@@ -60,6 +61,14 @@
     "options": {
         "apiVersion": "no-stations",
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
+        "rentalVehicleNetworks": {
+            "car-sharing": {},
+            "regiorad": {
+                "name": "RegioRad",
+                "vehicleTypes": "Bicycle"
+            },
+            "taxi": {}
+        },
         "supportedTransitModes": [
             "TRANSIT",
             "CARPOOL"

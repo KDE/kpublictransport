@@ -40,6 +40,7 @@
         "name": "Verschwörhaus",
         "url": "https://digitransit.im.verschwoerhaus.de/tietoja-palvelusta"
     },
+    "comment": "see https://github.com/verschwoerhaus/digitransit-ui/blob/ulm/app/configurations/config.vsh.js for rental vehicle config",
     "filter": {
         "geo": [
             [
@@ -63,6 +64,16 @@
     "options": {
         "apiVersion": "no-stations",
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",
+        "rentalVehicleNetworks": {
+            "openbike": {
+                "name": "OpenBike Ulm",
+                "vehicleTypes": "Bicycle"
+            },
+            "zeus": {
+                "name": "Zeus",
+                "vehicleTypes": "ElectricKickScooter"
+            }
+        },
         "supportedTransitModes": [
             "TRANSIT",
             "CARPOOL"

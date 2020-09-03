@@ -26,22 +26,32 @@ OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType)
 
 OpenTripPlannerParser::~OpenTripPlannerParser() = default;
 
+void OpenTripPlannerParser::setKnownRentalVehicleNetworks(const QHash<QString, RentalVehicleNetwork> &networks)
+{
+    m_rentalVehicleNetworks = networks;
+}
+
 RentalVehicleStation OpenTripPlannerParser::parseRentalVehicleStation(const QJsonObject &obj) const
 {
     RentalVehicleStation s;
     // TODO id
     const auto networks = obj.value(QLatin1String("networks")).toArray();
     if (!networks.empty()) {
-        RentalVehicleNetwork n;
-        n.setName(networks.at(0).toString());
-        s.setNetwork(n);
+        const auto it = m_rentalVehicleNetworks.find(networks.at(0).toString());
+        if (it != m_rentalVehicleNetworks.end()) {
+            s.setNetwork(it.value());
+        } else {
+            RentalVehicleNetwork n;
+            n.setName(networks.at(0).toString());
+            s.setNetwork(n);
+        }
     }
     s.setCapacity(obj.value(QLatin1String("spacesAvailable")).toInt(-1));
     s.setAvailableVehicles(obj.value(QLatin1String("bikesAvailable")).toInt(-1));
     return s;
 }
 
-void OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Location &loc) const
+bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Location &loc) const
 {
     const auto parentObj = obj.value(QLatin1String("parentStation")).toObject();
     if (!parentObj.isEmpty()) {
@@ -69,7 +79,10 @@ void OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
     if (!bss.isEmpty()) {
         loc.setType(Location::RentedVehicleStation);
         loc.setRentalVehicleStation(parseRentalVehicleStation(bss));
+        return loc.rentalVehicleStation().network().isValid();
     }
+
+    return true;
 }
 
 Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
@@ -78,13 +91,13 @@ Location OpenTripPlannerParser::parseLocation(const QJsonObject &obj) const
     const auto bikeRental = obj.value(QLatin1String("bikeRentalStation")).toObject();
 
     Location loc;
-    parseLocationFragment(bikeRental, loc);
+    auto valid = parseLocationFragment(bikeRental, loc);
     if (!stop.empty()) {
         loc.setType(Location::Stop);
-        parseLocationFragment(stop, loc);
+        valid &= parseLocationFragment(stop, loc);
     }
-    parseLocationFragment(obj, loc);
-    return loc;
+    valid &= parseLocationFragment(obj, loc);
+    return valid ? loc : Location();
 }
 
 std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJsonObject &obj) const

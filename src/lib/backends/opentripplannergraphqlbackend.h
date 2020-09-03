@@ -9,11 +9,15 @@
 
 #include "abstractbackend.h"
 
+#include <QHash>
+
 #include <vector>
 
 class KGraphQLRequest;
 
 namespace KPublicTransport {
+
+class RentalVehicleNetwork;
 
 /** Access to OpenTripPlanner GraphQL based backends. */
 class OpenTripPlannerGraphQLBackend : public AbstractBackend
@@ -24,6 +28,7 @@ class OpenTripPlannerGraphQLBackend : public AbstractBackend
     Q_PROPERTY(QStringList supportedTransitModes MEMBER m_supportedTransitModes)
     Q_PROPERTY(QStringList supportedRentalModes MEMBER m_supportedRentalModes)
     Q_PROPERTY(QJsonValue extraHttpHeaders WRITE setExtraHttpHeaders)
+    Q_PROPERTY(QJsonObject rentalVehicleNetworks WRITE setRentalVehicleNetworks)
 
 public:
     OpenTripPlannerGraphQLBackend();
@@ -42,12 +47,14 @@ private:
     QString graphQLPath(const QString &fileName) const;
 
     void setExtraHttpHeaders(const QJsonValue &v);
+    void setRentalVehicleNetworks(const QJsonObject &obj);
 
     QString m_endpoint;
     QString m_apiVersion;
     QStringList m_supportedTransitModes = { QStringLiteral("TRANSIT") };
     QStringList m_supportedRentalModes = { QStringLiteral("BICYCLE") };
     std::vector<std::pair<QByteArray, QByteArray>> m_extraHeaders;
+    QHash<QString, RentalVehicleNetwork> m_rentalNetworks;
 };
 
 }

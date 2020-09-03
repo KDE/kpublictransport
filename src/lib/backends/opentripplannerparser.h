@@ -11,6 +11,7 @@
 
 #include <KPublicTransport/Location>
 
+#include <QHash>
 #include <QString>
 #include <QStringList>
 
@@ -24,6 +25,7 @@ namespace KPublicTransport {
 class Journey;
 class JourneySection;
 class Line;
+class RentalVehicleNetwork;
 class Route;
 class Stopover;
 
@@ -35,6 +37,7 @@ class KPUBLICTRANSPORT_EXPORT OpenTripPlannerParser
 public:
     explicit OpenTripPlannerParser(const QString &identifierType);
     ~OpenTripPlannerParser();
+    void setKnownRentalVehicleNetworks(const QHash<QString, RentalVehicleNetwork> &networks);
 
     std::vector<Location> parseLocationsByCoordinate(const QJsonObject &obj) const;
     std::vector<Location> parseLocationsByName(const QJsonObject &obj) const;
@@ -46,7 +49,8 @@ public:
 
 private:
     RentalVehicleStation parseRentalVehicleStation(const QJsonObject &obj) const;
-    void parseLocationFragment(const QJsonObject &obj, Location &loc) const;
+    /// @return @c false for Location objects that should be discarded entirely
+    bool parseLocationFragment(const QJsonObject &obj, Location &loc) const;
     Location parseLocation(const QJsonObject &obj) const;
     void parseAlerts(const QJsonArray &alertsArray) const;
     Line parseLine(const QJsonObject &obj) const;
@@ -59,6 +63,7 @@ private:
     Journey parseJourney(const QJsonObject &obj) const;
 
     QString m_identifierType;
+    QHash<QString, RentalVehicleNetwork> m_rentalVehicleNetworks;
     mutable QStringList m_alerts;
 };
 

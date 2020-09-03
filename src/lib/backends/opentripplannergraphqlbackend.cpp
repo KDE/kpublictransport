@@ -75,6 +75,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         }
 
         OpenTripPlannerParser p(backendId());
+        p.setKnownRentalVehicleNetworks(m_rentalNetworks);
         if (req.hasCoordinate()) {
             addResult(reply, p.parseLocationsByCoordinate(gqlReply.data()));
         } else {
@@ -162,6 +163,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
             addError(reply, Reply::NetworkError, gqlReply.errorString());
         } else {
             OpenTripPlannerParser p(backendId());
+            p.setKnownRentalVehicleNetworks(m_rentalNetworks);
             addResult(reply, this, p.parseJourneys(gqlReply.data()));
         }
     });
@@ -214,5 +216,14 @@ void OpenTripPlannerGraphQLBackend::setExtraHttpHeaders(const QJsonValue &v)
             continue;
         }
         m_extraHeaders.push_back(std::make_pair(name, val));
+    }
+}
+
+void OpenTripPlannerGraphQLBackend::setRentalVehicleNetworks(const QJsonObject &obj)
+{
+    m_rentalNetworks.reserve(obj.size());
+    for (auto it = obj.begin(); it != obj.end(); ++it) {
+        auto n = RentalVehicleNetwork::fromJson(it.value().toObject());
+        m_rentalNetworks.insert(it.key(), std::move(n));
     }
 }
