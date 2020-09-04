@@ -105,9 +105,10 @@ public:
 
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(Location::Types)
+
 }
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::Location::Types)
 Q_DECLARE_METATYPE(KPublicTransport::Location)
 
 #endif // KPUBLICTRANSPORT_LOCATION_H

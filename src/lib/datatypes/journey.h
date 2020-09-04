@@ -195,6 +195,8 @@ private:
     QVariantList loadInformationVariant() const;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(JourneySection::Modes)
+
 class JourneyPrivate;
 
 /** A journey plan. */
@@ -267,7 +269,6 @@ private:
 
 }
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::JourneySection::Modes)
 Q_DECLARE_METATYPE(KPublicTransport::JourneySection)
 Q_DECLARE_METATYPE(KPublicTransport::Journey)
 

@@ -197,8 +197,8 @@ private:
     QStringList m_supportedLanguages;
 };
 
-}
+Q_DECLARE_OPERATORS_FOR_FLAGS(AbstractBackend::Capabilities)
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::AbstractBackend::Capabilities)
+}
 
 #endif // KPUBLICTRANSPORT_ABSTRACTBACKEND_H

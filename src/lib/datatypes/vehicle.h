@@ -175,11 +175,12 @@ private:
     QVariantList sectionsVariant() const;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Classes)
+Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Features)
+Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Sides)
+
 }
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Classes)
-Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Features)
-Q_DECLARE_OPERATORS_FOR_FLAGS(KPublicTransport::VehicleSection::Sides)
 Q_DECLARE_METATYPE(KPublicTransport::VehicleSection)
 Q_DECLARE_METATYPE(KPublicTransport::Vehicle)
 
