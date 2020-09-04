@@ -82,4 +82,24 @@ void GBFSServiceRepository::load()
         }
         m_services.push_back(std::move(service));
     }
+    std::sort(m_services.begin(), m_services.end(), [](const auto &lhs, const auto &rhs) { return lhs.systemId < rhs.systemId; });
+
+    // load missing ones from the initial built-in list
+    QFile f(QStringLiteral(":/org.kde.kpublictransport/gbfs/gbfs-feeds.json"));
+    if (!f.open(QFile::ReadOnly)) {
+        qWarning() << f.errorString();
+        return;
+    }
+
+    const auto array = QJsonDocument::fromJson(f.readAll()).array();
+    m_services.reserve(array.size());
+    const auto endIdx = m_services.size();
+    for (const auto &v : array) {
+        const auto s = GBFSService::fromJson(v.toObject());
+        const auto it = std::lower_bound(m_services.begin(), m_services.begin() + endIdx, s, [](const auto &lhs, const auto &rhs) { return lhs.systemId < rhs.systemId; });
+        if (it != (m_services.begin() + endIdx) && (*it).systemId == s.systemId) {
+            continue;
+        }
+        m_services.push_back(std::move(s));
+    }
 }

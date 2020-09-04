@@ -23,6 +23,7 @@ ecm_add_test(deutschebahntest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(otpparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(publictransportmanagertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(cachetest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
+ecm_add_test(gbfstest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 
 if (TARGET KOSMIndoorMap)
     ecm_add_test(mapviewtest.cpp LINK_LIBRARIES Qt5::Test KOSMIndoorMap)
