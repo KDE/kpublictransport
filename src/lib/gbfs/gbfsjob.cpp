@@ -110,8 +110,10 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
         }
     }
     if (feeds.empty()) {
-        qWarning() << "no feeds found!?";
-        qWarning().noquote() << m_discoverDoc.toJson();
+        m_error = DataError;
+        m_errorMsg = QStringLiteral("no feed found in discovery response!");
+        emit finished();
+        return;
     }
 
     for (const auto &feedVal : feeds) {
@@ -175,8 +177,9 @@ void GBFSJob::systemInformationFinished(QNetworkReply *reply)
     const auto data = sysInfoDoc.object().value(QLatin1String("data")).toObject();
     const auto systemId = data.value(QLatin1String("system_id")).toString();
     if (systemId.isEmpty()) {
-        // TODO error handling!
-        qWarning() << "could not determine systemId!";
+        m_error = DataError;
+        m_errorMsg = QStringLiteral("unable to determine system_id!");
+        emit finished();
         return;
     }
     m_service.systemId = systemId;
