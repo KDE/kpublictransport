@@ -80,7 +80,14 @@ Kirigami.ApplicationWindow {
                     text: {
                         switch (location.type) {
                             case Location.Stop: return "🚏 " + location.name;
-                            case Location.RentedVehicleStation: return "🚲 " + location.name;
+                            case Location.RentedVehicleStation:
+                                switch (location.rentalVehicleStation.network.vehicleTypes) {
+                                    case RentalVehicle.ElectricKickScooter: return "🛴 "  + location.name;
+                                    case RentalVehicle.ElectricMoped: return "🛵 "  + location.name;
+                                    case RentalVehicle.Car: return "🚗 "  + location.name;
+                                    default: return "🚲 " + location.name;
+                                }
+                                break;
                             case Location.Place: return location.name;
                         }
                     }

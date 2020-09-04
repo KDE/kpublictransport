@@ -349,6 +349,14 @@ static QDateTime parseJourneyDateTime(const QJsonValue &val)
     return {};
 }
 
+static RentalVehicle::VehicleType vehicleTypeFromTypes(RentalVehicle::VehicleTypes types, RentalVehicle::VehicleType fallback = RentalVehicle::Unknown)
+{
+    if (__builtin_popcount(types) == 1) {
+        return static_cast<RentalVehicle::VehicleType>(static_cast<int>(types));
+    }
+    return fallback;
+}
+
 JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj) const
 {
     JourneySection section;
@@ -391,8 +399,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
             } else if (to.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(to.rentalVehicleStation().network());
             }
-            // TODO derive type from network
-            v.setType(RentalVehicle::Bicycle);
+            v.setType(vehicleTypeFromTypes(v.network().vehicleTypes(), RentalVehicle::Bicycle));
             section.setRentalVehicle(v);
         } else {
             section.setMode(JourneySection::Walking);
