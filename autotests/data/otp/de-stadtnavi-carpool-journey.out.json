@@ -290,7 +290,11 @@
                     "name": "Charlottenplatz / Dorotheenstr.",
                     "rentalVehicleStation": {
                         "availableVehicles": 12,
-                        "capacity": -1
+                        "capacity": -1,
+                        "network": {
+                            "name": "RegioRad",
+                            "vehicleTypes": "Bicycle"
+                        }
                     },
                     "type": "RentedVehicleStation"
                 }
@@ -307,14 +311,19 @@
                     "name": "Charlottenplatz / Dorotheenstr.",
                     "rentalVehicleStation": {
                         "availableVehicles": 12,
-                        "capacity": 99
+                        "capacity": 99,
+                        "network": {
+                            "name": "RegioRad",
+                            "vehicleTypes": "Bicycle"
+                        }
                     },
                     "type": "RentedVehicleStation"
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
                     "network": {
-                        "name": "regiorad"
+                        "name": "RegioRad",
+                        "vehicleTypes": "Bicycle"
                     },
                     "type": "Bicycle"
                 },
@@ -337,7 +346,8 @@
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
                     "network": {
-                        "name": "regiorad"
+                        "name": "RegioRad",
+                        "vehicleTypes": "Bicycle"
                     },
                     "type": "Bicycle"
                 },
@@ -352,7 +362,11 @@
                     "name": "Königstraße / Arnulf-Klett-Platz",
                     "rentalVehicleStation": {
                         "availableVehicles": 23,
-                        "capacity": -1
+                        "capacity": -1,
+                        "network": {
+                            "name": "RegioRad",
+                            "vehicleTypes": "Bicycle"
+                        }
                     },
                     "type": "RentedVehicleStation"
                 }
@@ -369,7 +383,11 @@
                     "name": "Königstraße / Arnulf-Klett-Platz",
                     "rentalVehicleStation": {
                         "availableVehicles": 23,
-                        "capacity": 99
+                        "capacity": 99,
+                        "network": {
+                            "name": "RegioRad",
+                            "vehicleTypes": "Bicycle"
+                        }
                     },
                     "type": "RentedVehicleStation"
                 },

@@ -15,6 +15,7 @@ class RentalVehicleNetworkPrivate : public QSharedData
 {
 public:
     QString name;
+    RentalVehicle::VehicleTypes vehicleTypes = RentalVehicle::Unknown;
 };
 
 class RentalVehicleStationPrivate : public QSharedData
@@ -35,6 +36,7 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicleNetwork)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, QString, name, setName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicleNetwork, RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
 
 bool RentalVehicleNetwork::isValid() const
 {
@@ -74,12 +76,18 @@ bool RentalVehicleStation::isSame(const RentalVehicleStation &lhs, const RentalV
 
 QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
 {
-    return Json::toJson(station);
+    auto obj = Json::toJson(station);
+    if (station.network().isValid()) {
+        obj.insert(QStringLiteral("network"), RentalVehicleNetwork::toJson(station.network()));
+    }
+    return obj;
 }
 
 RentalVehicleStation RentalVehicleStation::fromJson(const QJsonObject &obj)
 {
-    return Json::fromJson<RentalVehicleStation>(obj);
+    auto station = Json::fromJson<RentalVehicleStation>(obj);
+    station.setNetwork(RentalVehicleNetwork::fromJson(obj.value(QLatin1String("network")).toObject()));
+    return station;
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicle)

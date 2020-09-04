@@ -367,14 +367,12 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
 
     const auto fromObj = obj.value(QLatin1String("from")).toObject();
     const auto fromStop = fromObj.value(QLatin1String("stop")).toObject();
-    const auto fromBikeRental = fromObj.value(QLatin1String("bikeRentalStation")).toObject();
     const auto from = parseLocation(fromObj);
     section.setFrom(from);
     section.setScheduledDeparturePlatform(fromStop.value(QLatin1String("platformCode")).toString());
 
     const auto toObj = obj.value(QLatin1String("to")).toObject();
     const auto toStop = toObj.value(QLatin1String("stop")).toObject();
-    const auto toBikeRental = toObj.value(QLatin1String("bikeRentalStation")).toObject();
     const auto to = parseLocation(toObj);
     section.setTo(to);
     section.setScheduledDeparturePlatform(toStop.value(QLatin1String("platformCode")).toString());
@@ -388,18 +386,13 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         if (obj.value(QLatin1String("mode")).toString() == QLatin1String("BICYCLE")) {
             section.setMode(JourneySection::RentedVehicle);
             RentalVehicle v;
-            RentalVehicleNetwork n;
-            v.setType(RentalVehicle::Bicycle);
-            auto networks = fromBikeRental.value(QLatin1String("networks")).toArray();
-            if (!networks.isEmpty()) {
-                n.setName(networks.at(0).toString());
-            } else {
-                networks = toBikeRental.value(QLatin1String("networks")).toArray();
-                if (!networks.isEmpty()) {
-                    n.setName(networks.at(0).toString());
-                }
+            if (from.rentalVehicleStation().network().isValid()) {
+                v.setNetwork(from.rentalVehicleStation().network());
+            } else if (to.rentalVehicleStation().network().isValid()) {
+                v.setNetwork(to.rentalVehicleStation().network());
             }
-            v.setNetwork(n);
+            // TODO derive type from network
+            v.setType(RentalVehicle::Bicycle);
             section.setRentalVehicle(v);
         } else {
             section.setMode(JourneySection::Walking);

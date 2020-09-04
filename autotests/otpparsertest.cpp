@@ -134,27 +134,42 @@ private Q_SLOTS:
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("refFileName");
+        QTest::addColumn<QString>("networkConfig");
 
         QTest::newRow("fi-digitransit-journey")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-journey.in.json")
-            << s(SOURCE_DIR "/data/otp/fi-digitransit-journey.out.json");
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-journey.out.json")
+            << QString();
         QTest::newRow("no-entur-journey")
             << s(SOURCE_DIR "/data/otp/no-entur-journey.in.json")
-            << s(SOURCE_DIR "/data/otp/no-entur-journey.out.json");
+            << s(SOURCE_DIR "/data/otp/no-entur-journey.out.json")
+            << QString();
         QTest::newRow("de-ulm-rentalbike-journey")
             << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.in.json")
-            << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.out.json");
+            << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.out.json")
+            << s(SOURCE_DIR "/../src/lib/networks/de_bw_ulm.json");
         QTest::newRow("de-stadtnavi-carpool-journey")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.in.json")
-            << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.out.json");
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.out.json")
+            << s(SOURCE_DIR "/../src/lib/networks/de_bw_stadtnavi.json");
     }
 
     void testParseJourney()
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
+        QFETCH(QString, networkConfig);
+
+        const auto configObj = QJsonDocument::fromJson(readFile(networkConfig)).object();
+        const auto networkConfigObj = configObj.value(QLatin1String("options")).toObject().value(QLatin1String("rentalVehicleNetworks")).toObject();
+        QHash <QString, RentalVehicleNetwork> rentalVehicleNetworks;
+        for (auto it = networkConfigObj.begin(); it != networkConfigObj.end(); ++it) {
+            auto n = RentalVehicleNetwork::fromJson(it.value().toObject());
+            rentalVehicleNetworks.insert(it.key(), std::move(n));
+        }
 
         OpenTripPlannerParser p(s("gtfs"));
+        p.setKnownRentalVehicleNetworks(rentalVehicleNetworks);
         const auto res = p.parseJourneys(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Journey::toJson(res);
 

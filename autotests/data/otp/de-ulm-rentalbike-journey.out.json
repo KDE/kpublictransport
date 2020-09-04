@@ -21,7 +21,11 @@
                     "name": "Bürgerdienste",
                     "rentalVehicleStation": {
                         "availableVehicles": 2,
-                        "capacity": -1
+                        "capacity": -1,
+                        "network": {
+                            "name": "OpenBike Ulm",
+                            "vehicleTypes": "Bicycle"
+                        }
                     },
                     "type": "RentedVehicleStation"
                 }
@@ -38,14 +42,19 @@
                     "name": "Bürgerdienste",
                     "rentalVehicleStation": {
                         "availableVehicles": 2,
-                        "capacity": 8
+                        "capacity": 8,
+                        "network": {
+                            "name": "OpenBike Ulm",
+                            "vehicleTypes": "Bicycle"
+                        }
                     },
                     "type": "RentedVehicleStation"
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
                     "network": {
-                        "name": "openbike"
+                        "name": "OpenBike Ulm",
+                        "vehicleTypes": "Bicycle"
                     },
                     "type": "Bicycle"
                 },

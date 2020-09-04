@@ -11,34 +11,7 @@
 
 namespace KPublicTransport {
 
-class RentalVehicleNetworkPrivate;
-
-/** A vehicle sharing system/network.
- *  Typically one operator/area, needing an account/app for that operator to rent vehicles.
- *
- *  @see https://github.com/NABSA/gbfs/blob/master/gbfs.md#system_informationjson
- */
-class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
-{
-    KPUBLICTRANSPORT_GADGET(RentalVehicleNetwork)
-    /** Human-visible name of this network. */
-    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
-
-    /** Not an empty/default constructed object. */
-    Q_PROPERTY(bool isValid READ isValid)
-
-public:
-    bool isValid() const;
-
-    /** Checks if two instances refer to the same network. */
-    static bool isSame(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
-
-    /** Serializes one object to JSON. */
-    static QJsonObject toJson(const RentalVehicleNetwork &network);
-    /** Deserialize an object from JSON. */
-    static RentalVehicleNetwork fromJson(const QJsonObject &obj);
-};
-
+class RentalVehicleNetwork;
 class RentalVehicleStationPrivate;
 
 /** Additional information for a vehicle renting station, attached to Location objects.
@@ -93,15 +66,17 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicle
 public:
     /** Type of vehicle. */
     enum VehicleType {
-        Unknown,
-        Bicycle, ///< human-powered bicylce
-        Pedelec, ///< bicycle with electric assistance
-        ElectricKickScooter, ///< "e scooter", electrically assisted kick scooters, not to be confused with motorcycle-like scooters
+        Unknown = 0,
+        Bicycle = 1, ///< human-powered bicylce
+        Pedelec = 2, ///< bicycle with electric assistance
+        ElectricKickScooter = 4, ///< "e scooter", electrically assisted kick scooters, not to be confused with motorcycle-like scooters
         ElectricScooter [[deprecated("use ElectricKickScooter")]] = ElectricKickScooter,
-        ElectricMoped, ///< motorcycle-like electric scooters
-        Car, ///< electrical- or combustion-powered car
+        ElectricMoped = 8, ///< motorcycle-like electric scooters
+        Car = 16, ///< electrical- or combustion-powered car
     };
     Q_ENUM(VehicleType)
+    Q_DECLARE_FLAGS(VehicleTypes, VehicleType)
+    Q_FLAG(VehicleTypes)
 
     /** Vehicle type. */
     KPUBLICTRANSPORT_PROPERTY(VehicleType, type, setType)
@@ -116,6 +91,37 @@ public:
     static RentalVehicle fromJson(const QJsonObject &obj);
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(RentalVehicle::VehicleTypes)
+
+class RentalVehicleNetworkPrivate;
+
+/** A vehicle sharing system/network.
+ *  Typically one operator/area, needing an account/app for that operator to rent vehicles.
+ *
+ *  @see https://github.com/NABSA/gbfs/blob/master/gbfs.md#system_informationjson
+ */
+class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
+{
+    KPUBLICTRANSPORT_GADGET(RentalVehicleNetwork)
+    /** Human-visible name of this network. */
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+    /** Supported vehicle types by this network. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
+
+    /** Not an empty/default constructed object. */
+    Q_PROPERTY(bool isValid READ isValid)
+
+public:
+    bool isValid() const;
+
+    /** Checks if two instances refer to the same network. */
+    static bool isSame(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
+
+    /** Serializes one object to JSON. */
+    static QJsonObject toJson(const RentalVehicleNetwork &network);
+    /** Deserialize an object from JSON. */
+    static RentalVehicleNetwork fromJson(const QJsonObject &obj);
+};
 }
 
 Q_DECLARE_METATYPE(KPublicTransport::RentalVehicleNetwork)
