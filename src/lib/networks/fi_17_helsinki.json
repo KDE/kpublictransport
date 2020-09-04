@@ -41,6 +41,7 @@
         "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
         "name": "© Helsinki Region Transport"
     },
+    "comment": "see https://github.com/HSLdevcom/digitransit-ui/blob/master/app/configurations/config.hsl.js for the rental vehicle network config",
     "filter": {
         "geo": [
             [
@@ -62,7 +63,17 @@
         ]
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/"
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/",
+        "rentalVehicleNetworks": {
+            "smoove": {
+                "name": "CityBike Helsinki/Espoo",
+                "vehicleTypes": "Bicycle"
+            },
+            "vantaa": {
+                "name": "CityBike Vantaa",
+                "vehicleTypes": "Bicycle"
+            }
+        }
     },
     "timezone": "Europe/Helsinki",
     "type": "otp_graphql"
