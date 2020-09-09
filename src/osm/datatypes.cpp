@@ -21,9 +21,9 @@ template<typename T>
 T DataSet::makeStringKey(const char *name, DataSet::StringMemory memOpt, std::vector<T> &registry)
 {
     const auto it = std::lower_bound(registry.begin(), registry.end(), name, [](T lhs, const char *rhs) {
-        return std::strcmp(lhs.key, rhs) < 0;
+        return std::strcmp(lhs.name(), rhs) < 0;
     });
-    if (it == registry.end() || std::strcmp((*it).key, name) != 0) {
+    if (it == registry.end() || std::strcmp((*it).name(), name) != 0) {
         if (memOpt == StringIsTransient) {
             auto s = strdup(name);
             m_stringPool.push_back(s);
@@ -50,9 +50,9 @@ template <typename T>
 T DataSet::stringKey(const char *name, const std::vector<T> &registry) const
 {
     const auto it = std::lower_bound(registry.begin(), registry.end(), name, [](T lhs, const char *rhs) {
-        return std::strcmp(lhs.key, rhs) < 0;
+        return std::strcmp(lhs.name(), rhs) < 0;
     });
-    if (it == registry.end() || std::strcmp((*it).key, name) != 0) {
+    if (it == registry.end() || std::strcmp((*it).name(), name) != 0) {
         return {};
     }
     return (*it);

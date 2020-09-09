@@ -183,11 +183,10 @@ public:
     inline constexpr bool operator==(StringKey other) const { return key == other.key; }
     inline constexpr bool operator!=(StringKey other) const { return key != other.key; }
 
-private:
-    friend class DataSet;
-    friend class Member;
+protected:
     explicit constexpr inline StringKey(const char *keyData) : key(keyData) {}
 
+private:
     const char* key = nullptr;
 };
 
@@ -196,8 +195,10 @@ private:
  */
 class TagKey : public StringKey
 {
-private:
+public:
     using StringKey::StringKey;
+private:
+    explicit constexpr inline TagKey(const char *keyData) : StringKey(keyData) {}
     friend class DataSet;
 };
 
@@ -250,8 +251,12 @@ enum class Type : uint8_t {
  */
 class Role : public StringKey
 {
-private:
+public:
     using StringKey::StringKey;
+private:
+    friend class DataSet;
+    friend class Member;
+    explicit constexpr inline Role(const char *keyData) : StringKey(keyData) {}
 };
 
 /** A member in a relation. */
