@@ -17,6 +17,8 @@
 #include <QJsonObject>
 #include <QTimeZone>
 
+#include <bitset>
+
 using namespace KPublicTransport;
 
 OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType)
@@ -351,7 +353,7 @@ static QDateTime parseJourneyDateTime(const QJsonValue &val)
 
 static RentalVehicle::VehicleType vehicleTypeFromTypes(RentalVehicle::VehicleTypes types, RentalVehicle::VehicleType fallback = RentalVehicle::Unknown)
 {
-    if (__builtin_popcount(types) == 1) {
+    if (std::bitset<sizeof(types)>(types).count() == 1) {
         return static_cast<RentalVehicle::VehicleType>(static_cast<int>(types));
     }
     return fallback;
