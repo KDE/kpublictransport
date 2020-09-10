@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
 query departures($lat: Float!, $lon: Float!, $startDateTime: DateTime!) {
   nearest(latitude: $lat, longitude: $lon, maximumDistance: 500, filterByPlaceTypes: quay) {
     edges {

@@ -5,6 +5,7 @@
 */
 
 #include "kgraphql.h"
+#include "kgraphqlminimizer_p.h"
 
 #include <QFile>
 #include <QJsonArray>
@@ -67,7 +68,8 @@ void KGraphQLRequest::setQueryFromFile(const QString &fileName)
     }
 
     d.detach();
-    d->m_query = QString::fromUtf8(f.readAll());
+    KGraphQLMinimizer m;
+    d->m_query = QString::fromUtf8(m.minimizeQuery(f.readAll()));
 }
 
 void KGraphQLRequest::setVariable(const QString &name, const QJsonValue &value)

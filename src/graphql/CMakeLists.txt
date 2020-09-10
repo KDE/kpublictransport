@@ -1,4 +1,7 @@
-add_library(KGraphQL STATIC kgraphql.cpp)
+add_library(KGraphQL STATIC
+    kgraphql.cpp
+    kgraphqlminimizer.cpp
+)
 target_link_libraries(KGraphQL PUBLIC Qt5::Network)
 
 if (NOT BUILD_SHARED_LIBS)

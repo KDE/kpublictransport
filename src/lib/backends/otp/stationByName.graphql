@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
 query stationsByName($name: String!) {
   stations(name: $name) {
     id: gtfsId
