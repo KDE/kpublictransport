@@ -16,7 +16,7 @@ class Line;
 class LinePrivate;
 class LineMetaData;
 namespace LineUtil{
-void setMetaData(Line&, LineMetaData);
+KPUBLICTRANSPORT_EXPORT void setMetaData(Line&, LineMetaData);
 }
 
 /** A public transport line. */
