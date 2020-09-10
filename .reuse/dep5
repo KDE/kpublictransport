@@ -1,0 +1,12 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: KPublicTransport
+Upstream-Contact: Volker Krause <vkrause@kde.org>
+Source: https://invent.kde.org/libraries/kpublictransport
+
+Files: autotests/data/*
+Copyright: none
+License: CC0-1.0
+
+Files: src/lib/networks/*.json
+Copyright: none
+License: CC0-1.0
