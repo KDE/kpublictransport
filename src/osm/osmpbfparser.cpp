@@ -10,13 +10,14 @@
 #ifdef HAVE_PROTOBUF
 #include "fileformat.pb.h"
 #include "osmformat.pb.h"
+
+#include <zlib.h>
 #endif
 
 #include <QByteArray>
 #include <QDebug>
 #include <QtEndian>
 
-#include <zlib.h>
 
 using namespace OSM;
 
