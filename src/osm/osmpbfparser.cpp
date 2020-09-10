@@ -32,6 +32,8 @@ void OsmPbfParser::parse(const uint8_t *data, std::size_t len)
     const uint8_t *end = data + len;
     while (parseBlob(it, end));
 #else
+    Q_UNUSED(data);
+    Q_UNUSED(len);
     qWarning() << "OSM PBF file format not available!";
     return;
 #endif
