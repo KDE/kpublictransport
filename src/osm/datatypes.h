@@ -174,7 +174,6 @@ constexpr inline uint32_t longitudeDifference(BoundingBox bbox1, BoundingBox bbo
 class StringKey
 {
 public:
-    constexpr inline StringKey() = default;
     constexpr inline const char* name() const { return key; }
     constexpr inline bool isNull() const { return !key; }
 
@@ -184,6 +183,7 @@ public:
     inline constexpr bool operator!=(StringKey other) const { return key != other.key; }
 
 protected:
+    constexpr inline StringKey() = default;
     explicit constexpr inline StringKey(const char *keyData) : key(keyData) {}
 
 private:
@@ -196,7 +196,7 @@ private:
 class TagKey : public StringKey
 {
 public:
-    using StringKey::StringKey;
+    constexpr inline TagKey() = default;
 private:
     explicit constexpr inline TagKey(const char *keyData) : StringKey(keyData) {}
     friend class DataSet;
@@ -252,7 +252,7 @@ enum class Type : uint8_t {
 class Role : public StringKey
 {
 public:
-    using StringKey::StringKey;
+    constexpr inline Role() = default;
 private:
     friend class DataSet;
     friend class Member;
