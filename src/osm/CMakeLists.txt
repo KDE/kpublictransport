@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: BSD-3-Clause
+
 if (Protobuf_FOUND)
     set(HAVE_PROTOBUF TRUE)
     PROTOBUF_GENERATE_CPP(pbf_srcs pbf_hdrs

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2018 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: BSD-3-Clause
+
 cmake_minimum_required(VERSION 3.5)
 project(KPublicTransport VERSION 0.0.1)
 

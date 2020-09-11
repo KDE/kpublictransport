@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: BSD-3-Clause
+
 flex_target(mapcssscanner
     style/mapcsslexer.l
     ${CMAKE_CURRENT_BINARY_DIR}/mapcsslexer.cpp

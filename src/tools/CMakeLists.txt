@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: BSD-3-Clause
+
 add_executable(otpprobe otpprobe.cpp)
 target_link_libraries(otpprobe Qt5::Network)
 
