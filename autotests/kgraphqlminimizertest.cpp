@@ -22,8 +22,9 @@ private Q_SLOTS:
 
         QTest::newRow("empty") << B("") << B("");
         QTest::newRow("leading comment") << B("# bla\nquery") << B("query");
-        QTest::newRow("inline comment") << B("query # comment\n{}") << B("query\n{}");
-        QTest::newRow("indent") << B("{\n  __schema {\n    types {\n   name\n   }\n}") << B("{\n__schema {\ntypes {\nname\n}\n}");
+        QTest::newRow("inline comment") << B("query # comment\n{}") << B("query{}");
+        QTest::newRow("indent") << B("{\n  __schema {\n    types {\n   name\n   }\n}") << B("{__schema{types{name}}");
+        QTest::newRow("optional comma") <<  B("plan (\n  from: $fromArg\nto: $toArg,\n  date: $dateArg\n)") << B("plan(from:$fromArg\nto:$toArg,date:$dateArg)");
     }
 
     void testMinimize()

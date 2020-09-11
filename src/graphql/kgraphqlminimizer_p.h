@@ -23,6 +23,7 @@ public:
 
 private:
     void appendSpaceCompress(char c);
+    bool isPunctuator(char c) const;
 
     QByteArray m_out;
 };
