@@ -51,10 +51,7 @@ AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
-    if (!locationIdentifier(loc).isEmpty()) {
-        return false;
-    }
-    return type == AbstractBackend::QueryType::Journey ? !loc.hasCoordinate() : true;
+    return !loc.hasCoordinate() && locationIdentifier(loc).isEmpty();
 }
 
 QJsonObject HafasMgateBackend::locationToJson(const Location &loc) const
@@ -152,8 +149,8 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
 
 bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto locationId = locationIdentifier(request.stop());
-    if (locationId.isEmpty()) {
+    const auto stbLoc = locationToJson(request.stop());
+    if (stbLoc.isEmpty()) {
         return false;
     }
 
@@ -173,11 +170,6 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
         if (m_supportsStbFltrEquiv) {
             req.insert(QStringLiteral("stbFltrEquiv"), true);
         }
-
-        QJsonObject stbLoc;
-        stbLoc.insert(QStringLiteral("extId"), locationId);
-        stbLoc.insert(QStringLiteral("state"), QLatin1String("F"));
-        stbLoc.insert(QStringLiteral("type"), QLatin1String("S"));
 
         req.insert(QStringLiteral("stbLoc"), stbLoc);
         req.insert(QStringLiteral("time"), dt.toString(QStringLiteral("hhmmss")));
