@@ -53,7 +53,6 @@ public:
 
 private:
     QNetworkRequest makePostRequest(const QJsonObject &svcReq, QByteArray &postData) const;
-    QNetworkReply* postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
     void setMicMacSalt(const QString &salt);

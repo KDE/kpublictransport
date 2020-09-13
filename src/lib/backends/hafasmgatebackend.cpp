@@ -212,10 +212,61 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
 
 bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto netReply = postLocationQuery(req, nam);
-    if (!netReply) {
+    if ((req.types() & Location::Stop) == 0) {
         return false;
     }
+
+    QJsonObject methodObj;
+    if (req.hasCoordinate()) {
+        QJsonObject cfg;
+        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
+
+        QJsonObject coord;
+        coord.insert(QStringLiteral("x"), (int)(req.longitude() * 1000000));
+        coord.insert(QStringLiteral("y"), (int)(req.latitude() * 1000000));
+        QJsonObject ring;
+        ring.insert(QStringLiteral("cCrd"), coord);
+        ring.insert(QStringLiteral("maxDist"), std::max(1, req.maximumDistance()));
+
+        QJsonObject reqObj;
+        reqObj.insert(QStringLiteral("ring"), ring);
+        // ### make this configurable in LocationRequest
+        reqObj.insert(QStringLiteral("getStops"), true);
+        reqObj.insert(QStringLiteral("getPOIs"), false);
+        reqObj.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
+
+        methodObj.insert(QStringLiteral("cfg"), cfg);
+        methodObj.insert(QStringLiteral("meth"), QLatin1String("LocGeoPos"));
+        methodObj.insert(QStringLiteral("req"), reqObj);
+
+    } else if (!req.name().isEmpty()) {
+        QJsonObject cfg;
+        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
+
+        QJsonObject loc;
+        loc.insert(QStringLiteral("name"), req.name()); // + '?' for auto completion search?
+        loc.insert(QStringLiteral("type"), QLatin1String("S")); // station: S, address: A, POI: P
+
+        QJsonObject input;
+        input.insert(QStringLiteral("field"), QLatin1String("S"));
+        input.insert(QStringLiteral("loc"), loc);
+        input.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
+
+        QJsonObject reqObj;
+        reqObj.insert(QStringLiteral("input"), input);
+
+        methodObj.insert(QStringLiteral("cfg"), cfg);
+        methodObj.insert(QStringLiteral("meth"), QLatin1String("LocMatch"));
+        methodObj.insert(QStringLiteral("req"), reqObj);
+
+    } else {
+        return false;
+    }
+
+    QByteArray postData;
+    const auto netRequest = makePostRequest(methodObj, postData);
+    logRequest(req, netRequest, postData);
+    const auto netReply = nam->post(netRequest, postData);
 
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         qDebug() << netReply->request().url();
@@ -321,65 +372,6 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
     auto netReq = QNetworkRequest(url);
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, QLatin1String("application/json"));
     return netReq;
-}
-
-QNetworkReply* HafasMgateBackend::postLocationQuery(const LocationRequest &req, QNetworkAccessManager *nam) const
-{
-    if ((req.types() & Location::Stop) == 0) {
-        return nullptr;
-    }
-
-    QJsonObject methodObj;
-    if (req.hasCoordinate()) {
-        QJsonObject cfg;
-        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
-
-        QJsonObject coord;
-        coord.insert(QStringLiteral("x"), (int)(req.longitude() * 1000000));
-        coord.insert(QStringLiteral("y"), (int)(req.latitude() * 1000000));
-        QJsonObject ring;
-        ring.insert(QStringLiteral("cCrd"), coord);
-        ring.insert(QStringLiteral("maxDist"), std::max(1, req.maximumDistance()));
-
-        QJsonObject reqObj;
-        reqObj.insert(QStringLiteral("ring"), ring);
-        // ### make this configurable in LocationRequest
-        reqObj.insert(QStringLiteral("getStops"), true);
-        reqObj.insert(QStringLiteral("getPOIs"), false);
-        reqObj.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
-
-        methodObj.insert(QStringLiteral("cfg"), cfg);
-        methodObj.insert(QStringLiteral("meth"), QLatin1String("LocGeoPos"));
-        methodObj.insert(QStringLiteral("req"), reqObj);
-
-    } else if (!req.name().isEmpty()) {
-        QJsonObject cfg;
-        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
-
-        QJsonObject loc;
-        loc.insert(QStringLiteral("name"), req.name()); // + '?' for auto completion search?
-        loc.insert(QStringLiteral("type"), QLatin1String("S")); // station: S, address: A, POI: P
-
-        QJsonObject input;
-        input.insert(QStringLiteral("field"), QLatin1String("S"));
-        input.insert(QStringLiteral("loc"), loc);
-        input.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
-
-        QJsonObject reqObj;
-        reqObj.insert(QStringLiteral("input"), input);
-
-        methodObj.insert(QStringLiteral("cfg"), cfg);
-        methodObj.insert(QStringLiteral("meth"), QLatin1String("LocMatch"));
-        methodObj.insert(QStringLiteral("req"), reqObj);
-
-    } else {
-        return nullptr;
-    }
-
-    QByteArray postData;
-    const auto netRequest = makePostRequest(methodObj, postData);
-    logRequest(req, netRequest, postData);
-    return nam->post(netRequest, postData);
 }
 
 void HafasMgateBackend::setMicMacSalt(const QString &salt)
