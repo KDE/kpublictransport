@@ -30,6 +30,12 @@ public:
     /** Callback to trigger map re-rendering when the source changes. */
     void setUpdateCallback(QObject *context, const std::function<void()> &updateFunc) const;
 
+    /** Callback to trigger style re-compilation.
+     *  This is needed for example when the source added new tag keys that the map data
+     *  didn't previously contain (and thus would be optimized out of the style).
+     */
+    void setResetCallback(QObject *context, const std::function<void()> &resetFunc) const;
+
     /** Iteration interface with floor level filtering. */
     void forEach(int floorLevel, const std::function<void(OSM::Element, int)> &func) const;
 

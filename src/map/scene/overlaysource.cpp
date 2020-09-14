@@ -41,6 +41,14 @@ void OverlaySource::setUpdateCallback(QObject *context, const std::function<void
     QObject::connect(m_model, &QAbstractItemModel::dataChanged, context, updateFunc);
 }
 
+void OverlaySource::setResetCallback(QObject *context, const std::function<void()> &resetFunc) const
+{
+    if (!m_model) {
+        return;
+    }
+    QObject::connect(m_model, &QAbstractItemModel::modelReset, context, resetFunc);
+}
+
 void OverlaySource::forEach(int floorLevel, const std::function<void (OSM::Element, int)> &func) const
 {
     if (!m_model) {

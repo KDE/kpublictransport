@@ -202,6 +202,9 @@ void MapItem::addOverlaySource(std::vector<OverlaySource> &overlaySources, const
             m_controller.overlaySourceUpdated();
             update();
         });
+        overlay.setResetCallback(this, [this]() {
+            m_style.compile(m_data.dataSet());
+        });
         overlaySources.push_back(std::move(overlay));
     } else {
         qWarning() << "unsupported overlay source:" << source << obj;
