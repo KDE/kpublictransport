@@ -23,6 +23,11 @@ way[waterway]
     width: 1m;
 }
 way[waterway][width] { width: width; }
+way[waterway=canal][tunnel=culvert],
+way[waterway=canal][tunnel=yes]
+{
+    opacity: 0;
+}
 
 *|z18- [amenity=fountain] {
     icon-image: amenity;
