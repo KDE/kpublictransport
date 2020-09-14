@@ -610,6 +610,13 @@ void SceneController::finalizePen(QPen &pen, double opacity) const
     if (pen.color().alphaF() == 0.0) {
         pen.setStyle(Qt::NoPen); // so the renderer can skip this entirely
     }
+
+    // normalize dash pattern, as QPainter scales that with the line width
+    if (pen.widthF() > 0.0 && !pen.dashPattern().isEmpty()) {
+        auto dashes = pen.dashPattern();
+        std::for_each(dashes.begin(), dashes.end(), [pen](double &d) { d /= pen.widthF(); });
+        pen.setDashPattern(std::move(dashes));
+    }
 }
 
 void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItemPayload> &&payload) const
