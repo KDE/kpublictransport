@@ -159,7 +159,9 @@ OSM::Node LocationQueryOverlayProxyModel::nodeForRow(int row) const
 
     node.id = m_data->dataSet().nextInternalId();
     OSM::setTagValue(node, m_tagKeys.amenity, "bicycle_rental");
-    OSM::setTagValue(node, m_tagKeys.capacity, QByteArray::number(loc.rentalVehicleStation().capacity()));
+    if (loc.rentalVehicleStation().capacity() >= 0) {
+        OSM::setTagValue(node, m_tagKeys.capacity, QByteArray::number(loc.rentalVehicleStation().capacity()));
+    }
     OSM::setTagValue(node, m_tagKeys.realtimeAvailable, QByteArray::number(loc.rentalVehicleStation().availableVehicles()));
     if (OSM::tagValue(node, m_tagKeys.network).isEmpty()) {
         OSM::setTagValue(node, m_tagKeys.network, loc.rentalVehicleStation().network().name().toUtf8());
