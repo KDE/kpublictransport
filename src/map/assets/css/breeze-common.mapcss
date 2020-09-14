@@ -148,6 +148,8 @@ line[highway][layer<0] {
     casing-dashes: 0.25,0.25;
     casing-linecap: none;
 }
+line [highway=steps] { width: 1; }
+line [highway=steps][width] { width: width; }
 line[highway=steps][layer<0] {
     casing-dashes: none;
 }
