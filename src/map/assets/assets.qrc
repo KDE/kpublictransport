@@ -10,7 +10,9 @@
         <file>css/diagnostic.mapcss</file>
 
         <file>icons/alcohol.svg</file>
+        <file>icons/archaeological_site.svg</file>
         <file>icons/art.svg</file>
+        <file>icons/arts_centre.svg</file>
         <file>icons/artwork.svg</file>
         <file>icons/atm.svg</file>
         <file>icons/bag.svg</file>
@@ -33,9 +35,11 @@
         <file>icons/car.svg</file>
         <file>icons/car_rental.svg</file>
         <file>icons/car_repair.svg</file>
+        <file>icons/casino.svg</file>
         <file>icons/charging_station.svg</file>
         <file>icons/chemist.svg</file>
         <file>icons/cinema.svg</file>
+        <file>icons/city_gate.svg</file>
         <file>icons/clothes.svg</file>
         <file>icons/coffee.svg</file>
         <file>icons/computer.svg</file>
@@ -51,6 +55,7 @@
         <file>icons/doityourself.svg</file>
         <file>icons/drinking_water.svg</file>
         <file>icons/electronics.svg</file>
+        <file>icons/embassy.svg</file>
         <file>icons/emergency_phone.svg</file>
         <file>icons/fabric.svg</file>
         <file>icons/fast_food.svg</file>
@@ -58,6 +63,7 @@
         <file>icons/firepit.svg</file>
         <file>icons/florist.svg</file>
         <file>icons/fountain.svg</file>
+        <file>icons/fuel.svg</file>
         <file>icons/furniture.svg</file>
         <file>icons/garden_centre.svg</file>
         <file>icons/gift.svg</file>
@@ -82,11 +88,13 @@
         <file>icons/memorial.svg</file>
         <file>icons/miniature_golf.svg</file>
         <file>icons/mobile_phone.svg</file>
+        <file>icons/monument.svg</file>
         <file>icons/motorcycle_parking.svg</file>
         <file>icons/museum.svg</file>
         <file>icons/music.svg</file>
         <file>icons/musical_instrument.svg</file>
         <file>icons/newsagent.svg</file>
+        <file>icons/nightclub.svg</file>
         <file>icons/restaurant.svg</file>
         <file>icons/optician.svg</file>
         <file>icons/outdoor.svg</file>
@@ -107,14 +115,17 @@
         <file>icons/public_transport_tickets.svg</file>
         <file>icons/recycling.svg</file>
         <file>icons/seafood.svg</file>
+        <file>icons/second_hand.svg</file>
         <file>icons/shelter.svg</file>
         <file>icons/shoes.svg</file>
         <file>icons/social_facility.svg</file>
         <file>icons/sports.svg</file>
         <file>icons/stationery.svg</file>
+        <file>icons/statue.svg</file>
         <file>icons/supermarket.svg</file>
         <file>icons/taxi.svg</file>
         <file>icons/tea.svg</file>
+        <file>icons/telephone.svg</file>
         <file>icons/terminal.svg</file>
         <file>icons/theatre.svg</file>
         <file>icons/ticket.svg</file>
@@ -127,5 +138,6 @@
         <file>icons/video_games.svg</file>
         <file>icons/viewpoint.svg</file>
         <file>icons/waste_basket.svg</file>
+        <file>icons/water_tower.svg</file>
     </qresource>
 </RCC>

@@ -289,6 +289,7 @@ struct {
     { "socket:type2", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2") },
     { "socket:type2_cable", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 cable") },
     { "socket:type2_combo", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type 2 CCS") },
+    { "socket:typee", QT_TRANSLATE_NOOP("OSM::charging_station_socket", "Type E") },
 };
 static_assert(isSortedLookupTable(socket_type_map), "socket type map is not sorted!");
 
