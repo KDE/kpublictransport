@@ -6,6 +6,11 @@
 
 #include "mapdata.h"
 
+#include "style/mapcssparser.h"
+#include "style/mapcssresult.h"
+#include "style/mapcssstate.h"
+#include "style/mapcssstyle.h"
+
 using namespace KOSMIndoorMap;
 
 MapLevel::MapLevel(int level)
@@ -98,7 +103,32 @@ void MapData::processElements()
 {
     const auto levelTag = m_dataSet.tagKey("level");
     const auto repeatOnTag = m_dataSet.tagKey("repeat_on");
-    OSM::for_each(m_dataSet, [this, levelTag, repeatOnTag](auto e) {
+
+    MapCSSParser p;
+    auto filter = p.parse(QStringLiteral(":/org.kde.kosmindoormap/assets/css/input-filter.mapcss"));
+    if (p.hasError()) {
+        qWarning() << p.errorMessage();
+    }
+    filter.compile(m_dataSet);
+    MapCSSResult filterResult;
+
+    OSM::for_each(m_dataSet, [&](auto e) {
+        // discard everything here that is tag-less (and thus likely part of a higher-level geometry)
+        if (!e.hasTags()) {
+            return;
+        }
+
+        // apply the input filter, anything that explicitly got opacity 0 will be discarded
+        MapCSSState filterState;
+        filterState.element = e;
+        filter.evaluate(filterState, filterResult);
+        if (auto prop = filterResult.declaration(MapCSSDeclaration::Opacity)) {
+            if (prop->doubleValue() == 0.0) {
+                qDebug() << "input filter dropped" << e.url();
+                return;
+            }
+        }
+
         // bbox computation
         e.recomputeBoundingBox(m_dataSet);
         m_bbox = OSM::unite(e.boundingBox(), m_bbox);
@@ -128,6 +158,7 @@ void MapData::parseLevel(QByteArray &&level, OSM::Element e)
         auto c = level[i];
 
         if (c == ',') { // fix decimal separator errors
+            qDebug() << "syntax error in level tag:" << level << e.url();
             c = '.';
         }
 
@@ -218,25 +249,9 @@ QString MapData::levelName(OSM::Element e)
 void MapData::filterLevels()
 {
     // remove all-node levels as we can't display anything meaningfully there
-    const auto typeTag = m_dataSet.tagKey("type");
-    const auto buildingTag = m_dataSet.tagKey("building");
     for (auto it = m_levelMap.begin(); it != m_levelMap.end();) {
-        const auto isNonVisual = std::all_of((*it).second.begin(), (*it).second.end(), [typeTag, buildingTag](auto e) {
-            switch (e.type()) {
-                case OSM::Type::Null:
-                case OSM::Type::Node:
-                    return true;
-                case OSM::Type::Relation:
-                    if (e.tagValue(typeTag) != "multipolygon") {
-                        return true;
-                    }
-                    [[fallthrough]];
-                case OSM::Type::Way:
-                    return e.tagValue(buildingTag) == "roof";
-            }
-            return true;
-        });
-        if (isNonVisual) {
+        const auto isAllNode = std::all_of((*it).second.begin(), (*it).second.end(), [](auto e) { return e.type() == OSM::Type::Node; });
+        if (isAllNode) {
             it = m_levelMap.erase(it);
         } else {
             ++it;

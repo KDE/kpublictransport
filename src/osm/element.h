@@ -41,6 +41,8 @@ public:
     /** Returns the value of the first non-empty tag. */
     template <typename ...Args> QByteArray tagValue(const char *keyName, Args... args) const;
     template <typename ...Args> QByteArray tagValue(const char *keyName, Args... args, const QLocale &locale) const;
+    /** Returns whether or not this element has any tags set. */
+    inline bool hasTags() const { return std::distance(tagsBegin(), tagsEnd()) > 0; }
 
     std::vector<Tag>::const_iterator tagsBegin() const;
     std::vector<Tag>::const_iterator tagsEnd() const;
