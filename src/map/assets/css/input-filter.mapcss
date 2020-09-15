@@ -28,3 +28,6 @@ way[railway=disused][tunnel=yes]
 {
     opacity: 0;
 }
+
+// not yet constructed things
+way[railway=proposed] { opacity: 0; }
