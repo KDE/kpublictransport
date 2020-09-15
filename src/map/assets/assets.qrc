@@ -34,10 +34,13 @@
         <file>icons/butcher.svg</file>
         <file>icons/cafe.svg</file>
         <file>icons/car.svg</file>
+        <file>icons/car_parts.svg</file>
         <file>icons/car_rental.svg</file>
         <file>icons/car_repair.svg</file>
+        <file>icons/caravan_site.svg</file>
         <file>icons/casino.svg</file>
         <file>icons/charging_station.svg</file>
+        <file>icons/castle.svg</file>
         <file>icons/chemist.svg</file>
         <file>icons/cinema.svg</file>
         <file>icons/city_gate.svg</file>
@@ -113,8 +116,10 @@
         <file>icons/post_box.svg</file>
         <file>icons/post_office.svg</file>
         <file>icons/pub.svg</file>
+        <file>icons/public_bath.svg</file>
         <file>icons/public_transport_tickets.svg</file>
         <file>icons/recycling.svg</file>
+        <file>icons/sauna.svg</file>
         <file>icons/seafood.svg</file>
         <file>icons/second_hand.svg</file>
         <file>icons/shelter.svg</file>
@@ -123,6 +128,7 @@
         <file>icons/sports.svg</file>
         <file>icons/stationery.svg</file>
         <file>icons/statue.svg</file>
+        <file>icons/storage_tank.svg</file>
         <file>icons/supermarket.svg</file>
         <file>icons/taxi.svg</file>
         <file>icons/tea.svg</file>
@@ -135,10 +141,12 @@
         <file>icons/townhall.svg</file>
         <file>icons/toys.svg</file>
         <file>icons/travel_agency.svg</file>
+        <file>icons/tyres.svg</file>
         <file>icons/variety_store.svg</file>
         <file>icons/video_games.svg</file>
         <file>icons/viewpoint.svg</file>
         <file>icons/waste_basket.svg</file>
+        <file>icons/water_park.svg</file>
         <file>icons/water_tower.svg</file>
     </qresource>
 </RCC>

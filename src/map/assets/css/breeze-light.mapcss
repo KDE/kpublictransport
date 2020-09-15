@@ -153,6 +153,7 @@ area[room=toilets]
 }
 
 area[building:part=elevator],
+area[building=yes][elevator=yes],
 area[building:part=yes][elevator=yes],
 area[highway=elevator],
 area[room=elevator],
