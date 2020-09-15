@@ -387,13 +387,11 @@ node|z18-[amenity=bicycle_rental][mx:realtime_available=0] {
     icon-color: #da4453;
     text: mx:realtime_available;
     text-color: #da4453;
-    text-offset: 9;
 }
 node|z18-[amenity=bicycle_rental][mx:realtime_available>0] {
     icon-color: #27ae60;
     text: mx:realtime_available;
     text-color: #27ae60;
-    text-offset: 9;
 }
 
 // charging stations

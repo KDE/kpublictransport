@@ -39,6 +39,7 @@ public:
     enum Role {
         ElementRole = Qt::UserRole,
         LevelRole,
+        HiddenElementRole,
     };
     Q_ENUM(Role)
 
@@ -51,17 +52,23 @@ Q_SIGNALS:
     void sourceModelChanged();
 
 private:
+    struct Info {
+        OSM::Node overlayNode;
+        OSM::Element sourceElement;
+    };
+
     void initialize();
-    OSM::Node nodeForRow(int row) const;
+    Info nodeForRow(int row) const;
 
     struct {
         OSM::TagKey amenity;
         OSM::TagKey capacity;
         OSM::TagKey realtimeAvailable;
         OSM::TagKey network;
+        OSM::TagKey mxoid;
     } m_tagKeys;
 
-    std::vector<OSM::Node> m_nodes;
+    std::vector<Info> m_nodes;
     MapData *m_data = nullptr;
     QAbstractItemModel *m_sourceModel = nullptr;
 };

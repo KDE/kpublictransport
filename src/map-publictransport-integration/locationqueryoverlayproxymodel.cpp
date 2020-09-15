@@ -38,6 +38,7 @@ void LocationQueryOverlayProxyModel::setMapData(MapData* data)
         m_tagKeys.capacity = m_data->dataSet().makeTagKey("capacity");
         m_tagKeys.realtimeAvailable = m_data->dataSet().makeTagKey("mx:realtime_available");
         m_tagKeys.network = m_data->dataSet().makeTagKey("network");
+        m_tagKeys.mxoid = m_data->dataSet().makeTagKey("mx:oid");
     }
 
     initialize();
@@ -110,9 +111,11 @@ QVariant LocationQueryOverlayProxyModel::data(const QModelIndex &index, int role
 
     switch (role) {
         case ElementRole:
-            return QVariant::fromValue(OSM::Element(&m_nodes[index.row()]));
+            return QVariant::fromValue(OSM::Element(&m_nodes[index.row()].overlayNode));
         case LevelRole:
             return 0;
+        case HiddenElementRole:
+            return QVariant::fromValue(m_nodes[index.row()].sourceElement);
     }
 
     return {};
@@ -123,6 +126,7 @@ QHash<int, QByteArray> LocationQueryOverlayProxyModel::roleNames() const
     auto n = QAbstractListModel::roleNames();
     n.insert(ElementRole, "osmElement");
     n.insert(LevelRole, "level");
+    n.insert(HiddenElementRole, "hiddenElement");
     return n;
 }
 
@@ -140,31 +144,33 @@ void LocationQueryOverlayProxyModel::initialize()
     }
 }
 
-OSM::Node LocationQueryOverlayProxyModel::nodeForRow(int row) const
+LocationQueryOverlayProxyModel::Info LocationQueryOverlayProxyModel::nodeForRow(int row) const
 {
     const auto idx = m_sourceModel->index(row, 0);
     const auto loc = idx.data(LocationQueryModel::LocationRole).value<Location>();
 
-    OSM::Node node;
-    node.coordinate = OSM::Coordinate(loc.latitude(), loc.longitude());
+    Info info;
+    info.overlayNode.coordinate = OSM::Coordinate(loc.latitude(), loc.longitude());
 
     // try to find a matching node in the base OSM data
     for (const auto &n : m_data->dataSet().nodes) {
-        if (OSM::distance(n.coordinate, node.coordinate) < 10 && OSM::tagValue(n, m_tagKeys.amenity) == "bicycle_rental") {
+        if (OSM::distance(n.coordinate, info.overlayNode.coordinate) < 10 && OSM::tagValue(n, m_tagKeys.amenity) == "bicycle_rental") {
             qDebug() << "found matching node, cloning that!" << n.url();
-            node = n;
+            info.sourceElement = OSM::Element(&n);
+            info.overlayNode = n;
+            OSM::setTagValue(info.overlayNode, m_tagKeys.mxoid, QByteArray::number(qlonglong(n.id)));
             break;
         }
     }
 
-    node.id = m_data->dataSet().nextInternalId();
-    OSM::setTagValue(node, m_tagKeys.amenity, "bicycle_rental");
+    info.overlayNode.id = m_data->dataSet().nextInternalId();
+    OSM::setTagValue(info.overlayNode, m_tagKeys.amenity, "bicycle_rental");
     if (loc.rentalVehicleStation().capacity() >= 0) {
-        OSM::setTagValue(node, m_tagKeys.capacity, QByteArray::number(loc.rentalVehicleStation().capacity()));
+        OSM::setTagValue(info.overlayNode, m_tagKeys.capacity, QByteArray::number(loc.rentalVehicleStation().capacity()));
     }
-    OSM::setTagValue(node, m_tagKeys.realtimeAvailable, QByteArray::number(loc.rentalVehicleStation().availableVehicles()));
-    if (OSM::tagValue(node, m_tagKeys.network).isEmpty()) {
-        OSM::setTagValue(node, m_tagKeys.network, loc.rentalVehicleStation().network().name().toUtf8());
+    OSM::setTagValue(info.overlayNode, m_tagKeys.realtimeAvailable, QByteArray::number(loc.rentalVehicleStation().availableVehicles()));
+    if (OSM::tagValue(info.overlayNode, m_tagKeys.network).isEmpty()) {
+        OSM::setTagValue(info.overlayNode, m_tagKeys.network, loc.rentalVehicleStation().network().name().toUtf8());
     }
-    return node;
+    return info;
 }

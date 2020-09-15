@@ -72,6 +72,7 @@ private:
     const MapCSSStyle *m_styleSheet = nullptr;
     const View *m_view = nullptr;
     std::vector<OverlaySource> m_overlaySources;
+    mutable std::vector<OSM::Element> m_hiddenElements;
 
     mutable MapCSSResult m_styleResult;
     mutable QColor m_defaultTextColor;

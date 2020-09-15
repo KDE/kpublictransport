@@ -26,6 +26,7 @@ public:
     inline Element(const Relation *relation) : m_elem(relation, static_cast<uint8_t>(Type::Relation)) {}
 
     inline bool operator==(Element other) const { return m_elem == other.m_elem; }
+    inline bool operator<(Element other) const { return m_elem < other.m_elem; }
 
     inline Type type() const { return static_cast<Type>(m_elem.tag()); }
     inline const Node* node() const { return static_cast<const Node*>(m_elem.get()); }

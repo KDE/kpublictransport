@@ -39,10 +39,14 @@ public:
     /** Iteration interface with floor level filtering. */
     void forEach(int floorLevel, const std::function<void(OSM::Element, int)> &func) const;
 
+    /** Adds hidden elements to @param elems. */
+    void hiddenElements(std::vector<OSM::Element> &elems) const;
+
 private:
     QPointer<QAbstractItemModel> m_model;
     int m_elementRole = -1;
     int m_floorRole = -1;
+    int m_hiddenElementRole = -1;
 };
 
 }

@@ -19,6 +19,8 @@ OverlaySource::OverlaySource(QAbstractItemModel *model)
             m_elementRole = it.key();
         } else if (it.value() == "level") {
             m_floorRole = it.key();
+        } else if (it.value() == "hiddenElement") {
+            m_hiddenElementRole = it.key();
         }
     }
     if (m_elementRole < 0 || m_floorRole < 0) {
@@ -64,5 +66,21 @@ void OverlaySource::forEach(int floorLevel, const std::function<void (OSM::Eleme
         }
         const auto elem = idx.data(m_elementRole).value<OSM::Element>();
         func(elem, floor);
+    }
+}
+
+void OverlaySource::hiddenElements(std::vector<OSM::Element> &elems) const
+{
+    if (!m_model || m_hiddenElementRole < 0) {
+        return;
+    }
+
+    const auto rows = m_model->rowCount();
+    for (int i = 0; i < rows; ++i) {
+        const auto idx = m_model->index(i, 0);
+        const auto elem = idx.data(m_hiddenElementRole).value<OSM::Element>();
+        if (elem.type() != OSM::Type::Null) {
+            elems.push_back(elem);
+        }
     }
 }

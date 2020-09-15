@@ -115,11 +115,18 @@ void SceneController::updateScene(SceneGraph &sg) const
         }
     }
 
+    // collect elements that the overlay want to hide
+    m_hiddenElements.clear();
+    for (const auto &overlaySource : m_overlaySources) {
+        overlaySource.hiddenElements(m_hiddenElements);
+    }
+    std::sort(m_hiddenElements.begin(), m_hiddenElements.end());
+
     // for each level, update or create scene graph elements, after a some basic bounding box check
     const auto geoBbox = m_view->mapSceneToGeo(m_view->sceneBoundingBox());
     for (auto it = beginIt; it != endIt; ++it) {
         for (auto e : (*it).second) {
-            if (OSM::intersects(geoBbox, e.boundingBox())) {
+            if (OSM::intersects(geoBbox, e.boundingBox()) && !std::binary_search(m_hiddenElements.begin(), m_hiddenElements.end(), e)) {
                 updateElement(e, (*it).first.numericLevel(), sg);
             }
         }
