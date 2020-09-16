@@ -119,6 +119,7 @@ void MapData::processElements()
         }
 
         // apply the input filter, anything that explicitly got opacity 0 will be discarded
+        bool isDependentElement = false;
         MapCSSState filterState;
         filterState.element = e;
         filter.evaluate(filterState, filterResult);
@@ -126,6 +127,12 @@ void MapData::processElements()
             if (prop->doubleValue() == 0.0) {
                 qDebug() << "input filter dropped" << e.url();
                 return;
+            }
+            // anything that doesn't work on its own is a "dependent element"
+            // we discard levels only containing dependent elements, but we retain all of them if the
+            // level contains an element we are sure about that we can display it
+            if (prop->doubleValue() < 1.0) {
+                isDependentElement = true;
             }
         }
 
@@ -141,15 +148,18 @@ void MapData::processElements()
 
         if (level.isEmpty()) { // level-less -> outdoor
             m_levelMap[MapLevel{}].push_back(e);
+            if (isDependentElement) {
+                m_dependentElementCounts[MapLevel{}]++;
+            }
         } else {
-            parseLevel(std::move(level), e);
+            parseLevel(std::move(level), e, isDependentElement);
         }
     });
 }
 
 // @see https://wiki.openstreetmap.org/wiki/Key:level
 // @see https://wiki.openstreetmap.org/wiki/Simple_Indoor_Tagging#Multi-level_features_and_repeated_features
-void MapData::parseLevel(QByteArray &&level, OSM::Element e)
+void MapData::parseLevel(QByteArray &&level, OSM::Element e, bool isDependentElement)
 {
     int rangeBegin = std::numeric_limits<int>::max();
     int numStartIdx = -1;
@@ -173,11 +183,11 @@ void MapData::parseLevel(QByteArray &&level, OSM::Element e)
             const auto l = std::atof(level.constData() + numStartIdx) * 10;
             if (rangeBegin < l) {
                 for (int j = rangeBegin; j < l; j += 10) {
-                    addElement(j, e);
+                    addElement(j, e, isDependentElement);
                 }
                 rangeBegin = std::numeric_limits<int>::max();
             } else {
-                addElement(l, e);
+                addElement(l, e, isDependentElement);
             }
             numStartIdx = -1;
             continue;
@@ -196,14 +206,14 @@ void MapData::parseLevel(QByteArray &&level, OSM::Element e)
     const auto l = std::atof(level.constData() + numStartIdx) * 10;
     if (rangeBegin < l) {
         for (int j = rangeBegin; j < l; j += 10) {
-            addElement(j, e);
+            addElement(j, e, isDependentElement);
         }
     } else {
-        addElement(l, e);
+        addElement(l, e, isDependentElement);
     }
 }
 
-void MapData::addElement(int level, OSM::Element e)
+void MapData::addElement(int level, OSM::Element e, bool isDependentElement)
 {
     MapLevel l(level);
     auto it = m_levelMap.find(l);
@@ -216,6 +226,9 @@ void MapData::addElement(int level, OSM::Element e)
             const_cast<MapLevel&>((*it).first).setName(levelName(e));
         }
         (*it).second.push_back(e);
+    }
+    if (isDependentElement) {
+        m_dependentElementCounts[l]++;
     }
 }
 
@@ -248,13 +261,13 @@ QString MapData::levelName(OSM::Element e)
 
 void MapData::filterLevels()
 {
-    // remove all-node levels as we can't display anything meaningfully there
+    // remove all levels that don't contain something we are sure would make a meaningful output
     for (auto it = m_levelMap.begin(); it != m_levelMap.end();) {
-        const auto isAllNode = std::all_of((*it).second.begin(), (*it).second.end(), [](auto e) { return e.type() == OSM::Type::Node; });
-        if (isAllNode) {
+        if (m_dependentElementCounts[(*it).first] == (*it).second.size()) {
             it = m_levelMap.erase(it);
         } else {
             ++it;
         }
     }
+    m_dependentElementCounts.clear();
 }

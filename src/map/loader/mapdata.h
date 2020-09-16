@@ -66,8 +66,8 @@ public:
 
 private:
     void processElements();
-    void parseLevel(QByteArray &&level, OSM::Element e);
-    void addElement(int level, OSM::Element e);
+    void parseLevel(QByteArray &&level, OSM::Element e, bool isDependentElement);
+    void addElement(int level, OSM::Element e, bool isDependentElement);
     QString levelName(OSM::Element e);
     void filterLevels();
 
@@ -76,6 +76,8 @@ private:
 
     OSM::TagKey m_levelRefTag;
     OSM::TagKey m_nameTag;
+
+    std::map<MapLevel, std::size_t> m_dependentElementCounts;
 };
 
 }

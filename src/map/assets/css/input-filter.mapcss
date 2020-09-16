@@ -4,8 +4,16 @@
 */
 
 /** Input filter, run once when loading, elements with opacity 0 are discarded entirely.
+ *  Elements with opacity < 1 are considered "dependent elements" that on their own don't
+ *  cause a level to be omitted, but will be retained when a visual element is on that level.
+ *  A level only containing dependent elements is discarded.
  *  @note: Zoom levels are not set for this.
  */
+
+// nodes on their own aren't enough to produce a meaningful level
+node { opacity: 0.5; }
+// just (underground) railway lines doesn't help either
+way[railway] { opacity: 0.5; }
 
 // roof elements
 area[building=roof],
@@ -23,11 +31,20 @@ way[waterway=drain][tunnel=yes]
     opacity: 0;
 }
 
-// disused tunnels
+// non-relevant tunnels
+way[railway=construction][tunnel=yes],
+way[railway=construction][level<0],
 way[railway=disused][tunnel=yes]
 {
     opacity: 0;
 }
 
-// not yet constructed things
-way[railway=proposed] { opacity: 0; }
+// not yet constructed things, or already destroyed things
+way[railway=proposed],
+way[railway=razed]
+{
+    opacity: 0;
+}
+
+// marble clipping side-effects
+area[marble_land] { opacity: 0; }
