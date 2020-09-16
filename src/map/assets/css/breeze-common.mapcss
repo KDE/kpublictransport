@@ -368,7 +368,9 @@ node|z20-[vending=public_transport_tickets] {
     icon-image: amenity;
     icon-color: #3daee9;
 }
-*|z17-[amenity=parking][access=private]
+*|z17-[amenity=parking][access=private],
+*|z18-[amenity=bicycle_parking][access=private],
+*|z18-[amenity=motorcycle_parking][access=private]
 {
     icon-color: #7f8c8d;
 }
