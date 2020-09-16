@@ -101,7 +101,7 @@ area[indoor=wall]
 {
     fill-color: #888786;
 }
-line[barrier=wall],
+line[barrier],
 line[indoor=wall]
 {
     color: #888786;
