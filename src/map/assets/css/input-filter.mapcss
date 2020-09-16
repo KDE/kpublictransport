@@ -16,7 +16,7 @@ node { opacity: 0.5; }
 way[railway] { opacity: 0.5; }
 
 // roof elements
-area[building=roof],
+area[building=roof][!amenity],
 area[building:part=roof]
 {
     opacity: 0;

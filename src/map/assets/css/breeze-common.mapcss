@@ -492,6 +492,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=car],
 *|z20- [shop=car_parts],
 *|z20- [shop=car_repair],
+*|z19- [shop=charity],
 *|z19- [shop=chemist],
 *|z19- [shop=clothes],
 *|z19- [shop=coffee],
@@ -517,6 +518,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=laundry],
 *|z19- [shop=medical_supply],
 *|z19- [shop=mobile_phone],
+*|z20- [shop=motorcycle],
 *|z19- [shop=music],
 *|z19- [shop=musical_instrument],
 *|z19- [shop=newsagent],
@@ -536,6 +538,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z18- [shop=ticket],
 *|z19- [shop=tobacco],
 *|z19- [shop=toys],
+*|z19- [shop=trade],
 *|z19- [shop=travel_agency],
 *|z20- [shop=tyres],
 *|z19- [shop=video_games],
@@ -553,6 +556,13 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=kiosk] { icon-image: "newsagent"; }
 *|z19- [shop=pastry] { icon-image: "confectionery"; }
 *|z19- [shop=wine] { icon-image: "alcohol"; }
+*|z19- [shop=wholesale] { icon-image: "trade"; }
+
+*|z18- [amenity=marketplace]
+{
+    icon-image: amenity;
+    icon-color: #9b59b6;
+}
 
 // health
 *|z19- [amenity=dentist],
@@ -575,6 +585,11 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
     icon-image: leisure;
     icon-color: #16a085;
 }
+*|z20- [tourism=picnic_site]
+{
+    icon-image: tourism;
+    icon-color: #16a085;
+}
 
 // other amenities
 *|z19- [amenity=arts_centre],
@@ -582,12 +597,14 @@ node|z19- [amenity=atm],
 *|z19- [amenity=bank],
 *|z19- [amenity=bbq],
 *|z19- [amenity=bureau_de_change],
+*|z20- [amenity=car_wash],
 *|z20- [amenity=casino],
 *|z19- [amenity=cinema],
 *|z20- [amenity=community_centre],
 *|z20- [amenity=courthouse],
 node|z19- [amenity=drinking_water],
 *|z19- [amenity=embassy],
+*|z19- [amenity=fire_station],
 *|z19- [amenity=internet_cafe],
 *|z19- [amenity=library],
 *|z20- [amenity=nightclub],
@@ -595,10 +612,14 @@ node|z19- [amenity=drinking_water],
 *|z19- [amenity=police],
 node|z20- [amenity=post_box],
 *|z19- [amenity=post_office],
+*|z19- [amenity=prison],
+*|z19- [amenity=public_bath],
+*|z20- [amenity=recycling],
 *|z19- [amenity=social_facility],
 node|z20- [amenity=telephone],
 *|z19- [amenity=theatre],
-*|z20- [amenity=townhall]
+*|z20- [amenity=townhall],
+*|z19- [amenity=vehicle_inspection]
 {
     icon-image: amenity;
     icon-color: #7d8025;
