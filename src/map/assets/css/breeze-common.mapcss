@@ -305,6 +305,18 @@ node|z18-[aeroway=gate]
     text-color: #232629;
     shield-color: #fdbc4b;
 }
+node|z17-[aeroway=gate][mx:arrival=1]
+{
+    text: ref;
+    text-color: #eff0f1;
+    shield-color: #16a085;
+}
+node|z17-[aeroway=gate][mx:departure=1]
+{
+    text: ref;
+    text-color: #eff0f1;
+    shield-color: #da4453;
+}
 
 /** Platforms */
 area|z17-[railway=platform],

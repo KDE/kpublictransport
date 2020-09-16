@@ -17,7 +17,8 @@ namespace KOSMIndoorMap {
 
 /** An airport gate. */
 struct Gate {
-    OSM::Element element;
+    OSM::Node node;
+    OSM::Element sourceElement;
     QString name;
     int level = 0;
 };
@@ -51,6 +52,7 @@ public:
         LevelRole,
         ArrivalGateRole,
         DepartureGateRole,
+        HiddenElementRole,
     };
     Q_ENUM(Role)
 
@@ -73,9 +75,15 @@ private:
     void populateModel();
     void matchGates();
     int matchGate(const QString &name) const;
+    void setGateTag(int idx, OSM::TagKey key, bool enabled);
 
     std::vector<Gate> m_gates;
     MapData *m_data = nullptr;
+
+    struct {
+        OSM::TagKey mxArrival;
+        OSM::TagKey mxDeparture;
+    } m_tagKeys;
 
     QString m_arrivalGate;
     QString m_departureGate;
