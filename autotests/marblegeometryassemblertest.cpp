@@ -160,6 +160,72 @@ private Q_SLOTS:
         qDebug() << way.nodes;
         QCOMPARE(way.nodes, std::vector<OSM::Id>({1, 3, 4, 2, 1}));
     }
+
+    void testAreaMergeQuadSplit()
+    {
+        OSM::DataSet dataSet;
+        OSM::DataSetMergeBuffer mergeBuffer;
+        auto mxoidKey = dataSet.makeTagKey("mx:oid");
+
+        // a 1,1 -> -1,-1 quad split in four parts along the 0 axis
+        // this results in a synthetic node in the center that isn't on any of the edges
+        ADD_NODE(1, 1.0, 1.0)
+        ADD_NODE(2, 1.0, -1.0)
+        ADD_NODE(3, -1.0, -1.0)
+        ADD_NODE(4, 1.0, -1.0)
+
+        ADD_NODE(-12, 1.0, 0.0)
+        ADD_NODE(-13, 0.0, 0.0)
+        ADD_NODE(-14, 0.0, 1.0)
+        OSM::Way w1;
+        w1.id = 101;
+        w1.nodes = {1, -12, -13, -14, 1};
+
+        ADD_NODE(-21, 1.0, 0.0)
+        ADD_NODE(-23, 0.0, -1.0)
+        ADD_NODE(-24, 0.0, 0.0)
+        OSM::Way w2;
+        w2.id = -102;
+        w2.nodes = { -21, 2, -23, -24, -21 };
+        OSM::setTagValue(w2, mxoidKey, QByteArray::number(101));
+
+        ADD_NODE(-31, 0.0, 0.0)
+        ADD_NODE(-32, 0.0, -1.0)
+        ADD_NODE(-34, -1.0, 0.0)
+        OSM::Way w3;
+        w3.id = -103;
+        w3.nodes = { -31, -32, 3, -34, -31 };
+        OSM::setTagValue(w3, mxoidKey, QByteArray::number(101));
+
+        ADD_NODE(-41, 0.0, 1.0)
+        ADD_NODE(-42, 0.0, 0.0)
+        ADD_NODE(-43, -1.0, 0.0)
+        OSM::Way w4;
+        w4.id = -104;
+        w4.nodes = { -41, -42, -43, 4, -41 };
+        OSM::setTagValue(w4, mxoidKey, QByteArray::number(101));
+
+        MarbleGeometryAssembler assembler;
+        assembler.setDataSet(&dataSet);
+
+        mergeBuffer.ways.push_back(std::move(w1));
+        assembler.merge(&mergeBuffer);
+        mergeBuffer.ways.push_back(std::move(w2));
+        assembler.merge(&mergeBuffer);
+        mergeBuffer.ways.push_back(std::move(w3));
+        assembler.merge(&mergeBuffer);
+        mergeBuffer.ways.push_back(std::move(w4));
+        assembler.merge(&mergeBuffer);
+        assembler.finalize();
+
+        QCOMPARE(dataSet.ways.size(), 1);
+        auto &way = dataSet.ways.front();
+        QCOMPARE(way.id, 101);
+        QCOMPARE(way.nodes.size(), 5);
+        QCOMPARE(way.isClosed(), true);
+        qDebug() << way.nodes;
+        QCOMPARE(way.nodes, std::vector<OSM::Id>({1, 2, 3, 4, 1}));
+    }
 };
 
 QTEST_GUILESS_MAIN(MarbleGeometryAssemblerTest)
