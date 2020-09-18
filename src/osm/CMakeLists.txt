@@ -8,6 +8,7 @@ if (Protobuf_FOUND)
         pbf/osmformat.proto
     )
     set(EXTRA_LIBS ${Protobuf_LIBRARIES} ZLIB::ZLIB)
+    set_source_files_properties(${pbf_srcs} ${pbf_hdrs} PROPERTIES SKIP_AUTOMOC ON)
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-kosm.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kosm.h)
