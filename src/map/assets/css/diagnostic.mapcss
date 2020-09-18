@@ -72,3 +72,10 @@ line[waterway]
     text: ref;
     text-color: #00ffff;
 }
+
+area[marble_land] {
+    fill-opacity: 0.0;
+    color: #ffffff;
+    dashes: 2,4;
+    width: 1;
+}
