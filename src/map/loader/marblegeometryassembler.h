@@ -11,7 +11,6 @@
 #include <osm/datasetmergebuffer.h>
 
 #include <unordered_map>
-#include <unordered_set>
 
 namespace KOSMIndoorMap {
 
@@ -65,7 +64,7 @@ private:
     std::unordered_map<OSM::Id, OSM::Id> m_wayIdMap;
     std::unordered_map<OSM::Id, OSM::Id> m_relIdMap;
 
-    std::unordered_set<OSM::Id> m_duplicateWays;
+    std::unordered_map<OSM::Id, std::vector<std::size_t>> m_duplicateWays;
     std::vector<OSM::Way> m_pendingWays;
 
     static OSM::Id s_nextInternalId;

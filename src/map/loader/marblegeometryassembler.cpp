@@ -127,6 +127,12 @@ void MarbleGeometryAssembler::mergeWays(std::vector<OSM::Way> &ways)
     }
 }
 
+static bool isDuplicateWay(const OSM::Way &lhs, const OSM::Way &rhs)
+{
+    // TODO this probably needs to be even more strict, checking nodes for equality
+    return lhs.nodes.size() == rhs.nodes.size();
+}
+
 void MarbleGeometryAssembler::deduplicateWays(std::vector<OSM::Way>& ways)
 {
     for (auto it = ways.begin(); it != ways.end();) {
@@ -140,12 +146,23 @@ void MarbleGeometryAssembler::deduplicateWays(std::vector<OSM::Way>& ways)
             continue;
         }
 
-        const auto it2 = m_duplicateWays.find(mxoid);
-        if (it2 != m_duplicateWays.end()) {
-            m_wayIdMap[(*it).id] = mxoid;
-            it = ways.erase(it);
+        const auto duplIt = m_duplicateWays.find(mxoid);
+        if (duplIt != m_duplicateWays.end()) {
+            bool found = false;
+            for (auto it2 = (*duplIt).second.begin(); it2 != (*duplIt).second.end(); ++it2) {
+                if (isDuplicateWay(*it, ways[*it2])) {
+                    m_wayIdMap[(*it).id] = mxoid;
+                    it = ways.erase(it);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                m_duplicateWays[mxoid].push_back(std::distance(ways.begin(), it));
+                ++it;
+            }
         } else {
-            m_duplicateWays.insert(mxoid);
+            m_duplicateWays[mxoid] = {(std::size_t)std::distance(ways.begin(), it)};
             ++it;
         }
     }
