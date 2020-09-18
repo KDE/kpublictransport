@@ -16,6 +16,7 @@ add_flex_bison_dependency(mapcssscanner mapcssparser)
 
 ecm_qt_declare_logging_category(logging_srcs HEADER logging.h IDENTIFIER KOSMIndoorMap::Log CATEGORY_NAME org.kde.kosmindoormap)
 ecm_qt_declare_logging_category(logging_srcs HEADER render-logging.h IDENTIFIER KOSMIndoorMap::RenderLog CATEGORY_NAME org.kde.kosmindoormap.renderer)
+ecm_qt_declare_logging_category(logging_srcs HEADER reassembly-logging.h IDENTIFIER KOSMIndoorMap::ReassemblyLog CATEGORY_NAME org.kde.kosmindoormap.reassembly)
 
 add_library(KOSMIndoorMap STATIC
     ${logging_srcs}

@@ -5,6 +5,7 @@
 */
 
 #include "marblegeometryassembler.h"
+#include "reassembly-logging.h"
 
 #include <cassert>
 
@@ -129,8 +130,15 @@ void MarbleGeometryAssembler::mergeWays(std::vector<OSM::Way> &ways)
 
 static bool isDuplicateWay(const OSM::Way &lhs, const OSM::Way &rhs)
 {
-    // TODO this probably needs to be even more strict, checking nodes for equality
-    return lhs.nodes.size() == rhs.nodes.size();
+    if (lhs.nodes.size() != rhs.nodes.size()) {
+        return false;
+    }
+    for (std::size_t i = 0; i < lhs.nodes.size(); ++i) {
+        if (lhs.nodes[i] != rhs.nodes[i] && (lhs.nodes[i] > 0 || rhs.nodes[i] > 0)) {
+            return false;
+        }
+    }
+    return true;
 }
 
 void MarbleGeometryAssembler::deduplicateWays(std::vector<OSM::Way>& ways)
@@ -152,6 +160,7 @@ void MarbleGeometryAssembler::deduplicateWays(std::vector<OSM::Way>& ways)
             for (auto it2 = (*duplIt).second.begin(); it2 != (*duplIt).second.end(); ++it2) {
                 if (isDuplicateWay(*it, ways[*it2])) {
                     m_wayIdMap[(*it).id] = mxoid;
+                    qCDebug(ReassemblyLog) << "removing duplicate way:" << (*it).id << (*it).url();
                     it = ways.erase(it);
                     found = true;
                     break;
