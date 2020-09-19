@@ -96,15 +96,16 @@ area[shop]
     width: 0; // 1px
 }
 
-area[barrier=wall],
-area[indoor=wall]
-{
-    fill-color: #888786;
-}
 line[barrier],
 line[indoor=wall]
 {
     color: #888786;
+    width: 0.25m;
+}
+area[barrier=wall],
+area[indoor=wall]
+{
+    fill-color: #888786;
     width: 0;
 }
 

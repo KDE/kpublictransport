@@ -48,6 +48,12 @@ area[surface=grass]
     fill-color: #1027ae60;
     z-index: -999;
 }
+line[natural=tree_row]
+{
+    color:  #1027ae60;
+    width: 2m;
+    linecap: round;
+}
 
 area[natural=beach],
 area[natural=sand]
@@ -415,7 +421,9 @@ node|z19-[amenity=charging_station] {
 }
 node|z19-[amenity=charging_station][access=private] { icon-color: #7f8c8d; }
 
-// other car-related transportation
+// other transportation-related elements
+*|z19-[amenity=boat_rental],
+*|z19-[amenity=bicycle_repair_station],
 *|z19-[amenity=car_rental],
 *|z19-[amenity=car_sharing],
 *|z18-[amenity=taxi]
@@ -488,10 +496,12 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=bed],
 *|z19- [shop=beverages],
 *|z19- [shop=bicycle],
+*|z20- [shop=bookmaker],
 *|z19- [shop=butcher],
 *|z19- [shop=car],
 *|z20- [shop=car_parts],
 *|z20- [shop=car_repair],
+*|z20- [shop=carpet],
 *|z19- [shop=charity],
 *|z19- [shop=chemist],
 *|z19- [shop=clothes],
@@ -500,6 +510,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=confectionery],
 *|z19- [shop=convenience],
 *|z19- [shop=copyshop],
+*|z19- [shop=dairy],
 *|z19- [shop=deli],
 *|z18- [shop=department_store],
 *|z19- [shop=doityourself],
@@ -541,6 +552,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [shop=trade],
 *|z19- [shop=travel_agency],
 *|z20- [shop=tyres],
+*|z20- [shop=video],
 *|z19- [shop=video_games],
 *|z19- [shop=variety_store]
 {
@@ -568,13 +580,15 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z19- [amenity=dentist],
 *|z19- [amenity=doctors],
 *|z17- [amenity=hospital],
-*|z18- [amenity=pharmacy]
+*|z18- [amenity=pharmacy],
+*|z20- [amenity=veterinary]
 {
     icon-image: amenity;
     icon-color: #ed1515;
 }
 
 // leisure elements
+*|z19- [leisure=bowling_alley],
 *|z18- [leisure=golf_course],
 *|z19- [leisure=miniature_golf],
 *|z20- [leisure=outdoor_seating],
@@ -583,6 +597,16 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z18- [leisure=water_park]
 {
     icon-image: leisure;
+    icon-color: #16a085;
+}
+*|z18- [leisure=sports_centre][sport=swimming]
+{
+    icon-image: "water_park";
+    icon-color: #16a085;
+}
+*|z20- [shop=massage]
+{
+    icon-image: shop;
     icon-color: #16a085;
 }
 *|z20- [tourism=picnic_site]
@@ -669,6 +693,12 @@ node|z20- [amenity=recycling],
 node|z20- [amenity=waste_basket]
 {
     icon-image: amenity;
+    icon-color: #4d4d4d;
+}
+
+node|z19- [barrier=lift_gate]
+{
+    icon-image: barrier;
     icon-color: #4d4d4d;
 }
 

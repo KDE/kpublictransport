@@ -23,9 +23,8 @@ area[building:part=roof]
 }
 
 // underground water canals
-way[waterway=canal][tunnel=culvert],
+way[waterway][tunnel=culvert],
 way[waterway=canal][tunnel=yes],
-way[waterway=drain][tunnel=culvert],
 way[waterway=drain][tunnel=yes]
 {
     opacity: 0;

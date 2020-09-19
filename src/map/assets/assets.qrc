@@ -28,8 +28,12 @@
         <file>icons/bicycle.svg</file>
         <file>icons/bicycle_parking.svg</file>
         <file>icons/bicycle_rental.svg</file>
+        <file>icons/bicycle_repair_station.svg</file>
         <file>icons/biergarten.svg</file>
         <file>icons/board.svg</file>
+        <file>icons/boat_rental.svg</file>
+        <file>icons/bookmaker.svg</file>
+        <file>icons/bowling_alley.svg</file>
         <file>icons/bureau_de_change.svg</file>
         <file>icons/butcher.svg</file>
         <file>icons/cafe.svg</file>
@@ -39,6 +43,7 @@
         <file>icons/car_repair.svg</file>
         <file>icons/car_wash.svg</file>
         <file>icons/caravan_site.svg</file>
+        <file>icons/carpet.svg</file>
         <file>icons/casino.svg</file>
         <file>icons/charging_station.svg</file>
         <file>icons/castle.svg</file>
@@ -54,6 +59,7 @@
         <file>icons/convenience.svg</file>
         <file>icons/copyshop.svg</file>
         <file>icons/courthouse.svg</file>
+        <file>icons/dairy.svg</file>
         <file>icons/deli.svg</file>
         <file>icons/dentist.svg</file>
         <file>icons/department_store.svg</file>
@@ -90,8 +96,10 @@
         <file>icons/jewelry.svg</file>
         <file>icons/laundry.svg</file>
         <file>icons/library.svg</file>
+        <file>icons/lift_gate.svg</file>
         <file>icons/map.svg</file>
         <file>icons/marketplace.svg</file>
+        <file>icons/massage.svg</file>
         <file>icons/medical_supply.svg</file>
         <file>icons/memorial.svg</file>
         <file>icons/miniature_golf.svg</file>
@@ -152,6 +160,8 @@
         <file>icons/tyres.svg</file>
         <file>icons/variety_store.svg</file>
         <file>icons/vehicle_inspection.svg</file>
+        <file>icons/veterinary.svg</file>
+        <file>icons/video.svg</file>
         <file>icons/video_games.svg</file>
         <file>icons/viewpoint.svg</file>
         <file>icons/waste_basket.svg</file>
