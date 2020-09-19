@@ -39,6 +39,7 @@ add_library(KOSMIndoorMap STATIC
 
     scene/iconloader.cpp
     scene/overlaysource.cpp
+    scene/penwidthutil.cpp
     scene/scenecontroller.cpp
     scene/scenegeometry.cpp
     scene/scenegraph.cpp

@@ -63,7 +63,6 @@ private:
     void applyFontStyle(const MapCSSDeclaration *decl, QFont &font) const;
 
     void initializePen(QPen &pen) const;
-    double penWidth(OSM::Element e, const MapCSSDeclaration *decl, Unit &unit) const;
     void finalizePen(QPen &pen, double opacity) const;
 
     void addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItemPayload> &&payload) const;

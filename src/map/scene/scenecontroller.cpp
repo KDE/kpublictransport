@@ -9,6 +9,7 @@
 #include "render-logging.h"
 
 #include "overlaysource.h"
+#include "penwidthutil.h"
 #include "scenegeometry.h"
 #include "scenegraph.h"
 
@@ -469,7 +470,7 @@ void SceneController::applyPenStyle(OSM::Element e, const MapCSSDeclaration *dec
             pen.setColor(decl->colorValue());
             break;
         case MapCSSDeclaration::Width:
-            pen.setWidthF(penWidth(e, decl, unit));
+            pen.setWidthF(PenWidthUtil::penWidth(e, decl, unit));
             break;
         case MapCSSDeclaration::Dashes:
             pen.setDashPattern(decl->dashesValue());
@@ -495,7 +496,7 @@ void SceneController::applyCasingPenStyle(OSM::Element e, const MapCSSDeclaratio
             pen.setColor(decl->colorValue());
             break;
         case MapCSSDeclaration::CasingWidth:
-            pen.setWidthF(penWidth(e, decl, unit));
+            pen.setWidthF(PenWidthUtil::penWidth(e, decl, unit));
             break;
         case MapCSSDeclaration::CasingDashes:
             pen.setDashPattern(decl->dashesValue());
@@ -555,47 +556,6 @@ void SceneController::initializePen(QPen &pen) const
     pen.setCapStyle(Qt::FlatCap);
     pen.setJoinStyle(Qt::RoundJoin);
     pen.setStyle(Qt::SolidLine);
-}
-
-double SceneController::penWidth(OSM::Element e, const MapCSSDeclaration *decl, Unit &unit) const
-{
-    // literal value, possibly with a unit
-    if (decl->keyValue().isEmpty()) {
-        if (decl->unit() != MapCSSDeclaration::NoUnit) {
-            unit = decl->unit() == MapCSSDeclaration::Meters ? Unit::Meter : Unit::Pixel;
-        }
-        return decl->doubleValue();
-    }
-
-    // referenced value from a tag value
-    // see https://wiki.openstreetmap.org/wiki/Map_Features/Units
-    double unitConversionFactor = 1.0;
-    const auto value = e.tagValue(decl->keyValue().constData()).constData();
-    const auto valueLen = std::strlen(value);
-
-    char* numEnd;
-    const auto num = std::strtod(value, &numEnd);
-    while (numEnd < value + valueLen) {
-        if (std::isspace(*numEnd)) {
-            ++numEnd;
-        }
-
-        // there is an explicit unit suffix;
-        if (std::strcmp(numEnd, "ft") == 0) {
-            unitConversionFactor = 0.3048;
-        }
-
-        break;
-    }
-    // no explicit unit, use default unit for this tag
-    if (numEnd == value + valueLen) {
-        if (std::strcmp(decl->keyValue().constData(), "gauge") == 0) {
-            unitConversionFactor = 0.001;
-        }
-    }
-
-    unit = Unit::Meter;
-    return num * unitConversionFactor;
 }
 
 void SceneController::finalizePen(QPen &pen, double opacity) const
