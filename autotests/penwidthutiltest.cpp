@@ -43,7 +43,7 @@ private Q_SLOTS:
         }
 
         OSM::Node n;
-        Unit resultUnit;
+        Unit resultUnit = Unit::Pixel;
         const auto result = PenWidthUtil::penWidth(OSM::Element(&n), &decl, resultUnit);
         QCOMPARE(result, expectedWidth);
         QCOMPARE(resultUnit, expectedUnit);
@@ -63,6 +63,7 @@ private Q_SLOTS:
         QTest::newRow("implicit mm") << "gauge" << "1435" << 1.435 << Unit::Meter;
         QTest::newRow("gauge explicit") << "gauge" << "1m" << 1.0 << Unit::Meter;
         QTest::newRow("multi gauge") << "gauge" << "1000;1435" << 1.435 << Unit::Meter;
+        QTest::newRow("multi gauge 2") << "gauge" << "1435;1000" << 1.435 << Unit::Meter;
     }
 
     void penWidthFromTagTest()
@@ -85,9 +86,37 @@ private Q_SLOTS:
 
         Unit resultUnit;
         const auto w = PenWidthUtil::penWidth(OSM::Element(&node), &decl, resultUnit);
-        QEXPECT_FAIL("multi gauge", "not correctly parsed yet", Continue);
         QCOMPARE(w, expectedWidth);
         QCOMPARE(penUnit, resultUnit);
+    }
+
+    void penWidthFromTagErrors_data()
+    {
+        QTest::addColumn<QString>("tagValue");
+
+        QTest::newRow("empty") << QString();
+        QTest::newRow("non-number") << "foo";
+        QTest::newRow("unit only") << "ft";
+    }
+
+    void penWidthFromTagErrors()
+    {
+        QFETCH(QString, tagValue);
+
+        OSM::DataSet dataSet;
+        const auto tagKey = dataSet.makeTagKey("width");
+        OSM::Node node;
+        node.id = -1;
+        OSM::setTagValue(node, tagKey, tagValue.toUtf8());
+
+        MapCSSDeclaration decl;
+        decl.setPropertyName("width", 5);
+        decl.setIdentifierValue("width", 5);
+        decl.compile(dataSet);
+
+        Unit resultUnit;
+        const auto w = PenWidthUtil::penWidth(OSM::Element(&node), &decl, resultUnit);
+        QCOMPARE(w, 0.0);
     }
 };
 
