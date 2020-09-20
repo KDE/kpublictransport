@@ -161,6 +161,7 @@ struct {
     M("bicycle_parking", BicycleParking, Parking),
     M("brand", Name, Header),
     M("brand:wikipedia", Wikipedia, UnresolvedCategory),
+    M("bus_routes", Routes, Main),
     M("capacity", Capacity, Parking),
     M("capacity:charging", CapacityCharing, Parking),
     M("capacity:disabled", CapacityDisabled, Parking),
@@ -191,6 +192,7 @@ struct {
     M("payment:notes", PaymentCash, Payment),
     M("phone", Phone, Contact),
     M("room", Category, Header),
+    M("route_ref", Routes, Main),
     M("shop", Category, Header),
     M("takeaway", Takeaway, Main),
     M("toilets:fee", Fee, Toilets),
@@ -396,6 +398,7 @@ QString OSMElementInformationModel::keyName(OSMElementInformationModel::Key key)
         case Name:
         case Category: return {};
         case OldName: return tr("Fomerly");
+        case Routes: return tr("Routes");
         case Cuisine: return tr("Cuisine");
         case Diet: return tr("Diet");
         case Takeaway: return tr("Takeaway");
@@ -467,8 +470,16 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
         }
         case OldName:
         {
-            const auto l = QString::fromUtf8(m_element.tagValue("old_name")).split(QLatin1Char(';'));;
+            const auto l = QString::fromUtf8(m_element.tagValue("old_name")).split(QLatin1Char(';'));
             return l.join(QLatin1String(", "));
+        }
+        case Routes:
+        {
+            auto l = QString::fromUtf8(m_element.tagValue("route_ref", "bus_routes")).split(QLatin1Char(';'), Qt::SkipEmptyParts);
+            for (auto &s : l) {
+                s = s.trimmed();
+            }
+            return QLocale().createSeparatedList(l);
         }
         case Cuisine:
         {

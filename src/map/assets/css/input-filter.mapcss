@@ -18,6 +18,7 @@ way[railway=platform] { opacity: 1.0; }
 
 // roof elements
 area[building=roof][!amenity],
+area[building=roof][amenity=shelter],
 area[building:part=roof]
 {
     opacity: 0;
@@ -27,6 +28,12 @@ area[building:part=roof]
 way[waterway][tunnel=culvert],
 way[waterway=canal][tunnel=yes],
 way[waterway=drain][tunnel=yes]
+{
+    opacity: 0;
+}
+
+// underground power lines
+way[power=cable][location=underground]
 {
     opacity: 0;
 }

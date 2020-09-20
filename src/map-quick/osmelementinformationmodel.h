@@ -57,6 +57,7 @@ public:
         Name,
         Category,
         OldName,
+        Routes,
         Cuisine,
         Diet,
         Takeaway,

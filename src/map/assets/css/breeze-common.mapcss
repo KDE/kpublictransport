@@ -29,6 +29,8 @@ way[waterway][width] { width: width; }
     icon-color: #2980b9;
 }
 
+area[leisure=garden],
+area[leisure=miniature_golf],
 area[leisure=park],
 area[leisure=pitch],
 area[leisure=playground],
@@ -41,6 +43,7 @@ area[landuse=allotments],
 area[landuse=cemetery],
 area[landuse=meadow],
 area[natural=grassland],
+area[natural=heath],
 area[natural=scrub],
 area[natural=wood],
 area[surface=grass]
@@ -324,10 +327,30 @@ node|z17-[aeroway=gate][mx:departure=1]
     shield-color: #da4453;
 }
 
+
 /** Platforms */
+node[highway=bus_stop]
+{
+    icon-image: "bus_stop";
+    icon-color: #1d99f3;
+    max-width: 150;
+}
+node|z20-[highway=bus_stop]
+{
+    text: name;
+}
+
+area[railway=platform],
+area[public_transport=platform],
+way[public_transport=platform]
+{
+    z-index: 0; // in case this is also marked as a building part...
+    opacity: 1;
+}
+
 area|z17-[railway=platform],
-area|z17-[public_transport=platform],
-way|z17-[public_transport=platform]
+area|z17-[public_transport=platform][bus!=yes],
+way|z17-[public_transport=platform][bus!=yes]
 {
     text: name;
     text-color: #fcfcfc;
@@ -343,15 +366,15 @@ way|z19-[public_transport=platform]
 }
 
 area|z17-[railway=platform][ref],
-area|z17-[public_transport=platform][ref],
-way|z17-[public_transport=platform][ref]
+area|z17-[public_transport=platform][bus!=yes][ref],
+way|z17-[public_transport=platform][bus!=yes][ref]
 {
     text: ref;
 }
 
 area|z17-[railway=platform][local_ref],
-area|z17-[public_transport=platform][local_ref],
-way|z17-[public_transport=platform][local_ref]
+area|z17-[public_transport=platform][bus!=yes][local_ref],
+way|z17-[public_transport=platform][bus!=yes][local_ref]
 {
     text: local_ref;
 }
@@ -364,6 +387,76 @@ node|z18-[public_transport=platform_section_sign]
     shield-casing-color: #fcfcfc;
     shield-casing-width: 1;
 }
+
+
+/** static elements
+ *  keep before amenities/shops, as those can occur on the same element and should override the static element styles
+ */
+node|z20- [amenity=bench],
+node|z20- [amenity=recycling],
+*|z20- [amenity=shelter],
+node|z20- [amenity=waste_basket],
+*|z20- [amenity=waste_disposal]
+{
+    icon-image: amenity;
+    icon-color: #4d4d4d;
+}
+
+node|z19- [barrier=lift_gate]
+{
+    icon-image: barrier;
+    icon-color: #4d4d4d;
+}
+
+node|z20- [information=board],
+node|z20- [information=guidepost],
+node|z20- [information=map],
+node|z20- [information=terminal]
+{
+    icon-image: information;
+    icon-color: #4d4d4d;
+}
+// hide information boards as their names clutter the vie
+// showing an icon instead would be better, but we don't have one yet
+node[information] { text: ""; }
+
+*|z20- [historic=archaeological_site],
+*|z19- [historic=castle],
+*|z19- [historic=city_gate],
+*|z20- [historic=memorial],
+*|z19- [historic=monument]
+{
+    icon-image: historic;
+    icon-color: #4d4d4d;
+}
+*|z20- [memorial=statue]
+{
+    icon-image: memorial;
+    icon-color: #4d4d4d;
+}
+
+*|z20- [tourism=artwork]
+{
+    icon-image: tourism;
+    icon-color: #4d4d4d;
+}
+*|z20- [tourism=artwork][artwork_type=statue]
+{
+    icon-image: artwork_type;
+    icon-color: #4d4d4d;
+}
+
+*|z20- [man_made] { icon-color: #4d4d4d; }
+*|z20- [man_made=lighthouse],
+*|z20- [man_made=storage_tank],
+*|z20- [man_made=water_tower],
+*|z20- [man_made=windmill]
+{
+    icon-image: man_made;
+}
+*|z20- [man_made=silo] { icon-image: "storage_tank"; }
+*|z20- [man_made=tower][tower:type=defensive] { icon-image: "tower_defensive"; }
+
 
 /** Specific amenities/shops/etc */
 
@@ -433,6 +526,11 @@ node|z19-[amenity=charging_station][access=private] { icon-color: #7f8c8d; }
 }
 *|z21-[amenity=taxi] { text: ""; }
 *|z19-[amenity=car_sharing] { icon-image: "car_rental"; } // TODO needs a better icon
+node|z19-[barrier=toll_booth]
+{
+    icon-color: #3daee9;
+    icon-image: barrier;
+}
 
 // restrooms
 area|z18-[amenity=toilets],
@@ -456,7 +554,9 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // accommodation
+*|z19- [tourism=apartment],
 *|z18- [tourism=caravan_site],
+*|z19- [tourism=chalet],
 *|z18- [tourism=hotel],
 *|z19- [tourism=guest_house],
 *|z18- [tourism=hostel]
@@ -588,6 +688,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 }
 
 // leisure elements
+*|z18- [leisure] { icon-color: #16a085; }
 *|z19- [leisure=bowling_alley],
 *|z18- [leisure=golf_course],
 *|z19- [leisure=miniature_golf],
@@ -597,13 +698,9 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 *|z18- [leisure=water_park]
 {
     icon-image: leisure;
-    icon-color: #16a085;
 }
-*|z18- [leisure=sports_centre][sport=swimming]
-{
-    icon-image: "water_park";
-    icon-color: #16a085;
-}
+*|z18- [leisure=sports_centre][sport=swimming] { icon-image: "water_park"; }
+*|z19- [leisure=fitness_station][sport=fitness] { icon-image: "fitness"; }
 *|z20- [shop=massage]
 {
     icon-image: shop;
@@ -685,65 +782,3 @@ node|z19- [amenity=drinking_water]
 {
     text: "";
 }
-
-// static elements
-node|z20- [amenity=bench],
-node|z20- [amenity=recycling],
-*|z20- [amenity=shelter],
-node|z20- [amenity=waste_basket]
-{
-    icon-image: amenity;
-    icon-color: #4d4d4d;
-}
-
-node|z19- [barrier=lift_gate]
-{
-    icon-image: barrier;
-    icon-color: #4d4d4d;
-}
-
-node|z20- [information=board],
-node|z20- [information=guidepost],
-node|z20- [information=map],
-node|z20- [information=terminal]
-{
-    icon-image: information;
-    icon-color: #4d4d4d;
-}
-// hide information boards as their names clutter the vie
-// showing an icon instead would be better, but we don't have one yet
-node[information] { text: ""; }
-
-*|z20- [historic=archaeological_site],
-*|z19- [historic=castle],
-*|z19- [historic=city_gate],
-*|z20- [historic=memorial],
-*|z19- [historic=monument]
-{
-    icon-image: historic;
-    icon-color: #4d4d4d;
-}
-*|z20- [memorial=statue]
-{
-    icon-image: memorial;
-    icon-color: #4d4d4d;
-}
-
-*|z20- [tourism=artwork]
-{
-    icon-image: tourism;
-    icon-color: #4d4d4d;
-}
-*|z20- [tourism=artwork][artwork_type=statue]
-{
-    icon-image: artwork_type;
-    icon-color: #4d4d4d;
-}
-
-*|z20- [man_made] { icon-color: #4d4d4d; }
-*|z20- [man_made=storage_tank],
-*|z20- [man_made=water_tower]
-{
-    icon-image: man_made;
-}
-*|z20- [man_made=silo] { icon-image: "storage_tank"; }

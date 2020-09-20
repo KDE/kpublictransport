@@ -35,6 +35,7 @@
         <file>icons/bookmaker.svg</file>
         <file>icons/bowling_alley.svg</file>
         <file>icons/bureau_de_change.svg</file>
+        <file>icons/bus_stop.svg</file>
         <file>icons/butcher.svg</file>
         <file>icons/cafe.svg</file>
         <file>icons/car.svg</file>
@@ -46,6 +47,7 @@
         <file>icons/carpet.svg</file>
         <file>icons/casino.svg</file>
         <file>icons/charging_station.svg</file>
+        <file>icons/chalet.svg</file>
         <file>icons/castle.svg</file>
         <file>icons/charity.svg</file>
         <file>icons/chemist.svg</file>
@@ -74,6 +76,7 @@
         <file>icons/ferry_terminal.svg</file>
         <file>icons/fire_station.svg</file>
         <file>icons/firepit.svg</file>
+        <file>icons/fitness.svg</file>
         <file>icons/florist.svg</file>
         <file>icons/fountain.svg</file>
         <file>icons/fuel.svg</file>
@@ -153,6 +156,8 @@
         <file>icons/ticket.svg</file>
         <file>icons/tobacco.svg</file>
         <file>icons/toilets.svg</file>
+        <file>icons/toll_booth.svg</file>
+        <file>icons/tower_defensive.svg</file>
         <file>icons/townhall.svg</file>
         <file>icons/toys.svg</file>
         <file>icons/trade.svg</file>
@@ -165,7 +170,9 @@
         <file>icons/video_games.svg</file>
         <file>icons/viewpoint.svg</file>
         <file>icons/waste_basket.svg</file>
+        <file>icons/waste_disposal.svg</file>
         <file>icons/water_park.svg</file>
         <file>icons/water_tower.svg</file>
+        <file>icons/windmill.svg</file>
     </qresource>
 </RCC>

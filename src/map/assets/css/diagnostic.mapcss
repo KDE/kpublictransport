@@ -20,8 +20,8 @@ area
 area[water],
 area[natural=water]
 {
-    fill-color: #200000ff;
-    color: #0000ff;
+    fill-color: #20000077;
+    color: #000077;
     width: 0;
     z-index: -10;
 }
@@ -58,9 +58,18 @@ line[railway]
 }
 line[waterway]
 {
-    color: #0000ff;
+    color: #000077;
     width: 3;
     opacity: 0.5;
+}
+
+/** lines relevant for navigation */
+line[highway=footway],
+line[highway=steps]
+{
+    width: 0.25;
+    z-index: 10;
+    dashes: 1,0.25;
 }
 
 * {
