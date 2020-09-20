@@ -64,6 +64,7 @@ private Q_SLOTS:
         QTest::newRow("gauge explicit") << "gauge" << "1m" << 1.0 << Unit::Meter;
         QTest::newRow("multi gauge") << "gauge" << "1000;1435" << 1.435 << Unit::Meter;
         QTest::newRow("multi gauge 2") << "gauge" << "1435;1000" << 1.435 << Unit::Meter;
+        QTest::newRow("cm") << "width" << "100 cm" << 1.0 << Unit::Meter;
     }
 
     void penWidthFromTagTest()

@@ -12,6 +12,14 @@
 
 using namespace KOSMIndoorMap;
 
+struct {
+    const char* unit;
+    double factor;
+} static constexpr const unit_conversion_table[] = {
+    { "cm", 0.01 },
+    { "ft", 0.3048 },
+};
+
 double PenWidthUtil::penWidth(OSM::Element e, const MapCSSDeclaration *decl, Unit &unit)
 {
     // literal value, possibly with a unit
@@ -45,9 +53,13 @@ double PenWidthUtil::penWidth(OSM::Element e, const MapCSSDeclaration *decl, Uni
         }
 
         // there is an explicit unit suffix;
-        if (std::strncmp(it, "ft", 2) == 0) {
-            unitConversionFactor = 0.3048;
-            it += 2;
+        for (const auto &unit : unit_conversion_table) {
+            const auto unitLen = std::strlen(unit.unit);
+            if (std::strncmp(it, unit.unit, unitLen) == 0) {
+                unitConversionFactor = unit.factor;
+                it += unitLen;
+                break;
+            }
         }
 
         if (it != valueEnd && (*it) == ';') {
