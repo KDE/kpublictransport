@@ -30,7 +30,11 @@ public:
     bool hasName() const;
     QString name() const;
     void setName(const QString &name);
+
     bool isFullLevel() const;
+    /** In case this is not a full level, this returns the numeric values of the full levels above/below. */
+    int fullLevelBelow() const;
+    int fullLevelAbove() const;
 
     int numericLevel() const;
 

@@ -3,6 +3,7 @@
 
 add_library(KOSMIndoorMapQuick STATIC
     floorlevelmodel.cpp
+    floorlevelchangemodel.cpp
     mapitem.cpp
     osmaddress.cpp
     osmelement.cpp

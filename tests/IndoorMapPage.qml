@@ -133,6 +133,11 @@ Kirigami.Page {
         }
     }
 
+    FloorLevelChangeModel {
+        id: floorLevelChangeModel
+        currentFloorLevel: map.view.floorLevel
+    }
+
     IndoorMap {
         id: map
         anchors.fill: parent
@@ -150,6 +155,16 @@ Kirigami.Page {
         }
 
         onElementPicked: {
+            floorLevelChangeModel.element = element;
+            if (floorLevelChangeModel.hasSingleLevelChange) {
+                console.log("single level change");
+                map.view.floorLevel = floorLevelChangeModel.destinationLevel;
+                return;
+            } else if (floorLevelChangeModel.hasMultipleLevelChanges) {
+                console.log("TODO: elevator");
+                return;
+            }
+
             infoModel.element = element;
             if (infoModel.name != "" || infoModel.debug) {
                 elementDetailsSheet.sheetOpen = true;

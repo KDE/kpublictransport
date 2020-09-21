@@ -54,6 +54,16 @@ bool MapLevel::isFullLevel() const
     return m_level % 10 == 0;
 }
 
+int MapLevel::fullLevelBelow() const
+{
+    return m_level < 0 ? (m_level - (10 + m_level % 10)) : (m_level - m_level % 10);
+}
+
+int MapLevel::fullLevelAbove() const
+{
+    return m_level < 0 ? (m_level - m_level % 10) : (m_level + (10 - m_level % 10));
+}
+
 int MapLevel::numericLevel() const
 {
     return m_level;
