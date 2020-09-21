@@ -491,17 +491,17 @@ node|z20-[vending=public_transport_tickets] {
 }
 
 // bicycle rental
-node|z18-[amenity=bicycle_rental] {
+*|z18-[amenity=bicycle_rental] {
     icon-color: #3daee9;
     icon-image: "bicycle_rental";
     text: ""; // suppress generic names messing up the layouting when we have realtime data (see below)
 }
-node|z18-[amenity=bicycle_rental][mx:realtime_available=0] {
+*|z18-[amenity=bicycle_rental][mx:realtime_available=0] {
     icon-color: #da4453;
     text: mx:realtime_available;
     text-color: #da4453;
 }
-node|z18-[amenity=bicycle_rental][mx:realtime_available>0] {
+*|z18-[amenity=bicycle_rental][mx:realtime_available>0] {
     icon-color: #27ae60;
     text: mx:realtime_available;
     text-color: #27ae60;

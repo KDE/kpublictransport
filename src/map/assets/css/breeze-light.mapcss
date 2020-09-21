@@ -102,6 +102,7 @@ line[indoor=wall]
     color: #888786;
     width: 0.25m;
 }
+area[indoor=column],
 area[barrier=wall],
 area[indoor=wall]
 {

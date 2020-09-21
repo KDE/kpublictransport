@@ -11,6 +11,7 @@
         <file>css/input-filter.mapcss</file>
 
         <file>icons/alcohol.svg</file>
+        <file>icons/apartment.svg</file>
         <file>icons/archaeological_site.svg</file>
         <file>icons/art.svg</file>
         <file>icons/arts_centre.svg</file>
@@ -100,6 +101,7 @@
         <file>icons/laundry.svg</file>
         <file>icons/library.svg</file>
         <file>icons/lift_gate.svg</file>
+        <file>icons/lighthouse.svg</file>
         <file>icons/map.svg</file>
         <file>icons/marketplace.svg</file>
         <file>icons/massage.svg</file>

@@ -103,6 +103,7 @@ line[indoor=wall]
     width: 0.25m;
 }
 area[barrier=wall],
+area[indoor=column],
 area[indoor=wall]
 {
     fill-color: #7f8c8d;
