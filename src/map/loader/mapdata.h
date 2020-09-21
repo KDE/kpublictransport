@@ -66,7 +66,6 @@ public:
 
 private:
     void processElements();
-    void parseLevel(QByteArray &&level, OSM::Element e, bool isDependentElement);
     void addElement(int level, OSM::Element e, bool isDependentElement);
     QString levelName(OSM::Element e);
     void filterLevels();

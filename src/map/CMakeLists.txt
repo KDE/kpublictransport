@@ -27,6 +27,7 @@ add_library(KOSMIndoorMap STATIC
     content/platformmodel.cpp
 
     loader/boundarysearch.cpp
+    loader/levelparser.cpp
     loader/mapdata.cpp
     loader/maploader.cpp
     loader/marblegeometryassembler.cpp

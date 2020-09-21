@@ -5,6 +5,7 @@
 */
 
 #include "mapdata.h"
+#include "levelparser.h"
 
 #include "style/mapcssparser.h"
 #include "style/mapcssresult.h"
@@ -152,65 +153,11 @@ void MapData::processElements()
                 m_dependentElementCounts[MapLevel{}]++;
             }
         } else {
-            parseLevel(std::move(level), e, isDependentElement);
+            LevelParser::parse(std::move(level), e, [this, isDependentElement](int level, OSM::Element e) {
+                addElement(level, e, isDependentElement);
+            });
         }
     });
-}
-
-// @see https://wiki.openstreetmap.org/wiki/Key:level
-// @see https://wiki.openstreetmap.org/wiki/Simple_Indoor_Tagging#Multi-level_features_and_repeated_features
-void MapData::parseLevel(QByteArray &&level, OSM::Element e, bool isDependentElement)
-{
-    int rangeBegin = std::numeric_limits<int>::max();
-    int numStartIdx = -1;
-
-    for (int i = 0; i < level.size(); ++i) {
-        auto c = level[i];
-
-        if (c == ',') { // fix decimal separator errors
-            qDebug() << "syntax error in level tag:" << level << e.url();
-            c = '.';
-        }
-
-        if (std::isdigit(c) || c == '.') {
-            if (numStartIdx < 0) {
-                numStartIdx = i;
-            }
-            continue;
-        }
-
-        if (c == ';') {
-            const auto l = std::atof(level.constData() + numStartIdx) * 10;
-            if (rangeBegin < l) {
-                for (int j = rangeBegin; j < l; j += 10) {
-                    addElement(j, e, isDependentElement);
-                }
-                rangeBegin = std::numeric_limits<int>::max();
-            } else {
-                addElement(l, e, isDependentElement);
-            }
-            numStartIdx = -1;
-            continue;
-        }
-
-        if (c == QLatin1Char('-')) {
-            if (numStartIdx < 0) {
-                numStartIdx = i;
-            } else {
-                rangeBegin = std::atof(level.constData() + numStartIdx) * 10;
-                numStartIdx = -1;
-            }
-        }
-    }
-
-    const auto l = std::atof(level.constData() + numStartIdx) * 10;
-    if (rangeBegin < l) {
-        for (int j = rangeBegin; j < l; j += 10) {
-            addElement(j, e, isDependentElement);
-        }
-    } else {
-        addElement(l, e, isDependentElement);
-    }
 }
 
 void MapData::addElement(int level, OSM::Element e, bool isDependentElement)
