@@ -32,7 +32,14 @@ namespace KOSMIndoorMap {
 class MapCSSDeclaration
 {
 public:
-    explicit MapCSSDeclaration();
+    /** Type of declaration. */
+    enum Type {
+        PropertyDeclaration, ///< sets a style propery
+        TagDeclaration, ///< sets a tag value
+        ClassDeclaration, ///< sets a class type
+    };
+
+    explicit MapCSSDeclaration(Type type);
     ~MapCSSDeclaration();
 
     /** The property set by this declaration. */
@@ -102,6 +109,7 @@ public:
         ShieldShape, /// @p rounded or @p rectangular
     };
 
+    Type type() const;
     Property property() const;
 
     /** The type of property. Helps to determine which kind of geometry we need to emit for a rule. */
@@ -168,6 +176,7 @@ private:
     QVector<double> m_dashValue;
     QString m_stringValue;
     Unit m_unit = NoUnit;
+    Type m_type;
 };
 
 }

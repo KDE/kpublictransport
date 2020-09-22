@@ -36,7 +36,7 @@ private Q_SLOTS:
         QFETCH(double, expectedWidth);
         QFETCH(Unit, expectedUnit);
 
-        MapCSSDeclaration decl;
+        MapCSSDeclaration decl(MapCSSDeclaration::PropertyDeclaration);
         decl.setDoubleValue(cssValue);
         if (!cssUnit.isEmpty()) {
             decl.setUnit(qPrintable(cssUnit), cssUnit.size());
@@ -80,7 +80,7 @@ private Q_SLOTS:
         node.id = -1;
         OSM::setTagValue(node, tagKey, tagValue.toUtf8());
 
-        MapCSSDeclaration decl;
+        MapCSSDeclaration decl(MapCSSDeclaration::PropertyDeclaration);
         decl.setPropertyName("width", 5);
         decl.setIdentifierValue(qPrintable(keyName), keyName.size());
         decl.compile(dataSet);
@@ -110,7 +110,7 @@ private Q_SLOTS:
         node.id = -1;
         OSM::setTagValue(node, tagKey, tagValue.toUtf8());
 
-        MapCSSDeclaration decl;
+        MapCSSDeclaration decl(MapCSSDeclaration::PropertyDeclaration);
         decl.setPropertyName("width", 5);
         decl.setIdentifierValue("width", 5);
         decl.compile(dataSet);

@@ -93,3 +93,21 @@ area[indoor=area] {
 area [!shop] {
     opacity: 0.0;
 }
+
+// set tag
+node[shop=bakery] {
+    set mx:important;
+}
+
+// set tag to a specific value
+area[shop=bakery] {
+    set mx:importance = "high";
+    set mx:importance = 20;
+}
+
+// set class (not supported yet)
+node[shop=bakery],
+node[shop=pastry]
+{
+    set .importantShops;
+}

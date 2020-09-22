@@ -109,8 +109,17 @@ struct {
     { "px", MapCSSDeclaration::Pixels },
 };
 
-MapCSSDeclaration::MapCSSDeclaration() = default;
+MapCSSDeclaration::MapCSSDeclaration(Type type)
+    : m_type(type)
+{
+}
+
 MapCSSDeclaration::~MapCSSDeclaration() = default;
+
+MapCSSDeclaration::Type MapCSSDeclaration::type() const
+{
+    return m_type;
+}
 
 MapCSSDeclaration::Property MapCSSDeclaration::property() const
 {

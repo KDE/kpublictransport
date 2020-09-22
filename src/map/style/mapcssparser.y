@@ -97,11 +97,13 @@ using namespace KOSMIndoorMap;
 %token T_ZOOM
 %token T_EXCLAMATION_MARK
 %token T_EQUALS
+%token T_DOT
 %token <binaryOp> T_BINARY_OP
 %token T_KEYWORD_IMPORT
 %token T_KEYWORD_URL
 %token T_KEYWORD_RGBA
 %token T_KEYWORD_RGB
+%token T_KEYWORD_SET
 %token <strRef> T_IDENT
 %token <uintVal> T_HEX_COLOR
 %token <str> T_STRING
@@ -236,7 +238,12 @@ Declarations:
 | Declarations Declaration { $$ = $1; $$->addDeclaration($2); }
 ;
 
-Declaration: PropertyName T_COLON PropertyValue T_SEMICOLON { $$ = $3; $$->setPropertyName($1.str, $1.len); }
+Declaration:
+  PropertyName T_COLON PropertyValue T_SEMICOLON { $$ = $3; $$->setPropertyName($1.str, $1.len); }
+| T_KEYWORD_SET Key T_EQUALS T_STRING T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration); }
+| T_KEYWORD_SET Key T_EQUALS T_DOUBLE T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration); }
+| T_KEYWORD_SET Key T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration); }
+| T_KEYWORD_SET T_DOT T_IDENT T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::ClassDeclaration); }
 ;
 
 PropertyName:
@@ -246,14 +253,14 @@ PropertyName:
 
 // TODO incomplete: missing size, url, eval
 PropertyValue:
-  Key { $$ = new MapCSSDeclaration; $$->setIdentifierValue($1.str, $1.len); }
-| T_HEX_COLOR { $$ = new MapCSSDeclaration; $$->setColorRgba($1); }
-| DoubleValue T_IDENT { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); $$->setUnit($2.str, $2.len); }
-| DoubleValue { $$ = new MapCSSDeclaration; $$->setDoubleValue($1); }
-| T_DOUBLE T_COMMA T_DOUBLE { $$ = new MapCSSDeclaration; $$->setDashesValue({$1, $3}); } // generalize to n dash distances
-| T_STRING { $$ = new MapCSSDeclaration; $$->setStringValue($1); }
+  Key { $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration); $$->setIdentifierValue($1.str, $1.len); }
+| T_HEX_COLOR { $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration); $$->setColorRgba($1); }
+| DoubleValue T_IDENT { $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration); $$->setDoubleValue($1); $$->setUnit($2.str, $2.len); }
+| DoubleValue { $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration); $$->setDoubleValue($1); }
+| T_DOUBLE T_COMMA T_DOUBLE { $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration); $$->setDashesValue({$1, $3}); } // generalize to n dash distances
+| T_STRING { $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration); $$->setStringValue($1); }
 | T_KEYWORD_RGBA T_LPAREN T_DOUBLE[R] T_COMMA T_DOUBLE[G] T_COMMA T_DOUBLE[B] T_COMMA T_DOUBLE[A] T_RPAREN {
-    $$ = new MapCSSDeclaration;
+    $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration);
     uint32_t c = 0;
     c |= (uint32_t)($A * 255.0) << 24;
     c |= (uint32_t)($R * 255.0) << 16;
@@ -262,7 +269,7 @@ PropertyValue:
     $$->setColorRgba(c);
   }
 | T_KEYWORD_RGB T_LPAREN T_DOUBLE[R] T_COMMA T_DOUBLE[G] T_COMMA T_DOUBLE[B] T_RPAREN {
-    $$ = new MapCSSDeclaration;
+    $$ = new MapCSSDeclaration(MapCSSDeclaration::PropertyDeclaration);
     uint32_t c = 0;
     c |= 0xff << 24;
     c |= (uint32_t)($R * 255.0) << 16;

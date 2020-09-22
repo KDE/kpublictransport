@@ -69,6 +69,7 @@ STRING      ["]{STRING_ELEMENT}*["]
 "*" { return T_STAR; }
 "!" { return T_EXCLAMATION_MARK; }
 "=" { return T_EQUALS; }
+"." { return T_DOT; }
 
 "!=" { yylval->binaryOp = MapCSSCondition::NotEqual; return T_BINARY_OP; }
 "<"  { yylval->binaryOp = MapCSSCondition::LessThan; return T_BINARY_OP; }
@@ -80,6 +81,7 @@ STRING      ["]{STRING_ELEMENT}*["]
 "url"     { return T_KEYWORD_URL; }
 "rgba"    { return T_KEYWORD_RGBA; }
 "rgb"     { return T_KEYWORD_RGB; }
+"set"     { return T_KEYWORD_SET; }
 
 {IDENTIFIER} {
     yylval->strRef.str = yytext;

@@ -32,7 +32,9 @@ void MapCSSRule::evaluate(const MapCSSState &state, MapCSSResult &result) const
     }
 
     for (const auto &decl : m_declarations) {
-        result.addDeclaration(decl.get());
+        if (decl->type() == MapCSSDeclaration::PropertyDeclaration) {
+            result.addDeclaration(decl.get());
+        }
     }
 }
 
