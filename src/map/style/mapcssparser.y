@@ -96,6 +96,7 @@ using namespace KOSMIndoorMap;
 %token T_STAR
 %token T_ZOOM
 %token T_EXCLAMATION_MARK
+%token T_EQUALS
 %token <binaryOp> T_BINARY_OP
 %token T_KEYWORD_IMPORT
 %token T_KEYWORD_URL
@@ -114,6 +115,7 @@ using namespace KOSMIndoorMap;
 %type <condition> Test
 %type <zoomRange> ZoomRange
 %type <condition> Condition
+%type <binaryOp> BinaryOp
 %type <strRef> Key
 %type <rule> Declarations
 %type <declaration> Declaration
@@ -212,13 +214,17 @@ Tests:
 
 Test: T_LBRACKET Condition T_RBRACKET { $$ = $2; };
 
-// TODO incomplete: unary ops, quoted names, regexps
+// TODO incomplete: quoted names, regexps
 Condition:
-  Key T_BINARY_OP T_IDENT { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3.str, $3.len); }
-| Key T_BINARY_OP DoubleValue { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3); }
+  Key BinaryOp T_IDENT { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3.str, $3.len); }
+| Key BinaryOp DoubleValue { $$ = new MapCSSCondition; $$->setKey($1.str, $1.len); $$->setOperation($2); $$->setValue($3); }
 | T_EXCLAMATION_MARK Key { $$ = new MapCSSCondition; $$->setOperation(MapCSSCondition::KeyNotSet); $$->setKey($2.str, $2.len); }
 | Key { $$ = new MapCSSCondition; $$->setOperation(MapCSSCondition::KeySet); $$->setKey($1.str, $1.len); }
 ;
+
+BinaryOp:
+  T_BINARY_OP { $$ = $1; }
+| T_EQUALS    { $$ = MapCSSCondition::Equal; }
 
 Key:
   T_IDENT { $$ = $1; }
