@@ -39,6 +39,8 @@ QVariant FloorLevelChangeModel::data(const QModelIndex &index, int role) const
             return m_levels[index.row()].name();
         case FloorLevelRole:
             return m_levels[index.row()].numericLevel();
+        case CurrentFloorRole:
+            return m_levels[index.row()].numericLevel() == m_currentFloorLevel;
     }
     return {};
 }
@@ -47,6 +49,7 @@ QHash<int, QByteArray> FloorLevelChangeModel::roleNames() const
 {
     auto n = QAbstractListModel::roleNames();
     n.insert(FloorLevelRole, "floorLevel");
+    n.insert(CurrentFloorRole, "isCurrentFloor");
     return n;
 }
 
@@ -61,6 +64,9 @@ void FloorLevelChangeModel::setCurrentFloorLevel(int level)
         return;
     }
     m_currentFloorLevel = level;
+    if (!m_levels.empty()) {
+        emit dataChanged(index(0, 0), index(rowCount() - 1, 0));
+    }
     emit contentChanged();
 }
 

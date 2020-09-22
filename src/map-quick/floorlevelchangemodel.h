@@ -45,6 +45,7 @@ public:
 
     enum Roles {
         FloorLevelRole = Qt::UserRole,
+        CurrentFloorRole,
     };
 
     int rowCount(const QModelIndex &parent = {}) const override;

@@ -148,7 +148,8 @@ Kirigami.Page {
             model: floorLevelChangeModel
             delegate: Kirigami.BasicListItem {
                 highlighted: false
-                text: model.display;
+                text: model.display
+                bold: model.isCurrentFloor
                 onClicked: {
                     elevatorSheet.sheetOpen = false;
                     map.view.floorLevel = model.floorLevel;
