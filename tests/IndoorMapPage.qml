@@ -136,6 +136,25 @@ Kirigami.Page {
     FloorLevelChangeModel {
         id: floorLevelChangeModel
         currentFloorLevel: map.view.floorLevel
+        floorLevelModel: map.floorLevels
+    }
+
+    Kirigami.OverlaySheet {
+        id: elevatorSheet
+        header: Kirigami.Heading {
+            text: "Elevator"
+        }
+        ListView {
+            model: floorLevelChangeModel
+            delegate: Kirigami.BasicListItem {
+                highlighted: false
+                text: model.display;
+                onClicked: {
+                    elevatorSheet.sheetOpen = false;
+                    map.view.floorLevel = model.floorLevel;
+                }
+            }
+        }
     }
 
     IndoorMap {
@@ -157,11 +176,11 @@ Kirigami.Page {
         onElementPicked: {
             floorLevelChangeModel.element = element;
             if (floorLevelChangeModel.hasSingleLevelChange) {
-                console.log("single level change");
+                showPassiveNotification("Switched to floor " + floorLevelChangeModel.destinationLevelName, "short");
                 map.view.floorLevel = floorLevelChangeModel.destinationLevel;
                 return;
             } else if (floorLevelChangeModel.hasMultipleLevelChanges) {
-                console.log("TODO: elevator");
+                elevatorSheet.sheetOpen = true;
                 return;
             }
 

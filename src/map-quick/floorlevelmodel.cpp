@@ -46,8 +46,11 @@ QVariant FloorLevelModel::data(const QModelIndex &index, int role) const
         return {};
     }
 
-    if (role == Qt::DisplayRole) {
-        return m_level[index.row()].name();
+    switch (role) {
+        case Qt::DisplayRole:
+            return m_level[index.row()].name();
+        case MapLevelRole:
+            return QVariant::fromValue(m_level[index.row()]);
     }
 
     return {};

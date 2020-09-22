@@ -26,6 +26,10 @@ public:
     explicit FloorLevelModel(QObject *parent = nullptr);
     ~FloorLevelModel();
 
+    enum Roles {
+        MapLevelRole = Qt::UserRole
+    };
+
     void setMapData(MapData *data);
 
     int rowCount(const QModelIndex &parent = {}) const override;

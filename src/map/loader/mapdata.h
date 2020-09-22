@@ -44,6 +44,8 @@ private:
 };
 }
 
+Q_DECLARE_METATYPE(KOSMIndoorMap::MapLevel)
+
 namespace KOSMIndoorMap {
 
 /** Raw OSM map data, separated by levels. */
