@@ -1,3 +1,8 @@
+/*
+    SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
 /** List all local public transport routes. */
 [bbox:{{bbox}}][out:xml][timeout:90];
 (
