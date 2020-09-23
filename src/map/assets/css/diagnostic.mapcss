@@ -56,6 +56,11 @@ line[railway]
     dashes: 2,2;
     width: 1.5;
 }
+line[railway=platform_edge]
+{
+    width: 2px;
+    color: #ffff7f;
+}
 line[waterway]
 {
     color: #000077;
