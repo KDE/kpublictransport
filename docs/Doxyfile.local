@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 
-EXCLUDE_PATTERNS += */lib/backends/* */graphql/* */quick/* */qmlplugin/* */tools/* */lib/gtfs/* */osm/* */generator/* */wikidata/*
+EXCLUDE_PATTERNS += */lib/backends/* */graphql/* */quick/* */qmlplugin/* */tools/* */lib/gbfs/* */lib/gtfs/* */osm/* */generator/* */wikidata/*
 PREDEFINED += \
     KPUBLICTRANSPORT_EXPORT="" \
     KPUBLICTRANSPORT_PROPERTY(type,name,setter)="Q_PROPERTY(type name READ name WRITE setter)"
