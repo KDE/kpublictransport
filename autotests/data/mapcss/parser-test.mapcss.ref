@@ -1,0 +1,129 @@
+area[railway=platform]
+{
+    color: #ff550022;
+}
+
+area[railway=platform],
+relation[type=multipolygon][railway=platform]
+{
+    color: #ff550022;
+    fill-color: #80f0e0d0;
+}
+
+area[railway=platform] node[sign]
+{
+    fill-color: #ffff0000;
+    opacity: 0.5;
+}
+
+node[building:part][building:part=elevator]
+{
+    opacity: 1;
+    color: building:color;
+}
+
+*
+{
+    text: ref;
+    text-color: #ffff00ff;
+}
+
+line
+{
+    dashes: 3, 5, ;
+    linecap: round;
+    linejoin: bevel;
+    casing-width: 1;
+    casing-color: #ff444444;
+    casing-dashes: 1, 1, ;
+}
+
+node|z12-13
+{
+}
+
+node|z10
+{
+}
+
+node|z-10
+{
+}
+
+node|z10-
+{
+}
+
+node|z12-13[name]
+{
+}
+
+node|z14-[name]
+{
+}
+
+*
+{
+    font-family: Arial;
+    font-size: 16;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+*[layer>1],
+*[layer<2],
+*[layer>=3],
+*[layer<=4]
+{
+}
+
+area[indoor=area]
+{
+    text-position: line;
+}
+
+*
+{
+    font-size: 16pt;
+    width: 42px;
+    casing-width: 2m;
+}
+
+*
+{
+    width: -10.42;
+}
+
+*
+{
+    text-color: #ffaabbcc;
+    fill-color: #80ccbbaa;
+    casing-color: #ff112233;
+    shield-color: #ffff7f3f;
+    shield-casing-color: #7fbfff3f;
+    color: "red";
+}
+
+area[!shop]
+{
+    opacity: 0;
+}
+
+node[shop=bakery]
+{
+    set mx:important;
+}
+
+area[shop=bakery]
+{
+    set mx:importance = "high";
+    set mx:importance = 20;
+}
+
+node[shop=bakery],
+node[shop=pastry]
+{
+    set .importantShops;
+}
+

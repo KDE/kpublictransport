@@ -8,6 +8,7 @@
 #include <map/style/mapcssstyle.h>
 
 #include <QFile>
+#include <QProcess>
 #include <QTest>
 
 using namespace KOSMIndoorMap;
@@ -22,9 +23,24 @@ private Q_SLOTS:
         const auto style = p.parse(QStringLiteral(SOURCE_DIR "/data/mapcss/parser-test.mapcss"));
         QVERIFY(!p.hasError());
 
-        QFile outFile(QStringLiteral(SOURCE_DIR "/data/mapcss/parser-test.mapcss.out"));
+        QFile outFile(QStringLiteral("parser-test.mapcss.out"));
         QVERIFY(outFile.open(QFile::WriteOnly));
         style.write(&outFile);
+        outFile.close();
+        QVERIFY(outFile.open(QFile::ReadOnly));
+        const auto b1 = outFile.readAll();
+
+        QFile refFile(QStringLiteral(SOURCE_DIR "/data/mapcss/parser-test.mapcss.ref"));
+        QVERIFY(refFile.open(QFile::ReadOnly));
+        const auto b2 = refFile.readAll();
+
+        if (b1 != b2) {
+            QProcess proc;
+            proc.setProcessChannelMode(QProcess::ForwardedChannels);
+            proc.start(QStringLiteral("diff"), {QStringLiteral("-u"), outFile.fileName(), refFile.fileName()});
+            proc.waitForFinished();
+        }
+        QVERIFY(b1 == b2);
     }
 
     void testBuiltInStyles_data()

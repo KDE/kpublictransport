@@ -240,10 +240,24 @@ Declarations:
 
 Declaration:
   PropertyName T_COLON PropertyValue T_SEMICOLON { $$ = $3; $$->setPropertyName($1.str, $1.len); }
-| T_KEYWORD_SET Key T_EQUALS T_STRING T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration); }
-| T_KEYWORD_SET Key T_EQUALS T_DOUBLE T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration); }
-| T_KEYWORD_SET Key T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration); }
-| T_KEYWORD_SET T_DOT T_IDENT T_SEMICOLON { $$ = new MapCSSDeclaration(MapCSSDeclaration::ClassDeclaration); }
+| T_KEYWORD_SET Key[K] T_EQUALS T_STRING[V] T_SEMICOLON {
+    $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration);
+    $$->setIdentifierValue($K.str, $K.len);
+    $$->setStringValue($V);
+  }
+| T_KEYWORD_SET Key[K] T_EQUALS T_DOUBLE[V] T_SEMICOLON {
+    $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration);
+    $$->setIdentifierValue($K.str, $K.len);
+    $$->setDoubleValue($V);
+  }
+| T_KEYWORD_SET Key[K] T_SEMICOLON {
+    $$ = new MapCSSDeclaration(MapCSSDeclaration::TagDeclaration);
+    $$->setIdentifierValue($K.str, $K.len);
+  }
+| T_KEYWORD_SET T_DOT T_IDENT[C] T_SEMICOLON {
+    $$ = new MapCSSDeclaration(MapCSSDeclaration::ClassDeclaration);
+    $$->setIdentifierValue($C.str, $C.len);
+  }
 ;
 
 PropertyName:

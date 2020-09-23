@@ -116,6 +116,20 @@ MapCSSDeclaration::MapCSSDeclaration(Type type)
 
 MapCSSDeclaration::~MapCSSDeclaration() = default;
 
+bool MapCSSDeclaration::isValid() const
+{
+    switch (m_type) {
+        case PropertyDeclaration:
+            return property() != Unknown;
+        case TagDeclaration:
+        case ClassDeclaration:
+            return !m_identValue.isEmpty();
+    }
+
+    Q_UNREACHABLE();
+    return false;
+}
+
 MapCSSDeclaration::Type MapCSSDeclaration::type() const
 {
     return m_type;
@@ -285,36 +299,56 @@ void MapCSSDeclaration::write(QIODevice *out) const
 {
     out->write("    ");
 
-    for (const auto &p : property_types) {
-        if (p.property == m_property) {
-            out->write(p.name);
-            break;
-        }
-    }
+    switch (m_type) {
+        case PropertyDeclaration:
+            for (const auto &p : property_types) {
+                if (p.property == m_property) {
+                    out->write(p.name);
+                    break;
+                }
+            }
 
-    out->write(": ");
-    if (!std::isnan(m_doubleValue)) {
-        out->write(QByteArray::number(m_doubleValue));
-    } else if (m_colorValue.isValid()) {
-        out->write(m_colorValue.name(QColor::HexArgb).toUtf8());
-    } else if (!m_dashValue.isEmpty()) {
-        for (const auto &d : m_dashValue) {
-            out->write(QByteArray::number(d));
-            out->write(", ");
-        }
-    } else if (!m_stringValue.isEmpty()) {
-        out->write("\"");
-        out->write(m_stringValue.toUtf8()); // this would need to be quoted...
-        out->write("\"");
-    } else {
-        out->write(m_identValue);
-    }
+            out->write(": ");
+            if (!std::isnan(m_doubleValue)) {
+                out->write(QByteArray::number(m_doubleValue));
+            } else if (m_colorValue.isValid()) {
+                out->write(m_colorValue.name(QColor::HexArgb).toUtf8());
+            } else if (!m_dashValue.isEmpty()) {
+                for (const auto &d : m_dashValue) {
+                    out->write(QByteArray::number(d));
+                    out->write(", ");
+                }
+            } else if (!m_stringValue.isEmpty()) {
+                out->write("\"");
+                out->write(m_stringValue.toUtf8()); // this would need to be quoted...
+                out->write("\"");
+            } else {
+                out->write(m_identValue);
+            }
 
-    for (const auto &u : unit_map) {
-        if (u.unit == m_unit) {
-            out->write(u.name);
+            for (const auto &u : unit_map) {
+                if (u.unit == m_unit) {
+                    out->write(u.name);
+                    break;
+                }
+            }
             break;
-        }
+        case TagDeclaration:
+            out->write("set ");
+            out->write(m_identValue);
+            if (!std::isnan(m_doubleValue)) {
+                out->write(" = ");
+                out->write(QByteArray::number(m_doubleValue));
+            } else if (!m_stringValue.isEmpty()) {
+                out->write(" = \"");
+                out->write(m_stringValue.toUtf8()); // this would need to be quoted...
+                out->write("\"");
+            }
+            break;
+        case ClassDeclaration:
+            out->write("set .");
+            out->write(m_identValue);
+            break;
     }
 
     out->write(";\n");

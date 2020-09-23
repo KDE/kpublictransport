@@ -109,6 +109,9 @@ public:
         ShieldShape, /// @p rounded or @p rectangular
     };
 
+    /** Checks if this is a meaningful declaration. */
+    bool isValid() const;
+
     Type type() const;
     Property property() const;
 
