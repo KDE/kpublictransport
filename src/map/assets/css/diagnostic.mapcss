@@ -76,7 +76,13 @@ line[highway=steps]
     z-index: 10;
     dashes: 1,0.25;
 }
+node|z20-[indoormark=beacon]
+{
+    icon-image: "network-wireless-hotspot";
+    icon-color: #ffff7f;
+}
 
+/** generic labels */
 * {
     text: name;
     text-color: #00ffff;
