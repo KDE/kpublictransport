@@ -57,7 +57,7 @@
         ]
     },
     "options": {
-        "endpoint": "http://efa.vmv-mbh.de/vmv/"
+        "endpoint": "https://fahrplanauskunft-mv.de/vmv3/"
     },
     "supportedLanguages": [
         "en",
