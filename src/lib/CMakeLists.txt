@@ -82,6 +82,7 @@ set(kpublictransport_srcs
     models/vehiclelayoutquerymodel.cpp
 
     networks/networks.qrc
+    networks/certs/network_certs.qrc
 )
 ecm_qt_declare_logging_category(kpublictransport_srcs HEADER logging.h IDENTIFIER KPublicTransport::Log CATEGORY_NAME org.kde.kpublictransport)
 

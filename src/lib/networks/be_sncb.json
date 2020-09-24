@@ -62,7 +62,8 @@
         "aid": "sncb-mobi",
         "clientId": "SNCB",
         "clientType": "AND",
-        "endpoint": "http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
+        "customCaCertificate": "digicert-sha2-secure-server-ca.pem",
+        "endpoint": "https://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "1024": "Tramway",
