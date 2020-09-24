@@ -6,6 +6,7 @@
     <qresource prefix="/org.kde.kpublictransport/network-certificates/">
         <!-- custom CA certs for services with broken TLS setups -->
         <file>digicert-sha2-secure-server-ca.pem</file>
+        <file>sectigo-rsa-domain-validation-secure-server-ca.pem</file>
         <file>thawte-rsa-ca-2018.pem</file>
     </qresource>
 </RCC>

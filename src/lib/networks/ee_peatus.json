@@ -1,0 +1,33 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Estonia.",
+        "Name": "Peatus"
+    },
+    "filter": {
+        "geo": [
+            [
+                21.511,
+                59.845
+            ],
+            [
+                28.246,
+                59.845
+            ],
+            [
+                28.246,
+                57.463
+            ],
+            [
+                21.511,
+                57.463
+            ]
+        ]
+    },
+    "options": {
+        "apiVersion": "no-stations",
+        "customCaCertificate": "sectigo-rsa-domain-validation-secure-server-ca.pem",
+        "endpoint": "https://api.peatus.ee/routing/v1/routers/estonia/"
+    },
+    "timezone": "Europe/Tallin",
+    "type": "otp_graphql"
+}
