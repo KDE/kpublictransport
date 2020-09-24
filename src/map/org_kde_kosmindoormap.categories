@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: none
 org.kde.kosmindoormap KOSMIndoorMap IDENTIFIER [KOSMIndoorMap::Log]
 org.kde.kosmindoormap.renderer KOSMIndoorMap (Rendering) IDENTIFIER [KOSMIndoorMap::RenderLog]
 org.kde.kosmindoormap.reassembly KOSMIndoorMap (Geometry Reassembly) IDENTIFIER [KOSMIndoorMap::ReassemblyLog]
