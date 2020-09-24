@@ -177,6 +177,7 @@ KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
     for (const auto &header : m_extraHeaders) {
         req.networkRequest().setRawHeader(header.first, header.second);
     }
+    applySslConfiguration(req.networkRequest());
     return req;
 }
 

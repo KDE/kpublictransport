@@ -15,6 +15,7 @@
 #include <QFlags>
 #include <QJsonObject>
 #include <QPolygonF>
+#include <QSslCertificate>
 #include <QTimeZone>
 #include <QVariant>
 
@@ -38,6 +39,7 @@ class VehicleLayoutRequest;
 class AbstractBackend
 {
     Q_GADGET
+    Q_PROPERTY(QString customCaCertificate WRITE setCustomCaCertificate)
 public:
     AbstractBackend();
     virtual ~AbstractBackend();
@@ -184,17 +186,22 @@ protected:
         logReply(reply->metaObject()->className() + 18, netReply, data);
     }
 
+    /** Apply custom SSL workaround on the given network request. */
+    void applySslConfiguration(QNetworkRequest &request) const;
+
 private:
     Q_DISABLE_COPY(AbstractBackend)
     QString logDir() const;
     void logRequest(const char *typeName, const QJsonObject &requestData, const QNetworkRequest &netRequest, const QByteArray &postData) const;
     void logReply(const char *typeName, QNetworkReply *netReply, const QByteArray &data) const;
+    void setCustomCaCertificate(const QString &caCert);
 
     QString m_backendId;
     QPolygonF m_geoFilter;
     Attribution m_attribution;
     QTimeZone m_timeZone;
     QStringList m_supportedLanguages;
+    QList<QSslCertificate> m_customCaCerts;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(AbstractBackend::Capabilities)

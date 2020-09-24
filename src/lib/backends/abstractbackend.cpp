@@ -237,3 +237,24 @@ bool AbstractBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Ve
     Q_UNUSED(nam);
     return false;
 }
+
+void AbstractBackend::setCustomCaCertificate(const QString &caCert)
+{
+    QFile f(QLatin1String(":/org.kde.kpublictransport/network-certificates/") + caCert);
+    if (!f.open(QFile::ReadOnly)) {
+        qCWarning(Log) << f.fileName() << f.errorString();
+        return;
+    }
+    m_customCaCerts = QSslCertificate::fromDevice(&f, QSsl::Pem);
+}
+
+void AbstractBackend::applySslConfiguration(QNetworkRequest &request) const
+{
+    if (m_customCaCerts.empty()) {
+        return;
+    }
+
+    auto sslConfig = request.sslConfiguration();
+    sslConfig.setCaCertificates(m_customCaCerts);
+    request.setSslConfiguration(std::move(sslConfig));
+}

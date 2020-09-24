@@ -74,9 +74,17 @@ int main(int argc, char **argv)
         }
 
         qDebug() << "Updating" << fileName;
-        const auto url = obj.value(QLatin1String("options")).toObject().value(QLatin1String("endpoint")).toString();
+        const auto options = obj.value(QLatin1String("options")).toObject();
+        const auto url = options.value(QLatin1String("endpoint")).toString();
+        const auto caCerts = QSslCertificate::fromPath(it.path() + QStringLiteral("/certs/") + options.value(QLatin1String("customCaCertificate")).toString());
         ++jobCount;
-        auto reply = nam.get(QNetworkRequest(QUrl(url)));
+        auto req = QNetworkRequest(QUrl(url));
+        if (!caCerts.empty()) {
+            auto sslConfig = req.sslConfiguration();
+            sslConfig.setCaCertificates(caCerts);
+            req.setSslConfiguration(std::move(sslConfig));
+        }
+        auto reply = nam.get(req);
         QObject::connect(reply, &QNetworkReply::finished, &nam, [reply, &jobCount, obj, fileName]() {
             if (reply->error() == QNetworkReply::NoError) {
                 auto newConfig = obj;

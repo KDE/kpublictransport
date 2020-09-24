@@ -67,6 +67,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
@@ -128,6 +129,7 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
@@ -195,6 +197,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
 
     query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QStringLiteral("12")); // TODO
+    query.addQueryItem(QStringLiteral("calcCO2"), QStringLiteral("1"));
 
     // saves several 100kb due to not encoding that path coordinates (which we don't even need) as XML
     query.addQueryItem(QStringLiteral("coordListOutputFormat"), QStringLiteral("STRING"));
@@ -202,6 +205,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
