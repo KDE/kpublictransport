@@ -60,9 +60,13 @@
         ]
     },
     "options": {
-        "aid": "1Rxs112shyHLatUX4fofnmdxK",
-        "clientId": "BVG",
-        "clientType": "AND",
+        "auth": {
+            "aid": "1Rxs112shyHLatUX4fofnmdxK"
+        },
+        "client": {
+            "id": "BVG",
+            "type": "AND"
+        },
         "endpoint": "https://bvg-apps.hafas.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "RapidTransit",

@@ -298,31 +298,8 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
 QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QByteArray &postData) const
 {
     QJsonObject top;
-    {
-        QJsonObject auth;
-        auth.insert(QStringLiteral("aid"), m_aid);
-        auth.insert(QStringLiteral("type"), QLatin1String("AID"));
-        for (auto it = m_extraAuthParams.begin(); it != m_extraAuthParams.end(); ++it) {
-            auth.insert(it.key(), it.value());
-        }
-        top.insert(QStringLiteral("auth"), auth);
-    }
-    {
-        QJsonObject client;
-        if (!m_clientId.isEmpty()) {
-            client.insert(QStringLiteral("id"), m_clientId);
-        }
-        if (!m_clientType.isEmpty()) {
-            client.insert(QStringLiteral("type"), m_clientType);
-        }
-        if (!m_clientVersion.isEmpty()) {
-            client.insert(QStringLiteral("v"), m_clientVersion);
-        }
-        if (!m_clientName.isEmpty()) {
-            client.insert(QStringLiteral("name"), m_clientName);
-        }
-        top.insert(QStringLiteral("client"), client);
-    }
+    top.insert(QStringLiteral("auth"), m_auth);
+    top.insert(QStringLiteral("client"), m_client);
     if (!m_extParam.isEmpty()) {
         top.insert(QStringLiteral("ext"), m_extParam);
     }
@@ -373,6 +350,14 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, QLatin1String("application/json"));
     applySslConfiguration(netReq);
     return netReq;
+}
+
+void HafasMgateBackend::setAuthObject(const QJsonObject& obj)
+{
+    m_auth = obj;
+    if (!m_auth.contains(QLatin1String("type")) && m_auth.contains(QLatin1String("aid"))) {
+        m_auth.insert(QStringLiteral("type"), QLatin1String("AID"));
+    }
 }
 
 void HafasMgateBackend::setMicMacSalt(const QString &salt)

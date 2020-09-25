@@ -57,9 +57,13 @@
         ]
     },
     "options": {
-        "aid": "vj5d7i3g9m5d7e3",
-        "clientName": "VMT",
-        "clientType": "AND",
+        "auth": {
+            "aid": "vj5d7i3g9m5d7e3"
+        },
+        "client": {
+            "name": "VMT",
+            "type": "AND"
+        },
         "endpoint": "https://vmt.hafas.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

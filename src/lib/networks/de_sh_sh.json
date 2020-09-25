@@ -64,9 +64,13 @@
         ]
     },
     "options": {
-        "aid": "r0Ot9FLFNAFxijLW",
-        "clientId": "NAHSH",
-        "clientType": "AND",
+        "auth": {
+            "aid": "r0Ot9FLFNAFxijLW"
+        },
+        "client": {
+            "id": "NAHSH",
+            "type": "AND"
+        },
         "endpoint": "https://nah.sh.hafas.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

@@ -23,19 +23,16 @@ class LocationRequest;
 class HafasMgateBackend : public HafasBackend
 {
     Q_GADGET
-    Q_PROPERTY(QString aid MEMBER m_aid)
-    Q_PROPERTY(QString clientId MEMBER m_clientId)
-    Q_PROPERTY(QString clientType MEMBER m_clientType)
-    Q_PROPERTY(QString clientVersion MEMBER m_clientVersion)
-    Q_PROPERTY(QString clientName MEMBER m_clientName)
+    /** The auth data block in every request. */
+    Q_PROPERTY(QJsonObject auth WRITE setAuthObject)
+    /** The client data sent in every request. */
+    Q_PROPERTY(QJsonObject client MEMBER m_client)
     Q_PROPERTY(QString ext MEMBER m_extParam)
     Q_PROPERTY(QString version MEMBER m_version)
     /** Salt for request mic/mac parameters, hex-encoded. */
     Q_PROPERTY(QString micMacSalt WRITE setMicMacSalt)
     /** Salt for the request checksum parameter, hex-encoded. */
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
-    /** Additional authentication parameters, passed verbatim to the backend. */
-    Q_PROPERTY(QJsonObject extraAuthParams MEMBER m_extraAuthParams)
     /** Supports the stbFltrEquiv parameter for departure queries (default @c true). */
     Q_PROPERTY(bool supportsStbFltrEquiv MEMBER m_supportsStbFltrEquiv)
 
@@ -55,22 +52,19 @@ private:
     QNetworkRequest makePostRequest(const QJsonObject &svcReq, QByteArray &postData) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
+    void setAuthObject(const QJsonObject &obj);
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
     QJsonObject locationToJson(const Location &loc) const;
 
     mutable HafasMgateParser m_parser;
 
-    QString m_aid;
-    QString m_clientId;
-    QString m_clientType;
-    QString m_clientVersion;
-    QString m_clientName;
+    QJsonObject m_auth;
+    QJsonObject m_client;
     QString m_extParam;
     QString m_version;
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
-    QJsonObject m_extraAuthParams;
     bool m_supportsStbFltrEquiv = true;
 };
 

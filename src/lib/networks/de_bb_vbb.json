@@ -59,9 +59,13 @@
         ]
     },
     "options": {
-        "aid": "hafas-vbb-apps",
-        "clientId": "VBB",
-        "clientType": "AND",
+        "auth": {
+            "aid": "hafas-vbb-apps"
+        },
+        "client": {
+            "id": "VBB",
+            "type": "AND"
+        },
         "endpoint": "https://fahrinfo.vbb.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "RapidTransit",

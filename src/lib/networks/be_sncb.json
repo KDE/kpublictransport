@@ -59,9 +59,13 @@
         ]
     },
     "options": {
-        "aid": "sncb-mobi",
-        "clientId": "SNCB",
-        "clientType": "AND",
+        "auth": {
+            "aid": "sncb-mobi"
+        },
+        "client": {
+            "id": "SNCB",
+            "type": "AND"
+        },
         "customCaCertificate": "digicert-sha2-secure-server-ca.pem",
         "endpoint": "https://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
         "lineModeMap": {

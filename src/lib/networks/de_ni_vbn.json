@@ -61,9 +61,13 @@
         ]
     },
     "options": {
-        "aid": "rnOHBWhesvc7gFkd",
-        "clientId": "VBN",
-        "clientType": "AND",
+        "auth": {
+            "aid": "rnOHBWhesvc7gFkd"
+        },
+        "client": {
+            "id": "VBN",
+            "type": "AND"
+        },
         "endpoint": "https://fahrplaner.vbn.de/hafas/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

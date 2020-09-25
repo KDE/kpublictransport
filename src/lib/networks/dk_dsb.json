@@ -60,9 +60,13 @@
         ]
     },
     "options": {
-        "aid": "irkmpm9mdznstenr-android",
-        "clientId": "DK",
-        "clientType": "AND",
+        "auth": {
+            "aid": "irkmpm9mdznstenr-android"
+        },
+        "client": {
+            "id": "DK",
+            "type": "AND"
+        },
         "endpoint": "https://mobilapps.rejseplanen.dk/bin/iphone.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

@@ -54,10 +54,14 @@
         ]
     },
     "options": {
-        "aid": "ioslaskdcndrjcmlsd",
-        "clientId": "CMTA",
-        "clientName": "CapMetro",
-        "clientType": "IPH",
+        "auth": {
+            "aid": "ioslaskdcndrjcmlsd"
+        },
+        "client": {
+            "id": "CMTA",
+            "name": "CapMetro",
+            "type": "IPH"
+        },
         "endpoint": "https://capmetro.hafas.cloud/bin/mgate.exe",
         "lineModeMap": {
             "32": "Bus",

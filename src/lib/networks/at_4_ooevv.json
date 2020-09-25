@@ -56,15 +56,19 @@
         ]
     },
     "options": {
-        "aid": "hf7mcf9bv3nv8g5f",
-        "clientId": "VAO",
-        "clientType": "AND",
-        "endpoint": "https://verkehrsauskunft.ooevv.at/bin/mgate.exe",
-        "extraAuthParams": {
+        "auth": {
+            "aid": "and20201hf7mcf9bv3nv8g5f",
             "pw": "87a6f8ZbnBih32",
             "type": "USER",
             "user": "mobile"
         },
+        "client": {
+            "id": "VAO",
+            "l": "vs_ooevv",
+            "type": "AND"
+        },
+        "endpoint": "https://app.verkehrsauskunft.at/bin/mgate.exe",
+        "ext": "VAO.11",
         "lineModeMap": {
             "1": "Train",
             "1024": "Taxi",
@@ -80,7 +84,9 @@
             "64": "Bus"
         },
         "locationIdentifierType": "vao",
-        "version": "1.18"
+        "micMacSalt": "6633673735743766726667323938336A",
+        "supportsStbFltrEquiv": false,
+        "version": "1.27"
     },
     "supportedLanguages": [
         "en",

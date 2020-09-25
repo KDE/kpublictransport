@@ -56,9 +56,13 @@
         ]
     },
     "options": {
-        "aid": "Aqf9kNqJLjxFx6vv",
-        "clientId": "CDT",
-        "clientType": "AND",
+        "auth": {
+            "aid": "Aqf9kNqJLjxFx6vv"
+        },
+        "client": {
+            "id": "CDT",
+            "type": "AND"
+        },
         "endpoint": "https://travelplanner.mobiliteit.lu/hafas/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

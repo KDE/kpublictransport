@@ -55,9 +55,13 @@
         ]
     },
     "options": {
-        "aid": "kEwHkFUCIL500dym",
-        "clientId": "BART",
-        "clientType": "WEB",
+        "auth": {
+            "aid": "kEwHkFUCIL500dym"
+        },
+        "client": {
+            "id": "BART",
+            "type": "WEB"
+        },
         "endpoint": "https://planner.bart.gov/bin/mgate.exe",
         "lineModeMap": {
             "128": "RapidTransit",

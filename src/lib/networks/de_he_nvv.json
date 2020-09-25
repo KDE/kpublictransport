@@ -57,10 +57,14 @@
         ]
     },
     "options": {
-        "aid": "Kt8eNOH7qjVeSxNA",
-        "clientId": "NVV",
-        "clientName": "NVVMobilPROD_APPSTORE",
-        "clientType": "IPH",
+        "auth": {
+            "aid": "Kt8eNOH7qjVeSxNA"
+        },
+        "client": {
+            "id": "NVV",
+            "name": "NVVMobilPROD_APPSTORE",
+            "type": "IPH"
+        },
         "endpoint": "https://auskunft.nvv.de/auskunft/bin/app/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

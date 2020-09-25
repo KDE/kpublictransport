@@ -60,9 +60,13 @@
         ]
     },
     "options": {
-        "aid": "OWDL4fE4ixNiPBBm",
-        "clientId": "OEBB",
-        "clientType": "AND",
+        "auth": {
+            "aid": "OWDL4fE4ixNiPBBm"
+        },
+        "client": {
+            "id": "OEBB",
+            "type": "AND"
+        },
         "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

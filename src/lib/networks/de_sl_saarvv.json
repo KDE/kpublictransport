@@ -57,10 +57,14 @@
         ]
     },
     "options": {
-        "aid": "51XfsVqgbdA6oXzHrx75jhlocRg6Xe",
-        "clientId": "ZPS-SAAR",
-        "clientName": "Saarfahrplan",
-        "clientType": "AND",
+        "auth": {
+            "aid": "51XfsVqgbdA6oXzHrx75jhlocRg6Xe"
+        },
+        "client": {
+            "id": "ZPS-SAAR",
+            "name": "Saarfahrplan",
+            "type": "AND"
+        },
         "endpoint": "https://saarfahrplan.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

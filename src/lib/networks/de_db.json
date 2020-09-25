@@ -60,12 +60,16 @@
         ]
     },
     "options": {
-        "aid": "n91dB8Z77MLdoR0K",
+        "auth": {
+            "aid": "n91dB8Z77MLdoR0K"
+        },
         "checksumSalt": "6264493855566A34304B356676787766",
-        "clientId": "DB",
-        "clientName": "DB Navigator",
-        "clientType": "AND",
-        "clientVersion": "19040000",
+        "client": {
+            "id": "DB",
+            "name": "DB Navigator",
+            "type": "AND",
+            "v": 19040000
+        },
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
         "ext": "DB.R19.12.a",
         "lineModeMap": {

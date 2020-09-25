@@ -63,9 +63,13 @@
         ]
     },
     "options": {
-        "aid": "nasa-apps",
-        "clientId": "NASA",
-        "clientType": "AND",
+        "auth": {
+            "aid": "nasa-apps"
+        },
+        "client": {
+            "id": "NASA",
+            "type": "AND"
+        },
         "endpoint": "https://reiseauskunft.insa.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

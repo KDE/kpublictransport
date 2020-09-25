@@ -65,9 +65,13 @@
         ]
     },
     "options": {
-        "aid": "DrxJYtYZQpEBCtcb",
-        "clientId": "HAFAS",
-        "clientType": "AND",
+        "auth": {
+            "aid": "DrxJYtYZQpEBCtcb"
+        },
+        "client": {
+            "id": "HAFAS",
+            "type": "AND"
+        },
         "endpoint": "https://mobil.rozklad-pkp.pl:8019/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

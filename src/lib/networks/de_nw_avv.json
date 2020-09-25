@@ -61,9 +61,13 @@
         ]
     },
     "options": {
-        "aid": "4vV1AcH3N511icH",
-        "clientId": "AVV_AACHEN",
-        "clientType": "WEB",
+        "auth": {
+            "aid": "4vV1AcH3N511icH"
+        },
+        "client": {
+            "id": "AVV_AACHEN",
+            "type": "WEB"
+        },
         "endpoint": "https://auskunft.avv.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "LocalTrain",

@@ -62,9 +62,13 @@
         ]
     },
     "options": {
-        "aid": "h5o3n7f4t2m8l9x1",
-        "clientId": "SAMTRAFIKEN",
-        "clientType": "WEB",
+        "auth": {
+            "aid": "h5o3n7f4t2m8l9x1"
+        },
+        "client": {
+            "id": "SAMTRAFIKEN",
+            "type": "WEB"
+        },
         "endpoint": "https://reseplanerare.resrobot.se/bin/mgate.exe",
         "lineModeMap": {
             "1": "Air",

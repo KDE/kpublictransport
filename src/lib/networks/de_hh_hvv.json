@@ -57,10 +57,14 @@
         ]
     },
     "options": {
-        "aid": "andcXUmC9Mq6hjrwDIGd2l3oiaMrTUzyH",
-        "clientId": "HVV",
-        "clientName": "HVVPROD_ADHOC",
-        "clientType": "AND",
+        "auth": {
+            "aid": "andcXUmC9Mq6hjrwDIGd2l3oiaMrTUzyH"
+        },
+        "client": {
+            "id": "HVV",
+            "name": "HVVPROD_ADHOC",
+            "type": "AND"
+        },
         "endpoint": "https://hvv-app.hafas.de/bin/mgate.exe",
         "lineModeMap": {
             "1": "Metro",

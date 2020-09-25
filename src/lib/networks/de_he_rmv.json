@@ -64,10 +64,14 @@
         ]
     },
     "options": {
-        "aid": "x0k4ZR33ICN9CWmj",
-        "clientId": "RMV",
-        "clientName": "webapp",
-        "clientType": "WEB",
+        "auth": {
+            "aid": "x0k4ZR33ICN9CWmj"
+        },
+        "client": {
+            "id": "RMV",
+            "name": "webapp",
+            "type": "WEB"
+        },
         "endpoint": "https://www.rmv.de/auskunft/bin/jp/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",

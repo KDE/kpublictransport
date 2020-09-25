@@ -91,4 +91,17 @@ ListModel {
     ListElement { label: "Ulm Hauptbahnhof"; lat: 48.39952; lon: 9.98266 }
     ListElement { label: "Verschwörhaus Ulm"; lat: 48.3964; lon: 9.99023 }
     ListElement { label: "Herrenberg Bahnhof"; lat: 48.59409; lon: 8.86291 }
+
+    ListElement { label: "Linz/Donau Hauptbahnhof"; lat: 48.29058; lon: 14.29081 }
+
+    ListElement { label: "Tallinn Central Station"; lat: 59.44032; lon: 24.73734 }
+
+    ListElement { label: "Hamburg Hauptbahnhof"; lat: 53.55299; lon: 10.00702 }
+    ListElement { label: "Hamburg Altona"; lat: 53.55284; lon: 9.93569 }
+    ListElement { label: "Bremen Hauptbahnhof"; lat: 53.08307; lon: 8.81384 }
+
+    ListElement { label: "Aachen Hauptbahnhof"; lat: 50.76788; lon: 6.09135 }
+
+    ListElement { label: "Saarbrücken Hauptbahnhof"; lat: 49.24133; lon: 6.99032 }
+    ListElement { label: "Luxembourg Gare Centrale"; lat: 49.59962; lon: 6.13473 }
 }
