@@ -19,6 +19,7 @@ ecm_add_test(platformtest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(notestest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(backendtest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(linemetadatatest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
+ecm_add_test(networkconfigtest.cpp LINK_LIBRARIES Qt5::Test)
 
 ecm_add_test(navitiaparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(hafasmgateparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)

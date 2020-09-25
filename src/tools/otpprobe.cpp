@@ -62,12 +62,7 @@ int main(int argc, char **argv)
             continue;
         }
 
-        QJsonParseError docError;
-        const auto doc = QJsonDocument::fromJson(f.readAll(), &docError);
-        if (docError.error != QJsonParseError::NoError) {
-            qWarning() << "JSON parser error in" << fileName << docError.errorString();
-            continue;
-        }
+        const auto doc = QJsonDocument::fromJson(f.readAll());
         const auto obj = doc.object();
         if (!obj.value(QLatin1String("type")).toString().startsWith(QLatin1String("otp_"))) {
             continue;

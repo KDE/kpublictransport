@@ -207,12 +207,7 @@ int main(int argc, char **argv)
             continue;
         }
 
-        QJsonParseError docError;
-        const auto doc = QJsonDocument::fromJson(f.readAll(), &docError);
-        if (docError.error != QJsonParseError::NoError) {
-            qWarning() << "JSON parser error in" << job.fileName << docError.errorString();
-            continue;
-        }
+        const auto doc = QJsonDocument::fromJson(f.readAll());
         const auto options = doc.object().value(QLatin1String("options")).toObject();
         job.endpoint = QUrl(options.value(QLatin1String("endpoint")).toString());
         if (!job.endpoint.isValid() || job.endpoint.scheme().isEmpty()) {
