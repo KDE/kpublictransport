@@ -162,6 +162,7 @@ struct {
     M("brand", Name, Header),
     M("brand:wikipedia", Wikipedia, UnresolvedCategory),
     M("bus_routes", Routes, Main),
+    M("buses", Routes, Main),
     M("capacity", Capacity, Parking),
     M("capacity:charging", CapacityCharing, Parking),
     M("capacity:disabled", CapacityDisabled, Parking),
@@ -475,7 +476,7 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
         }
         case Routes:
         {
-            auto l = QString::fromUtf8(m_element.tagValue("route_ref", "bus_routes")).split(QLatin1Char(';'), Qt::SkipEmptyParts);
+            auto l = QString::fromUtf8(m_element.tagValue("route_ref", "bus_routes", "buses")).split(QLatin1Char(';'), Qt::SkipEmptyParts);
             for (auto &s : l) {
                 s = s.trimmed();
             }
