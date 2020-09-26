@@ -1,7 +1,21 @@
 {
     "KPlugin": {
         "Description": "Public transport in Estonia.",
-        "Name": "Peatus"
+        "Description[es]": "Transporte público de Estonia.",
+        "Description[nl]": "Openbaar vervoer in Estland.",
+        "Description[pt]": "Transportes públicos na Estónia.",
+        "Description[pt_BR]": "Transporte público na Estônia.",
+        "Description[sv]": "Kollektivtrafik i Estland.",
+        "Description[uk]": "Громадський транспорт в Естонії.",
+        "Description[x-test]": "xxPublic transport in Estonia.xx",
+        "Name": "Peatus",
+        "Name[es]": "Peatus",
+        "Name[nl]": "Peatus",
+        "Name[pt]": "Peatus",
+        "Name[pt_BR]": "Peatus",
+        "Name[sv]": "Peatus",
+        "Name[uk]": "Peatus",
+        "Name[x-test]": "xxPeatusxx"
     },
     "filter": {
         "geo": [
