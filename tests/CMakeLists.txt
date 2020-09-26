@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: 2018 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
+add_executable(querytest querytest.cpp)
+target_link_libraries(querytest Qt5::Test KPublicTransport)
+add_custom_target(run-querytest COMMAND querytest)
+
 add_executable(departurequery departurequery.cpp departurequery.qrc)
 target_link_libraries(departurequery KPublicTransport Qt5::Quick Qt5::Widgets)
 
