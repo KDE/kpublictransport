@@ -79,7 +79,6 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
             addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
-        qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseStopFinderResponse(data);
         if (p->error() != Reply::NoError) {
@@ -141,7 +140,6 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
             addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
-        qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseDmResponse(data);
         if (p->error() != Reply::NoError) {
@@ -217,7 +215,6 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
             addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
-        qDebug() << netReply->url();
         auto p = make_parser();
         auto res = p->parseTripResponse(data);
         if (p->error() != Reply::NoError) {

@@ -290,7 +290,7 @@ template <typename RequestT>
 bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const
 {
     if (!req.backendIds().isEmpty() && !req.backendIds().contains(backend->backendId())) {
-        qCDebug(Log) << "Skipping backend" << backend->backendId() << "due to explicit request";
+        //qCDebug(Log) << "Skipping backend" << backend->backendId() << "due to explicit request";
         return true;
     }
     return shouldSkipBackend(backend);
