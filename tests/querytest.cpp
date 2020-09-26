@@ -68,7 +68,7 @@ private Q_SLOTS:
         QTest::newRow("fr_sncf") << "fr_sncf" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2", 49.00423, 2.57215);
         // TODO gb_traveline
         // TODO ie_tfi
-        // TODO lu_mobiliteitszentral
+        QTest::newRow("lu_cfl") << "lu_cfl" << loc("Luxembourg Gare Centrale", 49.59962, 6.13473) << loc("Ettelbruck", 49.84745, 6.10645);
         // TODO nl_ns
         QTest::newRow("no_entur") << "no_entur" << loc("Oslo", 59.91157, 10.75413) << loc("Bergen", 60.39033, 5.33396);
         // TODO pl_pkp

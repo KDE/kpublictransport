@@ -18,22 +18,7 @@
         "Description[sv]": "Kollektivtrafik i Luxemburg.",
         "Description[uk]": "Дані щодо громадського транспорту у Люксембурзі.",
         "Description[x-test]": "xxPublic transport in Luxembourg.xx",
-        "Name": "Mobilitéitszentral",
-        "Name[ca@valencia]": "Mobilitéitszentral",
-        "Name[ca]": "Mobilitéitszentral",
-        "Name[en_GB]": "Mobilitéitszentral",
-        "Name[es]": "Mobilitéitszentral",
-        "Name[et]": "Mobilitéitszentral",
-        "Name[fr]": "Mobilitéitszentral",
-        "Name[it]": "Mobilitéitszentral",
-        "Name[ko]": "Mobilitéitszentral",
-        "Name[nl]": "Mobilitéitszentral",
-        "Name[pt]": "Mobilitéitszentral",
-        "Name[pt_BR]": "Mobilitéitszentral",
-        "Name[sl]": "Mobilitéitszentral",
-        "Name[sv]": "Mobilitéitszentral",
-        "Name[uk]": "Mobilitéitszentral",
-        "Name[x-test]": "xxMobilitéitszentralxx"
+        "Name": "Chemins de Fer Luxembourgeois (CFL)"
     },
     "filter": {
         "geo": [
@@ -57,26 +42,24 @@
     },
     "options": {
         "auth": {
-            "aid": "Aqf9kNqJLjxFx6vv"
+            "aid": "ALT2vl7LAFDFu2dz"
         },
         "client": {
-            "id": "CDT",
+            "id": "HAFAS",
             "type": "AND"
         },
-        "endpoint": "https://travelplanner.mobiliteit.lu/hafas/mgate.exe",
+        "endpoint": "https://horaires.cfl.lu/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
-            "1024": "Bus",
-            "128": "Bus",
             "16": "LocalTrain",
             "2": "LongDistanceTrain",
-            "256": "Bus",
+            "256": "Tramway",
             "32": "Bus",
-            "4": "LocalTrain",
-            "512": "Bus",
+            "512": "Funicular",
+            "8": "LocalTrain",
             "64": "Bus"
         },
-        "version": "1.18"
+        "version": "1.16"
     },
     "type": "hafas_mgate"
 }
