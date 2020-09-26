@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 query stationsByName($name: String!) {
-  stations(name: $name) {
+  stations: stops(name: $name) {
     id: gtfsId
     name
     lat

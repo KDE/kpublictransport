@@ -61,7 +61,6 @@
         ]
     },
     "options": {
-        "apiVersion": "no-stations",
         "endpoint": "https://api.digitransit.codeformuenster.org/routing/v1/routers/cfm/"
     },
     "timezone": "Europe/Berlin",

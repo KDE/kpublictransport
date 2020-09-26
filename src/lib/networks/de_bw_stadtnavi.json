@@ -61,7 +61,6 @@
         ]
     },
     "options": {
-        "apiVersion": "no-stations",
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
         "rentalVehicleNetworks": {
             "car-sharing": {},

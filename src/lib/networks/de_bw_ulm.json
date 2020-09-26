@@ -62,7 +62,6 @@
         ]
     },
     "options": {
-        "apiVersion": "no-stations",
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",
         "rentalVehicleNetworks": {
             "openbike": {
