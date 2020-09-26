@@ -50,7 +50,7 @@ bool HafasQueryBackend::needsLocationQuery(const Location &loc, QueryType type) 
         case QueryType::Departure:
             return locationIdentifier(loc).isEmpty();
         case QueryType::Journey:
-            return locationIdentifier(loc).isEmpty() && !loc.hasCoordinate();
+            return locationIdentifier(loc).isEmpty(); // TODO coordinate-based search doesn't actually seem to work? && !loc.hasCoordinate();
     }
     return false;
 }

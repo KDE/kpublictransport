@@ -45,15 +45,25 @@ private Q_SLOTS:
     {
         HafasQueryParser p;
         p.setLocationIdentifierTypes(s("testId"));
-        const auto res = p.parseQueryLocationResponse(readFile(SOURCE_DIR "/data/hafas/query-location-response.json"));
+        auto res = p.parseQueryLocationResponse(readFile(SOURCE_DIR "/data/hafas/query-location-response.json"));
         QCOMPARE(res.size(), 1);
         QCOMPARE(p.error(), Reply::NoError);
 
-        const auto loc = res[0];
+        auto loc = res[0];
         QCOMPARE(loc.name(), s("Frankfurt (Main) Hauptbahnhof"));
         QCOMPARE(loc.identifier(s("testId")), s("3000010"));
         QCOMPARE((int)loc.latitude(), 50);
         QCOMPARE((int)loc.longitude(), 8);
+
+        res = p.parseQueryLocationResponse(readFile(SOURCE_DIR "/data/hafas/query-location-response-sbb-broken-json.json"));
+        QCOMPARE(res.size(), 1);
+        QCOMPARE(p.error(), Reply::NoError);
+
+        loc = res[0];
+        QCOMPARE(loc.name(), s("Randa"));
+        QCOMPARE(loc.identifier(s("testId")), s("8501687"));
+        QCOMPARE((int)loc.latitude(), 46);
+        QCOMPARE((int)loc.longitude(), 7);
     }
 };
 

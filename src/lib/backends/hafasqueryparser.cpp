@@ -17,6 +17,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QRegularExpression>
 #include <QXmlStreamReader>
 
 #include <zlib.h>
@@ -140,7 +141,17 @@ std::vector<Location> HafasQueryParser::parseQueryLocationResponse(const QByteAr
 {
     clearErrorState();
 
-    const auto doc = QJsonDocument::fromJson(data);
+    QJsonParseError parseError;
+    auto doc = QJsonDocument::fromJson(data, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qCWarning(Log) << parseError.errorString() << data;
+
+        // try again after attempting to fix SBB's creative JSON
+        auto s = QString::fromUtf8(data);
+        s.replace(QRegularExpression(QStringLiteral("([a-zI]+)\\s*:")), QStringLiteral("\"\\1\":"));
+        doc = QJsonDocument::fromJson(s.toUtf8(), &parseError);
+        qDebug() << parseError.errorString();
+    }
     //qDebug().noquote() << doc.toJson();
     const auto stops = doc.object().value(QLatin1String("stops")).toArray();
     std::vector<Location> res;

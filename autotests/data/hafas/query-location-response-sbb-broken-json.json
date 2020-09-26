@@ -1,0 +1,17 @@
+{ prods:"",
+stops:
+[
+{
+x : "7781458",
+y : "46099929",
+extId:"8501687",
+dist:"12",
+puic:"85",
+name : "Randa",
+prodclass : "32",
+urlname : "Randa"
+}
+]
+,error : "0"
+,numberofstops: "1"
+}

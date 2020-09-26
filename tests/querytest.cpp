@@ -43,6 +43,8 @@ private Q_SLOTS:
     {
         QStandardPaths::setTestModeEnabled(true);
         QDir(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation)).removeRecursively();
+
+        m_ptMgr.setAllowInsecureBackends(true);
     }
 
     void testBackend_data()
@@ -58,7 +60,7 @@ private Q_SLOTS:
         // national
         QTest::newRow("at_oebb") << "at_oebb" << loc("Wien Hauptbahnhof", 48.18282, 16.37859) << loc("Linz/Donau Hbf", 48.29058, 14.29018);
         QTest::newRow("be_sncb") << "be_sncb" << loc("Bruxelles Midi", 50.83604, 4.33679) << loc("Mechelen", 51.01745, 4.48336);
-        // TODO ch_sbb
+        QTest::newRow("ch_sbb") << "ch_sbb" << loc("Zürich Flughafen", 47.45015, 8.56199 ) << loc("Randa", 46.09982, 7.78149);
         QTest::newRow("de_db") << "de_db" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Frankfurt Hbf", 50.10675, 8.66281);
         // TODO dk_dsb
         // TODO ee_peatus
@@ -69,7 +71,7 @@ private Q_SLOTS:
         // TODO gb_traveline
         // TODO ie_tfi
         QTest::newRow("lu_cfl") << "lu_cfl" << loc("Luxembourg Gare Centrale", 49.59962, 6.13473) << loc("Ettelbruck", 49.84745, 6.10645);
-        // TODO nl_ns
+        QTest::newRow("nl_ns") << "nl_ns" << loc("Amsterdam Centraal", 52.37923, 4.90055) << loc("Den Haag Centraal", 52.08108, 4.32406);
         QTest::newRow("no_entur") << "no_entur" << loc("Oslo", 59.91157, 10.75413) << loc("Bergen", 60.39033, 5.33396);
         // TODO pl_pkp
         // TODO se_resrobot
