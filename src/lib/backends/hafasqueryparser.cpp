@@ -111,8 +111,11 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
     const auto endIdx = data.lastIndexOf('}');
     const auto jsonData = data.mid(startIdx, endIdx - startIdx + 1);
 
-    const auto doc = QJsonDocument::fromJson(jsonData);
-    //qDebug().noquote() << doc.toJson();
+    QJsonParseError parseError;
+    const auto doc = QJsonDocument::fromJson(jsonData, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qCWarning(Log) << parseError.errorString() << jsonData;
+    }
     const auto suggestions = doc.object().value(QLatin1String("suggestions")).toArray();
     std::vector<Location> res;
     res.reserve(suggestions.size());

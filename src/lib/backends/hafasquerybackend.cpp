@@ -23,6 +23,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QTextCodec>
 #include <QUrl>
 #include <QUrlQuery>
 
@@ -69,6 +70,22 @@ bool HafasQueryBackend::queryLocation(const LocationRequest &request, LocationRe
     return false;
 }
 
+static QByteArray readReplyAsUtf8(QNetworkReply *reply)
+{
+    const auto data = reply->readAll();
+    const auto contentType = reply->header(QNetworkRequest::ContentTypeHeader).toString();
+    const auto charsetStart = contentType.indexOf(QLatin1String("charset="));
+    if (charsetStart < 0) {
+        return data;
+    }
+    const auto codec = QTextCodec::codecForName(contentType.midRef(charsetStart + 8).toUtf8());
+    if (!codec) {
+        return data;
+    }
+
+    return codec->toUnicode(data).toUtf8();
+}
+
 bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     QUrl url(m_endpoint);
@@ -79,13 +96,14 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0A"), QStringLiteral("255"));
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0G"), request.name()); // TODO apps are seen to append '?' here
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsB"), QString::number(std::max(1, request.maximumResults())));
+    query.addQueryItem(QStringLiteral("js"), QStringLiteral("true"));
     url.setQuery(query);
 
     const QNetworkRequest netRequest(url);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
-        const auto data = netReply->readAll();
+        const auto data = readReplyAsUtf8(netReply);
         logReply(reply, netReply, data);
         netReply->deleteLater();
 
