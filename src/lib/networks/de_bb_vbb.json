@@ -67,6 +67,7 @@
             "type": "AND"
         },
         "endpoint": "https://fahrinfo.vbb.de/bin/mgate.exe",
+        "ext": "VBB.1",
         "lineModeMap": {
             "1": "RapidTransit",
             "16": "Ferry",
@@ -78,7 +79,8 @@
         },
         "locationIdentifierType": "vbb",
         "micMacSalt": "5243544a4d3266467846667878516649",
-        "version": "1.14"
+        "supportsStbFltrEquiv": false,
+        "version": "1.21"
     },
     "supportedLanguages": [
         "en",

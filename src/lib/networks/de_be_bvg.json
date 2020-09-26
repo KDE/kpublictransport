@@ -68,6 +68,7 @@
             "type": "AND"
         },
         "endpoint": "https://bvg-apps.hafas.de/bin/mgate.exe",
+        "ext": "BVG.1",
         "lineModeMap": {
             "1": "RapidTransit",
             "16": "Ferry",
@@ -78,7 +79,8 @@
             "8": "Bus"
         },
         "locationIdentifierType": "vbb",
-        "version": "1.14"
+        "supportsStbFltrEquiv": false,
+        "version": "1.21"
     },
     "supportedLanguages": [
         "en",
