@@ -68,6 +68,7 @@
             "type": "AND"
         },
         "endpoint": "https://mobilapps.rejseplanen.dk/bin/iphone.exe",
+        "ext": "DK.9",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "1024": "Tramway",
@@ -77,13 +78,15 @@
             "256": "Ferry",
             "32": "Bus",
             "4": "LocalTrain",
+            "4096": "Air",
             "512": "Metro",
             "64": "Bus",
             "8": "LocalTrain"
         },
         "locationIdentifierType": "dsb",
         "standardLocationIdentifierType": "uic",
-        "version": "1.14"
+        "supportsStbFltrEquiv": false,
+        "version": "1.21"
     },
     "supportedLanguages": [
         "en",
