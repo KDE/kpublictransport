@@ -70,6 +70,7 @@
         "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
         "lineModeMap": {
             "1": "LongDistanceTrain",
+            "1024": "Bus",
             "128": "Ferry",
             "16": "LocalTrain",
             "2": "LongDistanceTrain",
@@ -104,7 +105,7 @@
             88
         ],
         "standardLocationIdentifierType": "ibnr",
-        "version": "1.14"
+        "version": "1.16"
     },
     "supportedLanguages": [
         "en",
