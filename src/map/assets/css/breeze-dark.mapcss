@@ -161,12 +161,18 @@ area[building=yes][elevator=yes][!tourism][!shop][!amenity],
 area[building:part=yes][elevator=yes],
 area[highway=elevator],
 area[room=elevator],
+area[stairwell=elevator],
 area[indoor=room][elevator=yes]
 {
     fill-color: #27ae60;
     color: #7f8c8d;
     width: 0;
     z-index: 1;
+}
+node[highway=elevator]
+{
+    icon-image: "elevator";
+    icon-color: #27ae60;
 }
 
 area[shop=ticket],

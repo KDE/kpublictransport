@@ -153,7 +153,8 @@ line[highway=road]
 
 line[highway=service] { width: 2; }
 
-line[highway][layer<0] {
+line[highway][layer<0],
+line[highway][tunnel] {
     casing-dashes: 0.25,0.25;
     casing-linecap: none;
 }
@@ -379,7 +380,8 @@ way|z17-[public_transport=platform][bus!=yes][local_ref]
     text: local_ref;
 }
 
-node|z18-[public_transport=platform_section_sign]
+node|z18-[public_transport=platform_section_sign],
+node|z18-[railway:platform:section]
 {
     text: platform_section_sign_value;
     text-color: #fcfcfc;
@@ -387,6 +389,7 @@ node|z18-[public_transport=platform_section_sign]
     shield-casing-color: #fcfcfc;
     shield-casing-width: 1;
 }
+node|z18-[railway:platform:section] { text: railway:platform:section; }
 
 
 /** static elements
@@ -457,6 +460,11 @@ node[information] { text: ""; }
 *|z20- [man_made=silo] { icon-image: "storage_tank"; }
 *|z20- [man_made=tower][tower:type=defensive] { icon-image: "tower_defensive"; }
 
+*|z21- [advertising=column ]
+{
+    icon-image: "advertising_column";
+    icon-color: #4d4d4d;
+}
 
 /** Specific amenities/shops/etc */
 
@@ -690,6 +698,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
 // leisure elements
 *|z18- [leisure] { icon-color: #16a085; }
 *|z19- [leisure=bowling_alley],
+*|z19- [leisure=fitness_centre],
 *|z18- [leisure=golf_course],
 *|z19- [leisure=miniature_golf],
 *|z20- [leisure=outdoor_seating],
@@ -700,7 +709,7 @@ node|z18-[amenity=toilets] { // only for stand-alone nodes, otherwise we have th
     icon-image: leisure;
 }
 *|z18- [leisure=sports_centre][sport=swimming] { icon-image: "water_park"; }
-*|z19- [leisure=fitness_station][sport=fitness] { icon-image: "fitness"; }
+*|z19- [leisure=fitness_station] { icon-image: "fitness_centre"; }
 *|z20- [shop=massage]
 {
     icon-image: shop;

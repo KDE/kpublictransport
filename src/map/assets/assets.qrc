@@ -10,6 +10,7 @@
         <file>css/diagnostic.mapcss</file>
         <file>css/input-filter.mapcss</file>
 
+        <file>icons/advertising_column.svg</file>
         <file>icons/alcohol.svg</file>
         <file>icons/apartment.svg</file>
         <file>icons/archaeological_site.svg</file>
@@ -70,6 +71,7 @@
         <file>icons/doityourself.svg</file>
         <file>icons/drinking_water.svg</file>
         <file>icons/electronics.svg</file>
+        <file>icons/elevator.svg</file>
         <file>icons/embassy.svg</file>
         <file>icons/emergency_phone.svg</file>
         <file>icons/fabric.svg</file>
@@ -77,7 +79,7 @@
         <file>icons/ferry_terminal.svg</file>
         <file>icons/fire_station.svg</file>
         <file>icons/firepit.svg</file>
-        <file>icons/fitness.svg</file>
+        <file>icons/fitness_centre.svg</file>
         <file>icons/florist.svg</file>
         <file>icons/fountain.svg</file>
         <file>icons/fuel.svg</file>
