@@ -114,6 +114,7 @@ line [highway=steps] {
     color: #e0dfde;
     casing-width: 1.5;
     casing-color: #888786;
+    casing-dashes: 0;
     dashes: 0.5, 0.5;
 }
 
@@ -156,6 +157,7 @@ area[room=toilets]
     fill-color: #8ecbe9;
 }
 
+area[building=elevator],
 area[building:part=elevator],
 area[building=yes][elevator=yes][!tourism][!shop][!amenity],
 area[building:part=yes][elevator=yes],

@@ -100,26 +100,34 @@ void FloorLevelChangeModel::setElement(const OSMElement &element)
     m_element = element.element();
     m_levels.clear();
 
-    LevelParser::parse(m_element.tagValue("level", "repeat_on"), m_element, [this](int level, OSM::Element e) {
-        Q_UNUSED(e);
-        // TODO get the floor level model in here and retrieve the full MapLevel object from there, so we have proper names for the floors
-        MapLevel ml(level);
-        if (ml.isFullLevel()) {
-            appendFloorLevel(level);
-        } else {
-            appendFloorLevel(ml.fullLevelBelow());
-            appendFloorLevel(ml.fullLevelAbove());
-        }
-    });
-    std::sort(m_levels.begin(), m_levels.end());
-    m_levels.erase(std::unique(m_levels.begin(), m_levels.end()), m_levels.end());
-    qDebug() << "currently on" << m_currentFloorLevel << "can change to" << m_levels.size() << "levels";
-    for (const auto &l : m_levels) {
-        qDebug() << "  " << l.numericLevel();
+    if (isLevelChangeElement(m_element)) {
+        LevelParser::parse(m_element.tagValue("level", "repeat_on"), m_element, [this](int level, OSM::Element e) {
+            Q_UNUSED(e);
+            // TODO get the floor level model in here and retrieve the full MapLevel object from there, so we have proper names for the floors
+            MapLevel ml(level);
+            if (ml.isFullLevel()) {
+                appendFloorLevel(level);
+            } else {
+                appendFloorLevel(ml.fullLevelBelow());
+                appendFloorLevel(ml.fullLevelAbove());
+            }
+        });
+        std::sort(m_levels.begin(), m_levels.end());
+        m_levels.erase(std::unique(m_levels.begin(), m_levels.end()), m_levels.end());
     }
 
     endResetModel();
     emit contentChanged();
+}
+
+bool FloorLevelChangeModel::isLevelChangeElement(OSM::Element element) const
+{
+    return !element.tagValue("highway").isEmpty()
+        || !element.tagValue("elevator").isEmpty()
+        || !element.tagValue("stairwell").isEmpty()
+        || element.tagValue("building:part") == "elevator"
+        || element.tagValue("building") == "elevator"
+        || element.tagValue("room") == "elevator";
 }
 
 void FloorLevelChangeModel::appendFloorLevel(int level)

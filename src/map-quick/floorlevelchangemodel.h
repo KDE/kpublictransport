@@ -68,6 +68,7 @@ Q_SIGNALS:
     void contentChanged();
 
 private:
+    bool isLevelChangeElement(OSM::Element element) const;
     void appendFloorLevel(int level);
 
     int m_currentFloorLevel = 0;
