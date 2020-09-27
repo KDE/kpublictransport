@@ -114,6 +114,9 @@ void MapData::processElements()
 {
     const auto levelTag = m_dataSet.tagKey("level");
     const auto repeatOnTag = m_dataSet.tagKey("repeat_on");
+    const auto buildingLevelsTag = m_dataSet.tagKey("building:levels");
+    const auto buildingMinLevelTag = m_dataSet.tagKey("building:min_level");
+    const auto buildingLevelsUndergroundTag = m_dataSet.tagKey("building:levels:underground");
 
     MapCSSParser p;
     auto filter = p.parse(QStringLiteral(":/org.kde.kosmindoormap/assets/css/input-filter.mapcss"));
@@ -151,21 +154,37 @@ void MapData::processElements()
         e.recomputeBoundingBox(m_dataSet);
         m_bbox = OSM::unite(e.boundingBox(), m_bbox);
 
-        // level parsing
+        // element with explicit level specified
         auto level = e.tagValue(levelTag);
         if (level.isEmpty()) {
             level = e.tagValue(repeatOnTag);
         }
+        if (!level.isEmpty()) { // level-less -> outdoor
+            LevelParser::parse(std::move(level), e, [this, isDependentElement](int level, OSM::Element e) {
+                addElement(level, e, isDependentElement);
+            });
+            return;
+        }
 
-        if (level.isEmpty()) { // level-less -> outdoor
+        // multi-level building element
+        const auto buildingLevels = e.tagValue(buildingLevelsTag).toUInt();
+        if (buildingLevels > 0) {
+            const auto startLevel = e.tagValue(buildingMinLevelTag).toUInt();
+            for (auto i = startLevel; i < buildingLevels; ++i) {
+                addElement(i * 10, e, true);
+            }
+        }
+        const auto undergroundLevels = e.tagValue(buildingLevelsUndergroundTag).toUInt();
+        for (auto i = undergroundLevels; i > 0; --i) {
+            addElement(-i * 10, e, true);
+        }
+
+        // no level information available
+        if (undergroundLevels == 0 && buildingLevels == 0) {
             m_levelMap[MapLevel{}].push_back(e);
             if (isDependentElement) {
                 m_dependentElementCounts[MapLevel{}]++;
             }
-        } else {
-            LevelParser::parse(std::move(level), e, [this, isDependentElement](int level, OSM::Element e) {
-                addElement(level, e, isDependentElement);
-            });
         }
     });
 }
