@@ -64,7 +64,7 @@ private Q_SLOTS:
         QTest::newRow("de_db") << "de_db" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Frankfurt Hbf", 50.10675, 8.66281);
         QTest::newRow("dk_dsb") << "dk_dsb" << loc("København H", 55.67228, 12.56442) << loc("Københavns Lufthavn Kastrup", 55.62940, 12.64872);
         QTest::newRow("ee_peatus") << "ee_peatus" << loc("Tallinn Hobujaama", 59.43727, 24.75824) << loc("Pärnu", 58.37254, 24.55502);
-        // TODO eu_railteam
+        QTest::newRow("eu_railteam") << "eu_railteam" << loc("Bruxelles Midi", 50.8353, 4.33679) << loc("Amsterdam Centraal", 52.37923, 4.90055);
         QTest::newRow("fi_digitransit") << "fi_digitransit" << loc("Helsinki", 60.17174, 24.94148) << loc("Espoo", 60.20530, 24.65748);
         QTest::newRow("fi_waltti") << "fi_waltti" << loc("Helsinki", 60.17174, 24.94148) << loc("Tampere", 61.49859, 23.77392);
         QTest::newRow("fr_sncf") << "fr_sncf" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2", 49.00423, 2.57215);
@@ -74,7 +74,7 @@ private Q_SLOTS:
         QTest::newRow("nl_ns") << "nl_ns" << loc("Amsterdam Centraal", 52.37923, 4.90055) << loc("Den Haag Centraal", 52.08108, 4.32406);
         QTest::newRow("no_entur") << "no_entur" << loc("Oslo", 59.91157, 10.75413) << loc("Bergen", 60.39033, 5.33396);
         // TODO pl_pkp
-        // TODO se_resrobot
+        QTest::newRow("se_resrobot") << "se_resrobot" << loc("Stockholm Central", 59.32976, 18.05715) << loc("Göteborgs centralstation", 57.70913, 11.97321);
         // TODO tn_sncft
 
         // local
@@ -83,7 +83,7 @@ private Q_SLOTS:
         QTest::newRow("at_4_ooevv") << "at_4_ooevv" << loc("Linz/Donau Hbf", 48.29058, 14.29018) << loc("Hörsching", 48.24549, 14.18587);
         QTest::newRow("at_5_svv") << "at_5_svv" << loc("Salzburg Hbf", 47.81285, 13.04592) << loc("Freilassing", 47.83690, 12.97673);
         // TODO at_6_vvst
-        // TODO at_7_vvt
+        QTest::newRow("at_7_vvt") << "at_7_vvt" << loc("Innsbruck Hbf", 47.26289, 11.40163) << loc("Kufstein", 47.58308, 12.16626);
         // TODO at_8_vvv
 
         // TODO au_nsw.json
@@ -98,22 +98,22 @@ private Q_SLOTS:
         QTest::newRow("de_by_bayern") << "de_by_bayern" << loc("München Hbf", 48.14046, 11.55819) << loc("Nürnberg Hbf", 49.44559, 11.08219);
         QTest::newRow("de_by_mvv") << "de_by_mvv" << loc("München Hbf", 48.14046, 11.55819) << loc("Isartor", 48.13375, 11.58303);
         QTest::newRow("de_by_vgn") << "de_by_vgn" << loc("Erlangen", 49.59591, 11.00220) << loc("Nürnberg Hbf", 49.44559, 11.08219);
-        // TODO de_he_nvv
+        QTest::newRow("de_he_nvv") << "de_he_nvv" << loc("Kassel Hbf", 51.31836, 9.48946) << loc("Kassel Wilhelmshöhe", 51.31137, 9.44827);
         QTest::newRow("de_he_rmv") << "de_he_rmv" << loc("Frankfurt Hbf", 50.10675, 8.66281) << loc("Frankfurt Flughafen Regionalbf", 50.05129, 8.57170);
         QTest::newRow("de_hh_hvv") << "de_hh_hvv" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg Altona", 53.55284, 9.93569);
         // TODO de_mv_vmv
         QTest::newRow("de_ni_efa") << "de_ni_efa" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_gvh") << "de_ni_gvh" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_vbn") << "de_ni_vbn" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
-        // TODO de_nw_avv
+        QTest::newRow("de_nw_avv") << "de_nw_avv" << loc("Aachen Hbf", 50.76784, 6.09130) << loc("Aachen West", 50.78025, 6.07124);
         // TODO de_nw_muenster
         QTest::newRow("de_nw_vrr") << "de_nw_vrr" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
         QTest::newRow("de_nw_zks") << "de_nw_zks" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
         // TODO de_rp_takt
-        // TODO de_sh_sh
+        QTest::newRow("de_sh_sh") << "de_sh_sh" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg-Altona", 53.55284, 9.93569);
         // TODO de_sl_saarvv
         // TODO de_sn_vvo
-        // TODO de_st_insa
+        QTest::newRow("de_st_insa") << "de_st_insa" << loc("Leipzig Hbf", 51.34508, 12.38196) << loc("Leipzig S Bahnhof Messe", 51.39603, 12.38987);
         // TODO de_th_vmt
 
         QTest::newRow("fi_17_helsinki") << "fi_17_helsinki" << loc("Helsinki", 60.17174, 24.94148) << loc("Espoo", 60.20530, 24.65748);
@@ -123,7 +123,7 @@ private Q_SLOTS:
         // TODO it_21_piemonte
         // TODO it_21_torino
 
-        // TODO us_ca_bart
+        QTest::newRow("us_ca_bart") << "us_ca_bart" << loc("San Francisco International Airport (SFO)", 37.61622, -122.39180) << loc("San Francisco Powell Street",  37.78441, -122.40767);
         // TODO us_ca_la_metro
         // TODO us_ga_marta
         // TODO us_il_chicago
