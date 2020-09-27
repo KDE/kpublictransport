@@ -56,8 +56,8 @@
             "256": "Tramway",
             "32": "Bus",
             "512": "Funicular",
-            "8": "LocalTrain",
-            "64": "Bus"
+            "64": "Bus",
+            "8": "LocalTrain"
         },
         "version": "1.16"
     },
