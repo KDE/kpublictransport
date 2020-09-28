@@ -38,10 +38,14 @@ void MapCSSRule::evaluate(const MapCSSState &state, MapCSSResult &result) const
     }
 }
 
-void MapCSSRule::evaluateCanvas(MapCSSResult &result) const
+void MapCSSRule::evaluateCanvas(const MapCSSState &state, MapCSSResult &result) const
 {
-    if (m_selector->matchesCanvas()) {
-        for (const auto &decl : m_declarations) {
+    if (!m_selector->matches(state)) {
+        return;
+    }
+
+    for (const auto &decl : m_declarations) {
+        if (decl->type() == MapCSSDeclaration::PropertyDeclaration) {
             result.addDeclaration(decl.get());
         }
     }

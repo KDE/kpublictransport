@@ -52,7 +52,7 @@ public:
     void evaluate(const MapCSSState &state, MapCSSResult &result) const;
 
     /** Evaluate canvas style rules. */
-    void evaluateCanvas(MapCSSResult &result) const;
+    void evaluateCanvas(const MapCSSState &state, MapCSSResult &result) const;
 
     /** Write this style as MapCSS to @p out.
      *  Mainly used for testing.

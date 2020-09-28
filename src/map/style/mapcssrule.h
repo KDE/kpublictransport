@@ -37,7 +37,7 @@ public:
     /** Rule evaluation, @see MapCSSStyle. */
     void evaluate(const MapCSSState &state, MapCSSResult &result) const;
     /** Evaluation of canvas rules. */
-    void evaluateCanvas(MapCSSResult &result) const;
+    void evaluateCanvas(const MapCSSState &state, MapCSSResult &result) const;
 
     /** Write this rule to @p out. */
     void write(QIODevice *out) const;

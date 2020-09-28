@@ -34,11 +34,11 @@ void MapCSSStyle::evaluate(const MapCSSState &state, MapCSSResult &result) const
     }
 }
 
-void MapCSSStyle::evaluateCanvas(MapCSSResult &result) const
+void MapCSSStyle::evaluateCanvas(const MapCSSState &state, MapCSSResult &result) const
 {
     result.clear();
     for (const auto &rule : m_rules) {
-        rule->evaluateCanvas(result);
+        rule->evaluateCanvas(state, result);
     }
 }
 

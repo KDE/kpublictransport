@@ -156,7 +156,9 @@ void SceneController::updateCanvas(SceneGraph &sg) const
     m_defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
     m_defaultFont = QGuiApplication::font();
 
-    m_styleSheet->evaluateCanvas(m_styleResult);
+    MapCSSState state;
+    state.zoomLevel = m_view->zoomLevel();
+    m_styleSheet->evaluateCanvas(state, m_styleResult);
     for (auto decl : m_styleResult.declarations()) {
         switch (decl->property()) {
             case MapCSSDeclaration::FillColor:

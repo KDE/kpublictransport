@@ -31,7 +31,7 @@ public:
     /** Returns @c true if this selector matches the evaluation state. */
     virtual bool matches(const MapCSSState &state) const = 0;
     /** Selector matches the canvas element. */
-    virtual bool matchesCanvas() const = 0;
+    virtual bool matchesCanvas(const MapCSSState &state) const = 0;
 
     virtual void write(QIODevice *out) const = 0;
 
@@ -59,7 +59,7 @@ public:
 
     void compile(const OSM::DataSet &dataSet) override;
     bool matches(const MapCSSState &state) const override;
-    bool matchesCanvas() const override;
+    bool matchesCanvas(const MapCSSState &state) const override;
     void write(QIODevice* out) const override;
 
     /** @internal only to be used by the parser */
@@ -80,7 +80,7 @@ class MapCSSChainedSelector : public MapCSSSelector
 public:
     void compile(const OSM::DataSet &dataSet) override;
     bool matches(const MapCSSState &state) const override;
-    bool matchesCanvas() const override;
+    bool matchesCanvas(const MapCSSState &state) const override;
     void write(QIODevice* out) const override;
     std::vector<std::unique_ptr<MapCSSBasicSelector>> selectors;
 };
@@ -94,7 +94,7 @@ public:
 
     void compile(const OSM::DataSet &dataSet) override;
     bool matches(const MapCSSState &state) const override;
-    bool matchesCanvas() const override;
+    bool matchesCanvas(const MapCSSState &state) const override;
     void write(QIODevice* out) const override;
     std::vector<std::unique_ptr<MapCSSSelector>> selectors;
 };

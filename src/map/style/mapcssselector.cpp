@@ -74,8 +74,9 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
     return std::all_of(conditions.begin(), conditions.end(), [state](const auto &cond) { return cond->matches(state); });
 }
 
-bool MapCSSBasicSelector::matchesCanvas() const
+bool MapCSSBasicSelector::matchesCanvas(const MapCSSState &state) const
 {
+    Q_UNUSED(state); // TODO
     return objectType == Canvas;
 }
 
@@ -156,12 +157,13 @@ void MapCSSChainedSelector::compile(const OSM::DataSet &dataSet)
 
 bool MapCSSChainedSelector::matches(const MapCSSState &state) const
 {
-    // TODO
+    Q_UNUSED(state); // TODO
     return false;
 }
 
-bool MapCSSChainedSelector::matchesCanvas() const
+bool MapCSSChainedSelector::matchesCanvas(const MapCSSState &state) const
 {
+    Q_UNUSED(state);
     // canvas cannot be chained
     return false;
 }
@@ -191,9 +193,9 @@ bool MapCSSUnionSelector::matches(const MapCSSState &state) const
     return std::any_of(selectors.begin(), selectors.end(), [state](const auto &selector) { return selector->matches(state); });
 }
 
-bool MapCSSUnionSelector::matchesCanvas() const
+bool MapCSSUnionSelector::matchesCanvas(const MapCSSState &state) const
 {
-    return std::any_of(selectors.begin(), selectors.end(), [](const auto &selector) { return selector->matchesCanvas(); });
+    return std::any_of(selectors.begin(), selectors.end(), [state](const auto &selector) { return selector->matchesCanvas(state); });
 }
 
 void MapCSSUnionSelector::write(QIODevice *out) const
