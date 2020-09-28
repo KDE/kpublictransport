@@ -47,6 +47,7 @@ way[railway=disused][tunnel=yes]
 }
 
 // not yet constructed things, or already destroyed things
+way[highway=proposed],
 way[railway=proposed],
 way[railway=razed],
 area[razed:building]
