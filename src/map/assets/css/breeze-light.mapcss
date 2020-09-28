@@ -118,12 +118,17 @@ line [highway=steps] {
     dashes: 0.5, 0.5;
 }
 
+line[highway=footway][conveying=yes],
+line[highway=footway][conveying=forward],
+line[highway=footway][conveying=backward],
+line[highway=footway][conveying=reversible],
 line[highway=steps][conveying=yes],
 line[highway=steps][conveying=forward],
 line[highway=steps][conveying=backward],
 line[highway=steps][conveying=reversible]
 {
     casing-color: #006e28;
+    casing-linecap: none;
 }
 
 /** Railway stuff */
@@ -171,7 +176,7 @@ area[indoor=room][elevator=yes]
     width: 0;
     z-index: 1;
 }
-node[highway=elevator]
+node[highway=elevator][access!=no]
 {
     icon-image: "elevator";
     icon-color: #006e28;
