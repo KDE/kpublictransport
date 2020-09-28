@@ -57,12 +57,42 @@
         ]
     },
     "options": {
-        "endpoint": "https://vogtlandauskunft.de/vvv2/"
+        "auth": {
+            "aid": "and20201hf7mcf9bv3nv8g5f",
+            "pw": "87a6f8ZbnBih32",
+            "type": "USER",
+            "user": "mobile"
+        },
+        "client": {
+            "id": "VAO",
+            "l": "vs_vvv",
+            "type": "AND"
+        },
+        "endpoint": "https://fahrplan.vmobil.at/bin/mgate.exe",
+        "ext": "VAO.11",
+        "lineModeMap": {
+            "1": "Train",
+            "1024": "Taxi",
+            "128": "Bus",
+            "16": "Tramway",
+            "2": "RapidTransit",
+            "2048": "Bus",
+            "256": "Tramway",
+            "32": "LocalTrain",
+            "4": "Metro",
+            "4096": "LocalTrain",
+            "512": "Ferry",
+            "64": "Bus"
+        },
+        "locationIdentifierType": "vao",
+        "micMacSalt": "6633673735743766726667323938336A",
+        "supportsStbFltrEquiv": false,
+        "version": "1.27"
     },
     "supportedLanguages": [
         "en",
         "de"
     ],
     "timezone": "Europe/Vienna",
-    "type": "efa"
+    "type": "hafas_mgate"
 }

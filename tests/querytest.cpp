@@ -34,7 +34,7 @@ private:
         return l;
     }
 
-    static constexpr const auto TIMEOUT = 30000;
+    static constexpr const auto TIMEOUT = 60000;
 
     KPublicTransport::Manager m_ptMgr;
 
@@ -73,7 +73,7 @@ private Q_SLOTS:
         QTest::newRow("lu_cfl") << "lu_cfl" << loc("Luxembourg Gare Centrale", 49.59962, 6.13473) << loc("Ettelbruck", 49.84745, 6.10645);
         QTest::newRow("nl_ns") << "nl_ns" << loc("Amsterdam Centraal", 52.37923, 4.90055) << loc("Den Haag Centraal", 52.08108, 4.32406);
         QTest::newRow("no_entur") << "no_entur" << loc("Oslo", 59.91157, 10.75413) << loc("Bergen", 60.39033, 5.33396);
-        // TODO pl_pkp
+        QTest::newRow("pl_pkp") << "pl_pkp" << loc("Warszawa Centralna", 52.228862, 21.00323295) << loc("Gdańsk Główny", 54.35625, 18.64417);
         QTest::newRow("se_resrobot") << "se_resrobot" << loc("Stockholm Central", 59.32976, 18.05715) << loc("Göteborgs centralstation", 57.70913, 11.97321);
         // TODO tn_sncft
 
@@ -84,14 +84,14 @@ private Q_SLOTS:
         QTest::newRow("at_5_svv") << "at_5_svv" << loc("Salzburg Hbf", 47.81285, 13.04592) << loc("Freilassing", 47.83690, 12.97673);
         // TODO at_6_vvst
         QTest::newRow("at_7_vvt") << "at_7_vvt" << loc("Innsbruck Hbf", 47.26289, 11.40163) << loc("Kufstein", 47.58308, 12.16626);
-        // TODO at_8_vvv
+        QTest::newRow("at_8_vvv") << "at_8_vvv" << loc("Bregenz", 47.50307, 9.74019) << loc("Dornbirn", 47.413280, 9.743741);
 
         // TODO au_nsw.json
 
         QTest::newRow("de_bb_vbb") << "de_bb_vbb" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Berlin Alexanderplatz", 52.52147, 13.41134);
         QTest::newRow("de_be_bvg") << "de_be_bvg" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Berlin Alexanderplatz", 52.52147, 13.41134);
         QTest::newRow("de_bw_bwegt") << "de_bw_bwegt" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
-        // TODO de_bw_kvv
+        QTest::newRow("de_bw_kvv") << "de_bw_kvv" << loc("Karlsruhe Hbf", 48.99342, 8.40173 ) << loc("Ettlingen Stadt", 48.93867, 8.40953);
         QTest::newRow("de_bw_stadtnavi") << "de_bw_stadtnavi" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
         // TODO de_bw_ulm
         QTest::newRow("de_bw_vvs") << "de_bw_vvs" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
@@ -101,7 +101,7 @@ private Q_SLOTS:
         QTest::newRow("de_he_nvv") << "de_he_nvv" << loc("Kassel Hbf", 51.31836, 9.48946) << loc("Kassel Wilhelmshöhe", 51.31137, 9.44827);
         QTest::newRow("de_he_rmv") << "de_he_rmv" << loc("Frankfurt Hbf", 50.10675, 8.66281) << loc("Frankfurt Flughafen Regionalbf", 50.05129, 8.57170);
         QTest::newRow("de_hh_hvv") << "de_hh_hvv" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg Altona", 53.55284, 9.93569);
-        // TODO de_mv_vmv
+        QTest::newRow("de_mv_vmv") << "de_mv_vmv" << loc("Rostock Hauptbahnhof", 54.07814, 12.13206) << loc("Stralsund Hbf", 54.30766, 13.07931);
         QTest::newRow("de_ni_efa") << "de_ni_efa" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_gvh") << "de_ni_gvh" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_vbn") << "de_ni_vbn" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
@@ -109,7 +109,7 @@ private Q_SLOTS:
         // TODO de_nw_muenster
         QTest::newRow("de_nw_vrr") << "de_nw_vrr" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
         QTest::newRow("de_nw_zks") << "de_nw_zks" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
-        // TODO de_rp_takt
+        QTest::newRow("de_rp_rolph") << "de_rp_rolph" << loc("Mainz Hbf", 50.00113, 8.25865) << loc("Kaiserslautern Hauptbahnhof", 49.43607, 7.76849);
         QTest::newRow("de_sh_sh") << "de_sh_sh" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg-Altona", 53.55284, 9.93569);
         // TODO de_sl_saarvv
         // TODO de_sn_vvo
@@ -118,13 +118,13 @@ private Q_SLOTS:
 
         QTest::newRow("fi_17_helsinki") << "fi_17_helsinki" << loc("Helsinki", 60.17174, 24.94148) << loc("Espoo", 60.20530, 24.65748);
 
-        // TODO fr_ara_metromobilite
+        QTest::newRow("fr_ara_metromobilite") << "fr_ara_metromobilite" << loc("Grenoble", 45.19140, 5.71449) << loc("Échorolles", 45.15272, 5.71976);
 
         // TODO it_21_piemonte
-        // TODO it_21_torino
+        QTest::newRow("it_21_torino") << "it_21_torino" << loc("Torino Porta Nuova", 45.06098, 7.67777) << loc("Torino Dora GTT", 45.09068, 7.67700);
 
         QTest::newRow("us_ca_bart") << "us_ca_bart" << loc("San Francisco International Airport (SFO)", 37.61622, -122.39180) << loc("San Francisco Powell Street",  37.78441, -122.40767);
-        // TODO us_ca_la_metro
+        QTest::newRow("us_ca_la_metro") << "us_ca_la_metro" << loc("Los Angeles Union Station", 34.05563, -118.23407) << loc("South Pasadena", 34.11518, -118.15811);
         // TODO us_ga_marta
         // TODO us_il_chicago
         // TODO us_ma_mbta
@@ -149,6 +149,8 @@ private Q_SLOTS:
             QCOMPARE(spy.size(), 1);
             QCOMPARE(reply->error(), Reply::NoError);
             QCOMPARE(reply->errorString(), QString());
+            QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
+            QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 
@@ -163,6 +165,7 @@ private Q_SLOTS:
             QCOMPARE(reply->error(), Reply::NoError);
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
+            QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 
@@ -177,11 +180,18 @@ private Q_SLOTS:
             QSignalSpy spy(reply, &StopoverReply::finished);
             QVERIFY(spy.wait(TIMEOUT));
             QEXPECT_FAIL("no_entur", "name-based location search returns null results?!", Continue);
+            QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
             QCOMPARE(reply->error(), Reply::NoError);
             QEXPECT_FAIL("no_entur", "name-based location search returns null results?!", Continue);
+            QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
             QEXPECT_FAIL("no_entur", "name-based location search returns null results?!", Continue);
+            QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
+            QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 
@@ -199,6 +209,10 @@ private Q_SLOTS:
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
             QEXPECT_FAIL("at_4_ooevv", "needs investigation", Continue);
+            QEXPECT_FAIL("at_8_vvv", "needs investigation", Continue);
+            QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
+            QEXPECT_FAIL("pl_pkp", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 

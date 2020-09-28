@@ -95,6 +95,8 @@ ListModel {
     ListElement { label: "Linz/Donau Hauptbahnhof"; lat: 48.29058; lon: 14.29081 }
 
     ListElement { label: "Tallinn Central Station"; lat: 59.44032; lon: 24.73734 }
+    ListElement { label: "Warszawa Centralna"; lat: 52.22861; lon: 21.00357 }
+    ListElement { label: "Gdańsk Główny"; lat: 54.35625; lon: 18.64417 }
 
     ListElement { label: "Hamburg Hauptbahnhof"; lat: 53.55299; lon: 10.00702 }
     ListElement { label: "Hamburg Altona"; lat: 53.55284; lon: 9.93569 }

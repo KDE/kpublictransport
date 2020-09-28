@@ -104,7 +104,8 @@
             88
         ],
         "standardLocationIdentifierType": "ibnr",
-        "version": "1.18"
+        "supportsStbFltrEquiv": false,
+        "version": "1.21"
     },
     "supportedLanguages": [
         "en",
