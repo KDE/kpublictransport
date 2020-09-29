@@ -105,9 +105,14 @@ area[shop=bakery] {
     set mx:importance = 20;
 }
 
-// set class (not supported yet)
+// set class
 node[shop=bakery],
 node[shop=pastry]
 {
     set .importantShops;
 }
+
+// class selectors
+node.importantShops { color: "red"; }
+way.importantShops|z20- { color: "green"; }
+*.importantShops[access=no] { color: "blue"; }

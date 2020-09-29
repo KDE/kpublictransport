@@ -66,10 +66,12 @@ public:
     void setObjectType(const char *str, std::size_t len);
     void setZoomRange(int low, int high);
     void setConditions(MapCSSConditionHolder *conds);
+    void setClass(const char *str, std::size_t len);
 
     std::vector<std::unique_ptr<MapCSSCondition>> conditions;
     OSM::TagKey m_areaKey;
     OSM::TagKey m_typeKey;
+    QByteArray m_class;
     int m_zoomLow = 0;
     int m_zoomHigh = 0;
 };

@@ -113,6 +113,7 @@ using namespace KOSMIndoorMap;
 %type <selector> Selectors
 %type <selector> Selector
 %type <basicSelector> BasicSelector
+%type <strRef> ClassSelector
 %type <conditionHolder> Tests
 %type <condition> Test
 %type <zoomRange> ZoomRange
@@ -186,20 +187,27 @@ Selector:
   }}
 ;
 
-// TODO incomplete: missing class
+// TODO incomplete: missing pseudo-class
 BasicSelector:
-  T_IDENT ZoomRange Tests {
+  T_IDENT[I] ClassSelector[C] ZoomRange[Z] Tests[T] {
     $$ = new MapCSSBasicSelector;
-    $$->setObjectType($1.str, $1.len);
-    $$->setZoomRange($2.low, $2.high);
-    $$->setConditions($3);
+    $$->setClass($C.str, $C.len);
+    $$->setObjectType($I.str, $I.len);
+    $$->setZoomRange($Z.low, $Z.high);
+    $$->setConditions($T);
   }
-| T_STAR ZoomRange Tests {
+| T_STAR ClassSelector[C] ZoomRange[Z] Tests[T] {
     $$ = new MapCSSBasicSelector;
     $$->objectType = MapCSSBasicSelector::Any;
-    $$->setZoomRange($2.low, $2.high);
-    $$->setConditions($3);
+    $$->setClass($C.str, $C.len);
+    $$->setZoomRange($Z.low, $Z.high);
+    $$->setConditions($T);
   }
+;
+
+ClassSelector:
+  %empty { $$.str = nullptr; $$.len = 0; }
+| T_DOT T_IDENT[I] { $$.str = $I.str; $$.len = $I.len; }
 ;
 
 ZoomRange:

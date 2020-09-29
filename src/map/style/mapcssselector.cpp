@@ -112,6 +112,11 @@ void MapCSSBasicSelector::write(QIODevice *out) const
         }
     }
 
+    if (!m_class.isEmpty()) {
+        out->write(".");
+        out->write(m_class);
+    }
+
     if (m_zoomLow > 0 || m_zoomHigh > 0) {
         out->write("|z");
         if (m_zoomLow == m_zoomHigh) {
@@ -155,6 +160,13 @@ void MapCSSBasicSelector::setConditions(MapCSSConditionHolder *conds)
     }
     conditions = std::move(conds->conditions);
     delete conds;
+}
+
+void MapCSSBasicSelector::setClass(const char *str, std::size_t len)
+{
+    if (str) {
+        m_class = QByteArray(str, len);
+    }
 }
 
 

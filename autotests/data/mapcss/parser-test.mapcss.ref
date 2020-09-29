@@ -127,3 +127,18 @@ node[shop=pastry]
     set .importantShops;
 }
 
+node.importantShops
+{
+    color: "red";
+}
+
+way.importantShops|z20-
+{
+    color: "green";
+}
+
+*.importantShops[access=no]
+{
+    color: "blue";
+}
+
