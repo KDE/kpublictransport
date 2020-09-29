@@ -3,7 +3,7 @@ Upstream-Name: KPublicTransport
 Upstream-Contact: Volker Krause <vkrause@kde.org>
 Source: https://invent.kde.org/libraries/kpublictransport
 
-Files: autotests/data/*
+Files: autotests/data/departures/* autotests/data/deutschebahn/* autotests/data/efa/* autotests/data/hafas/* autotests/data/journeys/* autotests/data/navitia/* autotests/data/osminfomodel/* autotests/data/otp/*
 Copyright: none
 License: CC0-1.0
 
