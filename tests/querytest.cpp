@@ -68,8 +68,8 @@ private Q_SLOTS:
         QTest::newRow("fi_digitransit") << "fi_digitransit" << loc("Helsinki", 60.17174, 24.94148) << loc("Espoo", 60.20530, 24.65748);
         QTest::newRow("fi_waltti") << "fi_waltti" << loc("Helsinki", 60.17174, 24.94148) << loc("Tampere", 61.49859, 23.77392);
         QTest::newRow("fr_sncf") << "fr_sncf" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2", 49.00423, 2.57215);
-        // TODO gb_traveline
-        // TODO ie_tfi
+        QTest::newRow("gb_traveline") << "gb_traveline" << loc( "London Euston", 51.52814, -0.13365) << loc("Glasgow Queen Street", 55.86252, -4.25074);
+        QTest::newRow("ie_tfi") << "ie_tfi" << loc("Dublin Connolly", 53.35258, -6.24706) << loc("Cork Kent", 51.90159, -8.45823);
         QTest::newRow("lu_cfl") << "lu_cfl" << loc("Luxembourg Gare Centrale", 49.59962, 6.13473) << loc("Ettelbruck", 49.84745, 6.10645);
         QTest::newRow("nl_ns") << "nl_ns" << loc("Amsterdam Centraal", 52.37923, 4.90055) << loc("Den Haag Centraal", 52.08108, 4.32406);
         QTest::newRow("no_entur") << "no_entur" << loc("Oslo", 59.91157, 10.75413) << loc("Bergen", 60.39033, 5.33396);
@@ -82,7 +82,7 @@ private Q_SLOTS:
         QTest::newRow("at_4_linz") << "at_4_linz" << loc("Linz/Donau Hbf", 48.29007, 14.29207) << loc("Hörsching", 48.24549, 14.18587);
         QTest::newRow("at_4_ooevv") << "at_4_ooevv" << loc("Linz/Donau Hbf", 48.29058, 14.29018) << loc("Hörsching", 48.24549, 14.18587);
         QTest::newRow("at_5_svv") << "at_5_svv" << loc("Salzburg Hbf", 47.81285, 13.04592) << loc("Freilassing", 47.83690, 12.97673);
-        // TODO at_6_vvst
+        QTest::newRow("at_6_vvst") << "at_6_vvst" << loc("Graz Hauptbahnhof", 47.07236, 15.41665) << loc("Bruck an der Mur", 47.41413, 15.28000);
         QTest::newRow("at_7_vvt") << "at_7_vvt" << loc("Innsbruck Hbf", 47.26289, 11.40163) << loc("Kufstein", 47.58308, 12.16626);
         QTest::newRow("at_8_vvv") << "at_8_vvv" << loc("Bregenz", 47.50307, 9.74019) << loc("Dornbirn", 47.413280, 9.743741);
 
@@ -93,7 +93,7 @@ private Q_SLOTS:
         QTest::newRow("de_bw_bwegt") << "de_bw_bwegt" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
         QTest::newRow("de_bw_kvv") << "de_bw_kvv" << loc("Karlsruhe Hbf", 48.99342, 8.40173 ) << loc("Ettlingen Stadt", 48.93867, 8.40953);
         QTest::newRow("de_bw_stadtnavi") << "de_bw_stadtnavi" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
-        // TODO de_bw_ulm
+        QTest::newRow("de_bw_ulm") << "de_bw_ulm" << loc("Ulm Hbf", 48.39946, 9.98302) << loc("Neu Ulm", 48.39330, 10.00520);
         QTest::newRow("de_bw_vvs") << "de_bw_vvs" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
         QTest::newRow("de_by_bayern") << "de_by_bayern" << loc("München Hbf", 48.14046, 11.55819) << loc("Nürnberg Hbf", 49.44559, 11.08219);
         QTest::newRow("de_by_mvv") << "de_by_mvv" << loc("München Hbf", 48.14046, 11.55819) << loc("Isartor", 48.13375, 11.58303);
@@ -129,7 +129,7 @@ private Q_SLOTS:
         // TODO us_il_chicago
         // TODO us_ma_mbta
         // TODO us_or_trimet
-        // TODO us_tx_cmta
+        QTest::newRow("us_tx_cmta") << "us_tx_cmta" << loc("Downtown", 30.26487, -97.73928) << loc("crestview", 30.33921, -97.71968);
     }
 
     void testBackend()
@@ -165,6 +165,7 @@ private Q_SLOTS:
             QCOMPARE(reply->error(), Reply::NoError);
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
+            QEXPECT_FAIL("at_6_vvst", "needs investigation", Continue);
             QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }

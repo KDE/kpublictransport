@@ -36,6 +36,7 @@ ListModel {
 
     ListElement { label: "Glasgow Airport"; lat: 55.8641; lon: -4.43157 }
     ListElement { label: "Akademy 2007 (Glasgow)"; name: "Glasgow Queen Street Rail Station"; lat: 55.8624; lon: -4.25082 }
+    ListElement { label: "London Euston"; lat: 51.52814; lon: -0.13365 }
 
     ListElement { label: "Akademy 2004 Accomodation (Ludwigsburg)"; name: "Schlösslesfeld, Ludwigsburg"; lat: 48.9032; lon: 9.22097 }
     ListElement { label: "Akademy 2004 Venue (Ludwigsburg)"; name: "Ludwigsburg, Rathaus"; lat: 48.8929; lon: 9.18721 }
