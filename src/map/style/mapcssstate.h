@@ -17,6 +17,7 @@ class MapCSSState
 public:
     OSM::Element element;
     double zoomLevel = 0.0;
+    int floorLevel = 0;
 };
 
 }

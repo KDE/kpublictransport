@@ -40,7 +40,7 @@ void MapCSSRule::evaluate(const MapCSSState &state, MapCSSResult &result) const
 
 void MapCSSRule::evaluateCanvas(const MapCSSState &state, MapCSSResult &result) const
 {
-    if (!m_selector->matches(state)) {
+    if (!m_selector->matchesCanvas(state)) {
         return;
     }
 

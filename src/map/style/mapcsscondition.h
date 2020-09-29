@@ -36,6 +36,8 @@ public:
     void compile(const OSM::DataSet &dataSet);
     /** Condition matches the given evaluation state. */
     bool matches(const MapCSSState &state) const;
+    /** Condition matches the given state for a canvas element. */
+    bool matchesCanvas(const MapCSSState &state) const;
 
     enum Operator {
         KeySet,

@@ -158,6 +158,7 @@ void SceneController::updateCanvas(SceneGraph &sg) const
 
     MapCSSState state;
     state.zoomLevel = m_view->zoomLevel();
+    state.floorLevel = m_view->level();
     m_styleSheet->evaluateCanvas(state, m_styleResult);
     for (auto decl : m_styleResult.declarations()) {
         switch (decl->property()) {
@@ -178,6 +179,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
     MapCSSState state;
     state.element = e;
     state.zoomLevel = m_view->zoomLevel();
+    state.floorLevel = m_view->level();
     m_styleSheet->evaluate(state, m_styleResult);
 
     if (m_styleResult.hasAreaProperties()) {

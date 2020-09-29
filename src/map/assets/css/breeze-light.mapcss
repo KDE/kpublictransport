@@ -11,6 +11,8 @@ canvas {
     fill-color: #fcfcfc;
     text-color: #31363b;
 }
+canvas[level>0] { fill-color: #eff7ff; }
+canvas[level<0] { fill-color: #fffaef; }
 
 /** Generic outdoor stuff */
 area[amenity=parking],

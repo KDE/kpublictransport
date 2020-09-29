@@ -76,8 +76,18 @@ bool MapCSSBasicSelector::matches(const MapCSSState &state) const
 
 bool MapCSSBasicSelector::matchesCanvas(const MapCSSState &state) const
 {
-    Q_UNUSED(state); // TODO
-    return objectType == Canvas;
+    if (objectType != Canvas) {
+        return false;
+    }
+
+    if (m_zoomLow > 0 && state.zoomLevel < m_zoomLow) {
+        return false;
+    }
+    if (m_zoomHigh > 0 && state.zoomLevel >= m_zoomHigh) {
+        return false;
+    }
+
+    return std::all_of(conditions.begin(), conditions.end(), [state](const auto &cond) { return cond->matchesCanvas(state); });
 }
 
 struct {

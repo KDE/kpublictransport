@@ -48,6 +48,27 @@ bool MapCSSCondition::matches(const MapCSSState &state) const
     return false;
 }
 
+bool MapCSSCondition::matchesCanvas(const MapCSSState &state) const
+{
+    if (m_key != "level") {
+        return false;
+    }
+
+    switch (m_op) {
+        case KeySet:
+        case KeyNotSet:
+            return false;
+        case Equal: return (state.floorLevel/10) == m_numericValue;
+        case NotEqual: return (state.floorLevel/10) != m_numericValue;
+        case LessThan: return (state.floorLevel/10) < m_numericValue;
+        case GreaterThan: return (state.floorLevel/10) > m_numericValue;
+        case LessOrEqual: return (state.floorLevel/10) <= m_numericValue;
+        case GreaterOrEqual: return (state.floorLevel/10) >= m_numericValue;
+    }
+
+    return false;
+}
+
 void MapCSSCondition::setKey(const char *key, int len)
 {
     m_key = QByteArray(key, len);
