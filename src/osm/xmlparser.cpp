@@ -7,6 +7,7 @@
 #include "xmlparser.h"
 #include "datatypes.h"
 
+#include <QDebug>
 #include <QIODevice>
 #include <QXmlStreamReader>
 
@@ -21,7 +22,7 @@ XmlParser::XmlParser(DataSet* dataSet)
 void XmlParser::parse(QIODevice *io)
 {
     QXmlStreamReader reader(io);
-    while (!reader.atEnd()) {
+    while (!reader.atEnd() && !reader.hasError()) {
         const auto token = reader.readNext();
         if (token != QXmlStreamReader::StartElement) {
             continue;
@@ -39,6 +40,10 @@ void XmlParser::parse(QIODevice *io)
             m_error = reader.readElementText();
             return;
         }
+    }
+
+    if (reader.hasError()) {
+        qDebug() << reader.errorString();
     }
 }
 

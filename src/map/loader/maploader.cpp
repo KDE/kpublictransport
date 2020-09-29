@@ -11,6 +11,7 @@
 #include <osm/element.h>
 #include <osm/o5mparser.h>
 #include <osm/osmpbfparser.h>
+#include <osm/xmlparser.h>
 
 #include <QElapsedTimer>
 #include <QFile>
@@ -55,6 +56,10 @@ void MapLoader::loadFromFile(const QString &fileName)
     if (fileName.endsWith(QLatin1String(".osm.pbf"))) {
         OSM::OsmPbfParser p(&ds);
         p.parse(data, f.size());
+    } else if (fileName.endsWith(QLatin1String(".osm"))) {
+        qDebug() << fileName << f.pos() <<f.size();
+        OSM::XmlParser p(&ds);
+        p.parse(&f);
     } else {
         OSM::O5mParser p(&ds);
         p.parse(data, f.size());
