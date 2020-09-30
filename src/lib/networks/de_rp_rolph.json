@@ -17,7 +17,12 @@
         "Description[sv]": "Kollektivtrafik i Rhineland-Palatinate, Tyskland.",
         "Description[uk]": "Громадський транспорт у регіоні Рейнланд-Пфальц, Німеччина.",
         "Description[x-test]": "xxPublic transport in Rhineland-Palatinate, Germany.xx",
-        "Name": "Rolph"
+        "Name": "Rolph",
+        "Name[ca]": "Rolph",
+        "Name[es]": "Rolph",
+        "Name[pt]": "Rolph",
+        "Name[uk]": "Rolph",
+        "Name[x-test]": "xxRolphxx"
     },
     "filter": {
         "geo": [
