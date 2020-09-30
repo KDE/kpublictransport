@@ -1,0 +1,84 @@
+5
+  position: 1435530888 1899347070
+  edge: n1686600813
+  area: n1686600813
+  track: w214250400
+  level: 0
+  mode: 0
+6
+  position: 1435530832 1899348982
+  edge: n1686600812
+  area: n1686600812
+  track: w4841532
+  level: 0
+  mode: 0
+7
+  position: 1435530818 1899349648
+  edge: n1686600811
+  area: n1686600811
+  track: w75408304
+  level: 0
+  mode: 0
+8
+  position: 1435530887 1899351647
+  edge: n1686600810
+  area: n1686600810
+  track: w77339553
+  level: 0
+  mode: 0
+9
+  position: 1435530753 1899352345
+  edge: n1686600809
+  area: n1686600809
+  track: w6271257
+  level: 0
+  mode: 0
+10
+  position: 1435530712 1899354096
+  edge: n1686600808
+  area: n1686600808
+  track: w75412691
+  level: 0
+  mode: 0
+11
+  position: 1435530698 1899354715
+  edge: n1686600807
+  area: n1686600807
+  track: w6270944
+  level: 0
+  mode: 0
+12
+  position: 1435532195 1899356388
+  edge: n1686600814
+  area: n1686600814
+  track: w6138684
+  level: 0
+  mode: 0
+Hamburg-Altona
+  position: 1435518599 1899346270
+  edge: n300809500
+  area: n300809500
+  track: w292634009
+  level: -20
+  mode: 0
+Hamburg-Altona
+  position: 1435518777 1899349360
+  edge: n300809530
+  area: n300809530
+  track: w292634013
+  level: -20
+  mode: 0
+Hamburg-Altona
+  position: 1435518544 1899343955
+  edge: n535951138
+  area: n535951138
+  track: w42836978
+  level: -20
+  mode: 0
+Hamburg-Altona
+  position: 1435518678 1899346850
+  edge: n535951140
+  area: n535951140
+  track: w42837004
+  level: -20
+  mode: 0

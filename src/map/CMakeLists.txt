@@ -25,6 +25,7 @@ add_library(KOSMIndoorMap STATIC
 
     content/gatemodel.cpp
     content/platform.cpp
+    content/platformfinder.cpp
     content/platformmodel.cpp
 
     loader/boundarysearch.cpp
