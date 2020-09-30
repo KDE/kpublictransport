@@ -66,13 +66,13 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
     const auto &platform = m_platforms[index.row()];
     switch (role) {
         case Qt::DisplayRole:
-            return platform.name;
+            return platform.name();
         case CoordinateRole:
-            return QPointF(platform.element.center().lonF(), platform.element.center().latF());
+            return QPointF(platform.position().lonF(), platform.position().latF());
         case ElementRole:
-            return QVariant::fromValue(platform.element);
+            return QVariant::fromValue(platform.stopPoint());
         case LevelRole:
-            return platform.level;
+            return platform.level();
         case TransportModeRole:
             return platform.mode;
         case LinesRole:
@@ -129,10 +129,10 @@ void PlatformModel::populateModel()
                     const auto pt = OSM::tagValue(node, m_ptKey);
                     if (pt == "stop_point" || pt == "stop_position") {
                         Platform platform;
-                        platform.element = OSM::Element(&node);
-                        platform.track = e;
-                        platform.level = qRound((*it).first.numericLevel() / 10.0) * 10;
-                        platform.name = QString::fromUtf8(platform.element.tagValue("local_ref", "ref", "name"));
+                        platform.setStopPoint(OSM::Element(&node));
+                        platform.setTrack(e);
+                        platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                        platform.setName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")));
 
                         if (railway == "rail" || railway == "light_rail") {
                             platform.mode = Platform::Rail;
@@ -192,7 +192,7 @@ void PlatformModel::scanRoute(const OSM::Node& node, OSM::Element route)
     }
 
     for (auto &p : m_platforms) {
-        if (p.element.id() == node.id) {
+        if (p.stopPoint().id() == node.id) {
             const auto l = QString::fromUtf8(route.tagValue("ref")).split(QLatin1Char(';'));
             for (const auto &lineName : l) {
                 if (lineName.isEmpty()) {
@@ -210,21 +210,21 @@ void PlatformModel::scanRoute(const OSM::Node& node, OSM::Element route)
 
 void PlatformModel::addPlatform(Platform &&platform)
 {
-    if (platform.name.isEmpty()) {
+    if (platform.name().isEmpty()) {
         return;
     }
 
     auto it = std::lower_bound(m_platforms.begin(), m_platforms.end(), platform, comparePlatform);
-    if (it != m_platforms.end() && (*it).element.id() == platform.element.id()) {
+    if (it != m_platforms.end() && (*it).stopPoint().id() == platform.stopPoint().id()) {
         // already present
         return;
     }
 
     // look for other stops on the same track we can merge with (and that might have better names)
-    const auto newRef = platform.element.tagValue("local_ref", "ref");
+    const auto newRef = platform.stopPoint().tagValue("local_ref", "ref");
     for (auto &p : m_platforms) {
-        if (p.track == platform.track) {
-            const auto oldRef = p.element.tagValue("local_ref", "ref");
+        if (p.track() == platform.track()) {
+            const auto oldRef = p.stopPoint().tagValue("local_ref", "ref");
             if (oldRef.isEmpty() && !newRef.isEmpty()) {
                 p = platform;
                 std::sort(m_platforms.begin(), m_platforms.end(), comparePlatform);
@@ -241,24 +241,24 @@ void PlatformModel::addPlatform(Platform &&platform)
 bool PlatformModel::comparePlatform(const Platform &lhs, const Platform &rhs)
 {
     if (lhs.mode == rhs.mode) {
-        if (lhs.name == rhs.name) {
-            return lhs.element.id() < rhs.element.id();
+        if (lhs.name() == rhs.name()) {
+            return lhs.stopPoint().id() < rhs.stopPoint().id();
         }
-        return m_collator.compare(lhs.name, rhs.name) < 0;
+        return m_collator.compare(lhs.name(), rhs.name()) < 0;
     }
     return lhs.mode < rhs.mode;
 }
 
 void PlatformModel::setArrivalPlatform(const QString &name, Platform::Mode mode)
 {
-    m_arrivalPlatform.name = name;
+    m_arrivalPlatform.setName(name);
     m_arrivalPlatform.mode = mode;
     matchPlatforms();
 }
 
 void PlatformModel::setDeparturePlatform(const QString &name, Platform::Mode mode)
 {
-    m_departurePlatform.name = name;
+    m_departurePlatform.setName(name);
     m_departurePlatform.mode = mode;
     matchPlatforms();
 }
@@ -288,13 +288,13 @@ void PlatformModel::matchPlatforms()
 
 int PlatformModel::matchPlatform(const Platform &platform) const
 {
-    if (platform.name.isEmpty()) {
+    if (platform.name().isEmpty()) {
         return -1;
     }
 
     int i = 0;
     for (const auto &p : m_platforms) {
-        if (p.name == platform.name && p.mode == platform.mode) { // TODO this needs to be a bit more complex to also handle platform section
+        if (p.name() == platform.name() && p.mode == platform.mode) { // TODO this needs to be a bit more complex to also handle platform section
             return i;
         }
         ++i;

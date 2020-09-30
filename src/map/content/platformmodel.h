@@ -7,7 +7,7 @@
 #ifndef KOSMINDOORMAP_PLATFORMMODEL_H
 #define KOSMINDOORMAP_PLATFORMMODEL_H
 
-#include <osm/element.h>
+#include "platform.h"
 
 #include <QAbstractListModel>
 #include <QCollator>
@@ -15,31 +15,6 @@
 namespace KOSMIndoorMap {
 
 class MapData;
-
-/** A railway platform/track. */
-class Platform {
-    Q_GADGET
-public:
-    OSM::Element element;
-    OSM::Element track;
-    QString name;
-    int level = 0;
-    enum Mode {
-        Rail,
-        Subway,
-        Tram,
-        Bus,
-    };
-    Mode mode = Rail;
-    QStringList lines;
-
-    Q_ENUM(Mode)
-};
-
-/** A railway platform section. */
-struct PlatformSection {
-    // TODO
-};
 
 /** Lists all platforms/tracks and platform sections found in the current map.
  *  There's also the concept of (optional) arrival/departure platforms in here to highlight
@@ -112,7 +87,5 @@ private:
 };
 
 }
-
-Q_DECLARE_METATYPE(KOSMIndoorMap::Platform)
 
 #endif // KOSMINDOORMAP_PLATFORMMODEL_H
