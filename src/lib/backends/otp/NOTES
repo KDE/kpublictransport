@@ -1,3 +1,7 @@
 These queries can be tested interactively:
 - Digitransit: https://api.digitransit.fi/graphiql/hsl
 - Entur: https://api.entur.io/journey-planner/v2/ide/
+
+
+SPDX-FileCopyrightText: none
+SPDX-License-Identifier: CC0-1.0

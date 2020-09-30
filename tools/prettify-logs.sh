@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# SPDX-FileCopyrightText: 2018 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+#
 # Makes network repsonses in the log folder easier to read by formatting and unpacking them
 #
 
