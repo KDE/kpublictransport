@@ -78,7 +78,7 @@ private Q_SLOTS:
         // TODO tn_sncft
 
         // local
-        // TODO at_3_vor
+        QTest::newRow("at_3_vor") << "at_3_vor" << loc("Wien Hauptbahnhof", 48.185184, 16.37641) << loc("Wien Flughafen", 48.12012, 16.56441);
         QTest::newRow("at_4_linz") << "at_4_linz" << loc("Linz/Donau Hbf", 48.29007, 14.29207) << loc("Hörsching", 48.24549, 14.18587);
         QTest::newRow("at_4_ooevv") << "at_4_ooevv" << loc("Linz/Donau Hbf", 48.29058, 14.29018) << loc("Hörsching", 48.24549, 14.18587);
         QTest::newRow("at_5_svv") << "at_5_svv" << loc("Salzburg Hbf", 47.81285, 13.04592) << loc("Freilassing", 47.83690, 12.97673);
@@ -86,7 +86,7 @@ private Q_SLOTS:
         QTest::newRow("at_7_vvt") << "at_7_vvt" << loc("Innsbruck Hbf", 47.26289, 11.40163) << loc("Kufstein", 47.58308, 12.16626);
         QTest::newRow("at_8_vvv") << "at_8_vvv" << loc("Bregenz", 47.50307, 9.74019) << loc("Dornbirn", 47.413280, 9.743741);
 
-        // TODO au_nsw.json
+        QTest::newRow("au_nsw") << "au_nsw" << loc("Sydney Central", -33.88315, 151.20587) << loc("Sydney Internation Airport", -33.93503, 151.16603);
 
         QTest::newRow("de_bb_vbb") << "de_bb_vbb" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Berlin Alexanderplatz", 52.52147, 13.41134);
         QTest::newRow("de_be_bvg") << "de_be_bvg" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Berlin Alexanderplatz", 52.52147, 13.41134);
@@ -111,7 +111,7 @@ private Q_SLOTS:
         QTest::newRow("de_nw_zks") << "de_nw_zks" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
         QTest::newRow("de_rp_rolph") << "de_rp_rolph" << loc("Mainz Hbf", 50.00113, 8.25865) << loc("Kaiserslautern Hauptbahnhof", 49.43607, 7.76849);
         QTest::newRow("de_sh_sh") << "de_sh_sh" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg-Altona", 53.55284, 9.93569);
-        // TODO de_sl_saarvv
+        QTest::newRow("de_sl_saarvv") << "de_sl_saarvv" << loc("Saarbrücken Hauptbahnhof", 49.24116, 6.99110) << loc("Saarlouis Hbf", 49.32766, 6.75103);
         // TODO de_sn_vvo
         QTest::newRow("de_st_insa") << "de_st_insa" << loc("Leipzig Hbf", 51.34508, 12.38196) << loc("Leipzig S Bahnhof Messe", 51.39603, 12.38987);
         // TODO de_th_vmt
@@ -125,9 +125,9 @@ private Q_SLOTS:
 
         QTest::newRow("us_ca_bart") << "us_ca_bart" << loc("San Francisco International Airport (SFO)", 37.61622, -122.39180) << loc("San Francisco Powell Street",  37.78441, -122.40767);
         QTest::newRow("us_ca_la_metro") << "us_ca_la_metro" << loc("Los Angeles Union Station", 34.05563, -118.23407) << loc("South Pasadena", 34.11518, -118.15811);
-        // TODO us_ga_marta
+        QTest::newRow("us_ga_marta") << "us_ga_marta" << loc("Five Points", 33.75390, -84.39140) << loc("Airport", 33.64084, -84.44637);
         // TODO us_il_chicago
-        // TODO us_ma_mbta
+        QTest::newRow("us_ma_mbta") << "us_ma_mbta" << loc("Boston South Station", 42.35057, -71.05535) << loc("Boston North Station", 42.36696, -71.06263);
         // TODO us_or_trimet
         QTest::newRow("us_tx_cmta") << "us_tx_cmta" << loc("Downtown", 30.26487, -97.73928) << loc("crestview", 30.33921, -97.71968);
     }
@@ -147,10 +147,13 @@ private Q_SLOTS:
             QSignalSpy spy(reply, &LocationReply::finished);
             QVERIFY(spy.wait(TIMEOUT));
             QCOMPARE(spy.size(), 1);
+            QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
             QCOMPARE(reply->error(), Reply::NoError);
+            QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
             QCOMPARE(reply->errorString(), QString());
             QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
             QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 
@@ -183,16 +186,22 @@ private Q_SLOTS:
             QEXPECT_FAIL("no_entur", "name-based location search returns null results?!", Continue);
             QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
             QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ma_mbta", "needs investigation", Continue);
             QCOMPARE(reply->error(), Reply::NoError);
             QEXPECT_FAIL("no_entur", "name-based location search returns null results?!", Continue);
             QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
             QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ma_mbta", "needs investigation", Continue);
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
             QEXPECT_FAIL("no_entur", "name-based location search returns null results?!", Continue);
             QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
             QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
             QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ma_mbta", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 
@@ -209,11 +218,13 @@ private Q_SLOTS:
             QCOMPARE(reply->error(), Reply::NoError);
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
+            QEXPECT_FAIL("at_3_vor", "needs investigation", Continue);
             QEXPECT_FAIL("at_4_ooevv", "needs investigation", Continue);
             QEXPECT_FAIL("at_8_vvv", "needs investigation", Continue);
             QEXPECT_FAIL("fr_ara_metromobilite", "needs investigation", Continue);
             QEXPECT_FAIL("pl_pkp", "needs investigation", Continue);
             QEXPECT_FAIL("us_ca_la_metro", "needs investigation", Continue);
+            QEXPECT_FAIL("us_ma_mbta", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
         }
 
