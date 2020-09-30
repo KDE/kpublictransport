@@ -89,6 +89,9 @@ private Q_SLOTS:
         for (const auto &platform : result) {
             outFile.write(platform.name().toUtf8() + "\n");
             outFile.write("  position: " + QByteArray::number(platform.position().latitude) + " " + QByteArray::number(platform.position().longitude) + "\n");
+            outFile.write("  stop point: ");
+            writeElement(&outFile, platform.stopPoint());
+            outFile.write("\n");
             outFile.write("  edge: ");
             writeElement(&outFile, platform.edge());
             outFile.write("\n");

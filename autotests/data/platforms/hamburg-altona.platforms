@@ -1,5 +1,6 @@
 5
   position: 1435530888 1899347070
+  stop point: n1686600813
   edge: n1686600813
   area: n1686600813
   track: w214250400
@@ -7,6 +8,7 @@
   mode: 0
 6
   position: 1435530832 1899348982
+  stop point: n1686600812
   edge: n1686600812
   area: n1686600812
   track: w4841532
@@ -14,6 +16,7 @@
   mode: 0
 7
   position: 1435530818 1899349648
+  stop point: n1686600811
   edge: n1686600811
   area: n1686600811
   track: w75408304
@@ -21,6 +24,7 @@
   mode: 0
 8
   position: 1435530887 1899351647
+  stop point: n1686600810
   edge: n1686600810
   area: n1686600810
   track: w77339553
@@ -28,6 +32,7 @@
   mode: 0
 9
   position: 1435530753 1899352345
+  stop point: n1686600809
   edge: n1686600809
   area: n1686600809
   track: w6271257
@@ -35,6 +40,7 @@
   mode: 0
 10
   position: 1435530712 1899354096
+  stop point: n1686600808
   edge: n1686600808
   area: n1686600808
   track: w75412691
@@ -42,6 +48,7 @@
   mode: 0
 11
   position: 1435530698 1899354715
+  stop point: n1686600807
   edge: n1686600807
   area: n1686600807
   track: w6270944
@@ -49,6 +56,7 @@
   mode: 0
 12
   position: 1435532195 1899356388
+  stop point: n1686600814
   edge: n1686600814
   area: n1686600814
   track: w6138684
@@ -56,6 +64,7 @@
   mode: 0
 Hamburg-Altona
   position: 1435518599 1899346270
+  stop point: n300809500
   edge: n300809500
   area: n300809500
   track: w292634009
@@ -63,6 +72,7 @@ Hamburg-Altona
   mode: 0
 Hamburg-Altona
   position: 1435518777 1899349360
+  stop point: n300809530
   edge: n300809530
   area: n300809530
   track: w292634013
@@ -70,6 +80,7 @@ Hamburg-Altona
   mode: 0
 Hamburg-Altona
   position: 1435518544 1899343955
+  stop point: n535951138
   edge: n535951138
   area: n535951138
   track: w42836978
@@ -77,6 +88,7 @@ Hamburg-Altona
   mode: 0
 Hamburg-Altona
   position: 1435518678 1899346850
+  stop point: n535951140
   edge: n535951140
   area: n535951140
   track: w42837004
