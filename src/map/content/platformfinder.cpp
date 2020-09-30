@@ -141,19 +141,17 @@ void PlatformFinder::addPlatform(Platform &&platform)
     m_platforms.push_back(std::move(platform));
 }
 
-bool PlatformFinder::comparePlatform(const Platform &lhs, const Platform &rhs)
-{
-    if (lhs.mode == rhs.mode) {
-        if (lhs.name() == rhs.name()) {
-            return lhs.stopPoint().id() < rhs.stopPoint().id();
-        }
-        return m_collator.compare(lhs.name(), rhs.name()) < 0;
-    }
-    return lhs.mode < rhs.mode;
-}
-
 void PlatformFinder::finalizeResult()
 {
     m_platforms.erase(std::remove_if(m_platforms.begin(), m_platforms.end(), [](const auto &p) { return !p.isValid(); }), m_platforms.end());
-    std::sort(m_platforms.begin(), m_platforms.end(), [this](const auto &lhs, const auto &rhs) { return comparePlatform(lhs, rhs); });
+
+    std::sort(m_platforms.begin(), m_platforms.end(), [this](const auto &lhs, const auto &rhs) {
+        if (lhs.mode == rhs.mode) {
+            if (lhs.name() == rhs.name()) {
+                return lhs.stopPoint().id() < rhs.stopPoint().id();
+            }
+            return m_collator.compare(lhs.name(), rhs.name()) < 0;
+        }
+        return lhs.mode < rhs.mode;
+    });
 }

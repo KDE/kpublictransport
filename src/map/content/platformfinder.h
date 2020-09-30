@@ -28,7 +28,6 @@ private:
     void scanRoute(OSM::Element e, OSM::Element route);
     void scanRoute(const OSM::Node &node, OSM::Element route);
     void addPlatform(Platform &&platform);
-    bool comparePlatform(const Platform &lhs, const Platform &rhs);
 
     const MapData *m_data;
     struct {
