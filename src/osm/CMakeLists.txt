@@ -23,6 +23,7 @@ add_library(KOSM STATIC
     overpassquery.cpp
     overpassquerymanager.cpp
     xmlparser.cpp
+    xmlwriter.cpp
     ztile.cpp
     ${pbf_srcs}
 )
