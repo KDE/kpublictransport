@@ -6,6 +6,11 @@
   track: w214250400
   level: 0
   mode: 0
+  sections:
+    name: D
+    position: n4126319891
+    name: E
+    position: n4126318179
 6
   position: 1435530832 1899348982
   stop point: n1686600812
@@ -14,6 +19,11 @@
   track: w4841532
   level: 0
   mode: 0
+  sections:
+    name: D
+    position: n4126319890
+    name: E
+    position: n4126318178
 7
   position: 1435530818 1899349648
   stop point: n1686600811
@@ -22,6 +32,17 @@
   track: w75408304
   level: 0
   mode: 0
+  sections:
+    name: A
+    position: n4107429581
+    name: B
+    position: n6205052834
+    name: C
+    position: n6205052823
+    name: D
+    position: n4126319889
+    name: E
+    position: n4126318177
 8
   position: 1435530887 1899351647
   stop point: n1686600810
@@ -30,6 +51,17 @@
   track: w77339553
   level: 0
   mode: 0
+  sections:
+    name: A
+    position: n6205052833
+    name: B
+    position: n4027489504
+    name: C
+    position: n6205052822
+    name: D
+    position: n4126318188
+    name: E
+    position: n4126318176
 9
   position: 1435530753 1899352345
   stop point: n1686600809
@@ -38,6 +70,17 @@
   track: w6271257
   level: 0
   mode: 0
+  sections:
+    name: A
+    position: n6205052831
+    name: B
+    position: n6205052836
+    name: C
+    position: n6205052840
+    name: D
+    position: n4126318187
+    name: E
+    position: n4126318175
 10
   position: 1435530712 1899354096
   stop point: n1686600808
@@ -46,6 +89,17 @@
   track: w75412691
   level: 0
   mode: 0
+  sections:
+    name: A
+    position: n6205052830
+    name: B
+    position: n6205052835
+    name: C
+    position: n6205052839
+    name: D
+    position: n4126318186
+    name: E
+    position: n4126318174
 11
   position: 1435530698 1899354715
   stop point: n1686600807
@@ -54,6 +108,15 @@
   track: w6270944
   level: 0
   mode: 0
+  sections:
+    name: A
+    position: n6205052827
+    name: B
+    position: n6205052829
+    name: D
+    position: n4126318185
+    name: E
+    position: n4126318173
 12
   position: 1435532195 1899356388
   stop point: n1686600814
@@ -62,6 +125,13 @@
   track: w6138684
   level: 0
   mode: 0
+  sections:
+    name: A
+    position: n6205052826
+    name: B
+    position: n6205052828
+    name: D
+    position: n4126318184
 Hamburg-Altona
   position: 1435518599 1899346270
   stop point: n300809500

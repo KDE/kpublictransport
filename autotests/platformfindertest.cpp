@@ -103,7 +103,18 @@ private Q_SLOTS:
             outFile.write("\n");
             outFile.write("  level: " + QByteArray::number(platform.level()) + "\n");
             outFile.write("  mode: " + QByteArray::number(platform.mode) + "\n");
-            //outFile.write("  " + platform.lines.join(QLatin1Char('|')).toUtf8() + "\n");
+            if (!platform.lines.empty()) {
+                outFile.write("  lines: " + platform.lines.join(QLatin1Char('|')).toUtf8() + "\n");
+            }
+            if (!platform.sections().empty()) {
+                outFile.write("  sections:\n");
+                for (const auto &section : platform.sections()) {
+                    outFile.write("    name: " + section.name.toUtf8() + "\n");
+                    outFile.write("    position: ");
+                    writeElement(&outFile, section.position);
+                    outFile.write("\n");
+                }
+            }
         }
         outFile.seek(0);
         const auto platforms = outFile.readAll();

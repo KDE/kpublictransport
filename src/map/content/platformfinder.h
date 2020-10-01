@@ -27,6 +27,8 @@ public:
 private:
     void scanRoute(OSM::Element e, OSM::Element route);
     void scanRoute(const OSM::Node &node, OSM::Element route);
+    std::vector<PlatformSection> sectionsForPath(const std::vector<const OSM::Node*> &path) const;
+
     void addPlatform(Platform &&platform);
     /** Similar to the above, but assuming @p platform can be merged with multiple existing ones. */
     void addPlatformArea(Platform &&platform);
@@ -35,6 +37,7 @@ private:
     struct {
         OSM::TagKey public_transport;
         OSM::TagKey railway;
+        OSM::TagKey railway_platform_section;
         OSM::TagKey route;
     } m_tagKeys;
     void resolveTagKeys();

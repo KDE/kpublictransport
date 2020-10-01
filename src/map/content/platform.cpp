@@ -10,6 +10,12 @@
 
 using namespace KOSMIndoorMap;
 
+bool PlatformSection::isValid() const
+{
+    return !name.isEmpty() && position;
+}
+
+
 Platform::Platform() = default;
 Platform::~Platform() = default;
 
@@ -88,6 +94,21 @@ void Platform::setTrack(OSM::Element track)
     m_track = track;
 }
 
+const std::vector<PlatformSection>& Platform::sections() const
+{
+    return m_sections;
+}
+
+void Platform::setSections(std::vector<PlatformSection> &&sections)
+{
+    m_sections = std::move(sections);
+}
+
+std::vector<PlatformSection>&& Platform::takeSections()
+{
+    return std::move(m_sections);
+}
+
 static bool conflictIfPresent(OSM::Element lhs, OSM::Element rhs)
 {
     return lhs && rhs && lhs != rhs;
@@ -152,7 +173,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     return false;
 }
 
-Platform Platform::merge(const Platform &lhs, const Platform &rhs)
+Platform Platform::merge(Platform &&lhs, Platform &&rhs)
 {
     Platform p;
     p.m_name = lhs.m_name.isEmpty() ? rhs.m_name : lhs.m_name;
@@ -164,8 +185,15 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs)
 
     // TODO
     p.mode = std::max(lhs.mode, rhs.mode);
-    p.lines = lhs.lines.isEmpty() ? rhs.lines : lhs.lines;
-    p.sections = lhs.sections.empty() ? rhs.sections : lhs.sections;
+    p.lines = lhs.lines.isEmpty() ? std::move(rhs.lines) : std::move(lhs.lines);
+
+    auto sections = lhs.takeSections();
+    if (sections.empty()) {
+        sections = rhs.takeSections();
+    } else {
+        sections.insert(sections.end(), rhs.sections().begin(), rhs.sections().end());
+    }
+    p.setSections(std::move(sections));
 
     return p;
 }

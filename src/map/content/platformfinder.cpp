@@ -38,6 +38,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                     platform.setArea(e);
                     platform.setName(name);
                     platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                    platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet())));
                     // we delay merging of platforms, as those without track names would
                     // otherwise cobble together two distinct edges when merged to early
                     m_platformAreas.push_back(std::move(platform));
@@ -48,6 +49,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                 platform.setEdge(e);
                 platform.setName(QString::fromUtf8(e.tagValue("local_ref", "ref")));
                 platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet())));
                 addPlatform(std::move(platform));
             }
             else if (!railway.isEmpty() && e.type() == OSM::Type::Way) {
@@ -66,6 +68,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                         platform.setTrack(e);
                         platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
                         platform.setName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")));
+                        platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet())));
 
                         if (railway == "rail" || railway == "light_rail") {
                             platform.mode = Platform::Rail;
@@ -105,6 +108,7 @@ void PlatformFinder::resolveTagKeys()
 {
     m_tagKeys.public_transport = m_data->dataSet().tagKey("public_transport");
     m_tagKeys.railway = m_data->dataSet().tagKey("railway");
+    m_tagKeys.railway_platform_section = m_data->dataSet().tagKey("railway:platform:section");
     m_tagKeys.route = m_data->dataSet().tagKey("route");
 }
 
@@ -153,11 +157,35 @@ void PlatformFinder::scanRoute(const OSM::Node& node, OSM::Element route)
     }
 }
 
+std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<const OSM::Node*> &path) const
+{
+    std::vector<PlatformSection> sections;
+    for (auto n : path) {
+        const auto pt = OSM::tagValue(*n, m_tagKeys.public_transport);
+        if (pt == "platform_section_sign") {
+            PlatformSection sec;
+            sec.position = OSM::Element(n);
+            sec.name = QString::fromUtf8(sec.position.tagValue("platform_section_sign_value", "local_ref", "ref"));
+            sections.push_back(std::move(sec));
+            continue;
+        }
+        const auto railway_platform_section = OSM::tagValue(*n, m_tagKeys.railway_platform_section);
+        if (!railway_platform_section.isEmpty()) {
+            PlatformSection sec;
+            sec.position = OSM::Element(n);
+            sec.name = QString::fromUtf8(railway_platform_section);
+            sections.push_back(std::move(sec));
+            continue;
+        }
+    }
+    return sections;
+}
+
 void PlatformFinder::addPlatform(Platform &&platform)
 {
     for (Platform &p : m_platforms) {
         if (Platform::isSame(p, platform, m_data->dataSet())) {
-            p = Platform::merge(p, platform);
+            p = Platform::merge(std::move(p), std::move(platform));
             return;
         }
     }
@@ -170,7 +198,7 @@ void PlatformFinder::addPlatformArea(Platform &&platform)
     bool found = false;
     for (Platform &p : m_platforms) {
         if (Platform::isSame(p, platform, m_data->dataSet())) {
-            p = Platform::merge(p, platform);
+            p = Platform::merge(std::move(p), std::move(platform));
             found = true;
         }
     }
@@ -182,8 +210,20 @@ void PlatformFinder::addPlatformArea(Platform &&platform)
 
 void PlatformFinder::finalizeResult()
 {
+    // remove things that are still incomplete at this point
     m_platforms.erase(std::remove_if(m_platforms.begin(), m_platforms.end(), [](const auto &p) { return !p.isValid(); }), m_platforms.end());
 
+    // filter and sort sections on each platform
+    for (auto &p : m_platforms) {
+        auto sections = p.takeSections();
+        sections.erase(std::remove_if(sections.begin(), sections.end(), [](const auto &s) { return !s.isValid(); }), sections.end());
+        std::sort(sections.begin(), sections.end(), [this](const auto &lhs, const auto &rhs) {
+            return m_collator.compare(lhs.name, rhs.name) < 0;
+        });
+        p.setSections(std::move(sections));
+    }
+
+    // sort platforms by mode/name
     std::sort(m_platforms.begin(), m_platforms.end(), [this](const auto &lhs, const auto &rhs) {
         if (lhs.mode == rhs.mode) {
             if (lhs.name() == rhs.name()) {

@@ -18,7 +18,12 @@
 namespace KOSMIndoorMap {
 
 /** A railway platform section. */
-struct PlatformSection {
+class PlatformSection
+{
+public:
+    /** Platform section has enough data to work with. */
+    bool isValid() const;
+
     QString name;
     OSM::Element position;
 };
@@ -63,6 +68,11 @@ public:
     OSM::Element track() const;
     void setTrack(OSM::Element track);
 
+    /** Platform sections. */
+    const std::vector<PlatformSection>& sections() const;
+    void setSections(std::vector<PlatformSection> &&sections);
+    std::vector<PlatformSection>&& takeSections();
+
     // TODO - clean up once PlatformModel is ported to PlatformFinder
     enum Mode {
         Rail,
@@ -73,12 +83,11 @@ public:
     Mode mode = Rail;
     Q_ENUM(Mode)
     QStringList lines;
-    std::vector<PlatformSection> sections;
 
     /** Checks if two instances refer to the same platform. */
     static bool isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
     /** Merge two platform objects. */
-    static Platform merge(const Platform &lhs, const Platform &rhs);
+    static Platform merge(Platform &&lhs, Platform &&rhs);
 
 private:
     QString m_name;
@@ -87,6 +96,7 @@ private:
     OSM::Element m_area;
     OSM::Element m_track;
     int m_level = std::numeric_limits<int>::min(); // INT_MIN indicates not set, needed for merging
+    std::vector<PlatformSection> m_sections;
 };
 
 }
