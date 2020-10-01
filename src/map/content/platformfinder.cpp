@@ -27,11 +27,30 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
 
     for (auto it = m_data->m_levelMap.begin(); it != m_data->m_levelMap.end(); ++it) {
         for (const auto &e : (*it).second) {
-            if (e.type() == OSM::Type::Node || e.type() == OSM::Type::Relation) {
+            if (e.type() == OSM::Type::Node) {
                 continue;
             }
             const auto railway = e.tagValue(m_tagKeys.railway);
-            if (!railway.isEmpty()) {
+            if (railway == "platform") {
+                const auto names = QString::fromUtf8(e.tagValue("local_ref", "ref")).split(QLatin1Char(';'));
+                for (const auto &name : names) {
+                    Platform platform;
+                    platform.setArea(e);
+                    platform.setName(name);
+                    platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                    // we delay merging of platforms, as those without track names would
+                    // otherwise cobble together two distinct edges when merged to early
+                    m_platformAreas.push_back(std::move(platform));
+                }
+            }
+            else if (railway == "platform_edge" && e.type() == OSM::Type::Way) {
+                Platform platform;
+                platform.setEdge(e);
+                platform.setName(QString::fromUtf8(e.tagValue("local_ref", "ref")));
+                platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                addPlatform(std::move(platform));
+            }
+            else if (!railway.isEmpty() && e.type() == OSM::Type::Way) {
                 OSM::for_each_node(m_data->dataSet(), *e.way(), [&](const auto &node) {
                     if (!OSM::contains(m_data->boundingBox(), node.coordinate)) {
                         return;
@@ -72,6 +91,11 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
         }
         scanRoute(e, e);
     }, OSM::IncludeRelations);
+
+    for (auto &p : m_platformAreas) {
+        addPlatformArea(std::move(p));
+    }
+    m_platformAreas.clear();
 
     finalizeResult();
     return std::move(m_platforms);
@@ -132,13 +156,28 @@ void PlatformFinder::scanRoute(const OSM::Node& node, OSM::Element route)
 void PlatformFinder::addPlatform(Platform &&platform)
 {
     for (Platform &p : m_platforms) {
-        if (Platform::isSame(p, platform)) {
+        if (Platform::isSame(p, platform, m_data->dataSet())) {
             p = Platform::merge(p, platform);
             return;
         }
     }
 
     m_platforms.push_back(std::move(platform));
+}
+
+void PlatformFinder::addPlatformArea(Platform &&platform)
+{
+    bool found = false;
+    for (Platform &p : m_platforms) {
+        if (Platform::isSame(p, platform, m_data->dataSet())) {
+            p = Platform::merge(p, platform);
+            found = true;
+        }
+    }
+
+    if (!found) {
+        m_platforms.push_back(std::move(platform));
+    }
 }
 
 void PlatformFinder::finalizeResult()

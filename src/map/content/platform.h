@@ -76,7 +76,7 @@ public:
     std::vector<PlatformSection> sections;
 
     /** Checks if two instances refer to the same platform. */
-    static bool isSame(const Platform &lhs, const Platform &rhs);
+    static bool isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
     /** Merge two platform objects. */
     static Platform merge(const Platform &lhs, const Platform &rhs);
 

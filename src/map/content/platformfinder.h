@@ -28,6 +28,8 @@ private:
     void scanRoute(OSM::Element e, OSM::Element route);
     void scanRoute(const OSM::Node &node, OSM::Element route);
     void addPlatform(Platform &&platform);
+    /** Similar to the above, but assuming @p platform can be merged with multiple existing ones. */
+    void addPlatformArea(Platform &&platform);
 
     const MapData *m_data;
     struct {
@@ -41,6 +43,7 @@ private:
     QCollator m_collator;
 
     std::vector<Platform> m_platforms;
+    std::vector<Platform> m_platformAreas;
 };
 
 }

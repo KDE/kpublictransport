@@ -6,6 +6,8 @@
 
 #include "platform.h"
 
+#include <osm/geomath.h>
+
 using namespace KOSMIndoorMap;
 
 Platform::Platform() = default;
@@ -96,27 +98,58 @@ static bool equalIfPresent(OSM::Element lhs, OSM::Element rhs)
     return lhs && rhs && lhs == rhs;
 }
 
-bool Platform::isSame(const Platform &lhs, const Platform &rhs)
+static bool isSubPath(const std::vector<const OSM::Node*> &path, const OSM::Way &way)
+{
+    return std::all_of(way.nodes.begin(), way.nodes.end(), [&path](OSM::Id node) {
+        return std::find_if(path.begin(), path.end(), [node](auto n) { return n->id == node; }) != path.end();
+    });
+}
+
+static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 2.5; // meters
+
+bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
     // TODO check for mode conflicts
     if (conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint)
      || conflictIfPresent(lhs.m_edge, rhs.m_edge)
      || conflictIfPresent(lhs.m_area, rhs.m_area)
      || conflictIfPresent(lhs.m_track, rhs.m_track)
+     || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level())
      || (!lhs.m_name.isEmpty() && !rhs.m_name.isEmpty() && lhs.m_name != rhs.m_name))
     {
         return false;
     }
 
+    // edge has to be part of area, but on its own that doesn't mean equallity
+    if ((lhs.m_area && rhs.m_edge.type() == OSM::Type::Way && !isSubPath(lhs.m_area.outerPath(dataSet), *rhs.m_edge.way()))
+     || (rhs.m_area && lhs.m_edge.type() == OSM::Type::Way && isSubPath(rhs.m_area.outerPath(dataSet), *lhs.m_edge.way()))) {
+        return false;
+    }
+
+    // matching edge, point or track is good enough, matching area however isn't
     if (equalIfPresent(lhs.m_stopPoint, rhs.m_stopPoint)
      || equalIfPresent(lhs.m_edge, rhs.m_edge)
-     || equalIfPresent(lhs.m_area, rhs.m_area)
      || equalIfPresent(lhs.m_track, rhs.m_track))
     {
         return true;
     }
 
-    return false; // TODO name based comparison and track/stop <-> edge distance check
+    // track/stop and area/edge elements do not share nodes, so those we need to match by spatial distance
+    if (lhs.m_edge && rhs.m_stopPoint) {
+        return OSM::distance(lhs.m_edge.outerPath(dataSet), rhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    }
+    if (rhs.m_edge && lhs.m_stopPoint) {
+        return OSM::distance(rhs.m_edge.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    }
+
+    if (lhs.m_area && rhs.m_stopPoint) {
+        return OSM::distance(lhs.m_area.outerPath(dataSet), rhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    }
+    if (rhs.m_area && lhs.m_stopPoint) {
+        return OSM::distance(rhs.m_area.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    }
+
+    return false;
 }
 
 Platform Platform::merge(const Platform &lhs, const Platform &rhs)
