@@ -14,7 +14,7 @@
 using namespace OSM;
 
 // see https://en.wikipedia.org/wiki/Haversine_formula
-uint32_t OSM::distance(double lat1, double lon1, double lat2, double lon2)
+double OSM::distance(double lat1, double lon1, double lat2, double lon2)
 {
     constexpr const auto earthRadius = 6371000.0; // in meters
 
@@ -25,22 +25,37 @@ uint32_t OSM::distance(double lat1, double lon1, double lat2, double lon2)
     return 2.0 * earthRadius * atan2(sqrt(a), sqrt(1.0 - a));
 }
 
-uint32_t OSM::distance(Coordinate coord1, Coordinate coord2)
+double OSM::distance(Coordinate coord1, Coordinate coord2)
 {
     return distance(coord1.latF(), coord1.lonF(), coord2.latF(), coord2.lonF());
 }
 
-uint32_t OSM::distance(const std::vector<const OSM::Node*> &path, OSM::Coordinate coord)
+double OSM::distance(OSM::Coordinate l1, OSM::Coordinate l2, OSM::Coordinate p)
+{
+    QLineF line(l1.lonF(), l1.latF(), l2.lonF(), l2.latF());
+    const auto len = line.length();
+    if (len == 0.0) {
+        return OSM::distance(l1, p);
+    }
+
+    // project p on a line extending the line segment given by @p l1 and @p l2, and clamp to that to the segment
+    QPointF pf(p.lonF(), p.latF());
+    const auto r = qBound(0.0, QPointF::dotProduct(pf - line.p1(), line.p2() - line.p1()) / (len*len), 1.0);
+    const auto intersection = line.p1() + r * (line.p2() - line.p1());
+    return OSM::distance(OSM::Coordinate(intersection.y(), intersection.x()), p);
+}
+
+double OSM::distance(const std::vector<const OSM::Node*> &path, OSM::Coordinate coord)
 {
     if (path.empty()) {
-        return std::numeric_limits<uint32_t>::max();
+        return std::numeric_limits<double>::max();
     }
 
     if (path.size() == 1) {
         return distance(path[0]->coordinate, coord);
     }
 
-    uint32_t dist = std::numeric_limits<uint32_t>::max();
+    auto dist = std::numeric_limits<double>::max();
     OSM::Id firstNode = 0;
     for (auto it = path.begin(); it != std::prev(path.end()); ++it) {
         const auto nextIt = std::next(it);
@@ -53,20 +68,7 @@ uint32_t OSM::distance(const std::vector<const OSM::Node*> &path, OSM::Coordinat
         }
 
         // compute distance between line segment and coord
-        const QLineF lineSegment(QPointF((*it)->coordinate.latF(), (*it)->coordinate.lonF()), QPointF((*nextIt)->coordinate.latF(), (*nextIt)->coordinate.lonF()));
-        QLineF n = lineSegment.normalVector();
-        n.translate(coord.latF() - n.p1().x(), coord.lonF() - n.p1().y());
-        QPointF p;
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-        const auto intersect = lineSegment.intersect(n, &p);
-#else
-        const auto intersect = lineSegment.intersects(n, &p);
-#endif
-        if (intersect == QLineF::BoundedIntersection) {
-            dist = std::min(dist, distance(p.x(), p.y(), coord.latF(), coord.lonF()));
-        } else {
-            dist = std::min(dist, std::min(distance((*it)->coordinate, coord), distance((*nextIt)->coordinate, coord)));
-        }
+        dist = std::min(dist, OSM::distance((*it)->coordinate, (*nextIt)->coordinate, coord));
     }
     return dist;
 }

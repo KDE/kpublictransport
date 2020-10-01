@@ -25,13 +25,16 @@ constexpr inline double radToDeg(double rad)
 }
 
 /** Distance between two coordinates. */
-uint32_t distance(double lat1, double lon1, double lat2, double lon2);
+double distance(double lat1, double lon1, double lat2, double lon2);
 
 /** Distance between @p coord1 and @p coord2 in meter. */
-uint32_t distance(Coordinate coord1, Coordinate coord2);
+double distance(Coordinate coord1, Coordinate coord2);
+
+/** Distance in meters between a line segment defined by @p l1 and @p l2 to a point @p p. */
+double distance(Coordinate l1, Coordinate l2, Coordinate p);
 
 /** Distance between the given polygon and coordinate, in meter. */
-uint32_t distance(const std::vector<const OSM::Node*> &path, Coordinate coord);
+double distance(const std::vector<const OSM::Node*> &path, Coordinate coord);
 
 }
 
