@@ -173,7 +173,24 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     return false;
 }
 
-Platform Platform::merge(const Platform &lhs, const Platform &rhs)
+void Platform::appendSection(std::vector<PlatformSection> &sections, const Platform &p, PlatformSection &&sec, std::vector<const OSM::Node*> &edgePath, const OSM::DataSet &dataSet)
+{
+    if (sections.empty() || sections.back().name != sec.name) {
+        sections.push_back(std::move(sec));
+    }
+
+    // check which one is closer
+    if (edgePath.empty()) {
+        edgePath = p.m_edge ? p.m_edge.outerPath(dataSet) : p.m_track.outerPath(dataSet);
+    }
+    const auto dist1 = OSM::distance(edgePath, sections.back().position.center());
+    const auto dist2 = OSM::distance(edgePath, sec.position.center());
+    if (dist2 < dist1) {
+        sections.back() = std::move(sec);
+    }
+}
+
+Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
     Platform p;
     p.m_name = lhs.m_name.isEmpty() ? rhs.m_name : lhs.m_name;
@@ -187,8 +204,40 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs)
     p.mode = std::max(lhs.mode, rhs.mode);
     p.lines = lhs.lines.isEmpty() ? std::move(rhs.lines) : std::move(lhs.lines);
 
-    auto sections = lhs.sections();
-    sections.insert(sections.end(), rhs.sections().begin(), rhs.sections().end());
+    std::vector<const OSM::Node*> edgePath;
+    std::vector<PlatformSection> sections;
+    auto lsec = lhs.sections();
+    auto rsec = rhs.sections();
+    std::sort(lsec.begin(), lsec.end(), [](const auto &lhs, const auto &rhs) { return lhs.name < rhs.name; });
+    std::sort(rsec.begin(), rsec.end(), [](const auto &lhs, const auto &rhs) { return lhs.name < rhs.name; });
+    for (auto lit = lsec.begin(), rit = rsec.begin(); lit != lsec.end() || rit != rsec.end();) {
+        if (rit == rsec.end()) {
+            appendSection(sections, p, std::move(*lit++), edgePath, dataSet);
+            continue;
+        }
+        if (lit == lsec.end()) {
+            appendSection(sections, p, std::move(*rit++), edgePath, dataSet);
+            continue;
+        }
+        if ((*lit).name < (*rit).name) {
+            appendSection(sections, p, std::move(*lit++), edgePath, dataSet);
+            continue;
+        }
+        if ((*lit).name > (*rit).name) {
+            appendSection(sections, p, std::move(*rit++), edgePath, dataSet);
+            continue;
+        }
+
+        // both are equal
+        if ((*lit).position == (*rit).position) {
+            appendSection(sections, p, std::move(*lit++), edgePath, dataSet);
+            ++rit;
+            continue;
+        }
+
+        // both are equal but differ in distance: will be handled in appendSection in the next iteration
+        appendSection(sections, p, std::move(*lit++), edgePath, dataSet);
+    }
     p.setSections(std::move(sections));
 
     return p;

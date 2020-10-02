@@ -185,7 +185,7 @@ void PlatformFinder::addPlatform(Platform &&platform)
 {
     for (Platform &p : m_platforms) {
         if (Platform::isSame(p, platform, m_data->dataSet())) {
-            p = Platform::merge(p, platform);
+            p = Platform::merge(p, platform, m_data->dataSet());
             return;
         }
     }
@@ -198,7 +198,7 @@ void PlatformFinder::addPlatformArea(Platform &&platform)
     bool found = false;
     for (Platform &p : m_platforms) {
         if (Platform::isSame(p, platform, m_data->dataSet())) {
-            p = Platform::merge(p, platform);
+            p = Platform::merge(p, platform, m_data->dataSet());
             found = true;
         }
     }

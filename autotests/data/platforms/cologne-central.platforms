@@ -54,27 +54,15 @@
   lines: EC 114|IC 32|IC 35|IC 37|IC 55|RB38|RE8|RE9
   sections:
     name: C
-    position: n4431502508
-    name: C
     position: n4431502509
-    name: D
-    position: n4922804263
-    name: D
-    position: n4922804264
     name: D
     position: n4922804263
     name: E
     position: n4431502513
-    name: E
-    position: n4431502512
     name: F
     position: n4431502517
-    name: F
-    position: n4431502516
     name: G
     position: n4693808980
-    name: G
-    position: n4693808979
 3
   position: 1409444437 1869585753
   stop point: n2393836850
@@ -104,21 +92,13 @@
   lines: EC 6|EC 8|IC 50|IC 50 MDV|ICE 1|ICE 42|ICE 49|ICE 78|ICE 79|RE8|Thalys
   sections:
     name: C
-    position: n4431502510
-    name: C
     position: n4431502511
     name: E
     position: n4431502515
-    name: E
-    position: n4431502514
     name: F
     position: n4431502519
-    name: F
-    position: n4431502518
     name: G
     position: n4693808982
-    name: G
-    position: n4693808981
 6
   position: 1409428004 1869591215
   stop point: n1629836021
@@ -130,23 +110,13 @@
   lines: IC 30|ICE 42|ICE 43|ICE 45|ICE 78
   sections:
     name: C
-    position: n4583467500
-    name: C
     position: n4583470693
-    name: D
-    position: n4583498889
     name: D
     position: n4583498989
     name: E
-    position: n4583442901
-    name: E
     position: n4583456691
     name: F
-    position: n4367546849
-    name: F
     position: n4367546848
-    name: G
-    position: n1629930999
     name: G
     position: n1629930991
 7
@@ -170,22 +140,14 @@
   sections:
     name: A
     position: n2389668450
-    name: A
-    position: n4572194304
-    name: B
-    position: n4572194305
     name: B
     position: n4705586742
-    name: C
-    position: n2392561729
     name: C
     position: n2392561727
     name: D
     position: n4572219291
     name: E
     position: n1629930980
-    name: G
-    position: n1629931028
     name: G
     position: n1629931022
 9
@@ -199,25 +161,17 @@
   lines: IC 55|ICE 1|ICE 10|RB26|RB27|RE1|RE6|RE7|Thalys
   sections:
     name: A
-    position: n2389668450
-    name: A
     position: n4572194304
     name: B
     position: n4572194305
-    name: B
-    position: n4705586742
     name: C
     position: n2392561729
-    name: C
-    position: n2392561727
     name: D
     position: n4572219291
     name: E
     position: n1629930980
     name: G
     position: n1629931028
-    name: G
-    position: n1629931022
 10
   position: 1409429759 1869595583
   stop point: n1629836001

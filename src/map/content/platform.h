@@ -87,7 +87,7 @@ public:
     /** Checks if two instances refer to the same platform. */
     static bool isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
     /** Merge two platform objects. */
-    static Platform merge(const Platform &lhs, const Platform &rhs);
+    static Platform merge(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
 
 private:
     QString m_name;
@@ -97,6 +97,8 @@ private:
     OSM::Element m_track;
     int m_level = std::numeric_limits<int>::min(); // INT_MIN indicates not set, needed for merging
     std::vector<PlatformSection> m_sections;
+
+    static void appendSection(std::vector<PlatformSection> &sections, const Platform &p, PlatformSection &&sec, std::vector<const OSM::Node*> &edgePath, const OSM::DataSet &dataSet);
 };
 
 }
