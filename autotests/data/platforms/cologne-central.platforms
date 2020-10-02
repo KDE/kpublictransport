@@ -11,15 +11,6 @@
     name: E
     position: n2389650644
 2
-  position: 1409443823 1869587478
-  stop point: n78586828
-  edge: n78586828
-  area: n78586828
-  track: w339960443
-  level: -20
-  mode: 0
-  lines: 16|18
-2
   position: 1409425813 1869586535
   stop point: n1629835981
   edge: n1629835981
@@ -202,6 +193,15 @@
   level: -20
   mode: 2
   lines: 5|16|18
+2
+  position: 1409443823 1869587478
+  stop point: n78586828
+  edge: n78586828
+  area: w141211002
+  track: w339960443
+  level: -20
+  mode: 2
+  lines: 16|18
 2
   position: 1409418150 1869572123
   stop point: n1341075078

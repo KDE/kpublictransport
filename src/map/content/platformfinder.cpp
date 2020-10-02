@@ -8,6 +8,8 @@
 
 #include <loader/mapdata.h>
 
+#include <QRegularExpression>
+
 using namespace KOSMIndoorMap;
 
 PlatformFinder::PlatformFinder()
@@ -32,7 +34,8 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
             }
             const auto railway = e.tagValue(m_tagKeys.railway);
             if (railway == "platform") {
-                const auto names = QString::fromUtf8(e.tagValue("local_ref", "ref")).split(QLatin1Char(';'));
+                QRegularExpression splitExp(QStringLiteral("[;/\\+]"));;
+                const auto names = QString::fromUtf8(e.tagValue("local_ref", "ref")).split(splitExp);
                 for (const auto &name : names) {
                     Platform platform;
                     platform.setArea(e);
