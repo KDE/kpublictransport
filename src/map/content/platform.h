@@ -87,7 +87,7 @@ public:
     /** Checks if two instances refer to the same platform. */
     static bool isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
     /** Merge two platform objects. */
-    static Platform merge(Platform &&lhs, Platform &&rhs);
+    static Platform merge(const Platform &lhs, const Platform &rhs);
 
 private:
     QString m_name;

@@ -173,7 +173,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     return false;
 }
 
-Platform Platform::merge(Platform &&lhs, Platform &&rhs)
+Platform Platform::merge(const Platform &lhs, const Platform &rhs)
 {
     Platform p;
     p.m_name = lhs.m_name.isEmpty() ? rhs.m_name : lhs.m_name;
@@ -187,12 +187,8 @@ Platform Platform::merge(Platform &&lhs, Platform &&rhs)
     p.mode = std::max(lhs.mode, rhs.mode);
     p.lines = lhs.lines.isEmpty() ? std::move(rhs.lines) : std::move(lhs.lines);
 
-    auto sections = lhs.takeSections();
-    if (sections.empty()) {
-        sections = rhs.takeSections();
-    } else {
-        sections.insert(sections.end(), rhs.sections().begin(), rhs.sections().end());
-    }
+    auto sections = lhs.sections();
+    sections.insert(sections.end(), rhs.sections().begin(), rhs.sections().end());
     p.setSections(std::move(sections));
 
     return p;
