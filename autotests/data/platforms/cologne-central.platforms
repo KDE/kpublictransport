@@ -10,15 +10,6 @@
   sections:
     name: E
     position: n2389650644
-1
-  position: 1409417829 1869572166
-  stop point: n2393908416
-  edge: n2393908416
-  area: w119317771
-  track: w324287735
-  level: -20
-  mode: 0
-  lines: 5|16|18
 2
   position: 1409443823 1869587478
   stop point: n78586828
@@ -28,15 +19,6 @@
   level: -20
   mode: 0
   lines: 16|18
-2
-  position: 1409418150 1869572123
-  stop point: n1341075078
-  edge: n1341075078
-  area: n1341075078
-  track: w230967808
-  level: -20
-  mode: 0
-  lines: 5|16|18
 2
   position: 1409425813 1869586535
   stop point: n1629835981
@@ -77,15 +59,6 @@
     position: n4431502517
     name: G
     position: n4693808980
-3
-  position: 1409444437 1869585753
-  stop point: n2393836850
-  edge: n2393836850
-  area: w141211006
-  track: w195256580
-  level: -20
-  mode: 0
-  lines: 16|18
 4
   position: 1409427014 1869588815
   stop point: n1629835999
@@ -146,11 +119,22 @@
   position: 1409428735 1869592730
   stop point: n1629836023
   edge: n1629836023
-  area: n1629836023
+  area: r6838127
   track: w150046952
   level: 10
   mode: 0
   lines: EC 7|EC 9|EC 115|FLX 20|IC 30|IC 31|IC 35|IC 37|IC 55|NJ 421|NJ 40421|RB24|RB38|RB48|RE5
+  sections:
+    name: C
+    position: n4583467500
+    name: D
+    position: n4583498889
+    name: E
+    position: n4583442901
+    name: F
+    position: n4367546849
+    name: G
+    position: n1629930999
 8
   position: 1409429033 1869593619
   stop point: n1629836034
@@ -209,3 +193,30 @@
   level: 10
   mode: 0
   lines: RB25|S6|S11|S12|S13|S19
+1
+  position: 1409417829 1869572166
+  stop point: n2393908416
+  edge: n2393908416
+  area: w119317771
+  track: w324287735
+  level: -20
+  mode: 2
+  lines: 5|16|18
+2
+  position: 1409418150 1869572123
+  stop point: n1341075078
+  edge: n1341075078
+  area: w119317753
+  track: w230967808
+  level: -20
+  mode: 2
+  lines: 5|16|18
+3
+  position: 1409444437 1869585753
+  stop point: n2393836850
+  edge: n2393836850
+  area: w141211006
+  track: w195256580
+  level: -20
+  mode: 2
+  lines: 16|18

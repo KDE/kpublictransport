@@ -28,6 +28,7 @@ private:
     void scanRoute(OSM::Element e, OSM::Element route);
     void scanRoute(const OSM::Node &node, OSM::Element route);
     std::vector<PlatformSection> sectionsForPath(const std::vector<const OSM::Node*> &path, const QString &platformName) const;
+    Platform::Mode modeForElement(OSM::Element elem) const;
 
     void addPlatform(Platform &&platform);
     /** Similar to the above, but assuming @p platform can be merged with multiple existing ones. */

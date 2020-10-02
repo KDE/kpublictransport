@@ -38,6 +38,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                     platform.setArea(e);
                     platform.setName(name);
                     platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                    platform.mode = modeForElement(e);
                     platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), name));
                     // we delay merging of platforms, as those without track names would
                     // otherwise cobble together two distinct edges when merged to early
@@ -184,6 +185,14 @@ std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<c
         }
     }
     return sections;
+}
+
+Platform::Mode PlatformFinder::modeForElement(OSM::Element elem) const
+{
+    if (elem.tagValue("tram") == "yes") {
+        return Platform::Tram;
+    }
+    return Platform::Rail;
 }
 
 void PlatformFinder::addPlatform(Platform &&platform)

@@ -57,18 +57,19 @@ double OSM::distance(const std::vector<const OSM::Node*> &path, OSM::Coordinate 
 
     auto dist = std::numeric_limits<double>::max();
     OSM::Id firstNode = 0;
-    for (auto it = path.begin(); it != std::prev(path.end()); ++it) {
+    for (auto it = path.begin(); it != std::prev(path.end()) && it != path.end(); ++it) {
         const auto nextIt = std::next(it);
         if (firstNode == 0) { // starting a new loop
             firstNode = (*it)->id;
         }
-        if ((*nextIt)->id == firstNode) { // just closed a loop, so this is not a line on the path
-            firstNode = 0;
-            continue;
-        }
 
         // compute distance between line segment and coord
         dist = std::min(dist, OSM::distance((*it)->coordinate, (*nextIt)->coordinate, coord));
+
+        if ((*nextIt)->id == firstNode) { // just closed a loop, so this is not a line on the path
+            firstNode = 0;
+            ++it;
+        }
     }
     return dist;
 }
