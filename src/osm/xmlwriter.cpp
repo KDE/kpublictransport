@@ -6,6 +6,7 @@
 
 #include "xmlwriter.h"
 #include "datatypes.h"
+#include "element.h"
 
 #include <QXmlStreamWriter>
 
@@ -29,17 +30,25 @@ void XmlWriter::write(const DataSet &dataSet, QIODevice *out)
     writer.setAutoFormattingIndent(-1);
 
     writer.writeStartDocument();
+    writer.writeComment(QStringLiteral("\n    SPDX-FileCopyrightText: OpenStreetMap contributors\n    SPDX-License-Identifier: ODbL-1.0\n"));
     writer.writeStartElement(QStringLiteral("osm"));
     writer.writeAttribute(QStringLiteral("version"), QStringLiteral("0.6"));
     writer.writeAttribute(QStringLiteral("generator"), QStringLiteral("KOSM"));
 
-    // TODO <bounds> element
+    OSM::BoundingBox bbox;
+    OSM::for_each(dataSet, [&bbox](auto elem) { bbox = OSM::unite(bbox, elem.boundingBox()); });
+    writer.writeStartElement(QStringLiteral("bounds"));
+    writer.writeAttribute(QStringLiteral("minlat"), QString::number(bbox.min.latF(), 'f', 10));;
+    writer.writeAttribute(QStringLiteral("minlon"), QString::number(bbox.min.lonF(), 'f', 10));;
+    writer.writeAttribute(QStringLiteral("maxlat"), QString::number(bbox.max.latF(), 'f', 10));;
+    writer.writeAttribute(QStringLiteral("maxlon"), QString::number(bbox.max.lonF(), 'f', 10));;
+    writer.writeEndElement();
 
     for (const auto &node : dataSet.nodes) {
         writer.writeStartElement(QStringLiteral("node"));
         writer.writeAttribute(QStringLiteral("id"), QString::number(node.id));
-        writer.writeAttribute(QStringLiteral("lat"), QString::number(node.coordinate.latF()));
-        writer.writeAttribute(QStringLiteral("lon"), QString::number(node.coordinate.lonF()));
+        writer.writeAttribute(QStringLiteral("lat"), QString::number(node.coordinate.latF(), 'f', 10));
+        writer.writeAttribute(QStringLiteral("lon"), QString::number(node.coordinate.lonF(), 'f', 10));
         writeTags(writer, node);
         writer.writeEndElement();
     }
