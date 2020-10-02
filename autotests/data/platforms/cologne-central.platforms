@@ -2,11 +2,14 @@
   position: 1409425421 1869585494
   stop point: n1629835979
   edge: n1629835979
-  area: n1629835979
+  area: r6743846
   track: w150030924
   level: 10
   mode: 0
   lines: IC 31|RB24|RB26|RE5|RE12|RE22
+  sections:
+    name: E
+    position: n2389650644
 1
   position: 1409417829 1869572166
   stop point: n2393908416
@@ -38,11 +41,22 @@
   position: 1409425813 1869586535
   stop point: n1629835981
   edge: n1629835981
-  area: n1629835981
+  area: r6838169
   track: w150032665
   level: 10
   mode: 0
   lines: FLX 20|FLX 30|IC 50|ICE 10|RB48|RE7
+  sections:
+    name: C
+    position: n4431502508
+    name: D
+    position: n4922804264
+    name: E
+    position: n4431502512
+    name: F
+    position: n4431502516
+    name: G
+    position: n4693808979
 3
   position: 1409426688 1869588001
   stop point: n1629835990
@@ -67,7 +81,7 @@
   position: 1409444437 1869585753
   stop point: n2393836850
   edge: n2393836850
-  area: n2393836850
+  area: w141211006
   track: w195256580
   level: -20
   mode: 0
@@ -76,11 +90,20 @@
   position: 1409427014 1869588815
   stop point: n1629835999
   edge: n1629835999
-  area: n1629835999
+  area: r6838161
   track: w150033263
   level: 10
   mode: 0
   lines: IC 55|ICE 43|ICE 45|ICE 49|ICE 79|RB27|RE1|RE6|RE8
+  sections:
+    name: C
+    position: n4431502510
+    name: E
+    position: n4431502514
+    name: F
+    position: n4431502518
+    name: G
+    position: n4693808981
 5
   position: 1409427684 1869590464
   stop point: n1629836010
@@ -172,7 +195,7 @@
   position: 1409429759 1869595583
   stop point: n1629836001
   edge: n1629836001
-  area: n1629836001
+  area: r6838156
   track: w150046991
   level: 10
   mode: 0

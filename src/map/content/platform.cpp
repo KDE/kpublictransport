@@ -126,7 +126,7 @@ static bool isSubPath(const std::vector<const OSM::Node*> &path, const OSM::Way 
     });
 }
 
-static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 2.5; // meters
+static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 4.0; // meters
 
 bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
