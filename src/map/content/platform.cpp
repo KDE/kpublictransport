@@ -143,7 +143,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
 
     // edge has to be part of area, but on its own that doesn't mean equallity
     if ((lhs.m_area && rhs.m_edge.type() == OSM::Type::Way && !isSubPath(lhs.m_area.outerPath(dataSet), *rhs.m_edge.way()))
-     || (rhs.m_area && lhs.m_edge.type() == OSM::Type::Way && isSubPath(rhs.m_area.outerPath(dataSet), *lhs.m_edge.way()))) {
+     || (rhs.m_area && lhs.m_edge.type() == OSM::Type::Way && !isSubPath(rhs.m_area.outerPath(dataSet), *lhs.m_edge.way()))) {
         return false;
     }
 

@@ -2,7 +2,7 @@
   position: 1435530888 1899347070
   stop point: n1686600813
   edge: w662834905
-  area: w662834905
+  area: w42873615
   track: w214250400
   level: 0
   mode: 0
@@ -16,7 +16,7 @@
   position: 1435530832 1899348982
   stop point: n1686600812
   edge: w662834904
-  area: w662834904
+  area: w42873615
   track: w4841532
   level: 0
   mode: 0
@@ -30,7 +30,7 @@
   position: 1435530818 1899349648
   stop point: n1686600811
   edge: w662834903
-  area: w662834903
+  area: w662729031
   track: w75408304
   level: 0
   mode: 0
@@ -50,7 +50,7 @@
   position: 1435530887 1899351647
   stop point: n1686600810
   edge: w662834902
-  area: w662834902
+  area: w662729031
   track: w77339553
   level: 0
   mode: 0
@@ -70,7 +70,7 @@
   position: 1435530753 1899352345
   stop point: n1686600809
   edge: w662834906
-  area: w662834906
+  area: w42873617
   track: w6271257
   level: 0
   mode: 0
@@ -90,7 +90,7 @@
   position: 1435530712 1899354096
   stop point: n1686600808
   edge: w662834907
-  area: w662834907
+  area: w42873617
   track: w75412691
   level: 0
   mode: 0
@@ -110,7 +110,7 @@
   position: 1435530698 1899354715
   stop point: n1686600807
   edge: w662834901
-  area: w662834901
+  area: w662729032
   track: w6270944
   level: 0
   mode: 0
@@ -128,7 +128,7 @@
   position: 1435532195 1899356388
   stop point: n1686600814
   edge: w662834900
-  area: w662834900
+  area: w662729032
   track: w6138684
   level: 0
   mode: 0
