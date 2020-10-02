@@ -38,7 +38,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                     platform.setArea(e);
                     platform.setName(name);
                     platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
-                    platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet())));
+                    platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), name));
                     // we delay merging of platforms, as those without track names would
                     // otherwise cobble together two distinct edges when merged to early
                     m_platformAreas.push_back(std::move(platform));
@@ -49,7 +49,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                 platform.setEdge(e);
                 platform.setName(QString::fromUtf8(e.tagValue("local_ref", "ref")));
                 platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
-                platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet())));
+                platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
                 addPlatform(std::move(platform));
             }
             else if (!railway.isEmpty() && e.type() == OSM::Type::Way) {
@@ -68,7 +68,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                         platform.setTrack(e);
                         platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
                         platform.setName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")));
-                        platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet())));
+                        platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
 
                         if (railway == "rail" || railway == "light_rail") {
                             platform.mode = Platform::Rail;
@@ -106,6 +106,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
 
 void PlatformFinder::resolveTagKeys()
 {
+    m_tagKeys.platform_ref = m_data->dataSet().tagKey("platform_ref");
     m_tagKeys.public_transport = m_data->dataSet().tagKey("public_transport");
     m_tagKeys.railway = m_data->dataSet().tagKey("railway");
     m_tagKeys.railway_platform_section = m_data->dataSet().tagKey("railway:platform:section");
@@ -157,10 +158,14 @@ void PlatformFinder::scanRoute(const OSM::Node& node, OSM::Element route)
     }
 }
 
-std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<const OSM::Node*> &path) const
+std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<const OSM::Node*> &path, const QString &platformName) const
 {
     std::vector<PlatformSection> sections;
     for (auto n : path) {
+        const auto platformRef = OSM::tagValue(*n, m_tagKeys.platform_ref);
+        if (!platformRef.isEmpty() && platformRef != platformName.toUtf8()) {
+            continue; // belongs to a different track on the same platform area
+        }
         const auto pt = OSM::tagValue(*n, m_tagKeys.public_transport);
         if (pt == "platform_section_sign") {
             PlatformSection sec;
