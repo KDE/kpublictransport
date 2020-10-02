@@ -1,0 +1,238 @@
+1
+  position: 1409425421 1869585494
+  stop point: n1629835979
+  edge: n1629835979
+  area: n1629835979
+  track: w150030924
+  level: 10
+  mode: 0
+  lines: IC 31|RB24|RB26|RE5|RE12|RE22
+1
+  position: 1409417829 1869572166
+  stop point: n2393908416
+  edge: n2393908416
+  area: w119317771
+  track: w324287735
+  level: -20
+  mode: 0
+  lines: 5|16|18
+2
+  position: 1409443823 1869587478
+  stop point: n78586828
+  edge: n78586828
+  area: n78586828
+  track: w339960443
+  level: -20
+  mode: 0
+  lines: 16|18
+2
+  position: 1409418150 1869572123
+  stop point: n1341075078
+  edge: n1341075078
+  area: n1341075078
+  track: w230967808
+  level: -20
+  mode: 0
+  lines: 5|16|18
+2
+  position: 1409425813 1869586535
+  stop point: n1629835981
+  edge: n1629835981
+  area: n1629835981
+  track: w150032665
+  level: 10
+  mode: 0
+  lines: FLX 20|FLX 30|IC 50|ICE 10|RB48|RE7
+3
+  position: 1409426688 1869588001
+  stop point: n1629835990
+  edge: n1629835990
+  area: r6838169
+  track: w150030933
+  level: 10
+  mode: 0
+  lines: EC 114|IC 32|IC 35|IC 37|IC 55|RB38|RE8|RE9
+  sections:
+    name: C
+    position: n4431502508
+    name: C
+    position: n4431502509
+    name: D
+    position: n4922804263
+    name: D
+    position: n4922804264
+    name: D
+    position: n4922804263
+    name: E
+    position: n4431502513
+    name: E
+    position: n4431502512
+    name: F
+    position: n4431502517
+    name: F
+    position: n4431502516
+    name: G
+    position: n4693808980
+    name: G
+    position: n4693808979
+3
+  position: 1409444437 1869585753
+  stop point: n2393836850
+  edge: n2393836850
+  area: n2393836850
+  track: w195256580
+  level: -20
+  mode: 0
+  lines: 16|18
+4
+  position: 1409427014 1869588815
+  stop point: n1629835999
+  edge: n1629835999
+  area: n1629835999
+  track: w150033263
+  level: 10
+  mode: 0
+  lines: IC 55|ICE 43|ICE 45|ICE 49|ICE 79|RB27|RE1|RE6|RE8
+5
+  position: 1409427684 1869590464
+  stop point: n1629836010
+  edge: n1629836010
+  area: r6838161
+  track: w150046958
+  level: 10
+  mode: 0
+  lines: EC 6|EC 8|IC 50|IC 50 MDV|ICE 1|ICE 42|ICE 49|ICE 78|ICE 79|RE8|Thalys
+  sections:
+    name: C
+    position: n4431502510
+    name: C
+    position: n4431502511
+    name: E
+    position: n4431502515
+    name: E
+    position: n4431502514
+    name: F
+    position: n4431502519
+    name: F
+    position: n4431502518
+    name: G
+    position: n4693808982
+    name: G
+    position: n4693808981
+6
+  position: 1409428004 1869591215
+  stop point: n1629836021
+  edge: n1629836021
+  area: r6838127
+  track: w150046959
+  level: 10
+  mode: 0
+  lines: IC 30|ICE 42|ICE 43|ICE 45|ICE 78
+  sections:
+    name: C
+    position: n4583467500
+    name: C
+    position: n4583470693
+    name: D
+    position: n4583498889
+    name: D
+    position: n4583498989
+    name: E
+    position: n4583442901
+    name: E
+    position: n4583456691
+    name: F
+    position: n4367546849
+    name: F
+    position: n4367546848
+    name: G
+    position: n1629930999
+    name: G
+    position: n1629930991
+7
+  position: 1409428735 1869592730
+  stop point: n1629836023
+  edge: n1629836023
+  area: n1629836023
+  track: w150046952
+  level: 10
+  mode: 0
+  lines: EC 7|EC 9|EC 115|FLX 20|IC 30|IC 31|IC 35|IC 37|IC 55|NJ 421|NJ 40421|RB24|RB38|RB48|RE5
+8
+  position: 1409429033 1869593619
+  stop point: n1629836034
+  edge: n1629836034
+  area: r6838147
+  track: w150046956
+  level: 10
+  mode: 0
+  lines: FLX 30|IC 30|IC 32|RE8|RE9|RE12|RE22
+  sections:
+    name: A
+    position: n2389668450
+    name: A
+    position: n4572194304
+    name: B
+    position: n4572194305
+    name: B
+    position: n4705586742
+    name: C
+    position: n2392561729
+    name: C
+    position: n2392561727
+    name: D
+    position: n4572219291
+    name: E
+    position: n1629930980
+    name: G
+    position: n1629931028
+    name: G
+    position: n1629931022
+9
+  position: 1409429562 1869594995
+  stop point: n1629836040
+  edge: n1629836040
+  area: r6838147
+  track: w150046954
+  level: 10
+  mode: 0
+  lines: IC 55|ICE 1|ICE 10|RB26|RB27|RE1|RE6|RE7|Thalys
+  sections:
+    name: A
+    position: n2389668450
+    name: A
+    position: n4572194304
+    name: B
+    position: n4572194305
+    name: B
+    position: n4705586742
+    name: C
+    position: n2392561729
+    name: C
+    position: n2392561727
+    name: D
+    position: n4572219291
+    name: E
+    position: n1629930980
+    name: G
+    position: n1629931028
+    name: G
+    position: n1629931022
+10
+  position: 1409429759 1869595583
+  stop point: n1629836001
+  edge: n1629836001
+  area: n1629836001
+  track: w150046991
+  level: 10
+  mode: 0
+  lines: RB25|S6|S11|S12|S13|S19
+11
+  position: 1409430382 1869597188
+  stop point: n1629836012
+  edge: n1629836012
+  area: r6838156
+  track: w150046960
+  level: 10
+  mode: 0
+  lines: RB25|S6|S11|S12|S13|S19

@@ -32,6 +32,7 @@ ecm_add_test(cachetest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(gbfstest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 
 if (TARGET KOSMIndoorMap)
+    add_subdirectory(data/platforms)
     ecm_add_test(mapviewtest.cpp LINK_LIBRARIES Qt5::Test KOSMIndoorMap)
     ecm_add_test(mapcssparsertest.cpp LINK_LIBRARIES Qt5::Test KOSMIndoorMap)
     ecm_add_test(scenegeometrytest.cpp LINK_LIBRARIES Qt5::Test KOSMIndoorMap)

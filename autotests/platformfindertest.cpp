@@ -56,6 +56,8 @@ private Q_SLOTS:
 
         // has platform_edge and platform section tags
         QTest::newRow("hamburg-altona") << (SOURCE_DIR "/data/platforms/hamburg-altona.osm") << (SOURCE_DIR "/data/platforms/hamburg-altona.platforms");
+        // has no platform edges, but platform sections
+        QTest::newRow("cologne-central") << (SOURCE_DIR "/data/platforms/cologne-central.osm") << (SOURCE_DIR "/data/platforms/cologne-central.platforms");
     }
 
     void testPlatformFinder()
