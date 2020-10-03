@@ -127,6 +127,20 @@ static bool isSubPath(const std::vector<const OSM::Node*> &path, const OSM::Way 
 }
 
 static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 4.0; // meters
+static constexpr const auto MAX_SECTION_TO_EDGE_DISTANCE = 5.0;
+
+static OSM::Element firstValid(OSM::Element e) { return e; }
+template <typename ...Args>
+static OSM::Element firstValid(OSM::Element e, Args... args) { return e ? e : firstValid(args...); }
+
+static double maxSectionDistance(const std::vector<const OSM::Node*> &path, const std::vector<PlatformSection> &sections)
+{
+    auto dist = std::numeric_limits<double>::lowest();
+    for (const auto &section : sections) {
+        dist = std::max(dist, OSM::distance(path, section.position.center()));
+    }
+    return dist;
+}
 
 bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
@@ -168,6 +182,18 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     }
     if (rhs.m_area && lhs.m_stopPoint) {
         return OSM::distance(rhs.m_area.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    }
+
+    // free-floating sections: edge, area or track is within a reasonable distance
+    if (!lhs.m_name.isEmpty() && lhs.m_name == rhs.m_name) {
+        const auto lgeom = firstValid(lhs.m_edge, lhs.m_area, lhs.m_track, lhs.m_area);
+        if (lgeom && !rhs.m_sections.empty()) {
+            return maxSectionDistance(lgeom.outerPath(dataSet), rhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
+        }
+        const auto rgeom = firstValid(rhs.m_edge, rhs.m_area, rhs.m_track, rhs.m_area);
+        if (rgeom && !lhs.m_sections.empty()) {
+            return maxSectionDistance(rgeom.outerPath(dataSet), lhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
+        }
     }
 
     return false;
