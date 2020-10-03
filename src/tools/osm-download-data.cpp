@@ -27,6 +27,32 @@ static void filterByBbox(OSM::DataSet &dataSet, OSM::BoundingBox bbox)
     }), dataSet.nodes.end());
 }
 
+template <typename Elem>
+static bool containsElement(const std::vector<Elem> &elems, OSM::Id id)
+{
+    const auto it = std::lower_bound(elems.begin(), elems.end(), id, [](const Elem &lhs, OSM::Id rhs) { return lhs.id < rhs; });
+    return it != elems.end() && (*it).id == id;
+}
+
+static void purgeDanglingReferences(OSM::DataSet &dataSet)
+{
+    for (auto &rel : dataSet.relations) {
+        rel.members.erase(std::remove_if(rel.members.begin(), rel.members.end(), [&dataSet](const auto &mem) {
+            switch (mem.type()) {
+                case OSM::Type::Null:
+                    Q_UNREACHABLE();
+                case OSM::Type::Node:
+                    return containsElement(dataSet.nodes, mem.id);
+                case OSM::Type::Way:
+                    return containsElement(dataSet.ways, mem.id);
+                case OSM::Type::Relation:
+                    return containsElement(dataSet.relations, mem.id);
+            }
+            return false;
+        }), rel.members.end());
+    }
+}
+
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
@@ -62,6 +88,7 @@ int main(int argc, char **argv)
 
     auto data = loader.takeData();
     filterByBbox(data.dataSet(), bbox);
+    purgeDanglingReferences(data.dataSet());
 
     QFile f(parser.value(outOpt));
     if (!f.open(QFile::WriteOnly)) {
