@@ -11,11 +11,50 @@
 #include <QDebug>
 #include <QFile>
 #include <QGuiApplication>
+#include <QIconEngine>
 #include <QImageReader>
+#include <QPainter>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 
 using namespace KOSMIndoorMap;
+
+/** Device pixel ratio preserving simple icon engine for our SVG assets. */
+class IconEngine : public QIconEngine
+{
+public:
+    explicit IconEngine(QImage &&img)
+        : m_image(std::move(img))
+    {
+    }
+
+    ~IconEngine() = default;
+
+    QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const override
+    {
+        Q_UNUSED(mode);
+        Q_UNUSED(state);
+        return { m_image.size() / m_image.devicePixelRatio() };
+    }
+
+    QIconEngine* clone() const override
+    {
+        auto engine = new IconEngine;
+        engine->m_image = m_image;
+        return engine;
+    }
+
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
+    {
+        Q_UNUSED(mode);
+        Q_UNUSED(state);
+        painter->drawImage(rect, m_image);
+    }
+
+private:
+    explicit IconEngine() = default;
+    QImage m_image;
+};
 
 static bool operator<(const IconData &lhs, const IconData &rhs)
 {
@@ -97,5 +136,5 @@ QIcon IconLoader::loadSvgAsset(QIODevice *svgFile, const IconData &iconData) con
     imgReader.setScaledSize((iconData.size.isValid() ? iconData.size.toSize() : imgReader.size()) * qGuiApp->devicePixelRatio());
     auto img = imgReader.read();
     img.setDevicePixelRatio(qGuiApp->devicePixelRatio());
-    return QIcon(QPixmap::fromImage(std::move(img)));
+    return QIcon(new IconEngine(std::move(img)));
 }
