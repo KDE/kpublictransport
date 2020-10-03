@@ -2587,7 +2587,6 @@
 		<nd ref="2694836406"/>
 		<tag k="railway" v="rail"/>
 		<tag k="level" v="1"/>
-		<tag k="railway:preferred_direction" v="forward"/>
 		<tag k="service" v="siding"/>
 		<tag k="railway:track_ref" v="9"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
@@ -2766,7 +2765,6 @@
 		<tag k="railway" v="rail"/>
 		<tag k="level" v="1"/>
 		<tag k="tracks" v="1"/>
-		<tag k="railway:preferred_direction" v="forward"/>
 		<tag k="service" v="siding"/>
 		<tag k="railway:track_ref" v="9"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
@@ -4230,7 +4228,6 @@
 		<nd ref="1629943172"/>
 		<tag k="railway" v="rail"/>
 		<tag k="level" v="1"/>
-		<tag k="railway:preferred_direction" v="forward"/>
 		<tag k="service" v="siding"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 	</way>

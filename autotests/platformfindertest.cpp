@@ -58,6 +58,8 @@ private Q_SLOTS:
         QTest::newRow("hamburg-altona") << (SOURCE_DIR "/data/platforms/hamburg-altona.osm") << (SOURCE_DIR "/data/platforms/hamburg-altona.platforms");
         // has no platform edges, but platform sections
         QTest::newRow("cologne-central") << (SOURCE_DIR "/data/platforms/cologne-central.osm") << (SOURCE_DIR "/data/platforms/cologne-central.platforms");
+        // numberic and non-numeric platform names, free-floating sections with a non-standard encoding, no edges, partly no stop points
+        QTest::newRow("paris-gare-de-lyon") << (SOURCE_DIR "/data/platforms/paris-gare-de-lyon.osm") << (SOURCE_DIR "/data/platforms/paris-gare-de-lyon.platforms");
     }
 
     void testPlatformFinder()
@@ -80,10 +82,6 @@ private Q_SLOTS:
         PlatformFinder finder;
         const auto result = finder.find(&mapData);
         QVERIFY(!result.empty());
-
-        QFile expectedFile(expected);
-        QVERIFY(expectedFile.open(QFile::ReadOnly));
-        const auto expectedPlatforms = expectedFile.readAll();
 
         QFile outFile(QFileInfo(expected).fileName());
         QVERIFY(outFile.open(QFile::ReadWrite | QFile::Truncate));
@@ -120,6 +118,10 @@ private Q_SLOTS:
         }
         outFile.seek(0);
         const auto platforms = outFile.readAll();
+
+        QFile expectedFile(expected);
+        QVERIFY(expectedFile.open(QFile::ReadOnly));
+        const auto expectedPlatforms = expectedFile.readAll();
 
         if (platforms != expectedPlatforms) {
             QProcess proc;

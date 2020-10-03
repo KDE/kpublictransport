@@ -1,0 +1,285 @@
+A
+  position: 1388448282 1823742471
+  stop point: n6064298770
+  edge: n6064298770
+  area: r5444294
+  track: w115877520
+  level: 10
+  mode: 0
+  lines: Lyria|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843596
+    name: S
+    position: n3616838678
+    name: W
+    position: n3616838675
+    name: X
+    position: n3616843372
+    name: Y
+    position: n3616838668
+    name: Z
+    position: n3616843451
+C
+  position: 1388447649 1823741637
+  stop point: n6064298771
+  edge: n6064298771
+  area: r5444294
+  track: w116046787
+  level: 10
+  mode: 0
+  lines: Lyria|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843596
+    name: S
+    position: n3616838678
+    name: W
+    position: n3616838675
+    name: X
+    position: n3616843372
+    name: Y
+    position: n3616838668
+    name: Z
+    position: n3616843451
+D
+  position: 1388447193 1823741057
+  stop point: n6064298772
+  edge: n6064298772
+  area: r5444295
+  track: w115837548
+  level: 10
+  mode: 0
+  lines: Lyria|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843511
+    name: S
+    position: n3616843378
+    name: W
+    position: n3616843374
+    name: X
+    position: n3616843369
+    name: Y
+    position: n3616838667
+    name: Z
+    position: n3616843109
+E
+  position: 1388446552 1823740235
+  stop point: n6064298773
+  edge: n6064298773
+  area: r5444295
+  track: w115843891
+  level: 10
+  mode: 0
+  lines: Lyria|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843511
+    name: S
+    position: n3616843378
+    name: W
+    position: n3616843374
+    name: X
+    position: n3616843369
+    name: Y
+    position: n3616838667
+    name: Z
+    position: n3616843109
+G
+  position: 1388446098 1823739635
+  stop point: n6064298774
+  edge: n6064298774
+  area: r5398289
+  track: w115867964
+  level: 10
+  mode: 0
+  lines: Lyria|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843379
+    name: S
+    position: n3616843509
+    name: V
+    position: n3669318789
+    name: W
+    position: n3616843371
+    name: X
+    position: n3616843453
+    name: Y
+    position: n3616838665
+    name: Z
+    position: n3616843448
+Gare de Lyon
+  position: 1388436116 1823738087
+  stop point: n6958642411
+  edge: n6958642411
+  area: n6958642411
+  track: w115981335
+  level: -30
+  mode: 0
+  lines: D
+H
+  position: 1388445419 1823738760
+  stop point: n6064298775
+  edge: n6064298775
+  area: r5398289
+  track: w115836483
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843379
+    name: S
+    position: n3616843509
+    name: V
+    position: n3669318789
+    name: W
+    position: n3616843371
+    name: X
+    position: n3616843453
+    name: Y
+    position: n3616838665
+    name: Z
+    position: n3616843448
+I
+  position: 1388445184 1823738466
+  stop point: n6064298776
+  edge: n6064298776
+  area: r5444318
+  track: w115838768
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843510
+    name: S
+    position: n3616843377
+    name: V
+    position: n3616843375
+    name: W
+    position: n3616843370
+    name: X
+    position: n3616843452
+    name: Y
+    position: n3616843450
+    name: Z
+    position: n3616843108
+J
+  position: 1388444556 1823737688
+  stop point: n6064298777
+  edge: n6064298777
+  area: r5444318
+  track: w115843884
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616843510
+    name: S
+    position: n3616843377
+    name: V
+    position: n3616843375
+    name: W
+    position: n3616843370
+    name: X
+    position: n3616843452
+    name: Y
+    position: n3616843450
+    name: Z
+    position: n3616843108
+K
+  position: 1388444338 1823737357
+  stop point: n6064298778
+  edge: n6064298778
+  area: r5444319
+  track: w115836482
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616838677
+    name: S
+    position: n3616843057
+    name: V
+    position: n3616843373
+    name: W
+    position: n3616843454
+    name: X
+    position: n3616838666
+    name: Y
+    position: n3616843449
+    name: Z
+    position: n3616843107
+L
+  position: 1388443753 1823736511
+  stop point: n6064298779
+  edge: n6064298779
+  area: r5444319
+  track: w115837007
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521|TGV 522
+  sections:
+    name: R
+    position: n3616838677
+    name: S
+    position: n3616843057
+    name: V
+    position: n3616843373
+    name: W
+    position: n3616843454
+    name: X
+    position: n3616838666
+    name: Y
+    position: n3616843449
+    name: Z
+    position: n3616843107
+M
+  position: 1388443485 1823736255
+  stop point: n6064298780
+  edge: n6064298780
+  area: r5444317
+  track: w115836484
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616838676
+    name: S
+    position: n3616843376
+N
+  position: 1388441963 1823735478
+  stop point: n6064298781
+  edge: n6064298781
+  area: r5444317
+  track: w116037077
+  level: 10
+  mode: 0
+  lines: Lyria|R|TGV|TGV 505|TGV 506|TGV 507|TGV 508|TGV 509|TGV 510|TGV 511|TGV 512|TGV 515|TGV 516|TGV 517|TGV 518|TGV 519|TGV 520|TGV 521
+  sections:
+    name: R
+    position: n3616838676
+    name: S
+    position: n3616843376
+Voie 1
+  position: 1388458762 1823737786
+  stop point: n7064892032
+  edge: n7064892032
+  area: w756383639
+  track: w756383637
+  level: 0
+  mode: 1
+Voie 2
+  position: 1388458489 1823737851
+  stop point: n7064892033
+  edge: n7064892033
+  area: w756383638
+  track: w756383636
+  level: 0
+  mode: 1
