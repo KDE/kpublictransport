@@ -37,6 +37,7 @@ private:
     const MapData *m_data;
     struct {
         OSM::TagKey platform_ref;
+        OSM::TagKey platform_colon_ref; // platform:ref vs platform_ref above...
         OSM::TagKey public_transport;
         OSM::TagKey railway;
         OSM::TagKey railway_platform_section;
@@ -49,6 +50,7 @@ private:
 
     std::vector<Platform> m_platforms;
     std::vector<Platform> m_platformAreas;
+    std::vector<Platform> m_floatingSections;
 };
 
 }

@@ -29,6 +29,26 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
 
     for (auto it = m_data->m_levelMap.begin(); it != m_data->m_levelMap.end(); ++it) {
         for (const auto &e : (*it).second) {
+            if (!e.hasTags()) {
+                continue;
+            }
+
+            // non-standard free-floating section signs
+            const auto platformRef = e.tagValue(m_tagKeys.platform_colon_ref);
+            if (!platformRef.isEmpty() && e.tagValue("pole") == "landmark_sign") {
+                const auto names = QString::fromUtf8(platformRef).split(QLatin1Char(';'));
+                for (const auto &name : names) {
+                    Platform p;
+                    p.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                    p.setName(name);
+                    PlatformSection section;
+                    section.name = QString::fromUtf8(e.tagValue("local_ref", "ref"));
+                    section.position = e;
+                    p.setSections({section});
+                    m_floatingSections.push_back(std::move(p)); // can't merge this reliably until we have the full area geometry
+                }
+            }
+
             if (e.type() == OSM::Type::Node) {
                 continue;
             }
@@ -103,6 +123,10 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
         addPlatformArea(std::move(p));
     }
     m_platformAreas.clear();
+    for (auto &p : m_floatingSections) {
+        addPlatform(std::move(p));
+    }
+    m_floatingSections.clear();
 
     finalizeResult();
     return std::move(m_platforms);
@@ -111,6 +135,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
 void PlatformFinder::resolveTagKeys()
 {
     m_tagKeys.platform_ref = m_data->dataSet().tagKey("platform_ref");
+    m_tagKeys.platform_colon_ref = m_data->dataSet().tagKey("platform:ref");
     m_tagKeys.public_transport = m_data->dataSet().tagKey("public_transport");
     m_tagKeys.railway = m_data->dataSet().tagKey("railway");
     m_tagKeys.railway_platform_section = m_data->dataSet().tagKey("railway:platform:section");
@@ -192,6 +217,9 @@ std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<c
 
 Platform::Mode PlatformFinder::modeForElement(OSM::Element elem) const
 {
+    if (elem.tagValue("subway") == "yes") {
+        return Platform::Subway;
+    }
     if (elem.tagValue("tram") == "yes") {
         return Platform::Tram;
     }
