@@ -64,15 +64,15 @@ Kirigami.ApplicationWindow {
             contextualActions: [
                 Kirigami.Action {
                     text: "Light Style"
-                    onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"
+                    onTriggered: page.map.styleSheet = "breeze-light"
                 },
                 Kirigami.Action {
                     text: "Dark Style"
-                    onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/breeze-dark.mapcss"
+                    onTriggered: page.map.styleSheet = "breeze-dark"
                 },
                 Kirigami.Action {
                     text: "Diagnostic View"
-                    onTriggered: page.map.styleSheet = ":/org.kde.kosmindoormap/assets/css/diagnostic.mapcss"
+                    onTriggered: page.map.styleSheet = "diagnostic"
                 },
                 Kirigami.Action {
                     id: debugAction

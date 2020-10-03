@@ -15,6 +15,7 @@
 #include <QPainter>
 #include <QPalette>
 #include <QQuickWindow>
+#include <QStandardPaths>
 
 using namespace KOSMIndoorMap;
 
@@ -32,11 +33,7 @@ MapItem::MapItem(QQuickItem *parent)
     connect(m_view, &View::floorLevelChanged, this, [this]() { update(); });
     connect(m_view, &View::transformationChanged, this, [this]() { update(); });
 
-    if (QGuiApplication::palette().base().color().value() > 128) {
-        setStylesheetName(QStringLiteral(":/org.kde.kosmindoormap/assets/css/breeze-light.mapcss"));
-    } else {
-        setStylesheetName(QStringLiteral(":/org.kde.kosmindoormap/assets/css/breeze-dark.mapcss"));
-    }
+    setStylesheetName({}); // set default stylesheet
 }
 
 MapItem::~MapItem() = default;
@@ -65,11 +62,39 @@ QString MapItem::styleSheetName() const
 
 void MapItem::setStylesheetName(const QString &styleSheet)
 {
-    const auto styleUrl = QUrl::fromUserInput(styleSheet);
-    if (m_styleSheetName == styleUrl.toLocalFile()) {
+    QString styleFile;
+
+    if (styleSheet.isEmpty() || styleSheet == QLatin1String("default")) {
+        if (QGuiApplication::palette().base().color().value() > 128) {
+            setStylesheetName(QStringLiteral("breeze-light"));
+        } else {
+            setStylesheetName(QStringLiteral("breeze-dark"));
+        }
+        return;
+    } else {
+        styleFile = styleSheet.contains(QLatin1Char(':')) ? QUrl::fromUserInput(styleSheet).toLocalFile() : styleSheet;
+        if (!QFile::exists(styleFile)) {
+#ifndef Q_OS_ANDROID
+            auto searchPaths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+#else
+            auto searchPaths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+#endif
+            searchPaths.push_back(QStringLiteral(":"));
+            for (const auto &searchPath : qAsConst(searchPaths)) {
+                const QString f = searchPath + QLatin1String("/org.kde.kosmindoormap/assets/css/") + styleSheet + QLatin1String(".mapcss");
+                if (QFile::exists(f)) {
+                    qDebug() << "resolved stylesheet name to" << f;
+                    styleFile = f;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (m_styleSheetName == styleFile) {
         return;
     }
-    m_styleSheetName = styleUrl.toLocalFile();
+    m_styleSheetName = styleFile;
     m_style = MapCSSStyle();
 
     if (!m_styleSheetName.isEmpty()) {
