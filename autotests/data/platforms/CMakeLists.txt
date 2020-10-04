@@ -8,16 +8,16 @@ endif()
 add_custom_target(fetch-platform-data)
 function(fetch_osm_data _name _bbox)
     add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_name}.osm
-        COMMAND osm-download-data --bbox ${_bbox} --out ${CMAKE_CURRENT_BINARY_DIR}/${_name}.osm
+        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${_name}.raw.osm
+        COMMAND osm-download-data --bbox ${_bbox} --out ${CMAKE_CURRENT_BINARY_DIR}/${_name}.raw.osm
         COMMENT "Downloading ${_name}"
     )
     add_custom_command(
         OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/${_name}.osm
-        COMMAND OSM::filter ${CMAKE_CURRENT_BINARY_DIR}/${_name}.osm --drop-author --drop-version --out-osm --keep=route=train --keep=route=light_rail --keep=route=tram --keep=railway=* --keep=public_transport=* --keep=platform*=* --drop-relations=public_transport=station --drop-tags=\\"addr*= covered= cutting= description= ele= embankment= electrified= entrance*= frequency= gauge= HVV:*= heritage*= highspeed= image= interval*= maxspeed= mx:*= network= note*= layer= lit= operator*= rack= railway:ballastless= railway:bidirectional= railway:etcs= railway:gnt= railway:lzb= railway:milestone*= railway:local_operated= railway:position*= railway:preferred_direction= railway:pzb= railway:radius= railway=signal railway:signal*= railway=switch railway:switch*= railway:tilting= shelter= source*= TMC*= tunnel= voltage= VRS:*= wheelchair*= wiki*= workrules= \\" -o=${CMAKE_CURRENT_SOURCE_DIR}/${_name}.osm
+        COMMAND OSM::filter ${CMAKE_CURRENT_BINARY_DIR}/${_name}.raw.osm --drop-author --drop-version --out-osm --keep=route=train --keep=route=light_rail --keep=route=tram --keep=railway=* --keep=public_transport=* --keep=platform*=* --drop-relations=public_transport=station --drop-tags=\\"addr*= covered= cutting= description= ele= embankment= electrified= entrance*= frequency= gauge= HVV:*= heritage*= highspeed= image= interval*= maxspeed= mx:*= network= note*= layer= lit= operator*= rack= railway:ballastless= railway:bidirectional= railway:etcs= railway:gnt= railway:lzb= railway:milestone*= railway:local_operated= railway:position*= railway:preferred_direction= railway:pzb= railway:radius= railway=signal railway:signal*= railway=switch railway:switch*= railway:tilting= shelter= source*= TMC*= tunnel= voltage= VRS:*= wheelchair*= wiki*= workrules= \\" -o=${CMAKE_CURRENT_SOURCE_DIR}/${_name}.osm
         COMMAND sed -i -e \"s,\\?>,?>\\n<!--\\n    SPDX-FileCopyrightText: OpenStreetMap contributors\\n    SPDX-License-Identifier: ODbL-1.0\\n-->,\" ${CMAKE_CURRENT_SOURCE_DIR}/${_name}.osm
         COMMENT "Filtering ${_name}"
-        DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${_name}.osm
+        DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${_name}.raw.osm
     )
     add_custom_target(fetch-platform-${_name} DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${_name}.osm)
     add_dependencies(fetch-platform-data fetch-platform-${_name})
