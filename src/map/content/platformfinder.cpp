@@ -78,7 +78,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                     platform.setArea(e);
                     platform.setName(name);
                     platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
-                    platform.mode = modeForElement(e);
+                    platform.setMode(modeForElement(e));
                     platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), name));
                     // we delay merging of platforms, as those without track names would
                     // otherwise cobble together two distinct edges when merged to early
@@ -109,17 +109,11 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                         platform.setTrack(e);
                         platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
                         platform.setName(Platform::preferredName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")), nameFromTrack(e)));
-                        platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
-
-                        if (railway == "rail" || railway == "light_rail") {
-                            platform.mode = Platform::Rail;
-                        } else if (railway == "subway") {
-                            platform.mode = Platform::Subway;
-                        } else if (railway == "tram") {
-                            platform.mode = Platform::Tram;
-                        } else {
-                            return;
+                        platform.setMode(modeForElement(OSM::Element(&node)));
+                        if (platform.mode() == Platform::Unknown) {
+                            platform.setMode(modeForElement(e));
                         }
+                        platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
 
                         addPlatform(std::move(platform));
                     }
@@ -234,12 +228,21 @@ std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<c
 
 Platform::Mode PlatformFinder::modeForElement(OSM::Element elem) const
 {
-    if (elem.tagValue("subway") == "yes") {
+    const auto railway = elem.tagValue(m_tagKeys.railway);
+    if (railway == "rail" || railway == "light_rail") {
+        return Platform::Rail;
+    }
+    if (railway == "subway" || elem.tagValue("subway") == "yes") {
         return Platform::Subway;
     }
-    if (elem.tagValue("tram") == "yes") {
+    if (railway == "tram" || elem.tagValue("tram") == "yes") {
         return Platform::Tram;
     }
+    if (elem.tagValue("bus") == "yes") {
+        return Platform::Bus;
+    }
+
+    // TODO this should eventually return Unknown
     return Platform::Rail;
 }
 
@@ -273,7 +276,9 @@ void PlatformFinder::addPlatformArea(Platform &&platform)
 void PlatformFinder::finalizeResult()
 {
     // remove things that are still incomplete at this point
-    m_platforms.erase(std::remove_if(m_platforms.begin(), m_platforms.end(), [](const auto &p) { return !p.isValid(); }), m_platforms.end());
+    m_platforms.erase(std::remove_if(m_platforms.begin(), m_platforms.end(), [](const auto &p) {
+        return !p.isValid() && p.mode() != Platform::Bus;
+    }), m_platforms.end());
 
     // filter and sort sections on each platform
     for (auto &p : m_platforms) {
@@ -287,12 +292,12 @@ void PlatformFinder::finalizeResult()
 
     // sort platforms by mode/name
     std::sort(m_platforms.begin(), m_platforms.end(), [this](const auto &lhs, const auto &rhs) {
-        if (lhs.mode == rhs.mode) {
+        if (lhs.mode() == rhs.mode()) {
             if (lhs.name() == rhs.name()) {
                 return lhs.stopPoint().id() < rhs.stopPoint().id();
             }
             return m_collator.compare(lhs.name(), rhs.name()) < 0;
         }
-        return lhs.mode < rhs.mode;
+        return lhs.mode() < rhs.mode();
     });
 }

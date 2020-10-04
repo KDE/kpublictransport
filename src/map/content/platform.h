@@ -73,15 +73,20 @@ public:
     void setSections(std::vector<PlatformSection> &&sections);
     std::vector<PlatformSection>&& takeSections();
 
-    // TODO - clean up once PlatformModel is ported to PlatformFinder
+    /** Transportation mode served by a platform. */
     enum Mode {
+        Unknown,
         Rail,
+        LightRail,
         Subway,
         Tram,
         Bus,
     };
-    Mode mode = Rail;
     Q_ENUM(Mode)
+    Mode mode() const;
+    void setMode(Mode mode);
+
+    // TODO - clean up once PlatformModel is ported to PlatformFinder
     QStringList lines;
 
     /** Checks if two instances refer to the same platform. */
@@ -100,6 +105,7 @@ private:
     OSM::Element m_edge;
     OSM::Element m_area;
     OSM::Element m_track;
+    Mode m_mode = Rail; // TODO should eventually be "Unknown"
     int m_level = std::numeric_limits<int>::min(); // INT_MIN indicates not set, needed for merging
     std::vector<PlatformSection> m_sections;
 

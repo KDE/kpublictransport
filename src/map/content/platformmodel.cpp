@@ -74,7 +74,7 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
         case LevelRole:
             return platform.level();
         case TransportModeRole:
-            return platform.mode;
+            return platform.mode();
         case LinesRole:
             return platform.lines;
         case ArrivalPlatformRole:
@@ -135,11 +135,11 @@ void PlatformModel::populateModel()
                         platform.setName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")));
 
                         if (railway == "rail" || railway == "light_rail") {
-                            platform.mode = Platform::Rail;
+                            platform.setMode(Platform::Rail);
                         } else if (railway == "subway") {
-                            platform.mode = Platform::Subway;
+                            platform.setMode(Platform::Subway);
                         } else if (railway == "tram") {
-                            platform.mode = Platform::Tram;
+                            platform.setMode(Platform::Tram);
                         } else {
                             return;
                         }
@@ -240,26 +240,26 @@ void PlatformModel::addPlatform(Platform &&platform)
 
 bool PlatformModel::comparePlatform(const Platform &lhs, const Platform &rhs)
 {
-    if (lhs.mode == rhs.mode) {
+    if (lhs.mode() == rhs.mode()) {
         if (lhs.name() == rhs.name()) {
             return lhs.stopPoint().id() < rhs.stopPoint().id();
         }
         return m_collator.compare(lhs.name(), rhs.name()) < 0;
     }
-    return lhs.mode < rhs.mode;
+    return lhs.mode() < rhs.mode();
 }
 
 void PlatformModel::setArrivalPlatform(const QString &name, Platform::Mode mode)
 {
     m_arrivalPlatform.setName(name);
-    m_arrivalPlatform.mode = mode;
+    m_arrivalPlatform.setMode(mode);
     matchPlatforms();
 }
 
 void PlatformModel::setDeparturePlatform(const QString &name, Platform::Mode mode)
 {
     m_departurePlatform.setName(name);
-    m_departurePlatform.mode = mode;
+    m_departurePlatform.setMode(mode);
     matchPlatforms();
 }
 
@@ -294,7 +294,7 @@ int PlatformModel::matchPlatform(const Platform &platform) const
 
     int i = 0;
     for (const auto &p : m_platforms) {
-        if (p.name() == platform.name() && p.mode == platform.mode) { // TODO this needs to be a bit more complex to also handle platform section
+        if (p.name() == platform.name() && p.mode() == platform.mode()) { // TODO this needs to be a bit more complex to also handle platform section
             return i;
         }
         ++i;

@@ -23,7 +23,7 @@ Platform::~Platform() = default;
 
 bool Platform::isValid() const
 {
-    return !m_name.isEmpty() && position().isValid() && hasLevel();
+    return !m_name.isEmpty() && position().isValid() && hasLevel() && m_mode != Unknown;
 }
 
 QString Platform::name() const
@@ -111,6 +111,16 @@ std::vector<PlatformSection>&& Platform::takeSections()
     return std::move(m_sections);
 }
 
+Platform::Mode Platform::mode() const
+{
+    return m_mode;
+}
+
+void Platform::setMode(Platform::Mode mode)
+{
+    m_mode = mode;
+}
+
 static bool conflictIfPresent(OSM::Element lhs, OSM::Element rhs)
 {
     return lhs && rhs && lhs != rhs;
@@ -142,12 +152,12 @@ static double maxSectionDistance(const std::vector<const OSM::Node*> &path, cons
 
 bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
-    // TODO check for mode conflicts
     if (conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint)
      || conflictIfPresent(lhs.m_edge, rhs.m_edge)
      || conflictIfPresent(lhs.m_area, rhs.m_area)
      || conflictIfPresent(lhs.m_track, rhs.m_track)
-     || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level()))
+     || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level())
+     || (lhs.m_mode != Unknown && rhs.m_mode != Unknown && lhs.m_mode != rhs.m_mode))
     {
         return false;
     }
@@ -231,7 +241,7 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
     p.m_level = lhs.hasLevel() ? lhs.m_level : rhs.m_level;
 
     // TODO
-    p.mode = std::max(lhs.mode, rhs.mode);
+    p.m_mode = std::max(lhs.m_mode, rhs.m_mode);
     p.lines = lhs.lines.isEmpty() ? std::move(rhs.lines) : std::move(lhs.lines);
 
     std::vector<const OSM::Node*> edgePath;

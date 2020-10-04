@@ -131,6 +131,14 @@
   track: w70270903
   level: -20
   mode: Subway
+2
+  position: 1425251423 1933700843
+  stop point: n3856100107
+  edge: n3856100107
+  area: n3856100107
+  track: w421618233
+  level: -20
+  mode: Subway
 4
   position: 1425266408 1933700051
   stop point: n3253288878
