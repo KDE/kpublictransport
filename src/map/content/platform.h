@@ -89,6 +89,9 @@ public:
     /** Merge two platform objects. */
     static Platform merge(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
 
+    /** Returns the preferred platform name given two possible alternatives. */
+    static QString preferredName(const QString &lhs, const QString &rhs);
+
 private:
     QString m_name;
     OSM::Element m_stopPoint;

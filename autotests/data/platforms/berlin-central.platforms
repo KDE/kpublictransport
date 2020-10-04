@@ -8,9 +8,9 @@
   mode: 0
   lines: EC 27|FLX 10|IC 32|ICE 11|ICE 15|ICE 18|ICE 28|ICE 29|RE4
 2
-  position: 1425248066 1933692298
-  stop point: n3856100097
-  edge: n3856100097
+  position: 1425259250 1933684454
+  stop point: n2813070488
+  edge: n2813070488
   area: w202719939
   track: w240526027
   level: -20
@@ -62,9 +62,9 @@
   mode: 0
   lines: IC 17|IC 32|ICE 11|ICE 18|ICE 28|ICE 29
 8
-  position: 1425249193 1933701466
-  stop point: n3856100102
-  edge: n3856100102
+  position: 1425261452 1933692855
+  stop point: n2813070494
+  edge: n2813070494
   area: w202719944
   track: w240526030
   level: -20
@@ -123,78 +123,14 @@
   level: 20
   mode: 0
   lines: S3|S5|S7|S9
-Berlin Hauptbahnhof (Tief)
-  position: 1425258845 1933682295
-  stop point: n2813070487
-  edge: n2813070487
-  area: n2813070487
-  track: w140478324
+1
+  position: 1425252588 1933702857
+  stop point: n446289301
+  edge: n446289301
+  area: w86379623
+  track: w421618231
   level: -20
-  mode: 0
-  lines: EC 27|FLX 10|IC 32|ICE 11|ICE 15|ICE 18|ICE 28|ICE 29|RE4
-Berlin Hauptbahnhof (Tief)
-  position: 1425259250 1933684454
-  stop point: n2813070488
-  edge: n2813070488
-  area: n2813070488
-  track: w240526027
-  level: -20
-  mode: 0
-  lines: FLX 30|IC 17|ICE 10
-Berlin Hauptbahnhof (Tief)
-  position: 1425259404 1933685191
-  stop point: n2813070489
-  edge: n2813070489
-  area: n2813070489
-  track: w240526028
-  level: -20
-  mode: 0
-  lines: EC 173|EC 379|RE3|RE5
-Berlin Hauptbahnhof (Tief)
-  position: 1425259970 1933687223
-  stop point: n2813070490
-  edge: n2813070490
-  area: n2813070490
-  track: w240526029
-  level: -20
-  mode: 0
-  lines: ICE 10|RB10
-Berlin Hauptbahnhof (Tief)
-  position: 1425260107 1933687936
-  stop point: n2813070491
-  edge: n2813070491
-  area: n2813070491
-  track: w4440336
-  level: -20
-  mode: 0
-  lines: EC 27|EN 452|FLX 10|IC 50 E|ICE 15|RB10|RE3|RE4|RE5
-Berlin Hauptbahnhof (Tief)
-  position: 1425260795 1933690843
-  stop point: n2813070492
-  edge: n2813070492
-  area: n2813070492
-  track: w200229908
-  level: -20
-  mode: 0
-  lines: IC 17|IC 32|ICE 11|ICE 18|ICE 28|ICE 29
-Berlin Hauptbahnhof (Tief)
-  position: 1425260605 1933690120
-  stop point: n2813070493
-  edge: n2813070493
-  area: n2813070493
-  track: w191591511
-  level: -20
-  mode: 0
-  lines: EN 453|FLX 30|RE5
-Berlin Hauptbahnhof (Tief)
-  position: 1425261452 1933692855
-  stop point: n2813070494
-  edge: n2813070494
-  area: n2813070494
-  track: w240526030
-  level: -20
-  mode: 0
-  lines: EC 172|EC 378
+  mode: 1
 U Hauptbahnhof
   position: 1425252588 1933702857
   stop point: n446289301

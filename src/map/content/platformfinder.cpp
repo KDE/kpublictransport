@@ -22,6 +22,23 @@ PlatformFinder::PlatformFinder()
 
 PlatformFinder::~PlatformFinder() = default;
 
+static QString nameFromTrack(OSM::Element track)
+{
+    auto name = QString::fromUtf8(track.tagValue("railway:track_ref"));
+    if (!name.isEmpty()) {
+        return name;
+    }
+
+    name = QString::fromUtf8(track.tagValue("name"));
+    for (const char *n : { "platform", "voie", "gleis" }) {
+        if (name.contains(QLatin1String(n), Qt::CaseInsensitive)) {
+            return name.remove(QLatin1String(n), Qt::CaseInsensitive).trimmed();
+        }
+    }
+
+    return {};
+}
+
 std::vector<Platform> PlatformFinder::find(const MapData *data)
 {
     m_data = data;
@@ -91,7 +108,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                         platform.setStopPoint(OSM::Element(&node));
                         platform.setTrack(e);
                         platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
-                        platform.setName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")));
+                        platform.setName(Platform::preferredName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")), nameFromTrack(e)));
                         platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
 
                         if (railway == "rail" || railway == "light_rail") {

@@ -215,7 +215,7 @@ void Platform::appendSection(std::vector<PlatformSection> &sections, const Platf
 Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
     Platform p;
-    p.m_name = lhs.m_name.isEmpty() ? rhs.m_name : lhs.m_name;
+    p.m_name = preferredName(lhs.name(), rhs.name());
     p.m_stopPoint = lhs.m_stopPoint ? lhs.m_stopPoint : rhs.m_stopPoint;
     p.m_edge = lhs.m_edge ? lhs.m_edge : rhs.m_edge;
     p.m_area = lhs.m_area ? lhs.m_area : rhs.m_area;
@@ -263,4 +263,16 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
     p.setSections(std::move(sections));
 
     return p;
+}
+
+QString Platform::preferredName(const QString &lhs, const QString &rhs)
+{
+    if (lhs.isEmpty()) {
+        return rhs;
+    }
+    if (rhs.isEmpty()) {
+        return lhs;
+    }
+
+    return lhs.size() < rhs.size() ? lhs: rhs;
 }

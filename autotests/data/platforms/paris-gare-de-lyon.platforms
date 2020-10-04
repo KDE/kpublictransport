@@ -7,13 +7,14 @@
   level: -30
   mode: 0
 2
-  position: 1388435246 1823740874
-  stop point: <null>
-  edge: <null>
+  position: 1388436116 1823738087
+  stop point: n6958642411
+  edge: n6958642411
   area: w406470900
-  track: <null>
+  track: w115981335
   level: -30
   mode: 0
+  lines: D
 3
   position: 1388437623 1823742061
   stop point: <null>
@@ -338,15 +339,6 @@ G
     position: n3616838665
     name: Z
     position: n3616843448
-Gare de Lyon
-  position: 1388436116 1823738087
-  stop point: n6958642411
-  edge: n6958642411
-  area: n6958642411
-  track: w115981335
-  level: -30
-  mode: 0
-  lines: D
 H
   position: 1388445419 1823738760
   stop point: n6064298775
