@@ -8,6 +8,8 @@
 
 #include <osm/geomath.h>
 
+#include <QRegularExpression>
+
 using namespace KOSMIndoorMap;
 
 bool PlatformSection::isValid() const
@@ -145,10 +147,16 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
      || conflictIfPresent(lhs.m_edge, rhs.m_edge)
      || conflictIfPresent(lhs.m_area, rhs.m_area)
      || conflictIfPresent(lhs.m_track, rhs.m_track)
-     || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level())
-     || (!lhs.m_name.isEmpty() && !rhs.m_name.isEmpty() && lhs.m_name != rhs.m_name))
+     || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level()))
     {
         return false;
+    }
+
+    // we can accept conflicting names if everything else matches, if one of them is likely a station name instead of a platform name
+    if (!lhs.m_name.isEmpty() && !rhs.m_name.isEmpty() && lhs.m_name != rhs.m_name) {
+        if (isPlausibleName(lhs.name()) && isPlausibleName(rhs.name())) {
+            return false;
+        }
     }
 
     // edge has to be part of area, but on its own that doesn't mean equallity
@@ -263,6 +271,12 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
     p.setSections(std::move(sections));
 
     return p;
+}
+
+bool Platform::isPlausibleName(const QString &name)
+{
+    static QRegularExpression exp(QStringLiteral("^(\\d{1,3}[a-z]?|[A-Z])$"));
+    return exp.match(name).hasMatch();
 }
 
 QString Platform::preferredName(const QString &lhs, const QString &rhs)

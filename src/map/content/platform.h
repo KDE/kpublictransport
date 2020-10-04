@@ -89,6 +89,8 @@ public:
     /** Merge two platform objects. */
     static Platform merge(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet);
 
+    /** Checks if @p name is a plausible name for a platform. */
+    static bool isPlausibleName(const QString &name);
     /** Returns the preferred platform name given two possible alternatives. */
     static QString preferredName(const QString &lhs, const QString &rhs);
 
