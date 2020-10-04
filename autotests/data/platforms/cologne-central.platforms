@@ -185,6 +185,14 @@
   mode: 0
   lines: RB25|S6|S11|S12|S13|S19
 1
+  position: 1409443775 1869588295
+  stop point: <null>
+  edge: <null>
+  area: w141211002
+  track: <null>
+  level: -20
+  mode: 2
+1
   position: 1409417829 1869572166
   stop point: n2393908416
   edge: n2393908416

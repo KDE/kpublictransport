@@ -51,7 +51,7 @@ void Platform::setLevel(int level)
 
 OSM::Coordinate Platform::position() const
 {
-    return m_stopPoint.center();
+    return OSM::coalesce(m_stopPoint, m_area).center();
 }
 
 OSM::Element Platform::stopPoint() const
@@ -66,7 +66,7 @@ void Platform::setStopPoint(OSM::Element stop)
 
 OSM::Element Platform::edge() const
 {
-    return m_edge ? m_edge : m_stopPoint;
+    return OSM::coalesce(m_edge, m_stopPoint);
 }
 
 void Platform::setEdge(OSM::Element edge)
@@ -76,7 +76,7 @@ void Platform::setEdge(OSM::Element edge)
 
 OSM::Element Platform::area() const
 {
-    return m_area ? m_area : edge();
+    return OSM::coalesce(m_area, m_edge, m_stopPoint);
 }
 
 void Platform::setArea(OSM::Element area)
@@ -128,10 +128,6 @@ static bool isSubPath(const std::vector<const OSM::Node*> &path, const OSM::Way 
 
 static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 4.0; // meters
 static constexpr const auto MAX_SECTION_TO_EDGE_DISTANCE = 5.0;
-
-static OSM::Element firstValid(OSM::Element e) { return e; }
-template <typename ...Args>
-static OSM::Element firstValid(OSM::Element e, Args... args) { return e ? e : firstValid(args...); }
 
 static double maxSectionDistance(const std::vector<const OSM::Node*> &path, const std::vector<PlatformSection> &sections)
 {
@@ -186,11 +182,11 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
 
     // free-floating sections: edge, area or track is within a reasonable distance
     if (!lhs.m_name.isEmpty() && lhs.m_name == rhs.m_name) {
-        const auto lgeom = firstValid(lhs.m_edge, lhs.m_area, lhs.m_track, lhs.m_area);
+        const auto lgeom = OSM::coalesce(lhs.m_edge, lhs.m_area, lhs.m_track, lhs.m_area);
         if (lgeom && !rhs.m_sections.empty()) {
             return maxSectionDistance(lgeom.outerPath(dataSet), rhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
         }
-        const auto rgeom = firstValid(rhs.m_edge, rhs.m_area, rhs.m_track, rhs.m_area);
+        const auto rgeom = OSM::coalesce(rhs.m_edge, rhs.m_area, rhs.m_track, rhs.m_area);
         if (rgeom && !lhs.m_sections.empty()) {
             return maxSectionDistance(rgeom.outerPath(dataSet), lhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
         }

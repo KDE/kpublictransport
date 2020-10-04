@@ -67,6 +67,11 @@ private:
     Internal::TaggedPointer<const void> m_elem;
 };
 
+/** Utility function similar to SQL COALESCE for OSM::Element, ie. this returns the first non-null element passed as argument. */
+constexpr Element coalesce(Element e) { return e; }
+template <typename ...Args>
+constexpr Element coalesce(Element e, Args... args) { return e ? e : coalesce(args...); }
+
 template <typename ...Args>
 QByteArray Element::tagValue(const char *keyName, Args... args) const
 {
