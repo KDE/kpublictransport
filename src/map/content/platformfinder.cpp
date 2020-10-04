@@ -93,7 +93,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                 platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
                 addPlatform(std::move(platform));
             }
-            else if (!railway.isEmpty() && e.type() == OSM::Type::Way) {
+            else if (!railway.isEmpty() && e.type() == OSM::Type::Way && railway != "disused") {
                 OSM::for_each_node(m_data->dataSet(), *e.way(), [&](const auto &node) {
                     if (!OSM::contains(m_data->boundingBox(), node.coordinate)) {
                         return;
