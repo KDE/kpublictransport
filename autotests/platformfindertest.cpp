@@ -60,6 +60,8 @@ private Q_SLOTS:
         QTest::newRow("cologne-central") << (SOURCE_DIR "/data/platforms/cologne-central.osm") << (SOURCE_DIR "/data/platforms/cologne-central.platforms");
         // numberic and non-numeric platform names, free-floating sections with a non-standard encoding, no edges, partly no stop points
         QTest::newRow("paris-gare-de-lyon") << (SOURCE_DIR "/data/platforms/paris-gare-de-lyon.osm") << (SOURCE_DIR "/data/platforms/paris-gare-de-lyon.platforms");
+        // multiple modes, 3 levels, no sections, multiple stop points on the same track
+        QTest::newRow("berlin-central") << (SOURCE_DIR "/data/platforms/berlin-central.osm") << (SOURCE_DIR "/data/platforms/berlin-central.platforms");
     }
 
     void testPlatformFinder()
