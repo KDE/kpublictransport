@@ -5,7 +5,7 @@
   area: w202719939
   track: w140478324
   level: -20
-  mode: 0
+  mode: Rail
   lines: EC 27|FLX 10|IC 32|ICE 11|ICE 15|ICE 18|ICE 28|ICE 29|RE4
 2
   position: 1425259250 1933684454
@@ -14,7 +14,7 @@
   area: w202719939
   track: w240526027
   level: -20
-  mode: 0
+  mode: Rail
   lines: FLX 30|IC 17|ICE 10
 3
   position: 1425248150 1933693073
@@ -23,7 +23,7 @@
   area: w202719941
   track: w240526028
   level: -20
-  mode: 0
+  mode: Rail
   lines: EC 173|EC 379|RE3|RE5
 4
   position: 1425248313 1933695421
@@ -32,7 +32,7 @@
   area: w202719941
   track: w240526029
   level: -20
-  mode: 0
+  mode: Rail
   lines: ICE 10|RB10
 5
   position: 1425248462 1933696172
@@ -41,7 +41,7 @@
   area: w202719942
   track: w4440336
   level: -20
-  mode: 0
+  mode: Rail
   lines: EC 27|EN 452|FLX 10|IC 50 E|ICE 15|RB10|RE3|RE4|RE5
 6
   position: 1425248795 1933698377
@@ -50,7 +50,7 @@
   area: w202719942
   track: w191591511
   level: -20
-  mode: 0
+  mode: Rail
   lines: EN 453|FLX 30|RE5
 7
   position: 1425248943 1933699150
@@ -59,7 +59,7 @@
   area: w202719944
   track: w200229908
   level: -20
-  mode: 0
+  mode: Rail
   lines: IC 17|IC 32|ICE 11|ICE 18|ICE 28|ICE 29
 8
   position: 1425261452 1933692855
@@ -68,7 +68,7 @@
   area: w202719944
   track: w240526030
   level: -20
-  mode: 0
+  mode: Rail
   lines: EC 172|EC 378
 11
   position: 1425247420 1933695626
@@ -77,7 +77,7 @@
   area: r929443
   track: w85258722
   level: 20
-  mode: 0
+  mode: Rail
   lines: EC 55|EC 95|IC 56|IC 77|ICE 3|ICE 12|ICE 13|NJ 457|RB14|RE1|RE2|RE7
 12
   position: 1425249126 1933694603
@@ -86,7 +86,7 @@
   area: r929443
   track: w85258723
   level: 20
-  mode: 0
+  mode: Rail
   lines: RB21|RB22
 13
   position: 1425249394 1933694418
@@ -95,7 +95,7 @@
   area: r918697
   track: w85258724
   level: 20
-  mode: 0
+  mode: Rail
   lines: EC 54|EC 95|IC 56|IC 77|ICE 3|ICE 12|ICE 13|NJ 456|RB14|RB21|RB22|RE1|RE2|RE7
 14
   position: 1425250952 1933693329
@@ -104,7 +104,7 @@
   area: r918697
   track: w85258730
   level: 20
-  mode: 0
+  mode: Rail
 15
   position: 1425251819 1933700299
   stop point: n27412648
@@ -112,7 +112,7 @@
   area: r930922
   track: w114919150
   level: 20
-  mode: 0
+  mode: Rail
   lines: S3|S5|S7|S9
 16
   position: 1425252750 1933692007
@@ -121,7 +121,7 @@
   area: r930922
   track: w85258728
   level: 20
-  mode: 0
+  mode: Rail
   lines: S3|S5|S7|S9
 1
   position: 1425252588 1933702857
@@ -130,7 +130,7 @@
   area: w86379623
   track: w70270903
   level: -20
-  mode: 1
+  mode: Subway
 4
   position: 1425266408 1933700051
   stop point: n3253288878
@@ -138,7 +138,7 @@
   area: r6809884
   track: w291670884
   level: 0
-  mode: 2
+  mode: Tram
   lines: M5|M8|M10
 5
   position: 1425264968 1933694391
@@ -147,5 +147,5 @@
   area: r6809883
   track: w291670886
   level: 0
-  mode: 2
+  mode: Tram
   lines: M5|M8|M10

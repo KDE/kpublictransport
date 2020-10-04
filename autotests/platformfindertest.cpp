@@ -8,6 +8,7 @@
 #include <map/loader/maploader.h>
 #include <map/content/platformfinder.h>
 
+#include <QMetaEnum>
 #include <QProcess>
 #include <QTest>
 
@@ -104,7 +105,7 @@ private Q_SLOTS:
             writeElement(&outFile, platform.track());
             outFile.write("\n");
             outFile.write("  level: " + QByteArray::number(platform.level()) + "\n");
-            outFile.write("  mode: " + QByteArray::number(platform.mode) + "\n");
+            outFile.write(QByteArray("  mode: ") + Platform::staticMetaObject.enumerator(0).valueToKey(platform.mode()) + "\n");
             if (!platform.lines.empty()) {
                 outFile.write("  lines: " + platform.lines.join(QLatin1Char('|')).toUtf8() + "\n");
             }

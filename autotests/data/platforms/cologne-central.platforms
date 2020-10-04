@@ -5,7 +5,7 @@
   area: r6743846
   track: w150030924
   level: 10
-  mode: 0
+  mode: Rail
   lines: IC 31|RB24|RB26|RE5|RE12|RE22
   sections:
     name: E
@@ -17,7 +17,7 @@
   area: r6838169
   track: w150032665
   level: 10
-  mode: 0
+  mode: Rail
   lines: FLX 20|FLX 30|IC 50|ICE 10|RB48|RE7
   sections:
     name: C
@@ -37,7 +37,7 @@
   area: r6838169
   track: w150030933
   level: 10
-  mode: 0
+  mode: Rail
   lines: EC 114|IC 32|IC 35|IC 37|IC 55|RB38|RE8|RE9
   sections:
     name: C
@@ -57,7 +57,7 @@
   area: r6838161
   track: w150033263
   level: 10
-  mode: 0
+  mode: Rail
   lines: IC 55|ICE 43|ICE 45|ICE 49|ICE 79|RB27|RE1|RE6|RE8
   sections:
     name: C
@@ -75,7 +75,7 @@
   area: r6838161
   track: w150046958
   level: 10
-  mode: 0
+  mode: Rail
   lines: EC 6|EC 8|IC 50|IC 50 MDV|ICE 1|ICE 42|ICE 49|ICE 78|ICE 79|RE8|Thalys
   sections:
     name: C
@@ -93,7 +93,7 @@
   area: r6838127
   track: w150046959
   level: 10
-  mode: 0
+  mode: Rail
   lines: IC 30|ICE 42|ICE 43|ICE 45|ICE 78
   sections:
     name: C
@@ -113,7 +113,7 @@
   area: r6838127
   track: w150046952
   level: 10
-  mode: 0
+  mode: Rail
   lines: EC 7|EC 9|EC 115|FLX 20|IC 30|IC 31|IC 35|IC 37|IC 55|NJ 421|NJ 40421|RB24|RB38|RB48|RE5
   sections:
     name: C
@@ -133,7 +133,7 @@
   area: r6838147
   track: w150046956
   level: 10
-  mode: 0
+  mode: Rail
   lines: FLX 30|IC 30|IC 32|RE8|RE9|RE12|RE22
   sections:
     name: A
@@ -151,7 +151,7 @@
   area: r6838147
   track: w150046954
   level: 10
-  mode: 0
+  mode: Rail
   lines: IC 55|ICE 1|ICE 10|RB26|RB27|RE1|RE6|RE7|Thalys
   sections:
     name: A
@@ -173,7 +173,7 @@
   area: r6838156
   track: w150046991
   level: 10
-  mode: 0
+  mode: Rail
   lines: RB25|S6|S11|S12|S13|S19
 11
   position: 1409430382 1869597188
@@ -182,7 +182,7 @@
   area: r6838156
   track: w150046960
   level: 10
-  mode: 0
+  mode: Rail
   lines: RB25|S6|S11|S12|S13|S19
 1
   position: 1409443775 1869588295
@@ -191,7 +191,7 @@
   area: w141211002
   track: <null>
   level: -20
-  mode: 2
+  mode: Tram
 1
   position: 1409417829 1869572166
   stop point: n2393908416
@@ -199,7 +199,7 @@
   area: w119317771
   track: w324287735
   level: -20
-  mode: 2
+  mode: Tram
   lines: 5|16|18
 2
   position: 1409443823 1869587478
@@ -208,7 +208,7 @@
   area: w141211002
   track: w339960443
   level: -20
-  mode: 2
+  mode: Tram
   lines: 16|18
 2
   position: 1409418150 1869572123
@@ -217,7 +217,7 @@
   area: w119317753
   track: w230967808
   level: -20
-  mode: 2
+  mode: Tram
   lines: 5|16|18
 3
   position: 1409444437 1869585753
@@ -226,5 +226,5 @@
   area: w141211006
   track: w195256580
   level: -20
-  mode: 2
+  mode: Tram
   lines: 16|18

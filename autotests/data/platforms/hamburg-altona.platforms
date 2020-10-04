@@ -5,7 +5,7 @@
   area: w42873615
   track: w214250400
   level: 0
-  mode: 0
+  mode: Rail
   lines: EC 6|EC 8|EC 27|EC 172
   sections:
     name: D
@@ -19,7 +19,7 @@
   area: w42873615
   track: w4841532
   level: 0
-  mode: 0
+  mode: Rail
   lines: FLX 20|IC 31|ICE 1|ICE 22|ICE 25|ICE 26
   sections:
     name: D
@@ -33,7 +33,7 @@
   area: w662729031
   track: w75408304
   level: 0
-  mode: 0
+  mode: Rail
   lines: ICE 4|ICE 20|RB71|RE6
   sections:
     name: A
@@ -53,7 +53,7 @@
   area: w662729031
   track: w77339553
   level: 0
-  mode: 0
+  mode: Rail
   lines: RB71
   sections:
     name: A
@@ -73,7 +73,7 @@
   area: w42873617
   track: w6271257
   level: 0
-  mode: 0
+  mode: Rail
   lines: EC 7|RB71|RE6
   sections:
     name: A
@@ -93,7 +93,7 @@
   area: w42873617
   track: w75412691
   level: 0
-  mode: 0
+  mode: Rail
   lines: EC 9|FLX 20|ICE 25|NJ 491|NJ 40491
   sections:
     name: A
@@ -113,7 +113,7 @@
   area: w662729032
   track: w6270944
   level: 0
-  mode: 0
+  mode: Rail
   lines: EC 27|ICE 1|ICE 20|ICE 22|ICE 26
   sections:
     name: A
@@ -131,7 +131,7 @@
   area: w662729032
   track: w6138684
   level: 0
-  mode: 0
+  mode: Rail
   lines: EC 173|IC 31|ICE 4|ICE 26
   sections:
     name: A
@@ -147,7 +147,7 @@ Hamburg-Altona
   area: w42838504
   track: w292634009
   level: -20
-  mode: 0
+  mode: Rail
   lines: S11|S31
 Hamburg-Altona
   position: 1435518777 1899349360
@@ -156,7 +156,7 @@ Hamburg-Altona
   area: w42838505
   track: w292634013
   level: -20
-  mode: 0
+  mode: Rail
   lines: S1|S2|S3
 Hamburg-Altona
   position: 1435518544 1899343955
@@ -165,7 +165,7 @@ Hamburg-Altona
   area: w42838504
   track: w42836978
   level: -20
-  mode: 0
+  mode: Rail
   lines: S1|S2|S3
 Hamburg-Altona
   position: 1435518678 1899346850
@@ -174,5 +174,5 @@ Hamburg-Altona
   area: w42838505
   track: w42837004
   level: -20
-  mode: 0
+  mode: Rail
   lines: S11|S31
