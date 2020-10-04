@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
+if (NOT TARGET OSM::filter)
+    return()
+endif()
+
 add_custom_target(fetch-platform-data)
 function(fetch_osm_data _name _bbox)
     add_custom_command(
