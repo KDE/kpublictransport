@@ -42,11 +42,11 @@ static void purgeDanglingReferences(OSM::DataSet &dataSet)
                 case OSM::Type::Null:
                     Q_UNREACHABLE();
                 case OSM::Type::Node:
-                    return containsElement(dataSet.nodes, mem.id);
+                    return !containsElement(dataSet.nodes, mem.id);
                 case OSM::Type::Way:
-                    return containsElement(dataSet.ways, mem.id);
+                    return !containsElement(dataSet.ways, mem.id);
                 case OSM::Type::Relation:
-                    return containsElement(dataSet.relations, mem.id);
+                    return !containsElement(dataSet.relations, mem.id);
             }
             return false;
         }), rel.members.end());
