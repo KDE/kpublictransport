@@ -56,7 +56,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                 const auto names = QString::fromUtf8(platformRef).split(QLatin1Char(';'));
                 for (const auto &name : names) {
                     Platform p;
-                    p.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                    p.setLevel(levelForPlatform((*it).first, e));
                     p.setName(name);
                     PlatformSection section;
                     section.name = QString::fromUtf8(e.tagValue("local_ref", "ref"));
@@ -77,7 +77,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                     Platform platform;
                     platform.setArea(e);
                     platform.setName(name);
-                    platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                    platform.setLevel(levelForPlatform((*it).first, e));
                     platform.setMode(modeForElement(e));
                     platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), name));
                     // we delay merging of platforms, as those without track names would
@@ -89,7 +89,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                 Platform platform;
                 platform.setEdge(e);
                 platform.setName(QString::fromUtf8(e.tagValue("local_ref", "ref")));
-                platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                platform.setLevel(levelForPlatform((*it).first, e));
                 platform.setSections(sectionsForPath(e.outerPath(m_data->dataSet()), platform.name()));
                 addPlatform(std::move(platform));
             }
@@ -107,7 +107,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                         Platform platform;
                         platform.setStopPoint(OSM::Element(&node));
                         platform.setTrack(e);
-                        platform.setLevel(qRound((*it).first.numericLevel() / 10.0) * 10);
+                        platform.setLevel(levelForPlatform((*it).first, e));
                         platform.setName(Platform::preferredName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")), nameFromTrack(e)));
                         platform.setMode(modeForElement(OSM::Element(&node)));
                         if (platform.mode() == Platform::Unknown) {
@@ -145,6 +145,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
 
 void PlatformFinder::resolveTagKeys()
 {
+    m_tagKeys.level = m_data->dataSet().tagKey("level");
     m_tagKeys.platform_ref = m_data->dataSet().tagKey("platform_ref");
     m_tagKeys.platform_colon_ref = m_data->dataSet().tagKey("platform:ref");
     m_tagKeys.public_transport = m_data->dataSet().tagKey("public_transport");
@@ -244,6 +245,14 @@ Platform::Mode PlatformFinder::modeForElement(OSM::Element elem) const
 
     // TODO this should eventually return Unknown
     return Platform::Rail;
+}
+
+int PlatformFinder::levelForPlatform(const MapLevel &ml, OSM::Element e) const
+{
+    if (ml.numericLevel() != 0) {
+        return qRound(ml.numericLevel() / 10.0) * 10;
+    }
+    return e.tagValue(m_tagKeys.level).isEmpty() ? std::numeric_limits<int>::min() : 0;
 }
 
 void PlatformFinder::addPlatform(Platform &&platform)

@@ -14,6 +14,7 @@
 namespace KOSMIndoorMap {
 
 class MapData;
+class MapLevel;
 
 /** Identifies public transport platforms in OSM data. */
 class PlatformFinder
@@ -29,6 +30,7 @@ private:
     void scanRoute(const OSM::Node &node, OSM::Element route);
     std::vector<PlatformSection> sectionsForPath(const std::vector<const OSM::Node*> &path, const QString &platformName) const;
     Platform::Mode modeForElement(OSM::Element elem) const;
+    int levelForPlatform(const MapLevel &ml, OSM::Element e) const;
 
     void addPlatform(Platform &&platform);
     /** Similar to the above, but assuming @p platform can be merged with multiple existing ones. */
@@ -36,6 +38,7 @@ private:
 
     const MapData *m_data;
     struct {
+        OSM::TagKey level;
         OSM::TagKey platform_ref;
         OSM::TagKey platform_colon_ref; // platform:ref vs platform_ref above...
         OSM::TagKey public_transport;

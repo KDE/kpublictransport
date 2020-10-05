@@ -23,7 +23,7 @@ Platform::~Platform() = default;
 
 bool Platform::isValid() const
 {
-    return !m_name.isEmpty() && position().isValid() && hasLevel() && m_mode != Unknown;
+    return !m_name.isEmpty() && position().isValid() && m_mode != Unknown;
 }
 
 QString Platform::name() const
