@@ -9,7 +9,7 @@
 
 #include "platform.h"
 
-#include <QAbstractListModel>
+#include <QAbstractItemModel>
 #include <QCollator>
 
 namespace KOSMIndoorMap {
@@ -20,7 +20,7 @@ class MapData;
  *  There's also the concept of (optional) arrival/departure platforms in here to highlight
  *  arriving/departing locations when used in context of a planned journey.
  */
-class PlatformModel : public QAbstractListModel
+class PlatformModel : public QAbstractItemModel
 {
     Q_OBJECT
     Q_PROPERTY(KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)
@@ -49,8 +49,11 @@ public:
     };
     Q_ENUM(Role)
 
+    int columnCount(const QModelIndex &parent = {}) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = {}) const override;
+    QModelIndex parent(const QModelIndex &child) const override;
     QHash<int, QByteArray> roleNames() const override;
 
     /** Match arrival/departure platform against what we found in the map data. */

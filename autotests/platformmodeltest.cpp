@@ -43,6 +43,14 @@ private Q_SLOTS:
             const auto idx = model.index(i, 0);
             QVERIFY(!idx.data(Qt::DisplayRole).toString().isEmpty());
             QVERIFY(idx.data(PlatformModel::ElementRole).value<OSM::Element>().type() != OSM::Type::Null);
+
+            const auto secCount = model.rowCount(idx);
+            QVERIFY(secCount > 0 || !(idx.data(PlatformModel::DeparturePlatformRole).toBool() || idx.data(PlatformModel::ArrivalPlatformRole).toBool()));
+            for (int j = 0; j < secCount; ++j) {
+                const auto secIdx = model.index(j, 0, idx);
+                QVERIFY(!secIdx.data(Qt::DisplayRole).toString().isEmpty());
+                QVERIFY(secIdx.data(PlatformModel::ElementRole).value<OSM::Element>().type() != OSM::Type::Null);
+            }
         }
 
         QVERIFY(model.departurePlatformRow() >= 0);
