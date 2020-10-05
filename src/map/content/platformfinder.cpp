@@ -71,7 +71,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
             }
             const auto railway = e.tagValue(m_tagKeys.railway);
             if (railway == "platform") {
-                QRegularExpression splitExp(QStringLiteral("[;/\\+]"));;
+                QRegularExpression splitExp(QStringLiteral("[;,/\\+]"));;
                 const auto names = QString::fromUtf8(e.tagValue("local_ref", "ref")).split(splitExp);
                 for (const auto &name : names) {
                     Platform platform;
