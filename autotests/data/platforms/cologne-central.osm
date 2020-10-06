@@ -14,7 +14,6 @@
 	<node id="78586822" lat="50.9422616" lon="6.959302"/>
 	<node id="78586828" lat="50.9443823" lon="6.9587478">
 		<tag k="name" v="Breslauer Platz/Hauptbahnhof"/>
-		<tag k="website" v="http://www.kvb-koeln.de/german/hst/overview/9/"/>
 		<tag k="railway" v="tram_stop"/>
 		<tag k="train" v="no"/>
 		<tag k="bus" v="no"/>
@@ -113,7 +112,6 @@
 	</node>
 	<node id="1341075078" lat="50.9418151" lon="6.9572123">
 		<tag k="name" v="Dom/Hbf"/>
-		<tag k="website" v="http://www.kvb-koeln.de/german/hst/overview/8/"/>
 		<tag k="railway" v="tram_stop"/>
 		<tag k="train" v="no"/>
 		<tag k="bus" v="no"/>
@@ -863,7 +861,6 @@
 	<node id="2393836849" lat="50.9443044" lon="6.9587661"/>
 	<node id="2393836850" lat="50.9444437" lon="6.9585753">
 		<tag k="name" v="Breslauer Platz/Hauptbahnhof"/>
-		<tag k="website" v="http://www.kvb-koeln.de/german/hst/overview/9/"/>
 		<tag k="railway" v="tram_stop"/>
 		<tag k="train" v="no"/>
 		<tag k="bus" v="no"/>
@@ -876,7 +873,6 @@
 	<node id="2393908414" lat="50.9417382" lon="6.9565243"/>
 	<node id="2393908416" lat="50.9417829" lon="6.9572166">
 		<tag k="name" v="Dom/Hbf"/>
-		<tag k="website" v="http://www.kvb-koeln.de/german/hst/overview/8/"/>
 		<tag k="railway" v="tram_stop"/>
 		<tag k="train" v="no"/>
 		<tag k="bus" v="no"/>
@@ -888,7 +884,6 @@
 	<node id="2396699297" lat="50.9419571" lon="6.9592306"/>
 	<node id="2399559029" lat="50.9427839" lon="6.9590705">
 		<tag k="name" v="Köln Hauptbahnhof"/>
-		<tag k="website" v="https://www.bahnhof.de/site/bahnhoefe/de/west/koeln/koeln__hbf.html"/>
 		<tag k="railway" v="station"/>
 		<tag k="public_transport" v="station"/>
 		<tag k="addr:country" v="DE"/>
@@ -898,20 +893,11 @@
 		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="short_name" v="Köln Hbf"/>
 		<tag k="railway:ref" v="KK"/>
-		<tag k="name:it" v="Stazione di Köln Hauptbahnhof"/>
-		<tag k="name:fr" v="Gare centrale de Cologne"/>
-		<tag k="name:es" v="Estación Central de Colonia"/>
-		<tag k="name:ru" v="Вокзал Кёльн"/>
 		<tag k="uic_ref" v="8000207"/>
 		<tag k="uic_name" v="Köln Hbf"/>
 		<tag k="start_date" v="1859"/>
-		<tag k="name:en" v="Cologne central station"/>
-		<tag k="name:zh" v="科隆中央車站"/>
-		<tag k="name:ja" v="ケルン中央駅"/>
 		<tag k="iata:note" v="Den IATA-Code hat der Bahnhof wegen des AIRail-Verkehrsangebots."/>
-		<tag k="name:oc" v="Gara centrala de Colonha"/>
 		<tag k="iata" v="QKL"/>
-		<tag k="name:th" v="สถานีรถไฟโคโลญ"/>
 		<tag k="railway:station_category" v="1"/>
 	</node>
 	<node id="2523709764" lat="50.9415837" lon="6.9593371"/>
@@ -3197,7 +3183,6 @@
 		<nd ref="669213864"/>
 		<tag k="name" v="Empfangshalle"/>
 		<tag k="public_transport" v="station"/>
-		<tag k="building" v="train_station"/>
 		<tag k="historic" v="heritage"/>
 	</way>
 	<way id="176438290">
@@ -3231,7 +3216,6 @@
 		<nd ref="4922727516"/>
 		<nd ref="4189701316"/>
 		<tag k="public_transport" v="station"/>
-		<tag k="building" v="train_station"/>
 	</way>
 	<way id="195256580">
 		<nd ref="-24498781"/>
@@ -3737,7 +3721,6 @@
 		<nd ref="2389537133"/>
 		<nd ref="4190132026"/>
 		<tag k="level" v="0;1"/>
-		<tag k="building:part" v="elevator"/>
 	</way>
 	<way id="418710323">
 		<nd ref="2389537149"/>
@@ -3746,7 +3729,6 @@
 		<nd ref="2389537147"/>
 		<nd ref="2389537149"/>
 		<tag k="level" v="0;1"/>
-		<tag k="building:part" v="elevator"/>
 	</way>
 	<way id="423966144">
 		<nd ref="1629836021"/>
@@ -3834,7 +3816,6 @@
 		<nd ref="4572194300"/>
 		<nd ref="4572184591"/>
 		<tag k="level" v="1"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="463029278">
 		<nd ref="4583437292"/>
@@ -3846,7 +3827,6 @@
 		<tag k="amenity" v="fast_food"/>
 		<tag k="diet:vegetarian" v="no"/>
 		<tag k="level" v="1"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="463029280">
 		<nd ref="4583442900"/>
@@ -3857,7 +3837,6 @@
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="1"/>
 		<tag k="indoor" v="room"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="463029281">
 		<nd ref="4190003925"/>
@@ -4111,7 +4090,6 @@
 		<nd ref="4190132009"/>
 		<nd ref="4190132011"/>
 		<tag k="level" v="0;1"/>
-		<tag k="building:part" v="elevator"/>
 	</way>
 	<way id="463031627">
 		<nd ref="4189858969"/>
@@ -4292,7 +4270,6 @@
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="1"/>
 		<tag k="indoor" v="room"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="477170109">
 		<nd ref="4705609926"/>
@@ -4303,7 +4280,6 @@
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="1"/>
 		<tag k="indoor" v="room"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="477170110">
 		<nd ref="4705609930"/>
@@ -4313,7 +4289,6 @@
 		<nd ref="4705609930"/>
 		<tag k="amenity" v="fast_food"/>
 		<tag k="level" v="1"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="477170111">
 		<nd ref="4705609934"/>
@@ -4323,7 +4298,6 @@
 		<nd ref="4705609934"/>
 		<tag k="amenity" v="fast_food"/>
 		<tag k="level" v="1"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="477170112">
 		<nd ref="4705609938"/>
@@ -4337,7 +4311,6 @@
 		<tag k="brand:wikidata" v="Q15854357"/>
 		<tag k="level" v="1"/>
 		<tag k="shop" v="bakery"/>
-		<tag k="building" v="yes"/>
 	</way>
 	<way id="501468971">
 		<nd ref="2389537095"/>
@@ -4371,9 +4344,7 @@
 		<tag k="diet:vegetarian" v="yes"/>
 		<tag k="diet:vegan" v="yes"/>
 		<tag k="level" v="1"/>
-		<tag k="building" v="retail"/>
 		<tag k="roof:levels" v="0"/>
-		<tag k="building:levels" v="1"/>
 	</way>
 	<way id="533904260">
 		<nd ref="5179026568"/>
@@ -4425,7 +4396,6 @@
 		<tag k="colour" v="#21BFC1"/>
 		<tag k="from" v="Bonn-Bad Godesberg"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Wesseling"/>
 		<tag k="route" v="tram"/>
 		<tag k="to" v="Köln-Niehl"/>
 	</relation>
@@ -4449,7 +4419,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Leipzig Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Halle (Saale);Magdeburg;Braunschweig;Hannover;Bielefeld;Dortmund"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
 		<tag k="toilets" v="yes"/>
@@ -4474,7 +4443,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Mainz Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Wiesbaden"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
 	</relation>
@@ -4524,7 +4492,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Dortmund;Bielefeld;Hannover;Braunschweig;Magdeburg;Halle (Saale);Leipzig Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Dresden Haupbahnhof"/>
 		<tag k="toilets" v="yes"/>
@@ -4549,7 +4516,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Berlin Ostbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bonn"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Koblenz Hbf"/>
 	</relation>
@@ -4601,7 +4567,6 @@
 		<tag k="colour" v="#54ad4b"/>
 		<tag k="from" v="Köln Thielenbruch"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Brühl"/>
 		<tag k="route" v="tram"/>
 		<tag k="to" v="Bonn Hauptbahnhof"/>
 	</relation>
@@ -4654,7 +4619,6 @@
 		<tag k="colour" v="#54ad4b"/>
 		<tag k="from" v="Bonn Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Brühl"/>
 		<tag k="route" v="tram"/>
 		<tag k="to" v="Köln Thielenbruch"/>
 	</relation>
@@ -4684,7 +4648,6 @@
 		<tag k="colour" v="#21BFC1"/>
 		<tag k="from" v="Köln-Niehl"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Wesseling"/>
 		<tag k="route" v="tram"/>
 		<tag k="to" v="Bonn-Bad Godesberg"/>
 	</relation>
@@ -4707,7 +4670,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Euskirchen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Gerolstein"/>
 	</relation>
@@ -4749,7 +4711,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Wiesbaden"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Mainz Hbf"/>
 	</relation>
@@ -4772,7 +4733,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Gerolstein"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Euskirchen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
 	</relation>
@@ -4792,7 +4752,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Overath;Gummersbach;Brügge (Westf.)"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Lüdenscheid"/>
 	</relation>
@@ -4814,7 +4773,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bonn;Remagen;Koblenz;Bingen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Mainz"/>
 	</relation>
@@ -4837,7 +4795,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Mönchengladbach"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Koblenz"/>
 		<tag k="comment" v="Zwischen Köln und Koblenz über die rechte Rheinstrecke; seit 15.12.2019 Linienweg mit dem RE 8 getauscht"/>
@@ -4860,7 +4817,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Koblenz"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Mönchengladbach"/>
 		<tag k="comment" v="Zwischen Koblenz und Köln über die rechte Rheinstrecke; seit 15.12.2019 Linienweg mit dem RE 8 getauscht"/>
@@ -4884,7 +4840,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Wuppertal"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Solingen;Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Bonn"/>
 		<tag k="timetable" v="2016"/>
@@ -5001,7 +4956,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Koblenz"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln;Düsseldorf;Duisburg"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Wesel"/>
 		<tag k="toilets" v="yes"/>
@@ -5029,7 +4983,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Wesel"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Duisburg;Düsseldorf;Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Koblenz"/>
 		<tag k="toilets" v="yes"/>
@@ -5075,7 +5028,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Krefeld"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf;Wuppertal Hbf;Hagen Hbf;Münster (Westf) Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Rheine"/>
 		<tag k="timetable" v="2016"/>
@@ -5097,7 +5049,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Mönchengladbach"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Koblenz"/>
 		<tag k="comment" v="Zwischen Köln und Koblenz über die rechte Rheinstrecke"/>
@@ -5120,7 +5071,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Koblenz"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Mönchengladbach"/>
 		<tag k="comment" v="Zwischen Koblenz und Köln über die rechte Rheinstrecke; seit 15.12.2019 Linienweg mit der RB 27 getauscht"/>
@@ -5145,7 +5095,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Siegen Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Aachen Hauptbahnhof"/>
 	</relation>
@@ -5166,7 +5115,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Aachen Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Siegen Hbf"/>
 	</relation>
@@ -5227,7 +5175,6 @@
 		<tag k="service" v="commuter"/>
 		<tag k="from" v="Horrem"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf;Porz (Rhein)"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Au (Sieg)"/>
 	</relation>
@@ -5248,7 +5195,6 @@
 		<tag k="service" v="commuter"/>
 		<tag k="from" v="Au (Sieg)"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Porz (Rhein);Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Horrem"/>
 	</relation>
@@ -5269,7 +5215,6 @@
 		<tag k="service" v="commuter"/>
 		<tag k="from" v="Troisdorf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Flughafen Köln/Bonn;Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Düren"/>
 	</relation>
@@ -5289,7 +5234,6 @@
 		<tag k="service" v="commuter"/>
 		<tag k="from" v="Düren"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf;Flughafen Köln/Bonn"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Troisdorf"/>
 	</relation>
@@ -5354,7 +5298,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Bonn"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln;Solingen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Wuppertal"/>
 		<tag k="timetable" v="2016"/>
@@ -5377,7 +5320,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Euskirchen;Gerolstein"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Trier"/>
 	</relation>
@@ -5425,7 +5367,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Koblenz"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bonn"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Berlin-Gesundbrunnen"/>
 	</relation>
@@ -5448,7 +5389,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Mainz"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bingen;Koblenz;Remagen;Bonn"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
 	</relation>
@@ -5527,7 +5467,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Westerland (Sylt)"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Stuttgart"/>
 	</relation>
@@ -5569,7 +5508,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Zürich Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Hamburg Altona"/>
 		<tag k="headway" v="1440"/>
@@ -5592,7 +5530,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Hamburg-Altona"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Interlaken Ost"/>
 		<tag k="headway" v="1440"/>
@@ -5624,7 +5561,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Hannover Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln;Frankfurt"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Basel SBB"/>
 		<tag k="toilets" v="yes"/>
@@ -5650,7 +5586,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Horrem"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Bedburg (Erft)"/>
 	</relation>
@@ -5671,7 +5606,6 @@
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Bedburg (Erft)"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Horrem"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
 	</relation>
@@ -5741,7 +5675,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Interlaken Ost"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Hamburg Altona"/>
 		<tag k="headway" v="1440"/>
@@ -5834,7 +5767,6 @@
 		<tag k="service" v="commuter"/>
 		<tag k="from" v="Düren"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf;Flughafen Köln/Bonn"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Au (Sieg)"/>
 	</relation>
@@ -5855,7 +5787,6 @@
 		<tag k="service" v="commuter"/>
 		<tag k="from" v="Au (Sieg)"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Flughafen Köln/Bonn;Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Düren"/>
 	</relation>
@@ -5900,7 +5831,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Frankfurt (Main) Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Koblenz Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Hamburg-Altona"/>
 	</relation>
@@ -5918,13 +5848,11 @@
 		<member type="node" ref="1629835981" role="stop"/>
 		<tag k="type" v="route"/>
 		<tag k="name" v="FLX 20: Köln =&#62; Hamburg"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 20"/>
 		<tag k="colour" v="green"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Gelsenkirchen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Hamburg"/>
 	</relation>
@@ -5945,7 +5873,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Oberstdorf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Magdeburg"/>
 	</relation>
@@ -5967,7 +5894,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Frankfurt Flughafen;Mannheim"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Basel SBB"/>
 		<tag k="state" v="connection"/>
@@ -5989,7 +5915,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Siegburg/Bonn;Montabaur;Limburg Süd;Frankfurt (Main) Flughafen Fernbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Frankfurt (Main) Hbf"/>
 		<tag k="state" v="connection"/>
@@ -6018,7 +5943,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Dortmund"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf;Stuttgart"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="München"/>
 	</relation>
@@ -6040,7 +5964,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Frankfurt (Main) Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Frankfurt (Main) Flughafen Fernbf;Limburg Süd;Montabaur;Siegburg/Bonn"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
 		<tag k="state" v="connection"/>
@@ -6062,7 +5985,6 @@
 		<tag k="service" v="international"/>
 		<tag k="from" v="Dortmund"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Cologne; Liège; Bruxelles-Midi"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Paris - Gare du Nord"/>
 		<tag k="headway" v="120"/>
@@ -6091,7 +6013,6 @@
 		<tag k="service" v="international"/>
 		<tag k="from" v="Paris - Gare du Nord"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bruxelles-Midi;Liège;Cologne"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Dortmund"/>
 		<tag k="headway" v="120"/>
@@ -6160,7 +6081,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Hamburg-Altona"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Koblenz Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Frankfurt (Main) Hauptbahnhof"/>
 	</relation>
@@ -6181,7 +6101,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Magdeburg"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Oberstdorf"/>
 	</relation>
@@ -6210,7 +6129,6 @@
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="München"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Stuttgart;Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Dortmund"/>
 	</relation>
@@ -6231,7 +6149,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Binz"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Berlin Spandau"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
 		<tag k="fixme" v="W? = Ostseebad Binz"/>
@@ -6252,7 +6169,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Berlin Spandau"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Ostseebad Binz"/>
 	</relation>
@@ -6273,7 +6189,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Kassel"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Leipzig"/>
 	</relation>
@@ -6295,7 +6210,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Leipzig"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Kassel"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
 	</relation>
@@ -6317,7 +6231,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Düsseldorf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln;Stuttgart"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Tübingen"/>
 	</relation>
@@ -6338,7 +6251,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Tübingen"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Stuttgart;Köln"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Düsseldorf"/>
 	</relation>
@@ -6530,13 +6442,11 @@
 		<member type="way" ref="150054150" role=""/>
 		<tag k="type" v="route"/>
 		<tag k="name" v="FLX 20: Hamburg =&#62; Köln"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 20"/>
 		<tag k="colour" v="green"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Hamburg-Altona"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Gelsenkirchen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
 	</relation>
@@ -6558,7 +6468,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Düsseldorf Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Koblenz Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Luxembourg"/>
 	</relation>
@@ -6581,7 +6490,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Luxembourg"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Koblenz Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Düsseldorf Hbf"/>
 	</relation>
@@ -6598,7 +6506,6 @@
 		<member type="way" ref="150054150" role=""/>
 		<tag k="type" v="route"/>
 		<tag k="name" v="NJ 421: Düsseldorf =&#62; Innsbruck"/>
-		<tag k="website" v="https://www.nightjet.com/"/>
 		<tag k="ref" v="NJ 421"/>
 		<tag k="brand" v="ÖBB Nightjet"/>
 		<tag k="service" v="night;motorail"/>
@@ -6626,7 +6533,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Hamburg-Altona"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Köln Hbf"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Zürich Hauptbahnhof"/>
 		<tag k="headway" v="1440"/>
@@ -6650,7 +6556,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bremen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Fehmarn-Burg"/>
 		<tag k="train_numbers" v="IC 2418"/>
@@ -6672,7 +6577,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Fehmarn-Burg"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bremen"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
 		<tag k="train_numbers" v="IC 2411"/>
@@ -6694,7 +6598,6 @@
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Fehmarn-Burg"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Bremen;Münster"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
 		<tag k="train_numbers" v="IC 2413"/>
@@ -6863,7 +6766,6 @@
 		<member type="way" ref="150054150" role=""/>
 		<tag k="type" v="route"/>
 		<tag k="name" v="NJ 40421: Düsseldorf =&#62; Wien"/>
-		<tag k="website" v="https://www.nightjet.com/"/>
 		<tag k="ref" v="NJ 40421"/>
 		<tag k="brand" v="ÖBB Nightjet"/>
 		<tag k="service" v="night;motorail"/>
@@ -6885,13 +6787,11 @@
 		<member type="way" ref="150046981" role=""/>
 		<tag k="type" v="route"/>
 		<tag k="name" v="FLX 30: Berlin =&#62; Hannover =&#62; Köln"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 30"/>
 		<tag k="colour" v="green"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Hannover"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
 	</relation>
@@ -6909,13 +6809,11 @@
 		<member type="node" ref="1629835981" role="stop"/>
 		<tag k="type" v="route"/>
 		<tag k="name" v="FLX 30: Köln =&#62; Hannover =&#62; Berlin"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 30"/>
 		<tag k="colour" v="green"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
-		<tag k="via" v="Hannover"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Berlin"/>
 	</relation>

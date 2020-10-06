@@ -69,8 +69,6 @@
 		<tag k="subway" v="yes"/>
 		<tag k="ref:BVG" v="254601"/>
 		<tag k="start_date" v="2009-08-09"/>
-		<tag k="website" v="https://fahrinfo.vbb.de/bin/stboard.exe/dn?start=yes&#38;input=900003201"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 	</node>
 	<node id="446301550" lat="52.5271709" lon="13.3683171"/>
 	<node id="446301552" lat="52.5236052" lon="13.3707975">
@@ -140,8 +138,6 @@
 		<tag k="name" v="S+U Hauptbahnhof"/>
 		<tag k="bus" v="yes"/>
 		<tag k="ref:BVG" v="103893"/>
-		<tag k="website" v="https://qr.bvg.de/h103893"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 	</node>
 	<node id="817763144" lat="52.5266615" lon="13.3689034">
 		<tag k="public_transport" v="stop_position"/>
@@ -149,8 +145,6 @@
 		<tag k="name" v="S+U Hauptbahnhof"/>
 		<tag k="bus" v="yes"/>
 		<tag k="ref:BVG" v="100100"/>
-		<tag k="website" v="https://qr.bvg.de/h100100"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 	</node>
 	<node id="892675614" lat="52.5266088" lon="13.3688069">
 		<tag k="name" v="S+U Hauptbahnhof"/>
@@ -162,8 +156,6 @@
 		<tag k="name" v="S+U Hauptbahnhof"/>
 		<tag k="bus" v="yes"/>
 		<tag k="ref:BVG" v="103892"/>
-		<tag k="website" v="https://qr.bvg.de/h103892"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 	</node>
 	<node id="983272582" lat="52.5242078" lon="13.3697527">
 		<tag k="name" v="Hauptbahnhof Washingtonplatz"/>
@@ -243,8 +235,6 @@
 		<tag k="local_ref" v="5"/>
 		<tag k="name" v="S+U Hauptbahnhof"/>
 		<tag k="ref:BVG" v="308856"/>
-		<tag k="website" v="https://qr.bvg.de/h308856"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 		<tag k="tram" v="yes"/>
 	</node>
 	<node id="2085214310" lat="52.5255728" lon="13.3665506"/>
@@ -337,11 +327,9 @@
 		<tag k="railway" v="proposed"/>
 		<tag k="light_rail" v="yes"/>
 		<tag k="name" v="S Hauptbahnhof (Tunnel)"/>
-		<tag k="contact:phone" v="+49 30 297 43333"/>
 		<tag k="uic_ref" v="8011160"/>
 		<tag k="railway:station_category" v="1"/>
 		<tag k="railway:ref" v="BHBT"/>
-		<tag k="contact:website" v="http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/hauptbahnhof/96"/>
 		<tag k="station" v="light_rail"/>
 		<tag k="network:short" v="VBB"/>
 		<tag k="construction:railway" v="halt"/>
@@ -582,8 +570,6 @@
 		<tag k="local_ref" v="4"/>
 		<tag k="name" v="S+U Hauptbahnhof"/>
 		<tag k="ref:BVG" v="308860"/>
-		<tag k="website" v="https://qr.bvg.de/h308860"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 		<tag k="tram" v="yes"/>
 	</node>
 	<node id="3256076748" lat="52.5267963" lon="13.3704966"/>
@@ -722,21 +708,18 @@
 		<tag k="uic_name" v="Berlin Hauptbahnhof"/>
 		<tag k="railway:ref" v="BLS"/>
 		<tag k="old_name" v="Lehrter Bahnhof"/>
-		<tag k="name:be" v="Берлін-Цэнтральны"/>
 	</node>
 	<node id="3856100106" lat="52.5251951" lon="13.3693321">
 		<tag k="public_transport" v="station"/>
 		<tag k="railway" v="halt"/>
 		<tag k="light_rail" v="yes"/>
 		<tag k="name" v="S Hauptbahnhof"/>
-		<tag k="contact:phone" v="+49 30 297 43333"/>
 		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="uic_ref" v="8011160"/>
 		<tag k="official_name" v="Berlin Hauptbahnhof - Lehrter Bf S-Bahn"/>
 		<tag k="railway:station_category" v="1"/>
 		<tag k="railway:ref" v="BHBF"/>
 		<tag k="old_name" v="Lehrter Bahnhof"/>
-		<tag k="contact:website" v="http://www.s-bahn-berlin.de/fahrplanundnetz/bahnhof/hauptbahnhof/96"/>
 		<tag k="station" v="light_rail"/>
 		<tag k="network:short" v="VBB"/>
 	</node>
@@ -746,7 +729,6 @@
 		<tag k="level" v="-2"/>
 		<tag k="name" v="U Hauptbahnhof"/>
 		<tag k="subway" v="yes"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 		<tag k="disused:ref:BVG" v="254602"/>
 	</node>
 	<node id="3856100108" lat="52.5252819" lon="13.3701242">
@@ -847,8 +829,6 @@
 		<tag k="name" v="S+U Hauptbahnhof"/>
 		<tag k="bus" v="yes"/>
 		<tag k="ref:BVG" v="100108"/>
-		<tag k="website" v="https://qr.bvg.de/h100108"/>
-		<tag k="name:BVG" v="S+U Berlin Hauptbahnhof"/>
 	</node>
 	<node id="4294764767" lat="52.5257073" lon="13.3699199">
 		<tag k="railway" v="subway_entrance"/>
@@ -870,7 +850,6 @@
 		<tag k="name" v="Hauptbahnhof Nachrückhalteplatz Washingtonplatz"/>
 		<tag k="amenity" v="taxi"/>
 		<tag k="capacity" v="5"/>
-		<tag k="name:de" v="Hauptbahnhof Nachrückhalteplatz Washingtonplatz"/>
 	</node>
 	<node id="4560346549" lat="52.5234986" lon="13.3705526"/>
 	<node id="4565354480" lat="52.526477" lon="13.3696707"/>
@@ -969,7 +948,6 @@
 		<tag k="usage" v="main"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="detail" v="track"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="54845088">
 		<nd ref="748364705"/>
@@ -1151,7 +1129,6 @@
 		<tag k="start_date" v="2009-08-09"/>
 		<tag k="electrified:rail" v="bottom"/>
 		<tag k="loading_gauge" v="Großprofil"/>
-		<tag k="maxspeed:note" v="Kein Limit - Maximalgeschwindigkeit der eingesetzten Fahrzeuge"/>
 	</way>
 	<way id="85258722">
 		<nd ref="2813070481"/>
@@ -1413,7 +1390,6 @@
 		<tag k="service" v="siding"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="detail" v="track"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="191591507">
 		<nd ref="2182805395"/>
@@ -1445,7 +1421,6 @@
 		<tag k="usage" v="main"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="detail" v="track"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="191591510">
 		<nd ref="2021800370"/>
@@ -1477,7 +1452,6 @@
 		<nd ref="2021837090"/>
 		<tag k="railway" v="construction"/>
 		<tag k="name" v="S21"/>
-		<tag k="website" v="http://www.baustellen-doku.info/projekte/neubau_s-bahn_s21_berlin_westhafen_wedding_hauptbahnhof.php"/>
 		<tag k="ref" v="6017"/>
 		<tag k="construction" v="light_rail"/>
 		<tag k="opening_date" v="2019"/>
@@ -1491,7 +1465,6 @@
 		<nd ref="6625141916"/>
 		<tag k="railway" v="construction"/>
 		<tag k="name" v="S21"/>
-		<tag k="website" v="http://www.baustellen-doku.info/projekte/neubau_s-bahn_s21_berlin_westhafen_wedding_hauptbahnhof.php"/>
 		<tag k="ref" v="6017"/>
 		<tag k="construction" v="light_rail"/>
 		<tag k="opening_date" v="2019"/>
@@ -1615,7 +1588,6 @@
 		<tag k="ref" v="5;6"/>
 		<tag k="tactile_paving" v="yes"/>
 		<tag k="area" v="yes"/>
-		<tag k="name:ko" v="베를린 중앙역(지하)"/>
 		<tag k="location" v="underground"/>
 	</way>
 	<way id="202719944">
@@ -1657,7 +1629,6 @@
 		<tag k="level" v="-2"/>
 		<tag k="service" v="siding"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="207993048">
 		<nd ref="2182805389"/>
@@ -1701,7 +1672,6 @@
 		<nd ref="2021837089"/>
 		<tag k="railway" v="construction"/>
 		<tag k="name" v="S21"/>
-		<tag k="website" v="http://www.baustellen-doku.info/projekte/neubau_s-bahn_s21_berlin_westhafen_wedding_hauptbahnhof.php"/>
 		<tag k="ref" v="6017"/>
 		<tag k="construction" v="light_rail"/>
 		<tag k="opening_date" v="2019"/>
@@ -1780,7 +1750,6 @@
 		<tag k="usage" v="main"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="detail" v="track"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="240526033">
 		<nd ref="446301550"/>
@@ -1793,7 +1762,6 @@
 		<tag k="service" v="siding"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="detail" v="track"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="240526035">
 		<nd ref="2182805399"/>
@@ -1805,7 +1773,6 @@
 		<tag k="usage" v="main"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="detail" v="track"/>
-		<tag k="railway:radio" v="gsm-r"/>
 	</way>
 	<way id="271420275">
 		<nd ref="2182805377"/>
@@ -1935,12 +1902,10 @@
 		<tag k="public_transport" v="service_point"/>
 		<tag k="level" v="0"/>
 		<tag k="name" v="DB Information"/>
-		<tag k="website" v="https://www.bahnhof.de/bahnhof-de/Berlin_Hauptbahnhof.html"/>
 		<tag k="indoor" v="room"/>
 		<tag k="access" v="public"/>
 		<tag k="tourism" v="information"/>
 		<tag k="information" v="office"/>
-		<tag k="building:part" v="yes"/>
 	</way>
 	<way id="402794450">
 		<nd ref="4052099116"/>
@@ -2030,7 +1995,6 @@
 		<tag k="electrified:rail" v="bottom"/>
 		<tag k="loading_gauge" v="Großprofil"/>
 		<tag k="passenger_lines" v="1"/>
-		<tag k="maxspeed:note" v="Kein Limit - Maximalgeschwindigkeit der eingesetzten Fahrzeuge"/>
 	</way>
 	<way id="421618231">
 		<nd ref="2021837084"/>
@@ -2043,7 +2007,6 @@
 		<tag k="loading_gauge" v="Großprofil"/>
 		<tag k="railway:track_ref" v="1"/>
 		<tag k="passenger_lines" v="1"/>
-		<tag k="maxspeed:note" v="Kein Limit - Maximalgeschwindigkeit der eingesetzten Fahrzeuge"/>
 	</way>
 	<way id="421618233">
 		<nd ref="3651039655"/>
@@ -2157,7 +2120,6 @@
 		<nd ref="6625141917"/>
 		<tag k="railway" v="construction"/>
 		<tag k="name" v="S21"/>
-		<tag k="website" v="http://www.baustellen-doku.info/projekte/neubau_s-bahn_s21_berlin_westhafen_wedding_hauptbahnhof.php"/>
 		<tag k="ref" v="6017"/>
 		<tag k="construction" v="light_rail"/>
 		<tag k="opening_date" v="2019"/>
@@ -2195,7 +2157,6 @@
 		<tag k="brand" v="ODEG"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Cottbus"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Wismar"/>
 		<tag k="route" v="train"/>
@@ -2213,7 +2174,6 @@
 		<tag k="network:short" v="VBB"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Rostock"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Elsterwerda"/>
 		<tag k="route" v="train"/>
@@ -2226,7 +2186,6 @@
 		<tag k="type" v="route"/>
 		<tag k="ref" v="RE1"/>
 		<tag k="from" v="Magdeburg"/>
-		<tag k="via" v="Brandenburg; Berlin; Frankfurt (Oder)"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Eisenhüttenstadt"/>
 		<tag k="route" v="train"/>
@@ -2239,7 +2198,6 @@
 		<tag k="type" v="route"/>
 		<tag k="ref" v="RE1"/>
 		<tag k="from" v="Eisenhüttenstadt"/>
-		<tag k="via" v="Frankfurt (Oder); Berlin; Brandenburg"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Magdeburg"/>
 		<tag k="route" v="train"/>
@@ -2256,7 +2214,6 @@
 		<tag k="ref" v="RE3"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Stralsund"/>
-		<tag k="via" v="Greifswald;Angermünde;Berlin Hbf;Jüterbog"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Falkenberg (Elster)"/>
 		<tag k="route" v="train"/>
@@ -2285,7 +2242,6 @@
 		<tag k="network:short" v="VBB"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Wünsdorf-Waldstadt"/>
-		<tag k="via" v="Berlin Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Dessau Hbf"/>
 		<tag k="route" v="train"/>
@@ -2302,7 +2258,6 @@
 		<tag k="ref" v="RE4"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Jüterbog"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Rathenow"/>
 		<tag k="route" v="train"/>
@@ -2320,7 +2275,6 @@
 		<tag k="network:short" v="VBB"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Elsterwerda"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Stralsund"/>
 		<tag k="route" v="train"/>
@@ -2348,7 +2302,6 @@
 		<tag k="ref" v="RB14"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Nauen"/>
-		<tag k="via" v="Berlin Ostbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin-Schönefeld"/>
 		<tag k="route" v="train"/>
@@ -2405,7 +2358,6 @@
 		<tag k="ref" v="RE7"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Dessau Hbf"/>
-		<tag k="via" v="Berlin Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Wünsdorf-Waldstadt"/>
 		<tag k="route" v="train"/>
@@ -2422,7 +2374,6 @@
 		<tag k="ref" v="ICE 11"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Berlin Hauptbahnhof"/>
-		<tag k="via" v="Frankfurt (Main) Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="München Hbf"/>
 		<tag k="route" v="train"/>
@@ -2454,7 +2405,6 @@
 		<tag k="ref" v="ICE 10"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Berlin Ostbahnhof"/>
-		<tag k="via" v="Bonn"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Koblenz Hbf"/>
 		<tag k="route" v="train"/>
@@ -2469,7 +2419,6 @@
 		<tag k="ref" v="ICE 10"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Berlin Ostbahnhof"/>
-		<tag k="via" v="Hannover;Dortmund;Düsseldorf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Köln/Bonn Flughafen"/>
 		<tag k="route" v="train"/>
@@ -2500,7 +2449,6 @@
 		<tag k="ref" v="ICE 11"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="München Hbf"/>
-		<tag k="via" v="Frankfurt (Main) Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin Ostbahnhof"/>
 		<tag k="route" v="train"/>
@@ -2531,7 +2479,6 @@
 		<tag k="ref" v="ICE 10"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Köln/Bonn Flughafen"/>
-		<tag k="via" v="Düsseldorf;Dortmund;Hannover"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin-Gesundbrunnen"/>
 		<tag k="route" v="train"/>
@@ -2719,7 +2666,6 @@
 		<tag k="ref" v="ICE 28"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Hamburg Hbf"/>
-		<tag k="via" v="Berlin Hbf;Leipzig Hbf;Jena Paradies;Nürnberg Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="München Hbf"/>
 		<tag k="route" v="train"/>
@@ -2812,7 +2758,6 @@
 		<tag k="brand" v="InterCity"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Norddeich Mole"/>
-		<tag k="via" v="Magdeburg"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Cottbus"/>
 		<tag k="route" v="train"/>
@@ -2828,7 +2773,6 @@
 		<tag k="ref" v="ICE 10"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Koblenz"/>
-		<tag k="via" v="Bonn"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin-Gesundbrunnen"/>
 		<tag k="route" v="train"/>
@@ -2847,7 +2791,6 @@
 		<tag k="ref" v="RE4"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Rathenow"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Jüterbog"/>
 		<tag k="route" v="train"/>
@@ -2863,7 +2806,6 @@
 		<tag k="brand" v="ODEG"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Wismar"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Cottbus"/>
 		<tag k="route" v="train"/>
@@ -2895,7 +2837,6 @@
 		<tag k="ref" v="RE3"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Falkenberg (Elster)"/>
-		<tag k="via" v="Jüterbog;Berlin Hbf;Angermünde;Greifswald"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Stralsund"/>
 		<tag k="route" v="train"/>
@@ -2913,7 +2854,6 @@
 		<tag k="network:short" v="VBB"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Stralsund"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Elsterwerda"/>
 		<tag k="route" v="train"/>
@@ -2931,7 +2871,6 @@
 		<tag k="network:short" v="VBB"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Elsterwerda"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Rostock"/>
 		<tag k="route" v="train"/>
@@ -2961,7 +2900,6 @@
 		<tag k="public_transport" v="stop_area"/>
 		<tag k="name" v="Berlin Hauptbahnhof (Tief)"/>
 		<tag k="type" v="public_transport"/>
-		<tag k="website" v="https://fahrinfo.vbb.de/bin/stboard.exe/dn?start=yes&#38;input=900003200"/>
 		<tag k="uic_ref" v="8098160"/>
 		<tag k="uic_name" v="Berlin Hauptbahnhof (tief)"/>
 		<tag k="network:short" v="VBB"/>
@@ -2978,7 +2916,6 @@
 		<tag k="ref" v="RE3"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Lutherstadt Wittenberg"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Schwedt (Oder)"/>
 		<tag k="route" v="train"/>
@@ -2995,7 +2932,6 @@
 		<tag k="ref" v="RE3"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Schwedt (Oder)"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Lutherstadt Wittenberg"/>
 		<tag k="route" v="train"/>
@@ -3058,7 +2994,6 @@
 		<tag k="ref" v="EC 27"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Decin"/>
-		<tag k="via" v="Dresden Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Hamburg Altona"/>
 		<tag k="route" v="train"/>
@@ -3076,7 +3011,6 @@
 		<tag k="ref" v="EC 27"/>
 		<tag k="service" v="international"/>
 		<tag k="from" v="Hamburg Altona"/>
-		<tag k="via" v="Dresden Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Decin"/>
 		<tag k="route" v="train"/>
@@ -3106,7 +3040,6 @@
 		<tag k="railway" v="facility"/>
 		<tag k="name" v="Berlin Hauptbahnhof"/>
 		<tag k="type" v="public_transport"/>
-		<tag k="website" v="https://fahrinfo.vbb.de/bin/stboard.exe/dn?start=yes&#38;input=900003201"/>
 		<tag k="uic_ref" v="8011160"/>
 		<tag k="uic_name" v="Berlin Hauptbahnhof"/>
 		<tag k="network:short" v="VBB"/>
@@ -3118,7 +3051,6 @@
 		<tag k="public_transport" v="stop_area"/>
 		<tag k="name" v="Berlin, S Hauptbahnhof"/>
 		<tag k="type" v="public_transport"/>
-		<tag k="website" v="https://fahrinfo.vbb.de/bin/stboard.exe/dn?start=yes&#38;input=900003201"/>
 		<tag k="uic_ref" v="8089021"/>
 		<tag k="uic_name" v="S-Bahnhof Berlin Hauptbahnhof"/>
 		<tag k="network:short" v="VBB"/>
@@ -3139,7 +3071,6 @@
 		<tag k="public_transport" v="stop_area"/>
 		<tag k="name" v="Berlin, S+U Hauptbahnhof (Bus/Tram)"/>
 		<tag k="type" v="public_transport"/>
-		<tag k="website" v="https://fahrinfo.vbb.de/bin/stboard.exe/dn?start=yes&#38;input=900003201"/>
 		<tag k="network:short" v="VBB"/>
 	</relation>
 	<relation id="5688522">
@@ -3155,7 +3086,6 @@
 		<tag k="public_transport" v="stop_area"/>
 		<tag k="name" v="Berlin, U Hauptbahnhof"/>
 		<tag k="type" v="public_transport"/>
-		<tag k="website" v="https://fahrinfo.vbb.de/bin/stboard.exe/dn?start=yes&#38;input=900003201"/>
 		<tag k="network:short" v="VBB"/>
 	</relation>
 	<relation id="5688523">
@@ -3174,22 +3104,15 @@
 		<tag k="name" v="EN 453 : Paris =&#62; Berlin =&#62; Moscou"/>
 		<tag k="type" v="route"/>
 		<tag k="ref" v="EN 453"/>
-		<tag k="name:be" v="EN 453: Парыж =&#62; Берлін =&#62; Масква"/>
 		<tag k="service" v="international"/>
 		<tag k="from" v="Paris - Gare de l&#39;Est"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Moskva Belorusskaja"/>
 		<tag k="route" v="train"/>
-		<tag k="name:en" v="EN 453 : Paris =&#62; Berlin =&#62; Moscow"/>
-		<tag k="name:de" v="EN 453 : Paris =&#62; Berlin =&#62; Moskau"/>
-		<tag k="name:ru" v="EN 453: Париж =&#62; Берлин =&#62; Москва"/>
 		<tag k="by_night" v="yes"/>
 		<tag k="to:ru" v="Москва-Пассажирская-Смоленская"/>
 		<tag k="dining" v="yes"/>
-		<tag k="name:fr" v="EN 453 : Paris =&#62; Berlin =&#62; Moscou"/>
 		<tag k="reservation" v="yes"/>
-		<tag k="name:pl" v="EN 453: Paryż =&#62; Berlin =&#62; Moskwa"/>
 		<tag k="sleeping" v="yes"/>
 		<tag k="from:ru" v="Восточный вокзал"/>
 	</relation>
@@ -3206,7 +3129,6 @@
 		<tag k="ref" v="ICE 15"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Ostseebad Binz"/>
-		<tag k="via" v="Berlin Hbf;Erfurt Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Frankfurt (Main) Hbf"/>
 		<tag k="route" v="train"/>
@@ -3222,7 +3144,6 @@
 		<tag k="ref" v="ICE 15"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Frankfurt (Main) Hbf"/>
-		<tag k="via" v="Erfurt Hbf;Berlin Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Ostseebad Binz"/>
 		<tag k="route" v="train"/>
@@ -3237,7 +3158,6 @@
 		<tag k="brand" v="InterCity"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Cottbus"/>
-		<tag k="via" v="Magdeburg"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Norddeich Mole"/>
 		<tag k="route" v="train"/>
@@ -3291,7 +3211,6 @@
 		<tag k="ref" v="RB14"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Berlin-Schönefeld"/>
-		<tag k="via" v="Berlin Ostbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Nauen"/>
 		<tag k="route" v="train"/>
@@ -3307,7 +3226,6 @@
 		<tag k="ref" v="IC 17"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Leipzig"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Warnemünde"/>
 		<tag k="route" v="train"/>
@@ -3323,7 +3241,6 @@
 		<tag k="ref" v="IC 17"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Warnemünde"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Leipzig"/>
 		<tag k="route" v="train"/>
@@ -3341,7 +3258,6 @@
 		<tag k="ref" v="IC 32"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Aachen"/>
-		<tag k="via" v="Duisburg;Hannover"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin"/>
 		<tag k="route" v="train"/>
@@ -3357,7 +3273,6 @@
 		<tag k="ref" v="IC 32"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Berlin"/>
-		<tag k="via" v="Köln"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Aachen"/>
 		<tag k="route" v="train"/>
@@ -3372,7 +3287,6 @@
 		<tag k="ref" v="RB21"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Berlin Friedrichstraße"/>
-		<tag k="via" v="Potsdam Hauptbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Wustermark"/>
 		<tag k="route" v="train"/>
@@ -3400,7 +3314,6 @@
 		<tag k="ref" v="RB22"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Königs Wusterhausen"/>
-		<tag k="via" v="Griebnitzsee"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin Friedrichstraße"/>
 		<tag k="route" v="train"/>
@@ -3457,22 +3370,15 @@
 		<tag k="name" v="EN 452 : Moscou =&#62; Berlin =&#62; Paris"/>
 		<tag k="type" v="route"/>
 		<tag k="ref" v="EN 452"/>
-		<tag k="name:be" v="EN 452: Масква =&#62; Берлін =&#62; Парыж"/>
 		<tag k="service" v="international"/>
 		<tag k="from" v="Moskva Belorusskaja"/>
-		<tag k="via" v="Berlin"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Paris - Gare de l&#39;Est"/>
 		<tag k="route" v="train"/>
-		<tag k="name:en" v="EN 452 : Moscow =&#62; Berlin =&#62; Paris"/>
-		<tag k="name:de" v="EN 452 : Moskau =&#62; Berlin =&#62; Paris"/>
-		<tag k="name:ru" v="EN 452: Москва =&#62; Берлин =&#62; Париж"/>
 		<tag k="by_night" v="yes"/>
 		<tag k="to:ru" v="Париж"/>
 		<tag k="dining" v="yes"/>
-		<tag k="name:fr" v="EN 452 : Moscou =&#62; Berlin =&#62; Paris"/>
 		<tag k="reservation" v="yes"/>
-		<tag k="name:pl" v="EN 452: Moskwa =&#62; Berlin =&#62; Paryż"/>
 		<tag k="sleeping" v="yes"/>
 		<tag k="from:ru" v="Москва-Пассажирская-Смоленская"/>
 	</relation>
@@ -3489,7 +3395,6 @@
 		<tag k="ref" v="ICE 29"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Berlin Gesundbrunnen"/>
-		<tag k="via" v="Berlin Hbf; Erfurt Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="München Hbf"/>
 		<tag k="route" v="train"/>
@@ -3506,7 +3411,6 @@
 		<tag k="ref" v="ICE 29"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="München Hbf"/>
-		<tag k="via" v="Erfurt Hbf; Berlin Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin Gesundbrunnen"/>
 		<tag k="route" v="train"/>
@@ -3523,7 +3427,6 @@
 		<tag k="ref" v="ICE 18"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="München Hbf"/>
-		<tag k="via" v="Berlin Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Hamburg Hbf"/>
 		<tag k="route" v="train"/>
@@ -3541,7 +3444,6 @@
 		<tag k="ref" v="ICE 18"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Hamburg Hbf"/>
-		<tag k="via" v="Berlin Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="München Hbf"/>
 		<tag k="route" v="train"/>
@@ -3555,7 +3457,6 @@
 		<tag k="ref" v="ICE 13"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Frankfurt (Main) Flughafen"/>
-		<tag k="via" v="Braunschweig Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin Ostbahnhof"/>
 		<tag k="route" v="train"/>
@@ -3570,7 +3471,6 @@
 		<tag k="ref" v="ICE 13"/>
 		<tag k="service" v="high_speed"/>
 		<tag k="from" v="Berlin Ostbahnhof"/>
-		<tag k="via" v="Braunschweig Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Frankfurt (Main) Flughafen"/>
 		<tag k="route" v="train"/>
@@ -3637,11 +3537,9 @@
 		<tag k="name" v="FLX 30: Berlin =&#62; Hannover =&#62; Köln"/>
 		<tag k="colour" v="green"/>
 		<tag k="type" v="route"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 30"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Berlin"/>
-		<tag k="via" v="Hannover"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Köln"/>
 		<tag k="route" v="train"/>
@@ -3655,11 +3553,9 @@
 		<tag k="name" v="FLX 30: Köln =&#62; Hannover =&#62; Berlin"/>
 		<tag k="colour" v="green"/>
 		<tag k="type" v="route"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 30"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Köln"/>
-		<tag k="via" v="Hannover"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin"/>
 		<tag k="route" v="train"/>
@@ -3673,7 +3569,6 @@
 		<tag k="type" v="route"/>
 		<tag k="ref" v="FLX 10"/>
 		<tag k="from" v="Suttgart Hbf"/>
-		<tag k="via" v="Erfurt Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin Hbf"/>
 		<tag k="route" v="train"/>
@@ -3688,12 +3583,10 @@
 		<tag k="name" v="FLX 10: Berlin =&#62; Erfurt =&#62; Stuttgart"/>
 		<tag k="colour" v="green"/>
 		<tag k="type" v="route"/>
-		<tag k="website" v="https://www.flixtrain.de/"/>
 		<tag k="ref" v="FLX 10"/>
 		<tag k="brand" v="FlixTrain"/>
 		<tag k="service" v="long_distance"/>
 		<tag k="from" v="Berlin hbf"/>
-		<tag k="via" v="Erfurt Hbf"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Stuttgart Hbf"/>
 		<tag k="route" v="train"/>
@@ -3704,7 +3597,6 @@
 		<member type="way" ref="643739286" role=""/>
 		<tag k="name" v="NJ 457: Berlin =&#62; Wien"/>
 		<tag k="type" v="route"/>
-		<tag k="website" v="https://www.nightjet.com/"/>
 		<tag k="ref" v="NJ 457"/>
 		<tag k="brand" v="ÖBB nightjet"/>
 		<tag k="service" v="night"/>
@@ -3712,9 +3604,6 @@
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Wien Hauptbahnhof"/>
 		<tag k="route" v="train"/>
-		<tag k="name:de" v="NJ 457: Berlin =&#62; Wien"/>
-		<tag k="name:pl" v="NJ 457: Berlin =&#62; Wiedeń"/>
-		<tag k="name:cs" v="NJ 457: Berlín =&#62; Vídeň"/>
 	</relation>
 	<relation id="10830177">
 		<member type="way" ref="85258724" role=""/>
@@ -3722,7 +3611,6 @@
 		<member type="way" ref="643739266" role=""/>
 		<tag k="name" v="NJ 456: Wien =&#62; Berlin"/>
 		<tag k="type" v="route"/>
-		<tag k="website" v="https://www.nightjet.com/"/>
 		<tag k="ref" v="NJ 456"/>
 		<tag k="brand" v="ÖBB nightjet"/>
 		<tag k="service" v="night"/>
@@ -3730,8 +3618,5 @@
 		<tag k="public_transport:version" v="2"/>
 		<tag k="to" v="Berlin-Charlottenburg"/>
 		<tag k="route" v="train"/>
-		<tag k="name:de" v="NJ 456: Wien =&#62; Berlin"/>
-		<tag k="name:pl" v="NJ 456: Wiedeń =&#62; Berlin"/>
-		<tag k="name:cs" v="NJ 456: Vídeň =&#62; Berlín"/>
 	</relation>
 </osm>

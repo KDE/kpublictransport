@@ -15,8 +15,6 @@
 		<tag k="name" v="Gare de Lyon"/>
 		<tag k="public_transport" v="station"/>
 		<tag k="alt_name" v="Paris - Gare de Lyon"/>
-		<tag k="name:ru" v="Лионский вокзал"/>
-		<tag k="name:uk" v="Ліонський вокзал"/>
 		<tag k="railway:ref:DB" v="XFPG"/>
 		<tag k="ref:SNCF" v="PLY"/>
 		<tag k="SNCF:stop_name" v="Paris-Gare-de-Lyon"/>
@@ -846,7 +844,6 @@
 		<tag k="name" v="Gare de Lyon - Diderot"/>
 		<tag k="public_transport" v="stop_position"/>
 		<tag k="bus" v="yes"/>
-		<tag k="name:RATP" v="GARE DE LYON - DIDEROT"/>
 	</node>
 	<node id="2481752358" lat="48.845879" lon="2.3736911">
 		<tag k="name" v="Gare de Lyon - Diderot"/>
@@ -2398,7 +2395,6 @@
 		<tag k="railway:track_ref" v="7"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="110014511">
 		<nd ref="3609631140"/>
@@ -2565,7 +2561,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="115836482">
@@ -2586,7 +2581,6 @@
 		<tag k="railway:track_ref" v="K"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115836483">
 		<nd ref="1307596200"/>
@@ -2607,7 +2601,6 @@
 		<tag k="railway:track_ref" v="H"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115836484">
 		<nd ref="1307592308"/>
@@ -2625,7 +2618,6 @@
 		<tag k="railway:track_ref" v="M"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115836485">
 		<nd ref="1307592309"/>
@@ -2667,7 +2659,6 @@
 		<tag k="railway:track_ref" v="L"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115837548">
 		<nd ref="1307600559"/>
@@ -2685,7 +2676,6 @@
 		<tag k="railway:track_ref" v="D"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115838768">
 		<nd ref="1307658650"/>
@@ -2703,7 +2693,6 @@
 		<tag k="railway:track_ref" v="I"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115843223">
 		<nd ref="1307648515"/>
@@ -2738,7 +2727,6 @@
 		<tag k="railway:track_ref" v="J"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115843891">
 		<nd ref="1307888936"/>
@@ -2756,7 +2744,6 @@
 		<tag k="railway:track_ref" v="E"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115867961">
 		<nd ref="1307888952"/>
@@ -2772,7 +2759,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="115867964">
@@ -2791,7 +2777,6 @@
 		<tag k="railway:track_ref" v="G"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115867965">
 		<nd ref="1307596163"/>
@@ -2806,7 +2791,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="115871956">
@@ -2837,7 +2821,6 @@
 		<tag k="railway:track_ref" v="A"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115879138">
 		<nd ref="1307915217"/>
@@ -2856,7 +2839,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="115879147">
@@ -2874,7 +2856,6 @@
 		<tag k="railway:track_ref" v="13"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115879152">
 		<nd ref="1308269920"/>
@@ -2892,7 +2873,6 @@
 		<tag k="railway:track_ref" v="11"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115880285">
 		<nd ref="1307915215"/>
@@ -2912,7 +2892,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="115880286">
@@ -2930,7 +2909,6 @@
 		<tag k="railway:track_ref" v="9"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115880290">
 		<nd ref="1308269795"/>
@@ -2947,7 +2925,6 @@
 		<tag k="railway:track_ref" v="15"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115880292">
 		<nd ref="1309630775"/>
@@ -2964,7 +2941,6 @@
 		<tag k="railway:track_ref" v="17"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115915731">
 		<nd ref="1260719146"/>
@@ -2982,7 +2958,6 @@
 		<tag k="railway:track_ref" v="21"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115915733">
 		<nd ref="1308269781"/>
@@ -2999,7 +2974,6 @@
 		<tag k="railway:track_ref" v="19"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115915734">
 		<nd ref="1308269918"/>
@@ -3019,7 +2993,6 @@
 		<tag k="railway:track_ref" v="23"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115915736">
 		<nd ref="261662525"/>
@@ -3039,7 +3012,6 @@
 		<tag k="railway:track_ref" v="5"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="115929846">
 		<nd ref="1307546900"/>
@@ -3250,7 +3222,6 @@
 		<tag k="railway:track_ref" v="N"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116037078">
 		<nd ref="1309520735"/>
@@ -3283,7 +3254,6 @@
 		<tag k="railway:track_ref" v="23"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046773">
 		<nd ref="1307888936"/>
@@ -3303,7 +3273,6 @@
 		<tag k="railway:track_ref" v="E"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046775">
 		<nd ref="1307600533"/>
@@ -3321,7 +3290,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="116046779">
@@ -3342,7 +3310,6 @@
 		<tag k="railway:track_ref" v="11"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046780">
 		<nd ref="1308269853"/>
@@ -3363,7 +3330,6 @@
 		<tag k="railway:track_ref" v="21"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046783">
 		<nd ref="1307592308"/>
@@ -3387,7 +3353,6 @@
 		<tag k="railway:track_ref" v="M"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046786">
 		<nd ref="4050493537"/>
@@ -3403,7 +3368,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="116046787">
@@ -3423,7 +3387,6 @@
 		<tag k="railway:track_ref" v="C"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046789">
 		<nd ref="1307658576"/>
@@ -3445,7 +3408,6 @@
 		<tag k="railway:track_ref" v="J"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046791">
 		<nd ref="1307888906"/>
@@ -3462,7 +3424,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="116046794">
@@ -3482,7 +3443,6 @@
 		<tag k="railway:track_ref" v="19"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046798">
 		<nd ref="1307915196"/>
@@ -3504,7 +3464,6 @@
 		<tag k="railway:track_ref" v="G"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046801">
 		<nd ref="1307658587"/>
@@ -3527,7 +3486,6 @@
 		<tag k="railway:track_ref" v="L"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046802">
 		<nd ref="4050493533"/>
@@ -3546,7 +3504,6 @@
 		<tag k="railway:track_ref" v="13"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046804">
 		<nd ref="1307596200"/>
@@ -3569,7 +3526,6 @@
 		<tag k="railway:track_ref" v="H"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046808">
 		<nd ref="1307945918"/>
@@ -3584,7 +3540,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="116046811">
@@ -3608,7 +3563,6 @@
 		<tag k="railway:track_ref" v="K"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046813">
 		<nd ref="4050493531"/>
@@ -3629,7 +3583,6 @@
 		<tag k="railway:track_ref" v="15"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046814">
 		<nd ref="1309630776"/>
@@ -3654,7 +3607,6 @@
 		<tag k="railway:track_ref" v="N"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116046817">
 		<nd ref="4050493536"/>
@@ -3672,7 +3624,6 @@
 		<tag k="railway:track_ref" v="7"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="116050420">
 		<nd ref="1307888926"/>
@@ -3688,7 +3639,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="116050421">
@@ -3710,7 +3660,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="116800431">
@@ -3986,7 +3935,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="332205987">
@@ -4002,7 +3950,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="332205988">
@@ -4024,7 +3971,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="337639486">
@@ -4046,7 +3992,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="337639491">
@@ -4062,7 +4007,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="355535246">
@@ -4406,7 +4350,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669622">
@@ -4424,7 +4367,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669630">
@@ -4447,7 +4389,6 @@
 		<tag k="railway:track_ref" v="I"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="402669640">
 		<nd ref="1308269762"/>
@@ -4460,7 +4401,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669643">
@@ -4474,7 +4414,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669648">
@@ -4489,7 +4428,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669660">
@@ -4505,7 +4443,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669668">
@@ -4521,7 +4458,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="402669671">
 		<nd ref="1307592311"/>
@@ -4536,7 +4472,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669675">
@@ -4555,7 +4490,6 @@
 		<tag k="railway:track_ref" v="9"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="402669684">
 		<nd ref="4050493540"/>
@@ -4572,7 +4506,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669689">
@@ -4589,7 +4522,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669696">
@@ -4606,7 +4538,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669700">
@@ -4627,7 +4558,6 @@
 		<tag k="railway:track_ref" v="17"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="402669705">
 		<nd ref="4050493533"/>
@@ -4642,7 +4572,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="402669708">
@@ -4662,7 +4591,6 @@
 		<tag k="railway:track_ref" v="D"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="402669713">
 		<nd ref="1307592309"/>
@@ -4677,7 +4605,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="406470899">
@@ -4723,7 +4650,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="425195462">
@@ -4743,7 +4669,6 @@
 		<tag k="railway:track_ref" v="A"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="425195469">
 		<nd ref="1257910861"/>
@@ -4757,7 +4682,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="425478520">
@@ -4776,7 +4700,6 @@
 		<tag k="railway:track_ref" v="C"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 	</way>
 	<way id="425478521">
 		<nd ref="1307600533"/>
@@ -4790,7 +4713,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="425478522">
@@ -4806,7 +4728,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="425478523">
@@ -4823,7 +4744,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="425696543">
@@ -4838,7 +4758,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="427791230">
@@ -4853,7 +4772,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="427791232">
@@ -4868,7 +4786,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="432805254">
@@ -5010,7 +4927,6 @@
 		<tag k="name" v="Métro 14"/>
 		<tag k="level" v="-5"/>
 		<tag k="indoor" v="yes"/>
-		<tag k="name:ru" v="Линия 14"/>
 		<tag k="rubber_tires" v="yes"/>
 	</way>
 	<way id="553464165">
@@ -5029,7 +4945,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="565943619">
@@ -5217,8 +5132,6 @@
 		<tag k="public_transport" v="station"/>
 		<tag k="alt_name" v="Paris - Gare de Lyon"/>
 		<tag k="ref:FR:RATP" v="1839"/>
-		<tag k="name:ru" v="Лионский вокзал"/>
-		<tag k="name:uk" v="Ліонський вокзал"/>
 		<tag k="railway:ref:DB" v="XFPG"/>
 		<tag k="ref:SNCF" v="PLY"/>
 		<tag k="SNCF:stop_name" v="Paris-Gare-de-Lyon"/>
@@ -5245,7 +5158,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="750578191">
@@ -5260,7 +5172,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="750578192">
@@ -5274,7 +5185,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="750578193">
@@ -5289,7 +5199,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="756383636">
@@ -5315,7 +5224,6 @@
 		<tag k="name" v="Métro 1"/>
 		<tag k="usage" v="main"/>
 		<tag k="oneway" v="yes"/>
-		<tag k="name:ru" v="Линия 1"/>
 		<tag k="rubber_tires" v="yes"/>
 	</way>
 	<way id="756383637">
@@ -5340,7 +5248,6 @@
 		<tag k="name" v="Métro 1"/>
 		<tag k="usage" v="main"/>
 		<tag k="oneway" v="yes"/>
-		<tag k="name:ru" v="Линия 1"/>
 		<tag k="rubber_tires" v="yes"/>
 	</way>
 	<way id="756383638">
@@ -5404,7 +5311,6 @@
 		<tag k="importance" v="national"/>
 		<tag k="railway:traffic_mode" v="passenger"/>
 		<tag k="railway:kvb" v="yes"/>
-		<tag k="railway:radio" v="analogue"/>
 		<tag k="passenger_lines" v="8"/>
 	</way>
 	<way id="808194903">
@@ -5811,8 +5717,6 @@
 		<tag k="to" v="Marseille-Saint-Charles"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="name:oc" v="TGV 510 : París -- Ais de Provença -- Marselha"/>
-		<tag k="via" v="Aix-en-Provence"/>
 	</relation>
 	<relation id="3310799">
 		<member type="way" ref="402669640" role=""/>
@@ -5900,9 +5804,6 @@
 		<tag k="to" v="Zürich Hauptbahnhof"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Basel SBB"/>
-		<tag k="name:fr" v="TGV Lyria : Paris − Bâle − Zurich"/>
-		<tag k="name:de" v="TGV Lyria : Paris − Basel − Zürich"/>
 	</relation>
 	<relation id="3876675">
 		<member type="way" ref="402669640" role=""/>
@@ -6176,7 +6077,6 @@
 		<tag k="to" v="Bourg-Saint-Maurice"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Chambéry"/>
 	</relation>
 	<relation id="3989311">
 		<member type="way" ref="402669640" role=""/>
@@ -6268,7 +6168,6 @@
 		<tag k="to" v="Annecy"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Bourg-en-Bresse"/>
 	</relation>
 	<relation id="3989312">
 		<member type="way" ref="402669640" role=""/>
@@ -6451,7 +6350,6 @@
 		<tag k="to" v="Évian-Les-Bains"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Bellegarde"/>
 	</relation>
 	<relation id="4465331">
 		<member type="way" ref="402669640" role=""/>
@@ -6543,7 +6441,6 @@
 		<tag k="to" v="Saint-Étienne-Châteaucreux"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Lyon-Part-Dieu"/>
 	</relation>
 	<relation id="4465900">
 		<member type="way" ref="402669640" role=""/>
@@ -6635,7 +6532,6 @@
 		<tag k="to" v="Avignon-Centre"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Miramas"/>
 	</relation>
 	<relation id="5398289">
 		<member type="way" ref="110014515" role="outer"/>
@@ -6903,7 +6799,6 @@
 		<tag k="to" v="Perpignan"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Montpellier"/>
 	</relation>
 	<relation id="5932020">
 		<member type="way" ref="402669640" role=""/>
@@ -6995,8 +6890,6 @@
 		<tag k="to" v="Hyères"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="name:oc" v="TGV 511 : París -- Tolon -- Ieras"/>
-		<tag k="via" v="Toulon"/>
 	</relation>
 	<relation id="5932021">
 		<member type="way" ref="402669640" role=""/>
@@ -7088,9 +6981,6 @@
 		<tag k="to" v="Ventimiglia"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="name:oc" v="TGV 512 : París -- Niça -- Ventemilha"/>
-		<tag k="via" v="Nice"/>
-		<tag k="name:de" v="TGV 512 : Paris -- Nizza -- Ventimiglia"/>
 	</relation>
 	<relation id="5932596">
 		<member type="way" ref="402669640" role=""/>
@@ -7180,7 +7070,6 @@
 		<tag k="to" v="Chalon-sur-Saône"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Dijon"/>
 	</relation>
 	<relation id="5946428">
 		<member type="way" ref="402669640" role=""/>
@@ -7359,8 +7248,6 @@
 		<tag k="to" v="Milano - Porta Garibaldi"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="name:fr" v="TGV : Paris - Milan"/>
-		<tag k="name:it" v="TGV : Parigi - Milano"/>
 	</relation>
 	<relation id="5948663">
 		<member type="way" ref="402669640" role=""/>
@@ -7470,7 +7357,6 @@
 		<tag k="to" v="Lausanne"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Genève"/>
 	</relation>
 	<relation id="5954493">
 		<member type="node" ref="26824135" role="stop"/>
@@ -7490,8 +7376,6 @@
 		<tag k="to" v="Venezia - Santa Lucia"/>
 		<tag k="by_night" v="only"/>
 		<tag k="reservation" v="yes"/>
-		<tag k="name:fr" v="Thello : Paris - Venise"/>
-		<tag k="name:it" v="Thello : Parigi - Venezia"/>
 		<tag k="sleeping" v="yes"/>
 	</relation>
 	<relation id="6166346">
@@ -7535,7 +7419,6 @@
 		<tag k="to" v="Paris - Gare de Lyon"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Genève"/>
 	</relation>
 	<relation id="6363004">
 		<member type="way" ref="402669700" role=""/>
@@ -7555,7 +7438,6 @@
 		<tag k="to" v="Besançon Viotte"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Dole"/>
 	</relation>
 	<relation id="6363326">
 		<member type="node" ref="26824135" role="stop"/>
@@ -7576,7 +7458,6 @@
 		<tag k="to" v="Paris - Gare de Lyon"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Dole"/>
 	</relation>
 	<relation id="6363999">
 		<member type="node" ref="26824135" role="stop"/>
@@ -7597,7 +7478,6 @@
 		<tag k="to" v="Paris - Gare de Lyon"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Besançon FC TGV"/>
 	</relation>
 	<relation id="6364727">
 		<member type="way" ref="402669700" role=""/>
@@ -7617,7 +7497,6 @@
 		<tag k="to" v="Besançon Viotte"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="Besançon FC TGV"/>
 	</relation>
 	<relation id="6365150">
 		<member type="way" ref="402669700" role=""/>
@@ -7637,8 +7516,6 @@
 		<tag k="to" v="Freiburg (breisgau)"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="LGV Rhin Rhône"/>
-		<tag k="name:de" v="TGV 522 : Paris -&#62; Mülhausen / Freiburg i. Br."/>
 	</relation>
 	<relation id="6365686">
 		<member type="node" ref="26824135" role="stop"/>
@@ -7659,8 +7536,6 @@
 		<tag k="to" v="Paris - Gare de Lyon"/>
 		<tag k="by_night" v="no"/>
 		<tag k="reservation" v="only"/>
-		<tag k="via" v="LGV Rhin Rhône"/>
-		<tag k="name:de" v="TGV 522 : Freiburg i. Br. / Mülhausen -&#62; Paris"/>
 	</relation>
 	<relation id="7733219">
 		<member type="node" ref="1656941907" role=""/>
