@@ -150,19 +150,87 @@ static double maxSectionDistance(const std::vector<const OSM::Node*> &path, cons
     return dist;
 }
 
+static const OSM::Way* outerWay(OSM::Element &multiPolygon, const OSM::DataSet &dataSet)
+{
+    // ### this assumes multi-polygons are structured in the way the Marble generator normalizes them!
+    for (const auto &mem : multiPolygon.relation()->members) {
+        if (mem.type() == OSM::Type::Way && (std::strcmp(mem.role().name(), "outer") == 0)) {
+            return dataSet.way(mem.id);
+        }
+    }
+    return nullptr;
+}
+
+static bool isConnectedGeometry(OSM::Element lhs, OSM::Element rhs, const OSM::DataSet &dataSet)
+{
+    if (lhs == rhs) { return false; }
+    const OSM::Way *lway = nullptr;
+    const OSM::Way *rway = nullptr;
+
+    switch (lhs.type()) {
+        case OSM::Type::Null:
+        case OSM::Type::Node:
+            return false;
+        case OSM::Type::Way:
+            lway = lhs.way();
+            break;
+        case OSM::Type::Relation:
+            lway  = outerWay(lhs, dataSet);
+            break;
+
+    }
+    switch (rhs.type()) {
+        case OSM::Type::Null:
+        case OSM::Type::Node:
+            return false;
+        case OSM::Type::Way:
+            rway = rhs.way();
+            break;
+        case OSM::Type::Relation:
+            rway = outerWay(rhs, dataSet);
+            break;
+    }
+
+    if (!lway->isClosed() && !rway->isClosed()) {
+        return lway->nodes.front() == rway->nodes.front()
+            || lway->nodes.back() == rway->nodes.front()
+            || lway->nodes.front() == rway->nodes.back()
+            || lway->nodes.back() == rway->nodes.back();
+    }
+    if (lway->isClosed() && lway->nodes.size() > 2 && rway->isClosed() && rway->nodes.size() > 2) {
+        // ### this assumes multi-polygons are structured in the way the Marble generator normalizes them!
+        bool found = false;
+        for (std::size_t i = 0; i < lway->nodes.size() && !found; ++i) {
+            const auto n1 = lway->nodes[i];
+            const auto n2 = lway->nodes[(i + 1) % lway->nodes.size()];
+            for (std::size_t j = 0; j < rway->nodes.size() && !found; ++j) {
+                found = ((n1 == rway->nodes[j]) && (n2 == rway->nodes[(j + 1) % rway->nodes.size()]))
+                     || ((n2 == rway->nodes[j]) && (n1 == rway->nodes[(j + 1) % rway->nodes.size()]));
+            }
+        }
+        return found;
+    }
+
+    return false;
+}
+
 bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
-    if (conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint)
-     || conflictIfPresent(lhs.m_edge, rhs.m_edge)
-     || conflictIfPresent(lhs.m_area, rhs.m_area)
-     || conflictIfPresent(lhs.m_track, rhs.m_track)
+    const auto isConnectedEdge = isConnectedGeometry(lhs.m_edge, rhs.m_edge, dataSet);
+    const auto isConnectedTrack = isConnectedGeometry(lhs.m_track, rhs.m_track, dataSet);
+    const auto isConnectedArea = isConnectedGeometry(lhs.m_area, rhs.m_area, dataSet);
+
+    if ((conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint) && lhs.m_track != rhs.m_track)
+     || (conflictIfPresent(lhs.m_edge, rhs.m_edge) && !isConnectedEdge)
+     || (conflictIfPresent(lhs.m_area, rhs.m_area) && !isConnectedArea)
+     || (conflictIfPresent(lhs.m_track, rhs.m_track) && !isConnectedTrack)
      || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level())
      || (lhs.m_mode != Unknown && rhs.m_mode != Unknown && lhs.m_mode != rhs.m_mode))
     {
         return false;
     }
 
-    // we can accept conflicting names if everything else matches, if one of them is likely a station name instead of a platform name
+    // we can accept conflicting names if one of them is likely a station name instead of a platform name
     if (!lhs.m_name.isEmpty() && !rhs.m_name.isEmpty() && lhs.m_name != rhs.m_name) {
         if (isPlausibleName(lhs.name()) && isPlausibleName(rhs.name())) {
             return false;
@@ -170,32 +238,38 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     }
 
     // edge has to be part of area, but on its own that doesn't mean equallity
-    if ((lhs.m_area && rhs.m_edge.type() == OSM::Type::Way && !isSubPath(lhs.m_area.outerPath(dataSet), *rhs.m_edge.way()))
-     || (rhs.m_area && lhs.m_edge.type() == OSM::Type::Way && !isSubPath(rhs.m_area.outerPath(dataSet), *lhs.m_edge.way()))) {
-        return false;
+    if (!isConnectedArea && !isConnectedEdge) {
+        if ((lhs.m_area && rhs.m_edge.type() == OSM::Type::Way && !isSubPath(lhs.m_area.outerPath(dataSet), *rhs.m_edge.way()))
+        || (rhs.m_area && lhs.m_edge.type() == OSM::Type::Way && !isSubPath(rhs.m_area.outerPath(dataSet), *lhs.m_edge.way()))) {
+            return false;
+        }
     }
 
     // matching edge, point or track is good enough, matching area however isn't
     if (equalIfPresent(lhs.m_stopPoint, rhs.m_stopPoint)
-     || equalIfPresent(lhs.m_edge, rhs.m_edge)
+     || equalIfPresent(lhs.m_edge, rhs.m_edge) || isConnectedEdge
      || equalIfPresent(lhs.m_track, rhs.m_track))
     {
         return true;
     }
 
-    // track/stop and area/edge elements do not share nodes, so those we need to match by spatial distance
-    if (lhs.m_edge && rhs.m_stopPoint) {
-        return OSM::distance(lhs.m_edge.outerPath(dataSet), rhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
-    }
-    if (rhs.m_edge && lhs.m_stopPoint) {
-        return OSM::distance(rhs.m_edge.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    if (!isConnectedEdge) {
+        // track/stop and area/edge elements do not share nodes, so those we need to match by spatial distance
+        if (lhs.m_edge && rhs.m_stopPoint) {
+            return OSM::distance(lhs.m_edge.outerPath(dataSet), rhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+        }
+        if (rhs.m_edge && lhs.m_stopPoint) {
+            return OSM::distance(rhs.m_edge.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+        }
     }
 
-    if (lhs.m_area && rhs.m_stopPoint) {
-        return OSM::distance(lhs.m_area.outerPath(dataSet), rhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
-    }
-    if (rhs.m_area && lhs.m_stopPoint) {
-        return OSM::distance(rhs.m_area.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+    if (!isConnectedArea) {
+        if (lhs.m_area && rhs.m_stopPoint) {
+            return OSM::distance(lhs.m_area.outerPath(dataSet), rhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+        }
+        if (rhs.m_area && lhs.m_stopPoint) {
+            return OSM::distance(rhs.m_area.outerPath(dataSet), lhs.position()) < MAX_TRACK_TO_EDGE_DISTANCE;
+        }
     }
 
     // free-floating sections: edge, area or track is within a reasonable distance
@@ -210,7 +284,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
         }
     }
 
-    return false;
+    return isConnectedArea || isConnectedEdge;
 }
 
 static bool compareSection(const PlatformSection &lhs, const PlatformSection &rhs)

@@ -27,6 +27,7 @@ public:
     constexpr inline void setTag(uint8_t tag) { m_data = (tag & TagMask) | (m_data & ~TagMask); }
     constexpr inline operator bool() const { return (m_data & ~TagMask); }
     constexpr inline bool operator==(TaggedPointer<T> other) const { return m_data == other.m_data; }
+    constexpr inline bool operator!=(TaggedPointer<T> other) const { return m_data != other.m_data; }
     constexpr inline bool operator<(TaggedPointer<T> other) const { return m_data < other.m_data; }
 
 private:

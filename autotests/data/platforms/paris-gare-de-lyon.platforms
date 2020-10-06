@@ -250,6 +250,14 @@ B
   level: 10
   mode: Rail
 C
+  position: 1388436162 1823762242
+  stop point: <null>
+  edge: <null>
+  area: w129299895
+  track: <null>
+  level: 10
+  mode: Rail
+C
   position: 1388447649 1823741637
   stop point: n6064298771
   edge: n6064298771
@@ -271,6 +279,14 @@ C
     position: n3616838668
     name: Z
     position: n3616843451
+D
+  position: 1388436162 1823762242
+  stop point: <null>
+  edge: <null>
+  area: w129299895
+  track: <null>
+  level: 10
+  mode: Rail
 D
   position: 1388447193 1823741057
   stop point: n6064298772
@@ -294,6 +310,14 @@ D
     name: Z
     position: n3616843109
 E
+  position: 1388435260 1823761056
+  stop point: <null>
+  edge: <null>
+  area: w129299897
+  track: <null>
+  level: 10
+  mode: Rail
+E
   position: 1388446552 1823740235
   stop point: n6064298773
   edge: n6064298773
@@ -315,6 +339,14 @@ E
     position: n3616838667
     name: Z
     position: n3616843109
+G
+  position: 1388435260 1823761056
+  stop point: <null>
+  edge: <null>
+  area: w129299897
+  track: <null>
+  level: 10
+  mode: Rail
 G
   position: 1388446098 1823739635
   stop point: n6064298774
