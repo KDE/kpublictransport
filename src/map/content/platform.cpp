@@ -234,10 +234,10 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
 {
     Platform p;
     p.m_name = preferredName(lhs.name(), rhs.name());
-    p.m_stopPoint = lhs.m_stopPoint ? lhs.m_stopPoint : rhs.m_stopPoint;
-    p.m_edge = lhs.m_edge ? lhs.m_edge : rhs.m_edge;
-    p.m_area = lhs.m_area ? lhs.m_area : rhs.m_area;
-    p.m_track = lhs.m_track ? lhs.m_track : rhs.m_track;
+    p.m_stopPoint = OSM::coalesce(lhs.m_stopPoint, rhs.m_stopPoint);
+    p.m_edge = OSM::coalesce(lhs.m_edge, rhs.m_edge);
+    p.m_area = OSM::coalesce(lhs.m_area, rhs.m_area);
+    p.m_track = OSM::coalesce(lhs.m_track, rhs.m_track);
     p.m_level = lhs.hasLevel() ? lhs.m_level : rhs.m_level;
 
     // TODO
