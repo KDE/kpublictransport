@@ -202,7 +202,13 @@ void PlatformFinder::scanRoute(const OSM::Node& node, OSM::Element route)
 std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<const OSM::Node*> &path, const QString &platformName) const
 {
     std::vector<PlatformSection> sections;
-    for (auto n : path) {
+    if (path.empty()) {
+        return sections;
+    }
+
+    // skip the last node for closed paths
+    for (auto it = path.begin(); it != (path.front()->id == path.back()->id ? std::prev(path.end()) : path.end()); ++it) {
+        const auto n = (*it);
         const auto platformRef = OSM::tagValue(*n, m_tagKeys.platform_ref);
         if (!platformRef.isEmpty() && platformRef != platformName.toUtf8()) {
             continue; // belongs to a different track on the same platform area
