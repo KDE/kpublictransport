@@ -446,15 +446,12 @@ QPainterPath SceneController::createPath(const OSM::Element e, QPolygonF &outerP
         if (mem.type() != OSM::Type::Way || !isInner) {
             continue;
         }
-        auto wayIt = std::lower_bound(m_data->dataSet().ways.begin(), m_data->dataSet().ways.end(), mem.id);
-        if (wayIt == m_data->dataSet().ways.end() || (*wayIt).id != mem.id) {
-            continue;
+        if (auto way = m_data->dataSet().way(mem.id)) {
+            const auto subPoly = createPolygon(OSM::Element(way));
+            QPainterPath subPath;
+            subPath.addPolygon(subPoly);
+            path = path.subtracted(subPath);
         }
-
-        const auto subPoly = createPolygon(OSM::Element(&(*wayIt)));
-        QPainterPath subPath;
-        subPath.addPolygon(subPoly);
-        path = path.subtracted(subPath);
     }
 
     return path;

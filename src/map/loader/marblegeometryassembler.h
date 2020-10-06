@@ -54,9 +54,6 @@ private:
     template <typename Elem>
     OSM::Id takeMxOid(Elem &elem) const;
 
-    const OSM::Node* nodeForId(OSM::Id id) const;
-    OSM::Way* wayForId(OSM::Id id) const;
-
     OSM::DataSet *m_dataSet = nullptr;
     OSM::TagKey m_mxoidKey;
     OSM::TagKey m_typeKey;

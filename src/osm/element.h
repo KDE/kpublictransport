@@ -123,9 +123,8 @@ template <typename Func>
 inline void for_each_node(const DataSet &dataSet, const Way &way, Func func)
 {
     for (auto nodeId : way.nodes) {
-        const auto it = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), nodeId);
-        if (it != dataSet.nodes.end() && (*it).id == nodeId) {
-            func(*it);
+        if (auto node = dataSet.node(nodeId)) {
+            func(*node);
         }
     }
 }
@@ -138,29 +137,20 @@ inline void for_each_member(const DataSet &dataSet, const Relation &rel, Func fu
             case Type::Null:
                 break;
             case Type::Node:
-            {
-                const auto it = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), mem.id);
-                if (it != dataSet.nodes.end() && (*it).id == mem.id) {
-                    func(Element(&(*it)));
+                if (auto node = dataSet.node(mem.id)) {
+                    func(Element(node));
                 }
                 break;
-            }
             case Type::Way:
-            {
-                const auto it = std::lower_bound(dataSet.ways.begin(), dataSet.ways.end(), mem.id);
-                if (it != dataSet.ways.end() && (*it).id == mem.id) {
-                    func(Element(&(*it)));
+                if (auto way = dataSet.way(mem.id)) {
+                    func(Element(way));
                 }
                 break;
-            }
             case Type::Relation:
-            {
-                const auto it = std::lower_bound(dataSet.relations.begin(), dataSet.relations.end(), mem.id);
-                if (it != dataSet.relations.end() && (*it).id == mem.id) {
-                    func(Element(&(*it)));
+                if (auto rel = dataSet.relation(mem.id)) {
+                    func(Element(rel));
                 }
                 break;
-            }
         }
     }
 }

@@ -312,6 +312,22 @@ public:
     DataSet& operator=(const DataSet&) = delete;
     DataSet& operator=(DataSet &&);
 
+    /** Find a node by its id.
+     *  @returns @c nullptr if the node doesn't exist.
+     */
+    const Node* node(Id id) const;
+
+    /** Find a way by its id.
+     *  @returns @c nullptr if the way doesn't exist.
+     */
+    const Way* way(Id id) const;
+    OSM::Way* way(Id id);
+
+    /** Find a relation by its id.
+     *  @returns @c nullptr if the relation doesn't exist.
+     */
+    const Relation* relation(Id id) const;
+
     void addNode(Node &&node);
     void addWay(Way &&way);
     void addRelation(Relation &&rel);

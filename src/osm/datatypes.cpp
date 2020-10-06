@@ -68,6 +68,42 @@ Role DataSet::role(const char *roleName) const
     return stringKey(roleName, m_roleRegistry);
 }
 
+const Node* DataSet::node(Id id) const
+{
+    const auto it = std::lower_bound(nodes.begin(), nodes.end(), id);
+    if (it != nodes.end() && (*it).id == id) {
+        return &(*it);
+    }
+    return nullptr;
+}
+
+const Way* DataSet::way(Id id) const
+{
+    const auto it = std::lower_bound(ways.begin(), ways.end(), id);
+    if (it != ways.end() && (*it).id == id) {
+        return &(*it);
+    }
+    return nullptr;
+}
+
+Way* DataSet::way(Id id)
+{
+    const auto it = std::lower_bound(ways.begin(), ways.end(), id);
+    if (it != ways.end() && (*it).id == id) {
+        return &(*it);
+    }
+    return nullptr;
+}
+
+const Relation* DataSet::relation(Id id) const
+{
+    const auto it = std::lower_bound(relations.begin(), relations.end(), id);
+    if (it != relations.end() && (*it).id == id) {
+        return &(*it);
+    }
+    return nullptr;
+}
+
 void DataSet::addNode(Node &&node)
 {
     const auto it = std::lower_bound(nodes.begin(), nodes.end(), node);

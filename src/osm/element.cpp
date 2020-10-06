@@ -154,11 +154,9 @@ static void appendNodesFromWay(const DataSet &dataSet, std::vector<const Node*> 
 {
     nodes.reserve(nodes.size() + std::distance(nodeBegin, nodeEnd));
     for (auto it = nodeBegin; it != nodeEnd; ++it) {
-        const auto nodeIt = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), (*it));
-        if (nodeIt == dataSet.nodes.end() || (*nodeIt).id != (*it)) {
-            continue;
+        if (auto node = dataSet.node((*it))) {
+            nodes.push_back(node);
         }
-        nodes.push_back(&(*nodeIt));
     }
 }
 
@@ -213,9 +211,8 @@ std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
                 if (std::strcmp(member.role().name(), "outer") != 0) {
                     continue;
                 }
-                const auto it = std::lower_bound(dataSet.ways.begin(), dataSet.ways.end(), member.id);
-                if (it != dataSet.ways.end() && (*it).id == member.id && !(*it).nodes.empty()) {
-                    ways.push_back(&(*it));
+                if (auto way = dataSet.way(member.id)) {
+                    ways.push_back(way);
                 }
             }
 
@@ -250,11 +247,10 @@ void Element::recomputeBoundingBox(const DataSet &dataSet)
             break;
         case Type::Way:
             way()->bbox = std::accumulate(way()->nodes.begin(), way()->nodes.end(), OSM::BoundingBox(), [&dataSet](auto bbox, auto nodeId) {
-                const auto nodeIt = std::lower_bound(dataSet.nodes.begin(), dataSet.nodes.end(), nodeId);
-                if (nodeIt == dataSet.nodes.end() || (*nodeIt).id != nodeId) {
-                    return bbox;
+                if (auto node = dataSet.node(nodeId)) {
+                    return OSM::unite(bbox, {node->coordinate, node->coordinate});
                 }
-                return OSM::unite(bbox, {(*nodeIt).coordinate, (*nodeIt).coordinate});
+                return bbox;
             });
             break;
         case Type::Relation:
