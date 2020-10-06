@@ -213,6 +213,14 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     return false;
 }
 
+static bool compareSection(const PlatformSection &lhs, const PlatformSection &rhs)
+{
+    if (lhs.name == rhs.name) {
+        return lhs.position < rhs.position;
+    }
+    return lhs.name < rhs.name;
+}
+
 void Platform::appendSection(std::vector<PlatformSection> &sections, const Platform &p, PlatformSection &&sec, std::vector<const OSM::Node*> &edgePath, const OSM::DataSet &dataSet)
 {
     if (sections.empty() || sections.back().name != sec.name) {
@@ -248,8 +256,8 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
     std::vector<PlatformSection> sections;
     auto lsec = lhs.sections();
     auto rsec = rhs.sections();
-    std::sort(lsec.begin(), lsec.end(), [](const auto &lhs, const auto &rhs) { return lhs.name < rhs.name; });
-    std::sort(rsec.begin(), rsec.end(), [](const auto &lhs, const auto &rhs) { return lhs.name < rhs.name; });
+    std::sort(lsec.begin(), lsec.end(), compareSection);
+    std::sort(rsec.begin(), rsec.end(), compareSection);
     for (auto lit = lsec.begin(), rit = rsec.begin(); lit != lsec.end() || rit != rsec.end();) {
         if (rit == rsec.end()) {
             appendSection(sections, p, std::move(*lit++), edgePath, dataSet);
@@ -259,11 +267,11 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
             appendSection(sections, p, std::move(*rit++), edgePath, dataSet);
             continue;
         }
-        if ((*lit).name < (*rit).name) {
+        if (compareSection(*lit, *rit)) {
             appendSection(sections, p, std::move(*lit++), edgePath, dataSet);
             continue;
         }
-        if ((*lit).name > (*rit).name) {
+        if (compareSection(*rit, *lit)) {
             appendSection(sections, p, std::move(*rit++), edgePath, dataSet);
             continue;
         }
