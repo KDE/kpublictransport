@@ -33,8 +33,6 @@ private:
     int levelForPlatform(const MapLevel &ml, OSM::Element e) const;
 
     void addPlatform(Platform &&platform);
-    /** Similar to the above, but assuming @p platform can be merged with multiple existing ones. */
-    void addPlatformArea(Platform &&platform);
 
     const MapData *m_data;
     struct {
@@ -47,6 +45,8 @@ private:
         OSM::TagKey route;
     } m_tagKeys;
     void resolveTagKeys();
+    /** Tries to merge m_platformAreas into m_platforms. */
+    void mergePlatformAreas();
     void finalizeResult();
 
     QCollator m_collator;

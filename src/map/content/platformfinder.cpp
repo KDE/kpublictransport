@@ -130,10 +130,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
         scanRoute(e, e);
     }, OSM::IncludeRelations);
 
-    for (auto &p : m_platformAreas) {
-        addPlatformArea(std::move(p));
-    }
-    m_platformAreas.clear();
+    mergePlatformAreas();
     for (auto &p : m_floatingSections) {
         addPlatform(std::move(p));
     }
@@ -278,18 +275,33 @@ void PlatformFinder::addPlatform(Platform &&platform)
     m_platforms.push_back(std::move(platform));
 }
 
-void PlatformFinder::addPlatformArea(Platform &&platform)
+void PlatformFinder::mergePlatformAreas()
 {
-    bool found = false;
-    for (Platform &p : m_platforms) {
-        if (Platform::isSame(p, platform, m_data->dataSet())) {
-            p = Platform::merge(p, platform, m_data->dataSet());
-            found = true;
-        }
-    }
+    // due to split areas we can end up with multplie entries for the same platform that only merge in the right order
+    // so retry until we no longer find anything matching
+    std::size_t prevCount = 0;
 
-    if (!found) {
-        m_platforms.push_back(std::move(platform));
+    while (prevCount != m_platformAreas.size() && !m_platformAreas.empty()) {
+        prevCount = m_platformAreas.size();
+        for (auto it = m_platformAreas.begin(); it != m_platformAreas.end();) {
+            bool found = false;
+            for (Platform &p : m_platforms) {
+                if (Platform::isSame(p, (*it), m_data->dataSet())) {
+                    p = Platform::merge(p, (*it), m_data->dataSet());
+                    found = true;
+                }
+            }
+            if (found) {
+                it = m_platformAreas.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        if (prevCount == m_platformAreas.size()) {
+            m_platforms.push_back(m_platformAreas.back());
+            m_platformAreas.erase(std::prev(m_platformAreas.end()));
+        }
     }
 }
 
