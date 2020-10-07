@@ -138,7 +138,7 @@ static bool isSubPath(const std::vector<const OSM::Node*> &path, const OSM::Way 
     });
 }
 
-static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 4.0; // meters
+static constexpr const auto MAX_TRACK_TO_EDGE_DISTANCE = 4.5; // meters
 static constexpr const auto MAX_SECTION_TO_EDGE_DISTANCE = 5.0;
 
 static double maxSectionDistance(const std::vector<const OSM::Node*> &path, const std::vector<PlatformSection> &sections)
@@ -220,7 +220,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     const auto isConnectedTrack = isConnectedGeometry(lhs.m_track, rhs.m_track, dataSet);
     const auto isConnectedArea = isConnectedGeometry(lhs.m_area, rhs.m_area, dataSet);
 
-    if ((conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint) && lhs.m_track != rhs.m_track)
+    if ((conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint) && lhs.m_track != rhs.m_track && !isConnectedTrack)
      || (conflictIfPresent(lhs.m_edge, rhs.m_edge) && !isConnectedEdge)
      || (conflictIfPresent(lhs.m_area, rhs.m_area) && !isConnectedArea)
      || (conflictIfPresent(lhs.m_track, rhs.m_track) && !isConnectedTrack)
@@ -273,7 +273,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     }
 
     // free-floating sections: edge, area or track is within a reasonable distance
-    if (!lhs.m_name.isEmpty() && lhs.m_name == rhs.m_name) {
+    if (!lhs.m_name.isEmpty() && lhs.m_name == rhs.m_name && !isConnectedArea && !isConnectedEdge) {
         const auto lgeom = OSM::coalesce(lhs.m_edge, lhs.m_area, lhs.m_track, lhs.m_area);
         if (lgeom && !rhs.m_sections.empty()) {
             return maxSectionDistance(lgeom.outerPath(dataSet), rhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
@@ -284,7 +284,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
         }
     }
 
-    return isConnectedArea || isConnectedEdge;
+    return isConnectedArea || isConnectedEdge || isConnectedTrack;
 }
 
 static bool compareSection(const PlatformSection &lhs, const PlatformSection &rhs)

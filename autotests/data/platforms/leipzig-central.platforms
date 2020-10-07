@@ -78,19 +78,6 @@
   mode: Rail
   lines: ICE 11|ICE 28
 12
-  position: 1413474208 1923838119
-  stop point: <null>
-  edge: <null>
-  area: r9615738
-  track: <null>
-  level: 10
-  mode: Rail
-  sections:
-    name: D
-    position: n4867054623
-    name: D
-    position: n4867054624
-12
   position: 1413457989 1923819758
   stop point: n2299420217
   edge: w367895064
@@ -103,19 +90,6 @@
     name: D
     position: n4867054624
 13
-  position: 1413474208 1923838119
-  stop point: <null>
-  edge: <null>
-  area: r9615738
-  track: <null>
-  level: 10
-  mode: Rail
-  sections:
-    name: D
-    position: n4867054623
-    name: D
-    position: n4867054624
-13
   position: 1413457291 1923821398
   stop point: n2299420218
   edge: w691835117
@@ -124,6 +98,9 @@
   level: 10
   mode: Rail
   lines: IC 55|IC 56|ICE 50|RE 13
+  sections:
+    name: D
+    position: n4867054623
 14
   position: 1413456902 1923822378
   stop point: n2299420219
@@ -151,18 +128,10 @@
   level: 10
   mode: Rail
 17
-  position: 1413467573 1923838367
-  stop point: <null>
-  edge: <null>
-  area: r9615736
-  track: <null>
-  level: 10
-  mode: Rail
-17
   position: 1413455317 1923827108
   stop point: n2299420222
-  edge: n2299420222
-  area: n2299420222
+  edge: w691835113
+  area: r5299023
   track: w375840482
   level: 10
   mode: Rail
