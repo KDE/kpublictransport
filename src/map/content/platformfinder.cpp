@@ -233,20 +233,25 @@ std::vector<PlatformSection> PlatformFinder::sectionsForPath(const std::vector<c
     return sections;
 }
 
+struct {
+    const char* name;
+    Platform::Mode mode;
+} static constexpr const mode_map[] = {
+    { "rail", Platform::Rail },
+    { "light_rail", Platform::Rail }, // TODO consumer code can't handle LightRail yet
+    { "subway", Platform::Subway },
+    { "tram", Platform::Tram },
+    { "bus", Platform::Bus },
+};
+
 Platform::Mode PlatformFinder::modeForElement(OSM::Element elem) const
 {
     const auto railway = elem.tagValue(m_tagKeys.railway);
-    if (railway == "rail" || railway == "light_rail") {
-        return Platform::Rail;
-    }
-    if (railway == "subway" || elem.tagValue("subway") == "yes") {
-        return Platform::Subway;
-    }
-    if (railway == "tram" || elem.tagValue("tram") == "yes") {
-        return Platform::Tram;
-    }
-    if (elem.tagValue("bus") == "yes") {
-        return Platform::Bus;
+    for (const auto &mode : mode_map) {
+        const auto modeTag = elem.tagValue(mode.name);
+        if (railway == mode.name || (!modeTag.isEmpty() && modeTag != "no")) {
+            return mode.mode;
+        }
     }
 
     // TODO this should eventually return Unknown
