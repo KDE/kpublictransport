@@ -10,7 +10,6 @@
 #include "platform.h"
 
 #include <QAbstractItemModel>
-#include <QCollator>
 
 namespace KOSMIndoorMap {
 
@@ -68,20 +67,11 @@ Q_SIGNALS:
     void platformIndexChanged();
 
 private:
-    void populateModel();
-    void scanRoute(OSM::Element e, OSM::Element route);
-    void scanRoute(const OSM::Node &node, OSM::Element route);
-    void addPlatform(Platform &&platform);
     void matchPlatforms();
     int matchPlatform(const Platform &platform) const;
 
-    static bool comparePlatform(const Platform &lhs, const Platform &rhs);
-
     std::vector<Platform> m_platforms;
     MapData *m_data = nullptr;
-    static QCollator m_collator;
-
-    OSM::TagKey m_ptKey;
 
     Platform m_arrivalPlatform;
     Platform m_departurePlatform;
