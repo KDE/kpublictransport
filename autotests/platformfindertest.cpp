@@ -79,6 +79,8 @@ private Q_SLOTS:
         QTest::newRow("berlin-central") << (SOURCE_DIR "/data/platforms/berlin-central.osm") << (SOURCE_DIR "/data/platforms/berlin-central.platforms");
         // split areas/edges, edges on the wrong level, triple platforms
         QTest::newRow("leipzig-central") << (SOURCE_DIR "/data/platforms/leipzig-central.osm") << (SOURCE_DIR "/data/platforms/leipzig-central.platforms");
+        // multiple stop points per track, no edges, up to 4 split tracks
+        QTest::newRow("hamburg-central") << (SOURCE_DIR "/data/platforms/hamburg-central.osm") << (SOURCE_DIR "/data/platforms/hamburg-central.platforms");
     }
 
     void testPlatformFinder()

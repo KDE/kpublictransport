@@ -15,7 +15,6 @@
 		<tag k="name" v="Hauptbahnhof, Steig D"/>
 		<tag k="ref" v="D"/>
 		<tag k="public_transport" v="stop_position"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="highway" v="bus_stop"/>
 		<tag k="bus" v="yes"/>
 		<tag k="uic_ref" v="956291"/>
@@ -1362,21 +1361,17 @@
 	<node id="4019291117" lat="51.3447994" lon="12.3786989"/>
 	<node id="4019305818" lat="51.343553" lon="12.3810645">
 		<tag k="railway" v="crossing"/>
-		<tag k="tactile_paving" v="yes"/>
 	</node>
 	<node id="4019305820" lat="51.3435823" lon="12.3810953">
 		<tag k="railway" v="crossing"/>
-		<tag k="tactile_paving" v="yes"/>
 	</node>
 	<node id="4019305821" lat="51.3435674" lon="12.3809991"/>
 	<node id="4019305822" lat="51.343649" lon="12.3811655">
 		<tag k="railway" v="crossing"/>
-		<tag k="tactile_paving" v="yes"/>
 	</node>
 	<node id="4019305823" lat="51.3436179" lon="12.3810519"/>
 	<node id="4019305825" lat="51.3436779" lon="12.3811958">
 		<tag k="railway" v="crossing"/>
-		<tag k="tactile_paving" v="yes"/>
 	</node>
 	<node id="4019305826" lat="51.3436399" lon="12.381075"/>
 	<node id="4019305828" lat="51.3436616" lon="12.3810976"/>
@@ -2259,7 +2254,6 @@
 		<tag k="area" v="yes"/>
 		<tag k="bus" v="yes"/>
 		<tag k="route_ref" v="100;412"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="90961359">
 		<nd ref="6501204081"/>
@@ -2284,7 +2278,6 @@
 		<tag k="public_transport" v="platform"/>
 		<tag k="area" v="yes"/>
 		<tag k="bus" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="90961365">
 		<nd ref="1055986306"/>
@@ -2636,7 +2629,6 @@
 		<tag k="opening_hours" v="Mo-Su 08:00-20:00"/>
 		<tag k="public_transport" v="service_center"/>
 		<tag k="tourism" v="information"/>
-		<tag k="indoor" v="room"/>
 		<tag k="information" v="office"/>
 	</way>
 	<way id="150289839">
@@ -3617,7 +3609,6 @@
 		<nd ref="3604851841"/>
 		<nd ref="3604851839"/>
 		<nd ref="3604851843"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="354812014">
 		<nd ref="3604851835"/>
@@ -3625,7 +3616,6 @@
 		<nd ref="3604851833"/>
 		<nd ref="3604851831"/>
 		<nd ref="3604851835"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="354812016">
 		<nd ref="3604851859"/>
@@ -3633,7 +3623,6 @@
 		<nd ref="3604851857"/>
 		<nd ref="3604851855"/>
 		<nd ref="3604851859"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="354812018">
 		<nd ref="3604851875"/>
@@ -3648,7 +3637,6 @@
 		<nd ref="3604851879"/>
 		<nd ref="3604851878"/>
 		<nd ref="3604851880"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="354812024">
 		<nd ref="3604851827"/>
@@ -3663,7 +3651,6 @@
 		<nd ref="3604851849"/>
 		<nd ref="3604851847"/>
 		<nd ref="3604851851"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="355575915">
 		<nd ref="3561524915"/>
@@ -4011,7 +3998,6 @@
 		<tag k="area" v="yes"/>
 		<tag k="highway" v="platform"/>
 		<tag k="bus" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</way>
 	<way id="418946243">
 		<nd ref="4191537229"/>
@@ -4772,7 +4758,6 @@
 		<tag k="ref" v="IC 55"/>
 		<tag k="fee" v="yes"/>
 		<tag k="service" v="long_distance"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="from" v="Leipzig Hbf"/>
 		<tag k="to" v="Köln Hbf"/>
 		<tag k="public_transport:version" v="2"/>
@@ -4833,7 +4818,6 @@
 		<tag k="ref" v="IC 55"/>
 		<tag k="fee" v="yes"/>
 		<tag k="service" v="long_distance"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="from" v="Köln Hbf"/>
 		<tag k="to" v="Dresden Haupbahnhof"/>
 		<tag k="public_transport:version" v="2"/>
@@ -5638,7 +5622,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paving_stones"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="5299021">
 		<member type="way" ref="-22359427" role="outer"/>
@@ -5653,7 +5636,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paving_stones"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="5299022">
 		<member type="way" ref="-22359433" role="outer"/>
@@ -5668,7 +5650,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paving_stones"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="5299023">
 		<member type="way" ref="-22359737" role="outer"/>
@@ -5709,7 +5690,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="concrete"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="5299026">
 		<member type="way" ref="-22359418" role="outer"/>
@@ -5724,7 +5704,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paved"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="5299027">
 		<member type="way" ref="-22357244" role="outer"/>
@@ -5739,7 +5718,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="concrete"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="5299028">
 		<member type="way" ref="-22359408" role="outer"/>
@@ -6096,9 +6074,7 @@
 		<tag k="ref" v="1;2"/>
 		<tag k="train" v="yes"/>
 		<tag k="public_transport" v="platform"/>
-		<tag k="indoor" v="yes"/>
 		<tag k="surface" v="paved"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="8303218">
 		<member type="node" ref="3598453802" role=""/>
@@ -6218,7 +6194,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paved"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="9615734">
 		<member type="way" ref="-22359306" role="outer"/>
@@ -6232,7 +6207,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="concrete"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="9615735">
 		<member type="way" ref="-22359206" role="outer"/>
@@ -6270,7 +6244,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paving_stones"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="9615738">
 		<member type="way" ref="-22359220" role="outer"/>
@@ -6284,7 +6257,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paving_stones"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="9615739">
 		<member type="way" ref="-22359224" role="outer"/>
@@ -6298,7 +6270,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="paving_stones"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 	</relation>
 	<relation id="9615740">
 		<member type="way" ref="-22359212" role="outer"/>
@@ -6324,7 +6295,6 @@
 		<tag k="height" v="0.76"/>
 		<tag k="surface" v="concrete"/>
 		<tag k="rail" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="11657256">
 		<member type="way" ref="375045104" role=""/>

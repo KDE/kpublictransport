@@ -890,7 +890,6 @@
 		<tag k="addr:city" v="Köln"/>
 		<tag k="addr:postcode" v="50667"/>
 		<tag k="official_name" v="Köln Hbf"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="short_name" v="Köln Hbf"/>
 		<tag k="railway:ref" v="KK"/>
 		<tag k="uic_ref" v="8000207"/>
@@ -2287,7 +2286,6 @@
 		<tag k="public_transport" v="platform"/>
 		<tag k="level" v="-2"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 		<tag k="bench" v="yes"/>
 	</way>
 	<way id="141211006">
@@ -2317,7 +2315,6 @@
 		<tag k="highway" v="no"/>
 		<tag k="level" v="-2"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="yes"/>
 		<tag k="bench" v="yes"/>
 	</way>
 	<way id="150029841">
@@ -3684,7 +3681,6 @@
 		<tag k="name" v="DB Information"/>
 		<tag k="public_transport" v="service_point"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="room"/>
 		<tag k="tourism" v="information"/>
 		<tag k="information" v="office"/>
 	</way>
@@ -3710,7 +3706,6 @@
 		<tag k="addr:postcode" v="50667"/>
 		<tag k="level" v="0"/>
 		<tag k="shop" v="ticket"/>
-		<tag k="indoor" v="room"/>
 		<tag k="shop:VRS" v="ticket"/>
 		<tag k="office:VRS" v="public_transport"/>
 	</way>
@@ -3836,7 +3831,6 @@
 		<nd ref="4583442900"/>
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="1"/>
-		<tag k="indoor" v="room"/>
 	</way>
 	<way id="463029281">
 		<nd ref="4190003925"/>
@@ -4269,7 +4263,6 @@
 		<nd ref="4705609922"/>
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="1"/>
-		<tag k="indoor" v="room"/>
 	</way>
 	<way id="477170109">
 		<nd ref="4705609926"/>
@@ -4279,7 +4272,6 @@
 		<nd ref="4705609926"/>
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="1"/>
-		<tag k="indoor" v="room"/>
 	</way>
 	<way id="477170110">
 		<nd ref="4705609930"/>
@@ -4421,7 +4413,6 @@
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln Hbf"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="dog" v="yes"/>
 	</relation>
 	<relation id="375331">
@@ -4494,7 +4485,6 @@
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Dresden Haupbahnhof"/>
-		<tag k="toilets" v="yes"/>
 	</relation>
 	<relation id="1278346">
 		<member type="way" ref="150054154" role=""/>
@@ -4951,14 +4941,12 @@
 		<tag k="ref" v="RE5"/>
 		<tag k="internet_access" v="wlan"/>
 		<tag k="internet_access:fee" v="no"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="height" v="0.76"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Koblenz"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Wesel"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="power_supply" v="cee_7_3"/>
 		<tag k="air_conditioning" v="yes"/>
 	</relation>
@@ -4978,14 +4966,12 @@
 		<tag k="ref" v="RE5"/>
 		<tag k="internet_access" v="wlan"/>
 		<tag k="internet_access:fee" v="no"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="height" v="0.76"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Wesel"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Koblenz"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="power_supply" v="cee_7_3"/>
 		<tag k="air_conditioning" v="yes"/>
 	</relation>
@@ -5337,14 +5323,12 @@
 		<tag k="type" v="route"/>
 		<tag k="name" v="RB25: Lüdenscheid =&#62; Köln"/>
 		<tag k="ref" v="RB25"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="height" v="0.76"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Lüdenscheid"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="power_supply" v="cee_7_3"/>
 	</relation>
 	<relation id="2522653">
@@ -5563,7 +5547,6 @@
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Basel SBB"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="dog" v="yes"/>
 		<tag k="state" v="connection"/>
 	</relation>
@@ -6270,7 +6253,6 @@
 		<tag k="surface" v="paved"/>
 		<tag k="height" v="0.76"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="6791958">
 		<member type="node" ref="1629836040" role="stop"/>
@@ -6286,14 +6268,12 @@
 		<tag k="ref" v="RE6"/>
 		<tag k="internet_access" v="wlan"/>
 		<tag k="internet_access:fee" v="no"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="height" v="0.76"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Köln/Bonn Flughafen"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Minden"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="power_supply" v="cee_7_3"/>
 		<tag k="air_conditioning" v="yes"/>
 	</relation>
@@ -6315,14 +6295,12 @@
 		<tag k="ref" v="RE6"/>
 		<tag k="internet_access" v="wlan"/>
 		<tag k="internet_access:fee" v="no"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="height" v="0.76"/>
 		<tag k="service" v="regional"/>
 		<tag k="from" v="Minden"/>
 		<tag k="public_transport:version" v="2"/>
 		<tag k="route" v="train"/>
 		<tag k="to" v="Köln/Bonn Flughafen"/>
-		<tag k="toilets" v="yes"/>
 		<tag k="power_supply" v="cee_7_3"/>
 		<tag k="air_conditioning" v="yes"/>
 	</relation>
@@ -6346,7 +6324,6 @@
 		<tag k="surface" v="paved"/>
 		<tag k="height" v="0.76"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="6838147">
 		<member type="way" ref="150062163" role="outer"/>
@@ -6367,7 +6344,6 @@
 		<tag k="surface" v="paved"/>
 		<tag k="height" v="0.76"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="6838156">
 		<member type="way" ref="230443940" role="outer"/>
@@ -6387,7 +6363,6 @@
 		<tag k="surface" v="paved"/>
 		<tag k="height" v="0.96"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="6838161">
 		<member type="way" ref="150062161" role="outer"/>
@@ -6403,11 +6378,9 @@
 		<tag k="ref" v="4;5"/>
 		<tag k="public_transport" v="platform"/>
 		<tag k="level" v="1"/>
-		<tag k="toilets:wheelchair" v="yes"/>
 		<tag k="surface" v="paved"/>
 		<tag k="height" v="0.76"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="6838169">
 		<member type="way" ref="230455228" role="outer"/>
@@ -6428,7 +6401,6 @@
 		<tag k="surface" v="paved"/>
 		<tag k="height" v="0.76"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</relation>
 	<relation id="6864466">
 		<member type="way" ref="150046980" role=""/>

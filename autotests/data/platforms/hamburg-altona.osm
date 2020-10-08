@@ -1068,7 +1068,6 @@
 		<tag k="loc_name" v="Bf. Altona Bereich A"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="passenger_information_display" v="yes"/>
 		<tag k="loc_ref" v="A"/>
 		<tag k="last_check" v="2019-03-05"/>
@@ -1083,7 +1082,6 @@
 		<tag k="loc_name" v="Bf. Altona Bereich D"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="passenger_information_display" v="yes"/>
 		<tag k="loc_ref" v="D"/>
 	</node>
@@ -1095,7 +1093,6 @@
 		<tag k="loc_name" v="Bf. Altona Bereich C"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="passenger_information_display" v="yes"/>
 		<tag k="loc_ref" v="C"/>
 	</node>
@@ -1107,7 +1104,6 @@
 		<tag k="loc_name" v="Bf. Altona Bereich B"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="passenger_information_display" v="yes"/>
 		<tag k="loc_ref" v="B"/>
 	</node>
@@ -1118,7 +1114,6 @@
 		<tag k="loc_name" v="Bf. Altona Bereich E"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="passenger_information_display" v="yes"/>
 		<tag k="loc_ref" v="E"/>
 	</node>
@@ -1130,7 +1125,6 @@
 		<tag k="loc_name" v="Bf. Altona Bereich F"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="passenger_information_display" v="yes"/>
 		<tag k="loc_ref" v="F"/>
 	</node>
@@ -1142,7 +1136,6 @@
 		<tag k="loc_name" v="Bf. Altona Ankunftsbereich"/>
 		<tag k="bench" v="yes"/>
 		<tag k="bin" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</node>
 	<node id="6140117893" lat="53.5515346" lon="9.9348125">
 		<tag k="name" v="Bf. Altona"/>
@@ -1660,7 +1653,6 @@
 		<tag k="train" v="yes"/>
 		<tag k="bin" v="yes"/>
 		<tag k="area" v="yes"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="42838505">
 		<nd ref="4034103692"/>
@@ -1695,7 +1687,6 @@
 		<tag k="train" v="yes"/>
 		<tag k="bin" v="yes"/>
 		<tag k="area" v="yes"/>
-		<tag k="indoor" v="yes"/>
 	</way>
 	<way id="42857251">
 		<nd ref="536400522"/>
@@ -1880,7 +1871,6 @@
 		<tag k="train" v="yes"/>
 		<tag k="bin" v="yes"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="51398796">
 		<nd ref="656184167"/>
@@ -2764,7 +2754,6 @@
 		<tag k="public_transport" v="service_center"/>
 		<tag k="level" v="-1"/>
 		<tag k="shop" v="ticket"/>
-		<tag k="indoor" v="room"/>
 		<tag k="ticket:public_transport" v="yes"/>
 	</way>
 	<way id="415383436">
@@ -3097,7 +3086,6 @@
 		<tag k="train" v="yes"/>
 		<tag k="bin" v="yes"/>
 		<tag k="area" v="yes"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="662834900">
 		<nd ref="6205052816"/>
@@ -3108,7 +3096,6 @@
 		<nd ref="4027489513"/>
 		<tag k="railway" v="platform_edge"/>
 		<tag k="ref" v="12"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="662834901">
 		<nd ref="1686600829"/>
@@ -3118,7 +3105,6 @@
 		<nd ref="6205052817"/>
 		<tag k="railway" v="platform_edge"/>
 		<tag k="ref" v="11"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="662834902">
 		<nd ref="6205052818"/>
@@ -3132,7 +3118,6 @@
 		<nd ref="4027489515"/>
 		<tag k="railway" v="platform_edge"/>
 		<tag k="ref" v="8"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="662834903">
 		<nd ref="536705548"/>
@@ -3144,7 +3129,6 @@
 		<nd ref="6205052819"/>
 		<tag k="railway" v="platform_edge"/>
 		<tag k="ref" v="7"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="662834904">
 		<nd ref="6205052820"/>
@@ -3176,7 +3160,6 @@
 		<nd ref="6205052837"/>
 		<tag k="railway" v="platform_edge"/>
 		<tag k="ref" v="9"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="662834907">
 		<nd ref="6205052838"/>
@@ -3187,7 +3170,6 @@
 		<nd ref="536705554"/>
 		<tag k="railway" v="platform_edge"/>
 		<tag k="ref" v="10"/>
-		<tag k="tactile_paving" v="no"/>
 	</way>
 	<way id="842481505">
 		<nd ref="-20858288"/>

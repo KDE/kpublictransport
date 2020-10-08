@@ -116,7 +116,6 @@
 	<node id="918153430" lat="48.8423996" lon="2.3801356"/>
 	<node id="1223052374" lat="48.846289" lon="2.378099">
 		<tag k="name" v="Daumesnil - Diderot"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="highway" v="bus_stop"/>
 		<tag k="public_transport" v="platform"/>
 		<tag k="ref:FR:STIF" v="24798"/>
@@ -138,7 +137,6 @@
 	</node>
 	<node id="1243136081" lat="48.844616" lon="2.3806775">
 		<tag k="name" v="Rambouillet"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="highway" v="bus_stop"/>
 		<tag k="public_transport" v="platform"/>
 		<tag k="ref:FR:STIF" v="23648"/>
@@ -690,7 +688,6 @@
 	<node id="1631589126" lat="48.8436645" lon="2.3746148">
 		<tag k="level:ref" v="Hall 1"/>
 		<tag k="level" v="1"/>
-		<tag k="tactile_paving" v="contrasted"/>
 	</node>
 	<node id="1631589163" lat="48.8433695" lon="2.3751524">
 		<tag k="level:ref" v="Hall 1"/>
@@ -701,19 +698,16 @@
 		<tag k="level:ref" v="Hall 1"/>
 		<tag k="level" v="1"/>
 		<tag k="door" v="no"/>
-		<tag k="tactile_paving" v="contrasted"/>
 	</node>
 	<node id="1631589174" lat="48.8438834" lon="2.3749127">
 		<tag k="level:ref" v="Hall 1"/>
 		<tag k="level" v="1"/>
 		<tag k="door" v="no"/>
-		<tag k="tactile_paving" v="contrasted"/>
 	</node>
 	<node id="1631589208" lat="48.843968" lon="2.3750189">
 		<tag k="level:ref" v="Hall 1"/>
 		<tag k="level" v="1"/>
 		<tag k="door" v="no"/>
-		<tag k="tactile_paving" v="contrasted"/>
 	</node>
 	<node id="1631589214" lat="48.8440161" lon="2.3767385">
 		<tag k="level:ref" v="Hall 2"/>
@@ -725,7 +719,6 @@
 		<tag k="level" v="1"/>
 		<tag k="door" v="no"/>
 		<tag k="mapillary" v="4Ps816Y5P3uPqr4_ZbN1qA"/>
-		<tag k="tactile_paving" v="contrasted"/>
 		<tag k="mapillary:back" v="Xf1mitWYrIab8pCTAhRx8A"/>
 	</node>
 	<node id="1631589220" lat="48.8440783" lon="2.3766212">
@@ -737,7 +730,6 @@
 		<tag k="level:ref" v="Hall 1"/>
 		<tag k="level" v="1"/>
 		<tag k="door" v="no"/>
-		<tag k="tactile_paving" v="contrasted"/>
 	</node>
 	<node id="1631589296" lat="48.8451746" lon="2.3735065">
 		<tag k="railway" v="train_station_entrance"/>
@@ -829,7 +821,6 @@
 	</node>
 	<node id="2044485265" lat="48.846574" lon="2.3770203">
 		<tag k="name" v="Daumesnil - Diderot"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="highway" v="bus_stop"/>
 		<tag k="public_transport" v="platform"/>
 		<tag k="ref:FR:STIF" v="39850"/>
@@ -1658,13 +1649,11 @@
 		<tag k="level:ref" v="Hall 3"/>
 		<tag k="railway" v="train_station_entrance"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="yes"/>
 	</node>
 	<node id="3690115007" lat="48.8445594" lon="2.3765983">
 		<tag k="level:ref" v="Hall 3"/>
 		<tag k="railway" v="train_station_entrance"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="yes"/>
 	</node>
 	<node id="3690125376" lat="48.8443051" lon="2.3774103"/>
 	<node id="3690129327" lat="48.844217" lon="2.3772979"/>
@@ -1672,7 +1661,6 @@
 		<tag k="level:ref" v="Hall 3"/>
 		<tag k="railway" v="train_station_entrance"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="yes"/>
 	</node>
 	<node id="3699788025" lat="48.842546" lon="2.3753887"/>
 	<node id="3700558583" lat="48.8442926" lon="2.3730636">
@@ -1775,13 +1763,11 @@
 		<tag k="level:ref" v="Hall 3"/>
 		<tag k="railway" v="train_station_entrance"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="yes"/>
 	</node>
 	<node id="3742555133" lat="48.8448969" lon="2.3762324">
 		<tag k="level:ref" v="Hall 3"/>
 		<tag k="railway" v="train_station_entrance"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="yes"/>
 	</node>
 	<node id="3742604703" lat="48.8453346" lon="2.373915">
 		<tag k="level:ref" v="Galerie Diderot"/>
@@ -2023,7 +2009,6 @@
 	</node>
 	<node id="4874044421" lat="48.8457017" lon="2.3733559">
 		<tag k="name" v="Gare de Lyon - Diderot"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="highway" v="bus_stop"/>
 		<tag k="public_transport" v="platform"/>
 		<tag k="ref:FR:STIF" v="22801"/>
@@ -2092,7 +2077,6 @@
 	</node>
 	<node id="5979568550" lat="48.8458446" lon="2.373729">
 		<tag k="name" v="Gare de Lyon - Diderot"/>
-		<tag k="tactile_paving" v="no"/>
 		<tag k="highway" v="bus_stop"/>
 		<tag k="public_transport" v="platform"/>
 		<tag k="ref:FR:STIF" v="36281"/>
@@ -2293,7 +2277,6 @@
 		<tag k="level:ref" v="Hall 3"/>
 		<tag k="railway" v="train_station_entrance"/>
 		<tag k="level" v="0"/>
-		<tag k="indoor" v="yes"/>
 	</node>
 	<node id="6810875928" lat="48.8418671" lon="2.3804571"/>
 	<node id="6880989705" lat="48.8457386" lon="2.3740008"/>
@@ -4926,7 +4909,6 @@
 		<tag k="railway" v="subway"/>
 		<tag k="name" v="Métro 14"/>
 		<tag k="level" v="-5"/>
-		<tag k="indoor" v="yes"/>
 		<tag k="rubber_tires" v="yes"/>
 	</way>
 	<way id="553464165">
