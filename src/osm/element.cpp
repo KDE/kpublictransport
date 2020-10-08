@@ -5,6 +5,7 @@
 */
 
 #include "element.h"
+#include "pathutil.h"
 
 using namespace OSM;
 
@@ -149,43 +150,6 @@ QString Element::url() const
     return {};
 }
 
-template <typename Iter>
-static void appendNodesFromWay(const DataSet &dataSet, std::vector<const Node*> &nodes, const Iter& nodeBegin, const Iter &nodeEnd)
-{
-    nodes.reserve(nodes.size() + std::distance(nodeBegin, nodeEnd));
-    for (auto it = nodeBegin; it != nodeEnd; ++it) {
-        if (auto node = dataSet.node((*it))) {
-            nodes.push_back(node);
-        }
-    }
-}
-
-static OSM::Id appendNextPath(const DataSet &dataSet, std::vector<const Node*> &nodes, OSM::Id startNode, std::vector<const Way*> &ways)
-{
-    if (ways.empty()) {
-        return {};
-    }
-
-    for (auto it = std::next(ways.begin()); it != ways.end(); ++it) {
-        assert(!(*it)->nodes.empty()); // ensured in the caller
-        if ((*it)->nodes.front() == startNode) {
-            appendNodesFromWay(dataSet, nodes, (*it)->nodes.begin(), (*it)->nodes.end());
-            const auto lastNodeId = (*it)->nodes.back();
-            ways.erase(it);
-            return lastNodeId;
-        }
-        // path segments can also be backwards
-        if ((*it)->nodes.back() == startNode) {
-            appendNodesFromWay(dataSet, nodes, (*it)->nodes.rbegin(), (*it)->nodes.rend());
-            const auto lastNodeId = (*it)->nodes.front();
-            ways.erase(it);
-            return lastNodeId;
-        }
-    }
-
-    return {};
-}
-
 std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
 {
     switch (type()) {
@@ -218,20 +182,7 @@ std::vector<const Node*> Element::outerPath(const DataSet &dataSet) const
 
             // stitch them together (there is no well-defined order)
             std::vector<const Node*> nodes;
-            for (auto it = ways.begin(); it != ways.end();) {
-                assert(!(*it)->nodes.empty()); // ensured above
-
-                appendNodesFromWay(dataSet, nodes, (*it)->nodes.begin(), (*it)->nodes.end());
-                const auto startNode = (*it)->nodes.front();
-                auto lastNode = (*it)->nodes.back();
-
-                do {
-                    lastNode = appendNextPath(dataSet, nodes, lastNode, ways);
-                } while (lastNode && lastNode != startNode);
-
-                it = ways.erase(it);
-            }
-
+            assemblePath(dataSet, std::move(ways), nodes);
             return nodes;
         }
     }

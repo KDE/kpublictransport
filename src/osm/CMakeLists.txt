@@ -22,6 +22,7 @@ add_library(KOSM STATIC
     osmpbfparser.cpp
     overpassquery.cpp
     overpassquerymanager.cpp
+    pathutil.cpp
     xmlparser.cpp
     xmlwriter.cpp
     ztile.cpp
