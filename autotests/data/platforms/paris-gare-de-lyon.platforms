@@ -3,7 +3,7 @@
   stop point: <null>
   edge: <null>
   area: w406470899
-  track: <null>
+  track: []
   level: -30
   mode: Rail
 2
@@ -20,7 +20,7 @@
   stop point: <null>
   edge: <null>
   area: w406470899
-  track: <null>
+  track: []
   level: -30
   mode: Rail
 4
@@ -28,7 +28,7 @@
   stop point: <null>
   edge: <null>
   area: w406470900
-  track: <null>
+  track: []
   level: -30
   mode: Rail
 5
@@ -36,7 +36,7 @@
   stop point: <null>
   edge: <null>
   area: w436239151
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -55,7 +55,7 @@
   stop point: <null>
   edge: <null>
   area: w361731430
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -74,7 +74,7 @@
   stop point: <null>
   edge: <null>
   area: w361731430
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -93,7 +93,7 @@
   stop point: <null>
   edge: <null>
   area: w361731435
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -112,7 +112,7 @@
   stop point: <null>
   edge: <null>
   area: w361731435
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -131,7 +131,7 @@
   stop point: <null>
   edge: <null>
   area: r5444292
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -150,7 +150,7 @@
   stop point: <null>
   edge: <null>
   area: r5444292
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -169,7 +169,7 @@
   stop point: <null>
   edge: <null>
   area: w361731429
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -190,7 +190,7 @@
   stop point: <null>
   edge: <null>
   area: w361731429
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -211,7 +211,7 @@
   stop point: <null>
   edge: <null>
   area: w361731434
-  track: <null>
+  track: []
   level: 10
   mode: Rail
   sections:
@@ -246,7 +246,7 @@ B
   stop point: <null>
   edge: <null>
   area: w436236023
-  track: <null>
+  track: []
   level: 10
   mode: Rail
 C
@@ -254,7 +254,7 @@ C
   stop point: <null>
   edge: <null>
   area: w129299895
-  track: <null>
+  track: []
   level: 10
   mode: Rail
 C
@@ -284,7 +284,7 @@ D
   stop point: <null>
   edge: <null>
   area: w129299895
-  track: <null>
+  track: []
   level: 10
   mode: Rail
 D
@@ -314,7 +314,7 @@ E
   stop point: <null>
   edge: <null>
   area: w129299897
-  track: <null>
+  track: []
   level: 10
   mode: Rail
 E
@@ -344,7 +344,7 @@ G
   stop point: <null>
   edge: <null>
   area: w129299897
-  track: <null>
+  track: []
   level: 10
   mode: Rail
 G

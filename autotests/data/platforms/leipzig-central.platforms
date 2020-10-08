@@ -3,7 +3,7 @@
   stop point: n1496742397
   edge: w585434416
   area: r8267478
-  track: w418946244
+  track: [w418946244 w418946449 ]
   level: -20
   mode: Rail
   lines: S 1|S 2|S 3|S 4|S 5|S 5X|S 6
@@ -12,7 +12,7 @@
   stop point: n1496742399
   edge: w233515717
   area: r8267478
-  track: w220862148
+  track: [w220862148 w418946243 ]
   level: -20
   mode: Rail
   lines: S 1|S 2|S 3|S 4|S 5|S 5X|S 6
@@ -21,7 +21,7 @@
   stop point: n2299420229
   edge: w180182558
   area: r5299027
-  track: w136503816
+  track: [w136503816 w495912466 ]
   level: 10
   mode: Rail
   lines: EB 22|EBx 12
@@ -30,7 +30,7 @@
   stop point: n2299420230
   edge: w585434418
   area: r5299027
-  track: w355578371
+  track: [w355578371 w755765640 ]
   level: 10
   mode: Rail
 8
@@ -38,7 +38,7 @@
   stop point: n2299420231
   edge: w585434423
   area: r5299028
-  track: w355578377
+  track: [w355578377 w755765639 ]
   level: 10
   mode: Rail
   lines: RE 42
@@ -47,7 +47,7 @@
   stop point: <null>
   edge: <null>
   area: r9615740
-  track: <null>
+  track: []
   level: 10
   mode: Rail
 9
@@ -55,7 +55,7 @@
   stop point: n2299420233
   edge: w585434420
   area: r5299028
-  track: w180361919
+  track: [w180361919 w755765638 ]
   level: 10
   mode: Rail
   lines: RE 10
@@ -73,7 +73,7 @@
   stop point: n2299420216
   edge: w671847191
   area: r5299020
-  track: w185568994
+  track: [w185568994 w755765641 ]
   level: 10
   mode: Rail
   lines: ICE 11|ICE 28
@@ -82,7 +82,7 @@
   stop point: n2299420217
   edge: w367895064
   area: r5299021
-  track: w364656307
+  track: [w364656307 w495912491 ]
   level: 10
   mode: Rail
   lines: IC 17
@@ -94,7 +94,7 @@
   stop point: n2299420218
   edge: w691835117
   area: r5299021
-  track: w364561620
+  track: [w364561620 w496272898 ]
   level: 10
   mode: Rail
   lines: IC 55|IC 56|ICE 50|RE 13
@@ -106,7 +106,7 @@
   stop point: n2299420219
   edge: w585434429
   area: r5299022
-  track: w172523082
+  track: [w172523082 w403728891 ]
   level: 10
   mode: Rail
   lines: IC 55
@@ -115,7 +115,7 @@
   stop point: n2299420220
   edge: w180179182
   area: r5299022
-  track: w185568947
+  track: [w185568947 w496278957 ]
   level: 10
   mode: Rail
   lines: ICE 50
@@ -124,7 +124,7 @@
   stop point: n2299420221
   edge: w585434432
   area: r5299023
-  track: w180361918
+  track: [w180361918 w496278963 ]
   level: 10
   mode: Rail
 17
@@ -132,7 +132,7 @@
   stop point: n2299420222
   edge: w691835113
   area: r5299023
-  track: w375840482
+  track: [w375840482 w755765644 ]
   level: 10
   mode: Rail
 18
@@ -140,7 +140,7 @@
   stop point: n2299420223
   edge: w691835112
   area: r5299024
-  track: w172523106
+  track: [w172523106 w755765645 ]
   level: 10
   mode: Rail
 18a
@@ -156,7 +156,7 @@
   stop point: n2299420224
   edge: w691835111
   area: r5299024
-  track: w180361916
+  track: [w180361916 w755765646 ]
   level: 10
   mode: Rail
 20
@@ -164,7 +164,7 @@
   stop point: n2299420225
   edge: w691835110
   area: r5299025
-  track: w272930584
+  track: [w272930584 w755765647 ]
   level: 10
   mode: Rail
   lines: RB 110
@@ -173,7 +173,7 @@
   stop point: n2299420226
   edge: w585434441
   area: r5299025
-  track: w180361927
+  track: [w180361927 w755765648 ]
   level: 10
   mode: Rail
   lines: RB 113|RE 50
@@ -182,7 +182,7 @@
   stop point: n2299420227
   edge: w585434444
   area: r5299026
-  track: w172523081
+  track: [w172523081 w755765649 ]
   level: 10
   mode: Rail
 23
@@ -190,7 +190,7 @@
   stop point: n2299420228
   edge: w691835107
   area: r5299026
-  track: w172524316
+  track: [w172524316 w540013191 ]
   level: 10
   mode: Rail
   lines: RE 6
@@ -225,7 +225,7 @@ A
   stop point: n1395169569
   edge: n1395169569
   area: r6290220
-  track: w327262364
+  track: [w327262364 w333228552 ]
   level: 0
   mode: Tram
   lines: 1|10|11|11E|16|32
@@ -234,7 +234,7 @@ B
   stop point: n945163727
   edge: n945163727
   area: r6290221
-  track: w35165350
+  track: [w35165350 w327262365 ]
   level: 0
   mode: Tram
   lines: 1|10|11|11E|16
@@ -243,7 +243,7 @@ C
   stop point: n1395169568
   edge: n1395169568
   area: r6290222
-  track: w150289839
+  track: [w150289839 w327262363 ]
   level: 0
   mode: Tram
   lines: 3|3E|4|7|15
@@ -252,7 +252,7 @@ D
   stop point: n123900738
   edge: n123900738
   area: r6290223
-  track: w27286704
+  track: [w27286704 w317371119 ]
   level: 0
   mode: Tram
   lines: 3|3E|4|7|14|15|32
@@ -261,6 +261,6 @@ F
   stop point: <null>
   edge: <null>
   area: r7319142
-  track: <null>
+  track: []
   level: 0
   mode: Tram

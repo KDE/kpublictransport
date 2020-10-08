@@ -65,8 +65,9 @@ public:
     void setArea(OSM::Element area);
 
     /** The (railway) track this platform is serving. */
-    OSM::Element track() const;
-    void setTrack(OSM::Element track);
+    const std::vector<OSM::Element>& track() const;
+    void setTrack(std::vector<OSM::Element> &&track);
+    std::vector<OSM::Element>&& takeTrack();
 
     /** Platform sections. */
     const std::vector<PlatformSection>& sections() const;
@@ -104,12 +105,13 @@ private:
     OSM::Element m_stopPoint;
     OSM::Element m_edge;
     OSM::Element m_area;
-    OSM::Element m_track;
+    std::vector<OSM::Element> m_track;
     Mode m_mode = Rail; // TODO should eventually be "Unknown"
     int m_level = std::numeric_limits<int>::min(); // INT_MIN indicates not set, needed for merging
     std::vector<PlatformSection> m_sections;
 
     static void appendSection(std::vector<PlatformSection> &sections, const Platform &p, PlatformSection &&sec, std::vector<const OSM::Node*> &edgePath, const OSM::DataSet &dataSet);
+    static double maxSectionDistance(const Platform &p, const std::vector<PlatformSection> &sections, const OSM::DataSet &dataSet);
 };
 
 }

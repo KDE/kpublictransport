@@ -3,7 +3,7 @@
   stop point: n1686600813
   edge: w662834905
   area: w42873615
-  track: w214250400
+  track: [w214250400 w638668145 ]
   level: 0
   mode: Rail
   lines: EC 6|EC 8|EC 27|EC 172
@@ -17,7 +17,7 @@
   stop point: n1686600812
   edge: w662834904
   area: w42873615
-  track: w4841532
+  track: [w4841532 w638668139 ]
   level: 0
   mode: Rail
   lines: FLX 20|IC 31|ICE 1|ICE 22|ICE 25|ICE 26
@@ -31,7 +31,7 @@
   stop point: n1686600811
   edge: w662834903
   area: w662729031
-  track: w75408304
+  track: [w75408304 w655325342 ]
   level: 0
   mode: Rail
   lines: ICE 4|ICE 20|RB71|RE6
@@ -51,7 +51,7 @@
   stop point: n1686600810
   edge: w662834902
   area: w662729031
-  track: w77339553
+  track: [w77339553 w628028614 ]
   level: 0
   mode: Rail
   lines: RB71
@@ -71,7 +71,7 @@
   stop point: n1686600809
   edge: w662834906
   area: w42873617
-  track: w6271257
+  track: [w6271257 w638451288 ]
   level: 0
   mode: Rail
   lines: EC 7|RB71|RE6
@@ -91,7 +91,7 @@
   stop point: n1686600808
   edge: w662834907
   area: w42873617
-  track: w75412691
+  track: [w75412691 w639357907 ]
   level: 0
   mode: Rail
   lines: EC 9|FLX 20|ICE 25|NJ 491|NJ 40491
@@ -111,7 +111,7 @@
   stop point: n1686600807
   edge: w662834901
   area: w662729032
-  track: w6270944
+  track: [w6270944 w639366296 ]
   level: 0
   mode: Rail
   lines: EC 27|ICE 1|ICE 20|ICE 22|ICE 26
@@ -129,7 +129,7 @@
   stop point: n1686600814
   edge: w662834900
   area: w662729032
-  track: w6138684
+  track: [w6138684 w628028612 ]
   level: 0
   mode: Rail
   lines: EC 173|IC 31|ICE 4|ICE 26
@@ -145,7 +145,7 @@ Hamburg-Altona
   stop point: n300809500
   edge: n300809500
   area: w42838504
-  track: w292634009
+  track: [w292634009 w466940238 ]
   level: -20
   mode: Rail
   lines: S11|S31
@@ -154,7 +154,7 @@ Hamburg-Altona
   stop point: n300809530
   edge: n300809530
   area: w42838505
-  track: w292634013
+  track: [w292634013 w466940236 ]
   level: -20
   mode: Rail
   lines: S1|S2|S3
@@ -163,7 +163,7 @@ Hamburg-Altona
   stop point: n535951138
   edge: n535951138
   area: w42838504
-  track: w42836978
+  track: [w42836978 w466940240 ]
   level: -20
   mode: Rail
   lines: S1|S2|S3
@@ -172,7 +172,7 @@ Hamburg-Altona
   stop point: n535951140
   edge: n535951140
   area: w42838505
-  track: w42837004
+  track: [w42837004 w466940237 ]
   level: -20
   mode: Rail
   lines: S11|S31

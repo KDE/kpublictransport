@@ -106,7 +106,7 @@ std::vector<Platform> PlatformFinder::find(const MapData *data)
                     if (pt == "stop_point" || pt == "stop_position") {
                         Platform platform;
                         platform.setStopPoint(OSM::Element(&node));
-                        platform.setTrack(e);
+                        platform.setTrack({e});
                         platform.setLevel(levelForPlatform((*it).first, e));
                         platform.setName(Platform::preferredName(QString::fromUtf8(platform.stopPoint().tagValue("local_ref", "ref", "name")), nameFromTrack(e)));
                         platform.setMode(modeForElement(OSM::Element(&node)));

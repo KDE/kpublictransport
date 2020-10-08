@@ -43,6 +43,20 @@ private:
                 break;
         }
     }
+    void writeElement(QIODevice *device, const std::vector<OSM::Element> elems)
+    {
+        if (elems.size() == 1) {
+            writeElement(device, elems[0]);
+            return;
+        }
+
+        device->write("[");
+        for (auto e : elems) {
+            writeElement(device, e);
+            device->write(" ");
+        }
+        device->write("]");
+    }
 
 private Q_SLOTS:
     void initTestCase()

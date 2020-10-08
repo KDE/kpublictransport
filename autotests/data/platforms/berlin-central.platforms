@@ -75,7 +75,7 @@
   stop point: n2813070481
   edge: n2813070481
   area: r929443
-  track: w85258722
+  track: [w85258722 w643739286 ]
   level: 20
   mode: Rail
   lines: EC 55|EC 95|IC 56|IC 77|ICE 3|ICE 12|ICE 13|NJ 457|RB14|RE1|RE2|RE7
@@ -93,7 +93,7 @@
   stop point: n2813070483
   edge: n2813070483
   area: r918697
-  track: w85258724
+  track: [w85258724 w643739266 ]
   level: 20
   mode: Rail
   lines: EC 54|EC 95|IC 56|IC 77|ICE 3|ICE 12|ICE 13|NJ 456|RB14|RB21|RB22|RE1|RE2|RE7
@@ -128,7 +128,7 @@
   stop point: n446289301
   edge: n446289301
   area: w86379623
-  track: w70270903
+  track: [w70270903 w421618231 ]
   level: -20
   mode: Subway
 4

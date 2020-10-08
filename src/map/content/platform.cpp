@@ -7,6 +7,7 @@
 #include "platform.h"
 
 #include <osm/geomath.h>
+#include <osm/pathutil.h>
 
 #include <QRegularExpression>
 
@@ -86,14 +87,19 @@ void Platform::setArea(OSM::Element area)
     m_area = area;
 }
 
-OSM::Element Platform::track() const
+const std::vector<OSM::Element>& Platform::track() const
 {
     return m_track;
 }
 
-void Platform::setTrack(OSM::Element track)
+void Platform::setTrack(std::vector<OSM::Element> &&track)
 {
-    m_track = track;
+    m_track = std::move(track);
+}
+
+std::vector<OSM::Element>&& Platform::takeTrack()
+{
+    return std::move(m_track);
 }
 
 const std::vector<PlatformSection>& Platform::sections() const
@@ -148,6 +154,19 @@ static double maxSectionDistance(const std::vector<const OSM::Node*> &path, cons
         dist = std::max(dist, OSM::distance(path, section.position.center()));
     }
     return dist;
+}
+
+double Platform::maxSectionDistance(const Platform &p, const std::vector<PlatformSection> &sections, const OSM::DataSet &dataSet)
+{
+    if (auto elem = OSM::coalesce(p.m_edge, p.m_area)) {
+        return ::maxSectionDistance(elem.outerPath(dataSet), sections);
+    }
+    if (!p.m_track.empty()) {
+        std::vector<const OSM::Node*> path;
+        OSM::assemblePath(dataSet, p.m_track, path);
+        return ::maxSectionDistance(path, sections);
+    }
+    return std::numeric_limits<double>::lowest();
 }
 
 static const OSM::Way* outerWay(OSM::Element &multiPolygon, const OSM::DataSet &dataSet)
@@ -214,16 +233,35 @@ static bool isConnectedGeometry(OSM::Element lhs, OSM::Element rhs, const OSM::D
     return false;
 }
 
+static bool isConnectedWay(const std::vector<OSM::Element> &lhs, const std::vector<OSM::Element> &rhs, const OSM::DataSet &dataSet)
+{
+    return std::any_of(lhs.begin(), lhs.end(), [&](auto lway) {
+        return std::any_of(rhs.begin(), rhs.end(), [&](auto rway) {
+            return isConnectedGeometry(lway, rway, dataSet);
+        });
+    });
+}
+
+static bool isOverlappingWay(const std::vector<OSM::Element> &lhs, const std::vector<OSM::Element> &rhs)
+{
+    return std::any_of(lhs.begin(), lhs.end(), [&](auto lway) {
+        return std::any_of(rhs.begin(), rhs.end(), [&](auto rway) {
+            return lway == rway;
+        });
+    });
+}
+
 bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
 {
     const auto isConnectedEdge = isConnectedGeometry(lhs.m_edge, rhs.m_edge, dataSet);
-    const auto isConnectedTrack = isConnectedGeometry(lhs.m_track, rhs.m_track, dataSet);
+    const auto isConnectedTrack = isConnectedWay(lhs.m_track, rhs.m_track, dataSet);
+    const auto isOverlappingTrack = isOverlappingWay(lhs.m_track, rhs.m_track);
     const auto isConnectedArea = isConnectedGeometry(lhs.m_area, rhs.m_area, dataSet);
 
     if ((conflictIfPresent(lhs.m_stopPoint, rhs.m_stopPoint) && lhs.m_track != rhs.m_track && !isConnectedTrack)
      || (conflictIfPresent(lhs.m_edge, rhs.m_edge) && !isConnectedEdge)
      || (conflictIfPresent(lhs.m_area, rhs.m_area) && !isConnectedArea)
-     || (conflictIfPresent(lhs.m_track, rhs.m_track) && !isConnectedTrack)
+     || (!lhs.m_track.empty() && !rhs.m_track.empty() && !isOverlappingTrack && !isConnectedTrack)
      || (lhs.hasLevel() && rhs.hasLevel() && lhs.level() != rhs.level())
      || (lhs.m_mode != Unknown && rhs.m_mode != Unknown && lhs.m_mode != rhs.m_mode))
     {
@@ -248,7 +286,7 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
     // matching edge, point or track is good enough, matching area however isn't
     if (equalIfPresent(lhs.m_stopPoint, rhs.m_stopPoint)
      || equalIfPresent(lhs.m_edge, rhs.m_edge) || isConnectedEdge
-     || equalIfPresent(lhs.m_track, rhs.m_track))
+     || isOverlappingTrack)
     {
         return true;
     }
@@ -274,13 +312,13 @@ bool Platform::isSame(const Platform &lhs, const Platform &rhs, const OSM::DataS
 
     // free-floating sections: edge, area or track is within a reasonable distance
     if (!lhs.m_name.isEmpty() && lhs.m_name == rhs.m_name && !isConnectedArea && !isConnectedEdge) {
-        const auto lgeom = OSM::coalesce(lhs.m_edge, lhs.m_area, lhs.m_track, lhs.m_area);
-        if (lgeom && !rhs.m_sections.empty()) {
-            return maxSectionDistance(lgeom.outerPath(dataSet), rhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
+        auto d = maxSectionDistance(lhs, rhs.sections(), dataSet);
+        if (d >= 0.0) {
+            return d < MAX_SECTION_TO_EDGE_DISTANCE;
         }
-        const auto rgeom = OSM::coalesce(rhs.m_edge, rhs.m_area, rhs.m_track, rhs.m_area);
-        if (rgeom && !lhs.m_sections.empty()) {
-            return maxSectionDistance(rgeom.outerPath(dataSet), lhs.m_sections) < MAX_SECTION_TO_EDGE_DISTANCE;
+        d = maxSectionDistance(rhs, lhs.sections(), dataSet);
+        if (d >= 0.0) {
+            return d < MAX_SECTION_TO_EDGE_DISTANCE;
         }
     }
 
@@ -303,13 +341,28 @@ void Platform::appendSection(std::vector<PlatformSection> &sections, const Platf
 
     // check which one is closer
     if (edgePath.empty()) {
-        edgePath = p.m_edge ? p.m_edge.outerPath(dataSet) : p.m_track.outerPath(dataSet);
+        if (p.m_edge) {
+            edgePath = p.m_edge.outerPath(dataSet);
+        } else if (!p.m_track.empty()) {
+            OSM::assemblePath(dataSet, p.m_track, edgePath);
+        }
     }
     const auto dist1 = OSM::distance(edgePath, sections.back().position.center());
     const auto dist2 = OSM::distance(edgePath, sec.position.center());
     if (dist2 < dist1) {
         sections.back() = std::move(sec);
     }
+}
+
+static std::vector<OSM::Element> mergeWays(const std::vector<OSM::Element> &lhs, const std::vector<OSM::Element> &rhs)
+{
+    std::vector<OSM::Element> w = lhs;
+    for (auto e : rhs) {
+        if (std::find(w.begin(), w.end(), e) == w.end()) {
+            w.push_back(e);
+        }
+    }
+    return w;
 }
 
 Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::DataSet &dataSet)
@@ -319,7 +372,7 @@ Platform Platform::merge(const Platform &lhs, const Platform &rhs, const OSM::Da
     p.m_stopPoint = OSM::coalesce(lhs.m_stopPoint, rhs.m_stopPoint);
     p.m_edge = OSM::coalesce(lhs.m_edge, rhs.m_edge);
     p.m_area = OSM::coalesce(lhs.m_area, rhs.m_area);
-    p.m_track = OSM::coalesce(lhs.m_track, rhs.m_track);
+    p.m_track = mergeWays(lhs.m_track, rhs.m_track);
     p.m_level = lhs.hasLevel() ? lhs.m_level : rhs.m_level;
 
     // TODO
