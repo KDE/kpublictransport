@@ -307,6 +307,24 @@ void PlatformFinder::mergePlatformAreas()
 
 void PlatformFinder::finalizeResult()
 {
+    if (m_platforms.empty()) {
+        return;
+    }
+
+    // integrating the platform elements can have made other platforms mergable that previously weren't,
+    // the same can happen in case of a very fine-granular track split
+    // so do another merge pass over everything we have found so far
+    for (auto it = m_platforms.begin(); it != std::prev(m_platforms.end()) && it != m_platforms.end(); ++it) {
+        for (auto it2 = std::next(it); it2 != m_platforms.end();) {
+            if (Platform::isSame(*it, *it2, m_data->dataSet())) {
+                (*it) = Platform::merge(*it, *it2, m_data->dataSet());
+                it2 = m_platforms.erase(it2);
+            } else {
+                ++it2;
+            }
+        }
+    }
+
     // remove things that are still incomplete at this point
     m_platforms.erase(std::remove_if(m_platforms.begin(), m_platforms.end(), [](const auto &p) {
         return !p.isValid() || p.mode() == Platform::Bus; // ### Bus isn't properly supported yet
