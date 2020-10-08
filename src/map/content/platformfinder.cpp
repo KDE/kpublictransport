@@ -309,7 +309,7 @@ void PlatformFinder::finalizeResult()
 {
     // remove things that are still incomplete at this point
     m_platforms.erase(std::remove_if(m_platforms.begin(), m_platforms.end(), [](const auto &p) {
-        return !p.isValid() && p.mode() != Platform::Bus;
+        return !p.isValid() || p.mode() == Platform::Bus; // ### Bus isn't properly supported yet
     }), m_platforms.end());
 
     // filter and sort sections on each platform
