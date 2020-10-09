@@ -43,11 +43,11 @@
   mode: Rail
   lines: RE 42
 8a
-  position: 1413474179 1923830421
-  stop point: <null>
-  edge: <null>
+  position: 1413471901 1923827903
+  stop point: n2299420232
+  edge: w180182561
   area: r9615740
-  track: []
+  track: w355578378
   level: 10
   mode: Rail
 9
@@ -194,14 +194,6 @@
   level: 10
   mode: Rail
   lines: RE 6
-34
-  position: 1413471901 1923827903
-  stop point: n2299420232
-  edge: n2299420232
-  area: n2299420232
-  track: w355578378
-  level: 10
-  mode: Rail
 5
   position: 1413453342 1923787656
   stop point: n2590268924

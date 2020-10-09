@@ -433,5 +433,12 @@ QString Platform::preferredName(const QString &lhs, const QString &rhs)
         return lhs;
     }
 
-    return lhs.size() < rhs.size() ? lhs: rhs;
+    if (isPlausibleName(lhs)) {
+        return lhs;
+    }
+    if (isPlausibleName(rhs)) {
+        return rhs;
+    }
+
+    return lhs.size() <= rhs.size() ? lhs: rhs;
 }
