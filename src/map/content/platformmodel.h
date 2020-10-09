@@ -69,9 +69,18 @@ Q_SIGNALS:
 private:
     void matchPlatforms();
     int matchPlatform(const Platform &platform) const;
+    void createLabels();
+    void setPlatformTag(int idx, OSM::TagKey key, bool enabled);
 
     std::vector<Platform> m_platforms;
     MapData *m_data = nullptr;
+    struct {
+        OSM::TagKey arrival;
+        OSM::TagKey departure;
+    } m_tagKeys;
+
+    std::vector<OSM::UniqueElement> m_platformLabels;
+    std::vector<std::vector<OSM::UniqueElement>> m_sectionsLabels;
 
     Platform m_arrivalPlatform;
     Platform m_departurePlatform;

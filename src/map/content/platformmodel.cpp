@@ -34,10 +34,17 @@ void PlatformModel::setMapData(MapData* data)
     // ### do not check for m_data != data, this does not actually change!
     beginResetModel();
     m_platforms.clear();
+    m_platformLabels.clear();
+    m_sectionsLabels.clear();
+
     m_data = data;
     if (m_data) {
         PlatformFinder finder;
         m_platforms = finder.find(m_data);
+
+        m_tagKeys.arrival = m_data->dataSet().makeTagKey("mx:arrival");
+        m_tagKeys.departure = m_data->dataSet().makeTagKey("mx:departure");
+        createLabels();
     }
     endResetModel();
     emit mapDataChanged();
@@ -78,7 +85,7 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
             case CoordinateRole:
                 return QPointF(platform.position().lonF(), platform.position().latF());
             case ElementRole:
-                return QVariant::fromValue(platform.stopPoint());
+                return QVariant::fromValue(OSM::Element(m_platformLabels[index.row()]));
             case LevelRole:
                 return platform.level();
             case TransportModeRole:
@@ -99,7 +106,7 @@ QVariant PlatformModel::data(const QModelIndex &index, int role) const
             case CoordinateRole:
                 return QPointF(section.position.center().lonF(), section.position.center().latF());
             case ElementRole:
-                return QVariant::fromValue(section.position);
+                return QVariant::fromValue(OSM::Element(m_sectionsLabels[index.internalId()][index.row()]));
             case LevelRole:
                 return platform.level();
         }
@@ -163,8 +170,12 @@ int PlatformModel::departurePlatformRow() const
 
 void PlatformModel::matchPlatforms()
 {
+    setPlatformTag(m_arrivalPlatformRow, m_tagKeys.arrival, false);
     m_arrivalPlatformRow = matchPlatform(m_arrivalPlatform);
+    setPlatformTag(m_arrivalPlatformRow, m_tagKeys.arrival, true);
+    setPlatformTag(m_departurePlatformRow, m_tagKeys.departure, false);
     m_departurePlatformRow = matchPlatform(m_departurePlatform);
+    setPlatformTag(m_departurePlatformRow, m_tagKeys.departure, true);
     emit platformIndexChanged();
     if (m_arrivalPlatformRow >= 0) {
         emit dataChanged(index(m_arrivalPlatformRow, 0), index(m_arrivalPlatformRow, 0));
@@ -188,6 +199,43 @@ int PlatformModel::matchPlatform(const Platform &platform) const
         ++i;
     }
     return -1;
+}
+
+void PlatformModel::createLabels()
+{
+    const auto platformTag = m_data->dataSet().makeTagKey("mx:platform");
+    const auto sectionTag = m_data->dataSet().makeTagKey("mx:platform_section");
+
+    m_platformLabels.reserve(m_platforms.size());
+    m_sectionsLabels.resize(m_platforms.size());
+    for (std::size_t i = 0; i < m_platforms.size(); ++i) {
+        const auto &p = m_platforms[i];
+
+        // TODO using the full edge/track path here might be better for layouting
+        auto node = new OSM::Node;
+        node->id = m_data->dataSet().nextInternalId();
+        node->coordinate = p.position();
+        OSM::setTagValue(*node, platformTag, p.name().toUtf8());
+        m_platformLabels.push_back(OSM::UniqueElement(node));
+
+        m_sectionsLabels[i].reserve(p.sections().size());
+        for (const auto &sec : p.sections()) {
+            auto node = new OSM::Node;
+            node->id = m_data->dataSet().nextInternalId();
+            node->coordinate = sec.position.center();
+            OSM::setTagValue(*node, sectionTag, sec.name.toUtf8());
+            m_sectionsLabels[i].push_back(OSM::UniqueElement(node));
+        }
+    }
+}
+
+void PlatformModel::setPlatformTag(int idx, OSM::TagKey key, bool enabled)
+{
+    if (idx < 0) {
+        return;
+    }
+
+    m_platformLabels[idx].setTagValue(key, enabled ? "1" : "0");
 }
 
 #include "moc_platformmodel.cpp"
