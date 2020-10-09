@@ -43,6 +43,8 @@ public:
     void hiddenElements(std::vector<OSM::Element> &elems) const;
 
 private:
+    void recursiveForEach(const QModelIndex &rootIdx, int floorLevel, const std::function<void (OSM::Element, int)> &func) const;
+
     QPointer<QAbstractItemModel> m_model;
     int m_elementRole = -1;
     int m_floorRole = -1;

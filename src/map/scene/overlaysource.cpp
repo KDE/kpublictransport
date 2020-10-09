@@ -57,13 +57,21 @@ void OverlaySource::forEach(int floorLevel, const std::function<void (OSM::Eleme
         return;
     }
 
-    const auto rows = m_model->rowCount();
+    recursiveForEach({}, floorLevel, func);
+}
+
+void OverlaySource::recursiveForEach(const QModelIndex &rootIdx, int floorLevel, const std::function<void (OSM::Element, int)> &func) const
+{
+    const auto rows = m_model->rowCount(rootIdx);
     for (int i = 0; i < rows; ++i) {
-        const auto idx = m_model->index(i, 0);
+        const auto idx = m_model->index(i, 0, rootIdx);
         const auto floor = idx.data(m_floorRole).toInt();
         if (floor != floorLevel) {
             continue;
         }
+
+        recursiveForEach(idx, floorLevel, func);
+
         const auto elem = idx.data(m_elementRole).value<OSM::Element>();
         func(elem, floor);
     }
