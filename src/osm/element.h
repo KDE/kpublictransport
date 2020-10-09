@@ -67,11 +67,6 @@ private:
     Internal::TaggedPointer<const void> m_elem;
 };
 
-/** Utility function similar to SQL COALESCE for OSM::Element, ie. this returns the first non-null element passed as argument. */
-constexpr Element coalesce(Element e) { return e; }
-template <typename ...Args>
-constexpr Element coalesce(Element e, Args... args) { return e ? e : coalesce(args...); }
-
 template <typename ...Args>
 QByteArray Element::tagValue(const char *keyName, Args... args) const
 {
@@ -91,6 +86,46 @@ QByteArray Element::tagValue(const char *keyName, Args... args, const QLocale &l
     }
     return tagValue(args..., locale);
 }
+
+
+/** A std::unique_ptr-like object for OSM element types. */
+class UniqueElement
+{
+public:
+    explicit inline UniqueElement() = default;
+    explicit inline UniqueElement(Node *node) : m_element(node) {}
+    explicit inline UniqueElement(Way *way) : m_element(way) {}
+    explicit inline UniqueElement(Relation *rel) : m_element(rel) {}
+
+    UniqueElement(const UniqueElement&) = delete;
+    inline UniqueElement(UniqueElement &&other) {
+        m_element = other.m_element;
+        other.m_element = {};
+    }
+
+    ~UniqueElement();
+
+    UniqueElement& operator=(const UniqueElement&) = delete;
+    UniqueElement& operator=(UniqueElement &&other) {
+        m_element = other.m_element;
+        other.m_element = {};
+        return *this;
+    }
+
+    constexpr inline Element element() const { return m_element; }
+    constexpr inline operator Element() const { return m_element; }
+
+    void setTagValue(TagKey key, const QByteArray &value);
+
+private:
+    Element m_element;
+};
+
+
+/** Utility function similar to SQL COALESCE for OSM::Element, ie. this returns the first non-null element passed as argument. */
+constexpr Element coalesce(Element e) { return e; }
+template <typename ...Args>
+constexpr Element coalesce(Element e, Args... args) { return e ? e : coalesce(args...); }
 
 enum ForeachFlag : uint8_t {
     IncludeRelations = 1,

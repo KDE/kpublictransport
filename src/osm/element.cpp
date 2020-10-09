@@ -213,3 +213,38 @@ void Element::recomputeBoundingBox(const DataSet &dataSet)
             break;
     }
 }
+
+
+UniqueElement::~UniqueElement()
+{
+    switch (m_element.type()) {
+        case OSM::Type::Null:
+            break;
+        case OSM::Type::Node:
+            delete m_element.node();
+            break;
+        case OSM::Type::Way:
+            delete m_element.way();
+            break;
+        case OSM::Type::Relation:
+            delete m_element.relation();
+            break;
+    }
+}
+
+void UniqueElement::setTagValue(TagKey key, const QByteArray &value)
+{
+    switch (m_element.type()) {
+        case OSM::Type::Null:
+            return;
+        case OSM::Type::Node:
+            OSM::setTagValue(*const_cast<Node*>(m_element.node()), key, value);
+            break;
+        case OSM::Type::Way:
+            OSM::setTagValue(*const_cast<Way*>(m_element.way()), key, value);
+            break;
+        case OSM::Type::Relation:
+            OSM::setTagValue(*const_cast<Relation*>(m_element.relation()), key, value);
+            break;
+    }
+}
