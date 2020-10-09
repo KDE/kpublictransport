@@ -10,6 +10,7 @@
 #include <KOSMIndoorMap/MapData>
 
 #include <QPointF>
+#include <QRegularExpression>
 
 #include <limits>
 
@@ -185,19 +186,44 @@ void PlatformModel::matchPlatforms()
     }
 }
 
+static bool isPossiblySamePlatformName(const QString &name, const QString &platform)
+{
+    // <platform>\w?<section(s)>
+    if (name.size() > platform.size()) {
+        QRegularExpression exp(QStringLiteral("(\\d+)\\s?[A-Z-]+"));
+        const auto match = exp.match(name);
+        return match.hasMatch() && match.captured(1) == platform;
+    }
+
+    return false;
+}
+
 int PlatformModel::matchPlatform(const Platform &platform) const
 {
     if (platform.name().isEmpty()) {
         return -1;
     }
 
+    // exact match
     int i = 0;
     for (const auto &p : m_platforms) {
-        if (p.name() == platform.name() && p.mode() == platform.mode()) { // TODO this needs to be a bit more complex to also handle platform section
+        if (p.name() == platform.name() && p.mode() == platform.mode()) {
             return i;
         }
         ++i;
     }
+
+    // fuzzy match
+    // TODO this likely will need to handle more scenarios
+    // TODO when we get section ranges here, we might want to use those as well?
+    i = 0;
+    for (const auto &p : m_platforms) {
+        if (p.mode() == platform.mode() && isPossiblySamePlatformName(platform.name(), p.name())) {
+            return i;
+        }
+        ++i;
+    }
+
     return -1;
 }
 

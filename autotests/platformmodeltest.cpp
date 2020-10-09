@@ -55,6 +55,19 @@ private Q_SLOTS:
 
         QVERIFY(model.departurePlatformRow() >= 0);
         QVERIFY(model.arrivalPlatformRow() >= 0);
+
+        // fuzzy platform matching
+        model.setArrivalPlatform(QStringLiteral("10 D-F"), Platform::Rail);
+        model.setDeparturePlatform(QStringLiteral("9A-C"), Platform::Rail);
+        QVERIFY(model.departurePlatformRow() >= 0);
+        QVERIFY(model.arrivalPlatformRow() >= 0);
+
+        // non-matching platforms
+        model.setArrivalPlatform(QStringLiteral("13"), Platform::Rail);
+        model.setDeparturePlatform(QStringLiteral("14 A-D"), Platform::Rail);
+        QCOMPARE(model.departurePlatformRow(), -1);
+        QCOMPARE(model.arrivalPlatformRow(), -1);
+
     }
 };
 
