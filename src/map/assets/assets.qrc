@@ -9,6 +9,7 @@
         <file>css/breeze-light.mapcss</file>
         <file>css/diagnostic.mapcss</file>
         <file>css/input-filter.mapcss</file>
+        <file>css/platform-overlay.mapcss</file>
 
         <file>icons/advertising_column.svg</file>
         <file>icons/alcohol.svg</file>

@@ -349,48 +349,7 @@ way[public_transport=platform]
     opacity: 1;
 }
 
-area|z17-[railway=platform],
-area|z17-[public_transport=platform][bus!=yes],
-way|z17-[public_transport=platform][bus!=yes]
-{
-    text: name;
-    text-color: #fcfcfc;
-    shield-color: #1d99f3;
-    shield-casing-color: #fcfcfc;
-    shield-casing-width: 1;
-}
-area|z19-[railway=platform],
-area|z19-[public_transport=platform],
-way|z19-[public_transport=platform]
-{
-    font-size: 16;
-}
-
-area|z17-[railway=platform][ref],
-area|z17-[public_transport=platform][bus!=yes][ref],
-way|z17-[public_transport=platform][bus!=yes][ref]
-{
-    text: ref;
-}
-
-area|z17-[railway=platform][local_ref],
-area|z17-[public_transport=platform][bus!=yes][local_ref],
-way|z17-[public_transport=platform][bus!=yes][local_ref]
-{
-    text: local_ref;
-}
-
-node|z18-[public_transport=platform_section_sign],
-node|z18-[railway:platform:section]
-{
-    text: platform_section_sign_value;
-    text-color: #fcfcfc;
-    shield-color: #1d99f3;
-    shield-casing-color: #fcfcfc;
-    shield-casing-width: 1;
-}
-node|z18-[railway:platform:section] { text: railway:platform:section; }
-
+@import url("platform-overlay.mapcss");
 
 /** static elements
  *  keep before amenities/shops, as those can occur on the same element and should override the static element styles

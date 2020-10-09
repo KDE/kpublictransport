@@ -57,6 +57,7 @@ area[razed:building]
 
 // boundaries
 way[boundary=administrative],
+way[boundary=census],
 way[boundary=postal_code]
 {
     opacity: 0;

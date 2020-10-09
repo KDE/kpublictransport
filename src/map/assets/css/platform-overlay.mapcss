@@ -1,0 +1,39 @@
+/*
+    SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+// regular section labels
+node|z18- [mx:platform_section]
+{
+    text: mx:platform_section;
+    text-color: #fcfcfc;
+    shield-color: #1d99f3;
+    shield-casing-color: #fcfcfc;
+    shield-casing-width: 1;
+}
+node|z-19 [mx:platform_section] { font-size: 7; }
+
+// regular platform labels
+node|z17- [mx:platform]
+{
+    text: mx:platform;
+    text-color: #fcfcfc;
+    shield-color: #1d99f3;
+    shield-casing-color: #fcfcfc;
+    shield-casing-width: 1;
+}
+node|z19- [mx:platform] { font-size: 16; }
+
+// arrival/departure markers
+node|z17- [mx:platform][mx:arrival=1]
+{
+    text-color: #eff0f1;
+    shield-color: #16a085;
+}
+node|z17- [mx:platform][mx:departure=1]
+{
+    text-color: #eff0f1;
+    shield-color: #da4453;
+}
