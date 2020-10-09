@@ -99,3 +99,14 @@ area[marble_land] {
     dashes: 2,4;
     width: 1;
 }
+
+node[public_transport=platform_section_sign]
+{
+    text: platform_section_sign_value;
+    text-color: #ffff00;
+}
+node[railway:platform:section]
+{
+    text: railway:platform:section;
+    text-color: #ffff00;
+}
