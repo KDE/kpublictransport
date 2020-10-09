@@ -25,7 +25,7 @@
   level: -10
   mode: Rail
   lines: S1|S11|S31
-3
+4
   position: 1435525120 1900075634
   stop point: n1412279568
   edge: n1412279568
@@ -34,14 +34,6 @@
   level: -10
   mode: Rail
   lines: A1|S2|S3|S21|S31
-4
-  position: 1435524447 1900077009
-  stop point: <null>
-  edge: <null>
-  area: w152813951
-  track: []
-  level: -10
-  mode: Rail
 5
   position: 1435534436 1900069801
   stop point: n3934362101
