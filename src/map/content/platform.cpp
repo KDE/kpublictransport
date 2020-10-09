@@ -209,6 +209,9 @@ static bool isConnectedGeometry(OSM::Element lhs, OSM::Element rhs, const OSM::D
             rway = outerWay(rhs, dataSet);
             break;
     }
+    if (!lway || !rway) {
+        return false;
+    }
 
     if (!lway->isClosed() && !rway->isClosed()) {
         return lway->nodes.front() == rway->nodes.front()
