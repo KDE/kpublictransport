@@ -154,6 +154,24 @@ void MapData::processElements()
         e.recomputeBoundingBox(m_dataSet);
         m_bbox = OSM::unite(e.boundingBox(), m_bbox);
 
+        // multi-level building element
+        // we handle this first, before level=, as level is often used instead
+        // of building:min_level in combination with building:level
+        const auto buildingLevels = e.tagValue(buildingLevelsTag).toUInt();
+        if (buildingLevels > 0) {
+            const auto startLevel = e.tagValue(buildingMinLevelTag, levelTag).toUInt();
+            for (auto i = startLevel; i < buildingLevels; ++i) {
+                addElement(i * 10, e, true);
+            }
+        }
+        const auto undergroundLevels = e.tagValue(buildingLevelsUndergroundTag).toUInt();
+        for (auto i = undergroundLevels; i > 0; --i) {
+            addElement(-i * 10, e, true);
+        }
+        if (buildingLevels > 0 || undergroundLevels > 0) {
+            return;
+        }
+
         // element with explicit level specified
         auto level = e.tagValue(levelTag);
         if (level.isEmpty()) {
@@ -166,25 +184,10 @@ void MapData::processElements()
             return;
         }
 
-        // multi-level building element
-        const auto buildingLevels = e.tagValue(buildingLevelsTag).toUInt();
-        if (buildingLevels > 0) {
-            const auto startLevel = e.tagValue(buildingMinLevelTag).toUInt();
-            for (auto i = startLevel; i < buildingLevels; ++i) {
-                addElement(i * 10, e, true);
-            }
-        }
-        const auto undergroundLevels = e.tagValue(buildingLevelsUndergroundTag).toUInt();
-        for (auto i = undergroundLevels; i > 0; --i) {
-            addElement(-i * 10, e, true);
-        }
-
         // no level information available
-        if (undergroundLevels == 0 && buildingLevels == 0) {
-            m_levelMap[MapLevel{}].push_back(e);
-            if (isDependentElement) {
-                m_dependentElementCounts[MapLevel{}]++;
-            }
+        m_levelMap[MapLevel{}].push_back(e);
+        if (isDependentElement) {
+            m_dependentElementCounts[MapLevel{}]++;
         }
     });
 }
