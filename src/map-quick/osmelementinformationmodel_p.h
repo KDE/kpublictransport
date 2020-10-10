@@ -8,6 +8,7 @@
 #define KOSMINDOORMAP_OSMELEMENTINFORMATIONMODEL_P_H
 
 #include <QCoreApplication>
+#include <QLocale>
 
 #include <cstring>
 #include <iterator>
@@ -44,6 +45,23 @@ inline QString translateValue(const char *keyName, const MapEntry(&map)[N], cons
     }
 
     return QCoreApplication::translate(context, (*it).label);
+}
+
+template <typename MapEntry, std::size_t N>
+inline QString translateValues(const QByteArray &values, const MapEntry(&map)[N], const char *context)
+{
+    const auto l = values.split(';');
+    QStringList out;
+    out.reserve(l.size());
+    for (const auto &value : l) {
+        const auto s = translateValue(value.constData(), map, context);
+        if (!s.isEmpty()) {
+            out.push_back(s);
+        }
+    }
+    std::sort(out.begin(), out.end());
+    out.erase(std::unique(out.begin(), out.end()), out.end());
+    return QLocale().createSeparatedList(out);
 }
 
 }

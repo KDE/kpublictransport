@@ -482,17 +482,7 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
             }
             return QLocale().createSeparatedList(l);
         }
-        case Cuisine:
-        {
-            auto l = m_element.tagValue("cuisine").split(';');
-            QStringList out;
-            out.reserve(l.size());
-            for (auto &code : l) {
-                out.push_back(translateValue(code.constData(), cuisine_map, "OSM::cuisine"));
-            }
-            std::sort(out.begin(), out.end());
-            return QLocale().createSeparatedList(out);
-        }
+        case Cuisine: return translateValues(m_element.tagValue("cuisine"), cuisine_map, "OSM::cuisine");
         case Diet:
         {
             QStringList l;
@@ -581,11 +571,7 @@ QVariant OSMElementInformationModel::valueForKey(Info info) const
             }
             return QLocale().createSeparatedList(l);
         }
-        case BicycleParking:
-        {
-            const auto v = m_element.tagValue("bicycle_parking");
-            return translateValue(v.constData(), bicycle_parking_map, "OSM::bicycle_parking");
-        }
+        case BicycleParking: return translateValues(m_element.tagValue("bicycle_parking"), bicycle_parking_map, "OSM::bicycle_parking");
         case Capacity: return QString::fromUtf8(m_element.tagValue("capacity"));
         case CapacityDisabled: return capacitryValue("capacity:disabled");
         case CapacityWomen: return capacitryValue("capacity:women");
