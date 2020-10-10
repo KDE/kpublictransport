@@ -198,7 +198,9 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
     if (reply->error() != QNetworkReply::NoError) {
         m_error = NetworkError;
         m_errorMsg = reply->errorString();
-        emit finished();
+        if (m_pendingJobs == 0) { // wait for the rest to finish otherwise, to avoid double finished() emission
+            emit finished();
+        }
         return;
     }
 
