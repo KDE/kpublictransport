@@ -18,7 +18,9 @@ static OSM::Id appendNextPath(const DataSet &dataSet, std::vector<const Node*> &
     }
 
     for (auto it = std::next(ways.begin()); it != ways.end(); ++it) {
-        assert(!(*it)->nodes.empty()); // ensured in the caller
+        if ((*it)->nodes.empty()) {
+            continue;
+        }
         if ((*it)->nodes.front() == startNode) {
             appendNodesFromWay(dataSet, nodes, (*it)->nodes.begin(), (*it)->nodes.end());
             const auto lastNodeId = (*it)->nodes.back();
@@ -40,8 +42,10 @@ static OSM::Id appendNextPath(const DataSet &dataSet, std::vector<const Node*> &
 void OSM::assemblePath(const DataSet &dataSet, std::vector<const Way*> &&ways, std::vector<const Node*> &path)
 {
     for (auto it = ways.begin(); it != ways.end();) {
-        assert(!(*it)->nodes.empty()); // ensured above
-
+        if ((*it)->nodes.empty()) {
+            ++it;
+            continue;
+        }
         appendNodesFromWay(dataSet, path, (*it)->nodes.begin(), (*it)->nodes.end());
         const auto startNode = (*it)->nodes.front();
         auto lastNode = (*it)->nodes.back();
