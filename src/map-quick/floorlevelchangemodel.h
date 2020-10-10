@@ -70,6 +70,7 @@ Q_SIGNALS:
 private:
     bool isLevelChangeElement(OSM::Element element) const;
     void appendFloorLevel(int level);
+    void appendFullFloorLevel(int level);
 
     int m_currentFloorLevel = 0;
     FloorLevelModel *m_floorLevelModel = nullptr;

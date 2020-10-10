@@ -101,16 +101,24 @@ void FloorLevelChangeModel::setElement(const OSMElement &element)
     m_levels.clear();
 
     if (isLevelChangeElement(m_element)) {
+
+        // elevators are sometimes also tagged with building:level tags instead of level/repeat_on, so handle that as well
+        const auto buildingLevels = m_element.tagValue("building:levels").toUInt();
+        if (buildingLevels > 0) {
+            const auto buildingMinLevel = m_element.tagValue("building:min_level", "level").toUInt();
+            for (auto i = buildingMinLevel; i < buildingLevels; ++i) {
+                appendFullFloorLevel(i * 10);
+            }
+        }
+        const auto buildingUndergroundLevel = m_element.tagValue("building:levels:underground").toUInt();
+        for (auto i = buildingUndergroundLevel; i > 0; --i) {
+            appendFullFloorLevel(-i * 10);
+        }
+
         LevelParser::parse(m_element.tagValue("level", "repeat_on"), m_element, [this](int level, OSM::Element e) {
             Q_UNUSED(e);
-            // TODO get the floor level model in here and retrieve the full MapLevel object from there, so we have proper names for the floors
-            MapLevel ml(level);
-            if (ml.isFullLevel()) {
-                appendFloorLevel(level);
-            } else {
-                appendFloorLevel(ml.fullLevelBelow());
-                appendFloorLevel(ml.fullLevelAbove());
-            }
+            appendFloorLevel(level);
+
         });
         std::sort(m_levels.begin(), m_levels.end());
         m_levels.erase(std::unique(m_levels.begin(), m_levels.end()), m_levels.end());
@@ -127,10 +135,22 @@ bool FloorLevelChangeModel::isLevelChangeElement(OSM::Element element) const
         || !element.tagValue("stairwell").isEmpty()
         || element.tagValue("building:part") == "elevator"
         || element.tagValue("building") == "elevator"
-        || element.tagValue("room") == "elevator";
+        || element.tagValue("room") == "elevator"
+        || element.tagValue("levelpart") == "elevator_platform";
 }
 
 void FloorLevelChangeModel::appendFloorLevel(int level)
+{
+    MapLevel ml(level);
+    if (ml.isFullLevel()) {
+        appendFullFloorLevel(level);
+    } else {
+        appendFullFloorLevel(ml.fullLevelBelow());
+        appendFullFloorLevel(ml.fullLevelAbove());
+    }
+}
+
+void FloorLevelChangeModel::appendFullFloorLevel(int level)
 {
     if (!m_floorLevelModel) {
         m_levels.push_back(MapLevel(level));
