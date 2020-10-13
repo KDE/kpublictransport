@@ -13,6 +13,7 @@
 #include <osm/osmpbfparser.h>
 #include <osm/xmlparser.h>
 
+#include <QDateTime>
 #include <QElapsedTimer>
 #include <QFile>
 #include <QUrl>
@@ -71,15 +72,21 @@ void MapLoader::loadFromFile(const QString &fileName)
 
 void MapLoader::loadForCoordinate(double lat, double lon)
 {
+    loadForCoordinate(lat, lon, {});
+}
+
+void MapLoader::loadForCoordinate(double lat, double lon, const QDateTime &ttl)
+{
+    m_ttl = ttl;
     m_tileBbox = {};
     m_pendingTiles.clear();
     m_boundarySearcher.init(OSM::Coordinate(lat, lon));
     m_errorMessage.clear();
     m_marbleMerger.setDataSet(&m_dataSet);
 
-    const auto tile = Tile::fromCoordinate(lat, lon, TileZoomLevel);
-    m_pendingTiles.push_back(tile);
+    auto tile = Tile::fromCoordinate(lat, lon, TileZoomLevel);
     m_loadedTiles = QRect(tile.x, tile.y, 1, 1);
+    m_pendingTiles.push_back(std::move(tile));
     downloadTiles();
 }
 
@@ -141,13 +148,13 @@ void MapLoader::loadTiles()
     if (bbox.min.longitude < m_tileBbox.min.longitude) {
         m_loadedTiles.setLeft(m_loadedTiles.left() - 1);
         for (int y = m_loadedTiles.top(); y <= m_loadedTiles.bottom(); ++y) {
-            m_pendingTiles.push_back(Tile(m_loadedTiles.left(), y, TileZoomLevel));
+            m_pendingTiles.push_back(makeTile(m_loadedTiles.left(), y));
         }
     }
     if (bbox.max.longitude > m_tileBbox.max.longitude) {
         m_loadedTiles.setRight(m_loadedTiles.right() + 1);
         for (int y = m_loadedTiles.top(); y <= m_loadedTiles.bottom(); ++y) {
-            m_pendingTiles.push_back(Tile(m_loadedTiles.right(), y, TileZoomLevel));
+            m_pendingTiles.push_back(makeTile(m_loadedTiles.right(), y));
         }
     }
 
@@ -155,13 +162,13 @@ void MapLoader::loadTiles()
     if (bbox.max.latitude > m_tileBbox.max.latitude) {
         m_loadedTiles.setTop(m_loadedTiles.top() - 1);
         for (int x = m_loadedTiles.left(); x <= m_loadedTiles.right(); ++x) {
-            m_pendingTiles.push_back(Tile(x, m_loadedTiles.top(), TileZoomLevel));
+            m_pendingTiles.push_back(makeTile(x, m_loadedTiles.top()));
         }
     }
     if (bbox.min.latitude < m_tileBbox.min.latitude) {
         m_loadedTiles.setBottom(m_loadedTiles.bottom() + 1);
         for (int x = m_loadedTiles.left(); x <= m_loadedTiles.right(); ++x) {
-            m_pendingTiles.push_back(Tile(x, m_loadedTiles.bottom(), TileZoomLevel));
+            m_pendingTiles.push_back(makeTile(x, m_loadedTiles.bottom()));
         }
     }
 
@@ -177,6 +184,13 @@ void MapLoader::loadTiles()
     qCDebug(Log) << "o5m loading took" << loadTime.elapsed() << "ms";
     Q_EMIT isLoadingChanged();
     Q_EMIT done();
+}
+
+Tile MapLoader::makeTile(uint32_t x, uint32_t y) const
+{
+    auto tile = Tile(x, y, TileZoomLevel);
+    tile.ttl = m_ttl;
+    return tile;
 }
 
 void MapLoader::downloadFailed(Tile tile, const QString& errorMessage)

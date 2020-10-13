@@ -7,6 +7,7 @@
 #ifndef KOSMINDOORMAP_TILECACHE_H
 #define KOSMINDOORMAP_TILECACHE_H
 
+#include <QDateTime>
 #include <QFile>
 #include <QObject>
 
@@ -28,8 +29,8 @@ namespace KOSMIndoorMap {
 class Tile
 {
 public:
-    constexpr inline Tile() = default;
-    explicit inline constexpr Tile(uint32_t _x, uint32_t _y, uint8_t _z)
+    inline Tile() = default;
+    explicit inline Tile(uint32_t _x, uint32_t _y, uint8_t _z)
         : x(_x) , y(_y) , z(_z) {}
 
     static Tile fromCoordinate(double lat, double lon, uint8_t z);
@@ -40,6 +41,7 @@ public:
     uint32_t x = 0;
     uint32_t y = 0;
     uint8_t z = 0;
+    QDateTime ttl;
 };
 
 /** OSM vector tile downloading and cache management. */
@@ -77,6 +79,7 @@ private:
     void downloadNext();
     void dataReceived(QNetworkReply *reply);
     void downloadFinished(QNetworkReply *reply, Tile tile);
+    void updateTtl(const QString &filePath, const QDateTime &ttl);
 
     QNetworkAccessManager *m_nam;
     QFile m_output;

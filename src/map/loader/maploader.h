@@ -15,6 +15,7 @@
 #include <osm/datatypes.h>
 #include <osm/datasetmergebuffer.h>
 
+#include <QDateTime>
 #include <QObject>
 #include <QRect>
 
@@ -36,6 +37,8 @@ public:
      *  This can involve online access.
      */
     Q_INVOKABLE void loadForCoordinate(double lat, double lon);
+    /** Same as the above, but ensureing the requested data is cached until @p ttl. */
+    void loadForCoordinate(double lat, double lon, const QDateTime &ttl);
 
     /** Take out the completely loaded result.
      *  Do this before loading the next map with the same loader.
@@ -57,6 +60,7 @@ private:
     void downloadFinished();
     void downloadFailed(Tile tile, const QString &errorMessage);
     void loadTiles();
+    Tile makeTile(uint32_t x, uint32_t y) const;
 
     OSM::DataSet m_dataSet;
     OSM::DataSetMergeBuffer m_mergeBuffer;
@@ -67,6 +71,7 @@ private:
     QRect m_loadedTiles;
     std::vector<Tile> m_pendingTiles;
     BoundarySearch m_boundarySearcher;
+    QDateTime m_ttl;
 
     QString m_errorMessage;
 };

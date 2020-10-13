@@ -23,6 +23,10 @@
 
 using namespace KOSMIndoorMap;
 
+enum {
+    DefaultCacheDays = 14,
+};
+
 Tile Tile::fromCoordinate(double lat, double lon, uint8_t z)
 {
     Tile t;
@@ -78,10 +82,15 @@ QString TileCache::cachedTile(Tile tile) const
 
 void TileCache::ensureCached(Tile tile)
 {
-    if (!cachedTile(tile).isEmpty()) {
+    const auto t = cachedTile(tile);
+    if (t.isEmpty()) {
+        downloadTile(tile);
         return;
     }
-    downloadTile(tile);
+
+    if (tile.ttl.isValid()) {
+        updateTtl(t, tile.ttl);
+    }
 }
 
 void TileCache::downloadTile(Tile tile)
@@ -160,7 +169,13 @@ void TileCache::downloadFinished(QNetworkReply* reply, Tile tile)
         return;
     }
 
-    m_output.rename(cachePath(tile));
+    const auto t = cachePath(tile);
+    m_output.rename(t);
+    if (tile.ttl.isValid()) {
+        updateTtl(t, tile.ttl);
+    } else {
+        updateTtl(t, QDateTime::currentDateTimeUtc().addDays(DefaultCacheDays));
+    }
 
     Q_EMIT tileLoaded(tile);
     downloadNext();
@@ -188,7 +203,7 @@ static void expireRecursive(const QString &path)
                 qCDebug(Log) << "removing empty tile directory" << it.fileName();
                 QDir(path).rmdir(it.filePath());
             }
-        } else if (it.fileInfo().lastModified().daysTo(QDateTime::currentDateTimeUtc()) > 14) {
+        } else if (it.fileInfo().lastModified() < QDateTime::currentDateTimeUtc()) {
             qCDebug(Log) << "removing expired tile" << it.filePath();
             QDir(path).remove(it.filePath());
         }
@@ -198,4 +213,11 @@ void TileCache::expire()
 {
     const QString base = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.osm/vectorosm/");
     expireRecursive(base);
+}
+
+void TileCache::updateTtl(const QString &filePath, const QDateTime &ttl)
+{
+    QFile f(filePath);
+    f.open(QFile::WriteOnly | QFile::Append);
+    f.setFileTime(std::max(f.fileTime(QFileDevice::FileModificationTime), ttl), QFile::FileModificationTime);
 }
