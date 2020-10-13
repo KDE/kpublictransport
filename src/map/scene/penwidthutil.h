@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_PENWIDTHUTIL_H
 #define KOSMINDOORMAP_PENWIDTHUTIL_H
 
+#include "kosmindoormap_export.h"
+
 #include "scenegraphitem.h"
 
 #include <osm/element.h>
@@ -18,7 +20,8 @@ class MapCSSDeclaration;
 /** Determine pen width based on a MapCSS declaration and OSM element tag information. */
 namespace PenWidthUtil
 {
-    double penWidth(OSM::Element e, const MapCSSDeclaration *decl, Unit &unit);
+    /** @internal only exported for unit tests. */
+    KOSMINDOORMAP_EXPORT double penWidth(OSM::Element e, const MapCSSDeclaration *decl, Unit &unit);
 }
 
 }

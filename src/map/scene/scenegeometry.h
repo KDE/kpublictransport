@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_SCENEGEOMETRY_H
 #define KOSMINDOORMAP_SCENEGEOMETRY_H
 
+#include "kosmindoormap_export.h"
+
 class QLineF;
 class QPainterPath;
 class QPointF;
@@ -14,22 +16,24 @@ class QPolygonF;
 
 namespace KOSMIndoorMap {
 
-/** Geometry related functions. */
+/** Geometry related functions.
+ *  @internal only exported for unit tests
+ */
 namespace SceneGeometry
 {
     /** Centroid of a polygon.
      *  @see https://en.wikipedia.org/wiki/Polygon#Centroid
      */
-    QPointF polygonCentroid(const QPolygonF &poly);
+    KOSMINDOORMAP_EXPORT QPointF polygonCentroid(const QPolygonF &poly);
 
     /** Returns the lengths of the given polyline. */
     double polylineLength(const QPolygonF &poly);
 
     /** Returns the point at equal distance between the ends on the given polygon. */
-    QPointF polylineMidPoint(const QPolygonF &poly);
+    KOSMINDOORMAP_EXPORT QPointF polylineMidPoint(const QPolygonF &poly);
 
     /** Rotation angle for a label placed at the middle of @p path. */
-    double polylineMidPointAngle(const QPolygonF &path);
+    KOSMINDOORMAP_EXPORT double polylineMidPointAngle(const QPolygonF &path);
 
     /** Returns the outer polygon of a painter path.
      *  @note This is not generic, but makes assumptions about the painter path
@@ -38,7 +42,7 @@ namespace SceneGeometry
     void outerPolygonFromPath(const QPainterPath &path, QPolygonF &poly);
 
     /** Computes the distance of the given line to the given point. */
-    double distanceToLine(const QLineF &line, QPointF p);
+    KOSMINDOORMAP_EXPORT double distanceToLine(const QLineF &line, QPointF p);
 }
 
 }

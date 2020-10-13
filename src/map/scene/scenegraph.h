@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_SCENEGRAPH_H
 #define KOSMINDOORMAP_SCENEGRAPH_H
 
+#include "kosmindoormap_export.h"
+
 #include "scenegraphitem.h"
 
 #include <osm/element.h>
@@ -23,7 +25,7 @@ namespace KOSMIndoorMap {
 class SceneGraphItem;
 
 /** Scene graph of the currently displayed level. */
-class SceneGraph
+class KOSMINDOORMAP_EXPORT SceneGraph
 {
 public:
     explicit SceneGraph();

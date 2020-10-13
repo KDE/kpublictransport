@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_LEVELPARSER_H
 #define KOSMINDOORMAP_LEVELPARSER_H
 
+#include "kosmindoormap_export.h"
+
 #include <functional>
 
 namespace OSM {
@@ -25,7 +27,8 @@ namespace KOSMIndoorMap {
  */
 namespace LevelParser
 {
-    void parse(QByteArray &&level, OSM::Element e, const std::function<void(int, OSM::Element)> &callback);
+    /** @internal only exported for unit tests. */
+    KOSMINDOORMAP_EXPORT void parse(QByteArray &&level, OSM::Element e, const std::function<void(int, OSM::Element)> &callback);
 }
 
 }

@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_PAINTERRENDERER_H
 #define KOSMINDOORMAP_PAINTERRENDERER_H
 
+#include "kosmindoormap_export.h"
+
 #include "../scene/scenegraphitem.h"
 
 #include <osm/datatypes.h>
@@ -24,7 +26,7 @@ class View;
 /** QPainter-based renderer of a SceneGraph.
  *  Trying to keep this somewhat backend-agnostic to possibly implement a 3D renderer in the future.
  */
-class PainterRenderer
+class KOSMINDOORMAP_EXPORT PainterRenderer
 {
 public:
     explicit PainterRenderer();

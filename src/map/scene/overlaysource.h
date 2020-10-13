@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_OVERLAYSOURCE_H
 #define KOSMINDOORMAP_OVERLAYSOURCE_H
 
+#include "kosmindoormap_export.h"
+
 #include <osm/element.h>
 
 #include <QPointer>
@@ -21,7 +23,7 @@ namespace KOSMIndoorMap {
  *  @todo If we ever get different sources than QAIMs, this could be split into
  *  an abstract base and specific implementations.
  */
-class OverlaySource
+class KOSMINDOORMAP_EXPORT OverlaySource
 {
 public:
     explicit OverlaySource(QAbstractItemModel *model);

@@ -60,6 +60,13 @@ add_library(KOSMIndoorMap STATIC
     ${FLEX_mapcssscanner_OUTPUTS}
 )
 
+generate_export_header(KOSMIndoorMap BASE_NAME KOSMIndoorMap)
+set_target_properties(KOSMIndoorMap PROPERTIES
+    VERSION ${KPUBLICTRANSPORT_VERSION_STRING}
+    SOVERSION ${KPUBLICTRANSPORT_SOVERSION}
+    EXPORT_NAME KOSMIndoorMap
+)
+
 target_include_directories(KOSMIndoorMap PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
 target_include_directories(KOSMIndoorMap PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
 target_link_libraries(KOSMIndoorMap

@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_MARBLEGEOMETRYASSEMBLER_H
 #define KOSMINDOORMAP_MARBLEGEOMETRYASSEMBLER_H
 
+#include "kosmindoormap_export.h"
+
 #include <osm/datatypes.h>
 #include <osm/datasetmergebuffer.h>
 
@@ -14,8 +16,10 @@
 
 namespace KOSMIndoorMap {
 
-/** Re-assemble broken up geometry in Marble vector tiles. */
-class MarbleGeometryAssembler
+/** Re-assemble broken up geometry in Marble vector tiles.
+ *  @internal exported only for unit tests
+ */
+class KOSMINDOORMAP_EXPORT MarbleGeometryAssembler
 {
 public:
     MarbleGeometryAssembler();

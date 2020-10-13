@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_HITDETECTOR_H
 #define KOSMINDOORMAP_HITDETECTOR_H
 
+#include "kosmindoormap_export.h"
+
 #include <vector>
 
 class QPointF;
@@ -24,7 +26,7 @@ class View;
 /** Picking hit detector.
  *  Ie. find scene graph items at a given screen position.
  */
-class HitDetector
+class KOSMINDOORMAP_EXPORT HitDetector
 {
 public:
     /** Highest (in z-order) item at the given screen position. */

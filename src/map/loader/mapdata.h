@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_MAPDATA_H
 #define KOSMINDOORMAP_MAPDATA_H
 
+#include "kosmindoormap_export.h"
+
 #include <osm/datatypes.h>
 #include <osm/element.h>
 
@@ -18,7 +20,7 @@
 namespace KOSMIndoorMap {
 
 /** A floor level. */
-class MapLevel
+class KOSMINDOORMAP_EXPORT MapLevel
 {
 public:
     explicit MapLevel(int level = 0);
@@ -49,7 +51,7 @@ Q_DECLARE_METATYPE(KOSMIndoorMap::MapLevel)
 namespace KOSMIndoorMap {
 
 /** Raw OSM map data, separated by levels. */
-class MapData
+class KOSMINDOORMAP_EXPORT MapData
 {
 public:
     explicit MapData();

@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_MAPCSSPARSER_H
 #define KOSMINDOORMAP_MAPCSSPARSER_H
 
+#include "kosmindoormap_export.h"
+
 #include <QString>
 
 namespace KOSMIndoorMap { class MapCSSParser; }
@@ -21,7 +23,7 @@ class MapCSSStyle;
 class MapCSSRule;
 
 /** MapCSS parser. */
-class MapCSSParser
+class KOSMINDOORMAP_EXPORT MapCSSParser
 {
 public:
     MapCSSStyle parse(const QString &fileName);

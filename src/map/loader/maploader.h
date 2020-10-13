@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_MAPLOADER_H
 #define KOSMINDOORMAP_MAPLOADER_H
 
+#include "kosmindoormap_export.h"
+
 #include "boundarysearch.h"
 #include "mapdata.h"
 #include "marblegeometryassembler.h"
@@ -22,7 +24,7 @@
 namespace KOSMIndoorMap {
 
 /** Loader for OSM data for a single station or airport. */
-class MapLoader : public QObject
+class KOSMINDOORMAP_EXPORT MapLoader : public QObject
 {
     Q_OBJECT
     /** Indicates we are downloading content. Use for progress display. */

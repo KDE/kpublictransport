@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_MAPCSSDECLARATION_H
 #define KOSMINDOORMAP_MAPCSSDECLARATION_H
 
+#include "kosmindoormap_export.h"
+
 #include <QByteArray>
 #include <QColor>
 #include <QFont>
@@ -28,8 +30,9 @@ namespace KOSMIndoorMap {
 
 /** Property/value declaration of a MapCSS rule.
  *  @see https://wiki.openstreetmap.org/wiki/MapCSS/0.2#Vocabulary
+ *  @internal only exported for unit tests
  */
-class MapCSSDeclaration
+class KOSMINDOORMAP_EXPORT MapCSSDeclaration
 {
 public:
     /** Type of declaration. */

@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_GATEMODEL_H
 #define KOSMINDOORMAP_GATEMODEL_H
 
+#include "kosmindoormap_export.h"
+
 #include <KOSMIndoorMap/MapData>
 
 #include <osm/element.h>
@@ -28,7 +30,7 @@ struct Gate {
  *  This also contains the concept of (optional) arrival/departure gates,
  *  for matching gate names from other sources and highlighting those in the output.
  */
-class GateModel : public QAbstractListModel
+class KOSMINDOORMAP_EXPORT GateModel : public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)

@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_PLATFORM_H
 #define KOSMINDOORMAP_PLATFORM_H
 
+#include "kosmindoormap_export.h"
+
 #include <osm/element.h>
 
 #include <QMetaType>
@@ -18,7 +20,7 @@
 namespace KOSMIndoorMap {
 
 /** A railway platform section. */
-class PlatformSection
+class KOSMINDOORMAP_EXPORT PlatformSection
 {
 public:
     /** Platform section has enough data to work with. */
@@ -29,7 +31,7 @@ public:
 };
 
 /** A railway platform/track. */
-class Platform {
+class KOSMINDOORMAP_EXPORT Platform {
     Q_GADGET
 public:
     explicit Platform();

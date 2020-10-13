@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_TILECACHE_H
 #define KOSMINDOORMAP_TILECACHE_H
 
+#include "kosmindoormap_export.h"
+
 #include <QDateTime>
 #include <QFile>
 #include <QObject>
@@ -25,8 +27,9 @@ namespace KOSMIndoorMap {
 
 /** Identifier of a slippy map tile.
  *  @see https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
+ *  @internal only exported for unit tests
  */
-class Tile
+class KOSMINDOORMAP_EXPORT Tile
 {
 public:
     inline Tile() = default;

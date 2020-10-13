@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_MAPCSSSTYLE_H
 #define KOSMINDOORMAP_MAPCSSSTYLE_H
 
+#include "kosmindoormap_export.h"
+
 #include "mapcssrule.h"
 
 #include <osm/element.h>
@@ -28,7 +30,7 @@ class MapCSSResult;
 /** A parsed MapCSS style sheet.
  *  @see MapCSSParser::parse for how to obtain a valid instance
  */
-class MapCSSStyle
+class KOSMINDOORMAP_EXPORT MapCSSStyle
 {
 public:
     /** Creates an invalid/empty style. */

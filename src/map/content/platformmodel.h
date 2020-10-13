@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_PLATFORMMODEL_H
 #define KOSMINDOORMAP_PLATFORMMODEL_H
 
+#include "kosmindoormap_export.h"
+
 #include "platform.h"
 
 #include <QAbstractItemModel>
@@ -19,7 +21,7 @@ class MapData;
  *  There's also the concept of (optional) arrival/departure platforms in here to highlight
  *  arriving/departing locations when used in context of a planned journey.
  */
-class PlatformModel : public QAbstractItemModel
+class KOSMINDOORMAP_EXPORT PlatformModel : public QAbstractItemModel
 {
     Q_OBJECT
     Q_PROPERTY(KOSMIndoorMap::MapData* mapData READ mapData WRITE setMapData NOTIFY mapDataChanged)

@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_PLATFORMFINDER_H
 #define KOSMINDOORMAP_PLATFORMFINDER_H
 
+#include "kosmindoormap_export.h"
+
 #include "platform.h"
 
 #include <QCollator>
@@ -16,8 +18,10 @@ namespace KOSMIndoorMap {
 class MapData;
 class MapLevel;
 
-/** Identifies public transport platforms in OSM data. */
-class PlatformFinder
+/** Identifies public transport platforms in OSM data.
+ *  @internal only exported for unit tests
+ */
+class KOSMINDOORMAP_EXPORT PlatformFinder
 {
 public:
     explicit PlatformFinder();

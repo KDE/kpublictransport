@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_SCENECONTROLLER_H
 #define KOSMINDOORMAP_SCENECONTROLLER_H
 
+#include "kosmindoormap_export.h"
+
 #include "scenegraphitem.h"
 #include "../style/mapcssresult.h"
 #include "iconloader.h"
@@ -32,7 +34,7 @@ class SceneGraph;
 class View;
 
 /** Creates/updates the scene graph based on a given style sheet and view. */
-class SceneController
+class KOSMINDOORMAP_EXPORT SceneController
 {
 public:
     explicit SceneController();

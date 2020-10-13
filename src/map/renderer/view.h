@@ -7,6 +7,8 @@
 #ifndef KOSMINDOORMAP_VIEW_H
 #define KOSMINDOORMAP_VIEW_H
 
+#include "kosmindoormap_export.h"
+
 #include <osm/datatypes.h>
 
 #include <QObject>
@@ -33,7 +35,7 @@ namespace KOSMIndoorMap {
  *  - "pan space": same transform as screen space, but with the origin at the origin of the scene bounding box
  *    This is useful for implementing scene-wide panning and showing scroll bars.
  */
-class View : public QObject
+class KOSMINDOORMAP_EXPORT View : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(double panX READ panX NOTIFY transformationChanged)
