@@ -10,7 +10,7 @@
     SPDX-License-Identifier: BSD-2-Clause
 */
 
-#include "stackblur.h"
+#include "stackblur_p.h"
 
 using namespace KOSMIndoorMap;
 

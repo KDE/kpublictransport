@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_PENWIDTHUTIL_H
-#define KOSMINDOORMAP_PENWIDTHUTIL_H
+#ifndef KOSMINDOORMAP_PENWIDTHUTIL_P_H
+#define KOSMINDOORMAP_PENWIDTHUTIL_P_H
 
 #include "kosmindoormap_export.h"
 
@@ -26,4 +26,4 @@ namespace PenWidthUtil
 
 }
 
-#endif // KOSMINDOORMAP_PENWIDTHUTIL_H
+#endif // KOSMINDOORMAP_PENWIDTHUTIL_P_H

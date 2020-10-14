@@ -4,7 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <map/loader/levelparser.h>
+#include <map/loader/levelparser_p.h>
+
 #include <osm/element.h>
 
 #include <QTest>

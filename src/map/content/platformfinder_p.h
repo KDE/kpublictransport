@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_PLATFORMFINDER_H
-#define KOSMINDOORMAP_PLATFORMFINDER_H
+#ifndef KOSMINDOORMAP_PLATFORMFINDER_P_H
+#define KOSMINDOORMAP_PLATFORMFINDER_P_H
 
 #include "kosmindoormap_export.h"
 
@@ -62,4 +62,4 @@ private:
 
 }
 
-#endif // KOSMINDOORMAP_PLATFORMFINDER_H
+#endif // KOSMINDOORMAP_PLATFORMFINDER_P_H

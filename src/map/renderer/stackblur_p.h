@@ -10,8 +10,8 @@
     SPDX-License-Identifier: BSD-2-Clause
 */
 
-#ifndef KOSMINDOORMAP_STACKBLUR_H
-#define KOSMINDOORMAP_STACKBLUR_H
+#ifndef KOSMINDOORMAP_STACKBLUR_P_H
+#define KOSMINDOORMAP_STACKBLUR_P_H
 
 class QImage;
 
@@ -25,4 +25,4 @@ namespace StackBlur
 
 }
 
-#endif // KOSMINDOORMAP_STACKBLUR_H
+#endif // KOSMINDOORMAP_STACKBLUR_P_H

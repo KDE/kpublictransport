@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "marblegeometryassembler.h"
+#include "marblegeometryassembler_p.h"
 #include "reassembly-logging.h"
 
 #include <cassert>

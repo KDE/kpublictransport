@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "tilecache.h"
+#include "tilecache_p.h"
 #include "logging.h"
 
 #include <osm/datatypes.h>

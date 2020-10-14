@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "penwidthutil.h"
+#include "penwidthutil_p.h"
 #include "logging.h"
 #include "style/mapcssdeclaration.h"
 

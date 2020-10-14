@@ -5,7 +5,7 @@
 */
 
 #include "mapdata.h"
-#include "levelparser.h"
+#include "levelparser_p.h"
 
 #include "style/mapcssparser.h"
 #include "style/mapcssresult.h"

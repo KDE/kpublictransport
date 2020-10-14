@@ -7,6 +7,7 @@
 #include <KOSMIndoorMap/HitDetector>
 #include <KOSMIndoorMap/MapCSSParser>
 #include <KOSMIndoorMap/MapCSSStyle>
+#include <KOSMIndoorMap/MapData>
 #include <KOSMIndoorMap/MapLoader>
 #include <KOSMIndoorMap/PainterRenderer>
 #include <KOSMIndoorMap/SceneController>

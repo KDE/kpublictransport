@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "levelparser.h"
+#include "levelparser_p.h"
 #include "logging.h"
 
 #include <osm/element.h>

@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <map/scene/scenegeometry.h>
+#include <map/scene/scenegeometry_p.h>
 
 #include <QFile>
 #include <QTest>

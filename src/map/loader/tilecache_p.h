@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_TILECACHE_H
-#define KOSMINDOORMAP_TILECACHE_H
+#ifndef KOSMINDOORMAP_TILECACHE_P_H
+#define KOSMINDOORMAP_TILECACHE_P_H
 
 #include "kosmindoormap_export.h"
 
@@ -91,4 +91,4 @@ private:
 
 }
 
-#endif // KOSMINDOORMAP_TILECACHE_H
+#endif // KOSMINDOORMAP_TILECACHE_P_H

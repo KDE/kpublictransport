@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <map/scene/penwidthutil.h>
+#include <map/scene/penwidthutil_p.h>
 #include <map/style/mapcssdeclaration.h>
 #include <osm/element.h>
 

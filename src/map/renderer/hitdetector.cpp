@@ -8,7 +8,7 @@
 
 #include "../scene/scenegraph.h"
 #include "../scene/scenegraphitem.h"
-#include "../scene/scenegeometry.h"
+#include "../scene/scenegeometry_p.h"
 #include "view.h"
 
 #include <QBrush>

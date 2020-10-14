@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_ICONLOADER_H
-#define KOSMINDOORMAP_ICONLOADER_H
+#ifndef KOSMINDOORMAP_ICONLOADER_P_H
+#define KOSMINDOORMAP_ICONLOADER_P_H
 
 #include <QColor>
 #include <QIcon>
@@ -44,4 +44,4 @@ private:
 
 }
 
-#endif // KOSMINDOORMAP_ICONLOADER_H
+#endif // KOSMINDOORMAP_ICONLOADER_P_H

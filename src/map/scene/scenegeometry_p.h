@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_SCENEGEOMETRY_H
-#define KOSMINDOORMAP_SCENEGEOMETRY_H
+#ifndef KOSMINDOORMAP_SCENEGEOMETRY_P_H
+#define KOSMINDOORMAP_SCENEGEOMETRY_P_H
 
 #include "kosmindoormap_export.h"
 
@@ -47,4 +47,4 @@ namespace SceneGeometry
 
 }
 
-#endif // KOSMINDOORMAP_SCENEGEOMETRY_H
+#endif // KOSMINDOORMAP_SCENEGEOMETRY_P_H

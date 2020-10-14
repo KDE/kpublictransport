@@ -6,8 +6,8 @@
 
 #include "floorlevelchangemodel.h"
 
-#include "loader/levelparser.h"
-#include "loader/mapdata.h"
+#include "loader/levelparser_p.h"
+#include <KOSMIndoorMap/MapData>
 
 #include <QDebug>
 

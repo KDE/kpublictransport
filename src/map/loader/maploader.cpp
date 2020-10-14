@@ -7,7 +7,12 @@
 #include "maploader.h"
 #include "boundarysearch.h"
 #include "logging.h"
+#include "mapdata.h"
+#include "marblegeometryassembler_p.h"
+#include "tilecache_p.h"
 
+#include <osm/datatypes.h>
+#include <osm/datasetmergebuffer.h>
 #include <osm/element.h>
 #include <osm/o5mparser.h>
 #include <osm/osmpbfparser.h>
@@ -16,6 +21,7 @@
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QFile>
+#include <QRect>
 #include <QUrl>
 
 enum {
@@ -27,15 +33,34 @@ inline void initResources()  // needs to be outside of a namespace
     Q_INIT_RESOURCE(assets);
 }
 
+namespace KOSMIndoorMap {
+class MapLoaderPrivate {
+public:
+    OSM::DataSet m_dataSet;
+    OSM::DataSetMergeBuffer m_mergeBuffer;
+    MarbleGeometryAssembler m_marbleMerger;
+    MapData m_data;
+    TileCache m_tileCache;
+    OSM::BoundingBox m_tileBbox;
+    QRect m_loadedTiles;
+    std::vector<Tile> m_pendingTiles;
+    BoundarySearch m_boundarySearcher;
+    QDateTime m_ttl;
+
+    QString m_errorMessage;
+};
+}
+
 using namespace KOSMIndoorMap;
 
 MapLoader::MapLoader(QObject *parent)
     : QObject(parent)
+    , d(new MapLoaderPrivate)
 {
     initResources();
-    connect(&m_tileCache, &TileCache::tileLoaded, this, &MapLoader::downloadFinished);
-    connect(&m_tileCache, &TileCache::tileError, this, &MapLoader::downloadFailed);
-    m_tileCache.expire();
+    connect(&d->m_tileCache, &TileCache::tileLoaded, this, &MapLoader::downloadFinished);
+    connect(&d->m_tileCache, &TileCache::tileError, this, &MapLoader::downloadFailed);
+    d->m_tileCache.expire();
 }
 
 MapLoader::~MapLoader() = default;
@@ -45,7 +70,7 @@ void MapLoader::loadFromFile(const QString &fileName)
     QElapsedTimer loadTime;
     loadTime.start();
 
-    m_errorMessage.clear();
+    d->m_errorMessage.clear();
     QFile f(fileName.contains(QLatin1Char(':')) ? QUrl::fromUserInput(fileName).toLocalFile() : fileName);
     if (!f.open(QFile::ReadOnly)) {
         qCritical() << f.fileName() << f.errorString();
@@ -65,7 +90,7 @@ void MapLoader::loadFromFile(const QString &fileName)
         OSM::O5mParser p(&ds);
         p.parse(data, f.size());
     }
-    m_data.setDataSet(std::move(ds));
+    d->m_data.setDataSet(std::move(ds));
     qCDebug(Log) << "o5m loading took" << loadTime.elapsed() << "ms";
     Q_EMIT done();
 }
@@ -77,30 +102,30 @@ void MapLoader::loadForCoordinate(double lat, double lon)
 
 void MapLoader::loadForCoordinate(double lat, double lon, const QDateTime &ttl)
 {
-    m_ttl = ttl;
-    m_tileBbox = {};
-    m_pendingTiles.clear();
-    m_boundarySearcher.init(OSM::Coordinate(lat, lon));
-    m_errorMessage.clear();
-    m_marbleMerger.setDataSet(&m_dataSet);
+    d->m_ttl = ttl;
+    d->m_tileBbox = {};
+    d->m_pendingTiles.clear();
+    d->m_boundarySearcher.init(OSM::Coordinate(lat, lon));
+    d->m_errorMessage.clear();
+    d->m_marbleMerger.setDataSet(&d->m_dataSet);
 
     auto tile = Tile::fromCoordinate(lat, lon, TileZoomLevel);
-    m_loadedTiles = QRect(tile.x, tile.y, 1, 1);
-    m_pendingTiles.push_back(std::move(tile));
+    d->m_loadedTiles = QRect(tile.x, tile.y, 1, 1);
+    d->m_pendingTiles.push_back(std::move(tile));
     downloadTiles();
 }
 
 MapData&& MapLoader::takeData()
 {
-    return std::move(m_data);
+    return std::move(d->m_data);
 }
 
 void MapLoader::downloadTiles()
 {
-    for (const auto &tile : m_pendingTiles) {
-        m_tileCache.ensureCached(tile);
+    for (const auto &tile : d->m_pendingTiles) {
+        d->m_tileCache.ensureCached(tile);
     }
-    if (m_tileCache.pendingDownloads() == 0) {
+    if (d->m_tileCache.pendingDownloads() == 0) {
         // still go through the event loop when having everything cached already
         // this makes outside behavior more identical in both cases, and avoids
         // signal connection races etc.
@@ -112,7 +137,7 @@ void MapLoader::downloadTiles()
 
 void MapLoader::downloadFinished()
 {
-    if (m_tileCache.pendingDownloads() > 0) {
+    if (d->m_tileCache.pendingDownloads() > 0) {
         return;
     }
     loadTiles();
@@ -123,10 +148,10 @@ void MapLoader::loadTiles()
     QElapsedTimer loadTime;
     loadTime.start();
 
-    OSM::O5mParser p(&m_dataSet);
-    p.setMergeBuffer(&m_mergeBuffer);
-    for (const auto &tile : m_pendingTiles) {
-        const auto fileName = m_tileCache.cachedTile(tile);
+    OSM::O5mParser p(&d->m_dataSet);
+    p.setMergeBuffer(&d->m_mergeBuffer);
+    for (const auto &tile : d->m_pendingTiles) {
+        const auto fileName = d->m_tileCache.cachedTile(tile);
         qCDebug(Log) << "loading tile" << fileName;
         QFile f(fileName);
         if (!f.open(QFile::ReadOnly)) {
@@ -135,51 +160,51 @@ void MapLoader::loadTiles()
         }
         const auto data = f.map(0, f.size());
         p.parse(data, f.size());
-        m_marbleMerger.merge(&m_mergeBuffer);
+        d->m_marbleMerger.merge(&d->m_mergeBuffer);
 
-        m_tileBbox = OSM::unite(m_tileBbox, tile.boundingBox());
+        d->m_tileBbox = OSM::unite(d->m_tileBbox, tile.boundingBox());
     }
-    m_pendingTiles.clear();
+    d->m_pendingTiles.clear();
 
-    const auto bbox = m_boundarySearcher.boundingBox(m_dataSet);
-    qCDebug(Log) << "needed bbox:" << bbox << "got:" << m_tileBbox << m_loadedTiles;
+    const auto bbox = d->m_boundarySearcher.boundingBox(d->m_dataSet);
+    qCDebug(Log) << "needed bbox:" << bbox << "got:" << d->m_tileBbox << d->m_loadedTiles;
 
     // expand left and right
-    if (bbox.min.longitude < m_tileBbox.min.longitude) {
-        m_loadedTiles.setLeft(m_loadedTiles.left() - 1);
-        for (int y = m_loadedTiles.top(); y <= m_loadedTiles.bottom(); ++y) {
-            m_pendingTiles.push_back(makeTile(m_loadedTiles.left(), y));
+    if (bbox.min.longitude < d->m_tileBbox.min.longitude) {
+        d->m_loadedTiles.setLeft(d->m_loadedTiles.left() - 1);
+        for (int y = d->m_loadedTiles.top(); y <= d->m_loadedTiles.bottom(); ++y) {
+            d->m_pendingTiles.push_back(makeTile(d->m_loadedTiles.left(), y));
         }
     }
-    if (bbox.max.longitude > m_tileBbox.max.longitude) {
-        m_loadedTiles.setRight(m_loadedTiles.right() + 1);
-        for (int y = m_loadedTiles.top(); y <= m_loadedTiles.bottom(); ++y) {
-            m_pendingTiles.push_back(makeTile(m_loadedTiles.right(), y));
+    if (bbox.max.longitude > d->m_tileBbox.max.longitude) {
+        d->m_loadedTiles.setRight(d->m_loadedTiles.right() + 1);
+        for (int y = d->m_loadedTiles.top(); y <= d->m_loadedTiles.bottom(); ++y) {
+            d->m_pendingTiles.push_back(makeTile(d->m_loadedTiles.right(), y));
         }
     }
 
     // expand top/bottom: note that geographics and slippy map tile coordinates have a different understanding on what is "top"
-    if (bbox.max.latitude > m_tileBbox.max.latitude) {
-        m_loadedTiles.setTop(m_loadedTiles.top() - 1);
-        for (int x = m_loadedTiles.left(); x <= m_loadedTiles.right(); ++x) {
-            m_pendingTiles.push_back(makeTile(x, m_loadedTiles.top()));
+    if (bbox.max.latitude > d->m_tileBbox.max.latitude) {
+        d->m_loadedTiles.setTop(d->m_loadedTiles.top() - 1);
+        for (int x = d->m_loadedTiles.left(); x <= d->m_loadedTiles.right(); ++x) {
+            d->m_pendingTiles.push_back(makeTile(x, d->m_loadedTiles.top()));
         }
     }
-    if (bbox.min.latitude < m_tileBbox.min.latitude) {
-        m_loadedTiles.setBottom(m_loadedTiles.bottom() + 1);
-        for (int x = m_loadedTiles.left(); x <= m_loadedTiles.right(); ++x) {
-            m_pendingTiles.push_back(makeTile(x, m_loadedTiles.bottom()));
+    if (bbox.min.latitude < d->m_tileBbox.min.latitude) {
+        d->m_loadedTiles.setBottom(d->m_loadedTiles.bottom() + 1);
+        for (int x = d->m_loadedTiles.left(); x <= d->m_loadedTiles.right(); ++x) {
+            d->m_pendingTiles.push_back(makeTile(x, d->m_loadedTiles.bottom()));
         }
     }
 
-    if (!m_pendingTiles.empty()) {
+    if (!d->m_pendingTiles.empty()) {
         downloadTiles();
         return;
     }
 
-    m_marbleMerger.finalize();
-    m_data.setDataSet(std::move(m_dataSet));
-    m_data.setBoundingBox(bbox);
+    d->m_marbleMerger.finalize();
+    d->m_data.setDataSet(std::move(d->m_dataSet));
+    d->m_data.setBoundingBox(bbox);
 
     qCDebug(Log) << "o5m loading took" << loadTime.elapsed() << "ms";
     Q_EMIT isLoadingChanged();
@@ -189,30 +214,30 @@ void MapLoader::loadTiles()
 Tile MapLoader::makeTile(uint32_t x, uint32_t y) const
 {
     auto tile = Tile(x, y, TileZoomLevel);
-    tile.ttl = m_ttl;
+    tile.ttl = d->m_ttl;
     return tile;
 }
 
 void MapLoader::downloadFailed(Tile tile, const QString& errorMessage)
 {
     Q_UNUSED(tile);
-    m_errorMessage = errorMessage;
-    m_tileCache.cancelPending();
+    d->m_errorMessage = errorMessage;
+    d->m_tileCache.cancelPending();
     Q_EMIT isLoadingChanged();
     Q_EMIT done();
 }
 
 bool MapLoader::isLoading() const
 {
-    return m_tileCache.pendingDownloads() > 0;
+    return d->m_tileCache.pendingDownloads() > 0;
 }
 
 bool MapLoader::hasError() const
 {
-    return !m_errorMessage.isEmpty();
+    return !d->m_errorMessage.isEmpty();
 }
 
 QString MapLoader::errorMessage() const
 {
-    return m_errorMessage;
+    return d->m_errorMessage;
 }

@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "iconloader.h"
+#include "iconloader_p.h"
 
 #include <QBuffer>
 #include <QByteArray>

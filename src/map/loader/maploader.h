@@ -9,19 +9,15 @@
 
 #include "kosmindoormap_export.h"
 
-#include "boundarysearch.h"
-#include "mapdata.h"
-#include "marblegeometryassembler.h"
-#include "tilecache.h"
-
-#include <osm/datatypes.h>
-#include <osm/datasetmergebuffer.h>
-
-#include <QDateTime>
 #include <QObject>
-#include <QRect>
+
+#include <memory>
 
 namespace KOSMIndoorMap {
+
+class MapData;
+class MapLoaderPrivate;
+class Tile;
 
 /** Loader for OSM data for a single station or airport. */
 class KOSMINDOORMAP_EXPORT MapLoader : public QObject
@@ -64,18 +60,7 @@ private:
     void loadTiles();
     Tile makeTile(uint32_t x, uint32_t y) const;
 
-    OSM::DataSet m_dataSet;
-    OSM::DataSetMergeBuffer m_mergeBuffer;
-    MarbleGeometryAssembler m_marbleMerger;
-    MapData m_data;
-    TileCache m_tileCache;
-    OSM::BoundingBox m_tileBbox;
-    QRect m_loadedTiles;
-    std::vector<Tile> m_pendingTiles;
-    BoundarySearch m_boundarySearcher;
-    QDateTime m_ttl;
-
-    QString m_errorMessage;
+    std::unique_ptr<MapLoaderPrivate> d;
 };
 
 }

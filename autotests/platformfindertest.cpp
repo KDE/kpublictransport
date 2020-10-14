@@ -4,9 +4,10 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <map/loader/mapdata.h>
-#include <map/loader/maploader.h>
-#include <map/content/platformfinder.h>
+#include <map/content/platformfinder_p.h>
+
+#include <KOSMIndoorMap/MapData>
+#include <KOSMIndoorMap/MapLoader>
 
 #include <QMetaEnum>
 #include <QProcess>

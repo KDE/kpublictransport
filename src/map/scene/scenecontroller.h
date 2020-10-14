@@ -11,7 +11,7 @@
 
 #include "scenegraphitem.h"
 #include "../style/mapcssresult.h"
-#include "iconloader.h"
+#include "iconloader_p.h"
 
 #include <osm/datatypes.h>
 

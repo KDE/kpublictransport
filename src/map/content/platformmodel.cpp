@@ -5,7 +5,7 @@
 */
 
 #include "platformmodel.h"
-#include "platformfinder.h"
+#include "platformfinder_p.h"
 
 #include <KOSMIndoorMap/MapData>
 

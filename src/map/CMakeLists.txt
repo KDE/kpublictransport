@@ -77,6 +77,7 @@ target_link_libraries(KOSMIndoorMap
 ecm_generate_headers(KOSMIndoorMap_Content_FORWARDING_HEADERS
     HEADER_NAMES
         GateModel
+        Platform
         PlatformModel
     PREFIX KOSMIndoorMap
     REQUIRED_HEADERS KOSMIndoorMap_Content_HEADERS

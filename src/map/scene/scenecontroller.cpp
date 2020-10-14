@@ -9,8 +9,8 @@
 #include "render-logging.h"
 
 #include "overlaysource.h"
-#include "penwidthutil.h"
-#include "scenegeometry.h"
+#include "penwidthutil_p.h"
+#include "scenegeometry_p.h"
 #include "scenegraph.h"
 
 #include "../loader/mapdata.h"

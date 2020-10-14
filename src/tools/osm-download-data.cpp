@@ -4,13 +4,16 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <map/loader/maploader.h>
+#include <KOSMIndoorMap/MapData>
+#include <KOSMIndoorMap/MapLoader>
 
+#include <osm/datatypes.h>
 #include <osm/xmlwriter.h>
 
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
+#include <QFile>
 
 using namespace KOSMIndoorMap;
 

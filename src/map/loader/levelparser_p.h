@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_LEVELPARSER_H
-#define KOSMINDOORMAP_LEVELPARSER_H
+#ifndef KOSMINDOORMAP_LEVELPARSER_P_H
+#define KOSMINDOORMAP_LEVELPARSER_P_H
 
 #include "kosmindoormap_export.h"
 
@@ -33,4 +33,4 @@ namespace LevelParser
 
 }
 
-#endif // KOSMINDOORMAP_LEVELPARSER_H
+#endif // KOSMINDOORMAP_LEVELPARSER_P_H

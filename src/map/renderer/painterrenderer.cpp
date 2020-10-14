@@ -5,7 +5,7 @@
 */
 
 #include "painterrenderer.h"
-#include "stackblur.h"
+#include "stackblur_p.h"
 #include "view.h"
 #include "render-logging.h"
 
