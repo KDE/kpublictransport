@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_MAPCSSCONDITION_H
-#define KOSMINDOORMAP_MAPCSSCONDITION_H
+#ifndef KOSMINDOORMAP_MAPCSSCONDITION_P_H
+#define KOSMINDOORMAP_MAPCSSCONDITION_P_H
 
 #include <osm/datatypes.h>
 

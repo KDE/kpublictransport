@@ -8,16 +8,18 @@
 #include "logging.h"
 #include "render-logging.h"
 
-#include "overlaysource.h"
+#include "iconloader_p.h"
 #include "penwidthutil_p.h"
 #include "scenegeometry_p.h"
-#include "scenegraph.h"
+#include "../style/mapcssdeclaration_p.h"
+#include "../style/mapcssstate_p.h"
+#include "../style/mapcssresult_p.h"
 
-#include "../loader/mapdata.h"
-#include "../renderer/view.h"
-#include "../style/mapcssdeclaration.h"
-#include "../style/mapcssstyle.h"
-#include "../style/mapcssstate.h"
+#include <KOSMIndoorMap/MapData>
+#include <KOSMIndoorMap/MapCSSStyle>
+#include <KOSMIndoorMap/OverlaySource>
+#include <KOSMIndoorMap/SceneGraph>
+#include <KOSMIndoorMap/View>
 
 #include <osm/element.h>
 #include <osm/datatypes.h>
@@ -27,46 +29,70 @@
 #include <QGuiApplication>
 #include <QPalette>
 
+namespace KOSMIndoorMap {
+class SceneControllerPrivate
+{
+public:
+    const MapData *m_data = nullptr;
+    const MapCSSStyle *m_styleSheet = nullptr;
+    const View *m_view = nullptr;
+    std::vector<OverlaySource> m_overlaySources;
+    mutable std::vector<OSM::Element> m_hiddenElements;
+
+    MapCSSResult m_styleResult;
+    QColor m_defaultTextColor;
+    QFont m_defaultFont;
+    QPolygonF m_labelPlacementPath;
+    IconLoader m_iconLoader;
+
+    OSM::TagKey m_layerTag;
+    OSM::TagKey m_typeTag;
+
+    bool m_dirty = true;
+    bool m_overlay = false;
+};
+}
+
 using namespace KOSMIndoorMap;
 
-SceneController::SceneController() = default;
+SceneController::SceneController() : d(new SceneControllerPrivate) {}
 SceneController::~SceneController() = default;
 
 void SceneController::setDataSet(const MapData *data)
 {
-    m_data = data;
-    if (m_data) {
-        m_layerTag = data->dataSet().tagKey("layer");
-        m_typeTag = data->dataSet().tagKey("type");
+    d->m_data = data;
+    if (d->m_data) {
+        d->m_layerTag = data->dataSet().tagKey("layer");
+        d->m_typeTag = data->dataSet().tagKey("type");
     } else {
-        m_layerTag = {};
-        m_typeTag = {};
+        d->m_layerTag = {};
+        d->m_typeTag = {};
     }
-    m_dirty = true;
+    d->m_dirty = true;
 }
 
 void SceneController::setStyleSheet(const MapCSSStyle *styleSheet)
 {
-    m_styleSheet = styleSheet;
-    m_dirty = true;
+    d->m_styleSheet = styleSheet;
+    d->m_dirty = true;
 }
 
 void SceneController::setView(const View *view)
 {
-    m_view = view;
-    m_dirty = true;
+    d->m_view = view;
+    d->m_dirty = true;
 }
 
 void SceneController::setOverlaySources(std::vector<OverlaySource> &&overlays)
 {
-    m_overlaySources = std::move(overlays);
-    m_dirty = true;
+    d->m_overlaySources = std::move(overlays);
+    d->m_dirty = true;
 }
 
 void SceneController::overlaySourceUpdated()
 {
     // TODO we could potentially do this more fine-grained?
-    m_dirty = true;
+    d->m_dirty = true;
 }
 
 void SceneController::updateScene(SceneGraph &sg) const
@@ -75,74 +101,74 @@ void SceneController::updateScene(SceneGraph &sg) const
     sgUpdateTimer.start();
 
     // check if we are set up completely yet (we can't rely on a defined order with QML)
-    if (!m_view || !m_styleSheet) {
+    if (!d->m_view || !d->m_styleSheet) {
         return;
     }
 
     // check if the scene is dirty at all
-    if (sg.zoomLevel() == (int)m_view->zoomLevel() && sg.currentFloorLevel() == m_view->level() && !m_dirty) {
+    if (sg.zoomLevel() == (int)d->m_view->zoomLevel() && sg.currentFloorLevel() == d->m_view->level() && !d->m_dirty) {
         return;
     }
-    sg.setZoomLevel(m_view->zoomLevel());
-    sg.setCurrentFloorLevel(m_view->level());
-    m_dirty = false;
+    sg.setZoomLevel(d->m_view->zoomLevel());
+    sg.setCurrentFloorLevel(d->m_view->level());
+    d->m_dirty = false;
 
     sg.beginSwap();
     updateCanvas(sg);
 
-    if (!m_data) { // if we don't have map data yet, we just need to get canvas styling here
+    if (!d->m_data) { // if we don't have map data yet, we just need to get canvas styling here
         sg.endSwap();
         return;
     }
 
     // find all intermediate levels below or above the currently selected "full" level
-    auto it = m_data->m_levelMap.find(MapLevel(m_view->level()));
-    if (it == m_data->m_levelMap.end()) {
+    auto it = d->m_data->m_levelMap.find(MapLevel(d->m_view->level()));
+    if (it == d->m_data->m_levelMap.end()) {
         return;
     }
 
     auto beginIt = it;
-    if (beginIt != m_data->m_levelMap.begin()) {
+    if (beginIt != d->m_data->m_levelMap.begin()) {
         do {
             --beginIt;
-        } while (!(*beginIt).first.isFullLevel() && beginIt != m_data->m_levelMap.begin());
+        } while (!(*beginIt).first.isFullLevel() && beginIt != d->m_data->m_levelMap.begin());
         ++beginIt;
     }
 
     auto endIt = it;
-    for (++endIt; endIt != m_data->m_levelMap.end(); ++endIt) {
+    for (++endIt; endIt != d->m_data->m_levelMap.end(); ++endIt) {
         if ((*endIt).first.isFullLevel()) {
             break;
         }
     }
 
     // collect elements that the overlay want to hide
-    m_hiddenElements.clear();
-    for (const auto &overlaySource : m_overlaySources) {
-        overlaySource.hiddenElements(m_hiddenElements);
+    d->m_hiddenElements.clear();
+    for (const auto &overlaySource : d->m_overlaySources) {
+        overlaySource.hiddenElements(d->m_hiddenElements);
     }
-    std::sort(m_hiddenElements.begin(), m_hiddenElements.end());
+    std::sort(d->m_hiddenElements.begin(), d->m_hiddenElements.end());
 
     // for each level, update or create scene graph elements, after a some basic bounding box check
-    const auto geoBbox = m_view->mapSceneToGeo(m_view->sceneBoundingBox());
+    const auto geoBbox = d->m_view->mapSceneToGeo(d->m_view->sceneBoundingBox());
     for (auto it = beginIt; it != endIt; ++it) {
         for (auto e : (*it).second) {
-            if (OSM::intersects(geoBbox, e.boundingBox()) && !std::binary_search(m_hiddenElements.begin(), m_hiddenElements.end(), e)) {
+            if (OSM::intersects(geoBbox, e.boundingBox()) && !std::binary_search(d->m_hiddenElements.begin(), d->m_hiddenElements.end(), e)) {
                 updateElement(e, (*it).first.numericLevel(), sg);
             }
         }
     }
 
     // update overlay elements
-    m_overlay = true;
-    for (const auto &overlaySource : m_overlaySources) {
-        overlaySource.forEach(m_view->level(), [this, &geoBbox, &sg](OSM::Element e, int floorLevel) {
+    d->m_overlay = true;
+    for (const auto &overlaySource : d->m_overlaySources) {
+        overlaySource.forEach(d->m_view->level(), [this, &geoBbox, &sg](OSM::Element e, int floorLevel) {
             if (OSM::intersects(geoBbox, e.boundingBox()) && e.type() != OSM::Type::Null) {
                 updateElement(e, floorLevel, sg);
             }
         });
     }
-    m_overlay = false;
+    d->m_overlay = false;
 
     sg.zSort();
     sg.endSwap();
@@ -153,20 +179,20 @@ void SceneController::updateScene(SceneGraph &sg) const
 void SceneController::updateCanvas(SceneGraph &sg) const
 {
     sg.setBackgroundColor(QGuiApplication::palette().color(QPalette::Base));
-    m_defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
-    m_defaultFont = QGuiApplication::font();
+    d->m_defaultTextColor = QGuiApplication::palette().color(QPalette::Text);
+    d->m_defaultFont = QGuiApplication::font();
 
     MapCSSState state;
-    state.zoomLevel = m_view->zoomLevel();
-    state.floorLevel = m_view->level();
-    m_styleSheet->evaluateCanvas(state, m_styleResult);
-    for (auto decl : m_styleResult.declarations()) {
+    state.zoomLevel = d->m_view->zoomLevel();
+    state.floorLevel = d->m_view->level();
+    d->m_styleSheet->evaluateCanvas(state, d->m_styleResult);
+    for (auto decl : d->m_styleResult.declarations()) {
         switch (decl->property()) {
             case MapCSSDeclaration::FillColor:
                 sg.setBackgroundColor(decl->colorValue());
                 break;
             case MapCSSDeclaration::TextColor:
-                m_defaultTextColor = decl->colorValue();
+                d->m_defaultTextColor = decl->colorValue();
                 break;
             default:
                 break;
@@ -178,20 +204,20 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
 {
     MapCSSState state;
     state.element = e;
-    state.zoomLevel = m_view->zoomLevel();
-    state.floorLevel = m_view->level();
-    m_styleSheet->evaluate(state, m_styleResult);
+    state.zoomLevel = d->m_view->zoomLevel();
+    state.floorLevel = d->m_view->level();
+    d->m_styleSheet->evaluate(state, d->m_styleResult);
 
-    if (m_styleResult.hasAreaProperties()) {
+    if (d->m_styleResult.hasAreaProperties()) {
         PolygonBaseItem *item = nullptr;
         std::unique_ptr<SceneGraphItemPayload> baseItem;
-        if (e.type() == OSM::Type::Relation && e.tagValue(m_typeTag) == "multipolygon") {
+        if (e.type() == OSM::Type::Relation && e.tagValue(d->m_typeTag) == "multipolygon") {
             baseItem = sg.findOrCreatePayload<MultiPolygonItem>(e, level);
             auto i = static_cast<MultiPolygonItem*>(baseItem.get());
             if (i->path.isEmpty()) {
-                i->path = createPath(e, m_labelPlacementPath);
-            } else if (m_styleResult.hasLabelProperties()) {
-                SceneGeometry::outerPolygonFromPath(i->path, m_labelPlacementPath);
+                i->path = createPath(e, d->m_labelPlacementPath);
+            } else if (d->m_styleResult.hasLabelProperties()) {
+                SceneGeometry::outerPolygonFromPath(i->path, d->m_labelPlacementPath);
             }
             item = i;
         } else {
@@ -200,14 +226,14 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             if (i->polygon.isEmpty()) {
                 i->polygon = createPolygon(e);
             }
-            m_labelPlacementPath = i->polygon;
+            d->m_labelPlacementPath = i->polygon;
             item = i;
         }
 
         double lineOpacity = 1.0;
         double fillOpacity = 1.0;
         initializePen(item->pen);
-        for (auto decl : m_styleResult.declarations()) {
+        for (auto decl : d->m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
             applyPenStyle(e, decl, item->pen, lineOpacity, item->penWidthUnit);
             switch (decl->property()) {
@@ -233,7 +259,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         }
 
         addItem(sg, e, level, std::move(baseItem));
-    } else if (m_styleResult.hasLineProperties()) {
+    } else if (d->m_styleResult.hasLineProperties()) {
         auto baseItem = sg.findOrCreatePayload<PolylineItem>(e, level);
         auto item = static_cast<PolylineItem*>(baseItem.get());
         if (item->path.isEmpty()) {
@@ -244,7 +270,7 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         double casingOpacity = 1.0;
         initializePen(item->pen);
         initializePen(item->casingPen);
-        for (auto decl : m_styleResult.declarations()) {
+        for (auto decl : d->m_styleResult.declarations()) {
             applyGenericStyle(decl, item);
             applyPenStyle(e, decl, item->pen, lineOpacity, item->penWidthUnit);
             applyCasingPenStyle(e, decl, item->casingPen, casingOpacity, item->casingPenWidthUnit);
@@ -252,15 +278,15 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
         finalizePen(item->pen, lineOpacity);
         finalizePen(item->casingPen, casingOpacity);
 
-        m_labelPlacementPath = item->path;
+        d->m_labelPlacementPath = item->path;
         addItem(sg, e, level, std::move(baseItem));
     }
 
-    if (m_styleResult.hasLabelProperties()) {
+    if (d->m_styleResult.hasLabelProperties()) {
         QString text;
-        auto textDecl = m_styleResult.declaration(MapCSSDeclaration::Text);
+        auto textDecl = d->m_styleResult.declaration(MapCSSDeclaration::Text);
         if (!textDecl) {
-            textDecl = m_styleResult.declaration(MapCSSDeclaration::ShieldText);
+            textDecl = d->m_styleResult.declaration(MapCSSDeclaration::ShieldText);
         }
 
         if (textDecl) {
@@ -271,30 +297,30 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             }
         }
 
-        const auto iconDecl = m_styleResult.declaration(MapCSSDeclaration::IconImage);
+        const auto iconDecl = d->m_styleResult.declaration(MapCSSDeclaration::IconImage);
 
         if (!text.isEmpty() || iconDecl) {
             auto baseItem = sg.findOrCreatePayload<LabelItem>(e, level);
             auto item = static_cast<LabelItem*>(baseItem.get());
             item->text.setText(text);
-            item->font = m_defaultFont;
-            item->color = m_defaultTextColor;
+            item->font = d->m_defaultFont;
+            item->color = d->m_defaultTextColor;
 
             if (item->pos.isNull()) {
-                if (m_styleResult.hasAreaProperties()) {
-                    item->pos = SceneGeometry::polygonCentroid(m_labelPlacementPath);
-                } else if (m_styleResult.hasLineProperties()) {
-                    item->pos = SceneGeometry::polylineMidPoint(m_labelPlacementPath);
+                if (d->m_styleResult.hasAreaProperties()) {
+                    item->pos = SceneGeometry::polygonCentroid(d->m_labelPlacementPath);
+                } else if (d->m_styleResult.hasLineProperties()) {
+                    item->pos = SceneGeometry::polylineMidPoint(d->m_labelPlacementPath);
                 }
                 if (item->pos.isNull()) {
-                    item->pos = m_view->mapGeoToScene(e.center()); // node or something failed above
+                    item->pos = d->m_view->mapGeoToScene(e.center()); // node or something failed above
                 }
             }
 
             double textOpacity = 1.0;
             double shieldOpacity = 1.0;
             IconData iconData;
-            for (auto decl : m_styleResult.declarations()) {
+            for (auto decl : d->m_styleResult.declarations()) {
                 applyGenericStyle(decl, item);
                 applyFontStyle(decl, item->font);
                 switch (decl->property()) {
@@ -323,8 +349,8 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                         item->frameWidth = decl->doubleValue();
                         break;
                     case MapCSSDeclaration::TextPosition:
-                        if (decl->textFollowsLine() && m_labelPlacementPath.size() > 1) {
-                            item->angle = SceneGeometry::polylineMidPointAngle(m_labelPlacementPath);
+                        if (decl->textFollowsLine() && d->m_labelPlacementPath.size() > 1) {
+                            item->angle = SceneGeometry::polylineMidPointAngle(d->m_labelPlacementPath);
                         }
                         break;
                     case MapCSSDeclaration::TextOffset:
@@ -378,9 +404,9 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
             }
             if (!iconData.name.isEmpty() && iconData.color.alphaF() > 0.0) {
                 if (!iconData.color.isValid()) {
-                    iconData.color = m_defaultTextColor;
+                    iconData.color = d->m_defaultTextColor;
                 }
-                item->icon = m_iconLoader.loadIcon(iconData);
+                item->icon = d->m_iconLoader.loadIcon(iconData);
             }
             if (!item->icon.isNull()) {
                 const auto iconSourceSize = item->icon.availableSizes().at(0);
@@ -402,12 +428,12 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
                 item->text.prepare({}, item->font);
 
                 // discard labels that are longer than the line they are aligned with
-                if (m_styleResult.hasLineProperties() && m_labelPlacementPath.size() > 1 && item->angle != 0.0) {
-                    const auto sceneLen = SceneGeometry::polylineLength(m_labelPlacementPath);
-                    const auto sceneP1 = m_view->viewport().topLeft();
+                if (d->m_styleResult.hasLineProperties() && d->m_labelPlacementPath.size() > 1 && item->angle != 0.0) {
+                    const auto sceneLen = SceneGeometry::polylineLength(d->m_labelPlacementPath);
+                    const auto sceneP1 = d->m_view->viewport().topLeft();
                     const auto sceneP2 = QPointF(sceneP1.x() + sceneLen, sceneP1.y());
-                    const auto screenP1 = m_view->mapSceneToScreen(sceneP1);
-                    const auto screenP2 = m_view->mapSceneToScreen(sceneP2);
+                    const auto screenP1 = d->m_view->mapSceneToScreen(sceneP1);
+                    const auto screenP2 = d->m_view->mapSceneToScreen(sceneP2);
                     const auto screenLen = screenP2.x() - screenP1.x();
                     if (screenLen < item->text.size().width()) {
                         item->text = {};
@@ -424,11 +450,11 @@ void SceneController::updateElement(OSM::Element e, int level, SceneGraph &sg) c
 
 QPolygonF SceneController::createPolygon(OSM::Element e) const
 {
-    const auto path = e.outerPath(m_data->dataSet());
+    const auto path = e.outerPath(d->m_data->dataSet());
     QPolygonF poly;
     poly.reserve(path.size());
     for (auto node : path) {
-        poly.push_back(m_view->mapGeoToScene(node->coordinate));
+        poly.push_back(d->m_view->mapGeoToScene(node->coordinate));
     }
     return poly;
 }
@@ -446,7 +472,7 @@ QPainterPath SceneController::createPath(const OSM::Element e, QPolygonF &outerP
         if (mem.type() != OSM::Type::Way || !isInner) {
             continue;
         }
-        if (auto way = m_data->dataSet().way(mem.id)) {
+        if (auto way = d->m_data->dataSet().way(mem.id)) {
             const auto subPoly = createPolygon(OSM::Element(way));
             QPainterPath subPath;
             subPath.addPolygon(subPoly);
@@ -587,8 +613,8 @@ void SceneController::addItem(SceneGraph &sg, OSM::Element e, int level, std::un
     item.payload = std::move(payload);
 
     // get the OSM layer, if set
-    if (!m_overlay) {
-        const auto layerStr = e.tagValue(m_layerTag);
+    if (!d->m_overlay) {
+        const auto layerStr = e.tagValue(d->m_layerTag);
         if (!layerStr.isEmpty()) {
             bool success = false;
             const auto layer = layerStr.toInt(&success);

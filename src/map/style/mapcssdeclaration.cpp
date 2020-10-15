@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "mapcssdeclaration.h"
+#include "mapcssdeclaration_p.h"
 #include "logging.h"
 
 #include <QDebug>

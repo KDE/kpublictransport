@@ -6,7 +6,7 @@
 
 #include "penwidthutil_p.h"
 #include "logging.h"
-#include "style/mapcssdeclaration.h"
+#include "style/mapcssdeclaration_p.h"
 
 #include <cmath>
 

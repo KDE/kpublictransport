@@ -6,8 +6,9 @@
 
 #include "mapcssstyle.h"
 #include "mapcssparser.h"
-#include "mapcssresult.h"
-#include "mapcssstate.h"
+#include "mapcssresult_p.h"
+#include "mapcssrule_p.h"
+#include "mapcssstate_p.h"
 
 #include <QDebug>
 #include <QIODevice>

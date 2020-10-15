@@ -8,6 +8,7 @@
 #include "logging.h"
 
 #include "mapcssparser_p.h"
+#include "mapcssrule_p.h"
 #include "mapcssscanner.h"
 #include "mapcssstyle.h"
 

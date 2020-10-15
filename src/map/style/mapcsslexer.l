@@ -6,7 +6,7 @@
 */
 
 #include "mapcssparser_p.h"
-#include "style/mapcssselector.h"
+#include "style/mapcssselector_p.h"
 
 extern char* unquoteString(const char *str);
 

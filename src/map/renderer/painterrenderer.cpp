@@ -9,7 +9,7 @@
 #include "view.h"
 #include "render-logging.h"
 
-#include "../scene/scenegraph.h"
+#include <KOSMIndoorMap/SceneGraph>
 
 #include <QDebug>
 #include <QElapsedTimer>

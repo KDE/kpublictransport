@@ -5,7 +5,7 @@
 */
 
 #include <map/scene/penwidthutil_p.h>
-#include <map/style/mapcssdeclaration.h>
+#include <map/style/mapcssdeclaration_p.h>
 #include <osm/element.h>
 
 #include <QTest>

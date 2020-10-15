@@ -9,10 +9,6 @@
 
 #include "kosmindoormap_export.h"
 
-#include "mapcssrule.h"
-
-#include <osm/element.h>
-
 #include <memory>
 #include <vector>
 
@@ -26,6 +22,8 @@ namespace KOSMIndoorMap {
 
 class MapCSSParser;
 class MapCSSResult;
+class MapCSSRule;
+class MapCSSState;
 
 /** A parsed MapCSS style sheet.
  *  @see MapCSSParser::parse for how to obtain a valid instance

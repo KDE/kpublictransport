@@ -10,10 +10,6 @@
 #include "kosmindoormap_export.h"
 
 #include "scenegraphitem.h"
-#include "../style/mapcssresult.h"
-#include "iconloader_p.h"
-
-#include <osm/datatypes.h>
 
 #include <memory>
 #include <vector>
@@ -28,8 +24,10 @@ class Element;
 namespace KOSMIndoorMap {
 
 class MapData;
+class MapCSSDeclaration;
 class MapCSSStyle;
 class OverlaySource;
+class SceneControllerPrivate;
 class SceneGraph;
 class View;
 
@@ -69,23 +67,7 @@ private:
 
     void addItem(SceneGraph &sg, OSM::Element e, int level, std::unique_ptr<SceneGraphItemPayload> &&payload) const;
 
-    const MapData *m_data = nullptr;
-    const MapCSSStyle *m_styleSheet = nullptr;
-    const View *m_view = nullptr;
-    std::vector<OverlaySource> m_overlaySources;
-    mutable std::vector<OSM::Element> m_hiddenElements;
-
-    mutable MapCSSResult m_styleResult;
-    mutable QColor m_defaultTextColor;
-    mutable QFont m_defaultFont;
-    mutable QPolygonF m_labelPlacementPath;
-    IconLoader m_iconLoader;
-
-    OSM::TagKey m_layerTag;
-    OSM::TagKey m_typeTag;
-
-    mutable bool m_dirty = true;
-    mutable bool m_overlay = false;
+    std::unique_ptr<SceneControllerPrivate> d;
 };
 
 }

@@ -7,10 +7,11 @@
 #include "mapdata.h"
 #include "levelparser_p.h"
 
-#include "style/mapcssparser.h"
-#include "style/mapcssresult.h"
-#include "style/mapcssstate.h"
-#include "style/mapcssstyle.h"
+#include "style/mapcssresult_p.h"
+#include "style/mapcssstate_p.h"
+
+#include <KOSMIndoorMap/MapCSSParser>
+#include <KOSMIndoorMap/MapCSSStyle>
 
 using namespace KOSMIndoorMap;
 

@@ -9,8 +9,8 @@
 #include "mapcssscanner.h"
 
 #include "style/mapcssparser.h"
-#include "style/mapcssrule.h"
-#include "style/mapcssselector.h"
+#include "style/mapcssrule_p.h"
+#include "style/mapcssselector_p.h"
 #include "style/mapcssstyle.h"
 
 void yyerror(YYLTYPE *loc, KOSMIndoorMap::MapCSSParser *parser, yyscan_t scanner, char const* msg)
@@ -26,8 +26,8 @@ using namespace KOSMIndoorMap;
 
 %code requires {
 
-#include "style/mapcsscondition.h"
-#include "style/mapcssselector.h"
+#include "style/mapcsscondition_p.h"
+#include "style/mapcssselector_p.h"
 
 namespace KOSMIndoorMap {
 class MapCSSDeclaration;

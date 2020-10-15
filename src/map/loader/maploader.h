@@ -13,6 +13,7 @@
 
 #include <memory>
 
+/** OSM-based multi-floor indoor maps for buildings. */
 namespace KOSMIndoorMap {
 
 class MapData;

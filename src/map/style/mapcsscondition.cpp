@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "mapcsscondition.h"
-#include "mapcssstate.h"
+#include "mapcsscondition_p.h"
+#include "mapcssstate_p.h"
 
 #include <QDebug>
 #include <QIODevice>

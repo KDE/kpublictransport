@@ -105,6 +105,7 @@ ecm_generate_headers(KOSMIndoorMap_Scene_FORWARDING_HEADERS
         OverlaySource
         SceneController
         SceneGraph
+        SceneGraphItem
     PREFIX KOSMIndoorMap
     REQUIRED_HEADERS KOSMIndoorMap_Scene_HEADERS
     RELATIVE scene

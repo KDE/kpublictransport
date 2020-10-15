@@ -4,11 +4,11 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#ifndef KOSMINDOORMAP_MAPCSSRULE_H
-#define KOSMINDOORMAP_MAPCSSRULE_H
+#ifndef KOSMINDOORMAP_MAPCSSRULE_P_H
+#define KOSMINDOORMAP_MAPCSSRULE_P_H
 
-#include "mapcssdeclaration.h"
-#include "mapcssselector.h"
+#include "mapcssdeclaration_p.h"
+#include "mapcssselector_p.h"
 
 #include <memory>
 #include <vector>
@@ -53,4 +53,4 @@ private:
 
 }
 
-#endif // KOSMINDOORMAP_MAPCSSRULE_H
+#endif // KOSMINDOORMAP_MAPCSSRULE_P_H

@@ -9,17 +9,12 @@
 
 #include "kosmindoormap_export.h"
 
-#include "../scene/scenegraphitem.h"
-
-#include <osm/datatypes.h>
+#include <KOSMIndoorMap/SceneGraphItem>
 
 class QPainter;
 
 namespace KOSMIndoorMap {
 
-class LabelItem;
-class PolygonItem;
-class PolylineItem;
 class SceneGraph;
 class View;
 

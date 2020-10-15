@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "mapcssresult.h"
+#include "mapcssresult_p.h"
 
 #include <algorithm>
 
