@@ -1,0 +1,126 @@
+{
+    "direction": "Backward",
+    "name": "ICE 276",
+    "sections": [
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning|SilentArea",
+            "name": "14",
+            "platformPositionBegin": 0,
+            "platformPositionEnd": 0.0833333358168602,
+            "type": "ControlCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning",
+            "name": "12",
+            "platformPositionBegin": 0.0833333358168602,
+            "platformPositionEnd": 0.1666666716337204,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning",
+            "name": "11",
+            "platformPositionBegin": 0.1666666716337204,
+            "platformPositionEnd": 0.25,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "Restaurant",
+            "name": "10",
+            "platformPositionBegin": 0.25,
+            "platformPositionEnd": 0.3333333432674408,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning|ToddlerArea|WheelchairAccessible",
+            "name": "9",
+            "platformPositionBegin": 0.3333333432674408,
+            "platformPositionEnd": 0.4166666567325592,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning",
+            "name": "7",
+            "platformPositionBegin": 0.4166666567325592,
+            "platformPositionEnd": 0.5,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning",
+            "name": "6",
+            "platformPositionBegin": 0.5,
+            "platformPositionEnd": 0.5833333134651184,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning",
+            "name": "5",
+            "platformPositionBegin": 0.5833333134651184,
+            "platformPositionEnd": 0.6666666865348816,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning",
+            "name": "4",
+            "platformPositionBegin": 0.6666666865348816,
+            "platformPositionEnd": 0.75,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning|SilentArea",
+            "name": "3",
+            "platformPositionBegin": 0.75,
+            "platformPositionEnd": 0.8333333134651184,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning|SilentArea",
+            "name": "2",
+            "platformPositionBegin": 0.8333333134651184,
+            "platformPositionEnd": 0.9166666865348816,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "AirConditioning|BikeStorage",
+            "name": "1",
+            "platformPositionBegin": 0.9166666865348816,
+            "platformPositionEnd": 1,
+            "type": "ControlCar"
+        }
+    ]
+}

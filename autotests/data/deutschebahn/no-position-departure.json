@@ -1,0 +1,17 @@
+{
+    "disruptionEffect": "NormalService",
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "ICE 276"
+        }
+    },
+    "scheduledDepartureTime": "2020-10-17T14:13:00",
+    "scheduledPlatform": "12",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8500010"
+        },
+        "name": "Basel SBB"
+    }
+}

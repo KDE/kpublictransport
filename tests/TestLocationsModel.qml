@@ -10,6 +10,7 @@ ListModel {
     ListElement { label: "Paris Charles de Gaulle Airport"; lat: 49.00406; lon: 2.57110 }
     ListElement { label: "Paris Gare de Lyon"; lat: 48.84388; lon: 2.37708 }
 
+    ListElement { label: "Basel SBB"; lat: 47.54698; lon: 7.59021 }
     ListElement { label: "Zürich Flughafen"; lat: 47.45050; lon: 8.56275 }
     ListElement { label: "Randa"; lat:  46.09901; lon: 7.78315 }
 

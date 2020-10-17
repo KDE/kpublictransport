@@ -66,6 +66,8 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     departure.setScheduledArrivalTime(QDateTime::fromString(halt.value(QLatin1String("ankunftszeit")).toString(), Qt::ISODate));
     departure.setScheduledDepartureTime(QDateTime::fromString(halt.value(QLatin1String("abfahrtszeit")).toString(), Qt::ISODate));
     departure.setScheduledPlatform(platform.name());
+
+    fillMissingPositions();
     return true;
 }
 
@@ -155,5 +157,30 @@ void DeutscheBahnVehicleLayoutParser::parsePlatformSection(const QJsonObject &ob
     const auto length = std::max(pos.value(QLatin1String("startmeter")).toString().toDouble(), pos.value(QLatin1String("endemeter")).toString().toDouble());
     if (length > 0) {
         platform.setLength(std::max(platform.length(), (int)std::ceil(length)));
+    }
+}
+
+void DeutscheBahnVehicleLayoutParser::fillMissingPositions()
+{
+    if (vehicle.sections().empty()) {
+        return;
+    }
+
+    const auto noPositions = std::all_of(vehicle.sections().begin(), vehicle.sections().end(), [](const auto &sec) {
+        return sec.platformPositionBegin() == sec.platformPositionEnd();
+    });
+
+    if (!noPositions) {
+        return;
+    }
+
+    auto sections = vehicle.takeSections();
+    for (std::size_t i = 0; i < sections.size(); ++i) {
+        sections[i].setPlatformPositionBegin((float)i / (float)sections.size());
+        sections[i].setPlatformPositionEnd((float)(i + 1) / (float)sections.size());
+    }
+    vehicle.setSections(std::move(sections));
+    if (platform.length() <= 0.0) {
+        platform.setLength(vehicle.sections().size() * 25.0);
     }
 }

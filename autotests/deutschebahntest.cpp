@@ -53,6 +53,12 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-vehicle.json")
             << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-platform.json")
             << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-departure.json");
+
+        QTest::newRow("no-position")
+            << s(SOURCE_DIR "/data/deutschebahn/no-position-input.json")
+            << s(SOURCE_DIR "/data/deutschebahn/no-position-vehicle.json")
+            << s(SOURCE_DIR "/data/deutschebahn/no-position-platform.json")
+            << s(SOURCE_DIR "/data/deutschebahn/no-position-departure.json");
     }
 
     void testVehicleLayoutParse()
