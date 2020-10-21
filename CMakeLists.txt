@@ -42,11 +42,6 @@ find_package(ZLIB REQUIRED)
 find_package(OsmTools)
 set_package_properties(OsmTools PROPERTIES TYPE OPTIONAL PURPOSE "Needed only for regenereating line metadata tables (ie. you most likely don't need this)")
 
-find_package(FLEX)
-set_package_properties(FLEX PROPERTIES TYPE RECOMMENDED PURPOSE "MapCSS parser for indoor map rendering.")
-find_package(BISON)
-set_package_properties(BISON PROPERTIES TYPE RECOMMENDED PURPOSE "MapCSS parser for indoor map rendering.")
-
 if (NOT WIN32)
     find_package(Protobuf)
     set_package_properties(Protobuf PROPERTIES TYPE OPTIONAL PURPOSE "Parsing of OSM PBF files.")

@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<osm>
-    <node id="1" lat="0.0" lon="0.0">
-        <tag k="amenity" v="toilets"/>
-        <tag k="wheelchair" v="yes"/>
-        <tag k="wheelchair:description:de" v="description in the wrong language"/>
-        <tag k="centralkey" v="eurokey"/>
-    </node>
-</osm>

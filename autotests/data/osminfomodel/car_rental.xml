@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<osm>
-    <node id="1" lat="0.0" lon="0.0">
-        <tag k="amenity" v="car_rental"/>
-        <tag k="brand" v="Some Company"/>
-        <tag k="level" v="1"/>
-        <tag k="opening_hours" v="Mo-Fr 06:00-22:00;Sa-Su 07:30-21:00"/>
-    </node>
-</osm>

@@ -13,7 +13,3 @@ add_executable(gbfsprobe gbfsprobe.cpp)
 target_link_libraries(gbfsprobe Qt5::Network KPublicTransport)
 add_custom_target(run-gbfs-probe COMMAND gbfsprobe ${CMAKE_SOURCE_DIR}/src/lib/gbfs/gbfs-feeds.json)
 
-if (TARGET KOSMIndoorMap)
-    add_executable(osm-download-data osm-download-data.cpp)
-    target_link_libraries(osm-download-data KOSMIndoorMap)
-endif()
