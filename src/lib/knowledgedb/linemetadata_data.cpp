@@ -1,4 +1,5 @@
 /*
+    SPDX-FileCopyrightText: OpenStreetMap contributors
     SPDX-License-Identifier: ODbL-1.0
 
     Generated code based on data from OpenStreetMap (ODbL) and Wikidata (CC0), do not edit!
