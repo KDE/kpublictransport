@@ -30,7 +30,8 @@ void XmlWriter::write(const DataSet &dataSet, QIODevice *out)
     writer.setAutoFormattingIndent(-1);
 
     writer.writeStartDocument();
-    writer.writeComment(QStringLiteral("\n    SPDX-FileCopyrightText: OpenStreetMap contributors\n    SPDX-License-Identifier: ODbL-1.0\n"));
+    // using \123 instead of 'S' here prevents reuse lint from interpreting the following string as a license header for this file
+    writer.writeComment(QStringLiteral("\n    \123PDX-FileCopyrightText: OpenStreetMap contributors\n    \123PDX-License-Identifier: ODbL-1.0\n"));
     writer.writeStartElement(QStringLiteral("osm"));
     writer.writeAttribute(QStringLiteral("version"), QStringLiteral("0.6"));
     writer.writeAttribute(QStringLiteral("generator"), QStringLiteral("KOSM"));
