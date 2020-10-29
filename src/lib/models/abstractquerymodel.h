@@ -51,6 +51,9 @@ public:
     /** Cancel ongoing query operations, but keep the results that are already there. */
     Q_INVOKABLE void cancel();
 
+    /** Cancel any ongoing query operations, and clear the results. */
+    Q_INVOKABLE void clear();
+
 Q_SIGNALS:
     void managerChanged();
     void loadingChanged();

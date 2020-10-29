@@ -24,6 +24,7 @@ class StopoverQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void doQuery() override;
+    void doClearResults() override;
     void mergeResults(const std::vector<Stopover> &newDepartures);
 
     std::vector<Stopover> m_departures;
@@ -43,12 +44,7 @@ void StopoverQueryModelPrivate::doQuery()
         return;
     }
 
-    resetForNewRequest();
-    if (!m_departures.empty()) {
-        q->beginResetModel();
-        m_departures.clear();
-        q->endResetModel();
-    }
+    setLoading(true);
     m_nextRequest = {};
     m_prevRequest = {};
     emit q->canQueryPrevNextChanged();
@@ -65,6 +61,11 @@ void StopoverQueryModelPrivate::doQuery()
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated,q, [reply, this]() {
         mergeResults(reply->takeResult());
     });
+}
+
+void StopoverQueryModelPrivate::doClearResults()
+{
+    m_departures.clear();
 }
 
 void StopoverQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDepartures)

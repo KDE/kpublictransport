@@ -21,6 +21,7 @@ class VehicleLayoutQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void doQuery() override;
+    void doClearResults() override;
 
     Vehicle m_vehicle;
     VehicleLayoutRequest m_request;
@@ -38,14 +39,6 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         return;
     }
 
-    resetForNewRequest();
-    q->beginResetModel();
-    m_vehicle = {};
-    q->endResetModel();
-    m_platform = {};
-    m_departure = m_request.departure();
-    emit q->contentChanged();
-
     auto reply = m_manager->queryVehicleLayout(m_request);
     monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::VehicleLayoutReply::finished, q, [reply, this]() {
@@ -57,6 +50,15 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         q->endResetModel();
         emit q->contentChanged();
     });
+}
+
+void VehicleLayoutQueryModelPrivate::doClearResults()
+{
+    m_vehicle = {};
+    m_platform = {};
+    m_departure = {};
+    Q_Q(VehicleLayoutQueryModel);
+    emit q->contentChanged();
 }
 
 VehicleLayoutQueryModel::VehicleLayoutQueryModel(QObject* parent)

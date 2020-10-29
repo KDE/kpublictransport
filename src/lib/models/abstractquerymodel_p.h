@@ -24,7 +24,6 @@ public:
     void setLoading(bool l);
     void setErrorMessage(const QString &msg);
     void monitorReply(Reply *reply);
-    void resetForNewRequest();
 
     /** Compresses query execution calls by one event loop.
      *  This helps with direct writes to the request property from QML, which shows up as
@@ -32,6 +31,7 @@ public:
      */
     void query();
     virtual void doQuery() = 0;
+    virtual void doClearResults() = 0;
 
     AbstractQueryModel *q_ptr = nullptr;
     Manager *m_manager = nullptr;

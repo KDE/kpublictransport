@@ -54,14 +54,6 @@ void AbstractQueryModelPrivate::monitorReply(Reply *reply)
     });
 }
 
-void AbstractQueryModelPrivate::resetForNewRequest()
-{
-    setLoading(true);
-    setErrorMessage({});
-    m_attributions.clear();
-    emit q_ptr->attributionsChanged();
-}
-
 void AbstractQueryModelPrivate::query()
 {
     if (m_pendingQuery || !m_manager) {
@@ -71,6 +63,7 @@ void AbstractQueryModelPrivate::query()
     m_pendingQuery = true;
     QTimer::singleShot(0, q_ptr, [this]() {
         m_pendingQuery = false;
+        q_ptr->clear();
         doQuery();
     });
 }
@@ -136,6 +129,23 @@ void AbstractQueryModel::cancel()
     d_ptr->setLoading(false);
     delete d_ptr->m_reply;
     d_ptr->m_reply = nullptr;
+}
+
+void AbstractQueryModel::clear()
+{
+    cancel();
+    if (rowCount() > 0) {
+        beginResetModel();
+        d_ptr->doClearResults();
+        endResetModel();
+    }
+
+    if (!d_ptr->m_attributions.empty()) {
+        d_ptr->m_attributions.clear();
+        emit attributionsChanged();
+    }
+
+    d_ptr->setErrorMessage({});
 }
 
 #include "moc_abstractquerymodel.moc"

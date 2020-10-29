@@ -24,6 +24,7 @@ class JourneyQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void doQuery() override;
+    void doClearResults() override;
     void mergeResults(const std::vector<Journey> &newJourneys);
 
     std::vector<Journey> m_journeys;
@@ -43,14 +44,10 @@ void JourneyQueryModelPrivate::doQuery()
         return;
     }
 
-    resetForNewRequest();
-    if (!m_journeys.empty()) {
-        q->beginResetModel();
-        m_journeys.clear();
-        q->endResetModel();
-    }
+    setLoading(true);
     m_nextRequest = {};
     m_prevRequest = {};
+    emit q->canQueryPrevNextChanged();
 
     auto reply = m_manager->queryJourney(m_request);
     monitorReply(reply);
@@ -65,6 +62,11 @@ void JourneyQueryModelPrivate::doQuery()
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, q, [reply, this]() {
         mergeResults(reply->takeResult());
     });
+}
+
+void JourneyQueryModelPrivate::doClearResults()
+{
+    m_journeys.clear();
 }
 
 void JourneyQueryModelPrivate::mergeResults(const std::vector<Journey> &newJourneys)

@@ -23,6 +23,7 @@ class LocationQueryModelPrivate : public AbstractQueryModelPrivate
 {
 public:
     void doQuery() override;
+    void doClearResults() override;
     void mergeResults(const std::vector<Location> &newLocations);
     bool isFiltered(const Location &loc) const;
 
@@ -41,18 +42,17 @@ void LocationQueryModelPrivate::doQuery()
         return;
     }
 
-    resetForNewRequest();
-    if (!m_locations.empty()) {
-        q->beginResetModel();
-        m_locations.clear();
-        q->endResetModel();
-    }
-
+    setLoading(true);
     auto reply = m_manager->queryLocation(m_request);
     monitorReply(reply);
     QObject::connect(reply, &KPublicTransport::LocationReply::updated, q, [reply, this]() {
         mergeResults(reply->takeResult());
     });
+}
+
+void LocationQueryModelPrivate::doClearResults()
+{
+    m_locations.clear();
 }
 
 bool LocationQueryModelPrivate::isFiltered(const Location &loc) const
