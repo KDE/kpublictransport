@@ -50,7 +50,6 @@ void LocationQueryModelPrivate::doQuery()
 
     auto reply = m_manager->queryLocation(m_request);
     monitorReply(reply);
-    QObject::connect(reply, &KPublicTransport::LocationReply::finished, reply, &QObject::deleteLater);
     QObject::connect(reply, &KPublicTransport::LocationReply::updated, q, [reply, this]() {
         mergeResults(reply->takeResult());
     });

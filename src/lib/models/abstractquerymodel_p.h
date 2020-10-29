@@ -35,6 +35,7 @@ public:
 
     AbstractQueryModel *q_ptr = nullptr;
     Manager *m_manager = nullptr;
+    Reply *m_reply = nullptr;
 
     std::vector<Attribution> m_attributions;
 

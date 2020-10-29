@@ -61,7 +61,6 @@ void StopoverQueryModelPrivate::doQuery()
             m_prevRequest = reply->previousRequest();
             emit q->canQueryPrevNextChanged();
         }
-        reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated,q, [reply, this]() {
         mergeResults(reply->takeResult());
@@ -148,7 +147,6 @@ void StopoverQueryModel::queryNext()
             d->m_nextRequest = {};
         }
         emit canQueryPrevNextChanged();
-        reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
         Q_D(StopoverQueryModel);
@@ -181,7 +179,6 @@ void StopoverQueryModel::queryPrevious()
             d->m_prevRequest = {};
         }
         emit canQueryPrevNextChanged();
-        reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
         Q_D(StopoverQueryModel);

@@ -61,7 +61,6 @@ void JourneyQueryModelPrivate::doQuery()
             m_prevRequest = reply->previousRequest();
             emit q->canQueryPrevNextChanged();
         }
-        reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, q, [reply, this]() {
         mergeResults(reply->takeResult());
@@ -146,7 +145,6 @@ void JourneyQueryModel::queryNext()
             d->m_nextRequest = {};
         }
         emit canQueryPrevNextChanged();
-        reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, this, [reply, this]() {
         Q_D(JourneyQueryModel);
@@ -179,7 +177,6 @@ void JourneyQueryModel::queryPrevious()
             d->m_prevRequest = {};
         }
         emit canQueryPrevNextChanged();
-        reply->deleteLater();
     });
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, this, [reply, this]() {
         Q_D(JourneyQueryModel);

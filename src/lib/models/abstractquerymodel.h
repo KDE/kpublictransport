@@ -48,6 +48,9 @@ public:
     /** The attribution information for the current model content. */
     const std::vector<Attribution>& attributions() const;
 
+    /** Cancel ongoing query operations, but keep the results that are already there. */
+    Q_INVOKABLE void cancel();
+
 Q_SIGNALS:
     void managerChanged();
     void loadingChanged();

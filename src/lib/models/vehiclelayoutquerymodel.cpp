@@ -56,7 +56,6 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         m_departure = reply->departure();
         q->endResetModel();
         emit q->contentChanged();
-        reply->deleteLater();
     });
 }
 

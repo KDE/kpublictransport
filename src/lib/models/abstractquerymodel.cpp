@@ -40,8 +40,11 @@ void AbstractQueryModelPrivate::setErrorMessage(const QString &msg)
 
 void AbstractQueryModelPrivate::monitorReply(Reply *reply)
 {
+    m_reply = reply;
     QObject::connect(reply, &Reply::finished, q_ptr, [this, reply]() {
         setLoading(false);
+        reply->deleteLater();
+        m_reply = nullptr;
         if (reply->error() == KPublicTransport::Reply::NoError) {
             AttributionUtil::merge(m_attributions, std::move(reply->takeAttributions()));
             emit q_ptr->attributionsChanged();
@@ -126,6 +129,13 @@ QVariantList AbstractQueryModel::attributionsVariant() const
     l.reserve(d_ptr->m_attributions.size());
     std::transform(d_ptr->m_attributions.begin(), d_ptr->m_attributions.end(), std::back_inserter(l), [](const auto &attr) { return QVariant::fromValue(attr); });
     return l;
+}
+
+void AbstractQueryModel::cancel()
+{
+    d_ptr->setLoading(false);
+    delete d_ptr->m_reply;
+    d_ptr->m_reply = nullptr;
 }
 
 #include "moc_abstractquerymodel.moc"
