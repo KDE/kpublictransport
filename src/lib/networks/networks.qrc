@@ -5,6 +5,7 @@
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/networks">
         <!-- global/generic providers -->
+        <file>un_gbfs.json</file>
         <file>un_navitia.json</file>
 
         <!-- national providers -->
