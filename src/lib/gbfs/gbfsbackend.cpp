@@ -102,6 +102,29 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setRentalVehicleStation(s);
     }
 
+    const auto floatingDoc = store.loadData(GBFS::FreeBikeStatus);
+    const auto floating = floatingDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
+    for (const auto bikeV : floating) {
+        const auto bike = bikeV.toObject();
+        if (bike.value(QLatin1String("is_reserved")).toBool() || bike.value(QLatin1String("is_disabled")).toBool()) {
+            continue;
+        }
+        const auto lat = bike.value(QLatin1String("lat")).toDouble();
+        const auto lon = bike.value(QLatin1String("lon")).toDouble();
+        if (Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
+            continue;
+        }
+
+        Location loc;
+        loc.setName(network.name()); // TODO how can we pass the entire network for floating vehicles?
+        loc.setType(Location::RentedVehicleStation); // TODO do we need a better type for floating vehicles?
+        loc.setCoordinate(lat, lon);
+        const auto stationId = bike.value(QLatin1String("bike_id")).toString();
+        loc.setIdentifier(service.systemId, stationId);
+        // TODO vehicle type, remaining range, deep rental links
+        context->result.push_back(loc);
+    }
+
     Attribution attr;
     attr.setLicense(sysInfo.value(QLatin1String("license_id")).toString());
     attr.setLicenseUrl(QUrl(sysInfo.value(QLatin1String("license_url")).toString()));
