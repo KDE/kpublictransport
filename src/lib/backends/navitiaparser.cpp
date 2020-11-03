@@ -101,6 +101,17 @@ static Location parseLocation(const QJsonObject &obj)
         parseAdminRegion(loc, ar.toObject());
     }
 
+    auto codes = obj.value(QLatin1String("codes")).toArray();
+    if (codes.empty()) {
+        codes = obj.value(QLatin1String("stop_area")).toObject().value(QLatin1String("codes")).toArray();
+    }
+    for (const auto &codeV : codes) {
+        const auto code = codeV.toObject();
+        if (code.value(QLatin1String("type")).toString() == QLatin1String("UIC8")) {
+            loc.setIdentifier(QStringLiteral("uic"), code.value(QLatin1String("value")).toString().left(7));
+        }
+    }
+
     return loc;
 }
 
