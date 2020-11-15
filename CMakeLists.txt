@@ -30,6 +30,7 @@ set(CMAKE_AUTORCC ON)
 ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     VERSION_HEADER kpublictransport_version.h
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfigVersion.cmake"
+    SOVERSION 1
 )
 
 find_package(Qt5 5.11 REQUIRED COMPONENTS Quick)
