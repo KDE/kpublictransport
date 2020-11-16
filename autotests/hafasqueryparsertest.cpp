@@ -35,6 +35,9 @@ private Q_SLOTS:
 
     void testParseJourneyError()
     {
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+        QSKIP("not supported on big endian systems yet!", SkipAll);
+#endif
         HafasQueryParser p;
         const auto res = p.parseQueryJourneyResponse(readFile(SOURCE_DIR "/data/hafas/journey-binary-error.bin.gz"));
         QVERIFY(res.empty());

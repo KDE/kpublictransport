@@ -226,6 +226,10 @@ QString HafasQueryBackend::locationId(const Location &loc) const
 
 bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+#if Q_BYTE_ORDER == Q_BIG_ENDIAN
+#warning Hafas binary journey reponse parsing not implemented for big endian yet!
+    return false;
+#endif
     if ((request.modes() & JourneySection::PublicTransport) == 0) {
         return false;
     }
