@@ -43,6 +43,8 @@ set(kpublictransport_srcs
     datatypes/attributionutil.cpp
     datatypes/backend.cpp
     datatypes/disruption.cpp
+    datatypes/equipment.cpp
+    datatypes/equipmentutil.cpp
     datatypes/journey.cpp
     datatypes/journeyutil.cpp
     datatypes/json.cpp
@@ -138,6 +140,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Datatypes
         Departure
         Disruption
+        Equipment
         Journey
         Line
         Load

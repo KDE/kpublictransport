@@ -7,6 +7,8 @@
 #include "location.h"
 
 #include "datatypes_p.h"
+#include "equipment.h"
+#include "equipmentutil.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
 #include "rentalvehicle.h"
@@ -111,6 +113,11 @@ void Location::setRentalVehicleStation(const RentalVehicleStation &dock)
 RentalVehicle Location::rentalVehicle() const
 {
     return d->data.value<RentalVehicle>();
+}
+
+KPublicTransport::Equipment Location::equipment() const
+{
+    return d->data.value<KPublicTransport::Equipment>();
 }
 
 QHash<QString, QString> Location::identifiers() const
@@ -367,6 +374,9 @@ Location Location::merge(const Location &lhs, const Location &rhs)
         case RentedVehicle:
             l.setData(RentalVehicleUtil::merge(lhs.rentalVehicle(), rhs.rentalVehicle()));
             break;
+        case Equipment:
+            l.setData(EquipmentUtil::merge(lhs.equipment(), rhs.equipment()));
+            break;
     }
 
     return l;
@@ -420,6 +430,9 @@ QJsonObject Location::toJson(const Location &loc)
         case RentedVehicle:
             obj.insert(QStringLiteral("rentalVehicle"), RentalVehicle::toJson(loc.rentalVehicle()));
             break;
+        case Equipment:
+            obj.insert(QStringLiteral("equipment"), Equipment::toJson(loc.equipment()));
+            break;
     }
 
     return obj;
@@ -452,6 +465,9 @@ Location Location::fromJson(const QJsonObject &obj)
             break;
         case RentedVehicle:
             loc.setData(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
+            break;
+        case Equipment:
+            loc.setData(Equipment::fromJson(obj.value(QLatin1String("equipment")).toObject()));
             break;
     }
 

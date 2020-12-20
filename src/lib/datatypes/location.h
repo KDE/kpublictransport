@@ -18,6 +18,7 @@ template <typename K, typename T> class QHash;
 namespace KPublicTransport {
 
 class LocationPrivate;
+class Equipment;
 class RentalVehicle;
 class RentalVehicleStation;
 
@@ -35,6 +36,7 @@ public:
         Stop = 1, ///< a public transport stop (train station, bus stop, etc)
         RentedVehicleStation = 2, ///< a pick-up/drop-off point for dock-based rental bike/scooter systems
         RentedVehicle = 4, ///< a free-floating rental bike/scooter
+        Equipment = 8, ///< elevator/escalator
     };
     Q_ENUM(Type)
     Q_DECLARE_FLAGS(Types, Type)
@@ -72,6 +74,8 @@ public:
     Q_PROPERTY(KPublicTransport::RentalVehicleStation rentalVehicleStation READ rentalVehicleStation STORED false)
     /** Rental vehicle information, if applicable for this location. */
     Q_PROPERTY(KPublicTransport::RentalVehicle rentalVehicle READ rentalVehicle STORED false)
+    /** Equipment information, if applicable for this location. */
+    Q_PROPERTY(KPublicTransport::Equipment equipment READ equipment STORED false)
 
 public:
     void setCoordinate(float latitude, float longitude);
@@ -109,6 +113,7 @@ public:
     RentalVehicleStation rentalVehicleStation() const;
     [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);
     RentalVehicle rentalVehicle() const;
+    KPublicTransport::Equipment equipment() const;
 
     /** Serializes one Location object to JSON. */
     static QJsonObject toJson(const Location &loc);
