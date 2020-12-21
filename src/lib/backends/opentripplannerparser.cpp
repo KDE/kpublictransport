@@ -33,23 +33,33 @@ void OpenTripPlannerParser::setKnownRentalVehicleNetworks(const QHash<QString, R
     m_rentalVehicleNetworks = networks;
 }
 
-RentalVehicleStation OpenTripPlannerParser::parseRentalVehicleStation(const QJsonObject &obj) const
+QVariant OpenTripPlannerParser::parseRentalVehicleData(const QJsonObject &obj) const
 {
-    RentalVehicleStation s;
+    RentalVehicleNetwork network;
     // TODO id
     const auto networks = obj.value(QLatin1String("networks")).toArray();
     if (!networks.empty()) {
         const auto it = m_rentalVehicleNetworks.find(networks.at(0).toString());
         if (it != m_rentalVehicleNetworks.end()) {
-            s.setNetwork(it.value());
+            network = it.value();
         } else {
-            RentalVehicleNetwork n;
-            n.setName(networks.at(0).toString());
-            s.setNetwork(n);
+            network.setName(networks.at(0).toString());
         }
     }
-    s.setCapacity(obj.value(QLatin1String("spacesAvailable")).toInt(-1));
-    s.setAvailableVehicles(obj.value(QLatin1String("bikesAvailable")).toInt(-1));
+
+    const auto capacity = obj.value(QLatin1String("spacesAvailable")).toInt(-1);
+    const auto available = obj.value(QLatin1String("bikesAvailable")).toInt(-1);
+    if (capacity == 0 && available == 1) { // heuristic for distinguishing floating vehicles and docks
+        RentalVehicle v;
+        v.setNetwork(network);
+        v.setType(static_cast<RentalVehicle::VehicleType>(static_cast<int>(network.vehicleTypes())));
+        return v;
+    }
+
+    RentalVehicleStation s;
+    s.setNetwork(network);
+    s.setCapacity(capacity);
+    s.setAvailableVehicles(available);
     return s;
 }
 
@@ -79,9 +89,9 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
 
     const auto bss = obj.value(QLatin1String("bikeRentalStation")).toObject();
     if (!bss.isEmpty()) {
-        loc.setType(Location::RentedVehicleStation);
-        loc.setRentalVehicleStation(parseRentalVehicleStation(bss));
-        return loc.rentalVehicleStation().network().isValid();
+        loc.setData(parseRentalVehicleData(bss));
+        loc.setType(loc.data().userType() == qMetaTypeId<RentalVehicle>() ? Location::RentedVehicle : Location::RentedVehicleStation);
+        return loc.rentalVehicleStation().network().isValid() || loc.rentalVehicle().network().isValid();
     }
 
     return true;

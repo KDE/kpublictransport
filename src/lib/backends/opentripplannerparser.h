@@ -48,7 +48,7 @@ public:
     std::vector<Journey> parseJourneys(const QJsonObject &obj) const;
 
 private:
-    RentalVehicleStation parseRentalVehicleStation(const QJsonObject &obj) const;
+    QVariant parseRentalVehicleData(const QJsonObject &obj) const;
     /// @return @c false for Location objects that should be discarded entirely
     bool parseLocationFragment(const QJsonObject &obj, Location &loc) const;
     Location parseLocation(const QJsonObject &obj) const;

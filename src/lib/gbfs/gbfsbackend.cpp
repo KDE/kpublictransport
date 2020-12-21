@@ -116,12 +116,17 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
 
         Location loc;
-        loc.setName(network.name()); // TODO how can we pass the entire network for floating vehicles?
-        loc.setType(Location::RentedVehicleStation); // TODO do we need a better type for floating vehicles?
+        loc.setName(network.name());
+        loc.setType(Location::RentedVehicle);
         loc.setCoordinate(lat, lon);
         const auto stationId = bike.value(QLatin1String("bike_id")).toString();
         loc.setIdentifier(service.systemId, stationId);
+
         // TODO vehicle type, remaining range, deep rental links
+        RentalVehicle vehicle;
+        vehicle.setNetwork(network);
+        loc.setData(vehicle);
+
         context->result.push_back(loc);
     }
 
