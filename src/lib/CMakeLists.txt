@@ -18,6 +18,8 @@ set(kpublictransport_srcs
     vehiclelayoutrequest.cpp
 
     backends/abstractbackend.cpp
+    backends/accessibilitycloudbackend.cpp
+    backends/accessibilitycloudparser.cpp
     backends/cache.cpp
     backends/deutschebahnbackend.cpp
     backends/deutschebahnvehiclelayoutparser.cpp

@@ -27,6 +27,7 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Stopover>
 
+#include "backends/accessibilitycloudbackend.h"
 #include "backends/cache.h"
 #include "backends/deutschebahnbackend.h"
 #include "backends/efabackend.h"
@@ -187,7 +188,8 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         HafasQueryBackend,
         EfaBackend,
         DeutscheBahnBackend,
-        GBFSBackend
+        GBFSBackend,
+        AccessibilityCloudBackend
     >(type, obj);
 }
 

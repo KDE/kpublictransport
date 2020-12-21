@@ -1,0 +1,182 @@
+{
+  "type": "FeatureCollection",
+  "featureCount": 4,
+  "totalFeatureCount": 4,
+  "related": {
+    "licenses": {
+      "ae4M5zruvz2uPSz6p": {
+        "_id": "ae4M5zruvz2uPSz6p",
+        "name": "Creative Commons Attribution 4.0 International Public License",
+        "shortName": "Creative Commons",
+        "websiteURL": "https://creativecommons.org/licenses/by/4.0/",
+        "fullTextURL": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "consideredAs": "CCBY",
+        "organizationId": "LPb4y2ri7b6fLxLFa"
+      },
+      "ns5HmC6xFrakRdoJ5": {
+        "_id": "ns5HmC6xFrakRdoJ5",
+        "name": "CC-BY 4.0 International",
+        "shortName": "CC-BY 4.0 Int.",
+        "websiteURL": "https://creativecommons.org/licenses/by/4.0/",
+        "fullTextURL": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "consideredAs": "CCBY",
+        "organizationId": "6ZhFGZ97omm6uKyfn"
+      }
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.36899555,
+          52.52497575
+        ]
+      },
+      "properties": {
+        "category": "escalator",
+        "originalId": "10317782",
+        "originalPlaceInfoId": "1071",
+        "placeSourceId": "Q9jzJMxydegZYfFbK",
+        "description": "zu Gleis 13/14",
+        "isWorking": true,
+        "sourceId": "nwccXsd9WMekvFs3r",
+        "sourceImportId": "QNMBuRsJsFFfZ6cnA",
+        "placeInfoId": "hBkEGMEzkJ659qQwG",
+        "longDescription": "zu Gleis 13/14",
+        "shortDescription": "→ Gleis 13/14",
+        "lastUpdate": "2020-12-20T15:31:13.365Z",
+        "sourceName": "FaSta",
+        "organizationName": "DB Station&Service AG",
+        "sourceOrganizationId": "6ZhFGZ97omm6uKyfn",
+        "_id": "58LtBfCipQBBAns5S",
+        "distance": 2.710552149272396
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3688684,
+          52.52516555
+        ]
+      },
+      "properties": {
+        "category": "escalator",
+        "originalId": "10317780",
+        "originalPlaceInfoId": "1071",
+        "placeSourceId": "Q9jzJMxydegZYfFbK",
+        "description": "zu Gleis 15/16 (S-Bahn)",
+        "isWorking": false,
+        "sourceId": "nwccXsd9WMekvFs3r",
+        "sourceImportId": "QNMBuRsJsFFfZ6cnA",
+        "placeInfoId": "hBkEGMEzkJ659qQwG",
+        "longDescription": "zu Gleis 15/16 (S-Bahn)",
+        "shortDescription": "→ Gleis 15/16 (S-Bahn)",
+        "allowPublicStatusSubscriptions": true,
+        "languages": [],
+        "hasRaisedText": false,
+        "hasBrailleText": false,
+        "hasSpeech": false,
+        "isHighContrast": false,
+        "hasLargePrint": false,
+        "isVoiceActivated": false,
+        "hasHeadPhoneJack": false,
+        "isEasyToUnderstand": false,
+        "lastUpdate": "2020-12-20T15:31:13.264Z",
+        "organizationName": "DB Station&Service AG",
+        "sourceName": "FaSta",
+        "sourceOrganizationId": "6ZhFGZ97omm6uKyfn",
+        "_id": "Myc6zj47M88ec6thn",
+        "distance": 20.42806378086071
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.368924,
+          52.525847
+        ]
+      },
+      "properties": {
+        "sourceId": "Wkd92kW7X2rAsbTdH",
+        "originalId": "10315353",
+        "placeSourceId": "f2EwSR5vmzfS5Hjox",
+        "category": "elevator",
+        "originalPlaceInfoId": "900003201",
+        "customData": {
+          "operator": "S-Bahn"
+        },
+        "sourceImportId": "FoDK5KT334Y83tiqo",
+        "sourceName": "VBB Anlagen (S-Bahn + BVG)",
+        "organizationName": "VBB Verkehrsverbund Berlin-Brandenburg GmbH",
+        "lastUpdate": "2020-12-18T17:40:02.398Z",
+        "placeInfoId": "q4cSsptF8LzuZcp5R",
+        "description": "zwischen OG 2 S-Bahnsteig Gl. 15 und 16 und OG 1 und EG und UG 1 und Tunnelbahnsteig UG 2 Gl. 5 und 6",
+        "longDescription": "zwischen Obergeschoß 2 S-Bahnsteig Gleis 15 und 16 und OG 1 und Erdgeschoß und Untergeschoss 1 und Tunnelbahnsteig Untergeschoss 2 Gleis 5 und 6",
+        "shortDescription": "OG 2 S-Bahnsteig Gl. 15/16 ⟷ OG 1 ⟷ EG ⟷ UG 1 ⟷ Tunnelbahnsteig UG 2 Gl. 5/6",
+        "disruptionSourceImportId": "7pNB4ZeDGjAENN24A",
+        "isWorking": false,
+        "lastDisruptionProperties": {
+          "originalId": "10315353",
+          "originalPlaceInfoIdField": "properties.bhfId",
+          "isEquipmentWorking": false,
+          "stateExplanation": "Außer Betrieb",
+          "sourceId": "vhoBSMAD7JEXNwgCy",
+          "sourceImportId": "7pNB4ZeDGjAENN24A",
+          "lastUpdate": "2020-12-18T17:40:02.375Z"
+        },
+        "ownerId": "sakKuZ2ACs6cWeKhT",
+        "transitNetworkId": "Qr3iwpT9EDkGLN7gg",
+        "_id": "GABc8hiTh6HRyMfRS",
+        "distance": 94.22921559136768
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.369897,
+          52.525683
+        ]
+      },
+      "properties": {
+        "sourceId": "Wkd92kW7X2rAsbTdH",
+        "originalId": "5258",
+        "placeSourceId": "f2EwSR5vmzfS5Hjox",
+        "category": "elevator",
+        "originalPlaceInfoId": "900003201",
+        "customData": {
+          "operator": "BVG"
+        },
+        "sourceImportId": "guzxMQ6uJBPrK2xHg",
+        "lastUpdate": "2020-12-20T15:30:06.091Z",
+        "placeInfoId": "q4cSsptF8LzuZcp5R",
+        "disruptionSourceImportId": "3wBsLuvb5daRZiG75",
+        "isWorking": true,
+        "lastDisruptionProperties": {
+          "originalId": "5258",
+          "isEquipmentWorking": true,
+          "stateExplanation": "In Betrieb",
+          "sourceId": "PDphRFL4SwhE8N4tb",
+          "sourceImportId": "3wBsLuvb5daRZiG75",
+          "lastUpdate": "2020-12-20T15:30:06.077Z"
+        },
+        "organizationName": "VBB Verkehrsverbund Berlin-Brandenburg GmbH",
+        "sourceName": "VBB Anlagen (S-Bahn + BVG)",
+        "description": "zwischen Friedrich-List-Ufer / Europaplatz und UG 1 und U-Bahnsteig",
+        "longDescription": "zwischen Friedrich-List-Ufer / Europaplatz und Untergeschoss 1 und U-Bahnsteig",
+        "shortDescription": "Friedrich-List-Ufer / Europaplatz ⟷ UG 1 ⟷ U-Bahnsteig",
+        "ownerId": "gRbaDotqJfePW2TLb",
+        "transitNetworkId": "Qr3iwpT9EDkGLN7gg",
+        "_id": "pSaPPAY2xALhFGrMX",
+        "distance": 97.11699076048566
+      }
+    }
+  ]
+}
