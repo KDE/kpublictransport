@@ -14,6 +14,8 @@
 
 #include <type_traits>
 
+class QVariant;
+
 namespace KPublicTransport {
 namespace Internal {
 template <typename T>
@@ -33,6 +35,7 @@ public: \
     ~Class(); \
     Class& operator=(Class&&) noexcept; \
     Class& operator=(const Class&); \
+    operator QVariant () const; \
 private: \
     QExplicitlySharedDataPointer<Class ## Private> d;
 

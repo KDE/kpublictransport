@@ -60,3 +60,5 @@ QJsonArray VehicleLayoutResult::toJson(const std::vector<VehicleLayoutResult> &r
 {
     return Json::toJson(res);
 }
+
+#include "moc_vehiclelayoutresult_p.cpp"

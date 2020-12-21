@@ -10,6 +10,7 @@
 #include "datatypes.h"
 
 #include <QSharedData>
+#include <QVariant>
 
 #define KPUBLICTRANSPORT_MAKE_GADGET(Class) \
 Class::Class() : d(new Class ## Private) {} \
@@ -17,7 +18,8 @@ Class::Class(const Class&) = default; \
 Class::Class(Class&&) noexcept = default; \
 Class::~Class() = default; \
 Class& Class::operator=(const Class&) = default; \
-Class& Class::operator=(Class&&) noexcept = default;
+Class& Class::operator=(Class&&) noexcept = default; \
+Class::operator QVariant() const { return QVariant::fromValue(*this); }
 
 // TODO this could be improved by checking for equality before detaching
 // but this requires similar equality workarounds than KItinerary uses
