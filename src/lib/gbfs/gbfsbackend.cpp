@@ -80,7 +80,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         RentalVehicleStation s;
         s.setNetwork(network);
         s.setCapacity(station.value(QLatin1String("capacity")).toInt(-1));
-        loc.setRentalVehicleStation(s);
+        loc.setData(s);
 
         selectedStationIds.push_back(stationId);
         context->result.push_back(loc);
@@ -99,7 +99,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         auto &loc = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
         auto s = loc.rentalVehicleStation();
         s.setAvailableVehicles(stat.value(QLatin1String("num_bikes_available")).toInt(-1));
-        loc.setRentalVehicleStation(s);
+        loc.setData(s);
     }
 
     const auto floatingDoc = store.loadData(GBFS::FreeBikeStatus);
@@ -144,7 +144,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
 bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & Location::RentedVehicleStation) == 0) {
+    if ((req.types() & (Location::RentedVehicleStation | Location::RentedVehicle)) == 0) {
         return false;
     }
 

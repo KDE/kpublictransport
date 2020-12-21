@@ -8,7 +8,6 @@
 #define KPUBLICTRANSPORT_LOCATION_H
 
 #include "datatypes.h"
-#include "rentalvehicle.h"
 
 class QJsonArray;
 class QJsonObject;
@@ -19,8 +18,13 @@ template <typename K, typename T> class QHash;
 namespace KPublicTransport {
 
 class LocationPrivate;
+class RentalVehicle;
+class RentalVehicleStation;
 
-/** A location. */
+/** A location.
+ *  This can be a train station, a bus stop, a rental vehicle dock, a free-floating vehicle position,
+ *  an elevator or escalator, etc.
+ */
 class KPUBLICTRANSPORT_EXPORT Location
 {
     KPUBLICTRANSPORT_GADGET(Location)
@@ -30,6 +34,7 @@ public:
         Place = 0, ///< a location that isn't of any specific type
         Stop = 1, ///< a public transport stop (train station, bus stop, etc)
         RentedVehicleStation = 2, ///< a pick-up/drop-off point for dock-based rental bike/scooter systems
+        RentedVehicle = 4, ///< a free-floating rental bike/scooter
     };
     Q_ENUM(Type)
     Q_DECLARE_FLAGS(Types, Type)
@@ -58,8 +63,15 @@ public:
 
     Q_PROPERTY(bool hasCoordinate READ hasCoordinate STORED false)
 
+    /** Location type specific data.
+     *  Depending on the location type this can be e.g. a RentalVehicleStation or an Equipment instance.
+     */
+    KPUBLICTRANSPORT_PROPERTY(QVariant, data, setData)
+
     /** Rental vehicle dock information, if applicable for this location. */
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleStation, rentalVehicleStation, setRentalVehicleStation)
+    Q_PROPERTY(KPublicTransport::RentalVehicleStation rentalVehicleStation READ rentalVehicleStation STORED false)
+    /** Rental vehicle information, if applicable for this location. */
+    Q_PROPERTY(KPublicTransport::RentalVehicle rentalVehicle READ rentalVehicle STORED false)
 
 public:
     void setCoordinate(float latitude, float longitude);
@@ -93,6 +105,10 @@ public:
      *  Returns MAX_INT if one of the arguments has no coordinates set.
      */
     static int distance(const Location &lhs, const Location &rhs);
+
+    RentalVehicleStation rentalVehicleStation() const;
+    [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);
+    RentalVehicle rentalVehicle() const;
 
     /** Serializes one Location object to JSON. */
     static QJsonObject toJson(const Location &loc);

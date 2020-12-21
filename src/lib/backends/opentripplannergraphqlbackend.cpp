@@ -13,6 +13,7 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
@@ -54,7 +55,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         if (req.types() & Location::Stop) {
             placeTypeFilter.push_back(QStringLiteral("STOP"));
         }
-        if (req.types() & Location::RentedVehicleStation) {
+        if (req.types() & (Location::RentedVehicleStation | Location::RentedVehicle)) {
             placeTypeFilter.push_back(QStringLiteral("BICYCLE_RENT"));
         }
         // TODO: also supports BIKE_PARK, CAR_PARK

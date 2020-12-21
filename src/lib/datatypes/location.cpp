@@ -9,6 +9,7 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
+#include "rentalvehicle.h"
 #include "rentalvehicleutil_p.h"
 
 #include <QDebug>
@@ -40,7 +41,7 @@ public:
     QString region;
     QString country;
 
-    RentalVehicleStation rentalVehicleStation;
+    QVariant data;
 };
 
 }
@@ -55,7 +56,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, region, setRegion)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, country, setCountry)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Location, RentalVehicleStation, rentalVehicleStation, setRentalVehicleStation)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QVariant, data, setData)
 
 void Location::setCoordinate(float latitude, float longitude)
 {
@@ -94,6 +95,22 @@ void Location::setIdentifier(const QString &identifierType, const QString &id)
 {
     d.detach();
     d->ids.insert(identifierType, id);
+}
+
+RentalVehicleStation Location::rentalVehicleStation() const
+{
+    return d->data.value<RentalVehicleStation>();
+}
+
+void Location::setRentalVehicleStation(const RentalVehicleStation &dock)
+{
+    d.detach();
+    d->data = QVariant::fromValue(dock);
+}
+
+RentalVehicle Location::rentalVehicle() const
+{
+    return d->data.value<RentalVehicle>();
 }
 
 QHash<QString, QString> Location::identifiers() const
@@ -340,7 +357,17 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     l.setRegion(MergeUtil::mergeString(lhs.region(), rhs.region()));
     l.setCountry(MergeUtil::mergeString(lhs.country(), rhs.country()));
 
-    l.setRentalVehicleStation(RentalVehicleUtil::merge(lhs.rentalVehicleStation(), rhs.rentalVehicleStation()));
+    switch (l.type()) {
+        case Place:
+        case Stop:
+            break;
+        case RentedVehicleStation:
+            l.setData(RentalVehicleUtil::merge(lhs.rentalVehicleStation(), rhs.rentalVehicleStation()));
+            break;
+        case RentedVehicle:
+            l.setData(RentalVehicleUtil::merge(lhs.rentalVehicle(), rhs.rentalVehicle()));
+            break;
+    }
 
     return l;
 }
@@ -372,9 +399,6 @@ QJsonObject Location::toJson(const Location &loc)
     if (loc.timeZone().isValid()) {
         obj.insert(QStringLiteral("timezone"), QString::fromUtf8(loc.timeZone().id()));
     }
-    if (loc.type() == Location::Place) {
-        obj.remove(QLatin1String("type"));
-    }
 
     if (!loc.d->ids.isEmpty()) {
         QJsonObject ids;
@@ -384,8 +408,18 @@ QJsonObject Location::toJson(const Location &loc)
         obj.insert(QStringLiteral("identifier"), ids);
     }
 
-    if (loc.rentalVehicleStation().isValid()) {
-        obj.insert(QStringLiteral("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
+    switch (loc.type()) {
+        case Place:
+            obj.remove(QLatin1String("type"));
+            [[fallthrough]];
+        case Stop:
+            break;
+        case RentedVehicleStation:
+            obj.insert(QStringLiteral("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
+            break;
+        case RentedVehicle:
+            obj.insert(QStringLiteral("rentalVehicle"), RentalVehicle::toJson(loc.rentalVehicle()));
+            break;
     }
 
     return obj;
@@ -409,7 +443,17 @@ Location Location::fromJson(const QJsonObject &obj)
         loc.setIdentifier(it.key(), it.value().toString());
     }
 
-    loc.setRentalVehicleStation(RentalVehicleStation::fromJson(obj.value(QLatin1String("rentalVehicleStation")).toObject()));
+    switch (loc.type()) {
+        case Place:
+        case Stop:
+            break;
+        case RentedVehicleStation:
+            loc.setData(RentalVehicleStation::fromJson(obj.value(QLatin1String("rentalVehicleStation")).toObject()));
+            break;
+        case RentedVehicle:
+            loc.setData(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
+            break;
+    }
 
     return loc;
 }
