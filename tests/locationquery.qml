@@ -58,6 +58,16 @@ Kirigami.ApplicationWindow {
         ]
     }
 
+    function vehicleTypeIcon(type)
+    {
+        switch (type) {
+            case RentalVehicle.ElectricKickScooter: return "🛴";
+            case RentalVehicle.ElectricMoped: return "🛵";
+            case RentalVehicle.Car: return "🚗";
+        }
+        return "🚲";
+    }
+
     Component {
         id: locationDelegate
         Kirigami.SwipeListItem {
@@ -81,15 +91,31 @@ Kirigami.ApplicationWindow {
                         switch (location.type) {
                             case Location.Stop: return "🚏 " + location.name;
                             case Location.RentedVehicleStation:
-                                switch (location.rentalVehicleStation.network.vehicleTypes) {
-                                    case RentalVehicle.ElectricKickScooter: return "🛴 "  + location.name;
-                                    case RentalVehicle.ElectricMoped: return "🛵 "  + location.name;
-                                    case RentalVehicle.Car: return "🚗 "  + location.name;
-                                    default: return "🚲 " + location.name;
+                                return '🚏' + vehicleTypeIcon(location.rentalVehicleStation.network.vehicleTypes) + ' ' + location.name;
+                            case Location.RentedVehicle:
+                                return vehicleTypeIcon(location.rentalVehicle.type) + ' ' + location.name;
+                            case Location.Equipment:
+                                switch (location.equipment.type) {
+                                    case Equipment.Elevator:
+                                        return '🛗 ' + location.name;
+                                    case Equipment.Escalator:
+                                        return '↗ ' + location.name;
+                                    default:
+                                        return '? ' + location.name;
                                 }
-                                break;
                             case Location.Place: return location.name;
                         }
+                    }
+                    color: {
+                        if (location.type == Location.Equipment) {
+                            switch (location.equipment.disruptionEffect) {
+                                case Disruption.NormalService:
+                                    return Kirigami.Theme.positiveTextColor;
+                                case Disruption.NoService:
+                                    return Kirigami.Theme.negativeTextColor;
+                            }
+                        }
+                        return Kirigami.Theme.textColor;
                     }
                 }
                 QQC2.Label {
@@ -111,6 +137,12 @@ Kirigami.ApplicationWindow {
                     text: location.rentalVehicleStation.network.name + " (" + location.rentalVehicleStation.availableVehicles
                         + "/" + location.rentalVehicleStation.capacity + ")"
                     visible: location.rentalVehicleStation.isValid
+                }
+                QQC2.Label {
+                    text: location.equipment ? location.equipment.notes.join("<br/>") : ''
+                    visible: text != ''
+                    font.italic: true
+                    textFormat: Text.RichText
                 }
                 QQC2.Label {
                     text: "Identifiers: " + ExampleUtil.locationIds(location)
@@ -179,9 +211,14 @@ Kirigami.ApplicationWindow {
                         text: "Public Transport Stops"
                     }
                     QQC2.CheckBox {
-                        id: includeDocks
+                        id: includeRentals
                         checked: true
-                        text: "Rental Vehicle Stations"
+                        text: "Rental Vehicles"
+                    }
+                    QQC2.CheckBox {
+                        id: includeEquipment
+                        checked: true
+                        text: "Elevators"
                     }
                 }
 
@@ -233,7 +270,8 @@ Kirigami.ApplicationWindow {
                             locationModel.request.maximumResults = maxResults.text;
                             locationModel.request.maximumDistance = maxDist.text;
                             locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
-                                | (includeDocks.checked ? Location.RentedVehicleStation : Location.Place);
+                                | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
+                                | (includeEquipment.checked ? Location.Equipment : Location.Place);
                         }
                     }
                 }
