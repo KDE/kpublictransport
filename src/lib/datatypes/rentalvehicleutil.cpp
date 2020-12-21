@@ -26,6 +26,8 @@ RentalVehicleStation RentalVehicleUtil::merge(const RentalVehicleStation &lhs, c
 
 RentalVehicle RentalVehicleUtil::merge(const RentalVehicle &lhs, const RentalVehicle &rhs)
 {
-    // TODO
-    return lhs.type() == RentalVehicle::Unknown ? rhs : lhs;
+    auto v = lhs;
+    v.setNetwork(RentalVehicleUtil::merge(lhs.network(), rhs.network()));
+    v.setType(std::max(lhs.type(), rhs.type()));
+    return v;
 }
