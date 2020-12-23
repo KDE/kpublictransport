@@ -44,6 +44,10 @@ bool OpenTripPlannerGraphQLBackend::needsLocationQuery(const Location &loc, Abst
 
 bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & (Location::Stop | Location::RentedVehicle | Location::RentedVehicleStation)) == 0) {
+        return false;
+    }
+
     auto gqlReq = graphQLRequest();
     if (req.hasCoordinate()) {
         gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("stationByCoordinate.graphql")));

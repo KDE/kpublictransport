@@ -49,6 +49,10 @@ bool OpenTripPlannerRestBackend::needsLocationQuery(const Location &loc, Abstrac
 
 bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & Location::Stop) == 0) {
+        return false;
+    }
+
     if (req.hasCoordinate()) {
         QUrlQuery query;
         query.addQueryItem(QStringLiteral("lat"), QString::number(req.latitude()));
