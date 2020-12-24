@@ -65,7 +65,14 @@ bool AccessibilityCloudParser::parseLocations(const QByteArray &data)
         Location loc;
         loc.setType(Location::Equipment);
         loc.setCoordinate(coordinates.at(1).toDouble(), coordinates.at(0).toDouble());
-        loc.setIdentifier(QStringLiteral("a11ycloud"), properties.value(QLatin1String("originalId")).toString());
+        // there seem to be occasionally elements referring to the same piece of equipment (and thus same originalId)
+        // but one of those having a widely wrong coordinate. Our merging code would then produce results that we cannot
+        // match against OSM anymore. By including the sourceId we prevent merging in those cases, and let OSM matching take
+        // care of the bogus elements
+        loc.setIdentifier(QStringLiteral("a11ycloud"),
+                          properties.value(QLatin1String("sourceId")).toString() +
+                          QLatin1Char(':') +
+                          properties.value(QLatin1String("originalId")).toString());
         loc.setName(properties.value(QLatin1String("description")).toString());
         loc.setData(e);
 

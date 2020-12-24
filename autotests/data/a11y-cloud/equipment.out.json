@@ -5,7 +5,7 @@
             "type": "Escalator"
         },
         "identifier": {
-            "a11ycloud": "10317782"
+            "a11ycloud": "nwccXsd9WMekvFs3r:10317782"
         },
         "latitude": 52.52497482299805,
         "longitude": 13.368995666503906,
@@ -18,7 +18,7 @@
             "type": "Escalator"
         },
         "identifier": {
-            "a11ycloud": "10317780"
+            "a11ycloud": "nwccXsd9WMekvFs3r:10317780"
         },
         "latitude": 52.52516555786133,
         "longitude": 13.368868827819824,
@@ -34,7 +34,7 @@
             "type": "Elevator"
         },
         "identifier": {
-            "a11ycloud": "10315353"
+            "a11ycloud": "Wkd92kW7X2rAsbTdH:10315353"
         },
         "latitude": 52.525848388671875,
         "longitude": 13.368924140930176,
@@ -50,7 +50,7 @@
             "type": "Elevator"
         },
         "identifier": {
-            "a11ycloud": "5258"
+            "a11ycloud": "Wkd92kW7X2rAsbTdH:5258"
         },
         "latitude": 52.52568435668945,
         "longitude": 13.36989688873291,
