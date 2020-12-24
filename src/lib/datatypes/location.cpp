@@ -67,7 +67,7 @@ void Location::setCoordinate(float latitude, float longitude)
 
 bool Location::hasCoordinate() const
 {
-    return !std::isnan(d->latitude) && !std::isnan(d->longitude);
+    return !std::isnan(d->latitude) && !std::isnan(d->longitude) && std::abs(d->latitude) <= 90.0 && std::abs(d->longitude) <= 180.0;
 }
 
 bool Location::isEmpty() const
