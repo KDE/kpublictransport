@@ -45,9 +45,16 @@ bool AccessibilityCloudParser::parseLocations(const QByteArray &data)
             continue;
         }
 
-        Equipment e;
         const auto properties = feature.value(QLatin1String("properties")).toObject();
+
+        // ignore old entries, seems to be mostly duplicates messing up matching with OSM data
+        const auto lastUpdate = QDateTime::fromString(properties.value(QLatin1String("lastUpdate")).toString(), Qt::ISODate);
+        if (lastUpdate.isValid() && lastUpdate.addDays(1) < QDateTime::currentDateTime()) {
+            continue;
+        }
+
         const auto type = properties.value(QLatin1String("category")).toString();
+        Equipment e;
         if (type == QLatin1String("elevator")) {
             e.setType(Equipment::Elevator);
         } else if (type == QLatin1String("escalator")) {

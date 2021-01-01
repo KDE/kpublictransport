@@ -46,7 +46,7 @@
         "placeInfoId": "hBkEGMEzkJ659qQwG",
         "longDescription": "zu Gleis 13/14",
         "shortDescription": "→ Gleis 13/14",
-        "lastUpdate": "2020-12-20T15:31:13.365Z",
+        "lastUpdate": "3020-12-20T15:31:13.365Z",
         "sourceName": "FaSta",
         "organizationName": "DB Station&Service AG",
         "sourceOrganizationId": "6ZhFGZ97omm6uKyfn",
@@ -85,7 +85,7 @@
         "isVoiceActivated": false,
         "hasHeadPhoneJack": false,
         "isEasyToUnderstand": false,
-        "lastUpdate": "2020-12-20T15:31:13.264Z",
+        "lastUpdate": "3020-12-20T15:31:13.264Z",
         "organizationName": "DB Station&Service AG",
         "sourceName": "FaSta",
         "sourceOrganizationId": "6ZhFGZ97omm6uKyfn",
@@ -114,7 +114,7 @@
         "sourceImportId": "FoDK5KT334Y83tiqo",
         "sourceName": "VBB Anlagen (S-Bahn + BVG)",
         "organizationName": "VBB Verkehrsverbund Berlin-Brandenburg GmbH",
-        "lastUpdate": "2020-12-18T17:40:02.398Z",
+        "lastUpdate": "3020-12-18T17:40:02.398Z",
         "placeInfoId": "q4cSsptF8LzuZcp5R",
         "description": "zwischen OG 2 S-Bahnsteig Gl. 15 und 16 und OG 1 und EG und UG 1 und Tunnelbahnsteig UG 2 Gl. 5 und 6",
         "longDescription": "zwischen Obergeschoß 2 S-Bahnsteig Gleis 15 und 16 und OG 1 und Erdgeschoß und Untergeschoss 1 und Tunnelbahnsteig Untergeschoss 2 Gleis 5 und 6",
@@ -128,7 +128,7 @@
           "stateExplanation": "Außer Betrieb",
           "sourceId": "vhoBSMAD7JEXNwgCy",
           "sourceImportId": "7pNB4ZeDGjAENN24A",
-          "lastUpdate": "2020-12-18T17:40:02.375Z"
+          "lastUpdate": "3020-12-18T17:40:02.375Z"
         },
         "ownerId": "sakKuZ2ACs6cWeKhT",
         "transitNetworkId": "Qr3iwpT9EDkGLN7gg",
@@ -155,7 +155,7 @@
           "operator": "BVG"
         },
         "sourceImportId": "guzxMQ6uJBPrK2xHg",
-        "lastUpdate": "2020-12-20T15:30:06.091Z",
+        "lastUpdate": "3020-12-20T15:30:06.091Z",
         "placeInfoId": "q4cSsptF8LzuZcp5R",
         "disruptionSourceImportId": "3wBsLuvb5daRZiG75",
         "isWorking": true,
@@ -165,7 +165,7 @@
           "stateExplanation": "In Betrieb",
           "sourceId": "PDphRFL4SwhE8N4tb",
           "sourceImportId": "3wBsLuvb5daRZiG75",
-          "lastUpdate": "2020-12-20T15:30:06.077Z"
+          "lastUpdate": "3020-12-20T15:30:06.077Z"
         },
         "organizationName": "VBB Verkehrsverbund Berlin-Brandenburg GmbH",
         "sourceName": "VBB Anlagen (S-Bahn + BVG)",
