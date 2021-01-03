@@ -9,6 +9,8 @@
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Equipment>
 
+#include <QDebug>
+#include <QDateTime>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
