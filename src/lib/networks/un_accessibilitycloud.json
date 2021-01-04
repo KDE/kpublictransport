@@ -1,7 +1,21 @@
 {
     "KPlugin": {
         "Description": "Realtime status information for elevators and escalators.",
-        "Name": "Accessibility Cloud"
+        "Description[ca]": "Estat de la informació en temps real per als ascensors i escales mecàniques.",
+        "Description[es]": "Información de estado en tiempo real sobre los ascensores y las escaleras mecánicas.",
+        "Description[nl]": "Statusinformatie in realtime voor liften en roltrappen.",
+        "Description[pt]": "Informação em tempo-real do estado dos elevadores e escadas-rolantes.",
+        "Description[sv]": "Realtidsinformation för hissar och rulltrappor.",
+        "Description[uk]": "Інтерактивні відомості щодо стану для ліфтів і ескалаторів.",
+        "Description[x-test]": "xxRealtime status information for elevators and escalators.xx",
+        "Name": "Accessibility Cloud",
+        "Name[ca]": "Accessibility Cloud",
+        "Name[es]": "Nube de accesibilidad",
+        "Name[nl]": "Toegankelijkheid in cloud",
+        "Name[pt]": "Nuvem de Acessibilidade",
+        "Name[sv]": "Accessibility Cloud",
+        "Name[uk]": "Хмара доступності",
+        "Name[x-test]": "xxAccessibility Cloudxx"
     },
     "attribution": {
         "name": "Accessibility Cloud by Sozialhelden e.V.",
