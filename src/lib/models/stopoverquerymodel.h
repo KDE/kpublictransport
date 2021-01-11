@@ -57,6 +57,7 @@ public:
     enum Roles {
         DepartureRole = Qt::UserRole
     };
+    Q_ENUM(Roles)
 
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;
