@@ -8,6 +8,7 @@
         "Description[fr]": "Informations d'état en temps réel pour les ascenseurs et les escaliers mécaniques.",
         "Description[nl]": "Statusinformatie in realtime voor liften en roltrappen.",
         "Description[pt]": "Informação em tempo-real do estado dos elevadores e escadas-rolantes.",
+        "Description[pt_BR]": "Informação de status em tempo real para elevadores e escadas rolantes.",
         "Description[sl]": "Stanje sprotnih informacij o dvigalih in tekočih stopnicah.",
         "Description[sv]": "Realtidsinformation för hissar och rulltrappor.",
         "Description[uk]": "Інтерактивні відомості щодо стану для ліфтів і ескалаторів.",
@@ -20,6 +21,7 @@
         "Name[fr]": "Informations « Cloud » pour l'accessibilité",
         "Name[nl]": "Toegankelijkheid in cloud",
         "Name[pt]": "Nuvem de Acessibilidade",
+        "Name[pt_BR]": "Nuvem de acessibilidade",
         "Name[sv]": "Accessibility Cloud",
         "Name[uk]": "Хмара доступності",
         "Name[x-test]": "xxAccessibility Cloudxx"
