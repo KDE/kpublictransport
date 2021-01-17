@@ -42,35 +42,48 @@
         "url": "https://stadtnavi.de/"
     },
     "comment": "See https://github.com/stadtnavi/digitransit-ui/blob/master/app/configurations/config.hb.js for their rental vehicle config and https://github.com/stadtnavi/static-gbfs-feeds for their dummy GBFS feeds that we ignore below",
-    "filter": {
-        "geo": [
-            [
-                7.503590600000001,
-                49.8348605
-            ],
-            [
-                11.082291,
-                49.8348605
-            ],
-            [
-                11.082291,
-                47.525812300000005
-            ],
-            [
-                7.503590600000001,
-                47.525812300000005
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            7.503590600000001,
+                            49.8348605
+                        ],
+                        [
+                            11.082291,
+                            49.8348605
+                        ],
+                        [
+                            11.082291,
+                            47.525812300000005
+                        ],
+                        [
+                            7.503590600000001,
+                            47.525812300000005
+                        ],
+                        [
+                            7.503590600000001,
+                            49.8348605
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
         "rentalVehicleNetworks": {
-            "car-sharing": {},
+            "car-sharing": {
+            },
             "regiorad": {
                 "name": "RegioRad",
                 "vehicleTypes": "Bicycle"
             },
-            "taxi": {}
+            "taxi": {
+            }
         },
         "supportedTransitModes": [
             "TRANSIT",

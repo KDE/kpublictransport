@@ -43,25 +43,36 @@
         "url": "https://digitransit.im.verschwoerhaus.de/tietoja-palvelusta"
     },
     "comment": "see https://github.com/verschwoerhaus/digitransit-ui/blob/ulm/app/configurations/config.vsh.js for rental vehicle config",
-    "filter": {
-        "geo": [
-            [
-                8.6407794,
-                49.0365089
-            ],
-            [
-                11.3182223,
-                49.0365089
-            ],
-            [
-                11.3182223,
-                48.2892591
-            ],
-            [
-                8.6407794,
-                48.2892591
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            8.6407794,
+                            49.0365089
+                        ],
+                        [
+                            11.3182223,
+                            49.0365089
+                        ],
+                        [
+                            11.3182223,
+                            48.2892591
+                        ],
+                        [
+                            8.6407794,
+                            48.2892591
+                        ],
+                        [
+                            8.6407794,
+                            49.0365089
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",

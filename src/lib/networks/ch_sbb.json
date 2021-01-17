@@ -37,25 +37,36 @@
         "Name[uk]": "Федеральна залізниця Швейцарії (SBB/CFF/FFS)",
         "Name[x-test]": "xxSwiss Federal Railways (SBB/CFF/FFS)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                5.865,
-                45.912
-            ],
-            [
-                10.432,
-                45.704
-            ],
-            [
-                10.532,
-                47.851
-            ],
-            [
-                6.381,
-                47.773
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            5.865,
+                            45.912
+                        ],
+                        [
+                            10.432,
+                            45.704
+                        ],
+                        [
+                            10.532,
+                            47.851
+                        ],
+                        [
+                            6.381,
+                            47.773
+                        ],
+                        [
+                            5.865,
+                            45.912
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "http://fahrplan.sbb.ch/bin/",

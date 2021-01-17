@@ -38,29 +38,40 @@
         "Name[uk]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[x-test]": "xxVerkehrsverbund Bremen/Niedersachsen (VBN)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                6.8558,
-                53.8848
-            ],
-            [
-                6.6065,
-                52.0076
-            ],
-            [
-                10.7129,
-                51.0397
-            ],
-            [
-                11.6759,
-                53.1955
-            ],
-            [
-                9.6178,
-                53.9532
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            6.8558,
+                            53.8848
+                        ],
+                        [
+                            6.6065,
+                            52.0076
+                        ],
+                        [
+                            10.7129,
+                            51.0397
+                        ],
+                        [
+                            11.6759,
+                            53.1955
+                        ],
+                        [
+                            9.6178,
+                            53.9532
+                        ],
+                        [
+                            6.8558,
+                            53.8848
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

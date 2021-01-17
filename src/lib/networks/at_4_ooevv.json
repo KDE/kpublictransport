@@ -37,25 +37,36 @@
         "Name[uk]": "Oberösterreichischer Verkehrsverbund (OÖVV)",
         "Name[x-test]": "xxOberösterreichischer Verkehrsverbund (OÖVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                12.6675,
-                48.0845
-            ],
-            [
-                13.6613,
-                48.8819
-            ],
-            [
-                15.4156,
-                48.3973
-            ],
-            [
-                13.9864,
-                47.1644
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            12.6675,
+                            48.0845
+                        ],
+                        [
+                            13.6613,
+                            48.8819
+                        ],
+                        [
+                            15.4156,
+                            48.3973
+                        ],
+                        [
+                            13.9864,
+                            47.1644
+                        ],
+                        [
+                            12.6675,
+                            48.0845
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

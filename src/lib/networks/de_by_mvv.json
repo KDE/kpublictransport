@@ -39,25 +39,36 @@
         "Name[uk]": "Münchener Verkehrs- und Tarifverbund (MVV)",
         "Name[x-test]": "xxMünchener Verkehrs- und Tarifverbund (MVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                10.7372,
-                48.5128
-            ],
-            [
-                11.1456,
-                47.7161
-            ],
-            [
-                12.6185,
-                48.1111
-            ],
-            [
-                12.0896,
-                48.8074
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            10.7372,
+                            48.5128
+                        ],
+                        [
+                            11.1456,
+                            47.7161
+                        ],
+                        [
+                            12.6185,
+                            48.1111
+                        ],
+                        [
+                            12.0896,
+                            48.8074
+                        ],
+                        [
+                            10.7372,
+                            48.5128
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://efa.mvv-muenchen.de/mobile/"

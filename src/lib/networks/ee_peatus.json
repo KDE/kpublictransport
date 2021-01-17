@@ -35,25 +35,36 @@
         "Name[uk]": "Peatus",
         "Name[x-test]": "xxPeatusxx"
     },
-    "filter": {
-        "geo": [
-            [
-                21.511,
-                59.845
-            ],
-            [
-                28.246,
-                59.845
-            ],
-            [
-                28.246,
-                57.463
-            ],
-            [
-                21.511,
-                57.463
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            21.511,
+                            59.845
+                        ],
+                        [
+                            28.246,
+                            59.845
+                        ],
+                        [
+                            28.246,
+                            57.463
+                        ],
+                        [
+                            21.511,
+                            57.463
+                        ],
+                        [
+                            21.511,
+                            59.845
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "customCaCertificate": "sectigo-rsa-domain-validation-secure-server-ca.pem",

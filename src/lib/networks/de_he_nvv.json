@@ -38,25 +38,36 @@
         "Name[uk]": "Nordhessische Verkehrsverbund (NVV)",
         "Name[x-test]": "xxNordhessische Verkehrsverbund (NVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                9.0785,
-                51.7583
-            ],
-            [
-                7.9509,
-                50.6926
-            ],
-            [
-                10.0823,
-                50.1451
-            ],
-            [
-                10.2745,
-                51.4976
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            9.0785,
+                            51.7583
+                        ],
+                        [
+                            7.9509,
+                            50.6926
+                        ],
+                        [
+                            10.0823,
+                            50.1451
+                        ],
+                        [
+                            10.2745,
+                            51.4976
+                        ],
+                        [
+                            9.0785,
+                            51.7583
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

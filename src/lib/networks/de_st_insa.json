@@ -38,29 +38,40 @@
         "Name[uk]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
         "Name[x-test]": "xxNahverkehrsservice Sachsen-Anhalt (INSA)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                10.659,
-                52.8566
-            ],
-            [
-                11.9562,
-                53.1108
-            ],
-            [
-                13.325,
-                51.768
-            ],
-            [
-                12.1387,
-                50.8555
-            ],
-            [
-                10.515,
-                51.3965
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            10.659,
+                            52.8566
+                        ],
+                        [
+                            11.9562,
+                            53.1108
+                        ],
+                        [
+                            13.325,
+                            51.768
+                        ],
+                        [
+                            12.1387,
+                            50.8555
+                        ],
+                        [
+                            10.515,
+                            51.3965
+                        ],
+                        [
+                            10.659,
+                            52.8566
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

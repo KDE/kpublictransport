@@ -37,25 +37,36 @@
         "Name[uk]": "Verkehrsverbund Tirol (VVT)",
         "Name[x-test]": "xxVerkehrsverbund Tirol (VVT)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                13.0081,
-                46.6172
-            ],
-            [
-                12.5874,
-                47.7814
-            ],
-            [
-                10.1625,
-                47.5524
-            ],
-            [
-                10.0635,
-                46.8041
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            13.0081,
+                            46.6172
+                        ],
+                        [
+                            12.5874,
+                            47.7814
+                        ],
+                        [
+                            10.1625,
+                            47.5524
+                        ],
+                        [
+                            10.0635,
+                            46.8041
+                        ],
+                        [
+                            13.0081,
+                            46.6172
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

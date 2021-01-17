@@ -36,25 +36,36 @@
         "Name[uk]": "Muoversi in Piemonte",
         "Name[x-test]": "xxMuoversi in Piemontexx"
     },
-    "filter": {
-        "geo": [
-            [
-                0,
-                46.468669600000005
-            ],
-            [
-                11.276394,
-                46.468669600000005
-            ],
-            [
-                11.276394,
-                -6.927976224346821e-05
-            ],
-            [
-                0,
-                -6.927976224346821e-05
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            0,
+                            46.468669600000005
+                        ],
+                        [
+                            11.276394,
+                            46.468669600000005
+                        ],
+                        [
+                            11.276394,
+                            -6.927976224346821e-05
+                        ],
+                        [
+                            0,
+                            -6.927976224346821e-05
+                        ],
+                        [
+                            0,
+                            46.468669600000005
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://map.muoversinpiemonte.it/otp/routers/mip/"

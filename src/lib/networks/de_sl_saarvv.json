@@ -38,25 +38,36 @@
         "Name[uk]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[x-test]": "xxSaarländischer Verkehrsverbund (saarVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                6.2763,
-                49.521
-            ],
-            [
-                7.2515,
-                49.6907
-            ],
-            [
-                7.4934,
-                49.1165
-            ],
-            [
-                6.7097,
-                49.0569
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            6.2763,
+                            49.521
+                        ],
+                        [
+                            7.2515,
+                            49.6907
+                        ],
+                        [
+                            7.4934,
+                            49.1165
+                        ],
+                        [
+                            6.7097,
+                            49.0569
+                        ],
+                        [
+                            6.2763,
+                            49.521
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

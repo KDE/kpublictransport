@@ -39,29 +39,40 @@
         "Name[uk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[x-test]": "xxNahverkehrsverbund Schleswig-Holstein (NAH.SH)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                8.3615,
-                55.0988
-            ],
-            [
-                11.4217,
-                54.5122
-            ],
-            [
-                10.8384,
-                53.2737
-            ],
-            [
-                9.828,
-                53.407
-            ],
-            [
-                8.0388,
-                54.4111
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            8.3615,
+                            55.0988
+                        ],
+                        [
+                            11.4217,
+                            54.5122
+                        ],
+                        [
+                            10.8384,
+                            53.2737
+                        ],
+                        [
+                            9.828,
+                            53.407
+                        ],
+                        [
+                            8.0388,
+                            54.4111
+                        ],
+                        [
+                            8.3615,
+                            55.0988
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

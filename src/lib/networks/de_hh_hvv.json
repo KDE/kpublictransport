@@ -38,25 +38,36 @@
         "Name[uk]": "Hamburger Verkehrsverbund (HVV)",
         "Name[x-test]": "xxHamburger Verkehrsverbund (HVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                9.6276,
-                53.9426
-            ],
-            [
-                9.5665,
-                53.2509
-            ],
-            [
-                10.5173,
-                53.1703
-            ],
-            [
-                10.5173,
-                53.8864
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            9.6276,
+                            53.9426
+                        ],
+                        [
+                            9.5665,
+                            53.2509
+                        ],
+                        [
+                            10.5173,
+                            53.1703
+                        ],
+                        [
+                            10.5173,
+                            53.8864
+                        ],
+                        [
+                            9.6276,
+                            53.9426
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

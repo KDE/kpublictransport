@@ -37,25 +37,36 @@
         "Name[uk]": "Metromobilite",
         "Name[x-test]": "xxMetromobilitexx"
     },
-    "filter": {
-        "geo": [
-            [
-                4.70376,
-                46.21056
-            ],
-            [
-                6.343168400000001,
-                46.21056
-            ],
-            [
-                6.343168400000001,
-                43.94188
-            ],
-            [
-                4.70376,
-                43.94188
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            4.70376,
+                            46.21056
+                        ],
+                        [
+                            6.343168400000001,
+                            46.21056
+                        ],
+                        [
+                            6.343168400000001,
+                            43.94188
+                        ],
+                        [
+                            4.70376,
+                            43.94188
+                        ],
+                        [
+                            4.70376,
+                            46.21056
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://data.mobilites-m.fr/api/routers/default/"

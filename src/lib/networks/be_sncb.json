@@ -38,25 +38,36 @@
         "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)",
         "Name[x-test]": "xxNational Railway Company of Belgium (NMBS/SNCB)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                1.797,
-                51.1
-            ],
-            [
-                5.55,
-                49.124
-            ],
-            [
-                6.598,
-                50.464
-            ],
-            [
-                5.154,
-                51.837
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            1.797,
+                            51.1
+                        ],
+                        [
+                            5.55,
+                            49.124
+                        ],
+                        [
+                            6.598,
+                            50.464
+                        ],
+                        [
+                            5.154,
+                            51.837
+                        ],
+                        [
+                            1.797,
+                            51.1
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

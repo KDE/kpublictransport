@@ -38,25 +38,36 @@
         "Name[uk]": "Bayern Fahrplan",
         "Name[x-test]": "xxBayern Fahrplanxx"
     },
-    "filter": {
-        "geo": [
-            [
-                8.7591,
-                50.5296
-            ],
-            [
-                12.872,
-                50.66655
-            ],
-            [
-                14.3451,
-                47.6552
-            ],
-            [
-                9.9063,
-                46.9968
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            8.7591,
+                            50.5296
+                        ],
+                        [
+                            12.872,
+                            50.66655
+                        ],
+                        [
+                            14.3451,
+                            47.6552
+                        ],
+                        [
+                            9.9063,
+                            46.9968
+                        ],
+                        [
+                            8.7591,
+                            50.5296
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "compactXmlRepsonse": true,

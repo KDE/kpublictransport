@@ -13,3 +13,6 @@ add_executable(gbfsprobe gbfsprobe.cpp)
 target_link_libraries(gbfsprobe Qt5::Network KPublicTransport)
 add_custom_target(run-gbfs-probe COMMAND gbfsprobe ${CMAKE_SOURCE_DIR}/src/lib/gbfs/gbfs-feeds.json)
 
+add_executable(transport-api-sync transport-api-sync.cpp)
+target_link_libraries(transport-api-sync Qt5::Core)
+add_custom_target(run-transport-api-sync COMMAND transport-api-sync ${CMAKE_SOURCE_DIR}/src/lib/networks)

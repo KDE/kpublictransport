@@ -38,25 +38,36 @@
         "Name[uk]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[x-test]": "xxVerkehrsverbund Mittelthüringen (VMT)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                9.8333,
-                51.7011
-            ],
-            [
-                9.8812,
-                50.2173
-            ],
-            [
-                12.5934,
-                50.1455
-            ],
-            [
-                12.71307,
-                51.5734
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            9.8333,
+                            51.7011
+                        ],
+                        [
+                            9.8812,
+                            50.2173
+                        ],
+                        [
+                            12.5934,
+                            50.1455
+                        ],
+                        [
+                            12.71307,
+                            51.5734
+                        ],
+                        [
+                            9.8333,
+                            51.7011
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

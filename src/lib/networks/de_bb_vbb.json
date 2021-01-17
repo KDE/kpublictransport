@@ -38,25 +38,36 @@
         "Name[uk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[x-test]": "xxVerkehrsverbund Berlin-Brandenburg (VBB)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                11.05,
-                53.255
-            ],
-            [
-                14.45,
-                53.658
-            ],
-            [
-                14.908,
-                51.4295
-            ],
-            [
-                13.149,
-                51.25
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            11.05,
+                            53.255
+                        ],
+                        [
+                            14.45,
+                            53.658
+                        ],
+                        [
+                            14.908,
+                            51.4295
+                        ],
+                        [
+                            13.149,
+                            51.25
+                        ],
+                        [
+                            11.05,
+                            53.255
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

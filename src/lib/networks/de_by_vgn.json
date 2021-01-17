@@ -39,29 +39,40 @@
         "Name[uk]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[x-test]": "xxVerkehrsverbund Großraum Nürnberg (VGN)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                10.6873,
-                50.3015
-            ],
-            [
-                9.8878,
-                49.4411
-            ],
-            [
-                10.2789,
-                48.5807
-            ],
-            [
-                12.6601,
-                48.6416
-            ],
-            [
-                12.2778,
-                50.25808
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            10.6873,
+                            50.3015
+                        ],
+                        [
+                            9.8878,
+                            49.4411
+                        ],
+                        [
+                            10.2789,
+                            48.5807
+                        ],
+                        [
+                            12.6601,
+                            48.6416
+                        ],
+                        [
+                            12.2778,
+                            50.25808
+                        ],
+                        [
+                            10.6873,
+                            50.3015
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://efa.vgn.de/vgn/"

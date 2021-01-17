@@ -38,25 +38,36 @@
         "Name[uk]": "Salzburger Verkehrsverbund (SVV)",
         "Name[x-test]": "xxSalzburger Verkehrsverbund (SVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                12.7865,
-                48.0288
-            ],
-            [
-                11.9051,
-                47.0342
-            ],
-            [
-                14.1444,
-                46.8972
-            ],
-            [
-                13.3701,
-                48.0764
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            12.7865,
+                            48.0288
+                        ],
+                        [
+                            11.9051,
+                            47.0342
+                        ],
+                        [
+                            14.1444,
+                            46.8972
+                        ],
+                        [
+                            13.3701,
+                            48.0764
+                        ],
+                        [
+                            12.7865,
+                            48.0288
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

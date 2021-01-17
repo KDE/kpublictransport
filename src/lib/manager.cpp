@@ -19,6 +19,7 @@
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/backend.h"
 #include "datatypes/disruption.h"
+#include "datatypes/geojson_p.h"
 #include "datatypes/platform.h"
 #include "datatypes/vehicle.h"
 #include "datatypes/vehiclelayoutresult_p.h"
@@ -239,15 +240,13 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         }
     }
 
-    const auto filter = obj.value(QLatin1String("filter")).toObject();
-    const auto geoFilter = filter.value(QLatin1String("geo")).toArray();
-    if (!geoFilter.isEmpty()) {
-        QPolygonF poly;
-        poly.reserve(geoFilter.size());
-        for (const auto &coordV : geoFilter) {
-            const auto coordA = coordV.toArray();
-            poly.push_back({coordA[0].toDouble(), coordA[1].toDouble()});
+    const auto coverageData = obj.value(QLatin1String("coverage")).toObject();
+    for (const auto &coverageType : { "anyCoverage", "regularCoverage", "realtimeCoverage" }) {
+        const auto coverage = coverageData.value(QLatin1String(coverageType)).toObject();
+        if (coverage.empty()) {
+            continue;
         }
+        const auto poly = GeoJson::readOuterPolygon(coverage.value(QLatin1String("area")).toObject());
         backend->setGeoFilter(poly);
     }
 

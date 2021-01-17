@@ -40,25 +40,36 @@
         "Name[x-test]": "xxKarlsruher Verkehrsverbund (KVV)xx",
         "Name[zh_TW]": "Karlsruher Verkehrsverbund (KVV)"
     },
-    "filter": {
-        "geo": [
-            [
-                8.0198,
-                49.188
-            ],
-            [
-                8.7412,
-                49.075
-            ],
-            [
-                8.4674,
-                48.21467
-            ],
-            [
-                7.6201,
-                48.358
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            8.0198,
+                            49.188
+                        ],
+                        [
+                            8.7412,
+                            49.075
+                        ],
+                        [
+                            8.4674,
+                            48.21467
+                        ],
+                        [
+                            7.6201,
+                            48.358
+                        ],
+                        [
+                            8.0198,
+                            49.188
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://projekte.kvv-efa.de/sl3/"

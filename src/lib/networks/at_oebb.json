@@ -39,25 +39,36 @@
         "Name[uk]": "Österreichische Bundesbahnen (ÖBB)",
         "Name[x-test]": "xxÖsterreichische Bundesbahnen (ÖBB)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                9.145,
-                47.724
-            ],
-            [
-                17.052,
-                49.537
-            ],
-            [
-                17.325,
-                46.267
-            ],
-            [
-                9.622,
-                46.492
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            9.145,
+                            47.724
+                        ],
+                        [
+                            17.052,
+                            49.537
+                        ],
+                        [
+                            17.325,
+                            46.267
+                        ],
+                        [
+                            9.622,
+                            46.492
+                        ],
+                        [
+                            9.145,
+                            47.724
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

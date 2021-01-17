@@ -39,25 +39,36 @@
         "Name[uk]": "Danske Statsbaner (DSB)",
         "Name[x-test]": "xxDanske Statsbaner (DSB)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                8.01,
-                54.536
-            ],
-            [
-                12.4214,
-                54.237
-            ],
-            [
-                13.89,
-                57.646
-            ],
-            [
-                7.85,
-                58.036
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            8.01,
+                            54.536
+                        ],
+                        [
+                            12.4214,
+                            54.237
+                        ],
+                        [
+                            13.89,
+                            57.646
+                        ],
+                        [
+                            7.85,
+                            58.036
+                        ],
+                        [
+                            8.01,
+                            54.536
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

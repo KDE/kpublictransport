@@ -38,25 +38,36 @@
         "Name[uk]": "Société Nationale des Chemins de Fer Tunisiens (SNCFT)",
         "Name[x-test]": "xxSociété Nationale des Chemins de Fer Tunisiens (SNCFT)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                7.5435563000000005,
-                37.5308159
-            ],
-            [
-                11.5933919,
-                37.5308159
-            ],
-            [
-                11.5933919,
-                30.2440135
-            ],
-            [
-                7.5435563000000005,
-                30.2440135
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            7.5435563000000005,
+                            37.5308159
+                        ],
+                        [
+                            11.5933919,
+                            37.5308159
+                        ],
+                        [
+                            11.5933919,
+                            30.2440135
+                        ],
+                        [
+                            7.5435563000000005,
+                            30.2440135
+                        ],
+                        [
+                            7.5435563000000005,
+                            37.5308159
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://planner.sncft.com.tn/otp/routers/default/"

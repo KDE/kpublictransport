@@ -44,25 +44,36 @@
         "name": "© Helsinki Region Transport"
     },
     "comment": "see https://github.com/HSLdevcom/digitransit-ui/blob/master/app/configurations/config.hsl.js for the rental vehicle network config",
-    "filter": {
-        "geo": [
-            [
-                19.5364379883,
-                66.5802673946
-            ],
-            [
-                29.5712215851,
-                66.5802673946
-            ],
-            [
-                29.5712215851,
-                59.7865148075
-            ],
-            [
-                19.5364379883,
-                59.7865148075
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            19.5364379883,
+                            66.5802673946
+                        ],
+                        [
+                            29.5712215851,
+                            66.5802673946
+                        ],
+                        [
+                            29.5712215851,
+                            59.7865148075
+                        ],
+                        [
+                            19.5364379883,
+                            59.7865148075
+                        ],
+                        [
+                            19.5364379883,
+                            66.5802673946
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/",

@@ -38,25 +38,36 @@
         "Name[uk]": "Verkehrsverbund Vorarlberg (VVV)",
         "Name[x-test]": "xxVerkehrsverbund Vorarlberg (VVV)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                9.5377,
-                47.5847
-            ],
-            [
-                10.2702,
-                47.6116
-            ],
-            [
-                10.1613,
-                46.8297
-            ],
-            [
-                9.4614,
-                47.0601
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            9.5377,
+                            47.5847
+                        ],
+                        [
+                            10.2702,
+                            47.6116
+                        ],
+                        [
+                            10.1613,
+                            46.8297
+                        ],
+                        [
+                            9.4614,
+                            47.0601
+                        ],
+                        [
+                            9.5377,
+                            47.5847
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

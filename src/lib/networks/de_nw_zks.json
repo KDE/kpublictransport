@@ -36,25 +36,36 @@
         "Name[uk]": "Delfi NRW",
         "Name[x-test]": "xxDelfi NRWxx"
     },
-    "filter": {
-        "geo": [
-            [
-                5.6532,
-                51.7795
-            ],
-            [
-                6.0541,
-                50.1499
-            ],
-            [
-                9.8753,
-                51.1244
-            ],
-            [
-                8.8895,
-                52.9446
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            5.6532,
+                            51.7795
+                        ],
+                        [
+                            6.0541,
+                            50.1499
+                        ],
+                        [
+                            9.8753,
+                            51.1244
+                        ],
+                        [
+                            8.8895,
+                            52.9446
+                        ],
+                        [
+                            5.6532,
+                            51.7795
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "customCaCertificate": "thawte-rsa-ca-2018.pem",

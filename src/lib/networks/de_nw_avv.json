@@ -40,25 +40,36 @@
         "Name[x-test]": "xxAachener Verkehrsverbund (AVV)xx",
         "Name[zh_TW]": "Aachener Verkehrsverbund (AVV)"
     },
-    "filter": {
-        "geo": [
-            [
-                5.8488,
-                51.1879
-            ],
-            [
-                5.8194,
-                50.7024
-            ],
-            [
-                6.3442,
-                50.5655
-            ],
-            [
-                6.5723,
-                51.1912
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            5.8488,
+                            51.1879
+                        ],
+                        [
+                            5.8194,
+                            50.7024
+                        ],
+                        [
+                            6.3442,
+                            50.5655
+                        ],
+                        [
+                            6.5723,
+                            51.1912
+                        ],
+                        [
+                            5.8488,
+                            51.1879
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {

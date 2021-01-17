@@ -36,25 +36,36 @@
         "Name[uk]": "Транспорт у Ірландії",
         "Name[x-test]": "xxTransport For Irelandxx"
     },
-    "filter": {
-        "geo": [
-            [
-                -8.0224,
-                56.4896
-            ],
-            [
-                -5.4934,
-                53.4652
-            ],
-            [
-                -7.6834,
-                49.3197
-            ],
-            [
-                -12.8979,
-                52.0573
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            -8.0224,
+                            56.4896
+                        ],
+                        [
+                            -5.4934,
+                            53.4652
+                        ],
+                        [
+                            -7.6834,
+                            49.3197
+                        ],
+                        [
+                            -12.8979,
+                            52.0573
+                        ],
+                        [
+                            -8.0224,
+                            56.4896
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://www.journeyplanner.transportforireland.ie/nta/"

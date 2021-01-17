@@ -38,25 +38,36 @@
         "Name[uk]": "Digitransit Finland",
         "Name[x-test]": "xxDigitransit Finlandxx"
     },
-    "filter": {
-        "geo": [
-            [
-                19.3167101,
-                70.1383835
-            ],
-            [
-                37.653402,
-                70.1383835
-            ],
-            [
-                37.653402,
-                55.776771
-            ],
-            [
-                19.3167101,
-                55.776771
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            19.3167101,
+                            70.1383835
+                        ],
+                        [
+                            37.653402,
+                            70.1383835
+                        ],
+                        [
+                            37.653402,
+                            55.776771
+                        ],
+                        [
+                            19.3167101,
+                            55.776771
+                        ],
+                        [
+                            19.3167101,
+                            70.1383835
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/"

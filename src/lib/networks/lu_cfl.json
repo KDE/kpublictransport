@@ -37,25 +37,36 @@
         "Name[uk]": "Chemins de Fer Luxembourgeois (CFL)",
         "Name[x-test]": "xxChemins de Fer Luxembourgeois (CFL)xx"
     },
-    "filter": {
-        "geo": [
-            [
-                5.7234,
-                50.2093
-            ],
-            [
-                6.5341,
-                50.1182
-            ],
-            [
-                6.4621,
-                49.3772
-            ],
-            [
-                5.6922,
-                49.4688
-            ]
-        ]
+    "coverage": {
+        "anyCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            5.7234,
+                            50.2093
+                        ],
+                        [
+                            6.5341,
+                            50.1182
+                        ],
+                        [
+                            6.4621,
+                            49.3772
+                        ],
+                        [
+                            5.6922,
+                            49.4688
+                        ],
+                        [
+                            5.7234,
+                            50.2093
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            }
+        }
     },
     "options": {
         "auth": {
