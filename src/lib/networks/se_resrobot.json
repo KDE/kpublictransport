@@ -69,7 +69,8 @@
                     ]
                 ],
                 "type": "Polygon"
-            }
+            },
+            "region": [ "SE" ]
         }
     },
     "options": {

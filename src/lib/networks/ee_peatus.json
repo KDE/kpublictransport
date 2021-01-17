@@ -63,7 +63,8 @@
                     ]
                 ],
                 "type": "Polygon"
-            }
+            },
+            "region": [ "EE" ]
         }
     },
     "options": {

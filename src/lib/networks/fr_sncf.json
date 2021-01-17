@@ -69,7 +69,8 @@
                     ]
                 ],
                 "type": "Polygon"
-            }
+            },
+            "region": [ "FR" ]
         }
     },
     "options": {

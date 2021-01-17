@@ -70,7 +70,8 @@
                     ]
                 ],
                 "type": "Polygon"
-            }
+            },
+            "region": [ "DE-ST" ]
         }
     },
     "options": {
