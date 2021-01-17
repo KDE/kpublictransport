@@ -5,6 +5,7 @@
 */
 
 #include "accessibilitycloudparser.h"
+#include "../datatypes/geojson_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Equipment>
@@ -14,6 +15,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QPointF>
 #include <QUrl>
 
 using namespace KPublicTransport;
@@ -42,8 +44,8 @@ bool AccessibilityCloudParser::parseLocations(const QByteArray &data)
     const auto features = obj.value(QLatin1String("features")).toArray();
     for (const auto &featureV : features) {
         const auto feature = featureV.toObject();
-        const auto coordinates = feature.value(QLatin1String("geometry")).toObject().value(QLatin1String("coordinates")).toArray();
-        if (coordinates.size() != 2) {
+        const auto coordinate = GeoJson::readPoint(feature.value(QLatin1String("geometry")).toObject());
+        if (coordinate.isNull()) {
             continue;
         }
 
@@ -73,7 +75,7 @@ bool AccessibilityCloudParser::parseLocations(const QByteArray &data)
 
         Location loc;
         loc.setType(Location::Equipment);
-        loc.setCoordinate(coordinates.at(1).toDouble(), coordinates.at(0).toDouble());
+        loc.setCoordinate(coordinate.y(), coordinate.x());
         // there seem to be occasionally elements referring to the same piece of equipment (and thus same originalId)
         // but one of those having a widely wrong coordinate. Our merging code would then produce results that we cannot
         // match against OSM anymore. By including the sourceId we prevent merging in those cases, and let OSM matching take
