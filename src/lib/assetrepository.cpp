@@ -21,7 +21,6 @@ AssetRepository* AssetRepository::s_instance = nullptr;
 AssetRepository::AssetRepository(QObject *parent)
     : QObject(parent)
 {
-    qDebug() << s_instance << this;
     if (!s_instance) {
         s_instance = this;
     }
@@ -29,7 +28,6 @@ AssetRepository::AssetRepository(QObject *parent)
 
 AssetRepository::~AssetRepository()
 {
-    qDebug() << s_instance << this;
     if (s_instance == this) {
         s_instance = nullptr;
     }
