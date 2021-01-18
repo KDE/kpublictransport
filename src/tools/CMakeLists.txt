@@ -15,4 +15,4 @@ add_custom_target(run-gbfs-probe COMMAND gbfsprobe ${CMAKE_SOURCE_DIR}/src/lib/g
 
 add_executable(transport-api-sync transport-api-sync.cpp)
 target_link_libraries(transport-api-sync Qt5::Core)
-add_custom_target(run-transport-api-sync COMMAND transport-api-sync ${CMAKE_SOURCE_DIR}/src/lib/networks)
+add_custom_target(run-transport-api-sync COMMAND transport-api-sync --config-path ${CMAKE_SOURCE_DIR}/src/lib/networks --transport-apis ${CMAKE_CURRENT_BINARY_DIR}/transport-apis)
