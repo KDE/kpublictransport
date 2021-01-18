@@ -67,7 +67,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "AT-8" ]
+            "region": [
+                "AT-8"
+            ]
         }
     },
     "options": {

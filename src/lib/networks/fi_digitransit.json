@@ -67,7 +67,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "FI" ]
+            "region": [
+                "FI"
+            ]
         }
     },
     "options": {

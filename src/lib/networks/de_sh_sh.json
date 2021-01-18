@@ -72,7 +72,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "DE-SH" ]
+            "region": [
+                "DE-SH"
+            ]
         }
     },
     "options": {

@@ -63,7 +63,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "US-CA" ]
+            "region": [
+                "US-CA"
+            ]
         }
     },
     "options": {

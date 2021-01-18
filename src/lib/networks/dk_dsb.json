@@ -68,7 +68,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "DK" ]
+            "region": [
+                "DK"
+            ]
         }
     },
     "options": {

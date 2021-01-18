@@ -68,7 +68,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "NL" ]
+            "region": [
+                "NL"
+            ]
         }
     },
     "options": {

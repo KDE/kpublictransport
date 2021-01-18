@@ -67,7 +67,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "DE-MV" ]
+            "region": [
+                "DE-MV"
+            ]
         }
     },
     "options": {

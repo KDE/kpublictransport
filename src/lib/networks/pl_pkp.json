@@ -73,7 +73,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "PL" ]
+            "region": [
+                "PL"
+            ]
         }
     },
     "options": {

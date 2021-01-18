@@ -71,20 +71,20 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "DE-BW" ]
+            "region": [
+                "DE-BW"
+            ]
         }
     },
     "options": {
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
         "rentalVehicleNetworks": {
-            "car-sharing": {
-            },
+            "car-sharing": {},
             "regiorad": {
                 "name": "RegioRad",
                 "vehicleTypes": "Bicycle"
             },
-            "taxi": {
-            }
+            "taxi": {}
         },
         "supportedTransitModes": [
             "TRANSIT",

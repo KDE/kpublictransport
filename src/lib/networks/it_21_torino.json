@@ -65,7 +65,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "IT-21" ]
+            "region": [
+                "IT-21"
+            ]
         }
     },
     "options": {

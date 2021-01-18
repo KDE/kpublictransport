@@ -69,7 +69,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "GB" ]
+            "region": [
+                "GB"
+            ]
         }
     },
     "options": {

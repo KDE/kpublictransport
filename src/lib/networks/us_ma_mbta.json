@@ -64,7 +64,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "US-MA" ]
+            "region": [
+                "US-MA"
+            ]
         }
     },
     "options": {

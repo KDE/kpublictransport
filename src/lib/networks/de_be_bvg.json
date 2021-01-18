@@ -68,7 +68,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "DE-BE" ]
+            "region": [
+                "DE-BE"
+            ]
         }
     },
     "options": {

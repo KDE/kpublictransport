@@ -73,7 +73,9 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "FI-17" ]
+            "region": [
+                "FI-17"
+            ]
         }
     },
     "options": {
