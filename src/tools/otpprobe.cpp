@@ -25,16 +25,21 @@ static void fillNetworkConfig(QNetworkReply *reply, QJsonObject &obj)
     boundingBox.setLeft(desc.value(QLatin1String("lowerLeftLongitude")).toDouble());
     boundingBox.setTop(desc.value(QLatin1String("upperRightLatitude")).toDouble());
     boundingBox.setRight(desc.value(QLatin1String("upperRightLongitude")).toDouble());
-    QJsonArray geoFilter;
-    for (const auto &point : {boundingBox.topLeft(), boundingBox.topRight(), boundingBox.bottomRight(), boundingBox.bottomLeft()}) {
+    QJsonArray coords;
+    for (const auto &point : {boundingBox.topLeft(), boundingBox.topRight(), boundingBox.bottomRight(), boundingBox.bottomLeft(), boundingBox.topLeft()}) {
         QJsonArray p;
         p.push_back(point.x());
         p.push_back(point.y());
-        geoFilter.push_back(p);
+        coords.push_back(p);
     }
-    QJsonObject filter;
-    filter.insert(QStringLiteral("geo"), geoFilter);
-    obj.insert(QStringLiteral("filter"), filter);
+    QJsonObject area;
+    area.insert(QLatin1String("type"), QLatin1String("Polygon"));
+    area.insert(QLatin1String("coordinates"), QJsonArray({coords}));
+    auto coverage = obj.value(QLatin1String("coverage")).toObject();
+    auto anyCoverage = coverage.value(QLatin1String("anyCoverage")).toObject();
+    anyCoverage.insert(QLatin1String("area"), area);
+    coverage.insert(QLatin1String("anyCoverage"), anyCoverage);
+    obj.insert(QLatin1String("coverage"), coverage);
 }
 
 /** Inspects OTP-based backends and queries their bounding boxes. */
