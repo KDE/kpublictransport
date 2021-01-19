@@ -47,7 +47,17 @@ std::vector<Attribution> Attribution::fromJson(const QJsonArray &a)
 
 Attribution Attribution::fromJson(const QJsonObject &obj)
 {
-    return Json::fromJson<Attribution>(obj);
+    // read compatibility with github.com/public-transport/transport-apis
+    if (obj.value(QLatin1String("isProprietary")).toBool() == true) {
+        return {};
+    }
+
+    auto attr = Json::fromJson<Attribution>(obj);
+    if (attr.url().isEmpty()) {
+        attr.setUrl(QUrl(obj.value(QLatin1String("homepage")).toString()));
+    }
+
+    return attr;
 }
 
 QJsonArray Attribution::toJson(const std::vector<Attribution> &attrs)
