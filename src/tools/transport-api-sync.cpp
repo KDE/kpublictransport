@@ -48,15 +48,86 @@ static void mergeJsonObject(QJsonObject &destObj, const QJsonObject &srcObj)
     }
 }
 
+// product name patterns to create our line mode mapping
+static constexpr struct {
+    const char *productName;
+    const char *modeName;
+} const hafas_line_modes[] = {
+    { "s-", "RapidTransit" },
+    { "u-", "Metro" },
+    { "tram", "Tramway" },
+    { "straßenbahn", "Tramway" },
+    { "fernbus", "Coach" },
+    { "bus", "Bus" },
+    { "taxi", "Taxi" },
+    { "fähre", "Ferry" },
+    { "schiff", "Ferry" },
+    { "intercity", "LongDistanceTrain" },
+    { "ic", "LongDistanceTrain" },
+    { "regio", "LocalTrain" },
+    { "rb", "LocalTrain" },
+    { "seil", "Tramway" }, // TODO cable car/aerial lift
+    { "cable", "Tramway" },
+    { "anruf", "Taxi" },
+    { "call", "Taxi" },
+    { "nah", "LocalTrain" },
+    { "local", "LocalTrain" },
+    { "fern", "LongDistanceTrain" },
+    { "long", "LongDistanceTrain" },
+    { "bedarf", "Taxi" },
+    { "bart", "RapidTransit" },
+    { "fun", "Funicular" },
+    { "train", "Train" },
+    { "euro", "LongDistanceTrain" },
+    { "ir", "Train" },
+    { "re", "LocalTrain" },
+    { "zug", "Train" },
+};
+
+static void postProcessConfig(QJsonObject &top)
+{
+    // TODO we probably should put this into a separate key and not override the upstream data?
+    auto options = top.value(QLatin1String("options")).toObject();
+    auto lineModeMap = options.value(QLatin1String("lineModeMap")).toObject();
+    for (auto it = lineModeMap.begin(); it != lineModeMap.end(); ++it) {
+        for (const auto &mode : hafas_line_modes) {
+            if (it.value().toString().contains(QString::fromUtf8(mode.productName), Qt::CaseInsensitive)) {
+                it.value() = QLatin1String(mode.modeName);
+                break;
+            }
+        }
+    }
+    if (!lineModeMap.empty()) {
+        options.insert(QLatin1String("lineModeMap"), lineModeMap);
+    }
+    top.insert(QLatin1String("options"), options);
+}
+
 static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &apiConfigFile)
 {
     qDebug() << "merging" << apiConfigFile << kptConfigFile;
     QFile inFile(apiConfigFile);
     if (!inFile.open(QFile::ReadOnly)) {
-        std::cerr << qPrintable(inFile.errorString());
+        std::cerr << qPrintable(inFile.errorString()) << std::endl;
         return false;
     }
-    const auto inObj = QJsonDocument::fromJson(inFile.readAll()).object();
+    QJsonParseError error;
+    auto inObj = QJsonDocument::fromJson(inFile.readAll(), &error).object();
+    if (error.error != QJsonParseError::NoError) {
+        std::cerr << "JSON parsing error: " << qPrintable(error.errorString()) << ": " << qPrintable(apiConfigFile) << std::endl;
+        return false;
+    }
+
+    // move translated keys to the location ki18n expects them
+    QJsonObject translatedObj;
+    for (const auto &key : { "name", "description" }) {
+        auto v = inObj.take(QLatin1String(key));
+
+        auto normalizedKey = QString::fromLatin1(key);
+        normalizedKey[0] = normalizedKey[0].toUpper();
+        translatedObj.insert(normalizedKey, std::move(v));
+    }
+    inObj.insert(QLatin1String("KPlugin"), translatedObj);
 
     QFile outFile(kptConfigFile);
     if (!outFile.open(QFile::ReadOnly)) {
@@ -66,10 +137,11 @@ static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &api
     auto outObj = QJsonDocument::fromJson(outFile.readAll()).object();
     outFile.close();
 
-    // TODO convert fields we need to translate
     mergeJsonObject(outObj, inObj);
+    postProcessConfig(outObj);
+
     if (!outFile.open(QFile::WriteOnly | QFile::Truncate)) {
-        std::cerr << qPrintable(outFile.errorString());
+        std::cerr << qPrintable(outFile.errorString()) << std::endl;
         return false;
     }
     outFile.write(QJsonDocument(outObj).toJson());
