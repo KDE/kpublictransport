@@ -75,5 +75,7 @@
         "endpoint": "https://opentrip.atlantaregion.com/otp/routers/default/"
     },
     "timezone": "America/New_York",
-    "type": "otp_rest"
+    "type": {
+        "otpRest": true
+    }
 }

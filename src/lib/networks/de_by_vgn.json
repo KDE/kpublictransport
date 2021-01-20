@@ -80,5 +80,7 @@
     "options": {
         "endpoint": "https://efa.vgn.de/vgn/"
     },
-    "type": "efa"
+    "type": {
+        "efa": true
+    }
 }

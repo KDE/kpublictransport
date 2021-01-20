@@ -98,5 +98,7 @@
         "de"
     ],
     "timezone": "Europe/Berlin",
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

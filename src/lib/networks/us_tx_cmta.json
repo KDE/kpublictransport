@@ -87,5 +87,7 @@
         "version": "1.13"
     },
     "timezone": "America/Los_Angeles",
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

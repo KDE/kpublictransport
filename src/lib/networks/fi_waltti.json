@@ -75,5 +75,7 @@
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/"
     },
     "timezone": "Europe/Helsinki",
-    "type": "otp_graphql"
+    "type": {
+        "otpGraphQl": true
+    }
 }

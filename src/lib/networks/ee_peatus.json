@@ -74,5 +74,7 @@
         "endpoint": "https://api.peatus.ee/routing/v1/routers/estonia/"
     },
     "timezone": "Europe/Tallinn",
-    "type": "otp_graphql"
+    "type": {
+        "otpGraphQl": true
+    }
 }

@@ -110,5 +110,7 @@
         "de"
     ],
     "timezone": "Europe/Vienna",
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

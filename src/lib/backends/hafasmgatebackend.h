@@ -41,7 +41,7 @@ public:
     ~HafasMgateBackend();
 
     void init() override;
-    static inline constexpr const char* type() { return "hafas_mgate"; }
+    static inline constexpr const char* type() { return "hafasMgate"; }
     Capabilities capabilities() const override;
     bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
     bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;

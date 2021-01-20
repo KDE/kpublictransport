@@ -78,5 +78,7 @@
         "endpoint": "https://nationaljourneyplanner.travelinesw.com/swe/"
     },
     "timezone": "Europe/London",
-    "type": "efa"
+    "type": {
+        "efa": true
+    }
 }

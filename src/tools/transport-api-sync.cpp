@@ -184,21 +184,14 @@ int main(int argc, char **argv)
         auto topObj = doc.object();
 
         qDebug() << "Updating" << fileName;
-        auto poly = topObj.value(QLatin1String("filter")).toObject().value(QLatin1String("geo")).toArray();
-        if (poly.empty()) {
-            continue;
-        }
-        poly.push_back(poly.at(0)); // close the polygon, required by GeoJSON
-
-        QJsonObject area;
-        area.insert(QLatin1String("type"), QLatin1String("Polygon"));
-        area.insert(QLatin1String("coordinates"), QJsonArray({poly}));
-        QJsonObject anyCoverage;
-        anyCoverage.insert(QLatin1String("area"), area);
-        QJsonObject coverage;
-        coverage.insert(QLatin1String("anyCoverage"), anyCoverage);
-        topObj.insert(QLatin1String("coverage"), coverage);
-        topObj.remove(QLatin1String("filter"));
+        auto protocolType = topObj.value(QLatin1String("type")).toString();
+        if (protocolType == QLatin1String("hafas_mgate")) { protocolType = QStringLiteral("hafasMgate"); }
+        if (protocolType == QLatin1String("hafas_query")) { protocolType = QStringLiteral("hafasQuery"); }
+        if (protocolType == QLatin1String("otp_graphql")) { protocolType = QStringLiteral("otpGraphQl"); }
+        if (protocolType == QLatin1String("otp_rest")) { protocolType = QStringLiteral("otpRest"); }
+        QJsonObject type;
+        type.insert(protocolType, true);
+        topObj.insert(QLatin1String("type"), type);
 
         f.close();
         f.open(QFile::WriteOnly | QFile::Truncate);

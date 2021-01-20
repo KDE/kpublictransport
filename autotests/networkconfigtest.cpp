@@ -43,7 +43,7 @@ private Q_SLOTS:
 
         const auto top = doc.object();
         QVERIFY(!top.isEmpty());
-        QVERIFY(!top.value(QLatin1String("type")).toString().isEmpty());
+        QVERIFY(!top.value(QLatin1String("type")).toObject().isEmpty());
 
         const auto tz = top.value(QLatin1String("timezone")).toString();
         if (!tz.isEmpty()) {

@@ -104,5 +104,7 @@
         "fr",
         "nl"
     ],
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

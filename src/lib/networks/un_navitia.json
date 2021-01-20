@@ -46,5 +46,7 @@
         "authorization": "48ed1733-d3f0-445a-9210-9fb36e20a8a3",
         "endpoint": "api.navitia.io"
     },
-    "type": "navitia"
+    "type": {
+        "navitia": true
+    }
 }

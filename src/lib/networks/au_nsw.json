@@ -74,5 +74,7 @@
         "endpoint": "https://transportnsw.info/web/"
     },
     "timezone": "Australia/Sydney",
-    "type": "efa"
+    "type": {
+        "efa": true
+    }
 }

@@ -74,5 +74,7 @@
         "endpoint": "https://map.muoversinpiemonte.it/otp/routers/mip/"
     },
     "timezone": "Europe/Rome",
-    "type": "otp_rest"
+    "type": {
+        "otpRest": true
+    }
 }

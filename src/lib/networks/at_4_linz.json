@@ -80,5 +80,7 @@
         "de"
     ],
     "timezone": "Europe/Vienna",
-    "type": "efa"
+    "type": {
+        "efa": true
+    }
 }

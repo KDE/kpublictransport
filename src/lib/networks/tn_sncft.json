@@ -75,5 +75,7 @@
     "options": {
         "endpoint": "https://planner.sncft.com.tn/otp/routers/default/"
     },
-    "type": "otp_rest"
+    "type": {
+        "otpRest": true
+    }
 }

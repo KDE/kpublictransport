@@ -92,5 +92,7 @@
         }
     },
     "timezone": "Europe/Helsinki",
-    "type": "otp_graphql"
+    "type": {
+        "otpGraphQl": true
+    }
 }

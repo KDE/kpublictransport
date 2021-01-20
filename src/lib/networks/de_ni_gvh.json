@@ -84,5 +84,7 @@
         "en",
         "de"
     ],
-    "type": "efa"
+    "type": {
+        "efa": true
+    }
 }

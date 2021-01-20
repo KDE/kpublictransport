@@ -105,5 +105,7 @@
         "en",
         "de"
     ],
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

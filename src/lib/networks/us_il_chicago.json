@@ -73,5 +73,7 @@
         "endpoint": "https://tripplanner.rtachicago.com/ccg3/"
     },
     "timezone": "America/Chicago",
-    "type": "efa"
+    "type": {
+        "efa": true
+    }
 }

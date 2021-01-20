@@ -104,5 +104,7 @@
         ],
         "standardLocationIdentifierType": "ibnr"
     },
-    "type": "hafas_query"
+    "type": {
+        "hafasQuery": true
+    }
 }

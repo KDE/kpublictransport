@@ -36,5 +36,7 @@
         "Name[uk]": "Велосипеди і скутери спільного користування",
         "Name[x-test]": "xxShared bikes/scootersxx"
     },
-    "type": "gbfs"
+    "type": {
+        "gbfs": true
+    }
 }

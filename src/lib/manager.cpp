@@ -66,9 +66,9 @@ public:
     void loadNetworks();
     std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename Backend, typename Backend2, typename ...Backends>
-    static std::unique_ptr<AbstractBackend> loadNetwork(const QString &backendType, const QJsonObject &obj);
+    static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &backendType, const QJsonObject &obj);
     template <typename Backend> std::unique_ptr<AbstractBackend>
-    static loadNetwork(const QString &backendType, const QJsonObject &obj);
+    static loadNetwork(const QJsonObject &backendType, const QJsonObject &obj);
     template <typename T>
     static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
@@ -180,33 +180,34 @@ void ManagerPrivate::loadNetworks()
 
 std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &obj)
 {
-    const auto type = obj.value(QLatin1String("type")).toString();
+    const auto type = obj.value(QLatin1String("type")).toObject();
+    // backends need to be topologically sorted according to their preference/priority here
     return loadNetwork<
         NavitiaBackend,
         OpenTripPlannerGraphQLBackend,
         OpenTripPlannerRestBackend,
+        DeutscheBahnBackend,
         HafasMgateBackend,
         HafasQueryBackend,
         EfaBackend,
-        DeutscheBahnBackend,
         GBFSBackend,
         AccessibilityCloudBackend
     >(type, obj);
 }
 
 template <typename Backend, typename Backend2, typename ...Backends>
-std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QString &backendType, const QJsonObject &obj)
+std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &backendType, const QJsonObject &obj)
 {
-    if (backendType == QLatin1String(Backend::type())) {
+    if (backendType.value(QLatin1String(Backend::type())).toBool()) {
         return loadNetwork<Backend>(obj);
     }
     return loadNetwork<Backend2, Backends...>(backendType, obj);
 }
 
 template <typename Backend>
-std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QString &backendType, const QJsonObject &obj)
+std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &backendType, const QJsonObject &obj)
 {
-    if (backendType == QLatin1String(Backend::type())) {
+    if (backendType.value(QLatin1String(Backend::type())).toBool()) {
         return ManagerPrivate::loadNetwork<Backend>(obj);
     }
     qCWarning(Log) << "Unknown backend type:" << backendType;

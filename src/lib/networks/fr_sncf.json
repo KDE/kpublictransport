@@ -80,5 +80,7 @@
         "coverage": "sncf",
         "endpoint": "api.sncf.com"
     },
-    "type": "navitia"
+    "type": {
+        "navitia": true
+    }
 }

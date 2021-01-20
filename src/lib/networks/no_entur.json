@@ -91,5 +91,7 @@
             }
         ]
     },
-    "type": "otp_graphql"
+    "type": {
+        "otpGraphQl": true
+    }
 }

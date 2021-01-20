@@ -75,5 +75,7 @@
         "endpoint": "https://data.mobilites-m.fr/api/routers/default/"
     },
     "timezone": "Europe/Paris",
-    "type": "otp_rest"
+    "type": {
+        "otpRest": true
+    }
 }

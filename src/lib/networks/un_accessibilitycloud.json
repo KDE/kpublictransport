@@ -33,5 +33,7 @@
     "options": {
         "token": "d45e7a23f6b20679a6bbdd59829cbce8"
     },
-    "type": "a11y_cloud"
+    "type": {
+        "a11y_cloud": true
+    }
 }

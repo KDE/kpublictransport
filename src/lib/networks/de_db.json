@@ -125,5 +125,7 @@
         "fr",
         "es"
     ],
-    "type": "deutschebahn"
+    "type": {
+        "deutschebahn": true
+    }
 }

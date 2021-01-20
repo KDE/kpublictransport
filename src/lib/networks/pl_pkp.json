@@ -125,5 +125,7 @@
         "en",
         "pl"
     ],
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

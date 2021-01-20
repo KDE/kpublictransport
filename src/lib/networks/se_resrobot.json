@@ -98,5 +98,7 @@
         },
         "version": "1.18"
     },
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

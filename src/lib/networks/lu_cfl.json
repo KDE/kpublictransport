@@ -92,5 +92,7 @@
         },
         "version": "1.16"
     },
-    "type": "hafas_mgate"
+    "type": {
+        "hafasMgate": true
+    }
 }

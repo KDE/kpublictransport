@@ -74,5 +74,7 @@
     "options": {
         "endpoint": "https://maps.trimet.org/otp_mod/"
     },
-    "type": "otp_rest"
+    "type": {
+        "otpRest": true
+    }
 }
