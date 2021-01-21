@@ -16,6 +16,24 @@
 
 #include <iostream>
 
+// excluded provider ids, mainly for simple disambiguation
+static constexpr const char* const excluded_transport_apis[] = {
+    "db-hafas-query",
+    "db-busradar-nrw-hafas-mgate",
+    "db-sbahn-muenchen-hafas-mgate",
+};
+
+// manual config file name mappings, used when our mapping heuristics fail
+static constexpr struct {
+    const char* fromCountry;
+    const char* fromId;
+    const char* to;
+} transport_api_mapping[] = {
+    { "be", "nmbs-sncb", "be_sncb" },
+    { "ch", "sbb-cff-ffs", "ch_sbb" },
+    { "dk", "rejseplanen", "dk_dsb" },
+};
+
 static bool updateTransportApisRepo(const QString &path)
 {
     if (!QDir().exists(path)) {
@@ -169,6 +187,7 @@ int main(int argc, char **argv)
     }
 
     // ### temporary to migrate our format closer to the standard format
+#if 0
     for (QDirIterator it(parser.value(configPathOpt), QDir::Files); it.hasNext();) {
         const auto fileName = it.next();
         QFile f(fileName);
@@ -185,6 +204,7 @@ int main(int argc, char **argv)
 
         qDebug() << "Updating" << fileName;
         auto protocolType = topObj.value(QLatin1String("type")).toString();
+        if (protocolType.isEmpty()) { continue; }
         if (protocolType == QLatin1String("hafas_mgate")) { protocolType = QStringLiteral("hafasMgate"); }
         if (protocolType == QLatin1String("hafas_query")) { protocolType = QStringLiteral("hafasQuery"); }
         if (protocolType == QLatin1String("otp_graphql")) { protocolType = QStringLiteral("otpGraphQl"); }
@@ -197,6 +217,7 @@ int main(int argc, char **argv)
         f.open(QFile::WriteOnly | QFile::Truncate);
         f.write(QJsonDocument(topObj).toJson());
     }
+#endif
     // ### end temporary migration code
 
     // match our files and the transport api ones
@@ -208,7 +229,7 @@ int main(int argc, char **argv)
     for (QDirIterator it(parser.value(configPathOpt), QDir::Files); it.hasNext();) {
         const auto fileName = it.next();
         QFile f(fileName);
-        if (!f.fileName().endsWith(QLatin1String(".json"))) {
+        if (!fileName.endsWith(QLatin1String(".json"))) {
             continue;
         }
         MatchedConfig c;
@@ -217,7 +238,16 @@ int main(int argc, char **argv)
     }
     for (QDirIterator it(parser.value(transportApiPathOpt) + QLatin1String("/data"), QDir::Files, QDirIterator::Subdirectories); it.hasNext();) {
         const auto fileName = it.next();
-        QRegularExpression rx(QStringLiteral("/([a-z]{2})/([a-z]+)-"));
+        const auto baseName = it.fileInfo().baseName();
+        if (!fileName.endsWith(QLatin1String(".json"))
+         || std::any_of(std::begin(excluded_transport_apis), std::end(excluded_transport_apis), [&baseName](const char* excl) {
+                return QLatin1String(excl) == baseName;
+            })
+        ) {
+            continue;
+        }
+
+        QRegularExpression rx(QStringLiteral("/([a-z]{2})/([a-z-]+?)-(hafas-mgate|hafas-query|[^-]+)\\.json"));
         const auto match = rx.match(fileName);
         if (!match.hasMatch()) {
             return -1;
@@ -230,6 +260,21 @@ int main(int argc, char **argv)
             }
             (*cit).apiConfigs.push_back(fileName);
             found = true;
+        }
+        if (found) {
+            continue;
+        }
+        for (const auto &map : transport_api_mapping) {
+            if (QLatin1String(map.fromCountry) == match.captured(1) && QLatin1String(map.fromId) == match.captured(2)) {
+                auto cit = std::find_if(configs.begin(), configs.end(), [map](const auto &config) {
+                    return QLatin1String(map.to) == config.config;
+                });
+                if (cit != configs.end()) {
+                    (*cit).apiConfigs.push_back(fileName);
+                }
+                found = true;
+                break;
+            }
         }
         if (!found) {
             qDebug() << "  no match found for" << fileName;
