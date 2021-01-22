@@ -53,8 +53,15 @@ static const struct {
     const char *type;
     const char *code;
 } ignored_remarks[] = {
+    { "A", "1" }, // different name formats for the line, used by SBB
+    { "A", "2" },
+    { "A", "3" },
+    { "A", "4" }, // same as above, containing product, line number and journey number
     { "A", "OPERATOR" }, // operator information should be a dedicated field if we ever need it
     { "H", "wagenstand_v2" }, // contains a pointless note about checking trip details
+    { "I", "FD" }, // SBB line number?
+    { "I", "RN" }, // SBB: some unknown number for buses
+    { "I", "TC" }, // SBB: some unknown number for buses
 };
 
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
