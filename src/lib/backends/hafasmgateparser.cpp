@@ -60,8 +60,13 @@ static const struct {
     { "A", "OPERATOR" }, // operator information should be a dedicated field if we ever need it
     { "H", "wagenstand_v2" }, // contains a pointless note about checking trip details
     { "I", "FD" }, // SBB line number?
+    { "I", "JF" }, // SBB: JSON structure containing the coach layout - TODO how can we expose that via our vehicle layout API?
     { "I", "RN" }, // SBB: some unknown number for buses
     { "I", "TC" }, // SBB: some unknown number for buses
+    { "I", "XC" }, // SBB: some XML structure of unknown content
+    { "I", "XG" }, // SBB: some XML structure of unknown content
+    { "I", "XP" }, // SBB: some XML structure of unknown content
+    { "I", "XT" }, // SBB: some XML structure of unknown content
 };
 
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
