@@ -114,7 +114,7 @@ private Q_SLOTS:
         QTest::newRow("de_sl_saarvv") << "de_sl_saarvv" << loc("Saarbrücken Hauptbahnhof", 49.24116, 6.99110) << loc("Saarlouis Hbf", 49.32766, 6.75103);
         // TODO de_sn_vvo
         QTest::newRow("de_st_insa") << "de_st_insa" << loc("Leipzig Hbf", 51.34508, 12.38196) << loc("Leipzig S Bahnhof Messe", 51.39603, 12.38987);
-        // TODO de_th_vmt
+        QTest::newRow("de_th_vmt") << "de_th_vmt" << loc("Erfurt Hbf", 50.97227, 11.03790) << loc("Jena Paradies", 50.92491, 11.58725);
 
         QTest::newRow("fi_17_helsinki") << "fi_17_helsinki" << loc("Helsinki", 60.17174, 24.94148) << loc("Espoo", 60.20530, 24.65748);
 

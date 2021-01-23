@@ -41,6 +41,11 @@
     },
     "coverage": {
         "anyCoverage": {
+            "region": [
+                "NL"
+            ]
+        },
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -70,6 +75,20 @@
             },
             "region": [
                 "AT"
+            ]
+        },
+        "regularCoverage": {
+            "region": [
+                "CH",
+                "DE",
+                "IT",
+                "SI",
+                "HU",
+                "SK",
+                "CZ",
+                "FR",
+                "BE",
+                "LU"
             ]
         }
     },
@@ -125,6 +144,7 @@
         "en",
         "de"
     ],
+    "timezone": "Europe/Vienna",
     "type": {
         "hafasMgate": true
     }

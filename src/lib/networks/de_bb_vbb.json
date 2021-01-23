@@ -38,8 +38,19 @@
         "Name[uk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[x-test]": "xxVerkehrsverbund Berlin-Brandenburg (VBB)xx"
     },
+    "attribution": {
+        "homepage": "https://www.vbb.de/",
+        "isProprietary": true,
+        "name": "VBB Verkehrsverbund Berlin-Brandenburg GmbH"
+    },
     "coverage": {
         "anyCoverage": {
+            "region": [
+                "PL",
+                "CZ"
+            ]
+        },
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -68,8 +79,13 @@
                 "type": "Polygon"
             },
             "region": [
-                "DE-BB",
-                "DE-BE"
+                "DE-BE",
+                "DE-BB"
+            ]
+        },
+        "regularCoverage": {
+            "region": [
+                "DE"
             ]
         }
     },
@@ -101,6 +117,7 @@
         "en",
         "de"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }

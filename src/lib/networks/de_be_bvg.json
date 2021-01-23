@@ -39,8 +39,19 @@
         "Name[x-test]": "xxBerliner Verkehrsbetriebe (BVG)xx",
         "Name[zh_TW]": "Berliner Verkehrsbetriebe (BVG)"
     },
+    "attribution": {
+        "homepage": "https://www.bvg.de/",
+        "isProprietary": true,
+        "name": "Berliner Verkehrsbetriebe"
+    },
     "coverage": {
         "anyCoverage": {
+            "region": [
+                "PL",
+                "CZ"
+            ]
+        },
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -69,7 +80,13 @@
                 "type": "Polygon"
             },
             "region": [
-                "DE-BE"
+                "DE-BE",
+                "DE-BB"
+            ]
+        },
+        "regularCoverage": {
+            "region": [
+                "DE"
             ]
         }
     },
@@ -100,6 +117,7 @@
         "en",
         "de"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }

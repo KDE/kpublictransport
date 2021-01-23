@@ -75,6 +75,7 @@
         "endpoint": "http://fahrplan.sbb.ch/bin/",
         "lineModeMap": {
             "1": "LongDistanceTrain",
+            "128": "Tramway",
             "16": "Ferry",
             "2": "LongDistanceTrain",
             "256": "LocalTrain",
@@ -107,6 +108,12 @@
         ],
         "standardLocationIdentifierType": "uic"
     },
+    "supportedLanguages": [
+        "de",
+        "fr",
+        "it",
+        "en"
+    ],
     "type": {
         "hafasQuery": true
     }

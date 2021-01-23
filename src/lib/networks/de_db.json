@@ -125,6 +125,7 @@
         "fr",
         "es"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "deutschebahn": true
     }

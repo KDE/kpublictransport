@@ -98,7 +98,8 @@
             "8": "LocalTrain"
         },
         "micMacSalt": "535033316D4275665379434C6D4E7870",
-        "version": "1.18"
+        "supportsStbFltrEquiv": false,
+        "version": "1.27"
     },
     "supportedLanguages": [
         "en",
