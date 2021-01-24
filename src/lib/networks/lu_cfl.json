@@ -90,7 +90,7 @@
             "64": "Bus",
             "8": "LocalTrain"
         },
-        "version": "1.16"
+        "ver": "1.16"
     },
     "type": {
         "hafasMgate": true

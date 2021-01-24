@@ -91,7 +91,7 @@
             "512": "Taxi",
             "64": "Bus"
         },
-        "version": "1.18"
+        "ver": "1.18"
     },
     "supportedLanguages": [
         "en",

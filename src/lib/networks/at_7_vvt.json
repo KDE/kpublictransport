@@ -101,7 +101,7 @@
         "locationIdentifierType": "vao",
         "micMacSalt": "6633673735743766726667323938336A",
         "supportsStbFltrEquiv": false,
-        "version": "1.27"
+        "ver": "1.27"
     },
     "supportedLanguages": [
         "en",

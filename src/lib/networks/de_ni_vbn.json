@@ -99,7 +99,7 @@
         },
         "micMacSalt": "535033316D4275665379434C6D4E7870",
         "supportsStbFltrEquiv": false,
-        "version": "1.27"
+        "ver": "1.27"
     },
     "supportedLanguages": [
         "en",

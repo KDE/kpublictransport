@@ -96,7 +96,7 @@
             80
         ],
         "standardLocationIdentifierType": "ibnr",
-        "version": "1.18"
+        "ver": "1.18"
     },
     "supportedLanguages": [
         "en",

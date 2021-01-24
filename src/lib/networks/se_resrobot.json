@@ -96,7 +96,7 @@
             "64": "Tramway",
             "8": "Bus"
         },
-        "version": "1.18"
+        "ver": "1.18"
     },
     "type": {
         "hafasMgate": true

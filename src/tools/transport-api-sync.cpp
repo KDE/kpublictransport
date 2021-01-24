@@ -206,15 +206,12 @@ int main(int argc, char **argv)
         auto topObj = doc.object();
 
         qDebug() << "Updating" << fileName;
-        auto protocolType = topObj.value(QLatin1String("type")).toString();
-        if (protocolType.isEmpty()) { continue; }
-        if (protocolType == QLatin1String("hafas_mgate")) { protocolType = QStringLiteral("hafasMgate"); }
-        if (protocolType == QLatin1String("hafas_query")) { protocolType = QStringLiteral("hafasQuery"); }
-        if (protocolType == QLatin1String("otp_graphql")) { protocolType = QStringLiteral("otpGraphQl"); }
-        if (protocolType == QLatin1String("otp_rest")) { protocolType = QStringLiteral("otpRest"); }
-        QJsonObject type;
-        type.insert(protocolType, true);
-        topObj.insert(QLatin1String("type"), type);
+        auto options = topObj.value(QLatin1String("options")).toObject();
+        const auto version = options.take(QLatin1String("version")).toString();
+        if (!version.isEmpty()) {
+            options.insert(QLatin1String("ver"), version);
+        }
+        topObj.insert(QLatin1String("options"), options);
 
         f.close();
         f.open(QFile::WriteOnly | QFile::Truncate);

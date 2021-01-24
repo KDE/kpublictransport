@@ -28,7 +28,7 @@ class HafasMgateBackend : public HafasBackend
     /** The client data sent in every request. */
     Q_PROPERTY(QJsonObject client MEMBER m_client)
     Q_PROPERTY(QString ext MEMBER m_extParam)
-    Q_PROPERTY(QString version MEMBER m_version)
+    Q_PROPERTY(QString ver MEMBER m_version)
     /** Salt for request mic/mac parameters, hex-encoded. */
     Q_PROPERTY(QString micMacSalt WRITE setMicMacSalt)
     /** Salt for the request checksum parameter, hex-encoded. */

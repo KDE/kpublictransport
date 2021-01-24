@@ -84,7 +84,7 @@
             "4096": "Bus",
             "8": "LocalTrain"
         },
-        "version": "1.13"
+        "ver": "1.13"
     },
     "timezone": "America/Los_Angeles",
     "type": {

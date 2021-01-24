@@ -85,7 +85,7 @@
             "64": "Ferry",
             "8": "LocalTrain"
         },
-        "version": "1.18"
+        "ver": "1.18"
     },
     "timezone": "America/Los_Angeles",
     "type": {
