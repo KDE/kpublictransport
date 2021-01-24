@@ -78,7 +78,8 @@
     },
     "options": {
         "auth": {
-            "aid": "rnOHBWhesvc7gFkd"
+            "aid": "kaoxIXLn03zCr2KR",
+            "type": "AID"
         },
         "client": {
             "id": "VBN",

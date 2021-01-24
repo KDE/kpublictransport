@@ -74,7 +74,8 @@
     },
     "options": {
         "auth": {
-            "aid": "51XfsVqgbdA6oXzHrx75jhlocRg6Xe"
+            "aid": "51XfsVqgbdA6oXzHrx75jhlocRg6Xe",
+            "type": "AID"
         },
         "client": {
             "id": "ZPS-SAAR",

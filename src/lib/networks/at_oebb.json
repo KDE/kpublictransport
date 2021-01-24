@@ -94,7 +94,8 @@
     },
     "options": {
         "auth": {
-            "aid": "OWDL4fE4ixNiPBBm"
+            "aid": "OWDL4fE4ixNiPBBm",
+            "type": "AID"
         },
         "client": {
             "id": "OEBB",

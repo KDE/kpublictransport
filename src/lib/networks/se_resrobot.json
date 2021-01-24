@@ -77,7 +77,8 @@
     },
     "options": {
         "auth": {
-            "aid": "h5o3n7f4t2m8l9x1"
+            "aid": "h5o3n7f4t2m8l9x1",
+            "type": "AID"
         },
         "client": {
             "id": "SAMTRAFIKEN",

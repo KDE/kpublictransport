@@ -80,7 +80,8 @@
     },
     "options": {
         "auth": {
-            "aid": "DrxJYtYZQpEBCtcb"
+            "aid": "DrxJYtYZQpEBCtcb",
+            "type": "AID"
         },
         "client": {
             "id": "HAFAS",

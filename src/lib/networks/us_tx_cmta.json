@@ -71,7 +71,8 @@
     },
     "options": {
         "auth": {
-            "aid": "ioslaskdcndrjcmlsd"
+            "aid": "ioslaskdcndrjcmlsd",
+            "type": "AID"
         },
         "client": {
             "id": "CMTA",

@@ -92,7 +92,8 @@
     },
     "options": {
         "auth": {
-            "aid": "1Rxs112shyHLatUX4fofnmdxK"
+            "aid": "1Rxs112shyHLatUX4fofnmdxK",
+            "type": "AID"
         },
         "client": {
             "id": "BVG",

@@ -79,7 +79,8 @@
     },
     "options": {
         "auth": {
-            "aid": "r0Ot9FLFNAFxijLW"
+            "aid": "r0Ot9FLFNAFxijLW",
+            "type": "AID"
         },
         "client": {
             "id": "NAHSH",

@@ -355,9 +355,6 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
 void HafasMgateBackend::setAuthObject(const QJsonObject& obj)
 {
     m_auth = obj;
-    if (!m_auth.contains(QLatin1String("type")) && m_auth.contains(QLatin1String("aid"))) {
-        m_auth.insert(QStringLiteral("type"), QLatin1String("AID"));
-    }
 }
 
 void HafasMgateBackend::setMicMacSalt(const QString &salt)

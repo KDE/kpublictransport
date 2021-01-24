@@ -74,7 +74,8 @@
     },
     "options": {
         "auth": {
-            "aid": "andcXUmC9Mq6hjrwDIGd2l3oiaMrTUzyH"
+            "aid": "andcXUmC9Mq6hjrwDIGd2l3oiaMrTUzyH",
+            "type": "AID"
         },
         "client": {
             "id": "HVV",

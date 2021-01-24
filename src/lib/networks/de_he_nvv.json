@@ -74,7 +74,8 @@
     },
     "options": {
         "auth": {
-            "aid": "Kt8eNOH7qjVeSxNA"
+            "aid": "Kt8eNOH7qjVeSxNA",
+            "type": "AID"
         },
         "client": {
             "id": "NVV",

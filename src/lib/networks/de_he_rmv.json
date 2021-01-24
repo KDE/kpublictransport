@@ -79,7 +79,8 @@
     },
     "options": {
         "auth": {
-            "aid": "x0k4ZR33ICN9CWmj"
+            "aid": "x0k4ZR33ICN9CWmj",
+            "type": "AID"
         },
         "client": {
             "id": "RMV",

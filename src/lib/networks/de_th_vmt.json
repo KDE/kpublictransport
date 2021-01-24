@@ -74,7 +74,8 @@
     },
     "options": {
         "auth": {
-            "aid": "vj5d7i3g9m5d7e3"
+            "aid": "vj5d7i3g9m5d7e3",
+            "type": "AID"
         },
         "client": {
             "name": "VMT",

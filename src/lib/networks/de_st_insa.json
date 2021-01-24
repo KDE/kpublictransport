@@ -78,7 +78,8 @@
     },
     "options": {
         "auth": {
-            "aid": "nasa-apps"
+            "aid": "nasa-apps",
+            "type": "AID"
         },
         "client": {
             "id": "NASA",

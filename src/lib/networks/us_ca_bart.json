@@ -70,7 +70,8 @@
     },
     "options": {
         "auth": {
-            "aid": "kEwHkFUCIL500dym"
+            "aid": "kEwHkFUCIL500dym",
+            "type": "AID"
         },
         "client": {
             "id": "BART",

@@ -76,7 +76,8 @@
     },
     "options": {
         "auth": {
-            "aid": "4vV1AcH3N511icH"
+            "aid": "4vV1AcH3N511icH",
+            "type": "AID"
         },
         "client": {
             "id": "AVV_AACHEN",

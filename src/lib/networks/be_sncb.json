@@ -74,7 +74,8 @@
     },
     "options": {
         "auth": {
-            "aid": "sncb-mobi"
+            "aid": "sncb-mobi",
+            "type": "AID"
         },
         "client": {
             "id": "SNCB",

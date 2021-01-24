@@ -72,7 +72,8 @@
     },
     "options": {
         "auth": {
-            "aid": "n91dB8Z77MLdoR0K"
+            "aid": "n91dB8Z77MLdoR0K",
+            "type": "AID"
         },
         "checksumSalt": "6264493855566A34304B356676787766",
         "client": {

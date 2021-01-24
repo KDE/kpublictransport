@@ -75,7 +75,8 @@
     },
     "options": {
         "auth": {
-            "aid": "irkmpm9mdznstenr-android"
+            "aid": "irkmpm9mdznstenr-android",
+            "type": "AID"
         },
         "client": {
             "id": "DK",

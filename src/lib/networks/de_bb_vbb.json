@@ -91,7 +91,8 @@
     },
     "options": {
         "auth": {
-            "aid": "hafas-vbb-apps"
+            "aid": "hafas-vbb-apps",
+            "type": "AID"
         },
         "client": {
             "id": "VBB",
