@@ -10,6 +10,7 @@
 #include "kpublictransport_export.h"
 
 #include <KPublicTransport/Location>
+#include <KPublicTransport/RentalVehicle>
 
 #include <QHash>
 #include <QString>
@@ -25,7 +26,6 @@ namespace KPublicTransport {
 class Journey;
 class JourneySection;
 class Line;
-class RentalVehicleNetwork;
 class Route;
 class Stopover;
 
