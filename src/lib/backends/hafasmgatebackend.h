@@ -33,8 +33,6 @@ class HafasMgateBackend : public HafasBackend
     Q_PROPERTY(QString micMacSalt WRITE setMicMacSalt)
     /** Salt for the request checksum parameter, hex-encoded. */
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
-    /** Supports the stbFltrEquiv parameter for departure queries (default @c true). */
-    Q_PROPERTY(bool supportsStbFltrEquiv MEMBER m_supportsStbFltrEquiv)
 
 public:
     HafasMgateBackend();
@@ -65,7 +63,6 @@ private:
     QString m_version;
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
-    bool m_supportsStbFltrEquiv = true;
 };
 
 }

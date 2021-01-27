@@ -111,7 +111,6 @@
         },
         "locationIdentifierType": "vbb",
         "micMacSalt": "5243544a4d3266467846667878516649",
-        "supportsStbFltrEquiv": false,
         "ver": "1.21"
     },
     "supportedLanguages": [

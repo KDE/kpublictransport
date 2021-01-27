@@ -100,7 +100,6 @@
         },
         "locationIdentifierType": "dsb",
         "standardLocationIdentifierType": "uic",
-        "supportsStbFltrEquiv": false,
         "ver": "1.21"
     },
     "supportedLanguages": [
