@@ -1,0 +1,54 @@
+{
+    "KPlugin": {
+        "Name": "Zürcher Verkehrsverbund (ZVV)",
+        "Description": "Local public transport in the canton Zürich, Switzerland"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                     [ [ 8.29472, 47.66661 ], [ 8.38109, 47.154951 ], [ 9.01497, 47.13539 ], [ 8.876465, 47.744835 ], [ 8.29472, 47.66661 ] ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "CH-ZH"
+            ]
+        }
+    },
+    "options": {
+        "auth": {
+            "aid": "TLRUqdDPF7ttB824Yoy2BN8mk",
+            "type": "AID"
+        },
+        "client": {
+            "id": "ZVV",
+            "type": "IPH"
+        },
+        "endpoint": "https://online.fahrplan.zvv.ch/bin/mgate.exe",
+        "ext": "ZVV.2",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "128": "Tramway",
+            "16": "Ferry",
+            "2": "LongDistanceTrain",
+            "256": "Train",
+            "32": "RapidTransit",
+            "4": "LocalTrain",
+            "512": "Tramway",
+            "64": "Bus",
+            "8": "Train"
+        },
+        "ver": "1.24"
+    },
+    "supportedLanguages": [
+        "de",
+        "fr",
+        "it",
+        "en"
+    ],
+    "timezone": "Europe/Zurich",
+    "type": {
+        "hafasMgate": true
+    }
+}
