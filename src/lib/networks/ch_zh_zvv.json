@@ -1,13 +1,34 @@
 {
     "KPlugin": {
-        "Name": "Zürcher Verkehrsverbund (ZVV)",
-        "Description": "Local public transport in the canton Zürich, Switzerland"
+        "Description": "Local public transport in the canton Zürich, Switzerland",
+        "Name": "Zürcher Verkehrsverbund (ZVV)"
     },
     "coverage": {
         "realtimeCoverage": {
             "area": {
                 "coordinates": [
-                     [ [ 8.29472, 47.66661 ], [ 8.38109, 47.154951 ], [ 9.01497, 47.13539 ], [ 8.876465, 47.744835 ], [ 8.29472, 47.66661 ] ]
+                    [
+                        [
+                            8.29472,
+                            47.66661
+                        ],
+                        [
+                            8.38109,
+                            47.154951
+                        ],
+                        [
+                            9.01497,
+                            47.13539
+                        ],
+                        [
+                            8.876465,
+                            47.744835
+                        ],
+                        [
+                            8.29472,
+                            47.66661
+                        ]
+                    ]
                 ],
                 "type": "Polygon"
             },
