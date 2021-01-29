@@ -105,6 +105,33 @@ static constexpr struct {
     { "zug", "Train" },
 };
 
+static void preProcessConfig(QJsonObject &top)
+{
+    // move translated keys to the location ki18n expects them
+    QJsonObject translatedObj;
+    for (const auto &key : { "name", "description" }) {
+        auto v = top.take(QLatin1String(key));
+
+        auto normalizedKey = QString::fromLatin1(key);
+        normalizedKey[0] = normalizedKey[0].toUpper();
+        translatedObj.insert(normalizedKey, std::move(v));
+    }
+    top.insert(QLatin1String("KPlugin"), std::move(translatedObj));
+
+    // remove excessive Hafas client properties
+    auto options = top.take(QLatin1String("options")).toObject();
+    auto client = options.value(QLatin1String("client")).toObject();
+    client.remove(QLatin1String("os"));
+    client.remove(QLatin1String("v"));
+    client.remove(QLatin1String("name"));
+    if (!client.isEmpty()) {
+        options.insert(QLatin1String("client"), std::move(client));
+    }
+    if (!options.isEmpty()) {
+        top.insert(QLatin1String("options"), std::move(options));
+    }
+}
+
 static void postProcessConfig(QJsonObject &top)
 {
     // TODO we probably should put this into a separate key and not override the upstream data?
@@ -138,17 +165,7 @@ static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &api
         std::cerr << "JSON parsing error: " << qPrintable(error.errorString()) << ": " << qPrintable(apiConfigFile) << std::endl;
         return false;
     }
-
-    // move translated keys to the location ki18n expects them
-    QJsonObject translatedObj;
-    for (const auto &key : { "name", "description" }) {
-        auto v = inObj.take(QLatin1String(key));
-
-        auto normalizedKey = QString::fromLatin1(key);
-        normalizedKey[0] = normalizedKey[0].toUpper();
-        translatedObj.insert(normalizedKey, std::move(v));
-    }
-    inObj.insert(QLatin1String("KPlugin"), translatedObj);
+    preProcessConfig(inObj);
 
     QFile outFile(kptConfigFile);
     if (!outFile.open(QFile::ReadOnly)) {
@@ -280,6 +297,11 @@ int main(int argc, char **argv)
             qDebug() << "  no match found for" << fileName;
         }
     }
+
+    // for better readability of the output
+    std::sort(configs.begin(), configs.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.config < rhs.config;
+    });
 
     for (const auto &c : configs) {
         if (c.apiConfigs.empty()) {
