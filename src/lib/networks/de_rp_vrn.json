@@ -1,0 +1,46 @@
+{
+    "KPlugin": {
+        "Name": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Description": "Local public transport in the Rhein-Neckar area."
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [ [ 7.31213, 49.13806 ], [ 7.22087, 49.58129 ], [ 8.804767, 49.946308 ], [ 8.95468, 48.71439 ], [ 7.31213, 49.13806 ] ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "DE-RP", "DE-BW", "DE-HE"
+            ]
+        }
+    },
+    "options": {
+        "auth": {
+            "aid": "p091VRNZz79KtUz5",
+            "type": "AID"
+        },
+        "client": {
+            "id": "DB-REGIO-VRN",
+            "type": "IPH"
+        },
+        "endpoint": "https://vrn.hafas.de/bin/mgate.exe",
+        "ext": "DB.R19.04.a",
+        "lineModeMap": {
+            "1": "LongDistanceTrain",
+            "128": "Metro",
+            "16": "LocalTrain",
+            "2": "LongDistanceTrain",
+            "256": "Tramway",
+            "32": "Bus",
+            "4": "LongDistanceTrain",
+            "512": "Taxi",
+            "8": "LocalTrain"
+        },
+        "ver": "1.24"
+    },
+    "type": {
+        "hafasMgate": true
+    }
+}
