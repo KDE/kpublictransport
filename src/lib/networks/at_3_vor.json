@@ -39,7 +39,7 @@
         "Name[x-test]": "xxVerkehrsverbund Ostregion (VOR)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -109,6 +109,7 @@
         "en",
         "de"
     ],
+    "timezone": "Europe/Vienna",
     "type": {
         "hafasMgate": true
     }

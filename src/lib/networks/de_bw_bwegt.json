@@ -37,7 +37,7 @@
         "Name[x-test]": "xxbwegtxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

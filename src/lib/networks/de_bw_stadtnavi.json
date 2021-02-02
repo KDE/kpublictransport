@@ -43,7 +43,7 @@
     },
     "comment": "See https://github.com/stadtnavi/digitransit-ui/blob/master/app/configurations/config.hb.js for their rental vehicle config and https://github.com/stadtnavi/static-gbfs-feeds for their dummy GBFS feeds that we ignore below",
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

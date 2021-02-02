@@ -41,7 +41,7 @@
         "Name[zh_TW]": "Karlsruher Verkehrsverbund (KVV)"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

@@ -39,7 +39,7 @@
         "Name[x-test]": "xxLinz AGxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

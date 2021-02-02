@@ -44,7 +44,7 @@
     },
     "comment": "see https://github.com/verschwoerhaus/digitransit-ui/blob/ulm/app/configurations/config.vsh.js for rental vehicle config",
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

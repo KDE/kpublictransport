@@ -38,7 +38,7 @@
         "Name[x-test]": "xxOberösterreichischer Verkehrsverbund (OÖVV)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -107,6 +107,7 @@
         "en",
         "de"
     ],
+    "timezone": "Europe/Vienna",
     "type": {
         "hafasMgate": true
     }

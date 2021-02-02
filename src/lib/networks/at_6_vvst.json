@@ -39,7 +39,7 @@
         "Name[x-test]": "xxVerkehrsverbund Steiermark (VVSt)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "regularCoverage": {
             "area": {
                 "coordinates": [
                     [
