@@ -1,18 +1,41 @@
 {
     "KPlugin": {
-        "Name": "Verkehrsverbund Rhein-Neckar (VRN)",
-        "Description": "Local public transport in the Rhein-Neckar area."
+        "Description": "Local public transport in the Rhein-Neckar area.",
+        "Name": "Verkehrsverbund Rhein-Neckar (VRN)"
     },
     "coverage": {
         "realtimeCoverage": {
             "area": {
                 "coordinates": [
-                    [ [ 7.31213, 49.13806 ], [ 7.22087, 49.58129 ], [ 8.804767, 49.946308 ], [ 8.95468, 48.71439 ], [ 7.31213, 49.13806 ] ]
+                    [
+                        [
+                            7.31213,
+                            49.13806
+                        ],
+                        [
+                            7.22087,
+                            49.58129
+                        ],
+                        [
+                            8.804767,
+                            49.946308
+                        ],
+                        [
+                            8.95468,
+                            48.71439
+                        ],
+                        [
+                            7.31213,
+                            49.13806
+                        ]
+                    ]
                 ],
                 "type": "Polygon"
             },
             "region": [
-                "DE-RP", "DE-BW", "DE-HE"
+                "DE-RP",
+                "DE-BW",
+                "DE-HE"
             ]
         }
     },

@@ -1,18 +1,22 @@
 {
     "KPlugin": {
         "Description": "Local public transport in the canton Zürich, Switzerland",
+        "Description[ca@valencia]": "Transport públic local al cantó de Zuric, Suïssa.",
         "Description[ca]": "Transport públic local al cantó de Zuric, Suïssa.",
         "Description[es]": "Transporte público local del cantón de Zúrich, Suiza.",
         "Description[nl]": "Lokaal openbaar vervoer in het kanton Zürich, Zwitserland",
         "Description[pt]": "Transportes públicos locais na região de Zurique, Suíça.",
+        "Description[pt_BR]": "Transporte público local na região de Zurique, Suíça.",
         "Description[sv]": "Lokal transportoperatör i och omkring Zürich, Schweiz.",
         "Description[uk]": "Місцевий транспорт у кантоні Цюрих, Швейцарія",
         "Description[x-test]": "xxLocal public transport in the canton Zürich, Switzerlandxx",
         "Name": "Zürcher Verkehrsverbund (ZVV)",
+        "Name[ca@valencia]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[ca]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[es]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[nl]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[pt]": "Zürcher Verkehrsverbund (ZVV)",
+        "Name[pt_BR]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[sv]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[uk]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[x-test]": "xxZürcher Verkehrsverbund (ZVV)xx"
