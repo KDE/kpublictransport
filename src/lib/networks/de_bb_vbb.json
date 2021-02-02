@@ -99,7 +99,7 @@
             "type": "AND"
         },
         "endpoint": "https://fahrinfo.vbb.de/bin/mgate.exe",
-        "ext": "VBB.1",
+        "ext": "VBB.4",
         "lineModeMap": {
             "1": "RapidTransit",
             "16": "Ferry",

@@ -83,6 +83,7 @@
             "type": "AND"
         },
         "endpoint": "https://hvv-app.hafas.de/bin/mgate.exe",
+        "ext": "HVV.1",
         "lineModeMap": {
             "1": "Metro",
             "1024": "Taxi",
