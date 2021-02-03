@@ -1,7 +1,25 @@
 {
     "KPlugin": {
         "Description": "Local public transport in the Rhein-Neckar area.",
-        "Name": "Verkehrsverbund Rhein-Neckar (VRN)"
+        "Description[ca@valencia]": "Transport públic local a l'àrea de Rin-Neckar.",
+        "Description[ca]": "Transport públic local a l'àrea de Rin-Neckar.",
+        "Description[nl]": "Lokaal openbaar vervoer in het gebied Rijn-Neckar, Duitsland.",
+        "Description[pt]": "Transportes locais na área de Rhein-Neckar.",
+        "Description[pt_BR]": "Transporte local na área de Reno-Neckar, Alemanha.",
+        "Description[sl]": "Lokalni transport v področju Rhein-Neckar v Nemčiji.",
+        "Description[sv]": "Lokal transportoperatör i Rhein-Neckar-området.",
+        "Description[uk]": "Місцевий громадський транспорт у регіоні Рейн-Неккар.",
+        "Description[x-test]": "xxLocal public transport in the Rhein-Neckar area.xx",
+        "Name": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[ca@valencia]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[ca]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[nl]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[pt]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[pt_BR]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[sl]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[sv]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[uk]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[x-test]": "xxVerkehrsverbund Rhein-Neckar (VRN)xx"
     },
     "coverage": {
         "realtimeCoverage": {
