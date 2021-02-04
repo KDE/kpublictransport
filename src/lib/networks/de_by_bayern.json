@@ -39,7 +39,7 @@
         "Name[x-test]": "xxBayern Fahrplanxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

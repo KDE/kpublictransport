@@ -32,6 +32,7 @@ static constexpr struct {
 } transport_api_mapping[] = {
     { "be", "nmbs-sncb", "be_sncb" },
     { "ch", "sbb-cff-ffs", "ch_sbb" },
+    { "de", "bayernfahrplan", "de_by_bayern" },
     { "de", "nahsh", "de_sh_sh" },
     { "de", "saarfahrplan", "de_sl_saarvv" },
     { "dk", "rejseplanen", "dk_dsb" },

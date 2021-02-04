@@ -40,7 +40,7 @@
         "Name[x-test]": "xxVerkehrsverbund Großraum Nürnberg (VGN)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -80,6 +80,10 @@
     "options": {
         "endpoint": "https://efa.vgn.de/vgn/"
     },
+    "supportedLanguages": [
+        "de"
+    ],
+    "timezone": "Europe/Berlin",
     "type": {
         "efa": true
     }

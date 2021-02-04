@@ -40,7 +40,7 @@
         "Name[x-test]": "xxMünchener Verkehrs- und Tarifverbund (MVV)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -80,6 +80,7 @@
         "de",
         "en"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "efa": true
     }
