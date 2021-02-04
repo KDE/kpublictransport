@@ -112,8 +112,8 @@
         "ver": "1.18"
     },
     "supportedLanguages": [
-        "en",
         "de",
+        "en",
         "fr"
     ],
     "type": {

@@ -103,9 +103,9 @@
         "ver": "1.21"
     },
     "supportedLanguages": [
+        "de",
         "dk",
-        "en",
-        "de"
+        "en"
     ],
     "type": {
         "hafasMgate": true

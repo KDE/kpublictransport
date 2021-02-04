@@ -77,8 +77,8 @@
         "endpoint": "https://www2.vvs.de/vvs/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "type": {
         "efa": true

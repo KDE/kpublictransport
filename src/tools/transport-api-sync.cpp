@@ -149,6 +149,18 @@ static void postProcessConfig(QJsonObject &top)
         options.insert(QLatin1String("lineModeMap"), lineModeMap);
     }
     top.insert(QLatin1String("options"), options);
+
+    // sort languages alphabetically to create stable diffs, the order doesn't matter for us
+    auto langs = top.take(QLatin1String("supportedLanguages")).toArray();
+    QStringList l;
+    l.reserve(langs.size());
+    std::transform(langs.begin(), langs.end(), std::back_inserter(l), [](const auto &jval) { return jval.toString(); });
+    std::sort(l.begin(), l.end());
+    langs = {};
+    std::transform(l.begin(), l.end(), std::back_inserter(langs), [](const auto &s) { return QJsonValue(s); });
+    if (!langs.empty()) {
+        top.insert(QLatin1String("supportedLanguages"), langs);
+    }
 }
 
 static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &apiConfigFile)

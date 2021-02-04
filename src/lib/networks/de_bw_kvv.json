@@ -78,8 +78,8 @@
         "endpoint": "https://projekte.kvv-efa.de/sl3/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "type": {
         "efa": true

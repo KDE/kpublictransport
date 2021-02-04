@@ -84,9 +84,9 @@
     },
     "supportedLanguages": [
         "de",
+        "en",
         "fr",
-        "it",
-        "en"
+        "it"
     ],
     "timezone": "Europe/Zurich",
     "type": {

@@ -110,9 +110,9 @@
     },
     "supportedLanguages": [
         "de",
+        "en",
         "fr",
-        "it",
-        "en"
+        "it"
     ],
     "type": {
         "hafasQuery": true

@@ -77,8 +77,8 @@
         "endpoint": "http://appefa10.verbundlinie.at/android/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Vienna",
     "type": {

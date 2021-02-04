@@ -114,8 +114,8 @@
         "ver": "1.21"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Berlin",
     "type": {

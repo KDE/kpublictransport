@@ -76,8 +76,8 @@
         "endpoint": "https://www.linzag.at/linz2/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Vienna",
     "type": {

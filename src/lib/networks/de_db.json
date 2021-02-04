@@ -121,10 +121,10 @@
         "ver": "1.18"
     },
     "supportedLanguages": [
-        "en",
         "de",
-        "fr",
-        "es"
+        "en",
+        "es",
+        "fr"
     ],
     "timezone": "Europe/Berlin",
     "type": {

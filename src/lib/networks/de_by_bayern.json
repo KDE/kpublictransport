@@ -77,8 +77,8 @@
         "endpoint": "https://mobile.defas-fgi.de/beg/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "type": {
         "efa": true

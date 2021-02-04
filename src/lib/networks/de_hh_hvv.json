@@ -102,8 +102,8 @@
         "ver": "1.16"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Berlin",
     "type": {

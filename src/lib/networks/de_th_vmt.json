@@ -100,8 +100,8 @@
         "ver": "1.18"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Berlin",
     "type": {

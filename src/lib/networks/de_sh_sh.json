@@ -114,8 +114,8 @@
         "ver": "1.18"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "type": {
         "hafasMgate": true

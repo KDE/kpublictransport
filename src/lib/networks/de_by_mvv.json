@@ -77,8 +77,8 @@
         "endpoint": "https://efa.mvv-muenchen.de/mobile/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "type": {
         "efa": true
