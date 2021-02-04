@@ -34,6 +34,14 @@ private:
         return l;
     }
 
+    static bool hasRealtimeJourneyData(const std::vector<Journey> &journeys) {
+        return std::any_of(journeys.begin(), journeys.end(), [](const auto &jny) {
+            return std::any_of(jny.sections().begin(), jny.sections().end(), [](const auto &sec) {
+                return sec.hasExpectedDepartureTime() || sec.hasExpectedArrivalTime() || sec.hasExpectedDeparturePlatform() || sec.hasExpectedArrivalPlatform();
+            });
+        });
+    }
+
     static constexpr const auto TIMEOUT = 60000;
 
     KPublicTransport::Manager m_ptMgr;
@@ -244,6 +252,7 @@ private Q_SLOTS:
             QCOMPARE(reply->errorString(), QString());
             QCOMPARE(spy.size(), 1);
             QVERIFY(reply->result().size() > 0);
+            qDebug() << "Journey realtime data:" << hasRealtimeJourneyData(reply->result());
         }
     }
 };
