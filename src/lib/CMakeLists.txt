@@ -75,6 +75,8 @@ set(kpublictransport_srcs
     gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
 
+    geo/polylinedecoder.cpp
+
     gtfs/hvt.cpp
 
     knowledgedb/linemetadata.cpp

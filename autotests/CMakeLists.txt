@@ -10,6 +10,7 @@ ecm_add_test(kgraphqlminimizertest.cpp LINK_LIBRARIES Qt5::Test KGraphQL)
 
 ecm_add_test(indexeddatatabletest LINK_LIBRARIES Qt5::Test)
 
+ecm_add_test(polylinetest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(mergeutiltest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(locationtest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(linetest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
