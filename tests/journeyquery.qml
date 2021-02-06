@@ -379,6 +379,18 @@ Kirigami.ApplicationWindow {
                         text: "Retal Vehicles"
                     }
                 }
+                RowLayout {
+                    QQC2.Label { text: "Results:" }
+                    QQC2.TextField {
+                        id: maxResults
+                        text: "10"
+                    }
+                    QQC2.CheckBox {
+                        id: intermediateStops
+                        checked: true
+                        text: "Intermediate stops"
+                    }
+                }
 
                 QQC2.ComboBox {
                     id: fromSelector
@@ -453,6 +465,8 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.downloadAssets = true
                             journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
                                 | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
+                            journeyModel.request.maximumResults = maxResults.text;
+                            journeyModel.request.includeIntermediateStops = intermediateStops.checked;
                         }
                     }
                     QQC2.Button {
@@ -474,6 +488,8 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.downloadAssets = true
                             journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
                                 | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
+                            journeyModel.request.maximumResults = maxResults.text;
+                            journeyModel.request.includeIntermediateStops = intermediateStops.checked;
                         }
                     }
                     QQC2.Button {
@@ -495,6 +511,8 @@ Kirigami.ApplicationWindow {
                             journeyModel.request.downloadAssets = true
                             journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
                                 | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
+                            journeyModel.request.maximumResults = maxResults.text;
+                            journeyModel.request.includeIntermediateStops = intermediateStops.checked;
                         }
                     }
                     QQC2.Button {

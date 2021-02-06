@@ -8,7 +8,8 @@ query journeys(
   $toLon: Float!,
   $date: String!,
   $time: String!,
-  $arriveBy: Boolean!
+  $arriveBy: Boolean!,
+  $maxResults: Int!
 ) {
   plan (
         from: { lat: $fromLat, lon: $fromLon }
@@ -16,7 +17,7 @@ query journeys(
         date: $date
         time: $time
         arriveBy: $arriveBy
-        numItineraries: 3
+        numItineraries: $maxResults
     ) {
         itineraries {
             legs {

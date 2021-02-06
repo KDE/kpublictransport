@@ -103,8 +103,9 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         req.insert(QStringLiteral("extChgTime"), -1);
         req.insert(QStringLiteral("getEco"), false);
         req.insert(QStringLiteral("getIST"), false);
-        req.insert(QStringLiteral("getPasslist"), true); // ???
+        req.insert(QStringLiteral("getPasslist"), request.includeIntermediateStops());
         req.insert(QStringLiteral("getPolyline"), false);
+        req.insert(QStringLiteral("numF"), request.maximumResults());
 
         QDateTime dt = request.dateTime();
         if (timeZone().isValid()) {

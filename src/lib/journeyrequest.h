@@ -47,6 +47,16 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
      *  values for tranfers/waits/etc are ignored.
      */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::JourneySection::Modes, modes, setModes)
+    /** The maximum amount of expected results.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results comply with this constraint.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, maximumResults, setMaximumResults)
+    /** Retrieve intermediate stops for the queried journeys as well.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results will contain this information.
+     */
+    KPUBLICTRANSPORT_PROPERTY(bool, includeIntermediateStops, setIncludeIntermediateStops)
 
 public:
     enum DateTimeMode {

@@ -7,14 +7,15 @@ query journeys(
   $toLat: Float!,
   $toLon: Float!,
   $dateTime: DateTime!,
-  $arriveBy: Boolean!
+  $arriveBy: Boolean!,
+  $maxResults: Int!
 ) {
   plan: trip (
         from: { coordinates: { latitude: $fromLat, longitude: $fromLon } }
         to:   { coordinates: { latitude: $toLat,   longitude: $toLon } }
         dateTime: $dateTime
         arriveBy: $arriveBy
-        numTripPatterns: 3
+        numTripPatterns: $maxResults
     ) {
     itineraries: tripPatterns {
       legs {

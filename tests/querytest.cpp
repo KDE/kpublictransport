@@ -173,6 +173,7 @@ private Q_SLOTS:
             LocationRequest req;
             req.setBackendIds({backend});
             req.setCoordinate(loc2.latitude(), loc2.longitude());
+            req.setMaximumResults(1);
             auto reply = m_ptMgr.queryLocation(req);
             QSignalSpy spy(reply, &LocationReply::finished);
             QVERIFY(spy.wait(TIMEOUT));
@@ -245,6 +246,7 @@ private Q_SLOTS:
             req.setBackendIds({backend});
             req.setFrom(loc1);
             req.setTo(loc2);
+            req.setMaximumResults(1);
             auto reply = m_ptMgr.queryJourney(req);
             QSignalSpy spy(reply, &JourneyReply::finished);
             QVERIFY(spy.wait(TIMEOUT));

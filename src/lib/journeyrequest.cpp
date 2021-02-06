@@ -28,11 +28,13 @@ public:
     Location from;
     Location to;
     QDateTime dateTime;
-    JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
     std::vector<RequestContext> contexts;
     QStringList backendIds;
-    bool downloadAssets = false;
+    JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
     JourneySection::Modes modes = JourneySection::PublicTransport | JourneySection::RentedVehicle;
+    int maximumResults = 12;
+    bool downloadAssets = false;
+    bool includeIntermediateStops = true;
 };
 }
 
@@ -42,6 +44,8 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, Location, to, setTo)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, JourneyRequest::DateTimeMode, dateTimeMode, setDateTimeMode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, downloadAssets, setDownloadAssets)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, JourneySection::Modes, modes, setModes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, int, maximumResults, setMaximumResults)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, includeIntermediateStops, setIncludeIntermediateStops)
 
 JourneyRequest::JourneyRequest(const Location &from, const Location &to)
     : d(new JourneyRequestPrivate)

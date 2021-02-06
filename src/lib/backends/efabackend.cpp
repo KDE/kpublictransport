@@ -194,7 +194,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
     query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
 
-    query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QStringLiteral("12")); // TODO
+    query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QString::number(std::max(1, request.maximumResults())));
     query.addQueryItem(QStringLiteral("calcCO2"), QStringLiteral("1"));
 
     // saves several 100kb due to not encoding that path coordinates (which we don't even need) as XML
