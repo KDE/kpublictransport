@@ -47,7 +47,6 @@ set(kpublictransport_srcs
     datatypes/disruption.cpp
     datatypes/equipment.cpp
     datatypes/equipmentutil.cpp
-    datatypes/geojson.cpp
     datatypes/journey.cpp
     datatypes/journeyutil.cpp
     datatypes/json.cpp
@@ -75,6 +74,7 @@ set(kpublictransport_srcs
     gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
 
+    geo/geojson.cpp
     geo/polylinedecoder.cpp
 
     gtfs/hvt.cpp

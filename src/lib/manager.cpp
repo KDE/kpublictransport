@@ -19,10 +19,10 @@
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/backend.h"
 #include "datatypes/disruption.h"
-#include "datatypes/geojson_p.h"
 #include "datatypes/platform.h"
 #include "datatypes/vehicle.h"
 #include "datatypes/vehiclelayoutresult_p.h"
+#include "geo/geojson_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>

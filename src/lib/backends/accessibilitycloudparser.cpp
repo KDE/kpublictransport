@@ -5,7 +5,7 @@
 */
 
 #include "accessibilitycloudparser.h"
-#include "../datatypes/geojson_p.h"
+#include "../geo/geojson_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Equipment>
