@@ -13,6 +13,7 @@
 
 #include <array>
 #include <cstdint>
+#include <cstring>
 #include <limits>
 
 namespace KPublicTransport {
@@ -54,6 +55,9 @@ public:
     template <std::size_t N>
     explicit inline PolylineDecoder(const char (&data)[N])
         : PolylineDecoder(std::begin(data), std::end(data)) {}
+
+    explicit inline PolylineDecoder(const char *data)
+        : PolylineDecoder(data, data + std::strlen(data)) {}
 
     ~PolylineDecoder() = default;
 

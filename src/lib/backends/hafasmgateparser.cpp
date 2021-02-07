@@ -6,6 +6,7 @@
 
 #include "hafasmgateparser.h"
 #include "logging.h"
+#include "../geo/polylinedecoder_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
@@ -393,6 +394,40 @@ static std::vector<LoadInfo> parseLoad(const QJsonObject &obj, const std::vector
     return load;
 }
 
+static std::vector<Path> parsePaths(const QJsonArray &polyL)
+{
+    std::vector<Path> paths;
+    paths.reserve(polyL.size());
+    for (const auto &polyV : polyL) {
+        const auto polyObj = polyV.toObject();
+        Path path;
+        PathSection section;
+
+        const auto crdEncYX = polyObj.value(QLatin1String("crdEncYX")).toString().toUtf8();
+        PolylineDecoder<2> crdEncYXDecoder(crdEncYX.constData());
+        section.setPath(crdEncYXDecoder.readPolygon());
+        // TODO there's more data in here
+
+        path.setSections({section});
+        paths.push_back(path);
+    }
+    return paths;
+}
+
+static Path parsePolyG(const QJsonObject &obj, const std::vector<Path> &paths)
+{
+    const auto polyG = obj.value(QLatin1String("polyG")).toObject();
+    const auto polyXL = polyG.value(QLatin1String("polyXL")).toArray();
+    if (polyXL.size() != 1) {
+        return {};
+    }
+    const auto polyX = polyXL.at(0).toInt();
+    if (polyX >= 0 && polyX < (int)paths.size()) {
+        return paths[polyX];
+    }
+    return {};
+}
+
 std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) const
 {
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
@@ -402,6 +437,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
     const auto loadInfos = parseLoadInformation(commonObj.value(QLatin1String("tcocL")).toArray());
+    const auto paths = parsePaths(commonObj.value(QLatin1String("polyL")).toArray());
 
     std::vector<Journey> res;
     const auto outConL = obj.value(QLatin1String("outConL")).toArray();
@@ -490,12 +526,12 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
 
                 parseMessageList(section, jnyObj, remarks, warnings);
                 section.setLoadInformation(parseLoad(dep, loadInfos));
-            } else if (typeStr == QLatin1String("WALK")) {
-                section.setMode(JourneySection::Walking);
-                section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());
-            } else if (typeStr == QLatin1String("TRSF")) {
-                section.setMode(JourneySection::Transfer);
-                section.setDistance(secObj.value(QLatin1String("gis")).toObject().value(QLatin1String("dist")).toInt());
+                section.setPath(parsePolyG(jnyObj, paths));
+            } else if (typeStr == QLatin1String("WALK") || typeStr == QLatin1String("TRSF")) {
+                const auto gis = secObj.value(QLatin1String("gis")).toObject();
+                section.setDistance(gis.value(QLatin1String("dist")).toInt());
+                section.setPath(parsePolyG(gis, paths));
+                section.setMode(typeStr == QLatin1String("WALK") ? JourneySection::Walking : JourneySection::Transfer);
             }
 
             sections.push_back(section);
