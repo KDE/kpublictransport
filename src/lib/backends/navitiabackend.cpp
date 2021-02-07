@@ -63,9 +63,10 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
             query.addQueryItem(QStringLiteral("datetime"), req.dateTime().toString(QStringLiteral("yyyyMMddThhmmss")));
             query.addQueryItem(QStringLiteral("datetime_represents"), req.dateTimeMode() == JourneyRequest::Arrival ? QStringLiteral("arrival") : QStringLiteral("departure"));
         }
+        query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
 
         // TODO: disable reply parts we don't care about
-        query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true")); // ### seems to have no effect?
+        query.addQueryItem(QStringLiteral("disable_geojson"), req.includePaths() ? QStringLiteral("false") : QStringLiteral("true"));
         query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0")); // ### also has no effect?
         url.setQuery(query);
     }

@@ -36,7 +36,7 @@ QPointF GeoJson::readPoint(const QJsonObject &obj)
 static QPolygonF readPolygonCoordinates(const QJsonArray &coords)
 {
     QPolygonF poly;
-    poly.resize(coords.size());
+    poly.reserve(coords.size());
     for (const auto &pointV : coords) {
         const auto point = pointV.toArray();
         poly.push_back(readPointCoordinates(point));

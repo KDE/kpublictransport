@@ -5,6 +5,7 @@
 */
 
 #include "navitiaparser.h"
+#include "../geo/geojson_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
@@ -209,6 +210,15 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
 
     const auto emissionObj = obj.value(QLatin1String("co2_emission")).toObject();
     section.setCo2Emission(emissionObj.value(QLatin1String("value")).toDouble(-1));
+
+    const auto pathLineString = GeoJson::readLineString(obj.value(QLatin1String("geojson")).toObject());
+    if (!pathLineString.empty()) {
+        Path path;
+        PathSection pathSection;
+        pathSection.setPath(pathLineString);
+        path.setSections({pathSection});
+        section.setPath(std::move(path));
+    }
 
     return section;
 }
