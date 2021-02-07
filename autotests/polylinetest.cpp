@@ -60,6 +60,17 @@ private Q_SLOTS:
         QCOMPARE(decoder.canReadMore(), false);
     }
 
+    void testPolygon()
+    {
+        PolylineDecoder<2> decoder("_p~iF~ps|U_ulLnnqC_mqNvxq`@");
+        const auto polygon = decoder.readPolygon();
+        QCOMPARE(decoder.canReadMore(), false);
+        QCOMPARE(polygon.size(), 3);
+        QCOMPARE(polygon.isClosed(), false);
+        QCOMPARE(polygon[0].x(), -120.2);
+        QCOMPARE(polygon[0].y(), 38.5);
+    }
+
 #if 0
     void dumpEncoded() // mostly for manual testing
     {

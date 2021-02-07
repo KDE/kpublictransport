@@ -9,6 +9,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <QPolygonF>
+
 #include <array>
 #include <cstdint>
 #include <limits>
@@ -73,6 +75,18 @@ public:
     inline double readNextDouble()
     {
         return readNextInt() / 100000.0;
+    }
+
+    inline QPolygonF readPolygon()
+    {
+        static_assert(Dim == 2, "Polygons require a two-dimensional polyline");
+        QPolygonF p;
+        while (canReadMore()) {
+            const auto lat = readNextDouble();
+            const auto lon = readNextDouble();
+            p.push_back({lon, lat});
+        }
+        return p;
     }
 
 private:

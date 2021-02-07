@@ -23,6 +23,9 @@ namespace GeoJson
     /** Coordinate of a point geometry object. */
     KPUBLICTRANSPORT_EXPORT QPointF readPoint(const QJsonObject &obj);
 
+    /** Reads a line string object. */
+    QPolygonF readLineString(const QJsonObject &obj);
+
     /** Outer path of a polygon or multi-polygon geometry object. */
     QPolygonF readOuterPolygon(const QJsonObject &obj);
 }

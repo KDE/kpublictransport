@@ -44,6 +44,17 @@ static QPolygonF readPolygonCoordinates(const QJsonArray &coords)
     return poly;
 }
 
+QPolygonF GeoJson::readLineString(const QJsonObject &obj)
+{
+    const auto type = obj.value(QLatin1String("type")).toString();
+    if (type != QLatin1String("LineString")) {
+        return {};
+    }
+
+    const auto coordinates = obj.value(QLatin1String("coordinates")).toArray();
+    return readPolygonCoordinates(coordinates);
+}
+
 QPolygonF GeoJson::readOuterPolygon(const QJsonObject &obj)
 {
     const auto type = obj.value(QLatin1String("type")).toString();
