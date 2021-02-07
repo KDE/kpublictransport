@@ -80,3 +80,21 @@ QPolygonF GeoJson::readOuterPolygon(const QJsonObject &obj)
 
     return {};
 }
+
+static QJsonArray writePoint(const QPointF &p)
+{
+    return QJsonArray({ p.x(), p.y() });
+}
+
+QJsonObject GeoJson::writeLineString(const QPolygonF &lineString)
+{
+    QJsonObject obj;
+    obj.insert(QLatin1String("type"), QLatin1String("LineString"));
+
+    QJsonArray coords;
+    for (const auto &p : lineString) {
+        coords.push_back(writePoint(p));
+    }
+    obj.insert(QLatin1String("coordinates"), coords);
+    return obj;
+}

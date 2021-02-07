@@ -45,6 +45,7 @@ public:
     int co2Emission = -1;
     std::vector<LoadInfo> loadInformation;
     RentalVehicle rentalVehicle;
+    Path path;
 
     int estimatedDistance() const;
 };
@@ -69,6 +70,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, RentalVehicle, rentalVehicle, setRentalVehicle)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Path, path, setPath)
 
 int JourneySectionPrivate::estimatedDistance() const
 {
@@ -413,6 +415,8 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     res.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
     res.d->rentalVehicle = RentalVehicleUtil::merge(lhs.d->rentalVehicle, rhs.d->rentalVehicle);
 
+    res.d->path = lhs.d->path.isEmpty() ? rhs.d->path : lhs.d->path;
+
     return res;
 }
 
@@ -448,6 +452,10 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
         obj.insert(QStringLiteral("rentalVehicle"), RentalVehicle::toJson(section.rentalVehicle()));
     }
 
+    if (!section.path().isEmpty()) {
+        obj.insert(QLatin1String("path"), Path::toJson(section.path()));
+    }
+
     if (obj.size() <= 3) { // only the disruption and mode enums and distance, ie. this is an empty object
         return {};
     }
@@ -468,6 +476,7 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setIntermediateStops(Stopover::fromJson(obj.value(QLatin1String("intermediateStops")).toArray()));
     section.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
     section.setRentalVehicle(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
+    section.setPath(Path::fromJson(obj.value(QLatin1String("path")).toObject()));
     return section;
 }
 

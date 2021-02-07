@@ -28,6 +28,9 @@ namespace GeoJson
 
     /** Outer path of a polygon or multi-polygon geometry object. */
     QPolygonF readOuterPolygon(const QJsonObject &obj);
+
+    /** Creates a line string object. */
+    QJsonObject writeLineString(const QPolygonF &lineString);
 }
 
 }

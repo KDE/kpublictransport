@@ -12,6 +12,7 @@
 #include "line.h"
 #include "load.h"
 #include "location.h"
+#include "path.h"
 
 #include <QDateTime>
 
@@ -128,6 +129,12 @@ public:
 
     /** Information about a rental vehicle, for sections using one. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle, rentalVehicle, setRentalVehicle)
+
+    /** Movement path for this journey section.
+     *  This can be navigation instructions for individual transport modes and transfers,
+     *  or the path a public transport vehicle takes.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Path, path, setPath)
 
 public:
     bool hasExpectedDepartureTime() const;
