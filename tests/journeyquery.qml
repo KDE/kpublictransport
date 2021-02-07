@@ -390,6 +390,10 @@ Kirigami.ApplicationWindow {
                         checked: true
                         text: "Intermediate stops"
                     }
+                    QQC2.CheckBox {
+                        id: includePaths
+                        text: "Paths"
+                    }
                 }
 
                 QQC2.ComboBox {
@@ -467,6 +471,7 @@ Kirigami.ApplicationWindow {
                                 | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
                             journeyModel.request.maximumResults = maxResults.text;
                             journeyModel.request.includeIntermediateStops = intermediateStops.checked;
+                            journeyModel.request.includePaths = includePaths.checked;
                         }
                     }
                     QQC2.Button {
@@ -490,6 +495,7 @@ Kirigami.ApplicationWindow {
                                 | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
                             journeyModel.request.maximumResults = maxResults.text;
                             journeyModel.request.includeIntermediateStops = intermediateStops.checked;
+                            journeyModel.request.includePaths = includePaths.checked;
                         }
                     }
                     QQC2.Button {
@@ -513,6 +519,7 @@ Kirigami.ApplicationWindow {
                                 | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
                             journeyModel.request.maximumResults = maxResults.text;
                             journeyModel.request.includeIntermediateStops = intermediateStops.checked;
+                            journeyModel.request.includePaths = includePaths.checked;
                         }
                     }
                     QQC2.Button {

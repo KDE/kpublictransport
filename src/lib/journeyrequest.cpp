@@ -35,6 +35,7 @@ public:
     int maximumResults = 12;
     bool downloadAssets = false;
     bool includeIntermediateStops = true;
+    bool includePaths = false;
 };
 }
 
@@ -46,6 +47,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, downloadAssets, setDownload
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, JourneySection::Modes, modes, setModes)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, int, maximumResults, setMaximumResults)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, includeIntermediateStops, setIncludeIntermediateStops)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneyRequest, bool, includePaths, setIncludePaths)
 
 JourneyRequest::JourneyRequest(const Location &from, const Location &to)
     : d(new JourneyRequestPrivate)

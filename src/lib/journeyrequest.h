@@ -57,6 +57,11 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
      *  that all results will contain this information.
      */
     KPUBLICTRANSPORT_PROPERTY(bool, includeIntermediateStops, setIncludeIntermediateStops)
+    /** Retrieve path details for the journeys.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results will contain this information.
+     */
+    KPUBLICTRANSPORT_PROPERTY(bool, includePaths, setIncludePaths)
 
 public:
     enum DateTimeMode {
