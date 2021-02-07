@@ -1,0 +1,745 @@
+{
+  "ver": "1.18",
+  "ext": "DB.R19.12.a",
+  "lang": "deu",
+  "id": "3tw2fk26giwygg4s",
+  "err": "OK",
+  "svcResL": [
+    {
+      "meth": "TripSearch",
+      "err": "OK",
+      "res": {
+        "common": {
+          "locL": [
+            {
+              "lid": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=80@L=8011113@",
+              "type": "S",
+              "name": "Berlin Südkreuz",
+              "icoX": 0,
+              "extId": "8011113",
+              "state": "F",
+              "crd": {
+                "x": 13365863,
+                "y": 52476230,
+                "z": 0,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 63
+            },
+            {
+              "lid": "A=1@O=Leipzig Hbf@X=12382066@Y=51345467@U=80@L=8010205@",
+              "type": "S",
+              "name": "Leipzig Hbf",
+              "icoX": 0,
+              "extId": "8010205",
+              "state": "F",
+              "crd": {
+                "x": 12381167,
+                "y": 51345081,
+                "z": 0,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 319
+            },
+            {
+              "lid": "A=1@O=Lutherstadt Wittenberg Hbf@X=12662286@Y=51867813@U=80@L=8010222@",
+              "type": "S",
+              "name": "Lutherstadt Wittenberg Hbf",
+              "icoX": 0,
+              "extId": "8010222",
+              "state": "F",
+              "crd": {
+                "x": 12661999,
+                "y": 51867579,
+                "z": 0,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 571
+            }
+          ],
+          "prodL": [
+            {
+              "name": "ICE 1601",
+              "number": "1601",
+              "icoX": 0,
+              "cls": 1,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "ICE 1601",
+                "num": "1601",
+                "matchId": "28",
+                "catOut": "ICE",
+                "catOutS": "ICE",
+                "catOutL": "Intercity-Express",
+                "catIn": "ICE",
+                "catCode": "0",
+                "admin": "80____"
+              }
+            },
+            {
+              "name": "ICE 1711",
+              "number": "1711",
+              "icoX": 0,
+              "cls": 1,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "ICE 1711",
+                "num": "1711",
+                "matchId": "28",
+                "catOut": "ICE",
+                "catOutS": "ICE",
+                "catOutL": "Intercity-Express",
+                "catIn": "ICE",
+                "catCode": "0",
+                "admin": "80____"
+              }
+            }
+          ],
+          "polyL": [
+            {
+              "delta": true,
+              "dim": 3,
+              "crdEncYX": "mgh_IsoqpAh@xDlDkBh@pDDWxG~Bt_@rJLgBgAjI`b@hSdL|GLsAtFlApDPdVeBxHTdKpCdOrI??~N~LfLvMzI`MnWfc@N[py@ruAs@~AvG`Iw@`Cv@aChErGbIlP`HpK~NzQ`K|J??dRzNlMnHhH`E`HtCFe@bLbEnWxJRyA??beB|i@??~e@bObi@`NbpCxz@????j_@dL????xhBjj@jLrCAX@Yhd@~IBY??ba@lHAXvkBz[????vHlAbW~DzOn@biEiCfJJjGl@fGtAjL~ErKbIzOjQ??z_CtoCtMtLnF~D`f@vX??z`@`U~NvGzThGtOvBlUr@df@wBzOJjsH~[hMvAxHdBlMfEtNvH`NhKdMrM~GbJjG`Ktm@nhA??~d@xz@nIdNp_BztBhU~X??dSpWbPbX??raEx{IlOtW`QxTjMfM~MfKjIdF|N|GxIxCjmCls@nLhEzKdHfRrQnLhOzO`W??fV|`@~EjI??fXpc@`wAx_CvNbYdF`MpEzMtDvNvH|_@rD~Z~Bd\\??xOvlC??j[vlFbq@~}G??rf@z_FnBfP~EfZ??lCdMfPtp@??tgBdiHlHnUpIdTvJrR~K|Q??tKhObHlIniCbzC??tL|NtGpJfKtQrFhLfFzL|H~T`EfN~DtP??lE~U|B~O|C`YtBnYxJbxCtBjg@jAtg@~@xPpA|KfAjGdCvJjBfFxDxHdJxLxYzZ??dLbMvRlX`FjF`D`CrIvDje@vL~FnClFdE~GxI|DtHjVbp@pGrO??hHhPtGxKbDdDdCxAjGxA??qDxHnsEhxHvy@`vA??hxFfnJ??byDrpG??f|E~dI??|HrMpCbDdNhYxH`UtFbWrChTnArPn@lUXrg@v@jUbAdLvAxKlBfKhCvJzC~IlFlLhGfKtEfGbFdFbIxF|FlCnKjD??rXhIrIpDvKvHtJjKjEzGnH~OjE|MjRxp@pGxP|DtHrItMtLtNhFzEzKzG`GxBfGvAlv@fM|k@fH@m@r@JGtAf]jDzLlBzIfCrIxDfInFrMhLbW`Vf[p\\tHbHlNvIpTdIpI`E`I~FrJdKjC~C??nOhQvH|GzK~GlLlEzLrB~L^~Lw@|HaB??nM_FhNmJ~LyMdKkP??dJiT`EgNbD_OdCwOzLscA|EqWhCsJ|C_JfFuL~DoH|IcM|JyJfo@kc@pSkMbbAoh@??|HcEhOcI??np@e]??BA@?lHyBhGeAzk@{B|LwA`hBqf@??ht@cSlvE{_A??``@eHhJUdZZdKg@bJoA~IsB|mB_m@ff@uO~RiGGw@BA????|VmHFfACWlOoE??BA@?hf@{NEi@Dh@vj@iPjR_H~DoA?@?Arh@oO@LdDAxCr@|OhKlc@fj@~IxJDO?DjFtF`G`Ibe@rg@DO",
+              "crdEncZ": "???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????",
+              "crdEncDist": "?eCmEaCQeIed@iAmFih@{Ny@wGeE}X{I{LmR?eSyPkNwc@YwvAuA}JkBkBcHiOeL}TuN?}VgPeJsIYeNm[_A?itB?wk@{n@qeD??cd@??ixBeNQQgi@Q?me@QqyB??_JcZyQ{_FoKkHkHsNsNqU?_mDyQiHym@?sg@wQ_XuQ_Xuj@wQsvIaOaJsOwQwQsQqKoKegA?yy@sNeeCs]?_[uX?caI{W_XwQuQoKwQoKmaDsNsN}WuQ_X?wa@qI?sd@{bC_XqKoKoKaXeSoS?}aB?_eDmkE?k_DoKgS?{Icf@?ijFuQuQwQmR?_QoKgzD?wQoKuQoKoKuQoKyL?kPmKuQuQ}hBa[a[mKkHgEiHgEiHsNob@?qPa[kHiEmKwj@kHiHmKkHsi@{M?yN_LwEaDoH?cH{~HswA?ivJ?_wG?ilI?{MgEwWwQuQqNoKqNa[qNkHiHiHmHiHmKoKkHiHqKiHkM?k\\oKsNqNkHyNoKqg@qNkHqNwQkHqNkHkHo}@iq@a@w@{@y`@sNoKmKoKwQe^od@mKwQ_XoKmKmN_E?iUmKsNsNsNsNsNgJ?yOwQuQcQ?iRoKmKoK{p@uQkHiHoKkHqNsNgz@}WaoA?yJmR?{y@?CA{IkH_q@sN_wB?}{@{rF?id@sKg]qLoKoKo~Bel@_Vg@C??kZq@QwQ?CAcl@]]cq@mU}E?Asn@IyDmDwSmq@wMMCwHkJ}q@M",
+              "crdEncS": "NNNNNKNNNLNNKNMNNNNMNMNNNNNNNLLNMNNMNKNNNNNNNNMMNNNNNNLNNNNNNNNNNNNNNKNKNNNNNNKNNNMNMNNMNNLNMNMNKNNNLNLNNNNNNNNMNLNLMNNNMNNNNNNNLNLNNMNNNNNNNNLNNKNNNMNLNNKNNNLNKNLNKNNKNMNLMNLNKNKNMNNMNKNMNLNMNNNNMNKNNNNNNNNNNNNNLNNNNMNMMNKNKNLNKNLNKNNLNNNMNKNNKNLNNKNMNNNNKNLNLNLKNNKNMNNNLNMNMNMNNNNNNNNLNLNNKNKNMNNMNNNNNNNNNKNMNNNNNNNLNKNLNNNNNNNNNNNNNNNNNLNNNNNNLNNLNNNKKNN",
+              "crdEncF": "???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????",
+              "ppLocRefL": [
+                {
+                  "ppIdx": 0,
+                  "locX": 0
+                },
+                {
+                  "ppIdx": 181,
+                  "locX": 2
+                },
+                {
+                  "ppIdx": 358,
+                  "locX": 1
+                }
+              ]
+            }
+          ],
+          "layerL": [
+            {
+              "id": "standard",
+              "name": "standard",
+              "index": 0,
+              "annoCnt": 0
+            }
+          ],
+          "crdSysL": [
+            {
+              "id": "standard",
+              "index": 0,
+              "type": "WGS84"
+            }
+          ],
+          "opL": [
+            {
+              "name": "DB Fernverkehr AG",
+              "icoX": 1
+            }
+          ],
+          "remL": [
+            {
+              "type": "D",
+              "code": "",
+              "icoX": 2,
+              "txtN": "Schnee und Eis",
+              "sIdx": 0
+            },
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 3,
+              "txtN": "Sicher + kontaktlos ohne Ticketkontrolle reisen mit Komfort Check-in"
+            },
+            {
+              "type": "A",
+              "code": "PB",
+              "prio": 200,
+              "icoX": 3,
+              "txtN": "Pflicht zum Tragen einer medizinischen Maske"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 4,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 5,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 6,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 7,
+              "txtS": "ICE 1601: Berlin Südkreuz->Leipzig Hbf: Großstörung.",
+              "txtN": "Starker Schneefall angekündigt. Es kann zu Verspätungen und Zugausfällen kommen.",
+              "sIdx": 0
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 8,
+              "txtS": "ICE 1601: Berlin Südkreuz->Leipzig Hbf: Information.",
+              "txtN": "Keine rollstuhlgerechte Einstiegstür in Wagen 22. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 01806-512512 (20 ct/Anruf aus dem dt. Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf).",
+              "sIdx": 0
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 8,
+              "txtS": "ICE 1601: Berlin Südkreuz->Leipzig Hbf: Großstörung.",
+              "txtN": "Bahnverkehr in weiten Teilen Deutschlands beeinträchtigt. Aufgrund von Unwetterschäden verkehren am heutigen Sonntag, 07.02.2021 nicht alle Fernverkehrszüge der Deutschen Bahn. Bitte überprüfen Sie Ihre Verbindung ca. 1 Stunde vor Abfahrt oder weichen Sie auf einen anderen Reisetag aus. Weitere Informationen erhalten Sie unter www.bahn.de/aktuell.",
+              "sIdx": 0
+            },
+            {
+              "type": "P",
+              "code": "",
+              "icoX": 9,
+              "txtN": "Fahrt fällt aus",
+              "sIdx": 0
+            },
+            {
+              "type": "C",
+              "code": "",
+              "icoX": 9,
+              "txtN": "Fahrt fällt aus."
+            }
+          ],
+          "icoL": [
+            {
+              "res": "ICE"
+            },
+            {
+              "res": "D",
+              "txt": "DB Fernverkehr AG"
+            },
+            {
+              "res": "Empty"
+            },
+            {
+              "res": "attr_info"
+            },
+            {
+              "res": "attr_bike_r"
+            },
+            {
+              "res": "attr_bike"
+            },
+            {
+              "res": "attr_resto"
+            },
+            {
+              "res": "HimWarn"
+            },
+            {
+              "res": "HimInfo"
+            },
+            {
+              "res": "cancel"
+            }
+          ],
+          "tcocL": [
+            {
+              "c": "FIRST",
+              "r": 1
+            },
+            {
+              "c": "SECOND",
+              "r": 1
+            }
+          ]
+        },
+        "outConL": [
+          {
+            "cid": "C-0",
+            "date": "20210207",
+            "dur": "010500",
+            "chg": 0,
+            "sDays": {
+              "sDaysR": "fährt 7. Feb bis 10. Sep 2021; nicht 9. bis 21. Mär 2021 ",
+              "sDaysB": "FFFFFFFFFFFFFFFFFFFFFC001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000"
+            },
+            "isNotRdbl": true,
+            "badSecRefX": 0,
+            "dep": {
+              "locX": 0,
+              "idx": 5,
+              "dProdX": 0,
+              "dInR": false,
+              "dTimeS": "143700",
+              "dCncl": true,
+              "dTZOffset": 60,
+              "msgL": [
+                {
+                  "type": "REM",
+                  "remX": 0,
+                  "txtC": {
+                    "r": 204,
+                    "g": 0,
+                    "b": 0
+                  },
+                  "prio": 478,
+                  "fIdx": -1,
+                  "tIdx": -1,
+                  "tagL": [
+                    "RES_LOC_H3"
+                  ],
+                  "sort": 1099956224
+                }
+              ],
+              "type": "N"
+            },
+            "arr": {
+              "locX": 1,
+              "idx": 7,
+              "aOutR": false,
+              "aTimeS": "154200",
+              "aCncl": true,
+              "aTZOffset": 60,
+              "type": "N"
+            },
+            "secL": [
+              {
+                "type": "JNY",
+                "icoX": 0,
+                "dep": {
+                  "locX": 0,
+                  "idx": 5,
+                  "dProdX": 0,
+                  "dInR": false,
+                  "dTimeS": "143700",
+                  "dCncl": true,
+                  "dTrnCmpSX": {
+                    "tcM": 1
+                  },
+                  "dTZOffset": 60,
+                  "msgL": [
+                    {
+                      "type": "REM",
+                      "remX": 0,
+                      "txtC": {
+                        "r": 204,
+                        "g": 0,
+                        "b": 0
+                      },
+                      "prio": 478,
+                      "fIdx": -1,
+                      "tIdx": -1,
+                      "tagL": [
+                        "RES_LOC_H3"
+                      ],
+                      "sort": 1099956224
+                    }
+                  ],
+                  "type": "N"
+                },
+                "arr": {
+                  "locX": 1,
+                  "idx": 7,
+                  "aOutR": false,
+                  "aTimeS": "154200",
+                  "aCncl": true,
+                  "aTrnCmpSX": {
+                    "tcM": 1
+                  },
+                  "aTZOffset": 60,
+                  "type": "N"
+                },
+                "jny": {
+                  "jid": "1|171375|0|80|7022021",
+                  "prodX": 0,
+                  "dirTxt": "München Hbf",
+                  "status": "P",
+                  "isCncl": true,
+                  "isRchbl": false,
+                  "stopL": [
+                    {
+                      "locX": 0,
+                      "idx": 5,
+                      "dProdX": 0,
+                      "dInR": false,
+                      "dTimeS": "143700",
+                      "dCncl": true,
+                      "dDirTxt": "München Hbf",
+                      "dTZOffset": 60,
+                      "msgL": [
+                        {
+                          "type": "REM",
+                          "remX": 0,
+                          "txtC": {
+                            "r": 204,
+                            "g": 0,
+                            "b": 0
+                          },
+                          "prio": 478,
+                          "fIdx": -1,
+                          "tIdx": -1,
+                          "tagL": [
+                            "RES_LOC_H3"
+                          ],
+                          "sort": 1099956224
+                        }
+                      ],
+                      "type": "N"
+                    },
+                    {
+                      "locX": 2,
+                      "idx": 6,
+                      "aProdX": 0,
+                      "aOutR": false,
+                      "aTimeS": "151000",
+                      "aCncl": true,
+                      "aTZOffset": 60,
+                      "dProdX": 0,
+                      "dInR": false,
+                      "dTimeS": "151200",
+                      "dCncl": true,
+                      "dTZOffset": 60,
+                      "type": "N"
+                    },
+                    {
+                      "locX": 1,
+                      "idx": 7,
+                      "aProdX": 0,
+                      "aOutR": false,
+                      "aTimeS": "154200",
+                      "aCncl": true,
+                      "aTZOffset": 60,
+                      "type": "N"
+                    }
+                  ],
+                  "polyG": {
+                    "polyXL": [
+                      0
+                    ],
+                    "layerX": 0,
+                    "crdSysX": 0
+                  },
+                  "ctxRecon": "T$A=1@O=Berlin Südkreuz@L=8011113@a=128@$A=1@O=Leipzig Hbf@L=8010205@a=128@$202102071437$202102071542$ICE 1601$$1$$$",
+                  "msgL": [
+                    {
+                      "type": "REM",
+                      "remX": 1,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 5,
+                      "tIdx": 7,
+                      "tagL": [
+                        "RES_JNY_DTL"
+                      ],
+                      "sort": 1126170624
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 2,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 5,
+                      "tIdx": 7,
+                      "tagL": [
+                        "RES_JNY_DTL"
+                      ],
+                      "sort": 1126170624
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 3,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 5,
+                      "tIdx": 7,
+                      "tagL": [
+                        "RES_JNY_DTL_L"
+                      ],
+                      "sort": 1141899264
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 4,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 5,
+                      "tIdx": 7,
+                      "tagL": [
+                        "RES_JNY_DTL_L"
+                      ],
+                      "sort": 1141899264
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 5,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 5,
+                      "tIdx": 7,
+                      "tagL": [
+                        "RES_JNY_DTL_L"
+                      ],
+                      "sort": 1191706624
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 6,
+                      "prio": 240,
+                      "fIdx": -1,
+                      "tIdx": -1,
+                      "tagL": [
+                        "RES_CON_FTR_H3"
+                      ],
+                      "sort": 1099956224
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 7,
+                      "prio": 240,
+                      "fIdx": -1,
+                      "tIdx": -1,
+                      "tagL": [
+                        "RES_CON_FTR_H3"
+                      ],
+                      "sort": 1099956224
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 8,
+                      "prio": 240,
+                      "fIdx": -1,
+                      "tIdx": -1,
+                      "tagL": [
+                        "RES_CON_FTR_H3"
+                      ],
+                      "sort": 1099956224
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 9,
+                      "txtC": {
+                        "r": 204,
+                        "g": 0,
+                        "b": 0
+                      },
+                      "prio": 373,
+                      "fIdx": -1,
+                      "tIdx": -1,
+                      "tagL": [
+                        "RES_JNY_H3"
+                      ],
+                      "sort": 1099956224
+                    }
+                  ],
+                  "subscr": "F",
+                  "prodL": [
+                    {
+                      "prodX": 0,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 5,
+                      "tIdx": 7
+                    }
+                  ]
+                },
+                "parJnyL": [
+                  {
+                    "jid": "1|171790|0|80|7022021",
+                    "prodX": 1,
+                    "dirTxt": "München Hbf",
+                    "stopL": [
+                      {
+                        "locX": 0,
+                        "idx": 12,
+                        "dProdX": 1,
+                        "dPlatfS": "3",
+                        "dTimeS": "143700",
+                        "dDirTxt": "München Hbf",
+                        "dTrnCmpSX": {
+                          "tcocX": [
+                            0,
+                            1
+                          ]
+                        },
+                        "dTZOffset": 60,
+                        "type": "N"
+                      },
+                      {
+                        "locX": 2,
+                        "idx": 13,
+                        "aProdX": 1,
+                        "aPlatfS": "2",
+                        "aTimeS": "151000",
+                        "aTZOffset": 60,
+                        "dTrnCmpSX": {
+                          "tcocX": [
+                            0,
+                            1
+                          ]
+                        },
+                        "type": "N"
+                      },
+                      {
+                        "locX": 1,
+                        "idx": 14,
+                        "aProdX": 1,
+                        "aPlatfS": "11",
+                        "aTimeS": "154200",
+                        "aTZOffset": 60,
+                        "type": "N"
+                      }
+                    ],
+                    "ctxRecon": "T$A=1@O=Berlin Südkreuz@L=8011113@a=128@$A=1@O=Leipzig Hbf@L=8010205@a=128@$000001437$000001542$ICE 1711$$1$$$",
+                    "msgL": [
+                      {
+                        "type": "REM",
+                        "remX": 1,
+                        "fLocX": 0,
+                        "tLocX": 1,
+                        "fIdx": 12,
+                        "tIdx": 14,
+                        "tagL": [
+                          "RES_JNY_DTL"
+                        ],
+                        "sort": 1126170624
+                      },
+                      {
+                        "type": "REM",
+                        "remX": 2,
+                        "fLocX": 0,
+                        "tLocX": 1,
+                        "fIdx": 12,
+                        "tIdx": 14,
+                        "tagL": [
+                          "RES_JNY_DTL"
+                        ],
+                        "sort": 1126170624
+                      },
+                      {
+                        "type": "REM",
+                        "remX": 3,
+                        "fLocX": 0,
+                        "tLocX": 1,
+                        "fIdx": 12,
+                        "tIdx": 14,
+                        "tagL": [
+                          "RES_JNY_DTL_L"
+                        ],
+                        "sort": 1141899264
+                      },
+                      {
+                        "type": "REM",
+                        "remX": 4,
+                        "fLocX": 0,
+                        "tLocX": 1,
+                        "fIdx": 12,
+                        "tIdx": 14,
+                        "tagL": [
+                          "RES_JNY_DTL_L"
+                        ],
+                        "sort": 1141899264
+                      },
+                      {
+                        "type": "REM",
+                        "remX": 5,
+                        "fLocX": 0,
+                        "tLocX": 1,
+                        "fIdx": 12,
+                        "tIdx": 14,
+                        "tagL": [
+                          "RES_JNY_DTL_L"
+                        ],
+                        "sort": 1191706624
+                      }
+                    ],
+                    "subscr": "F",
+                    "prodL": [
+                      {
+                        "prodX": 1,
+                        "fLocX": 0,
+                        "tLocX": 1,
+                        "fIdx": 12,
+                        "tIdx": 14
+                      }
+                    ],
+                    "dTrnCmpSX": {
+                      "tcocX": [
+                        0,
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "resState": "N",
+                "resRecommendation": "N"
+              }
+            ],
+            "ctxRecon": "¶HKI¶T$A=1@O=Berlin Südkreuz@L=8011113@a=128@$A=1@O=Leipzig Hbf@L=8010205@a=128@$202102071437$202102071542$ICE 1601$$1$$$",
+            "msgL": [
+              {
+                "type": "REM",
+                "remX": 10,
+                "txtC": {
+                  "r": 204,
+                  "g": 0,
+                  "b": 0
+                },
+                "prio": 200,
+                "fIdx": -1,
+                "tIdx": -1,
+                "tagL": [
+                  "SUM_CON_FTR_H3"
+                ],
+                "sort": 1099956224
+              }
+            ],
+            "eco": {},
+            "conSubscr": "F",
+            "resState": "N",
+            "resRecommendation": "N",
+            "recState": "U",
+            "sotRating": 0,
+            "isSotCon": false,
+            "showARSLink": false,
+            "sotCtxt": {
+              "cnLocX": 0,
+              "calcDate": "20210207",
+              "jid": "1|171375|0|80|-1",
+              "locMode": "FROM_START",
+              "pLocX": 0,
+              "reqMode": "UNKNOWN",
+              "sectX": 0,
+              "calcTime": "135426"
+            },
+            "cksum": "3adcd9fd_3",
+            "cksumDti": "77edd0a1_3"
+          }
+        ],
+        "outCtxScrB": "2|OB|MT#11#84397#84397#84462#84462#0#0#325#84350#1#-2147482598#0#1#2|PDH#7c9b5a0e1ff57a0c3db712140e160701|RD#7022021|RT#135026|US#0",
+        "outCtxScrF": "2|OF|MT#11#84397#84397#84462#84462#0#0#325#84350#1#-2147482598#0#1#2|PDH#7c9b5a0e1ff57a0c3db712140e160701|RD#7022021|RT#135026|US#0",
+        "fpB": "20201213",
+        "fpE": "20211211",
+        "bfATS": -1,
+        "bfIOSTS": -1,
+        "planrtTS": "1612702322"
+      }
+    }
+  ]
+}
+

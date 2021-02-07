@@ -256,6 +256,7 @@ Stopover JourneySection::departure() const
     dep.setScheduledPlatform(scheduledDeparturePlatform());
     dep.setExpectedPlatform(expectedDeparturePlatform());
     dep.addNotes(notes());
+    dep.setDisruptionEffect(disruptionEffect());
     return dep;
 }
 
@@ -268,6 +269,7 @@ Stopover JourneySection::arrival() const
     arr.setExpectedArrivalTime(expectedArrivalTime());
     arr.setScheduledPlatform(scheduledArrivalPlatform());
     arr.setExpectedPlatform(expectedArrivalPlatform());
+    arr.setDisruptionEffect(disruptionEffect());
     return arr;
 }
 

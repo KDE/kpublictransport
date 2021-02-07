@@ -74,6 +74,7 @@ Kirigami.Page {
             Layout.fillWidth: true
             clip: true
             header: RowLayout {
+                enabled: journeySection.departure.disruptionEffect != Disruption.NoService
                 width: parent.width - 2 * Kirigami.Units.largeSpacing
                 x: Kirigami.Units.largeSpacing
                 Rectangle {
@@ -108,10 +109,11 @@ Kirigami.Page {
 
             delegate: Kirigami.AbstractListItem {
                 property var stop: modelData
+                enabled: stop.disruptionEffect != Disruption.NoService
                 highlighted: false
                 GridLayout {
                     columns: 5
-                    rows: 2
+                    rows: 3
                     Rectangle {
                         Layout.column: 0
                         Layout.row: 0
@@ -216,10 +218,21 @@ Kirigami.Page {
                         text: stop.hasExpectedPlatform ? stop.expectedPlatform : stop.scheduledPlatform
                         color: stop.hasExpectedPlatform ? (stop.platformChanged ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.positiveTextColor) : Kirigami.Theme.textColor
                     }
+
+                    QQC2.Label {
+                        Layout.column: 0
+                        Layout.row: 2
+                        Layout.columnSpan: 4
+                        text: stop.notes.join("<br/>")
+                        textFormat: Text.RichText
+                        visible: stop.notes.length > 0
+                        font.italic: true
+                    }
                 }
             }
 
             footer: RowLayout {
+                enabled: journeySection.arrival.disruptionEffect != Disruption.NoService
                 width: parent.width - 2 * Kirigami.Units.largeSpacing
                 x: Kirigami.Units.largeSpacing
                 Rectangle {

@@ -506,7 +506,6 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                     stops.reserve(stopL.size() - 2);
                     for (auto it = std::next(stopL.begin()); it != std::prev(stopL.end()); ++it) {
                         const auto stopObj = (*it).toObject();
-                        // TODO how does this look for individual stop skips during disruptions?
                         Stopover stop;
                         const auto locIdx = stopObj.value(QLatin1String("locX")).toInt();
                         if ((unsigned int)locIdx < locs.size()) {
@@ -518,6 +517,10 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                         stop.setExpectedArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeR")), stopObj.value(QLatin1String("aTZOffset"))));
                         stop.setScheduledPlatform(stopObj.value(QLatin1String("dPlatfS")).toString());
                         stop.setExpectedPlatform(stopObj.value(QLatin1String("dPlatfR")).toString());
+                        if (stopObj.value(QLatin1String("aCncl")).toBool() || stopObj.value(QLatin1String("dCncl")).toBool()) {
+                            stop.setDisruptionEffect(Disruption::NoService);
+                        }
+                        parseMessageList(stop, stopObj, remarks, warnings);
                         stop.setLoadInformation(parseLoad(stopObj, loadInfos));
                         stops.push_back(stop);
                     }

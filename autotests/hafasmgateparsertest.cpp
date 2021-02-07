@@ -133,6 +133,35 @@ private Q_SLOTS:
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
     }
+
+    void testParseJourneys_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("de-db-canceled-with-path")
+            << s(SOURCE_DIR "/data/hafas/canceled-journey-with-path.in.json")
+            << s(SOURCE_DIR "/data/hafas/canceled-journey-with-path.out.json");
+    }
+
+    void testParseJourneys()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        HafasMgateParser p;
+        p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
+        const auto res = p.parseJourneys(readFile(inFileName));
+        const auto jsonRes = Journey::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
 };
 
 QTEST_GUILESS_MAIN(HafasMgateParserTest)
