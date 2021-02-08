@@ -21,6 +21,33 @@
                 "notes": [
                     "Construction works somewhere - further infos on some random website"
                 ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.00223,
+                                        49.59591
+                                    ],
+                                    [
+                                        11.00222,
+                                        49.59593
+                                    ],
+                                    [
+                                        11.00181,
+                                        49.59502
+                                    ],
+                                    [
+                                        11.0018,
+                                        49.59502
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
                 "route": {
                     "direction": "Nürnberg Röthenbach",
                     "line": {
@@ -90,6 +117,33 @@
                     }
                 ],
                 "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.00184,
+                                        49.59502
+                                    ],
+                                    [
+                                        11.00187,
+                                        49.59495
+                                    ],
+                                    [
+                                        11.08067,
+                                        49.44532
+                                    ],
+                                    [
+                                        11.08166,
+                                        49.44554
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
                 "route": {
                     "direction": "Nürnberg Langwasser Süd",
                     "line": {

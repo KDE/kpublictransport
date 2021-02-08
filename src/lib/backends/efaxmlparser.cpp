@@ -247,6 +247,29 @@ std::vector<Stopover> EfaXmlParser::parsePartialTripStopSequence(ScopedXmlStream
     return stops;
 }
 
+static Path parsePathCoordinates(ScopedXmlStreamReader &&reader)
+{
+    QPolygonF poly;
+    while (reader.readNextSibling()) {
+        if (reader.name() == QLatin1String("itdCoordinateString")) {
+            // TODO do we need to support the format attributes, or is this always the same anyway?
+            const auto coords = reader.readElementText().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+            poly.reserve(coords.size());
+            for (const auto &coord : coords) {
+                const auto p = coord.split(QLatin1Char(','));
+                if (p.size() == 2) {
+                    poly.push_back({p[0].toDouble(), p[1].toDouble()});
+                }
+            }
+        }
+    }
+    PathSection section;
+    section.setPath(poly);
+    Path path;
+    path.setSections({section});
+    return path;
+}
+
 struct {
     int type;
     JourneySection::Mode mode;
@@ -300,6 +323,8 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
             section.addNotes(parseInfoLink(reader.subReader()));
         } else if (reader.name() == QLatin1String("itdStopSeq")) {
             section.setIntermediateStops(parsePartialTripStopSequence(reader.subReader()));
+        } else if (reader.name() == QLatin1String("itdPathCoordinates")) {
+            section.setPath(parsePathCoordinates(reader.subReader()));
         }
     }
 
