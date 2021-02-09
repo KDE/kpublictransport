@@ -28,7 +28,14 @@ class KPUBLICTRANSPORT_EXPORT PathSection
     KPUBLICTRANSPORT_PROPERTY(QPolygonF, path, setPath)
 
     // TODO add more properties: maneuver instructions, human-readable path description, floor level
+
+    /** The length of this path section in meters. */
+    Q_PROPERTY(int distance READ distance STORED false)
+
 public:
+    /** Length of this path section in meters. */
+    int distance() const;
+
     /** Serializes one path section section to JSON. */
     static QJsonObject toJson(const PathSection &section);
     /** Serializes a vector of path sections to JSON. */
@@ -52,6 +59,9 @@ class KPUBLICTRANSPORT_EXPORT Path
 {
     KPUBLICTRANSPORT_GADGET(Path)
 
+    /** The length of this path in meters. */
+    Q_PROPERTY(int distance READ distance STORED false)
+
 public:
     /** Returns @c true if this is an empty/not-set path. */
     bool isEmpty() const;
@@ -62,6 +72,9 @@ public:
     std::vector<PathSection>&& takeSections();
     /** Sets the path sections. */
     void setSections(std::vector<PathSection> &&sections);
+
+    /** Length of this path in meters. */
+    int distance() const;
 
     /** Serializes one path object to JSON. */
     static QJsonObject toJson(const Path &path);

@@ -72,7 +72,7 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 4514,
+                "distance": 17665,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2019-11-11T22:09:00",
                 "expectedDeparturePlatform": "",

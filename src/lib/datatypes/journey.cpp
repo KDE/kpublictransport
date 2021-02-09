@@ -90,7 +90,7 @@ int JourneySectionPrivate::estimatedDistance() const
     }
 
     d += Location::distance(startLat, startLon, to.latitude(), to.longitude());
-    return d;
+    return std::max(d, path.distance());
 }
 
 bool JourneySection::hasExpectedDepartureTime() const

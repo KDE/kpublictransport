@@ -8,6 +8,7 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "../geo/geojson_p.h"
+#include "location.h"
 
 using namespace KPublicTransport;
 
@@ -20,6 +21,16 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(PathSection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QPolygonF, path, setPath)
+
+int PathSection::distance() const
+{
+    int dist = 0;
+    for (auto it = d->path.begin(); it != std::prev(d->path.end()); ++it) {
+        const auto nextIt = std::next(it);
+        dist += Location::distance((*it).y(), (*it).x(), (*nextIt).y(), (*nextIt).x());
+    }
+    return dist;
+}
 
 QJsonObject PathSection::toJson(const PathSection &section)
 {
@@ -75,6 +86,11 @@ void Path::setSections(std::vector<PathSection> &&sections)
 {
     d.detach();
     d->sections = std::move(sections);
+}
+
+int Path::distance() const
+{
+    return std::accumulate(d->sections.begin(), d->sections.end(), 0, [](int d, const auto &sec) { return d + sec.distance(); });
 }
 
 QJsonObject Path::toJson(const Path &path)

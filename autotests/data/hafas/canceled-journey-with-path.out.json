@@ -3,7 +3,7 @@
         "sections": [
             {
                 "disruptionEffect": "NoService",
-                "distance": 144221,
+                "distance": 163558,
                 "from": {
                     "identifier": {
                         "unit-test": "8011113"

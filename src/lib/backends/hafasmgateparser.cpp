@@ -407,9 +407,19 @@ static std::vector<Path> parsePaths(const QJsonArray &polyL)
         PolylineDecoder<2> crdEncYXDecoder(crdEncYX.constData());
         section.setPath(crdEncYXDecoder.readPolygon());
         // TODO there's more data in here
-
         path.setSections({section});
-        paths.push_back(path);
+
+#if 0 // check if there is more information in the crdEncDist than can be derived from that path data
+        const auto crdEncDist = polyObj.value(QLatin1String("crdEncDist")).toString().toUtf8();
+        PolylineDecoder<1> crdEncDistDecoder(crdEncDist.constData());
+        int encDist = 0;
+        while (crdEncDistDecoder.canReadMore()) {
+            encDist = crdEncDistDecoder.readNextInt();
+        }
+        qDebug() << encDist << section.distance();
+#endif
+
+        paths.push_back(std::move(path));
     }
     return paths;
 }
