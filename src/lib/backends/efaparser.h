@@ -18,13 +18,14 @@
 #include <vector>
 
 class QByteArray;
-class QXmlStreamReader;
 
 namespace KPublicTransport {
 
 class Journey;
 class JourneySection;
 class Location;
+class Path;
+class ScopedXmlStreamReader;
 class Stopover;
 
 /** Base class for parsers for responses from EFA services.
@@ -50,6 +51,9 @@ protected:
      * this needs a similar configuration as Hafas uses.
      */
     static Line::Mode motTypeToLineMode(int mot);
+
+    /** Parse path encoded as a space separated string of coordinate pairs. */
+    static Path parsePathCoordinatesElement(ScopedXmlStreamReader &reader);
 
     QString m_locationIdentifierType;
     mutable QString m_errorMsg;

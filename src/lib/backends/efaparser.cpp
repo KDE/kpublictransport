@@ -6,6 +6,9 @@
 
 #include "efaparser.h"
 #include "logging.h"
+#include "scopedxmlstreamreader.h"
+
+#include <KPublicTransport/Path>
 
 using namespace KPublicTransport;
 
@@ -55,4 +58,24 @@ Line::Mode EfaParser::motTypeToLineMode(int mot)
     }
     qCDebug(Log) << "Unknown means ot transport: " << mot;
     return Line::Unknown;
+}
+
+Path EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)
+{
+    QPolygonF poly;
+    // TODO do we need to support the format attributes, or is this always the same anyway?
+    const auto coords = reader.readElementText().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+    poly.reserve(coords.size());
+    for (const auto &coord : coords) {
+        const auto p = coord.split(QLatin1Char(','));
+        if (p.size() == 2) {
+            poly.push_back({p[0].toDouble(), p[1].toDouble()});
+        }
+    }
+
+    PathSection section;
+    section.setPath(poly);
+    Path path;
+    path.setSections({section});
+    return path;
 }

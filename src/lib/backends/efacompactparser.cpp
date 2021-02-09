@@ -337,6 +337,8 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                 stops.erase(stops.begin());
             }
             section.setIntermediateStops(std::move(stops));
+        } else if (reader.name() == QLatin1String("pt")) {
+            section.setPath(parsePathCoordinatesElement(reader));
         }
         // TODO interchange tag - should we turn this into transfer sections?
     }

@@ -37,6 +37,7 @@ private:
     JourneySection parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
     Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;
     QStringList parseInfoLink(ScopedXmlStreamReader &&reader) const;
+    Path parsePathCoordinates(ScopedXmlStreamReader &&reader) const;
 
     mutable QHash<QString, Location> m_locations;
 };

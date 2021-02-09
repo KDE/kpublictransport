@@ -120,6 +120,33 @@
                 "notes": [
                      "Some construction works. More info on some website."
                 ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08222,
+                                        49.44706
+                                    ],
+                                    [
+                                        11.0822,
+                                        49.44706
+                                    ],
+                                    [
+                                        11.08167,
+                                        49.44639
+                                    ],
+                                    [
+                                        11.08165,
+                                        49.44639
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
                 "route": {
                     "direction": "Röthenbach",
                     "line": {
@@ -155,6 +182,33 @@
                     "name": "Nürnberg Hbf"
                 },
                 "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08165,
+                                        49.44639
+                                    ],
+                                    [
+                                        11.08177,
+                                        49.44616
+                                    ],
+                                    [
+                                        11.11446,
+                                        49.41586
+                                    ],
+                                    [
+                                        11.11467,
+                                        49.41588
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
                 "route": {
                     "direction": "Langwasser Süd",
                     "line": {
