@@ -302,6 +302,14 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
             section.setIntermediateStops(parsePartialTripStopSequence(reader.subReader()));
         } else if (reader.name() == QLatin1String("itdPathCoordinates")) {
             section.setPath(parsePathCoordinates(reader.subReader()));
+       } else if (reader.name() == QLatin1String("itdITPathDescription") && !section.path().isEmpty()) {
+            auto subreader = reader.subReader();
+            while (subreader.readNextSibling()) {
+                if (subreader.name() == QLatin1String("itdITPathDescriptionList")) {
+                    const auto fullPath = section.path();
+                    section.setPath(parsePathDescriptionList(subreader.subReader(), fullPath.sections()[0].path()));
+                }
+            }
         }
     }
 
@@ -352,10 +360,48 @@ QStringList EfaXmlParser::parseInfoLink(ScopedXmlStreamReader &&reader) const
 
 Path EfaXmlParser::parsePathCoordinates(ScopedXmlStreamReader &&reader) const
 {
+    Path path;
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdCoordinateString")) {
-            return parsePathCoordinatesElement(reader);
+            path = parsePathCoordinatesElement(reader);
         }
     }
-    return {};
+    return path;
+}
+
+Path EfaXmlParser::parsePathDescriptionList(ScopedXmlStreamReader &&reader, const QPolygonF &poly) const
+{
+    Path path;
+    std::vector<PathSection> sections;
+
+    while (reader.readNextSibling()) {
+        if (reader.name() == QLatin1String("itdITPathDescriptionElem")) {
+            PathSection section;
+            int fromIdx = -1; int toIdx = -1;
+            auto elemReader = reader.subReader();
+            while (elemReader.readNextSibling()) {
+                if (elemReader.name() == QLatin1String("fromPathCoordIdx")) {
+                    fromIdx = elemReader.readElementText().toInt();
+                } else if (elemReader.name() == QLatin1String("toPathCoordIdx")) {
+                    toIdx = elemReader.readElementText().toInt();
+                } else if (elemReader.name() == QLatin1String("streetname")) {
+                    section.setDescription(elemReader.readElementText());
+                }
+                // turnDirection, turningManoeuvre, from/toPathLink??, skyDirection, traveltime, distance, niveau, genAttrList
+            }
+
+            if (fromIdx < 0 || toIdx < 0 || fromIdx >= poly.size() || toIdx >= poly.size() || toIdx < fromIdx) {
+                qWarning() << "weird polygon indexes?" << fromIdx << toIdx << poly.size();
+                continue;
+            }
+            QPolygonF subPoly;
+            subPoly.reserve(toIdx - fromIdx + 1);
+            std::copy(poly.begin() + fromIdx, poly.begin() + toIdx, std::back_inserter(subPoly));
+            section.setPath(subPoly);
+            sections.push_back(std::move(section));
+        }
+    }
+
+    path.setSections(std::move(sections));
+    return path;
 }

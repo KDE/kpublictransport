@@ -9,6 +9,8 @@
 
 #include "efaparser.h"
 
+class QPolygonF;
+
 namespace KPublicTransport {
 
 class ScopedXmlStreamReader;
@@ -38,6 +40,7 @@ private:
     Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;
     QStringList parseInfoLink(ScopedXmlStreamReader &&reader) const;
     Path parsePathCoordinates(ScopedXmlStreamReader &&reader) const;
+    Path parsePathDescriptionList(ScopedXmlStreamReader &&reader, const QPolygonF &poly) const;
 
     mutable QHash<QString, Location> m_locations;
 };

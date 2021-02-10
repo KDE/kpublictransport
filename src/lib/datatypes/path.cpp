@@ -16,14 +16,20 @@ namespace KPublicTransport {
 class PathSectionPrivate : public QSharedData {
 public:
     QPolygonF path;
+    QString description;
 };
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(PathSection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QPolygonF, path, setPath)
+KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QString, description, setDescription)
 
 int PathSection::distance() const
 {
+    if (d->path.size() < 2) {
+        return 0;
+    }
+
     int dist = 0;
     for (auto it = d->path.begin(); it != std::prev(d->path.end()); ++it) {
         const auto nextIt = std::next(it);
@@ -35,7 +41,9 @@ int PathSection::distance() const
 QJsonObject PathSection::toJson(const PathSection &section)
 {
     auto obj = Json::toJson(section);
-    obj.insert(QLatin1String("path"), GeoJson::writeLineString(section.path()));
+    if (!section.path().empty()) {
+        obj.insert(QLatin1String("path"), GeoJson::writeLineString(section.path()));
+    }
     return obj;
 }
 

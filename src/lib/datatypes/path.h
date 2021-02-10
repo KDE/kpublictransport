@@ -26,8 +26,10 @@ class KPUBLICTRANSPORT_EXPORT PathSection
     KPUBLICTRANSPORT_GADGET(PathSection)
     /** The geo coordinate poly-line followed by this path section. */
     KPUBLICTRANSPORT_PROPERTY(QPolygonF, path, setPath)
+    /** Human-readable description of this path segment. */
+    KPUBLICTRANSPORT_PROPERTY(QString, description, setDescription)
 
-    // TODO add more properties: maneuver instructions, human-readable path description, floor level
+    // TODO add more properties: maneuver instructions, floor level
 
     /** The length of this path section in meters. */
     Q_PROPERTY(int distance READ distance STORED false)

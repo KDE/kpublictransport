@@ -178,6 +178,9 @@ private Q_SLOTS:
         QTest::newRow("vgn-trip")
             << s(SOURCE_DIR "/data/efa/trip-response-full-vgn.xml")
             << s(SOURCE_DIR "/data/efa/trip-response-full-vgn.json");
+        QTest::newRow("vgn-trip-indoor-path")
+            << s(SOURCE_DIR "/data/efa/trip-response-full-indoor-path-vgn.xml")
+            << s(SOURCE_DIR "/data/efa/trip-response-full-indoor-path-vgn.json");
     }
 
     void testParseTrips()

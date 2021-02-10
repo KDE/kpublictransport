@@ -1,0 +1,290 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 180,
+                "expectedArrivalPlatform": "",
+                "expectedArrivalTime": "2020-04-27T22:13:00",
+                "expectedDeparturePlatform": "",
+                "expectedDepartureTime": "2020-04-27T22:07:00",
+                "from": {
+                    "identifier": {
+                        "testid": "3000510"
+                    },
+                    "latitude": 49.44636917114258,
+                    "locality": "Nürnberg",
+                    "longitude": 11.081809997558594,
+                    "name": "Nürnberg Hauptbahnhof"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Ausstieg U-Bahn links"
+                        },
+                        {
+                            "description": "Bahnsteig",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08263,
+                                        49.44717
+                                    ],
+                                    [
+                                        11.0826,
+                                        49.44716
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08258,
+                                        49.44715
+                                    ],
+                                    [
+                                        11.08258,
+                                        49.44714
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08218,
+                                        49.44702
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Aufzug abw�rts"
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08216,
+                                        49.447
+                                    ],
+                                    [
+                                        11.08222,
+                                        49.44701
+                                    ],
+                                    [
+                                        11.0822,
+                                        49.44705
+                                    ],
+                                    [
+                                        11.08201,
+                                        49.44701
+                                    ],
+                                    [
+                                        11.08174,
+                                        49.44695
+                                    ],
+                                    [
+                                        11.08166,
+                                        49.44693
+                                    ],
+                                    [
+                                        11.08152,
+                                        49.4469
+                                    ],
+                                    [
+                                        11.08155,
+                                        49.44683
+                                    ],
+                                    [
+                                        11.08156,
+                                        49.44681
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rolltreppe abw�rts",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08158,
+                                        49.44674
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08167,
+                                        49.44656
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08171,
+                                        49.44653
+                                    ],
+                                    [
+                                        11.08172,
+                                        49.44653
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Bahnsteig",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08173,
+                                        49.44653
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08162,
+                                        49.4465
+                                    ],
+                                    [
+                                        11.0817,
+                                        49.44635
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rolltreppe aufw�rts",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08179,
+                                        49.44636
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08181,
+                                        49.4463
+                                    ],
+                                    [
+                                        11.08195,
+                                        49.44602
+                                    ],
+                                    [
+                                        11.08198,
+                                        49.44599
+                                    ],
+                                    [
+                                        11.08204,
+                                        49.44588
+                                    ],
+                                    [
+                                        11.08212,
+                                        49.44573
+                                    ],
+                                    [
+                                        11.08218,
+                                        49.4456
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rolltreppe aufw�rts",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08226,
+                                        49.44546
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Weg im Geb�ude",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08235,
+                                        49.44547
+                                    ],
+                                    [
+                                        11.08248,
+                                        49.4455
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Bahnsteig",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08252,
+                                        49.44552
+                                    ],
+                                    [
+                                        11.0825,
+                                        49.44555
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalPlatform": "",
+                "scheduledArrivalTime": "2020-04-27T22:13:00",
+                "scheduledDeparturePlatform": "",
+                "scheduledDepartureTime": "2020-04-27T22:07:00",
+                "to": {
+                    "identifier": {
+                        "testid": "99999998"
+                    },
+                    "latitude": 49.445499420166016,
+                    "locality": "Nürnberg",
+                    "longitude": 11.082300186157227,
+                    "name": "Nürnberg, Bahnsteig"
+                }
+            }
+        ]
+    }
+]

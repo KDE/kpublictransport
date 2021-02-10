@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itdRequest version="10.3.9.39" language="de" lengthUnit="METER" sessionID="0" serverID="efa103.vgn.de" virtDir="vgnExt">
+  <itdTripRequest requestID="0">
+    <itdItinerary>
+      <itdRouteList>
+        <itdRoute active="1" selected="1" changes="2" distance="0" optValue="0" routeIndex="1" routeTripIndex="1" alternative="0" print="0" delete="0" searchMode="1" cTime="20200427211929402" method="itp" individualDuration="00:26" vehicleTime="20" idx="12" publicDuration="00:55">
+          <itdPartialRouteList>
+           <itdPartialRoute type="IT" active="1" timeMinute="6" distance="181" bookingCode="S0R0T0PR4" partialRouteType="normalPartialRoute" bufBef="-1" bufAft="-1">
+              <itdPoint stopID="3000510" area="10" platform="3" gid="de:09564:510" areaGid="de:09564:510:10" pointGid="de:09564:510:11:U2" name="Nürnberg Hauptbahnhof" nameWO="Hauptbahnhof" place="Nürnberg" platformName="" plannedPlatformName="" usage="departure" x="11.08181" y="49.44637" mapName="WGS84[DD.ddddd]" niveau="-300" omc="9564000" placeID="1" locality="Nürnberg" georef="1000778326:34:MRCV:100">
+                <itdDateTime>
+                  <itdDate year="2020" month="4" day="27" weekday="2"/>
+                  <itdTime hour="22" minute="7" second="36"/>
+                </itdDateTime>
+                <itdDateTimeTarget>
+                  <itdDate year="2020" month="4" day="27" weekday="2"/>
+                  <itdTime hour="22" minute="7" second="36"/>
+                </itdDateTimeTarget>
+                <genAttrList>
+                  <genAttrElem>
+                    <name>AREA_NIVEAU_DIVA</name>
+                    <value>-3</value>
+                  </genAttrElem>
+                  <genAttrElem>
+                    <name>AREA_NIVEAU_GIS</name>
+                    <value> -3.00</value>
+                  </genAttrElem>
+                </genAttrList>
+              </itdPoint>
+              <itdPoint stopID="99999998" area="0" platform="" name="Nürnberg, Bahnsteig" nameWO="Bahnsteig" place="Nürnberg" platformName="" plannedPlatformName="" usage="arrival" x="11.08230" y="49.44550" mapName="WGS84[DD.ddddd]" omc="9564000" placeID="-1" locality="Nürnberg" georef="1000781869:15:MRCV:100">
+                <itdDateTime>
+                  <itdDate year="2020" month="4" day="27" weekday="2"/>
+                  <itdTime hour="22" minute="13" second="36"/>
+                </itdDateTime>
+                <itdDateTimeTarget>
+                  <itdDate year="2020" month="4" day="27" weekday="2"/>
+                  <itdTime hour="22" minute="13" second="36"/>
+                </itdDateTimeTarget>
+              </itdPoint>
+              <itdMeansOfTransport name="" shortname="" symbol="" type="100" mtSubcode="0" productName="Fussweg" destination="" network="" TTB="0" STT="0" ROP="0" destID="" spTr="" stateless=":: : :" tC="0">
+                <motDivaParams line="" project="" direction=" " supplement=" " network=""/>
+              </itdMeansOfTransport>
+              <itdPathCoordinates>
+                <coordEllipsoid>WGS84</coordEllipsoid>
+                <coordType>GEO_DECIMAL</coordType>
+                <itdCoordinateString decimal="." cs="," ts="&amp;#x20;" format="x,y">11.08263,49.44717 11.08260,49.44716 11.08258,49.44715 11.08258,49.44714 11.08218,49.44702 11.08216,49.44700 11.08222,49.44701 11.08220,49.44705 11.08201,49.44701 11.08174,49.44695 11.08166,49.44693 11.08152,49.44690 11.08155,49.44683 11.08156,49.44681 11.08158,49.44674 11.08167,49.44656 11.08171,49.44653 11.08172,49.44653 11.08173,49.44653 11.08162,49.44650 11.08170,49.44635 11.08179,49.44636 11.08181,49.44630 11.08195,49.44602 11.08198,49.44599 11.08204,49.44588 11.08212,49.44573 11.08218,49.44560 11.08226,49.44546 11.08235,49.44547 11.08248,49.44550 11.08252,49.44552 11.08250,49.44555 11.08230,49.44551 11.08230,49.44550</itdCoordinateString>
+                <itdCoordinateReductionList/>
+              </itdPathCoordinates>
+              <itdITPathDescription altitudeDiffUp="" altitudeDiffDown="">
+                <itdITPathDescriptionList>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>UNKNOWN_TURN_DIRECTION</turnDirection>
+                    <turningManoeuvre>LEAVE</turningManoeuvre>
+                    <itdCoord x="11.08263" y="49.44717" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Ausstieg U-Bahn links</streetname>
+                    <fromPathLinkIdx>0</fromPathLinkIdx>
+                    <toPathLinkIdx>0</toPathLinkIdx>
+                    <fromPathCoordIdx>0</fromPathCoordIdx>
+                    <toPathCoordIdx>0</toPathCoordIdx>
+                    <skyDirection>0</skyDirection>
+                    <traveltime>0</traveltime>
+                    <cumTraveltime>5</cumTraveltime>
+                    <distance>0</distance>
+                    <cumDistance>2</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>PLATFORM_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08263" y="49.44717" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Bahnsteig</streetname>
+                    <fromPathLinkIdx>0</fromPathLinkIdx>
+                    <toPathLinkIdx>0</toPathLinkIdx>
+                    <fromPathCoordIdx>0</fromPathCoordIdx>
+                    <toPathCoordIdx>2</toPathCoordIdx>
+                    <skyDirection>65</skyDirection>
+                    <traveltime>5</traveltime>
+                    <cumTraveltime>5</cumTraveltime>
+                    <distance>2</distance>
+                    <cumDistance>2</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>PLATFORM_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>RIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08259" y="49.44714" mapName="WGS84[DD.ddddd]"/>
+                    <streetname/>
+                    <fromPathLinkIdx>1</fromPathLinkIdx>
+                    <toPathLinkIdx>1</toPathLinkIdx>
+                    <fromPathCoordIdx>2</fromPathCoordIdx>
+                    <toPathCoordIdx>4</toPathCoordIdx>
+                    <skyDirection>65</skyDirection>
+                    <traveltime>29</traveltime>
+                    <cumTraveltime>34</cumTraveltime>
+                    <distance>33</distance>
+                    <cumDistance>35</cumDistance>
+                    <niveau>0</niveau>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>SLIGHT_LEFT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08217" y="49.44702" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>2</fromPathLinkIdx>
+                    <toPathLinkIdx>2</toPathLinkIdx>
+                    <fromPathCoordIdx>4</fromPathCoordIdx>
+                    <toPathCoordIdx>5</toPathCoordIdx>
+                    <skyDirection>36</skyDirection>
+                    <traveltime>2</traveltime>
+                    <cumTraveltime>36</cumTraveltime>
+                    <distance>3</distance>
+                    <cumDistance>38</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>SHARP_RIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08216" y="49.44700" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Aufzug abw�rts</streetname>
+                    <fromPathLinkIdx>3</fromPathLinkIdx>
+                    <toPathLinkIdx>3</toPathLinkIdx>
+                    <fromPathCoordIdx>5</fromPathCoordIdx>
+                    <toPathCoordIdx>5</toPathCoordIdx>
+                    <skyDirection>179</skyDirection>
+                    <traveltime>11</traveltime>
+                    <cumTraveltime>47</cumTraveltime>
+                    <distance>0</distance>
+                    <cumDistance>38</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>LIFT</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>RIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08216" y="49.44700" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>4</fromPathLinkIdx>
+                    <toPathLinkIdx>11</toPathLinkIdx>
+                    <fromPathCoordIdx>5</fromPathCoordIdx>
+                    <toPathCoordIdx>14</toPathCoordIdx>
+                    <skyDirection>251</skyDirection>
+                    <traveltime>70</traveltime>
+                    <cumTraveltime>117</cumTraveltime>
+                    <distance>79</distance>
+                    <cumDistance>117</cumDistance>
+                    <niveau>-2</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08158" y="49.44674" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Rolltreppe abw�rts</streetname>
+                    <fromPathLinkIdx>12</fromPathLinkIdx>
+                    <toPathLinkIdx>12</toPathLinkIdx>
+                    <fromPathCoordIdx>14</fromPathCoordIdx>
+                    <toPathCoordIdx>15</toPathCoordIdx>
+                    <skyDirection>341</skyDirection>
+                    <traveltime>22</traveltime>
+                    <cumTraveltime>139</cumTraveltime>
+                    <distance>21</distance>
+                    <cumDistance>138</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>ESCALATOR</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>SLIGHT_LEFT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08167" y="49.44656" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>13</fromPathLinkIdx>
+                    <toPathLinkIdx>13</toPathLinkIdx>
+                    <fromPathCoordIdx>15</fromPathCoordIdx>
+                    <toPathCoordIdx>16</toPathCoordIdx>
+                    <skyDirection>316</skyDirection>
+                    <traveltime>4</traveltime>
+                    <cumTraveltime>143</cumTraveltime>
+                    <distance>4</distance>
+                    <cumDistance>142</cumDistance>
+                    <niveau>-4</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08172" y="49.44653" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>13</fromPathLinkIdx>
+                    <toPathLinkIdx>14</toPathLinkIdx>
+                    <fromPathCoordIdx>16</fromPathCoordIdx>
+                    <toPathCoordIdx>18</toPathCoordIdx>
+                    <skyDirection>316</skyDirection>
+                    <traveltime>8</traveltime>
+                    <cumTraveltime>151</cumTraveltime>
+                    <distance>9</distance>
+                    <cumDistance>151</cumDistance>
+                    <niveau>-4</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>LEFT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08162" y="49.44650" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Bahnsteig</streetname>
+                    <fromPathLinkIdx>15</fromPathLinkIdx>
+                    <toPathLinkIdx>15</toPathLinkIdx>
+                    <fromPathCoordIdx>18</fromPathCoordIdx>
+                    <toPathCoordIdx>19</toPathCoordIdx>
+                    <skyDirection>341</skyDirection>
+                    <traveltime>17</traveltime>
+                    <cumTraveltime>168</cumTraveltime>
+                    <distance>19</distance>
+                    <cumDistance>170</cumDistance>
+                    <niveau>-4</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>PLATFORM_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>LEFT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08170" y="49.44635" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>16</fromPathLinkIdx>
+                    <toPathLinkIdx>17</toPathLinkIdx>
+                    <fromPathCoordIdx>19</fromPathCoordIdx>
+                    <toPathCoordIdx>21</toPathCoordIdx>
+                    <skyDirection>251</skyDirection>
+                    <traveltime>12</traveltime>
+                    <cumTraveltime>180</cumTraveltime>
+                    <distance>14</distance>
+                    <cumDistance>184</cumDistance>
+                    <niveau>-4</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08181" y="49.44630" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Rolltreppe aufw�rts</streetname>
+                    <fromPathLinkIdx>18</fromPathLinkIdx>
+                    <toPathLinkIdx>18</toPathLinkIdx>
+                    <fromPathCoordIdx>21</fromPathCoordIdx>
+                    <toPathCoordIdx>22</toPathCoordIdx>
+                    <skyDirection>341</skyDirection>
+                    <traveltime>38</traveltime>
+                    <cumTraveltime>218</cumTraveltime>
+                    <distance>33</distance>
+                    <cumDistance>217</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>ESCALATOR</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08195" y="49.44602" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>19</fromPathLinkIdx>
+                    <toPathLinkIdx>24</toPathLinkIdx>
+                    <fromPathCoordIdx>22</fromPathCoordIdx>
+                    <toPathCoordIdx>28</toPathCoordIdx>
+                    <skyDirection>331</skyDirection>
+                    <traveltime>65</traveltime>
+                    <cumTraveltime>283</cumTraveltime>
+                    <distance>74</distance>
+                    <cumDistance>291</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08235" y="49.44547" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Rolltreppe aufw�rts</streetname>
+                    <fromPathLinkIdx>25</fromPathLinkIdx>
+                    <toPathLinkIdx>25</toPathLinkIdx>
+                    <fromPathCoordIdx>28</fromPathCoordIdx>
+                    <toPathCoordIdx>29</toPathCoordIdx>
+                    <skyDirection>252</skyDirection>
+                    <traveltime>15</traveltime>
+                    <cumTraveltime>298</cumTraveltime>
+                    <distance>10</distance>
+                    <cumDistance>301</cumDistance>
+                    <niveau>0</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>ESCALATOR</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>STRAIGHT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08248" y="49.44550" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Weg im Geb�ude</streetname>
+                    <fromPathLinkIdx>26</fromPathLinkIdx>
+                    <toPathLinkIdx>27</toPathLinkIdx>
+                    <fromPathCoordIdx>29</fromPathCoordIdx>
+                    <toPathCoordIdx>31</toPathCoordIdx>
+                    <skyDirection>234</skyDirection>
+                    <traveltime>6</traveltime>
+                    <cumTraveltime>304</cumTraveltime>
+                    <distance>7</distance>
+                    <cumDistance>308</cumDistance>
+                    <niveau>1</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>BUILDING_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                  <itdITPathDescriptionElem>
+                    <turnDirection>LEFT</turnDirection>
+                    <turningManoeuvre>UNKNOWN_TURNING_MANOEUVRE</turningManoeuvre>
+                    <itdCoord x="11.08250" y="49.44555" mapName="WGS84[DD.ddddd]"/>
+                    <streetname>Bahnsteig</streetname>
+                    <fromPathLinkIdx>28</fromPathLinkIdx>
+                    <toPathLinkIdx>28</toPathLinkIdx>
+                    <fromPathCoordIdx>31</fromPathCoordIdx>
+                    <toPathCoordIdx>33</toPathCoordIdx>
+                    <skyDirection>72</skyDirection>
+                    <traveltime>13</traveltime>
+                    <cumTraveltime>317</cumTraveltime>
+                    <distance>15</distance>
+                    <cumDistance>323</cumDistance>
+                    <niveau>1</niveau>
+                    <genAttrList>
+                      <genAttrElem>
+                        <name>INDOOR_TYPE</name>
+                        <value>PLATFORM_WAY</value>
+                      </genAttrElem>
+                    </genAttrList>
+                  </itdITPathDescriptionElem>
+                </itdITPathDescriptionList>
+              </itdITPathDescription>
+              <genAttrList>
+                <genAttrElem>
+                  <name>PTWalkMinutes</name>
+                  <value>3</value>
+                </genAttrElem>
+              </genAttrList>
+            </itdPartialRoute>
+          </itdPartialRouteList>
+        </itdRoute>
+      </itdRouteList>
+    </itdItinerary>
+  </itdTripRequest>
+</itdRequest>
