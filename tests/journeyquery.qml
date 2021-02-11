@@ -338,6 +338,15 @@ Kirigami.ApplicationWindow {
     Component {
         id: journyQueryPage
         Kirigami.Page {
+            Settings {
+                id: settings
+                property alias singleBackend: backendBox.checked
+                property alias backend: backendSelector.currentIndex
+                property alias maxResults: maxResults.text
+                property alias includeIntermediateStops: intermediateStops.checked
+                property alias includePaths: includePaths.checked
+            }
+
             ColumnLayout {
                 anchors.fill: parent
                 QQC2.CheckBox {
