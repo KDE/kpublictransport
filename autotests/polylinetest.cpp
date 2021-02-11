@@ -63,7 +63,8 @@ private Q_SLOTS:
     void testPolygon()
     {
         PolylineDecoder<2> decoder("_p~iF~ps|U_ulLnnqC_mqNvxq`@");
-        const auto polygon = decoder.readPolygon();
+        QPolygonF polygon;
+        decoder.readPolygon(polygon);
         QCOMPARE(decoder.canReadMore(), false);
         QCOMPARE(polygon.size(), 3);
         QCOMPARE(polygon.isClosed(), false);

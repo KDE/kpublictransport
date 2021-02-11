@@ -81,16 +81,18 @@ public:
         return readNextInt() / 100000.0;
     }
 
-    inline QPolygonF readPolygon()
+    inline void readPolygon(QPolygonF &polygon, int maxEntries = -1)
     {
         static_assert(Dim == 2, "Polygons require a two-dimensional polyline");
-        QPolygonF p;
-        while (canReadMore()) {
+        if (maxEntries > 0) {
+            polygon.reserve(polygon.size() + maxEntries);
+        }
+        while (canReadMore() && maxEntries != 0) {
             const auto lat = readNextDouble();
             const auto lon = readNextDouble();
-            p.push_back({lon, lat});
+            polygon.push_back({lon, lat});
+            --maxEntries;
         }
-        return p;
     }
 
 private:

@@ -394,31 +394,58 @@ static std::vector<LoadInfo> parseLoad(const QJsonObject &obj, const std::vector
     return load;
 }
 
-static std::vector<Path> parsePaths(const QJsonArray &polyL)
+static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<Location> &locs)
 {
     std::vector<Path> paths;
     paths.reserve(polyL.size());
     for (const auto &polyV : polyL) {
         const auto polyObj = polyV.toObject();
-        Path path;
-        PathSection section;
 
+        // path coordinate index to location mapping
+        const auto ppLocRefL = polyObj.value(QLatin1String("ppLocRefL")).toArray();
+        // 2-dimensional differential encoded coordinates
         const auto crdEncYX = polyObj.value(QLatin1String("crdEncYX")).toString().toUtf8();
         PolylineDecoder<2> crdEncYXDecoder(crdEncYX.constData());
-        section.setPath(crdEncYXDecoder.readPolygon());
-        // TODO there's more data in here
-        path.setSections({section});
+        // crdEncDist: 1-dimensional integer values with differential encoding containing distances in meters
+        // crdEncZ: 1-dimensional, always 0?
+        // crdEncS: 1-dimensional, unknown meaning, but very low-entropy data
+        // crdEncF: 1-dimensional, always 0?
 
-#if 0 // check if there is more information in the crdEncDist than can be derived from that path data
-        const auto crdEncDist = polyObj.value(QLatin1String("crdEncDist")).toString().toUtf8();
-        PolylineDecoder<1> crdEncDistDecoder(crdEncDist.constData());
-        int encDist = 0;
-        while (crdEncDistDecoder.canReadMore()) {
-            encDist = crdEncDistDecoder.readNextInt();
+        std::vector<PathSection> sections;
+        sections.reserve(ppLocRefL.size() - 1);
+        int prevPpIdx = 0;
+        QPointF prevCoord;
+        for (const auto ppLocRefV : ppLocRefL) {
+            const auto ppLocRef = ppLocRefV.toObject();
+            const auto ppIdx = ppLocRef.value(QLatin1String("ppIdx")).toInt();
+            if (ppIdx == 0 || ppIdx < prevPpIdx) {
+                continue;
+            }
+
+            QPolygonF poly;
+            poly.reserve(prevPpIdx - ppIdx + 2);
+            if (!prevCoord.isNull()) {
+                poly.push_back(prevCoord);
+            }
+            crdEncYXDecoder.readPolygon(poly, ppIdx - prevPpIdx + 1);
+            if (!poly.empty()) {
+                prevCoord = poly.back();
+            }
+
+            PathSection section;
+            section.setPath(std::move(poly));
+            prevPpIdx = ppIdx;
+
+            const auto locX = ppLocRef.value(QLatin1String("locX")).toInt();
+            if (locX >= 0 && locX < (int)locs.size()) {
+                section.setDescription(locs[locX].name());
+            }
+
+            sections.push_back(std::move(section));
         }
-        qDebug() << encDist << section.distance();
-#endif
 
+        Path path;
+        path.setSections(std::move(sections));
         paths.push_back(std::move(path));
     }
     return paths;
@@ -447,7 +474,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
     const auto loadInfos = parseLoadInformation(commonObj.value(QLatin1String("tcocL")).toArray());
-    const auto paths = parsePaths(commonObj.value(QLatin1String("polyL")).toArray());
+    const auto paths = parsePaths(commonObj.value(QLatin1String("polyL")).toArray(), locs);
 
     std::vector<Journey> res;
     const auto outConL = obj.value(QLatin1String("outConL")).toArray();

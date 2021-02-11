@@ -44,6 +44,7 @@
                 "path": {
                     "sections": [
                         {
+                            "description": "Lutherstadt Wittenberg Hbf",
                             "path": {
                                 "coordinates": [
                                     [
@@ -770,6 +771,18 @@
                                         12.66613,
                                         51.87201
                                     ],
+                                    [
+                                        12.66167,
+                                        51.86772
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Leipzig Hbf",
+                            "path": {
+                                "coordinates": [
                                     [
                                         12.66167,
                                         51.86772
