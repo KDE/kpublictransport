@@ -101,6 +101,10 @@ query journeys(
                     scheduledArrivalTime: arrivalTime
                     scheduledDepartureTime: departureTime
                 }
+                legGeometry {
+                    length
+                    points
+                }
             }
         }
     }

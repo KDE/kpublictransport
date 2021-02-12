@@ -6,6 +6,7 @@
 
 #include "opentripplannerparser.h"
 #include "gtfs/hvt.h"
+#include "geo/polylinedecoder_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/RentalVehicle>
@@ -439,6 +440,20 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         stops.push_back(stop);
     }
     section.setIntermediateStops(std::move(stops));
+
+    const auto geometryObj = obj.value(QLatin1String("legGeometry")).toObject();
+    if (!geometryObj.empty()) {
+        QPolygonF poly;
+        poly.reserve(geometryObj.value(QLatin1String("length")).toInt());
+        const auto points = geometryObj.value(QLatin1String("points")).toString().toUtf8();
+        PolylineDecoder<2> decoder(points.constData());
+        decoder.readPolygon(poly);
+        PathSection pathSec;
+        pathSec.setPath(std::move(poly));
+        Path path;
+        path.setSections({std::move(pathSec)});
+        section.setPath(std::move(path));
+    }
 
     return section;
 }
