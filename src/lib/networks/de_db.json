@@ -83,7 +83,7 @@
             "v": 19040000
         },
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
-        "ext": "DB.R19.12.a",
+        "ext": "DB.R20.12.b",
         "lineModeMap": {
             "1": "LongDistanceTrain",
             "128": "Metro",
