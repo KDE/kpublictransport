@@ -6,8 +6,8 @@
             "connectedSides": "NoSide",
             "deckCount": 1,
             "features": "NoFeatures",
-            "platformPositionBegin": 22.054000854492188,
-            "platformPositionEnd": 48.55400085449219,
+            "platformPositionBegin": 0.04890022426843643,
+            "platformPositionEnd": 0.10765853524208069,
             "type": "Engine"
         },
         {
@@ -16,8 +16,8 @@
             "deckCount": 1,
             "features": "ToddlerArea|BikeStorage",
             "name": "21",
-            "platformPositionBegin": 48.55400085449219,
-            "platformPositionEnd": 75.05400085449219,
+            "platformPositionBegin": 0.10765853524208069,
+            "platformPositionEnd": 0.16641685366630554,
             "type": "PassengerCar"
         },
         {
@@ -26,8 +26,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "22",
-            "platformPositionBegin": 75.05400085449219,
-            "platformPositionEnd": 101.55400085449219,
+            "platformPositionBegin": 0.16641685366630554,
+            "platformPositionEnd": 0.2251751720905304,
             "type": "PassengerCar"
         },
         {
@@ -36,8 +36,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "23",
-            "platformPositionBegin": 101.55400085449219,
-            "platformPositionEnd": 128.0540008544922,
+            "platformPositionBegin": 0.2251751720905304,
+            "platformPositionEnd": 0.28393349051475525,
             "type": "PassengerCar"
         },
         {
@@ -46,8 +46,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "24",
-            "platformPositionBegin": 128.0540008544922,
-            "platformPositionEnd": 154.5540008544922,
+            "platformPositionBegin": 0.28393349051475525,
+            "platformPositionEnd": 0.3426918089389801,
             "type": "PassengerCar"
         },
         {
@@ -56,8 +56,8 @@
             "deckCount": 1,
             "features": "Restaurant|WheelchairAccessible",
             "name": "25",
-            "platformPositionBegin": 154.5540008544922,
-            "platformPositionEnd": 181.0540008544922,
+            "platformPositionBegin": 0.3426918089389801,
+            "platformPositionEnd": 0.40145012736320496,
             "type": "PassengerCar"
         },
         {
@@ -66,8 +66,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "26",
-            "platformPositionBegin": 181.0540008544922,
-            "platformPositionEnd": 207.5540008544922,
+            "platformPositionBegin": 0.40145012736320496,
+            "platformPositionEnd": 0.4602084159851074,
             "type": "PassengerCar"
         },
         {
@@ -76,8 +76,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "27",
-            "platformPositionBegin": 207.5540008544922,
-            "platformPositionEnd": 234.0540008544922,
+            "platformPositionBegin": 0.4602084159851074,
+            "platformPositionEnd": 0.5189667344093323,
             "type": "PassengerCar"
         }
     ]

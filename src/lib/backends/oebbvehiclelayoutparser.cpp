@@ -46,7 +46,6 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
         section.setEnd(prevSectorEnd += sectorObj.value(QLatin1String("length")).toDouble());
         platformSections.push_back(section);
     }
-    platform.setSections(std::move(platformSections));
     platform.setLength(prevSectorEnd);
     // TODO platform.egress lists relevant features like escalators/elevators on the platform
 
@@ -100,10 +99,23 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
 
         vehicleSections.push_back(section);
     }
-    vehicle.setSections(std::move(vehicleSections));
-
     // guess platform length if we didn't get platform sectors
     platform.setLength(std::max<int>(platform.length(), prevVehicleEnd));
+
+    // adjust vehicle and platform section positions to normalized platform coordinates
+    if (platform.length() > 0.0) {
+        for (auto &sec : platformSections) {
+            sec.setBegin(sec.begin() / platform.length());
+            sec.setEnd(sec.end() / platform.length());
+        }
+        for (auto &sec : vehicleSections) {
+            sec.setPlatformPositionBegin(sec.platformPositionBegin() / platform.length());
+            sec.setPlatformPositionEnd(sec.platformPositionEnd() / platform.length());
+        }
+    }
+
+    vehicle.setSections(std::move(vehicleSections));
+    platform.setSections(std::move(platformSections));
 
     // departure
     // TODO recover destination when possible

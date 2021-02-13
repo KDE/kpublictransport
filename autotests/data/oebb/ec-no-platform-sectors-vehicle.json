@@ -8,7 +8,7 @@
             "features": "BikeStorage",
             "name": "352",
             "platformPositionBegin": 0,
-            "platformPositionEnd": 26.399999618530273,
+            "platformPositionEnd": 0.17483443021774292,
             "type": "PassengerCar"
         },
         {
@@ -17,8 +17,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "351",
-            "platformPositionBegin": 26.399999618530273,
-            "platformPositionEnd": 52.79999923706055,
+            "platformPositionBegin": 0.17483443021774292,
+            "platformPositionEnd": 0.34966886043548584,
             "type": "PassengerCar"
         },
         {
@@ -27,8 +27,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "350",
-            "platformPositionBegin": 52.79999923706055,
-            "platformPositionEnd": 79.19999694824219,
+            "platformPositionBegin": 0.34966886043548584,
+            "platformPositionEnd": 0.5245032906532288,
             "type": "PassengerCar"
         },
         {
@@ -37,8 +37,8 @@
             "deckCount": 1,
             "features": "Restaurant",
             "name": "349",
-            "platformPositionBegin": 79.19999694824219,
-            "platformPositionEnd": 105.5999984741211,
+            "platformPositionBegin": 0.5245032906532288,
+            "platformPositionEnd": 0.6993377208709717,
             "type": "RestaurantCar"
         },
         {
@@ -47,8 +47,8 @@
             "deckCount": 1,
             "features": "NoFeatures",
             "name": "348",
-            "platformPositionBegin": 105.5999984741211,
-            "platformPositionEnd": 132,
+            "platformPositionBegin": 0.6993377208709717,
+            "platformPositionEnd": 0.8741722106933594,
             "type": "PassengerCar"
         },
         {
@@ -56,8 +56,8 @@
             "connectedSides": "NoSide",
             "deckCount": 1,
             "features": "NoFeatures",
-            "platformPositionBegin": 132,
-            "platformPositionEnd": 151.60000610351562,
+            "platformPositionBegin": 0.8741722106933594,
+            "platformPositionEnd": 1.0039736032485962,
             "type": "Engine"
         }
     ]
