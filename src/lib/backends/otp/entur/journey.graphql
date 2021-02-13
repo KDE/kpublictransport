@@ -82,6 +82,10 @@ query journeys(
           scheduledDepartureTime: aimedDepartureTime
           expectedDepartureTime: actualDepartureTime
         }
+        legGeometry: pointsOnLink {
+          length
+          points
+        }
       }
     }
   }
