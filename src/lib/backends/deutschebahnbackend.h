@@ -12,7 +12,7 @@
 namespace KPublicTransport {
 
 /** Backend for DB-specific APIs. */
-class DeutscheBahnBackend : public KPublicTransport::HafasMgateBackend
+class DeutscheBahnBackend : public HafasMgateBackend
 {
 public:
     static inline constexpr const char* type() { return "deutschebahn"; }

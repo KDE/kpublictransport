@@ -147,6 +147,7 @@
     ],
     "timezone": "Europe/Vienna",
     "type": {
-        "hafasMgate": true
+        "hafasMgate": true,
+        "oebb": true
     }
 }
