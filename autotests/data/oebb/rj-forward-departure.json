@@ -1,0 +1,18 @@
+{
+    "disruptionEffect": "NormalService",
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "RJ 657"
+        }
+    },
+    "scheduledArrivalTime": "2021-02-13T13:48:00",
+    "scheduledDepartureTime": "2021-02-13T13:58:00",
+    "scheduledPlatform": "8",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8103000"
+        },
+        "name": "Wien Hbf"
+    }
+}

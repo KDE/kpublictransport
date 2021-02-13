@@ -1,0 +1,64 @@
+{
+    "direction": "Backward",
+    "sections": [
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "BikeStorage",
+            "name": "352",
+            "platformPositionBegin": 0,
+            "platformPositionEnd": 26.399999618530273,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "351",
+            "platformPositionBegin": 26.399999618530273,
+            "platformPositionEnd": 52.79999923706055,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "350",
+            "platformPositionBegin": 52.79999923706055,
+            "platformPositionEnd": 79.19999694824219,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "UnknownClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "Restaurant",
+            "name": "349",
+            "platformPositionBegin": 79.19999694824219,
+            "platformPositionEnd": 105.5999984741211,
+            "type": "RestaurantCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "348",
+            "platformPositionBegin": 105.5999984741211,
+            "platformPositionEnd": 132,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "UnknownClass",
+            "connectedSides": "NoSide",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "platformPositionBegin": 132,
+            "platformPositionEnd": 151.60000610351562,
+            "type": "Engine"
+        }
+    ]
+}

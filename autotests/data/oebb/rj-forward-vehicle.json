@@ -1,0 +1,84 @@
+{
+    "direction": "Forward",
+    "sections": [
+        {
+            "classes": "UnknownClass",
+            "connectedSides": "NoSide",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "platformPositionBegin": 22.054000854492188,
+            "platformPositionEnd": 48.55400085449219,
+            "type": "Engine"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "ToddlerArea|BikeStorage",
+            "name": "21",
+            "platformPositionBegin": 48.55400085449219,
+            "platformPositionEnd": 75.05400085449219,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "22",
+            "platformPositionBegin": 75.05400085449219,
+            "platformPositionEnd": 101.55400085449219,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "23",
+            "platformPositionBegin": 101.55400085449219,
+            "platformPositionEnd": 128.0540008544922,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "SecondClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "24",
+            "platformPositionBegin": 128.0540008544922,
+            "platformPositionEnd": 154.5540008544922,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "Restaurant|WheelchairAccessible",
+            "name": "25",
+            "platformPositionBegin": 154.5540008544922,
+            "platformPositionEnd": 181.0540008544922,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "26",
+            "platformPositionBegin": 181.0540008544922,
+            "platformPositionEnd": 207.5540008544922,
+            "type": "PassengerCar"
+        },
+        {
+            "classes": "FirstClass",
+            "connectedSides": "Front|Back",
+            "deckCount": 1,
+            "features": "NoFeatures",
+            "name": "27",
+            "platformPositionBegin": 207.5540008544922,
+            "platformPositionEnd": 234.0540008544922,
+            "type": "PassengerCar"
+        }
+    ]
+}

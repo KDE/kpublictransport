@@ -1,0 +1,17 @@
+{
+    "disruptionEffect": "NormalService",
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "EC 102"
+        }
+    },
+    "scheduledDepartureTime": "2021-02-13T14:10:00",
+    "scheduledPlatform": "9",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8103000"
+        },
+        "name": "Wien Hbf"
+    }
+}
