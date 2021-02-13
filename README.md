@@ -3,16 +3,23 @@
 A library for accessing realtime public transport data and for performing
 public transport journey queries.
 
+This includes:
+* Finding bus stops or train stations, departures/arrivals from there, and journeys between those.
+* Path and routing information for individual transport sections of a journey.
+* Information about train coach and train station platform layouts.
+* Information about rental vehicle positions and availability, such as shared bikes or scooters.
+* Realtime information about the operational status of elevators or escalators.
+
 !! Before using this, please read the license compliance and attribution section below !!
 
 ## Data Model
-
-This largely follows the concepts and naming conventions used by [Navitia](https://navitia.io).
 
 The key elements are:
 
 * KPublicTransport::Journey (getting from one place to another)
 * KPublicTransport::Stopover (departures/arrivals)
+* KPublicTransport::Location (a place, stop, or train station, rental vehicle dock, floating rental vehicle, elevator/escalator,
+ie. anything that has a geo coordinate associated with it).
 
 ## Supported Operations
 
@@ -32,10 +39,15 @@ All data is retrieved from online backend services, this library is not offline 
 The following Free Software/Open Data backend types are supported:
 * [Navitia](https://navitia.io).
 * [OpenTripPlanner](http://opentripplanner.org), in the REST, Digitransit and Entur variants.
+* [GBFS](https://github.com/NABSA/gbfs/) feeds for rental vehicles, such as provided by
+the [OpenBike](https://github.com/stadtulm/OpenBike/) bike rental system.
+* [accessibility.cloud](https://accessibility.cloud/) for realtime elevator/escalator status information.
 
 Additionally, a few proprietary/vendor-specific backends are supported too though.
 
-Configurations for more than 60 backend services can be found in 'src/lib/networks'.
+Configurations for about 70 backend services can be found in 'src/lib/networks'.
+Backend service configations follow the [Transport API Repository](https://github.com/public-transport/transport-apis/)
+format.
 
 ## License Compliance and Attribution
 
