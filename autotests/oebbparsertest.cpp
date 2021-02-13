@@ -52,6 +52,12 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/oebb/ec-no-platform-sectors-vehicle.json")
             << s(SOURCE_DIR "/data/oebb/ec-no-platform-sectors-platform.json")
             << s(SOURCE_DIR "/data/oebb/ec-no-platform-sectors-departure.json");
+
+        QTest::newRow("ice-empty")
+            << s(SOURCE_DIR "/data/oebb/ice-empty-input.json")
+            << s(SOURCE_DIR "/data/oebb/ice-empty-vehicle.json")
+            << s(SOURCE_DIR "/data/oebb/ice-empty-platform.json")
+            << s(SOURCE_DIR "/data/oebb/ice-empty-departure.json");
     }
 
     void testVehicleLayoutParse()

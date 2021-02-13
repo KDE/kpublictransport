@@ -27,6 +27,15 @@ struct {
     { "infoPoint", VehicleSection::NoFeatures }, // TODO
 };
 
+static Vehicle::Direction parseDirection(const QJsonObject &haltepunktObj)
+{
+    const auto v = haltepunktObj.value(QLatin1String("departureDirectionSectorA"));
+    if (v.isBool()) {
+        return v.toBool() ? Vehicle::Forward : Vehicle::Backward;
+    }
+    return Vehicle::UnknownDirection;
+}
+
 bool OebbVehicleLayoutParser::parse(const QByteArray &data)
 {
     const auto obj = QJsonDocument::fromJson(data).object();
@@ -49,10 +58,9 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     platform.setLength(prevSectorEnd);
     // TODO platform.egress lists relevant features like escalators/elevators on the platform
 
-
     // vehicle
     const auto haltepunktObj = platformObj.value(QLatin1String("haltepunkt")).toObject();
-    vehicle.setDirection(haltepunktObj.value(QLatin1String("departureDirectionSectorA")).toBool() ? Vehicle::Forward : Vehicle::Backward);
+    vehicle.setDirection(parseDirection(haltepunktObj));
 
     const auto wagonsA = obj.value(QLatin1String("wagons")).toArray();
     std::vector<VehicleSection> vehicleSections;
