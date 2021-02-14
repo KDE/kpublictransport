@@ -68,6 +68,9 @@ public:
     /** Sets the platform sections. */
     void setSections(std::vector<PlatformSection> &&sections);
 
+    /** Merge two platform instances. */
+    static Platform merge(const Platform &lhs, const Platform &rhs);
+
     /** Serializes one platform object to JSON. */
     static QJsonObject toJson(const Platform &platform);
     /** Deserialize an object from JSON. */

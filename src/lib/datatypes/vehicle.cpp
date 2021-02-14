@@ -7,6 +7,7 @@
 #include "vehicle.h"
 #include "json_p.h"
 #include "datatypes_p.h"
+#include "mergeutil_p.h"
 
 #include <QDebug>
 #include <QMetaEnum>
@@ -50,6 +51,26 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes,
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Features, features, setFeatures)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, int, deckCount, setDeckCount)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedSides, setConnectedSides)
+
+VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSection &rhs)
+{
+    if (lhs.name() != rhs.name()) { // safety check, as we don't properly check for equalness before merging yet
+        return lhs;
+    }
+
+    auto res = lhs;
+    res.setPlatformPositionBegin(lhs.platformPositionBegin() < 0.0 ? rhs.platformPositionBegin() : lhs.platformPositionBegin());
+    res.setPlatformPositionEnd(lhs.platformPositionEnd() < 0.0 ? rhs.platformPositionEnd() : lhs.platformPositionEnd());
+    res.setType(std::max(lhs.type(), rhs.type()));
+    if (res.type() == VehicleSection::PassengerCar && lhs.type() != VehicleSection::UnknownType && rhs.type() != VehicleSection::UnknownType) {
+        res.setType(std::min(lhs.type(), rhs.type()));
+    }
+    res.setClasses(lhs.classes() | rhs.classes());
+    res.setFeatures(lhs.features() | rhs.features());
+    res.setDeckCount(std::max(lhs.deckCount(), rhs.deckCount()));
+    res.setConnectedSides(lhs.connectedSides() & rhs.connectedSides());
+    return res;
+}
 
 QJsonObject VehicleSection::toJson(const VehicleSection &section)
 {
@@ -102,6 +123,12 @@ void Vehicle::setSections(std::vector<VehicleSection> &&sections)
     d->sections = std::move(sections);
 }
 
+void Vehicle::setSections(const std::vector<VehicleSection> &sections)
+{
+    d.detach();
+    d->sections = sections;
+}
+
 QVariantList Vehicle::sectionsVariant() const
 {
     QVariantList l;
@@ -136,6 +163,28 @@ float Vehicle::platformPositionForSection(const QString &sectionName) const
         }
     }
     return -1.0f;
+}
+
+Vehicle Vehicle::merge(const Vehicle &lhs, const Vehicle &rhs)
+{
+    Vehicle res;
+    res.setDirection(lhs.direction() == Vehicle::UnknownDirection ? rhs.direction() : lhs.direction());
+    res.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
+
+    if (lhs.sections().size() == rhs.sections().size()) {
+        std::vector<VehicleSection> secs;
+        secs.reserve(lhs.sections().size());
+        for (std::size_t i = 0; i < lhs.sections().size(); ++i) {
+            const auto &lhsSec = lhs.sections()[i];
+            const auto &rhsSec = rhs.sections()[i];
+            secs.push_back(VehicleSection::merge(lhsSec, rhsSec));
+        }
+        res.setSections(std::move(secs));
+    } else {
+        res.setSections(lhs.sections().size() < rhs.sections().size() ? rhs.sections() : lhs.sections());
+    }
+
+    return res;
 }
 
 QJsonObject Vehicle::toJson(const Vehicle &vehicle)

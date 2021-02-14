@@ -103,6 +103,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Sides, connectedSides, setConnectedSides)
 
+    /** Merge two VehicleSection instances. */
+    static VehicleSection merge(const VehicleSection &lhs, const VehicleSection &rhs);
+
     /** Serializes one vehicle section to JSON. */
     static QJsonObject toJson(const VehicleSection &section);
     /** Serializes a vector of vehicle sections to JSON. */
@@ -156,6 +159,7 @@ public:
     std::vector<VehicleSection>&& takeSections();
     /** Sets the vehicle sections. */
     void setSections(std::vector<VehicleSection> &&sections);
+    void setSections(const std::vector<VehicleSection> &sections);
 
     float platformPositionBegin() const;
     float platformPositionEnd() const;
@@ -165,6 +169,9 @@ public:
      *  Useful for centering a view on a selected section for example.
      */
     Q_INVOKABLE float platformPositionForSection(const QString &sectionName) const;
+
+    /** Merge two Vehicle instances. */
+    static Vehicle merge(const Vehicle &lhs, const Vehicle &rhs);
 
     /** Serializes one vehicle object to JSON. */
     static QJsonObject toJson(const Vehicle &vehicle);

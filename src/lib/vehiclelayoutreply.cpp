@@ -69,12 +69,12 @@ static bool isOneSidedCar(VehicleSection::Type type)
     return type == VehicleSection::PowerCar || type == VehicleSection::ControlCar;
 }
 
-void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platoform, const Stopover &departure)
+void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platform, const Stopover &departure)
 {
     Q_D(VehicleLayoutReply);
-    d->vehicle = vehicle;
-    d->platform = platoform;
-    d->departure = departure;
+    d->vehicle = Vehicle::merge(d->vehicle, vehicle);
+    d->platform = Platform::merge(d->platform, platform);
+    d->departure = Stopover::merge(d->departure, departure);
 
     if (!d->vehicle.sections().empty()) {
         // normalize section order

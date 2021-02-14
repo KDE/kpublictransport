@@ -79,6 +79,12 @@ void Platform::setSections(std::vector<PlatformSection> &&sections)
     d->sections = std::move(sections);
 }
 
+Platform Platform::merge(const Platform &lhs, const Platform &rhs)
+{
+    // TODO expand this
+    return lhs.sections().empty() ? rhs : lhs;
+}
+
 QJsonObject Platform::toJson(const Platform &platform)
 {
     auto obj = Json::toJson(platform);
