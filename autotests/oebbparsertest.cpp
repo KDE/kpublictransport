@@ -94,6 +94,12 @@ private Q_SLOTS:
         QVERIFY(!departureJson.isEmpty());
         QCOMPARE(departureJson, departureRef);
     }
+
+    void testInvalid()
+    {
+        KPublicTransport::OebbVehicleLayoutParser parser;
+        QVERIFY(!parser.parse(readFile(QLatin1String(SOURCE_DIR "/data/oebb/invalid-input.json"))));
+    }
 };
 
 QTEST_GUILESS_MAIN(OebbParserTest)

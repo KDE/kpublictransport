@@ -142,5 +142,6 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     departure.setScheduledDepartureTime(QDateTime::fromString(obj.value(QLatin1String("scheduledDeparture")).toString(), Qt::ISODate));
     departure.setScheduledPlatform(platform.name());
 
-    return true;
+    return !platform.sections().empty() || !vehicle.sections().empty()
+         || departure.scheduledArrivalTime().isValid() || departure.scheduledDepartureTime().isValid();
 }

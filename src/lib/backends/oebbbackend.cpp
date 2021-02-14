@@ -47,7 +47,8 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
                 Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.departure}, {}, std::chrono::minutes(2));
                 addResult(reply, p.vehicle, p.platform, p.departure);
             } else {
-                addError(reply, Reply::UnknownError, {});
+                Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey());
+                addError(reply, Reply::NotFoundError, {});
             }
         } else {
             addError(reply, Reply::NetworkError, reply->errorString());
