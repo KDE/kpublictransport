@@ -87,6 +87,13 @@ void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &plato
         sections.front().setConnectedSides(sections.front().connectedSides() & ~VehicleSection::Front);
         sections.back().setConnectedSides(sections.back().connectedSides() & ~VehicleSection::Back);
 
+        // if the leading car in driving direction is a PassengerCar, turn it into a ControlCar
+        if (vehicle.direction() == Vehicle::Forward && sections.front().type() == VehicleSection::PassengerCar) {
+            sections.front().setType(VehicleSection::ControlCar);
+        } else if (vehicle.direction() == Vehicle::Backward && sections.back().type() == VehicleSection::PassengerCar) {
+            sections.back().setType(VehicleSection::ControlCar);
+        }
+
         for (auto it = sections.begin(); it != sections.end(); ++it) {
             // engines and power cars have no connections either
             if ((*it).type() == VehicleSection::Engine) {
