@@ -5,12 +5,15 @@
 */
 
 #include "hafasmgateparser.h"
+#include "hafasvehiclelayoutparser.h"
 #include "logging.h"
 #include "../geo/polylinedecoder_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
+#include <KPublicTransport/Platform>
 #include <KPublicTransport/Stopover>
+#include <KPublicTransport/Vehicle>
 
 #include <QColor>
 #include <QDateTime>
@@ -23,7 +26,7 @@ using namespace KPublicTransport;
 
 // REM or HIM elements
 struct Message {
-    QString text;
+    QVariant content;
     Disruption::Effect effect = Disruption::NormalService;
 };
 
@@ -61,12 +64,10 @@ static const struct {
     { "A", "OPERATOR" }, // operator information should be a dedicated field if we ever need it
     { "H", "wagenstand_v2" }, // contains a pointless note about checking trip details
     { "I", "FD" }, // SBB line number?
-    { "I", "JF" }, // SBB: JSON structure containing the coach layout - TODO how can we expose that via our vehicle layout API?
     { "I", "RN" }, // SBB: some unknown number for buses
     { "I", "TC" }, // SBB: some unknown number for buses
     { "I", "XC" }, // SBB: some XML structure of unknown content
     { "I", "XG" }, // SBB: some XML structure of unknown content
-    { "I", "XP" }, // SBB: some XML structure of unknown content
     { "I", "XT" }, // SBB: some XML structure of unknown content
 };
 
@@ -92,9 +93,16 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
         }
 
         Message m;
-        m.text = remObj.value(QLatin1String("txtN")).toString();
-        if (code == QLatin1String("text.realtime.stop.cancelled")) {
-            m.effect = Disruption::NoService;
+        if (type == QLatin1Char('I') && code == QLatin1String("JF")) {
+            m.content = HafasVehicleLayoutParser::parseTrainFormation(remObj.value(QLatin1String("txtN")).toString().toUtf8());
+        } else if (type == QLatin1Char('I') && code == QLatin1String("XP")) {
+            m.content = HafasVehicleLayoutParser::parsePlatformSectors(remObj.value(QLatin1String("txtN")).toString().toUtf8());
+        } else {
+            // generic text
+            m.content = remObj.value(QLatin1String("txtN")).toString();
+            if (code == QLatin1String("text.realtime.stop.cancelled")) {
+                m.effect = Disruption::NoService;
+            }
         }
         rems.push_back(std::move(m));
     }
@@ -108,9 +116,9 @@ static std::vector<Message> parseWarnings(const QJsonArray &himL)
     for (const auto &himV : himL) {
         const auto himObj = himV.toObject();
         Message m;
-        m.text = himObj.value(QLatin1String("head")).toString() + QLatin1Char('\n')
+        m.content = QString(himObj.value(QLatin1String("head")).toString() + QLatin1Char('\n')
                + himObj.value(QLatin1String("lead")).toString() + QLatin1Char('\n')
-               + himObj.value(QLatin1String("text")).toString();
+               + himObj.value(QLatin1String("text")).toString());
         hims.push_back(m);
     }
     return hims;
@@ -141,7 +149,9 @@ static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<
             continue;
         }
         const auto msg = (*source)[remX];
-        elem.addNote(msg.text);
+        if (msg.content.type() == QVariant::String) {
+            elem.addNote(msg.content.toString());
+        }
         if (msg.effect == Disruption::NoService) {
             elem.setDisruptionEffect(msg.effect);
         }
@@ -475,6 +485,8 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
     const auto loadInfos = parseLoadInformation(commonObj.value(QLatin1String("tcocL")).toArray());
     const auto paths = parsePaths(commonObj.value(QLatin1String("polyL")).toArray(), locs);
+    const auto platforms = HafasVehicleLayoutParser::parsePlatforms(commonObj);
+    const auto vehicles = HafasVehicleLayoutParser::parseVehicleLayouts(commonObj);
 
     std::vector<Journey> res;
     const auto outConL = obj.value(QLatin1String("outConL")).toArray();
