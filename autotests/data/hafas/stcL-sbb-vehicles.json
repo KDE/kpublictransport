@@ -1,0 +1,482 @@
+[
+    {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            }
+        ]
+    },
+    {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            }
+        ]
+    },
+    {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            }
+        ]
+    },
+    {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            }
+        ]
+    },
+    {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "Engine"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "name": "1",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "3",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "2",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "4",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "6",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "7",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "8",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "5",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "name": "9",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            }
+        ]
+    },
+    {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "name": "9",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "name": "6",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "name": "7",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "name": "8",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible|BikeStorage",
+                "name": "5",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "4",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "RestaurantCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "name": "3",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "2",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "1",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": -1,
+                "platformPositionEnd": -1,
+                "type": "Engine"
+            }
+        ]
+    }
+]

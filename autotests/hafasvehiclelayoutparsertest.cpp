@@ -28,6 +28,31 @@ private:
     }
 
 private Q_SLOTS:
+    void testPlatformParse_stcL_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("vehicleFileName");
+
+        QTest::newRow("sbb")
+            << s(SOURCE_DIR "/data/hafas/stcL-sbb-input.json")
+            << s(SOURCE_DIR "/data/hafas/stcL-sbb-vehicles.json");
+    }
+
+    void testPlatformParse_stcL()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, vehicleFileName);
+
+        const auto vehicles = HafasVehicleLayoutParser::parseVehicleLayouts(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto vehicleJson = Vehicle::toJson(vehicles);
+        const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).array();
+        if (vehicleJson != vehicleRef) {
+            qDebug().noquote() << QJsonDocument(vehicleJson).toJson();
+        }
+        QVERIFY(!vehicleJson.isEmpty());
+        QCOMPARE(vehicleJson, vehicleRef);
+    }
+
     void testVehicleLayoutParse_data()
     {
         QTest::addColumn<QString>("inFileName");
@@ -40,6 +65,10 @@ private Q_SLOTS:
         QTest::newRow("sbb-ic-visp")
             << s(SOURCE_DIR "/data/hafas/rem-I-JF-sbb-ic-train-formation-visp-input.json")
             << s(SOURCE_DIR "/data/hafas/rem-I-JF-sbb-ic-train-formation-visp-vehicle.json");
+
+        QTest::newRow("sbb-split-layout")
+            << s(SOURCE_DIR "/data/hafas/rem-I-JF-sbb-split-layout-train-formation-input.json")
+            << s(SOURCE_DIR "/data/hafas/rem-I-JF-sbb-split-layout-train-formation-vehicle.json");
     }
 
     void testVehicleLayoutParse()
@@ -57,7 +86,7 @@ private Q_SLOTS:
         QCOMPARE(vehicleJson, vehicleRef);
     }
 
-    void testPlatformParse_data()
+    void testPlatformParseXml_data()
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("platformFileName");
@@ -70,7 +99,7 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/hafas/rem-I-XP-sbb-platform-visp.json");
     }
 
-    void testPlatformParse()
+    void testPlatformParseXml()
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, platformFileName);
@@ -78,6 +107,31 @@ private Q_SLOTS:
         const auto platform = HafasVehicleLayoutParser::parsePlatformSectors(readFile(inFileName));
         const auto platformJson = Platform::toJson(platform);
         const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).object();
+        if (platformJson != platformRef) {
+            qDebug().noquote() << QJsonDocument(platformJson).toJson();
+        }
+        QVERIFY(!platformJson.isEmpty());
+        QCOMPARE(platformJson, platformRef);
+    }
+
+    void testPlatformParse_tcpdL_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("platformFileName");
+
+        QTest::newRow("sbb")
+            << s(SOURCE_DIR "/data/hafas/tcpdL-sbb-input.json")
+            << s(SOURCE_DIR "/data/hafas/tcpdL-sbb-platforms.json");
+    }
+
+    void testPlatformParse_tcpdL()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, platformFileName);
+
+        const auto platforms = HafasVehicleLayoutParser::parsePlatforms(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto platformJson = Platform::toJson(platforms);
+        const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).array();
         if (platformJson != platformRef) {
             qDebug().noquote() << QJsonDocument(platformJson).toJson();
         }

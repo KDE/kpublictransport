@@ -73,8 +73,12 @@ public:
 
     /** Serializes one platform object to JSON. */
     static QJsonObject toJson(const Platform &platform);
+    /** Serializes a vector of platform objects to JSON. */
+    static QJsonArray toJson(const std::vector<Platform> &platforms);
     /** Deserialize an object from JSON. */
     static Platform fromJson(const QJsonObject &obj);
+    /** Deserialize an array from JSON. */
+    static std::vector<Platform> fromJson(const QJsonArray &array);
 
 private:
     QVariantList sectionsVariant() const;

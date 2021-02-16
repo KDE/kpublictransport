@@ -94,11 +94,21 @@ QJsonObject Platform::toJson(const Platform &platform)
     return obj;
 }
 
+QJsonArray Platform::toJson(const std::vector<Platform> &platforms)
+{
+    return Json::toJson(platforms);
+}
+
 Platform Platform::fromJson(const QJsonObject &obj)
 {
     auto p = Json::fromJson<Platform>(obj);
     p.setSections(PlatformSection::fromJson(obj.value(QLatin1String("sections")).toArray()));
     return p;
+}
+
+std::vector<Platform> Platform::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<Platform>(array);
 }
 
 QVariantList Platform::sectionsVariant() const

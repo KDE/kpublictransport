@@ -1,0 +1,247 @@
+{
+    "stcGrpL": [
+        {
+            "carL": [ 0, 1, 2, 2, 0, 1, 2, 2 ],
+            "liXL": [ 0, 1, 2, 3, 4 ],
+            "dest": "Spiez"
+        },
+        {
+            "carL": [ 0, 1, 2, 2 ],
+            "liXL": [ 0, 1, 2, 3, 4 ],
+            "dest": "Brig"
+        },
+        {
+            "carL": [ 0, 1, 2, 2 ],
+            "liXL": [ 0, 1, 2, 3, 4 ],
+            "dest": "Zweisimmen"
+        },
+        {
+            "carL": [ 0, 1, 2, 2, 0, 1, 2, 2, 0, 1, 2, 2 ],
+            "liXL": [ 0, 1, 2, 3, 4 ]
+        },
+        {
+            "carL": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
+            "liXL": [ 5, 3, 6, 1, 7, 0, 8, 4 ]
+        },
+        {
+            "carL": [ 13, 14, 15, 16, 17, 18, 19, 6, 20, 3 ],
+            "liXL": [ 0, 4, 1, 10, 3, 6, 5 ]
+        }
+    ],
+    "stcCarL": [
+        {
+            "attrL": [ { "c": "AbteilRollstuhl" }, { "c": "NiederflurEinstieg" } ],
+            "type": 0
+        },
+        {
+            "attrL": [ { "c": "NiederflurEinstieg" } ],
+            "type": 3
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" }, { "c": "NiederflurEinstieg" } ],
+            "type": 0
+        },
+        {
+            "type": 5
+        },
+        {
+            "attrL": [ { "c": "AbteilBusiness" }, { "c": "AbteilRollstuhl" } ],
+            "type": 3,
+            "number": "1"
+        },
+        {
+            "type": 3,
+            "number": "3"
+        },
+        {
+            "type": 3,
+            "number": "2"
+        },
+        {
+            "type": 7,
+            "number": "4"
+        },
+        {
+            "type": 0,
+            "number": "6"
+        },
+        {
+            "type": 0,
+            "number": "7"
+        },
+        {
+            "type": 0,
+            "number": "8"
+        },
+        {
+            "type": 0,
+            "number": "5"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" } ],
+            "type": 8,
+            "number": "9"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" } ],
+            "type": 0,
+            "number": "9"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" } ],
+            "type": 0,
+            "number": "6"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" } ],
+            "type": 0,
+            "number": "7"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" } ],
+            "type": 0,
+            "number": "8"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" }, { "c": "AbteilRollstuhl" } ],
+            "type": 0,
+            "number": "5"
+        },
+        {
+            "type": 10,
+            "number": "4"
+        },
+        {
+            "attrL": [ { "c": "AbteilVeloPl" } ],
+            "type": 3,
+            "number": "3"
+        },
+        {
+            "attrL": [ { "c": "AbteilBusiness" } ],
+            "type": 3,
+            "number": "1"
+        }
+    ],
+    "stcLiL": [
+        {
+            "id": "2",
+            "text": "Reisezugwagen 2. Klasse",
+            "refersTo": "type"
+        },
+        {
+            "id": "AbteilRollstuhl",
+            "text": "Rollstuhlplatz mit Rollstuhl-WC",
+            "refersTo": "code"
+        },
+        {
+            "id": "NiederflurEinstieg",
+            "text": "Niederflureinstieg",
+            "refersTo": "code"
+        },
+        {
+            "id": "1",
+            "text": "Reisezugwagen 1. Klasse",
+            "refersTo": "type"
+        },
+        {
+            "id": "AbteilVeloPl",
+            "text": "Veloplatz: ohne Reservation",
+            "refersTo": "code"
+        },
+        {
+            "id": "LK",
+            "text": "Lokomotive",
+            "refersTo": "type"
+        },
+        {
+            "id": "AbteilBusiness",
+            "text": "Businesszone in 1. Klasse: Reservierung möglich",
+            "refersTo": "code"
+        },
+        {
+            "id": "W2",
+            "text": "2. Klasse mit Restaurant",
+            "refersTo": "type"
+        },
+        {
+            "id": "FA",
+            "text": "Familienwagen mit Spielplatz",
+            "refersTo": "type"
+        },
+        {
+            "id": "HFS_WG_NUM",
+            "text": "Wagen",
+            "refersTo": "code"
+        },
+        {
+            "id": "WR",
+            "text": "Restaurant",
+            "refersTo": "type"
+        }
+    ],
+    "stcLiOrL": [
+        {
+            "id": "LK"
+        },
+        {
+            "id": "1"
+        },
+        {
+            "id": "2"
+        },
+        {
+            "id": "WR"
+        },
+        {
+            "id": "W1"
+        },
+        {
+            "id": "W2"
+        },
+        {
+            "id": "FA"
+        },
+        {
+            "id": "AbteilFamilien"
+        },
+        {
+            "id": "CC"
+        },
+        {
+            "id": "WL"
+        },
+        {
+            "id": "WC"
+        },
+        {
+            "id": "-"
+        },
+        {
+            "id": "AbteilBusiness"
+        },
+        {
+            "id": "AbteilVeloRes"
+        },
+        {
+            "id": "AbteilVeloPl"
+        },
+        {
+            "id": "AbteilKinderwagen"
+        },
+        {
+            "id": "AbteilRollstuhl"
+        },
+        {
+            "id": "NiederflurEinstieg"
+        },
+        {
+            "id": "Reisegruppe"
+        },
+        {
+            "id": "Fahrtrichtung"
+        },
+        {
+            "id": "HFS_WG_NUM"
+        }
+    ]
+}

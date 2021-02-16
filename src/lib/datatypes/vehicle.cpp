@@ -196,11 +196,21 @@ QJsonObject Vehicle::toJson(const Vehicle &vehicle)
     return obj;
 }
 
+QJsonArray Vehicle::toJson(const std::vector<Vehicle> &vehicles)
+{
+    return Json::toJson(vehicles);
+}
+
 Vehicle Vehicle::fromJson(const QJsonObject &obj)
 {
     auto v = Json::fromJson<Vehicle>(obj);
     v.setSections(VehicleSection::fromJson(obj.value(QLatin1String("sections")).toArray()));
     return v;
+}
+
+std::vector<Vehicle> Vehicle::fromJson(const QJsonArray &array)
+{
+    return Json::fromJson<Vehicle>(array);
 }
 
 #include "moc_vehicle.cpp"

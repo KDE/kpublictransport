@@ -175,8 +175,12 @@ public:
 
     /** Serializes one vehicle object to JSON. */
     static QJsonObject toJson(const Vehicle &vehicle);
+    /** Serializes multiple vehicle objects to JSON. */
+    static QJsonArray toJson(const std::vector<Vehicle> &vehicles);
     /** Deserialize an object from JSON. */
     static Vehicle fromJson(const QJsonObject &obj);
+    /** Deserialize multiple objects from JSON. */
+    static std::vector<Vehicle> fromJson(const QJsonArray &array);
 
 private:
     QVariantList sectionsVariant() const;
