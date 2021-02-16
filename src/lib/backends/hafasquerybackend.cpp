@@ -89,7 +89,7 @@ static QByteArray readReplyAsUtf8(QNetworkReply *reply)
 bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("/ajax-getstop.exe/en"));
+    url.setPath(url.path() + QLatin1String("/ajax-getstop.exe/") + preferredLanguage());
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("getstop"), QStringLiteral("1"));
@@ -127,7 +127,7 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
 bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("/query.exe/eny"));
+    url.setPath(url.path() + QLatin1String("/query.exe/") + preferredLanguage() + QLatin1Char('y'));
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("performLocating"), QStringLiteral("2"));
@@ -170,7 +170,7 @@ bool HafasQueryBackend::queryStopover(const StopoverRequest &request, StopoverRe
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("/stboard.exe/en")); // dn/nn?
+    url.setPath(url.path() + QLatin1String("/stboard.exe/") + preferredLanguage());
 
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("boardType"), request.mode() == StopoverRequest::QueryDeparture ? QStringLiteral("dep") : QStringLiteral("arr"));
@@ -241,7 +241,7 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + QLatin1String("/query.exe/en"));
+    url.setPath(url.path() + QLatin1String("/query.exe/") + preferredLanguage());
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsS0ID"), fromId);
     query.addQueryItem(QStringLiteral("REQ0JourneyStopsZ0ID"), toId);
