@@ -26,7 +26,7 @@ public:
     Vehicle m_vehicle;
     VehicleLayoutRequest m_request;
     Platform m_platform;
-    Stopover m_departure;
+    Stopover m_stopover;
 
     Q_DECLARE_PUBLIC(VehicleLayoutQueryModel)
 };
@@ -47,7 +47,7 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         q->beginResetModel();
         m_vehicle = reply->vehicle();
         m_platform = reply->platform();
-        m_departure = reply->departure();
+        m_stopover = reply->stopover();
         q->endResetModel();
         emit q->contentChanged();
     });
@@ -57,7 +57,7 @@ void VehicleLayoutQueryModelPrivate::doClearResults()
 {
     m_vehicle = {};
     m_platform = {};
-    m_departure = {};
+    m_stopover = {};
     Q_Q(VehicleLayoutQueryModel);
     emit q->contentChanged();
 }
@@ -95,10 +95,15 @@ Platform VehicleLayoutQueryModel::platform() const
     return d->m_platform;
 }
 
-Stopover VehicleLayoutQueryModel::departure() const
+Stopover VehicleLayoutQueryModel::stopover() const
 {
     Q_D(const VehicleLayoutQueryModel);
-    return d->m_departure;
+    return d->m_stopover;
+}
+
+Stopover VehicleLayoutQueryModel::departure() const
+{
+    return stopover();
 }
 
 int VehicleLayoutQueryModel::rowCount(const QModelIndex &parent) const

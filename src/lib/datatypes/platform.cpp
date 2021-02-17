@@ -63,6 +63,11 @@ KPUBLICTRANSPORT_MAKE_GADGET(Platform)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Platform, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Platform, int, length, setLength)
 
+bool Platform::isEmpty() const
+{
+    return d->name.isEmpty() && d->length <= 0.0 && d->sections.empty();
+}
+
 const std::vector<PlatformSection>& Platform::sections() const
 {
     return d->sections;

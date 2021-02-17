@@ -107,6 +107,11 @@ KPUBLICTRANSPORT_MAKE_GADGET(Vehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, Vehicle::Direction, direction, setDirection)
 
+bool Vehicle::isEmpty() const
+{
+    return d->name.isEmpty() && d->sections.empty() && d->direction == Vehicle::UnknownDirection;
+}
+
 const std::vector<VehicleSection>& Vehicle::sections() const
 {
     return d->sections;

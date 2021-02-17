@@ -30,7 +30,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutQueryModel : public AbstractQueryMode
     /** The platform this vehicle is departing from. */
     Q_PROPERTY(KPublicTransport::Platform platform READ platform NOTIFY contentChanged)
     /** The departure this vehicle layout belongs to. */
-    Q_PROPERTY(KPublicTransport::Stopover departure READ departure NOTIFY contentChanged)
+    Q_PROPERTY(KPublicTransport::Stopover stopover READ stopover NOTIFY contentChanged)
+    /** @deprecated use stopover. */
+    Q_PROPERTY(KPublicTransport::Stopover departure READ stopover NOTIFY contentChanged)
 
 public:
     explicit VehicleLayoutQueryModel(QObject *parent = nullptr);
@@ -41,7 +43,8 @@ public:
 
     Vehicle vehicle() const;
     Platform platform() const;
-    Stopover departure() const;
+    Stopover stopover() const;
+    [[deprecated("use stopover()")]] Stopover departure() const;
 
     enum Roles {
         VehicleSectionRole = Qt::UserRole

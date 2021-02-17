@@ -37,7 +37,7 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
 {
     // unlike the rest of the DB API, this only works in Germany, so do our own geo filtering here.
     const auto germanyBBox = QPolygonF({ {5.56384, 55.0492}, {6.131, 47.2565}, {15.4307, 47.4737}, {14.6794, 54.7568} });
-    if (!germanyBBox.containsPoint({request.departure().stopPoint().longitude(), request.departure().stopPoint().latitude()}, Qt::WindingFill)) {
+    if (!germanyBBox.containsPoint({request.stopover().stopPoint().longitude(), request.stopover().stopPoint().latitude()}, Qt::WindingFill)) {
         qDebug() << "request outside of bounding box";
         return false;
     }
@@ -45,8 +45,8 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
     // we need two parameters for the online API: the train number (numeric only), and the departure time
     // note: data is only available withing the upcoming 24h
     // checking this early is useful as the error response from the online service is extremely verbose...
-    auto dt = request.departure().scheduledDepartureTime();
-    const auto trainNum = extractTrainNumber(request.departure().route().line());
+    auto dt = request.stopover().scheduledDepartureTime();
+    const auto trainNum = extractTrainNumber(request.stopover().route().line());
     if (!dt.isValid() || trainNum.isEmpty()) {
         return false;
     }
@@ -74,8 +74,8 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
         if (netReply->error() == QNetworkReply::NoError) {
             DeutscheBahnVehicleLayoutParser p;
             if (p.parse(data)) {
-                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.departure}, {}, std::chrono::minutes(2));
-                addResult(reply, p.vehicle, p.platform, p.departure);
+                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.stopover}, {}, std::chrono::minutes(2));
+                addResult(reply, p.vehicle, p.platform, p.stopover);
             } else {
                 addError(reply, p.error, p.errorMessage);
                 if (p.error == Reply::NotFoundError) {

@@ -27,7 +27,7 @@ public:
     VehicleLayoutRequest request;
     Vehicle vehicle;
     Platform platform;
-    Stopover departure;
+    Stopover stopover;
 };
 }
 
@@ -58,10 +58,15 @@ Platform VehicleLayoutReply::platform() const
     return d->platform;
 }
 
-Stopover VehicleLayoutReply::departure() const
+Stopover VehicleLayoutReply::stopover() const
 {
     Q_D(const VehicleLayoutReply);
-    return d->departure;
+    return d->stopover;
+}
+
+Stopover VehicleLayoutReply::departure() const
+{
+    return stopover();
 }
 
 static bool isOneSidedCar(VehicleSection::Type type)
@@ -69,12 +74,12 @@ static bool isOneSidedCar(VehicleSection::Type type)
     return type == VehicleSection::PowerCar || type == VehicleSection::ControlCar;
 }
 
-void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platform, const Stopover &departure)
+void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platform, const Stopover &stopover)
 {
     Q_D(VehicleLayoutReply);
     d->vehicle = Vehicle::merge(d->vehicle, vehicle);
     d->platform = Platform::merge(d->platform, platform);
-    d->departure = Stopover::merge(d->departure, departure);
+    d->stopover = Stopover::merge(d->stopover, stopover);
 
     if (!d->vehicle.sections().empty()) {
         // normalize section order

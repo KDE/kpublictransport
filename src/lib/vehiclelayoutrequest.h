@@ -26,14 +26,14 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutRequest
 {
     KPUBLICTRANSPORT_GADGET(VehicleLayoutRequest)
 
-    // TODO properties for manual setup
-
-    // TODO should this really be exposed? we need the location for the geo filter though, if available
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, departure, setDeparture)
+    /** The stopover vehicle and platform layout information are requested for. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, stopover, setStopover)
+    /** @deprecated use stopover .*/
+    Q_PROPERTY(KPublicTransport::Stopover departure READ departure WRITE setDeparture)
 
 public:
-    /** Creates a vehicle layout request for the given departure. */
-    explicit VehicleLayoutRequest(const Stopover &dep);
+    /** Creates a vehicle layout request for the given stopover. */
+    explicit VehicleLayoutRequest(const Stopover &stopover);
 
     /** Returns @c true if this is a valid request, that is it has enough parameters set to perform a query. */
     bool isValid() const;
@@ -50,6 +50,9 @@ public:
      *  this empty picks suitable backends automatically.
      */
     void setBackendIds(const QStringList &backendIds);
+
+    [[deprecated("use stopover()")]] Stopover departure() const;
+    [[deprecated("use setStopover()")]] void setDeparture(const Stopover &departure);
 
     ///@cond internal
     static QJsonObject toJson(const VehicleLayoutRequest &req);

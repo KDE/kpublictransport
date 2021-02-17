@@ -24,7 +24,7 @@ public:
 
     Vehicle vehicle;
     Platform platform;
-    Stopover departure;
+    Stopover stopover;
     Reply::Error error = Reply::NoError;
     QString errorMessage;
 

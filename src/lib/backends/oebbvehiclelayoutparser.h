@@ -23,7 +23,7 @@ public:
 
     Vehicle vehicle;
     Platform platform;
-    Stopover departure;
+    Stopover stopover;
 };
 
 }

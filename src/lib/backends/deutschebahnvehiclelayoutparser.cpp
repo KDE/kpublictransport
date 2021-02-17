@@ -61,11 +61,11 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     line.setName(vehicle.name());
     Route route;
     route.setLine(line);
-    departure.setRoute(route);
-    departure.setStopPoint(stop);
-    departure.setScheduledArrivalTime(QDateTime::fromString(halt.value(QLatin1String("ankunftszeit")).toString(), Qt::ISODate));
-    departure.setScheduledDepartureTime(QDateTime::fromString(halt.value(QLatin1String("abfahrtszeit")).toString(), Qt::ISODate));
-    departure.setScheduledPlatform(platform.name());
+    stopover.setRoute(route);
+    stopover.setStopPoint(stop);
+    stopover.setScheduledArrivalTime(QDateTime::fromString(halt.value(QLatin1String("ankunftszeit")).toString(), Qt::ISODate));
+    stopover.setScheduledDepartureTime(QDateTime::fromString(halt.value(QLatin1String("abfahrtszeit")).toString(), Qt::ISODate));
+    stopover.setScheduledPlatform(platform.name());
 
     fillMissingPositions();
     return true;

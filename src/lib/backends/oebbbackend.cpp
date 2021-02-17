@@ -21,7 +21,7 @@ using namespace KPublicTransport;
 
 bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto ibnr = request.departure().stopPoint().identifier(QLatin1String("ibnr"));
+    const auto ibnr = request.stopover().stopPoint().identifier(QLatin1String("ibnr"));
     if (ibnr.size() != 7) {
         return false;
     }
@@ -29,9 +29,9 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
     QUrl url;
     url.setScheme(QStringLiteral("https"));
     url.setHost(QStringLiteral("live.oebb.at"));
-    url.setPath(QLatin1String("/backend/api/train/") + request.departure().route().line().name()
+    url.setPath(QLatin1String("/backend/api/train/") + request.stopover().route().line().name()
         + QLatin1String("/stationEva/") + ibnr
-        + QLatin1String("/departure/") +  request.departure().scheduledDepartureTime().toString(QStringLiteral("dd.MM.yyyy")));
+        + QLatin1String("/departure/") +  request.stopover().scheduledDepartureTime().toString(QStringLiteral("dd.MM.yyyy")));
 
     QNetworkRequest netReq(url);
     logRequest(request, netReq);
@@ -44,8 +44,8 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
         if (netReply->error() == QNetworkReply::NoError) {
             OebbVehicleLayoutParser p;
             if (p.parse(data)) {
-                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.departure}, {}, std::chrono::minutes(2));
-                addResult(reply, p.vehicle, p.platform, p.departure);
+                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.stopover}, {}, std::chrono::minutes(2));
+                addResult(reply, p.vehicle, p.platform, p.stopover);
             } else {
                 Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey());
                 addError(reply, Reply::NotFoundError, {});

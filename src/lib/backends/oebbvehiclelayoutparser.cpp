@@ -136,12 +136,12 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     line.setName(obj.value(QLatin1String("trainName")).toString());
     Route route;
     route.setLine(line);
-    departure.setRoute(route);
-    departure.setStopPoint(stop);
-    departure.setScheduledArrivalTime(QDateTime::fromString(obj.value(QLatin1String("scheduledArrival")).toString(), Qt::ISODate));
-    departure.setScheduledDepartureTime(QDateTime::fromString(obj.value(QLatin1String("scheduledDeparture")).toString(), Qt::ISODate));
-    departure.setScheduledPlatform(platform.name());
+    stopover.setRoute(route);
+    stopover.setStopPoint(stop);
+    stopover.setScheduledArrivalTime(QDateTime::fromString(obj.value(QLatin1String("scheduledArrival")).toString(), Qt::ISODate));
+    stopover.setScheduledDepartureTime(QDateTime::fromString(obj.value(QLatin1String("scheduledDeparture")).toString(), Qt::ISODate));
+    stopover.setScheduledPlatform(platform.name());
 
-    return !platform.sections().empty() || !vehicle.sections().empty()
-         || departure.scheduledArrivalTime().isValid() || departure.scheduledDepartureTime().isValid();
+    return !platform.isEmpty() || !vehicle.isEmpty()
+         || stopover.scheduledArrivalTime().isValid() || stopover.scheduledDepartureTime().isValid();
 }

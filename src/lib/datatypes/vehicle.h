@@ -153,6 +153,9 @@ class KPUBLICTRANSPORT_EXPORT Vehicle
     Q_PROPERTY(float platformPositionEnd READ platformPositionEnd STORED false)
 
 public:
+    /** Returns @c true if this object contains no information beyond the default values. */
+    bool isEmpty() const;
+
     /** The vehicle sections. */
     const std::vector<VehicleSection>& sections() const;
     /** Moves the vehicle sections out of this object. */

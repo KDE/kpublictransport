@@ -45,7 +45,7 @@ class KPUBLICTRANSPORT_EXPORT Platform
 {
     KPUBLICTRANSPORT_GADGET(Platform)
 
-    // TODO how does this work with the Czech way of identying tracks/platforms?
+    // TODO how does this work with the Czech way of identifying tracks/platforms?
     /** Human readable identifier of this platform.
      *  Typically a number.
      */
@@ -61,6 +61,9 @@ class KPUBLICTRANSPORT_EXPORT Platform
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
 
 public:
+    /** Returns @c true if this object contains no information beyond default values. */
+    bool isEmpty() const;
+
     /** The platform sections. */
     const std::vector<PlatformSection>& sections() const;
     /** Moves the platform sections out of this object. */

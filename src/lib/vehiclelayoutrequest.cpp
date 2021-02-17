@@ -15,37 +15,37 @@
 
 using namespace KPublicTransport;
 
-enum { DepartureCacheTimeResolution = 60 }; // in seconds
+enum { StopoverCacheTimeResolution = 60 }; // in seconds
 
 namespace KPublicTransport {
 
 class VehicleLayoutRequestPrivate : public QSharedData
 {
 public:
-    Stopover departure;
+    Stopover stopover;
     QStringList backendIds;
 };
 
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(VehicleLayoutRequest)
-KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, Stopover, departure, setDeparture)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleLayoutRequest, Stopover, stopover, setStopover)
 
-VehicleLayoutRequest::VehicleLayoutRequest(const Stopover &dep)
+VehicleLayoutRequest::VehicleLayoutRequest(const Stopover &stopover)
     : d(new VehicleLayoutRequestPrivate)
 {
-    d->departure = dep;
+    d->stopover = stopover;
 }
 
 bool VehicleLayoutRequest::isValid() const
 {
-    return d->departure.scheduledDepartureTime().isValid() && !d->departure.route().line().name().isEmpty();
+    return d->stopover.scheduledDepartureTime().isValid() && !d->stopover.route().line().name().isEmpty();
 }
 
 QString VehicleLayoutRequest::cacheKey() const
 {
-    return QString::number(d->departure.scheduledDepartureTime().toSecsSinceEpoch() / DepartureCacheTimeResolution) + QLatin1Char('_')
-        + LocationUtil::cacheKey(d->departure.stopPoint());
+    return QString::number(d->stopover.scheduledDepartureTime().toSecsSinceEpoch() / StopoverCacheTimeResolution) + QLatin1Char('_')
+        + LocationUtil::cacheKey(d->stopover.stopPoint());
 }
 
 QJsonObject VehicleLayoutRequest::toJson(const VehicleLayoutRequest &req)
@@ -62,6 +62,16 @@ void VehicleLayoutRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
+}
+
+Stopover VehicleLayoutRequest::departure() const
+{
+    return stopover();
+}
+
+void VehicleLayoutRequest::setDeparture(const Stopover &departure)
+{
+    setStopover(departure);
 }
 
 #include "moc_vehiclelayoutrequest.cpp"
