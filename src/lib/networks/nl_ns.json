@@ -89,7 +89,12 @@
         "locationIdentifierType": "ns",
         "standardLocationIdentifierType": "ibnr"
     },
-    "supportedLanguages": [ "de", "en", "fr", "nl" ],
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fr",
+        "nl"
+    ],
     "timezone": "Europe/Amsterdam",
     "type": {
         "hafasQuery": true
