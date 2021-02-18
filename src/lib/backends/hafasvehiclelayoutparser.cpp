@@ -9,6 +9,7 @@
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/Vehicle>
 
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
