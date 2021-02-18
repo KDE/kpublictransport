@@ -7,7 +7,6 @@
 #include "cache.h"
 #include "logging.h"
 #include "datatypes/attributionutil_p.h"
-#include "datatypes/vehiclelayoutresult_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -153,9 +152,9 @@ CacheEntry<Journey> Cache::lookupJourney(const QString &backendId, const QString
     return lookup<Journey>(QStringLiteral("journey"), backendId, cacheKey);
 }
 
-void Cache::addVehicleLayoutCacheEntry(const QString &backendId, const QString &cacheKey, const VehicleLayoutResult &data, const std::vector<Attribution> &attributions, std::chrono::seconds ttl)
+void Cache::addVehicleLayoutCacheEntry(const QString &backendId, const QString &cacheKey, const Stopover &data, const std::vector<Attribution> &attributions, std::chrono::seconds ttl)
 {
-    addCacheEntry<VehicleLayoutResult>(QStringLiteral("vehicle"), backendId, cacheKey, {data}, attributions, ttl);
+    addCacheEntry<Stopover>(QStringLiteral("vehicle"), backendId, cacheKey, {data}, attributions, ttl);
 }
 
 void Cache::addNegativeVehicleLayoutCacheEntry(const QString& backendId, const QString& cacheKey, std::chrono::seconds ttl)
@@ -163,9 +162,9 @@ void Cache::addNegativeVehicleLayoutCacheEntry(const QString& backendId, const Q
     addNegativeCacheEntry(QStringLiteral("vehicle"), backendId, cacheKey, ttl);
 }
 
-CacheEntry<VehicleLayoutResult> Cache::lookupVehicleLayout(const QString &backendId, const QString &cacheKey)
+CacheEntry<Stopover> Cache::lookupVehicleLayout(const QString &backendId, const QString &cacheKey)
 {
-    return lookup<VehicleLayoutResult>(QStringLiteral("vehicle"), backendId, cacheKey);
+    return lookup<Stopover>(QStringLiteral("vehicle"), backendId, cacheKey);
 }
 
 static void expireRecursive(const QString &path)

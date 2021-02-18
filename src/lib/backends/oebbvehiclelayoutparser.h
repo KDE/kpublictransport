@@ -21,8 +21,6 @@ class OebbVehicleLayoutParser
 public:
     bool parse(const QByteArray &data);
 
-    Vehicle vehicle;
-    Platform platform;
     Stopover stopover;
 };
 

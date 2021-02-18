@@ -23,9 +23,7 @@ public:
     void doQuery() override;
     void doClearResults() override;
 
-    Vehicle m_vehicle;
     VehicleLayoutRequest m_request;
-    Platform m_platform;
     Stopover m_stopover;
 
     Q_DECLARE_PUBLIC(VehicleLayoutQueryModel)
@@ -45,8 +43,6 @@ void VehicleLayoutQueryModelPrivate::doQuery()
     QObject::connect(reply, &KPublicTransport::VehicleLayoutReply::finished, q, [reply, this]() {
         Q_Q(VehicleLayoutQueryModel);
         q->beginResetModel();
-        m_vehicle = reply->vehicle();
-        m_platform = reply->platform();
         m_stopover = reply->stopover();
         q->endResetModel();
         emit q->contentChanged();
@@ -55,8 +51,6 @@ void VehicleLayoutQueryModelPrivate::doQuery()
 
 void VehicleLayoutQueryModelPrivate::doClearResults()
 {
-    m_vehicle = {};
-    m_platform = {};
     m_stopover = {};
     Q_Q(VehicleLayoutQueryModel);
     emit q->contentChanged();
@@ -85,14 +79,12 @@ void VehicleLayoutQueryModel::setRequest(const VehicleLayoutRequest &req)
 
 Vehicle VehicleLayoutQueryModel::vehicle() const
 {
-    Q_D(const VehicleLayoutQueryModel);
-    return d->m_vehicle;
+    return stopover().vehicleLayout();
 }
 
 Platform VehicleLayoutQueryModel::platform() const
 {
-    Q_D(const VehicleLayoutQueryModel);
-    return d->m_platform;
+    return stopover().platformLayout();
 }
 
 Stopover VehicleLayoutQueryModel::stopover() const
@@ -112,7 +104,7 @@ int VehicleLayoutQueryModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid()) {
         return 0;
     }
-    return d->m_vehicle.sections().size();
+    return d->m_stopover.vehicleLayout().sections().size();
 }
 
 QVariant VehicleLayoutQueryModel::data(const QModelIndex &index, int role) const
@@ -124,7 +116,7 @@ QVariant VehicleLayoutQueryModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
         case VehicleSectionRole:
-            return QVariant::fromValue(d->m_vehicle.sections()[index.row()]);
+            return QVariant::fromValue(d->m_stopover.vehicleLayout().sections()[index.row()]);
     }
 
     return {};

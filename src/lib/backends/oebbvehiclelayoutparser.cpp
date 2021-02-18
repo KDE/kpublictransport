@@ -41,6 +41,7 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     const auto obj = QJsonDocument::fromJson(data).object();
 
     // platform
+    Platform platform;
     const auto platformObj = obj.value(QLatin1String("platform")).toObject();
     platform.setName(platformObj.value(QLatin1String("platform")).toString());
     const auto sectorArray = platformObj.value(QLatin1String("sectors")).toArray();
@@ -59,6 +60,7 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     // TODO platform.egress lists relevant features like escalators/elevators on the platform
 
     // vehicle
+    Vehicle vehicle;
     const auto haltepunktObj = platformObj.value(QLatin1String("haltepunkt")).toObject();
     vehicle.setDirection(parseDirection(haltepunktObj));
 
@@ -141,6 +143,8 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     stopover.setScheduledArrivalTime(QDateTime::fromString(obj.value(QLatin1String("scheduledArrival")).toString(), Qt::ISODate));
     stopover.setScheduledDepartureTime(QDateTime::fromString(obj.value(QLatin1String("scheduledDeparture")).toString(), Qt::ISODate));
     stopover.setScheduledPlatform(platform.name());
+    stopover.setVehicleLayout(std::move(vehicle));
+    stopover.setPlatformLayout(std::move(platform));
 
     return !platform.isEmpty() || !vehicle.isEmpty()
          || stopover.scheduledArrivalTime().isValid() || stopover.scheduledDepartureTime().isValid();

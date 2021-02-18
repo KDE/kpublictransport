@@ -7,7 +7,6 @@
 #include "deutschebahnbackend.h"
 #include "deutschebahnvehiclelayoutparser.h"
 #include "cache.h"
-#include "datatypes/vehiclelayoutresult_p.h"
 
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/VehicleLayoutReply>
@@ -74,8 +73,8 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
         if (netReply->error() == QNetworkReply::NoError) {
             DeutscheBahnVehicleLayoutParser p;
             if (p.parse(data)) {
-                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), {p.vehicle, p.platform, p.stopover}, {}, std::chrono::minutes(2));
-                addResult(reply, p.vehicle, p.platform, p.stopover);
+                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), p.stopover, {}, std::chrono::minutes(2));
+                addResult(reply, p.stopover);
             } else {
                 addError(reply, p.error, p.errorMessage);
                 if (p.error == Reply::NotFoundError) {

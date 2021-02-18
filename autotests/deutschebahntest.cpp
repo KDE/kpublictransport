@@ -38,34 +38,24 @@ private Q_SLOTS:
     void testVehicleLayoutParse_data()
     {
         QTest::addColumn<QString>("inFileName");
-        QTest::addColumn<QString>("vehicleFileName");
-        QTest::addColumn<QString>("platformFileName");
         QTest::addColumn<QString>("departureFileName");
 
         QTest::newRow("valid-double-segment-ice")
             << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-vehicle.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-platform.json")
             << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-departure.json");
 
         QTest::newRow("valid-double-deck-ic")
             << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-vehicle.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-platform.json")
             << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-departure.json");
 
         QTest::newRow("no-position")
             << s(SOURCE_DIR "/data/deutschebahn/no-position-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/no-position-vehicle.json")
-            << s(SOURCE_DIR "/data/deutschebahn/no-position-platform.json")
             << s(SOURCE_DIR "/data/deutschebahn/no-position-departure.json");
     }
 
     void testVehicleLayoutParse()
     {
         QFETCH(QString, inFileName);
-        QFETCH(QString, vehicleFileName);
-        QFETCH(QString, platformFileName);
         QFETCH(QString, departureFileName);
 
         KPublicTransport::DeutscheBahnVehicleLayoutParser parser;
@@ -73,21 +63,6 @@ private Q_SLOTS:
         QVERIFY(parser.parse(readFile(inFileName)));
         QCOMPARE(parser.error, Reply::NoError);
         QVERIFY(parser.errorMessage.isEmpty());
-        const auto vehicleJson = Vehicle::toJson(parser.vehicle);
-        const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).object();
-        if (vehicleJson != vehicleRef) {
-            qDebug().noquote() << QJsonDocument(vehicleJson).toJson();
-        }
-        QVERIFY(!vehicleJson.isEmpty());
-        QCOMPARE(vehicleJson, vehicleRef);
-
-        const auto platformJson = Platform::toJson(parser.platform);
-        const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).object();
-        if (platformJson != platformRef) {
-            qDebug().noquote() << QJsonDocument(platformJson).toJson();
-        }
-        QVERIFY(!platformJson.isEmpty());
-        QCOMPARE(platformJson, platformRef);
 
         const auto departureJson = Stopover::toJson(parser.stopover);
         const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();

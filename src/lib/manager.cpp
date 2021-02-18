@@ -21,7 +21,6 @@
 #include "datatypes/disruption.h"
 #include "datatypes/platform.h"
 #include "datatypes/vehicle.h"
-#include "datatypes/vehiclelayoutresult_p.h"
 #include "geo/geojson_p.h"
 
 #include <KPublicTransport/Journey>
@@ -732,7 +731,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
                 qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
                 if (cache.data.size() == 1) {
                     reply->addAttributions(std::move(cache.attributions));
-                    reply->addResult(cache.data[0].vehicle(), cache.data[0].platform(), cache.data[0].departure());
+                    reply->addResult(cache.data[0]);
                     break;
                 }
                 Q_FALLTHROUGH();

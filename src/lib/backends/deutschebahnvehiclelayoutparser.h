@@ -22,16 +22,14 @@ class DeutscheBahnVehicleLayoutParser
 public:
     bool parse(const QByteArray &data);
 
-    Vehicle vehicle;
-    Platform platform;
     Stopover stopover;
     Reply::Error error = Reply::NoError;
     QString errorMessage;
 
 private:
-    void parseVehicleSection(const QJsonObject &obj);
-    void parsePlatformSection(const QJsonObject &obj);
-    void fillMissingPositions();
+    void parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj);
+    void parsePlatformSection(Platform &platform, const QJsonObject &obj);
+    void fillMissingPositions(Vehicle &vehicle, Platform &platform);
 };
 
 }

@@ -7,7 +7,7 @@
 #ifndef KPUBLICTRANSPORT_PLATFORM_H
 #define KPUBLICTRANSPORT_PLATFORM_H
 
-#include <kpublictransport_export.h>
+#include "kpublictransport_export.h"
 
 #include "datatypes.h"
 

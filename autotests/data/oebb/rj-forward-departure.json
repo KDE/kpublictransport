@@ -1,5 +1,36 @@
 {
     "disruptionEffect": "NormalService",
+    "platformLayout": {
+        "length": 451,
+        "name": "8",
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.24450109899044037,
+                "name": "A"
+            },
+            {
+                "begin": 0.24450109899044037,
+                "end": 0.41090908646583557,
+                "name": "B"
+            },
+            {
+                "begin": 0.41090908646583557,
+                "end": 0.5772505402565002,
+                "name": "C"
+            },
+            {
+                "begin": 0.5772505402565002,
+                "end": 0.7441462874412537,
+                "name": "D"
+            },
+            {
+                "begin": 0.7441462874412537,
+                "end": 1.0001773834228516,
+                "name": "E"
+            }
+        ]
+    },
     "route": {
         "line": {
             "mode": "LongDistanceTrain",
@@ -14,5 +45,89 @@
             "ibnr": "8103000"
         },
         "name": "Wien Hbf"
+    },
+    "vehicleLayout": {
+        "direction": "Forward",
+        "sections": [
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "NoSide",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0.04890022426843643,
+                "platformPositionEnd": 0.10765853524208069,
+                "type": "Engine"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "ToddlerArea|BikeStorage",
+                "name": "21",
+                "platformPositionBegin": 0.10765853524208069,
+                "platformPositionEnd": 0.16641685366630554,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "22",
+                "platformPositionBegin": 0.16641685366630554,
+                "platformPositionEnd": 0.2251751720905304,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "23",
+                "platformPositionBegin": 0.2251751720905304,
+                "platformPositionEnd": 0.28393349051475525,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "24",
+                "platformPositionBegin": 0.28393349051475525,
+                "platformPositionEnd": 0.3426918089389801,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "Restaurant|WheelchairAccessible",
+                "name": "25",
+                "platformPositionBegin": 0.3426918089389801,
+                "platformPositionEnd": 0.40145012736320496,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "26",
+                "platformPositionBegin": 0.40145012736320496,
+                "platformPositionEnd": 0.4602084159851074,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "27",
+                "platformPositionBegin": 0.4602084159851074,
+                "platformPositionEnd": 0.5189667344093323,
+                "type": "PassengerCar"
+            }
+        ]
     }
 }

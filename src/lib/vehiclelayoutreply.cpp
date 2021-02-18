@@ -25,8 +25,6 @@ public:
     void finalizeResult() override {}
 
     VehicleLayoutRequest request;
-    Vehicle vehicle;
-    Platform platform;
     Stopover stopover;
 };
 }
@@ -48,14 +46,12 @@ VehicleLayoutRequest VehicleLayoutReply::request() const
 
 Vehicle VehicleLayoutReply::vehicle() const
 {
-    Q_D(const VehicleLayoutReply);
-    return d->vehicle;
+    return stopover().vehicleLayout();
 }
 
 Platform VehicleLayoutReply::platform() const
 {
-    Q_D(const VehicleLayoutReply);
-    return d->platform;
+    return stopover().platformLayout();
 }
 
 Stopover VehicleLayoutReply::stopover() const
@@ -74,16 +70,15 @@ static bool isOneSidedCar(VehicleSection::Type type)
     return type == VehicleSection::PowerCar || type == VehicleSection::ControlCar;
 }
 
-void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platform, const Stopover &stopover)
+void VehicleLayoutReply::addResult(const Stopover &stopover)
 {
     Q_D(VehicleLayoutReply);
-    d->vehicle = Vehicle::merge(d->vehicle, vehicle);
-    d->platform = Platform::merge(d->platform, platform);
     d->stopover = Stopover::merge(d->stopover, stopover);
 
-    if (!d->vehicle.sections().empty()) {
+    if (!d->stopover.vehicleLayout().sections().empty()) {
         // normalize section order
-        auto sections = d->vehicle.takeSections();
+        auto vehicle = d->stopover.vehicleLayout();
+        auto sections = vehicle.takeSections();
         std::sort(sections.begin(), sections.end(), [](const auto &lhs, const auto &rhs) {
             return lhs.platformPositionBegin() < rhs.platformPositionBegin();
         });
@@ -123,7 +118,8 @@ void VehicleLayoutReply::addResult(const Vehicle &vehicle, const Platform &platf
             }
         }
 
-        d->vehicle.setSections(std::move(sections));
+        vehicle.setSections(std::move(sections));
+        d->stopover.setVehicleLayout(std::move(vehicle));
     }
 
     d->pendingOps--;

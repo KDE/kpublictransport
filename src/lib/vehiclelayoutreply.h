@@ -29,10 +29,10 @@ public:
     VehicleLayoutRequest request() const;
 
     /** Vehicle layout information found by this query. */
-    Vehicle vehicle() const;
+    [[deprecated("use stopover().vehicleLayout()")]] Vehicle vehicle() const;
     /** Platform layout information found by this query. */
-    Platform platform() const;
-    /** Stopover information the layout is valid for. */
+    [[deprecated("user stopover().platformLayout()")]] Platform platform() const;
+    /** The requested Stopover information, including the vehicle and platform layout. */
     Stopover stopover() const;
     [[deprecated("use stopover()")]] Stopover departure() const;
 
@@ -42,7 +42,7 @@ private:
     explicit VehicleLayoutReply(const VehicleLayoutRequest &req, QObject *parent = nullptr);
 
     friend class AbstractBackend;
-    Q_DECL_HIDDEN void addResult(const Vehicle &vehicle, const Platform &platform, const Stopover &stopover);
+    Q_DECL_HIDDEN void addResult(const Stopover &stopover);
     using Reply::addError;
     Q_DECL_HIDDEN void addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg);
 

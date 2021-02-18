@@ -69,7 +69,6 @@ set(kpublictransport_srcs
     datatypes/stopover.cpp
     datatypes/stopoverutil.cpp
     datatypes/vehicle.cpp
-    datatypes/vehiclelayoutresult.cpp
 
     gbfs/gbfs.cpp
     gbfs/gbfs.qrc

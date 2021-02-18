@@ -32,6 +32,8 @@ public:
     Location stopPoint;
     QStringList notes;
     std::vector<LoadInfo> loadInformation;
+    Vehicle vehicleLayout;
+    Platform platformLayout;
 };
 }
 
@@ -44,6 +46,8 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Route, route, setRoute)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Location, stopPoint, setStopPoint)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, QStringList, notes, setNotes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Vehicle, vehicleLayout, setVehicleLayout)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Stopover, Platform, platformLayout, setPlatformLayout)
 
 bool Stopover::hasExpectedArrivalTime() const
 {
@@ -177,42 +181,50 @@ bool Stopover::isSame(const Stopover &lhs, const Stopover &rhs)
 
 Stopover Stopover::merge(const Stopover &lhs, const Stopover &rhs)
 {
-    auto dep = lhs;
+    auto stopover = lhs;
 
     using namespace MergeUtil;
-    dep.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
-    dep.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
-    dep.setScheduledArrivalTime(mergeDateTimeEqual(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
-    dep.setExpectedArrivalTime(mergeDateTimeMax(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
+    stopover.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
+    stopover.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
+    stopover.setScheduledArrivalTime(mergeDateTimeEqual(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
+    stopover.setExpectedArrivalTime(mergeDateTimeMax(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
 
-    if (dep.scheduledPlatform().isEmpty() && !rhs.scheduledPlatform().isEmpty()) {
-        dep.setScheduledPlatform(rhs.scheduledPlatform());
+    if (stopover.scheduledPlatform().isEmpty() && !rhs.scheduledPlatform().isEmpty()) {
+        stopover.setScheduledPlatform(rhs.scheduledPlatform());
     }
-    if (!dep.hasExpectedPlatform() && rhs.hasExpectedPlatform()) {
-        dep.setExpectedPlatform(rhs.expectedPlatform());
+    if (!stopover.hasExpectedPlatform() && rhs.hasExpectedPlatform()) {
+        stopover.setExpectedPlatform(rhs.expectedPlatform());
     }
 
-    dep.setRoute(Route::merge(lhs.route(), rhs.route()));
-    dep.setStopPoint(Location::merge(lhs.stopPoint(), rhs.stopPoint()));
-    dep.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
-    dep.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
-    dep.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
-    return dep;
+    stopover.setRoute(Route::merge(lhs.route(), rhs.route()));
+    stopover.setStopPoint(Location::merge(lhs.stopPoint(), rhs.stopPoint()));
+    stopover.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
+    stopover.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
+    stopover.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
+    stopover.d->vehicleLayout = Vehicle::merge(lhs.d->vehicleLayout, rhs.d->vehicleLayout);
+    stopover.d->platformLayout = Platform::merge(lhs.d->platformLayout, rhs.d->platformLayout);
+    return stopover;
 }
 
-QJsonObject Stopover::toJson(const Stopover &dep)
+QJsonObject Stopover::toJson(const Stopover &stopover)
 {
-    auto obj = Json::toJson(dep);
-    const auto routeObj = Route::toJson(dep.route());
+    auto obj = Json::toJson(stopover);
+    const auto routeObj = Route::toJson(stopover.route());
     if (!routeObj.empty()) {
-        obj.insert(QStringLiteral("route"), routeObj);
+        obj.insert(QLatin1String("route"), routeObj);
     }
-    const auto locObj = Location::toJson(dep.stopPoint());
+    const auto locObj = Location::toJson(stopover.stopPoint());
     if (!locObj.empty()) {
-        obj.insert(QStringLiteral("stopPoint"), locObj);
+        obj.insert(QLatin1String("stopPoint"), locObj);
     }
-    if (!dep.loadInformation().empty()) {
-        obj.insert(QStringLiteral("load"), LoadInfo::toJson(dep.loadInformation()));
+    if (!stopover.loadInformation().empty()) {
+        obj.insert(QLatin1String("load"), LoadInfo::toJson(stopover.loadInformation()));
+    }
+    if (!stopover.vehicleLayout().isEmpty()) {
+        obj.insert(QLatin1String("vehicleLayout"), Vehicle::toJson(stopover.vehicleLayout()));
+    }
+    if (!stopover.platformLayout().isEmpty()) {
+        obj.insert(QLatin1String("platformLayout"), Platform::toJson(stopover.platformLayout()));
     }
 
     if (obj.size() == 1) { // only the disruption enum, ie. this is an empty object
@@ -228,12 +240,14 @@ QJsonArray Stopover::toJson(const std::vector<Stopover> &deps)
 
 Stopover Stopover::fromJson(const QJsonObject &obj)
 {
-    auto dep = Json::fromJson<Stopover>(obj);
-    dep.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
-    dep.setStopPoint(Location::fromJson(obj.value(QLatin1String("stopPoint")).toObject()));
-    dep.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
-    StopoverUtil::applyMetaData(dep, false);
-    return dep;
+    auto stopover = Json::fromJson<Stopover>(obj);
+    stopover.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
+    stopover.setStopPoint(Location::fromJson(obj.value(QLatin1String("stopPoint")).toObject()));
+    stopover.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
+    stopover.setVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("vehicleLayout")).toObject()));
+    stopover.setPlatformLayout(Platform::fromJson(obj.value(QLatin1String("platformLayout")).toObject()));
+    StopoverUtil::applyMetaData(stopover, false);
+    return stopover;
 }
 
 std::vector<Stopover> Stopover::fromJson(const QJsonArray &array)

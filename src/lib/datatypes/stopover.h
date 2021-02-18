@@ -12,6 +12,8 @@
 #include "line.h"
 #include "load.h"
 #include "location.h"
+#include "platform.h"
+#include "vehicle.h"
 
 class QDateTime;
 
@@ -71,6 +73,11 @@ class KPUBLICTRANSPORT_EXPORT Stopover
      */
     Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant STORED false)
 
+    /** Vehicle coach layout information at this stopover. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Vehicle, vehicleLayout, setVehicleLayout)
+    /** Platform layout information. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Platform, platformLayout, setPlatformLayout)
+
 public:
     bool hasExpectedArrivalTime() const;
     int arrivalDelay() const;
@@ -99,7 +106,7 @@ public:
     static Stopover merge(const Stopover &lhs, const Stopover &rhs);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const Stopover &dep);
+    static QJsonObject toJson(const Stopover &stopover);
     /** Serializes a vector of departure objects to JSON. */
     static QJsonArray toJson(const std::vector<Stopover> &deps);
     /** Deserialize an object from JSON. */

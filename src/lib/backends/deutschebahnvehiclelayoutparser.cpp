@@ -27,16 +27,17 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
         return false;
     }
 
+    // vehicles
+    Vehicle vehicle;
     const auto obj = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("istformation")).toObject();
     vehicle.setName(obj.value(QLatin1String("zuggattung")).toString() + QLatin1Char(' ') + obj.value(QLatin1String("zugnummer")).toString());
 
-    // vehicles
     // TODO dobule segment ICE trains technically are two Vehicle objects...
     const auto vehiclesArray = obj.value(QLatin1String("allFahrzeuggruppe")).toArray();
     for (const auto &vehicleV : vehiclesArray) {
         const auto sectionsArray = vehicleV.toObject().value(QLatin1String("allFahrzeug")).toArray();
         for (const auto &sectionV : sectionsArray) {
-            parseVehicleSection(sectionV.toObject());
+            parseVehicleSection(vehicle, sectionV.toObject());
         }
     }
     // direction is implied by section order
@@ -45,11 +46,12 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     }
 
     // platform
+    Platform platform;
     const auto halt = obj.value(QLatin1String("halt")).toObject();
     platform.setName(halt.value(QLatin1String("gleisbezeichnung")).toString());
     const auto sectorArray = halt.value(QLatin1String("allSektor")).toArray();
     for (const auto &sectorV : sectorArray) {
-        parsePlatformSection(sectorV.toObject());
+        parsePlatformSection(platform, sectorV.toObject());
     }
 
     // departure
@@ -67,11 +69,14 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     stopover.setScheduledDepartureTime(QDateTime::fromString(halt.value(QLatin1String("abfahrtszeit")).toString(), Qt::ISODate));
     stopover.setScheduledPlatform(platform.name());
 
-    fillMissingPositions();
+    fillMissingPositions(vehicle, platform);
+    stopover.setVehicleLayout(std::move(vehicle));
+    stopover.setPlatformLayout(std::move(platform));
+
     return true;
 }
 
-void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj)
+void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj)
 {
     VehicleSection section;
     VehicleSection::Features f;
@@ -141,7 +146,7 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(const QJsonObject &obj
     vehicle.setSections(std::move(sections));
 }
 
-void DeutscheBahnVehicleLayoutParser::parsePlatformSection(const QJsonObject &obj)
+void DeutscheBahnVehicleLayoutParser::parsePlatformSection(Platform &platform, const QJsonObject &obj)
 {
     PlatformSection section;
     section.setName(obj.value(QLatin1String("sektorbezeichnung")).toString());
@@ -160,7 +165,7 @@ void DeutscheBahnVehicleLayoutParser::parsePlatformSection(const QJsonObject &ob
     }
 }
 
-void DeutscheBahnVehicleLayoutParser::fillMissingPositions()
+void DeutscheBahnVehicleLayoutParser::fillMissingPositions(Vehicle &vehicle, Platform &platform)
 {
     if (vehicle.sections().empty()) {
         return;
