@@ -13,6 +13,8 @@
 #include "load.h"
 #include "location.h"
 #include "path.h"
+#include "platform.h"
+#include "vehicle.h"
 
 #include <QDateTime>
 
@@ -135,6 +137,18 @@ public:
      *  or the path a public transport vehicle takes.
      */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Path, path, setPath)
+
+    /** Vehicle coach layout information at departure. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Vehicle, departureVehicleLayout, setDepartureVehicleLayout)
+    /** Platform layout information at departure. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Platform, departurePlatformLayout, setDeparturePlatformLayout)
+    /** Vehicle coach layout information at arrival.
+     *  Note that this does not necessarily need to be the same as departureVehicleLayout, as e.g. trains
+     *  can be split up or merged along the way.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
+    /** Platform layout information at arrival. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
 
 public:
     bool hasExpectedDepartureTime() const;

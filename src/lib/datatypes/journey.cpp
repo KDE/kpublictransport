@@ -46,6 +46,10 @@ public:
     std::vector<LoadInfo> loadInformation;
     RentalVehicle rentalVehicle;
     Path path;
+    Vehicle departureVehicleLayout;
+    Platform departurePlatformLayout;
+    Vehicle arrivalVehicleLayout;
+    Platform arrivalPlatformLayout;
 
     int estimatedDistance() const;
 };
@@ -71,6 +75,10 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEff
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, RentalVehicle, rentalVehicle, setRentalVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Path, path, setPath)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, departureVehicleLayout, setDepartureVehicleLayout)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, departurePlatformLayout, setDeparturePlatformLayout)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
 
 int JourneySectionPrivate::estimatedDistance() const
 {
@@ -257,6 +265,8 @@ Stopover JourneySection::departure() const
     dep.setExpectedPlatform(expectedDeparturePlatform());
     dep.addNotes(notes());
     dep.setDisruptionEffect(disruptionEffect());
+    dep.setVehicleLayout(departureVehicleLayout());
+    dep.setPlatformLayout(departurePlatformLayout());
     return dep;
 }
 
@@ -270,6 +280,8 @@ Stopover JourneySection::arrival() const
     arr.setScheduledPlatform(scheduledArrivalPlatform());
     arr.setExpectedPlatform(expectedArrivalPlatform());
     arr.setDisruptionEffect(disruptionEffect());
+    arr.setVehicleLayout(arrivalVehicleLayout());
+    arr.setPlatformLayout(arrivalPlatformLayout());
     return arr;
 }
 
@@ -419,6 +431,11 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
     res.d->path = lhs.d->path.isEmpty() ? rhs.d->path : lhs.d->path;
 
+    res.d->departureVehicleLayout = Vehicle::merge(lhs.d->departureVehicleLayout, rhs.d->departureVehicleLayout);
+    res.d->departurePlatformLayout = Platform::merge(lhs.d->departurePlatformLayout, rhs.d->departurePlatformLayout);
+    res.d->arrivalVehicleLayout = Vehicle::merge(lhs.d->arrivalVehicleLayout, rhs.d->arrivalVehicleLayout);
+    res.d->arrivalPlatformLayout = Platform::merge(lhs.d->arrivalPlatformLayout, rhs.d->arrivalPlatformLayout);
+
     return res;
 }
 
@@ -428,34 +445,47 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
     if (section.mode() != Waiting) {
         const auto fromObj = Location::toJson(section.from());
         if (!fromObj.empty()) {
-            obj.insert(QStringLiteral("from"), fromObj);
+            obj.insert(QLatin1String("from"), fromObj);
         }
         const auto toObj = Location::toJson(section.to());
         if (!toObj.empty()) {
-            obj.insert(QStringLiteral("to"), toObj);
+            obj.insert(QLatin1String("to"), toObj);
         }
     }
     if (section.mode() == PublicTransport) {
         const auto routeObj = Route::toJson(section.route());
         if (!routeObj.empty()) {
-            obj.insert(QStringLiteral("route"), routeObj);
+            obj.insert(QLatin1String("route"), routeObj);
         }
         if (!section.intermediateStops().empty()) {
-            obj.insert(QStringLiteral("intermediateStops"), Stopover::toJson(section.intermediateStops()));
+            obj.insert(QLatin1String("intermediateStops"), Stopover::toJson(section.intermediateStops()));
         }
         if (!section.loadInformation().empty()) {
-            obj.insert(QStringLiteral("load"), LoadInfo::toJson(section.loadInformation()));
+            obj.insert(QLatin1String("load"), LoadInfo::toJson(section.loadInformation()));
         }
     }
     if (section.d->co2Emission < 0) {
         obj.remove(QLatin1String("co2Emission"));
     }
     if (section.rentalVehicle().type() != RentalVehicle::Unknown) {
-        obj.insert(QStringLiteral("rentalVehicle"), RentalVehicle::toJson(section.rentalVehicle()));
+        obj.insert(QLatin1String("rentalVehicle"), RentalVehicle::toJson(section.rentalVehicle()));
     }
 
     if (!section.path().isEmpty()) {
         obj.insert(QLatin1String("path"), Path::toJson(section.path()));
+    }
+
+    if (!section.departureVehicleLayout().isEmpty()) {
+        obj.insert(QLatin1String("departureVehicleLayout"), Vehicle::toJson(section.departureVehicleLayout()));
+    }
+    if (!section.departurePlatformLayout().isEmpty()) {
+        obj.insert(QLatin1String("departurePlatformLayout"), Platform::toJson(section.departurePlatformLayout()));
+    }
+    if (!section.arrivalVehicleLayout().isEmpty()) {
+        obj.insert(QLatin1String("arrivalVehicleLayout"), Vehicle::toJson(section.arrivalVehicleLayout()));
+    }
+    if (!section.arrivalPlatformLayout().isEmpty()) {
+        obj.insert(QLatin1String("arrivalPlatformLayout"), Platform::toJson(section.arrivalPlatformLayout()));
     }
 
     if (obj.size() <= 3) { // only the disruption and mode enums and distance, ie. this is an empty object
@@ -479,6 +509,10 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
     section.setRentalVehicle(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
     section.setPath(Path::fromJson(obj.value(QLatin1String("path")).toObject()));
+    section.setDepartureVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("departureVehicleLayout")).toObject()));
+    section.setDeparturePlatformLayout(Platform::fromJson(obj.value(QLatin1String("departurePlatformLayout")).toObject()));
+    section.setArrivalVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("arrivalVehicleLayout")).toObject()));
+    section.setArrivalPlatformLayout(Platform::fromJson(obj.value(QLatin1String("arrivalPlatformLayout")).toObject()));
     return section;
 }
 
