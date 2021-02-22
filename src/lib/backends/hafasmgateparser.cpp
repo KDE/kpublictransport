@@ -389,9 +389,20 @@ std::vector<Journey> HafasMgateParser::parseJourneys(const QByteArray &data) con
     return {};
 }
 
-static std::vector<LoadInfo> parseLoad(const QJsonObject &obj, const std::vector<LoadInfo> &loadInfos)
+static void setPlatformLayout(Stopover &stop, const Platform &platform) { stop.setPlatformLayout(platform); }
+static void setPlatformLayout(JourneySection &jny, const Platform &platform) { jny.setDeparturePlatformLayout(platform); }
+static void setVehicleLayout(Stopover &stop, const Vehicle &vehicle) { stop.setVehicleLayout(vehicle); }
+static void setVehicleLayout(JourneySection &jny, const Vehicle &vehicle) { jny.setDepartureVehicleLayout(vehicle); }
+
+template <typename T>
+static void parseTrainComposition(const QJsonObject &obj, T &result,
+                                  const std::vector<LoadInfo> &loadInfos,
+                                  const std::vector<Platform> &platforms,
+                                  const std::vector<Vehicle> &vehicles)
 {
     const auto dTrnCmpSX = obj.value(QLatin1String("dTrnCmpSX")).toObject();
+
+    // load
     const auto tcocX = dTrnCmpSX.value(QLatin1String("tcocX")).toArray();
     std::vector<LoadInfo> load;
     load.reserve(tcocX.size());
@@ -401,7 +412,20 @@ static std::vector<LoadInfo> parseLoad(const QJsonObject &obj, const std::vector
             load.push_back(loadInfos[i]);
         }
     }
-    return load;
+    result.setLoadInformation(std::move(load));
+
+    // platform
+    const auto tcpdX = dTrnCmpSX.value(QLatin1String("tcpdX")).toInt(-1);
+    if (tcpdX >= 0 && tcpdX < (int)platforms.size()) {
+        setPlatformLayout(result, platforms[tcpdX]);
+    }
+
+    // vehicle
+    const auto stcGX = dTrnCmpSX.value(QLatin1String("stcGX")).toArray();
+    const auto vehicleIdx = stcGX.empty() ? -1 : stcGX.at(0).toInt(-1);
+    if (vehicleIdx >= 0 && vehicleIdx < (int)vehicles.size()) {
+        setVehicleLayout(result, vehicles[vehicleIdx]);
+    }
 }
 
 static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<Location> &locs)
@@ -570,14 +594,14 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                             stop.setDisruptionEffect(Disruption::NoService);
                         }
                         parseMessageList(stop, stopObj, remarks, warnings);
-                        stop.setLoadInformation(parseLoad(stopObj, loadInfos));
+                        parseTrainComposition(stopObj, stop, loadInfos, platforms, vehicles);
                         stops.push_back(stop);
                     }
                     section.setIntermediateStops(std::move(stops));
                 }
 
                 parseMessageList(section, jnyObj, remarks, warnings);
-                section.setLoadInformation(parseLoad(dep, loadInfos));
+                parseTrainComposition(dep, section, loadInfos, platforms, vehicles);
                 section.setPath(parsePolyG(jnyObj, paths));
             } else if (typeStr == QLatin1String("WALK") || typeStr == QLatin1String("TRSF")) {
                 const auto gis = secObj.value(QLatin1String("gis")).toObject();
