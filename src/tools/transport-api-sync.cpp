@@ -56,6 +56,12 @@ static bool updateTransportApisRepo(const QString &path)
     return proc.waitForFinished() && proc.exitCode() == 0;
 }
 
+static bool isArrayOfObjects(const QJsonValue &v)
+{
+    const auto a = v.toArray();
+    return !a.isEmpty() && a.at(0).isObject();
+}
+
 static void mergeJsonObject(QJsonObject &destObj, const QJsonObject &srcObj)
 {
     for (auto it = srcObj.begin(); it != srcObj.end(); ++it) {
@@ -64,6 +70,23 @@ static void mergeJsonObject(QJsonObject &destObj, const QJsonObject &srcObj)
             auto destChild = destObj.value(it.key()).toObject();
             mergeJsonObject(destChild, srcChild);
             destObj.insert(it.key(), destChild);
+        } else if (isArrayOfObjects(it.value())) {
+            const auto srcArray = it.value().toArray();
+            const auto destArray = destObj.value(it.key()).toArray();
+            QJsonArray outArray;
+            int i = 0;
+            for (; i < destArray.size() && i < srcArray.size(); ++i) {
+                auto obj = destArray.at(i).toObject();
+                mergeJsonObject(obj, srcArray.at(i).toObject());
+                outArray.push_back(obj);
+            }
+            for (; i < destArray.size(); ++i) {
+                outArray.push_back(destArray.at(i));
+            }
+            for (; i < srcArray.size(); ++i) {
+                outArray.push_back(srcArray.at(i));
+            }
+            destObj.insert(it.key(), outArray);
         } else {
             destObj.insert(it.key(), it.value());
         }
@@ -237,10 +260,27 @@ int main(int argc, char **argv)
 
         qDebug() << "Updating" << fileName;
         auto options = topObj.value(QLatin1String("options")).toObject();
-        const auto version = options.take(QLatin1String("version")).toString();
-        if (!version.isEmpty()) {
-            options.insert(QLatin1String("ver"), version);
+        auto lineModeMap = options.take(QLatin1String("lineModeMap")).toObject();
+        if (lineModeMap.isEmpty()) {
+            continue;
         }
+
+        std::vector<QJsonObject> products;
+        for (auto it = lineModeMap.begin(); it != lineModeMap.end(); it++) {
+            QJsonArray bitmasks({ it.key().toInt() });
+            QJsonObject product;
+            product.insert(QLatin1String("bitmasks"), bitmasks);
+            product.insert(QLatin1String("mode"), it.value());
+            products.push_back(std::move(product));
+        }
+        std::sort(products.begin(), products.end(), [](const auto &lhs, const auto &rhs) {
+            return lhs.value(QLatin1String("bitmasks")).toArray().at(0).toInt() < rhs.value(QLatin1String("bitmasks")).toArray().at(0).toInt();
+        });
+
+        QJsonArray productsA;
+        std::copy(products.begin(), products.end(), std::back_inserter(productsA));
+
+        options.insert(QLatin1String("products"), std::move(productsA));
         topObj.insert(QLatin1String("options"), options);
 
         f.close();

@@ -20,6 +20,7 @@ class HafasBackend : public AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QString endpoint MEMBER m_endpoint)
+    Q_PROPERTY(QJsonArray products WRITE setProductsMap)
     Q_PROPERTY(QJsonObject lineModeMap WRITE setLineModeMap)
     /** Identifier type used for stations. Default is backendId(). */
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
@@ -40,6 +41,7 @@ protected:
 private:
     void setStandardLocationIdentifierCountries(const QJsonArray &a);
 
+    void setProductsMap(const QJsonArray &array);
     void setLineModeMap(const QJsonObject &obj);
     QString m_locationIdentifierType;
     QString m_standardLocationIdentifierType;
