@@ -124,8 +124,8 @@ static std::vector<Message> parseWarnings(const QJsonArray &himL)
     return hims;
 }
 
-template <typename T>
-static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<Message> &remarks, const std::vector<Message> &warnings)
+template <typename Func>
+static void processMessageList(const QJsonObject &obj, const std::vector<Message> &remarks, const std::vector<Message> &warnings, Func func)
 {
     const auto msgL = obj.value(QLatin1String("msgL")).toArray();
     QStringList notes;
@@ -148,14 +148,22 @@ static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<
             qCDebug(Log) << "Invalid message index:" << remX << msgType;
             continue;
         }
-        const auto msg = (*source)[remX];
+        const auto &msg = (*source)[remX];
+        func(msg, msgObj);
+    }
+}
+
+template <typename T>
+static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<Message> &remarks, const std::vector<Message> &warnings)
+{
+    processMessageList(obj, remarks, warnings, [&elem](const Message &msg, const QJsonObject&) {
         if (msg.content.type() == QVariant::String) {
             elem.addNote(msg.content.toString());
         }
         if (msg.effect == Disruption::NoService) {
             elem.setDisruptionEffect(msg.effect);
         }
-    }
+    });
 }
 
 static constexpr const Load::Category load_value_map[] = {
@@ -533,9 +541,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
             const auto dep = secObj.value(QLatin1String("dep")).toObject();
             section.setScheduledDepartureTime(parseDateTime(dateStr, dep.value(QLatin1String("dTimeS")), dep.value(QLatin1String("dTZOffset"))));
             section.setExpectedDepartureTime(parseDateTime(dateStr, dep.value(QLatin1String("dTimeR")), dep.value(QLatin1String("dTZOffset"))));
-            auto locIdx = dep.value(QLatin1String("locX")).toInt();
-            if ((unsigned int)locIdx < locs.size()) {
-                section.setFrom(locs[locIdx]);
+            const auto fromIdx = dep.value(QLatin1String("locX")).toInt(-1);
+            if ((unsigned int)fromIdx < locs.size()) {
+                section.setFrom(locs[fromIdx]);
             }
             section.setScheduledDeparturePlatform(dep.value(QLatin1String("dPlatfS")).toString());
             section.setExpectedDeparturePlatform(dep.value(QLatin1String("dPlatfR")).toString());
@@ -546,9 +554,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
             const auto arr = secObj.value(QLatin1String("arr")).toObject();
             section.setScheduledArrivalTime(parseDateTime(dateStr, arr.value(QLatin1String("aTimeS")), arr.value(QLatin1String("aTZOffset"))));
             section.setExpectedArrivalTime(parseDateTime(dateStr, arr.value(QLatin1String("aTimeR")), arr.value(QLatin1String("aTZOffset"))));
-            locIdx = arr.value(QLatin1String("locX")).toInt();
-            if ((unsigned int)locIdx < locs.size()) {
-                section.setTo(locs[locIdx]);
+            const auto toIdx = arr.value(QLatin1String("locX")).toInt(-1);
+            if ((unsigned int)toIdx < locs.size()) {
+                section.setTo(locs[toIdx]);
             }
             section.setScheduledArrivalPlatform(arr.value(QLatin1String("aPlatfS")).toString());
             section.setExpectedArrivalPlatform(arr.value(QLatin1String("aPlatfR")).toString());
@@ -594,13 +602,54 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                             stop.setDisruptionEffect(Disruption::NoService);
                         }
                         parseMessageList(stop, stopObj, remarks, warnings);
+                        processMessageList(jnyObj, remarks, warnings, [&stop, locIdx](const Message &msg, const QJsonObject &msgObj) {
+                            const auto fromIdx = msgObj.value(QLatin1String("fLocX")).toInt(-1);
+                            const auto toIdx = msgObj.value(QLatin1String("tLocX")).toInt(-1);
+                            if (fromIdx != toIdx || fromIdx != locIdx) {
+                                return;
+                            }
+                            if (msg.content.type() == QVariant::String) {
+                                stop.addNote(msg.content.toString());
+                            } else if (msg.content.userType() == qMetaTypeId<Platform>()) {
+                                stop.setPlatformLayout(Platform::merge(stop.platformLayout(), msg.content.value<Platform>()));
+                            } else if (msg.content.userType() == qMetaTypeId<Vehicle>()) {
+                                stop.setVehicleLayout(Vehicle::merge(stop.vehicleLayout(), msg.content.value<Vehicle>()));
+                            }
+                            if (msg.effect == Disruption::NoService) {
+                                stop.setDisruptionEffect(msg.effect);
+                            }
+                        });
                         parseTrainComposition(stopObj, stop, loadInfos, platforms, vehicles);
                         stops.push_back(stop);
                     }
                     section.setIntermediateStops(std::move(stops));
                 }
 
-                parseMessageList(section, jnyObj, remarks, warnings);
+                processMessageList(jnyObj, remarks, warnings, [&section, fromIdx, toIdx](const Message &msg, const QJsonObject &msgObj) {
+                    const auto from = msgObj.value(QLatin1String("fLocX")).toInt(-1);
+                    const auto to = msgObj.value(QLatin1String("tLocX")).toInt(-1);
+                    if (from >= 0 && to >= 0 && from != fromIdx && toIdx != to && from == to) {
+                        return;
+                    }
+                    if (msg.content.type() == QVariant::String) {
+                        section.addNote(msg.content.toString());
+                    } else if (msg.content.userType() == qMetaTypeId<Platform>()) {
+                        if (from == to && to == toIdx) {
+                            section.setArrivalPlatformLayout(Platform::merge(section.arrivalPlatformLayout(), msg.content.value<Platform>()));
+                        } else {
+                            section.setDeparturePlatformLayout(Platform::merge(section.departurePlatformLayout(), msg.content.value<Platform>()));
+                        }
+                    } else if (msg.content.userType() == qMetaTypeId<Vehicle>()) {
+                        if (from == to && to == toIdx) {
+                            section.setArrivalVehicleLayout(Vehicle::merge(section.arrivalVehicleLayout(), msg.content.value<Vehicle>()));
+                        } else {
+                            section.setDepartureVehicleLayout(Vehicle::merge(section.departureVehicleLayout(), msg.content.value<Vehicle>()));
+                        }
+                    }
+                    if (msg.effect == Disruption::NoService) {
+                        section.setDisruptionEffect(msg.effect);
+                    }
+                });
                 parseTrainComposition(dep, section, loadInfos, platforms, vehicles);
                 section.setPath(parsePolyG(jnyObj, paths));
             } else if (typeStr == QLatin1String("WALK") || typeStr == QLatin1String("TRSF")) {
