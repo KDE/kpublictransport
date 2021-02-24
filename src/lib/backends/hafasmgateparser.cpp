@@ -100,7 +100,7 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
         } else {
             // generic text
             m.content = remObj.value(QLatin1String("txtN")).toString();
-            if (code == QLatin1String("text.realtime.stop.cancelled")) {
+            if (code == QLatin1String("text.realtime.stop.cancelled") || code == QLatin1String("text.realtime.stop.entry.exit.disabled")) {
                 m.effect = Disruption::NoService;
             }
         }
