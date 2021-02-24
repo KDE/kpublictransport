@@ -34,6 +34,7 @@ VehicleLayoutReply::VehicleLayoutReply(const VehicleLayoutRequest &req, QObject 
 {
     Q_D(VehicleLayoutReply);
     d->request = req;
+    d->stopover = req.stopover();
 }
 
 VehicleLayoutReply::~VehicleLayoutReply() = default;
