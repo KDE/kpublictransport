@@ -113,12 +113,12 @@ Kirigami.Page {
                 highlighted: false
                 GridLayout {
                     columns: 5
-                    rows: 3
+                    rows: 4
                     Rectangle {
                         Layout.column: 0
                         Layout.row: 0
                         Layout.fillHeight: true
-                        Layout.rowSpan: 2
+                        Layout.rowSpan: 4
                         width: Kirigami.Units.largeSpacing
                         color: stop.route.line.hasColor ? stop.route.line.color : Kirigami.Theme.textColor
                     }
@@ -220,9 +220,9 @@ Kirigami.Page {
                     }
 
                     QQC2.Label {
-                        Layout.column: 0
+                        Layout.column: 1
                         Layout.row: 2
-                        Layout.columnSpan: 4
+                        Layout.columnSpan: 3
                         text: stop.notes.join("<br/>")
                         textFormat: Text.RichText
                         visible: stop.notes.length > 0
