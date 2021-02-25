@@ -37,6 +37,12 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         return;
     }
 
+    // if the request already contains useful information, let's use those already
+    q->beginResetModel();
+    m_stopover = m_request.stopover();
+    q->endResetModel();
+    emit q->contentChanged();
+
     setLoading(true);
     auto reply = m_manager->queryVehicleLayout(m_request);
     monitorReply(reply);
