@@ -1,0 +1,20 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in the Rhein-Sieg area, Germany.",
+        "Name": "Verkehrsverbund Rhein-Sieg (VRS)"
+    },
+    "coverage": {
+        "anyCoverage": {
+            "region": [
+                "DE-NW"
+            ]
+        }
+    },
+    "options": {
+        "endpoint": "https://ekapweb.vrs.de/"
+    },
+    "timezone": "Europe/Berlin",
+    "type": {
+        "ivvass": true
+    }
+}

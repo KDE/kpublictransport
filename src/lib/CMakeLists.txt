@@ -34,6 +34,7 @@ set(kpublictransport_srcs
     backends/hafasquerybackend.cpp
     backends/hafasqueryparser.cpp
     backends/hafasvehiclelayoutparser.cpp
+    backends/ivvassbackend.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
     backends/oebbbackend.cpp

@@ -33,6 +33,7 @@
 #include "backends/efabackend.h"
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
+#include "backends/ivvassbackend.h"
 #include "backends/navitiabackend.h"
 #include "backends/oebbbackend.h"
 #include "backends/opentripplannergraphqlbackend.h"
@@ -191,6 +192,7 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         HafasMgateBackend,
         HafasQueryBackend,
         EfaBackend,
+        IvvAssBackend,
         GBFSBackend,
         AccessibilityCloudBackend
     >(type, obj);
