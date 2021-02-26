@@ -104,6 +104,7 @@ ListModel {
     ListElement { label: "Hamburg Altona"; lat: 53.55284; lon: 9.93569 }
     ListElement { label: "Bremen Hauptbahnhof"; lat: 53.08307; lon: 8.81384 }
 
+    ListElement { label: "Köln Hauptbahnhof"; lat: 50.94328; lon: 6.95870 }
     ListElement { label: "Aachen Hauptbahnhof"; lat: 50.76788; lon: 6.09135 }
 
     ListElement { label: "Saarbrücken Hauptbahnhof"; lat: 49.24133; lon: 6.99032 }

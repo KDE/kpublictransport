@@ -213,6 +213,13 @@ Kirigami.ApplicationWindow {
     Component {
         id: departureQueryPage
         Kirigami.Page {
+            Settings {
+                id: settings
+                property alias queryArrivals: arrivalBox.checked
+                property alias singleBackend: backendBox.checked
+                property alias backend: backendSelector.currentIndex
+            }
+
             ColumnLayout {
                 anchors.fill: parent
 

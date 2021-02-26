@@ -166,6 +166,17 @@ Kirigami.ApplicationWindow {
     Component {
         id: locationQueryPage
         Kirigami.Page {
+            Settings {
+                id: settings
+                property alias singleBackend: backendBox.checked
+                property alias backend: backendSelector.currentIndex
+                property alias maxResults: maxResults.text
+                property alias maxDistance: maxDist.text
+                property alias includeStops: includeStops.checked
+                property alias includeRentals: includeRentals.checked
+                property alias includeEquipment: includeEquipment.checked
+            }
+
             ColumnLayout {
                 anchors.fill: parent
 
