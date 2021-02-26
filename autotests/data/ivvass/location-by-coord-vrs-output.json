@@ -1,0 +1,101 @@
+[
+    {
+        "identifier": {
+            "ifopt": "de:05315:11201"
+        },
+        "latitude": 50.942970275878906,
+        "locality": "",
+        "longitude": 6.958580017089844,
+        "name": "Köln Hbf",
+        "type": "Stop"
+    },
+    {
+        "equipment": {
+            "disruptionEffect": "NormalService",
+            "type": "Elevator"
+        },
+        "identifier": {
+            "ifopt": "de:05315:11201:elevator:3106"
+        },
+        "latitude": 50.94306945800781,
+        "longitude": 6.957799911499023,
+        "name": "zu Gleis 1",
+        "type": "Equipment"
+    },
+    {
+        "equipment": {
+            "disruptionEffect": "NoService",
+            "type": "Elevator"
+        },
+        "identifier": {
+            "ifopt": "de:05315:11201:elevator:3053"
+        },
+        "latitude": 50.943241119384766,
+        "longitude": 6.958079814910889,
+        "name": "zu Gleis 2/3",
+        "type": "Equipment"
+    },
+    {
+        "equipment": {
+            "disruptionEffect": "NormalService",
+            "type": "Elevator"
+        },
+        "identifier": {
+            "ifopt": "de:05315:11201:elevator:3094"
+        },
+        "latitude": 50.94361877441406,
+        "longitude": 6.959000110626221,
+        "name": "zu Gleis 10/11 Abschnitt D/E",
+        "type": "Equipment"
+    },
+    {
+        "equipment": {
+            "disruptionEffect": "NoService",
+            "type": "Escalator"
+        },
+        "identifier": {
+            "ifopt": "de:05315:11201:escalator:1973"
+        },
+        "latitude": 50.94261932373047,
+        "longitude": 6.958370208740234,
+        "name": "zu Gleis 1",
+        "type": "Equipment"
+    },
+    {
+        "equipment": {
+            "disruptionEffect": "NormalService",
+            "type": "Escalator"
+        },
+        "identifier": {
+            "ifopt": "de:05315:11201:escalator:2239"
+        },
+        "latitude": 50.94371032714844,
+        "longitude": 6.958889961242676,
+        "name": "zu Gleis 10/11(S-Bahn) abwärts",
+        "type": "Equipment"
+    },
+    {
+        "identifier": {
+            "ifopt": "v:kvb-rad:21596"
+        },
+        "latitude": 50.9398193359375,
+        "longitude": 6.957879066467285,
+        "name": "KVB-Rad 21596",
+        "rentalVehicle": {
+            "type": "Unknown"
+        },
+        "type": "RentedVehicle"
+    },
+    {
+        "identifier": {
+            "ifopt": "v:kvb-rad:210004"
+        },
+        "latitude": 50.93911361694336,
+        "longitude": 6.958240032196045,
+        "name": "KVB-Rad 210004",
+        "rentalVehicle": {
+            "type": "Unknown"
+        },
+        "type": "RentedVehicle"
+    }
+]

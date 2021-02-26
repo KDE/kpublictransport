@@ -1,0 +1,102 @@
+{
+  "objects": [
+    {
+      "type": "stop",
+      "ifopt": "de:05315:11201",
+      "fullName": "Köln Hbf",
+      "name": "Köln Hbf",
+      "municipality": "",
+      "locality": "",
+      "lat": 50.94297,
+      "lon": 6.95858,
+      "id": 8,
+      "spacesBikeAndRide": 434,
+      "restroom": "wheelchairAccessible",
+      "elevators": [
+        {
+          "ifopt": "de:05315:11201:elevator:3106",
+          "description": "zu Gleis 1",
+          "status": "active",
+          "lat": 50.94307,
+          "lon": 6.9578
+        },
+        {
+          "ifopt": "de:05315:11201:elevator:3053",
+          "description": "zu Gleis 2/3",
+          "status": "outOfOrder",
+          "lat": 50.94324,
+          "lon": 6.95808
+        },
+        {
+          "ifopt": "de:05315:11201:elevator:3094",
+          "description": "zu Gleis 10/11 Abschnitt D/E",
+          "status": "active",
+          "lat": 50.94362,
+          "lon": 6.959
+        }
+      ],
+      "escalators": [
+        {
+          "ifopt": "de:05315:11201:escalator:1973",
+          "description": "zu Gleis 1",
+          "status": "outOfOrder",
+          "lat": 50.94262,
+          "lon": 6.95837
+        },
+        {
+          "ifopt": "de:05315:11201:escalator:2239",
+          "description": "zu Gleis 10/11(S-Bahn) abwärts",
+          "status": "active",
+          "lat": 50.94371,
+          "lon": 6.95889
+        }
+      ],
+      "distance": 38
+    },
+    {
+      "type": "parkandride",
+      "ifopt": "de:05316:21101:park-and-ride:1",
+      "name": "Leverkusen Mitte Bf",
+      "municipality": "Leverkusen",
+      "locality": "Wiesdorf",
+      "lat": 51.03092,
+      "lon": 6.99022
+    },
+    {
+      "type": "poi",
+      "ifopt": "p:cambio-k:3093",
+      "category": "sharing",
+      "name": "Hansa",
+      "municipality": "Köln",
+      "locality": "Neustadt-Nord",
+      "address": "Hansaring 123",
+      "lat": 50.949382,
+      "lon": 6.953614
+    },
+    {
+      "type": "poi",
+      "ifopt": "p:osm:w:418587820",
+      "category": "serviceCenter",
+      "name": "DB-Reisezentrum Köln Hbf",
+      "municipality": "Köln",
+      "locality": "",
+      "address": "Trankgasse 11",
+      "lat": 50.942866,
+      "lon": 6.95795
+    }
+  ],
+  "vehicles": [
+    {
+      "ifopt": "v:kvb-rad:21596",
+      "name": "KVB-Rad 21596",
+      "lat": 50.939819,
+      "lon": 6.957879
+    },
+    {
+      "ifopt": "v:kvb-rad:210004",
+      "name": "KVB-Rad 210004",
+      "lat": 50.939115,
+      "lon": 6.95824
+    }
+  ]
+}

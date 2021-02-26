@@ -5,11 +5,16 @@
 */
 
 #include "ivvassbackend.h"
+#include "ivvassparser.h"
+#include "cache.h"
 
+#include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
+#include <KPublicTransport/Location>
 #include <KPublicTransport/LocationReply>
 #include <KPublicTransport/LocationRequest>
+#include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
 
@@ -28,7 +33,8 @@ AbstractBackend::Capabilities IvvAssBackend::capabilities() const
 
 bool IvvAssBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
-    return false; // TODO
+    Q_UNUSED(type);
+    return !loc.hasCoordinate() && loc.identifier(QStringLiteral("ifopt")).isEmpty();
 }
 
 bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
@@ -64,7 +70,9 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
             return;
         }
 
-        addError(reply, Reply::UnknownError, {});
+        auto result = IvvAssParser::parseLocations(data);
+        Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
+        addResult(reply, std::move(result));
     });
 
     return true;
@@ -78,7 +86,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     if (req.stop().hasCoordinate()) {
         query.addQueryItem(QStringLiteral("r"), QString::number(req.stop().latitude()) + QLatin1Char(',') + QString::number(req.stop().longitude()));
     } else {
-        query.addQueryItem(QStringLiteral("i"), QStringLiteral("802"));  // TODO vrs station id, ifopt
+        query.addQueryItem(QStringLiteral("i"), req.stop().identifier(QStringLiteral("ifopt")));
     }
 //     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
     // TODO timezone conversion
@@ -101,18 +109,27 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
             return;
         }
 
-        addError(reply, Reply::UnknownError, {});
+        auto result = IvvAssParser::parseStopovers(data);
+        addResult(reply, this, std::move(result));
     });
 
     return true;
+}
+
+static QString locationParameter(const Location &loc)
+{
+    if (loc.hasCoordinate()) {
+        return QString::number(loc.latitude()) + QLatin1Char(',') + QString::number(loc.longitude());
+    }
+    return loc.identifier(QStringLiteral("ifopt"));
 }
 
 bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("eID"), QStringLiteral("tx_vrsinfo_ass2_router"));
-    query.addQueryItem(QStringLiteral("f"), QStringLiteral("802"));  // TODO vrs station id, ifopt, coordinates possible as well?
-    query.addQueryItem(QStringLiteral("t"), QStringLiteral("2071"));  // TODO
+    query.addQueryItem(QStringLiteral("f"), locationParameter(req.from()));
+    query.addQueryItem(QStringLiteral("t"), locationParameter(req.to()));
     // TODO timezone conversion
     query.addQueryItem(req.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("d") : QStringLiteral("a"), req.dateTime().toString(Qt::ISODate));
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
@@ -136,7 +153,8 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
             return;
         }
 
-        addError(reply, Reply::UnknownError, {});
+        auto result = IvvAssParser::parseJourneys(data);
+        addResult(reply, this, std::move(result));
     });
 
     return true;

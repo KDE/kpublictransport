@@ -1,0 +1,32 @@
+[
+    {
+        "identifier": {
+            "ifopt": "de:05315:11201"
+        },
+        "latitude": 50.942970275878906,
+        "locality": "Köln",
+        "longitude": 6.9585700035095215,
+        "name": "Köln Hbf",
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "ifopt": "de:05315:11211"
+        },
+        "latitude": 50.941810607910156,
+        "locality": "Köln",
+        "longitude": 6.957059860229492,
+        "name": "Dom/Hbf",
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "ifopt": "de:05315:11212"
+        },
+        "latitude": 50.943660736083984,
+        "locality": "Köln",
+        "longitude": 6.959360122680664,
+        "name": "Breslauer Platz/Hbf",
+        "type": "Stop"
+    }
+]

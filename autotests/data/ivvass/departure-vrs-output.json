@@ -1,0 +1,71 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-02-26T16:29:00+01:00",
+        "route": {
+            "direction": "Bergisch Gladbach (S)",
+            "line": {
+                "mode": "RapidTransit",
+                "name": "S11"
+            }
+        },
+        "scheduledDepartureTime": "2021-02-26T16:27:00+01:00",
+        "scheduledPlatform": "(Gleis 10)",
+        "stopPoint": {
+            "identifier": {
+                "ifopt": "de:05315:11201"
+            },
+            "latitude": 50.942970275878906,
+            "locality": "Köln",
+            "longitude": 6.9585700035095215,
+            "name": "Köln Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-02-26T16:31:00+01:00",
+        "route": {
+            "direction": "Horrem Bf",
+            "line": {
+                "mode": "RapidTransit",
+                "name": "S12"
+            }
+        },
+        "scheduledDepartureTime": "2021-02-26T16:30:00+01:00",
+        "scheduledPlatform": "(Gleis 11)",
+        "stopPoint": {
+            "identifier": {
+                "ifopt": "de:05315:11201"
+            },
+            "latitude": 50.942970275878906,
+            "locality": "Köln",
+            "longitude": 6.9585700035095215,
+            "name": "Köln Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-02-26T16:31:00+01:00",
+        "route": {
+            "direction": "Oberhausen Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE5 (RRX)"
+            }
+        },
+        "scheduledDepartureTime": "2021-02-26T16:31:00+01:00",
+        "scheduledPlatform": "(Gleis 1)",
+        "stopPoint": {
+            "identifier": {
+                "ifopt": "de:05315:11201"
+            },
+            "latitude": 50.942970275878906,
+            "locality": "Köln",
+            "longitude": 6.9585700035095215,
+            "name": "Köln Hbf",
+            "type": "Stop"
+        }
+    }
+]

@@ -30,6 +30,7 @@ ecm_add_test(efaparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(deutschebahntest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(otpparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(oebbparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
+ecm_add_test(ivvassparsertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 
 ecm_add_test(publictransportmanagertest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
 ecm_add_test(cachetest.cpp LINK_LIBRARIES Qt5::Test KPublicTransport)
