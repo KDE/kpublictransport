@@ -211,7 +211,13 @@ std::vector<Stopover> IvvAssParser::parseStopovers(const QByteArray &data)
             s.setRoute(parseRoute(lineObj));
 
             const auto postObj = eventObj.value(QLatin1String("post")).toObject();
-            s.setScheduledPlatform(postObj.value(QLatin1String("name")).toString());
+            const auto postName = postObj.value(QLatin1String("name")).toString();
+            if (postName.startsWith(QLatin1Char('(')) && postName.endsWith(QLatin1Char(')'))) {
+                s.setScheduledPlatform(postName.mid(1, postName.size() - 2));
+            } else {
+                s.setScheduledPlatform(postName);
+            }
+
             stopovers.push_back(std::move(s));
         }
     }

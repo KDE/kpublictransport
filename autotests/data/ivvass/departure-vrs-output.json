@@ -10,7 +10,7 @@
             }
         },
         "scheduledDepartureTime": "2021-02-26T16:27:00+01:00",
-        "scheduledPlatform": "(Gleis 10)",
+        "scheduledPlatform": "10",
         "stopPoint": {
             "identifier": {
                 "ifopt": "de:05315:11201"
@@ -33,7 +33,7 @@
             }
         },
         "scheduledDepartureTime": "2021-02-26T16:30:00+01:00",
-        "scheduledPlatform": "(Gleis 11)",
+        "scheduledPlatform": "11",
         "stopPoint": {
             "identifier": {
                 "ifopt": "de:05315:11201"
@@ -56,7 +56,7 @@
             }
         },
         "scheduledDepartureTime": "2021-02-26T16:31:00+01:00",
-        "scheduledPlatform": "(Gleis 1)",
+        "scheduledPlatform": "1",
         "stopPoint": {
             "identifier": {
                 "ifopt": "de:05315:11201"
