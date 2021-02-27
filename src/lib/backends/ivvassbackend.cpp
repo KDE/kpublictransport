@@ -89,8 +89,13 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         query.addQueryItem(QStringLiteral("i"), req.stop().identifier(QStringLiteral("ifopt")));
     }
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
-    // TODO timezone conversion
-    query.addQueryItem(QStringLiteral("t"), req.dateTime().toString(Qt::ISODate));
+
+    auto dt = req.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+    dt.setTimeSpec(Qt::LocalTime);
+    query.addQueryItem(QStringLiteral("t"), dt.toString(Qt::ISODate));
 
     QUrl url(m_endpoint);
     url.setQuery(query);
@@ -130,8 +135,13 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     query.addQueryItem(QStringLiteral("eID"), QStringLiteral("tx_vrsinfo_ass2_router"));
     query.addQueryItem(QStringLiteral("f"), locationParameter(req.from()));
     query.addQueryItem(QStringLiteral("t"), locationParameter(req.to()));
-    // TODO timezone conversion
-    query.addQueryItem(req.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("d") : QStringLiteral("a"), req.dateTime().toString(Qt::ISODate));
+
+    auto dt = req.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+    dt.setTimeSpec(Qt::LocalTime);
+    query.addQueryItem(req.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("d") : QStringLiteral("a"), dt.toString(Qt::ISODate));
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
     query.addQueryItem(QStringLiteral("s"), QStringLiteral("t"));
     query.addQueryItem(QStringLiteral("o"), QStringLiteral("vdpa")); // v: intermediate stops, d: walking directions, p: paths, a: load
