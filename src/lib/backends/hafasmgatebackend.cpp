@@ -168,7 +168,7 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
 
         QJsonObject req;
         req.insert(QStringLiteral("date"), dt.toString(QStringLiteral("yyyyMMdd")));
-        req.insert(QStringLiteral("maxJny"), 12);
+        req.insert(QStringLiteral("maxJny"), request.maximumResults());
         // stbFltrEquiv is no longer allowed above API version 1.20
         if (QVersionNumber::fromString(m_version) < QVersionNumber(1, 20)) {
             req.insert(QStringLiteral("stbFltrEquiv"), true);

@@ -118,7 +118,7 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
     query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
     query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
     query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
-    query.addQueryItem(QStringLiteral("limit"), QStringLiteral("12")); // TODO
+    query.addQueryItem(QStringLiteral("limit"), QString::number(request.maximumResults()));
 
     // not exactly sure what these do, but without this the result is missing departure times
     query.addQueryItem(QStringLiteral("mode"), QStringLiteral("direct"));

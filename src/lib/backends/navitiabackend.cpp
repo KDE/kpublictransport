@@ -128,6 +128,7 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
     query.addQueryItem(QStringLiteral("from_datetime"), req.dateTime().toString(QStringLiteral("yyyyMMddThhmmss")));
     query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
     query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0"));
+    query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
     url.setQuery(query);
 
     QNetworkRequest netReq(url);

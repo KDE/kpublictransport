@@ -218,6 +218,7 @@ Kirigami.ApplicationWindow {
                 property alias queryArrivals: arrivalBox.checked
                 property alias singleBackend: backendBox.checked
                 property alias backend: backendSelector.currentIndex
+                property alias maxResults: maxResults.text
             }
 
             ColumnLayout {
@@ -247,6 +248,13 @@ Kirigami.ApplicationWindow {
                             manager: ptMgr
                         }
                         enabled: backendBox.checked
+                    }
+                }
+                RowLayout {
+                    QQC2.Label { text: "Results:" }
+                    QQC2.TextField {
+                        id: maxResults
+                        text: "10"
                     }
                 }
 
@@ -291,7 +299,8 @@ Kirigami.ApplicationWindow {
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            departureModel.request.downloadAssets = true
+                            departureModel.request.downloadAssets = true;
+                            departureModel.request.maximumResults = maxResults.text;
                         }
                     }
                     QQC2.Button {
@@ -304,7 +313,8 @@ Kirigami.ApplicationWindow {
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            departureModel.request.downloadAssets = true
+                            departureModel.request.downloadAssets = true;
+                            departureModel.request.maximumResults = maxResults.text;
                         }
                     }
                     QQC2.Button {
@@ -317,7 +327,8 @@ Kirigami.ApplicationWindow {
                             departureModel.request.stop = stop;
                             departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
                             departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            departureModel.request.downloadAssets = true
+                            departureModel.request.downloadAssets = true;
+                            departureModel.request.maximumResults = maxResults.text;
                         }
                     }
                     QQC2.Button {

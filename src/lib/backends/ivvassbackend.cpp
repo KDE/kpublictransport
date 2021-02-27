@@ -88,7 +88,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     } else {
         query.addQueryItem(QStringLiteral("i"), req.stop().identifier(QStringLiteral("ifopt")));
     }
-//     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
+    query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
     // TODO timezone conversion
     query.addQueryItem(QStringLiteral("t"), req.dateTime().toString(Qt::ISODate));
 

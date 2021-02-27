@@ -59,6 +59,12 @@ public:
      */
     KPUBLICTRANSPORT_PROPERTY(bool, downloadAssets, setDownloadAssets)
 
+    /** The maximum amount of expected results.
+     *  @note This is only an optimization hint for backends, not a guarantee
+     *  that all results comply with this constraint.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, maximumResults, setMaximumResults)
+
 public:
     /** Search for arrival/departures to/from @p stop. */
     explicit StopoverRequest(const Location &stop);

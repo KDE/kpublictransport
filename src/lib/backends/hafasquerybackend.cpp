@@ -175,7 +175,7 @@ bool HafasQueryBackend::queryStopover(const StopoverRequest &request, StopoverRe
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("boardType"), request.mode() == StopoverRequest::QueryDeparture ? QStringLiteral("dep") : QStringLiteral("arr"));
     query.addQueryItem(QStringLiteral("disableEquivs"), QStringLiteral("0"));
-    query.addQueryItem(QStringLiteral("maxJourneys"), QStringLiteral("12"));
+    query.addQueryItem(QStringLiteral("maxJourneys"), QString::number(request.maximumResults()));
     query.addQueryItem(QStringLiteral("input"), stationId);
     query.addQueryItem(QStringLiteral("date"), request.dateTime().date().toString(QStringLiteral("dd.MM.yy")));
     query.addQueryItem(QStringLiteral("time"), request.dateTime().time().toString(QStringLiteral("hh:mm")));

@@ -28,6 +28,7 @@ public:
     std::vector<RequestContext> contexts;
     QStringList backendIds;
     bool downloadAssets = false;
+    int maximumResults = 12;
 };
 }
 
@@ -35,6 +36,7 @@ KPUBLICTRANSPORT_MAKE_GADGET(StopoverRequest)
 KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, Location, stop, setStop)
 KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, StopoverRequest::Mode, mode, setMode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, bool, downloadAssets, setDownloadAssets)
+KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, int, maximumResults, setMaximumResults)
 
 StopoverRequest::StopoverRequest(const Location &stop)
     : d(new StopoverRequestPrivate)
