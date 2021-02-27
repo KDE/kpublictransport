@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Rhein-Sieg area, Germany.",
-        "Name": "Verkehrsverbund Rhein-Sieg (VRS)"
+        "Description[ca]": "Transport local a l'àrea de Rin-Sieg, Alemanya.",
+        "Description[es]": "Transporte local del área de Rin-Sieg, Alemania.",
+        "Description[nl]": "Lokaal transport in het gebied Rhein-Sieg, Duitsland.",
+        "Description[sv]": "Lokal transportoperatör i Rhein-Sieg-området, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у регіоні Райн-Зіг, Німеччина.",
+        "Description[x-test]": "xxLocal transport in the Rhein-Sieg area, Germany.xx",
+        "Name": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[ca]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[es]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[nl]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[sv]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[uk]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[x-test]": "xxVerkehrsverbund Rhein-Sieg (VRS)xx"
     },
     "coverage": {
         "anyCoverage": {
