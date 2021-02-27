@@ -154,7 +154,18 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     query.addQueryItem(req.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("d") : QStringLiteral("a"), dt.toString(Qt::ISODate));
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
     query.addQueryItem(QStringLiteral("s"), QStringLiteral("t"));
-    query.addQueryItem(QStringLiteral("o"), QStringLiteral("vdpa")); // v: intermediate stops, d: walking directions, p: paths, a: load
+
+    QString options;
+    options.reserve(4);
+    if (req.includeIntermediateStops()) {
+        options += QLatin1Char('v'); // "vias"
+    }
+    if (req.includePaths()) {
+        options += QLatin1Char('d'); // walking directions
+        options += QLatin1Char('p'); // paths
+    }
+    options += QLatin1Char('a'); // load/demand
+    query.addQueryItem(QStringLiteral("o"), options);
 
     QUrl url(m_endpoint);
     url.setQuery(query);
