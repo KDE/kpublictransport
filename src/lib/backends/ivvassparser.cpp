@@ -16,38 +16,56 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QRegularExpression>
 
 #include <cmath>
 
 using namespace KPublicTransport;
 
-static Location parseLocation(const QJsonObject &stopObj)
+struct LocationData
 {
     Location loc;
-    loc.setLatitude(stopObj.value(QLatin1String("lat")).toDouble(NAN));
-    loc.setLongitude(stopObj.value(QLatin1String("lon")).toDouble(NAN));
-    if (!loc.hasCoordinate()) {
+    QString platform;
+};
+
+static LocationData parseLocation(const QJsonObject &stopObj)
+{
+    LocationData r;
+    r.loc.setLatitude(stopObj.value(QLatin1String("lat")).toDouble(NAN));
+    r.loc.setLongitude(stopObj.value(QLatin1String("lon")).toDouble(NAN));
+    if (!r.loc.hasCoordinate()) {
         // sic, x/y are swapped here!
-        loc.setLatitude(stopObj.value(QLatin1String("x")).toDouble(NAN));
-        loc.setLongitude(stopObj.value(QLatin1String("y")).toDouble(NAN));
+        r.loc.setLatitude(stopObj.value(QLatin1String("x")).toDouble(NAN));
+        r.loc.setLongitude(stopObj.value(QLatin1String("y")).toDouble(NAN));
     }
 
-    loc.setName(stopObj.value(QLatin1String("name")).toString());
-    if (loc.name().isEmpty()) {
-        loc.setName(stopObj.value(QLatin1String("description")).toString());
+    r.loc.setName(stopObj.value(QLatin1String("name")).toString());
+    if (r.loc.name().isEmpty()) {
+        r.loc.setName(stopObj.value(QLatin1String("description")).toString());
     }
-    loc.setLocality(stopObj.value(QLatin1String("city")).toString());
-    if (loc.locality().isEmpty()) {
-        loc.setLocality(stopObj.value(QLatin1String("municipality")).toString());
+    r.loc.setLocality(stopObj.value(QLatin1String("city")).toString());
+    if (r.loc.locality().isEmpty()) {
+        r.loc.setLocality(stopObj.value(QLatin1String("municipality")).toString());
     }
 
     if (stopObj.value(QLatin1String("type")).toString() == QLatin1String("coordinate")) {
-        return loc;
+        return r;
     }
 
-    loc.setIdentifier(QStringLiteral("ifopt"), stopObj.value(QLatin1String("ifopt")).toString());
-    loc.setType(Location::Stop);
-    return loc;
+    r.loc.setIdentifier(QStringLiteral("ifopt"), stopObj.value(QLatin1String("ifopt")).toString());
+
+    // location is a platform: split out platform name
+    if (stopObj.value(QLatin1String("subtype")).toString() == QLatin1String("Post")) {
+        static QRegularExpression rx(QStringLiteral(R"((.*) \((Gleis .*)\)$)"));
+        const auto match = rx.match(r.loc.name());
+        if (match.hasMatch()) {
+            r.loc.setName(match.captured(1));
+            r.platform = match.captured(2);
+        }
+    }
+
+    r.loc.setType(Location::Stop);
+    return r;
 }
 
 std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
@@ -62,7 +80,7 @@ std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
     locs.reserve(stops.size());
     for (const auto &stopV : stops) {
         const auto stopObj = stopV.toObject();
-        locs.push_back(parseLocation(stopObj));
+        locs.push_back(parseLocation(stopObj).loc);
     }
     const auto objects = top.value(QLatin1String("objects")).toArray();
     locs.reserve(locs.size() + objects.size());
@@ -72,14 +90,14 @@ std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
         if (type != QLatin1String("stop")) { // poi, parking, etc
             continue;
         }
-        locs.push_back(parseLocation(obj));
+        locs.push_back(parseLocation(obj).loc);
 
         const auto elevators = obj.value(QLatin1String("elevators")).toArray();
         const auto escalators = obj.value(QLatin1String("escalators")).toArray();
         locs.reserve(locs.size() + elevators.size() + escalators.size());
         for (const auto &eleV : elevators) {
             const auto eleObj = eleV.toObject();
-            auto ele = parseLocation(eleObj);
+            auto ele = parseLocation(eleObj).loc;
             Equipment eq;
             eq.setType(Equipment::Elevator);
             eq.setDisruptionEffect(eleObj.value(QLatin1String("status")).toString() == QLatin1String("active") ? Disruption::NormalService : Disruption::NoService);
@@ -89,7 +107,7 @@ std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
         }
         for (const auto &escV : escalators) {
             const auto escObj = escV.toObject();
-            auto esc = parseLocation(escObj);
+            auto esc = parseLocation(escObj).loc;
             Equipment eq;
             eq.setType(Equipment::Escalator);
             eq.setDisruptionEffect(escObj.value(QLatin1String("status")).toString() == QLatin1String("active") ? Disruption::NormalService : Disruption::NoService);
@@ -102,7 +120,7 @@ std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
     const auto vehicles = top.value(QLatin1String("vehicles")).toArray();
     locs.reserve(locs.size() + vehicles.size());
     for (const auto &vehicleV : vehicles) {
-        auto v = parseLocation(vehicleV.toObject());
+        auto v = parseLocation(vehicleV.toObject()).loc;
         v.setType(Location::RentedVehicle); // TODO can we get vehicle types and networks from somewhere?
         locs.push_back(std::move(v));
     }
@@ -183,7 +201,8 @@ std::vector<Stopover> IvvAssParser::parseStopovers(const QByteArray &data)
             const auto eventObj = eventV.toObject();
 
             Stopover s;
-            s.setStopPoint(stop);
+            s.setStopPoint(stop.loc);
+            s.setScheduledPlatform(stop.platform);
             const auto t = parseTime(eventObj, "departure", "departureScheduled");
             s.setScheduledDepartureTime(t.scheduled);
             s.setExpectedDepartureTime(t.expected);
@@ -238,9 +257,13 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
         for (const auto &segmentV : segments) {
             const auto segmentObj = segmentV.toObject();
             JourneySection s;
-            // TODO platform data is merged into location names
-            s.setFrom(parseLocation(segmentObj.value(QLatin1String("origin")).toObject()));
-            s.setTo(parseLocation(segmentObj.value(QLatin1String("destination")).toObject()));
+
+            const auto origin = parseLocation(segmentObj.value(QLatin1String("origin")).toObject());
+            s.setFrom(origin.loc);
+            s.setScheduledDeparturePlatform(origin.platform);
+            const auto dest = parseLocation(segmentObj.value(QLatin1String("destination")).toObject());
+            s.setTo(dest.loc);
+            s.setScheduledArrivalPlatform(dest.platform);
 
             const auto dt = parseTime(segmentObj, "departure", "departureScheduled");
             s.setScheduledDepartureTime(dt.scheduled);
@@ -264,7 +287,9 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
             for (const auto &viaV : vias) {
                 const auto viaObj = viaV.toObject();
                 Stopover stop;
-                stop.setStopPoint(parseLocation(viaObj));
+                const auto viaLoc = parseLocation(viaObj);
+                stop.setStopPoint(viaLoc.loc);
+                stop.setScheduledPlatform(viaLoc.platform);
 
                 const auto dt = parseTime(viaObj, "departure", "departureScheduled");
                 stop.setScheduledDepartureTime(dt.scheduled);

@@ -28,6 +28,7 @@
                         }
                     ]
                 },
+                "scheduledArrivalPlatform": "7",
                 "scheduledArrivalTime": "2021-02-27T12:53:00+01:00",
                 "scheduledDepartureTime": "2021-02-27T12:52:30+01:00",
                 "to": {
@@ -37,7 +38,7 @@
                     "latitude": 50.942970275878906,
                     "locality": "Köln",
                     "longitude": 6.9585700035095215,
-                    "name": "Köln Hbf (Gleis 7)",
+                    "name": "Köln Hbf",
                     "type": "Stop"
                 }
             },
@@ -51,7 +52,7 @@
                     "latitude": 50.942970275878906,
                     "locality": "Köln",
                     "longitude": 6.9585700035095215,
-                    "name": "Köln Hbf (Gleis 7)",
+                    "name": "Köln Hbf",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -92,7 +93,9 @@
                         "name": "IC"
                     }
                 },
+                "scheduledArrivalPlatform": "3",
                 "scheduledArrivalTime": "2021-02-27T13:12:00+01:00",
+                "scheduledDeparturePlatform": "7",
                 "scheduledDepartureTime": "2021-02-27T12:53:00+01:00",
                 "to": {
                     "identifier": {
@@ -101,7 +104,7 @@
                     "latitude": 50.731998443603516,
                     "locality": "Bonn",
                     "longitude": 7.096799850463867,
-                    "name": "Bonn Hbf (Gleis 3)",
+                    "name": "Bonn Hbf",
                     "type": "Stop"
                 }
             },
@@ -115,7 +118,7 @@
                     "latitude": 50.731998443603516,
                     "locality": "Bonn",
                     "longitude": 7.096799850463867,
-                    "name": "Bonn Hbf (Gleis 3)",
+                    "name": "Bonn Hbf",
                     "type": "Stop"
                 },
                 "mode": "Walking",
@@ -139,6 +142,7 @@
                     ]
                 },
                 "scheduledArrivalTime": "2021-02-27T13:12:30+01:00",
+                "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2021-02-27T13:12:00+01:00",
                 "to": {
                     "latitude": 50.731998443603516

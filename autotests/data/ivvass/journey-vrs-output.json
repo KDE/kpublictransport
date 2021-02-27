@@ -28,6 +28,7 @@
                         }
                     ]
                 },
+                "scheduledArrivalPlatform": "6",
                 "scheduledArrivalTime": "2021-02-26T17:14:00+01:00",
                 "scheduledDepartureTime": "2021-02-26T17:13:30+01:00",
                 "to": {
@@ -37,7 +38,7 @@
                     "latitude": 50.942970275878906,
                     "locality": "Köln",
                     "longitude": 6.9585700035095215,
-                    "name": "Köln Hbf (Gleis 6)",
+                    "name": "Köln Hbf",
                     "type": "Stop"
                 }
             },
@@ -53,7 +54,7 @@
                     "latitude": 50.942970275878906,
                     "locality": "Köln",
                     "longitude": 6.9585700035095215,
-                    "name": "Köln Hbf (Gleis 6)",
+                    "name": "Köln Hbf",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -68,6 +69,7 @@
                         ],
                         "scheduledArrivalTime": "2021-02-26T17:12:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:12:00+01:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
                                 "ifopt": "de:05315:11701:7:71"
@@ -75,7 +77,7 @@
                             "latitude": 50.94268035888672,
                             "locality": "Köln",
                             "longitude": 6.93310022354126,
-                            "name": "Köln West (Gleis 1)",
+                            "name": "Köln West",
                             "type": "Stop"
                         }
                     },
@@ -90,6 +92,7 @@
                         ],
                         "scheduledArrivalTime": "2021-02-26T17:14:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:15:00+01:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
                                 "ifopt": "de:05315:11513:7:71"
@@ -97,7 +100,7 @@
                             "latitude": 50.92839813232422,
                             "locality": "Köln",
                             "longitude": 6.935989856719971,
-                            "name": "Köln Süd (Gleis 1)",
+                            "name": "Köln Süd",
                             "type": "Stop"
                         }
                     },
@@ -111,6 +114,7 @@
                         ],
                         "scheduledArrivalTime": "2021-02-26T17:25:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:20:00+01:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
                                 "ifopt": "de:05362:83901:7:71"
@@ -118,7 +122,7 @@
                             "latitude": 50.87593078613281,
                             "locality": "Hürth",
                             "longitude": 6.910099983215332,
-                            "name": "Hürth-Kalscheuren (Gleis 1)",
+                            "name": "Hürth-Kalscheuren",
                             "type": "Stop"
                         }
                     },
@@ -133,6 +137,7 @@
                         ],
                         "scheduledArrivalTime": "2021-02-26T17:26:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:36:00+01:00",
+                        "scheduledPlatform": "4",
                         "stopPoint": {
                             "identifier": {
                                 "ifopt": "de:05362:84101:7:74"
@@ -140,7 +145,7 @@
                             "latitude": 50.82905960083008,
                             "locality": "Brühl",
                             "longitude": 6.9126200675964355,
-                            "name": "Brühl (Gleis 4)",
+                            "name": "Brühl",
                             "type": "Stop"
                         }
                     },
@@ -155,6 +160,7 @@
                         ],
                         "scheduledArrivalTime": "2021-02-26T17:40:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:40:00+01:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
                                 "ifopt": "de:05382:53501:7:71"
@@ -162,7 +168,7 @@
                             "latitude": 50.79521942138672,
                             "locality": "Bornheim",
                             "longitude": 6.957930088043213,
-                            "name": "Sechtem (Gleis 1)",
+                            "name": "Sechtem",
                             "type": "Stop"
                         }
                     },
@@ -177,6 +183,7 @@
                         ],
                         "scheduledArrivalTime": "2021-02-26T17:44:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:45:00+01:00",
+                        "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
                                 "ifopt": "de:05382:53101:7:71"
@@ -184,7 +191,7 @@
                             "latitude": 50.753421783447266,
                             "locality": "Bornheim",
                             "longitude": 7.015570163726807,
-                            "name": "Roisdorf (Gleis 1)",
+                            "name": "Roisdorf",
                             "type": "Stop"
                         }
                     }
@@ -236,7 +243,9 @@
                         "name": "RB48"
                     }
                 },
+                "scheduledArrivalPlatform": "4",
                 "scheduledArrivalTime": "2021-02-26T17:50:00+01:00",
+                "scheduledDeparturePlatform": "6",
                 "scheduledDepartureTime": "2021-02-26T17:08:00+01:00",
                 "to": {
                     "identifier": {
@@ -245,7 +254,7 @@
                     "latitude": 50.731910705566406,
                     "locality": "Bonn",
                     "longitude": 7.096789836883545,
-                    "name": "Bonn Hbf (Gleis 4)",
+                    "name": "Bonn Hbf",
                     "type": "Stop"
                 }
             },
@@ -259,7 +268,7 @@
                     "latitude": 50.731910705566406,
                     "locality": "Bonn",
                     "longitude": 7.096789836883545,
-                    "name": "Bonn Hbf (Gleis 4)",
+                    "name": "Bonn Hbf",
                     "type": "Stop"
                 },
                 "mode": "Walking",
@@ -283,6 +292,7 @@
                     ]
                 },
                 "scheduledArrivalTime": "2021-02-26T17:50:30+01:00",
+                "scheduledDeparturePlatform": "4",
                 "scheduledDepartureTime": "2021-02-26T17:50:00+01:00",
                 "to": {
                     "latitude": 50.731998443603516,
