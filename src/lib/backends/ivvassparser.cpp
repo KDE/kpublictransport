@@ -53,6 +53,9 @@ static Location parseLocation(const QJsonObject &stopObj)
 std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();
+    if (!parseError(top)) {
+        return {};
+    }
     std::vector<Location> locs;
 
     const auto stops = top.value(QLatin1String("stops")).toArray();
@@ -147,6 +150,9 @@ static Route parseRoute(const QJsonObject &lineObj)
 std::vector<Stopover> IvvAssParser::parseStopovers(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();
+    if (!parseError(top)) {
+        return {};
+    }
     const auto timetable = top.value(QLatin1String("timetable")).toArray();
 
     std::vector<Stopover> stopovers;
@@ -198,6 +204,9 @@ static std::vector<LoadInfo> parseDemand(const QJsonValue &demand)
 std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();
+    if (!parseError(top)) {
+        return {};
+    }
     const auto routes = top.value(QLatin1String("routes")).toArray();
 
     std::vector<Journey> journeys;
@@ -283,4 +292,10 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
     }
 
     return journeys;
+}
+
+bool IvvAssParser::parseError(const QJsonObject &top)
+{
+    errorMessage = top.value(QLatin1String("error")).toString();
+    return errorMessage.isEmpty();
 }

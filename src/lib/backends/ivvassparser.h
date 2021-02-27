@@ -7,9 +7,12 @@
 #ifndef KPUBLICTRANSPORT_IVVASSPARSER_H
 #define KPUBLICTRANSPORT_IVVASSPARSER_H
 
+#include <QString>
+
 #include <vector>
 
 class QByteArray;
+class QJsonObject;
 
 namespace KPublicTransport {
 
@@ -21,9 +24,14 @@ class Stopover;
 class IvvAssParser
 {
 public:
-    static std::vector<Location> parseLocations(const QByteArray &data);
-    static std::vector<Stopover> parseStopovers(const QByteArray &data);
-    static std::vector<Journey> parseJourneys(const QByteArray &data);
+    std::vector<Location> parseLocations(const QByteArray &data);
+    std::vector<Stopover> parseStopovers(const QByteArray &data);
+    std::vector<Journey> parseJourneys(const QByteArray &data);
+
+    QString errorMessage;
+
+private:
+    bool parseError(const QJsonObject &top);
 };
 
 }

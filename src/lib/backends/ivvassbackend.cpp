@@ -70,9 +70,14 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
             return;
         }
 
-        auto result = IvvAssParser::parseLocations(data);
-        Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
-        addResult(reply, std::move(result));
+        IvvAssParser p;
+        auto result = p.parseLocations(data);
+        if (p.errorMessage.isEmpty()) {
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
+            addResult(reply, std::move(result));
+        } else {
+            addError(reply, Reply::UnknownError, std::move(p.errorMessage));
+        }
     });
 
     return true;
@@ -114,8 +119,13 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
             return;
         }
 
-        auto result = IvvAssParser::parseStopovers(data);
-        addResult(reply, this, std::move(result));
+        IvvAssParser p;
+        auto result = p.parseStopovers(data);
+        if (p.errorMessage.isEmpty()) {
+            addResult(reply, this, std::move(result));
+        } else {
+            addError(reply, Reply::UnknownError, std::move(p.errorMessage));
+        }
     });
 
     return true;
@@ -163,8 +173,13 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
             return;
         }
 
-        auto result = IvvAssParser::parseJourneys(data);
-        addResult(reply, this, std::move(result));
+        IvvAssParser p;
+        auto result = p.parseJourneys(data);
+        if (p.errorMessage.isEmpty()) {
+            addResult(reply, this, std::move(result));
+        } else {
+            addError(reply, Reply::UnknownError, std::move(p.errorMessage));
+        }
     });
 
     return true;

@@ -51,7 +51,10 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
 
-        const auto result = IvvAssParser::parseLocations(readFile(inFileName));
+        IvvAssParser p;
+        const auto result = p.parseLocations(readFile(inFileName));
+        QVERIFY(!result.empty());
+        QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Location::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(readFile(outFileName)).array();
         if (resultJson != resultRef) {
@@ -76,7 +79,10 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
 
-        const auto result = IvvAssParser::parseStopovers(readFile(inFileName));
+        IvvAssParser p;
+        const auto result = p.parseStopovers(readFile(inFileName));
+        QVERIFY(!result.empty());
+        QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Stopover::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(readFile(outFileName)).array();
         if (resultJson != resultRef) {
@@ -101,7 +107,10 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
 
-        const auto result = IvvAssParser::parseJourneys(readFile(inFileName));
+        IvvAssParser p;
+        const auto result = p.parseJourneys(readFile(inFileName));
+        QVERIFY(!result.empty());
+        QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Journey::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(readFile(outFileName)).array();
         if (resultJson != resultRef) {
@@ -109,6 +118,25 @@ private Q_SLOTS:
         }
         QVERIFY(!resultJson.isEmpty());
         QCOMPARE(resultJson, resultRef);
+    }
+
+    void testParseError()
+    {
+        {
+            IvvAssParser p;
+            const auto res = p.parseLocations(R"({"error":"Ung\u00fcltige Zeit"})");
+            QVERIFY(!p.errorMessage.isEmpty());
+        }
+        {
+            IvvAssParser p;
+            const auto res = p.parseStopovers(R"({"error":"Fehlerhaftes Ziel"})");
+            QVERIFY(!p.errorMessage.isEmpty());
+        }
+        {
+            IvvAssParser p;
+            const auto res = p.parseJourneys(R"({"error":"Fehlerhafter Start"})");
+            QVERIFY(!p.errorMessage.isEmpty());
+        }
     }
 };
 
