@@ -39,6 +39,10 @@ bool IvvAssBackend::needsLocationQuery(const Location &loc, AbstractBackend::Que
 
 bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & Location::Stop) == 0 && !req.hasCoordinate()) {
+        return false; // name based search is only available for stops
+    }
+
     QUrlQuery query;
     if (req.hasCoordinate()) {
         query.addQueryItem(QStringLiteral("eID"), QStringLiteral("tx_ekap_here"));
@@ -46,7 +50,7 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
         query.addQueryItem(QStringLiteral("lon"), QString::number(req.longitude()));
     } else {
         query.addQueryItem(QStringLiteral("eID"), QStringLiteral("tx_vrsinfo_ass2_objects"));
-        query.addQueryItem(QStringLiteral("t"), QStringLiteral("sap")); // ???
+        query.addQueryItem(QStringLiteral("t"), QStringLiteral("s")); // s: stops, a: addresses, p: pois
         query.addQueryItem(QStringLiteral("q"), req.name());
     }
     query.addQueryItem(QStringLiteral("sc"), QString::number(req.maximumResults())); // station count

@@ -259,6 +259,11 @@ Kirigami.ApplicationWindow {
                             locationModel.request.longitude = NaN;
                             locationModel.request.name = nameQuery.text;
                             locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                            locationModel.request.maximumResults = maxResults.text;
+                            locationModel.request.maximumDistance = maxDist.text;
+                            locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
+                                | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
+                                | (includeEquipment.checked ? Location.Equipment : Location.Place);
                         }
                     }
                 }
