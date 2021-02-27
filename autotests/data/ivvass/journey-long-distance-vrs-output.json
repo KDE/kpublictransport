@@ -1,0 +1,149 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 3,
+                "from": {
+                    "latitude": 50.94300079345703,
+                    "longitude": 6.9585700035095215
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        50.943,
+                                        6.95857
+                                    ],
+                                    [
+                                        50.942972,
+                                        6.958574
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2021-02-27T12:53:00+01:00",
+                "scheduledDepartureTime": "2021-02-27T12:52:30+01:00",
+                "to": {
+                    "identifier": {
+                        "ifopt": "de:05315:11201:7:77"
+                    },
+                    "latitude": 50.942970275878906,
+                    "locality": "Köln",
+                    "longitude": 6.9585700035095215,
+                    "name": "Köln Hbf (Gleis 7)",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 33759,
+                "from": {
+                    "identifier": {
+                        "ifopt": "de:05315:11201:7:77"
+                    },
+                    "latitude": 50.942970275878906,
+                    "locality": "Köln",
+                    "longitude": 6.9585700035095215,
+                    "name": "Köln Hbf (Gleis 7)",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Fahrradmitnahme begrenzt möglich"
+                ],
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        50.942972,
+                                        6.958574
+                                    ],
+                                    [
+                                        50.943056,
+                                        6.958469
+                                    ],
+                                    [
+                                        50.733818,
+                                        7.09152
+                                    ],
+                                    [
+                                        50.732003,
+                                        7.096796
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Stuttgart Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "IC"
+                    }
+                },
+                "scheduledArrivalTime": "2021-02-27T13:12:00+01:00",
+                "scheduledDepartureTime": "2021-02-27T12:53:00+01:00",
+                "to": {
+                    "identifier": {
+                        "ifopt": "de:05314:61101:7:73"
+                    },
+                    "latitude": 50.731998443603516,
+                    "locality": "Bonn",
+                    "longitude": 7.096799850463867,
+                    "name": "Bonn Hbf (Gleis 3)",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 9,
+                "from": {
+                    "identifier": {
+                        "ifopt": "de:05314:61101:7:73"
+                    },
+                    "latitude": 50.731998443603516,
+                    "locality": "Bonn",
+                    "longitude": 7.096799850463867,
+                    "name": "Bonn Hbf (Gleis 3)",
+                    "type": "Stop"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        50.732003,
+                                        7.096796
+                                    ],
+                                    [
+                                        50.732,
+                                        7.09692
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2021-02-27T13:12:30+01:00",
+                "scheduledDepartureTime": "2021-02-27T13:12:00+01:00",
+                "to": {
+                    "latitude": 50.731998443603516
+                }
+            }
+        ]
+    }
+]

@@ -100,6 +100,9 @@ private Q_SLOTS:
         QTest::newRow("journey-vrs")
             << s(SOURCE_DIR "/data/ivvass/journey-vrs-input.json")
             << s(SOURCE_DIR "/data/ivvass/journey-vrs-output.json");
+        QTest::newRow("journey-long-distance-vrs")
+            << s(SOURCE_DIR "/data/ivvass/journey-long-distance-vrs-input.json")
+            << s(SOURCE_DIR "/data/ivvass/journey-long-distance-vrs-output.json");
     }
 
     void testParseJourneys()

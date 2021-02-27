@@ -4,8 +4,6 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 3,
-                "expectedArrivalTime": "2021-02-26T17:14:00+01:00",
-                "expectedDepartureTime": "2021-02-26T17:13:30+01:00",
                 "from": {
                     "latitude": 50.94300079345703,
                     "longitude": 6.9585700035095215
@@ -30,6 +28,8 @@
                         }
                     ]
                 },
+                "scheduledArrivalTime": "2021-02-26T17:14:00+01:00",
+                "scheduledDepartureTime": "2021-02-26T17:13:30+01:00",
                 "to": {
                     "identifier": {
                         "ifopt": "de:05315:11201:7:76"
@@ -103,13 +103,13 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedArrivalTime": "2021-02-26T17:25:00+01:00",
                         "expectedDepartureTime": "2021-02-26T17:26:00+01:00",
                         "load": [
                             {
                                 "load": "Medium"
                             }
                         ],
+                        "scheduledArrivalTime": "2021-02-26T17:25:00+01:00",
                         "scheduledDepartureTime": "2021-02-26T17:20:00+01:00",
                         "stopPoint": {
                             "identifier": {
@@ -195,7 +195,9 @@
                     }
                 ],
                 "mode": "PublicTransport",
-                "notes": [ "Fahrradmitnahme begrenzt möglich" ],
+                "notes": [
+                    "Fahrradmitnahme begrenzt möglich"
+                ],
                 "path": {
                     "sections": [
                         {
@@ -250,8 +252,6 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 16,
-                "expectedArrivalTime": "2021-02-26T17:50:30+01:00",
-                "expectedDepartureTime": "2021-02-26T17:50:00+01:00",
                 "from": {
                     "identifier": {
                         "ifopt": "de:05314:61101:7:74"
@@ -282,6 +282,8 @@
                         }
                     ]
                 },
+                "scheduledArrivalTime": "2021-02-26T17:50:30+01:00",
+                "scheduledDepartureTime": "2021-02-26T17:50:00+01:00",
                 "to": {
                     "latitude": 50.731998443603516,
                     "longitude": 7.096920013427734

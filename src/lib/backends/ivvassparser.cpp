@@ -147,6 +147,22 @@ static Route parseRoute(const QJsonObject &lineObj)
     return route;
 }
 
+struct EventTime {
+    QDateTime scheduled;
+    QDateTime expected;
+};
+
+static EventTime parseTime(const QJsonObject &obj, const char *baseKey, const char *scheduledKey)
+{
+    EventTime t;
+    t.scheduled = QDateTime::fromString(obj.value(QLatin1String(scheduledKey)).toString(), Qt::ISODate);
+    t.expected = QDateTime::fromString(obj.value(QLatin1String(baseKey)).toString(), Qt::ISODate);
+    if (!t.scheduled.isValid() && t.expected.isValid()) {
+        std::swap(t.scheduled, t.expected);
+    }
+    return t;
+}
+
 std::vector<Stopover> IvvAssParser::parseStopovers(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();
@@ -168,8 +184,9 @@ std::vector<Stopover> IvvAssParser::parseStopovers(const QByteArray &data)
 
             Stopover s;
             s.setStopPoint(stop);
-            s.setScheduledDepartureTime(QDateTime::fromString(eventObj.value(QLatin1String("departureScheduled")).toString(), Qt::ISODate));
-            s.setExpectedDepartureTime(QDateTime::fromString(eventObj.value(QLatin1String("departure")).toString(), Qt::ISODate));
+            const auto t = parseTime(eventObj, "departure", "departureScheduled");
+            s.setScheduledDepartureTime(t.scheduled);
+            s.setExpectedDepartureTime(t.expected);
 
             const auto lineObj = eventObj.value(QLatin1String("line")).toObject();
             s.setRoute(parseRoute(lineObj));
@@ -225,10 +242,12 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
             s.setFrom(parseLocation(segmentObj.value(QLatin1String("origin")).toObject()));
             s.setTo(parseLocation(segmentObj.value(QLatin1String("destination")).toObject()));
 
-            s.setScheduledDepartureTime(QDateTime::fromString(segmentObj.value(QLatin1String("departureScheduled")).toString(), Qt::ISODate));
-            s.setExpectedDepartureTime(QDateTime::fromString(segmentObj.value(QLatin1String("departure")).toString(), Qt::ISODate));
-            s.setScheduledArrivalTime(QDateTime::fromString(segmentObj.value(QLatin1String("arrivalScheduled")).toString(), Qt::ISODate));
-            s.setExpectedArrivalTime(QDateTime::fromString(segmentObj.value(QLatin1String("arrival")).toString(), Qt::ISODate));
+            const auto dt = parseTime(segmentObj, "departure", "departureScheduled");
+            s.setScheduledDepartureTime(dt.scheduled);
+            s.setExpectedDepartureTime(dt.expected);
+            const auto at = parseTime(segmentObj, "arrival", "arrivalScheduled");
+            s.setScheduledArrivalTime(at.scheduled);
+            s.setExpectedArrivalTime(at.expected);
 
             const auto type = segmentObj.value(QLatin1String("type")).toString();
             // TODO "publicTransport"
@@ -246,10 +265,13 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
                 const auto viaObj = viaV.toObject();
                 Stopover stop;
                 stop.setStopPoint(parseLocation(viaObj));
-                stop.setScheduledDepartureTime(QDateTime::fromString(viaObj.value(QLatin1String("departureScheduled")).toString(), Qt::ISODate));
-                stop.setExpectedDepartureTime(QDateTime::fromString(viaObj.value(QLatin1String("departure")).toString(), Qt::ISODate));
-                stop.setScheduledArrivalTime(QDateTime::fromString(viaObj.value(QLatin1String("arrivalScheduled")).toString(), Qt::ISODate));
-                stop.setExpectedArrivalTime(QDateTime::fromString(viaObj.value(QLatin1String("arrival")).toString(), Qt::ISODate));
+
+                const auto dt = parseTime(viaObj, "departure", "departureScheduled");
+                stop.setScheduledDepartureTime(dt.scheduled);
+                stop.setExpectedDepartureTime(dt.expected);
+                const auto at = parseTime(viaObj, "arrival", "arrivalScheduled");
+                stop.setScheduledArrivalTime(at.scheduled);
+                stop.setExpectedArrivalTime(at.expected);
 
                 const auto demand = viaObj.value(QLatin1String("demandEstimated"));
                 stop.setLoadInformation(parseDemand(demand));
