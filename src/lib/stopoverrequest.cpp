@@ -6,6 +6,7 @@
 
 #include "stopoverrequest.h"
 #include "requestcontext_p.h"
+#include "datatypes/datatypes_p.h"
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
 
@@ -30,10 +31,10 @@ public:
 };
 }
 
-StopoverRequest::StopoverRequest()
-    : d(new StopoverRequestPrivate)
-{
-}
+KPUBLICTRANSPORT_MAKE_GADGET(StopoverRequest)
+KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, Location, stop, setStop)
+KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, StopoverRequest::Mode, mode, setMode)
+KPUBLICTRANSPORT_MAKE_PROPERTY(StopoverRequest, bool, downloadAssets, setDownloadAssets)
 
 StopoverRequest::StopoverRequest(const Location &stop)
     : d(new StopoverRequestPrivate)
@@ -41,25 +42,9 @@ StopoverRequest::StopoverRequest(const Location &stop)
     d->stop = stop;
 }
 
-StopoverRequest::StopoverRequest(StopoverRequest&&) noexcept = default;
-StopoverRequest::StopoverRequest(const StopoverRequest&) = default;
-StopoverRequest::~StopoverRequest() = default;
-StopoverRequest& StopoverRequest::operator=(const StopoverRequest&) = default;
-
 bool StopoverRequest::isValid() const
 {
     return !d->stop.isEmpty();
-}
-
-Location StopoverRequest::stop() const
-{
-    return d->stop;
-}
-
-void StopoverRequest::setStop(const Location &stop)
-{
-    d.detach();
-    d->stop = stop;
 }
 
 QDateTime StopoverRequest::dateTime() const
@@ -74,17 +59,6 @@ void StopoverRequest::setDateTime(const QDateTime &dt)
 {
     d.detach();
     d->dateTime = dt;
-}
-
-StopoverRequest::Mode StopoverRequest::mode() const
-{
-    return d->mode;
-}
-
-void StopoverRequest::setMode(StopoverRequest::Mode mode)
-{
-    d.detach();
-    d->mode = mode;
 }
 
 RequestContext StopoverRequest::context(const AbstractBackend *backend) const
@@ -136,17 +110,6 @@ void StopoverRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
-}
-
-bool StopoverRequest::downloadAssets() const
-{
-    return d->downloadAssets;
-}
-
-void StopoverRequest::setDownloadAssets(bool downloadAssets)
-{
-    d.detach();
-    d->downloadAssets = downloadAssets;
 }
 
 QString StopoverRequest::cacheKey() const

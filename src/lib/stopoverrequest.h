@@ -9,6 +9,8 @@
 
 #include "kpublictransport_export.h"
 
+#include <KPublicTransport/Datatypes>
+
 #include <QMetaType>
 #include <QSharedDataPointer>
 
@@ -28,35 +30,16 @@ class StopoverRequestPrivate;
  */
 class KPUBLICTRANSPORT_EXPORT StopoverRequest
 {
-    Q_GADGET
-    Q_PROPERTY(KPublicTransport::Location stop READ stop WRITE setStop)
-    Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime)
-    Q_PROPERTY(Mode mode READ mode WRITE setMode)
-    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
-    Q_PROPERTY(bool downloadAssets READ downloadAssets WRITE setDownloadAssets)
+    KPUBLICTRANSPORT_GADGET(StopoverRequest)
+
+    /** The location at which to search for departures/arrivals. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, stop, setStop)
+    /** Date/time at which the search should start.
+     *  Default: now
+     */
+    KPUBLICTRANSPORT_PROPERTY(QDateTime, dateTime, setDateTime)
 
 public:
-    StopoverRequest();
-    /** Search for arrival/departures to/from @p stop. */
-    explicit StopoverRequest(const Location &stop);
-    StopoverRequest(StopoverRequest&&) noexcept;
-    StopoverRequest(const StopoverRequest&);
-    ~StopoverRequest();
-    StopoverRequest& operator=(const StopoverRequest&);
-
-    /** Returns @c true if this is a valid request, ie. this is complete enough to perform a query. */
-    bool isValid() const;
-
-    /** The location at which to look for departures. */
-    Location stop() const;
-    /** Sets the location at which to look for departures/arrivals. */
-    void setStop(const Location &stop);
-
-    /** Date/time at which the search should start. */
-    QDateTime dateTime() const;
-    /** Set the starting time for the search. */
-    void setDateTime(const QDateTime &dt);
-
     /** Query departures or arrivals? */
     enum Mode {
         QueryArrival, ///< Search for arrivals.
@@ -64,10 +47,24 @@ public:
     };
     Q_ENUM(Mode)
 
-    /** Returns whether to search for arrivals or departures. */
-    Mode mode() const;
-    /** Set whether to search for arrivals or departures. */
-    void setMode(Mode mode);
+    /** Controls whether to search for arrivals or departures.
+     *  Default is QueryDeparture.
+     */
+    KPUBLICTRANSPORT_PROPERTY(Mode, mode, setMode)
+
+    Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
+
+    /** Enable downloading of graphic assets such as line logos for the data requested here.
+     *  Default: @c false
+     */
+    KPUBLICTRANSPORT_PROPERTY(bool, downloadAssets, setDownloadAssets)
+
+public:
+    /** Search for arrival/departures to/from @p stop. */
+    explicit StopoverRequest(const Location &stop);
+
+    /** Returns @c true if this is a valid request, ie. this is complete enough to perform a query. */
+    bool isValid() const;
 
     /** Identifiers of the backends that should be queried.
      *  @see setBackendIds()
@@ -78,13 +75,6 @@ public:
      *  this empty picks suitable backends automatically.
      */
     void setBackendIds(const QStringList &backendIds);
-
-    /** Download graphic assets such as line logos for the data requested here. */
-    bool downloadAssets() const;
-    /** Enable downloading of graphic assets.
-     *  Default: @c false
-     */
-    void setDownloadAssets(bool downloadAssets);
 
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
@@ -101,8 +91,6 @@ private:
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);
     Q_DECL_HIDDEN void purgeLoops(const StopoverRequest &baseRequest);
-
-    QExplicitlySharedDataPointer<StopoverRequestPrivate> d;
 };
 }
 
