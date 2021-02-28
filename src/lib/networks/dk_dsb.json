@@ -39,8 +39,13 @@
         "Name[uk]": "Danske Statsbaner (DSB)",
         "Name[x-test]": "xxDanske Statsbaner (DSB)xx"
     },
+    "attribution": {
+        "homepage": "https://rejseplanen.dk/",
+        "isProprietary": true,
+        "name": "Rejsekort & Rejseplan A/S"
+    },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -107,6 +112,7 @@
         "dk",
         "en"
     ],
+    "timezone": "Europe/Copenhagen",
     "type": {
         "hafasMgate": true
     }

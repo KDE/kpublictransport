@@ -27,6 +27,11 @@
         "Name[uk]": "Verkehrsverbund Rhein-Neckar (VRN)",
         "Name[x-test]": "xxVerkehrsverbund Rhein-Neckar (VRN)xx"
     },
+    "attribution": {
+        "homepage": "https://www.vrn.de/",
+        "isProprietary": true,
+        "name": "Verkehrsverbund Rhein-Neckar GmbH"
+    },
     "coverage": {
         "realtimeCoverage": {
             "area": {
@@ -87,6 +92,11 @@
         },
         "ver": "1.24"
     },
+    "supportedLanguages": [
+        "de",
+        "en"
+    ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }

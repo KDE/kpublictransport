@@ -38,6 +38,11 @@
         "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)",
         "Name[x-test]": "xxNational Railway Company of Belgium (NMBS/SNCB)xx"
     },
+    "attribution": {
+        "homepage": "https://www.belgiantrain.be/",
+        "isProprietary": true,
+        "name": "Belgian National Rail"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -101,10 +106,12 @@
         "ver": "1.16"
     },
     "supportedLanguages": [
+        "de",
         "en",
         "fr",
         "nl"
     ],
+    "timezone": "Europe/Brussels",
     "type": {
         "hafasMgate": true
     }

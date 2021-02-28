@@ -39,6 +39,11 @@
         "Name[x-test]": "xxDeutsche Bahn (DB)xx",
         "Name[zh_TW]": "Deutsche Bahn (DB)"
     },
+    "attribution": {
+        "homepage": "https://www.bahn.de/",
+        "isProprietary": true,
+        "name": "DB Fernverkehr AG"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -128,6 +133,7 @@
     ],
     "timezone": "Europe/Berlin",
     "type": {
-        "deutschebahn": true
+        "deutschebahn": true,
+        "hafasMgate": true
     }
 }

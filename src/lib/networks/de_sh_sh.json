@@ -39,6 +39,11 @@
         "Name[uk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[x-test]": "xxNahverkehrsverbund Schleswig-Holstein (NAH.SH)xx"
     },
+    "attribution": {
+        "homepage": "https://www.nah.sh/",
+        "isProprietary": true,
+        "name": "Nahverkehrsverbund Schleswig-Holstein GmbH"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -117,6 +122,7 @@
         "de",
         "en"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }

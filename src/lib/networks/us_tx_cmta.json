@@ -35,6 +35,11 @@
         "Name[uk]": "Столична транспортна адміністрація (CMTA)",
         "Name[x-test]": "xxCapital Metropolitan Transportation Authority (CMTA)xx"
     },
+    "attribution": {
+        "homepage": "https://www.capmetro.org/",
+        "isProprietary": true,
+        "name": "Capital Metropolitan Transportation Authority"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -87,7 +92,10 @@
         },
         "ver": "1.13"
     },
-    "timezone": "America/Los_Angeles",
+    "supportedLanguages": [
+        "en"
+    ],
+    "timezone": "America/Chicago",
     "type": {
         "hafasMgate": true
     }

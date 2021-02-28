@@ -38,6 +38,11 @@
         "Name[uk]": "Hamburger Verkehrsverbund (HVV)",
         "Name[x-test]": "xxHamburger Verkehrsverbund (HVV)xx"
     },
+    "attribution": {
+        "homepage": "https://www.hvv.de/",
+        "isProprietary": true,
+        "name": "Hamburger Verkehrsverbund GmbH"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {

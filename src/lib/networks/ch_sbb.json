@@ -37,6 +37,11 @@
         "Name[uk]": "Федеральна залізниця Швейцарії (SBB/CFF/FFS)",
         "Name[x-test]": "xxSwiss Federal Railways (SBB/CFF/FFS)xx"
     },
+    "attribution": {
+        "homepage": "https://www.sbb.ch",
+        "isProprietary": true,
+        "name": "Schweizerische Bundesbahnen SBB"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -114,6 +119,7 @@
         "fr",
         "it"
     ],
+    "timezone": "Europe/Zurich",
     "type": {
         "hafasQuery": true
     }

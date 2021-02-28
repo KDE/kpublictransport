@@ -39,6 +39,11 @@
         "Name[uk]": "Rhein-Main-Verkehrsverbund (RMV)",
         "Name[x-test]": "xxRhein-Main-Verkehrsverbund (RMV)xx"
     },
+    "attribution": {
+        "homepage": "https://www.rmv.de/",
+        "isProprietary": true,
+        "name": "Rhein-Main-Verkehrsverbund"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -116,6 +121,7 @@
         "en",
         "fr"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }

@@ -37,6 +37,11 @@
         "Name[uk]": "Verkehrsverbund Tirol (VVT)",
         "Name[x-test]": "xxVerkehrsverbund Tirol (VVT)xx"
     },
+    "attribution": {
+        "homepage": "https://www.vvt.at/",
+        "isProprietary": true,
+        "name": "Verkehrsverbund Tirol"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -104,8 +109,10 @@
     },
     "supportedLanguages": [
         "de",
-        "en"
+        "en",
+        "it"
     ],
+    "timezone": "Europe/Vienna",
     "type": {
         "hafasMgate": true
     }

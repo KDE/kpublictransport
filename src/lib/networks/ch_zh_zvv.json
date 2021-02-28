@@ -13,7 +13,7 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Zürich, Schweiz.",
         "Description[uk]": "Місцевий транспорт у кантоні Цюрих, Швейцарія",
         "Description[x-test]": "xxLocal public transport in the canton Zürich, Switzerlandxx",
-        "Name": "Zürcher Verkehrsverbund (ZVV)",
+        "Name": "Züricher Verkehrsverbund (ZVV)",
         "Name[ca@valencia]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[ca]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[en_GB]": "Zürcher Verkehrsverbund (ZVV)",
@@ -26,6 +26,11 @@
         "Name[sv]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[uk]": "Zürcher Verkehrsverbund (ZVV)",
         "Name[x-test]": "xxZürcher Verkehrsverbund (ZVV)xx"
+    },
+    "attribution": {
+        "homepage": "https://zvv.ch/",
+        "isProprietary": true,
+        "name": "Züricher Verkehrsverbund"
     },
     "coverage": {
         "realtimeCoverage": {

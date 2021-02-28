@@ -32,6 +32,11 @@
         "Name[uk]": "Nordhessischer Verkehrsverbund (NVV)",
         "Name[x-test]": "xxNordhessischer Verkehrsverbund (NVV)xx"
     },
+    "attribution": {
+        "homepage": "https://www.nvv.de/",
+        "isProprietary": true,
+        "name": "Nordhessischer VerkehrsVerbund"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {

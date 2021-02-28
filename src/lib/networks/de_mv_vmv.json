@@ -39,7 +39,7 @@
         "Name[x-test]": "xxVerkehrsgesellschaft Mecklenburg-Vorpommern (VMV)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -76,8 +76,8 @@
         "endpoint": "https://fahrplanauskunft-mv.de/vmv3/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Berlin",
     "type": {

@@ -38,6 +38,11 @@
         "Name[uk]": "Salzburger Verkehrsverbund (SVV)",
         "Name[x-test]": "xxSalzburger Verkehrsverbund (SVV)xx"
     },
+    "attribution": {
+        "homepage": "https://salzburg-verkehr.at/",
+        "isProprietary": true,
+        "name": "Salzburger Verkehrsverbund GmbH"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -106,8 +111,10 @@
     },
     "supportedLanguages": [
         "de",
-        "en"
+        "en",
+        "it"
     ],
+    "timezone": "Europe/Vienna",
     "type": {
         "hafasMgate": true
     }

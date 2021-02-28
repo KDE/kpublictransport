@@ -37,8 +37,13 @@
         "Name[uk]": "Chemins de Fer Luxembourgeois (CFL)",
         "Name[x-test]": "xxChemins de Fer Luxembourgeois (CFL)xx"
     },
+    "attribution": {
+        "homepage": "https://www.cfl.lu/",
+        "isProprietary": true,
+        "name": "Société Nationale des Chemins de Fer Luxembourgeois"
+    },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -92,6 +97,12 @@
         },
         "ver": "1.16"
     },
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fr"
+    ],
+    "timezone": "Europe/Luxembourg",
     "type": {
         "hafasMgate": true
     }

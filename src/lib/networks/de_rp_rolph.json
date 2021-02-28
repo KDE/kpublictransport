@@ -37,7 +37,7 @@
         "Name[x-test]": "xxRolphxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -74,8 +74,8 @@
         "endpoint": "https://www.rolph.de/fahrplanauskunft/"
     },
     "supportedLanguages": [
-        "en",
-        "de"
+        "de",
+        "en"
     ],
     "timezone": "Europe/Berlin",
     "type": {

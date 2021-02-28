@@ -38,8 +38,13 @@
         "Name[uk]": "Saarländischer Verkehrsverbund (saarVV)",
         "Name[x-test]": "xxSaarländischer Verkehrsverbund (saarVV)xx"
     },
+    "attribution": {
+        "homepage": "https://saarvv.de/",
+        "isProprietary": true,
+        "name": "Saarländische Nahverkehrs-Service GmbH (SNS)"
+    },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -100,7 +105,8 @@
     },
     "supportedLanguages": [
         "de",
-        "en"
+        "en",
+        "fr"
     ],
     "timezone": "Europe/Berlin",
     "type": {

@@ -40,6 +40,11 @@
         "Name[x-test]": "xxAachener Verkehrsverbund (AVV)xx",
         "Name[zh_TW]": "Aachener Verkehrsverbund (AVV)"
     },
+    "attribution": {
+        "homepage": "https://avv.de/",
+        "isProprietary": true,
+        "name": "Aachener Verkehrsverbund"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -106,6 +111,7 @@
         "de",
         "en"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }

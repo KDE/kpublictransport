@@ -38,6 +38,11 @@
         "Name[uk]": "Verkehrsverbund Bremen/Niedersachsen (VBN)",
         "Name[x-test]": "xxVerkehrsverbund Bremen/Niedersachsen (VBN)xx"
     },
+    "attribution": {
+        "homepage": "https://www.vbn.de/",
+        "isProprietary": true,
+        "name": "Verkehrsverbund Bremen/Niedersachsen"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {

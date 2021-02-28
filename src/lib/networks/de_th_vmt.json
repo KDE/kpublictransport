@@ -38,6 +38,11 @@
         "Name[uk]": "Verkehrsverbund Mittelthüringen (VMT)",
         "Name[x-test]": "xxVerkehrsverbund Mittelthüringen (VMT)xx"
     },
+    "attribution": {
+        "homepage": "https://www.vmt-thueringen.de/",
+        "isProprietary": true,
+        "name": "VMT GmbH"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
