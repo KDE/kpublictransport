@@ -7,7 +7,9 @@
 #ifndef KPUBLICTRANSPORT_IVVASSPARSER_H
 #define KPUBLICTRANSPORT_IVVASSPARSER_H
 
+#include <QDateTime>
 #include <QString>
+#include <QTimeZone>
 
 #include <vector>
 
@@ -24,6 +26,8 @@ class Stopover;
 class IvvAssParser
 {
 public:
+    explicit IvvAssParser(const QTimeZone &tz);
+
     std::vector<Location> parseLocations(const QByteArray &data);
     std::vector<Stopover> parseStopovers(const QByteArray &data);
     std::vector<Journey> parseJourneys(const QByteArray &data);
@@ -32,6 +36,14 @@ public:
 
 private:
     bool parseError(const QJsonObject &top);
+
+    struct EventTime {
+        QDateTime scheduled;
+        QDateTime expected;
+    };
+    EventTime parseTime(const QJsonObject &obj, const char *baseKey, const char *scheduledKey) const;
+
+    QTimeZone m_timezone;
 };
 
 }

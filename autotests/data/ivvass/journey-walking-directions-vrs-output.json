@@ -207,8 +207,14 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-02-27T13:23:38+01:00",
-                "scheduledDepartureTime": "2021-02-27T13:14:00+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T13:23:38+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T13:14:00+01:00"
+                },
                 "to": {
                     "latitude": 50.94731903076172,
                     "longitude": 6.962530136108398

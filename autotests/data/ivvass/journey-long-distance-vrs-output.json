@@ -29,8 +29,14 @@
                     ]
                 },
                 "scheduledArrivalPlatform": "7",
-                "scheduledArrivalTime": "2021-02-27T12:53:00+01:00",
-                "scheduledDepartureTime": "2021-02-27T12:52:30+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T12:53:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T12:52:30+01:00"
+                },
                 "to": {
                     "identifier": {
                         "ifopt": "de:05315:11201:7:77"
@@ -94,9 +100,15 @@
                     }
                 },
                 "scheduledArrivalPlatform": "3",
-                "scheduledArrivalTime": "2021-02-27T13:12:00+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T13:12:00+01:00"
+                },
                 "scheduledDeparturePlatform": "7",
-                "scheduledDepartureTime": "2021-02-27T12:53:00+01:00",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T12:53:00+01:00"
+                },
                 "to": {
                     "identifier": {
                         "ifopt": "de:05314:61101:7:73"
@@ -141,9 +153,15 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-02-27T13:12:30+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T13:12:30+01:00"
+                },
                 "scheduledDeparturePlatform": "3",
-                "scheduledDepartureTime": "2021-02-27T13:12:00+01:00",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-27T13:12:00+01:00"
+                },
                 "to": {
                     "latitude": 50.731998443603516
                 }

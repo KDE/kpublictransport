@@ -73,7 +73,7 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
             return;
         }
 
-        IvvAssParser p;
+        IvvAssParser p(timeZone());
         auto result = p.parseLocations(data);
         if (p.errorMessage.isEmpty()) {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
@@ -121,7 +121,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
             return;
         }
 
-        IvvAssParser p;
+        IvvAssParser p(timeZone());
         auto result = p.parseStopovers(data);
         if (p.errorMessage.isEmpty()) {
             addResult(reply, this, std::move(result));
@@ -185,7 +185,7 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
             return;
         }
 
-        IvvAssParser p;
+        IvvAssParser p(timeZone());
         auto result = p.parseJourneys(data);
         if (p.errorMessage.isEmpty()) {
             addResult(reply, this, std::move(result));

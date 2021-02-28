@@ -22,6 +22,11 @@
 
 using namespace KPublicTransport;
 
+IvvAssParser::IvvAssParser(const QTimeZone &tz)
+    : m_timezone(tz)
+{
+}
+
 struct LocationData
 {
     Location loc;
@@ -165,12 +170,15 @@ static Route parseRoute(const QJsonObject &lineObj)
     return route;
 }
 
-struct EventTime {
-    QDateTime scheduled;
-    QDateTime expected;
-};
+static void applyTimeZone(QDateTime &dt, const QTimeZone &tz)
+{
+    if (dt.timeSpec() == Qt::OffsetFromUTC && tz.offsetFromUtc(dt) == dt.offsetFromUtc()) {
+        dt.setTimeSpec(Qt::TimeZone);
+        dt.setTimeZone(tz);
+    }
+}
 
-static EventTime parseTime(const QJsonObject &obj, const char *baseKey, const char *scheduledKey)
+IvvAssParser::EventTime IvvAssParser::parseTime(const QJsonObject &obj, const char *baseKey, const char *scheduledKey) const
 {
     EventTime t;
     t.scheduled = QDateTime::fromString(obj.value(QLatin1String(scheduledKey)).toString(), Qt::ISODate);
@@ -178,6 +186,8 @@ static EventTime parseTime(const QJsonObject &obj, const char *baseKey, const ch
     if (!t.scheduled.isValid() && t.expected.isValid()) {
         std::swap(t.scheduled, t.expected);
     }
+    applyTimeZone(t.scheduled, m_timezone);
+    applyTimeZone(t.expected, m_timezone);
     return t;
 }
 

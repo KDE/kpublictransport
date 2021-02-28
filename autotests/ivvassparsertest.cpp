@@ -51,7 +51,7 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
 
-        IvvAssParser p;
+        IvvAssParser p(QTimeZone("Europe/Berlin"));
         const auto result = p.parseLocations(readFile(inFileName));
         QVERIFY(!result.empty());
         QVERIFY(p.errorMessage.isEmpty());
@@ -79,7 +79,7 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
 
-        IvvAssParser p;
+        IvvAssParser p(QTimeZone("Europe/Berlin"));
         const auto result = p.parseStopovers(readFile(inFileName));
         QVERIFY(!result.empty());
         QVERIFY(p.errorMessage.isEmpty());
@@ -113,7 +113,7 @@ private Q_SLOTS:
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
 
-        IvvAssParser p;
+        IvvAssParser p(QTimeZone("Europe/Berlin"));
         const auto result = p.parseJourneys(readFile(inFileName));
         QVERIFY(!result.empty());
         QVERIFY(p.errorMessage.isEmpty());
@@ -129,17 +129,17 @@ private Q_SLOTS:
     void testParseError()
     {
         {
-            IvvAssParser p;
+            IvvAssParser p(QTimeZone("Europe/Berlin"));
             const auto res = p.parseLocations(R"({"error":"Ung\u00fcltige Zeit"})");
             QVERIFY(!p.errorMessage.isEmpty());
         }
         {
-            IvvAssParser p;
+            IvvAssParser p(QTimeZone("Europe/Berlin"));
             const auto res = p.parseStopovers(R"({"error":"Fehlerhaftes Ziel"})");
             QVERIFY(!p.errorMessage.isEmpty());
         }
         {
-            IvvAssParser p;
+            IvvAssParser p(QTimeZone("Europe/Berlin"));
             const auto res = p.parseJourneys(R"({"error":"Fehlerhafter Start"})");
             QVERIFY(!p.errorMessage.isEmpty());
         }

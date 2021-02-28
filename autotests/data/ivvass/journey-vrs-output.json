@@ -29,8 +29,14 @@
                     ]
                 },
                 "scheduledArrivalPlatform": "6",
-                "scheduledArrivalTime": "2021-02-26T17:14:00+01:00",
-                "scheduledDepartureTime": "2021-02-26T17:13:30+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:14:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:13:30+01:00"
+                },
                 "to": {
                     "identifier": {
                         "ifopt": "de:05315:11201:7:76"
@@ -45,8 +51,14 @@
             {
                 "disruptionEffect": "NormalService",
                 "distance": 31997,
-                "expectedArrivalTime": "2021-02-26T17:50:00+01:00",
-                "expectedDepartureTime": "2021-02-26T17:14:00+01:00",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:50:00+01:00"
+                },
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:14:00+01:00"
+                },
                 "from": {
                     "identifier": {
                         "ifopt": "de:05315:11201:7:76"
@@ -60,15 +72,27 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedArrivalTime": "2021-02-26T17:18:00+01:00",
-                        "expectedDepartureTime": "2021-02-26T17:18:00+01:00",
+                        "expectedArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:18:00+01:00"
+                        },
+                        "expectedDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:18:00+01:00"
+                        },
                         "load": [
                             {
                                 "load": "Low"
                             }
                         ],
-                        "scheduledArrivalTime": "2021-02-26T17:12:00+01:00",
-                        "scheduledDepartureTime": "2021-02-26T17:12:00+01:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:12:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:12:00+01:00"
+                        },
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -83,15 +107,27 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedArrivalTime": "2021-02-26T17:20:00+01:00",
-                        "expectedDepartureTime": "2021-02-26T17:21:00+01:00",
+                        "expectedArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:20:00+01:00"
+                        },
+                        "expectedDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:21:00+01:00"
+                        },
                         "load": [
                             {
                                 "load": "Medium"
                             }
                         ],
-                        "scheduledArrivalTime": "2021-02-26T17:14:00+01:00",
-                        "scheduledDepartureTime": "2021-02-26T17:15:00+01:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:14:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:15:00+01:00"
+                        },
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -106,14 +142,23 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2021-02-26T17:26:00+01:00",
+                        "expectedDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:26:00+01:00"
+                        },
                         "load": [
                             {
                                 "load": "Medium"
                             }
                         ],
-                        "scheduledArrivalTime": "2021-02-26T17:25:00+01:00",
-                        "scheduledDepartureTime": "2021-02-26T17:20:00+01:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:25:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:20:00+01:00"
+                        },
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -128,15 +173,27 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedArrivalTime": "2021-02-26T17:32:00+01:00",
-                        "expectedDepartureTime": "2021-02-26T17:36:00+01:00",
+                        "expectedArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:32:00+01:00"
+                        },
+                        "expectedDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:36:00+01:00"
+                        },
                         "load": [
                             {
                                 "load": "Medium"
                             }
                         ],
-                        "scheduledArrivalTime": "2021-02-26T17:26:00+01:00",
-                        "scheduledDepartureTime": "2021-02-26T17:36:00+01:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:26:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:36:00+01:00"
+                        },
                         "scheduledPlatform": "4",
                         "stopPoint": {
                             "identifier": {
@@ -151,15 +208,27 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedArrivalTime": "2021-02-26T17:40:00+01:00",
-                        "expectedDepartureTime": "2021-02-26T17:40:00+01:00",
+                        "expectedArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:40:00+01:00"
+                        },
+                        "expectedDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:40:00+01:00"
+                        },
                         "load": [
                             {
                                 "load": "Medium"
                             }
                         ],
-                        "scheduledArrivalTime": "2021-02-26T17:40:00+01:00",
-                        "scheduledDepartureTime": "2021-02-26T17:40:00+01:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:40:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:40:00+01:00"
+                        },
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -174,15 +243,27 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedArrivalTime": "2021-02-26T17:44:00+01:00",
-                        "expectedDepartureTime": "2021-02-26T17:45:00+01:00",
+                        "expectedArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:44:00+01:00"
+                        },
+                        "expectedDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:45:00+01:00"
+                        },
                         "load": [
                             {
                                 "load": "Medium"
                             }
                         ],
-                        "scheduledArrivalTime": "2021-02-26T17:44:00+01:00",
-                        "scheduledDepartureTime": "2021-02-26T17:45:00+01:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:44:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Berlin",
+                            "value": "2021-02-26T17:45:00+01:00"
+                        },
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -244,9 +325,15 @@
                     }
                 },
                 "scheduledArrivalPlatform": "4",
-                "scheduledArrivalTime": "2021-02-26T17:50:00+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:50:00+01:00"
+                },
                 "scheduledDeparturePlatform": "6",
-                "scheduledDepartureTime": "2021-02-26T17:08:00+01:00",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:08:00+01:00"
+                },
                 "to": {
                     "identifier": {
                         "ifopt": "de:05314:61101:7:74"
@@ -291,9 +378,15 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-02-26T17:50:30+01:00",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:50:30+01:00"
+                },
                 "scheduledDeparturePlatform": "4",
-                "scheduledDepartureTime": "2021-02-26T17:50:00+01:00",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-02-26T17:50:00+01:00"
+                },
                 "to": {
                     "latitude": 50.731998443603516,
                     "longitude": 7.096920013427734

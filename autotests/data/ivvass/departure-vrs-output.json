@@ -1,7 +1,10 @@
 [
     {
         "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2021-02-26T16:29:00+01:00",
+        "expectedDepartureTime": {
+            "timezone": "Europe/Berlin",
+            "value": "2021-02-26T16:29:00+01:00"
+        },
         "route": {
             "direction": "Bergisch Gladbach (S)",
             "line": {
@@ -9,7 +12,10 @@
                 "name": "S11"
             }
         },
-        "scheduledDepartureTime": "2021-02-26T16:27:00+01:00",
+        "scheduledDepartureTime": {
+            "timezone": "Europe/Berlin",
+            "value": "2021-02-26T16:27:00+01:00"
+        },
         "scheduledPlatform": "10",
         "stopPoint": {
             "identifier": {
@@ -24,7 +30,10 @@
     },
     {
         "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2021-02-26T16:31:00+01:00",
+        "expectedDepartureTime": {
+            "timezone": "Europe/Berlin",
+            "value": "2021-02-26T16:31:00+01:00"
+        },
         "route": {
             "direction": "Horrem Bf",
             "line": {
@@ -32,7 +41,10 @@
                 "name": "S12"
             }
         },
-        "scheduledDepartureTime": "2021-02-26T16:30:00+01:00",
+        "scheduledDepartureTime": {
+            "timezone": "Europe/Berlin",
+            "value": "2021-02-26T16:30:00+01:00"
+        },
         "scheduledPlatform": "11",
         "stopPoint": {
             "identifier": {
@@ -47,7 +59,10 @@
     },
     {
         "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2021-02-26T16:31:00+01:00",
+        "expectedDepartureTime": {
+            "timezone": "Europe/Berlin",
+            "value": "2021-02-26T16:31:00+01:00"
+        },
         "route": {
             "direction": "Oberhausen Hbf",
             "line": {
@@ -55,7 +70,10 @@
                 "name": "RE5 (RRX)"
             }
         },
-        "scheduledDepartureTime": "2021-02-26T16:31:00+01:00",
+        "scheduledDepartureTime": {
+            "timezone": "Europe/Berlin",
+            "value": "2021-02-26T16:31:00+01:00"
+        },
         "scheduledPlatform": "1",
         "stopPoint": {
             "identifier": {
