@@ -91,22 +91,82 @@
         },
         "endpoint": "https://fahrplan.salzburg-verkehr.at/bin/mgate.exe",
         "ext": "VAO.11",
-        "lineModeMap": {
-            "1": "Train",
-            "1024": "Taxi",
-            "128": "Bus",
-            "16": "Tramway",
-            "2": "RapidTransit",
-            "2048": "Bus",
-            "256": "Tramway",
-            "32": "LocalTrain",
-            "4": "Metro",
-            "4096": "LocalTrain",
-            "512": "Ferry",
-            "64": "Bus"
-        },
         "locationIdentifierType": "vao",
         "micMacSalt": "6633673735743766726667323938336A",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "Train"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    2048
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    4096
+                ],
+                "mode": "LocalTrain"
+            }
+        ],
         "ver": "1.27"
     },
     "supportedLanguages": [

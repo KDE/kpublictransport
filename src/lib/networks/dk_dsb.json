@@ -89,21 +89,91 @@
         },
         "endpoint": "https://mobilapps.rejseplanen.dk/bin/iphone.exe",
         "ext": "DK.9",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "1024": "Tramway",
-            "128": "Bus",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Ferry",
-            "32": "Bus",
-            "4": "LocalTrain",
-            "4096": "Air",
-            "512": "Metro",
-            "64": "Bus",
-            "8": "LocalTrain"
-        },
         "locationIdentifierType": "dsb",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "intercity",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "icl",
+                "mode": "LongDistanceTrain",
+                "name": "ICL"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "regional",
+                "mode": "LocalTrain",
+                "name": "Regional"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "oe",
+                "mode": "LocalTrain",
+                "name": "Ø"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "s-tog",
+                "mode": "RapidTransit",
+                "name": "S-Tog A/B/Bx/C/E/F/H"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    4096
+                ],
+                "mode": "Air"
+            }
+        ],
         "standardLocationIdentifierType": "uic",
         "ver": "1.21"
     },

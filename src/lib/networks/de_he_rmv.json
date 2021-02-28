@@ -94,20 +94,87 @@
         },
         "endpoint": "https://www.rmv.de/auskunft/bin/jp/mgate.exe",
         "ext": "RMV.1",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "1024": "Tramway",
-            "128": "Bus",
-            "16": "Metro",
-            "2": "LongDistanceTrain",
-            "256": "Ferry",
-            "32": "Tramway",
-            "4": "LocalTrain",
-            "512": "Taxi",
-            "64": "Bus",
-            "8": "RapidTransit"
-        },
         "locationIdentifierType": "rmv",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "InterCityExpress/Fernzug"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "EuroCity/InterCity/EuroNight/InterRegio"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "RegionalExpress/Regionalbahn"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "s-bahn",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "u-bahn",
+                "mode": "Metro",
+                "name": "U-Bahn"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Straßenbahn"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Tramway"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             54,
             55,

@@ -103,22 +103,107 @@
             "type": "AND"
         },
         "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "1024": "Bus",
-            "128": "Ferry",
-            "16": "LocalTrain",
-            "2": "LongDistanceTrain",
-            "2048": "Taxi",
-            "256": "Metro",
-            "32": "RapidTransit",
-            "4": "LongDistanceTrain",
-            "4096": "Train",
-            "512": "Tramway",
-            "64": "Bus",
-            "8": "Train"
-        },
         "locationIdentifierType": "oebb",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "InterCityExpress & RailJet"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "long-distance-train-1",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity & EuroCity"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "long-distance-train-2",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity & EuroCity"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "long-distance-train-3",
+                "mode": "Train",
+                "name": "Durchgangszug & EuroNight"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "Regional & RegionalExpress"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "subway",
+                "mode": "Metro",
+                "name": "U-Bahn"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    2048
+                ],
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    4096
+                ],
+                "mode": "Train"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             54,

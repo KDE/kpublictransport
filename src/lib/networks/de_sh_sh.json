@@ -92,19 +92,87 @@
             "type": "AND"
         },
         "endpoint": "https://nah.sh.hafas.de/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Metro",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Tramway",
-            "32": "Bus",
-            "4": "LongDistanceTrain",
-            "512": "Taxi",
-            "64": "Ferry",
-            "8": "LocalTrain"
-        },
         "locationIdentifierType": "sh",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "national",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity & EuroCity"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "interregional",
+                "mode": "LongDistanceTrain",
+                "name": "Interregional"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "regional",
+                "mode": "LocalTrain",
+                "name": "Regional & RegionalExpress"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "subway",
+                "mode": "Metro",
+                "name": "U-Bahn"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "onCall",
+                "mode": "Taxi",
+                "name": "On-call transit"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             54,

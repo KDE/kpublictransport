@@ -83,15 +83,56 @@
         },
         "endpoint": "https://auskunft.nvv.de/auskunft/bin/app/mgate.exe",
         "ext": "NVV.6.0",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "1024": "Tramway",
-            "2": "LongDistanceTrain",
-            "32": "Tramway",
-            "4": "LocalTrain",
-            "512": "Taxi",
-            "64": "Bus"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "express",
+                "mode": "LongDistanceTrain",
+                "name": "InterCityExpress"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "national",
+                "mode": "LongDistanceTrain",
+                "name": "EuroCity/InterCity"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "regional",
+                "mode": "LocalTrain",
+                "name": "Regionalzug"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Tramway"
+            }
+        ],
         "ver": "1.18"
     },
     "supportedLanguages": [

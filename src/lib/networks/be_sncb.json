@@ -88,17 +88,63 @@
         },
         "customCaCertificate": "digicert-sha2-secure-server-ca.pem",
         "endpoint": "https://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "1024": "Tramway",
-            "16": "RapidTransit",
-            "256": "Metro",
-            "32": "Bus",
-            "4": "LongDistanceTrain",
-            "512": "Bus",
-            "64": "RapidTransit"
-        },
         "locationIdentifierType": "sncb",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "high-speed-train",
+                "mode": "LongDistanceTrain",
+                "name": "high-speed train"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity/Peak"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S-train"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Tramway"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             88
         ],

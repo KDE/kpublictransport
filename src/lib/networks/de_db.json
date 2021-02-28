@@ -89,19 +89,89 @@
         },
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
         "ext": "DB.R20.12.b",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Metro",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Tramway",
-            "32": "Bus",
-            "4": "LocalTrain",
-            "512": "Taxi",
-            "64": "Ferry",
-            "8": "LocalTrain"
-        },
         "locationIdentifierType": "db",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "Long-distance train (ICE)"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "Long-Distance Train (IC/EC)"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "local-train",
+                "mode": "LocalTrain",
+                "name": "Local Train (D)"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "Local Train (RE/RB)"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "rapid-transit",
+                "mode": "RapidTransit",
+                "name": "Rapid Transit (S)"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "metro",
+                "mode": "Metro",
+                "name": "Metro"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "taxi",
+                "mode": "Taxi",
+                "name": "Taxi"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             53,

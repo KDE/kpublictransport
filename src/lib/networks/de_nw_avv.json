@@ -89,18 +89,91 @@
             "type": "WEB"
         },
         "endpoint": "https://auskunft.avv.de/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LocalTrain",
-            "128": "Bus",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Bus",
-            "32": "Metro",
-            "4": "LongDistanceTrain",
-            "512": "RapidTransit",
-            "64": "Tramway",
-            "8": "Bus"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "Regionalzug"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "Fernzug"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "ICE/Thalys"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "suburban-train",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "subway",
+                "mode": "Metro",
+                "name": "U-Bahn"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Straßenbahn"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "added-bus",
+                "mode": "Bus",
+                "name": "Bus, Verstärkerfahrt"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "id": "ferry",
+                "name": "Fähre"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             84
         ],

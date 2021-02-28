@@ -79,17 +79,62 @@
         },
         "endpoint": "https://vrn.hafas.de/bin/mgate.exe",
         "ext": "DB.R19.04.a",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Metro",
-            "16": "LocalTrain",
-            "2": "LongDistanceTrain",
-            "256": "Tramway",
-            "32": "Bus",
-            "4": "LongDistanceTrain",
-            "512": "Taxi",
-            "8": "LocalTrain"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Taxi"
+            }
+        ],
         "ver": "1.24"
     },
     "supportedLanguages": [

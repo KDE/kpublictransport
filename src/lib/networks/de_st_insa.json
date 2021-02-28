@@ -86,18 +86,63 @@
             "type": "AND"
         },
         "endpoint": "https://reiseauskunft.insa.de/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Taxi",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Train",
-            "32": "Tramway",
-            "4": "LocalTrain",
-            "64": "Bus",
-            "8": "LocalTrain"
-        },
         "locationIdentifierType": "insa",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Train"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             54,

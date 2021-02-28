@@ -85,16 +85,66 @@
             "type": "AND"
         },
         "endpoint": "https://horaires.cfl.lu/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "16": "LocalTrain",
-            "2": "LongDistanceTrain",
-            "256": "Tramway",
-            "32": "Bus",
-            "512": "Funicular",
-            "64": "Bus",
-            "8": "LocalTrain"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "long-distance-train-1",
+                "mode": "LongDistanceTrain",
+                "name": "TGV, ICE, EuroCity"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "long-distance-train-2",
+                "mode": "LongDistanceTrain",
+                "name": "TGV, ICE, EuroCity"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "local-train-1",
+                "mode": "LocalTrain",
+                "name": "local trains"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "local-train-2",
+                "mode": "LocalTrain",
+                "name": "local trains"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Funicular"
+            }
+        ],
         "ver": "1.16"
     },
     "supportedLanguages": [

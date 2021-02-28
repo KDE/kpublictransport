@@ -100,17 +100,66 @@
         },
         "endpoint": "https://fahrinfo.vbb.de/bin/mgate.exe",
         "ext": "VBB.4",
-        "lineModeMap": {
-            "1": "RapidTransit",
-            "16": "Ferry",
-            "2": "Metro",
-            "32": "LongDistanceTrain",
-            "4": "Tramway",
-            "64": "LocalTrain",
-            "8": "Bus"
-        },
         "locationIdentifierType": "vbb",
         "micMacSalt": "5243544a4d3266467846667878516649",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "subway",
+                "mode": "Metro",
+                "name": "U-Bahn"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Fähre"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "express",
+                "mode": "LongDistanceTrain",
+                "name": "IC/ICE"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "regional",
+                "mode": "LocalTrain",
+                "name": "RB/RE"
+            }
+        ],
         "ver": "1.21"
     },
     "supportedLanguages": [

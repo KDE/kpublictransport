@@ -93,42 +93,6 @@ static void mergeJsonObject(QJsonObject &destObj, const QJsonObject &srcObj)
     }
 }
 
-// product name patterns to create our line mode mapping
-static constexpr struct {
-    const char *productName;
-    const char *modeName;
-} const hafas_line_modes[] = {
-    { "s-", "RapidTransit" },
-    { "u-", "Metro" },
-    { "tram", "Tramway" },
-    { "straßenbahn", "Tramway" },
-    { "fernbus", "Coach" },
-    { "bus", "Bus" },
-    { "taxi", "Taxi" },
-    { "fähre", "Ferry" },
-    { "schiff", "Ferry" },
-    { "intercity", "LongDistanceTrain" },
-    { "ic", "LongDistanceTrain" },
-    { "regio", "LocalTrain" },
-    { "rb", "LocalTrain" },
-    { "seil", "Tramway" }, // TODO cable car/aerial lift
-    { "cable", "Tramway" },
-    { "anruf", "Taxi" },
-    { "call", "Taxi" },
-    { "nah", "LocalTrain" },
-    { "local", "LocalTrain" },
-    { "fern", "LongDistanceTrain" },
-    { "long", "LongDistanceTrain" },
-    { "bedarf", "Taxi" },
-    { "bart", "RapidTransit" },
-    { "fun", "Funicular" },
-    { "train", "Train" },
-    { "euro", "LongDistanceTrain" },
-    { "ir", "Train" },
-    { "re", "LocalTrain" },
-    { "zug", "Train" },
-};
-
 static void preProcessConfig(QJsonObject &top)
 {
     // move translated keys to the location ki18n expects them
@@ -158,22 +122,6 @@ static void preProcessConfig(QJsonObject &top)
 
 static void postProcessConfig(QJsonObject &top)
 {
-    // TODO we probably should put this into a separate key and not override the upstream data?
-    auto options = top.value(QLatin1String("options")).toObject();
-    auto lineModeMap = options.value(QLatin1String("lineModeMap")).toObject();
-    for (auto it = lineModeMap.begin(); it != lineModeMap.end(); ++it) {
-        for (const auto &mode : hafas_line_modes) {
-            if (it.value().toString().contains(QString::fromUtf8(mode.productName), Qt::CaseInsensitive)) {
-                it.value() = QLatin1String(mode.modeName);
-                break;
-            }
-        }
-    }
-    if (!lineModeMap.empty()) {
-        options.insert(QLatin1String("lineModeMap"), lineModeMap);
-    }
-    top.insert(QLatin1String("options"), options);
-
     // sort languages alphabetically to create stable diffs, the order doesn't matter for us
     auto langs = top.take(QLatin1String("supportedLanguages")).toArray();
     QStringList l;

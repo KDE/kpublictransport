@@ -85,11 +85,26 @@
             "type": "IPH"
         },
         "endpoint": "https://capmetro.hafas.cloud/bin/mgate.exe",
-        "lineModeMap": {
-            "32": "Bus",
-            "4096": "Bus",
-            "8": "LocalTrain"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    4096
+                ],
+                "mode": "Bus"
+            }
+        ],
         "ver": "1.13"
     },
     "supportedLanguages": [

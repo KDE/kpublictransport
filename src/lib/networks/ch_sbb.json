@@ -78,19 +78,89 @@
     },
     "options": {
         "endpoint": "http://fahrplan.sbb.ch/bin/",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Tramway",
-            "16": "Ferry",
-            "2": "LongDistanceTrain",
-            "256": "LocalTrain",
-            "32": "RapidTransit",
-            "4": "LocalTrain",
-            "512": "Tramway",
-            "64": "Bus",
-            "8": "LocalTrain"
-        },
         "locationIdentifierType": "sbb",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "ICE/EN/CNL/ES/RJ/TGV/THA"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "EC/IC/ICN/OEC"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "regional-train-1",
+                "mode": "LocalTrain",
+                "name": "IR/PE"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "regional-train-2",
+                "mode": "LocalTrain",
+                "name": "RE/D"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Schiff/Fähre/Dampfschiff"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S/SN/R/TER/RB"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "bus-taxi",
+                "mode": "Bus",
+                "name": "Bus/Taxi"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "funicular",
+                "mode": "Tramway",
+                "name": "Standseilbahn/Gondelbahn/Luftseilbahn/Sesselbahn"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "special-train",
+                "mode": "LocalTrain",
+                "name": "Autoreisezug/Extrazug"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "tram-metro",
+                "mode": "Tramway",
+                "name": "Tram/Metro"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             54,

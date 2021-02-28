@@ -88,16 +88,51 @@
             "type": "AND"
         },
         "endpoint": "https://mobil.rozklad-pkp.pl:8019/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "16": "Bus",
-            "2": "LongDistanceTrain",
-            "32": "Bus",
-            "4": "LocalTrain",
-            "64": "Ferry",
-            "8": "RapidTransit"
-        },
         "locationIdentifierType": "pkp",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Ferry"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             53,

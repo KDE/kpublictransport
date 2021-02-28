@@ -88,19 +88,69 @@
             "type": "AND"
         },
         "endpoint": "https://saarfahrplan.de/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "1024": "Bus",
-            "128": "Bus",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "32": "Metro",
-            "4": "Train",
-            "512": "Taxi",
-            "64": "Tramway",
-            "8": "LocalTrain"
-        },
         "micMacSalt": "484A746C756269737678694A787373",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "Train"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "mode": "Bus"
+            }
+        ],
         "ver": "1.21"
     },
     "supportedLanguages": [

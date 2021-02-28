@@ -5,6 +5,7 @@
 */
 
 #include "hafasbackend.h"
+#include "logging.h"
 
 #include <KPublicTransport/Location>
 
@@ -22,17 +23,12 @@ void HafasBackend::setProductsMap(const QJsonArray& array)
         const auto prodObj = prodV.toObject();
         const auto bitmasks = prodObj.value(QLatin1String("bitmasks")).toArray();
         const auto mode = static_cast<Line::Mode>(me.keyToValue(prodObj.value(QLatin1String("mode")).toString().toUtf8().constData()));
+        if (mode == Line::Unknown) {
+            qCWarning(Log) << "Invalid product mode:" << prodObj;
+        }
         for (const auto &bit : bitmasks) {
             m_lineModeMap[bit.toInt()] = mode;
         }
-    }
-}
-
-void HafasBackend::setLineModeMap(const QJsonObject& obj)
-{
-    const auto me = QMetaEnum::fromType<Line::Mode>();
-    for (auto it = obj.begin(); it != obj.end(); ++it) {
-        m_lineModeMap[it.key().toInt()] = static_cast<Line::Mode>(me.keyToValue(it.value().toString().toUtf8().constData()));
     }
 }
 

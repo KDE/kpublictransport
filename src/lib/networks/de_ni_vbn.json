@@ -91,19 +91,71 @@
             "type": "AND"
         },
         "endpoint": "https://fahrplaner.vbn.de/hafas/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Metro",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Tramway",
-            "32": "Bus",
-            "4": "Train",
-            "512": "Taxi",
-            "64": "Ferry",
-            "8": "LocalTrain"
-        },
         "micMacSalt": "535033316D4275665379434C6D4E7870",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "Train"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "local-train",
+                "mode": "Train",
+                "name": "Nahverkehr"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "mode": "Taxi"
+            }
+        ],
         "ver": "1.27"
     },
     "supportedLanguages": [

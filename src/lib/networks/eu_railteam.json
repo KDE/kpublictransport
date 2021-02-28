@@ -70,18 +70,63 @@
     },
     "options": {
         "endpoint": "http://railteam.hafas.eu/bin/",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Metro",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Tramway",
-            "32": "Bus",
-            "4": "LocalTrain",
-            "64": "Ferry",
-            "8": "LocalTrain"
-        },
         "locationIdentifierType": "rt",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Tramway"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             51,
             53,

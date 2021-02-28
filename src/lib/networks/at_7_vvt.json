@@ -89,22 +89,88 @@
             "type": "AND"
         },
         "endpoint": "https://fahrplan.vvt.at/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "Train",
-            "1024": "Taxi",
-            "128": "Bus",
-            "16": "Tramway",
-            "2": "RapidTransit",
-            "2048": "Bus",
-            "256": "Tramway",
-            "32": "LocalTrain",
-            "4": "Metro",
-            "4096": "LocalTrain",
-            "512": "Ferry",
-            "64": "Bus"
-        },
         "locationIdentifierType": "vao",
         "micMacSalt": "6633673735743766726667323938336A",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "Train"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "aerial-lift",
+                "mode": "Tramway",
+                "name": "Seil-/Zahnradbahn"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Schiff"
+            },
+            {
+                "bitmasks": [
+                    1024
+                ],
+                "id": "on-call",
+                "mode": "Taxi",
+                "name": "Anrufsammeltaxi"
+            },
+            {
+                "bitmasks": [
+                    2048
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    4096
+                ],
+                "mode": "LocalTrain"
+            }
+        ],
         "ver": "1.27"
     },
     "supportedLanguages": [

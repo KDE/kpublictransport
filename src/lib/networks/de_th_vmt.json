@@ -87,17 +87,62 @@
             "type": "AND"
         },
         "endpoint": "https://vmt.hafas.de/bin/mgate.exe",
-        "lineModeMap": {
-            "1": "LongDistanceTrain",
-            "128": "Bus",
-            "16": "RapidTransit",
-            "2": "LongDistanceTrain",
-            "256": "Bus",
-            "32": "Tramway",
-            "4": "Train",
-            "64": "Ferry",
-            "8": "LocalTrain"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "Train"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Bus"
+            }
+        ],
         "standardLocationIdentifierCountries": [
             80
         ],

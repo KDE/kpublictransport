@@ -83,14 +83,50 @@
             "type": "WEB"
         },
         "endpoint": "https://planner.bart.gov/bin/mgate.exe",
-        "lineModeMap": {
-            "128": "RapidTransit",
-            "256": "Tramway",
-            "32": "Bus",
-            "4": "Tramway",
-            "64": "Ferry",
-            "8": "LocalTrain"
-        },
+        "products": [
+            {
+                "bitmasks": [
+                    4
+                ],
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "regional trains (Caltrain, Capitol Corridor, ACE)"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "mode": "Tramway"
+            }
+        ],
         "ver": "1.18"
     },
     "supportedLanguages": [
