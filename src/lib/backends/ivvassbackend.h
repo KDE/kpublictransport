@@ -8,6 +8,7 @@
 #define KPUBLICTRANSPORT_IVVASSBACKEND_H
 
 #include "abstractbackend.h"
+#include <QUrl>
 
 namespace KPublicTransport {
 
