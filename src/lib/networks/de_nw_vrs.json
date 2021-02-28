@@ -18,7 +18,13 @@
         "Name[x-test]": "xxVerkehrsverbund Rhein-Sieg (VRS)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [ [ 6.18421, 51.087 ], [ 7.6463, 51.35075 ], [ 7.9373, 50.796 ], [ 6.1636, 50.12835 ], [ 6.1842, 51.087 ] ]
+                ],
+                "type": "Polygon"
+            },
             "region": [
                 "DE-NW"
             ]

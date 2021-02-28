@@ -67,7 +67,6 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-        qDebug() << data;
 
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
@@ -116,7 +115,6 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-        qDebug() << data;
 
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
@@ -181,7 +179,6 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-        qDebug() << data;
 
         if (netReply->error() != QNetworkReply::NoError) {
             addError(reply, Reply::NetworkError, netReply->errorString());
