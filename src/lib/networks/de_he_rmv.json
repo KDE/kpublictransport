@@ -146,33 +146,35 @@
             },
             {
                 "bitmasks": [
-                    64
+                    64, 128
                 ],
-                "mode": "Bus"
-            },
-            {
-                "bitmasks": [
-                    128
-                ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "Ferry"
+                "id": "watercraft",
+                "mode": "Ferry",
+                "name": "Schiff"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Taxi"
+                 "id": "ast",
+                "mode": "Taxi",
+                "name": "Anruf-Sammel-Taxi"
             },
             {
                 "bitmasks": [
                     1024
                 ],
-                "mode": "Tramway"
+                "id": "cable-car",
+                "mode": "Tramway",
+                "name": "Seilbahn"
             }
         ],
         "standardLocationIdentifierCountries": [

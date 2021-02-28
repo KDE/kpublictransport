@@ -136,13 +136,17 @@
                 "bitmasks": [
                     256
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "tram"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Funicular"
+                "id": "funicular",
+                "mode": "Funicular",
+                "name": "Fun"
             }
         ],
         "ver": "1.16"

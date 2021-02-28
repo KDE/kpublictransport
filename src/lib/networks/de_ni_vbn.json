@@ -97,7 +97,9 @@
                 "bitmasks": [
                     1
                 ],
-                "mode": "LongDistanceTrain"
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "InterCityExpress"
             },
             {
                 "bitmasks": [
@@ -123,37 +125,49 @@
                 "bitmasks": [
                     16
                 ],
-                "mode": "RapidTransit"
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
             },
             {
                 "bitmasks": [
                     32
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
                     64
                 ],
-                "mode": "Ferry"
+                "id": "watercraft",
+                "mode": "Ferry",
+                "name": "Schiff"
             },
             {
                 "bitmasks": [
                     128
                 ],
-                "mode": "Metro"
+                "id": "subway",
+                "mode": "Metro",
+                "name": "U-Bahn"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Taxi"
+                "id": "dial-a-ride",
+                "mode": "Taxi",
+                "name": "Anrufverkehr"
             }
         ],
         "ver": "1.27"

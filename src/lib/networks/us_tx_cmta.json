@@ -90,19 +90,25 @@
                 "bitmasks": [
                     8
                 ],
-                "mode": "LocalTrain"
+                "id": "rail",
+                "mode": "LocalTrain",
+                "name": "MetroRail"
             },
             {
                 "bitmasks": [
                     32
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "MetroBus"
             },
             {
                 "bitmasks": [
                     4096
                 ],
-                "mode": "Bus"
+                "id": "rapid",
+                "mode": "Bus",
+                "name": "MetroRapid"
             }
         ],
         "ver": "1.13"

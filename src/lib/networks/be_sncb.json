@@ -124,25 +124,33 @@
                 "bitmasks": [
                     64
                 ],
-                "mode": "RapidTransit"
+                "id": "local-train",
+                "mode": "RapidTransit",
+                "name": "local train"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "Metro"
+                "id": "metro",
+                "mode": "Metro",
+                "name": "Metro"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "bus"
             },
             {
                 "bitmasks": [
                     1024
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "tram"
             }
         ],
         "standardLocationIdentifierCountries": [

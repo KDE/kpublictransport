@@ -88,7 +88,9 @@
                 "bitmasks": [
                     4
                 ],
-                "mode": "Tramway"
+                "id": "cable-car",
+                "mode": "Tramway",
+                "name": "cable car"
             },
             {
                 "bitmasks": [
@@ -118,13 +120,17 @@
                 "bitmasks": [
                     128
                 ],
-                "mode": "RapidTransit"
+                "id": "bart",
+                "mode": "RapidTransit",
+                "name": "BART"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
             }
         ],
         "ver": "1.18"

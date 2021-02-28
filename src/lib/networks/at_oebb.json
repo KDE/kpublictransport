@@ -195,13 +195,17 @@
                 "bitmasks": [
                     2048
                 ],
-                "mode": "Taxi"
+                "id": "on-call",
+                "mode": "Taxi",
+                "name": "on-call transit, lifts, etc"
             },
             {
                 "bitmasks": [
                     4096
                 ],
-                "mode": "Train"
+                "id": "long-distance-train-4",
+                "mode": "Train",
+                "name": "Durchgangszug & EuroNight"
             }
         ],
         "standardLocationIdentifierCountries": [

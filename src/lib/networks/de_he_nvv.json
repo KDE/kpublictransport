@@ -109,28 +109,34 @@
                 "name": "Regionalzug"
             },
             {
-                "bitmasks": [
-                    32
-                ],
-                "mode": "Tramway"
+                "bitmasks": [ 8, 16, 1024 ],
+                "id": "regiotram",
+                "mode": "Tramway",
+                "name": "RegioTram"
             },
             {
                 "bitmasks": [
-                    64
+                    32
                 ],
-                "mode": "Bus"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    64, 128
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Taxi"
-            },
-            {
-                "bitmasks": [
-                    1024
-                ],
-                "mode": "Tramway"
+                "id": "on-call",
+                "mode": "Taxi",
+                "name": "AnrufSammelTaxi"
             }
         ],
         "ver": "1.18"

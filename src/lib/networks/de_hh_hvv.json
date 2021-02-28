@@ -141,27 +141,35 @@
             },
             {
                 "bitmasks": [
-                    64
+                    64, 4096
                 ],
-                "mode": "LongDistanceTrain"
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "Fernzug"
             },
             {
                 "bitmasks": [
                     128
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "BusRapidTransit"
+                "id": "express-bus",
+                "mode": "BusRapidTransit",
+                "name": "Schnellbus"
             },
             {
                 "bitmasks": [
                     1024
                 ],
-                "mode": "Taxi"
+                "id": "anruf-sammel-taxi",
+                "mode": "Taxi",
+                "name": "Anruf-Sammel-Taxi"
             },
             {
                 "bitmasks": [

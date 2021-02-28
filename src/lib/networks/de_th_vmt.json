@@ -122,7 +122,9 @@
                 "bitmasks": [
                     32
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "tram"
             },
             {
                 "bitmasks": [
@@ -140,7 +142,9 @@
                 "bitmasks": [
                     256
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "bus"
             }
         ],
         "standardLocationIdentifierCountries": [

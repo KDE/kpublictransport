@@ -108,13 +108,17 @@
                 "bitmasks": [
                     4
                 ],
-                "mode": "Metro"
+                "id": "subway",
+                "mode": "Metro",
+                "name": "U-Bahn"
             },
             {
                 "bitmasks": [
                     16
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Straßenbahn"
             },
             {
                 "bitmasks": [
@@ -126,7 +130,9 @@
                 "bitmasks": [
                     64
                 ],
-                "mode": "Bus"
+                "id": "regional-bus",
+                "mode": "Bus",
+                "name": "Regionalbus"
             },
             {
                 "bitmasks": [
@@ -162,7 +168,9 @@
                 "bitmasks": [
                     2048
                 ],
-                "mode": "Bus"
+                "id": "other-bus",
+                "mode": "Bus",
+                "name": "sonstige Busse"
             },
             {
                 "bitmasks": [

@@ -92,15 +92,11 @@
         "products": [
             {
                 "bitmasks": [
-                    1
+                    1, 2
                 ],
-                "mode": "LongDistanceTrain"
-            },
-            {
-                "bitmasks": [
-                    2
-                ],
-                "mode": "LongDistanceTrain"
+                "id": "long-distance-train",
+                "mode": "LongDistanceTrain",
+                "name": "long-distance train"
             },
             {
                 "bitmasks": [
@@ -112,13 +108,17 @@
                 "bitmasks": [
                     8
                 ],
-                "mode": "LocalTrain"
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "regional train"
             },
             {
                 "bitmasks": [
                     16
                 ],
-                "mode": "RapidTransit"
+                "id": "urban-train",
+                "mode": "RapidTransit",
+                "name": "urban train"
             },
             {
                 "bitmasks": [
@@ -139,10 +139,18 @@
                 "mode": "Bus"
             },
             {
+                "bitmasks": [256],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "tram"
+            },
+            {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Taxi"
+                "id": "dial-a-ride",
+                "mode": "Taxi",
+                "name": "dial-a-ride"
             },
             {
                 "bitmasks": [

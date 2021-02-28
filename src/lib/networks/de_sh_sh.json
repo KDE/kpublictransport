@@ -98,7 +98,8 @@
                 "bitmasks": [
                     1
                 ],
-                "mode": "LongDistanceTrain"
+                "mode": "LongDistanceTrain",
+                "name": "High-speed rail"
             },
             {
                 "bitmasks": [

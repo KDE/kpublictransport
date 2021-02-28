@@ -106,37 +106,49 @@
                 "bitmasks": [
                     16
                 ],
-                "mode": "Ferry"
+                "id": "boat",
+                "mode": "Ferry",
+                "name": "Boat"
             },
             {
                 "bitmasks": [
                     32
                 ],
-                "mode": "RapidTransit"
+                "id": "urban-train",
+                "mode": "RapidTransit",
+                "name": "Urban Train"
             },
             {
                 "bitmasks": [
                     64
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
                     128
                 ],
-                "mode": "Tramway"
+                "id": "cable-car",
+                "mode": "Tramway",
+                "name": "Cable Car"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "Train"
+                "id": "night-train",
+                "mode": "Train",
+                "name": "Night Train"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Tramway"
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
             }
         ],
         "ver": "1.24"

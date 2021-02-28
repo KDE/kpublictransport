@@ -110,13 +110,17 @@
                 "bitmasks": [
                     4
                 ],
-                "mode": "Metro"
+                "id": "u-bahn",
+                "mode": "Metro",
+                "name": "U-Bahn"
             },
             {
                 "bitmasks": [
                     16
                 ],
-                "mode": "Tramway"
+                "id": "strassenbahn",
+                "mode": "Tramway",
+                "name": "Strassenbahn"
             },
             {
                 "bitmasks": [
@@ -128,25 +132,33 @@
                 "bitmasks": [
                     64
                 ],
-                "mode": "Bus"
+                "id": "regionalbus",
+                "mode": "Bus",
+                "name": "Regionalbus"
             },
             {
                 "bitmasks": [
                     128
                 ],
-                "mode": "Bus"
+                "id": "stadtbus",
+                "mode": "Bus",
+                "name": "Stadtbus"
             },
             {
                 "bitmasks": [
                     256
                 ],
-                "mode": "Tramway"
+                "id": "seilbahn-zahnradbahn",
+                "mode": "Tramway",
+                "name": "Seil-/Zahnradbahn"
             },
             {
                 "bitmasks": [
                     512
                 ],
-                "mode": "Ferry"
+                "id": "schiff",
+                "mode": "Ferry",
+                "name": "Schiff"
             },
             {
                 "bitmasks": [
