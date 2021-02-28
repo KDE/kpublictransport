@@ -243,6 +243,55 @@ static std::vector<LoadInfo> parseDemand(const QJsonValue &demand)
     return {l};
 }
 
+static Path parseDirections(Path &&fullPath, const QJsonArray &directions)
+{
+    if (directions.isEmpty() || fullPath.isEmpty()) {
+        return std::move(fullPath);
+    }
+
+    const auto poly = fullPath.sections()[0].path();
+
+    Path p;
+    std::vector<PathSection> secs;
+
+    int prevSecStart = 0;
+    PathSection prevSec;
+
+    for (const auto &dirV : directions) {
+        const auto dirObj = dirV.toObject();
+        const auto lat = dirObj.value(QLatin1String("x")).toDouble();
+        const auto lon = dirObj.value(QLatin1String("y")).toDouble();
+
+        int nextSecStart = prevSecStart;
+        for (; nextSecStart < poly.size(); ++nextSecStart) {
+            if (Location::distance(lat, lon, poly[nextSecStart].y(), poly[nextSecStart].x()) == 0) {
+                break;
+            }
+        }
+
+        if (nextSecStart > prevSecStart) {
+            QPolygonF subPoly;
+            subPoly.reserve(nextSecStart - prevSecStart + 1);
+            std::copy(poly.begin() + prevSecStart, poly.begin() + nextSecStart, std::back_inserter(subPoly));
+            subPoly.push_back({lon, lat});
+            prevSec.setPath(std::move(subPoly));
+            secs.push_back(prevSec);
+        }
+        prevSecStart = nextSecStart;
+        prevSec.setDescription(dirObj.value(QLatin1String("street")).toString());
+    }
+    if (poly.size() > prevSecStart) {
+        QPolygonF subPoly;
+        subPoly.reserve(poly.size() - prevSecStart);
+        std::copy(poly.begin() + prevSecStart, poly.end(), std::back_inserter(subPoly));
+        prevSec.setPath(std::move(subPoly));
+        secs.push_back(prevSec);
+    }
+
+    p.setSections(std::move(secs));
+    return p;
+}
+
 std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();
@@ -319,14 +368,14 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
             for (const auto &coord : coords) {
                 const auto p = coord.split(QLatin1Char(','));
                 if (p.size() == 2) {
-                    poly.push_back({p[0].toDouble(), p[1].toDouble()});
+                    poly.push_back({p[1].toDouble(), p[0].toDouble()});
                 }
             }
             PathSection section;
             section.setPath(poly);
             Path path;
             path.setSections({section});
-            s.setPath(std::move(path));
+            s.setPath(parseDirections(std::move(path), segmentObj.value(QLatin1String("directions")).toArray()));
 
             const auto highestDemand = segmentObj.value(QLatin1String("highestDemandEstimated"));
             s.setLoadInformation(parseDemand(highestDemand));
