@@ -37,7 +37,7 @@
         "Name[x-test]": "xxTransport for NSWxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -73,6 +73,9 @@
     "options": {
         "endpoint": "https://transportnsw.info/web/"
     },
+    "supportedLanguages": [
+        "en"
+    ],
     "timezone": "Australia/Sydney",
     "type": {
         "efa": true

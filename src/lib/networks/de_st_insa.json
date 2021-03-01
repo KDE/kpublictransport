@@ -38,6 +38,11 @@
         "Name[uk]": "Nahverkehrsservice Sachsen-Anhalt (INSA)",
         "Name[x-test]": "xxNahverkehrsservice Sachsen-Anhalt (INSA)xx"
     },
+    "attribution": {
+        "homepage": "https://www.nasa.de/",
+        "isProprietary": true,
+        "name": "Nahverkehrsservice Sachsen-Anhalt GmbH"
+    },
     "coverage": {
         "anyCoverage": {
             "area": {
@@ -92,13 +97,16 @@
                 "bitmasks": [
                     1
                 ],
-                "mode": "LongDistanceTrain"
+                "mode": "LongDistanceTrain",
+                "name": "InterCityExpress"
             },
             {
                 "bitmasks": [
                     2
                 ],
-                "mode": "LongDistanceTrain"
+                "id": "national",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity & EuroCity"
             },
             {
                 "bitmasks": [
@@ -110,25 +118,33 @@
                 "bitmasks": [
                     8
                 ],
-                "mode": "LocalTrain"
+                "id": "regional",
+                "mode": "LocalTrain",
+                "name": "RegionalExpress & RegionalBahn"
             },
             {
                 "bitmasks": [
                     16
                 ],
-                "mode": "RapidTransit"
+                "id": "suburban",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
             },
             {
                 "bitmasks": [
                     32
                 ],
-                "mode": "Tramway"
+                 "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
             },
             {
                 "bitmasks": [
                     64
                 ],
-                "mode": "Bus"
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
@@ -140,7 +156,9 @@
                 "bitmasks": [
                     256
                 ],
-                "mode": "Train"
+                "id": "tourismTrain",
+                "mode": "Train",
+                "name": "Tourism Train"
             }
         ],
         "standardLocationIdentifierCountries": [

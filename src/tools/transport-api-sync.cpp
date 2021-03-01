@@ -30,10 +30,12 @@ static constexpr struct {
     const char* fromId;
     const char* to;
 } transport_api_mapping[] = {
+    { "au", "transportnsw", "au_nsw" },
     { "be", "nmbs-sncb", "be_sncb" },
     { "ch", "sbb-cff-ffs", "ch_sbb" },
     { "de", "bayernfahrplan", "de_by_bayern" },
     { "de", "nahsh", "de_sh_sh" },
+    { "de", "nasa", "de_st_insa" },
     { "de", "saarfahrplan", "de_sl_saarvv" },
     { "dk", "rejseplanen", "dk_dsb" },
 };
