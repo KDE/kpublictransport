@@ -155,7 +155,8 @@ static void parseTrainFormationCars(std::vector<VehicleSection> &vehicleSections
 Vehicle HafasVehicleLayoutParser::parseTrainFormation(const QByteArray &data)
 {
     QJsonParseError parserError;
-    const auto sformation = QJsonDocument::fromJson(data, &parserError).object().value(QLatin1String("SFormation")).toObject();
+    const auto jsonEndIdx = data.lastIndexOf('}') + 1;
+    const auto sformation = QJsonDocument::fromJson(data.mid(0, jsonEndIdx), &parserError).object().value(QLatin1String("SFormation")).toObject();
     if (parserError.error != QJsonParseError::NoError) {
         qDebug() << parserError.errorString();
     }
