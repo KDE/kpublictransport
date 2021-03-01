@@ -146,7 +146,8 @@
             },
             {
                 "bitmasks": [
-                    64, 128
+                    64,
+                    128
                 ],
                 "id": "bus",
                 "mode": "Bus",
@@ -164,7 +165,7 @@
                 "bitmasks": [
                     512
                 ],
-                 "id": "ast",
+                "id": "ast",
                 "mode": "Taxi",
                 "name": "Anruf-Sammel-Taxi"
             },

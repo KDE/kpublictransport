@@ -141,7 +141,8 @@
             },
             {
                 "bitmasks": [
-                    64, 4096
+                    64,
+                    4096
                 ],
                 "id": "long-distance-train",
                 "mode": "LongDistanceTrain",

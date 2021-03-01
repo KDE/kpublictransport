@@ -109,7 +109,11 @@
                 "name": "Regionalzug"
             },
             {
-                "bitmasks": [ 8, 16, 1024 ],
+                "bitmasks": [
+                    8,
+                    16,
+                    1024
+                ],
                 "id": "regiotram",
                 "mode": "Tramway",
                 "name": "RegioTram"
@@ -124,7 +128,8 @@
             },
             {
                 "bitmasks": [
-                    64, 128
+                    64,
+                    128
                 ],
                 "id": "bus",
                 "mode": "Bus",

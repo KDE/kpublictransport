@@ -1,17 +1,21 @@
 {
     "KPlugin": {
         "Description": "Local transport in the Rhein-Sieg area, Germany.",
+        "Description[ca@valencia]": "Transport local a l'àrea de Rin-Sieg, Alemanya.",
         "Description[ca]": "Transport local a l'àrea de Rin-Sieg, Alemanya.",
         "Description[es]": "Transporte local del área de Rin-Sieg, Alemania.",
         "Description[nl]": "Lokaal transport in het gebied Rhein-Sieg, Duitsland.",
+        "Description[pt]": "Transportes locais na região de Rhein-Sieg, Alemanha.",
         "Description[sl]": "Lokalni transport na področju Rhein-Sieg, Nemčija.",
         "Description[sv]": "Lokal transportoperatör i Rhein-Sieg-området, Tyskland.",
         "Description[uk]": "Місцевий транспорт у регіоні Райн-Зіг, Німеччина.",
         "Description[x-test]": "xxLocal transport in the Rhein-Sieg area, Germany.xx",
         "Name": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[ca@valencia]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[ca]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[es]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[nl]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[pt]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[sl]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[sv]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[uk]": "Verkehrsverbund Rhein-Sieg (VRS)",
@@ -21,7 +25,28 @@
         "realtimeCoverage": {
             "area": {
                 "coordinates": [
-                    [ [ 6.18421, 51.087 ], [ 7.6463, 51.35075 ], [ 7.9373, 50.796 ], [ 6.1636, 50.12835 ], [ 6.1842, 51.087 ] ]
+                    [
+                        [
+                            6.18421,
+                            51.087
+                        ],
+                        [
+                            7.6463,
+                            51.35075
+                        ],
+                        [
+                            7.9373,
+                            50.796
+                        ],
+                        [
+                            6.1636,
+                            50.12835
+                        ],
+                        [
+                            6.1842,
+                            51.087
+                        ]
+                    ]
                 ],
                 "type": "Polygon"
             },

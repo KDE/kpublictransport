@@ -82,7 +82,9 @@
         "products": [
             {
                 "bitmasks": [
-                    1, 2, 4
+                    1,
+                    2,
+                    4
                 ],
                 "id": "long-distance-train",
                 "mode": "LongDistanceTrain",

@@ -92,7 +92,8 @@
         "products": [
             {
                 "bitmasks": [
-                    1, 2
+                    1,
+                    2
                 ],
                 "id": "long-distance-train",
                 "mode": "LongDistanceTrain",
@@ -139,7 +140,9 @@
                 "mode": "Bus"
             },
             {
-                "bitmasks": [256],
+                "bitmasks": [
+                    256
+                ],
                 "id": "tram",
                 "mode": "Tramway",
                 "name": "tram"
