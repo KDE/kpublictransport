@@ -10,7 +10,8 @@ query journeys(
   $time: String!,
   $arriveBy: Boolean!,
   $modes: [TransportMode]!,
-  $maxResults: Int!
+  $maxResults: Int!,
+  $lang: String!
 ) {
   plan (
         from: { lat: $fromLat, lon: $fromLon }
@@ -20,6 +21,7 @@ query journeys(
         arriveBy: $arriveBy
         numItineraries: $maxResults
         transportModes: $modes
+        locale: $lang
     ) {
         itineraries {
             legs {
