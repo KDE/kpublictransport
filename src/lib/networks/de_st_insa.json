@@ -134,7 +134,7 @@
                 "bitmasks": [
                     32
                 ],
-                 "id": "tram",
+                "id": "tram",
                 "mode": "Tramway",
                 "name": "Tram"
             },
