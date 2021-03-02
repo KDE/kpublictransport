@@ -9,6 +9,7 @@
             "name": "9",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "A",
             "type": "PassengerCar"
         },
         {
@@ -19,6 +20,7 @@
             "name": "5",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "A",
             "type": "PassengerCar"
         },
         {
@@ -29,6 +31,7 @@
             "name": "8",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "A",
             "type": "PassengerCar"
         },
         {
@@ -39,6 +42,7 @@
             "name": "7",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -49,6 +53,7 @@
             "name": "6",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -59,6 +64,7 @@
             "name": "4",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -69,6 +75,7 @@
             "name": "2",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -79,6 +86,7 @@
             "name": "3",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "PassengerCar"
         },
         {
@@ -89,6 +97,7 @@
             "name": "1",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "PassengerCar"
         },
         {
@@ -98,6 +107,7 @@
             "features": "NoFeatures",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "Engine"
         }
     ]

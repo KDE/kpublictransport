@@ -17,6 +17,7 @@ class VehicleSectionPrivate;
 
 /** Information about a part of a vehicle.
  *  This typically describes a coach of a train.
+ *  @see Vehicle
  */
 class KPUBLICTRANSPORT_EXPORT VehicleSection
 {
@@ -103,6 +104,11 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Sides, connectedSides, setConnectedSides)
 
+    /** Name of the platform section(s) this coach is position in.
+     *  This is primarily meant as a fallback when exact platform positions aren't available.
+     */
+    KPUBLICTRANSPORT_PROPERTY(QString, platformSectionName, setPlatformSectionName)
+
     /** Merge two VehicleSection instances. */
     static VehicleSection merge(const VehicleSection &lhs, const VehicleSection &rhs);
 
@@ -123,6 +129,10 @@ class VehiclePrivate;
 
 /** Information about the vehicle used on a journey.
  *  This is typically only available for trains, and describes their coach layout.
+ *
+ *  A vehicle object always is tied to a specific Platform object, to which all positions
+ *  refer to.
+ *  @see Platform
  */
 class KPUBLICTRANSPORT_EXPORT Vehicle
 {

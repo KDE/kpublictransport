@@ -30,6 +30,7 @@ public:
     VehicleSection::Features features = VehicleSection::NoFeatures;
     int deckCount = 1;
     VehicleSection::Sides connectedSides = VehicleSection::Front | VehicleSection::Back;
+    QString platformSectionName;
 };
 
 class VehiclePrivate : public QSharedData
@@ -51,6 +52,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes,
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Features, features, setFeatures)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, int, deckCount, setDeckCount)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedSides, setConnectedSides)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, setPlatformSectionName)
 
 VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSection &rhs)
 {

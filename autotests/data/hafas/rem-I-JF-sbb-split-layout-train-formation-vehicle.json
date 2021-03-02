@@ -8,6 +8,7 @@
             "features": "WheelchairAccessible",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "A",
             "type": "PassengerCar"
         },
         {
@@ -17,6 +18,7 @@
             "features": "NoFeatures",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -26,6 +28,7 @@
             "features": "BikeStorage",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -35,6 +38,7 @@
             "features": "BikeStorage",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "B",
             "type": "PassengerCar"
         },
         {
@@ -44,6 +48,7 @@
             "features": "WheelchairAccessible",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "PassengerCar"
         },
         {
@@ -53,6 +58,7 @@
             "features": "NoFeatures",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "PassengerCar"
         },
         {
@@ -62,6 +68,7 @@
             "features": "BikeStorage",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "PassengerCar"
         },
         {
@@ -71,6 +78,7 @@
             "features": "BikeStorage",
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
+            "platformSectionName": "C",
             "type": "PassengerCar"
         }
     ]

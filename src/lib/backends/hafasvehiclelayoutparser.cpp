@@ -131,9 +131,9 @@ static void parseTrainFormationCars(std::vector<VehicleSection> &vehicleSections
 
         const auto type = carObj.value(QLatin1String("type")).toString();
         sec.setType(typeToType(type));
+        sec.setPlatformSectionName(carObj.value(QLatin1String("section")).toString());
         sec.setClasses(typeToClasses(type));
         // TODO type == FA
-        // TODO how do we map section information to coordinates?
 
         // TODO there are also translated names for those features we could use
         VehicleSection::Features features = {};
