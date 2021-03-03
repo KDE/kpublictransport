@@ -26,7 +26,7 @@ class EfaBackend : public AbstractBackend
     /** Identifier type used for stations. Default is backendId(). */
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
     /** Backend is using compact XML responses. */
-    Q_PROPERTY(bool compactXmlRepsonse MEMBER  m_compactXmlResponse)
+    Q_PROPERTY(QString xmlOutputFormat WRITE setXmlOutputFormat)
 
     /** Additional "mId" argument value, needed by some instances. */
     Q_PROPERTY(QString mId MEMBER m_mId)
@@ -53,6 +53,8 @@ private:
     QString locationIdentifierType() const;
     std::unique_ptr<EfaParser> make_parser() const;
     QUrlQuery commonQuery() const;
+
+    void setXmlOutputFormat(const QString &format);
 
     QString m_endpoint;
     QString m_locationIdentifierType;

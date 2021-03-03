@@ -255,3 +255,8 @@ QUrlQuery EfaBackend::commonQuery() const
     }
     return query;
 }
+
+void EfaBackend::setXmlOutputFormat(const QString &format)
+{
+    m_compactXmlResponse = format == QLatin1String("compact");
+}
