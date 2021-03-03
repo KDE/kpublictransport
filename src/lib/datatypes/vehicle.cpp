@@ -71,6 +71,7 @@ VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSec
     res.setFeatures(lhs.features() | rhs.features());
     res.setDeckCount(std::max(lhs.deckCount(), rhs.deckCount()));
     res.setConnectedSides(lhs.connectedSides() & rhs.connectedSides());
+    res.setPlatformSectionName(MergeUtil::mergeString(lhs.platformSectionName(), rhs.platformSectionName()));
     return res;
 }
 
