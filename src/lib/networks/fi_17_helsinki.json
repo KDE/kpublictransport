@@ -91,7 +91,13 @@
             }
         }
     },
-    "supportedLanguages": [ "de", "en", "fi", "fr", "sv" ],
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fi",
+        "fr",
+        "sv"
+    ],
     "timezone": "Europe/Helsinki",
     "type": {
         "otpGraphQl": true

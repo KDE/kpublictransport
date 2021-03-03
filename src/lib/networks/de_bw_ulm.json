@@ -94,7 +94,9 @@
             "CARPOOL"
         ]
     },
-    "supportedLanguages": [ "de" ],
+    "supportedLanguages": [
+        "de"
+    ],
     "timezone": "Europe/Berlin",
     "type": {
         "otpGraphQl": true
