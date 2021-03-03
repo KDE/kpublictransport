@@ -178,6 +178,7 @@
         "de",
         "en"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "hafasMgate": true
     }
