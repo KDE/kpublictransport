@@ -18,7 +18,7 @@ Kirigami.ScrollablePage {
     property alias publicTransportManager: vehicleModel.manager
     property var departure
 
-    onDepartureChanged: vehicleModel.request.departure = root.departure;
+    onDepartureChanged: vehicleModel.request.stopover = root.departure;
 
     KPublicTransport.VehicleLayoutQueryModel {
         id: vehicleModel
@@ -32,7 +32,8 @@ Kirigami.ScrollablePage {
 
     header: Column {
         QQC2.Label {
-            text: vehicleModel.departure.stopPoint.name + " - " + vehicleModel.departure.route.line.name + " - " + vehicleModel.departure.scheduledDepartureTime
+            text: vehicleModel.stopover.stopPoint.name + " - " + vehicleModel.stopover.route.line.name + " - "
+                + (vehicleModel.stopover.scheduledDepartureTime > 0 ? vehicleModel.stopover.scheduledDepartureTime : vehicleModel.stopover.scheduledArrivalTime)
             leftPadding: Kirigami.Units.largeSpacing
             topPadding: Kirigami.Units.largeSpacing
         }

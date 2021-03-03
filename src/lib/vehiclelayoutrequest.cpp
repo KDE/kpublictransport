@@ -39,7 +39,7 @@ VehicleLayoutRequest::VehicleLayoutRequest(const Stopover &stopover)
 
 bool VehicleLayoutRequest::isValid() const
 {
-    return d->stopover.scheduledDepartureTime().isValid() && !d->stopover.route().line().name().isEmpty();
+    return (d->stopover.scheduledDepartureTime().isValid() || d->stopover.scheduledArrivalTime().isValid()) && !d->stopover.route().line().name().isEmpty();
 }
 
 QString VehicleLayoutRequest::cacheKey() const

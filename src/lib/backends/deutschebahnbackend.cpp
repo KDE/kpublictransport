@@ -44,7 +44,7 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
     // we need two parameters for the online API: the train number (numeric only), and the departure time
     // note: data is only available withing the upcoming 24h
     // checking this early is useful as the error response from the online service is extremely verbose...
-    auto dt = request.stopover().scheduledDepartureTime();
+    auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
     const auto trainNum = extractTrainNumber(request.stopover().route().line());
     if (!dt.isValid() || trainNum.isEmpty()) {
         return false;

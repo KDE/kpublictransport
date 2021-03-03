@@ -25,12 +25,13 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
         return false;
     }
 
+    const auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
     QUrl url;
     url.setScheme(QStringLiteral("https"));
     url.setHost(QStringLiteral("live.oebb.at"));
     url.setPath(QLatin1String("/backend/api/train/") + request.stopover().route().line().name()
         + QLatin1String("/stationEva/") + ibnr
-        + QLatin1String("/departure/") +  request.stopover().scheduledDepartureTime().toString(QStringLiteral("dd.MM.yyyy")));
+        + QLatin1String("/departure/") +  dt.toString(QStringLiteral("dd.MM.yyyy")));
 
     QNetworkRequest netReq(url);
     logRequest(request, netReq);
