@@ -118,12 +118,13 @@ private Q_SLOTS:
         QTest::newRow("de_nw_avv") << "de_nw_avv" << loc("Aachen Hbf", 50.76784, 6.09130) << loc("Aachen West", 50.78025, 6.07124);
         // TODO de_nw_muenster
         QTest::newRow("de_nw_vrr") << "de_nw_vrr" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
+        QTest::newRow("de_nw_vrs") << "de_nw_vrs" << loc("Köln Hbf", 50.94305, 6.95908) << loc("Bonn Hbf", 50.73203, 7.09719);
         QTest::newRow("de_nw_zks") << "de_nw_zks" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
         QTest::newRow("de_rp_rolph") << "de_rp_rolph" << loc("Mainz Hbf", 50.00113, 8.25865) << loc("Kaiserslautern Hauptbahnhof", 49.43607, 7.76849);
         QTest::newRow("de_rp_vrn") << "de_rp_vrn" << loc("Kaiserslautern Hauptbahnhof", 49.43607, 7.76849) << loc("Mannheim Hauptbahnhof", 49.47930, 8.46947);
         QTest::newRow("de_sh_sh") << "de_sh_sh" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg-Altona", 53.55284, 9.93569);
         QTest::newRow("de_sl_saarvv") << "de_sl_saarvv" << loc("Saarbrücken Hauptbahnhof", 49.24116, 6.99110) << loc("Saarlouis Hbf", 49.32766, 6.75103);
-        // TODO de_sn_vvo
+        QTest::newRow("de_sn_vvo") << "de_sn_vvo" << loc("Dresden Hbf", 51.04025, 13.73160) << loc("Chemnitz Hauptbahnhof", 50.83981, 12.93069);
         QTest::newRow("de_st_insa") << "de_st_insa" << loc("Leipzig Hbf", 51.34508, 12.38196) << loc("Leipzig S Bahnhof Messe", 51.39603, 12.38987);
         QTest::newRow("de_th_vmt") << "de_th_vmt" << loc("Erfurt Hbf", 50.97227, 11.03790) << loc("Jena Paradies", 50.92491, 11.58725);
 
