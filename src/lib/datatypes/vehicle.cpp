@@ -106,6 +106,11 @@ QVariantList VehicleSection::featureList() const
     return l;
 }
 
+bool VehicleSection::hasPlatformPosition() const
+{
+    return d->platformPositionBegin >= 0.0 && d->platformPositionEnd >= 0.0;
+}
+
 KPUBLICTRANSPORT_MAKE_GADGET(Vehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, Vehicle::Direction, direction, setDirection)
@@ -219,6 +224,16 @@ Vehicle Vehicle::fromJson(const QJsonObject &obj)
 std::vector<Vehicle> Vehicle::fromJson(const QJsonArray &array)
 {
     return Json::fromJson<Vehicle>(array);
+}
+
+bool Vehicle::hasPlatformPositions() const
+{
+    return std::all_of(d->sections.begin(), d->sections.end(), [](const auto &p) { return p.hasPlatformPosition(); });
+}
+
+bool Vehicle::hasPlatformSectionNames() const
+{
+    return std::none_of(d->sections.begin(), d->sections.end(), [](const auto &p) { return p.platformSectionName().isEmpty(); });
 }
 
 #include "moc_vehicle.cpp"

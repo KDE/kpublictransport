@@ -23,6 +23,10 @@ public:
     void doQuery() override;
     void doClearResults() override;
 
+    void interpolatePlatformPositionsFromSectionName();
+    template <typename Iter>
+    void interpolatePlatformPositionsFromSectionName(Iter begin, Iter end);
+
     VehicleLayoutRequest m_request;
     Stopover m_stopover;
 
@@ -50,6 +54,10 @@ void VehicleLayoutQueryModelPrivate::doQuery()
         Q_Q(VehicleLayoutQueryModel);
         q->beginResetModel();
         m_stopover = reply->stopover();
+        if (!m_stopover.platformLayout().isEmpty() && !m_stopover.vehicleLayout().isEmpty()
+         && !m_stopover.vehicleLayout().hasPlatformPositions() && m_stopover.vehicleLayout().hasPlatformSectionNames()) {
+            interpolatePlatformPositionsFromSectionName();
+        }
         q->endResetModel();
         emit q->contentChanged();
     });
@@ -61,6 +69,57 @@ void VehicleLayoutQueryModelPrivate::doClearResults()
     Q_Q(VehicleLayoutQueryModel);
     emit q->contentChanged();
 }
+
+void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName()
+{
+    auto vehicle = m_stopover.vehicleLayout();
+    auto vehicleSections = vehicle.takeSections();
+    const auto startSection = vehicleSections.front().platformSectionName();
+    const auto endSection = vehicleSections.back().platformSectionName();
+
+    for (const auto &sec : m_stopover.platformLayout().sections()) {
+        if (sec.name() == startSection) {
+            interpolatePlatformPositionsFromSectionName(vehicleSections.begin(), vehicleSections.end());
+            break;
+        } else if (sec.name() == endSection) {
+            interpolatePlatformPositionsFromSectionName(vehicleSections.rbegin(), vehicleSections.rend());
+            break;
+        }
+    }
+
+    vehicle.setSections(std::move(vehicleSections));
+    m_stopover.setVehicleLayout(std::move(vehicle));
+}
+
+template<typename Iter>
+void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName(Iter begin, Iter end)
+{
+    auto rangeBegin = begin, rangeEnd = begin;
+    while (rangeBegin != end) {
+        while (rangeEnd != end && (*rangeBegin).platformSectionName() == (*rangeEnd).platformSectionName()) {
+            ++rangeEnd;
+        }
+
+        const auto platformIt = std::find_if(m_stopover.platformLayout().sections().begin(), m_stopover.platformLayout().sections().end(), [&rangeBegin](const auto &p) {
+            return p.name() == (*rangeBegin).platformSectionName();
+        });
+        if (platformIt == m_stopover.platformLayout().sections().end()) {
+            qWarning() << "Failed to find platform section" << (*rangeBegin).platformSectionName();
+            return;
+        }
+
+        const auto l = ((*platformIt).end() - (*platformIt).begin()) / std::distance(rangeBegin, rangeEnd);
+        auto pos = (*platformIt).begin();
+        for (auto it = rangeBegin; it != rangeEnd; ++it) {
+            (*it).setPlatformPositionBegin(pos);
+            (*it).setPlatformPositionEnd(pos + l);
+            pos += l;
+        }
+
+        rangeBegin = rangeEnd;
+    }
+}
+
 
 VehicleLayoutQueryModel::VehicleLayoutQueryModel(QObject* parent)
     : AbstractQueryModel(new VehicleLayoutQueryModelPrivate, parent)

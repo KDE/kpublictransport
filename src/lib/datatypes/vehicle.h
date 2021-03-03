@@ -109,6 +109,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(QString, platformSectionName, setPlatformSectionName)
 
+    /** Returns @c true if this vehicle section has a valid platform position set. */
+    bool hasPlatformPosition() const;
+
     /** Merge two VehicleSection instances. */
     static VehicleSection merge(const VehicleSection &lhs, const VehicleSection &rhs);
 
@@ -182,6 +185,11 @@ public:
      *  Useful for centering a view on a selected section for example.
      */
     Q_INVOKABLE float platformPositionForSection(const QString &sectionName) const;
+
+    /** Checks whether all vehicle sections have platform positions set. */
+    bool hasPlatformPositions() const;
+    /** Check whether all vehicle sections have platform section names set. */
+    bool hasPlatformSectionNames() const;
 
     /** Merge two Vehicle instances. */
     static Vehicle merge(const Vehicle &lhs, const Vehicle &rhs);
