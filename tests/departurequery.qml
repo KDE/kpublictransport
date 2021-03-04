@@ -25,13 +25,13 @@ Kirigami.ApplicationWindow {
     globalDrawer: Kirigami.GlobalDrawer {
         actions: [
             Kirigami.Action {
-                text: i18n("Save...")
+                text: "Save..."
                 iconName: "document-save"
                 onTriggered: fileDialog.open();
             },
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("Data Sources")
+                text: "Data Sources"
                 enabled: departureModel.attributions.length > 0
                 onTriggered: aboutSheet.sheetOpen = true;
             },
@@ -45,7 +45,7 @@ Kirigami.ApplicationWindow {
 
     Platform.FileDialog {
         id: fileDialog
-        title: i18n("Save Departure Data")
+        title: "Save Departure Data"
         fileMode: Platform.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
         onAccepted: ExampleUtil.saveTo(departureModel, fileDialog.file);

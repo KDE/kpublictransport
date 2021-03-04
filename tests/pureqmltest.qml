@@ -31,7 +31,7 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("Current Data Sources")
+                text: "Current Data Sources"
                 enabled: journeyModel.attributions.length > 0
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return journeyModel.attributions; });
@@ -40,7 +40,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("All Data Sources")
+                text: "All Data Sources"
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return ptMgr.attributions; });
                     aboutSheet.sheetOpen = true;
@@ -63,7 +63,7 @@ Kirigami.ApplicationWindow {
                     id: toName
                 }
                 QQC2.Button {
-                    text: qsTr("Query")
+                    text: "Query"
                     onClicked: {
                         var from = journeyModel.request.from;
                         from.name = fromName.text;

@@ -13,7 +13,7 @@ import org.kde.kpublictransport.ui 1.0
 
 Kirigami.ScrollablePage {
     id: root
-    title: i18n("Vehicle Layout")
+    title: "Vehicle Layout"
 
     property alias publicTransportManager: vehicleModel.manager
     property var departure

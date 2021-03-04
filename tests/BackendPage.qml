@@ -12,7 +12,7 @@ import org.kde.kpublictransport 1.0 as KPublicTransport
 
 Kirigami.ScrollablePage {
     id: root
-    title: i18n("Backends")
+    title: "Backends"
 
     property alias publicTransportManager: backendModel.manager
 

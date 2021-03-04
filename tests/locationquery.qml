@@ -46,7 +46,7 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("Data Sources")
+                text: "Data Sources"
                 enabled: locationModel.attributions.length > 0
                 onTriggered: aboutSheet.sheetOpen = true;
             },

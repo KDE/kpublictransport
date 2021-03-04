@@ -44,13 +44,13 @@ Kirigami.ApplicationWindow {
     globalDrawer: Kirigami.GlobalDrawer {
         actions: [
             Kirigami.Action {
-                text: i18n("Save...")
+                text: "Save..."
                 iconName: "document-save"
                 onTriggered: fileDialog.open();
             },
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("Current Data Sources")
+                text: "Current Data Sources"
                 enabled: journeyModel.attributions.length > 0
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return journeyModel.attributions; });
@@ -59,7 +59,7 @@ Kirigami.ApplicationWindow {
             },
             Kirigami.Action {
                 iconName: "help-about-symbolic"
-                text: i18n("All Data Sources")
+                text: "All Data Sources"
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return ptMgr.attributions; });
                     aboutSheet.sheetOpen = true;
@@ -75,7 +75,7 @@ Kirigami.ApplicationWindow {
 
     Platform.FileDialog {
         id: fileDialog
-        title: i18n("Save Journey Data")
+        title: "Save Journey Data"
         fileMode: Platform.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
         onAccepted: ExampleUtil.saveTo(journeyModel, fileDialog.file);
