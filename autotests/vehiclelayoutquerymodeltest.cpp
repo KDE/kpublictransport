@@ -68,6 +68,7 @@ private Q_SLOTS:
             const auto idx = model.index(i, 0);
             const auto sec = idx.data(VehicleLayoutQueryModel::VehicleSectionRole).value<VehicleSection>();
             QVERIFY(sec.hasPlatformPosition());
+            QCOMPARE(sec.name(), inVec.sections()[i].name());
         }
     }
 };

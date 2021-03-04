@@ -95,6 +95,7 @@ template<typename Iter>
 void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName(Iter begin, Iter end)
 {
     auto rangeBegin = begin, rangeEnd = begin;
+    float minLength = 1.0;
     while (rangeBegin != end) {
         while (rangeEnd != end && (*rangeBegin).platformSectionName() == (*rangeEnd).platformSectionName()) {
             ++rangeEnd;
@@ -108,7 +109,13 @@ void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName
             return;
         }
 
-        const auto l = ((*platformIt).end() - (*platformIt).begin()) / std::distance(rangeBegin, rangeEnd);
+        auto l = ((*platformIt).end() - (*platformIt).begin()) / std::distance(rangeBegin, rangeEnd);
+        minLength = std::min(minLength, l);
+
+        if (rangeEnd == end) { // trailing coaches, don't scale them to the full section
+            l = minLength;
+        }
+
         auto pos = (*platformIt).begin();
         for (auto it = rangeBegin; it != rangeEnd; ++it) {
             (*it).setPlatformPositionBegin(pos);
@@ -117,6 +124,17 @@ void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName
         }
 
         rangeBegin = rangeEnd;
+    }
+
+    // fix-up leading coaches to not fill up the entire platform section
+    rangeEnd = std::find_if(begin, end, [&begin](const auto &p) {
+        return p.platformSectionName() != (*begin).platformSectionName();
+    });
+    auto pos = (*std::prev(rangeEnd)).platformPositionEnd() - std::distance(begin, rangeEnd) * minLength;
+    for (auto it = begin; it != rangeEnd; ++it) {
+        (*it).setPlatformPositionBegin(pos);
+        (*it).setPlatformPositionEnd(pos + minLength);
+        pos += minLength;
     }
 }
 
