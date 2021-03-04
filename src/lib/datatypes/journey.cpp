@@ -237,6 +237,7 @@ const std::vector<Stopover>& JourneySection::intermediateStops() const
 
 std::vector<Stopover>&& JourneySection::takeIntermediateStops()
 {
+    d.detach();
     return std::move(d->intermediateStops);
 }
 
@@ -531,6 +532,7 @@ const std::vector<JourneySection>& Journey::sections() const
 
 std::vector<JourneySection>&& Journey::takeSections()
 {
+    d.detach();
     return std::move(d->sections);
 }
 

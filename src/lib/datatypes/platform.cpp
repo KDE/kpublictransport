@@ -75,6 +75,7 @@ const std::vector<PlatformSection>& Platform::sections() const
 
 std::vector<PlatformSection>&& Platform::takeSections()
 {
+    d.detach();
     return std::move(d->sections);
 }
 

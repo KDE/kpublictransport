@@ -127,6 +127,7 @@ const std::vector<VehicleSection>& Vehicle::sections() const
 
 std::vector<VehicleSection>&& Vehicle::takeSections()
 {
+    d.detach();
     return std::move(d->sections);
 }
 
