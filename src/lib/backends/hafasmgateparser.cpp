@@ -72,13 +72,14 @@ static const struct {
     { "A", "3" },
     { "A", "4" }, // same as above, containing product, line number and journey number
     { "A", "OPERATOR" }, // operator information should be a dedicated field if we ever need it
+    { "A", "moreAttr" }, // ZVV: pointless note about checking intermediate stops for more details
     { "H", "wagenstand_v2" }, // contains a pointless note about checking trip details
     { "I", "FD" }, // SBB line number?
     { "I", "RN" }, // SBB: some unknown number for buses
     { "I", "TC" }, // SBB: some unknown number for buses
-    { "I", "XC" }, // SBB: some XML structure of unknown content
-    { "I", "XG" }, // SBB: some XML structure of unknown content
-    { "I", "XT" }, // SBB: some XML structure of unknown content
+    { "I", "XC" }, // SBB: some XML structure of unknown content, related to train/platform layouts
+    { "I", "XG" }, // SBB: some XML structure of unknown content, related to train/platform layouts
+    { "I", "XT" }, // SBB: some XML structure of unknown content, related to train/platform layouts
 };
 
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
