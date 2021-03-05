@@ -105,6 +105,8 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         req.insert(QStringLiteral("getIST"), false);
         req.insert(QStringLiteral("getPasslist"), request.includeIntermediateStops());
         req.insert(QStringLiteral("getPolyline"), request.includePaths());
+        req.insert(QStringLiteral("getSimpleTrainComposition"), true);
+        req.insert(QStringLiteral("getTrainComposition"), true);
         req.insert(QStringLiteral("numF"), request.maximumResults());
 
         QDateTime dt = request.dateTime();
