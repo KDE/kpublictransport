@@ -50,7 +50,9 @@ QString VehicleLayoutRequest::cacheKey() const
 
 QJsonObject VehicleLayoutRequest::toJson(const VehicleLayoutRequest &req)
 {
-    return Json::toJson(req);
+    auto obj = Json::toJson(req);
+    obj.insert(QLatin1String("stopover"), Stopover::toJson(req.stopover()));
+    return obj;
 }
 
 QStringList VehicleLayoutRequest::backendIds() const
