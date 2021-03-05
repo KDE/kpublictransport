@@ -1,0 +1,118 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 3438,
+                "expectedArrivalTime": "2021-03-05T16:51:00",
+                "expectedDepartureTime": "2021-03-05T16:45:00",
+                "from": {
+                    "identifier": {
+                        "unit-test": "900001201"
+                    },
+                    "latitude": 52.53617858886719,
+                    "longitude": 13.343838691711426,
+                    "name": "S+U Westhafen (Berlin)",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2021-03-05T16:46:00",
+                        "expectedDepartureTime": "2021-03-05T16:46:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2021-03-05T16:46:00",
+                        "scheduledDepartureTime": "2021-03-05T16:46:00",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900002201"
+                            },
+                            "latitude": 52.532230377197266,
+                            "longitude": 13.341421127319336,
+                            "name": "U Birkenstr. (Berlin)",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2021-03-05T16:47:00",
+                        "expectedDepartureTime": "2021-03-05T16:47:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2021-03-05T16:47:00",
+                        "scheduledDepartureTime": "2021-03-05T16:47:00",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900003104"
+                            },
+                            "latitude": 52.52593994140625,
+                            "longitude": 13.341421127319336,
+                            "name": "U Turmstr. (Berlin)",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2021-03-05T16:49:00",
+                        "expectedDepartureTime": "2021-03-05T16:49:00",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2021-03-05T16:49:00",
+                        "scheduledDepartureTime": "2021-03-05T16:49:00",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900003101"
+                            },
+                            "latitude": 52.51810836791992,
+                            "longitude": 13.342166900634766,
+                            "name": "U Hansaplatz (Berlin)",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "2"
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "barrierefrei",
+                    "Fahrradmitnahme möglich",
+                    "Gemeinsam gegen Corona: Abstand halten und medizinische Maske tragen!\n\nbla bla"
+                ],
+                "route": {
+                    "direction": "S+U Rathaus Steglitz",
+                    "line": {
+                        "name": "U9"
+                    }
+                },
+                "scheduledArrivalTime": "2021-03-05T16:51:00",
+                "scheduledDepartureTime": "2021-03-05T16:45:00",
+                "to": {
+                    "identifier": {
+                        "unit-test": "900023201"
+                    },
+                    "latitude": 52.506919860839844,
+                    "longitude": 13.332711219787598,
+                    "name": "S+U Zoologischer Garten Bhf (Berlin)",
+                    "type": "Stop"
+                }
+            }
+        ]
+    }
+]

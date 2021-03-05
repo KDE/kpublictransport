@@ -1,0 +1,513 @@
+{
+  "ver": "1.21",
+  "ext": "BVG.1",
+  "lang": "deu",
+  "err": "OK",
+  "svcResL": [
+    {
+      "meth": "TripSearch",
+      "err": "OK",
+      "res": {
+        "common": {
+          "locL": [
+            {
+              "lid": "A=1@O=S+U Westhafen (Berlin)@X=13343839@Y=52536179@U=86@L=900001201@",
+              "type": "S",
+              "name": "S+U Westhafen (Berlin)",
+              "icoX": 0,
+              "extId": "900001201",
+              "state": "F",
+              "crd": {
+                "x": 13343839,
+                "y": 52536179,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 11
+            },
+            {
+              "lid": "A=1@O=S+U Zoologischer Garten Bhf (Berlin)@X=13332711@Y=52506919@U=86@L=900023201@",
+              "type": "S",
+              "name": "S+U Zoologischer Garten Bhf (Berlin)",
+              "icoX": 0,
+              "extId": "900023201",
+              "state": "F",
+              "crd": {
+                "x": 13332711,
+                "y": 52506919,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 107
+            },
+            {
+              "lid": "A=1@O=U Birkenstr. (Berlin)@X=13341421@Y=52532232@U=86@L=900002201@",
+              "type": "S",
+              "name": "U Birkenstr. (Berlin)",
+              "icoX": 2,
+              "extId": "900002201",
+              "state": "F",
+              "crd": {
+                "x": 13341421,
+                "y": 52532232,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 10
+            },
+            {
+              "lid": "A=1@O=U Turmstr. (Berlin)@X=13341421@Y=52525940@U=86@L=900003104@",
+              "type": "S",
+              "name": "U Turmstr. (Berlin)",
+              "icoX": 2,
+              "extId": "900003104",
+              "state": "F",
+              "crd": {
+                "x": 13341421,
+                "y": 52525940,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 10
+            },
+            {
+              "lid": "A=1@O=U Hansaplatz (Berlin)@X=13342167@Y=52518110@U=86@L=900003101@",
+              "type": "S",
+              "name": "U Hansaplatz (Berlin)",
+              "icoX": 2,
+              "extId": "900003101",
+              "state": "F",
+              "crd": {
+                "x": 13342167,
+                "y": 52518110,
+                "layerX": 0,
+                "crdSysX": 0
+              },
+              "pCls": 10
+            }
+          ],
+          "prodL": [
+            {
+              "name": "U9",
+              "nameS": "U9",
+              "number": "U9",
+              "icoX": 2,
+              "cls": 2,
+              "oprX": 0,
+              "prodCtx": {
+                "name": "      U9",
+                "num": "19035",
+                "line": "U9",
+                "matchId": "U9",
+                "catOut": "U       ",
+                "catOutS": "U",
+                "catOutL": "U       ",
+                "catIn": "U",
+                "catCode": "1",
+                "admin": "BVU---"
+              }
+            },
+            {
+              "name": "U9",
+              "nameS": "U9",
+              "number": "U9",
+              "icoX": 2,
+              "cls": 2,
+              "oprX": 1,
+              "prodCtx": {
+                "name": "      U9",
+                "num": "19035",
+                "line": "U9",
+                "matchId": "U9",
+                "catOut": "U       ",
+                "catOutS": "U",
+                "catOutL": "U       ",
+                "catIn": "U",
+                "catCode": "1",
+                "admin": "BVU---"
+              }
+            }
+          ],
+          "remL": [
+            {
+              "type": "A",
+              "code": "text.occup.loc.2nd.11",
+              "icoX": 4,
+              "txtN": "Geringe Auslastung erwartet"
+            },
+            {
+              "type": "A",
+              "code": "text.occup.loc.max.11",
+              "icoX": 5,
+              "txtN": "Geringe Belegung"
+            },
+            {
+              "type": "A",
+              "code": "text.occup.loc.2nd.12",
+              "icoX": 6,
+              "txtN": "Mittlere Auslastung erwartet"
+            },
+            {
+              "type": "A",
+              "code": "text.occup.loc.max.12",
+              "icoX": 5,
+              "txtN": "Hohe Belegung"
+            },
+            {
+              "type": "A",
+              "code": "bf",
+              "prio": 2,
+              "icoX": 5,
+              "txtN": "barrierefrei"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 10,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme möglich"
+            },
+            {
+              "type": "A",
+              "code": "text.occup.jny.2nd.11",
+              "icoX": 4,
+              "txtN": "Geringe Auslastung erwartet"
+            },
+            {
+              "type": "A",
+              "code": "text.occup.jny.max.11",
+              "icoX": 4,
+              "txtN": "Geringe Auslastung erwartet"
+            }
+          ],
+          "himL": [
+            {
+              "hid": "108728",
+              "act": true,
+              "head": "Gemeinsam gegen Corona: Abstand halten und medizinische Maske tragen!",
+              "text": "bla bla",
+              "icoX": 8,
+              "prio": 100,
+              "prod": 65535,
+              "lModDate": "20210122",
+              "lModTime": "071704",
+              "sDate": "20210123",
+              "sTime": "000000",
+              "eDate": "20211211",
+              "eTime": "235900",
+              "sDaily": "000000",
+              "eDaily": "235900",
+              "comp": "VBB"
+            }
+          ],
+          "tcocL": [
+            {
+              "c": "SECOND"
+            },
+            {
+              "c": "SECOND"
+            },
+            {
+              "c": "SECOND"
+            },
+            {
+              "c": "SECOND"
+            },
+            {
+              "c": "SECOND"
+            },
+            {
+              "c": "SECOND"
+            }
+          ],
+          "dirL": [
+            {
+              "txt": "S+U Rathaus Steglitz",
+              "flg": "1"
+            }
+          ]
+        },
+        "outConL": [
+          {
+            "cid": "C-0",
+            "date": "20210305",
+            "dur": "000600",
+            "chg": 0,
+            "dep": {
+              "locX": 0,
+              "idx": 4,
+              "dProdX": 0,
+              "dInR": true,
+              "dTimeS": "164500",
+              "dTimeR": "164500",
+              "dProgType": "CALCULATED",
+              "dTrnCmpSX": {
+                "tcocX": [
+                  0
+                ]
+              },
+              "msgL": [
+                {
+                  "type": "REM",
+                  "remX": 0
+                },
+                {
+                  "type": "REM",
+                  "remX": 1
+                }
+              ],
+              "type": "N"
+            },
+            "arr": {
+              "locX": 1,
+              "idx": 8,
+              "aOutR": true,
+              "aTimeS": "165100",
+              "aTimeR": "165100",
+              "aProgType": "CALCULATED",
+              "type": "N"
+            },
+            "secL": [
+              {
+                "type": "JNY",
+                "icoX": 2,
+                "dep": {
+                  "locX": 0,
+                  "idx": 4,
+                  "dProdX": 0,
+                  "dInR": true,
+                  "dTimeS": "164500",
+                  "dTimeR": "164500",
+                  "dProgType": "CALCULATED",
+                  "dTrnCmpSX": {
+                    "tcocX": [
+                      1
+                    ]
+                  },
+                  "msgL": [
+                    {
+                      "type": "REM",
+                      "remX": 0
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 1
+                    }
+                  ],
+                  "type": "N"
+                },
+                "arr": {
+                  "locX": 1,
+                  "idx": 8,
+                  "aOutR": true,
+                  "aTimeS": "165100",
+                  "aTimeR": "165100",
+                  "aProgType": "CALCULATED",
+                  "type": "N"
+                },
+                "jny": {
+                  "jid": "1|32254|10|86|5032021",
+                  "prodX": 1,
+                  "dirTxt": "S+U Rathaus Steglitz",
+                  "dirFlg": "1",
+                  "status": "P",
+                  "isRchbl": true,
+                  "stopL": [
+                    {
+                      "locX": 0,
+                      "idx": 4,
+                      "dProdX": 1,
+                      "dInR": true,
+                      "dTimeS": "164500",
+                      "dTimeR": "164500",
+                      "dProgType": "CALCULATED",
+                      "dDirTxt": "S+U Rathaus Steglitz",
+                      "dDirFlg": "1",
+                      "dTrnCmpSX": {
+                        "tcocX": [
+                          2
+                        ]
+                      },
+                      "msgL": [
+                        {
+                          "type": "REM",
+                          "remX": 0
+                        },
+                        {
+                          "type": "REM",
+                          "remX": 1
+                        }
+                      ],
+                      "type": "N"
+                    },
+                    {
+                      "locX": 2,
+                      "idx": 5,
+                      "aProdX": 1,
+                      "aOutR": true,
+                      "aTimeS": "164600",
+                      "aTimeR": "164600",
+                      "aProgType": "CALCULATED",
+                      "dProdX": 1,
+                      "dInR": true,
+                      "dTimeS": "164600",
+                      "dTimeR": "164600",
+                      "dProgType": "CALCULATED",
+                      "dTrnCmpSX": {
+                        "tcocX": [
+                          3
+                        ]
+                      },
+                      "msgL": [
+                        {
+                          "type": "REM",
+                          "remX": 2
+                        },
+                        {
+                          "type": "REM",
+                          "remX": 3
+                        }
+                      ],
+                      "type": "N"
+                    },
+                    {
+                      "locX": 3,
+                      "idx": 6,
+                      "aProdX": 1,
+                      "aOutR": true,
+                      "aTimeS": "164700",
+                      "aTimeR": "164700",
+                      "aProgType": "CALCULATED",
+                      "dProdX": 1,
+                      "dInR": true,
+                      "dTimeS": "164700",
+                      "dTimeR": "164700",
+                      "dProgType": "CALCULATED",
+                      "dTrnCmpSX": {
+                        "tcocX": [
+                          4
+                        ]
+                      },
+                      "msgL": [
+                        {
+                          "type": "REM",
+                          "remX": 2
+                        },
+                        {
+                          "type": "REM",
+                          "remX": 3
+                        }
+                      ],
+                      "type": "N"
+                    },
+                    {
+                      "locX": 4,
+                      "idx": 7,
+                      "aProdX": 1,
+                      "aOutR": true,
+                      "aTimeS": "164900",
+                      "aTimeR": "164900",
+                      "aProgType": "CALCULATED",
+                      "dProdX": 1,
+                      "dInR": true,
+                      "dTimeS": "164900",
+                      "dTimeR": "164900",
+                      "dProgType": "CALCULATED",
+                      "dTrnCmpSX": {
+                        "tcocX": [
+                          5
+                        ]
+                      },
+                      "msgL": [
+                        {
+                          "type": "REM",
+                          "remX": 0
+                        },
+                        {
+                          "type": "REM",
+                          "remX": 1
+                        }
+                      ],
+                      "type": "N"
+                    },
+                    {
+                      "locX": 1,
+                      "idx": 8,
+                      "aProdX": 1,
+                      "aOutR": true,
+                      "aTimeS": "165100",
+                      "aTimeR": "165100",
+                      "aProgType": "CALCULATED",
+                      "type": "N"
+                    }
+                  ],
+                  "pos": {
+                    "x": 13345709,
+                    "y": 52539954,
+                    "layerX": 0,
+                    "crdSysX": 0
+                  },
+                  "freq": {
+                    "minC": 4,
+                    "maxC": 5,
+                    "numC": 26
+                  },
+                  "msgL": [
+                    {
+                      "type": "REM",
+                      "remX": 4,
+                      "fLocX": 0,
+                      "tLocX": 1
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 5,
+                      "fLocX": 0,
+                      "tLocX": 1
+                    },
+                    {
+                      "type": "HIM",
+                      "himX": 0,
+                      "fLocX": 0
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 6,
+                      "dspl": "U",
+                      "persist": false
+                    },
+                    {
+                      "type": "REM",
+                      "remX": 7
+                    }
+                  ],
+                  "subscr": "F",
+                  "prodL": [
+                    {
+                      "prodX": 1,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 4,
+                      "tIdx": 8
+                    }
+                  ],
+                  "dirL": [
+                    {
+                      "dirX": 0,
+                      "fLocX": 0,
+                      "tLocX": 1,
+                      "fIdx": 4,
+                      "tIdx": 8
+                    }
+                  ]
+                }
+              }
+            ],
+            "conSubscr": "F",
+            "recState": "U"
+          }
+        ]
+      }
+    }
+  ]
+}

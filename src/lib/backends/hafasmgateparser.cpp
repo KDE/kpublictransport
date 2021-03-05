@@ -7,7 +7,8 @@
 #include "hafasmgateparser.h"
 #include "hafasvehiclelayoutparser.h"
 #include "logging.h"
-#include "../geo/polylinedecoder_p.h"
+#include "datatypes/loadutil_p.h"
+#include "geo/polylinedecoder_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
@@ -28,6 +29,7 @@ using namespace KPublicTransport;
 struct Message {
     QVariant content;
     Disruption::Effect effect = Disruption::NormalService;
+    LoadInfo loadInfo;
 };
 
 HafasMgateParser::HafasMgateParser() = default;
@@ -52,6 +54,14 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     }
     return icos;
 }
+
+static constexpr const Load::Category load_value_map[] = {
+    Load::Unknown,
+    Load::Low, // 1
+    Load::Medium, // 2
+    Load::High, // 3
+    Load::Full // 4
+};
 
 static const struct {
     const char *type;
@@ -97,6 +107,17 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
             m.content = HafasVehicleLayoutParser::parseTrainFormation(remObj.value(QLatin1String("txtN")).toString().toUtf8());
         } else if (type == QLatin1Char('I') && code == QLatin1String("XP")) {
             m.content = HafasVehicleLayoutParser::parsePlatformSectors(remObj.value(QLatin1String("txtN")).toString().toUtf8());
+        } else if (type == QLatin1Char('A') && (code.startsWith(QLatin1String("text.occup.loc.")) || code.startsWith(QLatin1String("text.occup.jny.")))) {
+            static QRegularExpression rx(QStringLiteral("\\.(max|1st|2nd)\\.1([1-4])$"));
+            const auto match = rx.match(code);
+            if (match.hasMatch()) {
+                m.loadInfo.setLoad(load_value_map[match.captured(2).toInt()]);
+                if (match.captured(1) != QLatin1String("max")) {
+                    m.loadInfo.setSeatingClass(match.captured(1).left(1));
+                }
+            } else {
+                m.content = remObj.value(QLatin1String("txtN")).toString();
+            }
         } else {
             // generic text
             m.content = remObj.value(QLatin1String("txtN")).toString();
@@ -154,25 +175,26 @@ static void processMessageList(const QJsonObject &obj, const std::vector<Message
 }
 
 template <typename T>
+static void applyMessage(T &elem, const Message &msg)
+{
+    if (msg.content.type() == QVariant::String) {
+        elem.addNote(msg.content.toString());
+    }
+    if (msg.effect == Disruption::NoService) {
+        elem.setDisruptionEffect(msg.effect);
+    }
+    if (msg.loadInfo.load() != Load::Unknown) {
+        elem.setLoadInformation(LoadUtil::merge(elem.loadInformation(), {msg.loadInfo}));
+    }
+}
+
+template <typename T>
 static void parseMessageList(T &elem, const QJsonObject &obj, const std::vector<Message> &remarks, const std::vector<Message> &warnings)
 {
     processMessageList(obj, remarks, warnings, [&elem](const Message &msg, const QJsonObject&) {
-        if (msg.content.type() == QVariant::String) {
-            elem.addNote(msg.content.toString());
-        }
-        if (msg.effect == Disruption::NoService) {
-            elem.setDisruptionEffect(msg.effect);
-        }
+        applyMessage(elem, msg);
     });
 }
-
-static constexpr const Load::Category load_value_map[] = {
-    Load::Unknown,
-    Load::Low, // 1
-    Load::Medium, // 2
-    Load::High, // 3
-    Load::Full // 4
-};
 
 static std::vector<LoadInfo> parseLoadInformation(const QJsonArray &tcocL)
 {
@@ -420,7 +442,7 @@ static void parseTrainComposition(const QJsonObject &obj, T &result,
             load.push_back(loadInfos[i]);
         }
     }
-    result.setLoadInformation(std::move(load));
+    result.setLoadInformation(LoadUtil::merge(std::move(load), result.loadInformation()));
 
     // platform
     const auto tcpdX = dTrnCmpSX.value(QLatin1String("tcpdX")).toInt(-1);
@@ -608,16 +630,12 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                             if (fromIdx != toIdx || fromIdx != locIdx) {
                                 return;
                             }
-                            if (msg.content.type() == QVariant::String) {
-                                stop.addNote(msg.content.toString());
-                            } else if (msg.content.userType() == qMetaTypeId<Platform>()) {
+                            if (msg.content.userType() == qMetaTypeId<Platform>()) {
                                 stop.setPlatformLayout(Platform::merge(stop.platformLayout(), msg.content.value<Platform>()));
                             } else if (msg.content.userType() == qMetaTypeId<Vehicle>()) {
                                 stop.setVehicleLayout(Vehicle::merge(stop.vehicleLayout(), msg.content.value<Vehicle>()));
                             }
-                            if (msg.effect == Disruption::NoService) {
-                                stop.setDisruptionEffect(msg.effect);
-                            }
+                            applyMessage(stop, msg);
                         });
                         parseTrainComposition(stopObj, stop, loadInfos, platforms, vehicles);
                         stops.push_back(stop);
@@ -631,9 +649,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                     if (from >= 0 && to >= 0 && from != fromIdx && toIdx != to && from == to) {
                         return;
                     }
-                    if (msg.content.type() == QVariant::String) {
-                        section.addNote(msg.content.toString());
-                    } else if (msg.content.userType() == qMetaTypeId<Platform>()) {
+                    if (msg.content.userType() == qMetaTypeId<Platform>()) {
                         if (from == to && to == toIdx) {
                             section.setArrivalPlatformLayout(Platform::merge(section.arrivalPlatformLayout(), msg.content.value<Platform>()));
                         } else {
@@ -646,9 +662,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
                             section.setDepartureVehicleLayout(Vehicle::merge(section.departureVehicleLayout(), msg.content.value<Vehicle>()));
                         }
                     }
-                    if (msg.effect == Disruption::NoService) {
-                        section.setDisruptionEffect(msg.effect);
-                    }
+                    applyMessage(section, msg);
                 });
                 parseTrainComposition(dep, section, loadInfos, platforms, vehicles);
                 section.setPath(parsePolyG(jnyObj, paths));

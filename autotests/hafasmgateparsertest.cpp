@@ -142,6 +142,9 @@ private Q_SLOTS:
         QTest::newRow("de-db-canceled-with-path")
             << s(SOURCE_DIR "/data/hafas/canceled-journey-with-path.in.json")
             << s(SOURCE_DIR "/data/hafas/canceled-journey-with-path.out.json");
+        QTest::newRow("de-bvg-alternative-load-messages")
+            << s(SOURCE_DIR "/data/hafas/journey-bvg-load-messages.in.json")
+            << s(SOURCE_DIR "/data/hafas/journey-bvg-load-messages.out.json");
     }
 
     void testParseJourneys()
