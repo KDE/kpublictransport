@@ -54,11 +54,18 @@ class KPUBLICTRANSPORT_EXPORT Platform
     /** Length of the platform, in meter.
      *  Value is negative if the information is not available.
      *  Useful for display scaling from relative platform coordinates.
+     *  @see hasAbsoluteLength
      */
     KPUBLICTRANSPORT_PROPERTY(int, length, setLength)
 
     /** Platform sections for consumption by QML. */
     Q_PROPERTY(QVariantList sections READ sectionsVariant)
+
+    /** @c true if the absolute length of the platform in meter is known.
+     *  A platform can have a positive length if proportional section sizes are
+     *  known, but the absolute length is unknown.
+     */
+    Q_PROPERTY(bool hasAbsoluteLength READ hasAbsoluteLength)
 
 public:
     /** Returns @c true if this object contains no information beyond default values. */
@@ -70,6 +77,8 @@ public:
     std::vector<PlatformSection>&& takeSections();
     /** Sets the platform sections. */
     void setSections(std::vector<PlatformSection> &&sections);
+
+    bool hasAbsoluteLength() const;
 
     /** Merge two platform instances. */
     static Platform merge(const Platform &lhs, const Platform &rhs);

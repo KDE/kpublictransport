@@ -85,6 +85,11 @@ void Platform::setSections(std::vector<PlatformSection> &&sections)
     d->sections = std::move(sections);
 }
 
+bool Platform::hasAbsoluteLength() const
+{
+    return d->length > 1.0;
+}
+
 Platform Platform::merge(const Platform &lhs, const Platform &rhs)
 {
     // TODO expand this
