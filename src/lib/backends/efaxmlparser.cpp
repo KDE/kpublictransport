@@ -90,6 +90,15 @@ static QDateTime parseDateTime(ScopedXmlStreamReader &&reader)
     return dt;
 }
 
+struct {
+    const char *name;
+    Load::Category category;
+} static constexpr const occupancy_load_map[] = {
+    { "MANY_SEATS", Load::Low },
+    { "FEW_SEATS", Load::Medium },
+    { "STANDING_ONLY", Load::High },
+};
+
 Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
 {
     Stopover dep;
@@ -109,6 +118,18 @@ Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
     }
     stop.setIdentifier(m_locationIdentifierType, stopId);
     dep.setStopPoint(stop);
+
+    const auto occupancy = reader.attributes().value(QLatin1String("occupancy"));
+    if (!occupancy.isEmpty()) {
+        LoadInfo load;
+        for (const auto &map : occupancy_load_map) {
+            if (occupancy == QLatin1String(map.name)) {
+                load.setLoad(map.category);
+                break;
+            }
+        }
+        dep.setLoadInformation({load});
+    }
 
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdServingLine")) {
