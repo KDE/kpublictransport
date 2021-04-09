@@ -33,10 +33,10 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     SOVERSION 1
 )
 
-find_package(Qt5 5.11 REQUIRED COMPONENTS Quick)
+find_package(Qt5 5.15 REQUIRED COMPONENTS Quick)
 
 if (BUILD_TESTING)
-    find_package(Qt5 5.11 REQUIRED COMPONENTS Test Widgets)
+    find_package(Qt5 5.15 REQUIRED COMPONENTS Test Widgets)
 endif()
 
 find_package(ZLIB REQUIRED)
@@ -49,7 +49,7 @@ if (NOT WIN32)
 endif()
 
 if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
-   add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050d00)
+   add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
    add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054400)
 endif()
 

@@ -146,11 +146,7 @@ struct {
 static QStringList splitAndNormalizeName(const QString &name)
 {
     static const QRegularExpression splitRegExp(QStringLiteral(R"([, \(\)-/\.\[\]])"));
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    auto l = name.split(splitRegExp, QString::SkipEmptyParts);
-#else
     auto l = name.split(splitRegExp, Qt::SkipEmptyParts);
-#endif
 
     for (auto it = l.begin(); it != l.end();) {
         // ignore single-letter fragments, with the exception of the 'H' used in Denmark
