@@ -19,6 +19,9 @@ namespace KPublicTransport {
 /** De/serialization helper methods. */
 namespace Json
 {
+    /** Looks for a translated value in @p obj with @p key. */
+    QString translatedValue(const QJsonObject &obj, const QString &key);
+
     QJsonObject toJson(const QMetaObject *mo, const void *elem);
 
     /** Serialize from QMetaObject. */

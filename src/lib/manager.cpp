@@ -19,6 +19,7 @@
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/backend.h"
 #include "datatypes/disruption.h"
+#include "datatypes/json_p.h"
 #include "datatypes/platform.h"
 #include "datatypes/vehicle.h"
 #include "geo/geojson_p.h"
@@ -113,21 +114,6 @@ QNetworkAccessManager* ManagerPrivate::nam()
     return m_nam;
 }
 
-static QString translatedValue(const QJsonObject &obj, const QString &key)
-{
-    auto languageWithCountry = QLocale().name();
-    auto it = obj.constFind(key + QLatin1Char('[') + languageWithCountry + QLatin1Char(']'));
-    if (it != obj.constEnd()) {
-        return it.value().toString();
-    }
-    const auto language = languageWithCountry.midRef(0, languageWithCountry.indexOf(QLatin1Char('_')));
-    it = obj.constFind(key + QLatin1Char('[') + language + QLatin1Char(']'));
-    if (it != obj.constEnd()) {
-        return it.value().toString();
-    }
-    return obj.value(key).toString();
-}
-
 
 void ManagerPrivate::loadNetworks()
 {
@@ -157,8 +143,8 @@ void ManagerPrivate::loadNetworks()
             Backend metaData;
             metaData.setIdentifier(net->backendId());
             const auto jsonMetaData = doc.object().value(QLatin1String("KPlugin")).toObject();
-            metaData.setName(translatedValue(jsonMetaData, QStringLiteral("Name")));
-            metaData.setDescription(translatedValue(jsonMetaData, QStringLiteral("Description")));
+            metaData.setName(Json::translatedValue(jsonMetaData, QStringLiteral("Name")));
+            metaData.setDescription(Json::translatedValue(jsonMetaData, QStringLiteral("Description")));
             metaData.setIsSecure(net->capabilities() & AbstractBackend::Secure);
 
             m_backendMetaData.push_back(std::move(metaData));

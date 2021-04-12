@@ -10,6 +10,7 @@
 #include <QColor>
 #include <QDateTime>
 #include <QDebug>
+#include <QLocale>
 #include <QMetaObject>
 #include <QMetaProperty>
 #include <QRectF>
@@ -20,6 +21,21 @@
 #include <cmath>
 
 using namespace KPublicTransport;
+
+QString Json::translatedValue(const QJsonObject &obj, const QString &key)
+{
+    auto languageWithCountry = QLocale().name();
+    auto it = obj.constFind(key + QLatin1Char('[') + languageWithCountry + QLatin1Char(']'));
+    if (it != obj.constEnd()) {
+        return it.value().toString();
+    }
+    const auto language = languageWithCountry.midRef(0, languageWithCountry.indexOf(QLatin1Char('_')));
+    it = obj.constFind(key + QLatin1Char('[') + language + QLatin1Char(']'));
+    if (it != obj.constEnd()) {
+        return it.value().toString();
+    }
+    return obj.value(key).toString();
+}
 
 static QJsonValue variantToJson(const QVariant &v)
 {
