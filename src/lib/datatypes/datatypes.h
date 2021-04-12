@@ -37,6 +37,7 @@ public: \
     Class& operator=(const Class&); \
     operator QVariant () const; \
 private: \
+    friend class Class ## Private; \
     QExplicitlySharedDataPointer<Class ## Private> d;
 
 #define KPUBLICTRANSPORT_PROPERTY(Type, Getter, Setter) \

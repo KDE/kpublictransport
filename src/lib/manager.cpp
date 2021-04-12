@@ -18,6 +18,7 @@
 #include "vehiclelayoutreply.h"
 #include "datatypes/attributionutil_p.h"
 #include "datatypes/backend.h"
+#include "datatypes/backend_p.h"
 #include "datatypes/disruption.h"
 #include "datatypes/json_p.h"
 #include "datatypes/platform.h"
@@ -140,11 +141,7 @@ void ManagerPrivate::loadNetworks()
                 m_attributions.push_back(net->attribution());
             }
 
-            Backend metaData;
-            metaData.setIdentifier(net->backendId());
-            const auto jsonMetaData = doc.object().value(QLatin1String("KPlugin")).toObject();
-            metaData.setName(Json::translatedValue(jsonMetaData, QStringLiteral("Name")));
-            metaData.setDescription(Json::translatedValue(jsonMetaData, QStringLiteral("Description")));
+            auto metaData = BackendPrivate::fromJson(doc.object(), net->backendId());
             metaData.setIsSecure(net->capabilities() & AbstractBackend::Secure);
 
             m_backendMetaData.push_back(std::move(metaData));

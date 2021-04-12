@@ -5,22 +5,13 @@
 */
 
 #include "backend.h"
+#include "backend_p.h"
 #include "datatypes_p.h"
+#include "json_p.h"
 
-#include <QString>
+#include <QJsonObject>
 
 using namespace KPublicTransport;
-
-namespace KPublicTransport {
-
-class BackendPrivate : public QSharedData {
-public:
-    QString identifier;
-    QString name;
-    QString description;
-    bool isSecure;
-};
-}
 
 KPUBLICTRANSPORT_MAKE_GADGET(Backend)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, QString, identifier, setIdentifier)
@@ -34,6 +25,16 @@ QString Backend::primaryCountryCode() const
         return identifier().left(2).toUpper();
     }
     return {};
+}
+
+Backend BackendPrivate::fromJson(const QJsonObject &obj, const QString &backendId)
+{
+    Backend b;
+    b.d->identifier = backendId;
+    const auto jsonMetaData = obj.value(QLatin1String("KPlugin")).toObject();
+    b.d->name = Json::translatedValue(jsonMetaData, QStringLiteral("Name"));
+    b.d->description = Json::translatedValue(jsonMetaData, QStringLiteral("Description"));
+    return b;
 }
 
 #include "moc_backend.cpp"
