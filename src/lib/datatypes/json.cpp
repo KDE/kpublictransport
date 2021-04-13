@@ -37,6 +37,17 @@ QString Json::translatedValue(const QJsonObject &obj, const QString &key)
     return obj.value(key).toString();
 }
 
+QStringList Json::toStringList(const QJsonValue &v)
+{
+    const auto a = v.toArray();
+    QStringList l;
+    l.reserve(a.size());
+    for (const auto &av : a) {
+        l.push_back(av.toString());
+    }
+    return l;
+}
+
 static QJsonValue variantToJson(const QVariant &v)
 {
     switch (v.userType()) {
@@ -164,15 +175,7 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
         case QVariant::Url:
             return QUrl(v.toString());
         case QVariant::StringList:
-        {
-            const auto a = v.toArray();
-            QStringList l;
-            l.reserve(a.size());
-            for (const auto &av : a) {
-                l.push_back(av.toString());
-            }
-            return l;
-        }
+            return Json::toStringList(v);
         case QVariant::RectF:
         {
             const auto obj = v.toObject();

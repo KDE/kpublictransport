@@ -13,6 +13,7 @@
 #include <vector>
 
 struct QMetaObject;
+class QStringList;
 
 namespace KPublicTransport {
 
@@ -21,6 +22,8 @@ namespace Json
 {
     /** Looks for a translated value in @p obj with @p key. */
     QString translatedValue(const QJsonObject &obj, const QString &key);
+    /** Convert a QJsonValue to a QStringList, assuming it contains an array of strings. */
+    QStringList toStringList(const QJsonValue &v);
 
     QJsonObject toJson(const QMetaObject *mo, const void *elem);
 
