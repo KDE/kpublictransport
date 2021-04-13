@@ -87,9 +87,8 @@ public:
 
     Manager *q = nullptr;
     QNetworkAccessManager *m_nam = nullptr;
-    std::vector<std::unique_ptr<AbstractBackend>> m_backends;
+    std::vector<Backend> m_backends;
     std::vector<Attribution> m_attributions;
-    std::vector<Backend> m_backendMetaData;
 
     // we store both explicitly to have a third state, backends with the enabled state being the "default" (whatever that might eventually be)
     QStringList m_enabledBackends;
@@ -141,20 +140,15 @@ void ManagerPrivate::loadNetworks()
                 m_attributions.push_back(net->attribution());
             }
 
-            auto metaData = BackendPrivate::fromJson(doc.object(), net->backendId());
-            metaData.setIsSecure(net->capabilities() & AbstractBackend::Secure);
-
-            m_backendMetaData.push_back(std::move(metaData));
-            m_backends.push_back(std::move(net));
+            auto b = BackendPrivate::fromJson(doc.object());
+            BackendPrivate::setImpl(b, std::move(net));
+            m_backends.push_back(std::move(b));
         } else {
             qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();
         }
     }
 
     std::stable_sort(m_backends.begin(), m_backends.end(), [](const auto &lhs, const auto &rhs) {
-        return lhs->backendId() < rhs->backendId();
-    });
-    std::stable_sort(m_backendMetaData.begin(), m_backendMetaData.end(), [](const auto &lhs, const auto &rhs) {
         return lhs.identifier() < rhs.identifier();
     });
 
@@ -546,7 +540,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     // first time/direct query
     if (req.contexts().empty()) {
         for (const auto &backend : d->m_backends) {
-            if (d->queryJourney(backend.get(), req, reply)) {
+            if (d->queryJourney(BackendPrivate::impl(backend), req, reply)) {
                 ++pendingOps;
             }
         }
@@ -602,7 +596,7 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
     // first time/direct query
     if (req.contexts().empty()) {
         for (const auto &backend : d->m_backends) {
-            if (d->queryStopover(backend.get(), req, reply)) {
+            if (d->queryStopover(BackendPrivate::impl(backend), req, reply)) {
                 ++pendingOps;
             }
         }
@@ -653,8 +647,9 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         return reply;
     }
 
-    for (const auto &backend : d->m_backends) {
-        if (d->shouldSkipBackend(backend.get(), req)) {
+    for (const auto &b : d->m_backends) {
+        const auto backend = BackendPrivate::impl(b);
+        if (d->shouldSkipBackend(backend, req)) {
             continue;
         }
         if (req.hasCoordinate() && backend->isLocationExcluded(req.location())) {
@@ -697,8 +692,9 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         return reply;
     }
 
-    for (const auto &backend : d->m_backends) {
-        if (d->shouldSkipBackend(backend.get(), req)) {
+    for (const auto &b : d->m_backends) {
+        const auto backend = BackendPrivate::impl(b);
+        if (d->shouldSkipBackend(backend, req)) {
             continue;
         }
         if (req.stopover().stopPoint().hasCoordinate() && backend->isLocationExcluded(req.stopover().stopPoint())) {
@@ -750,7 +746,7 @@ QVariantList Manager::attributionsVariant() const
 
 const std::vector<Backend>& Manager::backends() const
 {
-    return d->m_backendMetaData;
+    return d->m_backends;
 }
 
 bool Manager::isBackendEnabled(const QString &backendId) const

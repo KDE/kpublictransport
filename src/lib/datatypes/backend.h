@@ -23,15 +23,15 @@ class KPUBLICTRANSPORT_EXPORT Backend
     /** Internal identifier of this backend.
      *  Not intended for display, use for storing per-backend settings for example.
      */
-    KPUBLICTRANSPORT_PROPERTY(QString, identifier, setIdentifier)
+    Q_PROPERTY(QString identifier READ identifier)
     /** Short, humand readable name of the backend. Typically the company providing the service */
-    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+    Q_PROPERTY(QString name READ name)
     /** Humand readable description of this backend. */
-    KPUBLICTRANSPORT_PROPERTY(QString, description, setDescription)
+    Q_PROPERTY(QString description READ description)
     /** Supports secrure network access.
      *  Yes, even in 2019 that is unfortunately not guaranteed.
      */
-    KPUBLICTRANSPORT_PROPERTY(bool, isSecure, setIsSecure)
+    Q_PROPERTY(bool isSecure READ isSecure)
 
     /** ISO 3166-2 alpha 2 code of the country this backend service is primarity addressing.
      *  Returns an empty value for global/international services.
@@ -39,6 +39,10 @@ class KPUBLICTRANSPORT_EXPORT Backend
     Q_PROPERTY(QString primaryCountryCode READ primaryCountryCode)
 
 public:
+    QString identifier() const;
+    QString name() const;
+    QString description() const;
+    bool isSecure() const;
     QString primaryCountryCode() const;
 };
 

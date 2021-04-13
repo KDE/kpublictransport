@@ -6,6 +6,7 @@
 
 #include "backend.h"
 #include "backend_p.h"
+#include "backends/abstractbackend.h"
 #include "datatypes_p.h"
 #include "json_p.h"
 
@@ -14,10 +15,26 @@
 using namespace KPublicTransport;
 
 KPUBLICTRANSPORT_MAKE_GADGET(Backend)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, QString, identifier, setIdentifier)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, QString, name, setName)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, QString, description, setDescription)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Backend, bool, isSecure, setIsSecure)
+
+QString Backend::identifier() const
+{
+    return d->m_backendImpl ? d->m_backendImpl->backendId() : QString();
+}
+
+QString Backend::name() const
+{
+    return d->name;
+}
+
+QString Backend::description() const
+{
+    return d->description;
+}
+
+bool Backend::isSecure() const
+{
+    return d->m_backendImpl && d->m_backendImpl->capabilities() & AbstractBackend::Secure;
+}
 
 QString Backend::primaryCountryCode() const
 {
@@ -27,10 +44,19 @@ QString Backend::primaryCountryCode() const
     return {};
 }
 
-Backend BackendPrivate::fromJson(const QJsonObject &obj, const QString &backendId)
+const AbstractBackend* BackendPrivate::impl(const Backend &b)
+{
+    return b.d->m_backendImpl.get();
+}
+
+void BackendPrivate::setImpl(Backend &b, std::unique_ptr<AbstractBackend> &&impl)
+{
+    b.d->m_backendImpl = std::move(impl);
+}
+
+Backend BackendPrivate::fromJson(const QJsonObject &obj)
 {
     Backend b;
-    b.d->identifier = backendId;
     const auto jsonMetaData = obj.value(QLatin1String("KPlugin")).toObject();
     b.d->name = Json::translatedValue(jsonMetaData, QStringLiteral("Name"));
     b.d->description = Json::translatedValue(jsonMetaData, QStringLiteral("Description"));

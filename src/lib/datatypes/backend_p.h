@@ -10,20 +10,24 @@
 #include <QSharedData>
 #include <QString>
 
+#include <memory>
+
 class QJsonObject;
 
 namespace KPublicTransport {
 
+class AbstractBackend;
 class Backend;
 
 class BackendPrivate : public QSharedData {
 public:
-    static Backend fromJson(const QJsonObject &obj, const QString &backendId);
+    static const AbstractBackend* impl(const Backend &b);
+    static void setImpl(Backend &b, std::unique_ptr<AbstractBackend> &&impl);
+    static Backend fromJson(const QJsonObject &obj);
 
-    QString identifier;
+    std::unique_ptr<AbstractBackend> m_backendImpl;
     QString name;
     QString description;
-    bool isSecure;
 };
 
 }
