@@ -4,7 +4,9 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <KPublicTransport/Backend>
 #include <KPublicTransport/BackendModel>
+#include <KPublicTransport/CoverageArea>
 #include <KPublicTransport/Manager>
 
 #include <QAbstractItemModelTester>
@@ -23,6 +25,19 @@ private Q_SLOTS:
     {
         qputenv("TZ", "UTC");
         QStandardPaths::setTestModeEnabled(true);
+    }
+
+    void testCoverageData()
+    {
+        Manager mgr;
+        for (const auto &b : mgr.backends()) {
+            QVERIFY(!b.identifier().isEmpty());
+            QVERIFY(!b.name().isEmpty());
+            // TODO make this mandatory once all configurations have it
+            if (b.coverageArea(CoverageArea::Realtime).isEmpty() && b.coverageArea(CoverageArea::Regular).isEmpty() && b.coverageArea(CoverageArea::Any).isEmpty()) {
+                qWarning() << b.identifier() << "has no coverage areas defined!";
+            }
+        }
     }
 
     void testBackendModel()

@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_BACKEND_P_H
 #define KPUBLICTRANSPORT_BACKEND_P_H
 
+#include "coveragearea.h"
+
 #include <QSharedData>
 #include <QString>
 
@@ -28,6 +30,7 @@ public:
     std::unique_ptr<AbstractBackend> m_backendImpl;
     QString name;
     QString description;
+    CoverageArea coverage[3];
 };
 
 }

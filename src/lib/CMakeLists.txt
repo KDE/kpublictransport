@@ -49,6 +49,7 @@ set(kpublictransport_srcs
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
     datatypes/backend.cpp
+    datatypes/coveragearea.cpp
     datatypes/disruption.cpp
     datatypes/equipment.cpp
     datatypes/equipmentutil.cpp
@@ -147,6 +148,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     HEADER_NAMES
         Attribution
         Backend
+        CoverageArea
         Datatypes
         Departure
         Disruption

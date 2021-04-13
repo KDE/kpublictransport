@@ -8,6 +8,7 @@
 #define KPUBLICTRANSPORT_BACKEND_H
 
 #include "kpublictransport_export.h"
+#include "coveragearea.h"
 #include "datatypes.h"
 
 namespace KPublicTransport {
@@ -44,6 +45,8 @@ public:
     QString description() const;
     bool isSecure() const;
     QString primaryCountryCode() const;
+
+    CoverageArea coverageArea(CoverageArea::Type coverageType) const;
 };
 
 }
