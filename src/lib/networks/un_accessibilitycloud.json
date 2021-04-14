@@ -36,6 +36,19 @@
         "name": "Accessibility Cloud by Sozialhelden e.V.",
         "url": "https://accessibility.cloud/"
     },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [ -180.0, -90.0 ], [ -180.0, 90.0 ], [ 180.0, 90.0 ], [ 180.0, -90.0 ], [ -180.0, -90.0 ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [ "UN" ]
+        }
+    },
     "options": {
         "token": "d45e7a23f6b20679a6bbdd59829cbce8"
     },

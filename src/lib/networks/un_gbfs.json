@@ -36,6 +36,19 @@
         "Name[uk]": "Велосипеди і скутери спільного користування",
         "Name[x-test]": "xxShared bikes/scootersxx"
     },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [ -180.0, -90.0 ], [ -180.0, 90.0 ], [ 180.0, 90.0 ], [ 180.0, -90.0 ], [ -180.0, -90.0 ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [ "UN" ]
+        }
+    },
     "type": {
         "gbfs": true
     }

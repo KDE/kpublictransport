@@ -45,7 +45,7 @@
         "name": "DB Fernverkehr AG"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -72,7 +72,8 @@
                     ]
                 ],
                 "type": "Polygon"
-            }
+            },
+            "region": [ "AT", "CH", "DE", "LI", "LU" ]
         }
     },
     "options": {

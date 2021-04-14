@@ -33,9 +33,16 @@ private Q_SLOTS:
         for (const auto &b : mgr.backends()) {
             QVERIFY(!b.identifier().isEmpty());
             QVERIFY(!b.name().isEmpty());
-            // TODO make this mandatory once all configurations have it
-            if (b.coverageArea(CoverageArea::Realtime).isEmpty() && b.coverageArea(CoverageArea::Regular).isEmpty() && b.coverageArea(CoverageArea::Any).isEmpty()) {
-                qWarning() << b.identifier() << "has no coverage areas defined!";
+            QVERIFY(!b.coverageArea(CoverageArea::Realtime).isEmpty() || !b.coverageArea(CoverageArea::Regular).isEmpty() || !b.coverageArea(CoverageArea::Any).isEmpty());
+
+            for (const auto &type : {CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any}) {
+                const auto c = b.coverageArea(type);
+                if (c.isEmpty()) {
+                    continue;
+                }
+
+                QCOMPARE(c.type(), type);
+                QVERIFY(c.regions().size() > 0);
             }
         }
     }
