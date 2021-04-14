@@ -14,11 +14,35 @@
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
+struct BackendInfo
+{
+    Backend backend;
+    QString country;
+};
+
 class BackendModelPrivate
 {
 public:
+    void repopulateModel(BackendModel *q);
+
     Manager *mgr = nullptr;
+    std::vector<BackendInfo> rows;
 };
+}
+
+void BackendModelPrivate::repopulateModel(BackendModel *q)
+{
+    if (!mgr) {
+        return;
+    }
+
+    q->beginResetModel();
+    rows.clear();
+    rows.reserve(mgr->backends().size());
+    for (const auto &b : mgr->backends()) {
+        rows.push_back({ b, b.primaryCountryCode() });
+    }
+    q->endResetModel();
 }
 
 BackendModel::BackendModel(QObject *parent)
@@ -40,21 +64,20 @@ void BackendModel::setManager(Manager *mgr)
         return;
     }
 
-    beginResetModel();
     d->mgr = mgr;
     connect(mgr, &Manager::configurationChanged, this, [this]() {
         emit dataChanged(index(0, 0), index(rowCount() - 1, 0));
     });
-    endResetModel();
+    d->repopulateModel(this);
     emit managerChanged();
 }
 
 int BackendModel::rowCount(const QModelIndex &parent) const
 {
-    if (parent.isValid() || !d->mgr) {
+    if (parent.isValid()) {
         return 0;
     }
-    return d->mgr->backends().size();
+    return d->rows.size();
 }
 
 QVariant BackendModel::data(const QModelIndex &index, int role) const
@@ -63,30 +86,30 @@ QVariant BackendModel::data(const QModelIndex &index, int role) const
         return {};
     }
 
-    const auto &backend = d->mgr->backends()[index.row()];
+    const auto &row = d->rows[index.row()];
     switch (role) {
         case NameRole:
-            return backend.name();
+            return row.backend.name();
         case DescriptionRole:
-            return backend.description();
+            return row.backend.description();
         case IdentifierRole:
-            return backend.identifier();
+            return row.backend.identifier();
         case SecureRole:
-            return backend.isSecure();
+            return row.backend.isSecure();
         case ItemEnabledRole:
-            return backend.isSecure() || d->mgr->allowInsecureBackends();
+            return row.backend.isSecure() || d->mgr->allowInsecureBackends();
         case BackendEnabledRole:
-            if (!backend.isSecure() && !d->mgr->allowInsecureBackends()) {
+            if (!row.backend.isSecure() && !d->mgr->allowInsecureBackends()) {
                 return false;
             }
-            return d->mgr->isBackendEnabled(backend.identifier());
+            return d->mgr->isBackendEnabled(row.backend.identifier());
         case Qt::CheckStateRole:
-            if (!backend.isSecure() && !d->mgr->allowInsecureBackends()) {
+            if (!row.backend.isSecure() && !d->mgr->allowInsecureBackends()) {
                 return Qt::Unchecked;
             }
-            return d->mgr->isBackendEnabled(backend.identifier()) ? Qt::Checked : Qt::Unchecked;
+            return d->mgr->isBackendEnabled(row.backend.identifier()) ? Qt::Checked : Qt::Unchecked;
         case PrimaryCountryCodeRole:
-            return backend.primaryCountryCode();
+            return row.country;
     }
 
     return {};
@@ -94,13 +117,13 @@ QVariant BackendModel::data(const QModelIndex &index, int role) const
 
 bool BackendModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    const auto &backend = d->mgr->backends()[index.row()];
+    const auto &row = d->rows[index.row()];
     switch (role) {
         case BackendModel::BackendEnabledRole:
-            d->mgr->setBackendEnabled(backend.identifier(), value.toBool());
+            d->mgr->setBackendEnabled(row.backend.identifier(), value.toBool());
             return true;
         case Qt::CheckStateRole:
-            d->mgr->setBackendEnabled(backend.identifier(), value.toInt() == Qt::Checked);
+            d->mgr->setBackendEnabled(row.backend.identifier(), value.toInt() == Qt::Checked);
             return true;
     }
     return false;
@@ -114,8 +137,8 @@ Qt::ItemFlags BackendModel::flags(const QModelIndex &index) const
     }
     f |= Qt::ItemIsUserCheckable;
 
-    const auto &backend = d->mgr->backends()[index.row()];
-    if (!d->mgr->allowInsecureBackends() && !backend.isSecure()) {
+    const auto &row = d->rows[index.row()];
+    if (!d->mgr->allowInsecureBackends() && !row.backend.isSecure()) {
         return f & ~Qt::ItemIsEnabled;
     }
 

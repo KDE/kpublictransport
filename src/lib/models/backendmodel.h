@@ -53,6 +53,7 @@ Q_SIGNALS:
     void managerChanged();
 
 private:
+    friend class BackendModelPrivate;
     const std::unique_ptr<BackendModelPrivate> d;
 };
 
