@@ -43,7 +43,7 @@ public:
     bool isEmpty() const;
 
     /** Checks whether @p loc is covered by this area. */
-    bool coveresLocation(const Location &loc) const;
+    bool coversLocation(const Location &loc) const;
 
     /** Read a single coverage area information from a JSON object
      *  in Transport API Repository format.

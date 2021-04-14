@@ -39,7 +39,7 @@ static QStringView countryCode(QStringView isoCode)
     return isoCode.size() < 2 ? QStringView() : isoCode.left(2);
 }
 
-bool CoverageArea::coveresLocation(const Location &loc) const
+bool CoverageArea::coversLocation(const Location &loc) const
 {
     if (loc.hasCoordinate() && !d->area.isEmpty()) {
         return d->area.containsPoint({loc.longitude(), loc.latitude()}, Qt::WindingFill);
@@ -48,6 +48,9 @@ bool CoverageArea::coveresLocation(const Location &loc) const
     // TODO we could do a more precise check for ISO 3166-2 subdivision codes when available
 
     if (loc.country().size() == 2 && !d->regions.empty()) {
+        if (d->regions.size() == 1 && d->regions.at(0) == QLatin1String("UN")) { // global coverage
+            return true;
+        }
         return std::binary_search(d->regions.begin(), d->regions.end(), loc.country(), [](const auto &lhs, const auto &rhs) {
             return countryCode(lhs) < countryCode(rhs);
         });

@@ -7,6 +7,7 @@
 #include <KPublicTransport/Backend>
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/CoverageArea>
+#include <KPublicTransport/Location>
 #include <KPublicTransport/Manager>
 
 #include <QAbstractItemModelTester>
@@ -19,6 +20,8 @@ using namespace KPublicTransport;
 class BackendTest : public QObject
 {
     Q_OBJECT
+private:
+    Manager m_ptMgr; // for the benchmark
 
 private Q_SLOTS:
     void initTestCase()
@@ -43,6 +46,49 @@ private Q_SLOTS:
 
                 QCOMPARE(c.type(), type);
                 QVERIFY(c.regions().size() > 0);
+            }
+        }
+    }
+
+    void testCoverageHitDetection()
+    {
+        Manager mgr;
+        auto b = *std::find_if(mgr.backends().begin(), mgr.backends().end(), [](const auto &b) { return b.identifier() == QLatin1String("de_db"); });
+        QCOMPARE(b.identifier(), QLatin1String("de_db"));
+        auto c = b.coverageArea(CoverageArea::Realtime);
+        QVERIFY(!c.isEmpty());
+
+        Location l1;
+        l1.setCoordinate(52.5, 13.0);
+        QVERIFY(c.coversLocation(l1));
+        l1.setCoordinate(13.0, 52.5);
+        QVERIFY(!c.coversLocation(l1));
+
+        Location l2;
+        l2.setCountry(QStringLiteral("DE"));
+        QVERIFY(c.coversLocation(l2));
+        l2.setCountry(QStringLiteral("NZ"));
+        QVERIFY(!c.coversLocation(l2));
+
+        b = *std::find_if(mgr.backends().begin(), mgr.backends().end(), [](const auto &b) { return b.identifier() == QLatin1String("un_gbfs"); });
+        QCOMPARE(b.identifier(), QLatin1String("un_gbfs"));
+        c = b.coverageArea(CoverageArea::Realtime);
+        QVERIFY(!c.isEmpty());
+
+        QVERIFY(c.coversLocation(l1));
+        QVERIFY(c.coversLocation(l2));
+    }
+
+    void testCoverageBenchmark()
+    {
+        Location loc;
+        loc.setCoordinate(52.5, 13.0);
+        QBENCHMARK {
+            for (const auto &b : m_ptMgr.backends()) {
+                for (const auto type : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+                    const auto c = b.coverageArea(type);
+                    c.coversLocation(loc);
+                }
             }
         }
     }
