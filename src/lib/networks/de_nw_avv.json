@@ -46,7 +46,7 @@
         "name": "Aachener Verkehrsverbund"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

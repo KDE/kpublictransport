@@ -44,7 +44,7 @@
         "name": "VMT GmbH"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

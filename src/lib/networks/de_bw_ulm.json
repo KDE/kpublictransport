@@ -39,8 +39,9 @@
         "Name[x-test]": "xxUlm, Germanyxx"
     },
     "attribution": {
-        "name": "Verschwörhaus",
-        "url": "https://digitransit.im.verschwoerhaus.de/tietoja-palvelusta"
+        "homepage": "https://digitransit.im.verschwoerhaus.de/tietoja-palvelusta",
+        "mixedLicenses": true,
+        "name": "Verschwörhaus"
     },
     "comment": "see https://github.com/verschwoerhaus/digitransit-ui/blob/ulm/app/configurations/config.vsh.js for rental vehicle config",
     "coverage": {

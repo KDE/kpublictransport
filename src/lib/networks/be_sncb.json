@@ -44,7 +44,7 @@
         "name": "Belgian National Rail"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

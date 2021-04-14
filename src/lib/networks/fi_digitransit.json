@@ -40,7 +40,7 @@
         "Name[x-test]": "xxDigitransit Finlandxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -74,7 +74,10 @@
         }
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/"
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/",
+        "supportedTransitModes": [
+            "TRANSIT"
+        ]
     },
     "supportedLanguages": [
         "de",

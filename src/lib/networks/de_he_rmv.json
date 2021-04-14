@@ -45,7 +45,7 @@
         "name": "Rhein-Main-Verkehrsverbund"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

@@ -44,7 +44,7 @@
         "name": "Hamburger Verkehrsverbund GmbH"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

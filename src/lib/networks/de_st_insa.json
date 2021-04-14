@@ -44,7 +44,7 @@
         "name": "Nahverkehrsservice Sachsen-Anhalt GmbH"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

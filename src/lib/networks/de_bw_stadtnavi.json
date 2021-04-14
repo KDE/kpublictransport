@@ -38,8 +38,9 @@
         "Name[x-test]": "xxStadtnavixx"
     },
     "attribution": {
-        "name": "Stadtnavi",
-        "url": "https://stadtnavi.de/"
+        "homepage": "https://stadtnavi.de/",
+        "mixedLicenses": true,
+        "name": "Stadtnavi"
     },
     "comment": "See https://github.com/stadtnavi/digitransit-ui/blob/master/app/configurations/config.hb.js for their rental vehicle config and https://github.com/stadtnavi/static-gbfs-feeds for their dummy GBFS feeds that we ignore below",
     "coverage": {

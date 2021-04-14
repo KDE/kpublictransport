@@ -38,7 +38,7 @@
         "Name[x-test]": "xxWalttixx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -72,7 +72,10 @@
         }
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/"
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/",
+        "supportedTransitModes": [
+            "TRANSIT"
+        ]
     },
     "supportedLanguages": [
         "de",

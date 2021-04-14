@@ -41,7 +41,7 @@
         "Name[x-test]": "xxPolskie Koleje Państwowe (PKP)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -160,6 +160,7 @@
         "en",
         "pl"
     ],
+    "timezone": "Europe/Warsaw",
     "type": {
         "hafasMgate": true
     }

@@ -42,7 +42,7 @@
         "name": "Capital Metropolitan Transportation Authority"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

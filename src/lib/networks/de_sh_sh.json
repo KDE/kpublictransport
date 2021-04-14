@@ -45,7 +45,7 @@
         "name": "Nahverkehrsverbund Schleswig-Holstein GmbH"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

@@ -42,7 +42,7 @@
         "name": "Nordhessischer VerkehrsVerbund"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

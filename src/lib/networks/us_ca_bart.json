@@ -40,7 +40,7 @@
         "name": "San Francisco Bay Area Rapid Transit District"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

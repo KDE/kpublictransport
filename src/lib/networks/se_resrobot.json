@@ -39,7 +39,7 @@
         "Name[x-test]": "xxResrobotxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "regularCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -150,6 +150,10 @@
         ],
         "ver": "1.18"
     },
+    "supportedLanguages": [
+        "sv"
+    ],
+    "timezone": "Europe/Stockholm",
     "type": {
         "hafasMgate": true
     }

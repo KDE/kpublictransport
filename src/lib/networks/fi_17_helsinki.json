@@ -45,7 +45,7 @@
     },
     "comment": "see https://github.com/HSLdevcom/digitransit-ui/blob/master/app/configurations/config.hsl.js for the rental vehicle network config",
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [
@@ -89,7 +89,10 @@
                 "name": "CityBike Vantaa",
                 "vehicleTypes": "Bicycle"
             }
-        }
+        },
+        "supportedTransitModes": [
+            "TRANSIT"
+        ]
     },
     "supportedLanguages": [
         "de",
