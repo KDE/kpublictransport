@@ -73,7 +73,13 @@
                 ],
                 "type": "Polygon"
             },
-            "region": [ "AT", "CH", "DE", "LI", "LU" ]
+            "region": [
+                "AT",
+                "CH",
+                "DE",
+                "LI",
+                "LU"
+            ]
         }
     },
     "options": {
