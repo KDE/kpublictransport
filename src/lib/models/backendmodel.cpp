@@ -24,9 +24,12 @@ class BackendModelPrivate
 {
 public:
     void repopulateModel(BackendModel *q);
+    void repopulateFlat();
+    void repopulateGrouped();
 
     Manager *mgr = nullptr;
     std::vector<BackendInfo> rows;
+    BackendModel::Mode mode = BackendModel::Flat;
 };
 }
 
@@ -38,12 +41,49 @@ void BackendModelPrivate::repopulateModel(BackendModel *q)
 
     q->beginResetModel();
     rows.clear();
+    switch (mode) {
+        case BackendModel::Flat:
+            repopulateFlat();
+            break;
+        case BackendModel::GroupByCountry:
+            repopulateGrouped();
+            break;
+    }
+
+    std::sort(rows.begin(), rows.end(), [](const auto &lhs, const auto &rhs) {
+        if (lhs.country == rhs.country) {
+            return lhs.backend.name() < rhs.backend.name();
+        }
+        return lhs.country < rhs.country;
+    });
+    q->endResetModel();
+}
+
+void BackendModelPrivate::repopulateFlat()
+{
     rows.reserve(mgr->backends().size());
     for (const auto &b : mgr->backends()) {
         rows.push_back({ b, b.primaryCountryCode() });
     }
-    q->endResetModel();
 }
+
+void BackendModelPrivate::repopulateGrouped()
+{
+    for (const auto &b : mgr->backends()) {
+        for (const auto type : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+            const auto c = b.coverageArea(type);
+            if (c.isEmpty()) {
+                continue;
+            }
+
+            for (const auto &country : c.regions()) {
+                rows.push_back({ b, country.left(2) });
+            }
+            break;
+        }
+    }
+}
+
 
 BackendModel::BackendModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -70,6 +110,22 @@ void BackendModel::setManager(Manager *mgr)
     });
     d->repopulateModel(this);
     emit managerChanged();
+}
+
+BackendModel::Mode BackendModel::mode() const
+{
+    return d->mode;
+}
+
+void BackendModel::setMode(BackendModel::Mode mode)
+{
+    if (d->mode == mode) {
+        return;
+    }
+
+    d->mode = mode;
+    emit modeChanged();
+    d->repopulateModel(this);
 }
 
 int BackendModel::rowCount(const QModelIndex &parent) const

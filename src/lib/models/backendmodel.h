@@ -25,10 +25,21 @@ class KPUBLICTRANSPORT_EXPORT BackendModel : public QAbstractListModel
 
     /** Sets the KPublicTransport::Manager instance. Necessary for this to work at all. */
     Q_PROPERTY(KPublicTransport::Manager* manager READ manager WRITE setManager NOTIFY managerChanged)
-
+    /** Configures the grouping mode for the content of this model. */
+    Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
 public:
     explicit BackendModel(QObject *parent = nullptr);
     ~BackendModel();
+
+    /** Content grouping modes. */
+    enum Mode {
+        Flat, ///< Each backend appears exactly once, grouping by country is possible (the data is order by country), but multi-country operators might not be properly associated.
+        GroupByCountry, ///< A backend might occur multiple times, for each country it is associated with.
+    };
+    Q_ENUM(Mode)
+
+    Mode mode() const;
+    void setMode(Mode mode);
 
     enum Roles {
         NameRole = Qt::DisplayRole,
@@ -51,6 +62,7 @@ public:
 
 Q_SIGNALS:
     void managerChanged();
+    void modeChanged();
 
 private:
     friend class BackendModelPrivate;
