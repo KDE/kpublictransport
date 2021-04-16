@@ -18,6 +18,8 @@ struct BackendInfo
 {
     Backend backend;
     QString country;
+    bool isNationWide;
+    CoverageArea::Type coverageType;
 };
 
 class BackendModelPrivate
@@ -26,6 +28,7 @@ public:
     void repopulateModel(BackendModel *q);
     void repopulateFlat();
     void repopulateGrouped();
+    void sortModel();
 
     Manager *mgr = nullptr;
     std::vector<BackendInfo> rows;
@@ -50,12 +53,7 @@ void BackendModelPrivate::repopulateModel(BackendModel *q)
             break;
     }
 
-    std::sort(rows.begin(), rows.end(), [](const auto &lhs, const auto &rhs) {
-        if (lhs.country == rhs.country) {
-            return lhs.backend.name() < rhs.backend.name();
-        }
-        return lhs.country < rhs.country;
-    });
+    sortModel();
     q->endResetModel();
 }
 
@@ -63,7 +61,7 @@ void BackendModelPrivate::repopulateFlat()
 {
     rows.reserve(mgr->backends().size());
     for (const auto &b : mgr->backends()) {
-        rows.push_back({ b, b.primaryCountryCode() });
+        rows.push_back({ b, b.primaryCountryCode(), true, CoverageArea::Any });
     }
 }
 
@@ -76,12 +74,32 @@ void BackendModelPrivate::repopulateGrouped()
                 continue;
             }
 
-            for (const auto &country : c.regions()) {
-                rows.push_back({ b, country.left(2) });
+            for (const auto &region: c.regions()) {
+                const auto country = region.left(2);
+                if (!rows.empty() && rows.back().backend.identifier() == b.identifier() && rows.back().country == country) {
+                    continue; // deduplicate backends covering multiple regions in the same country
+                }
+                rows.push_back({ b, country, region.size() == 2, type });
             }
             break;
         }
     }
+}
+
+void BackendModelPrivate::sortModel()
+{
+    std::sort(rows.begin(), rows.end(), [](const auto &lhs, const auto &rhs) {
+        if (lhs.country == rhs.country) {
+            if (lhs.isNationWide == rhs.isNationWide) {
+                if (lhs.coverageType == rhs.coverageType) {
+                    return lhs.backend.name() < rhs.backend.name();
+                }
+                return lhs.coverageType < rhs.coverageType;
+            }
+            return lhs.isNationWide && !rhs.isNationWide;
+        }
+        return lhs.country < rhs.country;
+    });
 }
 
 
