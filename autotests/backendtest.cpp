@@ -93,13 +93,23 @@ private Q_SLOTS:
         }
     }
 
+    void testBackendModel_data()
+    {
+        QTest::addColumn<BackendModel::Mode>("mode");
+        QTest::newRow("flat") << BackendModel::Flat;
+        QTest::newRow("groupByCountry") << BackendModel::GroupByCountry;
+    }
+
     void testBackendModel()
     {
+        QFETCH(BackendModel::Mode, mode);
+
         BackendModel model;
         QAbstractItemModelTester modelTest(&model);
 
         Manager mgr;
         model.setManager(&mgr);
+        model.setMode(mode);
         QVERIFY(model.rowCount() > 20);
         QSignalSpy dataChangedSpy(&model, &QAbstractItemModel::dataChanged);
 
@@ -127,22 +137,28 @@ private Q_SLOTS:
 
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_navitia")), true);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), true);
+        bool navitiaToggled = false;
+        bool sncfToggled = false;
         for (auto i = 0; i < model.rowCount(); ++i) {
             const auto idx = model.index(i, 0);
-            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("un_navitia")) {
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("un_navitia") && !navitiaToggled) {
                 model.setData(idx, Qt::Unchecked, Qt::CheckStateRole);
                 model.setData(idx, true, BackendModel::BackendEnabledRole);
+                navitiaToggled = true;
 
                 QCOMPARE(idx.data(Qt::CheckStateRole).toInt(), Qt::Checked);
                 QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), true);
             }
-            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("fr_sncf")) {
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("fr_sncf") && !sncfToggled) {
                 model.setData(idx, false, BackendModel::BackendEnabledRole);
+                sncfToggled = true;
 
                 QCOMPARE(idx.data(Qt::CheckStateRole).toInt(), Qt::Unchecked);
                 QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), false);
             }
         }
+        QVERIFY(navitiaToggled);
+        QVERIFY(sncfToggled);
         QCOMPARE(dataChangedSpy.size(), 4);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_navitia")), true);
         QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), false);
