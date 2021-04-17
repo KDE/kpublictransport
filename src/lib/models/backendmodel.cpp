@@ -81,25 +81,75 @@ void BackendModelPrivate::repopulateGrouped()
                 }
                 rows.push_back({ b, country, region.size() == 2, type });
             }
-            break;
         }
     }
 }
 
 void BackendModelPrivate::sortModel()
 {
-    std::sort(rows.begin(), rows.end(), [](const auto &lhs, const auto &rhs) {
-        if (lhs.country == rhs.country) {
-            if (lhs.isNationWide == rhs.isNationWide) {
-                if (lhs.coverageType == rhs.coverageType) {
+    // group by country
+    const auto orderByCountry = [](const auto &lhs, const auto &rhs) {
+        return lhs.country < rhs.country;
+    };
+    std::sort(rows.begin(), rows.end(), orderByCountry);
+
+    // process each country individually
+    for (auto next = rows.begin(); next != rows.end();) {
+        const auto [begin, end] = std::equal_range(next, rows.end(), *next, orderByCountry);
+        next = end;
+
+        // find best coverage quality for nation-wide services
+        CoverageArea::Type bestCoverageType = CoverageArea::Any;
+        for (auto it = begin; it != end; ++it) {
+            if ((*it).isNationWide) {
+                bestCoverageType = std::min(bestCoverageType, (*it).coverageType);
+            }
+        }
+
+        // sort within one country: nation wide with best quality first, then regional, then nation-wide with subpar coverage
+        std::sort(begin, end, [bestCoverageType](const auto &lhs, const auto &rhs) {
+            if (lhs.isNationWide && rhs.isNationWide) {
+                if ((lhs.coverageType > bestCoverageType && rhs.coverageType > bestCoverageType)
+                  || (lhs.coverageType <= bestCoverageType && rhs.coverageType <= bestCoverageType)) {
                     return lhs.backend.name() < rhs.backend.name();
                 }
                 return lhs.coverageType < rhs.coverageType;
             }
-            return lhs.isNationWide && !rhs.isNationWide;
+            if (lhs.isNationWide && !rhs.isNationWide) {
+                return lhs.coverageType <= bestCoverageType;
+            }
+            if (!lhs.isNationWide && rhs.isNationWide) {
+                return rhs.coverageType > bestCoverageType;
+            }
+            assert(!lhs.isNationWide && !rhs.isNationWide);
+            return lhs.backend.name() < rhs.backend.name();
+        });
+
+        // drop entries for nationwide providers that are only the second best coverage quality for a country
+        // and that have better coverage elsewhere
+        // since removing entries here immediately would mess with the active iterators, we just clear the country
+        // and do the actual deletion below
+        if (mode == BackendModel::GroupByCountry) {
+            for (auto it = begin; it != end; ++it) {
+                if (!(*it).isNationWide || (*it).coverageType <= bestCoverageType) {
+                    continue;
+                }
+
+                for (auto type : { CoverageArea::Realtime, CoverageArea::Regular }) {
+                    if (type >= (*it).coverageType) {
+                        break;
+                    }
+                    if (!(*it).backend.coverageArea(type).isEmpty()) {
+                        (*it).country.clear();
+                        break;
+                    }
+                }
+            }
         }
-        return lhs.country < rhs.country;
-    });
+    }
+
+    // clean up entries marked for deletion above
+    rows.erase(std::remove_if(rows.begin(), rows.end(), [](const auto &r) { return r.country.isEmpty(); }), rows.end());
 }
 
 
