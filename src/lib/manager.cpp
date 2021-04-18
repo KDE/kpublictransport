@@ -647,33 +647,43 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         return reply;
     }
 
-    for (const auto &b : d->m_backends) {
-        const auto backend = BackendPrivate::impl(b);
-        if (d->shouldSkipBackend(backend, req)) {
-            continue;
-        }
-        if (req.hasCoordinate() && backend->isLocationExcluded(req.location())) {
-            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
-            continue;
-        }
-        reply->addAttribution(backend->attribution());
+    QSet<QString> triedBackends;
+    bool foundNonGlobalCoverage = false;
+    for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+        for (const auto &b : d->m_backends) {
+            const auto backend = BackendPrivate::impl(b);
+            if (triedBackends.contains(backend->backendId()) || d->shouldSkipBackend(backend, req)) {
+                continue;
+            }
+            const auto coverage = b.coverageArea(coverageType);
+            if (coverage.isEmpty() || !coverage.coversLocation(req.location())) {
+                continue;
+            }
+            triedBackends.insert(backend->backendId());
+            foundNonGlobalCoverage |= !coverage.isGlobal();
 
-        auto cache = Cache::lookupLocation(backend->backendId(), req.cacheKey());
-        switch (cache.type) {
-            case CacheHitType::Negative:
-                qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
-                break;
-            case CacheHitType::Positive:
-                qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
-                reply->addAttributions(std::move(cache.attributions));
-                reply->addResult(std::move(cache.data));
-                break;
-            case CacheHitType::Miss:
-                qCDebug(Log) << "Cache miss for backend" << backend->backendId();
-                if (backend->queryLocation(req, reply, d->nam())) {
-                    ++pendingOps;
-                }
-                break;
+            reply->addAttribution(backend->attribution());
+
+            auto cache = Cache::lookupLocation(backend->backendId(), req.cacheKey());
+            switch (cache.type) {
+                case CacheHitType::Negative:
+                    qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
+                    break;
+                case CacheHitType::Positive:
+                    qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+                    reply->addAttributions(std::move(cache.attributions));
+                    reply->addResult(std::move(cache.data));
+                    break;
+                case CacheHitType::Miss:
+                    qCDebug(Log) << "Cache miss for backend" << backend->backendId();
+                    if (backend->queryLocation(req, reply, d->nam())) {
+                        ++pendingOps;
+                    }
+                    break;
+            }
+        }
+        if (pendingOps && foundNonGlobalCoverage) {
+            break;
         }
     }
     reply->setPendingOps(pendingOps);
