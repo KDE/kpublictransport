@@ -50,10 +50,6 @@ public:
     QString backendId() const;
     void setBackendId(const QString &id);
 
-    /** Checks if this location has been filtered by the network configuration. */
-    bool isLocationExcluded(const Location &loc) const;
-    void setGeoFilter(const QPolygonF &poly);
-
     /** Static timezone for all times used by and provided by the backend.
      *  Set to invalid if the backend supports multiple timezones.
      */
@@ -197,7 +193,6 @@ private:
     void setCustomCaCertificate(const QString &caCert);
 
     QString m_backendId;
-    QPolygonF m_geoFilter;
     Attribution m_attribution;
     QTimeZone m_timeZone;
     QStringList m_supportedLanguages;

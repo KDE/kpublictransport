@@ -32,22 +32,6 @@ void AbstractBackend::setBackendId(const QString& id)
     m_backendId = id;
 }
 
-bool AbstractBackend::isLocationExcluded(const Location &loc) const
-{
-    if (loc.hasCoordinate() && !m_geoFilter.isEmpty()) {
-        return !m_geoFilter.containsPoint({loc.longitude(), loc.latitude()}, Qt::WindingFill);
-    }
-    if (loc.country().size() == 2 && backendId().size() > 3 && backendId().at(2) == QLatin1Char('_')) {
-        return loc.country().compare(backendId().leftRef(2), Qt::CaseInsensitive) != 0;
-    }
-    return false;
-}
-
-void AbstractBackend::setGeoFilter(const QPolygonF &poly)
-{
-    m_geoFilter = poly;
-}
-
 QTimeZone AbstractBackend::timeZone() const
 {
     return m_timeZone;

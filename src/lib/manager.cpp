@@ -221,16 +221,6 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         }
     }
 
-    const auto coverageData = obj.value(QLatin1String("coverage")).toObject();
-    for (const auto &coverageType : { "anyCoverage", "regularCoverage", "realtimeCoverage" }) {
-        const auto coverage = coverageData.value(QLatin1String(coverageType)).toObject();
-        if (coverage.empty()) {
-            continue;
-        }
-        const auto poly = GeoJson::readOuterPolygon(coverage.value(QLatin1String("area")).toObject());
-        backend->setGeoFilter(poly);
-    }
-
     const auto attrObj = obj.value(QLatin1String("attribution")).toObject();
     const auto attr = Attribution::fromJson(attrObj);
     backend->setAttribution(attr);
@@ -731,8 +721,8 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         if (d->shouldSkipBackend(backend, req)) {
             continue;
         }
-        if (req.stopover().stopPoint().hasCoordinate() && backend->isLocationExcluded(req.stopover().stopPoint())) {
-            qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
+        const auto coverage = b.coverageArea(CoverageArea::Realtime);
+        if (coverage.isEmpty() || !coverage.coversLocation(req.stopover().stopPoint())) {
             continue;
         }
         reply->addAttribution(backend->attribution());
