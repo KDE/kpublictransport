@@ -42,6 +42,9 @@ public:
      */
     bool isEmpty() const;
 
+    /** Returns @c true if this area covers the entire world. */
+    bool isGlobal() const;
+
     /** Checks whether @p loc is covered by this area. */
     bool coversLocation(const Location &loc) const;
 

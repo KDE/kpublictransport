@@ -57,6 +57,7 @@ private Q_SLOTS:
         QCOMPARE(b.identifier(), QLatin1String("de_db"));
         auto c = b.coverageArea(CoverageArea::Realtime);
         QVERIFY(!c.isEmpty());
+        QVERIFY(!c.isGlobal());
 
         Location l1;
         l1.setCoordinate(52.5, 13.0);
@@ -74,6 +75,7 @@ private Q_SLOTS:
         QCOMPARE(b.identifier(), QLatin1String("un_gbfs"));
         c = b.coverageArea(CoverageArea::Realtime);
         QVERIFY(!c.isEmpty());
+        QVERIFY(c.isGlobal());
 
         QVERIFY(c.coversLocation(l1));
         QVERIFY(c.coversLocation(l2));
