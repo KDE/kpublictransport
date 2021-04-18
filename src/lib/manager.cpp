@@ -331,13 +331,6 @@ static Location::Types locationTypesForJourneyRequest(const JourneyRequest &req)
 
 bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyRequest &req, JourneyReply *reply)
 {
-    if (shouldSkipBackend(backend, req)) {
-        return false;
-    }
-    if (backend->isLocationExcluded(req.from()) && backend->isLocationExcluded(req.to())) {
-        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
-        return false;
-    }
     reply->addAttribution(backend->attribution());
 
     auto cache = Cache::lookupJourney(backend->backendId(), req.cacheKey());
@@ -528,9 +521,28 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
 
     // first time/direct query
     if (req.contexts().empty()) {
-        for (const auto &backend : d->m_backends) {
-            if (d->queryJourney(BackendPrivate::impl(backend), req, reply)) {
-                ++pendingOps;
+        QSet<QString> triedBackends;
+        bool foundNonGlobalCoverage = false;
+        for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+            for (const auto &b: d->m_backends) {
+                const auto backend = BackendPrivate::impl(b);
+                if (triedBackends.contains(backend->backendId()) || d->shouldSkipBackend(backend, req)) {
+                    continue;
+                }
+                const auto coverage = b.coverageArea(coverageType);
+                if (coverage.isEmpty() || (!coverage.coversLocation(req.from()) && !coverage.coversLocation(req.to()))) {
+                    continue;
+                }
+                triedBackends.insert(backend->backendId());
+                foundNonGlobalCoverage |= !coverage.isGlobal();
+
+                if (d->queryJourney(backend, req, reply)) {
+                    ++pendingOps;
+                }
+            }
+
+            if (pendingOps && foundNonGlobalCoverage) {
+                break;
             }
         }
 
