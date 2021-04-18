@@ -95,6 +95,29 @@ static void mergeJsonObject(QJsonObject &destObj, const QJsonObject &srcObj)
     }
 }
 
+static void sortJsonArray(QJsonArray &array)
+{
+    QStringList l;
+    l.reserve(array.size());
+    std::transform(array.begin(), array.end(), std::back_inserter(l), [](const auto &jval) { return jval.toString(); });
+    std::sort(l.begin(), l.end());
+    array = {};
+    std::transform(l.begin(), l.end(), std::back_inserter(array), [](const auto &s) { return QJsonValue(s); });
+}
+
+static void preProcessCoverage(QJsonObject &obj)
+{
+    // sort country codes
+    auto regions = obj.take(QLatin1String("region")).toArray();
+    sortJsonArray(regions);
+    if (!regions.empty()) {
+        obj.insert(QLatin1String("region"), regions);
+    }
+
+    // reduce resolution of the area geometry
+    // TODO
+}
+
 static void preProcessConfig(QJsonObject &top)
 {
     // move translated keys to the location ki18n expects them
@@ -120,18 +143,22 @@ static void preProcessConfig(QJsonObject &top)
     if (!options.isEmpty()) {
         top.insert(QLatin1String("options"), std::move(options));
     }
+
+    // coverage data
+    auto coverage = top.take(QLatin1String("coverage")).toObject();
+    for (auto it = coverage.begin(); it != coverage.end(); ++it) {
+        auto cov = it.value().toObject();
+        preProcessCoverage(cov);
+        it.value() = cov;
+    }
+    top.insert(QLatin1String("coverage"), coverage);
 }
 
 static void postProcessConfig(QJsonObject &top)
 {
     // sort languages alphabetically to create stable diffs, the order doesn't matter for us
     auto langs = top.take(QLatin1String("supportedLanguages")).toArray();
-    QStringList l;
-    l.reserve(langs.size());
-    std::transform(langs.begin(), langs.end(), std::back_inserter(l), [](const auto &jval) { return jval.toString(); });
-    std::sort(l.begin(), l.end());
-    langs = {};
-    std::transform(l.begin(), l.end(), std::back_inserter(langs), [](const auto &s) { return QJsonValue(s); });
+    sortJsonArray(langs);
     if (!langs.empty()) {
         top.insert(QLatin1String("supportedLanguages"), langs);
     }

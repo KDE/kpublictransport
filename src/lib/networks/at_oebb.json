@@ -79,17 +79,17 @@
         },
         "regularCoverage": {
             "region": [
-                "CH",
-                "LI",
-                "DE",
-                "IT",
-                "SI",
-                "HU",
-                "SK",
-                "CZ",
-                "FR",
                 "BE",
-                "LU"
+                "CH",
+                "CZ",
+                "DE",
+                "FR",
+                "HU",
+                "IT",
+                "LI",
+                "LU",
+                "SI",
+                "SK"
             ]
         }
     },
