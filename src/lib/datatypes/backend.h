@@ -34,17 +34,11 @@ class KPUBLICTRANSPORT_EXPORT Backend
      */
     Q_PROPERTY(bool isSecure READ isSecure)
 
-    /** ISO 3166-2 alpha 2 code of the country this backend service is primarity addressing.
-     *  Returns an empty value for global/international services.
-     */
-    Q_PROPERTY(QString primaryCountryCode READ primaryCountryCode)
-
 public:
     QString identifier() const;
     QString name() const;
     QString description() const;
     bool isSecure() const;
-    QString primaryCountryCode() const;
 
     CoverageArea coverageArea(CoverageArea::Type coverageType) const;
 };

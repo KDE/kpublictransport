@@ -61,7 +61,9 @@ void BackendModelPrivate::repopulateFlat()
 {
     rows.reserve(mgr->backends().size());
     for (const auto &b : mgr->backends()) {
-        rows.push_back({ b, b.primaryCountryCode(), true, CoverageArea::Any });
+        if (b.identifier().size() > 3 && b.identifier().at(2) == QLatin1Char('_')) {
+            rows.push_back({ b, b.identifier().left(2).toUpper(), true, CoverageArea::Any });
+        }
     }
 }
 

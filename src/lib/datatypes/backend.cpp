@@ -37,14 +37,6 @@ bool Backend::isSecure() const
     return d->m_backendImpl && d->m_backendImpl->capabilities() & AbstractBackend::Secure;
 }
 
-QString Backend::primaryCountryCode() const
-{
-    if (identifier().size() > 3 && identifier().at(2) == QLatin1Char('_')) {
-        return identifier().left(2).toUpper();
-    }
-    return {};
-}
-
 CoverageArea Backend::coverageArea(CoverageArea::Type coverageType) const
 {
     return d->coverage[coverageType];
