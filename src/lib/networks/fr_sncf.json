@@ -39,7 +39,7 @@
         "Name[x-test]": "xxSociété Nationale des Chemins de Fer Français (SNCF)xx"
     },
     "coverage": {
-        "anyCoverage": {
+        "regularCoverage": {
             "area": {
                 "coordinates": [
                     [

@@ -37,7 +37,7 @@
         "Name[x-test]": "xxTravelinexx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

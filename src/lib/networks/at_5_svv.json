@@ -44,7 +44,7 @@
         "name": "Salzburger Verkehrsverbund GmbH"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

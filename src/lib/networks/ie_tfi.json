@@ -37,7 +37,7 @@
         "Name[x-test]": "xxTransport For Irelandxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "realtimeCoverage": {
             "area": {
                 "coordinates": [
                     [

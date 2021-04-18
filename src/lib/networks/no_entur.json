@@ -45,7 +45,7 @@
         "url": "https://www.entur.org/"
     },
     "coverage": {
-        "anyCoverage": {
+        "regularCoverage": {
             "area": {
                 "coordinates": [
                     [
