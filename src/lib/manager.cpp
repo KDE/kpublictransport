@@ -406,17 +406,6 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
 bool ManagerPrivate::queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply)
 {
-    if (shouldSkipBackend(backend, req)) {
-        return false;
-    }
-    if (req.mode() == StopoverRequest::QueryArrival && (backend->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
-        qCDebug(Log) << "Skipping backend due to not supporting arrival queries:" << backend->backendId();
-        return false;
-    }
-    if (backend->isLocationExcluded(req.stop())) {
-        qCDebug(Log) << "Skipping backend based on location filter:" << backend->backendId();
-        return false;
-    }
     reply->addAttribution(backend->attribution());
 
     auto cache = Cache::lookupDeparture(backend->backendId(), req.cacheKey());
@@ -595,9 +584,32 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
 
     // first time/direct query
     if (req.contexts().empty()) {
-        for (const auto &backend : d->m_backends) {
-            if (d->queryStopover(BackendPrivate::impl(backend), req, reply)) {
-                ++pendingOps;
+        QSet<QString> triedBackends;
+        bool foundNonGlobalCoverage = false;
+        for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+            for (const auto &b: d->m_backends) {
+                const auto backend = BackendPrivate::impl(b);
+                if (triedBackends.contains(backend->backendId()) || d->shouldSkipBackend(backend, req)) {
+                    continue;
+                }
+                if (req.mode() == StopoverRequest::QueryArrival && (backend->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
+                    qCDebug(Log) << "Skipping backend due to not supporting arrival queries:" << backend->backendId();
+                    continue;
+                }
+                const auto coverage = b.coverageArea(coverageType);
+                if (coverage.isEmpty() || !coverage.coversLocation(req.stop())) {
+                    continue;
+                }
+                triedBackends.insert(backend->backendId());
+                foundNonGlobalCoverage |= !coverage.isGlobal();
+
+                if (d->queryStopover(backend, req, reply)) {
+                    ++pendingOps;
+                }
+            }
+
+            if (pendingOps && foundNonGlobalCoverage) {
+                break;
             }
         }
 
