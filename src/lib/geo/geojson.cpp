@@ -98,3 +98,18 @@ QJsonObject GeoJson::writeLineString(const QPolygonF &lineString)
     obj.insert(QLatin1String("coordinates"), coords);
     return obj;
 }
+
+QJsonObject GeoJson::writePolygon(const QPolygonF &polygon)
+{
+    QJsonObject obj;
+    obj.insert(QLatin1String("type"), QLatin1String("Polygon"));
+
+    QJsonArray coords;
+    for (const auto &p : polygon) {
+        coords.push_back(writePoint(p));
+    }
+    QJsonArray polyArray;
+    polyArray.push_back(coords);
+    obj.insert(QLatin1String("coordinates"), polyArray);
+    return obj;
+}

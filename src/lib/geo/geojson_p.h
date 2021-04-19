@@ -31,6 +31,9 @@ namespace GeoJson
 
     /** Creates a line string object. */
     QJsonObject writeLineString(const QPolygonF &lineString);
+
+    /** Create a polygon object. */
+    QJsonObject writePolygon(const QPolygonF &polygon);
 }
 
 }
