@@ -34,7 +34,7 @@ QString Backend::description() const
 
 bool Backend::isSecure() const
 {
-    return d->m_backendImpl && d->m_backendImpl->capabilities() & AbstractBackend::Secure;
+    return d->m_backendImpl && d->m_backendImpl->hasCapability(AbstractBackend::Secure);
 }
 
 CoverageArea Backend::coverageArea(CoverageArea::Type coverageType) const

@@ -75,7 +75,7 @@ public:
     template <typename T>
     static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
-    template <typename RequestT> bool shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const;
+    template <typename RequestT> bool shouldSkipBackend(const Backend &backend, const RequestT &req) const;
 
     void resolveLocation(LocationRequest &&locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
     bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
@@ -99,7 +99,7 @@ public:
     bool m_backendsEnabledByDefault = true;
 
 private:
-    bool shouldSkipBackend(const AbstractBackend *backend) const;
+    bool shouldSkipBackend(const Backend &backend) const;
 };
 }
 
@@ -249,20 +249,20 @@ template<typename T> std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwor
     return backend;
 }
 
-bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend) const
+bool ManagerPrivate::shouldSkipBackend(const Backend &backend) const
 {
-    if (!backend->hasCapability(AbstractBackend::Secure) && !m_allowInsecure) {
-        qCDebug(Log) << "Skipping insecure backend:" << backend->backendId();
+    if (!backend.isSecure() && !m_allowInsecure) {
+        qCDebug(Log) << "Skipping insecure backend:" << backend.identifier();
         return true;
     }
-    return !q->isBackendEnabled(backend->backendId());
+    return !q->isBackendEnabled(backend.identifier());
 }
 
 template <typename RequestT>
-bool ManagerPrivate::shouldSkipBackend(const AbstractBackend *backend, const RequestT &req) const
+bool ManagerPrivate::shouldSkipBackend(const Backend &backend, const RequestT &req) const
 {
-    if (!req.backendIds().isEmpty() && !req.backendIds().contains(backend->backendId())) {
-        //qCDebug(Log) << "Skipping backend" << backend->backendId() << "due to explicit request";
+    if (!req.backendIds().isEmpty() && !req.backendIds().contains(backend.identifier())) {
+        //qCDebug(Log) << "Skipping backend" << backend.identifier() << "due to explicit request";
         return true;
     }
     return shouldSkipBackend(backend);
@@ -514,19 +514,18 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
         QSet<QString> triedBackends;
         bool foundNonGlobalCoverage = false;
         for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-            for (const auto &b: d->m_backends) {
-                const auto backend = BackendPrivate::impl(b);
-                if (triedBackends.contains(backend->backendId()) || d->shouldSkipBackend(backend, req)) {
+            for (const auto &backend: d->m_backends) {
+                if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
                     continue;
                 }
-                const auto coverage = b.coverageArea(coverageType);
+                const auto coverage = backend.coverageArea(coverageType);
                 if (coverage.isEmpty() || (!coverage.coversLocation(req.from()) && !coverage.coversLocation(req.to()))) {
                     continue;
                 }
-                triedBackends.insert(backend->backendId());
+                triedBackends.insert(backend.identifier());
                 foundNonGlobalCoverage |= !coverage.isGlobal();
 
-                if (d->queryJourney(backend, req, reply)) {
+                if (d->queryJourney(BackendPrivate::impl(backend), req, reply)) {
                     ++pendingOps;
                 }
             }
@@ -589,23 +588,22 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
         QSet<QString> triedBackends;
         bool foundNonGlobalCoverage = false;
         for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-            for (const auto &b: d->m_backends) {
-                const auto backend = BackendPrivate::impl(b);
-                if (triedBackends.contains(backend->backendId()) || d->shouldSkipBackend(backend, req)) {
+            for (const auto &backend: d->m_backends) {
+                if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
                     continue;
                 }
-                if (req.mode() == StopoverRequest::QueryArrival && (backend->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
-                    qCDebug(Log) << "Skipping backend due to not supporting arrival queries:" << backend->backendId();
+                if (req.mode() == StopoverRequest::QueryArrival && (BackendPrivate::impl(backend)->capabilities() & AbstractBackend::CanQueryArrivals) == 0) {
+                    qCDebug(Log) << "Skipping backend due to not supporting arrival queries:" << backend.identifier();
                     continue;
                 }
-                const auto coverage = b.coverageArea(coverageType);
+                const auto coverage = backend.coverageArea(coverageType);
                 if (coverage.isEmpty() || !coverage.coversLocation(req.stop())) {
                     continue;
                 }
-                triedBackends.insert(backend->backendId());
+                triedBackends.insert(backend.identifier());
                 foundNonGlobalCoverage |= !coverage.isGlobal();
 
-                if (d->queryStopover(backend, req, reply)) {
+                if (d->queryStopover(BackendPrivate::impl(backend), req, reply)) {
                     ++pendingOps;
                 }
             }
@@ -664,33 +662,32 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     QSet<QString> triedBackends;
     bool foundNonGlobalCoverage = false;
     for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-        for (const auto &b : d->m_backends) {
-            const auto backend = BackendPrivate::impl(b);
-            if (triedBackends.contains(backend->backendId()) || d->shouldSkipBackend(backend, req)) {
+        for (const auto &backend : d->m_backends) {
+            if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
                 continue;
             }
-            const auto coverage = b.coverageArea(coverageType);
+            const auto coverage = backend.coverageArea(coverageType);
             if (coverage.isEmpty() || !coverage.coversLocation(req.location())) {
                 continue;
             }
-            triedBackends.insert(backend->backendId());
+            triedBackends.insert(backend.identifier());
             foundNonGlobalCoverage |= !coverage.isGlobal();
 
-            reply->addAttribution(backend->attribution());
+            reply->addAttribution(BackendPrivate::impl(backend)->attribution());
 
-            auto cache = Cache::lookupLocation(backend->backendId(), req.cacheKey());
+            auto cache = Cache::lookupLocation(backend.identifier(), req.cacheKey());
             switch (cache.type) {
                 case CacheHitType::Negative:
-                    qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
+                    qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
                     break;
                 case CacheHitType::Positive:
-                    qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+                    qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
                     reply->addAttributions(std::move(cache.attributions));
                     reply->addResult(std::move(cache.data));
                     break;
                 case CacheHitType::Miss:
-                    qCDebug(Log) << "Cache miss for backend" << backend->backendId();
-                    if (backend->queryLocation(req, reply, d->nam())) {
+                    qCDebug(Log) << "Cache miss for backend" << backend.identifier();
+                    if (BackendPrivate::impl(backend)->queryLocation(req, reply, d->nam())) {
                         ++pendingOps;
                     }
                     break;
@@ -716,24 +713,23 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         return reply;
     }
 
-    for (const auto &b : d->m_backends) {
-        const auto backend = BackendPrivate::impl(b);
+    for (const auto &backend : d->m_backends) {
         if (d->shouldSkipBackend(backend, req)) {
             continue;
         }
-        const auto coverage = b.coverageArea(CoverageArea::Realtime);
+        const auto coverage = backend.coverageArea(CoverageArea::Realtime);
         if (coverage.isEmpty() || !coverage.coversLocation(req.stopover().stopPoint())) {
             continue;
         }
-        reply->addAttribution(backend->attribution());
+        reply->addAttribution(BackendPrivate::impl(backend)->attribution());
 
-        auto cache = Cache::lookupVehicleLayout(backend->backendId(), req.cacheKey());
+        auto cache = Cache::lookupVehicleLayout(backend.identifier(), req.cacheKey());
         switch (cache.type) {
             case CacheHitType::Negative:
-                qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();
+                qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
                 break;
             case CacheHitType::Positive:
-                qCDebug(Log) << "Positive cache hit for backend" << backend->backendId();
+                qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
                 if (cache.data.size() == 1) {
                     reply->addAttributions(std::move(cache.attributions));
                     reply->addResult(cache.data[0]);
@@ -741,8 +737,8 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
                 }
                 Q_FALLTHROUGH();
             case CacheHitType::Miss:
-                qCDebug(Log) << "Cache miss for backend" << backend->backendId();
-                if (backend->queryVehicleLayout(req, reply, d->nam())) {
+                qCDebug(Log) << "Cache miss for backend" << backend.identifier();
+                if (BackendPrivate::impl(backend)->queryVehicleLayout(req, reply, d->nam())) {
                     ++pendingOps;
                 }
                 break;
