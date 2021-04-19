@@ -68,11 +68,11 @@ QPolygonF GeoJson::readOuterPolygon(const QJsonObject &obj)
         const auto coordinates = obj.value(QLatin1String("coordinates")).toArray();
         QPolygonF poly;
         for (const auto &polyV : coordinates) {
-            const auto polyCoords = polyV.toArray();
-            if (polyCoords.empty()) {
+            const auto polyElements = polyV.toArray();
+            if (polyElements.empty()) {
                 return {};
             }
-            auto subPoly = readPolygonCoordinates(polyCoords);
+            auto subPoly = readPolygonCoordinates(polyElements.at(0).toArray());
             poly = poly.empty() ? std::move(subPoly) : poly.united(subPoly);
         }
         return poly;
