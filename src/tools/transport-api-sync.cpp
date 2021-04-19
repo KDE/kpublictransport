@@ -4,6 +4,9 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "polygonsimplifier.h"
+#include "../lib/geo/geojson_p.h"
+
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -12,6 +15,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QPolygonF>
 #include <QProcess>
 #include <QRegularExpression>
 
@@ -115,7 +119,12 @@ static void preProcessCoverage(QJsonObject &obj)
     }
 
     // reduce resolution of the area geometry
-    // TODO
+    using namespace KPublicTransport;
+    auto poly = GeoJson::readOuterPolygon(obj.take(QLatin1String("area")).toObject());
+    poly = PolygonSimplifier::douglasPeucker(poly, 10'000.0);
+    if (!poly.empty()) {
+        obj.insert(QLatin1String("area"), GeoJson::writePolygon(poly));
+    }
 }
 
 static void preProcessConfig(QJsonObject &top)

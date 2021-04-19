@@ -7,21 +7,17 @@
 #ifndef KPUBLICTRANSPORT_GEOJSON_P_H
 #define KPUBLICTRANSPORT_GEOJSON_P_H
 
-#include "kpublictransport_export.h"
-
 class QJsonObject;
 class QPointF;
 class QPolygonF;
 
 namespace KPublicTransport {
 
-/** GeoJSON utilities.
- *  @internal only exported for unit tests
- */
+/** GeoJSON utilities. */
 namespace GeoJson
 {
     /** Coordinate of a point geometry object. */
-    KPUBLICTRANSPORT_EXPORT QPointF readPoint(const QJsonObject &obj);
+    QPointF readPoint(const QJsonObject &obj);
 
     /** Reads a line string object. */
     QPolygonF readLineString(const QJsonObject &obj);
