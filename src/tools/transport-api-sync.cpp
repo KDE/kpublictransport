@@ -120,10 +120,12 @@ static void preProcessCoverage(QJsonObject &obj)
 
     // reduce resolution of the area geometry
     using namespace KPublicTransport;
-    auto poly = GeoJson::readOuterPolygon(obj.take(QLatin1String("area")).toObject());
-    poly = PolygonSimplifier::douglasPeucker(poly, 10'000.0);
-    if (!poly.empty()) {
-        obj.insert(QLatin1String("area"), GeoJson::writePolygon(poly));
+    auto polys = GeoJson::readOuterPolygons(obj.take(QLatin1String("area")).toObject());
+    for (auto &poly : polys) {
+        poly = PolygonSimplifier::douglasPeucker(poly, 10'000.0);
+    }
+    if (!polys.empty()) {
+        obj.insert(QLatin1String("area"), GeoJson::writePolygons(polys));
     }
 }
 
