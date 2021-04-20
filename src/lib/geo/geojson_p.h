@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_GEOJSON_P_H
 #define KPUBLICTRANSPORT_GEOJSON_P_H
 
+#include <vector>
+
 class QJsonObject;
 class QPointF;
 class QPolygonF;
@@ -22,14 +24,20 @@ namespace GeoJson
     /** Reads a line string object. */
     QPolygonF readLineString(const QJsonObject &obj);
 
-    /** Outer path of a polygon or multi-polygon geometry object. */
+    /** Outer path of a polygon or multi-polygon geometry object.
+     *  Multiple outer polygons are united.
+     */
     QPolygonF readOuterPolygon(const QJsonObject &obj);
+    /** Outer paths of a polygon or multi-polygon geometry object. */
+    std::vector<QPolygonF> readOuterPolygons(const QJsonObject &obj);
 
     /** Creates a line string object. */
     QJsonObject writeLineString(const QPolygonF &lineString);
 
     /** Create a polygon object. */
     QJsonObject writePolygon(const QPolygonF &polygon);
+    /** Create a multi-polygon object. */
+    QJsonObject writePolygons(const std::vector<QPolygonF> &polygons);
 }
 
 }

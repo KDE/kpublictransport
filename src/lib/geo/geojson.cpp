@@ -44,6 +44,14 @@ static QPolygonF readPolygonCoordinates(const QJsonArray &coords)
     return poly;
 }
 
+static QPolygonF readOuterPolygonCoordinates(const QJsonArray &coordinates)
+{
+    if (coordinates.empty()) {
+        return {};
+    }
+    return readPolygonCoordinates(coordinates.at(0).toArray());
+}
+
 QPolygonF GeoJson::readLineString(const QJsonObject &obj)
 {
     const auto type = obj.value(QLatin1String("type")).toString();
@@ -59,23 +67,33 @@ QPolygonF GeoJson::readOuterPolygon(const QJsonObject &obj)
 {
     const auto type = obj.value(QLatin1String("type")).toString();
     if (type == QLatin1String("Polygon")) {
-        const auto coordinates = obj.value(QLatin1String("coordinates")).toArray();
-        if (coordinates.empty()) {
-            return {};
-        }
-        return readPolygonCoordinates(coordinates.at(0).toArray());
+        return readOuterPolygonCoordinates(obj.value(QLatin1String("coordinates")).toArray());
     } else if (type == QLatin1String("MultiPolygon")) {
         const auto coordinates = obj.value(QLatin1String("coordinates")).toArray();
         QPolygonF poly;
         for (const auto &polyV : coordinates) {
-            const auto polyElements = polyV.toArray();
-            if (polyElements.empty()) {
-                return {};
-            }
-            auto subPoly = readPolygonCoordinates(polyElements.at(0).toArray());
+            auto subPoly = readOuterPolygonCoordinates(polyV.toArray());
             poly = poly.empty() ? std::move(subPoly) : poly.united(subPoly);
         }
         return poly;
+    }
+
+    return {};
+}
+
+std::vector<QPolygonF> GeoJson::readOuterPolygons(const QJsonObject &obj)
+{
+    const auto type = obj.value(QLatin1String("type")).toString();
+    if (type == QLatin1String("Polygon")) {
+        return {readOuterPolygonCoordinates(obj.value(QLatin1String("coordinates")).toArray())};
+    } else if (type == QLatin1String("MultiPolygon")) {
+        const auto coordinates = obj.value(QLatin1String("coordinates")).toArray();
+        std::vector<QPolygonF> polys;
+        polys.reserve(coordinates.size());
+        for (const auto &polyV : coordinates) {
+            polys.push_back(readOuterPolygonCoordinates(polyV.toArray()));
+        }
+        return polys;
     }
 
     return {};
@@ -111,5 +129,31 @@ QJsonObject GeoJson::writePolygon(const QPolygonF &polygon)
     QJsonArray polyArray;
     polyArray.push_back(coords);
     obj.insert(QLatin1String("coordinates"), polyArray);
+    return obj;
+}
+
+QJsonObject GeoJson::writePolygons(const std::vector<QPolygonF> &polygons)
+{
+    if (polygons.empty()) {
+        return {};
+    }
+    if (polygons.size() == 1) {
+        return writePolygon(polygons[0]);
+    }
+
+    QJsonObject obj;
+    obj.insert(QLatin1String("type"), QLatin1String("MultiPolygon"));
+
+    QJsonArray multiPolys;
+    for (const auto &polygon : polygons) {
+        QJsonArray coords;
+        for (const auto &p : polygon) {
+            coords.push_back(writePoint(p));
+        }
+        QJsonArray polyArray;
+        polyArray.push_back(coords);
+        multiPolys.push_back(polyArray);
+    }
+    obj.insert(QLatin1String("coordinates"), multiPolys);
     return obj;
 }
