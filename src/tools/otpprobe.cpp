@@ -69,7 +69,8 @@ int main(int argc, char **argv)
 
         const auto doc = QJsonDocument::fromJson(f.readAll());
         const auto obj = doc.object();
-        if (!obj.value(QLatin1String("type")).toString().startsWith(QLatin1String("otp_"))) {
+        const auto typeObj = obj.value(QLatin1String("type")).toObject();
+        if (!typeObj.contains(QLatin1String("otpRest")) && !typeObj.contains(QLatin1String("otpGraphQl"))) {
             continue;
         }
 
