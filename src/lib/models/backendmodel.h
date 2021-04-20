@@ -48,7 +48,8 @@ public:
         SecureRole,
         ItemEnabledRole,
         BackendEnabledRole,
-        PrimaryCountryCodeRole, ///< See Backend::primaryCountry, useful for section grouping
+        PrimaryCountryCodeRole [[deprecated("use CountryCodeRole")]], ///< @deprecated use CountryCodeRole instead
+        CountryCodeRole, ///< a ISO 3166-1 code usable for grouping content by country
     };
 
     Manager* manager() const;

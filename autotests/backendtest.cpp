@@ -126,6 +126,7 @@ private Q_SLOTS:
             if (!idx.data(BackendModel::SecureRole).toBool()) {
                 QVERIFY(!idx.data(BackendModel::BackendEnabledRole).toBool());
             }
+            QVERIFY(!idx.data(BackendModel::CountryCodeRole).toString().isEmpty());
         }
 
         QCOMPARE(dataChangedSpy.size(), 0);

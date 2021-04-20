@@ -235,6 +235,7 @@ QVariant BackendModel::data(const QModelIndex &index, int role) const
             }
             return d->mgr->isBackendEnabled(row.backend.identifier()) ? Qt::Checked : Qt::Unchecked;
         case PrimaryCountryCodeRole:
+        case CountryCodeRole:
             return row.country;
     }
 
@@ -281,5 +282,6 @@ QHash<int, QByteArray> BackendModel::roleNames() const
     names.insert(ItemEnabledRole, "itemEnabled");
     names.insert(BackendEnabledRole, "backendEnabled");
     names.insert(PrimaryCountryCodeRole, "primaryCountryCode");
+    names.insert(CountryCodeRole, "countryCode");
     return names;
 }
