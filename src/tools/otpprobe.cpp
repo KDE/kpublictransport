@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "../lib/geo/geojson_p.h"
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDirIterator>
@@ -13,6 +15,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QPolygonF>
 #include <QRectF>
 
 #include <iostream>
@@ -20,25 +23,23 @@
 static void fillNetworkConfig(QNetworkReply *reply, QJsonObject &obj)
 {
     const auto desc = QJsonDocument::fromJson(reply->readAll()).object();
-    QRectF boundingBox;
-    boundingBox.setBottom(desc.value(QLatin1String("lowerLeftLatitude")).toDouble());
-    boundingBox.setLeft(desc.value(QLatin1String("lowerLeftLongitude")).toDouble());
-    boundingBox.setTop(desc.value(QLatin1String("upperRightLatitude")).toDouble());
-    boundingBox.setRight(desc.value(QLatin1String("upperRightLongitude")).toDouble());
-    QJsonArray coords;
-    for (const auto &point : {boundingBox.topLeft(), boundingBox.topRight(), boundingBox.bottomRight(), boundingBox.bottomLeft(), boundingBox.topLeft()}) {
-        QJsonArray p;
-        p.push_back(point.x());
-        p.push_back(point.y());
-        coords.push_back(p);
+
+    // clean up the coverage polygon we get, that often contains bogus outliers
+    using namespace KPublicTransport;
+    auto poly = GeoJson::readOuterPolygon(desc.value(QLatin1String("polygon")).toObject());
+    // TODO: more elaborate outlier detection, null points is just one of the problems
+    poly.erase(std::remove_if(poly.begin(), poly.end(), [](auto p) { return p.isNull(); }), poly.end());
+    if (poly.empty()) {
+        return;
     }
-    QJsonObject area;
-    area.insert(QLatin1String("type"), QLatin1String("Polygon"));
-    area.insert(QLatin1String("coordinates"), QJsonArray({coords}));
+    if (!poly.isClosed()) {
+        poly.push_back(poly.front());
+    }
+
     auto coverage = obj.value(QLatin1String("coverage")).toObject();
-    auto anyCoverage = coverage.value(QLatin1String("anyCoverage")).toObject();
-    anyCoverage.insert(QLatin1String("area"), area);
-    coverage.insert(QLatin1String("anyCoverage"), anyCoverage);
+    auto rtCoverage = coverage.value(QLatin1String("realtimeCoverage")).toObject();
+    rtCoverage.insert(QLatin1String("area"), GeoJson::writePolygon(poly));
+    coverage.insert(QLatin1String("realtimeCoverage"), rtCoverage);
     obj.insert(QLatin1String("coverage"), coverage);
 }
 

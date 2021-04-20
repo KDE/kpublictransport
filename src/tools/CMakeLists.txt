@@ -5,8 +5,11 @@ add_executable(endpointprobe endpointprobe.cpp)
 target_link_libraries(endpointprobe Qt5::Network)
 add_custom_target(run-endpoint-probe COMMAND endpointprobe ${CMAKE_SOURCE_DIR}/src/lib/networks)
 
-add_executable(otpprobe otpprobe.cpp)
-target_link_libraries(otpprobe Qt5::Network)
+add_executable(otpprobe
+    otpprobe.cpp
+    ../lib/geo/geojson.cpp
+)
+target_link_libraries(otpprobe Qt5::Gui Qt5::Network)
 add_custom_target(run-otp-probe COMMAND otpprobe ${CMAKE_SOURCE_DIR}/src/lib/networks)
 
 add_executable(gbfsprobe gbfsprobe.cpp)
