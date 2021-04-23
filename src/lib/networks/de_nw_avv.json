@@ -171,6 +171,7 @@
                     1024
                 ],
                 "id": "ferry",
+                "mode": "Ferry",
                 "name": "Fähre"
             }
         ],

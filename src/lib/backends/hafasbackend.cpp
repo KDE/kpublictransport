@@ -22,9 +22,10 @@ void HafasBackend::setProductsMap(const QJsonArray& array)
     for (const auto &prodV : array) {
         const auto prodObj = prodV.toObject();
         const auto bitmasks = prodObj.value(QLatin1String("bitmasks")).toArray();
-        const auto mode = static_cast<Line::Mode>(me.keyToValue(prodObj.value(QLatin1String("mode")).toString().toUtf8().constData()));
-        if (mode == Line::Unknown) {
+        auto mode = static_cast<Line::Mode>(me.keyToValue(prodObj.value(QLatin1String("mode")).toString().toUtf8().constData()));
+        if (mode == Line::Unknown || mode < 0) {
             qCWarning(Log) << "Invalid product mode:" << prodObj;
+            mode = Line::Unknown;
         }
         for (const auto &bit : bitmasks) {
             m_lineModeMap[bit.toInt()] = mode;
