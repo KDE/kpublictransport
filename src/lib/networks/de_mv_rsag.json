@@ -1,0 +1,159 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in and around Rostock, Germany.",
+        "Name": "Rostocker Straßenbahn (RSAG)"
+    },
+    "attribution": {
+        "homepage": "https://www.rsag-online.de",
+        "isProprietary": true,
+        "name": "Rostocker Straßenbahn AG"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            12.7664186,
+                            53.5168281
+                        ],
+                        [
+                            13.0139552,
+                            54.0758775
+                        ],
+                        [
+                            12.3019624,
+                            54.4428524
+                        ],
+                        [
+                            11.3660187,
+                            54.1662382
+                        ],
+                        [
+                            11.3390645,
+                            53.9709243
+                        ],
+                        [
+                            12.2185017,
+                            53.4175483
+                        ],
+                        [
+                            12.7664186,
+                            53.5168281
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "DE-MV"
+            ]
+        }
+    },
+    "options": {
+        "auth": {
+            "aid": "tF5JTs25rzUhGrrl",
+            "type": "AID"
+        },
+        "client": {
+            "id": "RSAG",
+            "type": "WEB"
+        },
+        "endpoint": "https://fahrplan.rsag-online.de/bin/mgate.exe",
+        "ext": "VBN.2",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "ice",
+                "mode": "LongDistanceTrain",
+                "name": "InterCityExpress"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "ic-ec",
+                "mode": "LongDistanceTrain",
+                "name": "InterCity & EuroCity"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "long-distance-train",
+                "mode": "Train",
+                "name": "InterRegio/high-speed train"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "regional train"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "s-bahn",
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Schiff"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "u-bahn",
+                "mode": "Metro",
+                "name": "U-Bahn"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "on-call",
+                "mode": "Taxi",
+                "name": "Taxi/on-call vehicle"
+            }
+        ],
+        "standardLocationIdentifierCountries": [ 80 ],
+        "standardLocationIdentifierType": "ibnr",
+        "ver": "1.24"
+    },
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fr"
+    ],
+    "timezone": "Europe/Berlin",
+    "type": {
+        "hafasMgate": true
+    }
+}

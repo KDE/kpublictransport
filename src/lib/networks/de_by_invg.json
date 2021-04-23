@@ -1,0 +1,140 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in and around Ingolstadt, Germany.",
+        "Name": "Ingolstädter Verkehrsgesellschaft (INVG)"
+    },
+    "attribution": {
+        "homepage": "https://www.invg.de/",
+        "isProprietary": true,
+        "name": "Ingolstädter Verkehrsgesellschaft"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            11.9050155,
+                            48.9176147
+                        ],
+                        [
+                            11.5746749,
+                            49.2298665
+                        ],
+                        [
+                            10.7019789,
+                            48.9282884
+                        ],
+                        [
+                            11.1869497,
+                            48.3285226
+                        ],
+                        [
+                            11.7334832,
+                            48.3225877
+                        ],
+                        [
+                            11.9050155,
+                            48.9176147
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "DE-BY"
+            ]
+        }
+    },
+    "options": {
+        "auth": {
+            "aid": "GITvwi3BGOmTQ2a5",
+            "type": "AID"
+        },
+        "client": {
+            "id": "INVG",
+            "type": "IPH"
+        },
+        "endpoint": "https://fpa.invg.de/bin/mgate.exe",
+        "products": [
+            {
+                "bitmasks": [
+                    1,
+                    16
+                ],
+                "id": "bus",
+                "mode": "Bus",
+                "name": "Bus"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "express-train",
+                "mode": "LongDistanceTrain",
+                "name": "High-speed train"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "regional-train",
+                "mode": "LocalTrain",
+                "name": "Regional train"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "local-train",
+                "mode": "LocalTrain",
+                "name": "Nahverkehrszug"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "ferry",
+                "mode": "Ferry",
+                "name": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "subway",
+                "mode": "Metro",
+                "name": "Subway"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "tram",
+                "mode": "Tramway",
+                "name": "Tram"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "on-demand",
+                "mode": "Taxi",
+                "name": "On-demand traffic"
+            }
+        ],
+        "standardLocationIdentifierCountries": [ 80 ],
+        "standardLocationIdentifierType": "ibnr",
+        "ver": "1.16"
+    },
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fr",
+        "it"
+    ],
+    "timezone": "Europe/Berlin",
+    "type": {
+        "hafasMgate": true
+    }
+}

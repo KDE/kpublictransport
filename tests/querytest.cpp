@@ -106,11 +106,13 @@ private Q_SLOTS:
         QTest::newRow("de_bw_ulm") << "de_bw_ulm" << loc("Ulm Hbf", 48.39946, 9.98302) << loc("Neu Ulm", 48.39330, 10.00520);
         QTest::newRow("de_bw_vvs") << "de_bw_vvs" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
         QTest::newRow("de_by_bayern") << "de_by_bayern" << loc("München Hbf", 48.14046, 11.55819) << loc("Nürnberg Hbf", 49.44559, 11.08219);
+        QTest::newRow("de_by_invg") << "de_by_invg" << loc("Ingolstadt Hbf", 48.74436, 11.43746) << loc("Ingolstadt Nord", 48.77350, 11.43251);
         QTest::newRow("de_by_mvv") << "de_by_mvv" << loc("München Hbf", 48.14046, 11.55819) << loc("Isartor", 48.13375, 11.58303);
         QTest::newRow("de_by_vgn") << "de_by_vgn" << loc("Erlangen", 49.59591, 11.00220) << loc("Nürnberg Hbf", 49.44559, 11.08219);
         QTest::newRow("de_he_nvv") << "de_he_nvv" << loc("Kassel Hbf", 51.31836, 9.48946) << loc("Kassel Wilhelmshöhe", 51.31137, 9.44827);
         QTest::newRow("de_he_rmv") << "de_he_rmv" << loc("Frankfurt Hbf", 50.10675, 8.66281) << loc("Frankfurt Flughafen Regionalbf", 50.05129, 8.57170);
         QTest::newRow("de_hh_hvv") << "de_hh_hvv" << loc("Hamburg Hauptbahnhof", 53.55299, 10.00702) << loc("Hamburg Altona", 53.55284, 9.93569);
+        QTest::newRow("de_mv_rsag") << "de_mv_rsag" << loc("Rostock Hauptbahnhof", 54.07814, 12.13206) << loc("Warnemünde Bahnhof", 54.17695, 12.09069);
         QTest::newRow("de_mv_vmv") << "de_mv_vmv" << loc("Rostock Hauptbahnhof", 54.07814, 12.13206) << loc("Stralsund Hbf", 54.30766, 13.07931);
         QTest::newRow("de_ni_efa") << "de_ni_efa" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_gvh") << "de_ni_gvh" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);

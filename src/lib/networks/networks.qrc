@@ -50,11 +50,13 @@
         <file>de_bw_ulm.json</file>
         <file>de_bw_vvs.json</file>
         <file>de_by_bayern.json</file>
+        <file>de_by_invg.json</file>
         <file>de_by_mvv.json</file>
         <file>de_by_vgn.json</file>
         <file>de_he_nvv.json</file>
         <file>de_he_rmv.json</file>
         <file>de_hh_hvv.json</file>
+        <file>de_mv_rsag.json</file>
         <file>de_mv_vmv.json</file>
         <file>de_ni_efa.json</file>
         <file>de_ni_gvh.json</file>
