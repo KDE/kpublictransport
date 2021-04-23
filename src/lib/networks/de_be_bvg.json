@@ -47,8 +47,8 @@
     "coverage": {
         "anyCoverage": {
             "region": [
-                "PL",
-                "CZ"
+                "CZ",
+                "PL"
             ]
         },
         "realtimeCoverage": {
@@ -80,8 +80,8 @@
                 "type": "Polygon"
             },
             "region": [
-                "DE-BE",
-                "DE-BB"
+                "DE-BB",
+                "DE-BE"
             ]
         },
         "regularCoverage": {
