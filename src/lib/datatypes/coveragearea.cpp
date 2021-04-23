@@ -21,7 +21,7 @@ class CoverageAreaPrivate : public QSharedData {
 public:
     CoverageArea::Type type = CoverageArea::Any;
     QStringList regions;
-    QPolygonF area;
+    std::vector<QPolygonF> areas;
     QRectF boundingBox;
 };
 }
@@ -32,7 +32,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, QStringList, regions, setRegions)
 
 bool CoverageArea::isEmpty() const
 {
-    return d->regions.isEmpty() && d->area.isEmpty();
+    return d->regions.isEmpty() && d->areas.empty();
 }
 
 bool CoverageArea::isGlobal() const
@@ -51,9 +51,13 @@ static QStringView countryCode(QStringView isoCode)
 
 bool CoverageArea::coversLocation(const Location &loc) const
 {
-    if (loc.hasCoordinate() && !d->area.isEmpty()) {
-        return d->boundingBox.contains({loc.longitude(), loc.latitude()})
-            && d->area.containsPoint({loc.longitude(), loc.latitude()}, Qt::WindingFill);
+    if (loc.hasCoordinate() && !d->areas.empty()) {
+        if (d->boundingBox.contains({loc.longitude(), loc.latitude()})) {
+            return std::any_of(d->areas.begin(), d->areas.end(), [&loc](const auto &area) {
+                return area.containsPoint({loc.longitude(), loc.latitude()}, Qt::WindingFill);
+            });
+        }
+        return false;
     }
 
     // TODO we could do a more precise check for ISO 3166-2 subdivision codes when available
@@ -76,8 +80,10 @@ CoverageArea CoverageArea::fromJson(const QJsonObject &obj)
     CoverageArea ca;
     ca.setRegions(Json::toStringList(obj.value(QLatin1String("region"))));
     std::sort(ca.d->regions.begin(), ca.d->regions.end());
-    ca.d->area = GeoJson::readOuterPolygon(obj.value(QLatin1String("area")).toObject());
-    ca.d->boundingBox = ca.d->area.boundingRect();
+    ca.d->areas = GeoJson::readOuterPolygons(obj.value(QLatin1String("area")).toObject());
+    for (const auto &area : ca.d->areas) {
+        ca.d->boundingBox |= area.boundingRect();
+    }
     return ca;
 }
 
