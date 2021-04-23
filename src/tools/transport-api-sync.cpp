@@ -122,7 +122,12 @@ static void preProcessCoverage(QJsonObject &obj)
     using namespace KPublicTransport;
     auto polys = GeoJson::readOuterPolygons(obj.take(QLatin1String("area")).toObject());
     for (auto &poly : polys) {
+        const auto originalPolySize = poly.size();
         poly = PolygonSimplifier::douglasPeucker(poly, 10'000.0);
+        if (originalPolySize > poly.size()) {
+            // only apply offsetting if we actually simplified the polygon
+            poly = PolygonSimplifier::offset(poly, 10'000.0);
+        }
     }
     if (!polys.empty()) {
         obj.insert(QLatin1String("area"), GeoJson::writePolygons(polys));

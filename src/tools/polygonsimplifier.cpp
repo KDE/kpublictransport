@@ -11,6 +11,8 @@
 #include <QDebug>
 #include <QPolygonF>
 
+#include <clipper.hpp>
+
 static QPolygonF douglasPeucker(const QPolygonF::const_iterator &begin, const QPolygonF::const_iterator &end, double threshold)
 {
     QPolygonF result;
@@ -53,4 +55,45 @@ QPolygonF PolygonSimplifier::douglasPeucker(const QPolygonF &poly, double thresh
     }
 
     return result;
+}
+
+static ClipperLib::Path qPolygonToClipperPath(const QPolygonF &poly)
+{
+    ClipperLib::Path result;
+    result.reserve(poly.size());
+    std::transform(poly.begin(), poly.end(), std::back_inserter(result), [](auto p) {
+        return ClipperLib::IntPoint(p.x() * 10'000'000.0, p.y() * 10'000'000);
+    });
+    return result;
+}
+
+static QPolygonF clipperPathToQPolygon(const ClipperLib::Path &path)
+{
+    QPolygonF result;
+    result.reserve(path.size() + 1);
+    std::transform(path.begin(), path.end(), std::back_inserter(result), [](auto p) {
+        return QPointF(p.X / 10'000'000.0, p.Y / 10'000'000.0);
+    });
+    if (!result.empty() && !result.isClosed()) {
+        result.push_back(result.front());
+    }
+    return result;
+}
+
+QPolygonF PolygonSimplifier::offset(const QPolygonF &poly, double distance)
+{
+    if (poly.empty()) {
+        return {};
+    }
+
+    // convert meter distance to 100 nano-degree, the unit used by the polygon offset algorithm
+    const auto bbox = poly.boundingRect();
+    const auto bboxWidth = OSM::distance(bbox.center().y(), bbox.left(), bbox.center().y(), bbox.right());
+    const auto delta = bbox.width() / bboxWidth * distance * 10'000'000.0;
+
+    ClipperLib::ClipperOffset co;
+    co.AddPath(qPolygonToClipperPath(poly), ClipperLib::jtMiter, ClipperLib::etClosedPolygon);
+    ClipperLib::Paths result;
+    co.Execute(result, delta);
+    return clipperPathToQPolygon(result[0]);
 }

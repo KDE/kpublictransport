@@ -17,6 +17,9 @@ namespace PolygonSimplifier
      *  @see https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
      */
     QPolygonF douglasPeucker(const QPolygonF &poly, double distance);
+
+    /** Offset ("grow") a polygon by @p distance in meters. */
+    QPolygonF offset(const QPolygonF &poly, double distance);
 }
 
 #endif // POLYGONSIMPLIFIER_H

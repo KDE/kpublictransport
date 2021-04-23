@@ -41,7 +41,9 @@ endif()
 
 find_package(ZLIB REQUIRED)
 find_package(OsmTools)
-set_package_properties(OsmTools PROPERTIES TYPE OPTIONAL PURPOSE "Needed only for regenereating line metadata tables (ie. you most likely don't need this)")
+set_package_properties(OsmTools PROPERTIES TYPE OPTIONAL PURPOSE "Needed only for regenereating line metadata tables (you don't need this for distribution)")
+find_package(PolyClipping)
+set_package_properties(PolyClipping PROPERTIES TYPE OPTIONAL PURPOSE "Needed only for processing coverage area data from the Transport API Repository (you don't need this for distribution)")
 
 if (NOT WIN32)
     find_package(Protobuf)
