@@ -143,7 +143,9 @@
                 "name": "Taxi/on-call vehicle"
             }
         ],
-        "standardLocationIdentifierCountries": [ 80 ],
+        "standardLocationIdentifierCountries": [
+            80
+        ],
         "standardLocationIdentifierType": "ibnr",
         "ver": "1.24"
     },
