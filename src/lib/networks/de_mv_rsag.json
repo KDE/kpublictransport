@@ -1,7 +1,17 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Rostock, Germany.",
-        "Name": "Rostocker Straßenbahn (RSAG)"
+        "Description[ca]": "Transport local a Rostock i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om Rostock, Duitsland.",
+        "Description[sv]": "Lokala transporter i och omkring Rostock, Tyskland.",
+        "Description[uk]": "Місцевий транспорт у Ростоці і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Rostock, Germany.xx",
+        "Name": "Rostocker Straßenbahn (RSAG)",
+        "Name[ca]": "Rostocker Straßenbahn (RSAG)",
+        "Name[nl]": "Rostocker Straßenbahn (RSAG)",
+        "Name[sv]": "Rostocker Straßenbahn (RSAG)",
+        "Name[uk]": "Rostocker Straßenbahn (RSAG)",
+        "Name[x-test]": "xxRostocker Straßenbahn (RSAG)xx"
     },
     "attribution": {
         "homepage": "https://www.rsag-online.de",

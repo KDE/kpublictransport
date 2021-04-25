@@ -1,7 +1,17 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Ingolstadt, Germany.",
-        "Name": "Ingolstädter Verkehrsgesellschaft (INVG)"
+        "Description[ca]": "Transport local a Ingolstadt i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal transport in en om Ingolstadt, Duitsland.",
+        "Description[sv]": "Lokala transporter i och omkring Ingolstadt, Tyskland.",
+        "Description[uk]": "Місцевий транспорту Інгольштадті і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Ingolstadt, Germany.xx",
+        "Name": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[ca]": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[nl]": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[sv]": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[uk]": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[x-test]": "xxIngolstädter Verkehrsgesellschaft (INVG)xx"
     },
     "attribution": {
         "homepage": "https://www.invg.de/",
