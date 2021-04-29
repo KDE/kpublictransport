@@ -1,7 +1,9 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Rostock, Germany.",
+        "Description[ca@valencia]": "Transport local a Rostock i rodalies, Alemanya.",
         "Description[ca]": "Transport local a Rostock i rodalies, Alemanya.",
+        "Description[de]": "Lokale Verkehrsmittel in und um Rostock, Deutschland.",
         "Description[es]": "Transporte local de Rostock y alrededores, Alemania.",
         "Description[nl]": "Lokaal transport in en om Rostock, Duitsland.",
         "Description[pt]": "Transportes locais na região de Rostock, Alemanha.",
@@ -10,7 +12,9 @@
         "Description[uk]": "Місцевий транспорт у Ростоці і околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Rostock, Germany.xx",
         "Name": "Rostocker Straßenbahn (RSAG)",
+        "Name[ca@valencia]": "Rostocker Straßenbahn (RSAG)",
         "Name[ca]": "Rostocker Straßenbahn (RSAG)",
+        "Name[de]": "Rostocker Straßenbahn (RSAG)",
         "Name[es]": "Rostocker Straßenbahn (RSAG)",
         "Name[nl]": "Rostocker Straßenbahn (RSAG)",
         "Name[pt]": "Rostocker Straßenbahn (RSAG)",

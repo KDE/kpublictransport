@@ -1,7 +1,9 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Ingolstadt, Germany.",
+        "Description[ca@valencia]": "Transport local a Ingolstadt i rodalies, Alemanya.",
         "Description[ca]": "Transport local a Ingolstadt i rodalies, Alemanya.",
+        "Description[de]": "Lokale Verkehrsmittel in und um Ingolstadt, Deutschland.",
         "Description[es]": "Transporte local de Ingolstadt y alrededores, Alemania.",
         "Description[nl]": "Lokaal transport in en om Ingolstadt, Duitsland.",
         "Description[pt]": "Transportes locais na região de Ingolstadt, Alemanha.",
@@ -10,7 +12,9 @@
         "Description[uk]": "Місцевий транспорту Інгольштадті і околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Ingolstadt, Germany.xx",
         "Name": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[ca@valencia]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[ca]": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[de]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[es]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[nl]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[pt]": "Ingolstädter Verkehrsgesellschaft (INVG)",
