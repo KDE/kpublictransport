@@ -117,6 +117,7 @@ private Q_SLOTS:
         QTest::newRow("de_ni_efa") << "de_ni_efa" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_gvh") << "de_ni_gvh" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
         QTest::newRow("de_ni_vbn") << "de_ni_vbn" << loc("Hannover Hbf", 52.37715, 9.74171) << loc("Bremen Hbf", 53.08322, 8.81388);
+        QTest::newRow("de_ni_vsn") << "de_ni_vsn" << loc("Osnabrück Hbf",52.27280, 8.06136) << loc("Göttingen", 51.53676, 9.92626);
         QTest::newRow("de_nw_avv") << "de_nw_avv" << loc("Aachen Hbf", 50.76784, 6.09130) << loc("Aachen West", 50.78025, 6.07124);
         // TODO de_nw_muenster
         QTest::newRow("de_nw_vrr") << "de_nw_vrr" << loc("Düsseldorf Hbf", 51.21991, 6.79419) << loc("Essen Hbf", 51.45127, 7.01388);
