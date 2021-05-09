@@ -1,7 +1,7 @@
 {
     "KPlugin": {
-        "Name": "Verkehrsverbund Süd-Niedersachsen (VSN)",
-        "Description": "Public transport in southern Lower Saxony, Germany."
+        "Description": "Public transport in southern Lower Saxony, Germany.",
+        "Name": "Verkehrsverbund Süd-Niedersachsen (VSN)"
     },
     "attribution": {
         "homepage": "https://vsninfo.de/",
@@ -384,12 +384,12 @@
             "aid": "Mpf5UPC0DmzV8jkg",
             "type": "AID"
         },
-        "micMacSalt": "535033316D4275665379434C6D4E7870",
         "client": {
             "id": "VSN",
             "type": "IPA"
         },
         "endpoint": "https://fahrplaner.vsninfo.de/hafas/mgate.exe",
+        "micMacSalt": "535033316D4275665379434C6D4E7870",
         "products": [
             {
                 "bitmasks": [
