@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Public transport in southern Lower Saxony, Germany.",
-        "Name": "Verkehrsverbund Süd-Niedersachsen (VSN)"
+        "Description[ca@valencia]": "Transport públic a la Baixa Saxònia meridional, Alemanya.",
+        "Description[ca]": "Transport públic a la Baixa Saxònia meridional, Alemanya.",
+        "Description[es]": "Transporte público del sur de Baja Sajonia, Alemania.",
+        "Description[nl]": "Openbaar vervoer in Zuid Neder-Saksen, Duitsland.",
+        "Description[uk]": "Дані щодо громадського транспорту у південній Нижній Саксонії, Німеччина.",
+        "Description[x-test]": "xxPublic transport in southern Lower Saxony, Germany.xx",
+        "Name": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[ca@valencia]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[ca]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[es]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[nl]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[uk]": "Verkehrsverbund Süd-Niedersachsen (VSN)",
+        "Name[x-test]": "xxVerkehrsverbund Süd-Niedersachsen (VSN)xx"
     },
     "attribution": {
         "homepage": "https://vsninfo.de/",
