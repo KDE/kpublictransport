@@ -49,6 +49,14 @@ struct QueryContext {
     QString errorMessage;
 };
 
+static QString stationIdToString(const QJsonValue &id)
+{
+    if (id.isDouble()) {
+        return QString::number(id.toInt());
+    }
+    return id.toString();
+}
+
 static void appendResults(const GBFSService &service, const LocationRequest &req, QueryContext *context)
 {
     GBFSStore store(service.systemId);
@@ -73,7 +81,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setType(Location::RentedVehicleStation);
         loc.setCoordinate(lat, lon);
         loc.setName(station.value(QLatin1String("name")).toString());
-        const auto stationId = station.value(QLatin1String("station_id")).toString();
+        const auto stationId = stationIdToString(station.value(QLatin1String("station_id")));
         loc.setIdentifier(service.systemId, stationId);
         // TODO cover more properties
 
@@ -90,7 +98,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     const auto status = statusDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
     for (const auto statV : status) {
         const auto stat = statV.toObject();
-        const auto id = stat.value(QLatin1String("station_id")).toString();
+        const auto id = stationIdToString(stat.value(QLatin1String("station_id")));
         const auto it = std::find(selectedStationIds.begin(), selectedStationIds.end(), id);
         if (it == selectedStationIds.end()) {
             continue;
