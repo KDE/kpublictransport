@@ -471,15 +471,20 @@ Journey OpenTripPlannerParser::parseJourney(const QJsonObject &obj) const
     return journey;
 }
 
-std::vector<Journey> OpenTripPlannerParser::parseJourneys(const QJsonObject& obj) const
+std::vector<Journey> OpenTripPlannerParser::parseJourneys(const QJsonObject& obj)
 {
     std::vector<Journey> journeys;
 
-    const auto journeysArray = obj.value(QLatin1String("plan")).toObject().value(QLatin1String("itineraries")).toArray();
+    const auto plan = obj.value(QLatin1String("plan")).toObject();
+    const auto journeysArray = plan.value(QLatin1String("itineraries")).toArray();
     journeys.reserve(journeysArray.size());
     for (const auto &journeyObj : journeysArray) {
         journeys.push_back(parseJourney(journeyObj.toObject()));
     }
+
+    m_nextJourneyContext.dateTime = parseJourneyDateTime(plan.value(QLatin1String("nextDateTime")));
+    m_prevJourneyContext.dateTime = parseJourneyDateTime(plan.value(QLatin1String("prevDateTime")));
+    m_nextJourneyContext.searchWindow = m_prevJourneyContext.searchWindow = plan.value(QLatin1String("searchWindowUsed")).toInt();
 
     return journeys;
 }

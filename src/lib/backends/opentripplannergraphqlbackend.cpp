@@ -129,16 +129,23 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("fromLon"), req.from().longitude());
     gqlReq.setVariable(QStringLiteral("toLat"), req.to().latitude());
     gqlReq.setVariable(QStringLiteral("toLon"), req.to().longitude());
+
     auto dt = req.dateTime();
+    const auto context = requestContext(req).value<OpenTripPlannerRequestContext>();
+    if (context.dateTime.isValid()) {
+        dt = context.dateTime;
+    }
     if (timeZone().isValid()) {
         dt = dt.toTimeZone(timeZone());
     }
+
     gqlReq.setVariable(QStringLiteral("date"), dt.toString(QStringLiteral("yyyy-MM-dd")));
     gqlReq.setVariable(QStringLiteral("time"), dt.toString(QStringLiteral("hh:mm:ss")));
     gqlReq.setVariable(QStringLiteral("dateTime"), dt.toString(Qt::ISODate));
     gqlReq.setVariable(QStringLiteral("arriveBy"), req.dateTimeMode() == JourneyRequest::Arrival);
     gqlReq.setVariable(QStringLiteral("maxResults"), req.maximumResults());
     gqlReq.setVariable(QStringLiteral("lang"), preferredLanguage());
+    // TODO set context.searchWindow?
 
     QJsonArray modes;
     QJsonObject walkMode;
@@ -172,6 +179,12 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
             OpenTripPlannerParser p(backendId());
             p.setKnownRentalVehicleNetworks(m_rentalNetworks);
             addResult(reply, this, p.parseJourneys(gqlReply.data()));
+            if (p.m_nextJourneyContext.dateTime.isValid()) {
+                setNextRequestContext(reply, p.m_nextJourneyContext);
+            }
+            if (p.m_prevJourneyContext.dateTime.isValid()) {
+                setPreviousRequestContext(reply, p.m_prevJourneyContext);
+            }
         }
     });
 

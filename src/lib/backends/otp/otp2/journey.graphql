@@ -1,0 +1,113 @@
+# SPDX-FileCopyrightText: 2020-2021 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
+query journeys(
+  $fromLat: Float!,
+  $fromLon: Float!,
+  $toLat: Float!,
+  $toLon: Float!,
+  $date: String!,
+  $time: String!,
+  $arriveBy: Boolean!,
+  $modes: [TransportMode]!,
+  $maxResults: Int!,
+  $lang: String!
+) {
+  plan (
+        from: { lat: $fromLat, lon: $fromLon }
+        to:   { lat: $toLat,   lon: $toLon }
+        date: $date
+        time: $time
+        arriveBy: $arriveBy
+        numItineraries: $maxResults
+        transportModes: $modes
+        locale: $lang
+    ) {
+        itineraries {
+            legs {
+                startTime
+                endTime
+                departureDelay
+                arrivalDelay
+                realTime
+                distance
+                mode
+                transitLeg
+                from {
+                    name
+                    lat
+                    lon
+                    stop {
+                        id: gtfsId
+                        platformCode
+                    }
+                    bikeRentalStation {
+                        id
+                        networks,
+                        bikesAvailable,
+                        spacesAvailable
+                    }
+                }
+                to {
+                    name
+                    lat
+                    lon
+                    stop {
+                        id: gtfsId
+                        platformCode
+                    }
+                    bikeRentalStation {
+                        id
+                        stationId,
+                        networks,
+                        bikesAvailable
+                    }
+                }
+                trip {
+                    route {
+                        type
+                        desc
+                        shortName
+                        longName
+                        color
+                        textColor
+                        #bikesAllowed
+                        alerts {
+                            alertHeaderTextTranslations {
+                                language
+                                text
+                            }
+                            alertDescriptionTextTranslations {
+                                language
+                                text
+                            }
+                            alertEffect
+                            alertCause
+                            alertSeverityLevel
+                        }
+                    }
+                    tripHeadsign
+                    tripShortName
+                }
+                intermediateStops: intermediatePlaces {
+                    stop {
+                        id: gtfsId
+                        name
+                        lat
+                        lon
+                        platformCode
+                    }
+                    scheduledArrivalTime: arrivalTime
+                    scheduledDepartureTime: departureTime
+                }
+                legGeometry {
+                    length
+                    points
+                }
+            }
+        }
+        prevDateTime
+        nextDateTime
+        searchWindowUsed
+    }
+}

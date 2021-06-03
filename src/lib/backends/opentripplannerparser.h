@@ -8,6 +8,7 @@
 #define KPUBLICTRANSPORT_OPENTRIPPLANNERPARSER_H
 
 #include "kpublictransport_export.h"
+#include "opentripplannerrequestcontext.h"
 
 #include <KPublicTransport/Location>
 #include <KPublicTransport/RentalVehicle>
@@ -45,8 +46,10 @@ public:
     std::vector<Location> parseGeocodeResult(const QJsonArray &array) const;
     std::vector<Stopover> parseDepartures(const QJsonObject &obj) const;
     std::vector<Stopover> parseDeparturesArray(const QJsonArray &array) const;
-    std::vector<Journey> parseJourneys(const QJsonObject &obj) const;
+    std::vector<Journey> parseJourneys(const QJsonObject &obj);
 
+    OpenTripPlannerRequestContext m_nextJourneyContext;
+    OpenTripPlannerRequestContext m_prevJourneyContext;
 private:
     QVariant parseRentalVehicleData(const QJsonObject &obj) const;
     /// @return @c false for Location objects that should be discarded entirely
