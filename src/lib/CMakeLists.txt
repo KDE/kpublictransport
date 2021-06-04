@@ -85,6 +85,8 @@ set(kpublictransport_srcs
 
     gtfs/hvt.cpp
 
+    ifopt/ifoptutil.cpp
+
     knowledgedb/linemetadata.cpp
 
     models/abstractquerymodel.cpp
