@@ -21,6 +21,12 @@ namespace IfoptUtil
 /** Check if @p ifopt is a valid IFOPT identifier. */
 bool isValid(QStringView ifopt);
 
+/** Returns the stop place identifier for the given (valid!) IFOPT identifier @p ifopt. */
+QStringView stopPlace(QStringView ifopt);
+
+/** Checks whether two valid IFOPT ids refer to the same stop place. */
+bool isSameStopPlace(QStringView lhs, QStringView rhs);
+
 }
 
 }

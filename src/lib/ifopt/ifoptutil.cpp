@@ -30,3 +30,17 @@ bool IfoptUtil::isValid(QStringView ifopt)
 
     return elementCount >= 3 && elementCount <= 5 && ifopt[0].isLetter() && ifopt[1].isLetter() && ifopt[2] == QLatin1Char(':');
 }
+
+QStringView IfoptUtil::stopPlace(QStringView ifopt)
+{
+    qsizetype pos = 0;
+    for (int i = 0; i < 3; i++) {
+        pos = ifopt.indexOf(QLatin1Char(':'), pos) + 1;
+    }
+    return ifopt.left(pos - 1);
+}
+
+bool IfoptUtil::isSameStopPlace(QStringView lhs, QStringView rhs)
+{
+    return stopPlace(lhs) == stopPlace(rhs);
+}

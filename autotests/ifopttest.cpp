@@ -44,6 +44,20 @@ private Q_SLOTS:
         QFETCH(bool, valid);
         QCOMPARE(IfoptUtil::isValid(ifopt), valid);
     }
+
+    void testStopPlace()
+    {
+        QCOMPARE(IfoptUtil::stopPlace(s("de:08115:4512:5:B")), s("de:08115:4512"));
+        QCOMPARE(IfoptUtil::stopPlace(s("de:08115:4512:5")), s("de:08115:4512"));
+        QCOMPARE(IfoptUtil::stopPlace(s("de:08115:4512")), s("de:08115:4512"));
+    }
+
+    void testIsSameStopPlace()
+    {
+        QVERIFY(IfoptUtil::isSameStopPlace(s("de:08115:4512:5:B"), s("de:08115:4512")));
+        QVERIFY(IfoptUtil::isSameStopPlace(s("de:08115:4512:5:B"), s("de:08115:4512:2:1")));
+        QVERIFY(!IfoptUtil::isSameStopPlace(s("de:08115:4512:5:B"), s("de:08115:4513:2:1")));
+    }
 };
 
 QTEST_APPLESS_MAIN(IfoptTest)
