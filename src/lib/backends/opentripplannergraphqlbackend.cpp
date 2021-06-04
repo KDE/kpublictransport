@@ -6,6 +6,7 @@
 
 #include "opentripplannergraphqlbackend.h"
 #include "opentripplannerparser.h"
+#include "cache.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
@@ -81,11 +82,14 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
 
         OpenTripPlannerParser p(backendId());
         p.setKnownRentalVehicleNetworks(m_rentalNetworks);
+        std::vector<Location> res;
         if (req.hasCoordinate()) {
-            addResult(reply, p.parseLocationsByCoordinate(gqlReply.data()));
+            res = p.parseLocationsByCoordinate(gqlReply.data());
         } else {
-            addResult(reply, p.parseLocationsByName(gqlReply.data()));
+            res = p.parseLocationsByName(gqlReply.data());
         }
+        Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
+        addResult(reply, std::move(res));
     });
 
     return true;
