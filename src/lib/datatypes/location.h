@@ -37,6 +37,7 @@ public:
         RentedVehicleStation = 2, ///< a pick-up/drop-off point for dock-based rental bike/scooter systems
         RentedVehicle = 4, ///< a free-floating rental bike/scooter
         Equipment = 8, ///< elevator/escalator
+        CarpoolPickupDropoff = 16, ///< a pickup or dropoff location for a carpool trip
     };
     Q_ENUM(Type)
     Q_DECLARE_FLAGS(Types, Type)

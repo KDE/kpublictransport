@@ -95,6 +95,13 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
         return loc.rentalVehicleStation().network().isValid() || loc.rentalVehicle().network().isValid();
     }
 
+    const auto mode = obj.value(QLatin1String("vehicleMode")).toString();
+    if (mode == QLatin1String("CARPOOL")) {
+        loc.setType(Location::CarpoolPickupDropoff);
+    } else if (!mode.isEmpty() && loc.type() == Location::Place) {
+        loc.setType(Location::Stop);
+    }
+
     return true;
 }
 

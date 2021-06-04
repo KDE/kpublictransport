@@ -103,6 +103,8 @@ Kirigami.ApplicationWindow {
                                     default:
                                         return '? ' + location.name;
                                 }
+                            case Location.CarpoolPickupDropoff:
+                                return '🚘 ' + location.name;
                             case Location.Place: return location.name;
                         }
                     }
