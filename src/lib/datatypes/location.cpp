@@ -362,6 +362,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
 
     switch (l.type()) {
         case Place:
+        case CarpoolPickupDropoff:
         case Stop:
             break;
         case RentedVehicleStation:
@@ -419,6 +420,7 @@ QJsonObject Location::toJson(const Location &loc)
             obj.remove(QLatin1String("type"));
             [[fallthrough]];
         case Stop:
+        case CarpoolPickupDropoff:
             break;
         case RentedVehicleStation:
             obj.insert(QStringLiteral("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
@@ -455,6 +457,7 @@ Location Location::fromJson(const QJsonObject &obj)
     switch (loc.type()) {
         case Place:
         case Stop:
+        case CarpoolPickupDropoff:
             break;
         case RentedVehicleStation:
             loc.setData(RentalVehicleStation::fromJson(obj.value(QLatin1String("rentalVehicleStation")).toObject()));
