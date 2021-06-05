@@ -111,6 +111,7 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
     }
     gqlReq.setVariable(QStringLiteral("startTime"), dt.toSecsSinceEpoch());
     gqlReq.setVariable(QStringLiteral("startDateTime"), dt.toString(Qt::ISODate));
+    gqlReq.setVariable(QStringLiteral("maxResults"), req.maximumResults());
     // TODO arrival/departure selection?
 
     if (isLoggingEnabled()) {

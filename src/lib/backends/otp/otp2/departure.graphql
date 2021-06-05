@@ -1,0 +1,68 @@
+# SPDX-FileCopyrightText: 2020-2021 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
+query departures(
+    $lat: Float!,
+    $lon: Float!,
+    $startTime: Long!,
+    $maxResults: Int!
+  ) {
+  nearest(lat: $lat, lon: $lon, maxDistance: 500, filterByPlaceTypes: DEPARTURE_ROW) {
+    edges {
+      node {
+        place {
+          ...on DepartureRow {
+            stop {
+              id: gtfsId
+              name
+              lat
+              lon
+              parentStation {
+                id: gtfsId
+                name
+                lat
+                lon
+              }
+            }
+            stoptimes(startTime: $startTime, numberOfDepartures: $maxResults, omitCanceled: false) {
+              stop {
+                platformCode
+              }
+              serviceDay
+              scheduledArrival
+              realtimeArrival
+              scheduledDeparture
+              realtimeDeparture
+              realtime
+              trip {
+                tripHeadsign
+                route {
+                  type
+                  desc
+                  shortName
+                  longName
+                  color
+                  textColor
+                  #bikesAllowed
+                  alerts {
+                    alertHeaderTextTranslations {
+                      language
+                      text
+                    }
+                    alertDescriptionTextTranslations {
+                      language
+                      text
+                    }
+                    alertEffect
+                    alertCause
+                    alertSeverityLevel
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
