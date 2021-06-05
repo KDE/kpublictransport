@@ -13,6 +13,7 @@
 #include "mergeutil_p.h"
 #include "rentalvehicle.h"
 #include "rentalvehicleutil_p.h"
+#include "ifopt/ifoptutil.h"
 
 #include <QDebug>
 #include <QHash>
@@ -243,7 +244,13 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return false;
     }
 
-    // ids
+    // ids - IFOPT takes priority here due to its special hierarchical handling
+    const auto lhsIfopt = lhs.identifier(QLatin1String("ifopt"));
+    const auto rhsIfopt = rhs.identifier(QLatin1String("ifopt"));
+    if (!lhsIfopt.isEmpty() && !rhsIfopt.isEmpty() ) {
+        return IfoptUtil::isSameStopPlace(lhsIfopt, rhsIfopt);
+    }
+
     const auto lhsIds = lhs.identifiers();
     bool foundEqualId = false;
     for (auto it = lhsIds.constBegin(); it != lhsIds.constEnd(); ++it) {
@@ -336,6 +343,10 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     // merge identifiers
     const auto rhsIds = rhs.identifiers();
     for (auto it = rhsIds.constBegin(); it != rhsIds.constEnd(); ++it) {
+        if (it.key() == QLatin1String("ifopt")) {
+            l.setIdentifier(QStringLiteral("ifopt"), IfoptUtil::merge(l.identifier(QLatin1String("ifopt")), it.value()).toString());
+            continue;
+        }
         if (lhs.identifier(it.key()).isEmpty()) {
             l.setIdentifier(it.key(), it.value());
         }
