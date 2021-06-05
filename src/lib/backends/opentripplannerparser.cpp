@@ -7,6 +7,7 @@
 #include "opentripplannerparser.h"
 #include "gtfs/hvt.h"
 #include "geo/polylinedecoder_p.h"
+#include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/RentalVehicle>
@@ -22,8 +23,9 @@
 
 using namespace KPublicTransport;
 
-OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType)
+OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType, const QString &ifoptPrefix)
     : m_identifierType(identifierType)
+    , m_ifoptPrefix(ifoptPrefix)
 {
 }
 
@@ -86,6 +88,12 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
     const auto id = obj.value(QLatin1String("id")).toString();
     if (!id.isEmpty()) {
         loc.setIdentifier(m_identifierType, id);
+    }
+    if (!m_ifoptPrefix.isEmpty() && id.size() > m_ifoptPrefix.size() + 1 && id.startsWith(m_ifoptPrefix) && id.at(m_ifoptPrefix.size()) == QLatin1Char(':')) {
+        const auto ifopt = QStringView(id).mid(m_ifoptPrefix.size() + 1);
+        if (IfoptUtil::isValid(ifopt)) {
+            loc.setIdentifier(QStringLiteral("ifopt"), ifopt.toString());
+        }
     }
 
     const auto bss = obj.value(QLatin1String("bikeRentalStation")).toObject();

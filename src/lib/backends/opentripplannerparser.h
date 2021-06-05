@@ -36,7 +36,7 @@ class Stopover;
 class KPUBLICTRANSPORT_EXPORT OpenTripPlannerParser
 {
 public:
-    explicit OpenTripPlannerParser(const QString &identifierType);
+    explicit OpenTripPlannerParser(const QString &identifierType, const QString &ifoptPrefix = {});
     ~OpenTripPlannerParser();
     void setKnownRentalVehicleNetworks(const QHash<QString, RentalVehicleNetwork> &networks);
 
@@ -66,6 +66,7 @@ private:
     Journey parseJourney(const QJsonObject &obj) const;
 
     QString m_identifierType;
+    QString m_ifoptPrefix;
     QHash<QString, RentalVehicleNetwork> m_rentalVehicleNetworks;
     mutable QStringList m_alerts;
 };

@@ -168,7 +168,7 @@ private Q_SLOTS:
             rentalVehicleNetworks.insert(it.key(), std::move(n));
         }
 
-        OpenTripPlannerParser p(s("gtfs"));
+        OpenTripPlannerParser p(s("gtfs"), s("1"));
         p.setKnownRentalVehicleNetworks(rentalVehicleNetworks);
         const auto res = p.parseJourneys(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Journey::toJson(res);

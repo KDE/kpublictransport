@@ -80,7 +80,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
             return;
         }
 
-        OpenTripPlannerParser p(backendId());
+        OpenTripPlannerParser p(backendId(), m_ifoptPrefix);
         p.setKnownRentalVehicleNetworks(m_rentalNetworks);
         std::vector<Location> res;
         if (req.hasCoordinate()) {
@@ -122,7 +122,7 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, Reply::NetworkError, gqlReply.errorString());
         } else {
-            OpenTripPlannerParser p(backendId());
+            OpenTripPlannerParser p(backendId(), m_ifoptPrefix);
             addResult(reply, this, p.parseDepartures(gqlReply.data()));
         }
     });
@@ -189,7 +189,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
         if (gqlReply.error() != KGraphQLReply::NoError) {
             addError(reply, Reply::NetworkError, gqlReply.errorString());
         } else {
-            OpenTripPlannerParser p(backendId());
+            OpenTripPlannerParser p(backendId(), m_ifoptPrefix);
             p.setKnownRentalVehicleNetworks(m_rentalNetworks);
             addResult(reply, this, p.parseJourneys(gqlReply.data()));
             if (p.m_nextJourneyContext.dateTime.isValid()) {

@@ -81,6 +81,7 @@
     },
     "options": {
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
+        "ifoptPrefix": "hbg",
         "rentalVehicleNetworks": {
             "car-sharing": {},
             "regiorad": {

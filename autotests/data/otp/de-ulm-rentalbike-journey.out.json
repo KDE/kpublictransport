@@ -120,7 +120,8 @@
                 "scheduledDepartureTime": "2020-08-08T09:24:02Z",
                 "to": {
                     "identifier": {
-                        "gtfs": "1:de:08421:1008:1:2"
+                        "gtfs": "1:de:08421:1008:1:2",
+                        "ifopt": "de:08421:1008:1:2"
                     },
                     "latitude": 48.399295806884766,
                     "longitude": 9.984164237976074,
@@ -133,7 +134,8 @@
                 "distance": 1720,
                 "from": {
                     "identifier": {
-                        "gtfs": "1:de:08421:1008:1:2"
+                        "gtfs": "1:de:08421:1008:1:2",
+                        "ifopt": "de:08421:1008:1:2"
                     },
                     "latitude": 48.399295806884766,
                     "longitude": 9.984164237976074,
@@ -147,7 +149,8 @@
                         "scheduledDepartureTime": "2020-08-08T09:30:00Z",
                         "stopPoint": {
                             "identifier": {
-                                "gtfs": "1:de:08421:1001:0:1"
+                                "gtfs": "1:de:08421:1001:0:1",
+                                "ifopt": "de:08421:1001:0:1"
                             },
                             "latitude": 48.397186279296875,
                             "longitude": 9.987756729125977,
@@ -168,7 +171,8 @@
                 "scheduledDepartureTime": "2020-08-08T09:28:00Z",
                 "to": {
                     "identifier": {
-                        "gtfs": "1:de:08421:1002:1:1"
+                        "gtfs": "1:de:08421:1002:1:1",
+                        "ifopt": "de:08421:1002:1:1"
                     },
                     "latitude": 48.397403717041016,
                     "longitude": 9.992769241333008,
@@ -181,7 +185,8 @@
                 "distance": 235,
                 "from": {
                     "identifier": {
-                        "gtfs": "1:de:08421:1002:1:1"
+                        "gtfs": "1:de:08421:1002:1:1",
+                        "ifopt": "de:08421:1002:1:1"
                     },
                     "latitude": 48.397403717041016,
                     "longitude": 9.992769241333008,

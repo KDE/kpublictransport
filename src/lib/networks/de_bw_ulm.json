@@ -81,6 +81,7 @@
     },
     "options": {
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",
+        "ifoptPrefix": "1",
         "rentalVehicleNetworks": {
             "openbike": {
                 "name": "OpenBike Ulm",
