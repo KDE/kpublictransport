@@ -97,6 +97,10 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
 
 bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
+    if (!req.stop().hasCoordinate()) {
+        return false;
+    }
+
     auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("departure.graphql")));
     gqlReq.setVariable(QStringLiteral("lat"), req.stop().latitude());
@@ -127,6 +131,10 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
 
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
+        return false;
+    }
+
     auto gqlReq = graphQLRequest();
     gqlReq.setQueryFromFile(graphQLPath(QStringLiteral("journey.graphql")));
     gqlReq.setVariable(QStringLiteral("fromLat"), req.from().latitude());
