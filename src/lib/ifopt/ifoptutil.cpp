@@ -62,6 +62,13 @@ bool IfoptUtil::isSameStopPlace(QStringView lhs, QStringView rhs)
 
 QStringView IfoptUtil::merge(QStringView lhs, QStringView rhs)
 {
+    if (lhs.isEmpty()) {
+        return rhs;
+    }
+    if (rhs.isEmpty()) {
+        return lhs;
+    }
+
     if (lhs == rhs) {
         return lhs;
     }

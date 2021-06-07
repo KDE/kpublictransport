@@ -72,6 +72,9 @@ private Q_SLOTS:
         QCOMPARE(IfoptUtil::merge(s("de:08115:4512:5:B"), s("de:08115:4512:1:2")), s("de:08115:4512"));
         QCOMPARE(IfoptUtil::merge(s("de:08115:4512:5:B"), s("de:08115:4512:5:B")), s("de:08115:4512:5:B"));
         QCOMPARE(IfoptUtil::merge(s("de:08115:4512"), s("de:08115:4512")), s("de:08115:4512"));
+
+        QCOMPARE(IfoptUtil::merge(QString(), s("de:08115:4512")), s("de:08115:4512"));
+        QCOMPARE(IfoptUtil::merge(s("de:08115:4512"), QString()), s("de:08115:4512"));
     }
 };
 
