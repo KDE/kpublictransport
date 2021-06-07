@@ -12,6 +12,7 @@
         "scheduledPlatform": "",
         "stopPoint": {
             "identifier": {
+                "ifopt": "de:09564:1391:11:2",
                 "testid": "3001391"
             },
             "latitude": 49.49388122558594,
@@ -37,6 +38,7 @@
         "scheduledPlatform": "",
         "stopPoint": {
             "identifier": {
+                "ifopt": "de:09564:1391:3:6",
                 "testid": "3001391"
             },
             "latitude": 49.493858337402344,

@@ -10,6 +10,7 @@
                 "expectedDepartureTime": "2019-11-11T21:36:00",
                 "from": {
                     "identifier": {
+                        "ifopt": "de:09564:1391:11:2",
                         "testid": "3001391"
                     },
                     "latitude": 49.493961334228516,
@@ -62,6 +63,7 @@
                 "scheduledDepartureTime": "2019-11-11T21:36:00",
                 "to": {
                     "identifier": {
+                        "ifopt": "de:09564:510:11:U2",
                         "testid": "3000510"
                     },
                     "latitude": 49.44636917114258,
@@ -79,6 +81,7 @@
                 "expectedDepartureTime": "2019-11-11T22:00:00",
                 "from": {
                     "identifier": {
+                        "ifopt": "de:09564:510:11:U1_2",
                         "testid": "3000510"
                     },
                     "latitude": 49.44636917114258,
@@ -93,6 +96,7 @@
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
+                                "ifopt": "de:09564:561:11:1",
                                 "testid": "3000561"
                             },
                             "latitude": 49.429298400878906,
@@ -107,6 +111,7 @@
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
+                                "ifopt": "de:09564:1701:11:1",
                                 "testid": "3001701"
                             },
                             "latitude": 49.424530029296875,
@@ -158,6 +163,7 @@
                 "scheduledDepartureTime": "2019-11-11T22:00:00",
                 "to": {
                     "identifier": {
+                        "ifopt": "de:09564:1502:11:2",
                         "testid": "3001502"
                     },
                     "latitude": 49.41585922241211,

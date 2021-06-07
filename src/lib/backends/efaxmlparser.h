@@ -26,6 +26,7 @@ public:
     std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
 
 private:
+    void parseLocationCommon(Location &loc, const ScopedXmlStreamReader &reader) const;
     Location parseItdOdvAssignedStop(const ScopedXmlStreamReader &reader) const;
     Location parseOdvNameElem(ScopedXmlStreamReader &reader) const;
 

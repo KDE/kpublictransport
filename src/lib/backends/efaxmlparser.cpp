@@ -7,6 +7,7 @@
 #include "efaxmlparser.h"
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
+#include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -18,32 +19,48 @@
 
 using namespace KPublicTransport;
 
-Location EfaXmlParser::parseItdOdvAssignedStop(const ScopedXmlStreamReader &reader) const
+void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReader &reader) const
 {
-    Location loc;
     if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
         loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
         loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
     }
-    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
-    loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
-    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
-    return loc;
-}
 
-Location EfaXmlParser::parseOdvNameElem(ScopedXmlStreamReader &reader) const
-{
-    Location loc;
-    if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
-        loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
-        loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
+    // can be already set on loc, so don't reset it if missing here
+    const auto locality = reader.attributes().value(QLatin1String("place")).toString();
+    if (!locality.isEmpty()) {
+        loc.setLocality(locality);
     }
+
     const auto id = reader.attributes().value(QLatin1String("stopID")).toString();
     if (!id.isEmpty()) {
         loc.setIdentifier(m_locationIdentifierType, id);
     } else {
         loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
     }
+
+    // check if IFOPT identifiers are present, in decreasing level of detail
+    for (const auto &attr : {QLatin1String("pointGid"), QLatin1String("areaGid"), QLatin1String("gid")}) {
+        const auto id = reader.attributes().value(attr);
+        if (IfoptUtil::isValid(id)) {
+            loc.setIdentifier(QStringLiteral("ifopt"), id.toString());
+            break;
+        }
+    }
+}
+
+Location EfaXmlParser::parseItdOdvAssignedStop(const ScopedXmlStreamReader &reader) const
+{
+    Location loc;
+    parseLocationCommon(loc, reader);
+    loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
+    return loc;
+}
+
+Location EfaXmlParser::parseOdvNameElem(ScopedXmlStreamReader &reader) const
+{
+    Location loc;
+    parseLocationCommon(loc, reader);
     loc.setName(reader.readElementText(QXmlStreamReader::SkipChildElements));
     return loc;
 }
@@ -111,12 +128,8 @@ Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
         stop = stopIt.value();
     }
 
+    parseLocationCommon(stop, reader);
     stop.setName(reader.attributes().value(QLatin1String("stopName")).toString());
-    if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
-        stop.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
-        stop.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
-    }
-    stop.setIdentifier(m_locationIdentifierType, stopId);
     dep.setStopPoint(stop);
 
     const auto occupancy = reader.attributes().value(QLatin1String("occupancy"));
@@ -170,11 +183,8 @@ std::vector<Stopover> EfaXmlParser::parseDmResponse(const QByteArray &data) cons
 void EfaXmlParser::parseTripDeparture(ScopedXmlStreamReader &&reader, JourneySection &section) const
 {
     Location loc;
+    parseLocationCommon(loc, reader);
     loc.setName(reader.attributes().value(QLatin1String("name")).toString());
-    loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
-    loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
-    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
-    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
 
     section.setFrom(loc);
     // ### are those the correct ones? there's also just "platform"
@@ -193,11 +203,8 @@ void EfaXmlParser::parseTripDeparture(ScopedXmlStreamReader &&reader, JourneySec
 void EfaXmlParser::parseTripArrival(ScopedXmlStreamReader &&reader, JourneySection &section) const
 {
     Location loc;
+    parseLocationCommon(loc, reader);
     loc.setName(reader.attributes().value(QLatin1String("name")).toString());
-    loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
-    loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
-    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
-    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
 
     section.setTo(loc);
     // ### are those the correct ones? there's also just "platform"
@@ -216,11 +223,8 @@ void EfaXmlParser::parseTripArrival(ScopedXmlStreamReader &&reader, JourneySecti
 Stopover EfaXmlParser::parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const
 {
     Location loc;
+    parseLocationCommon(loc, reader);
     loc.setName(reader.attributes().value(QLatin1String("name")).toString());
-    loc.setLatitude(reader.attributes().value(QLatin1String("y")).toFloat());
-    loc.setLongitude(reader.attributes().value(QLatin1String("x")).toFloat());
-    loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stopID")).toString());
-    loc.setLocality(reader.attributes().value(QLatin1String("place")).toString());
 
     Stopover stop;
     stop.setStopPoint(loc);

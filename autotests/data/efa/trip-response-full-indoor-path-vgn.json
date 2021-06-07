@@ -10,6 +10,7 @@
                 "expectedDepartureTime": "2020-04-27T22:07:00",
                 "from": {
                     "identifier": {
+                        "ifopt": "de:09564:510:11:U2",
                         "testid": "3000510"
                     },
                     "latitude": 49.44636917114258,

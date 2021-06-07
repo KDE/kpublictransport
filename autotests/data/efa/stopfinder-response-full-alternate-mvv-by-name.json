@@ -1,6 +1,7 @@
 [
     {
         "identifier": {
+            "ifopt": "de:09162:6",
             "testid": "1000006"
         },
         "latitude": 48.14030838012695,
@@ -9,6 +10,7 @@
     },
     {
         "identifier": {
+            "ifopt": "de:09162:7000",
             "testid": "1007000"
         },
         "latitude": 48.14115905761719,
