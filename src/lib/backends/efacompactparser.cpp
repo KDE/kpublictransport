@@ -47,7 +47,10 @@ Location EfaCompactParser::parseCompactSf(ScopedXmlStreamReader &&reader) const
                 if (sub.name() == QLatin1String("c")) {
                     parseCompactCoordinate(sub.readElementText(), loc);
                 } else if (sub.name() == QLatin1String("id")) {
-                    loc.setIdentifier(m_locationIdentifierType, sub.readElementText());
+                    const auto id = sub.readElementText();
+                    if (!id.isEmpty()) {
+                        loc.setIdentifier(m_locationIdentifierType, id);
+                    }
                 } else if (sub.name() == QLatin1String("pc")) {
                     loc.setLocality(sub.readElementText());
                 }
