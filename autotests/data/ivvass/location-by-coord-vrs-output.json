@@ -76,7 +76,7 @@
     },
     {
         "identifier": {
-            "ifopt": "v:kvb-rad:21596"
+            "vrs": "v:kvb-rad:21596"
         },
         "latitude": 50.9398193359375,
         "longitude": 6.957879066467285,
@@ -88,7 +88,7 @@
     },
     {
         "identifier": {
-            "ifopt": "v:kvb-rad:210004"
+            "vrs": "v:kvb-rad:210004"
         },
         "latitude": 50.93911361694336,
         "longitude": 6.958240032196045,

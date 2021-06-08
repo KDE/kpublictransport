@@ -5,10 +5,10 @@
 */
 
 #include "ivvassparser.h"
+#include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Equipment>
 #include <KPublicTransport/Journey>
-#include <KPublicTransport/Location>
 #include <KPublicTransport/Stopover>
 
 #include <QByteArray>
@@ -22,18 +22,13 @@
 
 using namespace KPublicTransport;
 
-IvvAssParser::IvvAssParser(const QTimeZone &tz)
+IvvAssParser::IvvAssParser(const QTimeZone &tz, const QString &locationIdentifier)
     : m_timezone(tz)
+    , m_locationIdentifier(locationIdentifier)
 {
 }
 
-struct LocationData
-{
-    Location loc;
-    QString platform;
-};
-
-static LocationData parseLocation(const QJsonObject &stopObj)
+IvvAssParser::LocationData IvvAssParser::parseLocation(const QJsonObject &stopObj) const
 {
     LocationData r;
     r.loc.setLatitude(stopObj.value(QLatin1String("lat")).toDouble(NAN));
@@ -57,7 +52,12 @@ static LocationData parseLocation(const QJsonObject &stopObj)
         return r;
     }
 
-    r.loc.setIdentifier(QStringLiteral("ifopt"), stopObj.value(QLatin1String("ifopt")).toString());
+    const auto id = stopObj.value(QLatin1String("ifopt")).toString();
+    if (IfoptUtil::isValid(id)) {
+        r.loc.setIdentifier(QStringLiteral("ifopt"), id);
+    } else {
+        r.loc.setIdentifier(m_locationIdentifier, id);
+    }
 
     // location is a platform: split out platform name
     if (stopObj.value(QLatin1String("subtype")).toString() == QLatin1String("Post")) {

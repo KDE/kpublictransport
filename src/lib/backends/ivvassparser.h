@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_IVVASSPARSER_H
 #define KPUBLICTRANSPORT_IVVASSPARSER_H
 
+#include <KPublicTransport/Location>
+
 #include <QDateTime>
 #include <QString>
 #include <QTimeZone>
@@ -18,7 +20,6 @@ class QJsonObject;
 
 namespace KPublicTransport {
 
-class Location;
 class Journey;
 class Stopover;
 
@@ -26,7 +27,7 @@ class Stopover;
 class IvvAssParser
 {
 public:
-    explicit IvvAssParser(const QTimeZone &tz);
+    explicit IvvAssParser(const QTimeZone &tz, const QString &locationIdentifier);
 
     std::vector<Location> parseLocations(const QByteArray &data);
     std::vector<Stopover> parseStopovers(const QByteArray &data);
@@ -43,7 +44,15 @@ private:
     };
     EventTime parseTime(const QJsonObject &obj, const char *baseKey, const char *scheduledKey) const;
 
+    struct LocationData
+    {
+        Location loc;
+        QString platform;
+    };
+    LocationData parseLocation(const QJsonObject &stopObj) const;
+
     QTimeZone m_timezone;
+    QString m_locationIdentifier;
 };
 
 }
