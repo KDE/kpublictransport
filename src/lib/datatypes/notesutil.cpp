@@ -16,6 +16,7 @@ using namespace KPublicTransport;
 QString NotesUtil::normalizeNote(const QString &note)
 {
     auto n = note;
+    n.replace(QLatin1String("&nbsp;"), QLatin1String(" "));
     n.replace(QLatin1String("  "), QLatin1String(" "));
 
     if (!note.contains(QLatin1String("href"))) { // only mess with rich text if this isn't marked up already
@@ -32,6 +33,8 @@ QString NotesUtil::normalizeNote(const QString &note)
     // strip <span> tags
     static QRegularExpression spanExp(QStringLiteral("</?span[^>]*>"));
     n.remove(spanExp);
+    static QRegularExpression styleAttrExp(QStringLiteral(" style=\"[^>\"]*\""));
+    n.remove(styleAttrExp);
 
     // clean up extra line breaks and empty paragraphs
     static QRegularExpression leadinBrExp(QStringLiteral("<p> *<br[^>]*>"));
