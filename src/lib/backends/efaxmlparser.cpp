@@ -47,6 +47,13 @@ void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReade
             break;
         }
     }
+
+    const auto type = reader.attributes().value(QLatin1String("anyType"));
+    if (type == QLatin1String("stop")) {
+        loc.setType(Location::Stop);
+    } else if (!type.isEmpty()) {
+        qCDebug(Log) << "Unhandled EFA location type:" << type;
+    }
 }
 
 Location EfaXmlParser::parseItdOdvAssignedStop(const ScopedXmlStreamReader &reader) const

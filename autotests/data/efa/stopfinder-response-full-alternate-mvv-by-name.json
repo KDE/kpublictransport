@@ -6,7 +6,8 @@
         },
         "latitude": 48.14030838012695,
         "longitude": 11.56112003326416,
-        "name": "München, Hauptbahnhof"
+        "name": "München, Hauptbahnhof",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -15,6 +16,7 @@
         },
         "latitude": 48.14115905761719,
         "longitude": 11.560790061950684,
-        "name": "München, Hauptbahnhof Nord"
+        "name": "München, Hauptbahnhof Nord",
+        "type": "Stop"
     }
 ]

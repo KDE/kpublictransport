@@ -35,8 +35,11 @@ Location EfaCompactParser::parseCompactSf(ScopedXmlStreamReader &&reader) const
         if (reader.name() == QLatin1String("n")) {
             loc.setName(reader.readElementText());
         } else if (reader.name() == QLatin1String("ty")) {
-            if (reader.readElementText() != QLatin1String("stop")) {
-                return {};
+            const auto type = reader.readElementText();
+            if (type == QLatin1String("stop")) {
+                loc.setType(Location::Stop);
+            } else {
+                qCDebug(Log) << "unhandled location type:" << type;
             }
         } else if (reader.name() == QLatin1String("r")) {
             auto sub = reader.subReader();
