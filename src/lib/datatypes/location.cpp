@@ -232,6 +232,17 @@ static QString applyTransliterations(const QString &s)
     return res;
 }
 
+static bool isCompatibleLocationType(Location::Type lhs, Location::Type rhs)
+{
+    if (lhs == rhs) {
+        return true;
+    }
+    if (rhs != Location::Place) {
+        return false;
+    }
+    return lhs == Location::Stop;
+}
+
 bool Location::isSame(const Location &lhs, const Location &rhs)
 {
     const auto dist = Location::distance(lhs.latitude(), lhs.longitude(), rhs.latitude(), rhs.longitude());
@@ -240,14 +251,14 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return false;
     }
     // incompatible types are also unmergable
-    if (lhs.type() != Place && rhs.type() != Place && lhs.type() != rhs.type()) {
+    if (!isCompatibleLocationType(lhs.type(), rhs.type()) || !isCompatibleLocationType(rhs.type(), lhs.type())) {
         return false;
     }
 
-    // ids - IFOPT takes priority here due to its special hierarchical handling
+    // ids - IFOPT takes priority here due to its special hierarchical handling, but only for stations
     const auto lhsIfopt = lhs.identifier(QLatin1String("ifopt"));
     const auto rhsIfopt = rhs.identifier(QLatin1String("ifopt"));
-    if (!lhsIfopt.isEmpty() && !rhsIfopt.isEmpty() ) {
+    if (!lhsIfopt.isEmpty() && !rhsIfopt.isEmpty() && (lhs.type() == Location::Stop || rhs.type() == Location::Stop)) {
         return IfoptUtil::isSameStopPlace(lhsIfopt, rhsIfopt);
     }
 
