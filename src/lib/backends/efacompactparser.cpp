@@ -7,6 +7,7 @@
 #include "efacompactparser.h"
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
+#include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -24,6 +25,21 @@ static void parseCompactCoordinate(const QString &text, Location &loc)
     if (coords.size() == 2) {
         loc.setLatitude(coords[1].toFloat());
         loc.setLongitude(coords[0].toFloat());
+    }
+}
+
+static void parseCompactIfopt(ScopedXmlStreamReader &reader, Location &loc)
+{
+    if (reader.name() == QLatin1String("pgid")) {
+        const auto id = reader.readElementText();
+        if (IfoptUtil::isValid(id)) {
+            loc.setIdentifier(QStringLiteral("ifopt"), id);
+        }
+    } else if (reader.name() == QLatin1String("gid")) {
+        const auto id = reader.readElementText();
+        if (IfoptUtil::isValid(id) && loc.identifier(QLatin1String("ifopt")).isEmpty()) {
+            loc.setIdentifier(QStringLiteral("ifopt"), id);
+        }
     }
 }
 
@@ -53,6 +69,8 @@ Location EfaCompactParser::parseCompactSf(ScopedXmlStreamReader &&reader) const
                     }
                 } else if (sub.name() == QLatin1String("pc")) {
                     loc.setLocality(sub.readElementText());
+                } else {
+                    parseCompactIfopt(sub, loc);
                 }
             }
         }
@@ -156,6 +174,8 @@ Stopover EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
             parseCompactCoordinate(reader.readElementText(), loc);
         } else if (reader.name() == QLatin1String("ns")) {
             dep.setNotes(parseNotes(reader.subReader()));
+        } else {
+            parseCompactIfopt(reader, loc);
         }
     }
 
@@ -209,8 +229,9 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
                     parseCompactCoordinate(subReader.readElementText(), loc);
                 }
             }
+        } else {
+            parseCompactIfopt(reader, loc);
         }
-
     }
 
     if (isArr) {
@@ -315,6 +336,12 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                         continue;
                     }
                     loc.setCoordinate(coord[1].toFloat(), coord[0].toFloat());
+
+                    if (IfoptUtil::isValid(stopParams[13])) {
+                        loc.setIdentifier(QStringLiteral("ifopt"), stopParams[13]);
+                    } else if (IfoptUtil::isValid(stopParams[12])) {
+                        loc.setIdentifier(QStringLiteral("ifopt"), stopParams[12]);
+                    }
 
                     const auto dt = QDateTime::fromString(stopParams[2] + stopParams[3], QStringLiteral("yyyyMMddhhmm"));
                     if (!dt.isValid()) {

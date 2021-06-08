@@ -18,6 +18,7 @@
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
+                "ifopt": "de:09663:177:3:4",
                 "testid": "80001152"
             },
             "latitude": 49.80202865600586,
@@ -39,6 +40,7 @@
         "scheduledDepartureTime": "2019-11-11T20:22:00",
         "stopPoint": {
             "identifier": {
+                "ifopt": "de:09663:75:10:22",
                 "testid": "80029081"
             },
             "latitude": 49.800758361816406,
@@ -59,6 +61,7 @@
         "scheduledDepartureTime": "2019-11-11T20:22:00",
         "stopPoint": {
             "identifier": {
+                "ifopt": "de:09663:170:1:02",
                 "testid": "80029079"
             },
             "latitude": 49.80030059814453,
