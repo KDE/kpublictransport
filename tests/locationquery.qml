@@ -7,6 +7,7 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.1 as QQC2
+import Qt.labs.platform 1.0 as Platform
 import Qt.labs.settings 1.0
 import org.kde.kirigami 2.12 as Kirigami
 import org.kde.kpublictransport 1.0
@@ -45,6 +46,11 @@ Kirigami.ApplicationWindow {
     globalDrawer: Kirigami.GlobalDrawer {
         actions: [
             Kirigami.Action {
+                text: "Save..."
+                iconName: "document-save"
+                onTriggered: fileDialog.open();
+            },
+            Kirigami.Action {
                 iconName: "help-about-symbolic"
                 text: "Data Sources"
                 enabled: locationModel.attributions.length > 0
@@ -56,6 +62,14 @@ Kirigami.ApplicationWindow {
                 onTriggered: pageStack.push(backendPage)
             }
         ]
+    }
+
+    Platform.FileDialog {
+        id: fileDialog
+        title: "Save Departure Data"
+        fileMode: Platform.FileDialog.SaveFile
+        nameFilters: ["JSON files (*.json)"]
+        onAccepted: ExampleUtil.saveTo(locationModel, fileDialog.file);
     }
 
     function vehicleTypeIcon(type)

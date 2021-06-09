@@ -162,4 +162,10 @@ QHash<int, QByteArray> LocationQueryModel::roleNames() const
     return r;
 }
 
+const std::vector<Location>& LocationQueryModel::locations() const
+{
+    Q_D(const LocationQueryModel);
+    return d->m_locations;
+}
+
 #include "moc_locationquerymodel.moc"

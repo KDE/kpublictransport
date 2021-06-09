@@ -43,6 +43,9 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
+    /** The current model content. */
+    const std::vector<Location>& locations() const;
+
 Q_SIGNALS:
     void requestChanged();
 
