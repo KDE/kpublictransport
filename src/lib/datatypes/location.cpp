@@ -283,6 +283,9 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         && !RentalVehicleStation::isSame(lhs.rentalVehicleStation(), rhs.rentalVehicleStation())) {
         return false;
     }
+    if (lhs.type() == Location::Equipment && lhs.equipment().type() != rhs.equipment().type()) {
+        return false;
+    }
 
     // name
     if (isSameName(lhs.name(), rhs.name())) {
