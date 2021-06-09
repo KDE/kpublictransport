@@ -9,8 +9,6 @@
 
 #include <QAbstractListModel>
 
-#include "pointer_helper_p.h"
-
 namespace KPublicTransport {
 
 class Manager;
