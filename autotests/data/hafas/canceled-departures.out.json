@@ -82,7 +82,7 @@
             "Stop cancelled",
             "Fahrradmitnahme begrenzt möglich",
             "Betreiber: Deutsche Bahn",
-            "Bad weather - expect disruptions.\nSince 17:20 operations are suspended.\nOperations are suspended since Sunday 09.02. <br /><br />Operations might resume on Monday 7:00. <br /><br />Busses are affected too.<br /><br />You can all us: 08000 12 34 56.<br /><br />Last update: 09.02.2020, 20:25"
+            "Bad weather - expect disruptions.\nSince 17:20 operations are suspended.\nOperations are suspended since Sunday 09.02. <br/>Operations might resume on Monday 7:00. <br/>Busses are affected too.<br/>You can all us: 08000 12 34 56.<br/>Last update: 09.02.2020, 20:25"
         ],
         "route": {
             "destination": {

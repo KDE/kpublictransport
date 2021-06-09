@@ -105,6 +105,8 @@ private Q_SLOTS:
         QTest::newRow("empty p 2") << s("foo <p></p>bar") << s("foo bar");
         QTest::newRow("linebreak 1") << s("foo<br/></p>") << s("foo</p>");
         QTest::newRow("linebreak 2") << s("foo <p><br></p>bar") << s("foo bar");
+        QTest::newRow("linebreak 3") << s("… Bauarbeiten nicht angefahren werden.<br> <br><br>\n<b>Ersatzhaltestelle: </b> <br>\n<p>Die Haltestelle …") << s("… Bauarbeiten nicht angefahren werden.<br/><b>Ersatzhaltestelle: </b> <p>Die Haltestelle …");
+        QTest::newRow("linebreak 4") << s("… verlegt.<br/><br/>Alle anderen Haltesellen …") << s("… verlegt.<br/>Alle anderen Haltesellen …");
 
         QTest::newRow("style stripping") << s(" &nbsp;\n<p style=\"font-family: MetaWeb-Normal, sans-serif; font-size: 12px; font-variant-numeric: normal; font-variant-east-asian: normal; background-color: #ffffff; color: #666666; line-height: 1.5; margin: 0px 0px 0.5em; padding: 0px;\">Die Hauptstra&szlig;e wird von der Einm&uuml;ndung Otto-Hahn-Stra&szlig;e bis einschlie&szlig;lich Rathausplatz komplett saniert.") << s("<p>Die Hauptstra&szlig;e wird von der Einm&uuml;ndung Otto-Hahn-Stra&szlig;e bis einschlie&szlig;lich Rathausplatz komplett saniert.");
         QTest::newRow("leading spaces") << s(" &nbsp; Wegen Bauarbeiten") << s("Wegen Bauarbeiten");

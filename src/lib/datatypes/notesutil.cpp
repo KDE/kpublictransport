@@ -37,10 +37,16 @@ QString NotesUtil::normalizeNote(const QString &note)
     n.remove(styleAttrExp);
 
     // clean up extra line breaks and empty paragraphs
+    static QRegularExpression consecutiveBrExp(QStringLiteral("<br[^>]*> *(?:<br[^>]*>|\n)"));
+    while (n.contains(consecutiveBrExp)) {
+        n.replace(consecutiveBrExp, QStringLiteral("<br/>"));
+    }
     static QRegularExpression leadinBrExp(QStringLiteral("<p> *<br[^>]*>"));
     static QRegularExpression trailingBrExp(QStringLiteral("<br[^>]*> *</p>"));
+    static QRegularExpression trailingBrExp2(QStringLiteral("<br[^>]*> *<p>"));
     n.replace(leadinBrExp, QStringLiteral("<p>"));
     n.replace(trailingBrExp, QStringLiteral("</p>"));
+    n.replace(trailingBrExp2, QStringLiteral("<p>"));
     static QRegularExpression emptyParaExp(QStringLiteral("<p> *</p>"));
     n.remove(emptyParaExp);
 
