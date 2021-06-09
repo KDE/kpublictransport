@@ -243,6 +243,22 @@ static bool isCompatibleLocationType(Location::Type lhs, Location::Type rhs)
     return lhs == Location::Stop;
 }
 
+static int isSameDistanceThreshold(Location::Type type)
+{
+    switch (type) {
+        case Location::Place:
+        case Location::Stop:
+        case Location::CarpoolPickupDropoff:
+            return 10; // meter
+        case Location::RentedVehicleStation:
+            return 5;
+        case Location::Equipment:
+        case Location::RentedVehicle:
+            return 3;
+    }
+    Q_UNREACHABLE();
+}
+
 bool Location::isSame(const Location &lhs, const Location &rhs)
 {
     const auto dist = Location::distance(lhs.latitude(), lhs.longitude(), rhs.latitude(), rhs.longitude());
@@ -294,8 +310,8 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
 
     // TODO consider the address properties here?
 
-    // anything less than 10m apart is assumed to be the same
-    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < 10) {
+    // anything sufficiently close together is assumed to be the same
+    if (lhs.hasCoordinate() && rhs.hasCoordinate() && dist < std::min(isSameDistanceThreshold(lhs.type()), isSameDistanceThreshold(rhs.type()))) {
         return true;
     }
 
