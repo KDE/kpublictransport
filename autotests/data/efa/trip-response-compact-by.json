@@ -14,7 +14,8 @@
                     "latitude": 49.49388122558594,
                     "locality": "Nürnberg",
                     "longitude": 11.079079627990723,
-                    "name": "Nürnberg Flughafen"
+                    "name": "Nürnberg Flughafen",
+                    "type": "Stop"
                 },
                 "intermediateStops": [
                     {
@@ -175,7 +176,8 @@
                     "latitude": 49.447059631347656,
                     "locality": "Nürnberg",
                     "longitude": 11.082220077514648,
-                    "name": "Nürnberg Hbf"
+                    "name": "Nürnberg Hbf",
+                    "type": "Stop"
                 }
             },
             {
@@ -189,7 +191,8 @@
                     "latitude": 49.446388244628906,
                     "locality": "Nürnberg",
                     "longitude": 11.081649780273438,
-                    "name": "Nürnberg Hbf"
+                    "name": "Nürnberg Hbf",
+                    "type": "Stop"
                 },
                 "mode": "PublicTransport",
                 "path": {
@@ -239,7 +242,8 @@
                     "latitude": 49.41590118408203,
                     "locality": "Nürnberg",
                     "longitude": 11.114660263061523,
-                    "name": "Nürnberg Messe"
+                    "name": "Nürnberg Messe",
+                    "type": "Stop"
                 }
             }
         ]

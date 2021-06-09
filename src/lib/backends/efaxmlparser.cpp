@@ -34,7 +34,9 @@ void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReade
 
     const auto id = reader.attributes().value(QLatin1String("stopID")).toString();
     if (!id.isEmpty()) {
-        loc.setIdentifier(m_locationIdentifierType, id);
+        if (!isDummyStopId(id)) {
+            loc.setIdentifier(m_locationIdentifierType, id);
+        }
     } else {
         loc.setIdentifier(m_locationIdentifierType, reader.attributes().value(QLatin1String("stateless")).toString());
     }
@@ -53,6 +55,8 @@ void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReade
         loc.setType(Location::Stop);
     } else if (!type.isEmpty()) {
         qCDebug(Log) << "Unhandled EFA location type:" << type;
+    } else if (!id.isEmpty() && !isDummyStopId(id)) {
+        loc.setType(Location::Stop);
     }
 }
 
@@ -61,6 +65,7 @@ Location EfaXmlParser::parseItdOdvAssignedStop(const ScopedXmlStreamReader &read
     Location loc;
     parseLocationCommon(loc, reader);
     loc.setName(reader.attributes().value(QLatin1String("nameWithPlace")).toString());
+    loc.setType(Location::Stop);
     return loc;
 }
 
@@ -137,6 +142,7 @@ Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
 
     parseLocationCommon(stop, reader);
     stop.setName(reader.attributes().value(QLatin1String("stopName")).toString());
+    stop.setType(Location::Stop);
     dep.setStopPoint(stop);
 
     const auto occupancy = reader.attributes().value(QLatin1String("occupancy"));

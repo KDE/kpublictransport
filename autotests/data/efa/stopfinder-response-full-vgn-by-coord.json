@@ -7,7 +7,8 @@
         "latitude": 49.49382019042969,
         "locality": "Nürnberg",
         "longitude": 11.079000473022461,
-        "name": "Nürnberg Flughafen"
+        "name": "Nürnberg Flughafen",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -17,7 +18,8 @@
         "latitude": 49.492881774902344,
         "locality": "Nürnberg",
         "longitude": 11.083109855651855,
-        "name": "Nürnberg Cargo-Zentrum"
+        "name": "Nürnberg Cargo-Zentrum",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -27,6 +29,7 @@
         "latitude": 49.493621826171875,
         "locality": "Nürnberg",
         "longitude": 11.071249961853027,
-        "name": "Nürnberg Luftamt Nordbayern"
+        "name": "Nürnberg Luftamt Nordbayern",
+        "type": "Stop"
     }
 ]

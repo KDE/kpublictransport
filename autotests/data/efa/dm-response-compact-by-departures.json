@@ -23,7 +23,8 @@
             },
             "latitude": 49.80202865600586,
             "longitude": 9.93593978881836,
-            "name": "Würzburg Hbf"
+            "name": "Würzburg Hbf",
+            "type": "Stop"
         }
     },
     {
@@ -45,7 +46,8 @@
             },
             "latitude": 49.800758361816406,
             "longitude": 9.934450149536133,
-            "name": "Würzburg, Busbahnhof"
+            "name": "Würzburg, Busbahnhof",
+            "type": "Stop"
         }
     },
     {
@@ -66,7 +68,8 @@
             },
             "latitude": 49.80030059814453,
             "longitude": 9.9364595413208,
-            "name": "Würzburg, Hauptbahnhof Ost"
+            "name": "Würzburg, Hauptbahnhof Ost",
+            "type": "Stop"
         }
     }
 ]

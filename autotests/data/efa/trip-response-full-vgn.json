@@ -16,7 +16,8 @@
                     "latitude": 49.493961334228516,
                     "locality": "Nürnberg",
                     "longitude": 11.078630447387695,
-                    "name": "Nürnberg Flughafen"
+                    "name": "Nürnberg Flughafen",
+                    "type": "Stop"
                 },
                 "mode": "PublicTransport",
                 "notes": [
@@ -69,7 +70,8 @@
                     "latitude": 49.44636917114258,
                     "locality": "Nürnberg",
                     "longitude": 11.081809997558594,
-                    "name": "Nürnberg Hbf"
+                    "name": "Nürnberg Hbf",
+                    "type": "Stop"
                 }
             },
             {
@@ -87,7 +89,8 @@
                     "latitude": 49.44636917114258,
                     "locality": "Nürnberg",
                     "longitude": 11.081809997558594,
-                    "name": "Nürnberg Hbf"
+                    "name": "Nürnberg Hbf",
+                    "type": "Stop"
                 },
                 "intermediateStops": [
                     {
@@ -102,7 +105,8 @@
                             "latitude": 49.429298400878906,
                             "locality": "Nürnberg",
                             "longitude": 11.086319923400879,
-                            "name": "Nürnberg Frankenstr."
+                            "name": "Nürnberg Frankenstr.",
+                            "type": "Stop"
                         }
                     },
                     {
@@ -117,7 +121,8 @@
                             "latitude": 49.424530029296875,
                             "locality": "Nürnberg",
                             "longitude": 11.0897798538208,
-                            "name": "Nürnberg Hasenbuck"
+                            "name": "Nürnberg Hasenbuck",
+                            "type": "Stop"
                         }
                     }
                 ],
@@ -169,7 +174,8 @@
                     "latitude": 49.41585922241211,
                     "locality": "Nürnberg",
                     "longitude": 11.114060401916504,
-                    "name": "Nürnberg Messe"
+                    "name": "Nürnberg Messe",
+                    "type": "Stop"
                 }
             }
         ]

@@ -5,7 +5,8 @@
         },
         "latitude": 48.784881591796875,
         "longitude": 9.18278980255127,
-        "name": "Hauptbahnhof"
+        "name": "Hauptbahnhof",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -15,7 +16,8 @@
         "latitude": 48.784881591796875,
         "locality": "Stuttgart",
         "longitude": 9.18278980255127,
-        "name": "Stuttgart Hauptbahnhof (oben)"
+        "name": "Stuttgart Hauptbahnhof (oben)",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -25,7 +27,8 @@
         "latitude": 48.783390045166016,
         "locality": "Stuttgart",
         "longitude": 9.180230140686035,
-        "name": "Stuttgart Hauptbahnhof (tief)"
+        "name": "Stuttgart Hauptbahnhof (tief)",
+        "type": "Stop"
     },
     {
         "identifier": {
@@ -35,6 +38,7 @@
         "latitude": 48.78316116333008,
         "locality": "Stuttgart",
         "longitude": 9.181119918823242,
-        "name": "Stuttgart Hauptbf (Arnulf-Klett-Platz)"
+        "name": "Stuttgart Hauptbf (Arnulf-Klett-Platz)",
+        "type": "Stop"
     }
 ]

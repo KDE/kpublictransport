@@ -64,7 +64,7 @@ Location EfaCompactParser::parseCompactSf(ScopedXmlStreamReader &&reader) const
                     parseCompactCoordinate(sub.readElementText(), loc);
                 } else if (sub.name() == QLatin1String("id")) {
                     const auto id = sub.readElementText();
-                    if (!id.isEmpty()) {
+                    if (!id.isEmpty() && !isDummyStopId(id)) {
                         loc.setIdentifier(m_locationIdentifierType, id);
                     }
                 } else if (sub.name() == QLatin1String("pc")) {
@@ -165,7 +165,11 @@ Stopover EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
             auto subReader = reader.subReader();
             while (subReader.readNextSibling()) {
                 if (subReader.name() == QLatin1String("id")) {
-                    loc.setIdentifier(m_locationIdentifierType, subReader.readElementText());
+                    const auto id = subReader.readElementText();
+                    if (!id.isEmpty() && !isDummyStopId(id)) {
+                        loc.setIdentifier(m_locationIdentifierType, id);
+                        loc.setType(Location::Stop);
+                    }
                 } else if (subReader.name() == QLatin1String("pl")) {
                     dep.setScheduledPlatform(subReader.readElementText());
                 }
@@ -220,7 +224,11 @@ void EfaCompactParser::parseTripSectionHalf(ScopedXmlStreamReader &&reader, Jour
             ScopedXmlStreamReader subReader(reader.subReader());
             while (subReader.readNextSibling()) {
                 if (subReader.name() == QLatin1String("id")) {
-                    loc.setIdentifier(m_locationIdentifierType, subReader.readElementText());
+                    const auto id = subReader.readElementText();
+                    if (!id.isEmpty() && !isDummyStopId(id)) {
+                        loc.setIdentifier(m_locationIdentifierType, id);
+                        loc.setType(Location::Stop);
+                    }
                 } else if (subReader.name() == QLatin1String("pc")) {
                     loc.setLocality(subReader.readElementText());
                 } else if (subReader.name() == QLatin1String("pl") || subReader.name() == QLatin1String("divaPl")) {

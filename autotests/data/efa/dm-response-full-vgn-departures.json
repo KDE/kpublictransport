@@ -18,7 +18,8 @@
             "latitude": 49.49388122558594,
             "locality": "Nürnberg",
             "longitude": 11.079079627990723,
-            "name": "Nürnberg Flughafen"
+            "name": "Nürnberg Flughafen",
+            "type": "Stop"
         }
     },
     {
@@ -44,7 +45,8 @@
             "latitude": 49.493858337402344,
             "locality": "Nürnberg",
             "longitude": 11.078929901123047,
-            "name": "Nürnberg Flughafen"
+            "name": "Nürnberg Flughafen",
+            "type": "Stop"
         }
     }
 ]

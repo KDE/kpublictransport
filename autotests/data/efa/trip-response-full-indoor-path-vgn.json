@@ -16,7 +16,8 @@
                     "latitude": 49.44636917114258,
                     "locality": "Nürnberg",
                     "longitude": 11.081809997558594,
-                    "name": "Nürnberg Hauptbahnhof"
+                    "name": "Nürnberg Hauptbahnhof",
+                    "type": "Stop"
                 },
                 "mode": "Walking",
                 "path": {
@@ -277,9 +278,6 @@
                 "scheduledDeparturePlatform": "",
                 "scheduledDepartureTime": "2020-04-27T22:07:00",
                 "to": {
-                    "identifier": {
-                        "testid": "99999998"
-                    },
                     "latitude": 49.445499420166016,
                     "locality": "Nürnberg",
                     "longitude": 11.082300186157227,

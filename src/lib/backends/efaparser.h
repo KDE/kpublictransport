@@ -55,6 +55,9 @@ protected:
     /** Parse path encoded as a space separated string of coordinate pairs. */
     static Path parsePathCoordinatesElement(ScopedXmlStreamReader &reader);
 
+    /** Returns @c true if the given stop id is a dummy value used for non-stops. */
+    static bool isDummyStopId(QStringView id);
+
     QString m_locationIdentifierType;
     mutable QString m_errorMsg;
     mutable Reply::Error m_error = Reply::NoError;

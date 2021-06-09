@@ -79,3 +79,8 @@ Path EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)
     path.setSections({section});
     return path;
 }
+
+bool EfaParser::isDummyStopId(QStringView id)
+{
+    return id == QLatin1String("99999997") || id == QLatin1String("99999998");
+}

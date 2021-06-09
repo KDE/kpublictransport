@@ -5,6 +5,7 @@
         },
         "latitude": 51.90190887451172,
         "longitude": -8.458080291748047,
-        "name": "Cork Kent"
+        "name": "Cork Kent",
+        "type": "Stop"
     }
 ]
