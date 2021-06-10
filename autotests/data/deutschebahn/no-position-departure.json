@@ -16,7 +16,8 @@
         "identifier": {
             "ibnr": "8500010"
         },
-        "name": "Basel SBB"
+        "name": "Basel SBB",
+        "type": "Stop"
     },
     "vehicleLayout": {
         "direction": "Backward",

@@ -58,6 +58,7 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     Location stop;
     stop.setName(halt.value(QLatin1String("bahnhofsname")).toString());
     stop.setIdentifier(QStringLiteral("ibnr"), halt.value(QLatin1String("evanummer")).toString());
+    stop.setType(Location::Stop);
     Line line;
     line.setMode(Line::LongDistanceTrain);
     line.setName(vehicle.name());

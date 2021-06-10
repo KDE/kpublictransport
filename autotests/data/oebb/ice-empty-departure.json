@@ -16,6 +16,7 @@
         "identifier": {
             "ibnr": "8000261"
         },
-        "name": "München Hbf"
+        "name": "München Hbf",
+        "type": "Stop"
     }
 }

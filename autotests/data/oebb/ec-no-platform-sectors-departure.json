@@ -16,7 +16,8 @@
         "identifier": {
             "ibnr": "8103000"
         },
-        "name": "Wien Hbf"
+        "name": "Wien Hbf",
+        "type": "Stop"
     },
     "vehicleLayout": {
         "direction": "Backward",

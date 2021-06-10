@@ -133,6 +133,7 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     const auto trainStationObj = obj.value(QLatin1String("trainStation")).toObject();
     stop.setName(trainStationObj.value(QLatin1String("name")).toString());
     stop.setIdentifier(QStringLiteral("ibnr"), trainStationObj.value(QLatin1String("evaCode")).toString());
+    stop.setType(Location::Stop);
     Line line;
     line.setMode(Line::LongDistanceTrain); // TODO is this actually true for ÖBB?
     line.setName(obj.value(QLatin1String("trainName")).toString());

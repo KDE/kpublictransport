@@ -54,7 +54,8 @@
         "identifier": {
             "ibnr": "8010205"
         },
-        "name": "Leipzig Hbf"
+        "name": "Leipzig Hbf",
+        "type": "Stop"
     },
     "vehicleLayout": {
         "direction": "Backward",
