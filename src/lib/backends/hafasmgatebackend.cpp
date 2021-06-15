@@ -32,6 +32,23 @@
 #include <QUrlQuery>
 #include <QVersionNumber>
 
+namespace KPublicTransport {
+
+class HafasMgateRequestContext
+{
+public:
+    QDateTime dateTime;
+    int duration = 0;
+
+    inline operator QVariant() const {
+        return QVariant::fromValue(*this);
+    }
+};
+
+}
+
+Q_DECLARE_METATYPE(KPublicTransport::HafasMgateRequestContext)
+
 using namespace KPublicTransport;
 
 HafasMgateBackend::HafasMgateBackend() = default;
@@ -46,7 +63,7 @@ void HafasMgateBackend::init()
 
 AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 {
-    return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability) | CanQueryArrivals;
+    return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability) | CanQueryArrivals | CanQueryPreviousDeparture;
 }
 
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -158,19 +175,24 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
         return false;
     }
 
+    const auto ctx = requestContext(request).value<HafasMgateRequestContext>();
+    auto dt = ctx.dateTime.isValid() ? ctx.dateTime : request.dateTime();
+    if (timeZone().isValid()) {
+        dt = dt.toTimeZone(timeZone());
+    }
+
     QJsonObject stationBoard;
     {
         QJsonObject cfg;
         cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
 
-        QDateTime dt = request.dateTime();
-        if (timeZone().isValid()) {
-            dt = dt.toTimeZone(timeZone());
-        }
-
         QJsonObject req;
         req.insert(QStringLiteral("date"), dt.toString(QStringLiteral("yyyyMMdd")));
-        req.insert(QStringLiteral("maxJny"), request.maximumResults());
+        if (ctx.duration > 0) {
+            req.insert(QStringLiteral("dur"), QString::number(ctx.duration));
+        } else {
+            req.insert(QStringLiteral("maxJny"), request.maximumResults());
+        }
         // stbFltrEquiv is no longer allowed above API version 1.20
         if (QVersionNumber::fromString(m_version) < QVersionNumber(1, 20)) {
             req.insert(QStringLiteral("stbFltrEquiv"), true);
@@ -189,10 +211,9 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
     const auto netRequest = makePostRequest(stationBoard, postData);
     logRequest(request, netRequest, postData);
     auto netReply = nam->post(netRequest, postData);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, dt, this]() {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-        qDebug() << netReply->request().url();
 
         switch (netReply->error()) {
             case QNetworkReply::NoError:
@@ -201,6 +222,11 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
                 if (m_parser.error() != Reply::NoError) {
                     addError(reply, m_parser.error(), m_parser.errorMessage());
                 } else {
+                    HafasMgateRequestContext prevCtx;
+                    prevCtx.dateTime = dt.addSecs(-3600); // TODO: follow duration parameter in request once we have that
+                    prevCtx.duration = 60;
+                    setPreviousRequestContext(reply, prevCtx);
+
                     addResult(reply, this, std::move(result));
                 }
                 break;
