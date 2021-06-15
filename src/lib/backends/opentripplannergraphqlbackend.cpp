@@ -34,7 +34,8 @@ OpenTripPlannerGraphQLBackend::~OpenTripPlannerGraphQLBackend() = default;
 
 AbstractBackend::Capabilities OpenTripPlannerGraphQLBackend::capabilities() const
 {
-    return m_endpoint.startsWith(QLatin1String("https://")) ? Secure : NoCapability;
+    return (m_endpoint.startsWith(QLatin1String("https://")) ? Secure : NoCapability)
+        |  (m_apiVersion == QLatin1String("otp2") ? (CanQueryNextJourney | CanQueryPreviousJourney) : NoCapability);
 }
 
 bool OpenTripPlannerGraphQLBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
