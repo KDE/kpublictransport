@@ -250,6 +250,9 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
         Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
     }
 
+    // apply static attributions if @p backend contributed to the results
+    addAttribution(backend->attribution());
+
     // update result
     if (!res.empty()) {
         if (d->journeys.empty()) {

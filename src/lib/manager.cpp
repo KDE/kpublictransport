@@ -321,8 +321,6 @@ static Location::Types locationTypesForJourneyRequest(const JourneyRequest &req)
 
 bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyRequest &req, JourneyReply *reply)
 {
-    reply->addAttribution(backend->attribution());
-
     auto cache = Cache::lookupJourney(backend->backendId(), req.cacheKey());
     switch (cache.type) {
         case CacheHitType::Negative:
@@ -389,8 +387,6 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
 bool ManagerPrivate::queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply)
 {
-    reply->addAttribution(backend->attribution());
-
     auto cache = Cache::lookupDeparture(backend->backendId(), req.cacheKey());
     switch (cache.type) {
         case CacheHitType::Negative:

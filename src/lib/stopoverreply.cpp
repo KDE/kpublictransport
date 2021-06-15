@@ -124,6 +124,9 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
         StopoverUtil::applyMetaData(dep, request().downloadAssets());
     }
 
+    // apply static attributions if @p backend contributed to the results
+    addAttribution(backend->attribution());
+
     // cache negative hits, positive ones are too short-lived
     if (res.empty()) {
         Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
