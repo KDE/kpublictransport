@@ -115,4 +115,9 @@ Path Path::fromJson(const QJsonObject &obj)
     return path;
 }
 
+int Path::sectionCount() const
+{
+    return d->sections.size();
+}
+
 #include "moc_path.cpp"

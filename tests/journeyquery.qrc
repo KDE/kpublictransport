@@ -10,6 +10,7 @@
         <file>IndoorMapPage.qml</file>
         <file>JourneySectionPage.qml</file>
         <file>LocationDetailsSheet.qml</file>
+        <file>PathPage.qml</file>
         <file>TestLocationsModel.qml</file>
         <file>VehicleLayoutPage.qml</file>
     </qresource>

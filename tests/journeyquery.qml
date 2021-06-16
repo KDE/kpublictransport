@@ -324,7 +324,9 @@ Kirigami.ApplicationWindow {
             }
             onClicked: {
                 if (modelData.mode == JourneySection.PublicTransport) {
-                    applicationWindow().pageStack.push(journeySectionPathPage, {"journeySection": modelData});
+                    applicationWindow().pageStack.push(journeySectionPage, {"journeySection": modelData});
+                } else if ((modelData.mode == JourneySection.Walking || modelData.mode == JourneySection.Waiting) && modelData.path.sectionCount > 1) {
+                    applicationWindow().pageStack.push(pathPage, {"path": modelData.path});
                 }
             }
         }
@@ -338,8 +340,13 @@ Kirigami.ApplicationWindow {
     }
 
     Component {
-        id: journeySectionPathPage
+        id: journeySectionPage
         JourneySectionPage {}
+    }
+
+    Component {
+        id: pathPage
+        PathPage {}
     }
 
     Component {

@@ -61,6 +61,11 @@ class KPUBLICTRANSPORT_EXPORT Path
 {
     KPUBLICTRANSPORT_GADGET(Path)
 
+    /** Access to path sections for QML. */
+    Q_PROPERTY(std::vector<KPublicTransport::PathSection> sections READ sections)
+    /** Number of path sections for QML. */
+    Q_PROPERTY(int sectionCount READ sectionCount STORED false)
+
     /** The length of this path in meters. */
     Q_PROPERTY(int distance READ distance STORED false)
 
@@ -82,11 +87,15 @@ public:
     static QJsonObject toJson(const Path &path);
     /** Deserialize an object from JSON. */
     static Path fromJson(const QJsonObject &obj);
+
+private:
+    int sectionCount() const;
 };
 
 }
 
 Q_DECLARE_METATYPE(KPublicTransport::PathSection)
+Q_DECLARE_METATYPE(std::vector<KPublicTransport::PathSection>)
 Q_DECLARE_METATYPE(KPublicTransport::Path)
 
 #endif // KPUBLICTRANSPORT_PATH_H
