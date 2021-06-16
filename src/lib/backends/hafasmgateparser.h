@@ -44,16 +44,18 @@ public:
 
     std::vector<Stopover> parseDepartures(const QByteArray &data) const;
     std::vector<Location> parseLocations(const QByteArray &data) const;
-    std::vector<Journey> parseJourneys(const QByteArray &data) const;
+    std::vector<Journey> parseJourneys(const QByteArray &data);
 
     static QDateTime parseDateTime(const QString &date, const QJsonValue &time, const QJsonValue &tzOffset);
 
+    QString m_previousJourneyContext;
+    QString m_nextJourneyContext;
 private:
     Q_DISABLE_COPY(HafasMgateParser)
     std::vector<Stopover> parseStationBoardResponse(const QJsonObject &obj) const;
     std::vector<Line> parseLines(const QJsonArray &prodL, const std::vector<Ico> &icos) const;
     std::vector<Location> parseLocations(const QJsonArray &locL) const;
-    std::vector<Journey> parseTripSearch(const QJsonObject &obj) const;
+    std::vector<Journey> parseTripSearch(const QJsonObject &obj);
     bool parseError(const QJsonObject &obj) const;
 };
 

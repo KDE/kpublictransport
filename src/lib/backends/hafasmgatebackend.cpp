@@ -63,7 +63,8 @@ void HafasMgateBackend::init()
 
 AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
 {
-    return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability) | CanQueryArrivals | CanQueryPreviousDeparture;
+    return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability)
+        | CanQueryArrivals | CanQueryPreviousDeparture | CanQueryPreviousJourney | CanQueryNextJourney;
 }
 
 bool HafasMgateBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -133,6 +134,10 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         req.insert(QStringLiteral("outDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
         req.insert(QStringLiteral("outTime"), dt.time().toString(QStringLiteral("hhmmss")));
         req.insert(QStringLiteral("outFrwd"), request.dateTimeMode() == JourneyRequest::Departure);
+        const auto ctxSrc = requestContext(request).toString();
+        if (!ctxSrc.isEmpty()) {
+            req.insert(QStringLiteral("ctxScr"), ctxSrc);
+        }
 
         tripSearch.insert(QStringLiteral("cfg"), cfg);
         tripSearch.insert(QStringLiteral("meth"), QLatin1String("TripSearch"));
@@ -152,6 +157,8 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
             {
                 auto res = m_parser.parseJourneys(data);
                 if (m_parser.error() == Reply::NoError) {
+                    setNextRequestContext(reply, m_parser.m_nextJourneyContext);
+                    setPreviousRequestContext(reply, m_parser.m_previousJourneyContext);
                     addResult(reply, this, std::move(res));
                 } else {
                     addError(reply, m_parser.error(), m_parser.errorMessage());

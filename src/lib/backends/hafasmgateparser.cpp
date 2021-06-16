@@ -400,8 +400,11 @@ std::vector<Location> HafasMgateParser::parseLocations(const QByteArray &data) c
     return {};
 }
 
-std::vector<Journey> HafasMgateParser::parseJourneys(const QByteArray &data) const
+std::vector<Journey> HafasMgateParser::parseJourneys(const QByteArray &data)
 {
+    m_nextJourneyContext.clear();
+    m_previousJourneyContext.clear();
+
     const auto topObj = QJsonDocument::fromJson(data).object();
     if (!parseError(topObj)) {
         return {};
@@ -531,7 +534,7 @@ static Path parsePolyG(const QJsonObject &obj, const std::vector<Path> &paths)
     return {};
 }
 
-std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) const
+std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
 {
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
@@ -682,6 +685,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj) c
         journey.setSections(std::move(sections));
         res.push_back(journey);
     }
+
+    m_previousJourneyContext = obj.value(QLatin1String("outCtxScrB")).toString();
+    m_nextJourneyContext =  obj.value(QLatin1String("outCtxScrF")).toString();
 
     return res;
 }
