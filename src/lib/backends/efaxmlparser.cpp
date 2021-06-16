@@ -336,6 +336,13 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
             }
         } else if (reader.name() == QLatin1String("infoLink")) {
             section.addNotes(parseInfoLink(reader.subReader()));
+        } else if (reader.name() == QLatin1String("itdInfoTextList")) {
+            auto subReader = reader.subReader();
+            while (subReader.readNextSibling()) {
+                if (subReader.name() == QLatin1String("infoTextListElem")) {
+                    section.addNote(subReader.readElementText());
+                }
+            }
         } else if (reader.name() == QLatin1String("itdStopSeq")) {
             section.setIntermediateStops(parsePartialTripStopSequence(reader.subReader()));
         } else if (reader.name() == QLatin1String("itdPathCoordinates")) {
