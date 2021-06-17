@@ -1,0 +1,55 @@
+{
+    "KPlugin": {
+        "Description": "Local transport in and around Trier, Germany.",
+        "Name": "Verkehrsverbund Region Trier (VRT)"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            6.0196,
+                            50.2981
+                        ],
+                        [
+                            6.4207,
+                            49.2901
+                        ],
+                        [
+                            8.5435,
+                            48.8369
+                        ],
+                        [
+                            8.3899,
+                            51.1577
+                        ],
+                        [
+                            6.0196,
+                            50.2981
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "DE-RP"
+            ]
+        }
+    },
+    "options": {
+        "endpoint": "https://www.vrt-info.de/fahrplanauskunft/",
+        "supportedOutputFormats": [
+            "XML",
+            "JSON"
+        ],
+        "xmlOutputFormat": "full"
+    },
+    "supportedLanguages": [
+        "de"
+    ],
+    "timezone": "Europe/Berlin",
+    "type": {
+        "efa": true
+    }
+}
