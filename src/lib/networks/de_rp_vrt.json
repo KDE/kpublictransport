@@ -8,6 +8,7 @@
         "Description[es]": "Transporte local de Tréveris y alrededores, Alemania.",
         "Description[nl]": "Lokaal transport in en om Trier, Duitsland.",
         "Description[pt]": "Transportes locais na região de Trier, Alemanha.",
+        "Description[pt_BR]": "Transporte local na região de Trier, Alemanha.",
         "Description[uk]": "Місцевий транспорт у Трірі та околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Trier, Germany.xx",
         "Name": "Verkehrsverbund Region Trier (VRT)",
@@ -18,6 +19,7 @@
         "Name[es]": "Verkehrsverbund Region Trier (VRT)",
         "Name[nl]": "Verkehrsverbund Regio Trier (VRT)",
         "Name[pt]": "Verkehrsverbund Region Trier (VRT)",
+        "Name[pt_BR]": "Verkehrsverbund Region Trier (VRT)",
         "Name[uk]": "Verkehrsverbund Region Trier (VRT)",
         "Name[x-test]": "xxVerkehrsverbund Region Trier (VRT)xx"
     },
