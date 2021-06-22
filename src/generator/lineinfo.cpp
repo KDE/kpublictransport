@@ -123,7 +123,7 @@ void LineInfo::merge(LineInfo &lhs, const LineInfo &rhs)
     }
 }
 
-QDebug operator<<(QDebug debug, LineInfo info)
+QDebug operator<<(QDebug debug, const LineInfo &info)
 {
     QDebugStateSaver saver(debug);
     debug.noquote().nospace()

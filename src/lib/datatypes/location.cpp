@@ -272,8 +272,8 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
     }
 
     // ids - IFOPT takes priority here due to its special hierarchical handling, but only for stations
-    const auto lhsIfopt = lhs.identifier(QLatin1String("ifopt"));
-    const auto rhsIfopt = rhs.identifier(QLatin1String("ifopt"));
+    const auto lhsIfopt = lhs.identifier(QStringLiteral("ifopt"));
+    const auto rhsIfopt = rhs.identifier(QStringLiteral("ifopt"));
     if (!lhsIfopt.isEmpty() && !rhsIfopt.isEmpty() && (lhs.type() == Location::Stop || rhs.type() == Location::Stop)) {
         return IfoptUtil::isSameStopPlace(lhsIfopt, rhsIfopt);
     }
@@ -374,7 +374,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     const auto rhsIds = rhs.identifiers();
     for (auto it = rhsIds.constBegin(); it != rhsIds.constEnd(); ++it) {
         if (it.key() == QLatin1String("ifopt")) {
-            l.setIdentifier(QStringLiteral("ifopt"), IfoptUtil::merge(l.identifier(QLatin1String("ifopt")), it.value()).toString());
+            l.setIdentifier(QStringLiteral("ifopt"), IfoptUtil::merge(l.identifier(QStringLiteral("ifopt")), it.value()).toString());
             continue;
         }
         if (lhs.identifier(it.key()).isEmpty()) {

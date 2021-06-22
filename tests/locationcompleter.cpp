@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     completer->setCompletionRole(Qt::DisplayRole);
     lineEdit->setCompleter(completer);
     // TODO compress queries with a short timer
-    QObject::connect(lineEdit, &QLineEdit::textEdited, model, [completer, model](const auto &text) {
+    QObject::connect(lineEdit, &QLineEdit::textEdited, model, [model](const auto &text) {
         LocationRequest req;
         req.setName(text);
         model->setRequest(req);

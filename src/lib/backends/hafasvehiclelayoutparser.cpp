@@ -102,11 +102,11 @@ std::vector<Vehicle> HafasVehicleLayoutParser::parseVehicleLayouts(const QJsonOb
     const auto stcGrpL = commonObj.value(QLatin1String("stcGrpL")).toArray();
     std::vector<Vehicle> vehicles;
     vehicles.reserve(stcGrpL.size());
-    for (const auto stcGrpV : stcGrpL) {
+    for (const auto &stcGrpV : stcGrpL) {
         const auto carL = stcGrpV.toObject().value(QLatin1String("carL")).toArray();
         std::vector<VehicleSection> sections;
         sections.reserve(carL.size());
-        for (const auto carV : carL) {
+        for (const auto &carV : carL) {
             const auto carIdx = carV.toInt();
             if (carIdx >= 0 && carIdx < (int)cars.size()) {
                 sections.push_back(cars[carIdx]);

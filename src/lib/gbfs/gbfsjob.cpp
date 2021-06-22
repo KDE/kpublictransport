@@ -116,7 +116,7 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
         return;
     }
 
-    for (const auto &feedVal : feeds) {
+    for (const auto &feedVal : qAsConst(feeds)) {
         const auto feed = feedVal.toObject();
         const auto name = feed.value(QLatin1String("name")).toString();
         const auto type = GBFS::typeForKeyName(name);

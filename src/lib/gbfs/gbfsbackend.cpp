@@ -70,7 +70,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     const auto stations = stationsDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
 
     std::vector<QString> selectedStationIds;
-    for (const auto stationV : stations) {
+    for (const auto &stationV : stations) {
         const auto station = stationV.toObject();
         const auto lat = station.value(QLatin1String("lat")).toDouble();
         const auto lon = station.value(QLatin1String("lon")).toDouble();
@@ -96,7 +96,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
     const auto statusDoc = store.loadData(GBFS::StationStatus);
     const auto status = statusDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
-    for (const auto statV : status) {
+    for (const auto &statV : status) {
         const auto stat = statV.toObject();
         const auto id = stationIdToString(stat.value(QLatin1String("station_id")));
         const auto it = std::find(selectedStationIds.begin(), selectedStationIds.end(), id);
@@ -112,7 +112,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
     const auto floatingDoc = store.loadData(GBFS::FreeBikeStatus);
     const auto floating = floatingDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
-    for (const auto bikeV : floating) {
+    for (const auto &bikeV : floating) {
         const auto bike = bikeV.toObject();
         if (bike.value(QLatin1String("is_reserved")).toBool() || bike.value(QLatin1String("is_disabled")).toBool()) {
             continue;

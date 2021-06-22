@@ -484,7 +484,7 @@ static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<L
         sections.reserve(ppLocRefL.size() - 1);
         int prevPpIdx = 0;
         QPointF prevCoord;
-        for (const auto ppLocRefV : ppLocRefL) {
+        for (const auto &ppLocRefV : ppLocRefL) {
             const auto ppLocRef = ppLocRefV.toObject();
             const auto ppIdx = ppLocRef.value(QLatin1String("ppIdx")).toInt();
             if (ppIdx == 0 || ppIdx < prevPpIdx) {

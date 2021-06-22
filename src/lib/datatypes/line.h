@@ -111,7 +111,7 @@ public:
 
 private:
     friend void LineUtil::setMetaData(Line&, LineMetaData);
-    void setMetaData(LineMetaData metaData);
+    void setMetaData(const LineMetaData &metaData);
 };
 
 class RoutePrivate;

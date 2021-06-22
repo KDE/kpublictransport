@@ -47,6 +47,6 @@ public:
     std::vector<Wikidata::Q> wdProducts;
 };
 
-QDebug operator<<(QDebug debug, LineInfo info);
+QDebug operator<<(QDebug debug, const LineInfo &info);
 
 #endif // LINEINFO_H

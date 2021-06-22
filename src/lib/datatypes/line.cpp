@@ -67,7 +67,7 @@ bool Line::hasTextColor() const
     return d->textColor.isValid();
 }
 
-void Line::setMetaData(LineMetaData metaData)
+void Line::setMetaData(const LineMetaData &metaData)
 {
     d->metaData = metaData;
 }

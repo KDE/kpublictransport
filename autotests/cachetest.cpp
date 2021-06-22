@@ -33,14 +33,14 @@ private Q_SLOTS:
         req.setCoordinate(52.5, 13.5);
         QVERIFY(!req.cacheKey().isEmpty());
 
-        auto entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
+        auto entry = Cache::lookupLocation(QStringLiteral("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Miss);
 
         Cache::addNegativeLocationCacheEntry(QStringLiteral("unittest"), req.cacheKey());
-        entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
+        entry = Cache::lookupLocation(QStringLiteral("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Negative);
         Cache::expire();
-        entry = Cache::lookupLocation(QLatin1String("unittest"), req.cacheKey());
+        entry = Cache::lookupLocation(QStringLiteral("unittest"), req.cacheKey());
         QCOMPARE(entry.type, CacheHitType::Negative);
 
         Location loc;

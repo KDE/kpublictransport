@@ -37,7 +37,7 @@ static void parseCompactIfopt(ScopedXmlStreamReader &reader, Location &loc)
         }
     } else if (reader.name() == QLatin1String("gid")) {
         const auto id = reader.readElementText();
-        if (IfoptUtil::isValid(id) && loc.identifier(QLatin1String("ifopt")).isEmpty()) {
+        if (IfoptUtil::isValid(id) && loc.identifier(QStringLiteral("ifopt")).isEmpty()) {
             loc.setIdentifier(QStringLiteral("ifopt"), id);
         }
     }
