@@ -1,7 +1,8 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
-set(kpublictransportquickplugin_SRC
+add_library(kpublictransportquickplugin)
+target_sources(kpublictransportquickplugin PRIVATE
     kpublictransportquickplugin.cpp
     styledsvgimageprovider.cpp
     assets/assets.qrc
@@ -11,7 +12,6 @@ set(kpublictransportquickplugin_qml
     VehicleSectionItem.qml
 )
 
-add_library(kpublictransportquickplugin ${kpublictransportquickplugin_SRC})
 target_link_libraries(kpublictransportquickplugin
     Qt5::Quick
 )

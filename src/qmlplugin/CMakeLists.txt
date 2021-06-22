@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: 2018 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
-set(kpublictransportqmlplugin_SRC
+add_library(kpublictransportqmlplugin)
+target_sources(kpublictransportqmlplugin PRIVATE
     kpublictransportqmlplugin.cpp
     linemetadatawrapper.cpp
 )
 
-add_library(kpublictransportqmlplugin ${kpublictransportqmlplugin_SRC})
 target_link_libraries(kpublictransportqmlplugin
     Qt5::Qml
     KPublicTransport

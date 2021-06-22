@@ -3,7 +3,10 @@
 
 add_subdirectory(knowledgedb)
 
-set(kpublictransport_srcs
+add_library(KPublicTransport)
+
+
+target_sources(KPublicTransport PRIVATE
     assetrepository.cpp
     journeyreply.cpp
     journeyrequest.cpp
@@ -99,9 +102,8 @@ set(kpublictransport_srcs
     networks/networks.qrc
     networks/certs/network_certs.qrc
 )
-ecm_qt_declare_logging_category(kpublictransport_srcs HEADER logging.h IDENTIFIER KPublicTransport::Log CATEGORY_NAME org.kde.kpublictransport)
+ecm_qt_declare_logging_category(KPublicTransport HEADER logging.h IDENTIFIER KPublicTransport::Log CATEGORY_NAME org.kde.kpublictransport)
 
-add_library(KPublicTransport ${kpublictransport_srcs})
 generate_export_header(KPublicTransport BASE_NAME KPublicTransport)
 set_target_properties(KPublicTransport PROPERTIES
     VERSION ${KPUBLICTRANSPORT_VERSION_STRING}
