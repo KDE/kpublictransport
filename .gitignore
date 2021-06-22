@@ -14,3 +14,4 @@ heaptrack.*
 build
 
 src/coverage/10m_cultural
+.cache/
