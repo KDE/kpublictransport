@@ -1,9 +1,5 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: CC0-1.0
 
-reuse:
-  image:
-    name: fsfe/reuse:latest
-    entrypoint: [""]
-  script:
-    - reuse lint
+include:
+  - https://invent.kde.org/sysadmin/ci-tooling/raw/master/invent/ci-reuse.yml
