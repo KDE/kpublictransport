@@ -481,7 +481,7 @@ static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<L
         // crdEncF: 1-dimensional, always 0?
 
         std::vector<PathSection> sections;
-        sections.reserve(ppLocRefL.size() - 1);
+        sections.reserve(std::max(0, ppLocRefL.size() - 1));
         int prevPpIdx = 0;
         QPointF prevCoord;
         for (const auto &ppLocRefV : ppLocRefL) {
@@ -514,7 +514,9 @@ static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<L
         }
 
         Path path;
-        path.setSections(std::move(sections));
+        if (!sections.empty()) {
+            path.setSections(std::move(sections));
+        }
         paths.push_back(std::move(path));
     }
     return paths;
