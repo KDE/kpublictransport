@@ -422,6 +422,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
         auto stops = res.takeIntermediateStops();
         for (uint i = 0; i < stops.size(); ++i) {
             stops[i] = Stopover::merge(stops[i], rhs.intermediateStops()[i]);
+            stops[i].setRoute(res.route());
         }
         res.setIntermediateStops(std::move(stops));
     }
