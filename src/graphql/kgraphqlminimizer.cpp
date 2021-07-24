@@ -33,15 +33,15 @@ QByteArray KGraphQLMinimizer::minimizeQuery(const QByteArray &query)
 void KGraphQLMinimizer::appendSpaceCompress(char c)
 {
     if (m_out.isEmpty()) {
-        if (!std::isspace(c)) {
+        if (!std::isspace(static_cast<unsigned char>(c))) {
             m_out.push_back(c);
         }
         return;
     }
 
     const auto prev = m_out.back();
-    if (std::isspace(prev)) {
-        if (std::isspace(c)) {
+    if (std::isspace(static_cast<unsigned char>(prev))) {
+        if (std::isspace(static_cast<unsigned char>(c))) {
             if (c == '\n') {
                 m_out.back() = c;
             }
@@ -55,7 +55,7 @@ void KGraphQLMinimizer::appendSpaceCompress(char c)
         return;
     }
 
-    if (!std::isspace(c) || !isPunctuator(prev)) {
+    if (!std::isspace(static_cast<unsigned char>(c)) || !isPunctuator(prev)) {
         m_out.push_back(c);
     }
 }
