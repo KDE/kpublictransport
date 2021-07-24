@@ -86,6 +86,7 @@
         "de",
         "en"
     ],
+    "timezone": "Europe/Berlin",
     "type": {
         "efa": true
     }
