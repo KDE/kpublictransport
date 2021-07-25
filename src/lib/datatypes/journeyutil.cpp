@@ -6,6 +6,8 @@
 
 #include "journeyutil_p.h"
 #include "lineutil_p.h"
+#include "stopoverutil_p.h"
+#include "timeutil_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Stopover>
@@ -36,32 +38,20 @@ bool JourneyUtil::firstTransportDepartureEqual(const Journey &lhs, const Journey
     return firstTransportDeparture(lhs) == firstTransportDeparture(rhs);
 }
 
-static QDateTime applyTimeZone(QDateTime dt, const QTimeZone &tz)
-{
-    if (!dt.isValid()) {
-        return dt;
-    }
-    switch (dt.timeSpec()) {
-        case Qt::LocalTime:
-            dt.setTimeZone(tz);
-            break;
-        case Qt::UTC:
-            dt = dt.toTimeZone(tz);
-            break;
-        default:
-            break;
-    }
-    return dt;
-}
-
 void JourneyUtil::applyTimeZone(Journey &jny, const QTimeZone &tz)
 {
     auto sections = std::move(jny.takeSections());
     for (auto &sec : sections) {
-        sec.setScheduledDepartureTime(applyTimeZone(sec.scheduledDepartureTime(), tz));
-        sec.setExpectedDepartureTime(applyTimeZone(sec.expectedDepartureTime(), tz));
-        sec.setScheduledArrivalTime(applyTimeZone(sec.scheduledArrivalTime(), tz));
-        sec.setExpectedArrivalTime(applyTimeZone(sec.expectedArrivalTime(), tz));
+        sec.setScheduledDepartureTime(TimeUtil::applyTimeZone(sec.scheduledDepartureTime(), tz));
+        sec.setExpectedDepartureTime(TimeUtil::applyTimeZone(sec.expectedDepartureTime(), tz));
+        sec.setScheduledArrivalTime(TimeUtil::applyTimeZone(sec.scheduledArrivalTime(), tz));
+        sec.setExpectedArrivalTime(TimeUtil::applyTimeZone(sec.expectedArrivalTime(), tz));
+
+        auto stops = sec.takeIntermediateStops();
+        for (auto &stop : stops) {
+            StopoverUtil::applyTimeZone(stop, tz);
+        }
+        sec.setIntermediateStops(std::move(stops));
     }
     jny.setSections(std::move(sections));
 }

@@ -74,6 +74,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/rentalvehicleutil.cpp
     datatypes/stopover.cpp
     datatypes/stopoverutil.cpp
+    datatypes/timeutil.cpp
     datatypes/vehicle.cpp
 
     gbfs/gbfs.cpp
