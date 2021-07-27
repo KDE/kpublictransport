@@ -6,6 +6,7 @@
 
 #include "stopoverutil_p.h"
 #include "lineutil_p.h"
+#include "timeutil_p.h"
 
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverRequest>
@@ -39,21 +40,12 @@ bool StopoverUtil::timeEqual(const StopoverRequest &req, const Stopover &lhs, co
     }
 }
 
-static QDateTime applyTimeZone(QDateTime dt, const QTimeZone &tz)
-{
-    if (!dt.isValid() || dt.timeSpec() != Qt::LocalTime) {
-        return dt;
-    }
-    dt.setTimeZone(tz);
-    return dt;
-}
-
 void StopoverUtil::applyTimeZone(Stopover &dep, const QTimeZone &tz)
 {
-    dep.setScheduledDepartureTime(applyTimeZone(dep.scheduledDepartureTime(), tz));
-    dep.setExpectedDepartureTime(applyTimeZone(dep.expectedDepartureTime(), tz));
-    dep.setScheduledArrivalTime(applyTimeZone(dep.scheduledArrivalTime(), tz));
-    dep.setExpectedArrivalTime(applyTimeZone(dep.expectedArrivalTime(), tz));
+    dep.setScheduledDepartureTime(TimeUtil::applyTimeZone(dep.scheduledDepartureTime(), tz));
+    dep.setExpectedDepartureTime(TimeUtil::applyTimeZone(dep.expectedDepartureTime(), tz));
+    dep.setScheduledArrivalTime(TimeUtil::applyTimeZone(dep.scheduledArrivalTime(), tz));
+    dep.setExpectedArrivalTime(TimeUtil::applyTimeZone(dep.expectedArrivalTime(), tz));
 }
 
 void StopoverUtil::applyMetaData(Stopover &dep, bool download)
