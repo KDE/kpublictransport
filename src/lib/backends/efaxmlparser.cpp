@@ -303,6 +303,7 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
         section.setMode(JourneySection::Walking);
     }
 
+    QPolygonF sectionPoly, transferPoly;
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdPoint")) {
             const auto type = reader.attributes().value(QLatin1String("usage"));
@@ -347,16 +348,26 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
         } else if (reader.name() == QLatin1String("itdStopSeq")) {
             section.setIntermediateStops(parsePartialTripStopSequence(reader.subReader()));
         } else if (reader.name() == QLatin1String("itdPathCoordinates")) {
-            section.setPath(parsePathCoordinates(reader.subReader()));
-       } else if (reader.name() == QLatin1String("itdITPathDescription") && !section.path().isEmpty()) {
+            sectionPoly = parsePathCoordinates(reader.subReader());
+        } else if (reader.name() == QLatin1String("itdInterchangePathCoordinates")) {
+            auto subreader = reader.subReader();
+            while (subreader.readNextSibling()) {
+                if (subreader.name() == QLatin1String("itdPathCoordinates")) {
+                    transferPoly = parsePathCoordinates(subreader.subReader());
+                }
+            }
+        } else if (reader.name() == QLatin1String("itdITPathDescription") && !sectionPoly.isEmpty()) {
             auto subreader = reader.subReader();
             while (subreader.readNextSibling()) {
                 if (subreader.name() == QLatin1String("itdITPathDescriptionList")) {
-                    const auto fullPath = section.path();
-                    section.setPath(parsePathDescriptionList(subreader.subReader(), fullPath.sections()[0].path()));
+                    section.setPath(parsePathDescriptionList(subreader.subReader(), sectionPoly));
                 }
             }
         }
+    }
+
+    if (!sectionPoly.isEmpty() && section.path().isEmpty()) {
+        section.setPath(polygonToPath(sectionPoly));
     }
 
     return result;
@@ -405,15 +416,15 @@ QStringList EfaXmlParser::parseInfoLink(ScopedXmlStreamReader &&reader) const
     return l;
 }
 
-Path EfaXmlParser::parsePathCoordinates(ScopedXmlStreamReader &&reader) const
+QPolygonF EfaXmlParser::parsePathCoordinates(ScopedXmlStreamReader &&reader) const
 {
-    Path path;
+    QPolygonF poly;
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdCoordinateString")) {
-            path = parsePathCoordinatesElement(reader);
+            poly = parsePathCoordinatesElement(reader);
         }
     }
-    return path;
+    return poly;
 }
 
 Path EfaXmlParser::parsePathDescriptionList(ScopedXmlStreamReader &&reader, const QPolygonF &poly) const

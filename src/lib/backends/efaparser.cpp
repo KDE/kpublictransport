@@ -60,7 +60,7 @@ Line::Mode EfaParser::motTypeToLineMode(int mot)
     return Line::Unknown;
 }
 
-Path EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)
+QPolygonF EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)
 {
     QPolygonF poly;
     // TODO do we need to support the format attributes, or is this always the same anyway?
@@ -72,7 +72,11 @@ Path EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)
             poly.push_back({p[0].toDouble(), p[1].toDouble()});
         }
     }
+    return poly;
+}
 
+Path EfaParser::polygonToPath(const QPolygonF &poly)
+{
     PathSection section;
     section.setPath(poly);
     Path path;

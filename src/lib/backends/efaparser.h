@@ -18,6 +18,7 @@
 #include <vector>
 
 class QByteArray;
+class QPolygonF;
 
 namespace KPublicTransport {
 
@@ -53,7 +54,9 @@ protected:
     static Line::Mode motTypeToLineMode(int mot);
 
     /** Parse path encoded as a space separated string of coordinate pairs. */
-    static Path parsePathCoordinatesElement(ScopedXmlStreamReader &reader);
+    static QPolygonF parsePathCoordinatesElement(ScopedXmlStreamReader &reader);
+    /** Turn a polygon into a section path. */
+    static Path polygonToPath(const QPolygonF &poly);
 
     /** Returns @c true if the given stop id is a dummy value used for non-stops. */
     static bool isDummyStopId(QStringView id);
