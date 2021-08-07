@@ -38,6 +38,11 @@ public:
     /** Length of this path section in meters. */
     int distance() const;
 
+    /** First point on the path of this section. */
+    QPointF startPoint() const;
+    /** Last point on the path of this section. */
+    QPointF endPoint() const;
+
     /** Serializes one path section section to JSON. */
     static QJsonObject toJson(const PathSection &section);
     /** Serializes a vector of path sections to JSON. */
@@ -82,6 +87,11 @@ public:
 
     /** Length of this path in meters. */
     int distance() const;
+
+    /** First point on this path. */
+    QPointF startPoint() const;
+    /** Last point on this path. */
+    QPointF endPoint() const;
 
     /** Serializes one path object to JSON. */
     static QJsonObject toJson(const Path &path);

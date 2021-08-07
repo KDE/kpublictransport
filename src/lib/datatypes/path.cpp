@@ -38,6 +38,16 @@ int PathSection::distance() const
     return dist;
 }
 
+QPointF PathSection::startPoint() const
+{
+    return d->path.empty() ? QPointF() : d->path.constFirst();
+}
+
+QPointF KPublicTransport::PathSection::endPoint() const
+{
+    return d->path.empty() ? QPointF() : d->path.constLast();
+}
+
 QJsonObject PathSection::toJson(const PathSection &section)
 {
     auto obj = Json::toJson(section);
@@ -99,6 +109,16 @@ void Path::setSections(std::vector<PathSection> &&sections)
 int Path::distance() const
 {
     return std::accumulate(d->sections.begin(), d->sections.end(), 0, [](int d, const auto &sec) { return d + sec.distance(); });
+}
+
+QPointF Path::startPoint() const
+{
+    return isEmpty() ? QPointF() : d->sections.front().startPoint();
+}
+
+QPointF Path::endPoint() const
+{
+    return isEmpty() ? QPointF() : d->sections.front().endPoint();
 }
 
 QJsonObject Path::toJson(const Path &path)
