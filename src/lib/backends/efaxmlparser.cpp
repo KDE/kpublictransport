@@ -304,6 +304,7 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
     }
 
     QPolygonF sectionPoly, transferPoly;
+    std::vector<PathDescription> pathDesc;
     while (reader.readNextSibling()) {
         if (reader.name() == QLatin1String("itdPoint")) {
             const auto type = reader.attributes().value(QLatin1String("usage"));
@@ -360,12 +361,15 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
             auto subreader = reader.subReader();
             while (subreader.readNextSibling()) {
                 if (subreader.name() == QLatin1String("itdITPathDescriptionList")) {
-                    section.setPath(parsePathDescriptionList(subreader.subReader(), sectionPoly));
+                    pathDesc = parsePathDescriptionList(subreader.subReader());
                 }
             }
         }
     }
 
+    if (!pathDesc.empty()) {
+        section.setPath(assemblePath(pathDesc, sectionPoly));
+    }
     if (!sectionPoly.isEmpty() && section.path().isEmpty()) {
         section.setPath(polygonToPath(sectionPoly));
     }
@@ -427,37 +431,49 @@ QPolygonF EfaXmlParser::parsePathCoordinates(ScopedXmlStreamReader &&reader) con
     return poly;
 }
 
-Path EfaXmlParser::parsePathDescriptionList(ScopedXmlStreamReader &&reader, const QPolygonF &poly) const
+std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionList(ScopedXmlStreamReader &&reader) const
+{
+    std::vector<PathDescription> descs;
+    while (reader.readNextSibling()) {
+        if (reader.name() == QLatin1String("itdITPathDescriptionElem")) {
+            PathDescription desc;
+            auto elemReader = reader.subReader();
+            while (elemReader.readNextSibling()) {
+                if (elemReader.name() == QLatin1String("itdCoord")) {
+                    desc.point.setX(elemReader.attributes().value(QLatin1String("x")).toDouble());
+                    desc.point.setY(elemReader.attributes().value(QLatin1String("y")).toDouble());
+                } else if (elemReader.name() == QLatin1String("fromPathCoordIdx")) {
+                    desc.fromIndex = elemReader.readElementText().toInt();
+                } else if (elemReader.name() == QLatin1String("toPathCoordIdx")) {
+                    desc.toIndex = elemReader.readElementText().toInt();
+                } else if (elemReader.name() == QLatin1String("streetname")) {
+                    desc.description = elemReader.readElementText();
+                }
+                // turnDirection, turningManoeuvre, from/toPathLink??, skyDirection, traveltime, distance, niveau, genAttrList
+            }
+            descs.push_back(std::move(desc));
+        }
+    }
+    return descs;
+}
+
+Path EfaXmlParser::assemblePath(const std::vector<PathDescription> &descs, const QPolygonF &poly) const
 {
     Path path;
     std::vector<PathSection> sections;
 
-    while (reader.readNextSibling()) {
-        if (reader.name() == QLatin1String("itdITPathDescriptionElem")) {
-            PathSection section;
-            int fromIdx = -1; int toIdx = -1;
-            auto elemReader = reader.subReader();
-            while (elemReader.readNextSibling()) {
-                if (elemReader.name() == QLatin1String("fromPathCoordIdx")) {
-                    fromIdx = elemReader.readElementText().toInt();
-                } else if (elemReader.name() == QLatin1String("toPathCoordIdx")) {
-                    toIdx = elemReader.readElementText().toInt();
-                } else if (elemReader.name() == QLatin1String("streetname")) {
-                    section.setDescription(elemReader.readElementText());
-                }
-                // turnDirection, turningManoeuvre, from/toPathLink??, skyDirection, traveltime, distance, niveau, genAttrList
-            }
-
-            if (fromIdx < 0 || toIdx < 0 || fromIdx >= poly.size() || toIdx >= poly.size() || toIdx < fromIdx) {
-                qWarning() << "weird polygon indexes?" << fromIdx << toIdx << poly.size();
-                continue;
-            }
-            QPolygonF subPoly;
-            subPoly.reserve(toIdx - fromIdx + 1);
-            std::copy(poly.begin() + fromIdx, poly.begin() + toIdx, std::back_inserter(subPoly));
-            section.setPath(subPoly);
-            sections.push_back(std::move(section));
+    for (const auto &desc : descs) {
+        if (desc.fromIndex < 0 || desc.toIndex < 0 || desc.fromIndex >= poly.size() || desc.toIndex >= poly.size() || desc.toIndex < desc.fromIndex) {
+            qCWarning(Log) << "weird polygon indexes?" << desc.fromIndex << desc.toIndex << poly.size();
+            continue;
         }
+        PathSection section;
+        QPolygonF subPoly;
+        subPoly.reserve(desc.toIndex - desc.fromIndex + 1);
+        std::copy(poly.begin() + desc.fromIndex, poly.begin() + desc.toIndex, std::back_inserter(subPoly));
+        section.setPath(subPoly);
+        section.setDescription(desc.description);
+        sections.push_back(std::move(section));
     }
 
     path.setSections(std::move(sections));

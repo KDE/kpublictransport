@@ -9,6 +9,8 @@
 
 #include "efaparser.h"
 
+#include <QPointF>
+
 class QPolygonF;
 
 namespace KPublicTransport {
@@ -40,8 +42,18 @@ private:
     std::vector<JourneySection> parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
     Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;
     QStringList parseInfoLink(ScopedXmlStreamReader &&reader) const;
-    Path parsePathCoordinates(ScopedXmlStreamReader &&reader) const;
-    Path parsePathDescriptionList(ScopedXmlStreamReader &&reader, const QPolygonF &poly) const;
+    QPolygonF parsePathCoordinates(ScopedXmlStreamReader &&reader) const;
+
+    struct PathDescription {
+        QPointF point;
+        int fromIndex = -1;
+        int toIndex = -1;
+        QString description;
+    };
+
+    std::vector<PathDescription> parsePathDescriptionList(ScopedXmlStreamReader &&reader) const;
+    Path assemblePath(const std::vector<PathDescription> &descs, const QPolygonF &poly) const;
+
 
     mutable QHash<QString, Location> m_locations;
 };
