@@ -295,9 +295,10 @@ struct {
     { 100, JourneySection::Walking },
 };
 
-JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reader) const
+std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reader) const
 {
-    JourneySection section;
+    std::vector<JourneySection> result = { JourneySection() };
+    auto &section = result[0];
     if (reader.attributes().value(QLatin1String("type")) == QLatin1String("IT")) {
         section.setMode(JourneySection::Walking);
     }
@@ -358,7 +359,7 @@ JourneySection EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reade
         }
     }
 
-    return section;
+    return result;
 }
 
 Journey EfaXmlParser::parseTripRoute(ScopedXmlStreamReader &&reader) const
@@ -368,7 +369,8 @@ Journey EfaXmlParser::parseTripRoute(ScopedXmlStreamReader &&reader) const
 
     while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("itdPartialRoute")) {
-            sections.push_back(parseTripPartialRoute(reader.subReader()));
+            auto sec = parseTripPartialRoute(reader.subReader());
+            std::move(sec.begin(), sec.end(), std::back_inserter(sections));
         }
     }
 

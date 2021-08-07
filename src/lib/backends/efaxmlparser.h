@@ -37,7 +37,7 @@ private:
     Stopover parsePartialTripIntermediateStop(ScopedXmlStreamReader &&reader) const;
     std::vector<Stopover> parsePartialTripStopSequence(ScopedXmlStreamReader &&reader) const;
 
-    JourneySection parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
+    std::vector<JourneySection> parseTripPartialRoute(ScopedXmlStreamReader &&reader) const;
     Journey parseTripRoute(ScopedXmlStreamReader &&reader) const;
     QStringList parseInfoLink(ScopedXmlStreamReader &&reader) const;
     Path parsePathCoordinates(ScopedXmlStreamReader &&reader) const;
