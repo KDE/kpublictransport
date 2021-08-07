@@ -297,8 +297,8 @@ struct {
 
 std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamReader &&reader) const
 {
-    std::vector<JourneySection> result = { JourneySection() };
-    auto &section = result[0];
+    std::vector<JourneySection> result;
+    JourneySection section;
     if (reader.attributes().value(QLatin1String("type")) == QLatin1String("IT")) {
         section.setMode(JourneySection::Walking);
     }
@@ -368,12 +368,33 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
     }
 
     if (!pathDesc.empty()) {
-        section.setPath(assemblePath(pathDesc, sectionPoly));
+        if (!transferPoly.empty() && section.mode() == JourneySection::PublicTransport) {
+            // path description is actually for a subsequent transfer section
+            const auto path = assemblePath(pathDesc, transferPoly);
+            JourneySection transferSection;
+            transferSection.setMode(JourneySection::Transfer);
+            transferSection.setScheduledDepartureTime(section.scheduledArrivalTime());
+            transferSection.setScheduledArrivalTime(section.scheduledArrivalTime()); // TODO is there a better value for that?
+            Location from;
+            from.setLatitude(path.startPoint().y());
+            from.setLongitude(path.startPoint().x());
+            transferSection.setFrom(std::move(from));
+            Location to;
+            to.setLatitude(path.endPoint().y());
+            to.setLongitude(path.endPoint().x());
+            transferSection.setTo(std::move(to));
+            transferSection.setPath(std::move(path));
+            result.push_back(std::move(transferSection));
+        } else if (section.mode() == JourneySection::Walking) {
+            // path description is for this section
+            section.setPath(assemblePath(pathDesc, sectionPoly));
+        }
     }
     if (!sectionPoly.isEmpty() && section.path().isEmpty()) {
         section.setPath(polygonToPath(sectionPoly));
     }
 
+    result.insert(result.begin(), std::move(section));
     return result;
 }
 
