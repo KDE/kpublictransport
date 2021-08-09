@@ -33,10 +33,16 @@ class KPUBLICTRANSPORT_EXPORT PathSection
 
     /** The length of this path section in meters. */
     Q_PROPERTY(int distance READ distance STORED false)
+    /** The overall direction of this section in degree. */
+    Q_PROPERTY(int direction READ direction STORED false)
 
 public:
     /** Length of this path section in meters. */
     int distance() const;
+    /** The overall direction of this section in degree.
+     *  @returns 0-359 for valid results, -1 for sections with no direction (e.g. points).
+     */
+    int direction() const;
 
     /** First point on the path of this section. */
     QPointF startPoint() const;

@@ -10,6 +10,8 @@
 #include "../geo/geojson_p.h"
 #include "location.h"
 
+#include <QLineF>
+
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -36,6 +38,16 @@ int PathSection::distance() const
         dist += Location::distance((*it).y(), (*it).x(), (*nextIt).y(), (*nextIt).x());
     }
     return dist;
+}
+
+int PathSection::direction() const
+{
+    const auto p1 = startPoint();
+    const auto p2 = endPoint();
+    if (d->path.size() < 2 || p1 == p2) {
+        return -1;
+    }
+    return static_cast<int>(450 - QLineF(p1.x(), -p1.y(), p2.x(), -p2.y()).angle()) % 360;
 }
 
 QPointF PathSection::startPoint() const
