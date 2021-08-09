@@ -3,7 +3,7 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 180,
+                "distance": 306,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2020-04-27T22:13:00",
                 "expectedDeparturePlatform": "",
@@ -23,7 +23,16 @@
                 "path": {
                     "sections": [
                         {
-                            "description": "Ausstieg U-Bahn links"
+                            "description": "Ausstieg U-Bahn links",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08263,
+                                        49.44717
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
                         },
                         {
                             "description": "Bahnsteig",
@@ -36,6 +45,10 @@
                                     [
                                         11.0826,
                                         49.44716
+                                    ],
+                                    [
+                                        11.08258,
+                                        49.44715
                                     ]
                                 ],
                                 "type": "LineString"
@@ -51,6 +64,10 @@
                                     [
                                         11.08258,
                                         49.44714
+                                    ],
+                                    [
+                                        11.08218,
+                                        49.44702
                                     ]
                                 ],
                                 "type": "LineString"
@@ -63,13 +80,26 @@
                                     [
                                         11.08218,
                                         49.44702
+                                    ],
+                                    [
+                                        11.08216,
+                                        49.447
                                     ]
                                 ],
                                 "type": "LineString"
                             }
                         },
                         {
-                            "description": "Aufzug abw�rts"
+                            "description": "Aufzug abw�rts",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        11.08216,
+                                        49.447
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
                         },
                         {
                             "description": "Weg im Geb�ude",
@@ -110,6 +140,10 @@
                                     [
                                         11.08156,
                                         49.44681
+                                    ],
+                                    [
+                                        11.08158,
+                                        49.44674
                                     ]
                                 ],
                                 "type": "LineString"
@@ -122,6 +156,10 @@
                                     [
                                         11.08158,
                                         49.44674
+                                    ],
+                                    [
+                                        11.08167,
+                                        49.44656
                                     ]
                                 ],
                                 "type": "LineString"
@@ -134,6 +172,10 @@
                                     [
                                         11.08167,
                                         49.44656
+                                    ],
+                                    [
+                                        11.08171,
+                                        49.44653
                                     ]
                                 ],
                                 "type": "LineString"
@@ -150,6 +192,10 @@
                                     [
                                         11.08172,
                                         49.44653
+                                    ],
+                                    [
+                                        11.08173,
+                                        49.44653
                                     ]
                                 ],
                                 "type": "LineString"
@@ -162,6 +208,10 @@
                                     [
                                         11.08173,
                                         49.44653
+                                    ],
+                                    [
+                                        11.08162,
+                                        49.4465
                                     ]
                                 ],
                                 "type": "LineString"
@@ -178,6 +228,10 @@
                                     [
                                         11.0817,
                                         49.44635
+                                    ],
+                                    [
+                                        11.08179,
+                                        49.44636
                                     ]
                                 ],
                                 "type": "LineString"
@@ -190,6 +244,10 @@
                                     [
                                         11.08179,
                                         49.44636
+                                    ],
+                                    [
+                                        11.08181,
+                                        49.4463
                                     ]
                                 ],
                                 "type": "LineString"
@@ -222,6 +280,10 @@
                                     [
                                         11.08218,
                                         49.4456
+                                    ],
+                                    [
+                                        11.08226,
+                                        49.44546
                                     ]
                                 ],
                                 "type": "LineString"
@@ -234,6 +296,10 @@
                                     [
                                         11.08226,
                                         49.44546
+                                    ],
+                                    [
+                                        11.08235,
+                                        49.44547
                                     ]
                                 ],
                                 "type": "LineString"
@@ -250,6 +316,10 @@
                                     [
                                         11.08248,
                                         49.4455
+                                    ],
+                                    [
+                                        11.08252,
+                                        49.44552
                                     ]
                                 ],
                                 "type": "LineString"
@@ -266,6 +336,10 @@
                                     [
                                         11.0825,
                                         49.44555
+                                    ],
+                                    [
+                                        11.0823,
+                                        49.44551
                                     ]
                                 ],
                                 "type": "LineString"

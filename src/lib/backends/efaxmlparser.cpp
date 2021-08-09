@@ -491,7 +491,7 @@ Path EfaXmlParser::assemblePath(const std::vector<PathDescription> &descs, const
         PathSection section;
         QPolygonF subPoly;
         subPoly.reserve(desc.toIndex - desc.fromIndex + 1);
-        std::copy(poly.begin() + desc.fromIndex, poly.begin() + desc.toIndex, std::back_inserter(subPoly));
+        std::copy(poly.begin() + desc.fromIndex, poly.begin() + desc.toIndex + 1, std::back_inserter(subPoly));
         section.setPath(subPoly);
         section.setDescription(desc.description);
         sections.push_back(std::move(section));
