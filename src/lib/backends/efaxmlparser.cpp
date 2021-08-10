@@ -374,7 +374,10 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
             JourneySection transferSection;
             transferSection.setMode(JourneySection::Transfer);
             transferSection.setScheduledDepartureTime(section.scheduledArrivalTime());
-            transferSection.setScheduledArrivalTime(section.scheduledArrivalTime()); // TODO is there a better value for that?
+            const auto travelTime = std::accumulate(pathDesc.begin(), pathDesc.end(), 0, [](auto accu, const auto &desc) {
+                return accu + desc.travelTime;
+            });
+            transferSection.setScheduledArrivalTime(section.scheduledArrivalTime().addSecs(travelTime));
             Location from;
             from.setLatitude(path.startPoint().y());
             from.setLongitude(path.startPoint().x());
@@ -469,8 +472,11 @@ std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionLis
                     desc.toIndex = elemReader.readElementText().toInt();
                 } else if (elemReader.name() == QLatin1String("streetname")) {
                     desc.description = elemReader.readElementText();
+                } else if (elemReader.name() == QLatin1String("traveltime")) {
+                    desc.travelTime = elemReader.readElementText().toInt();
                 }
-                // turnDirection, turningManoeuvre, from/toPathLink??, skyDirection, traveltime, distance, niveau, genAttrList
+                // NOTE: skyDirection seems flipped by 180°, ie. pointing to the start point, should we ever need that
+                // turnDirection, turningManoeuvre, from/toPathLink??, niveau, genAttrList
             }
             descs.push_back(std::move(desc));
         }

@@ -49,6 +49,7 @@ private:
         int fromIndex = -1;
         int toIndex = -1;
         QString description;
+        int travelTime = 0;
     };
 
     std::vector<PathDescription> parsePathDescriptionList(ScopedXmlStreamReader &&reader) const;
