@@ -9,6 +9,8 @@
 
 #include "efaparser.h"
 
+#include <KPublicTransport/Path>
+
 #include <QPointF>
 
 class QPolygonF;
@@ -50,11 +52,15 @@ private:
         int toIndex = -1;
         QString description;
         int travelTime = 0;
+        int niveau = 0;
+        int niveauDelta = 0;
+        PathSection::Maneuver maneuver = PathSection::Move;
     };
 
     std::vector<PathDescription> parsePathDescriptionList(ScopedXmlStreamReader &&reader) const;
+    void resolvePathDescription(std::vector<PathDescription> &descs) const;
     Path assemblePath(const std::vector<PathDescription> &descs, const QPolygonF &poly) const;
-
+    QHash<QString, QString> parseGenericAttributeList(ScopedXmlStreamReader &&reader) const;
 
     mutable QHash<QString, Location> m_locations;
 };

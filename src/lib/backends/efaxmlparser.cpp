@@ -368,6 +368,7 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
     }
 
     if (!pathDesc.empty()) {
+        resolvePathDescription(pathDesc);
         if (!transferPoly.empty() && section.mode() == JourneySection::PublicTransport) {
             // path description is actually for a subsequent transfer section
             const auto path = assemblePath(pathDesc, transferPoly);
@@ -474,14 +475,41 @@ std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionLis
                     desc.description = elemReader.readElementText();
                 } else if (elemReader.name() == QLatin1String("traveltime")) {
                     desc.travelTime = elemReader.readElementText().toInt();
+                } else if (elemReader.name() == QLatin1String("niveau")) {
+                    // seems to match OSM floor level, but is always "0" for elevators/escalators
+                    desc.niveau = elemReader.readElementText().toInt();
+                } else if (elemReader.name() == QLatin1String("genAttrList")) {
+                    const auto attrs = parseGenericAttributeList(elemReader.subReader());
+                    const auto indoorType = attrs.value(QLatin1String("INDOOR_TYPE"));
+                    if (indoorType == QLatin1String("LIFT")) {
+                        desc.maneuver = PathSection::Elevator;
+                    } else if (indoorType == QLatin1String("ESCALATOR")) {
+                        desc.maneuver = PathSection::Escalator;
+                    }
                 }
                 // NOTE: skyDirection seems flipped by 180°, ie. pointing to the start point, should we ever need that
-                // turnDirection, turningManoeuvre, from/toPathLink??, niveau, genAttrList
+                // turnDirection, turningManoeuvre, from/toPathLink??
             }
             descs.push_back(std::move(desc));
         }
     }
     return descs;
+}
+
+void EfaXmlParser::resolvePathDescription(std::vector<PathDescription> &descs) const
+{
+    if (descs.size() < 3) {
+        return;
+    }
+
+    for (auto it = std::next(descs.begin()); it != std::prev(descs.end()); ++it) {
+        if ((*it).maneuver != PathSection::Elevator && (*it).maneuver != PathSection::Escalator) {
+            continue;
+        }
+        const auto niveauBefore = (*std::prev(it)).niveau;
+        const auto niveauAfter = (*std::next(it)).niveau;
+        (*it).niveauDelta = niveauAfter - niveauBefore;
+    }
 }
 
 Path EfaXmlParser::assemblePath(const std::vector<PathDescription> &descs, const QPolygonF &poly) const
@@ -500,9 +528,31 @@ Path EfaXmlParser::assemblePath(const std::vector<PathDescription> &descs, const
         std::copy(poly.begin() + desc.fromIndex, poly.begin() + desc.toIndex + 1, std::back_inserter(subPoly));
         section.setPath(subPoly);
         section.setDescription(desc.description);
+        section.setManeuver(desc.maneuver);
+        section.setFloorLevelChange(desc.niveauDelta);
         sections.push_back(std::move(section));
     }
 
     path.setSections(std::move(sections));
     return path;
+}
+
+QHash<QString, QString> EfaXmlParser::parseGenericAttributeList(ScopedXmlStreamReader &&reader) const
+{
+    QHash<QString, QString> attrs;
+    while (reader.readNextSibling()) {
+        if (reader.name() == QLatin1String("genAttrElem")) {
+            auto attrReader = reader.subReader();
+            QString name, value;
+            while (attrReader.readNextSibling()) {
+                if (attrReader.name() == QLatin1String("name")) {
+                    name = attrReader.readElementText();
+                } else if (attrReader.name() == QLatin1String("value")) {
+                    value = attrReader.readElementText();
+                }
+            }
+            attrs.insert(name, value);
+        }
+    }
+    return attrs;
 }

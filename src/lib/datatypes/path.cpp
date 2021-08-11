@@ -19,12 +19,16 @@ class PathSectionPrivate : public QSharedData {
 public:
     QPolygonF path;
     QString description;
+    int floorLevelChange = 0;
+    PathSection::Maneuver maneuver = PathSection::Move;
 };
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(PathSection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QPolygonF, path, setPath)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QString, description, setDescription)
+KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, int, floorLevelChange, setFloorLevelChange)
+KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, PathSection::Maneuver, maneuver, setManeuver)
 
 int PathSection::distance() const
 {
@@ -55,7 +59,7 @@ QPointF PathSection::startPoint() const
     return d->path.empty() ? QPointF() : d->path.constFirst();
 }
 
-QPointF KPublicTransport::PathSection::endPoint() const
+QPointF PathSection::endPoint() const
 {
     return d->path.empty() ? QPointF() : d->path.constLast();
 }
@@ -65,6 +69,12 @@ QJsonObject PathSection::toJson(const PathSection &section)
     auto obj = Json::toJson(section);
     if (!section.path().empty()) {
         obj.insert(QLatin1String("path"), GeoJson::writeLineString(section.path()));
+    }
+    if (section.maneuver() == PathSection::Move) {
+        obj.remove(QLatin1String("maneuver"));
+    }
+    if (section.floorLevelChange() == 0) {
+        obj.remove(QLatin1String("floorLevelChange"));
     }
     return obj;
 }

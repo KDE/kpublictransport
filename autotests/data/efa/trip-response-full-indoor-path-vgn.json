@@ -91,6 +91,8 @@
                         },
                         {
                             "description": "Aufzug abw�rts",
+                            "floorLevelChange": -2,
+                            "maneuver": "Elevator",
                             "path": {
                                 "coordinates": [
                                     [
@@ -151,6 +153,8 @@
                         },
                         {
                             "description": "Rolltreppe abw�rts",
+                            "floorLevelChange": -2,
+                            "maneuver": "Escalator",
                             "path": {
                                 "coordinates": [
                                     [
@@ -239,6 +243,8 @@
                         },
                         {
                             "description": "Rolltreppe aufw�rts",
+                            "floorLevelChange": 4,
+                            "maneuver": "Escalator",
                             "path": {
                                 "coordinates": [
                                     [
@@ -291,6 +297,8 @@
                         },
                         {
                             "description": "Rolltreppe aufw�rts",
+                            "floorLevelChange": 1,
+                            "maneuver": "Escalator",
                             "path": {
                                 "coordinates": [
                                     [

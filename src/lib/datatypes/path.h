@@ -36,6 +36,22 @@ class KPUBLICTRANSPORT_EXPORT PathSection
     /** The overall direction of this section in degree. */
     Q_PROPERTY(int direction READ direction STORED false)
 
+    /** Floor level change during this path section.
+     *  Negative values indicate going down, positive values indicate going up
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, floorLevelChange, setFloorLevelChange)
+
+public:
+    /** Maneuver associated with a path section. */
+    enum Maneuver {
+        Move, ///< Move/drive with the default mode of transport for this path
+        Elevator, ///< Take an elevator
+        Escalator, ///< Take an escalator
+    };
+    Q_ENUM(Maneuver)
+    /** Movement maneuver for this path section. */
+    KPUBLICTRANSPORT_PROPERTY(Maneuver, maneuver, setManeuver)
+
 public:
     /** Length of this path section in meters. */
     int distance() const;
