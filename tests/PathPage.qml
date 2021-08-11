@@ -15,8 +15,60 @@ Kirigami.ScrollablePage {
 
     Component {
         id: pathDelegate
-        Kirigami.BasicListItem {
-            text: modelData.description + " (" + modelData.distance + "m)"
+        Kirigami.AbstractListItem {
+            highlighted: false
+            GridLayout {
+                rows: 2
+                columns: 4
+
+                QQC2.Label {
+                    Layout.row: 0
+                    Layout.column: 0
+                    Layout.rowSpan: 2
+                    text: {
+                        switch (modelData.maneuver) {
+                            case PathSection.Elevator:
+                                return "🛗";
+                            case PathSection.Escalator:
+                                return "↗️";
+                            default:
+                                return "🚶";
+                        }
+                    }
+                    font.pixelSize: 32
+                }
+
+                QQC2.Label {
+                    Layout.row: 0
+                    Layout.column: 1
+                    Layout.rowSpan: 2
+                    visible: modelData.floorLevelChange != 0
+                    text: modelData.floorLevelChange < 0 ? "⬇️" : "⬆️"
+                    font.pixelSize: 32
+                }
+
+                QQC2.Label {
+                    Layout.row: 0
+                    Layout.column: 2
+                    Layout.fillWidth: true
+                    text: modelData.description
+                }
+                QQC2.Label {
+                    Layout.row: 1
+                    Layout.column: 2
+                    text: modelData.distance + "m"
+                }
+
+                QQC2.Label {
+                    Layout.row: 0
+                    Layout.column: 3
+                    Layout.rowSpan: 2
+                    text: "⬆️"
+                    visible: modelData.direction >= 0
+                    font.pixelSize: 32
+                    rotation: modelData.direction
+                }
+            }
         }
     }
 
