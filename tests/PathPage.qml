@@ -11,12 +11,13 @@ import org.kde.kirigami 2.12 as Kirigami
 import org.kde.kpublictransport 1.0
 
 Kirigami.ScrollablePage {
-    property var path
+    property alias path: pathModel.path
 
     Component {
         id: pathDelegate
         Kirigami.AbstractListItem {
             highlighted: false
+            property var section: model.section
             GridLayout {
                 rows: 2
                 columns: 4
@@ -26,7 +27,7 @@ Kirigami.ScrollablePage {
                     Layout.column: 0
                     Layout.rowSpan: 2
                     text: {
-                        switch (modelData.maneuver) {
+                        switch (section.maneuver) {
                             case PathSection.Stairs:
                                 return "🪜";
                             case PathSection.Elevator:
@@ -44,8 +45,8 @@ Kirigami.ScrollablePage {
                     Layout.row: 0
                     Layout.column: 1
                     Layout.rowSpan: 2
-                    visible: modelData.floorLevelChange != 0
-                    text: modelData.floorLevelChange < 0 ? "⬇️" : "⬆️"
+                    visible: section.floorLevelChange != 0
+                    text: section.floorLevelChange < 0 ? "⬇️" : "⬆️"
                     font.pixelSize: 32
                 }
 
@@ -53,12 +54,13 @@ Kirigami.ScrollablePage {
                     Layout.row: 0
                     Layout.column: 2
                     Layout.fillWidth: true
-                    text: modelData.description
+                    text: section.description
                 }
                 QQC2.Label {
                     Layout.row: 1
                     Layout.column: 2
-                    text: modelData.distance + "m"
+                    visible: section.distance > 0
+                    text: section.distance + "m"
                 }
 
                 QQC2.Label {
@@ -66,16 +68,20 @@ Kirigami.ScrollablePage {
                     Layout.column: 3
                     Layout.rowSpan: 2
                     text: "⬆️"
-                    visible: modelData.direction >= 0
+                    visible: model.turnDirection >= 0
                     font.pixelSize: 32
-                    rotation: modelData.direction
+                    rotation: model.turnDirection
                 }
             }
         }
     }
 
+    PathModel {
+        id: pathModel
+    }
+
     ListView {
-        model: path.sections
+        model: pathModel
         delegate: pathDelegate
     }
 }

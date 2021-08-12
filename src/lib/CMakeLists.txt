@@ -97,6 +97,7 @@ target_sources(KPublicTransport PRIVATE
     models/backendmodel.cpp
     models/journeyquerymodel.cpp
     models/locationquerymodel.cpp
+    models/pathmodel.cpp
     models/stopoverquerymodel.cpp
     models/vehiclelayoutquerymodel.cpp
 
@@ -178,6 +179,7 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
         DepartureQueryModel
         JourneyQueryModel
         LocationQueryModel
+        PathModel
         StopoverQueryModel
         VehicleLayoutQueryModel
     PREFIX KPublicTransport

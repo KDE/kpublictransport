@@ -19,6 +19,8 @@
 #include <KPublicTransport/LocationQueryModel>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
+#include <KPublicTransport/Path>
+#include <KPublicTransport/PathModel>
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/StopoverRequest>
@@ -47,6 +49,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
     qmlRegisterUncreatableType<KPublicTransport::Vehicle>("org.kde.kpublictransport", 1, 0, "Vehicle", {});
     qmlRegisterUncreatableType<KPublicTransport::VehicleSection>("org.kde.kpublictransport", 1, 0, "VehicleSection", {});
+    qmlRegisterUncreatableType<KPublicTransport::PathSection>("org.kde.kpublictransport", 1, 0, "PathSection", {});
     qmlRegisterUncreatableType<KPublicTransport::Platform>("org.kde.kpublictransport", 1, 0, "Platform", {});
     qmlRegisterUncreatableType<KPublicTransport::RentalVehicle>("org.kde.kpublictransport", 1, 0, "RentalVehicle", {});
     qmlRegisterUncreatableType<KPublicTransport::Equipment>("org.kde.kpublictransport", 1, 0, "Equipment", {});
@@ -64,6 +67,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterType<KPublicTransport::BackendModel>("org.kde.kpublictransport", 1, 0, "BackendModel");
     qmlRegisterType<KPublicTransport::StopoverQueryModel>("org.kde.kpublictransport", 1, 0, "StopoverQueryModel");
     qmlRegisterType<KPublicTransport::VehicleLayoutQueryModel>("org.kde.kpublictransport", 1, 0, "VehicleLayoutQueryModel");
+    qmlRegisterType<KPublicTransport::PathModel>("org.kde.kpublictransport", 1, 0, "PathModel");
     // backward compat
     qmlRegisterType<KPublicTransport::StopoverQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
 
