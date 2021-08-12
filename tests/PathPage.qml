@@ -27,6 +27,8 @@ Kirigami.ScrollablePage {
                     Layout.rowSpan: 2
                     text: {
                         switch (modelData.maneuver) {
+                            case PathSection.Stairs:
+                                return "🪜";
                             case PathSection.Elevator:
                                 return "🛗";
                             case PathSection.Escalator:

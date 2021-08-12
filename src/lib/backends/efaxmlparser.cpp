@@ -481,7 +481,9 @@ std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionLis
                 } else if (elemReader.name() == QLatin1String("genAttrList")) {
                     const auto attrs = parseGenericAttributeList(elemReader.subReader());
                     const auto indoorType = attrs.value(QLatin1String("INDOOR_TYPE"));
-                    if (indoorType == QLatin1String("LIFT")) {
+                    if (indoorType == QLatin1String("STAIRS")) {
+                        desc.maneuver = PathSection::Stairs;
+                    } else if (indoorType == QLatin1String("LIFT")) {
                         desc.maneuver = PathSection::Elevator;
                     } else if (indoorType == QLatin1String("ESCALATOR")) {
                         desc.maneuver = PathSection::Escalator;
@@ -503,7 +505,7 @@ void EfaXmlParser::resolvePathDescription(std::vector<PathDescription> &descs) c
     }
 
     for (auto it = std::next(descs.begin()); it != std::prev(descs.end()); ++it) {
-        if ((*it).maneuver != PathSection::Elevator && (*it).maneuver != PathSection::Escalator) {
+        if ((*it).maneuver != PathSection::Stairs && (*it).maneuver != PathSection::Elevator && (*it).maneuver != PathSection::Escalator) {
             continue;
         }
         const auto niveauBefore = (*std::prev(it)).niveau;

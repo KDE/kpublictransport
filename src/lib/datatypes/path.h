@@ -45,6 +45,7 @@ public:
     /** Maneuver associated with a path section. */
     enum Maneuver {
         Move, ///< Move/drive with the default mode of transport for this path
+        Stairs, ///< Walk up or down stairs
         Elevator, ///< Take an elevator
         Escalator, ///< Take an escalator
     };
