@@ -74,7 +74,8 @@
             },
             "region": [
                 "SE"
-            ]
+            ],
+            "uicCompanyCodes": [ "0074", "1074", "1174" ]
         }
     },
     "options": {

@@ -36,6 +36,9 @@ public:
      */
     KPUBLICTRANSPORT_PROPERTY(QStringList, regions, setRegions)
 
+    /** UIC company codes of operators covered by this backend. */
+    KPUBLICTRANSPORT_PROPERTY(QStringList, uicCompanyCodes, setUicCompanyCodes)
+
 public:
     /** Checks whether this coverage area is empty.
      *  coversLocation() would always return @p false for empty areas.

@@ -76,7 +76,8 @@
             },
             "region": [
                 "AT"
-            ]
+            ],
+            "uicCompanyCodes": [ "0081", "1181" ]
         },
         "regularCoverage": {
             "region": [

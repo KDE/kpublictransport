@@ -75,7 +75,8 @@
             },
             "region": [
                 "LU"
-            ]
+            ],
+            "uicCompanyCodes": [ "0082" ]
         }
     },
     "options": {

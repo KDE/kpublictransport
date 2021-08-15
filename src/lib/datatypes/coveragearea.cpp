@@ -21,6 +21,7 @@ class CoverageAreaPrivate : public QSharedData {
 public:
     CoverageArea::Type type = CoverageArea::Any;
     QStringList regions;
+    QStringList uicCompanyCodes;
     std::vector<QPolygonF> areas;
     QRectF boundingBox;
 };
@@ -29,6 +30,7 @@ public:
 KPUBLICTRANSPORT_MAKE_GADGET(CoverageArea)
 KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, CoverageArea::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, QStringList, regions, setRegions)
+KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, QStringList, uicCompanyCodes, setUicCompanyCodes)
 
 bool CoverageArea::isEmpty() const
 {
@@ -79,6 +81,7 @@ CoverageArea CoverageArea::fromJson(const QJsonObject &obj)
 {
     CoverageArea ca;
     ca.setRegions(Json::toStringList(obj.value(QLatin1String("region"))));
+    ca.setUicCompanyCodes(Json::toStringList(obj.value(QLatin1String("uicCompanyCodes"))));
     std::sort(ca.d->regions.begin(), ca.d->regions.end());
     ca.d->areas = GeoJson::readOuterPolygons(obj.value(QLatin1String("area")).toObject());
     for (const auto &area : ca.d->areas) {
