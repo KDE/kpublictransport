@@ -78,7 +78,11 @@
             "region": [
                 "DK"
             ],
-            "uicCompanyCodes": [ "1086", "1186", "1286" ]
+            "uicCompanyCodes": [
+                "1086",
+                "1186",
+                "1286"
+            ]
         }
     },
     "options": {

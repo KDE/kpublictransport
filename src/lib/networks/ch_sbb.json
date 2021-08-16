@@ -176,7 +176,12 @@
             "region": [
                 "CH"
             ],
-            "uicCompanyCodes": [ "0085", "1185", "1285", "1385" ]
+            "uicCompanyCodes": [
+                "0085",
+                "1185",
+                "1285",
+                "1385"
+            ]
         }
     },
     "options": {

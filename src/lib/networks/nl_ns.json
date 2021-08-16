@@ -73,7 +73,10 @@
             "region": [
                 "NL"
             ],
-            "uicCompanyCodes": [ "1084", "1184" ]
+            "uicCompanyCodes": [
+                "1084",
+                "1184"
+            ]
         }
     },
     "options": {

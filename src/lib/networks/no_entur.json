@@ -81,7 +81,11 @@
             "region": [
                 "NO"
             ],
-            "uicCompanyCodes": [ "0076", "1076", "3403" ]
+            "uicCompanyCodes": [
+                "0076",
+                "1076",
+                "3403"
+            ]
         }
     },
     "options": {

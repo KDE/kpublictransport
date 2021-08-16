@@ -72,7 +72,10 @@
             "region": [
                 "FI"
             ],
-            "uicCompanyCodes": [ "0010", "2910" ]
+            "uicCompanyCodes": [
+                "0010",
+                "2910"
+            ]
         }
     },
     "options": {

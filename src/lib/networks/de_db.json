@@ -81,7 +81,11 @@
                 "LI",
                 "LU"
             ],
-            "uicCompanyCodes": [ "0080", "1080", "1180" ]
+            "uicCompanyCodes": [
+                "0080",
+                "1080",
+                "1180"
+            ]
         }
     },
     "options": {
