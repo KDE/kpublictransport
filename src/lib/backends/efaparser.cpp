@@ -12,6 +12,12 @@
 
 using namespace KPublicTransport;
 
+bool EfaJourneyQueryContext::isEmpty()
+{
+    return sessionId.isEmpty() || requestId.isEmpty() || sessionId == QLatin1String("0");
+}
+
+
 EfaParser::~EfaParser() = default;
 
 void EfaParser::setLocationIdentifierType(const QString& locationIdentifierType)
@@ -87,4 +93,29 @@ Path EfaParser::polygonToPath(const QPolygonF &poly)
 bool EfaParser::isDummyStopId(QStringView id)
 {
     return id == QLatin1String("99999997") || id == QLatin1String("99999998");
+}
+
+EfaJourneyQueryContext EfaParser::journeyQueryContext() const
+{
+    return m_journeyContext;
+}
+
+QHash<QString, QString> EfaParser::parseKeyValueList(ScopedXmlStreamReader &&reader, QLatin1String elemName, QLatin1String keyName, QLatin1String valueName)
+{
+    QHash<QString, QString> attrs;
+    while (reader.readNextSibling()) {
+        if (reader.name() == elemName) {
+            auto attrReader = reader.subReader();
+            QString name, value;
+            while (attrReader.readNextSibling()) {
+                if (attrReader.name() == keyName) {
+                    name = attrReader.readElementText();
+                } else if (attrReader.name() == valueName) {
+                    value = attrReader.readElementText();
+                }
+            }
+            attrs.insert(name, value);
+        }
+    }
+    return attrs;
 }

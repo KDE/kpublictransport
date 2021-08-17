@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<itdRequest version="10.3.10.3" language="de" lengthUnit="METER">
+<itdRequest version="10.3.10.3" language="de" lengthUnit="METER" sessionID="123456789">
   <itdTripRequest requestID="0">
     <itdItinerary>
       <itdRouteList>

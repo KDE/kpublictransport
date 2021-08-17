@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<itdRequest language="de" lengthUnit="METER" sessionID="0" virtDir="vgnExt">
+<itdRequest language="de" lengthUnit="METER" sessionID="123456789" virtDir="vgnExt">
   <itdTripRequest requestID="0">
     <itdMessage type="warning" module="BROKER" code="-10015" subType="itp-monomodal">itp</itdMessage>
     <itdAddress name="" street="" place="" addressExt1="" addressExt2=""/>

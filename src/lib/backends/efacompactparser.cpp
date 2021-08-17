@@ -79,7 +79,7 @@ Location EfaCompactParser::parseCompactSf(ScopedXmlStreamReader &&reader) const
     return loc;
 }
 
-std::vector<Location> EfaCompactParser::parseStopFinderResponse(const QByteArray &data) const
+std::vector<Location> EfaCompactParser::parseStopFinderResponse(const QByteArray &data)
 {
     std::vector<Location> res;
     QXmlStreamReader xsr(data);
@@ -190,7 +190,7 @@ Stopover EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
     return dep;
 }
 
-std::vector<Stopover> EfaCompactParser::parseDmResponse(const QByteArray &data) const
+std::vector<Stopover> EfaCompactParser::parseDmResponse(const QByteArray &data)
 {
     std::vector<Stopover> res;
     QXmlStreamReader xsr(data);
@@ -401,14 +401,18 @@ Journey EfaCompactParser::parseCompactTp(ScopedXmlStreamReader &&reader) const
     return jny;
 }
 
-std::vector<Journey> EfaCompactParser::parseTripResponse(const QByteArray &data) const
+std::vector<Journey> EfaCompactParser::parseTripResponse(const QByteArray &data)
 {
     //qDebug().noquote() << data;
     std::vector<Journey> res;
     QXmlStreamReader xsr(data);
     ScopedXmlStreamReader reader(xsr);
     while (reader.readNextElement()) {
-        if (reader.name() == QLatin1String("tp")) {
+        if (reader.name() == QLatin1String("pas")) {
+            const auto pas = parseKeyValueList(reader.subReader(), QLatin1String("pa"), QLatin1String("n"), QLatin1String("v"));
+            m_journeyContext.sessionId = pas.value(QLatin1String("sessionID"));
+            m_journeyContext.requestId = pas.value(QLatin1String("requestID"));
+        } else if (reader.name() == QLatin1String("tp")) {
             res.push_back(parseCompactTp(reader.subReader()));
         }
     }

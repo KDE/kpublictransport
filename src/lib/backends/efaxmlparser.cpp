@@ -77,7 +77,7 @@ Location EfaXmlParser::parseOdvNameElem(ScopedXmlStreamReader &reader) const
     return loc;
 }
 
-std::vector<Location> EfaXmlParser::parseStopFinderResponse(const QByteArray &data) const
+std::vector<Location> EfaXmlParser::parseStopFinderResponse(const QByteArray &data)
 {
     std::vector<Location> res;
     QXmlStreamReader xsr(data);
@@ -176,7 +176,7 @@ Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
     return dep;
 }
 
-std::vector<Stopover> EfaXmlParser::parseDmResponse(const QByteArray &data) const
+std::vector<Stopover> EfaXmlParser::parseDmResponse(const QByteArray &data)
 {
     std::vector<Stopover> res;
     QXmlStreamReader xsr(data);
@@ -418,14 +418,18 @@ Journey EfaXmlParser::parseTripRoute(ScopedXmlStreamReader &&reader) const
     return journey;
 }
 
-std::vector<Journey> EfaXmlParser::parseTripResponse(const QByteArray &data) const
+std::vector<Journey> EfaXmlParser::parseTripResponse(const QByteArray &data)
 {
     //qDebug().noquote() << data;
     std::vector<Journey> res;
     QXmlStreamReader xsr(data);
     ScopedXmlStreamReader reader(xsr);
     while (reader.readNextElement()) {
-        if (reader.name() == QLatin1String("itdRoute")) {
+        if (reader.name() == QLatin1String("itdRequest")) {
+            m_journeyContext.sessionId = reader.attributes().value(QLatin1String("sessionID")).toString();
+        } else if (reader.name() == QLatin1String("itdTripRequest")) {
+            m_journeyContext.requestId = reader.attributes().value(QLatin1String("requestID")).toString();
+        } else if (reader.name() == QLatin1String("itdRoute")) {
             res.push_back(parseTripRoute(reader.subReader()));
         }
     }
@@ -541,20 +545,5 @@ Path EfaXmlParser::assemblePath(const std::vector<PathDescription> &descs, const
 
 QHash<QString, QString> EfaXmlParser::parseGenericAttributeList(ScopedXmlStreamReader &&reader) const
 {
-    QHash<QString, QString> attrs;
-    while (reader.readNextSibling()) {
-        if (reader.name() == QLatin1String("genAttrElem")) {
-            auto attrReader = reader.subReader();
-            QString name, value;
-            while (attrReader.readNextSibling()) {
-                if (attrReader.name() == QLatin1String("name")) {
-                    name = attrReader.readElementText();
-                } else if (attrReader.name() == QLatin1String("value")) {
-                    value = attrReader.readElementText();
-                }
-            }
-            attrs.insert(name, value);
-        }
-    }
-    return attrs;
+    return parseKeyValueList(std::move(reader), QLatin1String("genAttrElem"), QLatin1String("name"), QLatin1String("value"));
 }

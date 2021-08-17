@@ -29,6 +29,18 @@ class Path;
 class ScopedXmlStreamReader;
 class Stopover;
 
+/** Journey query context for previous/next queries.
+ *  @internal only exported for unit tests
+ */
+class KPUBLICTRANSPORT_EXPORT EfaJourneyQueryContext
+{
+public:
+    QString sessionId;
+    QString requestId;
+
+    bool isEmpty();
+};
+
 /** Base class for parsers for responses from EFA services.
  *  @internal just exported for unit tests
  */
@@ -42,9 +54,11 @@ public:
     Reply::Error error() const;
     QString errorMessage() const;
 
-    virtual std::vector<Location> parseStopFinderResponse(const QByteArray &data) const = 0;
-    virtual std::vector<Stopover> parseDmResponse(const QByteArray &data) const = 0;
-    virtual std::vector<Journey> parseTripResponse(const QByteArray &data) const = 0;
+    virtual std::vector<Location> parseStopFinderResponse(const QByteArray &data) = 0;
+    virtual std::vector<Stopover> parseDmResponse(const QByteArray &data) = 0;
+    virtual std::vector<Journey> parseTripResponse(const QByteArray &data) = 0;
+
+    EfaJourneyQueryContext journeyQueryContext() const;
 
 protected:
     /** convert "means of transport" type id to Line::Mode
@@ -61,9 +75,13 @@ protected:
     /** Returns @c true if the given stop id is a dummy value used for non-stops. */
     static bool isDummyStopId(QStringView id);
 
+    /** Parses a key/value list structure. */
+    static QHash<QString, QString> parseKeyValueList(ScopedXmlStreamReader &&reader, QLatin1String elemName, QLatin1String keyName, QLatin1String valueName);
+
     QString m_locationIdentifierType;
-    mutable QString m_errorMsg;
-    mutable Reply::Error m_error = Reply::NoError;
+    QString m_errorMsg;
+    Reply::Error m_error = Reply::NoError;
+    EfaJourneyQueryContext m_journeyContext;
 };
 
 }

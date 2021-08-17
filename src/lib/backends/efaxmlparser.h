@@ -25,9 +25,9 @@ class ScopedXmlStreamReader;
 class KPUBLICTRANSPORT_EXPORT EfaXmlParser : public EfaParser
 {
 public:
-    std::vector<Location> parseStopFinderResponse(const QByteArray &data) const override;
-    std::vector<Stopover> parseDmResponse(const QByteArray &data) const override;
-    std::vector<Journey> parseTripResponse(const QByteArray &data) const override;
+    std::vector<Location> parseStopFinderResponse(const QByteArray &data) override;
+    std::vector<Stopover> parseDmResponse(const QByteArray &data) override;
+    std::vector<Journey> parseTripResponse(const QByteArray &data) override;
 
 private:
     void parseLocationCommon(Location &loc, const ScopedXmlStreamReader &reader) const;

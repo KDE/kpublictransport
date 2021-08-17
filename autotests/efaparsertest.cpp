@@ -204,6 +204,10 @@ private Q_SLOTS:
         }
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
+
+        QVERIFY(!parser.journeyQueryContext().isEmpty());
+        QCOMPARE(parser.journeyQueryContext().sessionId, QLatin1String("123456789"));
+        QCOMPARE(parser.journeyQueryContext().requestId, QLatin1String("0"));
     }
 
     void testParseCompactTrips_data()
@@ -234,6 +238,10 @@ private Q_SLOTS:
         }
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
+
+        QVERIFY(!parser.journeyQueryContext().isEmpty());
+        QCOMPARE(parser.journeyQueryContext().sessionId, QLatin1String("123456789"));
+        QCOMPARE(parser.journeyQueryContext().requestId, QLatin1String("0"));
     }
 
 };
