@@ -142,7 +142,13 @@ protected:
 
     static void addAttributions(Reply *reply, std::vector<Attribution> &&attributions);
 
-    template <typename ReqT> inline QVariant requestContext(const ReqT &request) const
+    /** Extract the request context for the current backend from @p request. */
+    template <typename ReqT> inline RequestContext requestContext(const ReqT &request) const
+    {
+        return request.context(this);
+    }
+    /** Extract the backend-specific data from the request context for the current backend from @p request. */
+    template <typename ReqT> inline QVariant requestContextData(const ReqT &request) const
     {
         return request.context(this).backendData;
     }

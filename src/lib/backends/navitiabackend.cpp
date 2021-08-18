@@ -49,7 +49,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
         return false;
     }
 
-    QUrl url = requestContext(req).value<QUrl>();
+    QUrl url = requestContextData(req).value<QUrl>();
     if (!url.isValid()) {
         url.setHost(m_endpoint);
         url.setPath(QStringLiteral("/v1") +

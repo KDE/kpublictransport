@@ -145,7 +145,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("toLon"), req.to().longitude());
 
     auto dt = req.dateTime();
-    const auto context = requestContext(req).value<OpenTripPlannerRequestContext>();
+    const auto context = requestContextData(req).value<OpenTripPlannerRequestContext>();
     if (context.dateTime.isValid()) {
         dt = context.dateTime;
     }

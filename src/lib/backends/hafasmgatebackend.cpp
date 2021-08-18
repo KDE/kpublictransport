@@ -134,7 +134,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         req.insert(QStringLiteral("outDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
         req.insert(QStringLiteral("outTime"), dt.time().toString(QStringLiteral("hhmmss")));
         req.insert(QStringLiteral("outFrwd"), request.dateTimeMode() == JourneyRequest::Departure);
-        const auto ctxSrc = requestContext(request).toString();
+        const auto ctxSrc = requestContextData(request).toString();
         if (!ctxSrc.isEmpty()) {
             req.insert(QStringLiteral("ctxScr"), ctxSrc);
         }
@@ -182,7 +182,7 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
         return false;
     }
 
-    const auto ctx = requestContext(request).value<HafasMgateRequestContext>();
+    const auto ctx = requestContextData(request).value<HafasMgateRequestContext>();
     auto dt = ctx.dateTime.isValid() ? ctx.dateTime : request.dateTime();
     if (timeZone().isValid()) {
         dt = dt.toTimeZone(timeZone());
