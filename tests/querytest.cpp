@@ -93,6 +93,7 @@ private Q_SLOTS:
         QTest::newRow("at_6_vvst") << "at_6_vvst" << loc("Graz Hauptbahnhof", 47.07236, 15.41665) << loc("Bruck an der Mur", 47.41413, 15.28000);
         QTest::newRow("at_7_vvt") << "at_7_vvt" << loc("Innsbruck Hbf", 47.26289, 11.40163) << loc("Kufstein", 47.58308, 12.16626);
         QTest::newRow("at_8_vvv") << "at_8_vvv" << loc("Bregenz", 47.50307, 9.74019) << loc("Dornbirn", 47.413280, 9.743741);
+        QTest::newRow("at_9_wien") << "at_9_wien" << loc("Wien Hauptbahnhof", 48.18282, 16.37859) << loc("Wien Praterstern", 48.21870, 16.39247);
 
         QTest::newRow("au_nsw") << "au_nsw" << loc("Sydney Central", -33.88315, 151.20587) << loc("Sydney Internation Airport", -33.93503, 151.16603);
 

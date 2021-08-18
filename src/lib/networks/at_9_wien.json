@@ -1,0 +1,52 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Vienna, Austria.",
+        "Name": "Wiener Linien"
+    },
+    "options": {
+        "endpoint": "https://www.wienerlinien.at/ogd_routing/"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            14.3352,
+                            47.9871
+                        ],
+                        [
+                            16.2767,
+                            46.6744
+                        ],
+                        [
+                            17.574,
+                            48.5545
+                        ],
+                        [
+                            14.9609,
+                            49.2139
+                        ],
+                        [
+                            14.3352,
+                            47.9871
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "AT-9"
+            ]
+        }
+    },
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fr"
+    ],
+    "timezone": "Europe/Vienna",
+    "type": {
+        "efa": true
+    }
+}
