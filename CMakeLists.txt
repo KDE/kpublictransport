@@ -22,6 +22,10 @@ include(FeatureSummary)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(GenerateExportHeader)
+include(ECMAddQch)
+
+option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
+add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -80,3 +84,13 @@ install(FILES
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_version.h DESTINATION ${KDE_INSTALL_INCLUDEDIR} COMPONENT Devel)
 
 install(EXPORT KPublicTransportTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KPublicTransportTargets.cmake)
+
+if (BUILD_QCH)
+    ecm_install_qch_export(
+        TARGETS KPublicTransport_QCH
+        FILE KPublicTransportQchTargets.cmake
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel
+    )
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KPublicTransportQchTargets.cmake\")")
+endif()

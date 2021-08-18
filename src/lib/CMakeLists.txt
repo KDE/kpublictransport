@@ -202,3 +202,29 @@ install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
     DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kpublictransport
 )
+
+
+if (BUILD_QCH)
+    ecm_add_qch(
+        KPublicTransport_QCH
+        NAME KPublicTransport
+        BASE_NAME KPublicTransport
+        VERSION ${RELEASE_SERVICE_VERSION}
+        ORG_DOMAIN org.kde
+        SOURCES # using only public headers, to cover only public API
+        ${KPublicTransport_HEADERS}
+        ${KPublicTransport_Datatypes_HEADERS}
+        ${KPublicTransport_Models_HEADERS}
+        MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
+        #IMAGE_DIRS "${CMAKE_SOURCE_DIR}/docs/pics"
+        LINK_QCHS
+            Qt5Core_QCH
+        INCLUDE_DIRS
+            ${CMAKE_CURRENT_BINARY_DIR}
+        BLANK_MACROS
+            KPUBLICTRANSPORT_EXPORT
+        TAGFILE_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
+        QCH_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
+        COMPONENT Devel
+    )
+endif()
