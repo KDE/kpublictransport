@@ -12,7 +12,7 @@
 
 using namespace KPublicTransport;
 
-bool EfaJourneyQueryContext::isEmpty()
+bool EfaJourneyQueryContext::isEmpty() const
 {
     return sessionId.isEmpty() || requestId.isEmpty() || sessionId == QLatin1String("0");
 }

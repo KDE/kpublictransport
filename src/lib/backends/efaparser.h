@@ -38,7 +38,7 @@ public:
     QString sessionId;
     QString requestId;
 
-    bool isEmpty();
+    bool isEmpty() const;
 };
 
 /** Base class for parsers for responses from EFA services.
@@ -85,5 +85,7 @@ protected:
 };
 
 }
+
+Q_DECLARE_METATYPE(KPublicTransport::EfaJourneyQueryContext)
 
 #endif // KPUBLICTRANSPORT_EFAPARSER_H

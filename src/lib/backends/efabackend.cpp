@@ -33,7 +33,8 @@ EfaBackend::~EfaBackend() = default;
 
 AbstractBackend::Capabilities EfaBackend::capabilities() const
 {
-    return m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability;
+    return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability)
+        | CanQueryNextJourney | CanQueryPreviousJourney;
 }
 
 bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -167,38 +168,55 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     QUrl url(m_endpoint);
     url.setPath(url.path() + (m_tripRequestCommand.isEmpty() ? QLatin1String("XML_TRIP_REQUEST2") : m_tripRequestCommand));
 
+    const auto ctx = requestContextData(request).value<EfaJourneyQueryContext>();
     auto query = commonQuery();
-    query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
-    query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
+    if (ctx.isEmpty()) {
+        query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
 
-    if (fromId.isEmpty()) {
-        query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("coord"));
-        query.addQueryItem(QStringLiteral("name_origin"), QString::number(request.from().longitude()) + QLatin1Char(':') + QString::number(request.from().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+        if (fromId.isEmpty()) {
+            query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("coord"));
+            query.addQueryItem(QStringLiteral("name_origin"), QString::number(request.from().longitude()) + QLatin1Char(':') + QString::number(request.from().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+        } else {
+            query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("stop"));
+            query.addQueryItem(QStringLiteral("name_origin"), fromId);
+        }
+        if (toId.isEmpty()) {
+            query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("coord"));
+            query.addQueryItem(QStringLiteral("name_destination"), QString::number(request.to().longitude()) + QLatin1Char(':') + QString::number(request.to().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+        } else {
+            query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("stop"));
+            query.addQueryItem(QStringLiteral("name_destination"), toId);
+        }
+
+        QDateTime dt = request.dateTime();
+        if (timeZone().isValid()) {
+            dt = dt.toTimeZone(timeZone());
+        }
+        query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
+        query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
+        query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
+
+        query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QString::number(std::max(1, request.maximumResults())));
+        query.addQueryItem(QStringLiteral("calcCO2"), QStringLiteral("1"));
+
+        // saves several 100kb due to not encoding that path coordinates (which we don't even need) as XML
+        query.addQueryItem(QStringLiteral("coordListOutputFormat"), QStringLiteral("STRING"));
+
+        // enable support for previous/next queries
+        query.addQueryItem(QStringLiteral("stateless"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("sessionID"), QStringLiteral("0"));
+        query.addQueryItem(QStringLiteral("requestID"), QStringLiteral("0"));
     } else {
-        query.addQueryItem(QStringLiteral("type_origin"), QStringLiteral("stop"));
-        query.addQueryItem(QStringLiteral("name_origin"), fromId);
+        query.addQueryItem(QStringLiteral("stateless"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("sessionID"), ctx.sessionId);
+        query.addQueryItem(QStringLiteral("requestID"), ctx.requestId);
+        if (requestContext(request).type == RequestContext::Next) {
+            query.addQueryItem(QStringLiteral("command"), QStringLiteral("tripNext"));
+        } else {
+            query.addQueryItem(QStringLiteral("command"), QStringLiteral("tripPrev"));
+        }
     }
-    if (toId.isEmpty()) {
-        query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("coord"));
-        query.addQueryItem(QStringLiteral("name_destination"), QString::number(request.to().longitude()) + QLatin1Char(':') + QString::number(request.to().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
-    } else {
-        query.addQueryItem(QStringLiteral("type_destination"), QStringLiteral("stop"));
-        query.addQueryItem(QStringLiteral("name_destination"), toId);
-    }
-
-    QDateTime dt = request.dateTime();
-    if (timeZone().isValid()) {
-        dt = dt.toTimeZone(timeZone());
-    }
-    query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
-    query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
-    query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
-
-    query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QString::number(std::max(1, request.maximumResults())));
-    query.addQueryItem(QStringLiteral("calcCO2"), QStringLiteral("1"));
-
-    // saves several 100kb due to not encoding that path coordinates (which we don't even need) as XML
-    query.addQueryItem(QStringLiteral("coordListOutputFormat"), QStringLiteral("STRING"));
 
     url.setQuery(query);
 
@@ -220,6 +238,8 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         if (p->error() != Reply::NoError) {
             addError(reply, p->error(), p->errorMessage());
         } else {
+            setNextRequestContext(reply, QVariant::fromValue(p->journeyQueryContext()));
+            setPreviousRequestContext(reply, QVariant::fromValue(p->journeyQueryContext()));
             addResult(reply, this, std::move(res));
         }
     });
