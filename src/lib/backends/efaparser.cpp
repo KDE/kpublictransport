@@ -12,7 +12,7 @@
 
 using namespace KPublicTransport;
 
-bool EfaJourneyQueryContext::isEmpty() const
+bool EfaRequestContext::isEmpty() const
 {
     return sessionId.isEmpty() || requestId.isEmpty() || sessionId == QLatin1String("0");
 }
@@ -95,9 +95,9 @@ bool EfaParser::isDummyStopId(QStringView id)
     return id == QLatin1String("99999997") || id == QLatin1String("99999998");
 }
 
-EfaJourneyQueryContext EfaParser::journeyQueryContext() const
+EfaRequestContext EfaParser::requestContext() const
 {
-    return m_journeyContext;
+    return m_requestContext;
 }
 
 QHash<QString, QString> EfaParser::parseKeyValueList(ScopedXmlStreamReader &&reader, QLatin1String elemName, QLatin1String keyName, QLatin1String valueName)

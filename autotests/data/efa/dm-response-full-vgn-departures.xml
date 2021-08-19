@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<itdRequest language="de" lengthUnit="METER" sessionID="0" virtDir="vgnExt">
+<itdRequest language="de" lengthUnit="METER" sessionID="123456789" virtDir="vgnExt">
   <itdDepartureMonitorRequest requestID="0">
     <itdOdv type="any" usage="dm" anyObjFilter="0">
       <itdOdvPlace state="identified" method="itp">

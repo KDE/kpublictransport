@@ -34,7 +34,7 @@ EfaBackend::~EfaBackend() = default;
 AbstractBackend::Capabilities EfaBackend::capabilities() const
 {
     return (m_endpoint.startsWith(QLatin1String("https")) ? Secure : NoCapability)
-        | CanQueryNextJourney | CanQueryPreviousJourney;
+        | CanQueryNextJourney | CanQueryPreviousJourney | CanQueryNextDeparture | CanQueryPreviousDeparture;
 }
 
 bool EfaBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -108,23 +108,40 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
         dt = dt.toTimeZone(timeZone());
     }
 
+    const auto ctx = requestContextData(request).value<EfaRequestContext>();
     auto query = commonQuery();
-    if (stopId.isEmpty()) {
-        query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("coord"));
-        query.addQueryItem(QStringLiteral("name_dm"), QString::number(request.stop().longitude()) + QLatin1Char(':') + QString::number(request.stop().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
-    } else {
-        query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("stop"));
-        query.addQueryItem(QStringLiteral("name_dm"), stopId);
-    }
-    query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
-    query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
-    query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
-    query.addQueryItem(QStringLiteral("limit"), QString::number(request.maximumResults()));
+    if (ctx.isEmpty()) {
+        if (stopId.isEmpty()) {
+            query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("coord"));
+            query.addQueryItem(QStringLiteral("name_dm"), QString::number(request.stop().longitude()) + QLatin1Char(':') + QString::number(request.stop().latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
+        } else {
+            query.addQueryItem(QStringLiteral("type_dm"), QStringLiteral("stop"));
+            query.addQueryItem(QStringLiteral("name_dm"), stopId);
+        }
+        query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
+        query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
+        query.addQueryItem(QStringLiteral("useRealtime"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("limit"), QString::number(request.maximumResults()));
 
-    // not exactly sure what these do, but without this the result is missing departure times
-    query.addQueryItem(QStringLiteral("mode"), QStringLiteral("direct"));
-    query.addQueryItem(QStringLiteral("ptOptionsActive"), QStringLiteral("1"));
-    query.addQueryItem(QStringLiteral("merge_dep"), QStringLiteral("1"));
+        // not exactly sure what these do, but without this the result is missing departure times
+        query.addQueryItem(QStringLiteral("mode"), QStringLiteral("direct"));
+        query.addQueryItem(QStringLiteral("ptOptionsActive"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("merge_dep"), QStringLiteral("1"));
+
+        // enable support for previous/next queries
+        query.addQueryItem(QStringLiteral("stateless"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("sessionID"), QStringLiteral("0"));
+        query.addQueryItem(QStringLiteral("requestID"), QStringLiteral("0"));
+    } else {
+        query.addQueryItem(QStringLiteral("stateless"), QStringLiteral("1"));
+        query.addQueryItem(QStringLiteral("sessionID"), ctx.sessionId);
+        query.addQueryItem(QStringLiteral("requestID"), ctx.requestId);
+        if (requestContext(request).type == RequestContext::Next) {
+            query.addQueryItem(QStringLiteral("command"), QStringLiteral("dmNext"));
+        } else {
+            query.addQueryItem(QStringLiteral("command"), QStringLiteral("dmPrev"));
+        }
+    }
 
     url.setQuery(query);
 
@@ -146,6 +163,8 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
         if (p->error() != Reply::NoError) {
             addError(reply, p->error(), p->errorMessage());
         } else {
+            setNextRequestContext(reply, QVariant::fromValue(p->requestContext()));
+            setPreviousRequestContext(reply, QVariant::fromValue(p->requestContext()));
             addResult(reply, this, std::move(res));
         }
     });
@@ -168,7 +187,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     QUrl url(m_endpoint);
     url.setPath(url.path() + (m_tripRequestCommand.isEmpty() ? QLatin1String("XML_TRIP_REQUEST2") : m_tripRequestCommand));
 
-    const auto ctx = requestContextData(request).value<EfaJourneyQueryContext>();
+    const auto ctx = requestContextData(request).value<EfaRequestContext>();
     auto query = commonQuery();
     if (ctx.isEmpty()) {
         query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
@@ -238,8 +257,8 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         if (p->error() != Reply::NoError) {
             addError(reply, p->error(), p->errorMessage());
         } else {
-            setNextRequestContext(reply, QVariant::fromValue(p->journeyQueryContext()));
-            setPreviousRequestContext(reply, QVariant::fromValue(p->journeyQueryContext()));
+            setNextRequestContext(reply, QVariant::fromValue(p->requestContext()));
+            setPreviousRequestContext(reply, QVariant::fromValue(p->requestContext()));
             addResult(reply, this, std::move(res));
         }
     });

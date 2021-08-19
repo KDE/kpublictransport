@@ -182,7 +182,11 @@ std::vector<Stopover> EfaXmlParser::parseDmResponse(const QByteArray &data)
     QXmlStreamReader xsr(data);
     ScopedXmlStreamReader reader(xsr);
     while (reader.readNextElement()) {
-        if (reader.name() == QLatin1String("itdOdvAssignedStop") && reader.attributes().hasAttribute(QLatin1String("stopID"))) {
+        if (reader.name() == QLatin1String("itdRequest")) {
+            m_requestContext.sessionId = reader.attributes().value(QLatin1String("sessionID")).toString();
+        } else if (reader.name() == QLatin1String("itdDepartureMonitorRequest")) {
+            m_requestContext.requestId = reader.attributes().value(QLatin1String("requestID")).toString();
+        } else if (reader.name() == QLatin1String("itdOdvAssignedStop") && reader.attributes().hasAttribute(QLatin1String("stopID"))) {
             const auto loc = parseItdOdvAssignedStop(reader);
             m_locations[loc.identifier(m_locationIdentifierType)] = loc;
         } else if (reader.name() == QLatin1String("itdDeparture")) {
@@ -426,9 +430,9 @@ std::vector<Journey> EfaXmlParser::parseTripResponse(const QByteArray &data)
     ScopedXmlStreamReader reader(xsr);
     while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("itdRequest")) {
-            m_journeyContext.sessionId = reader.attributes().value(QLatin1String("sessionID")).toString();
+            m_requestContext.sessionId = reader.attributes().value(QLatin1String("sessionID")).toString();
         } else if (reader.name() == QLatin1String("itdTripRequest")) {
-            m_journeyContext.requestId = reader.attributes().value(QLatin1String("requestID")).toString();
+            m_requestContext.requestId = reader.attributes().value(QLatin1String("requestID")).toString();
         } else if (reader.name() == QLatin1String("itdRoute")) {
             res.push_back(parseTripRoute(reader.subReader()));
         }

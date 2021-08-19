@@ -32,7 +32,7 @@ class Stopover;
 /** Journey query context for previous/next queries.
  *  @internal only exported for unit tests
  */
-class KPUBLICTRANSPORT_EXPORT EfaJourneyQueryContext
+class KPUBLICTRANSPORT_EXPORT EfaRequestContext
 {
 public:
     QString sessionId;
@@ -58,7 +58,7 @@ public:
     virtual std::vector<Stopover> parseDmResponse(const QByteArray &data) = 0;
     virtual std::vector<Journey> parseTripResponse(const QByteArray &data) = 0;
 
-    EfaJourneyQueryContext journeyQueryContext() const;
+    EfaRequestContext requestContext() const;
 
 protected:
     /** convert "means of transport" type id to Line::Mode
@@ -81,11 +81,11 @@ protected:
     QString m_locationIdentifierType;
     QString m_errorMsg;
     Reply::Error m_error = Reply::NoError;
-    EfaJourneyQueryContext m_journeyContext;
+    EfaRequestContext m_requestContext;
 };
 
 }
 
-Q_DECLARE_METATYPE(KPublicTransport::EfaJourneyQueryContext)
+Q_DECLARE_METATYPE(KPublicTransport::EfaRequestContext)
 
 #endif // KPUBLICTRANSPORT_EFAPARSER_H
