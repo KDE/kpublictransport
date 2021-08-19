@@ -3,9 +3,6 @@
         "Description": "Public transport in Vienna, Austria.",
         "Name": "Wiener Linien"
     },
-    "options": {
-        "endpoint": "https://www.wienerlinien.at/ogd_routing/"
-    },
     "coverage": {
         "realtimeCoverage": {
             "area": {
@@ -39,6 +36,9 @@
                 "AT-9"
             ]
         }
+    },
+    "options": {
+        "endpoint": "https://www.wienerlinien.at/ogd_routing/"
     },
     "supportedLanguages": [
         "de",
