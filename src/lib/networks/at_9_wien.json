@@ -1,7 +1,21 @@
 {
     "KPlugin": {
         "Description": "Public transport in Vienna, Austria.",
-        "Name": "Wiener Linien"
+        "Description[ca]": "Transport públic a Viena, Àustria",
+        "Description[cs]": "Veřejná doprava ve Vídni, Rakousko.",
+        "Description[es]": "Transporte público de Viena, Austria.",
+        "Description[nl]": "Openbaar vervoer in Wenen, Oostenrijk.",
+        "Description[sv]": "Kollektivtrafik i Wien, Österrike.",
+        "Description[uk]": "Громадський транспорт у Відні, Австрія.",
+        "Description[x-test]": "xxPublic transport in Vienna, Austria.xx",
+        "Name": "Wiener Linien",
+        "Name[ca]": "Wiener Linien",
+        "Name[cs]": "Wiener Linien",
+        "Name[es]": "Wiener Linien",
+        "Name[nl]": "Wiener Linien",
+        "Name[sv]": "Wiener Linien",
+        "Name[uk]": "Wiener Linien",
+        "Name[x-test]": "xxWiener Linienxx"
     },
     "coverage": {
         "realtimeCoverage": {
