@@ -7,6 +7,13 @@ target_sources(kpublictransportquickplugin PRIVATE
     styledsvgimageprovider.cpp
     assets/assets.qrc
 )
+
+if(NOT BUILD_SHARED_LIBS)
+    target_compile_definitions(kpublictransportquickplugin PRIVATE -DQT_PLUGIN -DQT_STATICPLUGIN=1)
+    set_target_properties(kpublictransportquickplugin PROPERTIES AUTOMOC_MOC_OPTIONS -Muri=org.kde.kpublictransport.ui)
+    target_sources(kpublictransportquickplugin PRIVATE kpublictransportquick.qrc)
+endif()
+
 set(kpublictransportquickplugin_qml
     qmldir
     VehicleSectionItem.qml

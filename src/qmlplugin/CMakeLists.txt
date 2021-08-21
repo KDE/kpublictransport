@@ -7,6 +7,12 @@ target_sources(kpublictransportqmlplugin PRIVATE
     linemetadatawrapper.cpp
 )
 
+if(NOT BUILD_SHARED_LIBS)
+    target_compile_definitions(kpublictransportqmlplugin PRIVATE -DQT_PLUGIN -DQT_STATICPLUGIN=1)
+    set_target_properties(kpublictransportqmlplugin PROPERTIES AUTOMOC_MOC_OPTIONS -Muri=org.kde.kpublictransport)
+    target_sources(kpublictransportqmlplugin PRIVATE kpublictransportqml.qrc)
+endif()
+
 target_link_libraries(kpublictransportqmlplugin
     Qt5::Qml
     KPublicTransport
