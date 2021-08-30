@@ -28,8 +28,6 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutRequest
 
     /** The stopover vehicle and platform layout information are requested for. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, stopover, setStopover)
-    /** @deprecated use stopover .*/
-    Q_PROPERTY(KPublicTransport::Stopover departure READ departure WRITE setDeparture)
 
 public:
     /** Creates a vehicle layout request for the given stopover. */
@@ -50,9 +48,6 @@ public:
      *  this empty picks suitable backends automatically.
      */
     void setBackendIds(const QStringList &backendIds);
-
-    [[deprecated("use stopover()")]] Stopover departure() const;
-    [[deprecated("use setStopover()")]] void setDeparture(const Stopover &departure);
 
     ///@cond internal
     static QJsonObject toJson(const VehicleLayoutRequest &req);

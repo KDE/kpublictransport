@@ -45,25 +45,10 @@ VehicleLayoutRequest VehicleLayoutReply::request() const
     return d->request;
 }
 
-Vehicle VehicleLayoutReply::vehicle() const
-{
-    return stopover().vehicleLayout();
-}
-
-Platform VehicleLayoutReply::platform() const
-{
-    return stopover().platformLayout();
-}
-
 Stopover VehicleLayoutReply::stopover() const
 {
     Q_D(const VehicleLayoutReply);
     return d->stopover;
-}
-
-Stopover VehicleLayoutReply::departure() const
-{
-    return stopover();
 }
 
 static bool isOneSidedCar(VehicleSection::Type type)

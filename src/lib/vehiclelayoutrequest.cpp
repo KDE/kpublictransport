@@ -66,14 +66,4 @@ void VehicleLayoutRequest::setBackendIds(const QStringList &backendIds)
     d->backendIds = backendIds;
 }
 
-Stopover VehicleLayoutRequest::departure() const
-{
-    return stopover();
-}
-
-void VehicleLayoutRequest::setDeparture(const Stopover &departure)
-{
-    setStopover(departure);
-}
-
 #include "moc_vehiclelayoutrequest.cpp"

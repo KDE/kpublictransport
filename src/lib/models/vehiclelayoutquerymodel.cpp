@@ -176,11 +176,6 @@ Stopover VehicleLayoutQueryModel::stopover() const
     return d->m_stopover;
 }
 
-Stopover VehicleLayoutQueryModel::departure() const
-{
-    return stopover();
-}
-
 int VehicleLayoutQueryModel::rowCount(const QModelIndex &parent) const
 {
     Q_D(const VehicleLayoutQueryModel);

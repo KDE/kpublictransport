@@ -28,13 +28,8 @@ public:
     /** The request this is the reply for. */
     VehicleLayoutRequest request() const;
 
-    /** Vehicle layout information found by this query. */
-    [[deprecated("use stopover().vehicleLayout()")]] Vehicle vehicle() const;
-    /** Platform layout information found by this query. */
-    [[deprecated("user stopover().platformLayout()")]] Platform platform() const;
     /** The requested Stopover information, including the vehicle and platform layout. */
     Stopover stopover() const;
-    [[deprecated("use stopover()")]] Stopover departure() const;
 
 private:
     friend class Manager;
