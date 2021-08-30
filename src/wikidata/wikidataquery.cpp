@@ -88,12 +88,12 @@ bool WikidataEntitiesQuery::processReply(QNetworkReply *reply)
     for (auto it = entities.begin(); it != entities.end(); ++it) {
         m_result.push_back(wd::Item(wd::Q(it.key()), it.value().toObject()));
     }
-    emit partialResult(this);
+    Q_EMIT partialResult(this);
 
     if (m_nextBatch < m_items.size()) {
         return false;
     } else {
-        emit finished();
+        Q_EMIT finished();
         return true;
     }
 }
@@ -147,12 +147,12 @@ bool WikidataImageMetadataQuery::processReply(QNetworkReply *reply)
     for (const auto &img : images) {
         m_result.push_back(wd::Image(img.toObject()));
     }
-    emit partialResult(this);
+    Q_EMIT partialResult(this);
 
     if (m_nextBatch < m_images.size()) {
         return false;
     } else {
-        emit finished();
+        Q_EMIT finished();
         return true;
     }
 }

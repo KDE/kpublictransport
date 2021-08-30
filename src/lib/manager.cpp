@@ -490,7 +490,7 @@ void Manager::setAllowInsecureBackends(bool insecure)
         return;
     }
     d->m_allowInsecure = insecure;
-    emit configurationChanged();
+    Q_EMIT configurationChanged();
 }
 
 JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
@@ -802,7 +802,7 @@ void Manager::setBackendEnabled(const QString &backendId, bool enabled)
         sortedRemove(d->m_enabledBackends, backendId);
         sortedInsert(d->m_disabledBackends, backendId);
     }
-    emit configurationChanged();
+    Q_EMIT configurationChanged();
 }
 
 QStringList Manager::enabledBackends() const
@@ -840,5 +840,5 @@ void KPublicTransport::Manager::setBackendsEnabledByDefault(bool byDefault)
 {
     d->m_backendsEnabledByDefault = byDefault;
 
-    emit configurationChanged();
+    Q_EMIT configurationChanged();
 }

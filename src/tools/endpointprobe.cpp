@@ -66,7 +66,7 @@ void EndpointProber::processNext()
         return;
     }
     if (m_queue.empty()) {
-        emit finished();
+        Q_EMIT finished();
         return;
     }
 

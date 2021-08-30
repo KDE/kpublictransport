@@ -176,10 +176,10 @@ void BackendModel::setManager(Manager *mgr)
 
     d->mgr = mgr;
     connect(mgr, &Manager::configurationChanged, this, [this]() {
-        emit dataChanged(index(0, 0), index(rowCount() - 1, 0));
+        Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0));
     });
     d->repopulateModel(this);
-    emit managerChanged();
+    Q_EMIT managerChanged();
 }
 
 BackendModel::Mode BackendModel::mode() const
@@ -194,7 +194,7 @@ void BackendModel::setMode(BackendModel::Mode mode)
     }
 
     d->mode = mode;
-    emit modeChanged();
+    Q_EMIT modeChanged();
     d->repopulateModel(this);
 }
 

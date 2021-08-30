@@ -90,7 +90,7 @@ bool AssetRepository::isQueueEmpty()
 void AssetRepository::downloadNext()
 {
     if (m_queue.empty()) {
-        emit downloadFinished();
+        Q_EMIT downloadFinished();
         return;
     }
 

@@ -49,7 +49,7 @@ void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply 
     if (reply->error() != QNetworkReply::NoError) {
         qWarning() << reply->errorString();
         query->m_error = WikidataQuery::NetworkError;
-        emit query->finished();
+        Q_EMIT query->finished();
         return;
     }
 

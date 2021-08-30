@@ -108,7 +108,7 @@ ecm_qt_declare_logging_category(KPublicTransport HEADER logging.h IDENTIFIER KPu
 
 generate_export_header(KPublicTransport BASE_NAME KPublicTransport)
 set_target_properties(KPublicTransport PROPERTIES
-    VERSION ${KPUBLICTRANSPORT_VERSION_STRING}
+    VERSION ${KPUBLICTRANSPORT_VERSION}
     SOVERSION ${KPUBLICTRANSPORT_SOVERSION}
     EXPORT_NAME KPublicTransport
 )

@@ -47,7 +47,7 @@ void StopoverQueryModelPrivate::doQuery()
     setLoading(true);
     m_nextRequest = {};
     m_prevRequest = {};
-    emit q->canQueryPrevNextChanged();
+    Q_EMIT q->canQueryPrevNextChanged();
 
     auto reply = m_manager->queryStopover(m_request);
     monitorReply(reply);
@@ -55,7 +55,7 @@ void StopoverQueryModelPrivate::doQuery()
         if (reply->error() == KPublicTransport::StopoverReply::NoError) {
             m_nextRequest = reply->nextRequest();
             m_prevRequest = reply->previousRequest();
-            emit q->canQueryPrevNextChanged();
+            Q_EMIT q->canQueryPrevNextChanged();
         }
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated,q, [reply, this]() {
@@ -83,7 +83,7 @@ void StopoverQueryModelPrivate::mergeResults(const std::vector<Stopover> &newDep
                 found = true;
                 const auto row = std::distance(m_departures.begin(), it);
                 const auto idx = q->index(row, 0);
-                emit q->dataChanged(idx, idx);
+                Q_EMIT q->dataChanged(idx, idx);
                 break;
             } else {
                 ++it;
@@ -119,7 +119,7 @@ void StopoverQueryModel::setRequest(const StopoverRequest &req)
 {
     Q_D(StopoverQueryModel);
     d->m_request = req;
-    emit requestChanged();
+    Q_EMIT requestChanged();
     d->query();
 }
 
@@ -147,7 +147,7 @@ void StopoverQueryModel::queryNext()
         } else {
             d->m_nextRequest = {};
         }
-        emit canQueryPrevNextChanged();
+        Q_EMIT canQueryPrevNextChanged();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
         Q_D(StopoverQueryModel);
@@ -179,7 +179,7 @@ void StopoverQueryModel::queryPrevious()
         } else {
             d->m_prevRequest = {};
         }
-        emit canQueryPrevNextChanged();
+        Q_EMIT canQueryPrevNextChanged();
     });
     QObject::connect(reply, &KPublicTransport::StopoverReply::updated, this, [reply, this]() {
         Q_D(StopoverQueryModel);

@@ -26,7 +26,7 @@ void AbstractQueryModelPrivate::setLoading(bool l)
         return;
     }
     m_loading = l;
-    emit q_ptr->loadingChanged();
+    Q_EMIT q_ptr->loadingChanged();
 }
 
 void AbstractQueryModelPrivate::setErrorMessage(const QString &msg)
@@ -35,7 +35,7 @@ void AbstractQueryModelPrivate::setErrorMessage(const QString &msg)
         return;
     }
     m_errorMessage = msg;
-    emit q_ptr->errorMessageChanged();
+    Q_EMIT q_ptr->errorMessageChanged();
 }
 
 void AbstractQueryModelPrivate::monitorReply(Reply *reply)
@@ -47,7 +47,7 @@ void AbstractQueryModelPrivate::monitorReply(Reply *reply)
         m_reply = nullptr;
         if (reply->error() == KPublicTransport::Reply::NoError) {
             AttributionUtil::merge(m_attributions, std::move(reply->takeAttributions()));
-            emit q_ptr->attributionsChanged();
+            Q_EMIT q_ptr->attributionsChanged();
         } else {
             setErrorMessage(reply->errorString());
         }
@@ -78,7 +78,7 @@ AbstractQueryModel::AbstractQueryModel(AbstractQueryModelPrivate* dd, QObject* p
     connect(AssetRepository::instance(), &AssetRepository::downloadFinished, this, [this]() {
         const auto rows = rowCount();
         if (rows > 0) {
-            emit dataChanged(index(0, 0), index(rows - 1, 0));
+            Q_EMIT dataChanged(index(0, 0), index(rows - 1, 0));
         }
     });
 }
@@ -97,7 +97,7 @@ void AbstractQueryModel::setManager(Manager *mgr)
     }
 
     d_ptr->m_manager = mgr;
-    emit managerChanged();
+    Q_EMIT managerChanged();
     d_ptr->query();
 }
 
@@ -142,7 +142,7 @@ void AbstractQueryModel::clear()
 
     if (!d_ptr->m_attributions.empty()) {
         d_ptr->m_attributions.clear();
-        emit attributionsChanged();
+        Q_EMIT attributionsChanged();
     }
 
     d_ptr->setErrorMessage({});

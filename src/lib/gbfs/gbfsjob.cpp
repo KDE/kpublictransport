@@ -69,7 +69,7 @@ void GBFSJob::discoverFinished(QNetworkReply *reply)
     if (reply->error() != QNetworkReply::NoError) {
         m_error = NetworkError;
         m_errorMsg = reply->errorString();
-        emit finished();
+        Q_EMIT finished();
         return;
     }
 
@@ -112,7 +112,7 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
     if (feeds.empty()) {
         m_error = DataError;
         m_errorMsg = QStringLiteral("no feed found in discovery response!");
-        emit finished();
+        Q_EMIT finished();
         return;
     }
 
@@ -168,7 +168,7 @@ void GBFSJob::systemInformationFinished(QNetworkReply *reply)
     if (reply->error() != QNetworkReply::NoError) {
         m_error = NetworkError;
         m_errorMsg = reply->errorString();
-        emit finished();
+        Q_EMIT finished();
         return;
     }
 
@@ -179,7 +179,7 @@ void GBFSJob::systemInformationFinished(QNetworkReply *reply)
     if (systemId.isEmpty()) {
         m_error = DataError;
         m_errorMsg = QStringLiteral("unable to determine system_id!");
-        emit finished();
+        Q_EMIT finished();
         return;
     }
     m_service.systemId = systemId;
@@ -199,7 +199,7 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
         m_error = NetworkError;
         m_errorMsg = reply->errorString();
         if (m_pendingJobs == 0) { // wait for the rest to finish otherwise, to avoid double finished() emission
-            emit finished();
+            Q_EMIT finished();
         }
         return;
     }
@@ -325,5 +325,5 @@ void GBFSJob::finalize()
         m_service.boundingBox = QRectF(QPointF(m_minLon, m_minLat), QPointF(m_maxLon, m_maxLat));
     }
     GBFSServiceRepository::store(m_service);
-    emit finished();
+    Q_EMIT finished();
 }

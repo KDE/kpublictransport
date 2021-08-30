@@ -47,7 +47,7 @@ void JourneyQueryModelPrivate::doQuery()
     setLoading(true);
     m_nextRequest = {};
     m_prevRequest = {};
-    emit q->canQueryPrevNextChanged();
+    Q_EMIT q->canQueryPrevNextChanged();
 
     auto reply = m_manager->queryJourney(m_request);
     monitorReply(reply);
@@ -56,7 +56,7 @@ void JourneyQueryModelPrivate::doQuery()
         if (reply->error() == KPublicTransport::JourneyReply::NoError) {
             m_nextRequest = reply->nextRequest();
             m_prevRequest = reply->previousRequest();
-            emit q->canQueryPrevNextChanged();
+            Q_EMIT q->canQueryPrevNextChanged();
         }
     });
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, q, [reply, this]() {
@@ -82,7 +82,7 @@ void JourneyQueryModelPrivate::mergeResults(const std::vector<Journey> &newJourn
                 found = true;
                 const auto row = std::distance(m_journeys.begin(), it);
                 const auto idx = q->index(row, 0);
-                emit q->dataChanged(idx, idx);
+                Q_EMIT q->dataChanged(idx, idx);
                 break;
             } else {
                 ++it;
@@ -118,7 +118,7 @@ void JourneyQueryModel::setRequest(const JourneyRequest &req)
 {
     Q_D(JourneyQueryModel);
     d->m_request = req;
-    emit requestChanged();
+    Q_EMIT requestChanged();
     d->query();
 }
 
@@ -146,7 +146,7 @@ void JourneyQueryModel::queryNext()
         } else {
             d->m_nextRequest = {};
         }
-        emit canQueryPrevNextChanged();
+        Q_EMIT canQueryPrevNextChanged();
     });
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, this, [reply, this]() {
         Q_D(JourneyQueryModel);
@@ -178,7 +178,7 @@ void JourneyQueryModel::queryPrevious()
         } else {
             d->m_prevRequest = {};
         }
-        emit canQueryPrevNextChanged();
+        Q_EMIT canQueryPrevNextChanged();
     });
     QObject::connect(reply, &KPublicTransport::JourneyReply::updated, this, [reply, this]() {
         Q_D(JourneyQueryModel);

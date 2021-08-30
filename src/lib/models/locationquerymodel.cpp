@@ -88,7 +88,7 @@ void LocationQueryModelPrivate::mergeResults(const std::vector<Location> &newLoc
                 found = true;
                 const auto row = std::distance(m_locations.begin(), it);
                 const auto idx = q->index(row, 0);
-                emit q->dataChanged(idx, idx);
+                Q_EMIT q->dataChanged(idx, idx);
                 break;
             }
         }
@@ -125,7 +125,7 @@ void LocationQueryModel::setRequest(const LocationRequest &req)
 {
     Q_D(LocationQueryModel);
     d->m_request = req;
-    emit requestChanged();
+    Q_EMIT requestChanged();
     d->query();
 }
 

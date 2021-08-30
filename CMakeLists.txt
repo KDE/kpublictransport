@@ -10,10 +10,10 @@ set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(KPublicTransport VERSION ${RELEASE_SERVICE_VERSION})
 
-find_package(ECM 5.59 REQUIRED NO_MODULE)
+find_package(ECM 5.85 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddTests)
 include(ECMGenerateHeaders)
 include(ECMQtDeclareLoggingCategory)
@@ -27,10 +27,6 @@ include(ECMAddQch)
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     VERSION_HEADER kpublictransport_version.h
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfigVersion.cmake"
@@ -58,7 +54,6 @@ endif()
 
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055100)
-add_definitions(-DQT_NO_FOREACH)
 add_subdirectory(src)
 
 if (BUILD_TESTING)

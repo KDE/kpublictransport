@@ -45,7 +45,7 @@ void VehicleLayoutQueryModelPrivate::doQuery()
     q->beginResetModel();
     m_stopover = m_request.stopover();
     q->endResetModel();
-    emit q->contentChanged();
+    Q_EMIT q->contentChanged();
 
     setLoading(true);
     auto reply = m_manager->queryVehicleLayout(m_request);
@@ -59,7 +59,7 @@ void VehicleLayoutQueryModelPrivate::doQuery()
             interpolatePlatformPositionsFromSectionName();
         }
         q->endResetModel();
-        emit q->contentChanged();
+        Q_EMIT q->contentChanged();
     });
 }
 
@@ -67,7 +67,7 @@ void VehicleLayoutQueryModelPrivate::doClearResults()
 {
     m_stopover = {};
     Q_Q(VehicleLayoutQueryModel);
-    emit q->contentChanged();
+    Q_EMIT q->contentChanged();
 }
 
 void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName()
@@ -156,7 +156,7 @@ void VehicleLayoutQueryModel::setRequest(const VehicleLayoutRequest &req)
 {
     Q_D(VehicleLayoutQueryModel);
     d->m_request = req;
-    emit requestChanged();
+    Q_EMIT requestChanged();
     d->query();
 }
 
