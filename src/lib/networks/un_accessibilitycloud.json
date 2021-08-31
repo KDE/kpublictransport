@@ -18,6 +18,7 @@
         "Description[sv]": "Realtidsinformation för hissar och rulltrappor.",
         "Description[uk]": "Інтерактивні відомості щодо стану для ліфтів і ескалаторів.",
         "Description[x-test]": "xxRealtime status information for elevators and escalators.xx",
+        "Description[zh_CN]": "升降梯和手扶梯的实时状态信息。",
         "Name": "Accessibility Cloud",
         "Name[ca@valencia]": "Accessibility Cloud",
         "Name[ca]": "Accessibility Cloud",

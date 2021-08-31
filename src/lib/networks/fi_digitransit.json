@@ -20,6 +20,7 @@
         "Description[sv]": "Kollektivtrafik i Finland.",
         "Description[uk]": "Громадський транспорт у Фінляндії.",
         "Description[x-test]": "xxPublic transport in Finland.xx",
+        "Description[zh_CN]": "芬兰的公共交通。",
         "Name": "Digitransit Finland",
         "Name[ca@valencia]": "Digitransit Finlàndia",
         "Name[ca]": "Digitransit Finlàndia",
@@ -38,7 +39,8 @@
         "Name[sl]": "Digitransit Finska",
         "Name[sv]": "Digitransit Finland",
         "Name[uk]": "Digitransit Finland",
-        "Name[x-test]": "xxDigitransit Finlandxx"
+        "Name[x-test]": "xxDigitransit Finlandxx",
+        "Name[zh_CN]": "Digitransit 芬兰"
     },
     "coverage": {
         "realtimeCoverage": {

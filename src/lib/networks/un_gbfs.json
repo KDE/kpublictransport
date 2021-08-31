@@ -17,6 +17,7 @@
         "Description[sv]": "Generellt stöd för cykel- eller skoterdelningstjänster som följer GBFS-standarden",
         "Description[uk]": "Загальна підтримка служб спільного використання велосипедів або скутерів за стандартом GBFS.",
         "Description[x-test]": "xxGeneric support for bike or scooter sharing services following the GBFS standard.xx",
+        "Description[zh_CN]": "对遵从 GBFS 标准的共享单车、共享踏板车服务进行通用支持。",
         "Name": "Shared bikes/scooters",
         "Name[ca@valencia]": "Bicicletes/motos compartides",
         "Name[ca]": "Bicicletes/motos compartides",
