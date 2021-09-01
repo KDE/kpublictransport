@@ -36,10 +36,7 @@ public:
     void writeFeeds();
 
     QNetworkAccessManager m_nam;
-    // extra feeds not in systems.csv
-    QStringList m_gbfsFeeds = {
-        QStringLiteral("https://api.openbike.ulm.dev/gbfs/gbfs.json"),
-    };
+    QStringList m_gbfsFeeds;
     int m_currentFeedIdx = -1;
 
     std::vector<GBFSService> m_services;
@@ -81,6 +78,28 @@ void GBFSProbe::getFeedList()
 
         std::sort(m_gbfsFeeds.begin(), m_gbfsFeeds.end());
         m_gbfsFeeds.erase(std::unique(m_gbfsFeeds.begin(), m_gbfsFeeds.end()), m_gbfsFeeds.end());
+
+        QFile extraFeeds(QStringLiteral("gbfs-feeds.txt"));
+        if (!extraFeeds.open(QFile::ReadOnly)) {
+            qCritical() << extraFeeds.errorString();
+            QCoreApplication::exit(1);
+            return;
+        }
+        const auto lines = QString::fromUtf8(extraFeeds.readAll()).split(QLatin1Char('\n'));
+        for (const auto &line : lines) {
+            const auto extraFeed = line.trimmed();
+            if (extraFeed.isEmpty()) {
+                continue;
+            }
+
+            const auto it = std::lower_bound(m_gbfsFeeds.begin(), m_gbfsFeeds.end(), extraFeed);
+            if (it != m_gbfsFeeds.end() && (*it) == extraFeed) {
+                qDebug() << "Extra feed already in NABSA systems.csv:" << extraFeed;
+                continue;
+            }
+            m_gbfsFeeds.insert(it, extraFeed);
+        }
+
         qDebug() << "Found" << m_gbfsFeeds.size() << "possible feeds - running discovery on them...";
         discoverNextFeed();
     });
