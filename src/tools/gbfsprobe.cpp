@@ -69,11 +69,15 @@ void GBFSProbe::getFeedList()
         while (!reply->atEnd()) {
             auto line = reply->readLine();
             line.replace("http:", "https:");
-            const auto idx = line.lastIndexOf(',');
+            const auto idx = line.lastIndexOf("https");
             if (idx < 0) {
                 continue;
             }
-            m_gbfsFeeds.push_back(QString::fromUtf8(line.mid(idx + 1).trimmed()));
+            line = line.mid(idx).trimmed();
+            if (line.endsWith('"')) {
+                line.chop(1);
+            }
+            m_gbfsFeeds.push_back(QString::fromUtf8(line));
         }
 
         std::sort(m_gbfsFeeds.begin(), m_gbfsFeeds.end());
