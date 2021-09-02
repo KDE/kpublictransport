@@ -83,6 +83,7 @@ target_sources(KPublicTransport PRIVATE
     gbfs/gbfsjob.cpp
     gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
+    gbfs/gbfsvehicletypes.cpp
 
     geo/geojson.cpp
     geo/polylinedecoder.cpp
