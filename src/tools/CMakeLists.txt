@@ -14,7 +14,7 @@ add_custom_target(run-otp-probe COMMAND otpprobe ${CMAKE_SOURCE_DIR}/src/lib/net
 
 add_executable(gbfsprobe gbfsprobe.cpp)
 target_link_libraries(gbfsprobe Qt5::Network KPublicTransport)
-add_custom_target(run-gbfs-probe COMMAND gbfsprobe ${CMAKE_SOURCE_DIR}/src/lib/gbfs/gbfs-feeds.json)
+add_custom_target(run-gbfs-probe COMMAND gbfsprobe ${CMAKE_SOURCE_DIR}/src/lib/gbfs/gbfs-feeds.json WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 if (TARGET PolyClipping::PolyClipping)
     add_executable(transport-api-sync
