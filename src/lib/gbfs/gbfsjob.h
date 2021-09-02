@@ -14,6 +14,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QObject>
+#include <QRectF>
 #include <QUrl>
 
 class QNetworkAccessManager;
@@ -63,6 +64,7 @@ private:
     void parseFreeBikeStatus(const QJsonDocument &doc);
     void computeBoundingBox(const QJsonArray &array);
     void parseVersionData(const QJsonDocument &doc);
+    void parseGeofencingZones(const QJsonDocument &doc);
     void finalize();
 
     QNetworkAccessManager *m_nam = nullptr;
@@ -72,6 +74,7 @@ private:
     QJsonArray m_feeds;
 
     double m_minLat = 90.0, m_maxLat = -90.0, m_minLon = 180.0, m_maxLon = -180.0;
+    QRectF m_geofenceBoundingBox;
 
     QString m_errorMsg;
     Error m_error = NoError;

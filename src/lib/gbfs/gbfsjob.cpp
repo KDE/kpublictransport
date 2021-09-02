@@ -5,6 +5,7 @@
 */
 
 #include "gbfsjob.h"
+#include "geo/geojson_p.h"
 
 #include <KPublicTransport/Location>
 
@@ -12,6 +13,8 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkReply>
+#include <QPolygonF>
+#include <QVersionNumber>
 
 #include <cassert>
 #include <cmath>
@@ -237,6 +240,8 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
         case GBFS::Versions:
             parseVersionData(doc);
             break;
+        case GBFS::GeofencingZones:
+            parseGeofencingZones(doc);
         default:
             break;
     }
@@ -367,11 +372,24 @@ void GBFSJob::parseVersionData(const QJsonDocument &doc)
     }
 }
 
+void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
+{
+    const auto features = doc.object().value(QLatin1String("data")).toObject()
+        .value(QLatin1String("geofencing_zones")).toObject()
+        .value(QLatin1String("features")).toArray();
+    for (const auto &featureVal : features) {
+        const auto geo = featureVal.toObject().value(QLatin1String("geometry")).toObject();
+        m_geofenceBoundingBox |= GeoJson::readOuterPolygon(geo).boundingRect();
+    }
+    qDebug() << "geo fence bounding box:" << m_geofenceBoundingBox;
+}
+
 void GBFSJob::finalize()
 {
     if (m_maxLat > m_minLat && m_maxLon > m_minLon) {
         m_service.boundingBox = QRectF(QPointF(m_minLon, m_minLat), QPointF(m_maxLon, m_maxLat));
     }
+    m_service.boundingBox |= m_geofenceBoundingBox;
     GBFSServiceRepository::store(m_service);
     Q_EMIT finished();
 }
