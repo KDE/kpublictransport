@@ -8,8 +8,6 @@
 
 #include <KPublicTransport/Location>
 
-#include <QJsonArray>
-#include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -53,7 +51,7 @@ void GBFSJob::discoverAndUpdate(const GBFSService &service)
         if (m_store.hasCurrentData(GBFS::Discovery)) {
             qDebug() << "reusing cached discovery data" << m_service.systemId;
             m_discoverDoc = m_store.loadData(GBFS::Discovery);
-            parseDiscoverData(true);
+            parseDiscoverData();
             return;
         }
     }
@@ -74,49 +72,53 @@ void GBFSJob::discoverFinished(QNetworkReply *reply)
     }
 
     m_discoverDoc = QJsonDocument::fromJson(reply->readAll());
-    parseDiscoverData(true);
+    parseDiscoverData();
 }
 
-void GBFSJob::parseDiscoverData(bool sysInfoOnly)
+void GBFSJob::parseDiscoverData()
 {
     const auto top = m_discoverDoc.object();
     //qDebug() << QJsonDocument(top).toJson();
 
     const auto data = top.value(QLatin1String("data")).toObject();
     // pick the feeds with the best language for our current locale
-    QJsonArray feeds;
     if (data.size() == 1) {
         // only one set of feeds
         qDebug() << "only one set of feeds found";
-        feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
+        m_feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
     } else if (!data.empty()) {
         const auto localeLangs = QLocale().uiLanguages();
         for (const auto &l : localeLangs) {
-            feeds = data.value(l).toObject().value(QLatin1String("feeds")).toArray();
-            if (feeds.isEmpty()) {
-                feeds = data.value(l.toLower()).toObject().value(QLatin1String("feeds")).toArray();
+            m_feeds = data.value(l).toObject().value(QLatin1String("feeds")).toArray();
+            if (m_feeds.isEmpty()) {
+                m_feeds = data.value(l.toLower()).toObject().value(QLatin1String("feeds")).toArray();
             }
-            if (feeds.empty() && l.size() > 2 && l[2] == QLatin1Char('-')) {
-                feeds = data.value(l.left(2)).toObject().value(QLatin1String("feeds")).toArray();
+            if (m_feeds.empty() && l.size() > 2 && l[2] == QLatin1Char('-')) {
+                m_feeds = data.value(l.left(2)).toObject().value(QLatin1String("feeds")).toArray();
             }
-            if (!feeds.empty()) {
+            if (!m_feeds.empty()) {
                 break;
             }
         }
         // take the first one if we haven't found a better match
-        if (feeds.empty()) {
+        if (m_feeds.empty()) {
             qDebug() << "picking first language, as none matches" << localeLangs;
-            feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
+            m_feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
         }
     }
-    if (feeds.empty()) {
+    if (m_feeds.empty()) {
         m_error = DataError;
         m_errorMsg = QStringLiteral("no feed found in discovery response!");
         Q_EMIT finished();
         return;
     }
 
-    for (const auto &feedVal : qAsConst(feeds)) {
+    processFeeds(true);
+}
+
+void GBFSJob::processFeeds(bool sysInfoOnly)
+{
+    for (const auto &feedVal : qAsConst(m_feeds)) {
         const auto feed = feedVal.toObject();
         const auto name = feed.value(QLatin1String("name")).toString();
         const auto type = GBFS::typeForKeyName(name);
@@ -129,9 +131,9 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
             if (!m_store.isValid() || !m_store.hasCurrentData(GBFS::SystemInformation)) {
                 auto reply = m_nam->get(QNetworkRequest(url));
                 connect(reply, &QNetworkReply::finished, this, [this, reply]() { systemInformationFinished(reply); });
+                ++m_pendingJobs;
             } else {
                 qDebug() << "reusing cached system information";
-                parseDiscoverData(false);
             }
         } else {
             switch (type) {
@@ -160,14 +162,20 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
         }
     }
 
-    if (!sysInfoOnly && m_pendingJobs == 0) {
-        finalize();
+    if (m_pendingJobs == 0) {
+        if (!sysInfoOnly) {
+            finalize();
+        } else {
+            processFeeds(false);
+        }
     }
 }
 
 void GBFSJob::systemInformationFinished(QNetworkReply *reply)
 {
     reply->deleteLater();
+    --m_pendingJobs;
+
     if (reply->error() != QNetworkReply::NoError) {
         m_error = NetworkError;
         m_errorMsg = reply->errorString();
@@ -190,7 +198,7 @@ void GBFSJob::systemInformationFinished(QNetworkReply *reply)
     m_store.storeData(GBFS::Discovery, m_discoverDoc);
     m_store.storeData(GBFS::SystemInformation, sysInfoDoc);
 
-    parseDiscoverData(false);
+    processFeeds(false);
 }
 
 void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)

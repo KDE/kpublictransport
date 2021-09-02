@@ -11,6 +11,7 @@
 #include "gbfsservice.h"
 #include "gbfsstore.h"
 
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QObject>
 #include <QUrl>
@@ -53,7 +54,8 @@ Q_SIGNALS:
 
 private:
     void discoverFinished(QNetworkReply *reply);
-    void parseDiscoverData(bool sysInfoOnly);
+    void parseDiscoverData();
+    void processFeeds(bool sysInfoOnly);
     void systemInformationFinished(QNetworkReply *reply);
     void fetchFinished(QNetworkReply *reply, GBFS::FileType type);
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
@@ -67,6 +69,7 @@ private:
     GBFSService m_service;
     GBFSStore m_store;
     QJsonDocument m_discoverDoc;
+    QJsonArray m_feeds;
 
     double m_minLat = 90.0, m_maxLat = -90.0, m_minLon = 180.0, m_maxLon = -180.0;
 
