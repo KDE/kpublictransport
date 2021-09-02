@@ -23,6 +23,9 @@ namespace GBFS
         StationInformation,
         StationStatus,
         FreeBikeStatus,
+        Versions,
+        VehicleTypes,
+        GeofencingZones,
         Unknown, // keep last
     };
 

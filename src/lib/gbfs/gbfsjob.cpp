@@ -138,6 +138,9 @@ void GBFSJob::parseDiscoverData(bool sysInfoOnly)
                 case GBFS::StationInformation:
                 case GBFS::StationStatus:
                 case GBFS::FreeBikeStatus:
+                case GBFS::Versions:
+                case GBFS::VehicleTypes:
+                case GBFS::GeofencingZones:
                     if (!m_store.hasCurrentData(type)) {
                         qDebug() << "fetching" << name;
                         auto reply = m_nam->get(QNetworkRequest(url));

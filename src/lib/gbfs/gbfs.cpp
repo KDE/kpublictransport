@@ -21,6 +21,9 @@ struct {
     { "station_information" },
     { "station_status" },
     { "free_bike_status" },
+    { "gbfs_versions" },
+    { "vehicle_types" },
+    { "geofencing_zones" },
 };
 
 static_assert((sizeof(file_info_map) / sizeof(file_info_map[0])) == GBFS::Unknown, "");
