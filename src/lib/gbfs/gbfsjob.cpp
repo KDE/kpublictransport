@@ -285,11 +285,11 @@ void GBFSJob::computeBoundingBox(const QJsonArray &array)
     for (const auto &statVal : array) {
         const auto station = statVal.toObject();
         const auto lat = station.value(QLatin1String("lat")).toDouble(NAN);
-        if (!std::isnan(lat) && lat >= -90.0 && lat <= 90.0) {
+        if (!std::isnan(lat) && lat >= -90.0 && lat <= 90.0 && lat != 0.0) {
             lats.push_back(lat);
         }
         const auto lon = station.value(QLatin1String("lon")).toDouble(NAN);
-        if (!std::isnan(lon) && lon >= -180.0 && lon <= 180.0) {
+        if (!std::isnan(lon) && lon >= -180.0 && lon <= 180.0 && lon != 0.0) {
             lons.push_back(lon);
         }
     }
