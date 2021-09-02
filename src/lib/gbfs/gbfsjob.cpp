@@ -226,6 +226,9 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
         case GBFS::FreeBikeStatus:
             parseFreeBikeStatus(doc);
             break;
+        case GBFS::Versions:
+            parseVersionData(doc);
+            break;
         default:
             break;
     }
@@ -332,6 +335,28 @@ void GBFSJob::computeBoundingBox(const QJsonArray &array)
         const auto lat = (m_maxLat - m_minLat) / 2.0;
         return Location::distance(lat, lon1, lat, lon2);
     });
+}
+
+void GBFSJob::parseVersionData(const QJsonDocument &doc)
+{
+    const auto versions = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("versions")).toArray();
+    QJsonObject bestVersion;
+    for (const auto &verVal : versions) {
+        const auto version = verVal.toObject();
+        if (bestVersion.isEmpty()) {
+            bestVersion = version;
+        }
+        if (QVersionNumber::fromString(bestVersion.value(QLatin1String("version")).toString()) < QVersionNumber::fromString(version.value(QLatin1String("version")).toString())) {
+            bestVersion = version;
+        }
+    }
+
+    const auto url = QUrl(bestVersion.value(QLatin1String("url")).toString());
+    if (!url.isEmpty() && m_service.discoveryUrl != url) {
+        qDebug() << "found newer version:" << url << m_service.discoveryUrl;
+        m_service.discoveryUrl = url;
+        // TODO update feed url and restart the job
+    }
 }
 
 void GBFSJob::finalize()

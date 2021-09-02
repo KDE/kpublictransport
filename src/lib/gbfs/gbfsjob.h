@@ -60,6 +60,7 @@ private:
     void parseStationInformation(const QJsonDocument &doc);
     void parseFreeBikeStatus(const QJsonDocument &doc);
     void computeBoundingBox(const QJsonArray &array);
+    void parseVersionData(const QJsonDocument &doc);
     void finalize();
 
     QNetworkAccessManager *m_nam = nullptr;
