@@ -272,8 +272,20 @@ static void filterOutliers(const std::vector<double> &values, double &minVal, do
         return a + (std::pow(b, 2.0) / n);
     });
     sigma = std::sqrt(sigma - std::pow(mean, 2.0)) * 3.0;
-    minVal = std::min(minVal, std::max(mean - sigma, values.front())); // clamp by 3 sigma, but don't exceed the input range when not needed
-    maxVal = std::max(maxVal, std::min(mean + sigma, values.back()));
+
+    auto lowerBound = mean - sigma;
+    auto it = std::lower_bound(values.begin(), values.end(), lowerBound);
+    if (it != values.end()) {
+        lowerBound = (*it);
+    }
+    auto upperBound = mean + sigma;
+    it = std::lower_bound(values.begin(), values.end(), upperBound);
+    if (it != values.begin()) {
+        upperBound = *(std::prev(it));
+    }
+
+    minVal = std::min(minVal, std::max(lowerBound, values.front())); // clamp by 3 sigma, but don't exceed the input range when not needed
+    maxVal = std::max(maxVal, std::min(upperBound, values.back()));
 }
 
 void GBFSJob::computeBoundingBox(const QJsonArray &array)
