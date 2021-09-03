@@ -90,7 +90,7 @@ static RentalVehicle::VehicleType gbfs2kptVehicleType(const GBFSVehicleType &veh
 // we get some address values just being " , "...
 static QString cleanAddress(const QString &input)
 {
-    if (std::any_of(input.begin(), input.end(), std::mem_fn(&QChar::isLetter))) {
+    if (std::any_of(input.begin(), input.end(), std::mem_fn(qOverload<>(&QChar::isLetter)))) {
         return input;
     }
     return {};
