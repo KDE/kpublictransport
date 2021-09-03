@@ -127,41 +127,42 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
         const auto type = GBFS::typeForKeyName(name);
         const auto url = QUrl(feed.value(QLatin1String("url")).toString());
 
-        if (sysInfoOnly) {
-            if (type != GBFS::SystemInformation) {
-                continue;
-            }
-            if (!m_store.isValid() || !m_store.hasCurrentData(GBFS::SystemInformation)) {
-                auto reply = m_nam->get(QNetworkRequest(url));
-                connect(reply, &QNetworkReply::finished, this, [this, reply]() { systemInformationFinished(reply); });
-                ++m_pendingJobs;
-            } else {
-                qDebug() << "reusing cached system information";
-            }
-        } else {
-            switch (type) {
-                case GBFS::StationInformation:
-                case GBFS::StationStatus:
-                case GBFS::FreeBikeStatus:
-                case GBFS::Versions:
-                case GBFS::VehicleTypes:
-                case GBFS::GeofencingZones:
-                    if (!m_store.hasCurrentData(type)) {
-                        qDebug() << "fetching" << name;
-                        auto reply = m_nam->get(QNetworkRequest(url));
-                        connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
-                        ++m_pendingJobs;
-                    } else {
-                        qDebug() << "reusing cached" << name;
-                        parseData(m_store.loadData(type), type);
-                    }
+        switch (type) {
+            case GBFS::SystemInformation:
+                if (!sysInfoOnly) {
                     break;
-                case GBFS::Discovery:
-                case GBFS::SystemInformation:
+                }
+                if (!m_store.isValid() || !m_store.hasCurrentData(GBFS::SystemInformation)) {
+                    auto reply = m_nam->get(QNetworkRequest(url));
+                    connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
+                    ++m_pendingJobs;
+                } else {
+                    qDebug() << "reusing cached system information";
+                }
+                break;
+            case GBFS::StationInformation:
+            case GBFS::StationStatus:
+            case GBFS::FreeBikeStatus:
+            case GBFS::Versions:
+            case GBFS::VehicleTypes:
+            case GBFS::GeofencingZones:
+                if (sysInfoOnly) {
                     break;
-                default:
-                    qDebug() << "Unhandled feed:" << name << url;
-            }
+                }
+                if (!m_store.hasCurrentData(type)) {
+                    qDebug() << "fetching" << name;
+                    auto reply = m_nam->get(QNetworkRequest(url));
+                    connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
+                    ++m_pendingJobs;
+                } else {
+                    qDebug() << "reusing cached" << name;
+                    parseData(m_store.loadData(type), type);
+                }
+                break;
+            case GBFS::Discovery:
+                break;
+            default:
+                qDebug() << "Unhandled feed:" << name << url;
         }
     }
 
@@ -172,36 +173,6 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
             processFeeds(false);
         }
     }
-}
-
-void GBFSJob::systemInformationFinished(QNetworkReply *reply)
-{
-    reply->deleteLater();
-    --m_pendingJobs;
-
-    if (reply->error() != QNetworkReply::NoError) {
-        m_error = NetworkError;
-        m_errorMsg = reply->errorString();
-        Q_EMIT finished();
-        return;
-    }
-
-    const auto sysInfoDoc = QJsonDocument::fromJson(reply->readAll());
-    qDebug().noquote() << sysInfoDoc.toJson();
-    const auto data = sysInfoDoc.object().value(QLatin1String("data")).toObject();
-    const auto systemId = data.value(QLatin1String("system_id")).toString();
-    if (systemId.isEmpty()) {
-        m_error = DataError;
-        m_errorMsg = QStringLiteral("unable to determine system_id!");
-        Q_EMIT finished();
-        return;
-    }
-    m_service.systemId = systemId;
-    m_store = GBFSStore(systemId);
-    m_store.storeData(GBFS::Discovery, m_discoverDoc);
-    m_store.storeData(GBFS::SystemInformation, sysInfoDoc);
-
-    processFeeds(false);
 }
 
 void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
@@ -220,7 +191,9 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
 
     const auto doc = QJsonDocument::fromJson(reply->readAll());
     //qDebug().noquote() << doc.toJson();
-    m_store.storeData(type, doc);
+    if (m_store.isValid()) {
+        m_store.storeData(type, doc);
+    }
     parseData(doc, type);
 
     if (m_pendingJobs == 0) {
@@ -231,6 +204,9 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
 void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
 {
     switch (type) {
+        case GBFS::SystemInformation:
+            parseSystemInformation(doc);
+            break;
         case GBFS::StationInformation:
             parseStationInformation(doc);
             break;
@@ -245,6 +221,24 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
         default:
             break;
     }
+}
+
+void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
+{
+    const auto data = doc.object().value(QLatin1String("data")).toObject();
+    const auto systemId = data.value(QLatin1String("system_id")).toString();
+    if (systemId.isEmpty()) {
+        m_error = DataError;
+        m_errorMsg = QStringLiteral("unable to determine system_id!");
+        Q_EMIT finished();
+        return;
+    }
+    m_service.systemId = systemId;
+    m_store = GBFSStore(systemId);
+    m_store.storeData(GBFS::Discovery, m_discoverDoc);
+    m_store.storeData(GBFS::SystemInformation, doc);
+
+    processFeeds(false);
 }
 
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)

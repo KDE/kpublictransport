@@ -57,9 +57,9 @@ private:
     void discoverFinished(QNetworkReply *reply);
     void parseDiscoverData();
     void processFeeds(bool sysInfoOnly);
-    void systemInformationFinished(QNetworkReply *reply);
     void fetchFinished(QNetworkReply *reply, GBFS::FileType type);
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
+    void parseSystemInformation(const QJsonDocument &doc);
     void parseStationInformation(const QJsonDocument &doc);
     void parseFreeBikeStatus(const QJsonDocument &doc);
     void computeBoundingBox(const QJsonArray &array);
