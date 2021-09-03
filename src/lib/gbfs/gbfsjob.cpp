@@ -130,14 +130,7 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
         switch (type) {
             case GBFS::SystemInformation:
                 if (!sysInfoOnly) {
-                    break;
-                }
-                if (!m_store.isValid() || !m_store.hasCurrentData(GBFS::SystemInformation)) {
-                    auto reply = m_nam->get(QNetworkRequest(url));
-                    connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
-                    ++m_pendingJobs;
-                } else {
-                    qDebug() << "reusing cached system information";
+                    continue;
                 }
                 break;
             case GBFS::StationInformation:
@@ -147,16 +140,7 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
             case GBFS::VehicleTypes:
             case GBFS::GeofencingZones:
                 if (sysInfoOnly) {
-                    break;
-                }
-                if (!m_store.hasCurrentData(type)) {
-                    qDebug() << "fetching" << name;
-                    auto reply = m_nam->get(QNetworkRequest(url));
-                    connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
-                    ++m_pendingJobs;
-                } else {
-                    qDebug() << "reusing cached" << name;
-                    parseData(m_store.loadData(type), type);
+                    continue;
                 }
                 break;
             case GBFS::Discovery:
@@ -165,17 +149,26 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
             case GBFS::SystemRegions:
             case GBFS::SystemPricingPlans:
             case GBFS::SystemAlerts:
-                break;
+                continue;
             default:
                 qDebug() << "Unhandled feed:" << name << url;
+                continue;
+        }
+
+        if (!m_store.isValid() || !m_store.hasCurrentData(type)) {
+            qDebug() << "fetching" << name;
+            auto reply = m_nam->get(QNetworkRequest(url));
+            connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
+            ++m_pendingJobs;
+        } else {
+            qDebug() << "reusing cached" << name;
+            parseData(m_store.loadData(type), type);
         }
     }
 
     if (m_pendingJobs == 0) {
         if (!sysInfoOnly) {
             finalize();
-        } else {
-            processFeeds(false);
         }
     }
 }
