@@ -62,7 +62,7 @@ private:
     void parseSystemInformation(const QJsonDocument &doc);
     void parseStationInformation(const QJsonDocument &doc);
     void parseFreeBikeStatus(const QJsonDocument &doc);
-    void computeBoundingBox(const QJsonArray &array);
+    void collectCoordinates(const QJsonArray &array);
     void parseVersionData(const QJsonDocument &doc);
     void parseGeofencingZones(const QJsonDocument &doc);
     void finalize();
@@ -73,7 +73,8 @@ private:
     QJsonDocument m_discoverDoc;
     QJsonArray m_feeds;
 
-    double m_minLat = 90.0, m_maxLat = -90.0, m_minLon = 180.0, m_maxLon = -180.0;
+    std::vector<double> m_latitudes;
+    std::vector<double> m_longitudes;
     QRectF m_geofenceBoundingBox;
 
     QString m_errorMsg;

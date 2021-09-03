@@ -249,17 +249,15 @@ void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)
 {
     const auto stations = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
-    computeBoundingBox(stations);
+    collectCoordinates(stations);
     qDebug() << stations.size() << "stations/docks";
-    qDebug() << "station bounding box:" << m_minLat << m_minLon << m_maxLat << m_maxLon;
 }
 
 void GBFSJob::parseFreeBikeStatus(const QJsonDocument &doc)
 {
     const auto bikes = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
-    computeBoundingBox(bikes);
+    collectCoordinates(bikes);
     qDebug() << bikes.size() << "free floating vehicles";
-    qDebug() << "station bounding box:" << m_minLat << m_minLon << m_maxLat << m_maxLon;
 }
 
 static void filterOutliers(const std::vector<double> &values, double &minVal, double &maxVal, const std::function<double(double, double)> &distFunc)
@@ -306,47 +304,22 @@ static void filterOutliers(const std::vector<double> &values, double &minVal, do
     maxVal = std::max(maxVal, std::min(upperBound, values.back()));
 }
 
-void GBFSJob::computeBoundingBox(const QJsonArray &array)
+void GBFSJob::collectCoordinates(const QJsonArray &array)
 {
-    std::vector<double> lats, lons;
-    lats.reserve(array.size());
-    lons.reserve(array.size());
+    m_latitudes.reserve(m_latitudes.size() + array.size());
+    m_longitudes.reserve(m_longitudes.size() + array.size());
 
     for (const auto &statVal : array) {
         const auto station = statVal.toObject();
         const auto lat = station.value(QLatin1String("lat")).toDouble(NAN);
         if (!std::isnan(lat) && lat >= -90.0 && lat <= 90.0 && lat != 0.0) {
-            lats.push_back(lat);
+            m_latitudes.push_back(lat);
         }
         const auto lon = station.value(QLatin1String("lon")).toDouble(NAN);
         if (!std::isnan(lon) && lon >= -180.0 && lon <= 180.0 && lon != 0.0) {
-            lons.push_back(lon);
+            m_longitudes.push_back(lon);
         }
     }
-
-    std::sort(lats.begin(), lats.end());
-    std::sort(lons.begin(), lons.end());
-    if (lats.empty() || lons.empty()) {
-        return;
-    }
-
-    // covered area is reasonable, take as-is
-    if (Location::distance(lats.front(), lons.front(), lats.back(), lons.back()) <= 50'000) {
-        qDebug() << "coordinates look plausible, skipping outlier filter";
-        m_minLat = lats.front();
-        m_minLon = lons.front();
-        m_maxLat = lats.back();
-        m_maxLon = lons.back();
-        return;
-    }
-
-    // try to filter out outliers
-    qDebug() << "performing outlier filtering";
-    filterOutliers(lats, m_minLat, m_maxLat, [](auto lat1, auto lat2) { return Location::distance(lat1, 0.0, lat2, 0.0); });
-    filterOutliers(lons, m_minLon, m_maxLon, [this](auto lon1, auto lon2) {
-        const auto lat = (m_maxLat - m_minLat) / 2.0;
-        return Location::distance(lat, lon1, lat, lon2);
-    });
 }
 
 void GBFSJob::parseVersionData(const QJsonDocument &doc)
@@ -380,15 +353,38 @@ void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
         const auto geo = featureVal.toObject().value(QLatin1String("geometry")).toObject();
         m_geofenceBoundingBox |= GeoJson::readOuterPolygon(geo).boundingRect();
     }
-    qDebug() << "geo fence bounding box:" << m_geofenceBoundingBox;
 }
 
 void GBFSJob::finalize()
 {
-    if (m_maxLat > m_minLat && m_maxLon > m_minLon) {
-        m_service.boundingBox = QRectF(QPointF(m_minLon, m_minLat), QPointF(m_maxLon, m_maxLat));
+    double minLat = 90.0, maxLat = -90.0, minLon = 180.0, maxLon = -180.0;
+    if (!m_latitudes.empty() && !m_longitudes.empty()) {
+        std::sort(m_latitudes.begin(), m_latitudes.end());
+        std::sort(m_longitudes.begin(), m_longitudes.end());
+
+        // covered area is reasonable, take as-is
+        if (Location::distance(m_latitudes.front(), m_longitudes.front(), m_latitudes.back(), m_longitudes.back()) <= 50'000) {
+            qDebug() << "coordinates look plausible, skipping outlier filter";
+            minLat = m_latitudes.front();
+            minLon = m_longitudes.front();
+            maxLat = m_latitudes.back();
+            maxLon = m_longitudes.back();
+        } else {
+            // try to filter out outliers
+            qDebug() << "performing outlier filtering";
+            filterOutliers(m_latitudes, minLat, maxLat, [](auto lat1, auto lat2) { return Location::distance(lat1, 0.0, lat2, 0.0); });
+            filterOutliers(m_longitudes, minLon, maxLon, [&](auto lon1, auto lon2) {
+                const auto lat = (maxLat - minLat) / 2.0;
+                return Location::distance(lat, lon1, lat, lon2);
+            });
+        }
+    }
+
+    if (maxLat > minLat && maxLon > minLon) {
+        m_service.boundingBox = QRectF(QPointF(minLon, minLat), QPointF(maxLon, maxLat));
     }
     m_service.boundingBox |= m_geofenceBoundingBox;
+    qDebug() << "bounding box:" << m_service.boundingBox;
     GBFSServiceRepository::store(m_service);
     Q_EMIT finished();
 }
