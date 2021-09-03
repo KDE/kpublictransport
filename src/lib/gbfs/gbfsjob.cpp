@@ -68,9 +68,7 @@ void GBFSJob::discoverFinished(QNetworkReply *reply)
 {
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
-        m_error = NetworkError;
-        m_errorMsg = reply->errorString();
-        Q_EMIT finished();
+        handleNetworkError(reply);
         return;
     }
 
@@ -179,11 +177,7 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
     --m_pendingJobs;
 
     if (reply->error() != QNetworkReply::NoError) {
-        m_error = NetworkError;
-        m_errorMsg = reply->errorString();
-        if (m_pendingJobs == 0) { // wait for the rest to finish otherwise, to avoid double finished() emission
-            Q_EMIT finished();
-        }
+        handleNetworkError(reply);
         return;
     }
 
@@ -196,6 +190,15 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
 
     if (m_pendingJobs == 0) {
         finalize();
+    }
+}
+
+void GBFSJob::handleNetworkError(QNetworkReply *reply)
+{
+    m_error = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 429 ? TooManyRequestsError : NetworkError;
+    m_errorMsg = reply->errorString();
+    if (m_pendingJobs == 0) { // wait for the rest to finish otherwise, to avoid double finished() emission
+        Q_EMIT finished();
     }
 }
 

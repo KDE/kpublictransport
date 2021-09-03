@@ -42,6 +42,7 @@ public:
     enum Error {
         NoError,
         NetworkError,
+        TooManyRequestsError, ///< API endpoint call limit, try again later
         DataError,
     };
     Error error() const;
@@ -58,6 +59,7 @@ private:
     void parseDiscoverData();
     void processFeeds(bool sysInfoOnly);
     void fetchFinished(QNetworkReply *reply, GBFS::FileType type);
+    void handleNetworkError(QNetworkReply *reply);
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
     void parseSystemInformation(const QJsonDocument &doc);
     void parseStationInformation(const QJsonDocument &doc);
