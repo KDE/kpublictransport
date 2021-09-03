@@ -8,6 +8,7 @@
 #include "gbfsservice.h"
 #include "gbfsstore.h"
 #include "gbfsjob.h"
+#include "gbfsvehicletypes.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Location>
@@ -57,9 +58,37 @@ static QString stationIdToString(const QJsonValue &id)
     return id.toString();
 }
 
+static RentalVehicle::VehicleType gbfs2kptVehicleType(const GBFSVehicleType &vehicle)
+{
+    static constexpr struct {
+        GBFSVehicleType::FormFactor formFactor;
+        GBFSVehicleType::PropulsionType propulsion;
+        RentalVehicle::VehicleType type;
+    } const type_map[] = {
+        { GBFSVehicleType::UndefinedFormFactor, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::Unknown },
+        { GBFSVehicleType::Bicycle, GBFSVehicleType::Human, RentalVehicle::Bicycle },
+        { GBFSVehicleType::Bicycle, GBFSVehicleType::ElectricAssist, RentalVehicle::Pedelec },
+        { GBFSVehicleType::Scooter, GBFSVehicleType::Electric, RentalVehicle::ElectricKickScooter },
+        { GBFSVehicleType::Scooter, GBFSVehicleType::ElectricAssist, RentalVehicle::ElectricKickScooter },
+        { GBFSVehicleType::Moped, GBFSVehicleType::Electric, RentalVehicle::ElectricMoped },
+        { GBFSVehicleType::Car, GBFSVehicleType::Electric, RentalVehicle::Car },
+        { GBFSVehicleType::Car, GBFSVehicleType::Combustion, RentalVehicle::Car },
+    };
+
+    for (const auto &map : type_map) {
+        if (map.formFactor == vehicle.formFactor && map.propulsion == vehicle.propulsionType) {
+            return map.type;
+        }
+    }
+
+    qDebug() << "unhandled vehicle type:" << vehicle.formFactor << vehicle.propulsionType;
+    return RentalVehicle::Unknown;
+}
+
 static void appendResults(const GBFSService &service, const LocationRequest &req, QueryContext *context)
 {
     GBFSStore store(service.systemId);
+    GBFSVehicleTypes vehicleTypes(service);
 
     RentalVehicleNetwork network;
     const auto sysInfoDoc = store.loadData(GBFS::SystemInformation);
@@ -130,9 +159,11 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         const auto stationId = bike.value(QLatin1String("bike_id")).toString();
         loc.setIdentifier(service.systemId, stationId);
 
-        // TODO vehicle type, remaining range, deep rental links
+        // TODO remaining range, deep rental links
         RentalVehicle vehicle;
         vehicle.setNetwork(network);
+        const auto vehicleType = vehicleTypes.vehicleType(bike.value(QLatin1String("vehicle_type_id")).toString());
+        vehicle.setType(gbfs2kptVehicleType(vehicleType));
         loc.setData(vehicle);
 
         context->result.push_back(loc);

@@ -78,6 +78,7 @@ Kirigami.ApplicationWindow {
             case RentalVehicle.ElectricKickScooter: return "🛴";
             case RentalVehicle.ElectricMoped: return "🛵";
             case RentalVehicle.Car: return "🚗";
+            case RentalVehicle.Pedelec: return "⚡🚲";
         }
         return "🚲";
     }
