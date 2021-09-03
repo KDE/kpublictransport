@@ -26,6 +26,11 @@ namespace GBFS
         Versions,
         VehicleTypes,
         GeofencingZones,
+        SystemHours,
+        SystemCalendar,
+        SystemRegions,
+        SystemPricingPlans,
+        SystemAlerts,
         Unknown, // keep last
     };
 

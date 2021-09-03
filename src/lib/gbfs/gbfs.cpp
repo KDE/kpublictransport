@@ -24,6 +24,11 @@ struct {
     { "gbfs_versions" },
     { "vehicle_types" },
     { "geofencing_zones" },
+    { "system_hours" },
+    { "system_calendar" },
+    { "system_regions" },
+    { "system_pricing_plans" },
+    { "system_alerts" },
 };
 
 static_assert((sizeof(file_info_map) / sizeof(file_info_map[0])) == GBFS::Unknown, "");

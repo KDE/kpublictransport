@@ -32,6 +32,11 @@ struct {
     { std::chrono::hours(24 * 5) },
     { std::chrono::hours(24 * 5) },
     { std::chrono::hours(24 * 5) },
+    { std::chrono::hours(24 * 5) },
+    { std::chrono::hours(24 * 5) },
+    { std::chrono::hours(24 * 5) },
+    { std::chrono::hours(24 * 5) },
+    { std::chrono::hours(24 * 5) },
 };
 
 static_assert((sizeof(file_ttl_map) / sizeof(file_ttl_map[0])) == GBFS::Unknown, "");

@@ -160,6 +160,11 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
                 }
                 break;
             case GBFS::Discovery:
+            case GBFS::SystemHours:
+            case GBFS::SystemCalendar:
+            case GBFS::SystemRegions:
+            case GBFS::SystemPricingPlans:
+            case GBFS::SystemAlerts:
                 break;
             default:
                 qDebug() << "Unhandled feed:" << name << url;
