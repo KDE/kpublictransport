@@ -21,6 +21,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include <functional>
+
 using namespace KPublicTransport;
 
 GBFSBackend::GBFSBackend() = default;
@@ -85,6 +87,15 @@ static RentalVehicle::VehicleType gbfs2kptVehicleType(const GBFSVehicleType &veh
     return RentalVehicle::Unknown;
 }
 
+// we get some address values just being " , "...
+static QString cleanAddress(const QString &input)
+{
+    if (std::any_of(input.begin(), input.end(), std::mem_fn(&QChar::isLetter))) {
+        return input;
+    }
+    return {};
+}
+
 static void appendResults(const GBFSService &service, const LocationRequest &req, QueryContext *context)
 {
     GBFSStore store(service.systemId);
@@ -112,7 +123,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setName(station.value(QLatin1String("name")).toString());
         const auto stationId = stationIdToString(station.value(QLatin1String("station_id")));
         loc.setIdentifier(service.systemId, stationId);
-        loc.setStreetAddress(station.value(QLatin1String("address")).toString());
+        loc.setStreetAddress(cleanAddress(station.value(QLatin1String("address")).toString()));
         loc.setPostalCode(station.value(QLatin1String("post_code")).toString());
         // TODO cover more properties
 
