@@ -112,6 +112,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setName(station.value(QLatin1String("name")).toString());
         const auto stationId = stationIdToString(station.value(QLatin1String("station_id")));
         loc.setIdentifier(service.systemId, stationId);
+        loc.setStreetAddress(station.value(QLatin1String("address")).toString());
+        loc.setPostalCode(station.value(QLatin1String("post_code")).toString());
         // TODO cover more properties
 
         RentalVehicleStation s;
