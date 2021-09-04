@@ -1,6 +1,5 @@
 https://api.openbike.ulm.dev/gbfs/gbfs.json
 https://mds.bird.co/gbfs/v2/public/ulm/gbfs.json
-https://mds.bird.co/gbfs/chicago/gbfs.json
 https://www.bolt.miami/bolt2/chi/gbfs/gbfs.json
 https://portal.clevrmobility.com/api/gbfs/chicago/en/discovery/?format=json
 https://gbfs.uber.com/v1/chicago/gbfs.json
