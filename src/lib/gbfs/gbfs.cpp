@@ -42,7 +42,7 @@ GBFS::FileType GBFS::typeForKeyName(QStringView v)
 {
     const auto s = v.toUtf8();
     for (auto it = std::begin(file_info_map); it != std::end(file_info_map); ++it) {
-        if (std::strcmp((*it).fileName, s.constData()) == 0) {
+        if (std::strcmp((*it).fileName, s.constData()) == 0 || (s.endsWith(".json") && std::strncmp((*it).fileName, s.constData(), s.size() - 5) == 0)) {
             return static_cast<GBFS::FileType>(std::distance(std::begin(file_info_map), it));
         }
     }

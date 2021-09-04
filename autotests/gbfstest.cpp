@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <../src/lib/gbfs/gbfs.cpp>
 #include <gbfs/gbfsservice.h>
 
 #include <QObject>
@@ -21,6 +22,14 @@ private Q_SLOTS:
     void initTestCase()
     {
         QStandardPaths::setTestModeEnabled(true);
+    }
+
+    void testFileType()
+    {
+        QCOMPARE(GBFS::typeForKeyName(u"system_information"), GBFS::SystemInformation);
+        QCOMPARE(GBFS::typeForKeyName(u"geofencing_zones"), GBFS::GeofencingZones);
+        QCOMPARE(GBFS::typeForKeyName(u"geofencing_zones.json"), GBFS::GeofencingZones);
+        QCOMPARE(GBFS::typeForKeyName(u"geofencing_zones_information"), GBFS::Unknown);
     }
 
     void testServiceRepo()
