@@ -57,7 +57,7 @@ Q_SIGNALS:
 private:
     void discoverFinished(QNetworkReply *reply);
     void parseDiscoverData();
-    void processFeeds(bool sysInfoOnly);
+    void processFeeds();
     void fetchFinished(QNetworkReply *reply, GBFS::FileType type);
     void handleNetworkError(QNetworkReply *reply);
     void parseData(const QJsonDocument &doc, GBFS::FileType type);
@@ -69,10 +69,20 @@ private:
     void parseGeofencingZones(const QJsonDocument &doc);
     void finalize();
 
+    enum class State {
+        Discover,
+        Version,
+        DiscoverRestart,
+        SystemInformation,
+        Data
+    };
+    State m_state = State::Discover;
+
     QNetworkAccessManager *m_nam = nullptr;
     GBFSService m_service;
     GBFSStore m_store;
     QJsonDocument m_discoverDoc;
+    QJsonDocument m_versionDoc;
     QJsonArray m_feeds;
 
     std::vector<double> m_latitudes;

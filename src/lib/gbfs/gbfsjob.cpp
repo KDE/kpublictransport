@@ -114,11 +114,14 @@ void GBFSJob::parseDiscoverData()
         return;
     }
 
-    processFeeds(true);
+    m_state = m_state == State::Discover ? State::Version : State::SystemInformation;
+    processFeeds();
 }
 
-void GBFSJob::processFeeds(bool sysInfoOnly)
+void GBFSJob::processFeeds()
 {
+    bool proccedAtLeastOneFeed = false;
+    const auto state = m_state; // can change as result of processing
     for (const auto &feedVal : qAsConst(m_feeds)) {
         const auto feed = feedVal.toObject();
         const auto name = feed.value(QLatin1String("name")).toString();
@@ -127,17 +130,21 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
 
         switch (type) {
             case GBFS::SystemInformation:
-                if (!sysInfoOnly) {
+                if (state != State::SystemInformation) {
+                    continue;
+                }
+                break;
+            case GBFS::Versions:
+                if (state != State::Version) {
                     continue;
                 }
                 break;
             case GBFS::StationInformation:
             case GBFS::StationStatus:
             case GBFS::FreeBikeStatus:
-            case GBFS::Versions:
             case GBFS::VehicleTypes:
             case GBFS::GeofencingZones:
-                if (sysInfoOnly) {
+                if (state != State::Data) {
                     continue;
                 }
                 break;
@@ -162,12 +169,25 @@ void GBFSJob::processFeeds(bool sysInfoOnly)
             qDebug() << "reusing cached" << name;
             parseData(m_store.loadData(type), type);
         }
+        proccedAtLeastOneFeed = true;
     }
 
-    if (m_pendingJobs == 0) {
-        if (!sysInfoOnly) {
-            finalize();
+    if (!proccedAtLeastOneFeed) {
+        switch (m_state) {
+            case State::Version:
+                m_state = State::SystemInformation;
+                break;
+            case State::SystemInformation:
+            case State::Data:
+                m_error = DataError;
+                Q_EMIT finished();
+                return;
+            default:
+                Q_UNREACHABLE();
         }
+        QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
+    } else if (m_pendingJobs == 0 && state == State::Data) {
+        finalize();
     }
 }
 
@@ -182,13 +202,13 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
     }
 
     const auto doc = QJsonDocument::fromJson(reply->readAll());
-    //qDebug().noquote() << doc.toJson();
     if (m_store.isValid()) {
         m_store.storeData(type, doc);
     }
+    const auto state = m_state; // can change as part of processing
     parseData(doc, type);
 
-    if (m_pendingJobs == 0) {
+    if (m_pendingJobs == 0 && state == State::Data) {
         finalize();
     }
 }
@@ -238,8 +258,12 @@ void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
     m_store = GBFSStore(systemId);
     m_store.storeData(GBFS::Discovery, m_discoverDoc);
     m_store.storeData(GBFS::SystemInformation, doc);
+    if (!m_versionDoc.isEmpty()) {
+        m_store.storeData(GBFS::Versions, m_versionDoc);
+    }
 
-    processFeeds(false);
+    m_state = State::Data;
+    QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
 }
 
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)
@@ -320,6 +344,7 @@ void GBFSJob::collectCoordinates(const QJsonArray &array)
 
 void GBFSJob::parseVersionData(const QJsonDocument &doc)
 {
+    m_versionDoc = doc;
     const auto versions = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("versions")).toArray();
     QJsonObject bestVersion;
     for (const auto &verVal : versions) {
@@ -336,7 +361,11 @@ void GBFSJob::parseVersionData(const QJsonDocument &doc)
     if (!url.isEmpty() && m_service.discoveryUrl != url) {
         qDebug() << "found newer version:" << url << m_service.discoveryUrl;
         m_service.discoveryUrl = url;
-        // TODO update feed url and restart the job
+        m_state = State::DiscoverRestart;
+        discoverAndUpdate(m_service);
+    } else {
+        m_state = State::SystemInformation;
+        QMetaObject::invokeMethod(this, &GBFSJob::processFeeds, Qt::QueuedConnection);
     }
 }
 
