@@ -223,6 +223,7 @@ bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply
 
         context->pendingJobs++;
         auto updateJob = new GBFSJob(nam, reply);
+        updateJob->setRequestedData({GBFS::StationInformation, GBFS::StationStatus, GBFS::FreeBikeStatus, GBFS::VehicleTypes});
         QObject::connect(updateJob, &GBFSJob::finished, reply, [this, context, reply, updateJob, req]() {
             context->pendingJobs--;
             updateJob->deleteLater();

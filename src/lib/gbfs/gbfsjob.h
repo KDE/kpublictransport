@@ -36,6 +36,9 @@ public:
     /** Perform GBFS auto-discovery based on the given @p url and update the local state as far as necessary. */
     void discoverAndUpdate(const GBFSService &service);
 
+    /** Define which data elements to fetch. */
+    void setRequestedData(std::vector<GBFS::FileType> &&fileTypes);
+
     /** The service that is updated, or which has been discovered. */
     GBFSService service() const;
 
@@ -68,6 +71,7 @@ private:
     void parseVersionData(const QJsonDocument &doc);
     void parseGeofencingZones(const QJsonDocument &doc);
     void finalize();
+    bool shouldFetchFile(GBFS::FileType fileType) const;
 
     enum class State {
         Discover,
@@ -84,6 +88,8 @@ private:
     QJsonDocument m_discoverDoc;
     QJsonDocument m_versionDoc;
     QJsonArray m_feeds;
+
+    std::vector<GBFS::FileType> m_fileTypes;
 
     std::vector<double> m_latitudes;
     std::vector<double> m_longitudes;

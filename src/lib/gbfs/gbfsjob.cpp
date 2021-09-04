@@ -45,6 +45,11 @@ GBFSService GBFSJob::service() const
     return m_service;
 }
 
+void GBFSJob::setRequestedData(std::vector<GBFS::FileType> &&fileTypes)
+{
+    m_fileTypes = std::move(fileTypes);
+}
+
 void GBFSJob::discoverAndUpdate(const GBFSService &service)
 {
     m_service = service;
@@ -144,7 +149,7 @@ void GBFSJob::processFeeds()
             case GBFS::FreeBikeStatus:
             case GBFS::VehicleTypes:
             case GBFS::GeofencingZones:
-                if (state != State::Data) {
+                if (state != State::Data || !shouldFetchFile(type)) {
                     continue;
                 }
                 break;
@@ -412,4 +417,9 @@ void GBFSJob::finalize()
     qDebug() << "bounding box:" << m_service.boundingBox;
     GBFSServiceRepository::store(m_service);
     Q_EMIT finished();
+}
+
+bool GBFSJob::shouldFetchFile(GBFS::FileType fileType) const
+{
+    return m_fileTypes.empty() || std::find(m_fileTypes.begin(), m_fileTypes.end(), fileType) != m_fileTypes.end();
 }
