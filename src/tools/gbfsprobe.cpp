@@ -18,6 +18,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QRectF>
+#include <QTimer>
 
 #include <iostream>
 
@@ -38,6 +39,8 @@ public:
     QNetworkAccessManager m_nam;
     QStringList m_gbfsFeeds;
     int m_currentFeedIdx = -1;
+    int m_throttleTime = 0;
+    QStringList m_throttledFeeds;
 
     std::vector<GBFSService> m_services;
     QString m_outputFileName;
@@ -105,6 +108,7 @@ void GBFSProbe::getFeedList()
         }
 
         qDebug() << "Found" << m_gbfsFeeds.size() << "possible feeds - running discovery on them...";
+        std::random_shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end()); // reduce risk of spamming the same service with too many requests
         discoverNextFeed();
     });
 }
@@ -113,22 +117,34 @@ void GBFSProbe::discoverNextFeed()
 {
     ++m_currentFeedIdx;
     if (m_currentFeedIdx >= m_gbfsFeeds.size()) {
-        writeFeeds();
-        return;
+        if (!m_throttledFeeds.isEmpty()) {
+            qDebug() << "Retrying for" << m_throttledFeeds.size() << "throttled feeds";
+            m_gbfsFeeds = std::move(m_throttledFeeds);
+            std::random_shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end());
+            m_throttledFeeds.clear();
+            m_currentFeedIdx = 0;
+            m_throttleTime = m_throttleTime == 0 ? 500 : (2 * m_throttleTime);
+        } else {
+            writeFeeds();
+            return;
+        }
     }
 
     auto job = new GBFSJob(&m_nam);
     job->setRequestedData({GBFS::StationInformation, GBFS::FreeBikeStatus, GBFS::GeofencingZones}); // everything we can use for the bounding box
     QObject::connect(job, &GBFSJob::finished, this, [job, this]() {
         job->deleteLater();
-        if (job->error() != GBFSJob::NoError) {
+        if (job->error() == GBFSJob::TooManyRequestsError) {
+            m_throttledFeeds.push_back(m_gbfsFeeds[m_currentFeedIdx]);
+            qWarning() << "Scheduling for later:" << m_gbfsFeeds[m_currentFeedIdx] << job->errorMessage();
+        } else if (job->error() != GBFSJob::NoError) {
             qWarning() << m_gbfsFeeds[m_currentFeedIdx] << job->error() << job->errorMessage();
         } else if (job->service().boundingBox.isEmpty()) {
             qWarning() << m_gbfsFeeds[m_currentFeedIdx] << "has an empty bounding box - skipping";
         } else {
             m_services.push_back(job->service());
         }
-        discoverNextFeed();
+        QTimer::singleShot(m_throttleTime, this, &GBFSProbe::discoverNextFeed);
     });
 
     GBFSService service;
