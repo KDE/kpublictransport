@@ -81,6 +81,7 @@ target_sources(KPublicTransport PRIVATE
     gbfs/gbfs.qrc
     gbfs/gbfsbackend.cpp
     gbfs/gbfsjob.cpp
+    gbfs/gbfsreader.cpp
     gbfs/gbfsservice.cpp
     gbfs/gbfsstore.cpp
     gbfs/gbfsvehicletypes.cpp

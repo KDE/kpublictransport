@@ -8,6 +8,7 @@
 #include "gbfsservice.h"
 #include "gbfsstore.h"
 #include "gbfsjob.h"
+#include "gbfsreader.h"
 #include "gbfsvehicletypes.h"
 
 #include <KPublicTransport/Attribution>
@@ -112,8 +113,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     std::vector<QString> selectedStationIds;
     for (const auto &stationV : stations) {
         const auto station = stationV.toObject();
-        const auto lat = station.value(QLatin1String("lat")).toDouble();
-        const auto lon = station.value(QLatin1String("lon")).toDouble();
+        const auto lat = GBFSReader::readLatitude(station);
+        const auto lon = GBFSReader::readLongitude(station);
         if (Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
             continue;
         }
@@ -159,8 +160,8 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         if (bike.value(QLatin1String("is_reserved")).toBool() || bike.value(QLatin1String("is_disabled")).toBool()) {
             continue;
         }
-        const auto lat = bike.value(QLatin1String("lat")).toDouble();
-        const auto lon = bike.value(QLatin1String("lon")).toDouble();
+        const auto lat = GBFSReader::readLatitude(bike);
+        const auto lon = GBFSReader::readLongitude(bike);
         if (Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
             continue;
         }
