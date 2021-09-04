@@ -97,6 +97,9 @@ void GBFSJob::parseDiscoverData()
     if (data.size() == 1) {
         // only one set of feeds
         m_feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
+        if (m_feeds.isEmpty()) { // invalid format for single feeds
+            m_feeds = data.value(QLatin1String("feeds")).toArray();
+        }
     } else if (!data.empty()) {
         const auto localeLangs = QLocale().uiLanguages();
         for (const auto &l : localeLangs) {
