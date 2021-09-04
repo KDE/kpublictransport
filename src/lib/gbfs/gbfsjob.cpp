@@ -206,18 +206,23 @@ void GBFSJob::fetchFinished(QNetworkReply *reply, GBFS::FileType type)
 {
     reply->deleteLater();
     --m_pendingJobs;
+    const auto state = m_state; // can change as part of processing
 
     if (reply->error() != QNetworkReply::NoError) {
-        handleNetworkError(reply);
-        return;
+        // don't consider geofencing_zones failure fatal
+        if (type != GBFS::GeofencingZones) {
+            handleNetworkError(reply);
+            return;
+        } else {
+            qDebug() << reply->url() << reply->errorString();
+        }
+    } else {
+        const auto doc = QJsonDocument::fromJson(reply->readAll());
+        if (m_store.isValid()) {
+            m_store.storeData(type, doc);
+        }
+        parseData(doc, type);
     }
-
-    const auto doc = QJsonDocument::fromJson(reply->readAll());
-    if (m_store.isValid()) {
-        m_store.storeData(type, doc);
-    }
-    const auto state = m_state; // can change as part of processing
-    parseData(doc, type);
 
     if (m_pendingJobs == 0 && state == State::Data) {
         finalize();
