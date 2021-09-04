@@ -447,6 +447,14 @@ void GBFSJob::finalize()
     if (maxLat > minLat && maxLon > minLon) {
         m_service.boundingBox = QRectF(QPointF(minLon, minLat), QPointF(maxLon, maxLat));
     }
+
+    // round bounding box coordinates to stabilize the diff gbfs-feeds.json a bit
+    constexpr const auto COORD_RESOLUTION = 100.0;
+    m_service.boundingBox.setLeft(std::floor(m_service.boundingBox.left() * COORD_RESOLUTION) / COORD_RESOLUTION);
+    m_service.boundingBox.setTop(std::floor(m_service.boundingBox.top() * COORD_RESOLUTION) / COORD_RESOLUTION);
+    m_service.boundingBox.setRight(std::ceil(m_service.boundingBox.right() * COORD_RESOLUTION) / COORD_RESOLUTION);
+    m_service.boundingBox.setBottom(std::ceil(m_service.boundingBox.bottom() * COORD_RESOLUTION) / COORD_RESOLUTION);
+
     qDebug() << "bounding box:" << m_service.boundingBox;
     GBFSServiceRepository::store(m_service);
     Q_EMIT finished();
