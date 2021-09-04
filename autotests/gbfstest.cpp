@@ -32,6 +32,15 @@ private Q_SLOTS:
         QCOMPARE(GBFS::typeForKeyName(u"geofencing_zones_information"), GBFS::Unknown);
     }
 
+    void testGenerateSystemId()
+    {
+        GBFSService service;
+        service.discoveryUrl = QUrl(QStringLiteral("https://mds-global-dud.neuron-mobility.com/gbfs/2/"));
+        QVERIFY(service.systemId.isEmpty());
+        service.generateSystemId();
+        QCOMPARE(service.systemId, QLatin1String("GAFF_F5kMPFE5ZO2iFmAU0AgBcc="));
+    }
+
     void testServiceRepo()
     {
         const auto &services = GBFSServiceRepository::services();

@@ -271,8 +271,10 @@ void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
         Q_EMIT finished();
         return;
     }
-    m_service.systemId = systemId;
-    m_store = GBFSStore(systemId);
+    if (m_service.systemId.isEmpty()) {
+        m_service.systemId = systemId;
+    }
+    m_store = GBFSStore(m_service.systemId);
     m_store.storeData(GBFS::Discovery, m_discoverDoc);
     m_store.storeData(GBFS::SystemInformation, doc);
     if (!m_versionDoc.isEmpty()) {

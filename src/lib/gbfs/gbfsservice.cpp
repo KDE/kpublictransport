@@ -7,6 +7,7 @@
 #include "gbfsservice.h"
 #include "datatypes/json_p.h"
 
+#include <QCryptographicHash>
 #include <QDebug>
 #include <QDirIterator>
 #include <QFile>
@@ -15,6 +16,14 @@
 #include <QStandardPaths>
 
 using namespace KPublicTransport;
+
+void GBFSService::generateSystemId()
+{
+    if (discoveryUrl.isEmpty()) {
+        return;
+    }
+    systemId = QString::fromUtf8(QCryptographicHash::hash(discoveryUrl.toString().toUtf8(), QCryptographicHash::Sha1).toBase64(QByteArray::Base64UrlEncoding));
+}
 
 QJsonObject GBFSService::toJson(const GBFSService &service)
 {

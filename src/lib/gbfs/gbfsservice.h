@@ -20,9 +20,9 @@ class QJsonObject;
 namespace KPublicTransport {
 
 /** A single service offering a GBFS feed.
- *  @internal only exported for testing
+ *  @internal only exported for testing and the feed discovery tool
  */
-class GBFSService
+class KPUBLICTRANSPORT_EXPORT GBFSService
 {
     Q_GADGET
     Q_PROPERTY(QUrl discoveryUrl MEMBER discoveryUrl)
@@ -33,6 +33,11 @@ public:
     QUrl discoveryUrl;
     QString systemId;
     QRectF boundingBox;
+
+    /** Generate a systemId based on the URL.
+     *  This is used for cases of colliding systemIds.
+     */
+    void generateSystemId();
 
     static KPUBLICTRANSPORT_EXPORT QJsonObject toJson(const GBFSService &service);
     static GBFSService fromJson(const QJsonObject &obj);

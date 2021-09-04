@@ -35,6 +35,7 @@ public:
     void start();
     void getFeedList();
     void discoverNextFeed();
+    void checkDuplicateSystemIds();
     void writeFeeds();
 
     QNetworkAccessManager m_nam;
@@ -42,6 +43,7 @@ public:
     int m_currentFeedIdx = -1;
     int m_throttleTime = 0;
     QStringList m_throttledFeeds;
+    bool m_syntheticSystemId = false;
 
     std::vector<GBFSService> m_services;
     QString m_outputFileName;
@@ -126,7 +128,7 @@ void GBFSProbe::discoverNextFeed()
             m_currentFeedIdx = 0;
             m_throttleTime = m_throttleTime == 0 ? 500 : (2 * m_throttleTime);
         } else {
-            writeFeeds();
+            checkDuplicateSystemIds();
             return;
         }
     }
@@ -150,12 +152,50 @@ void GBFSProbe::discoverNextFeed()
 
     GBFSService service;
     service.discoveryUrl = QUrl(m_gbfsFeeds[m_currentFeedIdx]);
+    if (m_syntheticSystemId) {
+        service.generateSystemId();
+    }
     job->discoverAndUpdate(service);
+}
+
+static bool sortBySystemId(const GBFSService &lhs, const GBFSService &rhs)
+{
+    return lhs.systemId < rhs.systemId;
+}
+
+void GBFSProbe::checkDuplicateSystemIds()
+{
+    m_gbfsFeeds.clear();
+
+    std::sort(m_services.begin(), m_services.end(), sortBySystemId);
+    for (auto it = m_services.begin(); it != m_services.end();) {
+        const auto range = std::equal_range(it, m_services.end(), (*it), sortBySystemId);
+        assert(range.first == it);
+        if (std::next(it) == range.second) {
+            it = range.second;
+        } else {
+            for (auto it2 = range.first; it2 != range.second; ++it2) {
+                m_gbfsFeeds.push_back((*it2).discoveryUrl.toString());
+            }
+            it = m_services.erase(range.first, range.second);
+        }
+    }
+
+    if (!m_gbfsFeeds.isEmpty()) {
+        assert(!m_syntheticSystemId);
+        qWarning() << "Feeds with colliding system ids:" << m_gbfsFeeds;
+        m_syntheticSystemId = true;
+        m_currentFeedIdx = -1;
+        m_throttleTime = 0;
+        std::shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end(), std::default_random_engine());
+        discoverNextFeed();
+    } else {
+        writeFeeds();
+    }
 }
 
 void GBFSProbe::writeFeeds()
 {
-    std::sort(m_services.begin(), m_services.end(), [](const auto &lhs, const auto &rhs) { return lhs.systemId < rhs.systemId; });
     QJsonArray array;
     for (const auto &service : m_services) {
         array.push_back(GBFSService::toJson(service));
