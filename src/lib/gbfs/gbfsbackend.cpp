@@ -22,6 +22,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include <cmath>
 #include <functional>
 
 using namespace KPublicTransport;
@@ -115,7 +116,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         const auto station = stationV.toObject();
         const auto lat = GBFSReader::readLatitude(station);
         const auto lon = GBFSReader::readLongitude(station);
-        if (Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
+        if (std::isnan(lat) || std::isnan(lon) || Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
             continue;
         }
         Location loc;
@@ -162,7 +163,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
         const auto lat = GBFSReader::readLatitude(bike);
         const auto lon = GBFSReader::readLongitude(bike);
-        if (Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
+        if (std::isnan(lat) || std::isnan(lon) || Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
             continue;
         }
 
