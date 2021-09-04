@@ -237,7 +237,7 @@ bool GBFSBackend::queryLocation(const LocationRequest &req, LocationReply *reply
             }
 
             if (context->pendingJobs == 0 &&  !context->stillStarting) {
-                if (context->hasError) {
+                if (context->hasError && context->result.empty()) {
                     addError(reply, Reply::NetworkError, context->errorMessage);
                 } else {
                     addResult(reply, std::move(context->result));
