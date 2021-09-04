@@ -21,6 +21,7 @@
 #include <QTimer>
 
 #include <iostream>
+#include <random>
 
 using namespace KPublicTransport;
 
@@ -108,7 +109,7 @@ void GBFSProbe::getFeedList()
         }
 
         qDebug() << "Found" << m_gbfsFeeds.size() << "possible feeds - running discovery on them...";
-        std::random_shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end()); // reduce risk of spamming the same service with too many requests
+        std::shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end(), std::default_random_engine()); // reduce risk of spamming the same service with too many requests
         discoverNextFeed();
     });
 }
@@ -120,7 +121,7 @@ void GBFSProbe::discoverNextFeed()
         if (!m_throttledFeeds.isEmpty()) {
             qDebug() << "Retrying for" << m_throttledFeeds.size() << "throttled feeds";
             m_gbfsFeeds = std::move(m_throttledFeeds);
-            std::random_shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end());
+            std::shuffle(m_gbfsFeeds.begin(), m_gbfsFeeds.end(), std::default_random_engine());
             m_throttledFeeds.clear();
             m_currentFeedIdx = 0;
             m_throttleTime = m_throttleTime == 0 ? 500 : (2 * m_throttleTime);
