@@ -383,15 +383,15 @@ void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
     for (const auto &featureVal : features) {
         const auto geo = featureVal.toObject().value(QLatin1String("geometry")).toObject();
         const auto rect = GeoJson::readOuterPolygon(geo).boundingRect();
-        if (rect.left() < -180.0 || rect.right() > 180.0 || rect.top() < -90.0 || rect.bottom() > 90.0) {
+        if (rect.isNull() || rect.left() < -180.0 || rect.right() > 180.0 || rect.top() < -90.0 || rect.bottom() > 90.0) {
             qDebug() << "invalid geofence box:" << rect;
             continue;
         }
-        if (m_geofenceBoundingBox.isNull()) {
-            m_geofenceBoundingBox = rect;
-        } else {
-            m_geofenceBoundingBox |= rect;
-        }
+        // we need to run this through outlier filtering as well, we got random nonsense elements in a few cities as well
+        m_latitudes.push_back(rect.top());
+        m_latitudes.push_back(rect.bottom());
+        m_longitudes.push_back(rect.left());
+        m_longitudes.push_back(rect.right());
     }
 }
 
@@ -423,7 +423,6 @@ void GBFSJob::finalize()
     if (maxLat > minLat && maxLon > minLon) {
         m_service.boundingBox = QRectF(QPointF(minLon, minLat), QPointF(maxLon, maxLat));
     }
-    m_service.boundingBox |= m_geofenceBoundingBox;
     qDebug() << "bounding box:" << m_service.boundingBox;
     GBFSServiceRepository::store(m_service);
     Q_EMIT finished();

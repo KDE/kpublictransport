@@ -93,7 +93,6 @@ private:
 
     std::vector<double> m_latitudes;
     std::vector<double> m_longitudes;
-    QRectF m_geofenceBoundingBox;
 
     QString m_errorMsg;
     Error m_error = NoError;
