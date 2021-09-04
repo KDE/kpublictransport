@@ -382,7 +382,16 @@ void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
         .value(QLatin1String("features")).toArray();
     for (const auto &featureVal : features) {
         const auto geo = featureVal.toObject().value(QLatin1String("geometry")).toObject();
-        m_geofenceBoundingBox |= GeoJson::readOuterPolygon(geo).boundingRect();
+        const auto rect = GeoJson::readOuterPolygon(geo).boundingRect();
+        if (rect.left() < -180.0 || rect.right() > 180.0 || rect.top() < -90.0 || rect.bottom() > 90.0) {
+            qDebug() << "invalid geofence box:" << rect;
+            continue;
+        }
+        if (m_geofenceBoundingBox.isNull()) {
+            m_geofenceBoundingBox = rect;
+        } else {
+            m_geofenceBoundingBox |= rect;
+        }
     }
 }
 
