@@ -397,6 +397,18 @@ void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
 
 void GBFSJob::finalize()
 {
+    // add a 500m radius for single points
+    if (m_latitudes.size() == 1) {
+        const auto d = 250.0 / Location::distance(m_latitudes.front(), 0.0, m_latitudes.front() + 1.0, 0.0);
+        m_latitudes.push_back(m_latitudes.front() - d);
+        m_latitudes.push_back(m_latitudes.front() + d);
+    }
+    if (m_longitudes.size() == 1 && !m_latitudes.empty()) {
+        const auto d = 250.0 / Location::distance(m_latitudes.front(), m_longitudes.front(), m_latitudes.front(), m_longitudes.front() + 1.0);
+        m_longitudes.push_back(m_longitudes.front() - d);
+        m_longitudes.push_back(m_longitudes.front() + d);
+    }
+
     double minLat = 90.0, maxLat = -90.0, minLon = 180.0, maxLon = -180.0;
     if (!m_latitudes.empty() && !m_longitudes.empty()) {
         std::sort(m_latitudes.begin(), m_latitudes.end());
