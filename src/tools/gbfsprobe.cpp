@@ -138,7 +138,7 @@ void GBFSProbe::discoverNextFeed()
             m_throttledFeeds.push_back(m_gbfsFeeds[m_currentFeedIdx]);
             qWarning() << "Scheduling for later:" << m_gbfsFeeds[m_currentFeedIdx] << job->errorMessage();
         } else if (job->error() != GBFSJob::NoError) {
-            qWarning() << m_gbfsFeeds[m_currentFeedIdx] << job->error() << job->errorMessage();
+            qWarning() << m_gbfsFeeds[m_currentFeedIdx] << job->error() << job->errorMessage() << "- skipping";
         } else if (job->service().boundingBox.isEmpty()) {
             qWarning() << m_gbfsFeeds[m_currentFeedIdx] << "has an empty bounding box - skipping";
         } else {

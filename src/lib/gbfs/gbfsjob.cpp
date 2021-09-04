@@ -96,7 +96,6 @@ void GBFSJob::parseDiscoverData()
     // pick the feeds with the best language for our current locale
     if (data.size() == 1) {
         // only one set of feeds
-        qDebug() << "only one set of feeds found";
         m_feeds = data.begin().value().toObject().value(QLatin1String("feeds")).toArray();
     } else if (!data.empty()) {
         const auto localeLangs = QLocale().uiLanguages();
@@ -177,7 +176,6 @@ void GBFSJob::processFeeds()
             connect(reply, &QNetworkReply::finished, this, [this, reply, type]() { fetchFinished(reply, type); });
             ++m_pendingJobs;
         } else {
-            qDebug() << "reusing cached" << name;
             parseData(m_store.loadData(type), type);
         }
         proccedAtLeastOneFeed = true;
@@ -427,14 +425,12 @@ void GBFSJob::finalize()
 
         // covered area is reasonable, take as-is
         if (Location::distance(m_latitudes.front(), m_longitudes.front(), m_latitudes.back(), m_longitudes.back()) <= 50'000) {
-            qDebug() << "coordinates look plausible, skipping outlier filter";
             minLat = m_latitudes.front();
             minLon = m_longitudes.front();
             maxLat = m_latitudes.back();
             maxLon = m_longitudes.back();
         } else {
             // try to filter out outliers
-            qDebug() << "performing outlier filtering";
             filterOutliers(m_latitudes, minLat, maxLat, [](auto lat1, auto lat2) { return Location::distance(lat1, 0.0, lat2, 0.0); });
             filterOutliers(m_longitudes, minLon, maxLon, [&](auto lon1, auto lon2) {
                 const auto lat = (maxLat - minLat) / 2.0;
