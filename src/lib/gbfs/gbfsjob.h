@@ -84,6 +84,7 @@ private:
 
     QNetworkAccessManager *m_nam = nullptr;
     GBFSService m_service;
+    QUrl m_previousDiscoveryUrl;
     GBFSStore m_store;
     QJsonDocument m_discoverDoc;
     QJsonDocument m_versionDoc;

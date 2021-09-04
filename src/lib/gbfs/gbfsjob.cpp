@@ -74,11 +74,16 @@ void GBFSJob::discoverFinished(QNetworkReply *reply)
 {
     reply->deleteLater();
     if (reply->error() != QNetworkReply::NoError) {
-        handleNetworkError(reply);
-        return;
+        if (m_previousDiscoveryUrl.isValid()) {
+            qDebug() << "new version discovery failed, falling back to old one" <<  reply->errorString();
+            m_service.discoveryUrl = m_previousDiscoveryUrl;
+        } else {
+            handleNetworkError(reply);
+            return;
+        }
+    } else {
+        m_discoverDoc = QJsonDocument::fromJson(reply->readAll());
     }
-
-    m_discoverDoc = QJsonDocument::fromJson(reply->readAll());
     parseDiscoverData();
 }
 
@@ -366,6 +371,7 @@ void GBFSJob::parseVersionData(const QJsonDocument &doc)
     const auto url = QUrl(bestVersion.value(QLatin1String("url")).toString());
     if (!url.isEmpty() && m_service.discoveryUrl != url) {
         qDebug() << "found newer version:" << url << m_service.discoveryUrl;
+        m_previousDiscoveryUrl = m_service.discoveryUrl;
         m_service.discoveryUrl = url;
         m_state = State::DiscoverRestart;
         discoverAndUpdate(m_service);
