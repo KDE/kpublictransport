@@ -74,7 +74,9 @@ static RentalVehicle::VehicleType gbfs2kptVehicleType(const GBFSVehicleType &veh
         { GBFSVehicleType::Bicycle, GBFSVehicleType::ElectricAssist, RentalVehicle::Pedelec },
         { GBFSVehicleType::Scooter, GBFSVehicleType::Electric, RentalVehicle::ElectricKickScooter },
         { GBFSVehicleType::Scooter, GBFSVehicleType::ElectricAssist, RentalVehicle::ElectricKickScooter },
+        { GBFSVehicleType::Scooter, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::ElectricKickScooter },
         { GBFSVehicleType::Moped, GBFSVehicleType::Electric, RentalVehicle::ElectricMoped },
+        { GBFSVehicleType::Moped, GBFSVehicleType::UndefinedPropulsion, RentalVehicle::ElectricMoped },
         { GBFSVehicleType::Car, GBFSVehicleType::Electric, RentalVehicle::Car },
         { GBFSVehicleType::Car, GBFSVehicleType::Combustion, RentalVehicle::Car },
     };
@@ -190,7 +192,12 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         // TODO remaining range, deep rental links
         RentalVehicle vehicle;
         vehicle.setNetwork(network);
-        const auto vehicleType = vehicleTypes.vehicleType(bike.value(QLatin1String("vehicle_type_id")).toString());
+
+        auto vehicleTypeId = bike.value(QLatin1String("vehicle_type_id")).toString();
+        if (vehicleTypeId.isEmpty()) { // non-compliant format used eg. by Lime
+            vehicleTypeId = bike.value(QLatin1String("vehicle_type")).toString();
+        }
+        const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
         vehicle.setType(gbfs2kptVehicleType(vehicleType));
         loc.setData(vehicle);
 

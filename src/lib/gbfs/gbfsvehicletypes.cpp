@@ -63,6 +63,20 @@ static T lookupValue(const value_map_entry<T>(&map)[N], QStringView name)
     return {};
 }
 
+// some services don't prove a vehicle_types file but use somewhat descriptive fixed values
+// try to support that as well to the extend possible
+struct fallback_entry {
+    GBFSVehicleType::FormFactor formFactor;
+    GBFSVehicleType::PropulsionType propulsionType;
+};
+static constexpr const value_map_entry<fallback_entry> fallback_type_map[] = {
+    { "bike", { GBFSVehicleType::Bicycle, GBFSVehicleType::Human } },
+    { "moped", { GBFSVehicleType::Moped, GBFSVehicleType::UndefinedPropulsion } },
+    { "scooter", { GBFSVehicleType::Scooter, GBFSVehicleType::UndefinedPropulsion } },
+    { "ebike", { GBFSVehicleType::Bicycle, GBFSVehicleType::ElectricAssist } },
+    { "electric_moped", { GBFSVehicleType::Moped, GBFSVehicleType::Electric } },
+};
+
 GBFSVehicleType GBFSVehicleType::fromJson(const QJsonObject &obj)
 {
     GBFSVehicleType v;
@@ -94,9 +108,27 @@ GBFSVehicleTypes::~GBFSVehicleTypes() = default;
 
 GBFSVehicleType GBFSVehicleTypes::vehicleType(QStringView typeId) const
 {
+    if (typeId.empty()) {
+        return {};
+    }
+
     const auto it = std::lower_bound(m_vehicleTypes.begin(), m_vehicleTypes.end(), typeId);
     if (it != m_vehicleTypes.end() && (*it).typeId == typeId) {
         return (*it);
     }
+
+    // fallback for non-compliant services without vehicle_types file
+    if (m_vehicleTypes.empty()) {
+        for (const auto &val : fallback_type_map) {
+            if (QLatin1String(val.name) == typeId) {
+                GBFSVehicleType v;
+                v.formFactor = val.value.formFactor;
+                v.propulsionType = val.value.propulsionType;
+                return v;
+            }
+        }
+        qDebug() << "unknown fallback vehicle type:" << typeId;
+    }
+
     return {};
 }
