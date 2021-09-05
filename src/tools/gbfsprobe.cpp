@@ -181,9 +181,8 @@ void GBFSProbe::checkDuplicateSystemIds()
         }
     }
 
-    if (!m_gbfsFeeds.isEmpty()) {
-        assert(!m_syntheticSystemId);
-        qWarning() << "Feeds with colliding system ids:" << m_gbfsFeeds;
+    qWarning() << "Feeds with colliding system ids:" << m_gbfsFeeds.size() << m_gbfsFeeds;
+    if (!m_gbfsFeeds.isEmpty() && !m_syntheticSystemId) {
         m_syntheticSystemId = true;
         m_currentFeedIdx = -1;
         m_throttleTime = 0;
