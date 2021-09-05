@@ -34,7 +34,6 @@ public:
         Bicycle = 1, ///< human-powered bicylce
         Pedelec = 2, ///< bicycle with electric assistance
         ElectricKickScooter = 4, ///< "e scooter", electrically assisted kick scooters, not to be confused with motorcycle-like scooters
-        ElectricScooter [[deprecated("use ElectricKickScooter")]] = ElectricKickScooter,
         ElectricMoped = 8, ///< motorcycle-like electric scooters
         Car = 16, ///< electrical- or combustion-powered car
     };
