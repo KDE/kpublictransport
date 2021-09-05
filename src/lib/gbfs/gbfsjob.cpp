@@ -350,11 +350,11 @@ void GBFSJob::collectCoordinates(const QJsonArray &array)
     for (const auto &statVal : array) {
         const auto station = statVal.toObject();
         const auto lat = GBFSReader::readLatitude(station);
-        if (!std::isnan(lat) && lat >= -90.0 && lat <= 90.0 && lat != 0.0) {
+        if (!std::isnan(lat) && lat >= -90.0 && lat <= 90.0 && std::abs(lat) > 0.001) {
             m_latitudes.push_back(lat);
         }
         const auto lon = GBFSReader::readLongitude(station);
-        if (!std::isnan(lon) && lon >= -180.0 && lon <= 180.0 && lon != 0.0) {
+        if (!std::isnan(lon) && lon >= -180.0 && lon <= 180.0 && std::abs(lon) > 0.001) {
             m_longitudes.push_back(lon);
         }
     }
