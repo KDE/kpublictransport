@@ -22,7 +22,7 @@ namespace LineUtil
     bool isSameLineNameFuzzy(const QString &lhs, const QString &rhs);
     bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs);
     void applyMetaData(Line &line, const Location &loc, bool download);
-    KPUBLICTRANSPORT_EXPORT void setMetaData(Line &line, LineMetaData metaData);
+    KPUBLICTRANSPORT_EXPORT void setMetaData(Line &line, const LineMetaData &metaData);
 }
 
 }

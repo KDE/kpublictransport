@@ -50,7 +50,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + (m_stopfinderRequestCommand.isEmpty() ? QLatin1String("XML_STOPFINDER_REQUEST") : m_stopfinderRequestCommand));
+    url.setPath(url.path() + (m_stopfinderRequestCommand.isEmpty() ? QStringLiteral("XML_STOPFINDER_REQUEST") : m_stopfinderRequestCommand));
 
     auto query = commonQuery();
     query.addQueryItem(QStringLiteral("locationServerActive"), QStringLiteral("1"));
@@ -101,7 +101,7 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + (m_dmRequestCommand.isEmpty() ? QLatin1String("XML_DM_REQUEST") : m_dmRequestCommand));
+    url.setPath(url.path() + (m_dmRequestCommand.isEmpty() ? QStringLiteral("XML_DM_REQUEST") : m_dmRequestCommand));
 
     QDateTime dt = request.dateTime();
     if (timeZone().isValid()) {
@@ -185,7 +185,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     }
 
     QUrl url(m_endpoint);
-    url.setPath(url.path() + (m_tripRequestCommand.isEmpty() ? QLatin1String("XML_TRIP_REQUEST2") : m_tripRequestCommand));
+    url.setPath(url.path() + (m_tripRequestCommand.isEmpty() ? QStringLiteral("XML_TRIP_REQUEST2") : m_tripRequestCommand));
 
     const auto ctx = requestContextData(request).value<EfaRequestContext>();
     auto query = commonQuery();

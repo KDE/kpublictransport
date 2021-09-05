@@ -198,8 +198,8 @@ std::vector<Stopover> EfaCompactParser::parseDmResponse(const QByteArray &data)
     while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("pas")) {
             const auto pas = parseKeyValueList(reader.subReader(), QLatin1String("pa"), QLatin1String("n"), QLatin1String("v"));
-            m_requestContext.sessionId = pas.value(QLatin1String("sessionID"));
-            m_requestContext.requestId = pas.value(QLatin1String("requestID"));
+            m_requestContext.sessionId = pas.value(QStringLiteral("sessionID"));
+            m_requestContext.requestId = pas.value(QStringLiteral("requestID"));
         } else if (reader.name() == QLatin1String("dp")) {
             res.push_back(parseCompactDp(reader.subReader()));
         }
@@ -414,8 +414,8 @@ std::vector<Journey> EfaCompactParser::parseTripResponse(const QByteArray &data)
     while (reader.readNextElement()) {
         if (reader.name() == QLatin1String("pas")) {
             const auto pas = parseKeyValueList(reader.subReader(), QLatin1String("pa"), QLatin1String("n"), QLatin1String("v"));
-            m_requestContext.sessionId = pas.value(QLatin1String("sessionID"));
-            m_requestContext.requestId = pas.value(QLatin1String("requestID"));
+            m_requestContext.sessionId = pas.value(QStringLiteral("sessionID"));
+            m_requestContext.requestId = pas.value(QStringLiteral("requestID"));
         } else if (reader.name() == QLatin1String("tp")) {
             res.push_back(parseCompactTp(reader.subReader()));
         }

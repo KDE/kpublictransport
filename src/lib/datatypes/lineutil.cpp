@@ -60,7 +60,7 @@ void LineUtil::applyMetaData(Line &line, const Location &loc, bool download)
     }
 }
 
-void LineUtil::setMetaData(Line& line, LineMetaData metaData)
+void LineUtil::setMetaData(Line& line, const LineMetaData &metaData)
 {
     line.setMetaData(metaData);
 }

@@ -488,7 +488,7 @@ std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionLis
                     desc.niveau = elemReader.readElementText().toInt();
                 } else if (elemReader.name() == QLatin1String("genAttrList")) {
                     const auto attrs = parseGenericAttributeList(elemReader.subReader());
-                    const auto indoorType = attrs.value(QLatin1String("INDOOR_TYPE"));
+                    const auto indoorType = attrs.value(QStringLiteral("INDOOR_TYPE"));
                     if (indoorType == QLatin1String("STAIRS")) {
                         desc.maneuver = PathSection::Stairs;
                     } else if (indoorType == QLatin1String("LIFT")) {

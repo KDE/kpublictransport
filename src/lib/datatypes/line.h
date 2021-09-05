@@ -16,7 +16,7 @@ class Line;
 class LinePrivate;
 class LineMetaData;
 namespace LineUtil{
-KPUBLICTRANSPORT_EXPORT void setMetaData(Line&, LineMetaData);
+KPUBLICTRANSPORT_EXPORT void setMetaData(Line&, const LineMetaData&);
 }
 
 /** A public transport line. */
@@ -110,7 +110,7 @@ public:
     static Line fromJson(const QJsonObject &obj);
 
 private:
-    friend void LineUtil::setMetaData(Line&, LineMetaData);
+    friend void LineUtil::setMetaData(Line&, const LineMetaData&);
     void setMetaData(const LineMetaData &metaData);
 };
 

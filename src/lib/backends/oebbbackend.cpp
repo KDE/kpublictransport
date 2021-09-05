@@ -20,7 +20,7 @@ using namespace KPublicTransport;
 
 bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
-    const auto ibnr = request.stopover().stopPoint().identifier(QLatin1String("ibnr"));
+    const auto ibnr = request.stopover().stopPoint().identifier(QStringLiteral("ibnr"));
     if (ibnr.size() != 7) {
         return false;
     }

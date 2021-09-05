@@ -61,7 +61,7 @@ private Q_SLOTS:
         QCOMPARE(entry.data[0].latitude(), 7.6f);
         QCOMPARE(entry.data[0].longitude(), 46.1f);
         QCOMPARE(entry.data[0].identifiers().size(), 1);
-        QCOMPARE(entry.data[0].identifier(QLatin1String("uic")), QLatin1String("85xxxxx"));
+        QCOMPARE(entry.data[0].identifier(QStringLiteral("uic")), QLatin1String("85xxxxx"));
         QCOMPARE(entry.data[0].timeZone().isValid(), false);
         QCOMPARE(entry.attributions.size(), 1);
         QCOMPARE(entry.attributions[0].name(), QLatin1String("KDE"));
