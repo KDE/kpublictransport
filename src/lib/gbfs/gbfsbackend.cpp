@@ -132,8 +132,13 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         RentalVehicleStation s;
         s.setNetwork(network);
         s.setCapacity(station.value(QLatin1String("capacity")).toInt(-1));
-        loc.setData(s);
+        const auto vehicleCapacities = station.value(QLatin1String("vehicle_capacity")).toObject();
+        for (auto it = vehicleCapacities.begin(); it != vehicleCapacities.end(); ++it) {
+            const auto type = gbfs2kptVehicleType(vehicleTypes.vehicleType(it.key()));
+            s.setCapacity(type, it.value().toInt(-1));
+        }
 
+        loc.setData(s);
         selectedStationIds.push_back(stationId);
         context->result.push_back(loc);
     }
@@ -150,7 +155,15 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
         auto &loc = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
         auto s = loc.rentalVehicleStation();
+
         s.setAvailableVehicles(stat.value(QLatin1String("num_bikes_available")).toInt(-1));
+        const auto availableVehicleTypes = stat.value(QLatin1String("vehicle_types_available")).toArray();
+        for (const auto &v : availableVehicleTypes) {
+            const auto obj = v.toObject();
+            const auto type = gbfs2kptVehicleType(vehicleTypes.vehicleType(obj.value(QLatin1String("vehicle_type_id")).toString()));
+            s.setAvailableVehicles(type, obj.value(QLatin1String("count")).toInt(-1));
+        }
+
         loc.setData(s);
     }
 

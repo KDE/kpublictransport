@@ -8,6 +8,8 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 
+#include <QMetaEnum>
+
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -24,6 +26,8 @@ public:
     int availableVehicles = -1;
     int capacity = -1;
     RentalVehicleNetwork network;
+    std::vector<int> capacities;
+    std::vector<int> availabilities;
 };
 
 class RentalVehiclePrivate : public QSharedData
@@ -69,9 +73,73 @@ bool RentalVehicleStation::isValid() const
     return d->network.isValid() || d->capacity >= 0 || d->availableVehicles >= 0;
 }
 
+int RentalVehicleStation::capacity(RentalVehicle::VehicleType type) const
+{
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount() && i < (int)d->capacities.size(); ++i) {
+        if (me.value(i) == type) {
+            return d->capacities[i];
+        }
+    }
+    return -1;
+}
+
+void RentalVehicleStation::setCapacity(RentalVehicle::VehicleType type, int capacity)
+{
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount(); ++i) {
+        if (me.value(i) != type) {
+            continue;
+        }
+        d->capacities.resize(std::max(d->capacities.size(), (std::size_t)(i + 1)), -1);
+        d->capacities[i] = capacity;
+        return;
+    }
+}
+
+int RentalVehicleStation::availableVehicles(RentalVehicle::VehicleType type) const
+{
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount() && i < (int)d->availabilities.size(); ++i) {
+        if (me.value(i) == type) {
+            return d->availabilities[i];
+        }
+    }
+    return -1;
+}
+
+void RentalVehicleStation::setAvailableVehicles(RentalVehicle::VehicleType type, int count)
+{
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount(); ++i) {
+        if (me.value(i) != type) {
+            continue;
+        }
+        d->availabilities.resize(std::max(d->availabilities.size(), (std::size_t)(i + 1)), -1);
+        d->availabilities[i] = count;
+        return;
+    }
+}
+
 bool RentalVehicleStation::isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs)
 {
     return RentalVehicleNetwork::isSame(lhs.network(), rhs.network());
+}
+
+static QJsonValue typeVectorToJson(const std::vector<int> &v)
+{
+    if (v.empty()) {
+        return {};
+    }
+    QJsonObject obj;
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount() && i < (int)v.size(); ++i) {
+        if (v[i] < 0) {
+            continue;
+        }
+        obj.insert(QLatin1String(me.key(i)), v[i]);
+    }
+    return obj.isEmpty() ? QJsonValue() : obj;
 }
 
 QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
@@ -80,13 +148,44 @@ QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
     if (station.network().isValid()) {
         obj.insert(QStringLiteral("network"), RentalVehicleNetwork::toJson(station.network()));
     }
+    auto v = typeVectorToJson(station.d->capacities);
+    if (v.isObject()) {
+        obj.insert(QLatin1String("capacitiesByType"), v);
+    }
+    v = typeVectorToJson(station.d->availabilities);
+    if (v.isObject()) {
+        obj.insert(QLatin1String("availabilitiesByType"), v);
+    }
     return obj;
+}
+
+static std::vector<int> typeVectorFromJson(const QJsonValue &v)
+{
+    std::vector<int> out;
+    const auto obj = v.toObject();
+    if (obj.isEmpty()) {
+        return out;
+    }
+
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount(); ++i) {
+        const auto it = obj.find(QLatin1String(me.key(i)));
+        if (it == obj.end()) {
+            continue;
+        }
+        out.resize(i + 1, -1);
+        out[i] = it.value().toInt();
+    }
+
+    return out;
 }
 
 RentalVehicleStation RentalVehicleStation::fromJson(const QJsonObject &obj)
 {
     auto station = Json::fromJson<RentalVehicleStation>(obj);
     station.setNetwork(RentalVehicleNetwork::fromJson(obj.value(QLatin1String("network")).toObject()));
+    station.d->capacities = typeVectorFromJson(obj.value(QLatin1String("capacitiesByType")));
+    station.d->availabilities = typeVectorFromJson(obj.value(QLatin1String("availabilitiesByType")));
     return station;
 }
 

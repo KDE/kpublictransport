@@ -12,42 +12,6 @@
 namespace KPublicTransport {
 
 class RentalVehicleNetwork;
-class RentalVehicleStationPrivate;
-
-/** Additional information for a vehicle renting station, attached to Location objects.
- *  This is typically needed for dock-based bike sharing systems.
- *
- *  @see https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_informationjson
- *  @see https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson
- */
-class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
-{
-    KPUBLICTRANSPORT_GADGET(RentalVehicleStation)
-    /** Number of available (rentable) vehicles at this station. */
-    KPUBLICTRANSPORT_PROPERTY(int, availableVehicles, setAvailableVehicles)
-    /** Number of dock positions at this station.
-     *  If capacity == availableVehicles no vehicles can be returned at this station.
-     */
-    KPUBLICTRANSPORT_PROPERTY(int, capacity, setCapacity)
-
-    /** Sharing network operator. */
-    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
-
-    /** Not an empty/default constructed object. */
-    Q_PROPERTY(bool isValid READ isValid)
-
-public:
-    bool isValid() const;
-
-    /** Checks if two instances refer to the same station. */
-    static bool isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
-
-    /** Serializes one object to JSON. */
-    static QJsonObject toJson(const RentalVehicleStation &station);
-    /** Deserialize an object from JSON. */
-    static RentalVehicleStation fromJson(const QJsonObject &obj);
-};
-
 class RentalVehiclePrivate;
 
 /** An individual rental vehicle used on a JourneySection, ie. a vehicle you don't own yourself but have to drive yourself.
@@ -92,6 +56,52 @@ public:
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(RentalVehicle::VehicleTypes)
+
+class RentalVehicleStationPrivate;
+
+/** Additional information for a vehicle renting station, attached to Location objects.
+ *  This is typically needed for dock-based bike sharing systems.
+ *
+ *  @see https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_informationjson
+ *  @see https://github.com/NABSA/gbfs/blob/master/gbfs.md#station_statusjson
+ */
+class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
+{
+    KPUBLICTRANSPORT_GADGET(RentalVehicleStation)
+    /** Number of available (rentable) vehicles at this station. */
+    KPUBLICTRANSPORT_PROPERTY(int, availableVehicles, setAvailableVehicles)
+    /** Number of dock positions at this station.
+     *  If capacity == availableVehicles no vehicles can be returned at this station.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, capacity, setCapacity)
+
+    /** Sharing network operator. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
+
+    /** Not an empty/default constructed object. */
+    Q_PROPERTY(bool isValid READ isValid)
+
+public:
+    bool isValid() const;
+
+    /** Capacity for a given vehicle type. */
+    Q_INVOKABLE int capacity(KPublicTransport::RentalVehicle::VehicleType type) const;
+    /** Set the capacity for a specific vehicle type. */
+    void setCapacity(RentalVehicle::VehicleType type, int capacity);
+
+    /** Available vehicles for a given vehicle type. */
+    Q_INVOKABLE int availableVehicles(KPublicTransport::RentalVehicle::VehicleType type) const;
+    /** Sets the number of available vehicles for a given vehicle type. */
+    void setAvailableVehicles(RentalVehicle::VehicleType type, int count);
+
+    /** Checks if two instances refer to the same station. */
+    static bool isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
+
+    /** Serializes one object to JSON. */
+    static QJsonObject toJson(const RentalVehicleStation &station);
+    /** Deserialize an object from JSON. */
+    static RentalVehicleStation fromJson(const QJsonObject &obj);
+};
 
 class RentalVehicleNetworkPrivate;
 
