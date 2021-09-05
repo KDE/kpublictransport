@@ -5,10 +5,12 @@
 */
 
 #include "gbfsstore.h"
+#include "logging.h"
 
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
 #include <QJsonDocument>
@@ -97,9 +99,29 @@ QJsonDocument GBFSStore::loadData(GBFS::FileType type) const
     return QJsonDocument::fromJson(f.readAll());
 }
 
+static void expireRecursive(const QString &path)
+{
+    const auto now = QDateTime::currentDateTime();
+    QDirIterator it(path, QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+    while (it.hasNext()) {
+        it.next();
+
+        if (it.fileInfo().isDir()) {
+            expireRecursive(it.filePath());
+            if (QDir(it.filePath()).isEmpty()) {
+                qCDebug(Log) << "removing empty cache directory" << it.fileName();
+                QDir(path).rmdir(it.filePath());
+            }
+        } else if (it.fileInfo().lastModified() < now) {
+            qCDebug(Log) << "removing expired cache entry" << it.filePath();
+            QDir(path).remove(it.filePath());
+        }
+    }
+}
+
 void GBFSStore::expire()
 {
-    // TODO
+    expireRecursive(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/gbfs/feeds/"));
 }
 
 QString GBFSStore::fileName(GBFS::FileType type) const

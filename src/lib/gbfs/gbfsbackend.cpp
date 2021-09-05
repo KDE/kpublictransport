@@ -17,17 +17,23 @@
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/RentalVehicle>
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QTimer>
 
 #include <cmath>
 #include <functional>
 
 using namespace KPublicTransport;
 
-GBFSBackend::GBFSBackend() = default;
+GBFSBackend::GBFSBackend()
+{
+    QTimer::singleShot(std::chrono::seconds(10), Qt::CoarseTimer, QCoreApplication::instance(), []() { GBFSStore::expire(); });
+}
+
 GBFSBackend::~GBFSBackend() = default;
 
 AbstractBackend::Capabilities GBFSBackend::capabilities() const
