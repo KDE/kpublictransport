@@ -7,6 +7,7 @@
 #include "gbfsvehicletypes.h"
 
 #include "gbfs.h"
+#include "gbfsreader.h"
 #include "gbfsservice.h"
 #include "gbfsstore.h"
 
@@ -75,7 +76,7 @@ GBFSVehicleTypes::GBFSVehicleTypes(const GBFSService &feed)
 {
     GBFSStore store(feed.systemId);
     const auto doc = store.loadData(GBFS::VehicleTypes);
-    const auto types = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("vehicle_types")).toArray();
+    const auto types = GBFSReader::dataValue(doc, QLatin1String("vehicle_types")).toArray();
 
     m_vehicleTypes.reserve(types.size());
     for (const auto &typeVal : types) {

@@ -105,11 +105,11 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
 
     RentalVehicleNetwork network;
     const auto sysInfoDoc = store.loadData(GBFS::SystemInformation);
-    const auto sysInfo = sysInfoDoc.object().value(QLatin1String("data")).toObject();
+    const auto sysInfo = GBFSReader::dataObject(sysInfoDoc);
     network.setName(sysInfo.value(QLatin1String("name")).toString());
 
     const auto stationsDoc = store.loadData(GBFS::StationInformation);
-    const auto stations = stationsDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
+    const auto stations = GBFSReader::dataValue(stationsDoc, QLatin1String("stations")).toArray();
 
     std::vector<QString> selectedStationIds;
     for (const auto &stationV : stations) {
@@ -139,7 +139,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     }
 
     const auto statusDoc = store.loadData(GBFS::StationStatus);
-    const auto status = statusDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
+    const auto status = GBFSReader::dataValue(statusDoc, QLatin1String("stations")).toArray();
     for (const auto &statV : status) {
         const auto stat = statV.toObject();
         const auto id = stationIdToString(stat.value(QLatin1String("station_id")));
@@ -155,7 +155,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
     }
 
     const auto floatingDoc = store.loadData(GBFS::FreeBikeStatus);
-    const auto floating = floatingDoc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
+    const auto floating = GBFSReader::dataValue(floatingDoc, QLatin1String("bikes")).toArray();
     for (const auto &bikeV : floating) {
         const auto bike = bikeV.toObject();
         if (bike.value(QLatin1String("is_reserved")).toBool() || bike.value(QLatin1String("is_disabled")).toBool()) {

@@ -263,8 +263,7 @@ void GBFSJob::parseData(const QJsonDocument &doc, GBFS::FileType type)
 
 void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
 {
-    const auto data = doc.object().value(QLatin1String("data")).toObject();
-    const auto systemId = data.value(QLatin1String("system_id")).toString();
+    const auto systemId = GBFSReader::dataValue(doc, QLatin1String("system_id")).toString();
     if (systemId.isEmpty()) {
         m_error = DataError;
         m_errorMsg = QStringLiteral("unable to determine system_id!");
@@ -287,14 +286,14 @@ void GBFSJob::parseSystemInformation(const QJsonDocument &doc)
 
 void GBFSJob::parseStationInformation(const QJsonDocument &doc)
 {
-    const auto stations = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("stations")).toArray();
+    const auto stations = GBFSReader::dataValue(doc, QLatin1String("stations")).toArray();
     collectCoordinates(stations);
     qDebug() << stations.size() << "stations/docks";
 }
 
 void GBFSJob::parseFreeBikeStatus(const QJsonDocument &doc)
 {
-    const auto bikes = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("bikes")).toArray();
+    const auto bikes = GBFSReader::dataValue(doc, QLatin1String("bikes")).toArray();
     collectCoordinates(bikes);
     qDebug() << bikes.size() << "free floating vehicles";
 }
@@ -364,7 +363,7 @@ void GBFSJob::collectCoordinates(const QJsonArray &array)
 void GBFSJob::parseVersionData(const QJsonDocument &doc)
 {
     m_versionDoc = doc;
-    const auto versions = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("versions")).toArray();
+    const auto versions = GBFSReader::dataValue(doc, QLatin1String("versions")).toArray();
     QJsonObject bestVersion;
     for (const auto &verVal : versions) {
         const auto version = verVal.toObject();
@@ -391,8 +390,7 @@ void GBFSJob::parseVersionData(const QJsonDocument &doc)
 
 void GBFSJob::parseGeofencingZones(const QJsonDocument &doc)
 {
-    const auto features = doc.object().value(QLatin1String("data")).toObject()
-        .value(QLatin1String("geofencing_zones")).toObject()
+    const auto features = GBFSReader::dataValue(doc, QLatin1String("geofencing_zones")).toObject()
         .value(QLatin1String("features")).toArray();
     for (const auto &featureVal : features) {
         const auto geo = featureVal.toObject().value(QLatin1String("geometry")).toObject();

@@ -6,6 +6,7 @@
 
 #include "gbfsreader.h"
 
+#include <QJsonDocument>
 #include <QJsonObject>
 
 #include <cmath>
@@ -33,4 +34,19 @@ double GBFSReader::readLatitude(const QJsonObject &obj)
 double GBFSReader::readLongitude(const QJsonObject &obj)
 {
     return readDouble(obj.value(QLatin1String("lon")));
+}
+
+QJsonObject GBFSReader::dataObject(const QJsonDocument &doc)
+{
+    const auto obj = doc.object();
+    const auto it = obj.find(QLatin1String("data"));
+    if (it == obj.end() || !(*it).isObject()) {
+        return obj;
+    }
+    return (*it).toObject();
+}
+
+QJsonValue GBFSReader::dataValue(const QJsonDocument &doc, QLatin1String name)
+{
+    return dataObject(doc).value(name);
 }
