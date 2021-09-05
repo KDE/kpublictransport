@@ -74,13 +74,18 @@ Kirigami.ApplicationWindow {
 
     function vehicleTypeIcon(type)
     {
-        switch (type) {
-            case RentalVehicle.ElectricKickScooter: return "🛴";
-            case RentalVehicle.ElectricMoped: return "🛵";
-            case RentalVehicle.Car: return "🚗";
-            case RentalVehicle.Pedelec: return "⚡🚲";
-        }
-        return "🚲";
+        var s = "";
+        if (type & RentalVehicle.Bicycle)
+            s += "🚲";
+        if (type & RentalVehicle.ElectricKickScooter)
+            s += "🛴";
+        if (type & RentalVehicle.ElectricMoped)
+            s += "🛵";
+        if (type & RentalVehicle.Car)
+            s += "🚗";
+        if (type & RentalVehicle.Pedelec)
+            s += "⚡🚲";
+        return s ? s : "🚲";
     }
 
     Component {
@@ -106,7 +111,7 @@ Kirigami.ApplicationWindow {
                         switch (location.type) {
                             case Location.Stop: return "🚏 " + location.name;
                             case Location.RentedVehicleStation:
-                                return '🚏' + vehicleTypeIcon(location.rentalVehicleStation.network.vehicleTypes) + ' ' + location.name;
+                                return '🚏' + vehicleTypeIcon(location.rentalVehicleStation.supportedVehicleTypes) + ' ' + location.name;
                             case Location.RentedVehicle:
                                 return vehicleTypeIcon(location.rentalVehicle.type) + ' ' + location.name;
                             case Location.Equipment:

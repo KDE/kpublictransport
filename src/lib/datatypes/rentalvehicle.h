@@ -81,8 +81,15 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     /** Not an empty/default constructed object. */
     Q_PROPERTY(bool isValid READ isValid)
 
+    /** Supported vehicle types at this station. */
+    Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes supportedVehicleTypes READ supportedVehicleTypes STORED false)
+    /** Available vehicle types at this station. */
+    Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes availableVehicleTypes READ availableVehicleTypes STORED false)
+
 public:
     bool isValid() const;
+    RentalVehicle::VehicleTypes supportedVehicleTypes() const;
+    RentalVehicle::VehicleTypes availableVehicleTypes() const;
 
     /** Capacity for a given vehicle type. */
     Q_INVOKABLE int capacity(KPublicTransport::RentalVehicle::VehicleType type) const;

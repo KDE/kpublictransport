@@ -73,6 +73,30 @@ bool RentalVehicleStation::isValid() const
     return d->network.isValid() || d->capacity >= 0 || d->availableVehicles >= 0;
 }
 
+RentalVehicle::VehicleTypes RentalVehicleStation::supportedVehicleTypes() const
+{
+    RentalVehicle::VehicleTypes types = {};
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount() && i < (int)d->capacities.size(); ++i) {
+        if (d->capacities[i] >= 0) {
+            types |= (RentalVehicle::VehicleType)me.value(i);
+        }
+    }
+    return types | availableVehicleTypes();
+}
+
+RentalVehicle::VehicleTypes KPublicTransport::RentalVehicleStation::availableVehicleTypes() const
+{
+    RentalVehicle::VehicleTypes types = {};
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount() && i < (int)d->availabilities.size(); ++i) {
+        if (d->availabilities[i] >= 0) {
+            types |= (RentalVehicle::VehicleType)me.value(i);
+        }
+    }
+    return types;
+}
+
 int RentalVehicleStation::capacity(RentalVehicle::VehicleType type) const
 {
     const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
