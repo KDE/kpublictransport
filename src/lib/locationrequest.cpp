@@ -9,6 +9,9 @@
 #include "datatypes/json_p.h"
 #include "datatypes/locationutil_p.h"
 
+#include <QCryptographicHash>
+#include <QDebug>
+#include <QMetaEnum>
 #include <QSharedData>
 #include <QStringList>
 
@@ -103,7 +106,13 @@ void LocationRequest::setName(const QString &name)
 
 QString LocationRequest::cacheKey() const
 {
-    return LocationUtil::cacheKey(d->location);
+    QCryptographicHash hash(QCryptographicHash::Sha1);
+    hash.addData(LocationUtil::cacheKey(d->location).toUtf8());
+    const auto me = QMetaEnum::fromType<Location::Types>();
+    hash.addData(me.valueToKeys(types()));
+    hash.addData(QByteArray::number(maximumDistance()));
+    hash.addData(QByteArray::number(maximumResults()));
+    return QString::fromUtf8(hash.result().toHex());
 }
 
 QJsonObject LocationRequest::toJson(const LocationRequest &req)
