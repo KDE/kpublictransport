@@ -43,6 +43,9 @@ target_sources(KPublicTransport PRIVATE
     backends/navitiaparser.cpp
     backends/oebbbackend.cpp
     backends/oebbvehiclelayoutparser.cpp
+    backends/openjourneyplannerbackend.cpp
+    backends/openjourneyplannerparser.cpp
+    backends/openjourneyplannerrequestbuilder.cpp
     backends/opentripplannergraphqlbackend.cpp
     backends/opentripplannerparser.cpp
     backends/opentripplannerrestbackend.cpp

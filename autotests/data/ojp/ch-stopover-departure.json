@@ -1,0 +1,20 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Brig Bahnhofplatz",
+            "line": {
+                "name": "R"
+            }
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Zermatt",
+            "line": {
+                "name": "R"
+            }
+        }
+    }
+]

@@ -56,6 +56,9 @@ public:
     /** Same as QXmlStreamReader::readElementText. */
     QString readElementText(QXmlStreamReader::ReadElementTextBehaviour behaviour = QXmlStreamReader::ErrorOnUnexpectedElement);
 
+    /** Checks if the current element has the specified name. */
+    bool isElement(const char *name) const;
+
 private:
     explicit ScopedXmlStreamReader(QXmlStreamReader &reader, ScopedXmlStreamReader *parent);
 

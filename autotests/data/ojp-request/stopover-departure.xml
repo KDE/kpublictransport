@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siri:OJP xmlns:siri="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="1.0">
+ <siri:OJPRequest>
+  <siri:ServiceRequest>
+   <siri:RequestRef>KPublicTransport</siri:RequestRef>
+   <ojp:OJPStopEventRequest>
+    <ojp:Location>
+     <ojp:PlaceRef>
+      <ojp:StopPlaceRef>8501687</ojp:StopPlaceRef>
+     </ojp:PlaceRef>
+     <ojp:DepArrTime>2020-09-06T20:54:00Z</ojp:DepArrTime>
+    </ojp:Location>
+    <ojp:Params>
+     <ojp:StopEventType>departure</ojp:StopEventType>
+     <ojp:IncludePreviousCalls>false</ojp:IncludePreviousCalls>
+     <ojp:IncludeOnwardCalls>false</ojp:IncludeOnwardCalls>
+     <ojp:IncludeOperatingDays>false</ojp:IncludeOperatingDays>
+     <ojp:IncludeRealtimeData>true</ojp:IncludeRealtimeData>
+     <ojp:NumberOfResults>4</ojp:NumberOfResults>
+    </ojp:Params>
+   </ojp:OJPStopEventRequest>
+  </siri:ServiceRequest>
+ </siri:OJPRequest>
+</siri:OJP>

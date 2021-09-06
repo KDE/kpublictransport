@@ -121,3 +121,9 @@ QString ScopedXmlStreamReader::readElementText(QXmlStreamReader::ReadElementText
     Q_ASSERT_X(!m_subReaderLock, "ScopedXmlStreamReader", "Operations while a sub-reader is active are forbidden!");
     return m_reader.readElementText(behaviour);
 }
+
+bool ScopedXmlStreamReader::isElement(const char* name) const
+{
+    Q_ASSERT_X(!m_subReaderLock, "ScopedXmlStreamReader", "Operations while a sub-reader is active are forbidden!");
+    return m_reader.name() == QLatin1String(name);
+}

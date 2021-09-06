@@ -38,6 +38,7 @@
 #include "backends/ivvassbackend.h"
 #include "backends/navitiabackend.h"
 #include "backends/oebbbackend.h"
+#include "backends/openjourneyplannerbackend.h"
 #include "backends/opentripplannergraphqlbackend.h"
 #include "backends/opentripplannerrestbackend.h"
 #include "gbfs/gbfsbackend.h"
@@ -170,6 +171,7 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         HafasQueryBackend,
         EfaBackend,
         IvvAssBackend,
+        OpenJourneyPlannerBackend,
         GBFSBackend,
         AccessibilityCloudBackend
     >(type, obj);
