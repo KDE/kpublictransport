@@ -23,6 +23,8 @@
 
 using namespace KPublicTransport;
 
+using RentalVehicleNetworkMap = QHash<QString, RentalVehicleNetwork>;
+
 class OtpParserTest : public QObject
 {
     Q_OBJECT
@@ -47,18 +49,34 @@ private Q_SLOTS:
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("refFileName");
+        QTest::addColumn<RentalVehicleNetworkMap>("networks");
 
         QTest::newRow("fi-digitransit-location")
             << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.in.json")
-            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.out.json");
+            << s(SOURCE_DIR "/data/otp/fi-digitransit-location-by-coordinate.out.json")
+            << RentalVehicleNetworkMap();
+
+        RentalVehicleNetworkMap networks;
+        networks.insert(s("car-sharing"), {});
+        networks.insert(s("taxi"), {});
+        RentalVehicleNetwork n;
+        n.setName(s("RegioRad"));
+        n.setVehicleTypes(RentalVehicle::Bicycle);
+        networks.insert(s("regiorad"), n);
+        QTest::newRow("de-stadtnavi-rental-vehicle-locations")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.in.json")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-rental-vehicle-locations.out.json")
+            << networks;
     }
 
     void testParseLocationByCoordinate()
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, refFileName);
+        QFETCH(RentalVehicleNetworkMap, networks);
 
         OpenTripPlannerParser p(s("gtfs"));
+        p.setKnownRentalVehicleNetworks(networks);
         const auto res = p.parseLocationsByCoordinate(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto jsonRes = Location::toJson(res);
 
