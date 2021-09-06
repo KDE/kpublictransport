@@ -195,7 +195,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         const auto stationId = bike.value(QLatin1String("bike_id")).toString();
         loc.setIdentifier(service.systemId, stationId);
 
-        // TODO remaining range, deep rental links
+        // TODO deep rental links
         RentalVehicle vehicle;
         vehicle.setNetwork(network);
 
@@ -205,8 +205,13 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
         const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
         vehicle.setType(gbfs2kptVehicleType(vehicleType));
-        loc.setData(vehicle);
 
+        const auto range = bike.value(QLatin1String("current_range_meters")).toInt();
+        if (range > 0) { // there's too many reporting 0 for unknown that we can assume 0 means actually empty...
+            vehicle.setRemainingRange(range);
+        }
+
+        loc.setData(vehicle);
         context->result.push_back(loc);
     }
 

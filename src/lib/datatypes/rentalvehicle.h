@@ -47,6 +47,11 @@ public:
     /** Sharing network operator. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
 
+    /** Remaining range of the vehicle in meters.
+     *  Negative if unknown.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, remainingRange, setRemainingRange)
+
 public:
     /** Serializes one object to JSON. */
     static QJsonObject toJson(const RentalVehicle &vehicle);

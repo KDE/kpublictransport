@@ -34,6 +34,7 @@ class RentalVehiclePrivate : public QSharedData
 {
 public:
     RentalVehicle::VehicleType type = RentalVehicle::Unknown;
+    int remainingRange = -1;
     KPublicTransport::RentalVehicleNetwork network;
 };
 }
@@ -215,13 +216,17 @@ RentalVehicleStation RentalVehicleStation::fromJson(const QJsonObject &obj)
 
 KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicle::VehicleType, type, setType)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, int, remainingRange, setRemainingRange)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicleNetwork, network, setNetwork)
 
 QJsonObject RentalVehicle::toJson(const RentalVehicle &vehicle)
 {
     auto obj = Json::toJson(vehicle);
+    if (vehicle.d->remainingRange < 0) {
+        obj.remove(QLatin1String("remainingRange"));
+    }
     if (vehicle.network().isValid()) {
-        obj.insert(QStringLiteral("network"), RentalVehicleNetwork::toJson(vehicle.network()));
+        obj.insert(QLatin1String("network"), RentalVehicleNetwork::toJson(vehicle.network()));
     }
     return obj;
 }
