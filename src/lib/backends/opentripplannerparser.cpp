@@ -134,7 +134,10 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByCoordinate(const QJ
     const auto stopArray = obj.value(QLatin1String("stopsByRadius")).toObject().value(QLatin1String("edges")).toArray();
     locs.reserve(stopArray.size());
     for (const auto &stop : stopArray) {
-        locs.push_back(parseLocation(stop.toObject().value(QLatin1String("node")).toObject()));
+        auto l = parseLocation(stop.toObject().value(QLatin1String("node")).toObject());
+        if (!l.isEmpty()) {
+            locs.push_back(std::move(l));
+        }
     }
 
     // deduplicate elements, which we get due to searching for stops rather than stations
@@ -154,7 +157,10 @@ std::vector<Location> OpenTripPlannerParser::parseLocationsByName(const QJsonObj
     const auto stationArray = obj.value(QLatin1String("stations")).toArray();
     locs.reserve(stationArray.size());
     for (const auto &station : stationArray) {
-        locs.push_back(parseLocation(station.toObject()));
+        auto l = parseLocation(station.toObject());
+        if (!l.isEmpty()) {
+            locs.push_back(std::move(l));
+        }
     }
     return locs;
 }

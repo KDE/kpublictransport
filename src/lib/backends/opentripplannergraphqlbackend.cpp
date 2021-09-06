@@ -89,7 +89,10 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
         } else {
             res = p.parseLocationsByName(gqlReply.data());
         }
-        Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
+        // only cache results if there is no realtime data involved
+        if ((req.types() & (Location::RentedVehicle | Location::RentedVehicleStation)) == 0) {
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
+        }
         addResult(reply, std::move(res));
     });
 
