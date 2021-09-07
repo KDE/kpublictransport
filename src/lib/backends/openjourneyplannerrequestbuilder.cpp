@@ -168,6 +168,10 @@ void OpenJourneyPlannerRequestBuilder::writePlaceRef(QXmlStreamWriter &w, const 
         w.writeTextElement(siriNS(), QStringLiteral("Longitude"), QString::number(loc.longitude()));
         w.writeTextElement(siriNS(), QStringLiteral("Latitude"), QString::number(loc.latitude()));
         w.writeEndElement(); // </ojp:GeoPosition>
+
+        w.writeStartElement(ojpNS(), QStringLiteral("LocationName"));
+        w.writeTextElement(ojpNS(), QStringLiteral("Text"), loc.name().isEmpty() ? QStringLiteral(" ") : loc.name());
+        w.writeEndElement(); // </ojp:LocationName>
     }
     w.writeEndElement(); // </ojp:PlaceRef>
 }

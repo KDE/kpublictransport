@@ -6,7 +6,13 @@
    <ojp:OJPTripRequest>
     <ojp:Origin>
      <ojp:PlaceRef>
-      <ojp:StopPlaceRef>8501687</ojp:StopPlaceRef>
+      <ojp:GeoPosition>
+       <siri:Longitude>7.78</siri:Longitude>
+       <siri:Latitude>46.1</siri:Latitude>
+      </ojp:GeoPosition>
+      <ojp:LocationName>
+       <ojp:Text>Randa</ojp:Text>
+      </ojp:LocationName>
      </ojp:PlaceRef>
     </ojp:Origin>
     <ojp:Destination>

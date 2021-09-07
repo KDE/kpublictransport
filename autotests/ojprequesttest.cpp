@@ -110,7 +110,7 @@ private Q_SLOTS:
         QTest::addColumn<QString>("refFileName");
 
         Location from;
-        from.setIdentifier(QStringLiteral("uic"), QStringLiteral("8501687"));
+        from.setCoordinate(46.1, 7.78);
         Location to;
         to.setIdentifier(QStringLiteral("uic"), QStringLiteral("8500010"));
         JourneyRequest req;
@@ -122,6 +122,8 @@ private Q_SLOTS:
         req.setIncludeIntermediateStops(true);
         req.setIncludePaths(false);
         QTest::newRow("journey-departure") << req << s(SOURCE_DIR "/data/ojp-request/journey-departure.xml");
+        from.setName(QStringLiteral("Randa"));
+        req.setFrom(from);
         req.setIncludeIntermediateStops(false);
         req.setIncludePaths(true);
         req.setDateTimeMode(JourneyRequest::Arrival);

@@ -34,9 +34,7 @@ bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, Abstract
     if (!loc.identifier(QStringLiteral("uic")).isEmpty()) {// ### TODO configure identifier type
         return false;
     }
-    // TODO according to the docs this is supposed to work?
-    //return !loc.hasCoordinate() || type != AbstractBackend::QueryType::Journey;
-    return true;
+    return !loc.hasCoordinate() || type != AbstractBackend::QueryType::Journey;
 }
 
 bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
