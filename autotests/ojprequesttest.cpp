@@ -103,6 +103,46 @@ private Q_SLOTS:
         QVERIFY(!res.isEmpty());
         QCOMPARE(res, ref);
     }
+
+    void testJourneyRequest_data()
+    {
+        QTest::addColumn<JourneyRequest>("request");
+        QTest::addColumn<QString>("refFileName");
+
+        Location from;
+        from.setIdentifier(QStringLiteral("uic"), QStringLiteral("8501687"));
+        Location to;
+        to.setIdentifier(QStringLiteral("uic"), QStringLiteral("8500010"));
+        JourneyRequest req;
+        req.setFrom(from);
+        req.setTo(to);
+        req.setDateTime(QDateTime({2020, 9, 6}, {20, 54}, Qt::UTC));
+        req.setDateTimeMode(JourneyRequest::Departure);
+        req.setMaximumResults(3);
+        req.setIncludeIntermediateStops(true);
+        req.setIncludePaths(false);
+        QTest::newRow("journey-departure") << req << s(SOURCE_DIR "/data/ojp-request/journey-departure.xml");
+        req.setIncludeIntermediateStops(false);
+        req.setIncludePaths(true);
+        req.setDateTimeMode(JourneyRequest::Arrival);
+        QTest::newRow("stopover-arrival") << req << s(SOURCE_DIR "/data/ojp-request/journey-arrival.xml");
+    }
+
+    void testJourneyRequest()
+    {
+        QFETCH(JourneyRequest, request);
+        QFETCH(QString, refFileName);
+
+        OpenJourneyPlannerRequestBuilder builder;
+        builder.setTestMode(true);
+        const auto res = builder.buildTripRequest(request);
+        const auto ref = readFile(refFileName);
+        if (res != ref) {
+            qDebug().noquote() << res;
+        }
+        QVERIFY(!res.isEmpty());
+        QCOMPARE(res, ref);
+    }
 };
 
 QTEST_GUILESS_MAIN(OjpRequestTest)

@@ -31,7 +31,12 @@ AbstractBackend::Capabilities OpenJourneyPlannerBackend::capabilities() const
 
 bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
-    return loc.identifier(QStringLiteral("uic")).isEmpty(); // ### TODO configure identifier type
+    if (!loc.identifier(QStringLiteral("uic")).isEmpty()) {// ### TODO configure identifier type
+        return false;
+    }
+    // TODO according to the docs this is supposed to work?
+    //return !loc.hasCoordinate() || type != AbstractBackend::QueryType::Journey;
+    return true;
 }
 
 bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
@@ -83,11 +88,9 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
 bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     OpenJourneyPlannerRequestBuilder builder;
-    builder.setTestMode(true); // ### for development only
     const auto postData = builder.buildTripRequest(request);
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
-    qDebug().noquote() << postData; // ### for development only
     // TODO
     return false;
 }

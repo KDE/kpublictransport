@@ -13,6 +13,7 @@ class QXmlStreamWriter;
 namespace KPublicTransport {
 
 class JourneyRequest;
+class Location;
 class LocationRequest;
 class StopoverRequest;
 
@@ -31,6 +32,7 @@ private:
     void setupWriter(QXmlStreamWriter &w) const;
     void writeStartServiceRequest(QXmlStreamWriter &w) const;
     void writeEndServiceRequest(QXmlStreamWriter &w) const;
+    void writePlaceRef(QXmlStreamWriter &w, const Location &loc) const;
 
     bool m_testMode = false;
 };

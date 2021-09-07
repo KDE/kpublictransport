@@ -71,9 +71,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildStopEventRequest(const Stopove
     w.writeStartElement(ojpNS(), QStringLiteral("OJPStopEventRequest"));
 
     w.writeStartElement(ojpNS(), QStringLiteral("Location"));
-    w.writeStartElement(ojpNS(), QStringLiteral("PlaceRef"));
-    w.writeTextElement(ojpNS(), QStringLiteral("StopPlaceRef"), req.stop().identifier(QStringLiteral("uic"))); // ### TODO configure id type
-    w.writeEndElement(); // </ojp:PlaceRef>
+    writePlaceRef(w, req.stop());
     w.writeTextElement(ojpNS(), QStringLiteral("DepArrTime"), req.dateTime().toUTC().toString(Qt::ISODate));
     w.writeEndElement(); // </ojp:Location>
 
@@ -98,11 +96,38 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     setupWriter(w);
     writeStartServiceRequest(w);
     w.writeTextElement(siriNS(), QStringLiteral("RequestRef"), QStringLiteral("KPublicTransport"));
+    w.writeStartElement(ojpNS(), QStringLiteral("OJPTripRequest"));
 
-    // TODO
+    w.writeStartElement(ojpNS(), QStringLiteral("Origin"));
+    writePlaceRef(w, req.from());
+    if (req.dateTimeMode() == JourneyRequest::Departure) {
+        w.writeTextElement(ojpNS(), QStringLiteral("DepArrTime"), req.dateTime().toUTC().toString(Qt::ISODate));
+    }
+    w.writeEndElement(); // </ojp:Origin>
 
+    w.writeStartElement(ojpNS(), QStringLiteral("Destination"));
+    writePlaceRef(w, req.to());
+    if (req.dateTimeMode() == JourneyRequest::Arrival) {
+        w.writeTextElement(ojpNS(), QStringLiteral("DepArrTime"), req.dateTime().toUTC().toString(Qt::ISODate));
+    }
+    w.writeEndElement(); // </ojp:Destination>
+
+    // TODO IndividualTransportOptions
+
+    w.writeStartElement(ojpNS(), QStringLiteral("Params"));
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeTrackSections"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeLegProjection"), QStringLiteral("true")); // ???
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeTurnDescription"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeAccessibility"), QStringLiteral("true")); // ???
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeIntermediateStops"), req.includeIntermediateStops() ? QStringLiteral("true") : QStringLiteral("false"));
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeFares"), QStringLiteral("false")); // TODO
+    w.writeTextElement(ojpNS(), QStringLiteral("NumberOfResults"), QString::number(req.maximumResults()));
+    // TODO NumberOfResultsBefore|After for next/prev requests
+    w.writeEndElement(); // </ojp:Params>
+
+    w.writeEndElement(); // </ojp:OJPTripRequest>
     writeEndServiceRequest(w);
-    return {};
+    return output;
 }
 
 void OpenJourneyPlannerRequestBuilder::setupWriter(QXmlStreamWriter &w) const
@@ -130,4 +155,19 @@ void OpenJourneyPlannerRequestBuilder::writeEndServiceRequest(QXmlStreamWriter &
     w.writeEndElement(); // </siri:OJPRequest>
     w.writeEndElement(); // </siri:OJP>
     w.writeEndDocument();
+}
+
+void OpenJourneyPlannerRequestBuilder::writePlaceRef(QXmlStreamWriter &w, const Location &loc) const
+{
+    w.writeStartElement(ojpNS(), QStringLiteral("PlaceRef"));
+    const auto id = loc.identifier(QStringLiteral("uic")); // ### TODO configure id type
+    if (!id.isEmpty()) {
+        w.writeTextElement(ojpNS(), QStringLiteral("StopPlaceRef"), id);
+    } else if (loc.hasCoordinate()) {
+        w.writeStartElement(ojpNS(), QStringLiteral("GeoPosition"));
+        w.writeTextElement(siriNS(), QStringLiteral("Longitude"), QString::number(loc.longitude()));
+        w.writeTextElement(siriNS(), QStringLiteral("Latitude"), QString::number(loc.latitude()));
+        w.writeEndElement(); // </ojp:GeoPosition>
+    }
+    w.writeEndElement(); // </ojp:PlaceRef>
 }
