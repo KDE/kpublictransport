@@ -9,10 +9,13 @@
 
 #include "kpublictransport_export.h"
 
-#include <vector>
+#include <KPublicTransport/Line>
 
-class QByteArray;
-class QString;
+#include <QDateTime>
+#include <QHash>
+#include <QString>
+
+#include <vector>
 
 namespace KPublicTransport {
 
@@ -29,8 +32,8 @@ class KPUBLICTRANSPORT_EXPORT OpenJourneyPlannerParser
 {
 public:
     std::vector<Location> parseLocationInformationResponse(const QByteArray &responseData) const;
-    std::vector<Stopover> parseStopEventResponse(const QByteArray &responseData) const;
-    std::vector<Journey> parseTripResponse(const QByteArray &responseData) const;
+    std::vector<Stopover> parseStopEventResponse(const QByteArray &responseData);
+    std::vector<Journey> parseTripResponse(const QByteArray &responseData);
 
 private:
     std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r) const;
@@ -38,12 +41,22 @@ private:
     Location parseLocationInformationLocationInner(ScopedXmlStreamReader &&r) const;
     QString parseTextElement(ScopedXmlStreamReader &&r) const;
 
-    std::vector<Stopover> parseStopEventDelivery(ScopedXmlStreamReader &&r) const;
-    void parseResponseContext(ScopedXmlStreamReader &&r) const;
+    std::vector<Stopover> parseStopEventDelivery(ScopedXmlStreamReader &&r);
+    void parseResponseContext(ScopedXmlStreamReader &&r);
+    void parseResponseContextPlaces(ScopedXmlStreamReader &&r);
     Stopover parseStopEventResult(ScopedXmlStreamReader &&r) const;
     Stopover parseStopEvent(ScopedXmlStreamReader &&r) const;
     void parseCallAtStop(ScopedXmlStreamReader &&r, Stopover &stop) const;
-    void parseService(ScopedXmlStreamReader &&r, Route &route) const;
+    void parseService(ScopedXmlStreamReader &&r, Route &route, QStringList &attributes) const;
+    struct TimePair {
+        QDateTime scheduledTime;
+        QDateTime expectedTime;
+    };
+    TimePair parseTime(ScopedXmlStreamReader &&r) const;
+    Line::Mode parseMode(ScopedXmlStreamReader &&r) const;
+
+    QString m_identifierType = QStringLiteral("uic"); // TODO
+    QHash<QString, Location> m_contextLocations;
 };
 
 }

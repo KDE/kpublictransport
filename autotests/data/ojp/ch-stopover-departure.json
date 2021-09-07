@@ -1,20 +1,52 @@
 [
     {
         "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-09-06T20:27:00Z",
+        "notes": [
+            "Maskenpflicht für Reisende ab 12 Jahren"
+        ],
         "route": {
             "direction": "Brig Bahnhofplatz",
             "line": {
+                "mode": "LocalTrain",
                 "name": "R"
             }
+        },
+        "scheduledDepartureTime": "2021-09-06T20:27:00Z",
+        "stopPoint": {
+            "identifier": {
+                "uic": "8501687"
+            },
+            "latitude": 46.09992980957031,
+            "locality": "Randa",
+            "longitude": 7.781459808349609,
+            "name": "Randa",
+            "type": "Stop"
         }
     },
     {
         "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-09-06T21:29:00Z",
+        "notes": [
+            "Maskenpflicht für Reisende ab 12 Jahren"
+        ],
         "route": {
             "direction": "Zermatt",
             "line": {
+                "mode": "LocalTrain",
                 "name": "R"
             }
+        },
+        "scheduledDepartureTime": "2021-09-06T21:29:00Z",
+        "stopPoint": {
+            "identifier": {
+                "uic": "8501687"
+            },
+            "latitude": 46.09992980957031,
+            "locality": "Randa",
+            "longitude": 7.781459808349609,
+            "name": "Randa",
+            "type": "Stop"
         }
     }
 ]

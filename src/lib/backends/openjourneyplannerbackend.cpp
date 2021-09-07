@@ -73,8 +73,8 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
 
         OpenJourneyPlannerParser p;
         auto stops = p.parseStopEventResponse(data);
-        // TODO
-        addError(reply, Reply::NetworkError, netReply->errorString());
+        // TODO caching, error handling
+        addResult(reply, this, std::move(stops));
     });
 
     return true;

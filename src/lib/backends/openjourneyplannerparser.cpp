@@ -7,6 +7,8 @@
 #include "openjourneyplannerparser.h"
 #include "scopedxmlstreamreader.h"
 
+#include <gtfs/hvt.h>
+
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Stopover>
@@ -29,9 +31,8 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse
     return {};
 }
 
-std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventResponse(const QByteArray &responseData) const
+std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventResponse(const QByteArray &responseData)
 {
-    qDebug().noquote() << responseData; // ### for development only
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
     while (r.readNextElement()) {
@@ -42,7 +43,7 @@ std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventResponse(const QBy
     return {};
 }
 
-std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArray &responseData) const
+std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArray &responseData)
 {
     qDebug().noquote() << responseData;
     return {};
@@ -82,7 +83,7 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocationInner(ScopedX
             auto subR = r.subReader();
             while (subR.readNextSibling()) {
                 if (subR.isElement("StopPlaceRef")) {
-                    loc.setIdentifier(QStringLiteral("uic"), subR.readElementText()); // ### TODO configure identifier type!
+                    loc.setIdentifier(m_identifierType, subR.readElementText());
                 } else if (subR.isElement("StopPlaceName")) {
                     loc.setName(parseTextElement(subR.subReader()));
                 }
@@ -115,7 +116,7 @@ QString OpenJourneyPlannerParser::parseTextElement(ScopedXmlStreamReader &&r) co
     return t;
 }
 
-std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventDelivery(ScopedXmlStreamReader &&r) const
+std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventDelivery(ScopedXmlStreamReader &&r)
 {
     std::vector<Stopover> l;
     while (r.readNextSibling()) {
@@ -128,16 +129,27 @@ std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventDelivery(ScopedXml
     return l;
 }
 
-void OpenJourneyPlannerParser::parseResponseContext(ScopedXmlStreamReader &&r) const
+void OpenJourneyPlannerParser::parseResponseContext(ScopedXmlStreamReader &&r)
 {
     while (r.readNextSibling()) {
-        // TODO
+        if (r.isElement("Places")) {
+            parseResponseContextPlaces(r.subReader());
+        }
+    }
+}
+
+void OpenJourneyPlannerParser::parseResponseContextPlaces(ScopedXmlStreamReader && r)
+{
+    while (r.readNextSibling()) {
+        if (r.isElement("Location")) {
+            auto loc = parseLocationInformationLocationInner(r.subReader());
+            m_contextLocations.insert(loc.identifier(m_identifierType), std::move(loc));
+        }
     }
 }
 
 Stopover OpenJourneyPlannerParser::parseStopEventResult(ScopedXmlStreamReader &&r) const
 {
-    qDebug();
     Stopover stop;
     while (r.readNextSibling()) {
         if (r.isElement("StopEvent")) {
@@ -149,9 +161,9 @@ Stopover OpenJourneyPlannerParser::parseStopEventResult(ScopedXmlStreamReader &&
 
 Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) const
 {
-    qDebug();
     Stopover stop;
     Route route;
+    QStringList attrs;
     while (r.readNextSibling()) {
         if (r.isElement("ThisCall")) {
             auto subR = r.subReader();
@@ -161,25 +173,29 @@ Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) con
                 }
             }
         } else if (r.isElement("Service")) {
-            parseService(r.subReader(), route);
-        } else if (r.isElement("Extension")) {
-            // TODO
+            parseService(r.subReader(), route, attrs);
         }
+        // Extensions?
     }
     stop.setRoute(route);
+    stop.addNotes(std::move(attrs));
     return stop;
 }
 
 void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopover &stop) const
 {
-    qDebug();
     while (r.readNextSibling()) {
         if (r.isElement("StopPointRef")) {
-            // TODO
+            const auto id = r.readElementText();
+            stop.setStopPoint(m_contextLocations.value(id));
         } else if (r.isElement("ServiceDeparture")) {
-            // TODO
+            const auto t = parseTime(r.subReader());
+            stop.setScheduledDepartureTime(t.scheduledTime);
+            stop.setExpectedDepartureTime(t.expectedTime);
         } else if (r.isElement("ServiceArrival")) {
-            // TODO
+            const auto t = parseTime(r.subReader());
+            stop.setScheduledArrivalTime(t.scheduledTime);
+            stop.setExpectedArrivalTime(t.expectedTime);
         } else if (r.isElement("PlannedQuay")) {
             stop.setScheduledPlatform(parseTextElement(r.subReader()));
         } else if (r.isElement("EstimatedQuay")) {
@@ -192,17 +208,21 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
     }
 }
 
-void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &route) const
+void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &route, QStringList &attributes) const
 {
-    qDebug();
     auto line = route.line();
     while (r.readNextSibling()) {
         if (r.isElement("Mode")) {
-            // TODO
+            line.setMode(parseMode(r.subReader()));
         } else if (r.isElement("PublishedLineName")) {
             line.setName(parseTextElement(r.subReader()));
         } else if (r.isElement("Attribute")) {
-            // TODO
+            auto subR = r.subReader();
+            while (subR.readNextSibling()) {
+                if (subR.isElement("Text")) {
+                    attributes.push_back(parseTextElement(subR.subReader()));
+                }
+            }
         } else if (r.isElement("DestinationStopPointRef")) {
             // TODO
         } else if (r.isElement("DestinationText")) {
@@ -210,4 +230,35 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
         }
     }
     route.setLine(std::move(line));
+}
+
+OpenJourneyPlannerParser::TimePair OpenJourneyPlannerParser::parseTime(ScopedXmlStreamReader &&r) const
+{
+    TimePair t;
+    while (r.readNextSibling()) {
+        if (r.isElement("TimetabledTime")) {
+            t.scheduledTime = QDateTime::fromString(r.readElementText(), Qt::ISODate);
+        } else if (r.isElement("EstimatedTime")) {
+            t.expectedTime = QDateTime::fromString(r.readElementText(), Qt::ISODate);
+        }
+    }
+    return t;
+}
+
+Line::Mode OpenJourneyPlannerParser::parseMode(ScopedXmlStreamReader &&r) const
+{
+    QString mode, subMode;
+    while (r.readNextSibling()) {
+        if (r.isElement("PtMode")) {
+            mode = r.readElementText();
+        } else if (r.name().endsWith(QLatin1String("Submode"))) {
+            subMode = r.readElementText();
+        }
+    }
+
+    const auto m = Gtfs::Hvt::typeToMode(subMode);
+    if (m == Line::Unknown) {
+        return Gtfs::Hvt::typeToMode(mode);
+    }
+    return m;
 }
