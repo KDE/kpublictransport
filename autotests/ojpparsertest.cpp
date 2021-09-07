@@ -90,6 +90,33 @@ private Q_SLOTS:
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
     }
+
+    void testParseJourney_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("ch-journey-basic")
+            << s(SOURCE_DIR "/data/ojp/ch-journey-basic.xml")
+            << s(SOURCE_DIR "/data/ojp/ch-journey-basic.json");
+    }
+
+    void testParseJourney()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        OpenJourneyPlannerParser p;
+        const auto res = p.parseTripResponse(readFile(inFileName));
+        const auto jsonRes = Journey::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        if (jsonRes != ref) {
+            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
+        }
+        QVERIFY(!jsonRes.empty());
+        QCOMPARE(jsonRes, ref);
+    }
 };
 
 QTEST_GUILESS_MAIN(OjpParserTest)

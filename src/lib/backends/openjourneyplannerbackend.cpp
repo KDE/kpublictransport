@@ -91,8 +91,19 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
     const auto postData = builder.buildTripRequest(request);
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
-    // TODO
-    return false;
+    const auto netReply = nam->post(netReq, postData);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        OpenJourneyPlannerParser p;
+        auto jnys = p.parseTripResponse(data);
+        // TODO caching, error handling
+        addResult(reply, this, std::move(jnys));
+    });
+
+    return true;
 }
 
 QNetworkRequest OpenJourneyPlannerBackend::networkRequest() const

@@ -1,0 +1,122 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 138607,
+                "expectedArrivalTime": "2021-09-07T18:02:00Z",
+                "expectedDeparturePlatform": "4",
+                "expectedDepartureTime": "2021-09-07T15:46:00Z",
+                "from": {
+                    "identifier": {
+                        "uic": "8503016"
+                    },
+                    "latitude": 47.45038986206055,
+                    "locality": "Zürich Flughafen",
+                    "longitude": 8.562399864196777,
+                    "name": "Zürich Flughafen",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Gratis-Internet mit der App SBB FreeSurf",
+                    "Maskenpflicht für Reisende ab 12 Jahren",
+                    "Platzreservierung möglich",
+                    "Businesszone in 1. Klasse",
+                    "Familienwagen mit Spielplatz",
+                    "Ruhezone in 1. Klasse",
+                    "Restaurant",
+                    "Aussteigeseite: Rechts"
+                ],
+                "route": {
+                    "direction": "Brig",
+                    "line": {
+                        "mode": "Train",
+                        "name": "IC8"
+                    }
+                },
+                "scheduledArrivalPlatform": "7",
+                "scheduledArrivalTime": "2021-09-07T18:02:00Z",
+                "scheduledDeparturePlatform": "3",
+                "scheduledDepartureTime": "2021-09-07T15:45:00Z",
+                "to": {
+                    "identifier": {
+                        "uic": "8501605"
+                    },
+                    "latitude": 46.294029235839844,
+                    "locality": "Visp",
+                    "longitude": 7.881470203399658,
+                    "name": "Visp",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "from": {
+                    "identifier": {
+                        "uic": "8501605"
+                    },
+                    "latitude": 46.294029235839844,
+                    "locality": "Visp",
+                    "longitude": 7.881470203399658,
+                    "name": "Visp",
+                    "type": "Stop"
+                },
+                "mode": "Transfer",
+                "scheduledArrivalTime": "2021-09-07T18:08:00Z",
+                "scheduledDepartureTime": "2021-09-07T18:02:00Z",
+                "to": {
+                    "identifier": {
+                        "uic": "8501605"
+                    },
+                    "latitude": 46.294029235839844,
+                    "locality": "Visp",
+                    "longitude": 7.881470203399658,
+                    "name": "Visp",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 22914,
+                "expectedArrivalTime": "2021-09-07T18:54:00Z",
+                "expectedDepartureTime": "2021-09-07T18:08:00Z",
+                "from": {
+                    "identifier": {
+                        "uic": "8501605"
+                    },
+                    "latitude": 46.294029235839844,
+                    "locality": "Visp",
+                    "longitude": 7.881470203399658,
+                    "name": "Visp",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Maskenpflicht für Reisende ab 12 Jahren"
+                ],
+                "route": {
+                    "direction": "Zermatt",
+                    "line": {
+                        "mode": "LocalTrain",
+                        "name": "R"
+                    }
+                },
+                "scheduledArrivalTime": "2021-09-07T18:54:00Z",
+                "scheduledDeparturePlatform": "3",
+                "scheduledDepartureTime": "2021-09-07T18:08:00Z",
+                "to": {
+                    "identifier": {
+                        "uic": "8501687"
+                    },
+                    "latitude": 46.09992980957031,
+                    "locality": "Randa",
+                    "longitude": 7.781459808349609,
+                    "name": "Randa",
+                    "type": "Stop"
+                }
+            }
+        ]
+    }
+]

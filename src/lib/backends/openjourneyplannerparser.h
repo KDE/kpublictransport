@@ -20,6 +20,7 @@
 namespace KPublicTransport {
 
 class Journey;
+class JourneySection;
 class Location;
 class Route;
 class ScopedXmlStreamReader;
@@ -54,6 +55,12 @@ private:
     };
     TimePair parseTime(ScopedXmlStreamReader &&r) const;
     Line::Mode parseMode(ScopedXmlStreamReader &&r) const;
+
+    std::vector<Journey> parseTripDelivery(ScopedXmlStreamReader &&r);
+    Journey parseTripResult(ScopedXmlStreamReader &&r) const;
+    Journey parseTrip(ScopedXmlStreamReader &&r) const;
+    JourneySection parseTimedLeg(ScopedXmlStreamReader &&r) const;
+    JourneySection parseTransferLeg(ScopedXmlStreamReader &&r) const;
 
     QString m_identifierType = QStringLiteral("uic"); // TODO
     QHash<QString, Location> m_contextLocations;

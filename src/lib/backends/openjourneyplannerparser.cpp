@@ -45,7 +45,13 @@ std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventResponse(const QBy
 
 std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArray &responseData)
 {
-    qDebug().noquote() << responseData;
+    QXmlStreamReader reader(responseData);
+    ScopedXmlStreamReader r(reader);
+    while (r.readNextElement()) {
+        if (r.isElement("OJPTripDelivery")) {
+            return parseTripDelivery(r.subReader());
+        }
+    }
     return {};
 }
 
@@ -261,4 +267,111 @@ Line::Mode OpenJourneyPlannerParser::parseMode(ScopedXmlStreamReader &&r) const
         return Gtfs::Hvt::typeToMode(mode);
     }
     return m;
+}
+
+std::vector<Journey> OpenJourneyPlannerParser::parseTripDelivery(ScopedXmlStreamReader &&r)
+{
+    std::vector<Journey> l;
+    while (r.readNextSibling()) {
+        if (r.isElement("TripResponseContext")) {
+            parseResponseContext(r.subReader());
+        } else if (r.isElement("TripResult")) {
+            l.push_back(parseTripResult(r.subReader()));
+        }
+    }
+    return l;
+}
+
+Journey OpenJourneyPlannerParser::parseTripResult(ScopedXmlStreamReader &&r) const
+{
+    Journey jny;
+    while (r.readNextSibling()) {
+        if (r.isElement("Trip")) {
+            jny = parseTrip(r.subReader());
+        }
+    }
+    return jny;
+}
+
+Journey OpenJourneyPlannerParser::parseTrip(ScopedXmlStreamReader &&r) const
+{
+    Journey jny;
+    std::vector<JourneySection> sections;
+    while (r.readNextSibling()) {
+        if (r.isElement("TripLeg")) {
+            auto subR = r.subReader();
+            while (subR.readNextSibling()) {
+                if (subR.isElement("TimedLeg")) {
+                    sections.push_back(parseTimedLeg(subR.subReader()));
+                } else if (subR.isElement("TransferLeg")) {
+                    sections.push_back(parseTransferLeg(subR.subReader()));
+                }
+            }
+        }
+    }
+    jny.setSections(std::move(sections));
+    return jny;
+}
+
+JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r) const
+{
+    JourneySection section;
+    section.setMode(JourneySection::PublicTransport);
+    std::vector<Stopover> intermediateStops;
+    Route route;
+    QStringList attributes;
+    while (r.readNextSibling()) {
+        if (r.isElement("LegBoard")) {
+            Stopover stop;
+            parseCallAtStop(r.subReader(), stop);
+            section.setFrom(stop.stopPoint());
+            section.setScheduledDepartureTime(stop.scheduledDepartureTime());
+            section.setExpectedDepartureTime(stop.expectedDepartureTime());
+            section.setScheduledDeparturePlatform(stop.scheduledPlatform());
+            section.setExpectedDeparturePlatform(stop.expectedPlatform());
+        } else if (r.isElement("LegIntermediates")) {
+            Stopover stop;
+            parseCallAtStop(r.subReader(), stop);
+            intermediateStops.push_back(std::move(stop));
+        } else if (r.isElement("LegAlight")) {
+            Stopover stop;
+            parseCallAtStop(r.subReader(), stop);
+            section.setTo(stop.stopPoint());
+            section.setScheduledArrivalTime(stop.scheduledArrivalTime());
+            section.setExpectedArrivalTime(stop.expectedArrivalTime());
+            section.setScheduledArrivalPlatform(stop.scheduledPlatform());
+            section.setExpectedArrivalPlatform(stop.expectedPlatform());
+        } else if (r.isElement("Service")) {
+            parseService(r.subReader(), route, attributes);
+        } else if (r.isElement("LegTrack")) {
+            // TODO
+        }
+    }
+    section.setRoute(std::move(route));
+    section.addNotes(std::move(attributes));
+    section.setIntermediateStops(std::move(intermediateStops));
+    return section;
+}
+
+JourneySection OpenJourneyPlannerParser::parseTransferLeg(ScopedXmlStreamReader &&r) const
+{
+    // TODO WalkDuration vs. BufferTime?
+    JourneySection section;
+    section.setMode(JourneySection::Transfer);
+    while (r.readNextSibling()) {
+        if (r.isElement("LegStart")) {
+            Stopover stop;
+            parseCallAtStop(r.subReader(), stop);
+            section.setFrom(stop.stopPoint());
+        } else if (r.isElement("LegEnd")) {
+            Stopover stop;
+            parseCallAtStop(r.subReader(), stop);
+            section.setTo(stop.stopPoint());
+        } else if (r.isElement("TimeWindowStart")) {
+            section.setScheduledDepartureTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
+        } else if (r.isElement("TimeWindowEnd")) {
+            section.setScheduledArrivalTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
+        }
+    }
+    return section;
 }
