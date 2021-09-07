@@ -109,7 +109,13 @@ target_sources(KPublicTransport PRIVATE
     networks/networks.qrc
     networks/certs/network_certs.qrc
 )
-ecm_qt_declare_logging_category(KPublicTransport HEADER logging.h IDENTIFIER KPublicTransport::Log CATEGORY_NAME org.kde.kpublictransport)
+ecm_qt_declare_logging_category(KPublicTransport
+    HEADER logging.h
+    IDENTIFIER KPublicTransport::Log
+    CATEGORY_NAME org.kde.kpublictransport
+    DESCRIPTION "KPublicTransport"
+    EXPORT KPUBLICTRANSPORT
+)
 
 generate_export_header(KPublicTransport BASE_NAME KPublicTransport)
 set_target_properties(KPublicTransport PROPERTIES
@@ -193,7 +199,11 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
 )
 
 install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES org_kde_kpublictransport.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+ecm_qt_install_logging_categories(
+    EXPORT KPUBLICTRANSPORT
+    FILE org_kde_kpublictransport.categories
+    DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+)
 install(FILES
     ${KPublicTransport_FORWARDING_HEADERS}
     ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
