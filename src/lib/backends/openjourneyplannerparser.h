@@ -17,11 +17,15 @@
 
 #include <vector>
 
+class QPointF;
+
 namespace KPublicTransport {
 
 class Journey;
 class JourneySection;
 class Location;
+class Path;
+class PathSection;
 class Route;
 class ScopedXmlStreamReader;
 class Stopover;
@@ -44,6 +48,7 @@ private:
     Location parseLocationInformationLocationOuter(ScopedXmlStreamReader &&r) const;
     Location parseLocationInformationLocationInner(ScopedXmlStreamReader &&r) const;
     QString parseTextElement(ScopedXmlStreamReader &&r) const;
+    QPointF parseGeoPosition(ScopedXmlStreamReader &&r) const;
 
     std::vector<Stopover> parseStopEventDelivery(ScopedXmlStreamReader &&r);
     void parseResponseContext(ScopedXmlStreamReader &&r);
@@ -64,6 +69,9 @@ private:
     Journey parseTrip(ScopedXmlStreamReader &&r) const;
     JourneySection parseTimedLeg(ScopedXmlStreamReader &&r) const;
     JourneySection parseTransferLeg(ScopedXmlStreamReader &&r) const;
+    Path parsePathGuidance(ScopedXmlStreamReader &&r) const;
+    PathSection parsePathGuildanceSection(ScopedXmlStreamReader &&r) const;
+    PathSection parseTrackSection(ScopedXmlStreamReader &&r) const;
 
     void parseError(ScopedXmlStreamReader &&r);
 

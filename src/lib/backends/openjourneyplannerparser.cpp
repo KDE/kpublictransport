@@ -15,6 +15,7 @@
 
 #include <QByteArray>
 #include <QDebug>
+#include <QPointF>
 #include <QXmlStreamReader>
 
 using namespace KPublicTransport;
@@ -107,14 +108,9 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocationInner(ScopedX
                 }
             }
         } else if (r.isElement("GeoPosition")) {
-            auto subR = r.subReader();
-            while (subR.readNextSibling()) {
-                if (subR.isElement("Longitude")) {
-                    loc.setLongitude(subR.readElementText().toDouble());
-                } else if (subR.isElement("Latitude")) {
-                    loc.setLatitude(subR.readElementText().toDouble());
-                }
-            }
+            const auto p = parseGeoPosition(r.subReader());
+            loc.setLongitude(p.x());
+            loc.setLatitude(p.y());
         } else if (r.isElement("LocationName")) {
             // TODO this needs some post-processing it seems
             loc.setLocality(parseTextElement(r.subReader()));
@@ -132,6 +128,19 @@ QString OpenJourneyPlannerParser::parseTextElement(ScopedXmlStreamReader &&r) co
         }
     }
     return t;
+}
+
+QPointF OpenJourneyPlannerParser::parseGeoPosition(ScopedXmlStreamReader &&r) const
+{
+    QPointF p;
+    while (r.readNextSibling()) {
+        if (r.isElement("Longitude")) {
+            p.setX(r.readElementText().toDouble());
+        } else if (r.isElement("Latitude")) {
+            p.setY(r.readElementText().toDouble());
+        }
+    }
+    return p;
 }
 
 std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventDelivery(ScopedXmlStreamReader &&r)
@@ -204,10 +213,20 @@ Stopover OpenJourneyPlannerParser::parseStopEvent(ScopedXmlStreamReader &&r) con
 
 void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopover &stop) const
 {
+    Location loc;
     while (r.readNextSibling()) {
         if (r.isElement("StopPointRef")) {
             const auto id = r.readElementText();
-            stop.setStopPoint(m_contextLocations.value(id));
+            loc = m_contextLocations.value(id);
+        } else if (r.isElement("GeoPosition")) {
+            const auto p = parseGeoPosition(r.subReader());
+            loc.setLatitude(p.y());
+            loc.setLongitude(p.x());
+            loc.setType(Location::Place);
+        } else if (r.isElement("LocationName")) {
+            if (loc.name().isEmpty()) {
+                loc.setName(parseTextElement(r.subReader()));
+            }
         } else if (r.isElement("ServiceDeparture")) {
             const auto t = parseTime(r.subReader());
             stop.setScheduledDepartureTime(t.scheduledTime);
@@ -226,6 +245,7 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
             }
         }
     }
+    stop.setStopPoint(std::move(loc));
 }
 
 void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &route, QStringList &attributes) const
@@ -320,7 +340,13 @@ Journey OpenJourneyPlannerParser::parseTrip(ScopedXmlStreamReader &&r) const
                 if (subR.isElement("TimedLeg")) {
                     sections.push_back(parseTimedLeg(subR.subReader()));
                 } else if (subR.isElement("TransferLeg")) {
-                    sections.push_back(parseTransferLeg(subR.subReader()));
+                    auto section = parseTransferLeg(subR.subReader());
+                    section.setMode(JourneySection::Transfer);
+                    sections.push_back(std::move(section));
+                } else if (subR.isElement("ContinuousLeg")) {
+                    auto section = parseTransferLeg(subR.subReader());
+                    section.setMode(JourneySection::Walking);
+                    sections.push_back(std::move(section));
                 }
             }
         }
@@ -360,7 +386,9 @@ JourneySection OpenJourneyPlannerParser::parseTimedLeg(ScopedXmlStreamReader &&r
         } else if (r.isElement("Service")) {
             parseService(r.subReader(), route, attributes);
         } else if (r.isElement("LegTrack")) {
-            // TODO
+            Path path;
+            path.setSections({parsePathGuildanceSection(r.subReader())});
+            section.setPath(std::move(path));
         }
     }
     section.setRoute(std::move(route));
@@ -373,7 +401,6 @@ JourneySection OpenJourneyPlannerParser::parseTransferLeg(ScopedXmlStreamReader 
 {
     // TODO WalkDuration vs. BufferTime?
     JourneySection section;
-    section.setMode(JourneySection::Transfer);
     while (r.readNextSibling()) {
         if (r.isElement("LegStart")) {
             Stopover stop;
@@ -387,6 +414,52 @@ JourneySection OpenJourneyPlannerParser::parseTransferLeg(ScopedXmlStreamReader 
             section.setScheduledDepartureTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
         } else if (r.isElement("TimeWindowEnd")) {
             section.setScheduledArrivalTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
+        } else if (r.isElement("PathGuidance")) {
+            section.setPath(parsePathGuidance(r.subReader()));
+        }
+    }
+    return section;
+}
+
+Path OpenJourneyPlannerParser::parsePathGuidance(ScopedXmlStreamReader &&r) const
+{
+    Path path;
+    std::vector<PathSection> sections;
+    while (r.readNextSibling()) {
+        if (r.isElement("PathGuidanceSection")) {
+            sections.push_back(parsePathGuildanceSection(r.subReader()));
+        }
+    }
+    path.setSections(std::move(sections));
+    return path;
+}
+
+PathSection OpenJourneyPlannerParser::parsePathGuildanceSection(ScopedXmlStreamReader &&r) const
+{
+    PathSection section;
+    while (r.readNextSibling()) {
+        if (r.isElement("TrackSection")) {
+            section = parseTrackSection(r.subReader());
+        }
+    }
+    return section;
+}
+
+PathSection OpenJourneyPlannerParser::parseTrackSection(ScopedXmlStreamReader &&r) const
+{
+    PathSection section;
+    while (r.readNextSibling()) {
+        if (r.isElement("LinkProjection")) {
+            auto subR = r.subReader();
+            QPolygonF poly;
+            while (subR.readNextSibling()) {
+                if (subR.isElement("Position")) {
+                    poly.push_back(parseGeoPosition(subR.subReader()));
+                }
+            }
+            section.setPath(std::move(poly));
+        } else if (r.isElement("RoadName")) {
+            section.setDescription(r.readElementText());
         }
     }
     return section;

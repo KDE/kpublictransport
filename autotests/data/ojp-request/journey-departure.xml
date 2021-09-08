@@ -23,7 +23,7 @@
     </ojp:Destination>
     <ojp:Params>
      <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
-     <ojp:IncludeLegProjection>true</ojp:IncludeLegProjection>
+     <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>
      <ojp:IncludeTurnDescription>false</ojp:IncludeTurnDescription>
      <ojp:IncludeAccessibility>true</ojp:IncludeAccessibility>
      <ojp:IncludeIntermediateStops>true</ojp:IncludeIntermediateStops>

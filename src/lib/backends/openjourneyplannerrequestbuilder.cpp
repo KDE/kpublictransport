@@ -116,7 +116,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
 
     w.writeStartElement(ojpNS(), QStringLiteral("Params"));
     w.writeTextElement(ojpNS(), QStringLiteral("IncludeTrackSections"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
-    w.writeTextElement(ojpNS(), QStringLiteral("IncludeLegProjection"), QStringLiteral("true")); // ???
+    w.writeTextElement(ojpNS(), QStringLiteral("IncludeLegProjection"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
     w.writeTextElement(ojpNS(), QStringLiteral("IncludeTurnDescription"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
     w.writeTextElement(ojpNS(), QStringLiteral("IncludeAccessibility"), QStringLiteral("true")); // ???
     w.writeTextElement(ojpNS(), QStringLiteral("IncludeIntermediateStops"), req.includeIntermediateStops() ? QStringLiteral("true") : QStringLiteral("false"));
