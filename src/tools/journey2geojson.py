@@ -26,6 +26,8 @@ inJson = json.load(inFile)
 
 for journey in inJson:
     for section in journey['sections']:
+        if not 'path' in section:
+            continue
         for path in section['path']['sections']:
             properties = {}
             properties['name'] = path.get('description', '<anonymous>')
