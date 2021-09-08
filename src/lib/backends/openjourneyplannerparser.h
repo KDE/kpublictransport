@@ -32,12 +32,15 @@ class Stopover;
 class KPUBLICTRANSPORT_EXPORT OpenJourneyPlannerParser
 {
 public:
-    std::vector<Location> parseLocationInformationResponse(const QByteArray &responseData) const;
+    std::vector<Location> parseLocationInformationResponse(const QByteArray &responseData);
     std::vector<Stopover> parseStopEventResponse(const QByteArray &responseData);
     std::vector<Journey> parseTripResponse(const QByteArray &responseData);
 
+    bool hasError() const;
+    QString errorMessage() const;
+
 private:
-    std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r) const;
+    std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r);
     Location parseLocationInformationLocationOuter(ScopedXmlStreamReader &&r) const;
     Location parseLocationInformationLocationInner(ScopedXmlStreamReader &&r) const;
     QString parseTextElement(ScopedXmlStreamReader &&r) const;
@@ -62,8 +65,11 @@ private:
     JourneySection parseTimedLeg(ScopedXmlStreamReader &&r) const;
     JourneySection parseTransferLeg(ScopedXmlStreamReader &&r) const;
 
+    void parseError(ScopedXmlStreamReader &&r);
+
     QString m_identifierType = QStringLiteral("uic"); // TODO
     QHash<QString, Location> m_contextLocations;
+    QString m_errorMsg;
 };
 
 }

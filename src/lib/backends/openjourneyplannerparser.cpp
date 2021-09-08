@@ -19,7 +19,17 @@
 
 using namespace KPublicTransport;
 
-std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse(const QByteArray &responseData) const
+bool OpenJourneyPlannerParser::hasError() const
+{
+    return !m_errorMsg.isEmpty();
+}
+
+QString OpenJourneyPlannerParser::errorMessage() const
+{
+    return m_errorMsg;
+}
+
+std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse(const QByteArray &responseData)
 {
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
@@ -55,7 +65,7 @@ std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArra
     return {};
 }
 
-std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery(ScopedXmlStreamReader &&r) const
+std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery(ScopedXmlStreamReader &&r)
 {
     std::vector<Location> l;
     while (r.readNextSibling()) {
@@ -64,6 +74,8 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery
             if (!loc.isEmpty()) {
                 l.push_back(std::move(loc));
             }
+        } else if (r.isElement("ErrorCondition")) {
+            parseError(r.subReader());
         }
     }
     return l;
@@ -130,6 +142,8 @@ std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventDelivery(ScopedXml
             parseResponseContext(r.subReader());
         } else if (r.isElement("StopEventResult")) {
             l.push_back(parseStopEventResult(r.subReader()));
+        } else if (r.isElement("ErrorCondition")) {
+            parseError(r.subReader());
         }
     }
     return l;
@@ -277,6 +291,8 @@ std::vector<Journey> OpenJourneyPlannerParser::parseTripDelivery(ScopedXmlStream
             parseResponseContext(r.subReader());
         } else if (r.isElement("TripResult")) {
             l.push_back(parseTripResult(r.subReader()));
+        } else if (r.isElement("ErrorCondition")) {
+            parseError(r.subReader());
         }
     }
     return l;
@@ -374,4 +390,13 @@ JourneySection OpenJourneyPlannerParser::parseTransferLeg(ScopedXmlStreamReader 
         }
     }
     return section;
+}
+
+void OpenJourneyPlannerParser::parseError(ScopedXmlStreamReader &&r)
+{
+    while (r.readNextSibling()) {
+        if (r.isElement("Description")) {
+            m_errorMsg = r.readElementText();
+        }
+    }
 }

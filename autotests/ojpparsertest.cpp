@@ -54,6 +54,7 @@ private Q_SLOTS:
 
         OpenJourneyPlannerParser p;
         const auto res = p.parseLocationInformationResponse(readFile(inFileName));
+        QVERIFY(!p.hasError());
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
@@ -81,6 +82,7 @@ private Q_SLOTS:
 
         OpenJourneyPlannerParser p;
         const auto res = p.parseStopEventResponse(readFile(inFileName));
+        QVERIFY(!p.hasError());
         const auto jsonRes = Stopover::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
@@ -108,6 +110,7 @@ private Q_SLOTS:
 
         OpenJourneyPlannerParser p;
         const auto res = p.parseTripResponse(readFile(inFileName));
+        QVERIFY(!p.hasError());
         const auto jsonRes = Journey::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
@@ -116,6 +119,15 @@ private Q_SLOTS:
         }
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
+    }
+
+    void testParseError()
+    {
+        OpenJourneyPlannerParser p;
+        const auto res = p.parseTripResponse(readFile(s(SOURCE_DIR "/data/ojp/ch-error-notripfound.xml")));
+        QVERIFY(res.empty());
+        QVERIFY(p.hasError());
+        QCOMPARE(p.errorMessage(), QLatin1String("TRIP_NOTRIPFOUND"));
     }
 };
 

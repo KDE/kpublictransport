@@ -53,10 +53,19 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, reply->errorString());
+            return;
+        }
+
         OpenJourneyPlannerParser p;
         auto locs = p.parseLocationInformationResponse(data);
-        // TODO caching, error handling
-        addResult(reply, std::move(locs));
+        if (p.hasError()) {
+            addError(reply, Reply::NotFoundError, p.errorMessage());
+        } else {
+            // TODO caching
+            addResult(reply, std::move(locs));
+        }
     });
 
     return true;
@@ -74,10 +83,19 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, reply->errorString());
+            return;
+        }
+
         OpenJourneyPlannerParser p;
         auto stops = p.parseStopEventResponse(data);
-        // TODO caching, error handling
-        addResult(reply, this, std::move(stops));
+        if (p.hasError()) {
+            addError(reply, Reply::NotFoundError, p.errorMessage());
+        } else {
+            // TODO caching
+            addResult(reply, this, std::move(stops));
+        }
     });
 
     return true;
@@ -95,10 +113,19 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, reply->errorString());
+            return;
+        }
+
         OpenJourneyPlannerParser p;
         auto jnys = p.parseTripResponse(data);
-        // TODO caching, error handling
-        addResult(reply, this, std::move(jnys));
+        if (p.hasError()) {
+            addError(reply, Reply::NotFoundError, p.errorMessage());
+        } else {
+            // TODO caching
+            addResult(reply, this, std::move(jnys));
+        }
     });
 
     return true;
