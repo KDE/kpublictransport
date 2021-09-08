@@ -26,7 +26,8 @@ using namespace KPublicTransport;
 
 AbstractBackend::Capabilities OpenJourneyPlannerBackend::capabilities() const
 {
-    return m_endpoint.scheme() == QLatin1String("https") ? AbstractBackend::Secure : AbstractBackend::NoCapability;
+    return AbstractBackend::CanQueryArrivals |
+        (m_endpoint.scheme() == QLatin1String("https") ? AbstractBackend::Secure : AbstractBackend::NoCapability);
 }
 
 bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
