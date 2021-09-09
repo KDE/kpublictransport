@@ -192,6 +192,7 @@ void GBFSJob::processFeeds()
             case State::SystemInformation:
             case State::Data:
                 m_error = DataError;
+                m_errorMsg = m_state == State::SystemInformation ? QStringLiteral("no system information") : QStringLiteral("no data");
                 Q_EMIT finished();
                 return;
             default:
