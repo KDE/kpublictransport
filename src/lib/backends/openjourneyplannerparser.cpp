@@ -116,6 +116,15 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocationInner(ScopedX
             loc.setLocality(parseTextElement(r.subReader()));
         }
     }
+
+    // cleanup locality also containing the stop name
+    if (loc.locality().startsWith(loc.name()) && loc.locality().endsWith(QLatin1Char(')'))) {
+        const auto idx = loc.locality().lastIndexOf(QLatin1Char('('));
+        if (idx > 0) {
+            loc.setLocality(loc.locality().mid(idx + 1, loc.locality().size() - idx - 2));
+        }
+    }
+
     return loc;
 }
 
