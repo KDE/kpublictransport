@@ -35,7 +35,7 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
     while (r.readNextElement()) {
-        if (r.isElement("OJPLocationInformationDelivery")) {
+        if (r.isElement("OJPLocationInformationDelivery") || r.isElement("LocationInformationResponse")) {
             return parseLocationInformationDelivery(r.subReader());
         }
     }
@@ -47,7 +47,7 @@ std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventResponse(const QBy
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
     while (r.readNextElement()) {
-        if (r.isElement("OJPStopEventDelivery")) {
+        if (r.isElement("OJPStopEventDelivery") || r.isElement("StopEventResponse")) {
             return parseStopEventDelivery(r.subReader());
         }
     }
@@ -59,7 +59,7 @@ std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArra
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
     while (r.readNextElement()) {
-        if (r.isElement("OJPTripDelivery")) {
+        if (r.isElement("OJPTripDelivery") || r.isElement("TripResponse")) {
             return parseTripDelivery(r.subReader());
         }
     }
@@ -70,8 +70,8 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery
 {
     std::vector<Location> l;
     while (r.readNextSibling()) {
-        if (r.isElement("Location")) {
-            auto loc = parseLocationInformationLocationOuter(r.subReader());
+        if (r.isElement("Location") || r.isElement("LocationResult")) {
+            auto loc = parseLocationInformationLocationResult(r.subReader());
             if (!loc.isEmpty()) {
                 l.push_back(std::move(loc));
             }
@@ -82,28 +82,28 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery
     return l;
 }
 
-Location OpenJourneyPlannerParser::parseLocationInformationLocationOuter(ScopedXmlStreamReader &&r) const
+Location OpenJourneyPlannerParser::parseLocationInformationLocationResult(ScopedXmlStreamReader &&r) const
 {
     Location loc;
     while (r.readNextSibling()) {
         if (r.isElement("Location")) {
-            loc = parseLocationInformationLocationInner(r.subReader());
+            loc = parseLocationInformationLocation(r.subReader());
         }
     }
     return loc;
 }
 
-Location OpenJourneyPlannerParser::parseLocationInformationLocationInner(ScopedXmlStreamReader &&r) const
+Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStreamReader &&r) const
 {
     Location loc;
     while (r.readNextSibling()) {
-        if (r.isElement("StopPlace")) {
+        if (r.isElement("StopPlace") || r.isElement("StopPoint")) {
             loc.setType(Location::Stop);
             auto subR = r.subReader();
             while (subR.readNextSibling()) {
-                if (subR.isElement("StopPlaceRef")) {
+                if (subR.isElement("StopPlaceRef") || subR.isElement("StopPointRef")) {
                     loc.setIdentifier(m_identifierType, subR.readElementText());
-                } else if (subR.isElement("StopPlaceName")) {
+                } else if (subR.isElement("StopPlaceName") || subR.isElement("StopPointName")) {
                     loc.setName(parseTextElement(subR.subReader()));
                 }
             }
@@ -112,7 +112,6 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocationInner(ScopedX
             loc.setLongitude(p.x());
             loc.setLatitude(p.y());
         } else if (r.isElement("LocationName")) {
-            // TODO this needs some post-processing it seems
             loc.setLocality(parseTextElement(r.subReader()));
         }
     }
@@ -180,7 +179,7 @@ void OpenJourneyPlannerParser::parseResponseContextPlaces(ScopedXmlStreamReader 
 {
     while (r.readNextSibling()) {
         if (r.isElement("Location")) {
-            auto loc = parseLocationInformationLocationInner(r.subReader());
+            auto loc = parseLocationInformationLocation(r.subReader());
             m_contextLocations.insert(loc.identifier(m_identifierType), std::move(loc));
         }
     }
@@ -232,7 +231,7 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
             loc.setLatitude(p.y());
             loc.setLongitude(p.x());
             loc.setType(Location::Place);
-        } else if (r.isElement("LocationName")) {
+        } else if (r.isElement("LocationName") || r.isElement("StopPointName")) {
             if (loc.name().isEmpty()) {
                 loc.setName(parseTextElement(r.subReader()));
             }
@@ -244,9 +243,9 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
             const auto t = parseTime(r.subReader());
             stop.setScheduledArrivalTime(t.scheduledTime);
             stop.setExpectedArrivalTime(t.expectedTime);
-        } else if (r.isElement("PlannedQuay")) {
+        } else if (r.isElement("PlannedQuay") || r.isElement("PlannedBay")) {
             stop.setScheduledPlatform(parseTextElement(r.subReader()));
-        } else if (r.isElement("EstimatedQuay")) {
+        } else if (r.isElement("EstimatedQuay") || r.isElement("EstimatedBay")) {
             stop.setExpectedPlatform(parseTextElement(r.subReader()));
         } else if (r.isElement("NotServicedStop")) {
             if (r.readElementText() == QLatin1String("true")) {
@@ -276,6 +275,10 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
             // TODO
         } else if (r.isElement("DestinationText")) {
             route.setDirection(parseTextElement(r.subReader()));
+        } else if (r.isElement("ServiceSection")) {
+            route.setLine(std::move(line));
+            parseService(r.subReader(), route, attributes);
+            line = route.line();
         }
     }
     route.setLine(std::move(line));

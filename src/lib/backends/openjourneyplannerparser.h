@@ -45,8 +45,8 @@ public:
 
 private:
     std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r);
-    Location parseLocationInformationLocationOuter(ScopedXmlStreamReader &&r) const;
-    Location parseLocationInformationLocationInner(ScopedXmlStreamReader &&r) const;
+    Location parseLocationInformationLocationResult(ScopedXmlStreamReader &&r) const;
+    Location parseLocationInformationLocation(ScopedXmlStreamReader &&r) const;
     QString parseTextElement(ScopedXmlStreamReader &&r) const;
     QPointF parseGeoPosition(ScopedXmlStreamReader &&r) const;
 
