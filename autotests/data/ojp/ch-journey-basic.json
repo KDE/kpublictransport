@@ -9,6 +9,7 @@
                 "expectedDepartureTime": "2021-09-07T15:46:00Z",
                 "from": {
                     "identifier": {
+                        "test_id": "8503016",
                         "uic": "8503016"
                     },
                     "latitude": 47.45038986206055,
@@ -41,6 +42,7 @@
                 "scheduledDepartureTime": "2021-09-07T15:45:00Z",
                 "to": {
                     "identifier": {
+                        "test_id": "8501605",
                         "uic": "8501605"
                     },
                     "latitude": 46.294029235839844,
@@ -55,6 +57,7 @@
                 "distance": 0,
                 "from": {
                     "identifier": {
+                        "test_id": "8501605",
                         "uic": "8501605"
                     },
                     "latitude": 46.294029235839844,
@@ -68,6 +71,7 @@
                 "scheduledDepartureTime": "2021-09-07T18:02:00Z",
                 "to": {
                     "identifier": {
+                        "test_id": "8501605",
                         "uic": "8501605"
                     },
                     "latitude": 46.294029235839844,
@@ -84,6 +88,7 @@
                 "expectedDepartureTime": "2021-09-07T18:08:00Z",
                 "from": {
                     "identifier": {
+                        "test_id": "8501605",
                         "uic": "8501605"
                     },
                     "latitude": 46.294029235839844,
@@ -108,6 +113,7 @@
                 "scheduledDepartureTime": "2021-09-07T18:08:00Z",
                 "to": {
                     "identifier": {
+                        "test_id": "8501687",
                         "uic": "8501687"
                     },
                     "latitude": 46.09992980957031,

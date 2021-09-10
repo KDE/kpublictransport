@@ -2,7 +2,7 @@
     {
         "identifier": {
             "ifopt": "de:14612:28",
-            "uic": "de:14612:28"
+            "test_id": "de:14612:28"
         },
         "latitude": 51.0399284362793,
         "locality": "Dresden",
@@ -13,7 +13,7 @@
     {
         "identifier": {
             "ifopt": "de:14612:32",
-            "uic": "de:14612:32"
+            "test_id": "de:14612:32"
         },
         "latitude": 51.0413703918457,
         "locality": "Dresden",
@@ -24,7 +24,7 @@
     {
         "identifier": {
             "ifopt": "de:14612:36",
-            "uic": "de:14612:36"
+            "test_id": "de:14612:36"
         },
         "latitude": 51.038719177246094,
         "locality": "Dresden",

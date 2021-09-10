@@ -16,6 +16,7 @@ class QNetworkRequest;
 
 namespace KPublicTransport {
 
+class OpenJourneyPlannerParser;
 class OpenJourneyPlannerRequestBuilder;
 
 /** Backend for OpenJourneyPlanner services
@@ -42,6 +43,7 @@ public:
 private:
     QNetworkRequest networkRequest() const;
     OpenJourneyPlannerRequestBuilder requestBuilder() const;
+    OpenJourneyPlannerParser parser() const;
 
     QUrl m_endpoint;
     QString m_authorization;

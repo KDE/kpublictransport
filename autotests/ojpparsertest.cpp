@@ -59,6 +59,8 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenJourneyPlannerParser p;
+        p.setLocationIdentifierType(QStringLiteral("test_id"));
+        p.setUicLocationIdentifierType(QStringLiteral("uic"));
         const auto res = p.parseLocationInformationResponse(readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Location::toJson(res);
@@ -87,6 +89,8 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenJourneyPlannerParser p;
+        p.setLocationIdentifierType(QStringLiteral("test_id"));
+        p.setUicLocationIdentifierType(QStringLiteral("uic"));
         const auto res = p.parseStopEventResponse(readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Stopover::toJson(res);
@@ -115,6 +119,8 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenJourneyPlannerParser p;
+        p.setLocationIdentifierType(QStringLiteral("test_id"));
+        p.setUicLocationIdentifierType(QStringLiteral("uic"));
         const auto res = p.parseTripResponse(readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Journey::toJson(res);
@@ -130,6 +136,8 @@ private Q_SLOTS:
     void testParseError()
     {
         OpenJourneyPlannerParser p;
+        p.setLocationIdentifierType(QStringLiteral("test_id"));
+        p.setUicLocationIdentifierType(QStringLiteral("uic"));
         const auto res = p.parseTripResponse(readFile(s(SOURCE_DIR "/data/ojp/ch-error-notripfound.xml")));
         QVERIFY(res.empty());
         QVERIFY(p.hasError());

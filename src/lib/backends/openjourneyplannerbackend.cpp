@@ -58,7 +58,7 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
             return;
         }
 
-        OpenJourneyPlannerParser p;
+        auto p = parser();
         auto locs = p.parseLocationInformationResponse(data);
         if (p.hasError()) {
             addError(reply, Reply::NotFoundError, p.errorMessage());
@@ -87,7 +87,7 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
             return;
         }
 
-        OpenJourneyPlannerParser p;
+        auto p = parser();
         auto stops = p.parseStopEventResponse(data);
         if (p.hasError()) {
             addError(reply, Reply::NotFoundError, p.errorMessage());
@@ -116,7 +116,7 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
             return;
         }
 
-        OpenJourneyPlannerParser p;
+        auto p = parser();
         auto jnys = p.parseTripResponse(data);
         if (p.hasError()) {
             addError(reply, Reply::NotFoundError, p.errorMessage());
@@ -145,4 +145,12 @@ OpenJourneyPlannerRequestBuilder OpenJourneyPlannerBackend::requestBuilder() con
     builder.setRequestorRef(m_requestorRef);
     builder.setUseTrias(m_useTrias);
     return builder;
+}
+
+OpenJourneyPlannerParser OpenJourneyPlannerBackend::parser() const
+{
+    OpenJourneyPlannerParser p;
+    p.setLocationIdentifierType(backendId());
+    p.setUicLocationIdentifierType(QStringLiteral("uic")); // TODO
+    return p;
 }

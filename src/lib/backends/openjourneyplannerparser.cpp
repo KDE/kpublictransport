@@ -9,6 +9,7 @@
 
 #include <gtfs/hvt.h>
 #include <ifopt/ifoptutil.h>
+#include <uic/uicutil.h>
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -29,6 +30,16 @@ bool OpenJourneyPlannerParser::hasError() const
 QString OpenJourneyPlannerParser::errorMessage() const
 {
     return m_errorMsg;
+}
+
+void OpenJourneyPlannerParser::setLocationIdentifierType(const QString &idType)
+{
+    m_identifierType = idType;
+}
+
+void OpenJourneyPlannerParser::setUicLocationIdentifierType(const QString &uicIdType)
+{
+    m_uicIdentifierType = uicIdType;
 }
 
 std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse(const QByteArray &responseData)
@@ -107,6 +118,9 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStr
                     loc.setIdentifier(m_identifierType, id);
                     if (IfoptUtil::isValid(id)) {
                         loc.setIdentifier(IfoptUtil::identifierType(), id);
+                    }
+                    if (!m_uicIdentifierType.isEmpty() && UicUtil::isStationId(id)) {
+                        loc.setIdentifier(m_uicIdentifierType, id);
                     }
                 } else if (subR.isElement("StopPlaceName") || subR.isElement("StopPointName")) {
                     loc.setName(parseTextElement(subR.subReader()));

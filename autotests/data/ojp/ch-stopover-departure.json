@@ -15,6 +15,7 @@
         "scheduledDepartureTime": "2021-09-06T20:27:00Z",
         "stopPoint": {
             "identifier": {
+                "test_id": "8501687",
                 "uic": "8501687"
             },
             "latitude": 46.09992980957031,
@@ -40,6 +41,7 @@
         "scheduledDepartureTime": "2021-09-06T21:29:00Z",
         "stopPoint": {
             "identifier": {
+                "test_id": "8501687",
                 "uic": "8501687"
             },
             "latitude": 46.09992980957031,

@@ -43,6 +43,9 @@ public:
     bool hasError() const;
     QString errorMessage() const;
 
+    void setLocationIdentifierType(const QString &idType);
+    void setUicLocationIdentifierType(const QString &uicIdType);
+
 private:
     std::vector<Location> parseLocationInformationDelivery(ScopedXmlStreamReader &&r);
     Location parseLocationInformationLocationResult(ScopedXmlStreamReader &&r) const;
@@ -75,7 +78,8 @@ private:
 
     void parseError(ScopedXmlStreamReader &&r);
 
-    QString m_identifierType = QStringLiteral("uic"); // TODO
+    QString m_identifierType;
+    QString m_uicIdentifierType;
     QHash<QString, Location> m_contextLocations;
     QString m_errorMsg;
 };
