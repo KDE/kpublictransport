@@ -48,6 +48,9 @@ private Q_SLOTS:
         QTest::newRow("ch-location-by-name")
             << s(SOURCE_DIR "/data/ojp/ch-location-by-name.xml")
             << s(SOURCE_DIR "/data/ojp/ch-location-by-name.json");
+        QTest::newRow("vvo-location-by-name")
+            << s(SOURCE_DIR "/data/ojp/vvo-location-by-name.xml")
+            << s(SOURCE_DIR "/data/ojp/vvo-location-by-name.json");
     }
 
     void testParseLocations()

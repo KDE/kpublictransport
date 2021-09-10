@@ -1,0 +1,32 @@
+[
+    {
+        "identifier": {
+            "uic": "de:14612:28"
+        },
+        "latitude": 51.0399284362793,
+        "locality": "Dresden",
+        "longitude": 13.732930183410645,
+        "name": "Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "uic": "de:14612:32"
+        },
+        "latitude": 51.0413703918457,
+        "locality": "Dresden",
+        "longitude": 13.735090255737305,
+        "name": "Hauptbahnhof Nord",
+        "type": "Stop"
+    },
+    {
+        "identifier": {
+            "uic": "de:14612:36"
+        },
+        "latitude": 51.038719177246094,
+        "locality": "Dresden",
+        "longitude": 13.734049797058105,
+        "name": "Hauptbahnhof (Strehlener Str.)",
+        "type": "Stop"
+    }
+]
