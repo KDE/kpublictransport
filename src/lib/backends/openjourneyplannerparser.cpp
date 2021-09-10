@@ -8,6 +8,7 @@
 #include "scopedxmlstreamreader.h"
 
 #include <gtfs/hvt.h>
+#include <ifopt/ifoptutil.h>
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -102,7 +103,11 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStr
             auto subR = r.subReader();
             while (subR.readNextSibling()) {
                 if (subR.isElement("StopPlaceRef") || subR.isElement("StopPointRef")) {
-                    loc.setIdentifier(m_identifierType, subR.readElementText());
+                    const auto id = subR.readElementText();
+                    loc.setIdentifier(m_identifierType, id);
+                    if (IfoptUtil::isValid(id)) {
+                        loc.setIdentifier(IfoptUtil::identifierType(), id);
+                    }
                 } else if (subR.isElement("StopPlaceName") || subR.isElement("StopPointName")) {
                     loc.setName(parseTextElement(subR.subReader()));
                 }
