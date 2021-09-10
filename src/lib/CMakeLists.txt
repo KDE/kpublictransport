@@ -108,6 +108,8 @@ target_sources(KPublicTransport PRIVATE
 
     networks/networks.qrc
     networks/certs/network_certs.qrc
+
+    uic/uicutil.cpp
 )
 ecm_qt_declare_logging_category(KPublicTransport
     HEADER logging.h

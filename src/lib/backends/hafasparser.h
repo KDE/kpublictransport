@@ -50,7 +50,6 @@ protected:
 
 private:
     Q_DISABLE_COPY(HafasParser)
-    bool isUicStationId(const QString &id) const;
 
     QString m_locationIdentifierType;
     QString m_standardLocationIdentifierType;
