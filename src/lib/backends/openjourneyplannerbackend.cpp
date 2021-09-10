@@ -54,7 +54,7 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
@@ -83,7 +83,7 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
@@ -112,7 +112,7 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
         logReply(reply, netReply, data);
 
         if (netReply->error() != QNetworkReply::NoError) {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NetworkError, netReply->errorString());
             return;
         }
 
