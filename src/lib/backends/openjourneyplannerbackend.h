@@ -9,6 +9,7 @@
 
 #include "abstractbackend.h"
 
+#include <QByteArray>
 #include <QUrl>
 
 class QNetworkRequest;
@@ -27,6 +28,8 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     Q_PROPERTY(QString authorization MEMBER m_authorization)
     Q_PROPERTY(QString requestorRef MEMBER m_requestorRef)
     Q_PROPERTY(bool useTrias MEMBER m_useTrias)
+    /** Override the default HTTP ContentType header in the request. */
+    Q_PROPERTY(QByteArray contentType MEMBER m_contentType)
 
 public:
     static inline constexpr const char* type() { return "openJourneyPlanner"; }
@@ -44,6 +47,7 @@ private:
     QString m_authorization;
     QString m_requestorRef;
     bool m_useTrias = false;
+    QByteArray m_contentType = "application/xml";
 };
 
 }

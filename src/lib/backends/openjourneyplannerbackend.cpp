@@ -132,7 +132,7 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
 QNetworkRequest OpenJourneyPlannerBackend::networkRequest() const
 {
     QNetworkRequest req(m_endpoint);
-    req.setHeader(QNetworkRequest::ContentTypeHeader, QByteArray("application/xml"));
+    req.setHeader(QNetworkRequest::ContentTypeHeader, m_contentType);
     if (!m_authorization.isEmpty()) {
         req.setRawHeader("Authorization", m_authorization.toUtf8());
     }
