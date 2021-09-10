@@ -15,6 +15,8 @@ class QNetworkRequest;
 
 namespace KPublicTransport {
 
+class OpenJourneyPlannerRequestBuilder;
+
 /** Backend for OpenJourneyPlanner services
  *  Due to its similarities, this might also be viable for TRIAS-based services.
  */
@@ -23,6 +25,8 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     Q_GADGET
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString authorization MEMBER m_authorization)
+    Q_PROPERTY(QString requestorRef MEMBER m_requestorRef)
+    Q_PROPERTY(bool useTrias MEMBER m_useTrias)
 
 public:
     static inline constexpr const char* type() { return "openJourneyPlanner"; }
@@ -34,9 +38,12 @@ public:
 
 private:
     QNetworkRequest networkRequest() const;
+    OpenJourneyPlannerRequestBuilder requestBuilder() const;
 
     QUrl m_endpoint;
     QString m_authorization;
+    QString m_requestorRef;
+    bool m_useTrias = false;
 };
 
 }

@@ -7,7 +7,8 @@
 #ifndef KPUBLICTRANSPORT_OPENJOURNEYPLANNERREQUESTBUILDER_H
 #define KPUBLICTRANSPORT_OPENJOURNEYPLANNERREQUESTBUILDER_H
 
-class QByteArray;
+#include <QString>
+
 class QXmlStreamWriter;
 
 namespace KPublicTransport {
@@ -21,6 +22,13 @@ class StopoverRequest;
 class OpenJourneyPlannerRequestBuilder
 {
 public:
+    explicit OpenJourneyPlannerRequestBuilder();
+    ~OpenJourneyPlannerRequestBuilder();
+
+    void setRequestorRef(const QString &ref);
+    /** Create TRIAS rather than Open Journey Planner requests. */
+    void setUseTrias(bool isTrias);
+
     QByteArray buildLocationInformationRequest(const LocationRequest &req) const;
     QByteArray buildStopEventRequest(const StopoverRequest &req) const;
     QByteArray buildTripRequest(const JourneyRequest &req) const;
@@ -34,6 +42,10 @@ private:
     void writeEndServiceRequest(QXmlStreamWriter &w) const;
     void writePlaceRef(QXmlStreamWriter &w, const Location &loc) const;
 
+    QString ns() const;
+
+    QString m_requestorRef;
+    bool m_useTrias = false;
     bool m_testMode = false;
 };
 

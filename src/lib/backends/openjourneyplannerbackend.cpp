@@ -44,8 +44,7 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
         return false;
     }
 
-    OpenJourneyPlannerRequestBuilder builder;
-    const auto postData = builder.buildLocationInformationRequest(request);
+    const auto postData = requestBuilder().buildLocationInformationRequest(request);
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
@@ -74,8 +73,7 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
 
 bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    OpenJourneyPlannerRequestBuilder builder;
-    const auto postData = builder.buildStopEventRequest(request);
+    const auto postData = requestBuilder().buildStopEventRequest(request);
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
@@ -104,8 +102,7 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
 
 bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    OpenJourneyPlannerRequestBuilder builder;
-    const auto postData = builder.buildTripRequest(request);
+    const auto postData = requestBuilder().buildTripRequest(request);
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
@@ -140,4 +137,12 @@ QNetworkRequest OpenJourneyPlannerBackend::networkRequest() const
         req.setRawHeader("Authorization", m_authorization.toUtf8());
     }
     return req;
+}
+
+OpenJourneyPlannerRequestBuilder OpenJourneyPlannerBackend::requestBuilder() const
+{
+    OpenJourneyPlannerRequestBuilder builder;
+    builder.setRequestorRef(m_requestorRef);
+    builder.setUseTrias(m_useTrias);
+    return builder;
 }

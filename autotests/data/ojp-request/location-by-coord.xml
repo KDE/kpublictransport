@@ -2,7 +2,7 @@
 <siri:OJP xmlns:siri="http://www.siri.org.uk/siri" xmlns:ojp="http://www.vdv.de/ojp" version="1.0">
  <siri:OJPRequest>
   <siri:ServiceRequest>
-   <siri:RequestRef>KPublicTransport</siri:RequestRef>
+   <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
    <ojp:OJPLocationInformationRequest>
     <ojp:InitialInput>
      <ojp:GeoRestriction>

@@ -61,9 +61,19 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenJourneyPlannerRequestBuilder builder;
+        builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
-        const auto res = builder.buildLocationInformationRequest(request);
-        const auto ref = readFile(refFileName);
+        auto res = builder.buildLocationInformationRequest(request);
+        auto ref = readFile(refFileName);
+        if (res != ref) {
+            qDebug().noquote() << res;
+        }
+        QVERIFY(!res.isEmpty());
+        QCOMPARE(res, ref);
+
+        builder.setUseTrias(true);
+        res = builder.buildLocationInformationRequest(request);
+        ref = readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -94,9 +104,19 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenJourneyPlannerRequestBuilder builder;
+        builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
-        const auto res = builder.buildStopEventRequest(request);
-        const auto ref = readFile(refFileName);
+        auto res = builder.buildStopEventRequest(request);
+        auto ref = readFile(refFileName);
+        if (res != ref) {
+            qDebug().noquote() << res;
+        }
+        QVERIFY(!res.isEmpty());
+        QCOMPARE(res, ref);
+
+        builder.setUseTrias(true);
+        res = builder.buildStopEventRequest(request);
+        ref = readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -136,9 +156,19 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenJourneyPlannerRequestBuilder builder;
+        builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
-        const auto res = builder.buildTripRequest(request);
-        const auto ref = readFile(refFileName);
+        auto res = builder.buildTripRequest(request);
+        auto ref = readFile(refFileName);
+        if (res != ref) {
+            qDebug().noquote() << res;
+        }
+        QVERIFY(!res.isEmpty());
+        QCOMPARE(res, ref);
+
+        builder.setUseTrias(true);
+        res = builder.buildTripRequest(request);
+        ref = readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
         if (res != ref) {
             qDebug().noquote() << res;
         }

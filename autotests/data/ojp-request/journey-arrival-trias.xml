@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trias:Trias xmlns:siri="http://www.siri.org.uk/siri" xmlns:trias="http://www.vdv.de/trias" version="1.2">
+ <trias:ServiceRequest>
+  <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+  <trias:RequestPayload>
+   <trias:TripRequest>
+    <trias:Origin>
+     <trias:LocationRef>
+      <trias:GeoPosition>
+       <siri:Longitude>7.78</siri:Longitude>
+       <siri:Latitude>46.1</siri:Latitude>
+      </trias:GeoPosition>
+      <trias:LocationName>
+       <trias:Text>Randa</trias:Text>
+      </trias:LocationName>
+     </trias:LocationRef>
+    </trias:Origin>
+    <trias:Destination>
+     <trias:LocationRef>
+      <trias:StopPointRef>8500010</trias:StopPointRef>
+     </trias:LocationRef>
+     <trias:DepArrTime>2020-09-06T20:54:00Z</trias:DepArrTime>
+    </trias:Destination>
+    <trias:Params>
+     <trias:IncludeTrackSections>true</trias:IncludeTrackSections>
+     <trias:IncludeLegProjection>true</trias:IncludeLegProjection>
+     <trias:IncludeTurnDescription>true</trias:IncludeTurnDescription>
+     <trias:IncludeAccessibility>true</trias:IncludeAccessibility>
+     <trias:IncludeIntermediateStops>false</trias:IncludeIntermediateStops>
+     <trias:IncludeFares>false</trias:IncludeFares>
+     <trias:NumberOfResults>3</trias:NumberOfResults>
+    </trias:Params>
+   </trias:TripRequest>
+  </trias:RequestPayload>
+ </trias:ServiceRequest>
+</trias:Trias>

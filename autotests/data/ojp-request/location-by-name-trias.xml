@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trias:Trias xmlns:siri="http://www.siri.org.uk/siri" xmlns:trias="http://www.vdv.de/trias" version="1.2">
+ <trias:ServiceRequest>
+  <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+  <trias:RequestPayload>
+   <trias:LocationInformationRequest>
+    <trias:InitialInput>
+     <trias:LocationName>Randa</trias:LocationName>
+    </trias:InitialInput>
+    <trias:Restrictions>
+     <trias:Type>stop</trias:Type>
+     <trias:NumberOfResults>23</trias:NumberOfResults>
+    </trias:Restrictions>
+   </trias:LocationInformationRequest>
+  </trias:RequestPayload>
+ </trias:ServiceRequest>
+</trias:Trias>

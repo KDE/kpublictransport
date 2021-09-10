@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trias:Trias xmlns:siri="http://www.siri.org.uk/siri" xmlns:trias="http://www.vdv.de/trias" version="1.2">
+ <trias:ServiceRequest>
+  <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+  <trias:RequestPayload>
+   <trias:StopEventRequest>
+    <trias:Location>
+     <trias:LocationRef>
+      <trias:StopPointRef>8501687</trias:StopPointRef>
+     </trias:LocationRef>
+     <trias:DepArrTime>2020-09-06T20:54:00Z</trias:DepArrTime>
+    </trias:Location>
+    <trias:Params>
+     <trias:StopEventType>arrival</trias:StopEventType>
+     <trias:IncludePreviousCalls>false</trias:IncludePreviousCalls>
+     <trias:IncludeOnwardCalls>false</trias:IncludeOnwardCalls>
+     <trias:IncludeOperatingDays>false</trias:IncludeOperatingDays>
+     <trias:IncludeRealtimeData>true</trias:IncludeRealtimeData>
+     <trias:NumberOfResults>4</trias:NumberOfResults>
+    </trias:Params>
+   </trias:StopEventRequest>
+  </trias:RequestPayload>
+ </trias:ServiceRequest>
+</trias:Trias>

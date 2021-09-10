@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trias:Trias xmlns:siri="http://www.siri.org.uk/siri" xmlns:trias="http://www.vdv.de/trias" version="1.2">
+ <trias:ServiceRequest>
+  <siri:RequestorRef>KPublicTransport</siri:RequestorRef>
+  <trias:RequestPayload>
+   <trias:LocationInformationRequest>
+    <trias:InitialInput>
+     <trias:GeoRestriction>
+      <trias:Circle>
+       <trias:Center>
+        <siri:Longitude>7.78</siri:Longitude>
+        <siri:Latitude>46.1</siri:Latitude>
+       </trias:Center>
+       <trias:Radius>500</trias:Radius>
+      </trias:Circle>
+     </trias:GeoRestriction>
+    </trias:InitialInput>
+    <trias:Restrictions>
+     <trias:Type>stop</trias:Type>
+     <trias:NumberOfResults>23</trias:NumberOfResults>
+    </trias:Restrictions>
+   </trias:LocationInformationRequest>
+  </trias:RequestPayload>
+ </trias:ServiceRequest>
+</trias:Trias>
