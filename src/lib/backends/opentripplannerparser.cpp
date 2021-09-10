@@ -92,7 +92,7 @@ bool OpenTripPlannerParser::parseLocationFragment(const QJsonObject &obj, Locati
     if (!m_ifoptPrefix.isEmpty() && id.size() > m_ifoptPrefix.size() + 1 && id.startsWith(m_ifoptPrefix) && id.at(m_ifoptPrefix.size()) == QLatin1Char(':')) {
         const auto ifopt = QStringView(id).mid(m_ifoptPrefix.size() + 1);
         if (IfoptUtil::isValid(ifopt)) {
-            loc.setIdentifier(QStringLiteral("ifopt"), ifopt.toString());
+            loc.setIdentifier(IfoptUtil::identifierType(), ifopt.toString());
         }
     }
 

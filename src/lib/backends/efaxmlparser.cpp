@@ -45,7 +45,7 @@ void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReade
     for (const auto &attr : {QLatin1String("pointGid"), QLatin1String("areaGid"), QLatin1String("gid")}) {
         const auto id = reader.attributes().value(attr);
         if (IfoptUtil::isValid(id)) {
-            loc.setIdentifier(QStringLiteral("ifopt"), id.toString());
+            loc.setIdentifier(IfoptUtil::identifierType(), id.toString());
             break;
         }
     }

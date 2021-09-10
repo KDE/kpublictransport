@@ -7,6 +7,7 @@
 #ifndef KPUBLICTRANSPORT_IFOPTUTIL_H
 #define KPUBLICTRANSPORT_IFOPTUTIL_H
 
+class QString;
 class QStringView;
 
 namespace KPublicTransport {
@@ -37,6 +38,9 @@ bool isSameStopPlace(QStringView lhs, QStringView rhs);
  *  Precondition: isValid(lhs) && isValid(rhs) && isSameStopPlace(lhs, rhs)
  */
 QStringView merge(QStringView lhs, QStringView rhs);
+
+/** The identifier type for use in @c Location::identifer for IFOPT ids. */
+QString identifierType();
 
 }
 

@@ -79,3 +79,8 @@ QStringView IfoptUtil::merge(QStringView lhs, QStringView rhs)
 
     return stopPlace(lhs);
 }
+
+QString IfoptUtil::identifierType()
+{
+    return QStringLiteral("ifopt");
+}

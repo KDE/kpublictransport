@@ -7,6 +7,7 @@
 #include "ivvassbackend.h"
 #include "ivvassparser.h"
 #include "cache.h"
+#include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
@@ -34,7 +35,7 @@ AbstractBackend::Capabilities IvvAssBackend::capabilities() const
 bool IvvAssBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     Q_UNUSED(type);
-    return !loc.hasCoordinate() && loc.identifier(QStringLiteral("ifopt")).isEmpty();
+    return !loc.hasCoordinate() && loc.identifier(IfoptUtil::identifierType()).isEmpty();
 }
 
 bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
@@ -94,7 +95,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     if (req.stop().hasCoordinate()) {
         query.addQueryItem(QStringLiteral("r"), QString::number(req.stop().latitude()) + QLatin1Char(',') + QString::number(req.stop().longitude()));
     } else {
-        query.addQueryItem(QStringLiteral("i"), req.stop().identifier(QStringLiteral("ifopt")));
+        query.addQueryItem(QStringLiteral("i"), req.stop().identifier(IfoptUtil::identifierType()));
     }
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
 
@@ -138,7 +139,7 @@ static QString locationParameter(const Location &loc)
     if (loc.hasCoordinate()) {
         return QString::number(loc.latitude()) + QLatin1Char(',') + QString::number(loc.longitude());
     }
-    return loc.identifier(QStringLiteral("ifopt"));
+    return loc.identifier(IfoptUtil::identifierType());
 }
 
 bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const

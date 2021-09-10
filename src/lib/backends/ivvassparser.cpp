@@ -52,9 +52,9 @@ IvvAssParser::LocationData IvvAssParser::parseLocation(const QJsonObject &stopOb
         return r;
     }
 
-    const auto id = stopObj.value(QLatin1String("ifopt")).toString();
+    const auto id = stopObj.value(IfoptUtil::identifierType()).toString();
     if (IfoptUtil::isValid(id)) {
-        r.loc.setIdentifier(QStringLiteral("ifopt"), id);
+        r.loc.setIdentifier(IfoptUtil::identifierType(), id);
     } else {
         r.loc.setIdentifier(m_locationIdentifier, id);
     }

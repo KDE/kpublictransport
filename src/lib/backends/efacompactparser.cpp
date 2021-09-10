@@ -33,12 +33,12 @@ static void parseCompactIfopt(ScopedXmlStreamReader &reader, Location &loc)
     if (reader.name() == QLatin1String("pgid")) {
         const auto id = reader.readElementText();
         if (IfoptUtil::isValid(id)) {
-            loc.setIdentifier(QStringLiteral("ifopt"), id);
+            loc.setIdentifier(IfoptUtil::identifierType(), id);
         }
     } else if (reader.name() == QLatin1String("gid")) {
         const auto id = reader.readElementText();
-        if (IfoptUtil::isValid(id) && loc.identifier(QStringLiteral("ifopt")).isEmpty()) {
-            loc.setIdentifier(QStringLiteral("ifopt"), id);
+        if (IfoptUtil::isValid(id) && loc.identifier(IfoptUtil::identifierType()).isEmpty()) {
+            loc.setIdentifier(IfoptUtil::identifierType(), id);
         }
     }
 }
@@ -350,9 +350,9 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                     loc.setCoordinate(coord[1].toFloat(), coord[0].toFloat());
 
                     if (IfoptUtil::isValid(stopParams[13])) {
-                        loc.setIdentifier(QStringLiteral("ifopt"), stopParams[13]);
+                        loc.setIdentifier(IfoptUtil::identifierType(), stopParams[13]);
                     } else if (IfoptUtil::isValid(stopParams[12])) {
-                        loc.setIdentifier(QStringLiteral("ifopt"), stopParams[12]);
+                        loc.setIdentifier(IfoptUtil::identifierType(), stopParams[12]);
                     }
 
                     const auto dt = QDateTime::fromString(stopParams[2] + stopParams[3], QStringLiteral("yyyyMMddhhmm"));
