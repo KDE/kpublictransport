@@ -190,6 +190,8 @@ void OpenJourneyPlannerParser::parseResponseContext(ScopedXmlStreamReader &&r)
     while (r.readNextSibling()) {
         if (r.isElement("Places")) {
             parseResponseContextPlaces(r.subReader());
+        } else if (r.isElement("Situations")) {
+            parseResponseContextSituations(r.subReader());
         }
     }
 }
@@ -202,6 +204,32 @@ void OpenJourneyPlannerParser::parseResponseContextPlaces(ScopedXmlStreamReader 
             m_contextLocations.insert(loc.identifier(m_identifierType), std::move(loc));
         }
     }
+}
+
+void OpenJourneyPlannerParser::parseResponseContextSituations(ScopedXmlStreamReader &&r)
+{
+    while (r.readNextSibling()) {
+        if (r.isElement("PtSituation")) {
+            parseSituation(r.subReader());
+        }
+    }
+}
+
+void OpenJourneyPlannerParser::parseSituation(ScopedXmlStreamReader &&r)
+{
+    QString source, id, summary, desc;
+    while (r.readNextSibling()) {
+        if (r.isElement("ParticipantRef")) {
+            source = r.readElementText();
+        } else if (r.isElement("SituationNumber")) {
+            id = r.readElementText();
+        } else if (r.isElement("Summary")) {
+            summary = r.readElementText();
+        } else if (r.isElement("Description")) {
+            desc = r.readElementText();
+        } // TODO there's also <Detail>, but that seems a bit excessive?
+    }
+    m_contextSituations.insert(source + QLatin1Char('-') + id, summary + QLatin1String(": ") + desc);
 }
 
 Stopover OpenJourneyPlannerParser::parseStopEventResult(ScopedXmlStreamReader &&r) const
@@ -298,6 +326,9 @@ void OpenJourneyPlannerParser::parseService(ScopedXmlStreamReader &&r, Route &ro
             route.setLine(std::move(line));
             parseService(r.subReader(), route, attributes);
             line = route.line();
+        } else if (r.isElement("SituationFullRef")) {
+            const auto situationId = parseSituationRef(r.subReader());
+            attributes.push_back(m_contextSituations.value(situationId));
         }
     }
     route.setLine(std::move(line));
@@ -333,6 +364,20 @@ Line::Mode OpenJourneyPlannerParser::parseMode(ScopedXmlStreamReader &&r) const
     }
     return m;
 }
+
+QString OpenJourneyPlannerParser::parseSituationRef(ScopedXmlStreamReader &&r) const
+{
+    QString source, id;
+    while (r.readNextSibling()) {
+        if (r.isElement("ParticipantRef")) {
+            source = r.readElementText();
+        } else if (r.isElement("SituationNumber")) {
+            id = r.readElementText();
+        }
+    }
+    return source + QLatin1Char('-') + id;
+}
+
 
 std::vector<Journey> OpenJourneyPlannerParser::parseTripDelivery(ScopedXmlStreamReader &&r)
 {

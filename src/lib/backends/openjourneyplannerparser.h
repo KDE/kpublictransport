@@ -56,6 +56,9 @@ private:
     std::vector<Stopover> parseStopEventDelivery(ScopedXmlStreamReader &&r);
     void parseResponseContext(ScopedXmlStreamReader &&r);
     void parseResponseContextPlaces(ScopedXmlStreamReader &&r);
+    void parseResponseContextSituations(ScopedXmlStreamReader &&r);
+    void parseSituation(ScopedXmlStreamReader &&r);
+
     Stopover parseStopEventResult(ScopedXmlStreamReader &&r) const;
     Stopover parseStopEvent(ScopedXmlStreamReader &&r) const;
     void parseCallAtStop(ScopedXmlStreamReader &&r, Stopover &stop) const;
@@ -66,6 +69,7 @@ private:
     };
     TimePair parseTime(ScopedXmlStreamReader &&r) const;
     Line::Mode parseMode(ScopedXmlStreamReader &&r) const;
+    QString parseSituationRef(ScopedXmlStreamReader &&r) const;
 
     std::vector<Journey> parseTripDelivery(ScopedXmlStreamReader &&r);
     Journey parseTripResult(ScopedXmlStreamReader &&r) const;
@@ -81,6 +85,7 @@ private:
     QString m_identifierType;
     QString m_uicIdentifierType;
     QHash<QString, Location> m_contextLocations;
+    QHash<QString, QString> m_contextSituations;
     QString m_errorMsg;
 };
 
