@@ -81,6 +81,9 @@ private Q_SLOTS:
         QTest::newRow("ch-stopover-departure")
             << s(SOURCE_DIR "/data/ojp/ch-stopover-departure.xml")
             << s(SOURCE_DIR "/data/ojp/ch-stopover-departure.json");
+        QTest::newRow("vvo-stopover-departure")
+            << s(SOURCE_DIR "/data/ojp/vvo-stopover-departure.xml")
+            << s(SOURCE_DIR "/data/ojp/vvo-stopover-departure.json");
     }
 
     void testParseStopover()

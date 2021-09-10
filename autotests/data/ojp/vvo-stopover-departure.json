@@ -1,0 +1,35 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-09-10T19:41:00Z",
+        "expectedPlatform": "1",
+        "route": {
+            "direction": "Dresden Pirnaischer Platz",
+            "line": {
+                "mode": "Bus",
+                "name": "360"
+            }
+        },
+        "scheduledDepartureTime": "2021-09-10T19:41:00Z",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "name": "Dresden Reichenbachstraße"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2021-09-10T19:41:00Z",
+        "route": {
+            "direction": "Weixdorf",
+            "line": {
+                "mode": "Tramway",
+                "name": "7"
+            }
+        },
+        "scheduledDepartureTime": "2021-09-10T19:41:00Z",
+        "scheduledPlatform": "1",
+        "stopPoint": {
+            "name": "Dresden Hauptbahnhof Nord"
+        }
+    }
+]
