@@ -59,7 +59,7 @@ QString AbstractBackend::preferredLanguage() const
         if (m_supportedLanguages.contains(l)) {
             return l;
         }
-        if (l.size() > 2 && l[2] == QLatin1Char('-') && m_supportedLanguages.contains(l.leftRef(2))) {
+        if (l.size() > 2 && l[2] == QLatin1Char('-') && m_supportedLanguages.contains(QStringView(l).left(2))) {
             return l.left(2);
         }
     }

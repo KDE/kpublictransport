@@ -29,7 +29,7 @@ QString Json::translatedValue(const QJsonObject &obj, const QString &key)
     if (it != obj.constEnd()) {
         return it.value().toString();
     }
-    const auto language = languageWithCountry.midRef(0, languageWithCountry.indexOf(QLatin1Char('_')));
+    const auto language = QStringView(languageWithCountry).mid(0, languageWithCountry.indexOf(QLatin1Char('_')));
     it = obj.constFind(key + QLatin1Char('[') + language + QLatin1Char(']'));
     if (it != obj.constEnd()) {
         return it.value().toString();

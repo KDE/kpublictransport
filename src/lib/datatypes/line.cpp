@@ -127,7 +127,7 @@ Line Line::merge(const Line &lhs, const Line &rhs)
     l.setModeString(MergeUtil::mergeString(lhs.modeString(), rhs.modeString()));
     l.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
     if (l.name().startsWith(l.modeString(), Qt::CaseInsensitive)) {
-        l.setName(l.name().midRef(l.modeString().size()).trimmed().toString());
+        l.setName(QStringView(l.name()).mid(l.modeString().size()).trimmed().toString());
     }
 
     l.setColor(mergeColor(lhs.color(), rhs.color()));
