@@ -75,10 +75,10 @@
         }
     },
     "options": {
-        "dmRequestCommand": "XSLT_DM_REQUEST",
-        "endpoint": "http://efa.vvo-online.de:8080/dvb/",
-        "stopfinderRequestCommand": "XSLT_STOPFINDER_REQUEST",
-        "tripRequestCommand": "XSLT_TRIP_REQUEST2"
+        "endpoint": "http://efa.vvo-online.de:8080/std3/trias",
+        "useTrias": true,
+        "requestorRef": "OpenService",
+        "contentType": "text/xml"
     },
     "supportedLanguages": [
         "en",
@@ -86,6 +86,6 @@
     ],
     "timezone": "Europe/Berlin",
     "type": {
-        "efa": true
+        "openJourneyPlanner": true
     }
 }
