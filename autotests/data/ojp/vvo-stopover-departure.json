@@ -16,6 +16,10 @@
         "scheduledDepartureTime": "2021-09-10T19:41:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
+            "identifier": {
+                "ifopt": "de:14612:131:1:1",
+                "test_id": "de:14612:131:1:1"
+            },
             "name": "Dresden Reichenbachstraße"
         }
     },
@@ -32,6 +36,10 @@
         "scheduledDepartureTime": "2021-09-10T19:41:00Z",
         "scheduledPlatform": "1",
         "stopPoint": {
+            "identifier": {
+                "ifopt": "de:14612:32:1:1",
+                "test_id": "de:14612:32:1:1"
+            },
             "name": "Dresden Hauptbahnhof Nord"
         }
     }

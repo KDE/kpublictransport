@@ -82,6 +82,8 @@ private:
 
     void parseError(ScopedXmlStreamReader &&r);
 
+    void setLocationIdentifier(Location &loc, const QString &id) const;
+
     QString m_identifierType;
     QString m_uicIdentifierType;
     QHash<QString, Location> m_contextLocations;

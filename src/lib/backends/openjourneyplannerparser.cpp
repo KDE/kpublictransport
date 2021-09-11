@@ -127,13 +127,7 @@ Location OpenJourneyPlannerParser::parseLocationInformationLocation(ScopedXmlStr
             while (subR.readNextSibling()) {
                 if (subR.isElement("StopPlaceRef") || subR.isElement("StopPointRef")) {
                     const auto id = subR.readElementText();
-                    loc.setIdentifier(m_identifierType, id);
-                    if (IfoptUtil::isValid(id)) {
-                        loc.setIdentifier(IfoptUtil::identifierType(), id);
-                    }
-                    if (!m_uicIdentifierType.isEmpty() && UicUtil::isStationId(id)) {
-                        loc.setIdentifier(m_uicIdentifierType, id);
-                    }
+                    setLocationIdentifier(loc, id);
                 } else if (subR.isElement("StopPlaceName") || subR.isElement("StopPointName")) {
                     loc.setName(parseTextElement(subR.subReader()));
                 }
@@ -284,7 +278,12 @@ void OpenJourneyPlannerParser::parseCallAtStop(ScopedXmlStreamReader &&r, Stopov
     while (r.readNextSibling()) {
         if (r.isElement("StopPointRef")) {
             const auto id = r.readElementText();
-            loc = m_contextLocations.value(id);
+            auto l = m_contextLocations.value(id);
+            if (l.isEmpty()) {
+                setLocationIdentifier(loc, id);
+            } else {
+                loc = l;
+            }
         } else if (r.isElement("GeoPosition")) {
             const auto p = parseGeoPosition(r.subReader());
             loc.setLatitude(p.y());
@@ -427,7 +426,7 @@ Journey OpenJourneyPlannerParser::parseTrip(ScopedXmlStreamReader &&r) const
             while (subR.readNextSibling()) {
                 if (subR.isElement("TimedLeg")) {
                     sections.push_back(parseTimedLeg(subR.subReader()));
-                } else if (subR.isElement("TransferLeg")) {
+                } else if (subR.isElement("TransferLeg") || subR.isElement("InterchangeLeg")) {
                     auto section = parseTransferLeg(subR.subReader());
                     section.setMode(JourneySection::Transfer);
                     sections.push_back(std::move(section));
@@ -559,5 +558,16 @@ void OpenJourneyPlannerParser::parseError(ScopedXmlStreamReader &&r)
         if (r.isElement("Description")) {
             m_errorMsg = r.readElementText();
         }
+    }
+}
+
+void OpenJourneyPlannerParser::setLocationIdentifier(Location &loc, const QString &id) const
+{
+    loc.setIdentifier(m_identifierType, id);
+    if (IfoptUtil::isValid(id)) {
+        loc.setIdentifier(IfoptUtil::identifierType(), id);
+    }
+    if (!m_uicIdentifierType.isEmpty() && UicUtil::isStationId(id)) {
+        loc.setIdentifier(m_uicIdentifierType, id);
     }
 }
