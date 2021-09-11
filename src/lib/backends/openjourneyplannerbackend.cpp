@@ -7,6 +7,7 @@
 #include "openjourneyplannerbackend.h"
 #include "openjourneyplannerparser.h"
 #include "openjourneyplannerrequestbuilder.h"
+#include "cache.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
@@ -63,7 +64,7 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
         if (p.hasError()) {
             addError(reply, Reply::NotFoundError, p.errorMessage());
         } else {
-            // TODO caching
+            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), locs, {});
             addResult(reply, std::move(locs));
         }
     });
