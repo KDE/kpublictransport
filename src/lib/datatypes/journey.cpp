@@ -50,8 +50,6 @@ public:
     Platform departurePlatformLayout;
     Vehicle arrivalVehicleLayout;
     Platform arrivalPlatformLayout;
-
-    int estimatedDistance() const;
 };
 
 class JourneyPrivate : public QSharedData
@@ -79,27 +77,6 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, departureVehicleLayout, 
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, departurePlatformLayout, setDeparturePlatformLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
-
-int JourneySectionPrivate::estimatedDistance() const
-{
-    assert(from.hasCoordinate() && to.hasCoordinate());
-    int d = 0;
-
-    float startLat = from.latitude();
-    float startLon = from.longitude();
-
-    for (const auto &stop : intermediateStops) {
-        if (!stop.stopPoint().hasCoordinate()) {
-            continue;
-        }
-        d += Location::distance(startLat, startLon, stop.stopPoint().latitude(), stop.stopPoint().longitude());
-        startLat = stop.stopPoint().latitude();
-        startLon = stop.stopPoint().longitude();
-    }
-
-    d += Location::distance(startLat, startLon, to.latitude(), to.longitude());
-    return std::max(d, path.distance());
-}
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -137,10 +114,25 @@ int JourneySection::distance() const
     if (d->mode == JourneySection::Waiting) {
         return 0;
     }
-    if (!d->from.hasCoordinate() || !d->to.hasCoordinate()) {
-        return d->distance;
+
+    int dist = 0;
+    if (d->from.hasCoordinate() && d->to.hasCoordinate()) {
+        float startLat = d->from.latitude();
+        float startLon = d->from.longitude();
+
+        for (const auto &stop : d->intermediateStops) {
+            if (!stop.stopPoint().hasCoordinate()) {
+                continue;
+            }
+            dist += Location::distance(startLat, startLon, stop.stopPoint().latitude(), stop.stopPoint().longitude());
+            startLat = stop.stopPoint().latitude();
+            startLon = stop.stopPoint().longitude();
+        }
+
+        dist += Location::distance(startLat, startLon, d->to.latitude(), d->to.longitude());
     }
-    return std::max(d->estimatedDistance(), d->distance);
+    dist = std::max(dist, d->path.distance());
+    return std::max(dist, d->distance);
 }
 
 void JourneySection::setDistance(int value)
