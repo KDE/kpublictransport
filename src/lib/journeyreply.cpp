@@ -85,7 +85,7 @@ static bool isPointlessSection(const JourneySection &section)
 
 static bool isImplausibleSection(const JourneySection &section)
 {
-    if (section.mode() == JourneySection::Transfer) {
+    if (section.mode() == JourneySection::Transfer && section.from().hasCoordinate() && section.to().hasCoordinate()) {
         const auto distance = Location::distance(section.from(), section.to());
         if (section.duration() > 0 && (distance / section.duration()) > 30) {
             qCDebug(Log) << "discarding journey based on insane transfer speed:" << (distance / section.duration()) << "m/s";
