@@ -501,7 +501,7 @@ JourneySection OpenJourneyPlannerParser::parseTransferLeg(ScopedXmlStreamReader 
             section.setScheduledDepartureTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
         } else if (r.isElement("TimeWindowEnd")) {
             section.setScheduledArrivalTime(QDateTime::fromString(r.readElementText(), Qt::ISODate));
-        } else if (r.isElement("PathGuidance")) {
+        } else if (r.isElement("PathGuidance") || r.isElement("NavigationPath")) {
             section.setPath(parsePathGuidance(r.subReader()));
         }
     }
@@ -513,7 +513,7 @@ Path OpenJourneyPlannerParser::parsePathGuidance(ScopedXmlStreamReader &&r) cons
     Path path;
     std::vector<PathSection> sections;
     while (r.readNextSibling()) {
-        if (r.isElement("PathGuidanceSection")) {
+        if (r.isElement("PathGuidanceSection") || r.isElement("NavigationSection")) {
             sections.push_back(parsePathGuildanceSection(r.subReader()));
         }
     }
@@ -536,7 +536,7 @@ PathSection OpenJourneyPlannerParser::parseTrackSection(ScopedXmlStreamReader &&
 {
     PathSection section;
     while (r.readNextSibling()) {
-        if (r.isElement("LinkProjection")) {
+        if (r.isElement("LinkProjection") || r.isElement("Projection")) {
             auto subR = r.subReader();
             QPolygonF poly;
             while (subR.readNextSibling()) {
