@@ -46,36 +46,48 @@ std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationResponse
 {
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
+    std::vector<Location> res;
     while (r.readNextElement()) {
         if (r.isElement("OJPLocationInformationDelivery") || r.isElement("LocationInformationResponse")) {
-            return parseLocationInformationDelivery(r.subReader());
+            res = parseLocationInformationDelivery(r.subReader());
         }
     }
-    return {};
+    if (reader.hasError() && m_errorMsg.isEmpty()) {
+        m_errorMsg = reader.errorString();
+    }
+    return res;
 }
 
 std::vector<Stopover> OpenJourneyPlannerParser::parseStopEventResponse(const QByteArray &responseData)
 {
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
+    std::vector<Stopover> res;
     while (r.readNextElement()) {
         if (r.isElement("OJPStopEventDelivery") || r.isElement("StopEventResponse")) {
-            return parseStopEventDelivery(r.subReader());
+            res = parseStopEventDelivery(r.subReader());
         }
     }
-    return {};
+    if (reader.hasError() && m_errorMsg.isEmpty()) {
+        m_errorMsg = reader.errorString();
+    }
+    return res;
 }
 
 std::vector<Journey> OpenJourneyPlannerParser::parseTripResponse(const QByteArray &responseData)
 {
     QXmlStreamReader reader(responseData);
     ScopedXmlStreamReader r(reader);
+    std::vector<Journey> res;
     while (r.readNextElement()) {
         if (r.isElement("OJPTripDelivery") || r.isElement("TripResponse")) {
-            return parseTripDelivery(r.subReader());
+            res = parseTripDelivery(r.subReader());
         }
     }
-    return {};
+    if (reader.hasError() && m_errorMsg.isEmpty()) {
+        m_errorMsg = reader.errorString();
+    }
+    return res;
 }
 
 std::vector<Location> OpenJourneyPlannerParser::parseLocationInformationDelivery(ScopedXmlStreamReader &&r)

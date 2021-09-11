@@ -138,13 +138,25 @@ private Q_SLOTS:
 
     void testParseError()
     {
-        OpenJourneyPlannerParser p;
-        p.setLocationIdentifierType(QStringLiteral("test_id"));
-        p.setUicLocationIdentifierType(QStringLiteral("uic"));
-        const auto res = p.parseTripResponse(readFile(s(SOURCE_DIR "/data/ojp/ch-error-notripfound.xml")));
-        QVERIFY(res.empty());
-        QVERIFY(p.hasError());
-        QCOMPARE(p.errorMessage(), QLatin1String("TRIP_NOTRIPFOUND"));
+        {
+            OpenJourneyPlannerParser p;
+            p.setLocationIdentifierType(QStringLiteral("test_id"));
+            p.setUicLocationIdentifierType(QStringLiteral("uic"));
+            auto res = p.parseTripResponse(readFile(s(SOURCE_DIR "/data/ojp/ch-error-notripfound.xml")));
+            QVERIFY(res.empty());
+            QVERIFY(p.hasError());
+            QCOMPARE(p.errorMessage(), QLatin1String("TRIP_NOTRIPFOUND"));
+        }
+
+        {
+            OpenJourneyPlannerParser p;
+            p.setLocationIdentifierType(QStringLiteral("test_id"));
+            p.setUicLocationIdentifierType(QStringLiteral("uic"));
+            auto res = p.parseStopEventResponse(readFile(s(SOURCE_DIR "/data/ojp/xml-error.xml")));
+            QVERIFY(res.empty());
+            QVERIFY(p.hasError());
+            QCOMPARE(p.errorMessage(), QLatin1String("Premature end of document."));
+        }
     }
 };
 
