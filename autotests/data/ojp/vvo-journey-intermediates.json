@@ -1,0 +1,99 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "from": {
+                    "latitude": 50.839599609375,
+                    "longitude": 12.930700302124023,
+                    "name": "Chemnitz Hbf"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2021-09-11T11:25:00Z",
+                "scheduledDepartureTime": "2021-09-11T11:22:00Z",
+                "to": {
+                    "name": "Chemnitz, Hauptbahnhof"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "expectedArrivalTime": "2021-09-11T11:46:00Z",
+                "expectedDepartureTime": "2021-09-11T11:30:00Z",
+                "from": {
+                    "name": "Chemnitz, Hauptbahnhof"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2021-09-11T11:34:00Z",
+                        "expectedDepartureTime": "2021-09-11T11:34:00Z",
+                        "scheduledArrivalTime": "2021-09-11T11:33:00Z",
+                        "scheduledDepartureTime": "2021-09-11T11:34:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "name": "Chemnitz, Bahnhof Hilbersdorf"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2021-09-11T11:38:00Z",
+                        "expectedDepartureTime": "2021-09-11T11:38:00Z",
+                        "scheduledArrivalTime": "2021-09-11T11:37:00Z",
+                        "scheduledDepartureTime": "2021-09-11T11:38:00Z",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "name": "Niederwiesa, Bf"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2021-09-11T11:41:00Z",
+                        "expectedDepartureTime": "2021-09-11T11:43:00Z",
+                        "scheduledArrivalTime": "2021-09-11T11:41:00Z",
+                        "scheduledDepartureTime": "2021-09-11T11:43:00Z",
+                        "scheduledPlatform": "5",
+                        "stopPoint": {
+                            "name": "Flöha, Bahnhof"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Fahrradmitnahme begrenzt möglich",
+                    "Linienaenderung: Fahrplanabweichungen und Schienenersatzverkehr"
+                ],
+                "route": {
+                    "direction": "Dresden Hauptbahnhof",
+                    "line": {
+                        "mode": "LocalTrain",
+                        "name": "RB30"
+                    }
+                },
+                "scheduledArrivalPlatform": "2",
+                "scheduledArrivalTime": "2021-09-11T11:45:00Z",
+                "scheduledDeparturePlatform": "12",
+                "scheduledDepartureTime": "2021-09-11T11:30:00Z",
+                "to": {
+                    "name": "Falkenau (Sachs), Süd"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "from": {
+                    "name": "Falkenau (Sachs), Süd"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2021-09-11T11:48:00Z",
+                "scheduledDepartureTime": "2021-09-11T11:47:00Z",
+                "to": {
+                    "latitude": 50.849300384521484,
+                    "longitude": 13.110199928283691,
+                    "name": "Falkenau Süd"
+                }
+            }
+        ]
+    }
+]
