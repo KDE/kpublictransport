@@ -151,6 +151,6 @@ OpenJourneyPlannerParser OpenJourneyPlannerBackend::parser() const
 {
     OpenJourneyPlannerParser p;
     p.setLocationIdentifierType(backendId());
-    p.setUicLocationIdentifierType(QStringLiteral("uic")); // TODO
+    p.setUicLocationIdentifierType(m_uicLocationIdentifierType);
     return p;
 }

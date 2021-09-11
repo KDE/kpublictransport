@@ -31,6 +31,10 @@ class OpenJourneyPlannerBackend : public AbstractBackend
     Q_PROPERTY(bool useTrias MEMBER m_useTrias)
     /** Override the default HTTP ContentType header in the request. */
     Q_PROPERTY(QByteArray contentType MEMBER m_contentType)
+    /** Location identifier type for UIC station codes.
+     *  Typically "uic" or "ibnr".
+     */
+    Q_PROPERTY(QString uicLocationIdentifierType MEMBER m_uicLocationIdentifierType)
 
 public:
     static inline constexpr const char* type() { return "openJourneyPlanner"; }
@@ -50,6 +54,7 @@ private:
     QString m_requestorRef;
     bool m_useTrias = false;
     QByteArray m_contentType = "application/xml";
+    QString m_uicLocationIdentifierType;
 };
 
 }

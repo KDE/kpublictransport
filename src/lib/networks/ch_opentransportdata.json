@@ -167,7 +167,8 @@
     },
     "options": {
         "authorization": "57c5dbbbf1fe4d000100001842c323fa9ff44fbba0b9b925f0c052d1",
-        "endpoint": "https://api.opentransportdata.swiss/ojp2020"
+        "endpoint": "https://api.opentransportdata.swiss/ojp2020",
+        "uicLocationIdentifierType": "uic"
     },
     "supportedLanguages": [
         "de",
