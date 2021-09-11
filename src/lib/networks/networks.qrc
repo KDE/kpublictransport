@@ -12,7 +12,8 @@
         <!-- national providers -->
         <file>at_oebb.json</file>
         <file>be_sncb.json</file>
-        <file>ch_sbb.json</file>
+        <file>ch_opentransportdata.json</file>
+        <!--<file>ch_sbb.json</file> endpoint currently unreachable -->
         <file>de_db.json</file>
         <file>eu_railteam.json</file>
         <file>dk_dsb.json</file>

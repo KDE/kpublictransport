@@ -68,7 +68,9 @@ private Q_SLOTS:
         // national
         QTest::newRow("at_oebb") << "at_oebb" << loc("Wien Hauptbahnhof", 48.18282, 16.37859) << loc("Linz/Donau Hbf", 48.29058, 14.29018);
         QTest::newRow("be_sncb") << "be_sncb" << loc("Bruxelles Midi", 50.83604, 4.33679) << loc("Mechelen", 51.01745, 4.48336);
-        QTest::newRow("ch_sbb") << "ch_sbb" << loc("Zürich Flughafen", 47.45015, 8.56199 ) << loc("Randa", 46.09982, 7.78149);
+        QTest::newRow("ch_opentransportdata") << "ch_opentransportdata" << loc("Zürich Flughafen", 47.45, 8.561) << loc("Randa", 46.09982, 7.78149);
+        // endpoint defunct
+        // QTest::newRow("ch_sbb") << "ch_sbb" << loc("Zürich Flughafen", 47.45015, 8.56199 ) << loc("Randa", 46.09982, 7.78149);
         QTest::newRow("de_db") << "de_db" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Frankfurt Hbf", 50.10675, 8.66281);
         QTest::newRow("dk_dsb") << "dk_dsb" << loc("København H", 55.67228, 12.56442) << loc("Københavns Lufthavn Kastrup", 55.62940, 12.64872);
         QTest::newRow("ee_peatus") << "ee_peatus" << loc("Tallinn Hobujaama", 59.43727, 24.75824) << loc("Pärnu", 58.37254, 24.55502);
