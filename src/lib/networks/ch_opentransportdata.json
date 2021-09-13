@@ -7,6 +7,7 @@
         "Description[es]": "Transporte público de Suiza.",
         "Description[fr]": "Transports publics en Suisse.",
         "Description[nl]": "Openbaar vervoer in Zwitserland.",
+        "Description[pl]": "Transport publiczny w Szwajcarii.",
         "Description[sv]": "Kollektivtrafik i Schweiz.",
         "Description[uk]": "Громадський транспорт у Швейцарії.",
         "Description[x-test]": "xxPublic transport in Switzerland.xx",
@@ -17,6 +18,7 @@
         "Name[es]": "opentransportdata.swiss",
         "Name[fr]": "opentransportdata.swiss",
         "Name[nl]": "opentransportdata.swiss",
+        "Name[pl]": "opentransportdata.swiss",
         "Name[sv]": "opentransportdata.swiss",
         "Name[uk]": "opentransportdata.swiss",
         "Name[x-test]": "xxopentransportdata.swissxx"
