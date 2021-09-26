@@ -5,3 +5,7 @@ Dependencies:
 - 'on': ['@all']
   'require':
     'frameworks/extra-cmake-modules': '@stable'
+
+Options:
+  # exlucde large generated files from cppcheck, takes way to long to run
+  cppcheck-arguments: '-i src/lib/knowledgedb/linemetadata_data.cpp -i src/lib/knowledgedb/linemetadata.cpp --enable=warning,style,performance'
