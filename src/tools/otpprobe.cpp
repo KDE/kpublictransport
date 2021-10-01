@@ -85,7 +85,7 @@ void OtpProbeJob::bboxFetchDone(QNetworkReply *reply)
     // TODO: more elaborate outlier detection, null points is just one of the problems
     m_boundingPolygon.erase(std::remove_if(m_boundingPolygon.begin(), m_boundingPolygon.end(), [](auto p) { return p.isNull(); }), m_boundingPolygon.end());
 
-    auto req = QNetworkRequest(QUrl(m_endpointUrl.toString() + QLatin1String("/index/stops")));
+    auto req = QNetworkRequest(QUrl(m_endpointUrl.toString() + QLatin1String("index/stops")));
     applySslConfig(req);
     auto stopReply = m_nam->get(req);
     connect(stopReply, &QNetworkReply::finished, this, [stopReply, this]() { stopsFetchDone(stopReply); });
@@ -146,6 +146,7 @@ void OtpProbeJob::stopsFetchDone(QNetworkReply *reply)
         double latMin, latMax, lonMin, lonMax;
         filterOutliers(lats, latMin, latMax);
         filterOutliers(lons, lonMin, lonMax);
+        // TODO even better would be computing the concave hull of all points after outlier filtering
         QRectF box(QPointF(lonMin, latMin), QPointF(lonMax, latMax));
         m_boundingPolygon = m_boundingPolygon.intersected(box);
     } else {
