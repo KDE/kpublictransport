@@ -242,7 +242,7 @@ Kirigami.ApplicationWindow {
                             case JourneySection.Waiting:
                                 return "Wait " + displayDuration(modelData.duration)
                             case JourneySection.RentedVehicle:
-                                return modelData.rentalVehicle.network.name;
+                                return "Drive (" + modelData.rentalVehicle.network.name + ") " + displayDuration(modelData.duration)  + " / " + displayDistance(modelData.distance);
                             return "???";
                         }}
                     }
@@ -399,7 +399,7 @@ Kirigami.ApplicationWindow {
                     QQC2.CheckBox {
                         id: rentalMode
                         checked: true
-                        text: "Retal Vehicles"
+                        text: "Rental Vehicles"
                     }
                 }
                 RowLayout {
