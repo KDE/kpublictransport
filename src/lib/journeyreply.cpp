@@ -77,8 +77,11 @@ bool JourneyReplyPrivate::needToWaitForAssets() const
 
 static bool isPointlessSection(const JourneySection &section)
 {
-    if (section.mode() == JourneySection::Walking || section.mode() == JourneySection::Waiting) {
+    if (section.mode() == JourneySection::Waiting) {
         return section.duration() < 60;
+    }
+    if (section.mode() == JourneySection::Walking) {
+        return section.duration() < 60 && section.path().isEmpty();
     }
     return false;
 }
