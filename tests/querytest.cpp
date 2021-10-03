@@ -101,6 +101,7 @@ private Q_SLOTS:
 
         QTest::newRow("ch_zh_zvv") << "ch_zh_zvv" << loc("Zürich Flughafen", 47.45015, 8.56199 ) << loc("Zürich HB", 47.37833, 8.53912);
 
+        QTest::newRow("de_bb_bbnavi_angermuende") << "de_bb_bbnavi_angermuende" << loc("Angermünde", 53.01579, 13.99634) << loc("Schwedt", 53.06298, 14.29054);
         QTest::newRow("de_bb_vbb") << "de_bb_vbb" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Berlin Alexanderplatz", 52.52147, 13.41134);
         QTest::newRow("de_be_bvg") << "de_be_bvg" << loc("Berlin Hauptbahnhof", 52.52509, 13.36946) << loc("Berlin Alexanderplatz", 52.52147, 13.41134);
         QTest::newRow("de_bw_bwegt") << "de_bw_bwegt" << loc("Stuttgart Hbf", 48.78539, 9.18345) << loc("Herrenberg", 48.59392, 8.86275);
