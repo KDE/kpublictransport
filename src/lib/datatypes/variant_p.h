@@ -11,7 +11,7 @@
 
 #include <vector>
 
-class QMetaObject;
+struct QMetaObject;
 
 namespace KPublicTransport {
 
