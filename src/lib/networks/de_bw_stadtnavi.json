@@ -81,6 +81,7 @@
         }
     },
     "options": {
+        "apiVersion": "otp2",
         "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
         "ifoptPrefix": "hbg",
         "rentalVehicleNetworks": {
