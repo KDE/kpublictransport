@@ -12,8 +12,10 @@
 
 #include <KPublicTransport/Location>
 
+#include <QCryptographicHash>
 #include <QDateTime>
 #include <QDebug>
+#include <QMetaEnum>
 #include <QSharedData>
 
 #include <unordered_map>
@@ -201,10 +203,29 @@ void JourneyRequest::setEgressModes(const QVariantList &egressModesVariant)
 
 QString JourneyRequest::cacheKey() const
 {
-    return QString::number(d->dateTime.toSecsSinceEpoch() / JourneyCacheTimeResolution) + QLatin1Char('_')
-        + LocationUtil::cacheKey(d->from) + QLatin1Char('_')
-        + LocationUtil::cacheKey(d->to) + QLatin1Char('_')
-        + (d->dateTimeMode == JourneyRequest::Arrival ? QLatin1Char('A') : QLatin1Char('D'));
+    QCryptographicHash hash(QCryptographicHash::Sha1);
+    hash.addData(QByteArray::number(d->dateTime.toSecsSinceEpoch() / JourneyCacheTimeResolution));
+    hash.addData(LocationUtil::cacheKey(d->from).toUtf8());
+    hash.addData(LocationUtil::cacheKey(d->to).toUtf8());
+    hash.addData(d->dateTimeMode == JourneyRequest::Arrival ? "A" : "D", 1);
+    hash.addData(QMetaEnum::fromType<JourneySection::Mode>().valueToKeys(d->modes));
+    hash.addData(QByteArray::number(d->maximumResults));
+    hash.addData(d->includeIntermediateStops ? "I" : "-");
+    hash.addData(d->includePaths ? "P" : "-");
+
+    hash.addData("ACCESS");
+    for (const auto &it : d->accessModes) {
+        hash.addData(QMetaEnum::fromType<IndividualTransport::Mode>().valueToKey(it.mode()));
+        hash.addData(QMetaEnum::fromType<IndividualTransport::Qualifier>().valueToKey(it.qualifier()));
+    }
+
+    hash.addData("EGRESS");
+    for (const auto &it : d->accessModes) {
+        hash.addData(QMetaEnum::fromType<IndividualTransport::Mode>().valueToKey(it.mode()));
+        hash.addData(QMetaEnum::fromType<IndividualTransport::Qualifier>().valueToKey(it.qualifier()));
+    }
+
+    return QString::fromUtf8(hash.result().toHex());
 }
 
 #include "moc_journeyrequest.cpp"
