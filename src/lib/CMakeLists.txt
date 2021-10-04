@@ -59,6 +59,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/disruption.cpp
     datatypes/equipment.cpp
     datatypes/equipmentutil.cpp
+    datatypes/individualtransport.cpp
     datatypes/journey.cpp
     datatypes/journeyutil.cpp
     datatypes/json.cpp
@@ -78,6 +79,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/stopover.cpp
     datatypes/stopoverutil.cpp
     datatypes/timeutil.cpp
+    datatypes/variant.cpp
     datatypes/vehicle.cpp
 
     gbfs/gbfs.cpp
@@ -172,6 +174,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Departure
         Disruption
         Equipment
+        IndividualTransport
         Journey
         Line
         Load

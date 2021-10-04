@@ -10,10 +10,12 @@
 #include "kpublictransport_export.h"
 
 #include <KPublicTransport/Datatypes>
+#include <KPublicTransport/IndividualTransport>
 #include <KPublicTransport/Journey>
 
 #include <QMetaType>
 #include <QSharedDataPointer>
+#include <QVariant>
 
 #include <vector>
 
@@ -63,6 +65,11 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
      */
     KPUBLICTRANSPORT_PROPERTY(bool, includePaths, setIncludePaths)
 
+    /** Access modes. */
+    Q_PROPERTY(QVariantList accessModes READ accessModesVariant WRITE setAccessModes)
+    /** Egress modes. */
+    Q_PROPERTY(QVariantList egressModes READ egressModesVariant WRITE setEgressModes)
+
 public:
     enum DateTimeMode {
         Arrival, ///< dateTime() represents the desired arriva time.
@@ -105,6 +112,22 @@ public:
      */
     void setBackendIds(const QStringList &backendIds);
 
+    /** Requested access modes.
+     *  That is individual transport modes on the first (access) leg of the journey.
+     *  Default: walking
+     */
+    const std::vector<IndividualTransport>& accessModes() const;
+    /** Sets the requested access modes. */
+    void setAccessModes(std::vector<IndividualTransport> &&accessModes);
+
+    /** Requested egress modes.
+     *  That is, individual transport modes for the last (egress) leg of the journey.
+     *  Default: walking
+     */
+    const std::vector<IndividualTransport>& egressModes() const;
+    /** Sets the requested egress modes. */
+    void setEgressModes(std::vector<IndividualTransport> &&egressModes);
+
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
 
@@ -116,6 +139,12 @@ private:
     friend class JourneyReply;
     friend class JourneyReplyPrivate;
     friend class Manager;
+
+    Q_DECL_HIDDEN QVariantList accessModesVariant() const;
+    Q_DECL_HIDDEN void setAccessModes(const QVariantList &accessModesVariant);
+    Q_DECL_HIDDEN QVariantList egressModesVariant() const;
+    Q_DECL_HIDDEN void setEgressModes(const QVariantList &egressModesVariant);
+
     Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);

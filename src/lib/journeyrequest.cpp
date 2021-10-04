@@ -36,6 +36,9 @@ public:
     bool downloadAssets = false;
     bool includeIntermediateStops = true;
     bool includePaths = false;
+
+    std::vector<IndividualTransport> accessModes = { {IndividualTransport::Walk} };
+    std::vector<IndividualTransport> egressModes = { {IndividualTransport::Walk} };
 };
 }
 
@@ -125,8 +128,10 @@ void JourneyRequest::purgeLoops(const JourneyRequest &baseRequest)
 QJsonObject JourneyRequest::toJson(const KPublicTransport::JourneyRequest &req)
 {
     auto obj = Json::toJson(req);
-    obj.insert(QStringLiteral("from"), Location::toJson(req.from()));
-    obj.insert(QStringLiteral("to"), Location::toJson(req.to()));
+    obj.insert(QLatin1String("from"), Location::toJson(req.from()));
+    obj.insert(QLatin1String("to"), Location::toJson(req.to()));
+    obj.insert(QLatin1String("accessModes"), IndividualTransport::toJson(req.accessModes()));
+    obj.insert(QLatin1String("egressModes"), IndividualTransport::toJson(req.egressModes()));
     return obj;
 }
 
@@ -139,6 +144,59 @@ void JourneyRequest::setBackendIds(const QStringList &backendIds)
 {
     d.detach();
     d->backendIds = backendIds;
+}
+
+template <typename T>
+static QVariantList toVariantList(const std::vector<T> &v)
+{
+    QVariantList l;
+    l.reserve(v.size());
+    std::transform(v.begin(), v.end(), std::back_inserter(l), &QVariant::fromValue<T>);
+    return l;
+}
+
+const std::vector<IndividualTransport>& JourneyRequest::accessModes() const
+{
+    return d->accessModes;
+}
+
+QVariantList JourneyRequest::accessModesVariant() const
+{
+    return toVariantList(d->accessModes);
+}
+
+void JourneyRequest::setAccessModes(std::vector<IndividualTransport> &&accessModes)
+{
+    d.detach();
+    d->accessModes = std::move(accessModes);
+}
+
+void JourneyRequest::setAccessModes(const QVariantList &accessModesVariant)
+{
+    d.detach();
+    d->accessModes = IndividualTransport::fromVariant(accessModesVariant);
+}
+
+const std::vector<IndividualTransport>& JourneyRequest::egressModes() const
+{
+    return d->egressModes;
+}
+
+QVariantList JourneyRequest::egressModesVariant() const
+{
+    return toVariantList(d->egressModes);
+}
+
+void JourneyRequest::setEgressModes(std::vector<IndividualTransport>&& egressModes)
+{
+    d.detach();
+    d->egressModes = std::move(egressModes);
+}
+
+void JourneyRequest::setEgressModes(const QVariantList &egressModesVariant)
+{
+    d.detach();
+    d->egressModes = IndividualTransport::fromVariant(egressModesVariant);
 }
 
 QString JourneyRequest::cacheKey() const

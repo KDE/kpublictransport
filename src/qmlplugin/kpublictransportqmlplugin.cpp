@@ -12,6 +12,7 @@
 
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/Equipment>
+#include <KPublicTransport/IndividualTransport>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyQueryModel>
 #include <KPublicTransport/JourneyRequest>
@@ -38,6 +39,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::Platform>();
     qRegisterMetaType<KPublicTransport::RentalVehicle>();
     qRegisterMetaType<KPublicTransport::Stopover>();
+    qRegisterMetaType<KPublicTransport::IndividualTransport>();
     // backward compat
     qRegisterMetaType<KPublicTransport::StopoverRequest>("KPublicTransport::DepartureRequest");
 
@@ -58,6 +60,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableType<KPublicTransport::LocationRequest>("org.kde.kpublictransport", 1, 0, "LocationRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::StopoverRequest>("org.kde.kpublictransport", 1, 0, "StopoverRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::VehicleLayoutRequest>("org.kde.kpublictransport", 1, 0, "VehicleLayoutRequery", {});
+    qmlRegisterUncreatableType<KPublicTransport::IndividualTransport>("org.kde.kpublictransport", 1, 0, "IndividualTransport", {});
     // backward compat
     qmlRegisterUncreatableType<KPublicTransport::StopoverRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
 
