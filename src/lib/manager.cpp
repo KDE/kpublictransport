@@ -501,6 +501,7 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     int pendingOps = 0;
 
     // validate input
+    req.validate();
     if (!req.isValid()) {
         reply->addError(Reply::InvalidRequest, {});
         reply->setPendingOps(pendingOps);

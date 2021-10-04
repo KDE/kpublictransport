@@ -139,6 +139,7 @@ private:
     friend class JourneyReply;
     friend class JourneyReplyPrivate;
     friend class Manager;
+    friend class JourneyRequestTest;
 
     Q_DECL_HIDDEN QVariantList accessModesVariant() const;
     Q_DECL_HIDDEN void setAccessModes(const QVariantList &accessModesVariant);
@@ -149,6 +150,9 @@ private:
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);
     Q_DECL_HIDDEN void purgeLoops(const JourneyRequest &baseRequest);
+
+    /** Check that the given request parameters are semantically sane, and fix that if needed. */
+    void validate() const;
 };
 
 }

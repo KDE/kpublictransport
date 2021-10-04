@@ -228,4 +228,44 @@ QString JourneyRequest::cacheKey() const
     return QString::fromUtf8(hash.result().toHex());
 }
 
+static bool hasTakeBikeMode(const std::vector<IndividualTransport> &modes)
+{
+    return std::any_of(modes.begin(), modes.end(), [](const auto &it) {
+        return it.mode() == IndividualTransport::Bike && it.qualifier() == IndividualTransport::None;
+    });
+}
+
+void JourneyRequest::validate() const
+{
+    // remove invalid access/egress modes
+    d->accessModes.erase(std::remove_if(d->accessModes.begin(), d->accessModes.end(), [](const auto &it) {
+        return (it.mode() == IndividualTransport::Car && it.qualifier() == IndividualTransport::None)
+            || it.qualifier() == IndividualTransport::Pickup;
+    }), d->accessModes.end());
+    d->egressModes.erase(std::remove_if(d->egressModes.begin(), d->egressModes.end(), [](const auto &it) {
+        return (it.mode() == IndividualTransport::Car && it.qualifier() == IndividualTransport::None)
+            || it.qualifier() == IndividualTransport::Dropoff
+            || it.qualifier() == IndividualTransport::Park;
+    }), d->egressModes.end());
+
+    // taking a bike on public transport needs to be symmetric
+    const auto hasTakeBikeAccess = hasTakeBikeMode(d->accessModes);
+    const auto hasTakeBikeEgress = hasTakeBikeMode(d->egressModes);
+    if (hasTakeBikeAccess && !hasTakeBikeEgress) {
+        d->egressModes.push_back({ IndividualTransport::Bike });
+    } else if (!hasTakeBikeAccess && hasTakeBikeEgress) {
+        d->egressModes.erase(std::remove_if(d->egressModes.begin(), d->egressModes.end(), [](const auto &it) {
+            return it.mode() == IndividualTransport::Bike && it.qualifier() == IndividualTransport::None;
+        }), d->egressModes.end());
+    }
+
+    // access/egress modes must not be empty
+    if (d->accessModes.empty()) {
+        d->accessModes = {{IndividualTransport::Walk}};
+    }
+    if (d->egressModes.empty()) {
+        d->egressModes = {{IndividualTransport::Walk}};
+    }
+}
+
 #include "moc_journeyrequest.cpp"
