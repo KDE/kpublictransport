@@ -134,6 +134,28 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
     return true;
 }
 
+static QString modeName(IndividualTransport::Mode mode)
+{
+    switch (mode) {
+        case IndividualTransport::Walk: return QStringLiteral("WALK");
+        case IndividualTransport::Bike: return QStringLiteral("BICYCLE");
+        case IndividualTransport::Car: return QStringLiteral("CAR");
+    }
+    return {};
+}
+
+static QString qualifierName(IndividualTransport::Qualifier qualifier)
+{
+    switch (qualifier) {
+        case IndividualTransport::None: return {};
+        case IndividualTransport::Park: return QStringLiteral("PARK");
+        case IndividualTransport::Rent: return QStringLiteral("RENT");
+        case IndividualTransport::Dropoff: return QStringLiteral("DROPOFF");
+        case IndividualTransport::Pickup: return QStringLiteral("PICKUP");
+    }
+    return {};
+}
+
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
@@ -166,26 +188,47 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("withPaths"), req.includePaths());
     // TODO set context.searchWindow?
 
-    QJsonArray modes;
-    QJsonObject walkMode;
-    walkMode.insert(QStringLiteral("mode"), QStringLiteral("WALK"));
-    modes.push_back(walkMode);
+    struct Mode {
+        QString mode;
+        QString qualifier;
+    };
+    std::vector<Mode> modes;
+
     if (req.modes() & JourneySection::PublicTransport) {
         for (const auto &mode : m_supportedTransitModes) {
-            QJsonObject transitMode;
-            transitMode.insert(QStringLiteral("mode"), mode);
-            modes.push_back(transitMode);
+            modes.push_back({ mode, {} });
         }
     }
     if (req.modes() & JourneySection::RentedVehicle) {
         for (const auto &mode : m_supportedRentalModes) {
-            QJsonObject rentMode;
-            rentMode.insert(QStringLiteral("mode"), mode);
-            rentMode.insert(QStringLiteral("qualifier"), QStringLiteral("RENT"));
-            modes.push_back(rentMode);
+            modes.push_back({ mode, QStringLiteral("RENT") });
         }
     }
-    gqlReq.setVariable(QStringLiteral("modes"), modes);
+    for (const auto &it : req.accessModes()) {
+        modes.push_back({ modeName(it.mode()), qualifierName(it.qualifier()) });
+    }
+    const auto modeLessThan = [](const Mode &lhs, const Mode &rhs) {
+        if (lhs.mode == rhs.mode) {
+            return lhs.qualifier < rhs.qualifier;
+        }
+        return lhs.mode < rhs.mode;
+    };
+    const auto modeEqual = [](const Mode &lhs, const Mode &rhs) {
+        return lhs.mode == rhs.mode && lhs.qualifier == rhs.qualifier;
+    };
+    std::sort(modes.begin(), modes.end(), modeLessThan);
+    modes.erase(std::unique(modes.begin(), modes.end(), modeEqual), modes.end());
+
+    QJsonArray modesArray;
+    for (const auto &mode : modes) {
+        QJsonObject modeObj;
+        modeObj.insert(QLatin1String("mode"), mode.mode);
+        if (!mode.qualifier.isEmpty()) {
+            modeObj.insert(QLatin1String("qualifier"), mode.qualifier);
+        }
+        modesArray.push_back(modeObj);
+    }
+    gqlReq.setVariable(QStringLiteral("modes"), modesArray);
 
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
