@@ -35,36 +35,8 @@ query journeys(
                 distance
                 mode
                 transitLeg
-                from {
-                    name
-                    lat
-                    lon
-                    stop {
-                        id: gtfsId
-                        platformCode
-                    }
-                    bikeRentalStation {
-                        id
-                        networks,
-                        bikesAvailable,
-                        spacesAvailable
-                    }
-                }
-                to {
-                    name
-                    lat
-                    lon
-                    stop {
-                        id: gtfsId
-                        platformCode
-                    }
-                    bikeRentalStation {
-                        id
-                        stationId,
-                        networks,
-                        bikesAvailable
-                    }
-                }
+                from { ...locationFragment }
+                to { ...locationFragment }
                 trip {
                     route {
                         type
@@ -111,5 +83,21 @@ query journeys(
         prevDateTime
         nextDateTime
         searchWindowUsed
+    }
+}
+
+fragment locationFragment on Place {
+    name
+    lat
+    lon
+    stop {
+        id: gtfsId
+        platformCode
+    }
+    bikeRentalStation {
+        id
+        stationId,
+        networks,
+        bikesAvailable
     }
 }
