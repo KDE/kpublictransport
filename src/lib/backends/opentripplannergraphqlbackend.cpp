@@ -162,6 +162,8 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("arriveBy"), req.dateTimeMode() == JourneyRequest::Arrival);
     gqlReq.setVariable(QStringLiteral("maxResults"), req.maximumResults());
     gqlReq.setVariable(QStringLiteral("lang"), preferredLanguage());
+    gqlReq.setVariable(QStringLiteral("withIntermediateStops"), req.includeIntermediateStops());
+    gqlReq.setVariable(QStringLiteral("withPaths"), req.includePaths());
     // TODO set context.searchWindow?
 
     QJsonArray modes;

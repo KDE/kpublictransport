@@ -11,7 +11,9 @@ query journeys(
   $arriveBy: Boolean!,
   $modes: [TransportMode]!,
   $maxResults: Int!,
-  $lang: String!
+  $lang: String!,
+  $withPaths: Boolean!,
+  $withIntermediateStops: Boolean!
 ) {
   plan (
         from: { lat: $fromLat, lon: $fromLon }
@@ -89,7 +91,7 @@ query journeys(
                     tripHeadsign
                     tripShortName
                 }
-                intermediateStops: intermediatePlaces {
+                intermediateStops: intermediatePlaces @include(if: $withIntermediateStops) {
                     stop {
                         id: gtfsId
                         name
@@ -100,7 +102,7 @@ query journeys(
                     scheduledArrivalTime: arrivalTime
                     scheduledDepartureTime: departureTime
                 }
-                legGeometry {
+                legGeometry @include(if: $withPaths) {
                     length
                     points
                 }
