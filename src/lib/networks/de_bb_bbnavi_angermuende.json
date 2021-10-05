@@ -1,7 +1,19 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Angermünde, Germany.",
-        "Name": "bbnavi Angermünde"
+        "Description[ca@valencia]": "Transport públic local a Angermünde i rodalies, Alemanya.",
+        "Description[ca]": "Transport públic local a Angermünde i rodalies, Alemanya.",
+        "Description[nl]": "Lokaal openbaar vervoer in en om Angermünde, Duitsland.",
+        "Description[sv]": "Lokal transportoperatör i och omkring Angermünde, Tyskland.",
+        "Description[uk]": "Місцевий транспорт в Анґермюнде і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal public transport in and around Angermünde, Germany.xx",
+        "Name": "bbnavi Angermünde",
+        "Name[ca@valencia]": "bbnavi Angermünde",
+        "Name[ca]": "bbnavi Angermünde",
+        "Name[nl]": "bbnavi Angermünde",
+        "Name[sv]": "bbnavi Angermünde",
+        "Name[uk]": "bbnavi Angermünde",
+        "Name[x-test]": "xxbbnavi Angermündexx"
     },
     "attribution": {
         "homepage": "https://bbnavi.de/",
