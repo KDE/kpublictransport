@@ -349,6 +349,28 @@ Kirigami.ApplicationWindow {
         PathPage {}
     }
 
+    readonly property var individualTransportModes: [
+        [{ mode: IndividualTransport.Walk }],
+        [{ mode: IndividualTransport.Bike }],
+        [{ mode: IndividualTransport.Bike, qualifier: IndividualTransport.Park }],
+        [{ mode: IndividualTransport.Bike, qualifier: IndividualTransport.Rent }],
+        [{ mode: IndividualTransport.Car, qualifier: IndividualTransport.Park }],
+        [{ mode: IndividualTransport.Car, qualifier: IndividualTransport.Rent }],
+        [{ mode: IndividualTransport.Car, qualifier: IndividualTransport.Pickup }],
+        [{ mode: IndividualTransport.Car, qualifier: IndividualTransport.Dropoff }],
+    ]
+    ListModel {
+        id: individualTransportModesModel
+        ListElement { name: "Walk" }
+        ListElement { name: "Take Bike" }
+        ListElement { name: "Park Bike" }
+        ListElement { name: "Rent Bike" }
+        ListElement { name: "Park Car" }
+        ListElement { name: "Rent Car" }
+        ListElement { name: "Pickup by car" }
+        ListElement { name: "Drop-off by car" }
+    }
+
     Component {
         id: journyQueryPage
         Kirigami.Page {
@@ -420,6 +442,12 @@ Kirigami.ApplicationWindow {
                 }
 
                 QQC2.ComboBox {
+                    id: accessMode
+                    Layout.fillWidth: true
+                    model: individualTransportModesModel
+                    textRole: "name"
+                }
+                QQC2.ComboBox {
                     id: fromSelector
                     Layout.fillWidth: true
                     model: exampleModel
@@ -472,7 +500,30 @@ Kirigami.ApplicationWindow {
                         id: toLat
                     }
                 }
+                QQC2.ComboBox {
+                    id: egressMode
+                    Layout.fillWidth: true
+                    model: individualTransportModesModel
+                    textRole: "name"
+                }
+
+
                 RowLayout {
+                    function setupRequestCommon()
+                    {
+                        journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
+                        journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
+                        journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
+                        journeyModel.request.downloadAssets = true
+                        journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
+                            | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
+                        journeyModel.request.maximumResults = maxResults.text;
+                        journeyModel.request.includeIntermediateStops = intermediateStops.checked;
+                        journeyModel.request.includePaths = includePaths.checked;
+                        journeyModel.request.accessModes = individualTransportModes[accessMode.currentIndex];
+                        journeyModel.request.egressModes = individualTransportModes[egressMode.currentIndex];
+                    }
+
                     QQC2.Button {
                         text: "Query"
                         onClicked: {
@@ -486,15 +537,7 @@ Kirigami.ApplicationWindow {
                             to.latitude = toLat.text;
                             to.longitude = toLon.text;
                             journeyModel.request.to = to;
-                            journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
-                            journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
-                            journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            journeyModel.request.downloadAssets = true
-                            journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
-                                | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
-                            journeyModel.request.maximumResults = maxResults.text;
-                            journeyModel.request.includeIntermediateStops = intermediateStops.checked;
-                            journeyModel.request.includePaths = includePaths.checked;
+                            parent.setupRequestCommon();
                         }
                     }
                     QQC2.Button {
@@ -510,15 +553,7 @@ Kirigami.ApplicationWindow {
                             to.latitude = NaN;
                             to.longitude = NaN;
                             journeyModel.request.to = to;
-                            journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
-                            journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
-                            journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            journeyModel.request.downloadAssets = true
-                            journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
-                                | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
-                            journeyModel.request.maximumResults = maxResults.text;
-                            journeyModel.request.includeIntermediateStops = intermediateStops.checked;
-                            journeyModel.request.includePaths = includePaths.checked;
+                            parent.setupRequestCommon();
                         }
                     }
                     QQC2.Button {
@@ -534,15 +569,7 @@ Kirigami.ApplicationWindow {
                             to.latitude = toLat.text;
                             to.longitude = toLon.text;
                             journeyModel.request.to = to;
-                            journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
-                            journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
-                            journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            journeyModel.request.downloadAssets = true
-                            journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
-                                | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
-                            journeyModel.request.maximumResults = maxResults.text;
-                            journeyModel.request.includeIntermediateStops = intermediateStops.checked;
-                            journeyModel.request.includePaths = includePaths.checked;
+                            parent.setupRequestCommon();
                         }
                     }
                     QQC2.Button {
