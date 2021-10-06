@@ -425,8 +425,12 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
         section.setMode(JourneySection::PublicTransport);
         section.setRoute(detectAndParseRoute(obj));
     } else {
-        if (obj.value(QLatin1String("mode")).toString() == QLatin1String("BICYCLE")) {
-            section.setMode(JourneySection::RentedVehicle);
+        const auto mode = obj.value(QLatin1String("mode")).toString();
+        const auto isRented = obj.value(QLatin1String("rentedBike")).toBool();
+
+        if (mode.compare(QLatin1String("WALK"), Qt::CaseInsensitive) == 0 || mode.compare(QLatin1String("FOOT"), Qt::CaseInsensitive) == 0) {
+            section.setMode(JourneySection::Walking);
+        } else if (mode == QLatin1String("BICYCLE")) {
             RentalVehicle v;
             if (from.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(from.rentalVehicleStation().network());
@@ -436,9 +440,18 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
                 v.setNetwork(to.rentalVehicleStation().network());
             }
             v.setType(vehicleTypeFromTypes(v.network().vehicleTypes(), RentalVehicle::Bicycle));
-            section.setRentalVehicle(v);
+            if (v.network().isValid() || isRented) {
+                section.setMode(JourneySection::RentedVehicle);
+                section.setRentalVehicle(v);
+            } else {
+                section.setMode(JourneySection::IndividualTransport);
+                section.setIndividualTransport({ IndividualTransport::Bike });
+            }
+        } else if (mode == QLatin1String("CAR")) {
+            section.setMode(JourneySection::IndividualTransport);
+            section.setIndividualTransport({ IndividualTransport::Car });
         } else {
-            section.setMode(JourneySection::Walking);
+            qWarning() << "Unhandled OTP mode:" << mode;
         }
     }
 

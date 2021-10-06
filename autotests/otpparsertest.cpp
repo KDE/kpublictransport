@@ -190,6 +190,10 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.in.json")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.out.json")
             << s(SOURCE_DIR "/../src/lib/networks/de_bw_stadtnavi.json");
+        QTest::newRow("de-stadtnavi-bike-parking-journey")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-bike-parking-journey.in.json")
+            << s(SOURCE_DIR "/data/otp/de-stadtnavi-bike-parking-journey.out.json")
+            << s(SOURCE_DIR "/../src/lib/networks/de_bw_stadtnavi.json");
     }
 
     void testParseJourney()

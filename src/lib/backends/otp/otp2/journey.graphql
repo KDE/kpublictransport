@@ -35,6 +35,7 @@ query journeys(
                 distance
                 mode
                 transitLeg
+                rentedBike
                 from { ...locationFragment }
                 to { ...locationFragment }
                 trip {

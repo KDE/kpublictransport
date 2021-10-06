@@ -104,6 +104,7 @@
               "distance": 895.204,
               "mode": "BICYCLE",
               "transitLeg": false,
+              "rentedBike": true,
               "from": {
                 "name": "path",
                 "lat": 48.4004982,
