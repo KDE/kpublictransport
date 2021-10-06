@@ -9,6 +9,7 @@
 
 #include "datatypes.h"
 #include "disruption.h"
+#include "individualtransport.h"
 #include "line.h"
 #include "load.h"
 #include "location.h"
@@ -42,6 +43,7 @@ public:
         Walking = 4,
         Waiting = 8,
         RentedVehicle = 16, ///< free floating or dock-based rental bike service, electric scooters, car sharing services, ie. any vehicle you drive yourself but that isn't your own
+        IndividualTransport = 32, ///< using your own vehicle (bike, car, etc).
     };
     Q_ENUM(Mode)
     Q_DECLARE_FLAGS(Modes, Mode)
@@ -149,6 +151,9 @@ public:
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
     /** Platform layout information at arrival. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
+
+    /** Individual transport details for sections using your own vehicle. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
 
 public:
     bool hasExpectedDepartureTime() const;

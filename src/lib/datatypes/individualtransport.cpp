@@ -38,6 +38,11 @@ bool IndividualTransport::operator==(const IndividualTransport &other) const
     return d->mode == other.mode() && d->qualifier == other.qualifier();
 }
 
+bool IndividualTransport::operator!=(const IndividualTransport &other) const
+{
+    return d->mode != other.mode() || d->qualifier != other.qualifier();
+}
+
 QJsonObject IndividualTransport::toJson(const IndividualTransport &it)
 {
     return Json::toJson(it);

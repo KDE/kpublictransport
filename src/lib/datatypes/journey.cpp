@@ -50,6 +50,7 @@ public:
     Platform departurePlatformLayout;
     Vehicle arrivalVehicleLayout;
     Platform arrivalPlatformLayout;
+    IndividualTransport individualTransport;
 };
 
 class JourneyPrivate : public QSharedData
@@ -77,6 +78,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, departureVehicleLayout, 
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, departurePlatformLayout, setDeparturePlatformLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -350,6 +352,10 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
         return false;
     }
 
+    if (lhs.d->mode == JourneySection::IndividualTransport && lhs.d->individualTransport != rhs.d->individualTransport) {
+        return false;
+    }
+
     // we have N criteria to compare here, with 3 possible results:
     // - equal
     // - similar-ish, unknwon, or at least not conflicting
@@ -482,6 +488,10 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
         obj.insert(QLatin1String("arrivalPlatformLayout"), Platform::toJson(section.arrivalPlatformLayout()));
     }
 
+    if (section.mode() == JourneySection::IndividualTransport) {
+        obj.insert(QLatin1String("individualTransport"), IndividualTransport::toJson(section.individualTransport()));
+    }
+
     if (obj.size() <= 3) { // only the disruption and mode enums and distance, ie. this is an empty object
         return {};
     }
@@ -507,6 +517,7 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setDeparturePlatformLayout(Platform::fromJson(obj.value(QLatin1String("departurePlatformLayout")).toObject()));
     section.setArrivalVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("arrivalVehicleLayout")).toObject()));
     section.setArrivalPlatformLayout(Platform::fromJson(obj.value(QLatin1String("arrivalPlatformLayout")).toObject()));
+    section.setIndividualTransport(IndividualTransport::fromJson(obj.value(QLatin1String("individualTransport")).toObject()));
     return section;
 }
 

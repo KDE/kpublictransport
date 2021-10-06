@@ -44,6 +44,7 @@ public:
     IndividualTransport(Mode mode, Qualifier qualifier = None);
 
     bool operator==(const IndividualTransport &other) const;
+    bool operator!=(const IndividualTransport &other) const;
 
     /** Serializes one object to JSON. */
     static QJsonObject toJson(const IndividualTransport &it);

@@ -107,7 +107,8 @@ Kirigami.ApplicationWindow {
     {
         switch(loc.type) {
             case Location.Stop: return "🚏 " + loc.name;
-            case Location.RentedVehicleStation: return "🚲 " + loc.name;
+            case Location.RentedVehicleStation: return "🚏🚲 " + loc.name;
+            case Location.RentedVehicle: return "🚲 " + loc.name;
             case Location.Place: return loc.name;
         }
     }
@@ -181,12 +182,20 @@ Kirigami.ApplicationWindow {
                             case JourneySection.RentedVehicle:
                             {
                                 switch (modelData.rentalVehicle.type) {
-                                    case RentalVehicle.Bicycle: return "🚲";
-                                    case RentalVehicle.Pedelec: return "🚲";
-                                    case RentalVehicle.ElectricKickScooter: return "🛴";
-                                    case RentalVehicle.ElectricMoped: return "🛵";
-                                    case RentalVehicle.Car: return "🚗";
+                                    case RentalVehicle.Bicycle: return "🔑🚲";
+                                    case RentalVehicle.Pedelec: return "🔑🔌🚲";
+                                    case RentalVehicle.ElectricKickScooter: return "🔑🛴";
+                                    case RentalVehicle.ElectricMoped: return "🔑🛵";
+                                    case RentalVehicle.Car: return "🔑🚗";
                                     default: return "?";
+                                }
+                            }
+                            case JourneySection.IndividualTransport:
+                            {
+                                switch (modelData.individualTransport.mode) {
+                                    case IndividualTransport.Walk: return "🚶";
+                                    case IndividualTransport.Bike: return "🚲";
+                                    case IndividualTransport.Car: return "🚗";
                                 }
                             }
                             default: return "?";
@@ -243,6 +252,8 @@ Kirigami.ApplicationWindow {
                                 return "Wait " + displayDuration(modelData.duration)
                             case JourneySection.RentedVehicle:
                                 return "Drive (" + modelData.rentalVehicle.network.name + ") " + displayDuration(modelData.duration)  + " / " + displayDistance(modelData.distance);
+                            case JourneySection.IndividualTransport:
+                                return "Drive " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
                             return "???";
                         }}
                     }
