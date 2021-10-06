@@ -84,6 +84,10 @@
         "endpoint": "https://api.digitransit.im.verschwoerhaus.de/routing/v1/routers/vsh/",
         "ifoptPrefix": "1",
         "rentalVehicleNetworks": {
+            "bird": {
+                "name": "Bird",
+                "vehicleTypes": "ElectricKickScooter"
+            },
             "openbike": {
                 "name": "OpenBike Ulm",
                 "vehicleTypes": "Bicycle"

@@ -430,6 +430,8 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
             RentalVehicle v;
             if (from.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(from.rentalVehicleStation().network());
+            } else if (from.type() == Location::RentedVehicle) {
+                v = from.data().value<RentalVehicle>();
             } else if (to.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(to.rentalVehicleStation().network());
             }
