@@ -16,6 +16,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QProcess>
 #include <QTest>
 #include <QTimeZone>
 
@@ -31,9 +32,28 @@ class OtpParserTest : public QObject
 private:
     QByteArray readFile(const QString &fn)
     {
+        if (fn.isEmpty()) {
+            return {};
+        }
         QFile f(fn);
         f.open(QFile::ReadOnly);
         return f.readAll();
+    }
+
+    template <typename T>
+    inline void diffJson(const QString &refFile, const T &output, const T &ref)
+    {
+        if (output != ref) {
+            QFile failFile(refFile + QLatin1String(".fail"));
+            QVERIFY(failFile.open(QFile::WriteOnly));
+            failFile.write(QJsonDocument(output).toJson());
+            failFile.close();
+
+            QProcess proc;
+            proc.setProcessChannelMode(QProcess::ForwardedChannels);
+            proc.start(QStringLiteral("diff"), {QStringLiteral("-u"), refFile, failFile.fileName()});
+            QVERIFY(proc.waitForFinished());
+        }
     }
 
 private Q_SLOTS:
@@ -193,9 +213,7 @@ private Q_SLOTS:
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
+        diffJson(refFileName, jsonRes, ref);
         QVERIFY(!jsonRes.empty());
         QCOMPARE(jsonRes, ref);
     }
