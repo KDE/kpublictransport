@@ -8,7 +8,10 @@ query journeys(
   $toLon: Float!,
   $dateTime: DateTime!,
   $arriveBy: Boolean!,
-  $maxResults: Int!
+  $maxResults: Int!,
+  $lang: Locale!,
+  $withIntermediateStops: Boolean!,
+  $withPaths: Boolean!
 ) {
   plan: trip (
         from: { coordinates: { latitude: $fromLat, longitude: $fromLon } }
@@ -16,6 +19,7 @@ query journeys(
         dateTime: $dateTime
         arriveBy: $arriveBy
         numTripPatterns: $maxResults
+        locale: $lang
     ) {
     itineraries: tripPatterns {
       legs {
@@ -27,27 +31,9 @@ query journeys(
         distance
         mode
         transitLeg: ride
-        from: fromPlace {
-          name
-          lat: latitude
-          lon: longitude
-          stop: quay {
-            platformCode: publicCode
-            description
-            id
-            timezone
-          }
-        }
-        to: toPlace {
-          name
-          lat: latitude
-          lon: longitude
-          stop: quay {
-            platformCode: publicCode
-            id
-            timezone
-          }
-        }
+        rentedBike
+        from: fromPlace { ...locationFragment }
+        to: toPlace { ...locationFragment }
         line {
           presentation {
             color: colour
@@ -68,7 +54,7 @@ query journeys(
             }
           }
         }
-        intermediateStops: intermediateEstimatedCalls {
+        intermediateStops: intermediateEstimatedCalls @include(if: $withIntermediateStops) {
           stop: quay {
             id
             name
@@ -82,11 +68,27 @@ query journeys(
           scheduledDepartureTime: aimedDepartureTime
           expectedDepartureTime: actualDepartureTime
         }
-        legGeometry: pointsOnLink {
+        legGeometry: pointsOnLink @include(if: $withPaths) {
           length
           points
         }
       }
     }
   }
+}
+
+fragment locationFragment on Place {
+    name
+    lat: latitude
+    lon: longitude
+    stop: quay {
+        platformCode: publicCode
+        id
+        timezone
+    }
+    bikeRentalStation {
+        id
+        networks,
+        bikesAvailable
+    }
 }

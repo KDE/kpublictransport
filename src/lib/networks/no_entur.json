@@ -99,6 +99,7 @@
             }
         ]
     },
+    "supportedLanguages": [ "no" ],
     "type": {
         "otpGraphQl": true
     }
