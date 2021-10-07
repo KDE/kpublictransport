@@ -72,6 +72,11 @@ query journeys(
           length
           points
         }
+        steps @include(if: $withPaths) {
+            lat: latitude
+            lon: longitude
+            legStepText(locale: $lang)
+        }
       }
     }
   }

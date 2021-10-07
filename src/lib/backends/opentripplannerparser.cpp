@@ -478,12 +478,55 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
     section.setIntermediateStops(std::move(stops));
 
     const auto geometryObj = obj.value(QLatin1String("legGeometry")).toObject();
+    QPolygonF poly;
     if (!geometryObj.empty()) {
-        QPolygonF poly;
         poly.reserve(geometryObj.value(QLatin1String("length")).toInt());
         const auto points = geometryObj.value(QLatin1String("points")).toString().toUtf8();
         PolylineDecoder<2> decoder(points.constData());
         decoder.readPolygon(poly);
+    }
+
+    const auto stepsArray = obj.value(QLatin1String("steps")).toArray();
+    if (!stepsArray.empty()) {
+        std::vector<PathSection> pathSections;
+        pathSections.reserve(stepsArray.size());
+        PathSection prevPathSec;
+        int prevPolyIdx = 0;
+        bool isFirstSection = true;
+        for (const auto &stepsV : stepsArray) {
+            const auto stepsObj = stepsV.toObject();
+            PathSection pathSec;
+            pathSec.setDescription(stepsObj.value(QLatin1String("legStepText")).toString());
+
+            if (!isFirstSection) {
+                const QPointF coord(stepsObj.value(QLatin1String("lon")).toDouble(), stepsObj.value(QLatin1String("lat")).toDouble());
+                const auto it = std::min_element(poly.begin() + prevPolyIdx, poly.end(), [coord](QPointF lhs, QPointF rhs) {
+                    return Location::distance(lhs.y(), lhs.x(), coord.y(), coord.x()) < Location::distance(rhs.y(), rhs.x(), coord.y(), coord.x());
+                });
+                int polyIdx = std::distance(poly.begin(), it);
+
+                QPolygonF subPoly;
+                subPoly.reserve(polyIdx - prevPolyIdx + 1);
+                std::copy(poly.begin() + prevPolyIdx, poly.begin() + polyIdx + 1, std::back_inserter(subPoly));
+                prevPathSec.setPath(std::move(subPoly));
+                prevPolyIdx = polyIdx;
+                pathSections.push_back(std::move(prevPathSec));
+            } else {
+                isFirstSection = false;
+            }
+            prevPathSec = pathSec;
+        }
+
+        QPolygonF subPoly;
+        subPoly.reserve(prevPolyIdx - poly.size() + 1);
+        std::copy(poly.begin() + prevPolyIdx, poly.end(), std::back_inserter(subPoly));
+        prevPathSec.setPath(std::move(subPoly));
+        pathSections.push_back(std::move(prevPathSec));
+
+        Path path;
+        path.setSections(std::move(pathSections));
+        section.setPath(std::move(path));
+    } else if (!poly.isEmpty()) {
         PathSection pathSec;
         pathSec.setPath(std::move(poly));
         Path path;
