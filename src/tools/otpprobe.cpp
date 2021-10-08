@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "../lib/geo/convexhull_p.h"
 #include "../lib/geo/geojson_p.h"
 
 #include <QCoreApplication>
@@ -124,8 +125,10 @@ void OtpProbeJob::stopsFetchDone(QNetworkReply *reply)
         qWarning() << reply->errorString() << reply->url();
     }
 
+    std::vector<QPointF> points;
     std::vector<double> lats, lons;
     const auto stops = QJsonDocument::fromJson(reply->readAll()).array();
+    points.reserve(stops.size());
     lats.reserve(stops.size());
     lons.reserve(stops.size());
     for (const auto &stopV : stops) {
@@ -137,6 +140,7 @@ void OtpProbeJob::stopsFetchDone(QNetworkReply *reply)
             continue;
         }
 
+        points.push_back(QPointF(lon, lat));
         lats.push_back(lat);
         lons.push_back(lon);
     }
@@ -146,9 +150,10 @@ void OtpProbeJob::stopsFetchDone(QNetworkReply *reply)
         double latMin, latMax, lonMin, lonMax;
         filterOutliers(lats, latMin, latMax);
         filterOutliers(lons, lonMin, lonMax);
-        // TODO even better would be computing the concave hull of all points after outlier filtering
         QRectF box(QPointF(lonMin, latMin), QPointF(lonMax, latMax));
-        m_boundingPolygon = m_boundingPolygon.intersected(box);
+
+        points.erase(std::remove_if(points.begin(), points.end(), [&box](auto p) { return !box.contains(p); }), points.end());
+        m_boundingPolygon = KPublicTransport::ConvexHull::compute(points);
     } else {
         qDebug() << "didn't get stop data:" << reply->url();
     }

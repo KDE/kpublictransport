@@ -91,6 +91,7 @@ target_sources(KPublicTransport PRIVATE
     gbfs/gbfsstore.cpp
     gbfs/gbfsvehicletypes.cpp
 
+    geo/convexhull.cpp
     geo/geojson.cpp
     geo/polylinedecoder.cpp
 

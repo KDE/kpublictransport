@@ -8,6 +8,7 @@ add_custom_target(run-endpoint-probe COMMAND endpointprobe ${CMAKE_SOURCE_DIR}/s
 add_executable(otpprobe
     otpprobe.cpp
     ../lib/geo/geojson.cpp
+    ../lib/geo/convexhull.cpp
 )
 target_link_libraries(otpprobe Qt5::Gui Qt5::Network)
 add_custom_target(run-otp-probe COMMAND otpprobe ${CMAKE_SOURCE_DIR}/src/lib/networks)
