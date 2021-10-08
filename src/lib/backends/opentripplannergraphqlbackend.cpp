@@ -156,6 +156,39 @@ static QString qualifierName(IndividualTransport::Qualifier qualifier)
     return {};
 }
 
+static void addEnturModes(QStringList &modes, const std::vector<IndividualTransport> &its)
+{
+    for (const auto &it : its) {
+        switch (it.mode()) {
+            case IndividualTransport::Bike:
+                // TODO park/rent variants only supported by Entur v3
+                modes.push_back(QStringLiteral("bicycle"));
+                break;
+            case IndividualTransport::Car:
+                switch (it.qualifier()) {
+                    case IndividualTransport::None:
+                        modes.push_back(QStringLiteral("car"));
+                        break;
+                    case IndividualTransport::Park:
+                        modes.push_back(QStringLiteral("car_park"));
+                        break;
+                    case IndividualTransport::Pickup:
+                        modes.push_back(QStringLiteral("car_pickup"));
+                        break;
+                    case IndividualTransport::Dropoff:
+                        modes.push_back(QStringLiteral("car_dropoff"));
+                        break;
+                    case IndividualTransport::Rent: // not supported
+                        break;
+                }
+                break;
+            case IndividualTransport::Walk:
+                modes.push_back(QStringLiteral("foot"));
+                break;
+        }
+    }
+}
+
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
@@ -188,47 +221,66 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("withPaths"), req.includePaths());
     // TODO set context.searchWindow?
 
-    struct Mode {
-        QString mode;
-        QString qualifier;
-    };
-    std::vector<Mode> modes;
+    if (m_apiVersion == QLatin1String("entur")) {
+        gqlReq.setVariable(QStringLiteral("allowBikeRental"), (req.modes() & JourneySection::RentedVehicle) != 0);
+        QStringList modes;
+        modes.push_back(QStringLiteral("foot"));
+        if (req.modes() & JourneySection::PublicTransport) {
+            modes.push_back(QStringLiteral("transit"));
+        }
+        if (req.modes() & JourneySection::RentedVehicle) {
+            modes.push_back(QStringLiteral("bicycle"));
+        }
+        addEnturModes(modes, req.accessModes());
+        addEnturModes(modes, req.egressModes());
 
-    if (req.modes() & JourneySection::PublicTransport) {
-        for (const auto &mode : m_supportedTransitModes) {
-            modes.push_back({ mode, {} });
-        }
-    }
-    if (req.modes() & JourneySection::RentedVehicle) {
-        for (const auto &mode : m_supportedRentalModes) {
-            modes.push_back({ mode, QStringLiteral("RENT") });
-        }
-    }
-    for (const auto &it : req.accessModes()) {
-        modes.push_back({ modeName(it.mode()), qualifierName(it.qualifier()) });
-    }
-    const auto modeLessThan = [](const Mode &lhs, const Mode &rhs) {
-        if (lhs.mode == rhs.mode) {
-            return lhs.qualifier < rhs.qualifier;
-        }
-        return lhs.mode < rhs.mode;
-    };
-    const auto modeEqual = [](const Mode &lhs, const Mode &rhs) {
-        return lhs.mode == rhs.mode && lhs.qualifier == rhs.qualifier;
-    };
-    std::sort(modes.begin(), modes.end(), modeLessThan);
-    modes.erase(std::unique(modes.begin(), modes.end(), modeEqual), modes.end());
+        modes.removeDuplicates();
+        QJsonArray modesArray;
+        std::copy(modes.begin(), modes.end(), std::back_inserter(modesArray));
+        gqlReq.setVariable(QStringLiteral("modes"), modesArray);
+    } else {
+        struct Mode {
+            QString mode;
+            QString qualifier;
+        };
+        std::vector<Mode> modes;
 
-    QJsonArray modesArray;
-    for (const auto &mode : modes) {
-        QJsonObject modeObj;
-        modeObj.insert(QLatin1String("mode"), mode.mode);
-        if (!mode.qualifier.isEmpty()) {
-            modeObj.insert(QLatin1String("qualifier"), mode.qualifier);
+        if (req.modes() & JourneySection::PublicTransport) {
+            for (const auto &mode : m_supportedTransitModes) {
+                modes.push_back({ mode, {} });
+            }
         }
-        modesArray.push_back(modeObj);
+        if (req.modes() & JourneySection::RentedVehicle) {
+            for (const auto &mode : m_supportedRentalModes) {
+                modes.push_back({ mode, QStringLiteral("RENT") });
+            }
+        }
+        for (const auto &it : req.accessModes()) {
+            modes.push_back({ modeName(it.mode()), qualifierName(it.qualifier()) });
+        }
+        const auto modeLessThan = [](const Mode &lhs, const Mode &rhs) {
+            if (lhs.mode == rhs.mode) {
+                return lhs.qualifier < rhs.qualifier;
+            }
+            return lhs.mode < rhs.mode;
+        };
+        const auto modeEqual = [](const Mode &lhs, const Mode &rhs) {
+            return lhs.mode == rhs.mode && lhs.qualifier == rhs.qualifier;
+        };
+        std::sort(modes.begin(), modes.end(), modeLessThan);
+        modes.erase(std::unique(modes.begin(), modes.end(), modeEqual), modes.end());
+
+        QJsonArray modesArray;
+        for (const auto &mode : modes) {
+            QJsonObject modeObj;
+            modeObj.insert(QLatin1String("mode"), mode.mode);
+            if (!mode.qualifier.isEmpty()) {
+                modeObj.insert(QLatin1String("qualifier"), mode.qualifier);
+            }
+            modesArray.push_back(modeObj);
+        }
+        gqlReq.setVariable(QStringLiteral("modes"), modesArray);
     }
-    gqlReq.setVariable(QStringLiteral("modes"), modesArray);
 
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());

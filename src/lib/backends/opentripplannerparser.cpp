@@ -430,7 +430,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
 
         if (mode.compare(QLatin1String("WALK"), Qt::CaseInsensitive) == 0 || mode.compare(QLatin1String("FOOT"), Qt::CaseInsensitive) == 0) {
             section.setMode(JourneySection::Walking);
-        } else if (mode == QLatin1String("BICYCLE")) {
+        } else if (mode.compare(QLatin1String("BICYCLE"), Qt::CaseInsensitive) == 0) {
             RentalVehicle v;
             if (from.rentalVehicleStation().network().isValid()) {
                 v.setNetwork(from.rentalVehicleStation().network());
@@ -447,7 +447,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
                 section.setMode(JourneySection::IndividualTransport);
                 section.setIndividualTransport({ IndividualTransport::Bike });
             }
-        } else if (mode == QLatin1String("CAR")) {
+        } else if (mode.compare(QLatin1String("CAR"), Qt::CaseInsensitive) == 0) {
             section.setMode(JourneySection::IndividualTransport);
             section.setIndividualTransport({ IndividualTransport::Car });
         } else {

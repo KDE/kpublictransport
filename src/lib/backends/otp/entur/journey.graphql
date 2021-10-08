@@ -12,6 +12,8 @@ query journeys(
   $lang: Locale!,
   $withIntermediateStops: Boolean!,
   $withPaths: Boolean!
+  $allowBikeRental: Boolean!
+  $modes: [Mode]!
 ) {
   plan: trip (
         from: { coordinates: { latitude: $fromLat, longitude: $fromLon } }
@@ -20,6 +22,8 @@ query journeys(
         arriveBy: $arriveBy
         numTripPatterns: $maxResults
         locale: $lang
+        allowBikeRental: $allowBikeRental
+        modes: $modes
     ) {
     itineraries: tripPatterns {
       legs {
