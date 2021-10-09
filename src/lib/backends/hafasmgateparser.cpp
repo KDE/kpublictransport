@@ -13,6 +13,7 @@
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Platform>
+#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/Vehicle>
 
@@ -673,11 +674,30 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                 });
                 parseTrainComposition(dep, section, loadInfos, platforms, vehicles);
                 section.setPath(parsePolyG(jnyObj, paths));
-            } else if (typeStr == QLatin1String("WALK") || typeStr == QLatin1String("TRSF")) {
+            } else {
                 const auto gis = secObj.value(QLatin1String("gis")).toObject();
                 section.setDistance(gis.value(QLatin1String("dist")).toInt());
                 section.setPath(parsePolyG(gis, paths));
-                section.setMode(typeStr == QLatin1String("WALK") ? JourneySection::Walking : JourneySection::Transfer);
+                if (typeStr == QLatin1String("WALK")) {
+                    section.setMode(JourneySection::Walking);
+                } else if (typeStr == QLatin1String("TRSF")) {
+                    section.setMode(JourneySection::Transfer);
+                } else if (typeStr == QLatin1String("BIKE")) {
+                    section.setMode(JourneySection::IndividualTransport);
+                    section.setIndividualTransport({ IndividualTransport::Bike });
+                } else if (typeStr == QLatin1String("PARK")) { // this means "drive to parking space", not "park the car"...
+                    section.setMode(JourneySection::IndividualTransport);
+                    section.setIndividualTransport({ IndividualTransport::Car, IndividualTransport::Park });
+                } else if (typeStr == QLatin1String("CHKO")) { // ... while this means "park the car"
+                    section.setMode(JourneySection::Transfer); // ### we don't have any metter mode for this atm
+                } else if (typeStr == QLatin1String("KISS")) {
+                    section.setMode(JourneySection::RentedVehicle);
+                    RentalVehicle v;
+                    v.setType(RentalVehicle::Car);
+                    section.setRentalVehicle(v);
+                } else {
+                    qCWarning(Log) << "Unhandled section mode:" << typeStr;
+                }
             }
 
             sections.push_back(section);
