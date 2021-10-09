@@ -1,24 +1,43 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: CC0-1.0
 
-query stopsByCoordinate($lat: Float!, $lon: Float!) {
-  stopsByRadius: quaysByRadius(latitude: $lat, longitude: $lon, radius: 1000) {
+query stopsByCoordinate(
+    $lat: Float!
+    $lon: Float!
+    $radius: Int!
+    $maxResults: Int!
+    $placeType: [FilterPlaceType]!
+) {
+  stopsByRadius: nearest(
+    latitude: $lat
+    longitude: $lon
+    maximumDistance: $radius
+    maximumResults: $maxResults
+    filterByPlaceTypes: $placeType
+  ) {
     edges {
       node {
-        stop: quay {
+        stop: place { ...on StopPlace {
           id
           name
           lat: latitude
           lon: longitude
-          timezone
-          parentStation: stopPlace {
+          parentStation: parent {
             id
             name
             lat: latitude
             lon: longitude
-            timezone
           }
-        }
+        }}
+        bikeRentalStation: place { ...on BikeRentalStation {
+            id
+            name
+            lat: latitude
+            lon: longitude
+            networks
+            bikesAvailable
+            spacesAvailable
+        }}
       }
     }
   }
