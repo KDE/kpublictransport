@@ -336,7 +336,7 @@ Kirigami.ApplicationWindow {
             onClicked: {
                 if (modelData.mode == JourneySection.PublicTransport) {
                     applicationWindow().pageStack.push(journeySectionPage, {"journeySection": modelData});
-                } else if ((modelData.mode == JourneySection.Walking || modelData.mode == JourneySection.Waiting || modelData.mode == JourneySection.Transfer) && modelData.path.sectionCount > 1) {
+                } else if (modelData.path.sectionCount > 1) {
                     applicationWindow().pageStack.push(pathPage, {"path": modelData.path});
                 }
             }
