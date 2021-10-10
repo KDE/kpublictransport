@@ -331,23 +331,11 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
     }
     top.insert(QStringLiteral("formatted"), false);
     top.insert(QStringLiteral("lang"), preferredLanguage());
-    {
-        QJsonArray svcReqs;
-        {
-            QJsonObject req;
-            req.insert(QStringLiteral("getServerDateTime"), true);
-            req.insert(QStringLiteral("getTimeTablePeriod"), false);
-
-            QJsonObject serverInfo;
-            serverInfo.insert(QStringLiteral("meth"), QLatin1String("ServerInfo"));
-            serverInfo.insert(QStringLiteral("req"), req);
-
-            svcReqs.push_back(serverInfo);
-        }
-        svcReqs.push_back(svcReq);
-        top.insert(QStringLiteral("svcReqL"), svcReqs);
-    }
     top.insert(QStringLiteral("ver"), m_version);
+
+    QJsonArray svcReqs;
+    svcReqs.push_back(svcReq);
+    top.insert(QStringLiteral("svcReqL"), svcReqs);
 
     postData = QJsonDocument(top).toJson(QJsonDocument::Compact);
     QUrl url(m_endpoint);
