@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_BACKEND_P_H
 #define KPUBLICTRANSPORT_BACKEND_P_H
 
+#include "kpublictransport_export.h"
+
 #include "coveragearea.h"
 
 #include <QSharedData>
@@ -23,7 +25,8 @@ class Backend;
 
 class BackendPrivate : public QSharedData {
 public:
-    static const AbstractBackend* impl(const Backend &b);
+    /** @internal exported for tooling. */
+    KPUBLICTRANSPORT_EXPORT static const AbstractBackend* impl(const Backend &b);
     static void setImpl(Backend &b, std::unique_ptr<AbstractBackend> &&impl);
     static Backend fromJson(const QJsonObject &obj);
 

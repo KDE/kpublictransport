@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_HAFASMGATEBACKEND_H
 #define KPUBLICTRANSPORT_HAFASMGATEBACKEND_H
 
+#include "kpublictransport_export.h"
+
 #include "hafasbackend.h"
 #include "hafasmgateparser.h"
 
@@ -19,8 +21,10 @@ namespace KPublicTransport {
 
 class LocationRequest;
 
-/** Backend for the Hafas mgate.exe interface. */
-class HafasMgateBackend : public HafasBackend
+/** Backend for the Hafas mgate.exe interface.
+ *  @internal exported for tooling only
+ */
+class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
 {
     Q_GADGET
     /** The auth data block in every request. */
@@ -46,8 +50,9 @@ public:
     bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
-private:
     QNetworkRequest makePostRequest(const QJsonObject &svcReq, QByteArray &postData) const;
+
+private:
     bool queryJourney(JourneyReply *reply, const QString &fromId, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
     void setAuthObject(const QJsonObject &obj);

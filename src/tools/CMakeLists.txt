@@ -17,6 +17,12 @@ add_executable(gbfsprobe gbfsprobe.cpp)
 target_link_libraries(gbfsprobe Qt5::Network KPublicTransport)
 add_custom_target(run-gbfs-probe COMMAND gbfsprobe ${CMAKE_SOURCE_DIR}/src/lib/gbfs/gbfs-feeds.json WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
+add_executable(hafas-mgate-probe
+    hafas-mgate-probe.cpp
+)
+target_link_libraries(hafas-mgate-probe PRIVATE Qt5::Gui Qt5::Network KPublicTransport)
+add_custom_target(run-hafas-mgate-probe COMMAND hafas-mgate-probe)
+
 if (TARGET PolyClipping::PolyClipping)
     add_executable(transport-api-sync
         transport-api-sync.cpp

@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_ABSTRACTBACKEND_H
 #define KPUBLICTRANSPORT_ABSTRACTBACKEND_H
 
+#include "kpublictransport_export.h"
+
 #include "reply.h"
 #include "requestcontext_p.h"
 
@@ -35,8 +37,10 @@ class StopoverRequest;
 class VehicleLayoutReply;
 class VehicleLayoutRequest;
 
-/** Abstract base class for transport provider backends. */
-class AbstractBackend
+/** Abstract base class for transport provider backends.
+ *  @internal exported for tooling only
+ */
+class KPUBLICTRANSPORT_EXPORT AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QString customCaCertificate WRITE setCustomCaCertificate)
