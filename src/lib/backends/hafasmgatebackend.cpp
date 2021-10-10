@@ -190,9 +190,6 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
 
     QJsonObject stationBoard;
     {
-        QJsonObject cfg;
-        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
-
         QJsonObject req;
         req.insert(QStringLiteral("date"), dt.toString(QStringLiteral("yyyyMMdd")));
         if (ctx.duration > 0) {
@@ -209,7 +206,6 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
         req.insert(QStringLiteral("time"), dt.toString(QStringLiteral("hhmmss")));
         req.insert(QStringLiteral("type"), request.mode() == StopoverRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
 
-        stationBoard.insert(QStringLiteral("cfg"), cfg);
         stationBoard.insert(QStringLiteral("meth"), QLatin1String("StationBoard"));
         stationBoard.insert(QStringLiteral("req"), req);
     }
@@ -256,9 +252,6 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
 
     QJsonObject methodObj;
     if (req.hasCoordinate()) {
-        QJsonObject cfg;
-        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
-
         QJsonObject coord;
         coord.insert(QStringLiteral("x"), (int)(req.longitude() * 1000000));
         coord.insert(QStringLiteral("y"), (int)(req.latitude() * 1000000));
@@ -273,14 +266,10 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
         reqObj.insert(QStringLiteral("getPOIs"), false);
         reqObj.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
 
-        methodObj.insert(QStringLiteral("cfg"), cfg);
         methodObj.insert(QStringLiteral("meth"), QLatin1String("LocGeoPos"));
         methodObj.insert(QStringLiteral("req"), reqObj);
 
     } else if (!req.name().isEmpty()) {
-        QJsonObject cfg;
-        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
-
         QJsonObject loc;
         loc.insert(QStringLiteral("name"), req.name()); // + '?' for auto completion search?
         loc.insert(QStringLiteral("type"), QLatin1String("S")); // station: S, address: A, POI: P
@@ -293,7 +282,6 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
         QJsonObject reqObj;
         reqObj.insert(QStringLiteral("input"), input);
 
-        methodObj.insert(QStringLiteral("cfg"), cfg);
         methodObj.insert(QStringLiteral("meth"), QLatin1String("LocMatch"));
         methodObj.insert(QStringLiteral("req"), reqObj);
 
