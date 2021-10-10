@@ -531,10 +531,35 @@ static Path parsePolyG(const QJsonObject &obj, const std::vector<Path> &paths)
         return {};
     }
     const auto polyX = polyXL.at(0).toInt();
-    if (polyX >= 0 && polyX < (int)paths.size()) {
-        return paths[polyX];
+    if (polyX < 0 || polyX >= (int)paths.size()) {
+        return {};
     }
-    return {};
+
+    const auto segL = obj.value(QLatin1String("segL")).toArray();
+    auto path = paths[polyX];
+    if (segL.isEmpty() || path.sections().size() != 1) {
+        return path;
+    }
+
+    const auto poly = path.sections()[0].path();
+    std::vector<PathSection> pathSections;
+    pathSections.reserve(segL.size());
+    for (const auto &segV : segL) {
+        const auto segObj = segV.toObject();
+        PathSection sec;
+        sec.setDescription(segObj.value(QLatin1String("manTx")).toString());
+        const auto polyS = segObj.value(QLatin1String("polyS")).toInt();
+        const auto polyE = segObj.value(QLatin1String("polyE")).toInt();
+        if (polyS >= 0 && polyS < poly.size() && polyE >= polyS && polyE < poly.size()) {
+            QPolygonF subPoly;
+            subPoly.reserve(polyE - polyS + 1);
+            std::copy(poly.begin() + polyS, poly.begin() + polyE + 1, std::back_inserter(subPoly));
+            sec.setPath(std::move(subPoly));
+        }
+        pathSections.push_back(std::move(sec));
+    }
+    path.setSections(std::move(pathSections));
+    return path;
 }
 
 std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
