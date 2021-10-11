@@ -9,7 +9,7 @@
 
 #include <gtfs/hvt.h>
 #include <ifopt/ifoptutil.h>
-#include <uic/uicutil.h>
+#include <uic/uicstationcode.h>
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -567,7 +567,7 @@ void OpenJourneyPlannerParser::setLocationIdentifier(Location &loc, const QStrin
     if (IfoptUtil::isValid(id)) {
         loc.setIdentifier(IfoptUtil::identifierType(), id);
     }
-    if (!m_uicIdentifierType.isEmpty() && UicUtil::isStationId(id)) {
+    if (!m_uicIdentifierType.isEmpty() && UicStationCode::isValid(id)) {
         loc.setIdentifier(m_uicIdentifierType, id);
     }
 }

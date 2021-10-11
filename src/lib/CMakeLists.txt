@@ -113,7 +113,7 @@ target_sources(KPublicTransport PRIVATE
     networks/certs/network_certs.qrc
 
     uic/uicrailwaycoach.cpp
-    uic/uicutil.cpp
+    uic/uicstationcode.cpp
 )
 ecm_qt_declare_logging_category(KPublicTransport
     HEADER logging.h

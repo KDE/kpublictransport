@@ -6,7 +6,7 @@
 
 #include "hafasparser.h"
 #include "logging.h"
-#include "uic/uicutil.h"
+#include "uic/uicstationcode.h"
 
 #include <KPublicTransport/Location>
 
@@ -74,7 +74,7 @@ Line::Mode HafasParser::parseLineMode(int modeId) const
 
 void HafasParser::setLocationIdentifier(Location &loc, const QString &id) const
 {
-    if (!m_standardLocationIdentifierType.isEmpty() && UicUtil::isStationId(id, m_uicCountryCodes)) {
+    if (!m_standardLocationIdentifierType.isEmpty() && UicStationCode::isValid(id, m_uicCountryCodes)) {
         loc.setIdentifier(m_standardLocationIdentifierType, id.right(7));
     }
     loc.setIdentifier(m_locationIdentifierType, id);

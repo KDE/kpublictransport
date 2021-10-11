@@ -4,14 +4,14 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "uicutil.h"
+#include "uicstationcode.h"
 
 #include <QString>
 #include <QStringView>
 
 using namespace KPublicTransport;
 
-bool UicUtil::isStationId(QStringView id, const std::vector<uint8_t> &allowedCountryCodes)
+bool UicStationCode::isValid(QStringView id, const std::vector<uint8_t> &allowedCountryCodes)
 {
     // too short, or not a number
     if (id.size() < 7 || std::any_of(id.begin(), id.end(), [](QChar c) { return !c.isDigit() || c.row() > 0; })) {
