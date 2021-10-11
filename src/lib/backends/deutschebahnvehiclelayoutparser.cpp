@@ -5,6 +5,7 @@
 */
 
 #include "deutschebahnvehiclelayoutparser.h"
+#include "uic/uicrailwaycoach.h"
 
 #include <QDateTime>
 #include <QDebug>
@@ -99,25 +100,14 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, cons
     }
 
     // see https://en.wikipedia.org/wiki/UIC_classification_of_railway_coaches
+    const auto num = obj.value(QLatin1String("fahrzeugnummer")).toString();
     const auto cls = obj.value(QLatin1String("fahrzeugtyp")).toString();
-    VehicleSection::Classes c = VehicleSection::UnknownClass;
-    if (cls.startsWith(QLatin1Char('A')) || cls.startsWith(QLatin1String("DA"))) {
-        c |= VehicleSection::FirstClass;
+    section.setClasses(UicRailwayCoach::coachClass(num, cls));
+    section.setDeckCount(UicRailwayCoach::deckCount(num, cls));
+    if (const auto type = UicRailwayCoach::type(num, cls); section.type() == VehicleSection::PassengerCar && type != VehicleSection::UnknownType) {
+        section.setType(type);
     }
-    if (cls.startsWith(QLatin1Char('B')) || cls.startsWith(QLatin1String("AB")) || cls.startsWith(QLatin1String("DB"))) {
-        c |= VehicleSection::SecondClass;
-    }
-    if (cls.startsWith(QLatin1String("WR"))) {
-        section.setType(VehicleSection::RestaurantCar);
-        f |= VehicleSection::Restaurant;
-    }
-    if (cls.startsWith(QLatin1String("AR")) || cls.startsWith(QLatin1String("BR"))) {
-        f |= VehicleSection::Restaurant;
-    }
-    if (cls.startsWith(QLatin1Char('D'))) {
-        section.setDeckCount(2);
-    }
-    section.setClasses(c);
+    f |= UicRailwayCoach::features(num, cls);
 
     const auto equipmentArray = obj.value(QLatin1String("allFahrzeugausstattung")).toArray();
     for (const auto &equipmentV : equipmentArray) {

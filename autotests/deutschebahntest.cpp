@@ -5,6 +5,7 @@
 */
 
 #include "backends/deutschebahnvehiclelayoutparser.cpp"
+#include "uic/uicrailwaycoach.cpp"
 
 #include <QFile>
 #include <QJsonObject>
