@@ -1,0 +1,74 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2021-10-12T17:14:00",
+    "expectedPlatform": "12 C-D",
+    "platformLayout": {
+        "length": 121
+    },
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "IC 601"
+        }
+    },
+    "scheduledDepartureTime": "2021-10-12T17:14:00",
+    "scheduledPlatform": "12 A-B",
+    "stopPoint": {
+        "name": "Linz/Donau Hbf",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible",
+                "name": "26",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.2181818187236786,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning",
+                "name": "28",
+                "platformPositionBegin": 0.2181818187236786,
+                "platformPositionEnd": 0.4363636374473572,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning",
+                "name": "29",
+                "platformPositionBegin": 0.4363636374473572,
+                "platformPositionEnd": 0.6545454263687134,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning|WheelchairAccessible|BikeStorage",
+                "name": "30",
+                "platformPositionBegin": 0.6545454263687134,
+                "platformPositionEnd": 0.8727272748947144,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "NoSide",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0.8727272748947144,
+                "platformPositionEnd": 1.0057851076126099,
+                "type": "Engine"
+            }
+        ]
+    }
+}

@@ -7,6 +7,7 @@
 #include "oebbbackend.h"
 #include "oebbvehiclelayoutparser.h"
 #include "cache.h"
+#include "uic/uicstationcode.h"
 
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/VehicleLayoutReply>
@@ -14,24 +15,43 @@
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QRegularExpression>
 #include <QUrl>
+#include <QUrlQuery>
 
 using namespace KPublicTransport;
+
+static QString trainNumber(Line line)
+{
+    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX)\\s*(\\d+)"));
+    const auto match = regex.match(line.modeString() + line.name());
+    if (match.hasMatch()) {
+        return match.captured(1);
+    }
+    return {};
+}
 
 bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
     const auto ibnr = request.stopover().stopPoint().identifier(QStringLiteral("ibnr"));
-    if (ibnr.size() != 7) {
+    if (!UicStationCode::isValid(ibnr)) {
         return false;
     }
-
+    const auto trainNum = trainNumber(request.stopover().route().line());
+    if (trainNum.isEmpty()) {
+        return false;
+    }
     const auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
+
     QUrl url;
     url.setScheme(QStringLiteral("https"));
     url.setHost(QStringLiteral("live.oebb.at"));
-    url.setPath(QLatin1String("/backend/api/train/") + request.stopover().route().line().name()
-        + QLatin1String("/stationEva/") + ibnr
-        + QLatin1String("/departure/") +  dt.toString(QStringLiteral("dd.MM.yyyy")));
+    url.setPath(QLatin1String("/backend/info"));
+    QUrlQuery query;
+    query.addQueryItem(QStringLiteral("trainNr"), trainNum);
+    query.addQueryItem(QStringLiteral("station"), ibnr);
+    query.addQueryItem(QStringLiteral("date"), dt.toString(QStringLiteral("yyyy-MM-dd")));
+    url.setQuery(query);
 
     QNetworkRequest netReq(url);
     logRequest(request, netReq);
@@ -47,9 +67,11 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
                 Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), p.stopover, {}, std::chrono::minutes(2));
                 addResult(reply, p.stopover);
             } else {
-                Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey());
-                addError(reply, Reply::NotFoundError, {});
+                addError(reply, Reply::UnknownError, {});
             }
+        } else if (netReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 404) {
+            Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey());
+            addError(reply, Reply::NotFoundError, reply->errorString());
         } else {
             addError(reply, Reply::NetworkError, reply->errorString());
         }

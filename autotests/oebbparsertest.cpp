@@ -5,11 +5,13 @@
 */
 
 #include "backends/oebbvehiclelayoutparser.cpp"
+#include "uic/uicrailwaycoach.cpp"
 
 #include <QFile>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
+#include <QProcess>
 #include <QTest>
 #include <QTimeZone>
 
@@ -28,6 +30,22 @@ private:
         return f.readAll();
     }
 
+    template <typename T>
+    inline void diffJson(const QString &refFile, const T &output, const T &ref)
+    {
+        if (output != ref) {
+            QFile failFile(refFile + QLatin1String(".fail"));
+            QVERIFY(failFile.open(QFile::WriteOnly));
+            failFile.write(QJsonDocument(output).toJson());
+            failFile.close();
+
+            QProcess proc;
+            proc.setProcessChannelMode(QProcess::ForwardedChannels);
+            proc.start(QStringLiteral("diff"), {QStringLiteral("-u"), refFile, failFile.fileName()});
+            QVERIFY(proc.waitForFinished());
+        }
+    }
+
 private Q_SLOTS:
     void initTestCase()
     {
@@ -43,13 +61,13 @@ private Q_SLOTS:
             << s(SOURCE_DIR "/data/oebb/rj-forward-input.json")
             << s(SOURCE_DIR "/data/oebb/rj-forward-departure.json");
 
-        QTest::newRow("ec-no-platform-sectors")
-            << s(SOURCE_DIR "/data/oebb/ec-no-platform-sectors-input.json")
-            << s(SOURCE_DIR "/data/oebb/ec-no-platform-sectors-departure.json");
+        QTest::newRow("rj-no-platform-sectors")
+            << s(SOURCE_DIR "/data/oebb/rj-no-platform-sectors-input.json")
+            << s(SOURCE_DIR "/data/oebb/rj-no-platform-sectors-departure.json");
 
-        QTest::newRow("ice-empty")
-            << s(SOURCE_DIR "/data/oebb/ice-empty-input.json")
-            << s(SOURCE_DIR "/data/oebb/ice-empty-departure.json");
+        QTest::newRow("ic-no-platform-data")
+            << s(SOURCE_DIR "/data/oebb/ic-no-platform-data-input.json")
+            << s(SOURCE_DIR "/data/oebb/ic-no-platform-data-departure.json");
     }
 
     void testVehicleLayoutParse()
@@ -63,16 +81,10 @@ private Q_SLOTS:
         const auto departureJson = Stopover::toJson(parser.stopover);
         const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();
         if (departureJson != departureRef) {
-            qDebug().noquote() << QJsonDocument(departureJson).toJson();
+            diffJson(departureFileName, departureJson, departureRef);
         }
         QVERIFY(!departureJson.isEmpty());
         QCOMPARE(departureJson, departureRef);
-    }
-
-    void testInvalid()
-    {
-        KPublicTransport::OebbVehicleLayoutParser parser;
-        QVERIFY(!parser.parse(readFile(QLatin1String(SOURCE_DIR "/data/oebb/invalid-input.json"))));
     }
 };
 

@@ -5,6 +5,7 @@
 */
 
 #include "oebbvehiclelayoutparser.h"
+#include "uic/uicrailwaycoach.h"
 
 #include <QDateTime>
 #include <QDebug>
@@ -17,23 +18,59 @@ using namespace KPublicTransport;
 struct {
     const char *propName;
     VehicleSection::Feature feature;
+    VehicleSection::Class coachClass;
 } static constexpr const vehicle_section_feature_map[] = {
-    { "speisewagen", VehicleSection::Restaurant },
-    { "kinderspielwagen", VehicleSection::ToddlerArea },
-    { "kinderkino", VehicleSection::ToddlerArea },
-    { "rollstuhlgerecht", VehicleSection::WheelchairAccessible },
-    { "fahrradmitnahme", VehicleSection::BikeStorage },
-    { "ruhebereich", VehicleSection::SilentArea },
-    { "infoPoint", VehicleSection::NoFeatures }, // TODO
+    { "capacityBusinessClass", VehicleSection::NoFeatures, VehicleSection::FirstClass },
+    { "capacityFirstClass", VehicleSection::NoFeatures, VehicleSection::FirstClass },
+    { "capacitySecondClass", VehicleSection::NoFeatures, VehicleSection::SecondClass },
+    { "capacityCouchette", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
+    { "capacitySleeper", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
+    { "capacityWheelChair", VehicleSection::WheelchairAccessible, VehicleSection::UnknownClass },
+    { "capacityBicycle", VehicleSection::BikeStorage, VehicleSection::UnknownClass },
+    { "isBicycleAllowed", VehicleSection::BikeStorage, VehicleSection::UnknownClass },
+    { "isWheelChairAccessible", VehicleSection::WheelchairAccessible, VehicleSection::UnknownClass },
+    { "hasWifi", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
+    { "isInfoPoint", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
+    { "isChildCinema", VehicleSection::ToddlerArea, VehicleSection::UnknownClass },
+    { "isDining", VehicleSection::Restaurant, VehicleSection::UnknownClass },
+    { "isQuietZone", VehicleSection::SilentArea, VehicleSection::UnknownClass },
 };
 
 static Vehicle::Direction parseDirection(const QJsonObject &haltepunktObj)
 {
-    const auto v = haltepunktObj.value(QLatin1String("departureDirectionSectorA"));
+    const auto v = haltepunktObj.value(QLatin1String("departureTowardsFirstSector"));
     if (v.isBool()) {
         return v.toBool() ? Vehicle::Forward : Vehicle::Backward;
     }
     return Vehicle::UnknownDirection;
+}
+
+static QDateTime parseDateTime(const QDate &date, const QJsonValue &timeVal)
+{
+    const auto timeObj = timeVal.toObject();
+    QDateTime dt(date, {0, 0});
+    dt = dt.addSecs(timeObj.value(QLatin1String("days")).toInt() * 24 * 3600);
+    dt = dt.addSecs(timeObj.value(QLatin1String("hours")).toInt() * 3600);
+    dt = dt.addSecs(timeObj.value(QLatin1String("minutes")).toInt() * 60 );
+    return dt;
+}
+
+static QString parsePlatformName(const QJsonObject &platformObj, const QJsonObject &sectorsObj, const char *propName)
+{
+    const auto nameVal = platformObj.value(QLatin1String(propName));
+    if (nameVal.isUndefined()) {
+        return {};
+    }
+    const auto name = QString::number(nameVal.toInt());
+    if (name.isEmpty()) {
+        return name;
+    }
+
+    const auto sectorName = sectorsObj.value(QLatin1String(propName)).toString();
+    if (!sectorName.isEmpty()) {
+        return name + QLatin1Char(' ') + sectorName;
+    }
+    return name;
 }
 
 bool OebbVehicleLayoutParser::parse(const QByteArray &data)
@@ -43,7 +80,10 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     // platform
     Platform platform;
     const auto platformObj = obj.value(QLatin1String("platform")).toObject();
-    platform.setName(platformObj.value(QLatin1String("platform")).toString());
+    const auto platformNameVal = platformObj.value(QLatin1String("platform"));
+    if (!platformNameVal.isUndefined()) {
+        platform.setName(QString::number(platformNameVal.toInt()));
+    }
     const auto sectorArray = platformObj.value(QLatin1String("sectors")).toArray();
     std::vector<PlatformSection> platformSections;
     platformSections.reserve(sectorArray.size());
@@ -51,61 +91,52 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     for (const auto &sectorV : sectorArray) {
         const auto sectorObj = sectorV.toObject();
         PlatformSection section;
-        section.setName(sectorObj.value(QLatin1String("sectorName")).toString());
+        section.setName(sectorObj.value(QLatin1String("name")).toString());
         section.setBegin(prevSectorEnd);
         section.setEnd(prevSectorEnd += sectorObj.value(QLatin1String("length")).toDouble());
         platformSections.push_back(section);
     }
-    platform.setLength(prevSectorEnd);
-    // TODO platform.egress lists relevant features like escalators/elevators on the platform
+    platform.setLength(std::max<float>(prevSectorEnd, platformObj.value(QLatin1String("length")).toDouble()));
+    // TODO accesses lists relevant features like escalators/elevators on the platform
 
     // vehicle
     Vehicle vehicle;
-    const auto haltepunktObj = platformObj.value(QLatin1String("haltepunkt")).toObject();
-    vehicle.setDirection(parseDirection(haltepunktObj));
-
-    const auto wagonsA = obj.value(QLatin1String("wagons")).toArray();
+    const auto trainOnPlatform = obj.value(QLatin1String("trainOnPlatform")).toObject();
+    vehicle.setDirection(parseDirection(trainOnPlatform));
+    const auto trainObj = obj.value(QLatin1String("train")).toObject();
+    const auto wagonsA = trainObj.value(QLatin1String("wagons")).toArray();
     std::vector<VehicleSection> vehicleSections;
     vehicleSections.reserve(wagonsA.size());
-    float prevVehicleEnd = haltepunktObj.value(QLatin1String("haltepunktInMeters")).toDouble(); // TODO check departureDirectionSectorA, how does this look like for "false"?
+    float prevVehicleEnd = trainOnPlatform.value(QLatin1String("position")).toDouble(); // TODO check how this looks like for backward departure
     for (const auto &wagonV : wagonsA) {
         const auto wagonObj = wagonV.toObject();
         VehicleSection section;
-        if (wagonObj.value(QLatin1String("triebfahrzeug")).toBool()) {
-            section.setType(VehicleSection::Engine);
+        const auto uicNum = wagonObj.value(QLatin1String("uicNumber")).toString();
+        const auto uicCls = wagonObj.value(QLatin1String("kind")).toString();
+        section.setType(UicRailwayCoach::type(uicNum, uicCls));
+
+        if (section.type() == VehicleSection::Engine) {
             section.setConnectedSides(VehicleSection::NoSide);
         } else {
-            section.setName(QString::number(wagonObj.value(QLatin1String("ordnungsNummer")).toInt()));
-            // TODO: autoreizezug -> we lack support for car carrying cars
-            section.setType(VehicleSection::PassengerCar);
-            VehicleSection::Features features = {};
+            const auto ranking = wagonObj.value(QLatin1String("ranking")).toInt();
+            if (ranking > 0) {
+                section.setName(QString::number(ranking));
+            }
+            auto cls = UicRailwayCoach::coachClass(uicNum, uicCls);
+            auto features = UicRailwayCoach::features(uicNum, uicCls);
             for (const auto &map : vehicle_section_feature_map) {
-                if (wagonObj.value(QLatin1String(map.propName)).toBool()) {
+                const auto val = wagonObj.value(QLatin1String(map.propName));
+                if ((val.isBool() && val.toBool()) || (val.isDouble() && val.toInt() > 0)) {
+                    cls |= map.coachClass;
                     features |= map.feature;
                 }
             }
+            section.setClasses(cls);
             section.setFeatures(features);
-
-            VehicleSection::Classes classes = {};
-            if (wagonObj.value(QLatin1String("secondClass")).toInt() > 0) {
-                classes |= VehicleSection::SecondClass;
-            }
-            if (wagonObj.value(QLatin1String("firstClass")).toInt() > 0 || wagonObj.value(QLatin1String("businessClass")).toInt() > 0) {
-                classes |= VehicleSection::FirstClass;
-            }
-            section.setClasses(classes);
-
-            // TODO we lack support for sleeper cars
-            const auto sleeperCar = wagonObj.value(QLatin1String("schlafplaetze")).toInt() > 0 || wagonObj.value(QLatin1String("liegeplaetze")).toInt() > 0;
-
-            // sort out Restaurant feature vs. dedicated RestaurantCar
-            if (classes == VehicleSection::UnknownClass && !sleeperCar && (features & VehicleSection::Restaurant)) {
-                section.setType(VehicleSection::RestaurantCar);
-            }
         }
 
         section.setPlatformPositionBegin(prevVehicleEnd);
-        section.setPlatformPositionEnd(prevVehicleEnd += (wagonObj.value(QLatin1String("laengeUeberPuffer")).toInt() / 100.0));
+        section.setPlatformPositionEnd(prevVehicleEnd += wagonObj.value(QLatin1String("lengthOverBuffers")).toDouble());
 
         vehicleSections.push_back(section);
     }
@@ -130,20 +161,29 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     // departure
     // TODO recover destination when possible
     Location stop;
-    const auto trainStationObj = obj.value(QLatin1String("trainStation")).toObject();
-    stop.setName(trainStationObj.value(QLatin1String("name")).toString());
-    stop.setIdentifier(QStringLiteral("ibnr"), trainStationObj.value(QLatin1String("evaCode")).toString());
+    const auto timeTableInfo = obj.value(QLatin1String("timeTableInfo")).toObject();
+    stop.setName(timeTableInfo.value(QLatin1String("stationName")).toString());
     stop.setType(Location::Stop);
     Line line;
     line.setMode(Line::LongDistanceTrain); // TODO is this actually true for ÖBB?
-    line.setName(obj.value(QLatin1String("trainName")).toString());
+    line.setName(timeTableInfo.value(QLatin1String("trainName")).toString());
     Route route;
     route.setLine(line);
     stopover.setRoute(route);
     stopover.setStopPoint(stop);
-    stopover.setScheduledArrivalTime(QDateTime::fromString(obj.value(QLatin1String("scheduledArrival")).toString(), Qt::ISODate));
-    stopover.setScheduledDepartureTime(QDateTime::fromString(obj.value(QLatin1String("scheduledDeparture")).toString(), Qt::ISODate));
-    stopover.setScheduledPlatform(platform.name());
+
+    const auto date = QDate::fromString(timeTableInfo.value(QLatin1String("date")).toString(), QStringLiteral("yyyy-MM-dd"));
+    const auto timeObj = timeTableInfo.value(QLatin1String("time")).toObject();
+    stopover.setScheduledDepartureTime(parseDateTime(date, timeObj.value(QLatin1String("scheduled"))));
+    stopover.setExpectedDepartureTime(parseDateTime(date, timeObj.value(QLatin1String("reported"))));
+
+    {
+        const auto platformObj = timeTableInfo.value(QLatin1String("platform")).toObject();
+        const auto sectorsObj = timeTableInfo.value(QLatin1String("sectors")).toObject();
+        stopover.setScheduledPlatform(parsePlatformName(platformObj, sectorsObj, "scheduled"));
+        stopover.setExpectedPlatform(parsePlatformName(platformObj, sectorsObj, "reported"));
+    }
+
     stopover.setVehicleLayout(std::move(vehicle));
     stopover.setPlatformLayout(std::move(platform));
 

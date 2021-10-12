@@ -1,0 +1,372 @@
+{
+  "timeTableInfo": {
+    "date": "2021-10-12",
+    "trainNr": 374,
+    "trainName": "RJ 374",
+    "stationName": "Graz Hbf",
+    "platform": {
+      "scheduled": 1,
+      "reported": 1
+    },
+    "sectors": {
+      "scheduled": "B-D",
+      "reported": "B-E"
+    },
+    "time": {
+      "scheduled": {
+        "days": 0,
+        "hours": 18,
+        "minutes": 26
+      }
+    },
+    "portions": [
+      {
+        "trainNr": 374,
+        "trainName": "RJ 374"
+      }
+    ]
+  },
+  "train": {
+    "trainNr": 374,
+    "date": "2020-12-13",
+    "version": 0,
+    "isReported": false,
+    "assemblyStation": "G",
+    "source": "1_PV-374-00-G-8103171_31519231185_20211010_1744_Plan_PTCP_IN_690921.XML",
+    "seasoning": {
+      "startDate": "2020-12-13",
+      "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+    },
+    "stations": [
+      "G",
+      "BM",
+      "KA",
+      "MZ",
+      "NB",
+      "MI",
+      "WBF",
+      "BA",
+      "54BO"
+    ],
+    "wagons": [
+      {
+        "uicNumber": "735480910000",
+        "kind": "Afmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 27,
+        "capacityBusinessClass": 6,
+        "capacityFirstClass": 38,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.9,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "735485910000",
+        "kind": "ARbmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 26,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 1,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": true,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": true,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "735421910000",
+        "kind": "Bmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 25,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "735421910000",
+        "kind": "Bmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 24,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "735421910000",
+        "kind": "Bmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 23,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "735421910000",
+        "kind": "Bmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 22,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "735420910000",
+        "kind": "Bmpz",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 21,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 74,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 1,
+        "isBicycleAllowed": true,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": true,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      },
+      {
+        "uicNumber": "918112160000",
+        "kind": "TFZ",
+        "origin": "G",
+        "destination": "54BO",
+        "ranking": 0,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLocked": false,
+        "destinationName": "Brno hl.n.",
+        "lengthOverBuffers": 19.6,
+        "originTime": "2021-10-11T18:26:00",
+        "destinationTime": "2021-10-11T22:36:00",
+        "seasoning": {
+          "startDate": "2020-12-13",
+          "seasoningString": "7123456712348871234867128456712345671234567123456712345671234567123456712345671234567123456712345671234567123456882345671234567123456712345871234567123856712345688234567123856712345671234567123456712345671234567123456712345671234567123456712345681234567123456712345671234567123456712345671234567123456712345671234567183456782345671234567123456712345671234567128456"
+        }
+      }
+    ]
+  },
+  "trainOnPlatform": {
+    "position": 89.07499999999999
+  },
+  "platform": {
+    "platform": 1,
+    "length": 561.8,
+    "sectors": []
+  },
+  "accesses": [
+    {
+      "platform": "1",
+      "distance": 145.36,
+      "name": "TUER_G",
+      "type": "TUER"
+    },
+    {
+      "platform": "1",
+      "distance": 247.62,
+      "name": "STIEGENAUFGANG_G",
+      "type": "STIEGENAUFGANG"
+    },
+    {
+      "platform": "1",
+      "distance": 141.11,
+      "name": "ROLLTREPPE_G",
+      "type": "ROLLTREPPE"
+    },
+    {
+      "platform": "1",
+      "distance": 310.89,
+      "name": "TUER_G",
+      "type": "TUER"
+    },
+    {
+      "platform": "1",
+      "distance": 251.05,
+      "name": "TUER_G",
+      "type": "TUER"
+    },
+    {
+      "platform": "1",
+      "distance": 116.95,
+      "name": "TUER_G",
+      "type": "TUER"
+    },
+    {
+      "platform": "1",
+      "distance": 231.95,
+      "name": "TUER_G",
+      "type": "TUER"
+    },
+    {
+      "platform": "1",
+      "distance": 157.01,
+      "name": "TUER_G",
+      "type": "TUER"
+    },
+    {
+      "platform": "1",
+      "distance": 114.01,
+      "name": "AUFZUG_G",
+      "type": "AUFZUG"
+    },
+    {
+      "platform": "1",
+      "distance": 215.33,
+      "name": "TUER_G",
+      "type": "TUER"
+    }
+  ]
+}
