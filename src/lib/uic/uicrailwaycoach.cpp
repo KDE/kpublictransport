@@ -36,9 +36,9 @@ struct {
     int deckCount;
 } static constexpr const class_prefix_table[] = {
     { "AB", VehicleSection::FirstClass | VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
-    { "AR", VehicleSection::FirstClass, VehicleSection::Restaurant, VehicleSection::UnknownType, 1 },
+    { "AR", VehicleSection::FirstClass, VehicleSection::Restaurant, VehicleSection::PassengerCar, 1 },
     { "A", VehicleSection::FirstClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
-    { "BR", VehicleSection::SecondClass,  VehicleSection::Restaurant, VehicleSection::UnknownType, 1 },
+    { "BR", VehicleSection::SecondClass,  VehicleSection::Restaurant, VehicleSection::PassengerCar, 1 },
     { "B", VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
     { "DAB", VehicleSection::FirstClass | VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
     { "DA", VehicleSection::FirstClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
@@ -77,18 +77,6 @@ VehicleSection::Classes UicRailwayCoach::coachClass(QStringView coachNumber, QSt
     return {};
 }
 
-int UicRailwayCoach::deckCount(QStringView coachNumber, QStringView coachClassification)
-{
-    Q_UNUSED(coachNumber);
-    const auto it = std::find_if(std::begin(class_prefix_table), std::end(class_prefix_table), [coachClassification](const auto &prefix) {
-        return coachClassification.startsWith(QLatin1String(prefix.prefix));
-    });
-    if (it != std::end(class_prefix_table)) {
-        return (*it).deckCount;
-    }
-    return 1;
-}
-
 // see https://de.wikipedia.org/wiki/Code_f%C3%BCr_das_Austauschverfahren
 struct {
     const char prefix[3];
@@ -108,26 +96,37 @@ struct UicClassificationSecondary {
     const char code[3];
     VehicleSection::Features features;
     VehicleSection::Type type;
+    int deckCount;
+};
+
+// 54: Czech Republic
+static constexpr const UicClassificationSecondary secondary_54_table[] = {
+    { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 },
+    // "c" Couchettes - TODO needs enum
+    { "d", VehicleSection::BikeStorage, VehicleSection::UnknownType, 1 },
+    { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
+    { "o", VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 }, // ### could also be 't'?
+    { "z", VehicleSection::AirConditioning, VehicleSection::PassengerCar, 1 },
 };
 
 // 80: Germany
 static constexpr const UicClassificationSecondary secondary_80_table[] = {
-    { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType },
+    { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 },
     // "c" Couchettes - TODO needs enum
-    { "d", VehicleSection::BikeStorage, VehicleSection::UnknownType },
-    { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar },
-    { "k", VehicleSection::Restaurant, VehicleSection::UnknownType },
-    { "p", VehicleSection::AirConditioning, VehicleSection::PassengerCar },
-    { "q", VehicleSection::NoFeatures, VehicleSection::ControlCar },
+    { "d", VehicleSection::BikeStorage, VehicleSection::UnknownType, 1 },
+    { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
+    { "k", VehicleSection::Restaurant, VehicleSection::UnknownType, 1 },
+    { "p", VehicleSection::AirConditioning, VehicleSection::PassengerCar, 1 },
+    { "q", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
 };
 
 // 81: Austria
 static constexpr const UicClassificationSecondary secondary_81_table[] = {
-    { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType }, // TODO wheelchair accessible toilets specifically
+    { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 }, // TODO wheelchair accessible toilets specifically
     // "c" Couchettes - TODO needs enum
-    { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar },
-    { "p", VehicleSection::NoFeatures, VehicleSection::PassengerCar },
-    { "-s", VehicleSection::NoFeatures, VehicleSection::ControlCar },
+    { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
+    { "p", VehicleSection::NoFeatures, VehicleSection::PassengerCar, 1 },
+    { "-s", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
 };
 
 struct {
@@ -135,9 +134,35 @@ struct {
     const UicClassificationSecondary *begin;
     const UicClassificationSecondary *end;
 } static constexpr const secondary_tables[] = {
+    { "54", std::begin(secondary_54_table), std::end(secondary_54_table) },
     { "80", std::begin(secondary_80_table), std::end(secondary_80_table) },
     { "81", std::begin(secondary_81_table), std::end(secondary_81_table) },
 };
+
+int UicRailwayCoach::deckCount(QStringView coachNumber, QStringView coachClassification)
+{
+    int decks = 1;
+    const auto it = std::find_if(std::begin(class_prefix_table), std::end(class_prefix_table), [coachClassification](const auto &prefix) {
+        return coachClassification.startsWith(QLatin1String(prefix.prefix));
+    });
+    if (it != std::end(class_prefix_table)) {
+        decks = std::max(decks, (*it).deckCount);
+    }
+
+    const auto country = UicRailwayCoach::countryCode(coachNumber);
+    for (const auto &tab : secondary_tables) {
+        if (country != QLatin1String(tab.country)) {
+            continue;
+        }
+        for (auto it = tab.begin; it != tab.end; ++it) {
+            if (coachClassification.contains(QLatin1String((*it).code))) {
+                decks = std::max(decks, (*it).deckCount);
+            }
+        }
+    }
+
+    return decks;
+}
 
 VehicleSection::Features UicRailwayCoach::features(QStringView coachNumber, QStringView coachClassification)
 {
@@ -157,10 +182,6 @@ VehicleSection::Features UicRailwayCoach::features(QStringView coachNumber, QStr
     }
 
     const auto country = UicRailwayCoach::countryCode(coachNumber);
-    if (country.empty()) {
-        return f;
-    }
-
     for (const auto &tab : secondary_tables) {
         if (country != QLatin1String(tab.country)) {
             continue;
@@ -201,20 +222,18 @@ VehicleSection::Type UicRailwayCoach::type(QStringView coachNumber, QStringView 
     }
 
     const auto country = UicRailwayCoach::countryCode(coachNumber);
-    if (!country.empty()) {
-        for (const auto &tab : secondary_tables) {
-            if (country != QLatin1String(tab.country)) {
-                continue;
-            }
-            const auto it = std::find_if(tab.begin, tab.end, [coachClassification](const auto &prefix) {
-                return prefix.type != VehicleSection::UnknownType && coachClassification.contains(QLatin1String(prefix.code));
-            });
-            if (it != tab.end) {
-                if ((*it).type == VehicleSection::PassengerCar) {
-                    seenPassengerCar = true;
-                } else {
-                    return (*it).type;
-                }
+    for (const auto &tab : secondary_tables) {
+        if (country != QLatin1String(tab.country)) {
+            continue;
+        }
+        const auto it = std::find_if(tab.begin, tab.end, [coachClassification](const auto &prefix) {
+            return prefix.type != VehicleSection::UnknownType && coachClassification.contains(QLatin1String(prefix.code));
+        });
+        if (it != tab.end) {
+            if ((*it).type == VehicleSection::PassengerCar) {
+                seenPassengerCar = true;
+            } else {
+                return (*it).type;
             }
         }
     }

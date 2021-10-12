@@ -24,6 +24,8 @@ private Q_SLOTS:
         QCOMPARE(UicRailwayCoach::coachClass(QString(), u"Afmpz"), VehicleSection::FirstClass);
         QCOMPARE(UicRailwayCoach::coachClass(QString(), u"WRmz"), VehicleSection::UnknownClass);
         QCOMPARE(UicRailwayCoach::coachClass(QString(), u"DABpza"), VehicleSection::SecondClass | VehicleSection::FirstClass);
+        QCOMPARE(UicRailwayCoach::coachClass(u"505486720019", u"ABfbdmteeo"), VehicleSection::SecondClass | VehicleSection::FirstClass);
+        QCOMPARE(UicRailwayCoach::coachClass(u"615485711035", u"ARmpee"), VehicleSection::FirstClass);
     }
 
     void testDeckCount()
@@ -33,6 +35,8 @@ private Q_SLOTS:
         QCOMPARE(UicRailwayCoach::deckCount(u"738029947087", QString()), 1);
         QCOMPARE(UicRailwayCoach::deckCount(QString(), u"Afmpz"), 1);
         QCOMPARE(UicRailwayCoach::deckCount(QString(), u"DABpza"), 2);
+        QCOMPARE(UicRailwayCoach::deckCount(u"505486720019", u"ABfbdmteeo"), 2);
+        QCOMPARE(UicRailwayCoach::deckCount(u"615485711035", u"ARmpee"), 1);
     }
 
     void testFeatures()
@@ -47,6 +51,8 @@ private Q_SLOTS:
         QCOMPARE(UicRailwayCoach::features(u"738185905341", u"ARbmpz"), VehicleSection::Restaurant | VehicleSection::WheelchairAccessible | VehicleSection::AirConditioning);
         QCOMPARE(UicRailwayCoach::features(u"508086818566", QString()), VehicleSection::NoFeatures);
         QCOMPARE(UicRailwayCoach::features(u"918061465699", u"E1465"), VehicleSection::NoFeatures);
+        QCOMPARE(UicRailwayCoach::features(u"505486720019", u"ABfbdmteeo"), VehicleSection::WheelchairAccessible | VehicleSection::BikeStorage);
+        QCOMPARE(UicRailwayCoach::features(u"615485711035", u"ARmpee"), VehicleSection::Restaurant);
     }
 
     void testType()
@@ -64,6 +70,8 @@ private Q_SLOTS:
         QEXPECT_FAIL("", "not detectable?", Continue);
         QCOMPARE(UicRailwayCoach::type(u"938054020061", u"I4020"), VehicleSection::PowerCar);
         QCOMPARE(UicRailwayCoach::type(u"938058080061", u"Bpmzf"), VehicleSection::ControlCar);
+        QCOMPARE(UicRailwayCoach::type(u"505486720019", u"ABfbdmteeo"), VehicleSection::ControlCar);
+        QCOMPARE(UicRailwayCoach::type(u"615485711035", u"ARmpee"), VehicleSection::PassengerCar);
     }
 };
 
