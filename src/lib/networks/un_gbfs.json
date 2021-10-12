@@ -1,7 +1,7 @@
 {
     "KPlugin": {
         "Description": "Generic support for bike or scooter sharing services following the GBFS standard.",
-        "Description[ca@valencia]": "Suport genèric per al serveis de bicicletes o motos compartides que seguïsquen l'estàndard GBFS.",
+        "Description[ca@valencia]": "Suport genèric per als serveis de bicicletes o motos compartides que seguïsquen l'estàndard GBFS.",
         "Description[ca]": "Suport genèric per als serveis de bicicletes o motos compartides que segueixin l'estàndard GBFS.",
         "Description[en_GB]": "Generic support for bike or scooter sharing services following the GBFS standard.",
         "Description[es]": "Uso genérico del servicio para compartir bicicletas y motocicletas que sigue el estándar GBFS.",
