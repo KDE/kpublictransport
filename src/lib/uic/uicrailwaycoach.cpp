@@ -93,7 +93,7 @@ struct {
 
 // see https://en.wikipedia.org/wiki/UIC_classification_of_railway_coaches
 struct UicClassificationSecondary {
-    const char code[3];
+    const char code[4];
     VehicleSection::Features features;
     VehicleSection::Type type;
     int deckCount;
@@ -127,6 +127,8 @@ static constexpr const UicClassificationSecondary secondary_81_table[] = {
     { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
     { "p", VehicleSection::NoFeatures, VehicleSection::PassengerCar, 1 },
     { "-s", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
+    { "-dl", VehicleSection::NoFeatures, VehicleSection::PassengerCar, 2 },
+    { "-ds", VehicleSection::NoFeatures, VehicleSection::ControlCar, 2 },
 };
 
 struct {

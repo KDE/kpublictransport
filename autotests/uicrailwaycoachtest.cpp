@@ -37,6 +37,7 @@ private Q_SLOTS:
         QCOMPARE(UicRailwayCoach::deckCount(QString(), u"DABpza"), 2);
         QCOMPARE(UicRailwayCoach::deckCount(u"505486720019", u"ABfbdmteeo"), 2);
         QCOMPARE(UicRailwayCoach::deckCount(u"615485711035", u"ARmpee"), 1);
+        QCOMPARE(UicRailwayCoach::deckCount(u"508126339000", u"Bmpz-dl"), 2);
     }
 
     void testFeatures()
