@@ -609,6 +609,13 @@ Disruption::Effect Journey::disruptionEffect() const
     return effect;
 }
 
+static bool isTransportSection(JourneySection::Mode mode)
+{
+    return mode == JourneySection::PublicTransport
+        || mode == JourneySection::RentedVehicle
+        || mode == JourneySection::IndividualTransport;
+}
+
 bool Journey::isSame(const Journey &lhs, const Journey &rhs)
 {
     auto lIt = lhs.sections().begin();
@@ -616,11 +623,11 @@ bool Journey::isSame(const Journey &lhs, const Journey &rhs)
 
     while (lIt != lhs.sections().end() || rIt != rhs.sections().end()) {
         // ignore non-transport sections
-        if (lIt != lhs.sections().end() && (*lIt).mode() != JourneySection::PublicTransport) {
+        if (lIt != lhs.sections().end() && !isTransportSection((*lIt).mode())) {
             ++lIt;
             continue;
         }
-        if (rIt != rhs.sections().end() && (*rIt).mode() != JourneySection::PublicTransport) {
+        if (rIt != rhs.sections().end() && !isTransportSection((*rIt).mode())) {
             ++rIt;
             continue;
         }
@@ -683,7 +690,7 @@ QJsonArray Journey::toJson(const std::vector<Journey> &journeys)
     return Json::toJson(journeys);
 }
 
-Journey KPublicTransport::Journey::fromJson(const QJsonObject &obj)
+Journey Journey::fromJson(const QJsonObject &obj)
 {
     Journey j;
     j.setSections(JourneySection::fromJson(obj.value(QLatin1String("sections")).toArray()));
