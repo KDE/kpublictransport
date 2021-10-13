@@ -32,3 +32,8 @@ bool UicStationCode::isValid(QStringView id, const std::vector<uint8_t> &allowed
     // if no UIC country codes are explicitly allowed, insist on the right length
     return id.size() == 7 && id.at(0) != QLatin1Char('0');
 }
+
+QStringView UicStationCode::country(QStringView id)
+{
+    return id.mid(0, 2);
+}

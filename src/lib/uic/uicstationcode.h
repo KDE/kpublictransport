@@ -27,6 +27,9 @@ namespace UicStationCode
  */
 bool isValid(QStringView id, const std::vector<uint8_t> &allowedCountryCodes = {});
 
+/** Returns the country code of a given valid UIC station code. */
+QStringView country(QStringView id);
+
 }
 
 }
