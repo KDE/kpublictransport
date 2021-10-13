@@ -562,6 +562,29 @@ static Path parsePolyG(const QJsonObject &obj, const std::vector<Path> &paths)
     return path;
 }
 
+static void parseMcpData(const QJsonObject &obj, Location &loc)
+{
+    const auto mcp = obj.value(QLatin1String("mcp")).toObject();
+    if (mcp.isEmpty()) {
+        return;
+    }
+    const auto mcpData = mcp.value(QLatin1String("mcpData")).toObject();
+    // TODO mcpData.provider to vehicle type lookup from meta data
+    const auto providerName = mcpData.value(QLatin1String("providerName")).toString();
+    qDebug() << providerName << mcpData;
+    if (providerName.isEmpty()) {
+        return;
+    }
+
+    // ### are we even sure this is always a station? how does this distinguish free floating vehicles?
+    RentalVehicleNetwork network;
+    network.setName(providerName);
+    RentalVehicleStation station;
+    station.setNetwork(network);
+    loc.setData(station);
+    loc.setType(Location::RentedVehicleStation);
+}
+
 std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
 {
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
@@ -598,7 +621,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
             section.setExpectedDepartureTime(parseDateTime(dateStr, dep.value(QLatin1String("dTimeR")), dep.value(QLatin1String("dTZOffset"))));
             const auto fromIdx = dep.value(QLatin1String("locX")).toInt(-1);
             if ((unsigned int)fromIdx < locs.size()) {
-                section.setFrom(locs[fromIdx]);
+                auto loc = locs[fromIdx];
+                parseMcpData(dep, loc);
+                section.setFrom(std::move(loc));
             }
             section.setScheduledDeparturePlatform(dep.value(QLatin1String("dPlatfS")).toString());
             section.setExpectedDeparturePlatform(dep.value(QLatin1String("dPlatfR")).toString());
@@ -611,7 +636,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
             section.setExpectedArrivalTime(parseDateTime(dateStr, arr.value(QLatin1String("aTimeR")), arr.value(QLatin1String("aTZOffset"))));
             const auto toIdx = arr.value(QLatin1String("locX")).toInt(-1);
             if ((unsigned int)toIdx < locs.size()) {
-                section.setTo(locs[toIdx]);
+                auto loc = locs[toIdx];
+                parseMcpData(arr, loc);
+                section.setTo(loc);
             }
             section.setScheduledArrivalPlatform(arr.value(QLatin1String("aPlatfS")).toString());
             section.setExpectedArrivalPlatform(arr.value(QLatin1String("aPlatfR")).toString());
@@ -708,8 +735,16 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                 } else if (typeStr == QLatin1String("TRSF")) {
                     section.setMode(JourneySection::Transfer);
                 } else if (typeStr == QLatin1String("BIKE")) {
-                    section.setMode(JourneySection::IndividualTransport);
-                    section.setIndividualTransport({ IndividualTransport::Bike });
+                    if (section.from().type() == Location::RentedVehicleStation) {
+                        section.setMode(JourneySection::RentedVehicle);
+                        RentalVehicle v;
+                        v.setNetwork(section.from().rentalVehicleStation().network());
+                        v.setType(RentalVehicle::Bicycle); // TODO we also get here for kick scooters?
+                        section.setRentalVehicle(v);
+                    } else {
+                        section.setMode(JourneySection::IndividualTransport);
+                        section.setIndividualTransport({ IndividualTransport::Bike });
+                    }
                 } else if (typeStr == QLatin1String("PARK")) { // this means "drive to parking space", not "park the car"...
                     section.setMode(JourneySection::IndividualTransport);
                     section.setIndividualTransport({ IndividualTransport::Car, IndividualTransport::Park });
