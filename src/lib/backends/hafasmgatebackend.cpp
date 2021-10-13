@@ -382,11 +382,6 @@ QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QB
     return netReq;
 }
 
-void HafasMgateBackend::setAuthObject(const QJsonObject& obj)
-{
-    m_auth = obj;
-}
-
 void HafasMgateBackend::setMicMacSalt(const QString &salt)
 {
     m_micMacSalt = QByteArray::fromHex(salt.toUtf8());

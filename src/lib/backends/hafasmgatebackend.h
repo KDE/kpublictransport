@@ -31,7 +31,7 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
 {
     Q_GADGET
     /** The auth data block in every request. */
-    Q_PROPERTY(QJsonObject auth WRITE setAuthObject)
+    Q_PROPERTY(QJsonObject auth MEMBER m_auth)
     /** The client data sent in every request. */
     Q_PROPERTY(QJsonObject client MEMBER m_client)
     Q_PROPERTY(QString ext MEMBER m_extParam)
@@ -62,7 +62,6 @@ public:
 private:
     bool queryJourney(JourneyReply *reply, const QString &fromId, QNetworkAccessManager *nam) const;
     bool queryJourney(JourneyReply *reply, const QString &fromId, const QString &toId, QNetworkAccessManager *nam) const;
-    void setAuthObject(const QJsonObject &obj);
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
     void setConGroups(const QJsonArray &conGroups);
