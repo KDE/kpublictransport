@@ -74,6 +74,9 @@ Line::Mode HafasParser::parseLineMode(int modeId) const
 
 void HafasParser::setLocationIdentifier(Location &loc, const QString &id) const
 {
+    if (id.isEmpty()) {
+        return;
+    }
     if (!m_standardLocationIdentifierType.isEmpty() && UicStationCode::isValid(id, m_uicCountryCodes)) {
         loc.setIdentifier(m_standardLocationIdentifierType, id.right(7));
     }
