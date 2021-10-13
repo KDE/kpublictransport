@@ -139,6 +139,22 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
             req.insert(QStringLiteral("ctxScr"), ctxSrc);
         }
 
+        QJsonArray jnyFltrL;
+        for (const auto &conGroup : m_conGroups) {
+            const auto accessMatch = std::find(request.accessModes().begin(), request.accessModes().end(), conGroup.access) != request.accessModes().end();
+            const auto egressMatch = std::find(request.egressModes().begin(), request.egressModes().end(), conGroup.egress) != request.egressModes().end();
+            if (accessMatch && egressMatch) {
+                QJsonObject jnyFltr;
+                jnyFltr.insert(QLatin1String("mode"), QLatin1String("INC"));
+                jnyFltr.insert(QLatin1String("type"), QLatin1String("GROUP"));
+                jnyFltr.insert(QLatin1String("value"), conGroup.group);
+                jnyFltrL.push_back(jnyFltr);
+            }
+        }
+        if (!jnyFltrL.isEmpty()) {
+            req.insert(QLatin1String("jnyFltrL"),  jnyFltrL);
+        }
+
         tripSearch.insert(QStringLiteral("cfg"), cfg);
         tripSearch.insert(QStringLiteral("meth"), QLatin1String("TripSearch"));
         tripSearch.insert(QStringLiteral("req"), req);
@@ -379,4 +395,17 @@ void HafasMgateBackend::setMicMacSalt(const QString &salt)
 void HafasMgateBackend::setChecksumSalt(const QString &salt)
 {
     m_checksumSalt = QByteArray::fromHex(salt.toUtf8());
+}
+
+void HafasMgateBackend::setConGroups(const QJsonArray &conGroups)
+{
+    m_conGroups.reserve(conGroups.size());
+    for (const auto &conGroupVal : conGroups) {
+        const auto conGroupObj = conGroupVal.toObject();
+        ConGroup cg;
+        cg.access = IndividualTransport::fromJson(conGroupObj.value(QLatin1String("access")).toObject());
+        cg.egress = IndividualTransport::fromJson(conGroupObj.value(QLatin1String("egress")).toObject());
+        cg.group = conGroupObj.value(QLatin1String("conGroup")).toString();
+        m_conGroups.push_back(std::move(cg));
+    }
 }

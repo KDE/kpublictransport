@@ -101,6 +101,14 @@
             "id": "VBB",
             "type": "AND"
         },
+        "conGroups": [
+            { "access": { "mode": "Bike" }, "egress": { "mode": "Bike" }, "conGroup": "BIKE_OEV_BIKE" },
+            { "access": { "mode": "Bike", "qualifier": "Park" }, "egress": { "mode": "Walk" }, "conGroup": "BIKEPARK_OEV_WALK" },
+            { "access": { "mode": "Bike", "qualifier": "Rent" }, "egress": { "mode": "Bike", "qualifier": "Rent" }, "conGroup": "BIKESHARE_CALLABIKE" },
+            { "access": { "mode": "Car", "qualifier": "Park" }, "egress": { "mode": "Walk" }, "conGroup": "PARKRIDE_OEV_WALK" },
+            { "access": { "mode": "Car" }, "egress": { "mode": "Car" }, "conGroup": "CAR_ONLY" },
+            { "access": { "mode": "Car", "qualifier": "Rent" }, "egress": { "mode": "Car", "qualifier": "Rent" }, "conGroup": "CARSHARE_FLINKSTER" }
+        ],
         "endpoint": "https://fahrinfo.vbb.de/bin/mgate.exe",
         "ext": "VBB.4",
         "locationIdentifierType": "vbb",

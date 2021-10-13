@@ -95,13 +95,18 @@
     },
     "options": {
         "auth": {
-            "aid": "1Rxs112shyHLatUX4fofnmdxK",
+            "aid": "YoJ05NartnanEGCj",
             "type": "AID"
         },
         "client": {
             "id": "BVG",
             "type": "AND"
         },
+        "conGroups": [
+            { "access": { "mode": "Bike" }, "egress": { "mode": "Bike" }, "conGroup": "BIKE_OEV_BIKE" },
+            { "access": { "mode": "Bike", "qualifier": "Park" }, "egress": { "mode": "Walk" }, "conGroup": "BIKE_OEV_WALK" },
+            { "access": { "mode": "Bike", "qualifier": "Rent" }, "egress": { "mode": "Bike", "qualifier": "Rent" }, "conGroup": "WALK_BIKESHARE_NEXTBIKE" }
+        ],
         "endpoint": "https://bvg-apps.hafas.de/bin/mgate.exe",
         "ext": "BVG.1",
         "locationIdentifierType": "vbb",
@@ -163,7 +168,7 @@
                 "name": "RB/RE"
             }
         ],
-        "ver": "1.21"
+        "ver": "1.24"
     },
     "supportedLanguages": [
         "de",

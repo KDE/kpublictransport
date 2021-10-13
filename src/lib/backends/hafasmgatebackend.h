@@ -12,8 +12,11 @@
 #include "hafasbackend.h"
 #include "hafasmgateparser.h"
 
+#include <KPublicTransport/IndividualTransport>
+
 #include <QString>
 
+class QJsonArray;
 class QJsonObject;
 class QNetworkReply;
 
@@ -38,6 +41,10 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
     /** Salt for the request checksum parameter, hex-encoded. */
     Q_PROPERTY(QString checksumSalt WRITE setChecksumSalt)
 
+    /** Supported journey filter conGroup arguments and their corresponding mapping to
+     *  our transport modes.
+     */
+    Q_PROPERTY(QJsonArray conGroups WRITE setConGroups)
 public:
     HafasMgateBackend();
     ~HafasMgateBackend();
@@ -58,6 +65,7 @@ private:
     void setAuthObject(const QJsonObject &obj);
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
+    void setConGroups(const QJsonArray &conGroups);
     QJsonObject locationToJson(const Location &loc) const;
 
     mutable HafasMgateParser m_parser;
@@ -68,6 +76,13 @@ private:
     QString m_version;
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
+
+    struct ConGroup {
+        IndividualTransport access;
+        IndividualTransport egress;
+        QString group;
+    };
+    std::vector<ConGroup> m_conGroups;
 };
 
 }
