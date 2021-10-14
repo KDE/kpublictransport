@@ -103,9 +103,36 @@
             "type": "AND"
         },
         "conGroups": [
-            { "access": { "mode": "Bike" }, "egress": { "mode": "Bike" }, "conGroup": "BIKE_OEV_BIKE" },
-            { "access": { "mode": "Bike", "qualifier": "Park" }, "egress": { "mode": "Walk" }, "conGroup": "BIKE_OEV_WALK" },
-            { "access": { "mode": "Bike", "qualifier": "Rent" }, "egress": { "mode": "Bike", "qualifier": "Rent" }, "conGroup": "WALK_BIKESHARE_NEXTBIKE" }
+            {
+                "access": {
+                    "mode": "Bike"
+                },
+                "conGroup": "BIKE_OEV_BIKE",
+                "egress": {
+                    "mode": "Bike"
+                }
+            },
+            {
+                "access": {
+                    "mode": "Bike",
+                    "qualifier": "Park"
+                },
+                "conGroup": "BIKE_OEV_WALK",
+                "egress": {
+                    "mode": "Walk"
+                }
+            },
+            {
+                "access": {
+                    "mode": "Bike",
+                    "qualifier": "Rent"
+                },
+                "conGroup": "WALK_BIKESHARE_NEXTBIKE",
+                "egress": {
+                    "mode": "Bike",
+                    "qualifier": "Rent"
+                }
+            }
         ],
         "endpoint": "https://bvg-apps.hafas.de/bin/mgate.exe",
         "ext": "BVG.1",
