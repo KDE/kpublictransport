@@ -40,6 +40,33 @@ bool NavitiaBackend::needsLocationQuery(const Location &loc, AbstractBackend::Qu
     return !loc.hasCoordinate();
 }
 
+struct {
+    IndividualTransport::Mode mode;
+    IndividualTransport::Qualifier qualifier;
+    const char *name;
+} static constexpr const mode_table[] = {
+    { IndividualTransport::Walk, IndividualTransport::None, "walking" },
+    { IndividualTransport::Bike, IndividualTransport::None, "bike" },
+    { IndividualTransport::Bike, IndividualTransport::Park, "bike" }, // ### ?
+    { IndividualTransport::Bike, IndividualTransport::Rent, "bss" },
+    { IndividualTransport::Car, IndividualTransport::None, "car" },
+    { IndividualTransport::Car, IndividualTransport::Park, "car" },
+    { IndividualTransport::Car, IndividualTransport::Dropoff, "car_no_park" },
+    // TODO: ridesharing, taxi
+};
+
+static void addModeArgument(const QString &arg, const std::vector<IndividualTransport> &modes, QUrlQuery &query)
+{
+    for (const auto &mode : modes) {
+        const auto it = std::find_if(std::begin(mode_table), std::end(mode_table), [mode](const auto &entry) {
+            return entry.mode == mode.mode() && entry.qualifier == mode.qualifier();
+        });
+        if (it != std::end(mode_table)) {
+            query.addQueryItem(arg, QLatin1String((*it).name));
+        }
+    }
+}
+
 bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if ((req.modes() & JourneySection::PublicTransport) == 0) {
@@ -64,6 +91,8 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
             query.addQueryItem(QStringLiteral("datetime_represents"), req.dateTimeMode() == JourneyRequest::Arrival ? QStringLiteral("arrival") : QStringLiteral("departure"));
         }
         query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
+        addModeArgument(QStringLiteral("first_section_mode[]"), req.accessModes(), query);
+        addModeArgument(QStringLiteral("last_section_mode[]"), req.egressModes(), query);
 
         // TODO: disable reply parts we don't care about
         query.addQueryItem(QStringLiteral("disable_geojson"), req.includePaths() ? QStringLiteral("false") : QStringLiteral("true"));
