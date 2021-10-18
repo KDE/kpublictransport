@@ -181,10 +181,22 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
     const auto typeStr = obj.value(QLatin1String("type")).toString();
     if (typeStr == QLatin1String("public_transport")) {
         section.setMode(JourneySection::PublicTransport);
-    } else if (typeStr == QLatin1String("transfer")) {
+    // TODO we have no type for parking/rent/return yet
+    } else if (typeStr == QLatin1String("transfer") || typeStr == QLatin1String("park") ||
+        typeStr == QLatin1String("bss_rent") || typeStr == QLatin1String("bss_put_back")) {
         section.setMode(JourneySection::Transfer);
     } else if (typeStr == QLatin1String("street_network") || typeStr == QLatin1String("walking") || typeStr == QLatin1String("crow_fly")) {
-        section.setMode(JourneySection::Walking);
+        const auto modeStr = obj.value(QLatin1String("mode")).toString();
+        if (modeStr == QLatin1String("bike")) {
+            // TODO how to distinguish own bike from bss here?
+            section.setMode(JourneySection::IndividualTransport);
+            section.setIndividualTransport({IndividualTransport::Bike, IndividualTransport::None});
+        } else if (modeStr == QLatin1String("car")) {
+            section.setMode(JourneySection::IndividualTransport);
+            section.setIndividualTransport({IndividualTransport::Car, IndividualTransport::None});
+        } else {
+            section.setMode(JourneySection::Walking);
+        }
         section.setDistance(obj.value(QLatin1String("geojson")).toObject().value(QLatin1String("properties")).toArray().at(0).toObject().value(QLatin1String("length")).toInt());
     } else if (typeStr == QLatin1String("waiting")) {
         section.setMode(JourneySection::Waiting);
