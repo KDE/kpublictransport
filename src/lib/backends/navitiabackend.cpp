@@ -97,6 +97,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
         // TODO: disable reply parts we don't care about
         query.addQueryItem(QStringLiteral("disable_geojson"), req.includePaths() ? QStringLiteral("false") : QStringLiteral("true"));
         query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0")); // ### also has no effect?
+        query.addQueryItem(QStringLiteral("add_poi_infos[]"), QStringLiteral("bss_stands"));
         url.setQuery(query);
     }
     url.setScheme(QStringLiteral("https")); // force https in any case
@@ -197,7 +198,7 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
 
 bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if ((req.types() & Location::Stop) == 0) {
+    if ((req.types() & (Location::Stop | Location::RentedVehicleStation)) == 0) {
         return false;
     }
 
@@ -208,8 +209,15 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
     query.addQueryItem(QStringLiteral("depth"), QStringLiteral("1")); // 1 so administrative region elements are included
-    query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
     query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
+    if (req.types() & Location::Stop) {
+        query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
+    }
+    if (req.types() & Location::RentedVehicleStation) {
+        query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("poi"));
+        query.addQueryItem(QStringLiteral("add_poi_infos[]"), QStringLiteral("bss_stands"));
+        query.addQueryItem(QStringLiteral("filter"), QStringLiteral("poi_type.id=poi_type:amenity:bicycle_rental"));
+    }
 
     if (req.hasCoordinate()) {
         url.setPath(
