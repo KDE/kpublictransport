@@ -10,6 +10,7 @@
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Line>
+#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 
 #include <QColor>
@@ -111,6 +112,21 @@ static Location parseLocation(const QJsonObject &obj)
         if (code.value(QLatin1String("type")).toString() == QLatin1String("UIC8")) {
             loc.setIdentifier(QStringLiteral("uic"), code.value(QLatin1String("value")).toString().left(7));
         }
+    }
+
+    const auto poi_type = obj.value(QLatin1String("poi_type")).toObject().value(QLatin1String("id")).toString();
+    if (poi_type == QLatin1String("poi_type:amenity:bicycle_rental")) {
+        RentalVehicleNetwork network;
+        network.setName(obj.value(QLatin1String("properties")).toObject().value(QLatin1String("network")).toString());
+
+        RentalVehicleStation station;
+        station.setNetwork(network);
+        const auto standsObj = obj.value(QLatin1String("stands")).toObject();
+        station.setAvailableVehicles(standsObj.value(QLatin1String("available_bikes")).toInt(-1));
+        station.setCapacity(standsObj.value(QLatin1String("total_stands")).toInt(-1));
+
+        loc.setType(Location::RentedVehicleStation);
+        loc.setData(station);
     }
 
     return loc;
