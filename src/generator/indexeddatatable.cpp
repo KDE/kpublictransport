@@ -20,11 +20,23 @@ std::size_t StringTable::stringOffset(const QString &s) const
     return entryOffset(s.toUtf8());
 }
 
+static void writeQuoted(const QByteArray &b, QIODevice *out)
+{
+    for (char c : b) {
+        switch (c) {
+            case '"':
+            case '\\':
+                out->write("\\");
+        }
+        out->write(&c, 1);
+    }
+}
+
 void StringTable::writeCode(const char* name, QIODevice *out) const
 {
     IndexedDataTable<QByteArray>::writeCode("char", name, out, [](const QByteArray &b, QIODevice *out) {
         out->write("\"");
-        out->write(b);
+        writeQuoted(b, out);
         out->write("\\0\"");
     });
 }
