@@ -100,3 +100,8 @@ void Reply::addAttribution(const Attribution &attr)
 {
     AttributionUtil::merge(d_ptr->attributions, attr);
 }
+
+void Reply::addAttributions(const std::vector<Attribution> &attributions)
+{
+    AttributionUtil::merge(d_ptr->attributions, attributions);
+}

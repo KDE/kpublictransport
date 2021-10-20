@@ -18,6 +18,8 @@ class QNetworkAccessManager;
 
 namespace KPublicTransport {
 
+class Attribution;
+
 /**
  * Access and downloading of line logos.
  */
@@ -42,6 +44,9 @@ public:
     /** Returns @c true if no further download jobs are queued or in progress. */
     bool isQueueEmpty();
 
+    /** Returns attributions for the provided assets. */
+    const std::vector<Attribution>& attributions() const;
+
     static AssetRepository* instance();
 
 Q_SIGNALS:
@@ -60,6 +65,7 @@ private:
     static AssetRepository *s_instance;
     std::deque<QUrl> m_queue;
     QNetworkAccessManager *m_nam = nullptr;
+    mutable std::vector<Attribution> m_attributions;
 };
 
 }

@@ -68,6 +68,7 @@ protected:
      */
     Q_DECL_HIDDEN void addError(Error error, const QString &errorMsg);
     Q_DECL_HIDDEN void addAttributions(std::vector<Attribution> &&attributions);
+    Q_DECL_HIDDEN void addAttributions(const std::vector<Attribution> &attributions);
 
     friend class Manager;
     friend class ManagerPrivate;

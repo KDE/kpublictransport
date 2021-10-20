@@ -5,10 +5,15 @@
 */
 
 #include "assetrepository_p.h"
+#include "logging.h"
+
+#include <KPublicTransport/Attribution>
 
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <QJsonArray>
+#include <QJsonDocument>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QStandardPaths>
@@ -132,4 +137,19 @@ void AssetRepository::downloadNext()
         m_queue.pop_front();
         downloadNext();
     });
+}
+
+const std::vector<Attribution>& AssetRepository::attributions() const
+{
+    if (m_attributions.empty()) {
+        QFile f(QStringLiteral(":/org.kde.kpublictransport/assets/asset-attributions.json"));
+        if (!f.open(QFile::ReadOnly)) {
+            qCWarning(Log) << f.fileName() << f.errorString();
+            return m_attributions;
+        }
+
+        m_attributions = Attribution::fromJson(QJsonDocument::fromJson(f.readAll()).array());
+    }
+
+    return m_attributions;
 }

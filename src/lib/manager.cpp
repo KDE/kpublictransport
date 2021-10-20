@@ -566,6 +566,9 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
         }
     }
 
+    if (req.downloadAssets()) {
+        reply->addAttributions(AssetRepository::instance()->attributions());
+    }
     reply->setPendingOps(pendingOps);
     return reply;
 }
@@ -637,6 +640,9 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
         }
     }
 
+        if (req.downloadAssets()) {
+        reply->addAttributions(AssetRepository::instance()->attributions());
+    }
     reply->setPendingOps(pendingOps);
     return reply;
 }

@@ -99,6 +99,7 @@ target_sources(KPublicTransport PRIVATE
 
     ifopt/ifoptutil.cpp
 
+    knowledgedb/asset-attributions.qrc
     knowledgedb/linemetadata.cpp
 
     models/abstractquerymodel.cpp

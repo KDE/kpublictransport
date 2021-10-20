@@ -14,12 +14,20 @@ using namespace KPublicTransport;
 
 static bool attrLessThan(const Attribution &lhs, const Attribution &rhs)
 {
-    return QString::compare(lhs.name(), rhs.name(), Qt::CaseInsensitive) < 0;
+    const auto nameCmp = QString::compare(lhs.name(), rhs.name(), Qt::CaseInsensitive);
+    if (nameCmp == 0) {
+        return QString::compare(lhs.license(), rhs.license(), Qt::CaseInsensitive) < 0;
+    }
+    return nameCmp < 0;
 }
 
 static bool attrEqual(const Attribution &lhs, const Attribution &rhs)
 {
-    return QString::compare(lhs.name(),rhs.name(), Qt::CaseInsensitive) == 0;
+    const auto nameCmp = QString::compare(lhs.name(), rhs.name(), Qt::CaseInsensitive);
+    if (nameCmp == 0) {
+        return QString::compare(lhs.license(), rhs.license(), Qt::CaseInsensitive) == 0;
+    }
+    return nameCmp == 0;
 }
 
 void AttributionUtil::sort(std::vector<Attribution> &attrs)

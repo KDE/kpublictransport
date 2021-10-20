@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/",
+        "license": "CC-BY-SA-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/",
+        "license": "CC-BY-3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+        "name": "Wikimedia Commons",
+        "url": "https://commons.wikimedia.org/",
+        "license": "CC0-1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+]
