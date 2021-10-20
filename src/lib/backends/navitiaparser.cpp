@@ -204,9 +204,16 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
     } else if (typeStr == QLatin1String("street_network") || typeStr == QLatin1String("walking") || typeStr == QLatin1String("crow_fly")) {
         const auto modeStr = obj.value(QLatin1String("mode")).toString();
         if (modeStr == QLatin1String("bike")) {
-            // TODO how to distinguish own bike from bss here?
-            section.setMode(JourneySection::IndividualTransport);
-            section.setIndividualTransport({IndividualTransport::Bike, IndividualTransport::None});
+            if (section.from().type() == Location::RentedVehicleStation) {
+                section.setMode(JourneySection::RentedVehicle);
+                RentalVehicle v;
+                v.setType(RentalVehicle::Bicycle);
+                v.setNetwork(section.from().rentalVehicleStation().network());
+                section.setRentalVehicle(v);
+            } else {
+                section.setMode(JourneySection::IndividualTransport);
+                section.setIndividualTransport({IndividualTransport::Bike, IndividualTransport::None});
+            }
         } else if (modeStr == QLatin1String("car")) {
             section.setMode(JourneySection::IndividualTransport);
             section.setIndividualTransport({IndividualTransport::Car, IndividualTransport::None});
