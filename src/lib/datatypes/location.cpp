@@ -421,7 +421,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
 }
 
 // see https://en.wikipedia.org/wiki/Haversine_formula
-int Location::distance(float lat1, float lon1, float lat2, float lon2)
+float Location::distance(float lat1, float lon1, float lat2, float lon2)
 {
     const auto degToRad = M_PI / 180.0;
     const auto earthRadius = 6371000.0; // in meters
@@ -433,10 +433,10 @@ int Location::distance(float lat1, float lon1, float lat2, float lon2)
     return 2.0 * earthRadius * atan2(sqrt(a), sqrt(1.0 - a));
 }
 
-int Location::distance(const Location &lhs, const Location &rhs)
+float Location::distance(const Location &lhs, const Location &rhs)
 {
     if (!lhs.hasCoordinate() || !rhs.hasCoordinate()) {
-        return std::numeric_limits<int>::max();
+        return std::numeric_limits<float>::max();
     }
     return Location::distance(lhs.latitude(), lhs.longitude(), rhs.latitude(), rhs.longitude());
 }

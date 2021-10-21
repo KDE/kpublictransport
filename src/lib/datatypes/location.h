@@ -105,11 +105,11 @@ public:
     static Location merge(const Location &lhs, const Location &rhs);
 
     /** Compute the distance between two geo coordinates, in meters. */
-    static int distance(float lat1, float lon1, float lat2, float lon2);
+    static float distance(float lat1, float lon1, float lat2, float lon2);
     /** Computes the distance in meters between two locations.
      *  Returns MAX_INT if one of the arguments has no coordinates set.
      */
-    static int distance(const Location &lhs, const Location &rhs);
+    static float distance(const Location &lhs, const Location &rhs);
 
     RentalVehicleStation rentalVehicleStation() const;
     [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);
