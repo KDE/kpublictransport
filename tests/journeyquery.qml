@@ -392,6 +392,8 @@ Kirigami.ApplicationWindow {
                 property alias maxResults: maxResults.text
                 property alias includeIntermediateStops: intermediateStops.checked
                 property alias includePaths: includePaths.checked
+                property alias accessMode: accessMode.currentIndex
+                property alias egressMode: egressMode.currentIndex
             }
 
             ColumnLayout {
