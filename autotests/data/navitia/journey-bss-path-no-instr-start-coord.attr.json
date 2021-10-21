@@ -1,0 +1,47 @@
+[
+    {
+        "license": "ODbL",
+        "name": "openstreetmap",
+        "url": "https://www.openstreetmap.org/copyright"
+    },
+    {
+        "license": "Private (unspecified)",
+        "name": "Haute-Garonne - Arc-en-Ciel (open)"
+    },
+    {
+        "license": "ODbL",
+        "name": "Occitanie - Ariège"
+    },
+    {
+        "license": "Private (unspecified)",
+        "name": "Occitanie - Gers"
+    },
+    {
+        "license": "Private (unspecified)",
+        "name": "Occitanie Tarn-et-Garonne"
+    },
+    {
+        "license": "Private (unspecified)",
+        "name": "Toulouse - Tisseo (open)"
+    },
+    {
+        "license": "SNCF",
+        "name": "SNCF Intercités Open Data",
+        "url": "https://ressources.data.sncf.com/"
+    },
+    {
+        "license": "SNCF",
+        "name": "SNCF TER Open Data",
+        "url": "https://ressources.data.sncf.com/"
+    },
+    {
+        "license": "SNCF",
+        "name": "SNCF TGV Open Data",
+        "url": "https://ressources.data.sncf.com/"
+    },
+    {
+        "license": "Licence Ouverte / Open License",
+        "name": "jcdecaux",
+        "url": "https://developer.jcdecaux.com/#/opendata/license"
+    }
+]

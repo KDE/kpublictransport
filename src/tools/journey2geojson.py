@@ -34,7 +34,7 @@ for journey in inJson:
             feature = {}
             feature['type'] = 'Feature'
             feature['properties'] = properties
-            feature['geometry'] = path['path']
+            feature['geometry'] = path.get('path', {})
             output['features'].append(feature)
 
 print(json.dumps(output))

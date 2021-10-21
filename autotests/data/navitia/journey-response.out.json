@@ -1,0 +1,2190 @@
+[
+    {
+        "sections": [
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 77,
+                "from": {
+                    "latitude": 49.00423812866211,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.5702035427093506,
+                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Dépose Gare TGV",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5706125948,
+                                        49.0042617248
+                                    ],
+                                    [
+                                        2.570589,
+                                        49.004687
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:06:00+01:00"
+                },
+                "scheduledDepartureTime": "2018-12-02T22:04:51",
+                "to": {
+                    "latitude": 49.00468826293945,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.570589065551758,
+                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 147,
+                "disruptionEffect": "NormalService",
+                "distance": 23839,
+                "from": {
+                    "latitude": 49.00468826293945,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.570589065551758,
+                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:07:00",
+                        "scheduledDepartureTime": "2018-12-02T22:08:00",
+                        "stopPoint": {
+                            "latitude": 49.0097541809082,
+                            "longitude": 2.5612330436706543,
+                            "name": "Aéroport CDG 1 (Tremblay-en-France)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:12:00",
+                        "scheduledDepartureTime": "2018-12-02T22:13:00",
+                        "stopPoint": {
+                            "latitude": 48.973426818847656,
+                            "longitude": 2.514359951019287,
+                            "name": "Gare de Parc des Expositions (Villepinte)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:37:00",
+                        "scheduledDepartureTime": "2018-12-02T22:38:00",
+                        "stopPoint": {
+                            "latitude": 48.880767822265625,
+                            "longitude": 2.3571150302886963,
+                            "name": "Gare du Nord RER (Paris)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.570589,
+                                        49.004687
+                                    ],
+                                    [
+                                        2.561233,
+                                        49.009756
+                                    ],
+                                    [
+                                        2.51436,
+                                        48.973425
+                                    ],
+                                    [
+                                        2.357115,
+                                        48.880769
+                                    ],
+                                    [
+                                        2.347013,
+                                        48.861822
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Denfert Rochereau (Paris)",
+                    "line": {
+                        "color": "#7ba3dc",
+                        "mode": "RapidTransit",
+                        "modeString": "RER",
+                        "name": "B",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:41:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:06:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.861820220947266,
+                    "locality": "Paris",
+                    "longitude": 2.347012996673584,
+                    "name": "Châtelet les Halles (Paris)",
+                    "postalCode": "75001",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "from": {
+                    "latitude": 48.861820220947266,
+                    "locality": "Paris",
+                    "longitude": 2.347012996673584,
+                    "name": "Châtelet les Halles (Paris)",
+                    "postalCode": "75001",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Transfer",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.347013,
+                                        48.861822
+                                    ],
+                                    [
+                                        2.347013,
+                                        48.861822
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:44:03+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:41:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.861820220947266,
+                    "locality": "Paris",
+                    "longitude": 2.347012996673584,
+                    "name": "Châtelet les Halles (Paris)",
+                    "postalCode": "75001",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "mode": "Waiting",
+                "scheduledArrivalTime": "2018-12-02T22:49:00",
+                "scheduledDepartureTime": "2018-12-02T22:44:03"
+            },
+            {
+                "co2Emission": 17,
+                "disruptionEffect": "NormalService",
+                "distance": 2748,
+                "from": {
+                    "latitude": 48.861820220947266,
+                    "locality": "Paris",
+                    "longitude": 2.347012996673584,
+                    "name": "Châtelet les Halles (Paris)",
+                    "postalCode": "75001",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.347013,
+                                        48.861822
+                                    ],
+                                    [
+                                        2.37326,
+                                        48.844139
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Gare de Torcy (Torcy)",
+                    "line": {
+                        "color": "#d1302f",
+                        "mode": "RapidTransit",
+                        "modeString": "RER",
+                        "name": "A",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:51:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:49:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.844139099121094,
+                    "locality": "Paris",
+                    "longitude": 2.373260021209717,
+                    "name": "Gare de Lyon RER A (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 621,
+                "from": {
+                    "latitude": 48.844139099121094,
+                    "locality": "Paris",
+                    "longitude": 2.373260021209717,
+                    "name": "Gare de Lyon RER A (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Allée de Bercy",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.37326,
+                                        48.844139
+                                    ],
+                                    [
+                                        2.3732323968,
+                                        48.8440871281
+                                    ],
+                                    [
+                                        2.372947,
+                                        48.844239
+                                    ],
+                                    [
+                                        2.372538,
+                                        48.844461
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Tunnel Van Gogh",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.372538,
+                                        48.844461
+                                    ],
+                                    [
+                                        2.372504,
+                                        48.844499
+                                    ],
+                                    [
+                                        2.372495,
+                                        48.844511
+                                    ],
+                                    [
+                                        2.372942,
+                                        48.844871
+                                    ],
+                                    [
+                                        2.373496,
+                                        48.845303
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Tunnel Van Gogh 1",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373496,
+                                        48.845303
+                                    ],
+                                    [
+                                        2.373542,
+                                        48.845357
+                                    ],
+                                    [
+                                        2.374033,
+                                        48.845399
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.374033,
+                                        48.845399
+                                    ],
+                                    [
+                                        2.37402,
+                                        48.845474
+                                    ],
+                                    [
+                                        2.373994,
+                                        48.845609
+                                    ],
+                                    [
+                                        2.373888,
+                                        48.845698
+                                    ],
+                                    [
+                                        2.373867,
+                                        48.845725
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373867,
+                                        48.845725
+                                    ],
+                                    [
+                                        2.373698,
+                                        48.845707
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373698,
+                                        48.845707
+                                    ],
+                                    [
+                                        2.373679,
+                                        48.84579
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Boulevard Diderot",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373679,
+                                        48.84579
+                                    ],
+                                    [
+                                        2.373943,
+                                        48.84582
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373943,
+                                        48.84582
+                                    ],
+                                    [
+                                        2.37402,
+                                        48.845751
+                                    ],
+                                    [
+                                        2.374244,
+                                        48.845761
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rue de Chalon",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.374244,
+                                        48.845761
+                                    ],
+                                    [
+                                        2.374546,
+                                        48.845504
+                                    ],
+                                    [
+                                        2.37486,
+                                        48.845332
+                                    ],
+                                    [
+                                        2.375055,
+                                        48.845241
+                                    ],
+                                    [
+                                        2.375607,
+                                        48.844946
+                                    ],
+                                    [
+                                        2.3772637747,
+                                        48.8440520493
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2018-12-02T23:00:15",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:51:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.84407043457031,
+                    "locality": "Paris",
+                    "longitude": 2.3772740364074707,
+                    "name": "20 Rue de Chalon (Paris)"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 77,
+                "from": {
+                    "latitude": 49.00423812866211,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.5702035427093506,
+                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Dépose Gare TGV",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5706125948,
+                                        49.0042617248
+                                    ],
+                                    [
+                                        2.570589,
+                                        49.004687
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T21:59:00+01:00"
+                },
+                "scheduledDepartureTime": "2018-12-02T21:57:51",
+                "to": {
+                    "latitude": 49.00468826293945,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.570589065551758,
+                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 162,
+                "disruptionEffect": "NormalService",
+                "distance": 26122,
+                "from": {
+                    "latitude": 49.00468826293945,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.570589065551758,
+                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:01:00",
+                        "scheduledDepartureTime": "2018-12-02T22:02:00",
+                        "stopPoint": {
+                            "latitude": 49.0097541809082,
+                            "longitude": 2.5612330436706543,
+                            "name": "Aéroport CDG 1 (Tremblay-en-France)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:07:00",
+                        "scheduledDepartureTime": "2018-12-02T22:07:00",
+                        "stopPoint": {
+                            "latitude": 48.973426818847656,
+                            "longitude": 2.514359951019287,
+                            "name": "Gare de Parc des Expositions (Villepinte)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:09:00",
+                        "scheduledDepartureTime": "2018-12-02T22:09:00",
+                        "stopPoint": {
+                            "latitude": 48.962711334228516,
+                            "longitude": 2.5126450061798096,
+                            "name": "Gare de Villepinte (Villepinte)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:11:00",
+                        "scheduledDepartureTime": "2018-12-02T22:12:00",
+                        "stopPoint": {
+                            "latitude": 48.947608947753906,
+                            "longitude": 2.5247159004211426,
+                            "name": "Gare de Sevran Beaudottes (Sevran)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:15:00",
+                        "scheduledDepartureTime": "2018-12-02T22:16:00",
+                        "stopPoint": {
+                            "latitude": 48.93211364746094,
+                            "longitude": 2.4957549571990967,
+                            "name": "Gare d'Aulnay sous Bois (Aulnay-sous-Bois)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:17:00",
+                        "scheduledDepartureTime": "2018-12-02T22:18:00",
+                        "stopPoint": {
+                            "latitude": 48.93230438232422,
+                            "longitude": 2.4756739139556885,
+                            "name": "Gare de Blanc Mesnil (Le Blanc-Mesnil)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:20:00",
+                        "scheduledDepartureTime": "2018-12-02T22:20:00",
+                        "stopPoint": {
+                            "latitude": 48.93270492553711,
+                            "longitude": 2.454766035079956,
+                            "name": "Gare de Drancy (Drancy)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:22:00",
+                        "scheduledDepartureTime": "2018-12-02T22:23:00",
+                        "stopPoint": {
+                            "latitude": 48.93074035644531,
+                            "longitude": 2.425791025161743,
+                            "name": "Gare du Bourget (Le Bourget)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:26:00",
+                        "scheduledDepartureTime": "2018-12-02T22:26:00",
+                        "stopPoint": {
+                            "latitude": 48.924354553222656,
+                            "longitude": 2.386388063430786,
+                            "name": "Gare de la Courneuve Aubervilliers (La Courneuve)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:28:00",
+                        "scheduledDepartureTime": "2018-12-02T22:29:00",
+                        "stopPoint": {
+                            "latitude": 48.918113708496094,
+                            "longitude": 2.362665891647339,
+                            "name": "Gare de la Plaine Stade de France (Saint-Denis)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.570589,
+                                        49.004687
+                                    ],
+                                    [
+                                        2.561233,
+                                        49.009756
+                                    ],
+                                    [
+                                        2.51436,
+                                        48.973425
+                                    ],
+                                    [
+                                        2.512645,
+                                        48.96271
+                                    ],
+                                    [
+                                        2.524716,
+                                        48.947608
+                                    ],
+                                    [
+                                        2.495755,
+                                        48.932114
+                                    ],
+                                    [
+                                        2.475674,
+                                        48.932305
+                                    ],
+                                    [
+                                        2.454766,
+                                        48.932706
+                                    ],
+                                    [
+                                        2.425791,
+                                        48.93074
+                                    ],
+                                    [
+                                        2.386388,
+                                        48.924354
+                                    ],
+                                    [
+                                        2.362666,
+                                        48.918114
+                                    ],
+                                    [
+                                        2.357115,
+                                        48.880769
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Gare de Massy Palaiseau RER B (Massy)",
+                    "line": {
+                        "color": "#7ba3dc",
+                        "mode": "RapidTransit",
+                        "modeString": "RER",
+                        "name": "B",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:34:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T21:59:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.880767822265625,
+                    "locality": "Paris",
+                    "longitude": 2.3571150302886963,
+                    "name": "Gare du Nord RER (Paris)",
+                    "postalCode": "75010",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 175,
+                "from": {
+                    "latitude": 48.880767822265625,
+                    "locality": "Paris",
+                    "longitude": 2.3571150302886963,
+                    "name": "Gare du Nord RER (Paris)",
+                    "postalCode": "75010",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Transfer",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.357115,
+                                        48.880769
+                                    ],
+                                    [
+                                        2.355737,
+                                        48.879476
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:39:36+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:34:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.87947463989258,
+                    "locality": "Paris",
+                    "longitude": 2.3557369709014893,
+                    "name": "La Fayette - Dunkerque (Paris)",
+                    "postalCode": "75010",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "mode": "Waiting",
+                "scheduledArrivalTime": "2018-12-02T22:43:00",
+                "scheduledDepartureTime": "2018-12-02T22:39:36"
+            },
+            {
+                "co2Emission": 581,
+                "disruptionEffect": "NormalService",
+                "distance": 4474,
+                "from": {
+                    "latitude": 48.87947463989258,
+                    "locality": "Paris",
+                    "longitude": 2.3557369709014893,
+                    "name": "La Fayette - Dunkerque (Paris)",
+                    "postalCode": "75010",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:45:00",
+                        "scheduledDepartureTime": "2018-12-02T22:45:00",
+                        "stopPoint": {
+                            "latitude": 48.87623977661133,
+                            "longitude": 2.357016086578369,
+                            "name": "Gare de l'Est (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:46:00",
+                        "scheduledDepartureTime": "2018-12-02T22:46:00",
+                        "stopPoint": {
+                            "latitude": 48.87444305419922,
+                            "longitude": 2.358527898788452,
+                            "name": "Magenta - Saint-Martin (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:48:00",
+                        "scheduledDepartureTime": "2018-12-02T22:48:00",
+                        "stopPoint": {
+                            "latitude": 48.871116638183594,
+                            "longitude": 2.360502004623413,
+                            "name": "Jacques Bonsergent (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:49:00",
+                        "scheduledDepartureTime": "2018-12-02T22:49:00",
+                        "stopPoint": {
+                            "latitude": 48.869014739990234,
+                            "longitude": 2.3624489307403564,
+                            "name": "République - Magenta (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:50:00",
+                        "scheduledDepartureTime": "2018-12-02T22:50:00",
+                        "stopPoint": {
+                            "latitude": 48.86714553833008,
+                            "longitude": 2.364954948425293,
+                            "name": "République (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:51:00",
+                        "scheduledDepartureTime": "2018-12-02T22:51:00",
+                        "stopPoint": {
+                            "latitude": 48.86483383178711,
+                            "longitude": 2.365511894226074,
+                            "name": "Jean-Pierre Timbaud (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:51:00",
+                        "scheduledDepartureTime": "2018-12-02T22:51:00",
+                        "stopPoint": {
+                            "latitude": 48.86216354370117,
+                            "longitude": 2.366805076599121,
+                            "name": "Oberkampf - Filles du Calvaire (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:52:00",
+                        "scheduledDepartureTime": "2018-12-02T22:52:00",
+                        "stopPoint": {
+                            "latitude": 48.85987091064453,
+                            "longitude": 2.3673489093780518,
+                            "name": "Saint-Claude (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:53:00",
+                        "scheduledDepartureTime": "2018-12-02T22:53:00",
+                        "stopPoint": {
+                            "latitude": 48.85728454589844,
+                            "longitude": 2.3679869174957275,
+                            "name": "Saint-Gilles - Chemin Vert (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:53:00",
+                        "scheduledDepartureTime": "2018-12-02T22:53:00",
+                        "stopPoint": {
+                            "latitude": 48.855369567871094,
+                            "longitude": 2.3684349060058594,
+                            "name": "Pasteur - Wagner (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:54:00",
+                        "scheduledDepartureTime": "2018-12-02T22:54:00",
+                        "stopPoint": {
+                            "latitude": 48.853858947753906,
+                            "longitude": 2.3687610626220703,
+                            "name": "Bastille - Beaumarchais (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:54:00",
+                        "scheduledDepartureTime": "2018-12-02T22:54:00",
+                        "stopPoint": {
+                            "latitude": 48.85281753540039,
+                            "longitude": 2.3688149452209473,
+                            "name": "Bastille (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:56:00",
+                        "scheduledDepartureTime": "2018-12-02T22:56:00",
+                        "stopPoint": {
+                            "latitude": 48.84870910644531,
+                            "longitude": 2.370950937271118,
+                            "name": "Lyon - Ledru Rollin (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:58:00",
+                        "scheduledDepartureTime": "2018-12-02T22:58:00",
+                        "stopPoint": {
+                            "latitude": 48.84613037109375,
+                            "longitude": 2.372066020965576,
+                            "name": "Gare de Lyon - Diderot (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:59:00",
+                        "scheduledDepartureTime": "2018-12-02T22:59:00",
+                        "stopPoint": {
+                            "latitude": 48.84489822387695,
+                            "longitude": 2.371546983718872,
+                            "name": "Gare de Lyon - Van Gogh (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T23:00:00",
+                        "scheduledDepartureTime": "2018-12-02T23:00:00",
+                        "stopPoint": {
+                            "latitude": 48.843631744384766,
+                            "longitude": 2.3734118938446045,
+                            "name": "Gare de Lyon. (Paris)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.355737,
+                                        48.879476
+                                    ],
+                                    [
+                                        2.357016,
+                                        48.87624
+                                    ],
+                                    [
+                                        2.358528,
+                                        48.874443
+                                    ],
+                                    [
+                                        2.360502,
+                                        48.871117
+                                    ],
+                                    [
+                                        2.362449,
+                                        48.869014
+                                    ],
+                                    [
+                                        2.364955,
+                                        48.867144
+                                    ],
+                                    [
+                                        2.365512,
+                                        48.864834
+                                    ],
+                                    [
+                                        2.366805,
+                                        48.862164
+                                    ],
+                                    [
+                                        2.367349,
+                                        48.859872
+                                    ],
+                                    [
+                                        2.367987,
+                                        48.857284
+                                    ],
+                                    [
+                                        2.368435,
+                                        48.855369
+                                    ],
+                                    [
+                                        2.368761,
+                                        48.853859
+                                    ],
+                                    [
+                                        2.368815,
+                                        48.852817
+                                    ],
+                                    [
+                                        2.370951,
+                                        48.848709
+                                    ],
+                                    [
+                                        2.372066,
+                                        48.846129
+                                    ],
+                                    [
+                                        2.371547,
+                                        48.844898
+                                    ],
+                                    [
+                                        2.373412,
+                                        48.84363
+                                    ],
+                                    [
+                                        2.375427,
+                                        48.842533
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Gare de Lyon (Paris)",
+                    "line": {
+                        "color": "#008b5a",
+                        "mode": "Bus",
+                        "modeString": "Bus",
+                        "name": "65",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:01:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:43:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.842533111572266,
+                    "locality": "Paris",
+                    "longitude": 2.375427007675171,
+                    "name": "Gare de Lyon (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 451,
+                "from": {
+                    "latitude": 48.842533111572266,
+                    "locality": "Paris",
+                    "longitude": 2.375427007675171,
+                    "name": "Gare de Lyon (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Rue de Bercy",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.375427,
+                                        48.842533
+                                    ],
+                                    [
+                                        2.3754587067,
+                                        48.8425919053
+                                    ],
+                                    [
+                                        2.37557,
+                                        48.842532
+                                    ],
+                                    [
+                                        2.376195,
+                                        48.842196
+                                    ],
+                                    [
+                                        2.37642,
+                                        48.842101
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rue de Rambouillet",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.37642,
+                                        48.842101
+                                    ],
+                                    [
+                                        2.376548,
+                                        48.842193
+                                    ],
+                                    [
+                                        2.378791,
+                                        48.843228
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rue de Chalon",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.378791,
+                                        48.843228
+                                    ],
+                                    [
+                                        2.3772637747,
+                                        48.8440520493
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2018-12-02T23:07:38",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:01:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.84407043457031,
+                    "locality": "Paris",
+                    "longitude": 2.3772740364074707,
+                    "name": "20 Rue de Chalon (Paris)"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 77,
+                "from": {
+                    "latitude": 49.00423812866211,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.5702035427093506,
+                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Dépose Gare TGV",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5706125948,
+                                        49.0042617248
+                                    ],
+                                    [
+                                        2.570589,
+                                        49.004687
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T21:59:00+01:00"
+                },
+                "scheduledDepartureTime": "2018-12-02T21:57:51",
+                "to": {
+                    "latitude": 49.00468826293945,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.570589065551758,
+                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 191,
+                "disruptionEffect": "NormalService",
+                "distance": 30922,
+                "from": {
+                    "latitude": 49.00468826293945,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.570589065551758,
+                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:01:00",
+                        "scheduledDepartureTime": "2018-12-02T22:02:00",
+                        "stopPoint": {
+                            "latitude": 49.0097541809082,
+                            "longitude": 2.5612330436706543,
+                            "name": "Aéroport CDG 1 (Tremblay-en-France)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:07:00",
+                        "scheduledDepartureTime": "2018-12-02T22:07:00",
+                        "stopPoint": {
+                            "latitude": 48.973426818847656,
+                            "longitude": 2.514359951019287,
+                            "name": "Gare de Parc des Expositions (Villepinte)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:09:00",
+                        "scheduledDepartureTime": "2018-12-02T22:09:00",
+                        "stopPoint": {
+                            "latitude": 48.962711334228516,
+                            "longitude": 2.5126450061798096,
+                            "name": "Gare de Villepinte (Villepinte)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:11:00",
+                        "scheduledDepartureTime": "2018-12-02T22:12:00",
+                        "stopPoint": {
+                            "latitude": 48.947608947753906,
+                            "longitude": 2.5247159004211426,
+                            "name": "Gare de Sevran Beaudottes (Sevran)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:15:00",
+                        "scheduledDepartureTime": "2018-12-02T22:16:00",
+                        "stopPoint": {
+                            "latitude": 48.93211364746094,
+                            "longitude": 2.4957549571990967,
+                            "name": "Gare d'Aulnay sous Bois (Aulnay-sous-Bois)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:17:00",
+                        "scheduledDepartureTime": "2018-12-02T22:18:00",
+                        "stopPoint": {
+                            "latitude": 48.93230438232422,
+                            "longitude": 2.4756739139556885,
+                            "name": "Gare de Blanc Mesnil (Le Blanc-Mesnil)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:20:00",
+                        "scheduledDepartureTime": "2018-12-02T22:20:00",
+                        "stopPoint": {
+                            "latitude": 48.93270492553711,
+                            "longitude": 2.454766035079956,
+                            "name": "Gare de Drancy (Drancy)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:22:00",
+                        "scheduledDepartureTime": "2018-12-02T22:23:00",
+                        "stopPoint": {
+                            "latitude": 48.93074035644531,
+                            "longitude": 2.425791025161743,
+                            "name": "Gare du Bourget (Le Bourget)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:26:00",
+                        "scheduledDepartureTime": "2018-12-02T22:26:00",
+                        "stopPoint": {
+                            "latitude": 48.924354553222656,
+                            "longitude": 2.386388063430786,
+                            "name": "Gare de la Courneuve Aubervilliers (La Courneuve)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:28:00",
+                        "scheduledDepartureTime": "2018-12-02T22:29:00",
+                        "stopPoint": {
+                            "latitude": 48.918113708496094,
+                            "longitude": 2.362665891647339,
+                            "name": "Gare de la Plaine Stade de France (Saint-Denis)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:34:00",
+                        "scheduledDepartureTime": "2018-12-02T22:35:00",
+                        "stopPoint": {
+                            "latitude": 48.880767822265625,
+                            "longitude": 2.3571150302886963,
+                            "name": "Gare du Nord RER (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:38:00",
+                        "scheduledDepartureTime": "2018-12-02T22:38:00",
+                        "stopPoint": {
+                            "latitude": 48.861820220947266,
+                            "longitude": 2.347012996673584,
+                            "name": "Châtelet les Halles (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:39:00",
+                        "scheduledDepartureTime": "2018-12-02T22:40:00",
+                        "stopPoint": {
+                            "latitude": 48.853336334228516,
+                            "longitude": 2.3460350036621094,
+                            "name": "Saint-Michel-Notre-Dame (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:41:00",
+                        "scheduledDepartureTime": "2018-12-02T22:42:00",
+                        "stopPoint": {
+                            "latitude": 48.845741271972656,
+                            "longitude": 2.339927911758423,
+                            "name": "Luxembourg (Paris)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.570589,
+                                        49.004687
+                                    ],
+                                    [
+                                        2.561233,
+                                        49.009756
+                                    ],
+                                    [
+                                        2.51436,
+                                        48.973425
+                                    ],
+                                    [
+                                        2.512645,
+                                        48.96271
+                                    ],
+                                    [
+                                        2.524716,
+                                        48.947608
+                                    ],
+                                    [
+                                        2.495755,
+                                        48.932114
+                                    ],
+                                    [
+                                        2.475674,
+                                        48.932305
+                                    ],
+                                    [
+                                        2.454766,
+                                        48.932706
+                                    ],
+                                    [
+                                        2.425791,
+                                        48.93074
+                                    ],
+                                    [
+                                        2.386388,
+                                        48.924354
+                                    ],
+                                    [
+                                        2.362666,
+                                        48.918114
+                                    ],
+                                    [
+                                        2.357115,
+                                        48.880769
+                                    ],
+                                    [
+                                        2.347013,
+                                        48.861822
+                                    ],
+                                    [
+                                        2.346035,
+                                        48.853336
+                                    ],
+                                    [
+                                        2.339928,
+                                        48.845743
+                                    ],
+                                    [
+                                        2.337096,
+                                        48.840034
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Gare de Massy Palaiseau RER B (Massy)",
+                    "line": {
+                        "color": "#7ba3dc",
+                        "mode": "RapidTransit",
+                        "modeString": "RER",
+                        "name": "B",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:43:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T21:59:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.84003448486328,
+                    "locality": "Paris",
+                    "longitude": 2.3370959758758545,
+                    "name": "Port Royal (Paris)",
+                    "postalCode": "",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 252,
+                "from": {
+                    "latitude": 48.84003448486328,
+                    "locality": "Paris",
+                    "longitude": 2.3370959758758545,
+                    "name": "Port Royal (Paris)",
+                    "postalCode": "",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Transfer",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.337096,
+                                        48.840034
+                                    ],
+                                    [
+                                        2.339928,
+                                        48.838729
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:48:36+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:43:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.83872985839844,
+                    "locality": "Paris",
+                    "longitude": 2.339927911758423,
+                    "name": "Port Royal - Saint-Jacques (Paris)",
+                    "postalCode": "",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "mode": "Waiting",
+                "scheduledArrivalTime": "2018-12-02T22:51:00",
+                "scheduledDepartureTime": "2018-12-02T22:48:36"
+            },
+            {
+                "co2Emission": 370,
+                "disruptionEffect": "NormalService",
+                "distance": 2852,
+                "from": {
+                    "latitude": 48.83872985839844,
+                    "locality": "Paris",
+                    "longitude": 2.339927911758423,
+                    "name": "Port Royal - Saint-Jacques (Paris)",
+                    "postalCode": "",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:52:00",
+                        "scheduledDepartureTime": "2018-12-02T22:52:00",
+                        "stopPoint": {
+                            "latitude": 48.83744430541992,
+                            "longitude": 2.345918893814087,
+                            "name": "Port Royal - Berthollet (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:55:00",
+                        "scheduledDepartureTime": "2018-12-02T22:55:00",
+                        "stopPoint": {
+                            "latitude": 48.83692169189453,
+                            "longitude": 2.352631092071533,
+                            "name": "Les Gobelins (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:56:00",
+                        "scheduledDepartureTime": "2018-12-02T22:56:00",
+                        "stopPoint": {
+                            "latitude": 48.83816146850586,
+                            "longitude": 2.3565120697021484,
+                            "name": "Saint-Marcel - Jeanne d'Arc (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:58:00",
+                        "scheduledDepartureTime": "2018-12-02T22:58:00",
+                        "stopPoint": {
+                            "latitude": 48.83960723876953,
+                            "longitude": 2.361046075820923,
+                            "name": "Saint-Marcel - la Pitié (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:59:00",
+                        "scheduledDepartureTime": "2018-12-02T22:59:00",
+                        "stopPoint": {
+                            "latitude": 48.84260940551758,
+                            "longitude": 2.364016056060791,
+                            "name": "Gare d'Austerlitz (Paris)"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T23:02:00",
+                        "scheduledDepartureTime": "2018-12-02T23:02:00",
+                        "stopPoint": {
+                            "latitude": 48.84524154663086,
+                            "longitude": 2.3690690994262695,
+                            "name": "Pont d'Austerlitz - Quai de la Râpée (Paris)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.339928,
+                                        48.838729
+                                    ],
+                                    [
+                                        2.345919,
+                                        48.837443
+                                    ],
+                                    [
+                                        2.352631,
+                                        48.836921
+                                    ],
+                                    [
+                                        2.356512,
+                                        48.838161
+                                    ],
+                                    [
+                                        2.361046,
+                                        48.839607
+                                    ],
+                                    [
+                                        2.364016,
+                                        48.842608
+                                    ],
+                                    [
+                                        2.369069,
+                                        48.84524
+                                    ],
+                                    [
+                                        2.373727,
+                                        48.845742
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Bastille (Paris)",
+                    "line": {
+                        "color": "#dfb03a",
+                        "mode": "Bus",
+                        "modeString": "Bus",
+                        "name": "91",
+                        "textColor": "#000000"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:04:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:51:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.845741271972656,
+                    "locality": "Paris",
+                    "longitude": 2.3737270832061768,
+                    "name": "Gare de Lyon - Diderot (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 362,
+                "from": {
+                    "latitude": 48.845741271972656,
+                    "locality": "Paris",
+                    "longitude": 2.3737270832061768,
+                    "name": "Gare de Lyon - Diderot (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373727,
+                                        48.845742
+                                    ],
+                                    [
+                                        2.3737629067,
+                                        48.8457457082
+                                    ],
+                                    [
+                                        2.373751,
+                                        48.845861
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373751,
+                                        48.845861
+                                    ],
+                                    [
+                                        2.373967,
+                                        48.845936
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Boulevard Diderot",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373967,
+                                        48.845936
+                                    ],
+                                    [
+                                        2.37391,
+                                        48.845933
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.37391,
+                                        48.845933
+                                    ],
+                                    [
+                                        2.373943,
+                                        48.84582
+                                    ],
+                                    [
+                                        2.37402,
+                                        48.845751
+                                    ],
+                                    [
+                                        2.374244,
+                                        48.845761
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rue de Chalon",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.374244,
+                                        48.845761
+                                    ],
+                                    [
+                                        2.374546,
+                                        48.845504
+                                    ],
+                                    [
+                                        2.37486,
+                                        48.845332
+                                    ],
+                                    [
+                                        2.375055,
+                                        48.845241
+                                    ],
+                                    [
+                                        2.375607,
+                                        48.844946
+                                    ],
+                                    [
+                                        2.3772637747,
+                                        48.8440520493
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2018-12-02T23:09:24",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:04:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.84407043457031,
+                    "locality": "Paris",
+                    "longitude": 2.3772740364074707,
+                    "name": "20 Rue de Chalon (Paris)"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 510,
+                "from": {
+                    "latitude": 49.00423812866211,
+                    "locality": "Le Mesnil-Amelot",
+                    "longitude": 2.5702035427093506,
+                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Dépose Gare TGV",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.5702036369,
+                                        49.0042390353
+                                    ],
+                                    [
+                                        2.570203,
+                                        49.004239
+                                    ],
+                                    [
+                                        2.570087,
+                                        49.004182
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.570087,
+                                        49.004182
+                                    ],
+                                    [
+                                        2.568562,
+                                        49.004225
+                                    ],
+                                    [
+                                        2.56827,
+                                        49.004218
+                                    ],
+                                    [
+                                        2.568161,
+                                        49.00421
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.568161,
+                                        49.00421
+                                    ],
+                                    [
+                                        2.565871,
+                                        49.004083
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.565871,
+                                        49.004083
+                                    ],
+                                    [
+                                        2.565598,
+                                        49.003809
+                                    ],
+                                    [
+                                        2.565661,
+                                        49.003556
+                                    ],
+                                    [
+                                        2.565955,
+                                        49.003369
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.565955,
+                                        49.003369
+                                    ],
+                                    [
+                                        2.564656983,
+                                        49.0033055366
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:21:00+01:00"
+                },
+                "scheduledDepartureTime": "2018-12-02T22:13:24",
+                "to": {
+                    "latitude": 49.003387451171875,
+                    "locality": "Tremblay-en-France",
+                    "longitude": 2.564652919769287,
+                    "name": "CDG 2A/2C (Tremblay-en-France)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 3171,
+                "disruptionEffect": "NormalService",
+                "distance": 24445,
+                "from": {
+                    "latitude": 49.003387451171875,
+                    "locality": "Tremblay-en-France",
+                    "longitude": 2.564652919769287,
+                    "name": "CDG 2A/2C (Tremblay-en-France)",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2018-12-02T22:30:00",
+                        "scheduledDepartureTime": "2018-12-02T22:30:00",
+                        "stopPoint": {
+                            "latitude": 49.014095306396484,
+                            "longitude": 2.541106939315796,
+                            "name": "CDG T1 (Mauregard)"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.564653,
+                                        49.003387
+                                    ],
+                                    [
+                                        2.541107,
+                                        49.014096
+                                    ],
+                                    [
+                                        2.373686,
+                                        48.845796
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Gare Montparnasse (Paris)",
+                    "line": {
+                        "color": "#000000",
+                        "mode": "Bus",
+                        "modeString": "Bus",
+                        "name": "DIRECT 4",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:05:00+01:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:21:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.845794677734375,
+                    "locality": "Paris",
+                    "longitude": 2.3736860752105713,
+                    "name": "Gare de Lyon (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                }
+            },
+            {
+                "co2Emission": 0,
+                "disruptionEffect": "NormalService",
+                "distance": 334,
+                "from": {
+                    "latitude": 48.845794677734375,
+                    "locality": "Paris",
+                    "longitude": 2.3736860752105713,
+                    "name": "Gare de Lyon (Paris)",
+                    "postalCode": "75012",
+                    "timezone": "Europe/Paris",
+                    "type": "Stop"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "description": "Boulevard Diderot",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373686,
+                                        48.845796
+                                    ],
+                                    [
+                                        2.3736865839,
+                                        48.8457908618
+                                    ],
+                                    [
+                                        2.373679,
+                                        48.84579
+                                    ],
+                                    [
+                                        2.373943,
+                                        48.84582
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.373943,
+                                        48.84582
+                                    ],
+                                    [
+                                        2.37402,
+                                        48.845751
+                                    ],
+                                    [
+                                        2.374244,
+                                        48.845761
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "description": "Rue de Chalon",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.374244,
+                                        48.845761
+                                    ],
+                                    [
+                                        2.374546,
+                                        48.845504
+                                    ],
+                                    [
+                                        2.37486,
+                                        48.845332
+                                    ],
+                                    [
+                                        2.375055,
+                                        48.845241
+                                    ],
+                                    [
+                                        2.375607,
+                                        48.844946
+                                    ],
+                                    [
+                                        2.3772637747,
+                                        48.8440520493
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2018-12-02T23:09:59",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:05:00+01:00"
+                },
+                "to": {
+                    "latitude": 48.84407043457031,
+                    "locality": "Paris",
+                    "longitude": 2.3772740364074707,
+                    "name": "20 Rue de Chalon (Paris)"
+                }
+            }
+        ]
+    }
+]
