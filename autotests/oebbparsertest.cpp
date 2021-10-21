@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
 #include "backends/oebbvehiclelayoutparser.cpp"
 #include "uic/uicrailwaycoach.cpp"
 
@@ -11,7 +12,6 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
-#include <QProcess>
 #include <QTest>
 #include <QTimeZone>
 
@@ -22,30 +22,6 @@ using namespace KPublicTransport;
 class OebbParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
-    template <typename T>
-    inline void diffJson(const QString &refFile, const T &output, const T &ref)
-    {
-        if (output != ref) {
-            QFile failFile(refFile + QLatin1String(".fail"));
-            QVERIFY(failFile.open(QFile::WriteOnly));
-            failFile.write(QJsonDocument(output).toJson());
-            failFile.close();
-
-            QProcess proc;
-            proc.setProcessChannelMode(QProcess::ForwardedChannels);
-            proc.start(QStringLiteral("diff"), {QStringLiteral("-u"), refFile, failFile.fileName()});
-            QVERIFY(proc.waitForFinished());
-        }
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -77,14 +53,11 @@ private Q_SLOTS:
 
         KPublicTransport::OebbVehicleLayoutParser parser;
 
-        QVERIFY(parser.parse(readFile(inFileName)));
+        QVERIFY(parser.parse(Test::readFile(inFileName)));
         const auto departureJson = Stopover::toJson(parser.stopover);
-        const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();
-        if (departureJson != departureRef) {
-            diffJson(departureFileName, departureJson, departureRef);
-        }
+        const auto departureRef = QJsonDocument::fromJson(Test::readFile(departureFileName)).object();
         QVERIFY(!departureJson.isEmpty());
-        QCOMPARE(departureJson, departureRef);
+        QVERIFY(Test::compareJson(departureFileName, departureJson, departureRef));
     }
 };
 

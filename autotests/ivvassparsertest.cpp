@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
 #include "ifopt/ifoptutil.cpp"
 #include "backends/ivvassparser.cpp"
 
@@ -25,14 +26,6 @@ using namespace KPublicTransport;
 class IvvAssParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void testParseLocations_data()
     {
@@ -53,11 +46,11 @@ private Q_SLOTS:
         QFETCH(QString, outFileName);
 
         IvvAssParser p(QTimeZone("Europe/Berlin"), s("vrs"));
-        const auto result = p.parseLocations(readFile(inFileName));
+        const auto result = p.parseLocations(Test::readFile(inFileName));
         QVERIFY(!result.empty());
         QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Location::toJson(result);
-        const auto resultRef = QJsonDocument::fromJson(readFile(outFileName)).array();
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
         if (resultJson != resultRef) {
             qDebug().noquote() << QJsonDocument(resultJson).toJson();
         }
@@ -81,11 +74,11 @@ private Q_SLOTS:
         QFETCH(QString, outFileName);
 
         IvvAssParser p(QTimeZone("Europe/Berlin"), s("vrs"));
-        const auto result = p.parseStopovers(readFile(inFileName));
+        const auto result = p.parseStopovers(Test::readFile(inFileName));
         QVERIFY(!result.empty());
         QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Stopover::toJson(result);
-        const auto resultRef = QJsonDocument::fromJson(readFile(outFileName)).array();
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
         if (resultJson != resultRef) {
             qDebug().noquote() << QJsonDocument(resultJson).toJson();
         }
@@ -115,16 +108,13 @@ private Q_SLOTS:
         QFETCH(QString, outFileName);
 
         IvvAssParser p(QTimeZone("Europe/Berlin"), s("vrs"));
-        const auto result = p.parseJourneys(readFile(inFileName));
+        const auto result = p.parseJourneys(Test::readFile(inFileName));
         QVERIFY(!result.empty());
         QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Journey::toJson(result);
-        const auto resultRef = QJsonDocument::fromJson(readFile(outFileName)).array();
-        if (resultJson != resultRef) {
-            qDebug().noquote() << QJsonDocument(resultJson).toJson();
-        }
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
         QVERIFY(!resultJson.isEmpty());
-        QCOMPARE(resultJson, resultRef);
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
 
     void testParseError()

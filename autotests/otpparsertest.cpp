@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
 #include "backends/opentripplannerparser.h"
 
 #include <KPublicTransport/Journey>
@@ -16,7 +17,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QProcess>
 #include <QTest>
 #include <QTimeZone>
 
@@ -29,33 +29,6 @@ using RentalVehicleNetworkMap = QHash<QString, RentalVehicleNetwork>;
 class OtpParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        if (fn.isEmpty()) {
-            return {};
-        }
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
-    template <typename T>
-    inline void diffJson(const QString &refFile, const T &output, const T &ref)
-    {
-        if (output != ref) {
-            QFile failFile(refFile + QLatin1String(".fail"));
-            QVERIFY(failFile.open(QFile::WriteOnly));
-            failFile.write(QJsonDocument(output).toJson());
-            failFile.close();
-
-            QProcess proc;
-            proc.setProcessChannelMode(QProcess::ForwardedChannels);
-            proc.start(QStringLiteral("diff"), {QStringLiteral("-u"), refFile, failFile.fileName()});
-            QVERIFY(proc.waitForFinished());
-        }
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -97,10 +70,10 @@ private Q_SLOTS:
 
         OpenTripPlannerParser p(s("gtfs"));
         p.setKnownRentalVehicleNetworks(networks);
-        const auto res = p.parseLocationsByCoordinate(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto res = p.parseLocationsByCoordinate(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto jsonRes = Location::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
@@ -128,10 +101,10 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenTripPlannerParser p(s("gtfs"));
-        const auto res = p.parseLocationsByName(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto res = p.parseLocationsByName(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto jsonRes = Location::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
@@ -156,10 +129,10 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
 
         OpenTripPlannerParser p(s("gtfs"));
-        const auto res = p.parseDepartures(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto res = p.parseDepartures(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto jsonRes = Stopover::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
@@ -206,7 +179,7 @@ private Q_SLOTS:
         QFETCH(QString, refFileName);
         QFETCH(QString, networkConfig);
 
-        const auto configObj = QJsonDocument::fromJson(readFile(networkConfig)).object();
+        const auto configObj = QJsonDocument::fromJson(Test::readFile(networkConfig)).object();
         const auto networkConfigObj = configObj.value(QLatin1String("options")).toObject().value(QLatin1String("rentalVehicleNetworks")).toObject();
         QHash <QString, RentalVehicleNetwork> rentalVehicleNetworks;
         for (auto it = networkConfigObj.begin(); it != networkConfigObj.end(); ++it) {
@@ -216,14 +189,13 @@ private Q_SLOTS:
 
         OpenTripPlannerParser p(s("gtfs"), s("1"));
         p.setKnownRentalVehicleNetworks(rentalVehicleNetworks);
-        const auto res = p.parseJourneys(QJsonDocument::fromJson(readFile(inFileName)).object());
+        const auto res = p.parseJourneys(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
         const auto jsonRes = Journey::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
-        diffJson(refFileName, jsonRes, ref);
         QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 };
 

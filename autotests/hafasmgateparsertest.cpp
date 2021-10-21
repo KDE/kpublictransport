@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
+
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/HafasMgateParser>
 #include <KPublicTransport/Stopover>
@@ -23,14 +25,6 @@ using namespace KPublicTransport;
 class HafasMgateParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -53,21 +47,21 @@ private Q_SLOTS:
 
         {
             HafasMgateParser p;
-            p.parseLocations(readFile(input));
+            p.parseLocations(Test::readFile(input));
             QCOMPARE(p.error(), Reply::UnknownError);
             QVERIFY(!p.errorMessage().isEmpty());
         }
 
         {
             HafasMgateParser p;
-            p.parseDepartures(readFile(input));
+            p.parseDepartures(Test::readFile(input));
             QCOMPARE(p.error(), Reply::UnknownError);
             QVERIFY(!p.errorMessage().isEmpty());
         }
 
         {
             HafasMgateParser p;
-            p.parseJourneys(readFile(input));
+            p.parseJourneys(Test::readFile(input));
             QCOMPARE(p.error(), Reply::UnknownError);
             QVERIFY(!p.errorMessage().isEmpty());
         }
@@ -76,7 +70,7 @@ private Q_SLOTS:
     void testParseDepartureError()
     {
         HafasMgateParser p;
-        const auto res = p.parseDepartures(readFile(s(SOURCE_DIR "/data/hafas/stationboard-error-response.json")));
+        const auto res = p.parseDepartures(Test::readFile(s(SOURCE_DIR "/data/hafas/stationboard-error-response.json")));
         QVERIFY(res.empty());
         QCOMPARE(p.error(), Reply::NotFoundError);
         QVERIFY(!p.errorMessage().isEmpty());
@@ -122,10 +116,10 @@ private Q_SLOTS:
 
         HafasMgateParser p;
         p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
-        const auto res = p.parseDepartures(readFile(inFileName));
+        const auto res = p.parseDepartures(Test::readFile(inFileName));
         const auto jsonRes = Stopover::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
@@ -154,16 +148,13 @@ private Q_SLOTS:
 
         HafasMgateParser p;
         p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
-        const auto res = p.parseJourneys(readFile(inFileName));
+        const auto res = p.parseJourneys(Test::readFile(inFileName));
         const auto jsonRes = Journey::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
         QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 };
 
