@@ -26,7 +26,7 @@
 namespace wd = Wikidata;
 
 enum {
-    MaxLogoFileSize = 10000, // bytes
+    MaxLogoFileSize = 25000, // bytes
     QuadTreeDepthLimit = 16, // we don't want to use more than 32 bit
 };
 
@@ -482,6 +482,7 @@ void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
         QStringLiteral("public domain"),
         QStringLiteral("cc by 3.0"),
         QStringLiteral("cc by-sa 3.0"),
+        QStringLiteral("cc by-sa 3.0 de"),
         QStringLiteral("cc-by-sa-3.0"),
         QStringLiteral("cc by-sa 4.0"),
     });
@@ -586,9 +587,9 @@ void Generator::generateQuadTree()
             }
 
             // insert subtiles, if they actually contain the line bbox
-            qDebug() << "subdividing" << lines[*lit].name << lines[*lit].bbox << lines[*lit].relId << std::distance(lit, lend) << (*lit) << (*tileIt).first.depth << (*tileIt).first.z;
+            //qDebug() << "subdividing" << lines[*lit].name << lines[*lit].bbox << lines[*lit].relId << std::distance(lit, lend) << (*lit) << (*tileIt).first.depth << (*tileIt).first.z;
             for (auto it = lit; it != lend; ++it) {
-                qDebug() << "  " << lines[*it];
+                //qDebug() << "  " << lines[*it];
                 for (auto subtile : (*tileIt).first.quadSplit()) {
                     if (subtile.intersects(lines[*it].bbox)) {
                         insertToBucket(subtile, *it);
@@ -622,7 +623,7 @@ void Generator::generateQuadTree()
                                            (double)lines[*lineIt].bbox.height() / (double)(*tileIt).first.boundingBox().height());
 
             if (coverage < MinTileCoverage || coveredSubTiles == 1) {
-                qDebug() << "splitting due to small coverage:" << lines[*lineIt] << (*tileIt).first.depth << coverage << coveredSubTiles;
+                //qDebug() << "splitting due to small coverage:" << lines[*lineIt] << (*tileIt).first.depth << coverage << coveredSubTiles;
                 for (auto subtile : (*tileIt).first.quadSplit()) {
                     if (subtile.intersects(lines[*lineIt].bbox)) {
                         insertToBucket(subtile, *lineIt);
@@ -669,7 +670,7 @@ bool Generator::resolveOneBottomUpConflict()
                         return isSameLine(lines[lhs], lines[*lineIt]);
                     });
                     if (conflictIt != (*parentTileIt).second.end()) {
-                        qDebug() << "propagating down:" << lines[*conflictIt].name << lines[*conflictIt].relId << parentTile.z << parentTile.depth << *conflictIt;
+                        //qDebug() << "propagating down:" << lines[*conflictIt].name << lines[*conflictIt].relId << parentTile.z << parentTile.depth << *conflictIt;
                         auto splitTile = parentTile;
                         while (splitTile.depth > (*tileIt).first.depth) {
                             for (auto subtile : splitTile.quadSplit()) {
