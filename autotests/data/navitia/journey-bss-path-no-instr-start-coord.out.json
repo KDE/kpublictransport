@@ -983,6 +983,9 @@
                 "scheduledArrivalTime": "2021-10-21T17:05:29",
                 "scheduledDepartureTime": "2021-10-21T17:03:09",
                 "to": {
+                    "identifier": {
+                        "osm": "n890433076"
+                    },
                     "latitude": 43.61103439331055,
                     "locality": "Toulouse",
                     "longitude": 1.4522922039031982,
@@ -1000,6 +1003,9 @@
                 "disruptionEffect": "NormalService",
                 "distance": 946,
                 "from": {
+                    "identifier": {
+                        "osm": "n890433076"
+                    },
                     "latitude": 43.61103439331055,
                     "locality": "Toulouse",
                     "longitude": 1.4522922039031982,
@@ -1454,6 +1460,9 @@
                 "scheduledArrivalTime": "2021-10-21T17:09:41",
                 "scheduledDepartureTime": "2021-10-21T17:05:29",
                 "to": {
+                    "identifier": {
+                        "osm": "n1832846521"
+                    },
                     "latitude": 43.6047477722168,
                     "longitude": 1.4496145248413086,
                     "name": "Carnot - Trois Journées (Toulouse)",
@@ -1474,6 +1483,9 @@
                 "disruptionEffect": "NormalService",
                 "distance": 6,
                 "from": {
+                    "identifier": {
+                        "osm": "n1832846521"
+                    },
                     "latitude": 43.6047477722168,
                     "locality": "Toulouse",
                     "longitude": 1.4496145248413086,

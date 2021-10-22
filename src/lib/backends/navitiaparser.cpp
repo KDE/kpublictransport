@@ -113,6 +113,10 @@ static Location parseLocation(const QJsonObject &obj)
             loc.setIdentifier(QStringLiteral("uic"), code.value(QLatin1String("value")).toString().left(7));
         }
     }
+    const auto id = obj.value(QLatin1String("id")).toString();
+    if (id.startsWith(QLatin1String("poi:osm:node:"))) {
+        loc.setIdentifier(QStringLiteral("osm"), QLatin1Char('n') + QStringView(id).mid(13));
+    }
 
     const auto poi_type = obj.value(QLatin1String("poi_type")).toObject().value(QLatin1String("id")).toString();
     if (poi_type == QLatin1String("poi_type:amenity:bicycle_rental")) {
