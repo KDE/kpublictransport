@@ -318,8 +318,6 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
                 parseTripArrival(reader.subReader(), section);
             }
         } else if (reader.name() == QLatin1String("itdMeansOfTransport")) {
-            Line line;
-            line.setName(reader.attributes().value(QLatin1String("shortname")).toString());
             const auto type = reader.attributes().value(QLatin1String("type")).toInt();
             for (const auto &m : journey_section_types) {
                 if (m.type == type) {
@@ -327,19 +325,26 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
                     break;
                 }
             }
-            const auto prodName = reader.attributes().value(QLatin1String("productName"));
-            if (prodName == QLatin1String("Fussweg")) {
-                section.setMode(JourneySection::Walking);
-            } else {
-                line.setModeString(prodName.toString());
-            }
-            line.setMode(motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
-            Route route;
-            route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
-            route.setLine(line);
-            section.setRoute(route);
-            if (section.mode() == JourneySection::Invalid) {
+
+            if (type < 90) {
+                Line line;
+                line.setName(reader.attributes().value(QLatin1String("shortname")).toString());
+                const auto prodName = reader.attributes().value(QLatin1String("productName"));
+                if (prodName == QLatin1String("Fussweg")) {
+                    section.setMode(JourneySection::Walking);
+                } else {
+                    line.setModeString(prodName.toString());
+                }
+                line.setMode(motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
+                Route route;
+                route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
+                route.setLine(line);
+                section.setRoute(route);
                 section.setMode(JourneySection::PublicTransport);
+            } else if (type > 100) {
+                const auto itMode = motTypeToIndividualTransportMode(type);
+                section.setIndividualTransport(itMode);
+                section.setMode(JourneySection::IndividualTransport);
             }
         } else if (reader.name() == QLatin1String("infoLink")) {
             section.addNotes(parseInfoLink(reader.subReader()));

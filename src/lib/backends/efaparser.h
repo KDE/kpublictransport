@@ -22,6 +22,7 @@ class QPolygonF;
 
 namespace KPublicTransport {
 
+class IndividualTransport;
 class Journey;
 class JourneySection;
 class Location;
@@ -61,11 +62,13 @@ public:
     EfaRequestContext requestContext() const;
 
 protected:
-    /** convert "means of transport" type id to Line::Mode
+    /** Convert "means of transport" type id to Line::Mode
      * so far this seems to be identical in all installations, if that eventually changes
      * this needs a similar configuration as Hafas uses.
      */
     static Line::Mode motTypeToLineMode(int mot);
+    /** Same as the above, for individual transport modes. */
+    static IndividualTransport motTypeToIndividualTransportMode(int mot);
 
     /** Parse path encoded as a space separated string of coordinate pairs. */
     static QPolygonF parsePathCoordinatesElement(ScopedXmlStreamReader &reader);

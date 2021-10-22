@@ -8,6 +8,7 @@
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
 
+#include <KPublicTransport/IndividualTransport>
 #include <KPublicTransport/Path>
 
 using namespace KPublicTransport;
@@ -62,8 +63,22 @@ Line::Mode EfaParser::motTypeToLineMode(int mot)
         case 18: return Line::Train; // "Rail shuttle"
         case 19: return Line::Bus; // "Peoples bus" / "Bürgerbus"
     }
-    qCDebug(Log) << "Unknown means ot transport: " << mot;
+    qCDebug(Log) << "Unknown means of transport: " << mot;
     return Line::Unknown;
+}
+
+IndividualTransport EfaParser::motTypeToIndividualTransportMode(int mot)
+{
+    switch (mot) {
+        case 100: return { IndividualTransport::Walk, IndividualTransport::None };
+        case 101: return { IndividualTransport::Bike, IndividualTransport::Park };
+        case 102: return { IndividualTransport::Bike, IndividualTransport::None };
+        case 103:
+        case 104:
+            return { IndividualTransport::Car, IndividualTransport::None }; // TODO
+    }
+    qCDebug(Log) << "Unknown means of individual transport: " << mot;
+    return IndividualTransport::Walk;
 }
 
 QPolygonF EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)

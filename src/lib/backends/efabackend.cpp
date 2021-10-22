@@ -172,6 +172,34 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
     return true;
 }
 
+struct {
+    IndividualTransport::Mode mode;
+    IndividualTransport::Qualifier qualifier;
+    int itMot;
+} static constexpr const itMotMap[] = {
+    { IndividualTransport::Walk, IndividualTransport::None, 100 },
+    { IndividualTransport::Bike, IndividualTransport::Park, 101 },
+    { IndividualTransport::Bike, IndividualTransport::None, 102 },
+    { IndividualTransport::Car, IndividualTransport::Rent, 103 }, // ### 103 is "Kiss & Ride", unclear which of this two this practically maps to...
+    { IndividualTransport::Car, IndividualTransport::Dropoff, 103 },
+    { IndividualTransport::Car, IndividualTransport::Park, 104 },
+    // TODO 105 Taxi
+    // TODO 106 and 107 exist as well but no idea yet what they mean...
+};
+
+static void addItModeOptions(QUrlQuery &query, const QString &paramName, const std::vector<IndividualTransport> &modes)
+{
+    for (const auto &mode : modes) {
+        const auto it = std::find_if(std::begin(itMotMap), std::end(itMotMap), [mode](const auto &m) {
+            return m.mode == mode.mode() && m.qualifier == mode.qualifier();
+        });
+        if (it != std::end(itMotMap)) {
+            query.addQueryItem(paramName, QString::number((*it).itMot));;
+            break;
+        }
+    }
+}
+
 bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if ((request.modes() & JourneySection::PublicTransport) == 0) {
@@ -215,6 +243,10 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         query.addQueryItem(QStringLiteral("itdDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
         query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
         query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
+
+        query.addQueryItem(QStringLiteral("itOptionsActive"), QStringLiteral("1"));
+        addItModeOptions(query, QStringLiteral("trITDepMOT"), request.accessModes());
+        addItModeOptions(query, QStringLiteral("trITArrMOT"), request.egressModes());
 
         query.addQueryItem(QStringLiteral("calcNumberOfTrips"), QString::number(std::max(1, request.maximumResults())));
         query.addQueryItem(QStringLiteral("calcCO2"), QStringLiteral("1"));
