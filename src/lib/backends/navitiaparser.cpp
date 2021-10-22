@@ -234,6 +234,13 @@ static Path parsePathFromLength(const QPolygonF &pathLineString, const QJsonArra
         pathSections.push_back(std::move(pathSec));
     }
 
+    // if there's a trailing polygon end, attached that to the last section
+    if (prevPolyIdx + 1 < pathLineString.size()) {
+        auto poly = pathSections.back().path();
+        std::copy(pathLineString.begin() + prevPolyIdx + 1, pathLineString.end(), std::back_inserter(poly));
+        pathSections.back().setPath(std::move(poly));
+    }
+
     Path path;
     path.setSections(std::move(pathSections));
     return path;
