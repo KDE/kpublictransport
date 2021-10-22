@@ -21,6 +21,9 @@
       <ojp:StopPlaceRef>8500010</ojp:StopPlaceRef>
      </ojp:PlaceRef>
     </ojp:Destination>
+    <ojp:IndividualTransportOptions>
+     <ojp:Mode>walk</ojp:Mode>
+    </ojp:IndividualTransportOptions>
     <ojp:Params>
      <ojp:IncludeTrackSections>false</ojp:IncludeTrackSections>
      <ojp:IncludeLegProjection>false</ojp:IncludeLegProjection>

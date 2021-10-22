@@ -21,6 +21,9 @@
      </ojp:PlaceRef>
      <ojp:DepArrTime>2020-09-06T20:54:00Z</ojp:DepArrTime>
     </ojp:Destination>
+    <ojp:IndividualTransportOptions>
+     <ojp:Mode>walk</ojp:Mode>
+    </ojp:IndividualTransportOptions>
     <ojp:Params>
      <ojp:IncludeTrackSections>true</ojp:IncludeTrackSections>
      <ojp:IncludeLegProjection>true</ojp:IncludeLegProjection>

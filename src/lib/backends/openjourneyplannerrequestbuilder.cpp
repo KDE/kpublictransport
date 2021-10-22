@@ -101,6 +101,15 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildStopEventRequest(const Stopove
     return output;
 }
 
+struct {
+    IndividualTransport::Mode mode;
+    const char *ojpMode;
+} static constexpr const individual_transport_modes[] = {
+    { IndividualTransport::Walk, "walk" },
+    { IndividualTransport::Bike, "cycle" },
+    // TODO taxi, self-drive-car others-drive-car motorcycle truck
+};
+
 QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyRequest &req) const
 {
     QByteArray output;
@@ -123,7 +132,19 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     }
     w.writeEndElement(); // </Destination>
 
-    // TODO IndividualTransportOptions
+    if (!m_useTrias) {
+        w.writeStartElement(ns(), QStringLiteral("IndividualTransportOptions"));
+        for (const auto &accessMode : req.accessModes()) {
+            const auto it = std::find_if(std::begin(individual_transport_modes), std::end(individual_transport_modes), [accessMode](const auto &m) {
+                return m.mode == accessMode.mode();
+            });
+            if (it != std::end(individual_transport_modes)) {
+                w.writeTextElement(ns(),  QStringLiteral("Mode"), QLatin1String((*it).ojpMode));
+                break;
+            }
+        }
+        w.writeEndElement(); // </IndividualTransportOptions>
+    }
 
     w.writeStartElement(ns(), QStringLiteral("Params"));
     w.writeTextElement(ns(), QStringLiteral("IncludeTrackSections"), req.includePaths() ? QStringLiteral("true") : QStringLiteral("false"));
@@ -134,6 +155,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     w.writeTextElement(ns(), QStringLiteral("IncludeFares"), QStringLiteral("false")); // TODO
     w.writeTextElement(ns(), QStringLiteral("NumberOfResults"), QString::number(req.maximumResults()));
     // TODO NumberOfResultsBefore|After for next/prev requests
+    // TODO BikeTransport
     w.writeEndElement(); // </Params>
 
     w.writeEndElement(); // </TripRequest>

@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
 #include "backends/openjourneyplannerrequestbuilder.cpp"
 
 #include <KPublicTransport/JourneyRequest>
@@ -22,14 +23,6 @@ using namespace KPublicTransport;
 class OjpRequestTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -64,7 +57,7 @@ private Q_SLOTS:
         builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
         auto res = builder.buildLocationInformationRequest(request);
-        auto ref = readFile(refFileName);
+        auto ref = Test::readFile(refFileName);
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -73,7 +66,7 @@ private Q_SLOTS:
 
         builder.setUseTrias(true);
         res = builder.buildLocationInformationRequest(request);
-        ref = readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
+        ref = Test::readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -107,7 +100,7 @@ private Q_SLOTS:
         builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
         auto res = builder.buildStopEventRequest(request);
-        auto ref = readFile(refFileName);
+        auto ref = Test::readFile(refFileName);
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -116,7 +109,7 @@ private Q_SLOTS:
 
         builder.setUseTrias(true);
         res = builder.buildStopEventRequest(request);
-        ref = readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
+        ref = Test::readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -159,7 +152,7 @@ private Q_SLOTS:
         builder.setRequestorRef(QStringLiteral("KPublicTransport"));
         builder.setTestMode(true);
         auto res = builder.buildTripRequest(request);
-        auto ref = readFile(refFileName);
+        auto ref = Test::readFile(refFileName);
         if (res != ref) {
             qDebug().noquote() << res;
         }
@@ -168,7 +161,8 @@ private Q_SLOTS:
 
         builder.setUseTrias(true);
         res = builder.buildTripRequest(request);
-        ref = readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
+        ref = Test::readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
+
         if (res != ref) {
             qDebug().noquote() << res;
         }
