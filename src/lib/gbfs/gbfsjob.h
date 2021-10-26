@@ -31,7 +31,7 @@ class KPUBLICTRANSPORT_EXPORT GBFSJob : public QObject
     Q_OBJECT
 public:
     explicit GBFSJob(QNetworkAccessManager *nam, QObject *parent = nullptr);
-    ~GBFSJob();
+    ~GBFSJob() override;
 
     /** Perform GBFS auto-discovery based on the given @p url and update the local state as far as necessary. */
     void discoverAndUpdate(const GBFSService &service);

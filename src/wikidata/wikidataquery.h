@@ -23,7 +23,7 @@ class WikidataQuery : public QObject
     Q_OBJECT
 public:
     explicit WikidataQuery(QObject *parent = nullptr);
-    ~WikidataQuery();
+    ~WikidataQuery() override;
 
     enum Error {
         NoError,
@@ -51,7 +51,7 @@ class WikidataEntitiesQuery : public WikidataQuery
     Q_OBJECT
 public:
     explicit WikidataEntitiesQuery(QObject *parent = nullptr);
-    ~WikidataEntitiesQuery();
+    ~WikidataEntitiesQuery() override;
 
     void setItems(std::vector<Wikidata::Q> &&items);
     std::vector<Wikidata::Item>&& takeResult();
@@ -74,7 +74,7 @@ class WikidataImageMetadataQuery : public WikidataQuery
     Q_OBJECT
 public:
     explicit WikidataImageMetadataQuery(QObject *parent = nullptr);
-    ~WikidataImageMetadataQuery();
+    ~WikidataImageMetadataQuery() override;
 
     void setImages(std::vector<QString> &&images);
     std::vector<Wikidata::Image>&& takeResult();

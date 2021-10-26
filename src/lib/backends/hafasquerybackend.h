@@ -18,7 +18,7 @@ class HafasQueryBackend : public HafasBackend
     Q_GADGET
 public:
     HafasQueryBackend();
-    ~HafasQueryBackend();
+    ~HafasQueryBackend() override;
 
     void init() override;
     static inline constexpr const char* type() { return "hafasQuery"; }

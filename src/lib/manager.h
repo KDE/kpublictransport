@@ -55,7 +55,7 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
 
 public:
     explicit Manager(QObject *parent = nullptr);
-    ~Manager();
+    ~Manager() override;
 
     /** Set the network access manager to use for network operations.
      *  If not set, an instance is created internally.

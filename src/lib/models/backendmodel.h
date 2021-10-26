@@ -29,7 +29,7 @@ class KPUBLICTRANSPORT_EXPORT BackendModel : public QAbstractListModel
     Q_PROPERTY(Mode mode READ mode WRITE setMode NOTIFY modeChanged)
 public:
     explicit BackendModel(QObject *parent = nullptr);
-    ~BackendModel();
+    ~BackendModel() override;
 
     /** Content grouping modes. */
     enum Mode {

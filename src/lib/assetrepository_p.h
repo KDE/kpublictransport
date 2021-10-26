@@ -27,7 +27,7 @@ class KPUBLICTRANSPORT_EXPORT AssetRepository : public QObject
 {
     Q_OBJECT
 public:
-    ~AssetRepository();
+    ~AssetRepository() override;
 
     /** Returns the locally cached content for @p url
      *  if available, an empty string if none is available.

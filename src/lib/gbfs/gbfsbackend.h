@@ -19,7 +19,7 @@ class GBFSBackend : public AbstractBackend
     Q_GADGET
 public:
     explicit GBFSBackend();
-    ~GBFSBackend();
+    ~GBFSBackend() override;
 
     static inline constexpr const char* type() { return "gbfs"; }
     Capabilities capabilities() const override;

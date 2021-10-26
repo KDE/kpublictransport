@@ -40,7 +40,7 @@ class EfaBackend : public AbstractBackend
 
 public:
     EfaBackend();
-    ~EfaBackend();
+    ~EfaBackend() override;
 
     static inline constexpr const char* type() { return "efa"; }
     Capabilities capabilities() const override;

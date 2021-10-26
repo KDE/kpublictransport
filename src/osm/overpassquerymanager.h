@@ -22,7 +22,7 @@ class OverpassQueryManager : public QObject
     Q_OBJECT
 public:
     explicit OverpassQueryManager(QObject *parent = nullptr);
-    ~OverpassQueryManager();
+    ~OverpassQueryManager() override;
 
     /** Executes @p query.
      *  Once done, OverpassQuery::finished will be emitted.

@@ -37,7 +37,7 @@ class KPUBLICTRANSPORT_EXPORT AbstractQueryModel : public QAbstractListModel
     Q_PROPERTY(QVariantList attributions READ attributionsVariant NOTIFY attributionsChanged)
 
 public:
-    ~AbstractQueryModel();
+    ~AbstractQueryModel() override;
 
     Manager* manager() const;
     void setManager(Manager *mgr);

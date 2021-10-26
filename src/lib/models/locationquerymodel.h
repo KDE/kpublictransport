@@ -29,7 +29,7 @@ class KPUBLICTRANSPORT_EXPORT LocationQueryModel : public AbstractQueryModel
 
 public:
     explicit LocationQueryModel(QObject *parent = nullptr);
-    ~LocationQueryModel();
+    ~LocationQueryModel() override;
 
     LocationRequest request() const;
     void setRequest(const LocationRequest &req);

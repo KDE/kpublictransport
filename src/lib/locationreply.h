@@ -23,7 +23,7 @@ class KPUBLICTRANSPORT_EXPORT LocationReply : public Reply
 {
     Q_OBJECT
 public:
-    ~LocationReply();
+    ~LocationReply() override;
 
     /** The request this is the reply for. */
     LocationRequest request() const;

@@ -19,7 +19,7 @@ class OpenTripPlannerRestBackend : public AbstractBackend
 
 public:
     OpenTripPlannerRestBackend();
-    ~OpenTripPlannerRestBackend();
+    ~OpenTripPlannerRestBackend() override;
 
     static inline constexpr const char* type() { return "otpRest"; }
     Capabilities capabilities() const override;

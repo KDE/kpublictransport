@@ -37,7 +37,7 @@ class KPUBLICTRANSPORT_EXPORT StopoverQueryModel : public AbstractQueryModel
 
 public:
     explicit StopoverQueryModel(QObject *parent = nullptr);
-    ~StopoverQueryModel();
+    ~StopoverQueryModel() override;
 
     StopoverRequest request() const;
     void setRequest(const StopoverRequest &req);

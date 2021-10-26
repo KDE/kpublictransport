@@ -34,7 +34,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutQueryModel : public AbstractQueryMode
 
 public:
     explicit VehicleLayoutQueryModel(QObject *parent = nullptr);
-    ~VehicleLayoutQueryModel();
+    ~VehicleLayoutQueryModel() override;
 
     VehicleLayoutRequest request() const;
     void setRequest(const VehicleLayoutRequest &req);

@@ -18,7 +18,7 @@ class AccessibilityCloudBackend : public AbstractBackend
     Q_PROPERTY(QString token MEMBER m_token)
 public:
     explicit AccessibilityCloudBackend();
-    ~AccessibilityCloudBackend();
+    ~AccessibilityCloudBackend() override;
 
     static inline constexpr const char* type() { return "a11y_cloud"; }
     Capabilities capabilities() const override;

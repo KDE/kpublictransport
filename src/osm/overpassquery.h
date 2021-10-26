@@ -25,7 +25,7 @@ class OverpassQuery : public QObject
     Q_OBJECT
 public:
     explicit OverpassQuery(QObject *parent = nullptr);
-    ~OverpassQuery();
+    ~OverpassQuery() override;
 
     /** Returns the raw (without bbox replacement) query string. */
     QString query() const;

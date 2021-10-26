@@ -23,7 +23,7 @@ class KPUBLICTRANSPORT_EXPORT StopoverReply : public Reply
 {
     Q_OBJECT
 public:
-    ~StopoverReply();
+    ~StopoverReply() override;
 
     /** The request this is the reply for. */
     StopoverRequest request() const;

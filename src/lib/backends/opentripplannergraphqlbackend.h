@@ -33,7 +33,7 @@ class OpenTripPlannerGraphQLBackend : public AbstractBackend
 
 public:
     OpenTripPlannerGraphQLBackend();
-    ~OpenTripPlannerGraphQLBackend();
+    ~OpenTripPlannerGraphQLBackend() override;
 
     static inline constexpr const char* type() { return "otpGraphQl"; }
     Capabilities capabilities() const override;

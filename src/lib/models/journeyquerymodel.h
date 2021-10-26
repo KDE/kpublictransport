@@ -37,7 +37,7 @@ class KPUBLICTRANSPORT_EXPORT JourneyQueryModel : public AbstractQueryModel
 
 public:
     explicit JourneyQueryModel(QObject *parent = nullptr);
-    ~JourneyQueryModel();
+    ~JourneyQueryModel() override;
 
     JourneyRequest request() const;
     /** Specify the actual journey query. */

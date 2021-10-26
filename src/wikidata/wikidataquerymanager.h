@@ -19,7 +19,7 @@ class WikidataQueryManager : public QObject
     Q_OBJECT
 public:
     explicit WikidataQueryManager(QObject *parent = nullptr);
-    ~WikidataQueryManager();
+    ~WikidataQueryManager() override;
 
     void execute(WikidataQuery *query);
 

@@ -25,7 +25,7 @@ class KPUBLICTRANSPORT_EXPORT Reply : public QObject
 {
     Q_OBJECT
 public:
-    ~Reply();
+    ~Reply() override;
 
     /** Error types. */
     enum Error {

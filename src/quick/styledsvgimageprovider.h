@@ -16,7 +16,7 @@ class StyledSvgImageProvider : public QQuickImageProvider
 {
 public:
     explicit StyledSvgImageProvider();
-    ~StyledSvgImageProvider();
+    ~StyledSvgImageProvider() override;
     QImage requestImage(const QString &id, QSize *size, const QSize &requestedSize) override;
 };
 

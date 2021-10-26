@@ -47,7 +47,7 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
     Q_PROPERTY(QJsonArray conGroups WRITE setConGroups)
 public:
     HafasMgateBackend();
-    ~HafasMgateBackend();
+    ~HafasMgateBackend() override;
 
     void init() override;
     static inline constexpr const char* type() { return "hafasMgate"; }

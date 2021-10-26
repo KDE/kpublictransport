@@ -26,7 +26,7 @@ class KPUBLICTRANSPORT_EXPORT PathModel : public QAbstractListModel
 
 public:
     explicit PathModel(QObject *parent = nullptr);
-    ~PathModel();
+    ~PathModel() override;
 
     enum Role {
         PathSectionRole = Qt::UserRole,

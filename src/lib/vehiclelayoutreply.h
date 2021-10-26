@@ -23,7 +23,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleLayoutReply : public Reply
 {
     Q_OBJECT
 public:
-    ~VehicleLayoutReply();
+    ~VehicleLayoutReply() override;
 
     /** The request this is the reply for. */
     VehicleLayoutRequest request() const;

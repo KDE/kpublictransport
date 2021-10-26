@@ -22,7 +22,7 @@ class KPUBLICTRANSPORT_EXPORT JourneyReply : public Reply
 {
     Q_OBJECT
 public:
-    ~JourneyReply();
+    ~JourneyReply() override;
 
     /** The request this is the reply for. */
     JourneyRequest request() const;
