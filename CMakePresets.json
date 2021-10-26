@@ -1,5 +1,5 @@
 {
-    "version": 2,
+    "version": 3,
     "configurePresets": [
         {
             "name": "dev",
@@ -8,8 +8,21 @@
             "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-		"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-            }
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "installDir": "$env{KF5}"
+        },
+        {
+            "name": "dev-disable-deprecated",
+            "displayName": "Build as without deprecated methods",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-disable-deprecated",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_INIT": "-DQT_DISABLE_DEPRECATED_BEFORE=0x060000 -DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x060000"
+            },
+	    "installDir": "$env{KF5}"
         },
         {
             "name": "asan",
@@ -19,8 +32,24 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "ECM_ENABLE_SANITIZERS" : "'address;undefined'",
-		"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-            }
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "installDir": "$env{KF5}"
+        },
+        {
+            "name": "dev-clang",
+            "displayName": "dev-clang",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-clang",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "environment": {
+                "CXX": "clang++",
+                "CCACHE_DISABLE": "ON"
+            },
+            "installDir": "$env{KF5}"
         },
         {
             "name": "unity",
@@ -30,8 +59,9 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
 		"CMAKE_UNITY_BUILD": "ON",
-		"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-            }
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "installDir": "$env{KF5}"
         },
         {
             "name": "release",
@@ -40,7 +70,8 @@
             "binaryDir": "${sourceDir}/build-release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
-            }
+            },
+            "installDir": "$env{KF5}"
         },
         {
             "name": "profile",
@@ -49,9 +80,10 @@
             "binaryDir": "${sourceDir}/build-profile",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-		"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-            }
-	},
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "installDir": "$env{KF5}"
+        },
         {
             "name": "clazy",
             "displayName": "clazy",
@@ -63,13 +95,35 @@
             "environment": {
                 "CXX": "clazy",
                 "CCACHE_DISABLE": "ON"
-            }
+            },
+            "installDir": "$env{KF5}"
         }
+
     ],
     "buildPresets": [
         {
             "name": "dev",
             "configurePreset": "dev"
+        },
+        {
+            "name": "dev-disable-deprecated",
+            "configurePreset": "dev-disable-deprecated"
+        },
+        {
+            "name": "release",
+            "configurePreset": "release"
+        },
+        {
+            "name": "dev-clang",
+            "configurePreset": "dev-clang"
+        },
+        {
+            "name": "asan",
+            "configurePreset": "asan"
+        },
+        {
+            "name": "unity",
+            "configurePreset": "unity"
         },
         {
             "name": "clazy",
@@ -79,5 +133,19 @@
                 "CCACHE_DISABLE" : "ON"
             }
         }
+    ],
+    "testPresets": [
+    { 
+      "name": "dev",
+      "configurePreset": "dev",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOnFailure": false}
+    },
+    { 
+      "name": "asan",
+      "configurePreset": "asan",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    }
     ]
 }
