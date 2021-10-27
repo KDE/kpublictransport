@@ -10,7 +10,7 @@ set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(KPublicTransport VERSION ${RELEASE_SERVICE_VERSION})
 
-find_package(ECM 5.85 REQUIRED NO_MODULE)
+find_package(ECM 5.91 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -24,6 +24,7 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(GenerateExportHeader)
 include(ECMAddQch)
+include(ECMQmlModule)
 
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")

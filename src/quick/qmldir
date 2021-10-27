@@ -1,4 +1,0 @@
-module org.kde.kpublictransport.ui
-plugin kpublictransportquickplugin
-classname KPublicTransportQuickPlugin
-VehicleSectionItem 1.0 VehicleSectionItem.qml

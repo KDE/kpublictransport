@@ -1,7 +1,8 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
-add_library(kpublictransportquickplugin)
+ecm_add_qml_module(kpublictransportquickplugin URI "org.kde.kpublictransport.ui" VERSION 1.0)
+
 target_sources(kpublictransportquickplugin PRIVATE
     kpublictransportquickplugin.cpp
     styledframesvgitem.cpp
@@ -9,24 +10,8 @@ target_sources(kpublictransportquickplugin PRIVATE
     assets/assets.qrc
 )
 
-if(NOT BUILD_SHARED_LIBS)
-    target_compile_definitions(kpublictransportquickplugin PRIVATE -DQT_PLUGIN -DQT_STATICPLUGIN=1)
-    set_target_properties(kpublictransportquickplugin PROPERTIES AUTOMOC_MOC_OPTIONS -Muri=org.kde.kpublictransport.ui)
-    target_sources(kpublictransportquickplugin PRIVATE kpublictransportquick.qrc)
-endif()
+ecm_target_qml_sources(kpublictransportquickplugin SOURCES VehicleSectionItem.qml VERSION 1.0)
 
-set(kpublictransportquickplugin_qml
-    qmldir
-    VehicleSectionItem.qml
-)
+target_link_libraries(kpublictransportquickplugin PRIVATE Qt::Quick)
 
-target_link_libraries(kpublictransportquickplugin
-    Qt5::Quick
-)
-
-# make examples work without installation
-set_property(TARGET kpublictransportquickplugin PROPERTY LIBRARY_OUTPUT_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/org/kde/kpublictransport/ui)
-file(COPY ${kpublictransportquickplugin_qml} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/org/kde/kpublictransport/ui)
-
-install(TARGETS kpublictransportquickplugin DESTINATION ${QML_INSTALL_DIR}/org/kde/kpublictransport/ui)
-install(FILES ${kpublictransportquickplugin_qml} ${quick_SRC} DESTINATION ${QML_INSTALL_DIR}/org/kde/kpublictransport/ui)
+ecm_finalize_qml_module(kpublictransportquickplugin DESTINATION ${KDE_INSTALL_QMLDIR})
