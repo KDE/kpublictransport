@@ -59,6 +59,7 @@ void HafasMgateBackend::init()
     m_parser.setLocationIdentifierTypes(locationIdentifierType(), standardLocationIdentifierType());
     m_parser.setLineModeMap(std::move(m_lineModeMap));
     m_parser.setStandardLocationIdentfierCountries(std::move(m_uicCountryCodes));
+    m_parser.setPreferLineNumberProducts(std::move(m_lineNumberProducts));
 }
 
 AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
@@ -403,4 +404,16 @@ void HafasMgateBackend::setConGroups(const QJsonArray &conGroups)
         cg.group = conGroupObj.value(QLatin1String("conGroup")).toString();
         m_conGroups.push_back(std::move(cg));
     }
+}
+
+void HafasMgateBackend::setPreferLineNumberProducts(const QJsonArray &lineNumberProduducts)
+{
+    m_lineNumberProducts.reserve(lineNumberProduducts.size());
+    for (const auto &lineNumV : lineNumberProduducts) {
+        const auto num = lineNumV.toInt();
+        if (num > 0) {
+            m_lineNumberProducts.push_back(num);
+        }
+    }
+    std::sort(m_lineNumberProducts.begin(), m_lineNumberProducts.end());
 }

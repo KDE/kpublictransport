@@ -190,6 +190,7 @@
         "customCaCertificate": "digicert-sha2-secure-server-ca.pem",
         "endpoint": "https://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe",
         "locationIdentifierType": "sncb",
+        "preferLineNumberProducts": [ 256, 1024 ],
         "products": [
             {
                 "bitmasks": [

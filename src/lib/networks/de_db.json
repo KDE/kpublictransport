@@ -104,6 +104,7 @@
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
         "ext": "DB.R20.12.b",
         "locationIdentifierType": "db",
+        "preferLineNumberProducts": [ 256 ],
         "products": [
             {
                 "bitmasks": [

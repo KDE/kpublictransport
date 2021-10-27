@@ -45,6 +45,12 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
      *  our transport modes.
      */
     Q_PROPERTY(QJsonArray conGroups WRITE setConGroups)
+
+    /** Products (as numerical Hafas ids) for which we should prefer the line number over the line name.
+     *  This is useful to strip non-canonical prefixes.
+     */
+    Q_PROPERTY(QJsonArray preferLineNumberProducts WRITE setPreferLineNumberProducts)
+
 public:
     HafasMgateBackend();
     ~HafasMgateBackend() override;
@@ -65,6 +71,7 @@ private:
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
     void setConGroups(const QJsonArray &conGroups);
+    void setPreferLineNumberProducts(const QJsonArray &lineNumberProduducts);
     QJsonObject locationToJson(const Location &loc) const;
 
     mutable HafasMgateParser m_parser;
@@ -82,6 +89,7 @@ private:
         QString group;
     };
     std::vector<ConGroup> m_conGroups;
+    std::vector<int> m_lineNumberProducts;
 };
 
 }

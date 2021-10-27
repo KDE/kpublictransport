@@ -41,6 +41,7 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateParser : public HafasParser
 public:
     HafasMgateParser();
     ~HafasMgateParser();
+    void setPreferLineNumberProducts(std::vector<int> &&lineNumberProducts);
 
     std::vector<Stopover> parseDepartures(const QByteArray &data) const;
     std::vector<Location> parseLocations(const QByteArray &data) const;
@@ -57,6 +58,8 @@ private:
     std::vector<Location> parseLocations(const QJsonArray &locL) const;
     std::vector<Journey> parseTripSearch(const QJsonObject &obj);
     bool parseError(const QJsonObject &obj) const;
+
+    std::vector<int> m_lineNumberProducts;
 };
 
 }

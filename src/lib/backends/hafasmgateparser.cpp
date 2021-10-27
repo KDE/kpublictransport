@@ -246,9 +246,20 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
     lines.reserve(prodL.size());
     for (const auto &prodV : prodL) {
         const auto prodObj = prodV.toObject();
+        const auto prodCls = prodObj.value(QLatin1String("cls")).toInt();
+
         Line line;
-        line.setName(prodObj.value(QLatin1String("name")).toString());
-        line.setMode(parseLineMode(prodObj.value(QLatin1String("cls")).toInt()));
+        line.setMode(parseLineMode(prodCls));
+
+        if (std::binary_search(m_lineNumberProducts.begin(), m_lineNumberProducts.end(), prodCls)) {
+            line.setName(prodObj.value(QLatin1String("line")).toString());
+            if (line.name().isEmpty()) {
+                line.setName(prodObj.value(QLatin1String("nameS")).toString());
+            }
+        }
+        if (line.name().isEmpty()) {
+            line.setName(prodObj.value(QLatin1String("name")).toString());
+        }
 
         const auto icoIdx = prodObj.value(QLatin1String("icoX")).toInt();
         if ((unsigned int)icoIdx < icos.size()) {
@@ -793,4 +804,9 @@ QDateTime HafasMgateParser::parseDateTime(const QString &date, const QJsonValue 
     }
 
     return dt;
+}
+
+void HafasMgateParser::setPreferLineNumberProducts(std::vector<int> &&lineNumberProducts)
+{
+    m_lineNumberProducts = std::move(lineNumberProducts);
 }
