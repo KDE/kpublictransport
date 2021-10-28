@@ -38,6 +38,8 @@ public:
 
     /** UIC company codes of operators covered by this backend. */
     KPUBLICTRANSPORT_PROPERTY(QStringList, uicCompanyCodes, setUicCompanyCodes)
+    /** VDV organization ids of operators covered by this backend. */
+    KPUBLICTRANSPORT_PROPERTY(QStringList, vdvOrganizationIds, setVdvOrganizationIds)
 
 public:
     /** Checks whether this coverage area is empty.

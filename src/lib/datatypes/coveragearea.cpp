@@ -22,6 +22,7 @@ public:
     CoverageArea::Type type = CoverageArea::Any;
     QStringList regions;
     QStringList uicCompanyCodes;
+    QStringList vdvOrganizationIds;
     std::vector<QPolygonF> areas;
     QRectF boundingBox;
 };
@@ -31,6 +32,7 @@ KPUBLICTRANSPORT_MAKE_GADGET(CoverageArea)
 KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, CoverageArea::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, QStringList, regions, setRegions)
 KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, QStringList, uicCompanyCodes, setUicCompanyCodes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(CoverageArea, QStringList, vdvOrganizationIds, setVdvOrganizationIds)
 
 bool CoverageArea::isEmpty() const
 {

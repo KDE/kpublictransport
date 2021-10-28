@@ -69,6 +69,10 @@
             },
             "region": [
                 "DE-NW"
+            ],
+            "vdvOrganizationIds": [
+                "102",
+                "6212"
             ]
         }
     },
