@@ -121,7 +121,7 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
 
     // augment line information
     for (auto &dep : res) {
-        StopoverUtil::applyMetaData(dep, request().downloadAssets());
+        dep.applyMetaData(request().downloadAssets());
     }
 
     // apply static attributions if @p backend contributed to the results

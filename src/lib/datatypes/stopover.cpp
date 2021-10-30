@@ -149,6 +149,13 @@ QVariantList Stopover::loadInformationVariant() const
     return l;
 }
 
+void Stopover::applyMetaData(bool download)
+{
+    auto line = d->route.line();
+    line.applyMetaData(stopPoint(), download);
+    d->route.setLine(line);
+}
+
 bool Stopover::isSame(const Stopover &lhs, const Stopover &rhs)
 {
     // same time is mandatory
@@ -246,7 +253,7 @@ Stopover Stopover::fromJson(const QJsonObject &obj)
     stopover.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
     stopover.setVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("vehicleLayout")).toObject()));
     stopover.setPlatformLayout(Platform::fromJson(obj.value(QLatin1String("platformLayout")).toObject()));
-    StopoverUtil::applyMetaData(stopover, false);
+    stopover.applyMetaData(false);
     return stopover;
 }
 

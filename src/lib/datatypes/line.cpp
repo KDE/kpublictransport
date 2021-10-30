@@ -67,11 +67,6 @@ bool Line::hasTextColor() const
     return d->textColor.isValid();
 }
 
-void Line::setMetaData(const LineMetaData &metaData)
-{
-    d->metaData = metaData;
-}
-
 QString Line::logo() const
 {
     return AssetRepository::localFile(d->metaData.logoUrl());
@@ -138,6 +133,20 @@ Line Line::merge(const Line &lhs, const Line &rhs)
         l.setMode(rhs.mode());
     }
     return l;
+}
+
+void Line::applyMetaData(const Location &location, bool download)
+{
+    if (name().isEmpty() || !location.hasCoordinate()) {
+        return;
+    }
+
+    d->metaData = LineMetaData::find(location.latitude(), location.longitude(), name(), mode());
+
+    if (download && AssetRepository::instance()) {
+        AssetRepository::instance()->download(d->metaData.logoUrl());
+        AssetRepository::instance()->download(d->metaData.modeLogoUrl());
+    }
 }
 
 QJsonObject Line::toJson(const Line &l)

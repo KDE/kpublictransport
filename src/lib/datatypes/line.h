@@ -14,10 +14,6 @@ namespace KPublicTransport {
 
 class Line;
 class LinePrivate;
-class LineMetaData;
-namespace LineUtil{
-KPUBLICTRANSPORT_EXPORT void setMetaData(Line&, const LineMetaData&);
-}
 
 /** A public transport line. */
 class KPUBLICTRANSPORT_EXPORT Line
@@ -96,6 +92,12 @@ public:
     QString modeLogo() const;
     bool hasModeLogo() const;
 
+    /** Look up line meta data and apply what is found.
+     *  @param location A location on or close to the line.
+     *  @param download When set to @c true, not yet locally present logo URLs are retrieved.
+     */
+    void applyMetaData(const Location &location, bool download);
+
     /** Checks if to instances refer to the same line (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Line &lhs, const Line &rhs);
 
@@ -106,12 +108,11 @@ public:
 
     /** Serializes one object to JSON. */
     static QJsonObject toJson(const Line &l);
-    /** Deserialize an object from JSON. */
+    /** Deserialize an object from JSON.
+     *  @note Line meta data isn't serialized, so you might need to call applyLineMetaData() again
+     *  after loading a line.
+     */
     static Line fromJson(const QJsonObject &obj);
-
-private:
-    friend void LineUtil::setMetaData(Line&, const LineMetaData&);
-    void setMetaData(const LineMetaData &metaData);
 };
 
 class RoutePrivate;

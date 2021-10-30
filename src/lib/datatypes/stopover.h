@@ -97,6 +97,11 @@ public:
     /** Set the expected vehicle load information for departing from this stopover. */
     void setLoadInformation(std::vector<LoadInfo>&& loadInfo);
 
+    /** Augment line meta data.
+     *  @param download when set to @c true trigger download of missing assets.
+     */
+    void applyMetaData(bool download);
+
     /** Checks if to instances refer to the same departure (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Stopover &lhs, const Stopover &rhs);
 

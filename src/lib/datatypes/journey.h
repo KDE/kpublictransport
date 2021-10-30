@@ -199,6 +199,11 @@ public:
     /** Set the vehicle load information for this journey section. */
     void setLoadInformation(std::vector<LoadInfo>&& loadInfo);
 
+    /** Augment line meta data.
+     *  @param download if set to @p true, trigger the download of locally missing assets.
+     */
+    void applyMetaData(bool download);
+
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
     static bool isSame(const JourneySection &lhs, const JourneySection &rhs);
 
@@ -271,6 +276,11 @@ public:
     int duration() const;
     int numberOfChanges() const;
     Disruption::Effect disruptionEffect() const;
+
+    /** Augment line meta data.
+     *  @param download if set to @p true, trigger the download of locally missing assets.
+     */
+    void applyMetaData(bool download);
 
     /** Checks if two instances refer to the same journey (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Journey &lhs, const Journey &rhs);

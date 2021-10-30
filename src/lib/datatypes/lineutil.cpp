@@ -44,23 +44,3 @@ bool LineUtil::isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
 
     return false;
 }
-
-void LineUtil::applyMetaData(Line &line, const Location &loc, bool download)
-{
-    if (line.name().isEmpty() || !loc.hasCoordinate()) {
-        return;
-    }
-
-    auto metaData = LineMetaData::find(loc.latitude(), loc.longitude(), line.name(), line.mode());
-    setMetaData(line, metaData);
-
-    if (download && AssetRepository::instance()) {
-        AssetRepository::instance()->download(metaData.logoUrl());
-        AssetRepository::instance()->download(metaData.modeLogoUrl());
-    }
-}
-
-void LineUtil::setMetaData(Line& line, const LineMetaData &metaData)
-{
-    line.setMetaData(metaData);
-}

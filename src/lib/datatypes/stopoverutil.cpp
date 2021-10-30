@@ -5,7 +5,6 @@
 */
 
 #include "stopoverutil_p.h"
-#include "lineutil_p.h"
 #include "timeutil_p.h"
 
 #include <KPublicTransport/Stopover>
@@ -46,13 +45,4 @@ void StopoverUtil::applyTimeZone(Stopover &dep, const QTimeZone &tz)
     dep.setExpectedDepartureTime(TimeUtil::applyTimeZone(dep.expectedDepartureTime(), tz));
     dep.setScheduledArrivalTime(TimeUtil::applyTimeZone(dep.scheduledArrivalTime(), tz));
     dep.setExpectedArrivalTime(TimeUtil::applyTimeZone(dep.expectedArrivalTime(), tz));
-}
-
-void StopoverUtil::applyMetaData(Stopover &dep, bool download)
-{
-    auto route = dep.route();
-    auto line = route.line();
-    LineUtil::applyMetaData(line, dep.stopPoint(), download);
-    route.setLine(line);
-    dep.setRoute(route);
 }

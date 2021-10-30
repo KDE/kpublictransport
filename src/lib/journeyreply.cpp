@@ -245,7 +245,7 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
 
     // apply line meta data
     for (auto &jny : res) {
-        JourneyUtil::applyMetaData(jny, request().downloadAssets());
+        jny.applyMetaData(request().downloadAssets());
     }
 
     // cache negative hits, positive ones are too short-lived

@@ -29,8 +29,6 @@ namespace JourneyUtil
 
     /** Reinterpret all floating times as times with the given timezone. */
     void applyTimeZone(Journey &jny, const QTimeZone &tz);
-    /** Augment line meta data. */
-    void applyMetaData(Journey &jny, bool download);
 }
 
 }

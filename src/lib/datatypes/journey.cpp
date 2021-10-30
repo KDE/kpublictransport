@@ -346,6 +346,21 @@ QVariantList JourneySection::loadInformationVariant() const
     return l;
 }
 
+void JourneySection::applyMetaData(bool download)
+{
+    if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {
+        return;
+    }
+    auto line = d->route.line();
+    line.applyMetaData(from(), download);
+    d->route.setLine(line);
+
+    // propagate to intermediate stops
+    for (auto &stop : d->intermediateStops) {
+        stop.setRoute(d->route);
+    }
+}
+
 bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs)
 {
     if (lhs.d->mode != rhs.d->mode) {
@@ -518,6 +533,7 @@ JourneySection JourneySection::fromJson(const QJsonObject &obj)
     section.setArrivalVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("arrivalVehicleLayout")).toObject()));
     section.setArrivalPlatformLayout(Platform::fromJson(obj.value(QLatin1String("arrivalPlatformLayout")).toObject()));
     section.setIndividualTransport(IndividualTransport::fromJson(obj.value(QLatin1String("individualTransport")).toObject()));
+    section.applyMetaData(false);
     return section;
 }
 
@@ -609,6 +625,13 @@ Disruption::Effect Journey::disruptionEffect() const
     return effect;
 }
 
+void Journey::applyMetaData(bool download)
+{
+    for (auto &sec : d->sections) {
+        sec.applyMetaData(download);
+    }
+}
+
 static bool isTransportSection(JourneySection::Mode mode)
 {
     return mode == JourneySection::PublicTransport
@@ -694,7 +717,6 @@ Journey Journey::fromJson(const QJsonObject &obj)
 {
     Journey j;
     j.setSections(JourneySection::fromJson(obj.value(QLatin1String("sections")).toArray()));
-    JourneyUtil::applyMetaData(j, false);
     return j;
 }
 

@@ -5,7 +5,6 @@
 */
 
 #include "journeyutil_p.h"
-#include "lineutil_p.h"
 #include "stopoverutil_p.h"
 #include "timeutil_p.h"
 
@@ -50,29 +49,6 @@ void JourneyUtil::applyTimeZone(Journey &jny, const QTimeZone &tz)
         auto stops = sec.takeIntermediateStops();
         for (auto &stop : stops) {
             StopoverUtil::applyTimeZone(stop, tz);
-        }
-        sec.setIntermediateStops(std::move(stops));
-    }
-    jny.setSections(std::move(sections));
-}
-
-void JourneyUtil::applyMetaData(Journey &jny, bool download)
-{
-    auto sections = std::move(jny.takeSections());
-    for (auto &sec : sections) {
-        if (!sec.from().hasCoordinate() || sec.mode() != JourneySection::PublicTransport) {
-            continue;
-        }
-        auto route = sec.route();
-        auto line = route.line();
-        LineUtil::applyMetaData(line, sec.from(), download);
-        route.setLine(line);
-        sec.setRoute(route);
-
-        // propagate to intermediate stops
-        auto stops = sec.takeIntermediateStops();
-        for (auto &stop : stops) {
-            stop.setRoute(route);
         }
         sec.setIntermediateStops(std::move(stops));
     }

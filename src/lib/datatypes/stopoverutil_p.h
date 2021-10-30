@@ -23,8 +23,6 @@ namespace StopoverUtil
 
     /** Reinterpret all floating times as times with the given timezone. */
     void applyTimeZone(Stopover &dep, const QTimeZone &tz);
-    /** Augment line meta data. */
-    void applyMetaData(Stopover &dep, bool download);
 }
 
 }

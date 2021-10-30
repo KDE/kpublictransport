@@ -16,18 +16,11 @@ using namespace KPublicTransport;
 
 Line LineMetaDataWrapper::lookup(const QString &name, double latitude, double longitude, int mode, bool download)
 {
-    auto md = LineMetaData::find(latitude, longitude, name, static_cast<Line::Mode>(mode));
-    if (md.isNull()) {
-        return {};
-    }
-
     Line line;
-    LineUtil::setMetaData(line, md);
-
-    if (download && AssetRepository::instance()) {
-        AssetRepository::instance()->download(md.logoUrl());
-        AssetRepository::instance()->download(md.modeLogoUrl());
-    }
-
+    line.setName(name);
+    line.setMode(static_cast<Line::Mode>(mode));
+    Location loc;
+    loc.setCoordinate(latitude, longitude);
+    line.applyMetaData(loc, download);
     return line;
 }
