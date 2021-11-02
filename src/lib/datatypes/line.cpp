@@ -6,7 +6,6 @@
 
 #include "line.h"
 #include "lineutil_p.h"
-#include "location.h"
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"

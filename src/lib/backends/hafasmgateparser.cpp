@@ -11,13 +11,11 @@
 #include "geo/polylinedecoder_p.h"
 
 #include <KPublicTransport/Journey>
-#include <KPublicTransport/Line>
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/Vehicle>
 
-#include <QColor>
 #include <QDateTime>
 #include <QDebug>
 #include <QJsonArray>

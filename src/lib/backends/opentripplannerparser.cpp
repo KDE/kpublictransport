@@ -10,7 +10,6 @@
 #include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
-#include <KPublicTransport/RentalVehicle>
 #include <KPublicTransport/Stopover>
 
 #include <QColor>

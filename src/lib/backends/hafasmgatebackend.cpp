@@ -5,7 +5,6 @@
 */
 
 #include "hafasmgatebackend.h"
-#include "hafasmgateparser.h"
 #include "logging.h"
 #include "cache.h"
 

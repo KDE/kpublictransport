@@ -7,7 +7,6 @@
 #include "indexeddatatable.h"
 
 #include <QByteArray>
-#include <QIODevice>
 #include <QString>
 
 void StringTable::addString(const QString &s)

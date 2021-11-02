@@ -12,7 +12,6 @@
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
-#include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Manager>
 
 #include <QDebug>

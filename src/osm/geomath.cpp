@@ -8,7 +8,6 @@
 
 #include <QLineF>
 
-#include <cmath>
 #include <limits>
 
 using namespace OSM;

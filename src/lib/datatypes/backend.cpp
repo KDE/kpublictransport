@@ -7,7 +7,6 @@
 #include "backend.h"
 #include "backend_p.h"
 #include "backends/abstractbackend.h"
-#include "coveragearea.h"
 #include "datatypes_p.h"
 #include "json_p.h"
 

@@ -15,7 +15,6 @@
 #include <QDir>
 #include <QJsonDocument>
 #include <QNetworkReply>
-#include <QPolygonF>
 
 using namespace KPublicTransport;
 

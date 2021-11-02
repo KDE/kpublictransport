@@ -8,7 +8,6 @@
 #include "abstractquerymodel_p.h"
 
 #include <KPublicTransport/Attribution>
-#include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutReply>
 #include <KPublicTransport/Manager>
 

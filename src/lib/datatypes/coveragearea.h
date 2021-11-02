@@ -7,7 +7,6 @@
 #ifndef KPUBLICTRANSPORT_COVERAGEAREA_H
 #define KPUBLICTRANSPORT_COVERAGEAREA_H
 
-#include "coveragearea.h"
 #include "datatypes.h"
 
 class QJsonObject;
