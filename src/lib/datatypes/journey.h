@@ -240,6 +240,10 @@ class KPUBLICTRANSPORT_EXPORT Journey
     Q_PROPERTY(QDateTime scheduledDepartureTime READ scheduledDepartureTime STORED false)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedDepartureTime READ hasExpectedDepartureTime STORED false)
+    /** Actual departure time, if available.
+     *  Set to invalid to indicate real-time data is not available.
+     */
+    Q_PROPERTY(QDateTime expectedDepartureTime READ expectedDepartureTime STORED false)
     /** Difference to schedule in minutes. */
     Q_PROPERTY(int departureDelay READ departureDelay STORED false)
 
@@ -247,6 +251,10 @@ class KPUBLICTRANSPORT_EXPORT Journey
     Q_PROPERTY(QDateTime scheduledArrivalTime READ scheduledArrivalTime STORED false)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedArrivalTime READ hasExpectedArrivalTime STORED false)
+    /** Actual arrival time, if available.
+     *  Set to invalid to indicate real-time data is not available.
+     */
+    Q_PROPERTY(QDateTime expectedArrivalTime READ expectedArrivalTime STORED false)
     /** Difference to schedule in minutes. */
     Q_PROPERTY(int arrivalDelay READ arrivalDelay STORED false)
 
@@ -267,10 +275,12 @@ public:
 
     QDateTime scheduledDepartureTime() const;
     bool hasExpectedDepartureTime() const;
+    QDateTime expectedDepartureTime() const;
     int departureDelay() const;
 
     QDateTime scheduledArrivalTime() const;
     bool hasExpectedArrivalTime() const;
+    QDateTime expectedArrivalTime() const;
     int arrivalDelay() const;
 
     int duration() const;

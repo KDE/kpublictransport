@@ -583,6 +583,11 @@ bool Journey::hasExpectedDepartureTime() const
     return d->sections.empty() ? false : d->sections.front().hasExpectedDepartureTime();
 }
 
+QDateTime Journey::expectedDepartureTime() const
+{
+    return d->sections.empty() ? QDateTime() : d->sections.front().expectedDepartureTime();
+}
+
 int Journey::departureDelay() const
 {
     return d->sections.empty() ? 0 : d->sections.front().departureDelay();
@@ -599,6 +604,11 @@ QDateTime Journey::scheduledArrivalTime() const
 bool Journey::hasExpectedArrivalTime() const
 {
     return d->sections.empty() ? false : d->sections.back().hasExpectedArrivalTime();
+}
+
+QDateTime Journey::expectedArrivalTime() const
+{
+    return d->sections.empty() ? QDateTime() : d->sections.back().expectedArrivalTime();
 }
 
 int Journey::arrivalDelay() const
