@@ -61,7 +61,7 @@ IvvAssParser::LocationData IvvAssParser::parseLocation(const QJsonObject &stopOb
 
     // location is a platform: split out platform name
     if (stopObj.value(QLatin1String("subtype")).toString() == QLatin1String("Post")) {
-        static QRegularExpression rx(QStringLiteral(R"((.*) \((Gleis .*)\)$)"));
+        static QRegularExpression rx(QStringLiteral(R"((.*) \(((:?Gleis|Bahnsteig) .*)\)$)"));
         const auto match = rx.match(r.loc.name());
         if (match.hasMatch()) {
             r.loc.setName(match.captured(1));
