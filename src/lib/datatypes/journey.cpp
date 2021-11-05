@@ -444,7 +444,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     res.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
     res.d->rentalVehicle = RentalVehicleUtil::merge(lhs.d->rentalVehicle, rhs.d->rentalVehicle);
 
-    res.d->path = lhs.d->path.isEmpty() ? rhs.d->path : lhs.d->path;
+    res.d->path = lhs.d->path.sections().size() < rhs.d->path.sections().size() ? rhs.d->path : lhs.d->path;
 
     res.d->departureVehicleLayout = Vehicle::merge(lhs.d->departureVehicleLayout, rhs.d->departureVehicleLayout);
     res.d->departurePlatformLayout = Platform::merge(lhs.d->departurePlatformLayout, rhs.d->departurePlatformLayout);
