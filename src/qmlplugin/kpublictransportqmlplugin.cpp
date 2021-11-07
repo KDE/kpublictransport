@@ -34,6 +34,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
     qRegisterMetaType<KPublicTransport::Equipment>();
     qRegisterMetaType<KPublicTransport::Line>();
+    qRegisterMetaType<KPublicTransport::Line::Mode>();
     qRegisterMetaType<KPublicTransport::LoadInfo>();
     qRegisterMetaType<KPublicTransport::Location>();
     qRegisterMetaType<KPublicTransport::Platform>();
