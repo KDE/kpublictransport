@@ -513,22 +513,45 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
         QSet<QString> triedBackends;
         bool foundNonGlobalCoverage = false;
         for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
-            for (const auto &backend: d->m_backends) {
+            const auto checkBackend = [&](const Backend &backend, bool bothLocationMatch) {
                 if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
-                    continue;
+                    return;
                 }
                 const auto coverage = backend.coverageArea(coverageType);
-                if (coverage.isEmpty() || (!coverage.coversLocation(req.from()) && !coverage.coversLocation(req.to()))) {
-                    continue;
+                if (coverage.isEmpty()) {
+                    return;
                 }
+
+                if (bothLocationMatch) {
+                    if (!coverage.coversLocation(req.from()) || !coverage.coversLocation(req.to())) {
+                        return;
+                    }
+                } else {
+                    if (!coverage.coversLocation(req.from()) && !coverage.coversLocation(req.to())) {
+                        return;
+                    }
+                }
+
                 triedBackends.insert(backend.identifier());
                 foundNonGlobalCoverage |= !coverage.isGlobal();
 
                 if (d->queryJourney(BackendPrivate::impl(backend), req, reply)) {
                     ++pendingOps;
                 }
+            };
+
+            // look for coverage areas which contain both locations first
+            for (const auto &backend: d->m_backends) {
+                checkBackend(backend, true);
+            }
+            if (pendingOps && foundNonGlobalCoverage) {
+                break;
             }
 
+            // if we didn't find one, try with just a single one
+            for (const auto &backend: d->m_backends) {
+                checkBackend(backend, false);
+            }
             if (pendingOps && foundNonGlobalCoverage) {
                 break;
             }
