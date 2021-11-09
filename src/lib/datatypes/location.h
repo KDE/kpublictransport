@@ -90,7 +90,7 @@ public:
     void setTimeZone(const QTimeZone &tz);
 
     /** Location identifiers. */
-    QString identifier(const QString &identifierType) const;
+    Q_INVOKABLE QString identifier(const QString &identifierType) const;
     void setIdentifier(const QString &identifierType, const QString &id);
     QHash<QString, QString> identifiers() const;
 
