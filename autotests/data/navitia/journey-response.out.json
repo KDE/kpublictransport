@@ -57,7 +57,7 @@
             {
                 "co2Emission": 147,
                 "disruptionEffect": "NormalService",
-                "distance": 23839,
+                "distance": 23841,
                 "from": {
                     "latitude": 49.00468826293945,
                     "locality": "Le Mesnil-Amelot",
@@ -281,7 +281,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 621,
+                "distance": 631,
                 "from": {
                     "latitude": 48.844139099121094,
                     "locality": "Paris",
@@ -572,7 +572,7 @@
             {
                 "co2Emission": 162,
                 "disruptionEffect": "NormalService",
-                "distance": 26122,
+                "distance": 26127,
                 "from": {
                     "latitude": 49.00468826293945,
                     "locality": "Le Mesnil-Amelot",
@@ -833,7 +833,7 @@
             {
                 "co2Emission": 581,
                 "disruptionEffect": "NormalService",
-                "distance": 4474,
+                "distance": 4480,
                 "from": {
                     "latitude": 48.87947463989258,
                     "locality": "Paris",
@@ -1120,7 +1120,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 451,
+                "distance": 453,
                 "from": {
                     "latitude": 48.842533111572266,
                     "locality": "Paris",
@@ -1275,7 +1275,7 @@
             {
                 "co2Emission": 191,
                 "disruptionEffect": "NormalService",
-                "distance": 30922,
+                "distance": 30929,
                 "from": {
                     "latitude": 49.00468826293945,
                     "locality": "Le Mesnil-Amelot",
@@ -1592,7 +1592,7 @@
             {
                 "co2Emission": 370,
                 "disruptionEffect": "NormalService",
-                "distance": 2852,
+                "distance": 2855,
                 "from": {
                     "latitude": 48.83872985839844,
                     "locality": "Paris",
@@ -1739,7 +1739,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 362,
+                "distance": 366,
                 "from": {
                     "latitude": 48.845741271972656,
                     "locality": "Paris",
@@ -1885,7 +1885,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 511,
+                "distance": 514,
                 "from": {
                     "latitude": 49.00423812866211,
                     "locality": "Le Mesnil-Amelot",
@@ -2022,7 +2022,7 @@
             {
                 "co2Emission": 3171,
                 "disruptionEffect": "NormalService",
-                "distance": 24445,
+                "distance": 24446,
                 "from": {
                     "latitude": 49.003387451171875,
                     "locality": "Tremblay-en-France",
@@ -2098,7 +2098,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 334,
+                "distance": 337,
                 "from": {
                     "latitude": 48.845794677734375,
                     "locality": "Paris",

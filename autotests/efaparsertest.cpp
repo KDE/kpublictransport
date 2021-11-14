@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
+
 #include "backends/efacompactparser.h"
 #include "backends/efaxmlparser.h"
 
@@ -207,11 +209,8 @@ private Q_SLOTS:
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
         QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
 
         QVERIFY(!parser.requestContext().isEmpty());
         QCOMPARE(parser.requestContext().sessionId, QLatin1String("123456789"));
@@ -241,11 +240,8 @@ private Q_SLOTS:
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
 
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
         QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
 
         QVERIFY(!parser.requestContext().isEmpty());
         QCOMPARE(parser.requestContext().sessionId, QLatin1String("123456789"));

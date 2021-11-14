@@ -4,7 +4,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 350,
+                "distance": 359,
                 "from": {
                     "latitude": 43.61124801635742,
                     "locality": "Toulouse",
@@ -414,7 +414,7 @@
             {
                 "co2Emission": 2,
                 "disruptionEffect": "NormalService",
-                "distance": 772,
+                "distance": 773,
                 "from": {
                     "latitude": 43.61016845703125,
                     "locality": "Toulouse",
@@ -491,7 +491,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 67,
+                "distance": 68,
                 "from": {
                     "latitude": 43.60560607910156,
                     "locality": "Toulouse",
@@ -653,7 +653,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 142,
+                "distance": 148,
                 "from": {
                     "latitude": 43.61124801635742,
                     "locality": "Toulouse",
@@ -1001,7 +1001,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 946,
+                "distance": 967,
                 "from": {
                     "identifier": {
                         "osm": "n890433076"
@@ -1521,7 +1521,7 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 73,
+                "distance": 74,
                 "from": {
                     "latitude": 43.604793548583984,
                     "locality": "Toulouse",
