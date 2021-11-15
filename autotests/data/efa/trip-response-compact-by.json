@@ -65,7 +65,6 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledPlatform": "1",
                         "expectedDepartureTime": "2019-11-11T21:33:00",
                         "scheduledDepartureTime": "2019-11-11T21:33:00",
                         "scheduledPlatform": "1",
@@ -127,7 +126,7 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                     "Some construction works. More info on some website."
+                    "Some construction works. More info on some website."
                 ],
                 "path": {
                     "sections": [
@@ -182,7 +181,7 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 4156,
+                "distance": 4158,
                 "from": {
                     "identifier": {
                         "ifopt": "de:09564:510:11:U1_2",

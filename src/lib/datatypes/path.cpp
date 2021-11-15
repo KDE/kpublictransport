@@ -36,7 +36,7 @@ int PathSection::distance() const
         return 0;
     }
 
-    int dist = 0;
+    float dist = 0;
     for (auto it = d->path.begin(); it != std::prev(d->path.end()); ++it) {
         const auto nextIt = std::next(it);
         dist += Location::distance((*it).y(), (*it).x(), (*nextIt).y(), (*nextIt).x());
