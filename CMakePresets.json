@@ -13,6 +13,18 @@
             "installDir": "$env{KF5}"
         },
         {
+            "name": "dev-qt6",
+            "displayName": "Build against qt6",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-qt6",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BUILD_WITH_QT6": "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "installDir": "$env{KF6}"
+        },
+        {
             "name": "dev-disable-deprecated",
             "displayName": "Build as without deprecated methods",
             "generator": "Ninja",
@@ -32,6 +44,18 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "ECM_ENABLE_SANITIZERS" : "'address;undefined'",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "installDir": "$env{KF5}"
+        },
+        {
+            "name": "pch",
+            "displayName": "Build with PCH support.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-pch",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+		"COMPILE_WITH_CMAKE_PCH_SUPPORT": "ON",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             },
             "installDir": "$env{KF5}"
@@ -58,7 +82,7 @@
             "binaryDir": "${sourceDir}/build-unity",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-		"CMAKE_UNITY_BUILD": "ON",
+                "USE_UNITY_CMAKE_SUPPORT": "ON",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             },
             "installDir": "$env{KF5}"
@@ -106,8 +130,16 @@
             "configurePreset": "dev"
         },
         {
+            "name": "dev-qt6",
+            "configurePreset": "dev-qt6"
+        },
+        {
             "name": "dev-disable-deprecated",
             "configurePreset": "dev-disable-deprecated"
+        },
+        {
+            "name": "pch",
+            "configurePreset": "pch"
         },
         {
             "name": "release",
