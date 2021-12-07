@@ -17,6 +17,7 @@
 #include <KPublicTransport/JourneyQueryModel>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Line>
+#include <KPublicTransport/LocationHistoryModel>
 #include <KPublicTransport/LocationQueryModel>
 #include <KPublicTransport/LocationRequest>
 #include <KPublicTransport/Manager>
@@ -67,6 +68,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
 
     qmlRegisterType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager");
     qmlRegisterType<KPublicTransport::JourneyQueryModel>("org.kde.kpublictransport", 1, 0, "JourneyQueryModel");
+    qmlRegisterType<KPublicTransport::LocationHistoryModel>("org.kde.kpublictransport", 1, 0, "LocationHistoryModel");
     qmlRegisterType<KPublicTransport::LocationQueryModel>("org.kde.kpublictransport", 1, 0, "LocationQueryModel");
     qmlRegisterType<KPublicTransport::BackendModel>("org.kde.kpublictransport", 1, 0, "BackendModel");
     qmlRegisterType<KPublicTransport::StopoverQueryModel>("org.kde.kpublictransport", 1, 0, "StopoverQueryModel");
