@@ -8,6 +8,9 @@
 #define KPUBLICTRANSPORT_ABSTRACTQUERYMODEL_P_H
 
 #include <QAbstractListModel>
+#include <QTimer>
+
+#include <chrono>
 
 namespace KPublicTransport {
 
@@ -37,9 +40,11 @@ public:
 
     std::vector<Attribution> m_attributions;
 
+    QTimer m_queryTimer;
+    std::chrono::milliseconds m_queryDelay = std::chrono::milliseconds(0);
+
     QString m_errorMessage;
     bool m_loading = false;
-    bool m_pendingQuery = false;
 };
 
 }

@@ -27,12 +27,21 @@ class KPUBLICTRANSPORT_EXPORT LocationQueryModel : public AbstractQueryModel
     /** Specify the actual location query. */
     Q_PROPERTY(KPublicTransport::LocationRequest request READ request WRITE setRequest NOTIFY requestChanged)
 
+    /** Delay in milliseconds until the query is actually performed.
+     *  Useful when expecting high frequency changes to the request, eg. for completion during typing.
+     *  @default no delay
+     */
+    Q_PROPERTY(int queryDelay READ queryDelay WRITE setQueryDelay NOTIFY queryDelayChanged)
+
 public:
     explicit LocationQueryModel(QObject *parent = nullptr);
     ~LocationQueryModel() override;
 
     LocationRequest request() const;
     void setRequest(const LocationRequest &req);
+
+    int queryDelay() const;
+    void setQueryDelay(int ms);
 
     enum Roles {
         LocationRole = Qt::UserRole
@@ -48,6 +57,7 @@ public:
 
 Q_SIGNALS:
     void requestChanged();
+    void queryDelayChanged();
 
 private:
     friend class LocationQueryModelPrivate;

@@ -129,6 +129,23 @@ void LocationQueryModel::setRequest(const LocationRequest &req)
     d->query();
 }
 
+int LocationQueryModel::queryDelay() const
+{
+    Q_D(const LocationQueryModel);
+    return d->m_queryDelay.count();
+}
+
+void LocationQueryModel::setQueryDelay(int ms)
+{
+    Q_D(LocationQueryModel);
+    if (d->m_queryDelay == std::chrono::milliseconds(ms)) {
+        return;
+    }
+
+    d->m_queryDelay = std::chrono::milliseconds(ms);
+    Q_EMIT queryDelayChanged();
+}
+
 int LocationQueryModel::rowCount(const QModelIndex &parent) const
 {
     Q_D(const LocationQueryModel);

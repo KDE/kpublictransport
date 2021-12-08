@@ -75,6 +75,7 @@ Kirigami.ApplicationWindow {
             LocationQueryModel {
                 id: locationQueryModel
                 manager: ptMgr
+                queryDelay: 500
             }
             LocationHistoryModel {
                 id: locationHistoryModel

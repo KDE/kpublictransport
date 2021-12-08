@@ -56,16 +56,12 @@ void AbstractQueryModelPrivate::monitorReply(Reply *reply)
 
 void AbstractQueryModelPrivate::query()
 {
-    if (m_pendingQuery || !m_manager) {
+    if (!m_manager) {
         return;
     }
 
-    m_pendingQuery = true;
-    QTimer::singleShot(0, q_ptr, [this]() {
-        m_pendingQuery = false;
-        q_ptr->clear();
-        doQuery();
-    });
+    q_ptr->cancel();
+    m_queryTimer.start(m_queryDelay);
 }
 
 
@@ -74,6 +70,12 @@ AbstractQueryModel::AbstractQueryModel(AbstractQueryModelPrivate* dd, QObject* p
     , d_ptr(dd)
 {
     d_ptr->q_ptr = this;
+
+    d_ptr->m_queryTimer.setSingleShot(true);
+    connect(&d_ptr->m_queryTimer, &QTimer::timeout, this, [this]() {
+        clear();
+        d_ptr->doQuery();
+    });
 
     connect(AssetRepository::instance(), &AssetRepository::downloadFinished, this, [this]() {
         const auto rows = rowCount();

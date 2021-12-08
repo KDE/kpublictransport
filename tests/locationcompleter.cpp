@@ -40,12 +40,12 @@ int main(int argc, char **argv)
     auto completer = new QCompleter;
     auto model = new LocationQueryModel(completer);
     model->setManager(&ptMgr);
+    model->setQueryDelay(250);
     completer->setModel(model);
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     completer->setFilterMode(Qt::MatchContains);
     completer->setCompletionRole(Qt::DisplayRole);
     lineEdit->setCompleter(completer);
-    // TODO compress queries with a short timer
     QObject::connect(lineEdit, &QLineEdit::textEdited, model, [model](const auto &text) {
         LocationRequest req;
         req.setName(text);
