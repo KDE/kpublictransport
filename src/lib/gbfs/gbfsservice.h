@@ -39,7 +39,7 @@ public:
      */
     void generateSystemId();
 
-    static KPUBLICTRANSPORT_EXPORT QJsonObject toJson(const GBFSService &service);
+    static QJsonObject toJson(const GBFSService &service);
     static GBFSService fromJson(const QJsonObject &obj);
 };
 
