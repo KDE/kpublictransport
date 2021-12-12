@@ -37,15 +37,31 @@ Kirigami.ApplicationWindow {
             header: ColumnLayout {
                 QQC2.ComboBox {
                     id: countryCombo
-                    model: Country.allCountries
+                    model: {
+                        var countries = new Array();
+                        for (const b of ptMgr.backends) {
+                            for (const t of [CoverageArea.Realtime, CoverageArea.Regular, CoverageArea.Any]) {
+                                for (const c of b.coverageArea(t).regions) {
+                                    if (c != 'UN' && c != 'EU') {
+                                        countries.push(c.substr(0, 2));
+                                    }
+                                }
+                            }
+                        }
+                        return [...new Set(countries)].sort();
+                    }
                     Layout.fillWidth: true
-                    displayText: currentValue.emojiFlag + ' ' + currentValue.name
+                    readonly property var currentCountry: Country.fromAlpha2(currentValue)
+                    displayText: currentCountry.emojiFlag + ' ' + currentCountry.name
                     delegate: QQC2.ItemDelegate {
-                        text: modelData.emojiFlag + ' ' + modelData.name
+                        text: {
+                            const c = Country.fromAlpha2(modelData);
+                            return c.emojiFlag + ' ' + c.name;
+                        }
                         width: parent ? parent.width : undefined
                     }
                     Component.onCompleted: {
-                        countryCombo.currentIndex = countryCombo.indexOfValue(Country.fromAlpha2(Qt.locale().name.match(/_([A-Z]{2})/)[1]))
+                        countryCombo.currentIndex = countryCombo.indexOfValue(Qt.locale().name.match(/_([A-Z]{2})/)[1])
                     }
                 }
                 Kirigami.SearchField {
@@ -55,7 +71,7 @@ Kirigami.ApplicationWindow {
                         if (text !== "") {
                             var loc = locationQueryModel.request.location;
                             loc.name = text;
-                            loc.country = countryCombo.currentValue.alpha2
+                            loc.country = countryCombo.currentValue;
                             locationQueryModel.request.location = loc;
                             locationQueryModel.request.type = Location.Stop
                         }
