@@ -895,14 +895,22 @@ void Manager::setDisabledBackends(const QStringList &backendIds)
     }
 }
 
-bool KPublicTransport::Manager::backendsEnabledByDefault() const
+bool Manager::backendsEnabledByDefault() const
 {
     return d->m_backendsEnabledByDefault;
 }
 
-void KPublicTransport::Manager::setBackendsEnabledByDefault(bool byDefault)
+void Manager::setBackendsEnabledByDefault(bool byDefault)
 {
     d->m_backendsEnabledByDefault = byDefault;
 
     Q_EMIT configurationChanged();
+}
+
+QVariantList Manager::backendsVariant() const
+{
+    QVariantList l;
+    l.reserve(d->m_backends.size());
+    std::transform(d->m_backends.begin(), d->m_backends.end(), std::back_inserter(l), [](const auto &b) { return QVariant::fromValue(b); });
+    return l;
 }

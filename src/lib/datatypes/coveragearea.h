@@ -28,6 +28,7 @@ public:
         Regular,
         Any
     };
+    Q_ENUM(Type)
     KPUBLICTRANSPORT_PROPERTY(Type, type, setType)
 
     /** ISO 3166-1/2 codes of covered regions.

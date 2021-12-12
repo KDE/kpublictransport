@@ -40,7 +40,7 @@ public:
     QString description() const;
     bool isSecure() const;
 
-    CoverageArea coverageArea(CoverageArea::Type coverageType) const;
+    Q_INVOKABLE KPublicTransport::CoverageArea coverageArea(KPublicTransport::CoverageArea::Type coverageType) const;
 };
 
 }

@@ -11,6 +11,7 @@
 #include <QQmlContext>
 
 #include <KPublicTransport/BackendModel>
+#include <KPublicTransport/CoverageArea>
 #include <KPublicTransport/Equipment>
 #include <KPublicTransport/IndividualTransport>
 #include <KPublicTransport/Journey>
@@ -33,6 +34,8 @@
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
+    qRegisterMetaType<KPublicTransport::CoverageArea>();
+    qRegisterMetaType<KPublicTransport::CoverageArea::Type>();
     qRegisterMetaType<KPublicTransport::Equipment>();
     qRegisterMetaType<KPublicTransport::Line>();
     qRegisterMetaType<KPublicTransport::Line::Mode>();
@@ -48,6 +51,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
     qmlRegisterUncreatableMetaObject(KPublicTransport::Load::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Load", {});
 
+    qmlRegisterUncreatableType<KPublicTransport::CoverageArea>("org.kde.kpublictransport", 1, 0, "CoverageArea", {});
     qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
     qmlRegisterUncreatableType<KPublicTransport::Location>("org.kde.kpublictransport", 1, 0, "Location", {});
     qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
