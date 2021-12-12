@@ -86,6 +86,8 @@ public:
 
     void readCachedAttributions();
 
+    int queryLocationOnBackend(const LocationRequest &req, LocationReply *reply, const Backend &backend);
+
     Manager *q = nullptr;
     QNetworkAccessManager *m_nam = nullptr;
     std::vector<Backend> m_backends;
@@ -663,7 +665,7 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
         }
     }
 
-        if (req.downloadAssets()) {
+    if (req.downloadAssets()) {
         reply->addAttributions(AssetRepository::instance()->attributions());
     }
     reply->setPendingOps(pendingOps);
@@ -673,6 +675,30 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
 StopoverReply* Manager::queryDeparture(const StopoverRequest &req) const
 {
     return queryStopover(req);
+}
+
+int ManagerPrivate::queryLocationOnBackend(const LocationRequest &req, LocationReply *reply, const Backend &backend)
+{
+    auto cache = Cache::lookupLocation(backend.identifier(), req.cacheKey());
+    switch (cache.type) {
+        case CacheHitType::Negative:
+            qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
+            break;
+        case CacheHitType::Positive:
+            qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
+            reply->addAttributions(std::move(cache.attributions));
+            reply->addResult(std::move(cache.data));
+            break;
+        case CacheHitType::Miss:
+            qCDebug(Log) << "Cache miss for backend" << backend.identifier();
+            reply->addAttribution(BackendPrivate::impl(backend)->attribution());
+            if (BackendPrivate::impl(backend)->queryLocation(req, reply, nam())) {
+                return 1;
+            }
+            break;
+    }
+
+    return 0;
 }
 
 LocationReply* Manager::queryLocation(const LocationRequest &req) const
@@ -689,37 +715,43 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
 
     QSet<QString> triedBackends;
     bool foundNonGlobalCoverage = false;
+    const auto loc = req.location();
+    const auto isCountryOnly = !loc.hasCoordinate() && !loc.country().isEmpty() && loc.region().isEmpty();
     for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+        // pass 1: coordinate-based coverage, or nationwide country coverage
         for (const auto &backend : d->m_backends) {
             if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
                 continue;
             }
             const auto coverage = backend.coverageArea(coverageType);
-            if (coverage.isEmpty() || !coverage.coversLocation(req.location())) {
+            if (coverage.isEmpty() || !coverage.coversLocation(loc)) {
                 continue;
             }
+            if (isCountryOnly && !coverage.hasNationWideCoverage(loc.country())) {
+                continue;
+            }
+
             triedBackends.insert(backend.identifier());
             foundNonGlobalCoverage |= !coverage.isGlobal();
+            pendingOps += d->queryLocationOnBackend(req, reply, backend);
+        }
+        if (pendingOps && foundNonGlobalCoverage) {
+            break;
+        }
 
-            reply->addAttribution(BackendPrivate::impl(backend)->attribution());
-
-            auto cache = Cache::lookupLocation(backend.identifier(), req.cacheKey());
-            switch (cache.type) {
-                case CacheHitType::Negative:
-                    qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
-                    break;
-                case CacheHitType::Positive:
-                    qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
-                    reply->addAttributions(std::move(cache.attributions));
-                    reply->addResult(std::move(cache.data));
-                    break;
-                case CacheHitType::Miss:
-                    qCDebug(Log) << "Cache miss for backend" << backend.identifier();
-                    if (BackendPrivate::impl(backend)->queryLocation(req, reply, d->nam())) {
-                        ++pendingOps;
-                    }
-                    break;
+        // pass 2: any country match
+        for (const auto &backend : d->m_backends) {
+            if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
+                continue;
             }
+            const auto coverage = backend.coverageArea(coverageType);
+            if (coverage.isEmpty() || !coverage.coversLocation(loc)) {
+                continue;
+            }
+
+            triedBackends.insert(backend.identifier());
+            foundNonGlobalCoverage |= !coverage.isGlobal();
+            pendingOps += d->queryLocationOnBackend(req, reply, backend);
         }
         if (pendingOps && foundNonGlobalCoverage) {
             break;

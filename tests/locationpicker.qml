@@ -9,6 +9,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15 as QQC2
 import org.kde.kirigami 2.17 as Kirigami
 import org.kde.kitemmodels 1.0
+import org.kde.i18n.localeData 1.0
 import org.kde.kpublictransport 1.0
 
 Kirigami.ApplicationWindow {
@@ -34,13 +35,29 @@ Kirigami.ApplicationWindow {
                 }
             ]
             header: ColumnLayout {
+                QQC2.ComboBox {
+                    id: countryCombo
+                    model: Country.allCountries
+                    Layout.fillWidth: true
+                    displayText: currentValue.emojiFlag + ' ' + currentValue.name
+                    delegate: QQC2.ItemDelegate {
+                        text: modelData.emojiFlag + ' ' + modelData.name
+                        width: parent ? parent.width : undefined
+                    }
+                    Component.onCompleted: {
+                        countryCombo.currentIndex = countryCombo.indexOfValue(Country.fromAlpha2(Qt.locale().name.match(/_([A-Z]{2})/)[1]))
+                    }
+                }
                 Kirigami.SearchField {
                     id: queryTextField
                     Layout.fillWidth: true
                     onAccepted: {
                         if (text !== "") {
-                            locationQueryModel.request.name = text;
-                            locationQueryModel.request.backends = [ "de_db" ]; // TODO
+                            var loc = locationQueryModel.request.location;
+                            loc.name = text;
+                            loc.country = countryCombo.currentValue.alpha2
+                            locationQueryModel.request.location = loc;
+                            locationQueryModel.request.type = Location.Stop
                         }
                     }
                 }

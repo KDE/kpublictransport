@@ -79,6 +79,11 @@ bool CoverageArea::coversLocation(const Location &loc) const
     return true;
 }
 
+bool CoverageArea::hasNationWideCoverage(const QString &country) const
+{
+    return std::binary_search(d->regions.begin(), d->regions.end(), country);
+}
+
 CoverageArea CoverageArea::fromJson(const QJsonObject &obj)
 {
     CoverageArea ca;

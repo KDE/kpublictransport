@@ -52,6 +52,9 @@ public:
     /** Checks whether @p loc is covered by this area. */
     bool coversLocation(const Location &loc) const;
 
+    /** Checks whether this includes the entire country @p country. */
+    bool hasNationWideCoverage(const QString &country) const;
+
     /** Read a single coverage area information from a JSON object
      *  in Transport API Repository format.
      */
