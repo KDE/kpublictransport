@@ -139,6 +139,9 @@ private Q_SLOTS:
         QTest::newRow("de-bvg-alternative-load-messages")
             << s(SOURCE_DIR "/data/hafas/journey-bvg-load-messages.in.json")
             << s(SOURCE_DIR "/data/hafas/journey-bvg-load-messages.out.json");
+        QTest::newRow("de-vsn-alternative-platform-data")
+            << s(SOURCE_DIR "/data/hafas/journey-vsn-alternative-platform-data.in.json")
+            << s(SOURCE_DIR "/data/hafas/journey-vsn-alternative-platform-data.out.json");
     }
 
     void testParseJourneys()

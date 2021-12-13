@@ -1,0 +1,54 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 7561,
+                "expectedArrivalPlatform": "2",
+                "expectedArrivalTime": "2021-12-12T12:38:00",
+                "expectedDeparturePlatform": "16",
+                "expectedDepartureTime": "2021-12-12T12:30:00",
+                "from": {
+                    "identifier": {
+                        "unit-test": "8003487"
+                    },
+                    "latitude": 52.31689453125,
+                    "longitude": 9.792866706848145,
+                    "name": "Hannover Messe/Laatzen",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Maskenpflicht nach gesetzl. Regelung; denken Sie an eine FFP2-Maske",
+                    "Im Zug gilt bundesweit 3G-Regel: ein gültiger Nachweis ist mitzuführen",
+                    "Fahrradmitnahme begrenzt möglich (Hannover Messe/Laatzen)",
+                    "Fahrradmitnahme begrenzt möglich (Hannover Hbf)",
+                    "Konsum alkoholischer Getränke im Zug verboten",
+                    "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                    "Corona-Präventionsmaßnahme\n\n3G-Regel im ÖPNV (geimpft, genesen oder getestet). Bitte beachten Sie die Maskenpflicht!"
+                ],
+                "route": {
+                    "direction": "Bennemühlen",
+                    "line": {
+                        "color": "#139445",
+                        "name": "S4",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalPlatform": "2",
+                "scheduledArrivalTime": "2021-12-12T12:38:00",
+                "scheduledDeparturePlatform": "16",
+                "scheduledDepartureTime": "2021-12-12T12:30:00",
+                "to": {
+                    "identifier": {
+                        "unit-test": "8000152"
+                    },
+                    "latitude": 52.377376556396484,
+                    "longitude": 9.741988182067871,
+                    "name": "Hannover Hbf",
+                    "type": "Stop"
+                }
+            }
+        ]
+    }
+]

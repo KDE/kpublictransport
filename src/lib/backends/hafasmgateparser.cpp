@@ -271,6 +271,17 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
     return lines;
 }
 
+static QString parsePlatform(const QJsonObject &obj, char ad, char rs)
+{
+    const auto p = obj.value(QLatin1Char(ad) + QLatin1String("Platf") + QLatin1Char(rs)).toString();
+    if (!p.isEmpty()) {
+        return p;
+    }
+
+    const auto pObj = obj.value(QLatin1Char(ad) + QLatin1String("Pltf") + QLatin1Char(rs)).toObject();
+    return pObj.value(QLatin1String("txt")).toString();
+}
+
 std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObject &obj) const
 {
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
@@ -302,13 +313,13 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
         dep.setScheduledArrivalTime(parseDateTime(dateStr, stbStop.value(QLatin1String("aTimeS")), stbStop.value(QLatin1String("aTZOffset"))));
         dep.setExpectedArrivalTime(parseDateTime(dateStr, stbStop.value(QLatin1String("aTimeR")),  stbStop.value(QLatin1String("aTZOffset"))));
 
-        dep.setScheduledPlatform(stbStop.value(QLatin1String("dPlatfS")).toString());
-        dep.setExpectedPlatform(stbStop.value(QLatin1String("dPlatfR")).toString());
+        dep.setScheduledPlatform(parsePlatform(stbStop, 'd', 'S'));
+        dep.setExpectedPlatform(parsePlatform(stbStop, 'd', 'R'));
         if (dep.scheduledPlatform().isEmpty()) {
-            dep.setScheduledPlatform(stbStop.value(QLatin1String("aPlatfS")).toString());
+            dep.setScheduledPlatform(parsePlatform(stbStop, 'a', 'S'));
         }
         if (dep.expectedPlatform().isEmpty()) {
-            dep.setExpectedPlatform(stbStop.value(QLatin1String("aPlatfR")).toString());
+            dep.setExpectedPlatform(parsePlatform(stbStop, 'a', 'R'));
         }
         if (stbStop.value(QLatin1String("dCncl")).toBool()) {
             dep.setDisruptionEffect(Disruption::NoService);
@@ -634,8 +645,8 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                 parseMcpData(dep, loc);
                 section.setFrom(std::move(loc));
             }
-            section.setScheduledDeparturePlatform(dep.value(QLatin1String("dPlatfS")).toString());
-            section.setExpectedDeparturePlatform(dep.value(QLatin1String("dPlatfR")).toString());
+            section.setScheduledDeparturePlatform(parsePlatform(dep, 'd', 'S'));
+            section.setExpectedDeparturePlatform(parsePlatform(dep, 'd', 'R'));
             if (dep.value(QLatin1String("dCncl")).toBool()) {
                 section.setDisruptionEffect(Disruption::NoService);
             }
@@ -649,8 +660,8 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                 parseMcpData(arr, loc);
                 section.setTo(loc);
             }
-            section.setScheduledArrivalPlatform(arr.value(QLatin1String("aPlatfS")).toString());
-            section.setExpectedArrivalPlatform(arr.value(QLatin1String("aPlatfR")).toString());
+            section.setScheduledArrivalPlatform(parsePlatform(arr, 'a', 'S'));
+            section.setExpectedArrivalPlatform(parsePlatform(arr, 'a', 'R'));
             if (arr.value(QLatin1String("aCncl")).toBool()) {
                 section.setDisruptionEffect(Disruption::NoService);
             }
@@ -687,8 +698,8 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
                         stop.setExpectedDepartureTime(parseDateTime(dateStr, stopObj.value(QLatin1String("dTimeR")), stopObj.value(QLatin1String("dTZOffset"))));
                         stop.setScheduledArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeS")), stopObj.value(QLatin1String("aTZOffset"))));
                         stop.setExpectedArrivalTime(parseDateTime(dateStr, stopObj.value(QLatin1String("aTimeR")), stopObj.value(QLatin1String("aTZOffset"))));
-                        stop.setScheduledPlatform(stopObj.value(QLatin1String("dPlatfS")).toString());
-                        stop.setExpectedPlatform(stopObj.value(QLatin1String("dPlatfR")).toString());
+                        stop.setScheduledPlatform(parsePlatform(stopObj, 'd', 'S'));
+                        stop.setExpectedPlatform(parsePlatform(stopObj, 'd', 'R'));
                         if (stopObj.value(QLatin1String("aCncl")).toBool() || stopObj.value(QLatin1String("dCncl")).toBool()) {
                             stop.setDisruptionEffect(Disruption::NoService);
                         }
