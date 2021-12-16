@@ -39,6 +39,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::Location>();
     qRegisterMetaType<KPublicTransport::Platform>();
     qRegisterMetaType<KPublicTransport::RentalVehicle>();
+    qRegisterMetaType<KPublicTransport::RentalVehicleStation>();
     qRegisterMetaType<KPublicTransport::Stopover>();
     qRegisterMetaType<KPublicTransport::IndividualTransport>();
     // backward compat
