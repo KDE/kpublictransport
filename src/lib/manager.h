@@ -98,7 +98,7 @@ public:
     const std::vector<Backend>& backends() const;
 
     /** Returns whether the use of the backend with a given identifier is enabled. */
-    bool isBackendEnabled(const QString &backendId) const;
+    Q_INVOKABLE bool isBackendEnabled(const QString &backendId) const;
     /** Sets whether the backend with the given identifier should be used.
      *  @note If allowInsecureBackends() is @c false, this has precedence.
      */
