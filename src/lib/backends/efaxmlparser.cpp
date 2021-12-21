@@ -501,6 +501,12 @@ std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionLis
                     } else if (indoorType == QLatin1String("ESCALATOR")) {
                         desc.maneuver = PathSection::Escalator;
                     }
+
+                    bool floorLevelDifferenceValid = false;
+                    const auto floorLevelDifference = attrs.value(QStringLiteral("FLOOR_LEVEL_DIFFERENCE")).toInt(&floorLevelDifferenceValid);
+                    if (floorLevelDifferenceValid) {
+                        desc.niveauDelta = floorLevelDifference;
+                    }
                 }
                 // NOTE: skyDirection seems flipped by 180°, ie. pointing to the start point, should we ever need that
                 // turnDirection, turningManoeuvre, from/toPathLink??
@@ -523,7 +529,9 @@ void EfaXmlParser::resolvePathDescription(std::vector<PathDescription> &descs) c
         }
         const auto niveauBefore = (*std::prev(it)).niveau;
         const auto niveauAfter = (*std::next(it)).niveau;
-        (*it).niveauDelta = niveauAfter - niveauBefore;
+        if (niveauAfter != niveauBefore && (*it).niveauDelta == 0) {
+            (*it).niveauDelta = niveauAfter - niveauBefore;
+        }
     }
 }
 
