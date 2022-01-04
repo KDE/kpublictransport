@@ -5,6 +5,9 @@ add_library(KWikidata STATIC
     entities.cpp
     wikidataquerymanager.cpp
     wikidataquery.cpp
+    entities.h
+    wikidataquerymanager.h
+    wikidataquery.h
 )
 
 target_include_directories(KOSM PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
