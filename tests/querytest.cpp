@@ -63,7 +63,7 @@ private Q_SLOTS:
 
         // international
         // TODO un_gbfs - this needs special-casing given it cannot do journey and departure searches
-        QTest::newRow("un_navitia") << "un_navitia" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2", 49.00423, 2.57215);
+        QTest::newRow("un_navitia") << "un_navitia" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2 TGV", 49.00423, 2.57215);
 
         // national
         QTest::newRow("at_oebb") << "at_oebb" << loc("Wien Hauptbahnhof", 48.18282, 16.37859) << loc("Linz/Donau Hbf", 48.29058, 14.29018);
@@ -77,7 +77,7 @@ private Q_SLOTS:
         QTest::newRow("eu_railteam") << "eu_railteam" << loc("Bruxelles Midi", 50.8353, 4.33679) << loc("Amsterdam Centraal", 52.37923, 4.90055);
         QTest::newRow("fi_digitransit") << "fi_digitransit" << loc("Helsinki", 60.17174, 24.94148) << loc("Espoo", 60.20530, 24.65748);
         QTest::newRow("fi_waltti") << "fi_waltti" << loc("Helsinki", 60.17174, 24.94148) << loc("Tampere", 61.49859, 23.77392);
-        QTest::newRow("fr_sncf") << "fr_sncf" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2", 49.00423, 2.57215);
+        QTest::newRow("fr_sncf") << "fr_sncf" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2 TGV", 49.00423, 2.57215);
         QTest::newRow("gb_traveline") << "gb_traveline" << loc( "London Euston", 51.52814, -0.13365) << loc("Glasgow Queen Street", 55.86252, -4.25074);
         QTest::newRow("ie_tfi") << "ie_tfi" << loc("Dublin Connolly", 53.35258, -6.24706) << loc("Cork Kent", 51.90159, -8.45823);
         QTest::newRow("lu_cfl") << "lu_cfl" << loc("Luxembourg Gare Centrale", 49.59962, 6.13473) << loc("Ettelbruck", 49.84745, 6.10645);

@@ -216,7 +216,10 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     if (req.types() & Location::RentedVehicleStation) {
         query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("poi"));
         query.addQueryItem(QStringLiteral("add_poi_infos[]"), QStringLiteral("bss_stands"));
-        query.addQueryItem(QStringLiteral("filter"), QStringLiteral("poi_type.id=poi_type:amenity:bicycle_rental"));
+        // filter is exclusive, so we cannot use this when also looking for other objects
+        if ((req.types() & ~(Location::RentedVehicleStation | Location::RentedVehicle)) == 0) {
+            query.addQueryItem(QStringLiteral("filter"), QStringLiteral("poi_type.id=poi_type:amenity:bicycle_rental"));
+        }
     }
 
     if (req.hasCoordinate()) {
