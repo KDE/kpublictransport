@@ -176,6 +176,14 @@ private Q_SLOTS:
             QEXPECT_FAIL("it_21_torino", "needs investigation", Continue);
             QEXPECT_FAIL("us_ga_marta", "needs investigation", Continue);
             QVERIFY(reply->result().size() > 0);
+            const auto results = reply->takeResult();
+            if (!results.empty()) {
+                // sanity check the result, should be close enough to where we expect it
+                // there can be valid deviations of a few km due to lack of precision in our test data and
+                // the use of fairly large objects like airports
+                const auto d = Location::distance(loc1.latitude(), loc1.longitude(), results[0].latitude(), results[0].longitude());
+                QVERIFY(std::isnan(d) || d < 10'000);
+            }
         }
 
         // location search by coordinate
