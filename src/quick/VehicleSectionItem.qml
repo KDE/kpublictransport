@@ -1,14 +1,15 @@
 /*
-    SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
+    SPDX-FileCopyrightText: 2020-2022 Volker Krause <vkrause@kde.org>
 
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
 import QtQuick 2.5
 import org.kde.kpublictransport 1.0
+import org.kde.kpublictransport.ui 1.0
 
 /** Displays a single vehicle section. */
-BorderImage {
+StyledFrameSvgItem {
     /** The vehicle section to show. */
     property var section
 
@@ -55,29 +56,28 @@ BorderImage {
                     break;
             }
         }
+        return ":/org.kde.kpublictransport/ui/assets/" + svgName + ".svg";
+    }
 
-        var fillColor = secondClassBackground;
+    backgroundColor: {
         switch (section.type) {
             case VehicleSection.Engine:
             case VehicleSection.PowerCar:
-                fillColor = inaccessibleBackground;
-                break;
+                return inaccessibleBackground;
             case VehicleSection.RestaurantCar:
-                fillColor = restaurantBackground;
-                break;
+                return restaurantBackground;
             case VehicleSection.PassengerCar:
             case VehicleSection.ControlCar:
                 if (section.classes == VehicleSection.FirstClass)
-                    fillColor = firstClassBackground;
+                    return firstClassBackground;
                 else if (section.classes & VehicleSection.FirstClass)
-                    fillColor = Qt.tint(secondClassBackground, Qt.rgba(firstClassBackground.r, firstClassBackground.g, firstClassBackground.b, 0.5));
-                break;
+                    return Qt.tint(secondClassBackground, Qt.rgba(firstClassBackground.r, firstClassBackground.g, firstClassBackground.b, 0.5));
         }
-
-        return "image://org.kde.kpublictransport.styledsvg/" + svgName + "?lineColor=" + textColor + "&fillColor=" + fillColor;
+        return secondClassBackground;
     }
+    lineColor: textColor
 
-    border.top: {
+    borderTop: {
         switch (section.type) {
             case VehicleSection.PowerCar:
             case VehicleSection.ControlCar:
@@ -87,5 +87,5 @@ BorderImage {
         }
         return 36;
     }
-    border.bottom: implicitHeight - border.top - 4
+    borderBottom: 48 - borderTop - 2
 }

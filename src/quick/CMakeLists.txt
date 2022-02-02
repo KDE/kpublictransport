@@ -4,9 +4,8 @@
 add_library(kpublictransportquickplugin)
 target_sources(kpublictransportquickplugin PRIVATE
     kpublictransportquickplugin.cpp
-    styledsvgimageprovider.cpp
+    styledframesvgitem.cpp
     kpublictransportquickplugin.h
-    styledsvgimageprovider.h
     assets/assets.qrc
 )
 

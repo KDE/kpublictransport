@@ -20,10 +20,19 @@ Rectangle {
         anchors.fill: parent
 
         Image {
-            source: "image://org.kde.kpublictransport.styledsvg/passengercar?lineColor=#00ff00&fillColor=#ff0000"
+            source: "qrc:///org.kde.kpublictransport/ui/assets/passengercar.svg"
         }
         BorderImage {
-            source: "image://org.kde.kpublictransport.styledsvg/passengercar?lineColor=#00ff00&fillColor=#ff0000"
+            source: "qrc:///org.kde.kpublictransport/ui/assets/passengercar.svg"
+        }
+
+        StyledFrameSvgItem {
+            source: ":/org.kde.kpublictransport/ui/assets/passengercar.svg"
+            backgroundColor: "red"
+            lineColor: "#00ff00"
+            borderTop: 35
+            borderBottom: 12
+            Layout.preferredHeight: 128
         }
 
         VehicleSectionItem {
