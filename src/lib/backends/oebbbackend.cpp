@@ -23,7 +23,7 @@ using namespace KPublicTransport;
 
 static QString trainNumber(Line line)
 {
-    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX)\\s*(\\d+)"));
+    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX|NJ)\\s*(\\d+)"));
     const auto match = regex.match(line.modeString() + line.name());
     if (match.hasMatch()) {
         return match.captured(1);
