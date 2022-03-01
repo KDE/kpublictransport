@@ -131,6 +131,21 @@ static constexpr const UicClassificationSecondary secondary_81_table[] = {
     { "-ds", VehicleSection::NoFeatures, VehicleSection::ControlCar, 2 },
 };
 
+// 85: Switzerland
+static constexpr const UicClassificationSecondary secondary_85_table[] = {
+    { "c", VehicleSection::NoFeatures, VehicleSection::CouchetteCar, 1 },
+    { "r", VehicleSection::Restaurant, VehicleSection::UnknownType, 1 },
+    { "t", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
+};
+
+// 87: France
+static constexpr const UicClassificationSecondary secondary_87_table[] = {
+    { "c", VehicleSection::NoFeatures, VehicleSection::CouchetteCar, 1 },
+    { "e", VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
+    { "h", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 },
+    { "u", VehicleSection::AirConditioning, VehicleSection::UnknownType, 1 },
+};
+
 struct {
     const char country[3];
     const UicClassificationSecondary *begin;
@@ -139,6 +154,8 @@ struct {
     { "54", std::begin(secondary_54_table), std::end(secondary_54_table) },
     { "80", std::begin(secondary_80_table), std::end(secondary_80_table) },
     { "81", std::begin(secondary_81_table), std::end(secondary_81_table) },
+    { "85", std::begin(secondary_85_table), std::end(secondary_85_table) },
+    { "87", std::begin(secondary_87_table), std::end(secondary_87_table) },
 };
 
 int UicRailwayCoach::deckCount(QStringView coachNumber, QStringView coachClassification)
