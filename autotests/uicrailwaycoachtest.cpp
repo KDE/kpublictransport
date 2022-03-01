@@ -73,6 +73,9 @@ private Q_SLOTS:
         QCOMPARE(UicRailwayCoach::type(u"938058080061", u"Bpmzf"), VehicleSection::ControlCar);
         QCOMPARE(UicRailwayCoach::type(u"505486720019", u"ABfbdmteeo"), VehicleSection::ControlCar);
         QCOMPARE(UicRailwayCoach::type(u"615485711035", u"ARmpee"), VehicleSection::PassengerCar);
+        QCOMPARE(UicRailwayCoach::type(u"618072900000", u"WLABmz"), VehicleSection::SleepingCar);
+        QCOMPARE(UicRailwayCoach::type(u"618159900000", u"Bcmz"), VehicleSection::CouchetteCar);
+        QCOMPARE(UicRailwayCoach::type(u"738159913000", u"Bbcmvz"), VehicleSection::CouchetteCar);
     }
 };
 

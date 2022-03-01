@@ -148,6 +148,10 @@ Kirigami.ScrollablePage {
                             return "Unknown class";
                         }
                     }
+                    QQC2.Label {
+                        visible: section.type == KPublicTransport.VehicleSection.SleepingCar || section.type == KPublicTransport.VehicleSection.CouchetteCar
+                        text: section.type == KPublicTransport.VehicleSection.SleepingCar ? "Sleeping car" : "Couchette car"
+                    }
                 }
             }
         }

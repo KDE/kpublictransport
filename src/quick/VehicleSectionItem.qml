@@ -52,6 +52,8 @@ StyledFrameSvgItem {
                 case VehicleSection.PassengerCar:
                 case VehicleSection.RestaurantCar:
                 case VehicleSection.ControlCar:
+                case VehicleSection.SleepingCar:
+                case VehicleSection.CouchetteCar:
                     svgName += "-double-deck";
                     break;
             }
@@ -68,6 +70,8 @@ StyledFrameSvgItem {
                 return restaurantBackground;
             case VehicleSection.PassengerCar:
             case VehicleSection.ControlCar:
+            case VehicleSection.SleepingCar:
+            case VehicleSection.CouchetteCar:
                 if (section.classes == VehicleSection.FirstClass)
                     return firstClassBackground;
                 else if (section.classes & VehicleSection.FirstClass)

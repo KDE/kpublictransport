@@ -45,6 +45,8 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
         ControlCar, ///< usually at the head of the train, but accessible for passengers and the same way as a PassengerCar
         PassengerCar, ///< passenger car of a train
         RestaurantCar, ///< full-car restaurant
+        SleepingCar, ///< sleeping passenger car of an overnight train
+        CouchetteCar, ///< couchette passenger car of an overnight train
     };
     Q_ENUM(Type)
     /** Type of this vehicle section. */

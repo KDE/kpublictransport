@@ -44,7 +44,7 @@ struct {
     { "DA", VehicleSection::FirstClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
     { "DB", VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
     { "DD", VehicleSection::UnknownClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 }, // TODO car transport coach
-    { "WLAB", VehicleSection::FirstClass | VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
+    { "WLAB", VehicleSection::FirstClass | VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::SleepingCar, 1 },
     { "WLA", VehicleSection::FirstClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
     { "WLB", VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
     { "WR", VehicleSection::UnknownClass, VehicleSection::Restaurant, VehicleSection::RestaurantCar, 1 },
@@ -84,9 +84,9 @@ struct {
     VehicleSection::Features features;
 } static constexpr const number_prefix_table[] = {
     { "50", VehicleSection::PassengerCar, VehicleSection::NoFeatures },
-    { "70", VehicleSection::PassengerCar, VehicleSection::AirConditioning }, // also: air conditioned
-    // { "71", VehicleSection:: TODO }, // TODO sleeping car
-    { "73", VehicleSection::PassengerCar, VehicleSection::AirConditioning }, // also: air conditioned
+    { "70", VehicleSection::PassengerCar, VehicleSection::AirConditioning },
+    { "71", VehicleSection::SleepingCar, VehicleSection::NoFeatures },
+    { "73", VehicleSection::PassengerCar, VehicleSection::AirConditioning },
     { "91", VehicleSection::Engine, VehicleSection::NoFeatures },
     { "92", VehicleSection::Engine, VehicleSection::NoFeatures },
 };
@@ -102,7 +102,7 @@ struct UicClassificationSecondary {
 // 54: Czech Republic
 static constexpr const UicClassificationSecondary secondary_54_table[] = {
     { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 },
-    // "c" Couchettes - TODO needs enum
+    { "c", VehicleSection::NoFeatures, VehicleSection::CouchetteCar, 1 },
     { "d", VehicleSection::BikeStorage, VehicleSection::UnknownType, 1 },
     { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
     { "o", VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 }, // ### could also be 't'?
@@ -112,7 +112,7 @@ static constexpr const UicClassificationSecondary secondary_54_table[] = {
 // 80: Germany
 static constexpr const UicClassificationSecondary secondary_80_table[] = {
     { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 },
-    // "c" Couchettes - TODO needs enum
+    { "c", VehicleSection::NoFeatures, VehicleSection::CouchetteCar, 1 },
     { "d", VehicleSection::BikeStorage, VehicleSection::UnknownType, 1 },
     { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
     { "k", VehicleSection::Restaurant, VehicleSection::UnknownType, 1 },
@@ -123,7 +123,7 @@ static constexpr const UicClassificationSecondary secondary_80_table[] = {
 // 81: Austria
 static constexpr const UicClassificationSecondary secondary_81_table[] = {
     { "b", VehicleSection::WheelchairAccessible, VehicleSection::UnknownType, 1 }, // TODO wheelchair accessible toilets specifically
-    // "c" Couchettes - TODO needs enum
+    { "c", VehicleSection::NoFeatures, VehicleSection::CouchetteCar, 1 },
     { "f", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
     { "p", VehicleSection::NoFeatures, VehicleSection::PassengerCar, 1 },
     { "-s", VehicleSection::NoFeatures, VehicleSection::ControlCar, 1 },
