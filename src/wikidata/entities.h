@@ -59,7 +59,11 @@ private:
         if (!id.startsWith(QLatin1Char(Prefix))) {
             return Identifier();
         }
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         return Identifier(id.midRef(1).toULongLong());
+#else
+        return Identifier(QStringView(id).mid(1).toULongLong());
+#endif
     }
     static inline Identifier fromString(const QByteArray &id)
     {

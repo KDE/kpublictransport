@@ -9,11 +9,11 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QStringList>
 
 #include <vector>
 
 struct QMetaObject;
-class QStringList;
 
 namespace KPublicTransport {
 

@@ -39,7 +39,11 @@ protected:
 
     void clearErrorState();
     Line::Mode parseLineMode(const QString &modeId) const;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     Line::Mode parseLineMode(const QStringRef &modeId) const;
+#else
+    Line::Mode parseLineMode(const QStringView &modeId) const;
+#endif
     Line::Mode parseLineMode(int modeId) const;
 
     void setLocationIdentifier(Location &loc, const QString &id) const;
