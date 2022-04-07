@@ -31,7 +31,7 @@ add_library(KOSM STATIC
 
 target_include_directories(KOSM PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>")
 target_include_directories(KOSM PRIVATE ${Protobuf_INCLUDE_DIRS})
-target_link_libraries(KOSM PUBLIC Qt5::Core PRIVATE Qt5::Network ${EXTRA_LIBS})
+target_link_libraries(KOSM PUBLIC Qt::Core PRIVATE Qt::Network ${EXTRA_LIBS})
 
 if (NOT BUILD_SHARED_LIBS)
     install(TARGETS KOSM EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})

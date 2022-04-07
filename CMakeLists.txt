@@ -35,10 +35,10 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     SOVERSION 1
 )
 
-find_package(Qt5 5.15 REQUIRED COMPONENTS Quick)
+find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Quick)
 
 if (BUILD_TESTING)
-    find_package(Qt5 5.15 REQUIRED COMPONENTS Test Widgets)
+    find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Test Widgets)
 endif()
 
 find_package(ZLIB REQUIRED)

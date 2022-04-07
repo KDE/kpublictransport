@@ -7,7 +7,7 @@ add_library(KGraphQL STATIC
     kgraphql.h
     kgraphqlminimizer_p.h
 )
-target_link_libraries(KGraphQL PUBLIC Qt5::Network)
+target_link_libraries(KGraphQL PUBLIC Qt::Network)
 
 if (NOT BUILD_SHARED_LIBS)
     install(TARGETS KGraphQL EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
