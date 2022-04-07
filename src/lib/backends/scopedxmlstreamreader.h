@@ -52,7 +52,11 @@ public:
     /** Same as QXmlStreamReader::attributes. */
     QXmlStreamAttributes attributes() const;
     /** Same as QXmlStreamReader::name. */
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QStringRef name() const;
+#else
+    QStringView name() const;
+#endif
     /** Same as QXmlStreamReader::readElementText. */
     QString readElementText(QXmlStreamReader::ReadElementTextBehaviour behaviour = QXmlStreamReader::ErrorOnUnexpectedElement);
 

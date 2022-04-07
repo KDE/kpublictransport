@@ -8,6 +8,7 @@
 #define KPUBLICTRANSPORT_LOCATION_H
 
 #include "datatypes.h"
+#include <QVariant>
 
 class QJsonArray;
 class QJsonObject;

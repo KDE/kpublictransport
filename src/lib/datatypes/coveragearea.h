@@ -8,9 +8,9 @@
 #define KPUBLICTRANSPORT_COVERAGEAREA_H
 
 #include "datatypes.h"
+#include <QStringList>
 
 class QJsonObject;
-class QStringList;
 
 namespace KPublicTransport {
 

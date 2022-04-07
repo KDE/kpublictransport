@@ -9,7 +9,6 @@
 
 #include <KPublicTransport/Location>
 
-#include <QJsonArray>
 #include <QJsonObject>
 #include <QMetaEnum>
 

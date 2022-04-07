@@ -502,7 +502,7 @@ static std::vector<Path> parsePaths(const QJsonArray &polyL, const std::vector<L
         // crdEncF: 1-dimensional, always 0?
 
         std::vector<PathSection> sections;
-        sections.reserve(std::max(0, ppLocRefL.size() - 1));
+        sections.reserve(std::max<int>(0, ppLocRefL.size() - 1));
         int prevPpIdx = 0;
         QPointF prevCoord;
         for (const auto &ppLocRefV : ppLocRefL) {
@@ -803,10 +803,14 @@ QDateTime HafasMgateParser::parseDateTime(const QString &date, const QJsonValue 
 
     int dayOffset = 0;
     if (timeStr.size() > 6) {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         dayOffset = timeStr.leftRef(timeStr.size() - 6).toInt();
+#else
+        dayOffset = QStringView(timeStr).left(timeStr.size() - 6).toInt();
+#endif
     }
 
-    auto dt = QDateTime::fromString(date + timeStr.rightRef(6), QStringLiteral("yyyyMMddhhmmss"));
+    auto dt = QDateTime::fromString(date + QStringView(timeStr).right(6), QStringLiteral("yyyyMMddhhmmss"));
     dt = dt.addDays(dayOffset);
     if (!tzOffset.isNull() && !tzOffset.isUndefined()) {
         dt.setOffsetFromUtc(tzOffset.toInt() * 60);
