@@ -15,7 +15,7 @@ namespace Test {
     QByteArray readFile(const QString &fn)
     {
         QFile f(fn);
-        f.open(QFile::ReadOnly);
+        f.open(QFile::ReadOnly | QFile::Text);
         return f.readAll();
     }
 

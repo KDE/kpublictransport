@@ -5,6 +5,7 @@
 */
 
 #include "backends/openjourneyplannerparser.h"
+#include "testhelpers.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -23,14 +24,6 @@ using namespace KPublicTransport;
 class OjpParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -61,11 +54,11 @@ private Q_SLOTS:
         OpenJourneyPlannerParser p;
         p.setLocationIdentifierType(QStringLiteral("test_id"));
         p.setUicLocationIdentifierType(QStringLiteral("uic"));
-        const auto res = p.parseLocationInformationResponse(readFile(inFileName));
+        const auto res = p.parseLocationInformationResponse(Test::readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Location::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
         }
@@ -94,11 +87,11 @@ private Q_SLOTS:
         OpenJourneyPlannerParser p;
         p.setLocationIdentifierType(QStringLiteral("test_id"));
         p.setUicLocationIdentifierType(QStringLiteral("uic"));
-        const auto res = p.parseStopEventResponse(readFile(inFileName));
+        const auto res = p.parseStopEventResponse(Test::readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Stopover::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
         }
@@ -127,11 +120,11 @@ private Q_SLOTS:
         OpenJourneyPlannerParser p;
         p.setLocationIdentifierType(QStringLiteral("test_id"));
         p.setUicLocationIdentifierType(QStringLiteral("uic"));
-        const auto res = p.parseTripResponse(readFile(inFileName));
+        const auto res = p.parseTripResponse(Test::readFile(inFileName));
         QVERIFY(!p.hasError());
         const auto jsonRes = Journey::toJson(res);
 
-        const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         if (jsonRes != ref) {
             qDebug().noquote() << QJsonDocument(jsonRes).toJson();
         }
@@ -145,7 +138,7 @@ private Q_SLOTS:
             OpenJourneyPlannerParser p;
             p.setLocationIdentifierType(QStringLiteral("test_id"));
             p.setUicLocationIdentifierType(QStringLiteral("uic"));
-            auto res = p.parseTripResponse(readFile(s(SOURCE_DIR "/data/ojp/ch-error-notripfound.xml")));
+            auto res = p.parseTripResponse(Test::readFile(s(SOURCE_DIR "/data/ojp/ch-error-notripfound.xml")));
             QVERIFY(res.empty());
             QVERIFY(p.hasError());
             QCOMPARE(p.errorMessage(), QLatin1String("TRIP_NOTRIPFOUND"));
@@ -155,7 +148,7 @@ private Q_SLOTS:
             OpenJourneyPlannerParser p;
             p.setLocationIdentifierType(QStringLiteral("test_id"));
             p.setUicLocationIdentifierType(QStringLiteral("uic"));
-            auto res = p.parseStopEventResponse(readFile(s(SOURCE_DIR "/data/ojp/xml-error.xml")));
+            auto res = p.parseStopEventResponse(Test::readFile(s(SOURCE_DIR "/data/ojp/xml-error.xml")));
             QVERIFY(res.empty());
             QVERIFY(p.hasError());
             QCOMPARE(p.errorMessage(), QLatin1String("Premature end of document."));
