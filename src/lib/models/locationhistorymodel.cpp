@@ -16,7 +16,12 @@ using namespace KPublicTransport;
 
 static QString basePath()
 {
-    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/org.kde.kpublictransport/location-history/");
+#ifdef Q_OS_ANDROID
+    constexpr auto dataLoc = QStandardPaths::AppDataLocation;
+#else
+    constexpr auto dataLoc = QStandardPaths::GenericDataLocation;
+#endif
+    return QStandardPaths::writableLocation(dataLoc) + QLatin1String("/org.kde.kpublictransport/location-history/");
 }
 
 LocationHistoryModel::LocationHistoryModel(QObject *parent)
