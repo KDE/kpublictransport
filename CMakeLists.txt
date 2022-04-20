@@ -69,7 +69,7 @@ endif()
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-set(CMAKECONFIG_INSTALL_DIR "${CMAKECONFIG_INSTALL_PREFIX}/KPublicTransport")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KPublicTransport")
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/KPublicTransportConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfig.cmake"
