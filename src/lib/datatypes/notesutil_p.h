@@ -7,8 +7,9 @@
 #ifndef KPUBLICTRANSPORT_NOTESUTIL_P_H
 #define KPUBLICTRANSPORT_NOTESUTIL_P_H
 
+#include <QtContainerFwd>
+
 class QString;
-class QStringList;
 
 namespace KPublicTransport {
 
