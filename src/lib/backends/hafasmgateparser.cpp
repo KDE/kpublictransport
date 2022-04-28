@@ -9,6 +9,7 @@
 #include "logging.h"
 #include "datatypes/loadutil_p.h"
 #include "geo/polylinedecoder_p.h"
+#include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Platform>
@@ -233,6 +234,16 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
         setLocationIdentifier(loc, locObj.value(QLatin1String("extId")).toString());
         const auto coordObj = locObj.value(QLatin1String("crd")).toObject();
         loc.setCoordinate(coordObj.value(QLatin1String("y")).toDouble() / 1000000.0, coordObj.value(QLatin1String("x")).toDouble() / 1000000.0);
+
+        const auto gidL = locObj.value(QLatin1String("gidL")).toArray();
+        for (const auto &gidV : gidL) {
+            const auto gid = gidV.toString() ;
+            // ### is this A× prefix actually standard or do we need to configure that per provider?
+            if (gid.startsWith(QStringLiteral("A×")) && IfoptUtil::isValid(QStringView(gid).mid(2))) {
+                loc.setIdentifier(IfoptUtil::identifierType(), gid.mid(2));
+            }
+        }
+
         locs.push_back(loc);
     }
     return locs;
