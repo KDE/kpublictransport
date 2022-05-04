@@ -12,7 +12,6 @@
 
 #include <QJsonObject>
 #include <QPolygonF>
-#include <QStringList>
 
 using namespace KPublicTransport;
 
