@@ -112,7 +112,10 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
             static QRegularExpression rx(QStringLiteral("\\.(max|1st|2nd)\\.1([1-4])$"));
             const auto match = rx.match(code);
             if (match.hasMatch()) {
-                m.loadInfo.setLoad(load_value_map[match.captured(2).toInt()]);
+                const auto r = match.captured(2).toInt();
+                if (r >= 0 && r <= 4) {
+                    m.loadInfo.setLoad(load_value_map[r]);
+                }
                 if (match.captured(1) != QLatin1String("max")) {
                     m.loadInfo.setSeatingClass(match.captured(1).left(1));
                 }
@@ -203,8 +206,11 @@ static std::vector<LoadInfo> parseLoadInformation(const QJsonArray &tcocL)
     loadInfos.reserve(tcocL.size());
     for (const auto &tcocV : tcocL) {
         const auto tcocObj = tcocV.toObject();
+        const auto r = tcocObj.value(QLatin1String("r")).toInt(-1);
+        if (r < 0 || r > 4) {
+            continue;
+        }
         LoadInfo loadInfo;
-        const auto r = qBound(0, tcocObj.value(QLatin1String("r")).toInt(), 4);
         loadInfo.setLoad(load_value_map[r]);
         const auto c = tcocObj.value(QLatin1String("c")).toString();
         loadInfo.setSeatingClass(c == QLatin1String("FIRST") ? QStringLiteral("1") : QStringLiteral("2"));
