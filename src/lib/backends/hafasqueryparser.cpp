@@ -338,7 +338,7 @@ std::vector<Journey> HafasQueryParser::parseQueryJourneyResponse(const QByteArra
                     ++commentPtr;
                     // format: XX - <human readable comment>, where XX is two character code for the comment
                     const auto note = stringTable.lookup(*commentPtr);
-                    if (note.size() > 5 && note.midRef(2, 3) == QLatin1String(" - ")) {
+                    if (note.size() > 5 && QStringView(note).mid(2, 3) == QLatin1String(" - ")) {
                         section.addNote(note.mid(5));
                     } else {
                         section.addNote(note);

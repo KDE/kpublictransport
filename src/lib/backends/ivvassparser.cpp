@@ -373,7 +373,11 @@ std::vector<Journey> IvvAssParser::parseJourneys(const QByteArray &data)
             s.setDistance(segmentObj.value(QLatin1String("distance")).toInt());
             const auto polygon = segmentObj.value(QLatin1String("polygon")).toString();
             QPolygonF poly;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             const auto coords = polygon.splitRef(QLatin1Char(' '), Qt::SkipEmptyParts);
+#else
+            const auto coords = QStringView(polygon).split(QLatin1Char(' '), Qt::SkipEmptyParts);
+#endif
             poly.reserve(coords.size());
             for (const auto &coord : coords) {
                 const auto p = coord.split(QLatin1Char(','));

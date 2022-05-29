@@ -232,7 +232,7 @@ static Path parsePathFromLength(const QPolygonF &pathLineString, const QJsonArra
 
         QPolygonF subPoly;
         subPoly.reserve(polyIdx - prevPolyIdx + 1);
-        std::copy(pathLineString.begin() + prevPolyIdx, pathLineString.begin() + std::min(polyIdx + 1, pathLineString.size()), std::back_inserter(subPoly));
+        std::copy(pathLineString.begin() + prevPolyIdx, pathLineString.begin() + std::min<int>(polyIdx + 1, pathLineString.size()), std::back_inserter(subPoly));
         pathSec.setPath(std::move(subPoly));
         prevPolyIdx = polyIdx;
         pathSections.push_back(std::move(pathSec));

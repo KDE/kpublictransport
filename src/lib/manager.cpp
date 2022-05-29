@@ -242,7 +242,7 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
     const auto langArray = obj.value(QLatin1String("supportedLanguages")).toArray();
     QStringList langs;
     langs.reserve(langArray.size());
-    std::transform(langArray.begin(), langArray.end(), std::back_inserter(langs), std::mem_fn(qOverload<>(&QJsonValue::toString)));
+    std::transform(langArray.begin(), langArray.end(), std::back_inserter(langs), [](const auto &v) { return v.toString(); });
     backend->setSupportedLanguages(langs);
 }
 

@@ -78,7 +78,7 @@ static QByteArray readReplyAsUtf8(QNetworkReply *reply)
     if (charsetStart < 0) {
         return data;
     }
-    const auto codec = QTextCodec::codecForName(contentType.midRef(charsetStart + 8).toUtf8());
+    const auto codec = QTextCodec::codecForName(QStringView(contentType).mid(charsetStart + 8).toUtf8());
     if (!codec) {
         return data;
     }

@@ -24,9 +24,9 @@ QString NotesUtil::normalizeNote(const QString &note)
         const auto match = linkRegExp.match(n);
         if (match.hasMatch()) {
             n.replace(match.capturedStart(), match.capturedLength(), QLatin1String("<a href=\"")
-                + (match.capturedRef().startsWith(QLatin1String("http")) ? QString() : QStringLiteral("https://"))
-                + match.capturedRef().toString()
-                + QLatin1String("\">") + match.capturedRef() + QLatin1String("</a>"));
+                + (match.capturedView().startsWith(QLatin1String("http")) ? QString() : QStringLiteral("https://"))
+                + match.capturedView()
+                + QLatin1String("\">") + match.capturedView() + QLatin1String("</a>"));
         }
     }
 
