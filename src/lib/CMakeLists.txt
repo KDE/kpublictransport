@@ -132,6 +132,7 @@ set_target_properties(KPublicTransport PROPERTIES
     EXPORT_NAME KPublicTransport
 )
 target_include_directories(KPublicTransport PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(KPublicTransport INTERFACE "$<INSTALL_INTERFACE:${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}>")
 target_link_libraries(KPublicTransport
     PUBLIC
         Qt::Gui
@@ -222,14 +223,14 @@ install(FILES
     ${KPublicTransport_FORWARDING_HEADERS}
     ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
     ${KPublicTransport_Models_FORWARDING_HEADERS}
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport
+    DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/KPublicTransport
 )
 install(FILES
     ${KPublicTransport_HEADERS}
     ${KPublicTransport_Datatypes_HEADERS}
     ${KPublicTransport_Models_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR}/kpublictransport
+    DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/kpublictransport
 )
 
 

@@ -58,6 +58,8 @@ if (NOT WIN32)
     set_package_properties(Protobuf PROPERTIES TYPE OPTIONAL PURPOSE "Parsing of OSM PBF files.")
 endif()
 
+set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
+
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055900)
 add_subdirectory(src)
@@ -82,7 +84,7 @@ install(FILES
     DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
     COMPONENT Devel
 )
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_version.h DESTINATION ${KDE_INSTALL_INCLUDEDIR} COMPONENT Devel)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_version.h DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR} COMPONENT Devel)
 
 install(EXPORT KPublicTransportTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KPublicTransportTargets.cmake)
 
