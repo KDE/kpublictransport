@@ -4,4 +4,4 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#cmakedefine HAVE_PROTOBUF
+#cmakedefine01 HAVE_PROTOBUF

@@ -7,7 +7,7 @@
 #include "config-kosm.h"
 #include "osmpbfparser.h"
 
-#ifdef HAVE_PROTOBUF
+#if HAVE_PROTOBUF
 #include "fileformat.pb.h"
 #include "osmformat.pb.h"
 
@@ -28,7 +28,7 @@ OsmPbfParser::OsmPbfParser(DataSet *dataSet)
 
 void OsmPbfParser::parse(const uint8_t *data, std::size_t len)
 {
-#ifdef HAVE_PROTOBUF
+#if HAVE_PROTOBUF
     const uint8_t *it = data;
     const uint8_t *end = data + len;
     while (parseBlob(it, end));
@@ -40,7 +40,7 @@ void OsmPbfParser::parse(const uint8_t *data, std::size_t len)
 #endif
 }
 
-#ifdef HAVE_PROTOBUF
+#if HAVE_PROTOBUF
 bool OsmPbfParser::parseBlob(const uint8_t *&it, const uint8_t *end)
 {
     if (std::distance(it, end) < (int)sizeof(int32_t)) {
