@@ -184,16 +184,26 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
         const auto lat = GBFSReader::readLatitude(bike);
         const auto lon = GBFSReader::readLongitude(bike);
-        if (std::isnan(lat) || std::isnan(lon) || Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance()) {
+        const bool selectedByCoord = !std::isnan(lat) && !std::isnan(lon) && Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance();
+
+        // GBFS v2.1: docked vehicle status - TODO do we want to drop the corresponding station in that case?
+        const auto id = stationIdToString(bike.value(QLatin1String("station_id")));
+        const auto it = std::find(selectedStationIds.begin(), selectedStationIds.end(), id);
+        if (it == selectedStationIds.end() && !selectedByCoord) {
             continue;
         }
 
         Location loc;
         loc.setName(network.name());
         loc.setType(Location::RentedVehicle);
-        loc.setCoordinate(lat, lon);
-        const auto stationId = bike.value(QLatin1String("bike_id")).toString();
-        loc.setIdentifier(service.systemId, stationId);
+        if (selectedByCoord) {
+            loc.setCoordinate(lat, lon);
+        } else {
+            const auto &station = context->result[context->result.size() - selectedStationIds.size() + std::distance(selectedStationIds.begin(), it)];
+            loc.setCoordinate(station.latitude(), station.longitude());
+        }
+        const auto bikeId = bike.value(QLatin1String("bike_id")).toString();
+        loc.setIdentifier(service.systemId, bikeId);
 
         // TODO deep rental links
         RentalVehicle vehicle;
