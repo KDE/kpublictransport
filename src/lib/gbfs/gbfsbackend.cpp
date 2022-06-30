@@ -205,6 +205,9 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
         const auto vehicleType = vehicleTypes.vehicleType(vehicleTypeId);
         vehicle.setType(gbfs2kptVehicleType(vehicleType));
+        if (!vehicleType.name.isEmpty()) {
+            loc.setName(vehicleType.name);
+        }
 
         const auto range = bike.value(QLatin1String("current_range_meters")).toInt();
         if (range > 0) { // there's too many reporting 0 for unknown that we can assume 0 means actually empty...

@@ -22,6 +22,7 @@ class GBFSVehicleType
 {
 public:
     QString typeId;
+    QString name;
     enum FormFactor {
         UndefinedFormFactor,
         Bicycle,

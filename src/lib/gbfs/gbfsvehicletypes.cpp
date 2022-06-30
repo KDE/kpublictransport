@@ -81,6 +81,7 @@ GBFSVehicleType GBFSVehicleType::fromJson(const QJsonObject &obj)
 {
     GBFSVehicleType v;
     v.typeId = obj.value(QLatin1String("vehicle_type_id")).toString();
+    v.name = obj.value(QLatin1String("name")).toString();
     v.formFactor = lookupValue(form_factor_map, obj.value(QLatin1String("form_factor")).toString());
     v.propulsionType = lookupValue(propulsion_map, obj.value(QLatin1String("propulsion_type")).toString());
     return v;
