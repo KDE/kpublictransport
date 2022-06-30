@@ -135,6 +135,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         loc.setIdentifier(service.systemId, stationId);
         loc.setStreetAddress(cleanAddress(station.value(QLatin1String("address")).toString()));
         loc.setPostalCode(station.value(QLatin1String("post_code")).toString());
+        loc.setLocality(station.value(QLatin1String("city")).toString()); // non-standard extension
         // TODO cover more properties
 
         RentalVehicleStation s;
