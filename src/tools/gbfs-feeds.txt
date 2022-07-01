@@ -9,3 +9,6 @@ https://share.veoride.com/api/share/gbfs.json
 https://cykel.jenarad.de/gbfs/gbfs.json
 https://ixsi.swu.de/gbfs.json
 https://gbfs.conficars.de/gbfs.json
+https://opendata.bbnavi.de/barshare/gbfs.json
+https://www.mobidata-bw.de/data/LastenveloFR/gbfs.json
+https://www.mobidata-bw.de/data/stadtmobil-S/gbfs.json
