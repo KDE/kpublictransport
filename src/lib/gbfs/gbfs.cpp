@@ -15,23 +15,27 @@ using namespace KPublicTransport;
 
 struct {
     const char *fileName;
+    GBFS::FileType type;
 } static constexpr const file_info_map[] = {
-    { "gbfs" },
-    { "system_information" },
-    { "station_information" },
-    { "station_status" },
-    { "free_bike_status" },
-    { "gbfs_versions" },
-    { "vehicle_types" },
-    { "geofencing_zones" },
-    { "system_hours" },
-    { "system_calendar" },
-    { "system_regions" },
-    { "system_pricing_plans" },
-    { "system_alerts" },
-};
+    // ### keep the first part matching the enum order
+    { "gbfs", GBFS::Discovery },
+    { "system_information", GBFS::SystemInformation },
+    { "station_information", GBFS::StationInformation },
+    { "station_status", GBFS::StationStatus },
+    { "free_bike_status", GBFS::FreeBikeStatus },
+    { "gbfs_versions", GBFS::Versions },
+    { "vehicle_types", GBFS::VehicleTypes },
+    { "geofencing_zones", GBFS::GeofencingZones },
+    { "system_hours", GBFS::SystemHours },
+    { "system_calendar", GBFS::SystemCalendar },
+    { "system_regions", GBFS::SystemRegions },
+    { "system_pricing_plans", GBFS::SystemPricingPlans },
+    { "system_alerts", GBFS::SystemAlerts },
 
-static_assert((sizeof(file_info_map) / sizeof(file_info_map[0])) == GBFS::Unknown, "");
+    // typos observed in the wild
+    { "vehicles_types", GBFS::VehicleTypes },
+    { "system regions", GBFS::SystemRegions },
+};
 
 const char* GBFS::keyNameForType(GBFS::FileType type)
 {
@@ -43,7 +47,7 @@ GBFS::FileType GBFS::typeForKeyName(QStringView v)
     const auto s = v.toUtf8();
     for (auto it = std::begin(file_info_map); it != std::end(file_info_map); ++it) {
         if (std::strcmp((*it).fileName, s.constData()) == 0 || (s.endsWith(".json") && std::strncmp((*it).fileName, s.constData(), s.size() - 5) == 0)) {
-            return static_cast<GBFS::FileType>(std::distance(std::begin(file_info_map), it));
+            return (*it).type;
         }
     }
 
