@@ -17,6 +17,7 @@
         "Description[pt_BR]": "Informação de status em tempo real para elevadores e escadas rolantes.",
         "Description[sl]": "Stanje sprotnih informacij o dvigalih in tekočih stopnicah.",
         "Description[sv]": "Realtidsinformation för hissar och rulltrappor.",
+        "Description[tr]": "Asansörler ve yürüyen merdivenler için canlı durum bilgisi.",
         "Description[uk]": "Інтерактивні відомості щодо стану для ліфтів і ескалаторів.",
         "Description[x-test]": "xxRealtime status information for elevators and escalators.xx",
         "Description[zh_CN]": "升降梯和手扶梯的实时状态信息。",
@@ -35,6 +36,7 @@
         "Name[pt_BR]": "Nuvem de acessibilidade",
         "Name[sl]": "Oblak dostopnosti",
         "Name[sv]": "Accessibility Cloud",
+        "Name[tr]": "Erişilebilirlik Bulutu",
         "Name[uk]": "Хмара доступності",
         "Name[x-test]": "xxAccessibility Cloudxx"
     },

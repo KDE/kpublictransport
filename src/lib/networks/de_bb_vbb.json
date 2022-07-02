@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte local nas regiões de Berlim e Brandemburgo na Alemanha.",
         "Description[sl]": "Lokalni transport v Berlinu in deželi Brandenburg v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i Berlin- och Brandenburg-områdena i Tyskland.",
+        "Description[tr]": "Almanya'nın Berlin ve Brandenburg bölgesi için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у регіонах Берлін та Бранденбург, Німеччина.",
         "Description[x-test]": "xxLocal transport in the Berlin and Brandenburg regions of Germany.xx",
         "Description[zh_CN]": "德国柏林和勃兰登堡地区的公共交通。",
@@ -40,6 +41,7 @@
         "Name[sk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[sl]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[sv]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
+        "Name[tr]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[uk]": "Verkehrsverbund Berlin-Brandenburg (VBB)",
         "Name[x-test]": "xxVerkehrsverbund Berlin-Brandenburg (VBB)xx"
     },

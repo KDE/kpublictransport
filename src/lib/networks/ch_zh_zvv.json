@@ -17,6 +17,7 @@
         "Description[pt_BR]": "Transporte público local na região de Zurique, Suíça.",
         "Description[sl]": "Lokalni javni prevoz v kantonu Zürich, Švica",
         "Description[sv]": "Lokal transportoperatör i och omkring Zürich, Schweiz.",
+        "Description[tr]": "İsviçre, Zürih kantonu için yerel toplu taşıma.",
         "Description[uk]": "Місцевий транспорт у кантоні Цюрих, Швейцарія",
         "Description[x-test]": "xxLocal public transport in the canton Zürich, Switzerlandxx",
         "Description[zh_CN]": "瑞士苏黎世州当地的公共交通。",
@@ -37,6 +38,7 @@
         "Name[pt_BR]": "Züricher Verkehrsverbund (ZVV)",
         "Name[sl]": "Züricher Verkehrsverbund (ZVV)",
         "Name[sv]": "Züricher Verkehrsverbund (ZVV)",
+        "Name[tr]": "Züricher Verkehrsverbund (ZVV)",
         "Name[uk]": "Züricher Verkehrsverbund (ZVV)",
         "Name[x-test]": "xxZüricher Verkehrsverbund (ZVV)xx"
     },

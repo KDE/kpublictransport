@@ -17,6 +17,7 @@
         "Description[pt_BR]": "Informações sobre transportes públicos no Reino Unido.",
         "Description[sl]": "Informacije o javnem prevozu v Veliki Britaniji.",
         "Description[sv]": "Information om kollektivtrafik i Storbritannien.",
+        "Description[tr]": "BK toplu taşıma bilgisi.",
         "Description[uk]": "Дані щодо громадського транспорту у Великій Британії.",
         "Description[x-test]": "xxUK public transport information.xx",
         "Description[zh_CN]": "英国公交信息。",
@@ -38,6 +39,7 @@
         "Name[pt_BR]": "Traveline",
         "Name[sl]": "Traveline",
         "Name[sv]": "Traveline",
+        "Name[tr]": "Traveline",
         "Name[uk]": "Traveline",
         "Name[x-test]": "xxTravelinexx"
     },

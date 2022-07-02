@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte público na Renânia do Norte-Vestfália, Alemanha.",
         "Description[sl]": "Javni prevoz v deželi Severno Porenje-Vestfalija, Nemčija.",
         "Description[sv]": "Kollektivtrafik i Nordrhein-Westfalen, Tyskland.",
+        "Description[tr]": "Almanya, Kuzey Rhine-Westphalia için yerel taşıma.",
         "Description[uk]": "Громадський транспорт у землі Північна Рейн-Вестфалія, Німеччина.",
         "Description[x-test]": "xxPublic transport in North Rhine-Westphalia, Germany.xx",
         "Description[zh_CN]": "德国北莱茵-威斯特法伦的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Delfi NRW",
         "Name[sl]": "Delfi NRW",
         "Name[sv]": "Delfi NRW",
+        "Name[tr]": "Delfi NRW",
         "Name[uk]": "Delfi NRW",
         "Name[x-test]": "xxDelfi NRWxx"
     },

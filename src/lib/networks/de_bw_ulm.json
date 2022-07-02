@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte público local na região de Ulm, Alemanha.",
         "Description[sl]": "Lokalni javni prevoz v Ulmu in okolici, Nemčija.",
         "Description[sv]": "Lokal kollektivtrafik i och omkring Ulm, Tyskland.",
+        "Description[tr]": "Almanya, Ulm içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий транспорт в Ульмі і околицях, Німеччина.",
         "Description[x-test]": "xxLocal public transport in and around Ulm, Germany.xx",
         "Description[zh_CN]": "德国乌尔姆及其周边地区的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Ulm, Germany",
         "Name[sl]": "Ulm, Nemčija",
         "Name[sv]": "Ulm, Tyskland",
+        "Name[tr]": "Ulm, Almanya",
         "Name[uk]": "Ульм, Німеччина",
         "Name[x-test]": "xxUlm, Germanyxx"
     },

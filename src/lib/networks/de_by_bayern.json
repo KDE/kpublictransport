@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte local na Baviera, Alemanha.",
         "Description[sl]": "Lokalni prevoz na Bavarskem v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i Bayern, Tyskland.",
+        "Description[tr]": "Almanya, Bavarya bölgesi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Баварії, Німеччина.",
         "Description[x-test]": "xxLocal transport in Bavaria, Germany.xx",
         "Description[zh_CN]": "德国巴伐利亚当地的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Bayern Fahrplan",
         "Name[sl]": "Bayern Fahrplan",
         "Name[sv]": "Bayern Fahrplan",
+        "Name[tr]": "Bayern Fahrplan",
         "Name[uk]": "Bayern Fahrplan",
         "Name[x-test]": "xxBayern Fahrplanxx"
     },

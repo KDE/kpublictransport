@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte público na Estônia.",
         "Description[sl]": "Javni prevoz v Estoniji.",
         "Description[sv]": "Kollektivtrafik i Estland.",
+        "Description[tr]": "Estonya toplu taşıma.",
         "Description[uk]": "Громадський транспорт в Естонії.",
         "Description[x-test]": "xxPublic transport in Estonia.xx",
         "Description[zh_CN]": "爱沙尼亚的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Peatus",
         "Name[sl]": "Peatus",
         "Name[sv]": "Peatus",
+        "Name[tr]": "Peatus",
         "Name[uk]": "Peatus",
         "Name[x-test]": "xxPeatusxx"
     },

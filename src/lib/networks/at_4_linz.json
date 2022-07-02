@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte local na região de Linz, Áustria.",
         "Description[sl]": "Lokalni prevoz v Linzu in okolici, v Avstriji.",
         "Description[sv]": "Lokal transportoperatör i och omkring Linz, Österrike.",
+        "Description[tr]": "Avusturya, Linz bölgesi yerel taşıma",
         "Description[uk]": "Місцевий транспорт у Лінці і околицях, Австрія.",
         "Description[x-test]": "xxLocal transport in and around Linz, Austria.xx",
         "Description[zh_CN]": "奥地利林茨及其周边地区的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Linz AG",
         "Name[sl]": "Linz AG",
         "Name[sv]": "Linz AG",
+        "Name[tr]": "Linz AG",
         "Name[uk]": "Linz AG",
         "Name[x-test]": "xxLinz AGxx"
     },

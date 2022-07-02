@@ -16,6 +16,7 @@
         "Description[pt_BR]": "Transporte público na Viena, Áustria.",
         "Description[sl]": "Javni transport na Dunaju, Avstrija.",
         "Description[sv]": "Kollektivtrafik i Wien, Österrike.",
+        "Description[tr]": "Avusturya, Viyana için toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Відні, Австрія.",
         "Description[x-test]": "xxPublic transport in Vienna, Austria.xx",
         "Description[zh_CN]": "奥地利维也纳的公共交通。",
@@ -35,6 +36,7 @@
         "Name[pt_BR]": "Wiener Linien",
         "Name[sl]": "Wiener Linien",
         "Name[sv]": "Wiener Linien",
+        "Name[tr]": "Wiener Linien",
         "Name[uk]": "Wiener Linien",
         "Name[x-test]": "xxWiener Linienxx"
     },

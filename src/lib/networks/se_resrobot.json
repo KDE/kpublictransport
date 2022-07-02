@@ -17,6 +17,7 @@
         "Description[pt_BR]": "Informações sobre transportes públicos na Suécia.",
         "Description[sl]": "Informacije o javnem prevozu na Švedskem.",
         "Description[sv]": "Information om kollektivtrafik i Sverige.",
+        "Description[tr]": "İsveç için toplu taşıma bilgisi.",
         "Description[uk]": "Дані щодо громадського транспорту у Швеції.",
         "Description[x-test]": "xxPublic transport information for Sweden.xx",
         "Description[zh_CN]": "瑞典的公交信息。",
@@ -39,6 +40,7 @@
         "Name[sk]": "Resrobot",
         "Name[sl]": "Resrobot",
         "Name[sv]": "Resrobot",
+        "Name[tr]": "Resrobot",
         "Name[uk]": "Resrobot",
         "Name[x-test]": "xxResrobotxx"
     },

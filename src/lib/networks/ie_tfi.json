@@ -18,6 +18,7 @@
         "Description[ru]": "Местный и национальный транспорт в Ирландии.",
         "Description[sl]": "Lokalni in državni prevoz na Irskem.",
         "Description[sv]": "Lokal och nationell transportoperatör i Irland.",
+        "Description[tr]": "İrlanda içi yerel ve ulusal taşıma.",
         "Description[uk]": "Місцевий і загальнодержавний транспорт у Ірландії.",
         "Description[x-test]": "xxLocal and national transport in Ireland.xx",
         "Description[zh_CN]": "爱尔兰的当地公交及国际公交",
@@ -38,6 +39,7 @@
         "Name[pt_BR]": "Transport For Ireland",
         "Name[sl]": "Transport For Ireland",
         "Name[sv]": "Transport For Ireland",
+        "Name[tr]": "İrlanda Taşıma",
         "Name[uk]": "Транспорт у Ірландії",
         "Name[x-test]": "xxTransport For Irelandxx"
     },

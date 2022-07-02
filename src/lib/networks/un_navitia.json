@@ -16,6 +16,7 @@
         "Description[pt_BR]": "Fornecedor mundial de dados de transporte aberto e de software livre.",
         "Description[sl]": "Ponudnik podatkov o prostem programju in odprtih transportnih podatkih.",
         "Description[sv]": "Världsomspännande leverantör av öppen transportinformation med fri programvara",
+        "Description[tr]": "Dünya çapı Özgür yazılım ve Açık Veri taşıma veri sağlayıcısı.",
         "Description[uk]": "Всесвітнє джерело відкритих даних щодо транспорту для вільного програмного забезпечення.",
         "Description[x-test]": "xxWorld-wide Free Software and Open Data transport data provider.xx",
         "Description[zh_CN]": "全球范围内的自由软件及开放交通数据的提供商。",
@@ -38,6 +39,7 @@
         "Name[sk]": "Navitia",
         "Name[sl]": "Navitia",
         "Name[sv]": "Navitia",
+        "Name[tr]": "Navitia",
         "Name[uk]": "Navitia",
         "Name[x-test]": "xxNavitiaxx",
         "Name[zh_TW]": "Navitia"

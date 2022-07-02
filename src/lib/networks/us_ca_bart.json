@@ -17,6 +17,7 @@
         "Description[pt_BR]": "Transporte local na área da baía na Califórnia, Estados Unidos.",
         "Description[sl]": "Lokalni prevoz v zalivu v Kaliforniji, Združene države Amerike.",
         "Description[sv]": "Lokal transportoperatör i San Francisco-bukten, Förenta staterna.",
+        "Description[tr]": "ABD, Bay Area bölgesi için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у регіоні затоки, Каліфорнія, США.",
         "Description[x-test]": "xxLocal transport in the bay area in California, United States.xx",
         "Description[zh_CN]": "美国加利福尼亚州湾区及其周边的公共交通。",
@@ -37,6 +38,7 @@
         "Name[pt_BR]": "Bay Area Rapid Transit (BART)",
         "Name[sl]": "Bay Area Rapid Transit (BART)",
         "Name[sv]": "Bay Area Rapid Transit (BART)",
+        "Name[tr]": "Bay Area Rapid Transit (BART)",
         "Name[uk]": "Bay Area Rapid Transit (BART)",
         "Name[x-test]": "xxBay Area Rapid Transit (BART)xx"
     },

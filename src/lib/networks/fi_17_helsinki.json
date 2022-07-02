@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte público local e na região de Helsinque, Finlândia.",
         "Description[sl]": "Lokalni javni prevoz v in okoli mesta Helsinki na Finskem.",
         "Description[sv]": "Lokal transportoperatör i och omkring Helsingfors, Finland.",
+        "Description[tr]": "Finlandiya, Helsinki içi ve çevresi yerel toplu taşıma.",
         "Description[uk]": "Місцевий громадський транспорт у Гельсінкі і околицях, Фінляндія.",
         "Description[x-test]": "xxLocal public transport in and around Helsinki, Finland.xx",
         "Description[zh_CN]": "芬兰赫尔辛基及其周边地区的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Helsinque",
         "Name[sl]": "Helsinki",
         "Name[sv]": "Helsingfors",
+        "Name[tr]": "Helsinki",
         "Name[uk]": "Гельсінкі",
         "Name[x-test]": "xxHelsinkixx"
     },

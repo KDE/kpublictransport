@@ -16,6 +16,7 @@
         "Description[pt_BR]": "Transporte público local na região de Angermünde, Alemanha.",
         "Description[sl]": "Lokalni javni transport v in okoli kraja Angermünde v Nemčiji.",
         "Description[sv]": "Lokal transportoperatör i och omkring Angermünde, Tyskland.",
+        "Description[tr]": "Almanya, Angermünde içi ve çevresi için yerel toplu taşıma.",
         "Description[uk]": "Місцевий транспорт в Анґермюнде і околицях, Німеччина.",
         "Description[x-test]": "xxLocal public transport in and around Angermünde, Germany.xx",
         "Name": "bbnavi Angermünde",
@@ -33,6 +34,7 @@
         "Name[pt_BR]": "bbnavi Angermünde",
         "Name[sl]": "bbnavi Angermünde",
         "Name[sv]": "bbnavi Angermünde",
+        "Name[tr]": "bbnavi Angermünde",
         "Name[uk]": "bbnavi Angermünde",
         "Name[x-test]": "xxbbnavi Angermündexx"
     },

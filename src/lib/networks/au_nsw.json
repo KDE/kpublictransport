@@ -19,6 +19,7 @@
         "Description[ru]": "Местный транспорт в Новом Южном Уэльсе, Австралия.",
         "Description[sl]": "Lokalni prevoz v Novem Južnem Walesu v Avstraliji.",
         "Description[sv]": "Lokal transportoperatör i Nya Sydwales, Australien.",
+        "Description[tr]": "Avusturalya, New South Wales için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Новому Південному Уельсі, Австралія.",
         "Description[x-test]": "xxLocal transport in New South Wales, Australia.xx",
         "Description[zh_CN]": "澳大利亚新南威尔士州当地的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Transport for NSW",
         "Name[sl]": "Transport for NSW",
         "Name[sv]": "Transport for NSW",
+        "Name[tr]": "NSW Taşıma",
         "Name[uk]": "Транспорт у Новому Південному Уельсі",
         "Name[x-test]": "xxTransport for NSWxx"
     },

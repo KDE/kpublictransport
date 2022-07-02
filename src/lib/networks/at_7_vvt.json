@@ -18,6 +18,7 @@
         "Description[pt_BR]": "Transporte público regional em Tirol, Áustria.",
         "Description[sl]": "Regionalni javni prevoz na Tirolskem v Avstriji.",
         "Description[sv]": "Lokal kollektivtrafik i Tyrolen, Österrike.",
+        "Description[tr]": "Avusturya, Tirol için bölgesel yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Тіролі, Австрія.",
         "Description[x-test]": "xxRegional public transport in Tyrol, Austria.xx",
         "Description[zh_CN]": "奥地利蒂罗尔州地区的公共交通。",
@@ -39,6 +40,7 @@
         "Name[pt_BR]": "Verkehrsverbund Tirol (VVT)",
         "Name[sl]": "Verkehrsverbund Tirol (VVT)",
         "Name[sv]": "Verkehrsverbund Tirol (VVT)",
+        "Name[tr]": "Verkehrsverbund Tirol (VVT)",
         "Name[uk]": "Verkehrsverbund Tirol (VVT)",
         "Name[x-test]": "xxVerkehrsverbund Tirol (VVT)xx"
     },
