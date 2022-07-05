@@ -84,6 +84,9 @@
             },
             "region": [
                 "DE-BW"
+            ],
+            "uicCompanyCodes": [
+                "3202"
             ]
         }
     },
