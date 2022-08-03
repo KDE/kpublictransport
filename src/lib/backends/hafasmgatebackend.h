@@ -18,7 +18,6 @@
 
 class QJsonArray;
 class QJsonObject;
-class QNetworkReply;
 
 namespace KPublicTransport {
 

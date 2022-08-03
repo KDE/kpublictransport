@@ -12,7 +12,6 @@
 namespace KPublicTransport {
 
 class AbstractBackend;
-class Platform;
 class Stopover;
 class Vehicle;
 class VehicleLayoutRequest;

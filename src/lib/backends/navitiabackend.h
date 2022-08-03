@@ -11,7 +11,6 @@
 
 #include <QString>
 
-class QNetworkReply;
 
 namespace KPublicTransport {
 

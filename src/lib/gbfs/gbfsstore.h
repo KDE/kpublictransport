@@ -12,7 +12,6 @@
 #include <QString>
 
 class QJsonDocument;
-class QUrl;
 
 namespace KPublicTransport {
 

@@ -18,7 +18,6 @@
 namespace KPublicTransport {
 
 class Stopover;
-class JourneySection;
 class VehicleLayoutRequestPrivate;
 
 /** Describes a query for vehicle layout information. */

@@ -12,7 +12,6 @@
 
 class QJsonArray;
 class QJsonObject;
-class QJsonValue;
 class QTimeZone;
 template <typename K, typename T> class QHash;
 

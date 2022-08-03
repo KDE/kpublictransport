@@ -13,8 +13,6 @@ class QString;
 
 namespace KPublicTransport {
 
-class LineMetaData;
-class Location;
 
 namespace LineUtil
 {
