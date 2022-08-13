@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: none
 ---
-Checks:          'clang-diagnostic-*,-clang-diagnostic-gnu-zero-variadic-macro-arguments,-clang-diagnostic-unknown-warning-option,clang-analyzer-*,bugprone-*,misc-*,modernize-*,performance-*,readability-*,-readability-implicit-bool-conversion,-readability-magic-numbers,-readability-uppercase-literal-suffix,-readability-isolate-declaration,-readability-named-parameter,-modernize-avoid-c-arrays'
+Checks:          'clang-diagnostic-*,-clang-diagnostic-gnu-zero-variadic-macro-arguments,-clang-diagnostic-unknown-warning-option,clang-analyzer-*,bugprone-*,misc-*,modernize-*,performance-*,readability-*,-readability-implicit-bool-conversion,-readability-magic-numbers,-readability-uppercase-literal-suffix,-readability-isolate-declaration,-readability-named-parameter,-modernize-avoid-c-arrays,-modernize-use-trailing-return-type'
 FormatStyle:     none
 CheckOptions:    
   - key:             readability-implicit-bool-conversion.AllowIntegerConditions
