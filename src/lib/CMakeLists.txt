@@ -213,7 +213,7 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     RELATIVE models
 )
 
-install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KPublicTransport EXPORT KPublicTransportTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ecm_qt_install_logging_categories(
     EXPORT KPUBLICTRANSPORT
     FILE org_kde_kpublictransport.categories

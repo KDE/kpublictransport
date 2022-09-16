@@ -35,5 +35,5 @@ target_link_libraries(KOSM PUBLIC Qt::Core PRIVATE Qt::Network ${EXTRA_LIBS})
 set_target_properties(KOSM PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 if (NOT BUILD_SHARED_LIBS)
-    install(TARGETS KOSM EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KOSM EXPORT KPublicTransportTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()

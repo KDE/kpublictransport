@@ -11,5 +11,5 @@ target_link_libraries(KGraphQL PUBLIC Qt::Network)
 set_target_properties(KGraphQL PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 if (NOT BUILD_SHARED_LIBS)
-    install(TARGETS KGraphQL EXPORT KPublicTransportTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+    install(TARGETS KGraphQL EXPORT KPublicTransportTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 endif()
