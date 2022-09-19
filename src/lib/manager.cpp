@@ -58,6 +58,8 @@
 using namespace KPublicTransport;
 
 static inline void initResources() {
+    Q_INIT_RESOURCE(asset_attributions);
+    Q_INIT_RESOURCE(gbfs);
     Q_INIT_RESOURCE(networks);
     Q_INIT_RESOURCE(network_certs);
     Q_INIT_RESOURCE(otp);
