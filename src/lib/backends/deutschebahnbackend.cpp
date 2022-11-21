@@ -24,7 +24,7 @@ using namespace KPublicTransport;
 static QString extractTrainNumber(const Line &line)
 {
     qDebug() << line.modeString() << line.name();
-    QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC)\\s*(\\d+)"));
+    QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ)\\s*(\\d+)"));
     const auto match = regex.match(line.modeString() + line.name());
     if (match.hasMatch()) {
         return match.captured(1);
