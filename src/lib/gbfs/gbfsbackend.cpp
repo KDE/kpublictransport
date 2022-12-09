@@ -185,7 +185,7 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         }
         const auto lat = GBFSReader::readLatitude(bike);
         const auto lon = GBFSReader::readLongitude(bike);
-        const bool selectedByCoord = !std::isnan(lat) && !std::isnan(lon) && Location::distance(lat, lon, req.latitude(), req.longitude()) > req.maximumDistance();
+        const bool selectedByCoord = !std::isnan(lat) && !std::isnan(lon) && Location::distance(lat, lon, req.latitude(), req.longitude()) <= req.maximumDistance();
 
         // GBFS v2.1: docked vehicle status - TODO do we want to drop the corresponding station in that case?
         const auto id = stationIdToString(bike.value(QLatin1String("station_id")));
