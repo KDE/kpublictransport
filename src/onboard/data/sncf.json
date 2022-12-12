@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "sncf.js",
+        "positionEndpoint": "https://wifi.sncf/router/api/train/gps",
+        "positionFunction": "parseGps",
+        "journeyEndpoint": "https://wifi.sncf/router/api/train/details",
+        "journeyFunction": "parseDetails"
+    }
+}

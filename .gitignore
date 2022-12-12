@@ -11,7 +11,6 @@ callgrind.*
 heaptrack.*
 *.qmlc
 *.fail
-build*
 
 src/coverage/10m_cultural
 

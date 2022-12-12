@@ -37,6 +37,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::CoverageArea>();
     qRegisterMetaType<KPublicTransport::CoverageArea::Type>();
     qRegisterMetaType<KPublicTransport::Equipment>();
+    qRegisterMetaType<KPublicTransport::Journey>();
     qRegisterMetaType<KPublicTransport::Line>();
     qRegisterMetaType<KPublicTransport::Line::Mode>();
     qRegisterMetaType<KPublicTransport::LoadInfo>();

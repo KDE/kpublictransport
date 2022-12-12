@@ -45,3 +45,5 @@ ecm_add_test(publictransportmanagertest.cpp LINK_LIBRARIES Qt::Test KPublicTrans
 ecm_add_test(cachetest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(gbfstest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(accessibilitycloudtest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+
+ecm_add_test(onboardstatustest.cpp LINK_LIBRARIES Qt::Test KPublicTransportOnboard Qt::Network)

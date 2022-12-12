@@ -1,0 +1,20 @@
+<!--
+    SPDX-FileCopyrightText: 2022 Volker Krause <vkrause@kde.org>
+    SPDX-License-Identifier: CC0-1.0
+-->
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport.onboard/">
+        <!-- Wifi AP data -->
+        <file>accesspoints.json</file>
+
+        <!-- API backend configurations and scripts -->
+        <file>ceskedrahy.json</file>
+        <file>ceskedrahy.js</file>
+        <file>deutschebahn-ice.json</file>
+        <file>deutschebahn.js</file>
+        <file>sncf.json</file>
+        <file>sncf.js</file>
+        <file>thalys.json</file>
+        <file>thalys.js</file>
+    </qresource>
+</RCC>

@@ -9,6 +9,7 @@ This includes:
 * Information about train coach and train station platform layouts.
 * Information about rental vehicle positions and availability, such as shared bikes or scooters.
 * Realtime information about the operational status of elevators or escalators.
+* Unified access to onboard API on trains for obtaining the current position and journey.
 
 !! Before using this, please read the license compliance and attribution section below !!
 
@@ -32,6 +33,8 @@ and how a platform is structured.
 
 All operations can be started from KPublicTransport::Manager with an API similar to
 QNetworkAccessManager.
+
+Onboard API access is available via the KPublicTransport::OnboardStatus class.
 
 ## Backends
 

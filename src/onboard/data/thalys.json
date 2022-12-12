@@ -1,0 +1,8 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "thalys.js",
+        "positionEndpoint": "https://www.ombord.info/api/jsonp/position/",
+        "positionFunction": "parsePosition"
+    }
+}

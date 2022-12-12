@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "ceskedrahy.js",
+        "positionEndpoint": "http://cdwifi.cz/portal/api/vehicle/realtime",
+        "positionFunction": "parseRealtime",
+        "journeyEndpoint": "http://cdwifi.cz/portal/api/timetable/connexion/current?locale=en_GB",
+        "journeyFunction": "parseCurrent"
+    }
+}

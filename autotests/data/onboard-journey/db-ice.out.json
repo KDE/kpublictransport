@@ -1,0 +1,242 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 507330,
+            "expectedArrivalPlatform": "15",
+            "expectedArrivalTime": "2021-12-21T11:10:00Z",
+            "expectedDeparturePlatform": "6",
+            "expectedDepartureTime": "2021-12-21T06:36:00Z",
+            "from": {
+                "identifier": {
+                    "ibnr": "8010255"
+                },
+                "latitude": 52.5104866027832,
+                "longitude": 13.434680938720703,
+                "name": "Berlin Ostbahnhof",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T06:42:00Z",
+                    "expectedDepartureTime": "2021-12-21T06:47:00Z",
+                    "expectedPlatform": "13",
+                    "scheduledArrivalTime": "2021-12-21T06:42:00Z",
+                    "scheduledDepartureTime": "2021-12-21T06:46:00Z",
+                    "scheduledPlatform": "13",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8011160"
+                        },
+                        "latitude": 52.52559280395508,
+                        "longitude": 13.369544982910156,
+                        "name": "Berlin Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T06:59:00Z",
+                    "expectedDepartureTime": "2021-12-21T07:02:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2021-12-21T06:58:00Z",
+                    "scheduledDepartureTime": "2021-12-21T07:00:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8010404"
+                        },
+                        "latitude": 52.53464889526367,
+                        "longitude": 13.196898460388184,
+                        "name": "Berlin-Spandau",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T07:52:00Z",
+                    "expectedDepartureTime": "2021-12-21T07:55:00Z",
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": "2021-12-21T07:52:00Z",
+                    "scheduledDepartureTime": "2021-12-21T07:53:00Z",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8006552"
+                        },
+                        "latitude": 52.42949676513672,
+                        "longitude": 10.7877836227417,
+                        "name": "Wolfsburg Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T08:28:00Z",
+                    "expectedDepartureTime": "2021-12-21T08:33:00Z",
+                    "expectedPlatform": "12",
+                    "scheduledArrivalTime": "2021-12-21T08:28:00Z",
+                    "scheduledDepartureTime": "2021-12-21T08:31:00Z",
+                    "scheduledPlatform": "12",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000152"
+                        },
+                        "latitude": 52.37676239013672,
+                        "longitude": 9.741021156311035,
+                        "name": "Hannover Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T09:22:00Z",
+                    "expectedDepartureTime": "2021-12-21T09:24:00Z",
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": "2021-12-21T09:20:00Z",
+                    "scheduledDepartureTime": "2021-12-21T09:22:00Z",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000036"
+                        },
+                        "latitude": 52.02926254272461,
+                        "longitude": 8.532722473144531,
+                        "name": "Bielefeld Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T09:50:00Z",
+                    "expectedDepartureTime": "2021-12-21T09:54:00Z",
+                    "expectedPlatform": "10",
+                    "scheduledArrivalTime": "2021-12-21T09:48:00Z",
+                    "scheduledDepartureTime": "2021-12-21T09:51:00Z",
+                    "scheduledPlatform": "10",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000149"
+                        },
+                        "latitude": 51.678077697753906,
+                        "longitude": 7.807820796966553,
+                        "name": "Hamm (Westf) Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T10:12:00Z",
+                    "expectedDepartureTime": "2021-12-21T10:14:00Z",
+                    "expectedPlatform": "18",
+                    "scheduledArrivalTime": "2021-12-21T10:10:00Z",
+                    "scheduledDepartureTime": "2021-12-21T10:12:00Z",
+                    "scheduledPlatform": "18",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000080"
+                        },
+                        "latitude": 51.51789474487305,
+                        "longitude": 7.459290027618408,
+                        "name": "Dortmund Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T10:25:00Z",
+                    "expectedDepartureTime": "2021-12-21T10:26:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2021-12-21T10:23:00Z",
+                    "scheduledDepartureTime": "2021-12-21T10:24:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000041"
+                        },
+                        "latitude": 51.478607177734375,
+                        "longitude": 7.223275184631348,
+                        "name": "Bochum Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T10:38:00Z",
+                    "expectedDepartureTime": "2021-12-21T10:40:00Z",
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": "2021-12-21T10:35:00Z",
+                    "scheduledDepartureTime": "2021-12-21T10:37:00Z",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000098"
+                        },
+                        "latitude": 51.45135498046875,
+                        "longitude": 7.0147929191589355,
+                        "name": "Essen Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T10:52:00Z",
+                    "expectedDepartureTime": "2021-12-21T10:54:00Z",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2021-12-21T10:48:00Z",
+                    "scheduledDepartureTime": "2021-12-21T10:50:00Z",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000086"
+                        },
+                        "latitude": 51.429786682128906,
+                        "longitude": 6.775903224945068,
+                        "name": "Duisburg Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-12-21T11:02:00Z",
+                    "expectedDepartureTime": "2021-12-21T11:03:00Z",
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": "2021-12-21T10:58:00Z",
+                    "scheduledDepartureTime": "2021-12-21T11:00:00Z",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000082"
+                        },
+                        "latitude": 51.29200744628906,
+                        "longitude": 6.78683614730835,
+                        "name": "Düsseldorf Flughafen",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Düsseldorf Hbf",
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "ICE 944"
+                }
+            },
+            "scheduledArrivalPlatform": "15",
+            "scheduledArrivalTime": "2021-12-21T11:07:00Z",
+            "scheduledDeparturePlatform": "6",
+            "scheduledDepartureTime": "2021-12-21T06:35:00Z",
+            "to": {
+                "identifier": {
+                    "ibnr": "8000085"
+                },
+                "latitude": 51.21996307373047,
+                "longitude": 6.794319152832031,
+                "name": "Düsseldorf Hbf",
+                "type": "Stop"
+            }
+        }
+    ]
+}

@@ -1,0 +1,193 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 933140,
+            "expectedArrivalTime": "2022-09-29T13:06:00Z",
+            "expectedDepartureTime": "2022-09-29T04:35:00Z",
+            "from": {
+                "identifier": {
+                    "sncf": "LULUX"
+                },
+                "latitude": 49.59972381591797,
+                "longitude": 6.1347222328186035,
+                "name": "Luxembourg",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T05:50:00Z",
+                    "scheduledDepartureTime": "2022-09-29T05:50:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRADE"
+                        },
+                        "latitude": 49.109466552734375,
+                        "longitude": 6.177052021026611,
+                        "name": "Metz",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T06:59:00Z",
+                    "scheduledDepartureTime": "2022-09-29T06:59:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRAEG"
+                        },
+                        "latitude": 48.58453369140625,
+                        "longitude": 7.734793186187744,
+                        "name": "Strasbourg",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T07:29:30Z",
+                    "scheduledDepartureTime": "2022-09-29T07:29:30Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRAEJ"
+                        },
+                        "latitude": 48.07352828979492,
+                        "longitude": 7.3477559089660645,
+                        "name": "Colmar",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T07:50:30Z",
+                    "scheduledDepartureTime": "2022-09-29T07:50:30Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRAEK"
+                        },
+                        "latitude": 47.74269104003906,
+                        "longitude": 7.343160152435303,
+                        "name": "Mulhouse",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T08:23:30Z",
+                    "scheduledDepartureTime": "2022-09-29T08:23:30Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRTJA"
+                        },
+                        "latitude": 47.585105895996094,
+                        "longitude": 6.897984504699707,
+                        "name": "Belfort - Montbéliard TGV",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T08:46:30Z",
+                    "scheduledDepartureTime": "2022-09-29T08:46:30Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRTJB"
+                        },
+                        "latitude": 47.30721664428711,
+                        "longitude": 5.95361328125,
+                        "name": "Besançon Franche-Comté TGV",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T09:16:00Z",
+                    "scheduledDepartureTime": "2022-09-29T09:16:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRABA"
+                        },
+                        "latitude": 47.32341003417969,
+                        "longitude": 5.027256011962891,
+                        "name": "Dijon",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T11:04:00Z",
+                    "scheduledDepartureTime": "2022-09-29T11:04:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRLPD"
+                        },
+                        "latitude": 45.760597229003906,
+                        "longitude": 4.859408855438232,
+                        "name": "Lyon Part Dieu",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T11:47:00Z",
+                    "scheduledDepartureTime": "2022-09-29T11:47:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRVLA"
+                        },
+                        "latitude": 44.991905212402344,
+                        "longitude": 4.978652000427246,
+                        "name": "Valence TGV Rhône-Alpes Sud",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T12:27:30Z",
+                    "scheduledDepartureTime": "2022-09-29T12:27:30Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRAVG"
+                        },
+                        "latitude": 43.921939849853516,
+                        "longitude": 4.786136627197266,
+                        "name": "Avignon TGV",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2022-09-29T12:50:00Z",
+                    "scheduledDepartureTime": "2022-09-29T12:50:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "sncf": "FRAIE"
+                        },
+                        "latitude": 43.455238342285156,
+                        "longitude": 5.31753396987915,
+                        "name": "Aix-en-Provence TGV",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "INOUI 9877"
+                }
+            },
+            "scheduledArrivalTime": "2022-09-29T13:06:00Z",
+            "scheduledDepartureTime": "2022-09-29T04:35:00Z",
+            "to": {
+                "identifier": {
+                    "sncf": "FRMSC"
+                },
+                "latitude": 43.30266571044922,
+                "longitude": 5.380406856536865,
+                "name": "Marseille Saint-Charles",
+                "type": "Stop"
+            }
+        }
+    ]
+}

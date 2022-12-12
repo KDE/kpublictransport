@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "deutschebahn.js",
+        "positionEndpoint": "https://iceportal.de/api1/rs/status",
+        "positionFunction": "parseICEStatus",
+        "journeyEndpoint": "https://iceportal.de/api1/rs/tripInfo/trip",
+        "journeyFunction": "parseICETrip"
+    }
+}

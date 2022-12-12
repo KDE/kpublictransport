@@ -1,0 +1,261 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 793043,
+            "from": {
+                "latitude": 47.07273483276367,
+                "locality": "Graz",
+                "longitude": 15.416484832763672,
+                "name": "Graz Hbf",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T11:01:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T11:03:00+01:00",
+                    "stopPoint": {
+                        "latitude": 47.413875579833984,
+                        "locality": "Bruck an der Mur",
+                        "longitude": 15.27936840057373,
+                        "name": "Bruck/Mur",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T11:08:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T11:09:00+01:00",
+                    "stopPoint": {
+                        "latitude": 47.4452018737793,
+                        "locality": "Kapfenberg",
+                        "longitude": 15.29218578338623,
+                        "name": "Kapfenberg",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T11:31:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T11:33:00+01:00",
+                    "stopPoint": {
+                        "latitude": 47.60783004760742,
+                        "locality": "Mürzzuschlag",
+                        "longitude": 15.677200317382812,
+                        "name": "Mürzzuschlag",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T11:45:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T11:47:00+01:00",
+                    "stopPoint": {
+                        "latitude": 47.63901138305664,
+                        "locality": "Semmering",
+                        "longitude": 15.830556869506836,
+                        "name": "Semmering",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T12:28:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T12:32:00+01:00",
+                    "stopPoint": {
+                        "latitude": 47.81055450439453,
+                        "locality": "Wiener Neustadt",
+                        "longitude": 16.233055114746094,
+                        "name": "Wiener Neustadt Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T12:55:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T12:57:00+01:00",
+                    "stopPoint": {
+                        "latitude": 48.17491149902344,
+                        "locality": "Wien",
+                        "longitude": 16.335861206054688,
+                        "name": "Wien Meidling",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T13:02:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T13:10:00+01:00",
+                    "stopPoint": {
+                        "latitude": 48.18503952026367,
+                        "locality": "Wien",
+                        "longitude": 16.37833023071289,
+                        "name": "Wien Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T14:04:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T14:07:00+01:00",
+                    "stopPoint": {
+                        "latitude": 48.75376892089844,
+                        "locality": "Břeclav",
+                        "longitude": 16.893024444580078,
+                        "name": "Břeclav",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T14:36:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T14:38:00+01:00",
+                    "stopPoint": {
+                        "latitude": 49.19049835205078,
+                        "locality": "Brno",
+                        "longitude": 16.61281394958496,
+                        "name": "Brno hl.n.",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T17:32:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T17:37:00+01:00",
+                    "stopPoint": {
+                        "latitude": 50.11063766479492,
+                        "locality": "Praha",
+                        "longitude": 14.439705848693848,
+                        "name": "Praha-Holešovice",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T18:43:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T18:45:00+01:00",
+                    "stopPoint": {
+                        "latitude": 50.65944290161133,
+                        "locality": "Ústí nad Labem",
+                        "longitude": 14.044464111328125,
+                        "name": "Ústí n.L.hl.n.",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T19:00:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T19:07:00+01:00",
+                    "stopPoint": {
+                        "latitude": 50.77347183227539,
+                        "locality": "Děčín",
+                        "longitude": 14.201252937316895,
+                        "name": "Děčín hl.n.",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T19:23:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T19:25:00+01:00",
+                    "stopPoint": {
+                        "latitude": 50.91873550415039,
+                        "locality": "Bad Schandau",
+                        "longitude": 14.139717102050781,
+                        "name": "Bad Schandau",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T19:50:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T19:55:00+01:00",
+                    "stopPoint": {
+                        "latitude": 51.040409088134766,
+                        "locality": "Dresden",
+                        "longitude": 13.731583595275879,
+                        "name": "Dresden Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T20:00:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T20:02:00+01:00",
+                    "stopPoint": {
+                        "latitude": 51.06589889526367,
+                        "locality": "Dresden",
+                        "longitude": 13.74060344696045,
+                        "name": "Dresden-Neustadt",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T20:27:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T20:29:00+01:00",
+                    "stopPoint": {
+                        "latitude": 51.459224700927734,
+                        "locality": "Elsterwerda",
+                        "longitude": 13.51620101928711,
+                        "name": "Elsterwerda",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T20:39:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T20:41:00+01:00",
+                    "stopPoint": {
+                        "latitude": 51.62061309814453,
+                        "locality": "Doberlug-Kirchhain",
+                        "longitude": 13.564226150512695,
+                        "name": "Doberlug-Kirchhain",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T21:48:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T21:50:00+01:00",
+                    "stopPoint": {
+                        "latitude": 52.50299835205078,
+                        "locality": "Berlin",
+                        "longitude": 13.469261169433594,
+                        "name": "Berlin Ostkreuz",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2022-11-23T21:59:00+01:00",
+                    "scheduledDepartureTime": "2022-11-23T22:03:00+01:00",
+                    "stopPoint": {
+                        "latitude": 52.52559280395508,
+                        "locality": "Berlin",
+                        "longitude": 13.369544982910156,
+                        "name": "Berlin Hbf",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "rj 258 Vindobona"
+                }
+            },
+            "scheduledArrivalTime": "2022-11-23T22:10:00+01:00",
+            "scheduledDepartureTime": "2022-11-23T10:26:00+01:00",
+            "to": {
+                "latitude": 52.50487518310547,
+                "locality": "Berlin",
+                "longitude": 13.303755760192871,
+                "name": "Berlin-Charlottenburg",
+                "type": "Stop"
+            }
+        }
+    ]
+}
