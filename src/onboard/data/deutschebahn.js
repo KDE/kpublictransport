@@ -9,6 +9,7 @@ function parseICEStatus(response)
     pos.latitude = response.latitude;
     pos.longitude = response.longitude;
     pos.speed = response.speed;
+    pos.timestamp = new Date(response.serverTime).toISOString();
     return pos;
 }
 

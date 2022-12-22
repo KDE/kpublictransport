@@ -214,7 +214,9 @@ void OnboardStatusManager::positionUpdated(const PositionData &pos)
     m_pendingPositionUpdate = false;
     m_previousPos = m_currentPos;
     m_currentPos = pos;
-    // TODO compute speed if not set
+    if (!m_currentPos.timestamp.isValid()) {
+        m_currentPos.timestamp = QDateTime::currentDateTime();
+    }
 
     // compute heading based on previous position, if we actually moved sufficiently
     if (std::isnan(m_currentPos.heading) &&
@@ -226,6 +228,16 @@ void OnboardStatusManager::positionUpdated(const PositionData &pos)
         const auto y = std::cos(degToRad(m_currentPos.latitude)) * std::sin(deltaLon);
         const auto x = std::cos(degToRad(m_previousPos.latitude)) * std::sin(degToRad(m_previousPos.latitude)) - std::sin(degToRad(m_previousPos.latitude)) * std::cos(degToRad(m_currentPos.latitude)) * std::cos(deltaLon);
         m_currentPos.heading = std::fmod(radToDeg(std::atan2(y, x)) + 360.0, 360.0);
+    }
+
+    // compute speed based on previous position if necessary
+    if (std::isnan(m_currentPos.speed) && m_previousPos.hasCoordinate() && m_currentPos.hasCoordinate())
+    {
+        const auto dist = Location::distance(m_currentPos.latitude, m_currentPos.longitude, m_previousPos.latitude, m_previousPos.longitude);
+        const double timeDelta = m_previousPos.timestamp.secsTo(m_currentPos.timestamp);
+        if (timeDelta > 0) {
+            m_currentPos.speed = 3.6 * dist / timeDelta;
+        }
     }
 
     Q_EMIT positionChanged();

@@ -55,7 +55,7 @@ PositionData ScriptedRestOnboardBackend::parsePositionData(const QJsonValue &res
 
     // convert JS result
     PositionData pos;
-    pos.timestamp = QDateTime::currentDateTime(); // TODO
+    pos.timestamp = QDateTime::fromString(result.property(QStringLiteral("timestamp")).toString(), Qt::ISODate);
     pos.latitude = result.property(QStringLiteral("latitude")).toNumber();
     pos.longitude = result.property(QStringLiteral("longitude")).toNumber();
     pos.speed = result.property(QStringLiteral("speed")).toNumber();
