@@ -86,7 +86,7 @@ Journey OnboardStatusManager::currentJourney() const
 void OnboardStatusManager::registerFrontend(const OnboardStatus *status)
 {
     qCDebug(Log) << "registering onboard frontend";
-    connect(status, &OnboardStatus::updateIntervalChanged, this, &OnboardStatusManager::requestUpdate);
+    connect(status, &OnboardStatus::updateIntervalChanged, this, &OnboardStatusManager::requestForceUpdate);
     m_frontends.push_back(status);
     requestForceUpdate();
 }
