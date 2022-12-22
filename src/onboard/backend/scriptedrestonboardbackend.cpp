@@ -7,14 +7,19 @@
 #include "logging.h"
 #include "positiondata_p.h"
 
+#include "../lib/datatypes/stopoverutil_p.h"
+
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Stopover>
+
+#include <KTimeZone>
 
 #include <QFile>
 #include <QJSEngine>
 #include <QJsonValue>
 #include <QJsonObject>
 #include <QNetworkRequest>
+#include <QTimeZone>
 
 using namespace KPublicTransport;
 
@@ -82,12 +87,25 @@ Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response)
     }
 
     // convert JS result
-    // many backends will have the entire trip as intermediate stops, redistribute
-    // that for our format
     auto jny = Journey::fromJson(QJsonValue::fromVariant(result.toVariant()).toObject());
     auto sections = jny.takeSections();
+
     for (auto &section : sections) {
         auto stops = section.takeIntermediateStops();
+        // fill in missing titmezones
+        for (auto &stop : stops) {
+            const auto tzId = KTimeZone::fromLocation(stop.stopPoint().latitude(), stop.stopPoint().longitude());
+            if (!tzId) {
+                continue;
+            }
+            const auto tz = QTimeZone(tzId);
+            if (tz.isValid()) {
+                StopoverUtil::applyTimeZone(stop, tz);
+            }
+        }
+
+        // many backends will have the entire trip as intermediate stops, redistribute
+        // that for our format
         if (section.from().isEmpty() && !stops.empty()) {
             const auto s = stops.front();
             section.setFrom(s.stopPoint());

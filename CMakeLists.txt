@@ -69,6 +69,8 @@ if (ANDROID)
     find_package(Gradle)
 endif()
 
+find_package(KF5 REQUIRED COMPONENTS I18n)
+
 set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
 
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)

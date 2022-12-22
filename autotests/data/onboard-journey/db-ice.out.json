@@ -4,9 +4,15 @@
             "disruptionEffect": "NormalService",
             "distance": 507330,
             "expectedArrivalPlatform": "15",
-            "expectedArrivalTime": "2021-12-21T11:10:00Z",
+            "expectedArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2021-12-21T12:10:00+01:00"
+            },
             "expectedDeparturePlatform": "6",
-            "expectedDepartureTime": "2021-12-21T06:36:00Z",
+            "expectedDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2021-12-21T07:36:00+01:00"
+            },
             "from": {
                 "identifier": {
                     "ibnr": "8010255"
@@ -19,11 +25,23 @@
             "intermediateStops": [
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T06:42:00Z",
-                    "expectedDepartureTime": "2021-12-21T06:47:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T07:42:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T07:47:00+01:00"
+                    },
                     "expectedPlatform": "13",
-                    "scheduledArrivalTime": "2021-12-21T06:42:00Z",
-                    "scheduledDepartureTime": "2021-12-21T06:46:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T07:42:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T07:46:00+01:00"
+                    },
                     "scheduledPlatform": "13",
                     "stopPoint": {
                         "identifier": {
@@ -37,11 +55,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T06:59:00Z",
-                    "expectedDepartureTime": "2021-12-21T07:02:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T07:59:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T08:02:00+01:00"
+                    },
                     "expectedPlatform": "3",
-                    "scheduledArrivalTime": "2021-12-21T06:58:00Z",
-                    "scheduledDepartureTime": "2021-12-21T07:00:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T07:58:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T08:00:00+01:00"
+                    },
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
@@ -55,11 +85,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T07:52:00Z",
-                    "expectedDepartureTime": "2021-12-21T07:55:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T08:52:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T08:55:00+01:00"
+                    },
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": "2021-12-21T07:52:00Z",
-                    "scheduledDepartureTime": "2021-12-21T07:53:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T08:52:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T08:53:00+01:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -73,11 +115,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T08:28:00Z",
-                    "expectedDepartureTime": "2021-12-21T08:33:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T09:28:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T09:33:00+01:00"
+                    },
                     "expectedPlatform": "12",
-                    "scheduledArrivalTime": "2021-12-21T08:28:00Z",
-                    "scheduledDepartureTime": "2021-12-21T08:31:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T09:28:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T09:31:00+01:00"
+                    },
                     "scheduledPlatform": "12",
                     "stopPoint": {
                         "identifier": {
@@ -91,11 +145,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T09:22:00Z",
-                    "expectedDepartureTime": "2021-12-21T09:24:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:22:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:24:00+01:00"
+                    },
                     "expectedPlatform": "4",
-                    "scheduledArrivalTime": "2021-12-21T09:20:00Z",
-                    "scheduledDepartureTime": "2021-12-21T09:22:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:20:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:22:00+01:00"
+                    },
                     "scheduledPlatform": "4",
                     "stopPoint": {
                         "identifier": {
@@ -109,11 +175,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T09:50:00Z",
-                    "expectedDepartureTime": "2021-12-21T09:54:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:50:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:54:00+01:00"
+                    },
                     "expectedPlatform": "10",
-                    "scheduledArrivalTime": "2021-12-21T09:48:00Z",
-                    "scheduledDepartureTime": "2021-12-21T09:51:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:48:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T10:51:00+01:00"
+                    },
                     "scheduledPlatform": "10",
                     "stopPoint": {
                         "identifier": {
@@ -127,11 +205,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T10:12:00Z",
-                    "expectedDepartureTime": "2021-12-21T10:14:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:12:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:14:00+01:00"
+                    },
                     "expectedPlatform": "18",
-                    "scheduledArrivalTime": "2021-12-21T10:10:00Z",
-                    "scheduledDepartureTime": "2021-12-21T10:12:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:10:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:12:00+01:00"
+                    },
                     "scheduledPlatform": "18",
                     "stopPoint": {
                         "identifier": {
@@ -145,11 +235,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T10:25:00Z",
-                    "expectedDepartureTime": "2021-12-21T10:26:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:25:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:26:00+01:00"
+                    },
                     "expectedPlatform": "3",
-                    "scheduledArrivalTime": "2021-12-21T10:23:00Z",
-                    "scheduledDepartureTime": "2021-12-21T10:24:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:23:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:24:00+01:00"
+                    },
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
@@ -163,11 +265,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T10:38:00Z",
-                    "expectedDepartureTime": "2021-12-21T10:40:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:38:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:40:00+01:00"
+                    },
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": "2021-12-21T10:35:00Z",
-                    "scheduledDepartureTime": "2021-12-21T10:37:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:35:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:37:00+01:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -181,11 +295,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T10:52:00Z",
-                    "expectedDepartureTime": "2021-12-21T10:54:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:52:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:54:00+01:00"
+                    },
                     "expectedPlatform": "3",
-                    "scheduledArrivalTime": "2021-12-21T10:48:00Z",
-                    "scheduledDepartureTime": "2021-12-21T10:50:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:48:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:50:00+01:00"
+                    },
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
@@ -199,11 +325,23 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2021-12-21T11:02:00Z",
-                    "expectedDepartureTime": "2021-12-21T11:03:00Z",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T12:02:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T12:03:00+01:00"
+                    },
                     "expectedPlatform": "4",
-                    "scheduledArrivalTime": "2021-12-21T10:58:00Z",
-                    "scheduledDepartureTime": "2021-12-21T11:00:00Z",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T11:58:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-12-21T12:00:00+01:00"
+                    },
                     "scheduledPlatform": "4",
                     "stopPoint": {
                         "identifier": {
@@ -225,9 +363,15 @@
                 }
             },
             "scheduledArrivalPlatform": "15",
-            "scheduledArrivalTime": "2021-12-21T11:07:00Z",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2021-12-21T12:07:00+01:00"
+            },
             "scheduledDeparturePlatform": "6",
-            "scheduledDepartureTime": "2021-12-21T06:35:00Z",
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2021-12-21T07:35:00+01:00"
+            },
             "to": {
                 "identifier": {
                     "ibnr": "8000085"

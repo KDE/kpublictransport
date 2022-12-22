@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_STOPOVERUTIL_P_H
 #define KPUBLICTRANSPORT_STOPOVERUTIL_P_H
 
+#include "kpublictransport_export.h"
+
 class QTimeZone;
 
 namespace KPublicTransport {
@@ -21,8 +23,10 @@ namespace StopoverUtil
     bool timeLessThan(const StopoverRequest &req, const Stopover &lhs, const Stopover &rhs);
     bool timeEqual(const StopoverRequest &req, const Stopover &lhs, const Stopover &rhs);
 
-    /** Reinterpret all floating times as times with the given timezone. */
-    void applyTimeZone(Stopover &dep, const QTimeZone &tz);
+    /** Reinterpret all floating times as times with the given timezone.
+     *  @internal only exported for KPublicTransportOnboard
+     */
+    KPUBLICTRANSPORT_EXPORT void applyTimeZone(Stopover &dep, const QTimeZone &tz);
 }
 
 }

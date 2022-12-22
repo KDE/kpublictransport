@@ -5,6 +5,7 @@ Dependencies:
 - 'on': ['@all']
   'require':
     'frameworks/extra-cmake-modules': '@stable'
+    'frameworks/ki18n': '@stable'
 
 Options:
   # exlucde large generated files from cppcheck, takes way to long to run

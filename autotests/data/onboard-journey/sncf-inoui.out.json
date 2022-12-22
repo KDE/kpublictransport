@@ -3,8 +3,14 @@
         {
             "disruptionEffect": "NormalService",
             "distance": 933140,
-            "expectedArrivalTime": "2022-09-29T13:06:00Z",
-            "expectedDepartureTime": "2022-09-29T04:35:00Z",
+            "expectedArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2022-09-29T15:06:00+02:00"
+            },
+            "expectedDepartureTime": {
+                "timezone": "Europe/Luxembourg",
+                "value": "2022-09-29T06:35:00+02:00"
+            },
             "from": {
                 "identifier": {
                     "sncf": "LULUX"
@@ -17,8 +23,14 @@
             "intermediateStops": [
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T05:50:00Z",
-                    "scheduledDepartureTime": "2022-09-29T05:50:00Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T07:50:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T07:50:00+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRADE"
@@ -31,8 +43,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T06:59:00Z",
-                    "scheduledDepartureTime": "2022-09-29T06:59:00Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2022-09-29T08:59:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2022-09-29T08:59:00+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRAEG"
@@ -45,8 +63,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T07:29:30Z",
-                    "scheduledDepartureTime": "2022-09-29T07:29:30Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T09:29:30+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T09:29:30+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRAEJ"
@@ -59,8 +83,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T07:50:30Z",
-                    "scheduledDepartureTime": "2022-09-29T07:50:30Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T09:50:30+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T09:50:30+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRAEK"
@@ -73,8 +103,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T08:23:30Z",
-                    "scheduledDepartureTime": "2022-09-29T08:23:30Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T10:23:30+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T10:23:30+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRTJA"
@@ -87,8 +123,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T08:46:30Z",
-                    "scheduledDepartureTime": "2022-09-29T08:46:30Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T10:46:30+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T10:46:30+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRTJB"
@@ -101,8 +143,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T09:16:00Z",
-                    "scheduledDepartureTime": "2022-09-29T09:16:00Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T11:16:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T11:16:00+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRABA"
@@ -115,8 +163,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T11:04:00Z",
-                    "scheduledDepartureTime": "2022-09-29T11:04:00Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T13:04:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T13:04:00+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRLPD"
@@ -129,8 +183,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T11:47:00Z",
-                    "scheduledDepartureTime": "2022-09-29T11:47:00Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T13:47:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T13:47:00+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRVLA"
@@ -143,8 +203,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T12:27:30Z",
-                    "scheduledDepartureTime": "2022-09-29T12:27:30Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T14:27:30+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T14:27:30+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRAVG"
@@ -157,8 +223,14 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": "2022-09-29T12:50:00Z",
-                    "scheduledDepartureTime": "2022-09-29T12:50:00Z",
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T14:50:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2022-09-29T14:50:00+02:00"
+                    },
                     "stopPoint": {
                         "identifier": {
                             "sncf": "FRAIE"
@@ -177,8 +249,14 @@
                     "name": "INOUI 9877"
                 }
             },
-            "scheduledArrivalTime": "2022-09-29T13:06:00Z",
-            "scheduledDepartureTime": "2022-09-29T04:35:00Z",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Paris",
+                "value": "2022-09-29T15:06:00+02:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Luxembourg",
+                "value": "2022-09-29T06:35:00+02:00"
+            },
             "to": {
                 "identifier": {
                     "sncf": "FRMSC"
