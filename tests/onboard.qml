@@ -79,7 +79,7 @@ Kirigami.ApplicationWindow {
                                 width: height
                                 height: Kirigami.Units.iconSizes.large
                                 color: Kirigami.Theme.negativeTextColor
-                                rotation: onboardStatus.heading
+                                rotation: onboardStatus.hasHeading ? onboardStatus.heading : 0
                                 transformOrigin: Item.Center
                                 onTransformOriginChanged: icon.transformOrigin = Item.Center
                             }
