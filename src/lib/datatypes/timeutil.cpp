@@ -23,6 +23,11 @@ QDateTime TimeUtil::applyTimeZone(QDateTime dt, const QTimeZone &tz)
         case Qt::UTC:
             dt = dt.toTimeZone(tz);
             break;
+        case Qt::OffsetFromUTC:
+            if (tz.offsetFromUtc(dt) == dt.offsetFromUtc()) {
+                dt.setTimeZone(tz);
+            }
+            break;
         default:
             break;
     }
