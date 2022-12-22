@@ -199,12 +199,35 @@ std::unique_ptr<AbstractOnboardBackend> OnboardStatusManager::createBackend(cons
     return backend;
 }
 
+constexpr inline double degToRad(double deg)
+{
+    return deg / 180.0 * M_PI;
+}
+
+constexpr inline double radToDeg(double rad)
+{
+    return rad / M_PI * 180.0;
+}
+
 void OnboardStatusManager::positionUpdated(const PositionData &pos)
 {
     m_pendingPositionUpdate = false;
     m_previousPos = m_currentPos;
     m_currentPos = pos;
-    // TODO compute speed/heading if not set
+    // TODO compute speed if not set
+
+    // compute heading based on previous position, if we actually moved sufficiently
+    if (std::isnan(m_currentPos.heading) &&
+        m_previousPos.hasCoordinate() &&
+        m_currentPos.hasCoordinate() &&
+        Location::distance(m_currentPos.latitude, m_currentPos.longitude, m_previousPos.latitude, m_previousPos.longitude) > 10.0)
+    {
+        const auto deltaLon = degToRad(m_currentPos.longitude) - degToRad(m_previousPos.longitude);
+        const auto y = std::cos(degToRad(m_currentPos.latitude)) * std::sin(deltaLon);
+        const auto x = std::cos(degToRad(m_previousPos.latitude)) * std::sin(degToRad(m_previousPos.latitude)) - std::sin(degToRad(m_previousPos.latitude)) * std::cos(degToRad(m_currentPos.latitude)) * std::cos(deltaLon);
+        m_currentPos.heading = std::fmod(radToDeg(std::atan2(y, x)) + 360.0, 360.0);
+    }
+
     Q_EMIT positionChanged();
     requestUpdate();
 }

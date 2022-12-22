@@ -54,7 +54,7 @@ float OnboardStatus::longitude() const
 
 bool OnboardStatus::hasPosition() const
 {
-    return !std::isnan(latitude()) && !std::isnan(longitude());
+    return OnboardStatusManager::instance()->currentPosition().hasCoordinate();
 }
 
 float OnboardStatus::speed() const
