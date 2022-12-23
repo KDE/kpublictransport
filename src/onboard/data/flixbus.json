@@ -1,0 +1,8 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "flixbus.js",
+        "positionEndpoint": "https://media.flixbus.com/services/pis/v1/position",
+        "positionFunction": "parsePosition"
+    }
+}

@@ -50,6 +50,7 @@ private Q_SLOTS:
 
         QTest::newRow("cd-railjet") << s("ceskedrahy") << s("cd-railjet.json") << 52.527308f << 13.367355f << 42.0f << NAN;
         QTest::newRow("db-ice") << s("deutschebahn-ice") << s("db-ice.json") << 52.3937f << 10.0929f << 199.0f << NAN;
+        QTest::newRow("flixbus") << s("flixbus") << s("flixbus.json") << 53.153505f << 8.274373f << 26.777f << NAN;
         QTest::newRow("sncf-inoui") << s("sncf") << s("sncf-inoui.json") << 48.064258333f << 7.33914f << 29.272f << 212.5f;
         QTest::newRow("thalys") << s("thalys") << s("thalys.json") << 50.948208f << 6.885135f << 45.42f << 259.72f;
     }

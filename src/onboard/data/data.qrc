@@ -12,6 +12,8 @@
         <file>ceskedrahy.js</file>
         <file>deutschebahn-ice.json</file>
         <file>deutschebahn.js</file>
+        <file>flixbus.json</file>
+        <file>flixbus.js</file>
         <file>sncf.json</file>
         <file>sncf.js</file>
         <file>thalys.json</file>
