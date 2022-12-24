@@ -186,11 +186,22 @@ public:
      *  so this is mainly useful if you have to interface with code expecting a Stopover object.
      */
     Stopover departure() const;
+    /**
+     * Sets all departure properties from a given Stopover.
+     * This effects location and time, but doesn't modify intermediate stops or paths.
+     */
+    void setDeparture(const Stopover &departure);
+
     /** Returns the arrival stopover of this journey section.
      *  This is the same information as accessible by individual properties,
      *  so this is mainly useful if you have to interface with code expecting a Stopover object.
      */
     Stopover arrival() const;
+    /**
+     * Sets all arrival properties from a given Stopover.
+     * This effects location and time, but doesn't modify intermediate stops or paths.
+     */
+    void setArrival(const Stopover &arrival);
 
     /** Vehicle load information for this journey section, if available. */
     const std::vector<LoadInfo>& loadInformation() const;

@@ -265,6 +265,15 @@ Stopover JourneySection::departure() const
     return dep;
 }
 
+void JourneySection::setDeparture(const Stopover &departure)
+{
+    setFrom(departure.stopPoint());
+    setScheduledDepartureTime(departure.scheduledDepartureTime());
+    setExpectedDepartureTime(departure.expectedDepartureTime());
+    setScheduledDeparturePlatform(departure.scheduledPlatform());
+    setExpectedDeparturePlatform(departure.expectedPlatform());
+}
+
 Stopover JourneySection::arrival() const
 {
     Stopover arr;
@@ -278,6 +287,15 @@ Stopover JourneySection::arrival() const
     arr.setVehicleLayout(arrivalVehicleLayout());
     arr.setPlatformLayout(arrivalPlatformLayout());
     return arr;
+}
+
+void JourneySection::setArrival(const Stopover &arrival)
+{
+    setTo(arrival.stopPoint());
+    setScheduledArrivalTime(arrival.scheduledArrivalTime());
+    setExpectedArrivalTime(arrival.expectedArrivalTime());
+    setScheduledArrivalPlatform(arrival.scheduledPlatform());
+    setExpectedArrivalPlatform(arrival.expectedPlatform());
 }
 
 int JourneySection::co2Emission() const

@@ -108,21 +108,13 @@ Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response)
         // that for our format
         if (section.from().isEmpty() && !stops.empty()) {
             const auto s = stops.front();
-            section.setFrom(s.stopPoint());
-            section.setScheduledDepartureTime(s.scheduledDepartureTime());
-            section.setExpectedDepartureTime(s.expectedDepartureTime());
-            section.setScheduledDeparturePlatform(s.scheduledPlatform());
-            section.setExpectedDeparturePlatform(s.expectedPlatform());
+            section.setDeparture(s);
             stops.erase(stops.begin());
         }
 
         if (section.to().isEmpty() && !stops.empty()) {
             const auto s = stops.back();
-            section.setTo(s.stopPoint());
-            section.setScheduledArrivalTime(s.scheduledArrivalTime());
-            section.setExpectedArrivalTime(s.expectedArrivalTime());
-            section.setScheduledArrivalPlatform(s.scheduledPlatform());
-            section.setExpectedArrivalPlatform(s.expectedPlatform());
+            section.setArrival(s);
             stops.pop_back();
         }
 
