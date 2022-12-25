@@ -70,6 +70,12 @@ void OnboardStatusManager::setStatus(OnboardStatus::Status status)
     }
 
     m_status = status;
+    if (m_status != OnboardStatus::Onboard) {
+        m_previousPos = {};
+        m_currentPos = {};
+        m_journey = {};
+    }
+
     Q_EMIT statusChanged();
 }
 
