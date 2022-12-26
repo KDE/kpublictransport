@@ -110,7 +110,7 @@ void OnboardStatusManager::unregisterFrontend(const OnboardStatus *status)
 
 void OnboardStatusManager::wifiChanged()
 {
-    qCDebug(Log) << m_wifiMonitor.ssid();
+    qCDebug(Log) << m_wifiMonitor.ssid() << m_wifiMonitor.status();
     if (m_wifiMonitor.ssid().isEmpty() || m_wifiMonitor.status() != WifiMonitor::Available) {
         setStatus(OnboardStatus::NotConnected);
         return;
@@ -145,7 +145,13 @@ void OnboardStatusManager::loadAccessPointData()
         return;
     }
 
-    const auto aps = QJsonDocument::fromJson(f.readAll()).array();
+    QJsonParseError error;
+    const auto aps = QJsonDocument::fromJson(f.readAll(), &error).array();
+    if (error.error != QJsonParseError::NoError) {
+        qCWarning(Log) << "Failed to parse access point data:" << error.errorString();
+        return;
+    }
+
     m_accessPointData.reserve(aps.size());
     for (const auto &apVal : aps) {
         const auto ap = apVal.toObject();

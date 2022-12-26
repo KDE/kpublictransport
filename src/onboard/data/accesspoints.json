@@ -5,5 +5,5 @@
     { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "FlixBus", "id": "flixbus" },
-    { "ssid:" "FlixBus Wi-Fi", "id": "flixbus" }
+    { "ssid": "FlixBus Wi-Fi", "id": "flixbus" }
 ]
