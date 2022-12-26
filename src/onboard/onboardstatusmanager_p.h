@@ -41,6 +41,9 @@ public:
     void registerFrontend(const OnboardStatus *status);
     void unregisterFrontend(const OnboardStatus *status);
 
+    void requestPosition();
+    void requestJourney();
+
 Q_SIGNALS:
     void statusChanged();
     void positionChanged();

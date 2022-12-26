@@ -117,4 +117,14 @@ void OnboardStatus::setJourneyUpdateInterval(int interval)
     Q_EMIT updateIntervalChanged();
 }
 
+void OnboardStatus::requestPosition()
+{
+    OnboardStatusManager::instance()->requestPosition();
+}
+
+void OnboardStatus::requestJourney()
+{
+    OnboardStatusManager::instance()->requestJourney();
+}
+
 #include "moc_onboardstatus.cpp"

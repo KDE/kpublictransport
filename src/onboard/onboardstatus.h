@@ -76,6 +76,15 @@ public:
     int journeyUpdateInterval() const;
     void setJourneyUpdateInterval(int interval);
 
+    /** Request one time update of the position status.
+     *  For recurring updates, use the polling interval setting instead.
+     */
+    Q_INVOKABLE void requestPosition();
+    /** Request one time journey data update, if available.
+     *  For recurring updates, use the polling interval setting instead.
+     */
+    Q_INVOKABLE void requestJourney();
+
 Q_SIGNALS:
     void statusChanged();
     void positionChanged();

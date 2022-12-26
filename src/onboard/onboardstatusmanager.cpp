@@ -30,21 +30,10 @@ OnboardStatusManager::OnboardStatusManager(QObject *parent)
 
     m_positionUpdateTimer.setSingleShot(true);
     m_positionUpdateTimer.setTimerType(Qt::VeryCoarseTimer);
-    connect(&m_positionUpdateTimer, &QTimer::timeout, this, [this]() {
-        if (m_backend) {
-            m_pendingPositionUpdate = true;
-            m_backend->requestPosition(nam());
-        }
-    });
+    connect(&m_positionUpdateTimer, &QTimer::timeout, this, &OnboardStatusManager::requestPosition);
     m_journeyUpdateTimer.setSingleShot(true);
     m_journeyUpdateTimer.setTimerType(Qt::VeryCoarseTimer);
-    connect(&m_journeyUpdateTimer, &QTimer::timeout, this, [this]() {
-        if (m_backend) {
-            m_pendingJourneyUpdate = true;
-            m_backend->requestJourney(nam());
-        }
-    });
-
+    connect(&m_journeyUpdateTimer, &QTimer::timeout, this, &OnboardStatusManager::requestJourney);
     connect(&m_wifiMonitor, &WifiMonitor::statusChanged, this, &OnboardStatusManager::wifiChanged);
     connect(&m_wifiMonitor, &WifiMonitor::wifiChanged, this, &OnboardStatusManager::wifiChanged);
     wifiChanged();
@@ -106,6 +95,22 @@ void OnboardStatusManager::unregisterFrontend(const OnboardStatus *status)
         m_frontends.erase(it);
     }
     requestUpdate();
+}
+
+void OnboardStatusManager::requestPosition()
+{
+    if (m_backend && !m_pendingPositionUpdate) {
+        m_pendingPositionUpdate = true;
+        m_backend->requestPosition(nam());
+    }
+}
+
+void OnboardStatusManager::requestJourney()
+{
+    if (m_backend && !m_pendingJourneyUpdate) {
+        m_pendingJourneyUpdate = true;
+        m_backend->requestJourney(nam());
+    }
 }
 
 void OnboardStatusManager::wifiChanged()
