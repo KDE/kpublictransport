@@ -1,7 +1,7 @@
 {
     "backend": "ScriptedRestOnboardBackend",
     "options": {
-        "script": "thalys.js",
+        "script": "icomera-omboard.js",
         "positionEndpoint": "https://www.ombord.info/api/jsonp/position/",
         "positionFunction": "parsePosition"
     }

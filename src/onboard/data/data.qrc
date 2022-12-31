@@ -7,7 +7,11 @@
         <!-- Wifi AP data -->
         <file>accesspoints.json</file>
 
-        <!-- API backend configurations and scripts -->
+        <!-- Generic backend configurations/scripts -->
+        <file>icomera-omboard.json</file>
+        <file>icomera-omboard.js</file>
+
+        <!-- Operator-specific API backend configurations and scripts -->
         <file>ceskedrahy.json</file>
         <file>ceskedrahy.js</file>
         <file>deutschebahn-ice.json</file>
@@ -16,7 +20,5 @@
         <file>flixbus.js</file>
         <file>sncf.json</file>
         <file>sncf.js</file>
-        <file>thalys.json</file>
-        <file>thalys.js</file>
     </qresource>
 </RCC>
