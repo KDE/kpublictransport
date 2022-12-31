@@ -12,6 +12,7 @@ ecm_add_test(indexeddatatabletest.cpp LINK_LIBRARIES Qt::Test)
 
 ecm_add_test(polylinetest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ifopttest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+ecm_add_test(jsonptest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(uicstationcodetest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(uicrailwaycoachtest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(mergeutiltest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)

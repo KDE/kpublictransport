@@ -8,6 +8,8 @@
 #include "hafasjourneyresponse_p.h"
 #include "logging.h"
 
+#include <json/jsonp_p.h>
+
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Stopover>
@@ -107,15 +109,10 @@ std::vector<Location> HafasQueryParser::parseGetStopResponse(const QByteArray &d
 {
     clearErrorState();
 
-    // remove garbage around JSON payload
-    const auto startIdx = data.indexOf('{');
-    const auto endIdx = data.lastIndexOf('}');
-    const auto jsonData = data.mid(startIdx, endIdx - startIdx + 1);
-
     QJsonParseError parseError;
-    const auto doc = QJsonDocument::fromJson(jsonData, &parseError);
+    const auto doc = QJsonDocument::fromJson(JsonP::decode(data), &parseError);
     if (parseError.error != QJsonParseError::NoError) {
-        qCWarning(Log) << parseError.errorString() << jsonData;
+        qCWarning(Log) << parseError.errorString() << data;
     }
     const auto suggestions = doc.object().value(QLatin1String("suggestions")).toArray();
     std::vector<Location> res;

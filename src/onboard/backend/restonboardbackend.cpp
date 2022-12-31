@@ -7,6 +7,8 @@
 #include "logging.h"
 #include "positiondata_p.h"
 
+#include "../../lib/json/jsonp_p.h"
+
 #include <KPublicTransport/Journey>
 
 #include <QJsonDocument>
@@ -34,7 +36,7 @@ void RestOnboardBackend::requestPosition(QNetworkAccessManager *nam)
             return;
         }
 
-        const auto doc = QJsonDocument::fromJson(reply->readAll());
+        const auto doc = QJsonDocument::fromJson(JsonP::decode(reply->readAll()));
         Q_EMIT positionReceived(parsePositionData(doc.object()));
     });
 }
