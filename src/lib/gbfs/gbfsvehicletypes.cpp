@@ -41,6 +41,8 @@ static constexpr const value_map_entry<GBFSVehicleType::FormFactor> form_factor_
     { "car", GBFSVehicleType::Car },
     { "moped", GBFSVehicleType::Moped },
     { "scooter", GBFSVehicleType::Scooter },
+    { "scooter_seating", GBFSVehicleType::Scooter },
+    { "scooter_standing", GBFSVehicleType::Scooter },
     { "other", GBFSVehicleType::Other },
 };
 
@@ -49,6 +51,9 @@ static constexpr const value_map_entry<GBFSVehicleType::PropulsionType> propulsi
     { "electric_assist", GBFSVehicleType::ElectricAssist },
     { "electric", GBFSVehicleType::Electric },
     { "combustion", GBFSVehicleType::Combustion },
+    { "combustion_diesel", GBFSVehicleType::Combustion },
+    { "hybrid", GBFSVehicleType::Combustion },
+    { "plug_in_hybrid", GBFSVehicleType::Combustion },
 };
 
 template <typename T, std::size_t N>
