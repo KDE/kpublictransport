@@ -94,11 +94,14 @@ Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response)
         auto stops = section.takeIntermediateStops();
         // fill in missing titmezones
         for (auto &stop : stops) {
-            const auto tzId = KTimeZone::fromLocation(stop.stopPoint().latitude(), stop.stopPoint().longitude());
-            if (!tzId) {
-                continue;
+            QTimeZone tz(stop.stopPoint().timeZone());
+
+            if (!tz.isValid()) {
+                if (const auto tzId = KTimeZone::fromLocation(stop.stopPoint().latitude(), stop.stopPoint().longitude())) {
+                    tz = QTimeZone(tzId);
+                }
             }
-            const auto tz = QTimeZone(tzId);
+
             if (tz.isValid()) {
                 StopoverUtil::applyTimeZone(stop, tz);
             }
