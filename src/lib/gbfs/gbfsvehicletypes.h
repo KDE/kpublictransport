@@ -30,6 +30,7 @@ public:
         Moped,
         Scooter,
         Other,
+        CargoBicycle,
     };
     FormFactor formFactor = UndefinedFormFactor;
     enum PropulsionType {

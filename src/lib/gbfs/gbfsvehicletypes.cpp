@@ -39,6 +39,7 @@ struct value_map_entry
 static constexpr const value_map_entry<GBFSVehicleType::FormFactor> form_factor_map[] = {
     { "bicycle", GBFSVehicleType::Bicycle },
     { "car", GBFSVehicleType::Car },
+    { "cargo_bicycle", GBFSVehicleType::CargoBicycle },
     { "moped", GBFSVehicleType::Moped },
     { "scooter", GBFSVehicleType::Scooter },
     { "scooter_seating", GBFSVehicleType::Scooter },
