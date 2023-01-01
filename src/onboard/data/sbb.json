@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "icomera-gomedia.js",
+        "positionEndpoint": "https://onboard.sbb.ch/services/pis/v1/position",
+        "positionFunction": "parsePosition",
+        "journeyEndpoint": "https://onboard.sbb.ch/services/pis/v1/journey",
+        "journeyFunction": "parseJourney"
+    }
+}

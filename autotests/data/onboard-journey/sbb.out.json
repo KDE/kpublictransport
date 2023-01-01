@@ -1,0 +1,238 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 0,
+            "expectedDepartureTime": {
+                "timezone": "Europe/Zurich",
+                "value": "2022-04-12T10:05:00+02:00"
+            },
+            "from": {
+                "identifier": {
+                    "uic": "8301645"
+                },
+                "name": "Milano Porta Garibaldi",
+                "timezone": "Europe/Zurich",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:20:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:22:00+02:00"
+                    },
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:20:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:22:00+02:00"
+                    },
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8301322"
+                        },
+                        "name": "Monza",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:56:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:59:00+02:00"
+                    },
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:56:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T10:59:00+02:00"
+                    },
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8301307"
+                        },
+                        "name": "Como S. Giovanni",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T11:10:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T11:24:00+02:00"
+                    },
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T11:10:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T11:24:00+02:00"
+                    },
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8505307"
+                        },
+                        "name": "Chiasso",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T11:50:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T12:02:00+02:00"
+                    },
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T11:50:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T12:02:00+02:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8505300"
+                        },
+                        "name": "Lugano",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T12:16:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T12:18:00+02:00"
+                    },
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T12:16:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T12:18:00+02:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8505213"
+                        },
+                        "name": "Bellinzona",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T13:11:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T13:15:00+02:00"
+                    },
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8505004"
+                        },
+                        "name": "Arth-Goldau",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T13:41:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T13:54:00+02:00"
+                    },
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8505000"
+                        },
+                        "name": "Luzern",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T14:28:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Zurich",
+                        "value": "2022-04-12T14:30:00+02:00"
+                    },
+                    "scheduledPlatform": "10",
+                    "stopPoint": {
+                        "identifier": {
+                            "uic": "8500218"
+                        },
+                        "name": "Olten",
+                        "timezone": "Europe/Zurich",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "scheduledArrivalPlatform": "6",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Zurich",
+                "value": "2022-04-12T14:56:00+02:00"
+            },
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Zurich",
+                "value": "2022-04-12T10:05:00+02:00"
+            },
+            "to": {
+                "identifier": {
+                    "uic": "8500010"
+                },
+                "name": "Basel SBB",
+                "timezone": "Europe/Zurich",
+                "type": "Stop"
+            }
+        }
+    ]
+}

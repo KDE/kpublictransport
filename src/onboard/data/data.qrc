@@ -8,6 +8,7 @@
         <file>accesspoints.json</file>
 
         <!-- Generic backend configurations/scripts -->
+        <file>icomera-gomedia.js</file>
         <file>icomera-omboard.json</file>
         <file>icomera-omboard.js</file>
 
@@ -17,7 +18,7 @@
         <file>deutschebahn-ice.json</file>
         <file>deutschebahn.js</file>
         <file>flixbus.json</file>
-        <file>flixbus.js</file>
+        <file>sbb.json</file>
         <file>sncf.json</file>
         <file>sncf.js</file>
     </qresource>

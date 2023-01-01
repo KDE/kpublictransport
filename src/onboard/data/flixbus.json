@@ -1,7 +1,7 @@
 {
     "backend": "ScriptedRestOnboardBackend",
     "options": {
-        "script": "flixbus.js",
+        "script": "icomera-gomedia.js",
         "positionEndpoint": "https://media.flixbus.com/services/pis/v1/position",
         "positionFunction": "parsePosition"
     }

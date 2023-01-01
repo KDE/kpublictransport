@@ -1,0 +1,272 @@
+{
+  "journey": {
+    "name": "1|509656|0|85|12042022",
+    "create_time": "2022-04-12T07:13:39.206628390Z",
+    "update_time": "2022-04-12T10:18:56.507022698Z",
+    "calling_points": [
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8301645",
+            "market": "CH"
+          },
+          "arrival_times": {},
+          "departure_times": {
+            "scheduled_time": "2022-04-12T08:05:00Z",
+            "actual_time": "2022-04-12T08:05:00Z"
+          },
+          "type": "ORIGIN",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Milano Porta Garibaldi"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "PASSED"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8301322",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T08:20:00Z",
+            "actual_time": "2022-04-12T08:20:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T08:22:00Z",
+            "actual_time": "2022-04-12T08:22:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Monza"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "PASSED"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8301307",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T08:56:00Z",
+            "actual_time": "2022-04-12T08:56:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T08:59:00Z",
+            "actual_time": "2022-04-12T08:59:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Como S. Giovanni"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "PASSED"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8505307",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T09:10:00Z",
+            "actual_time": "2022-04-12T09:10:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T09:24:00Z",
+            "actual_time": "2022-04-12T09:24:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "platform": "6",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Chiasso"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "PASSED"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8505300",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T09:50:00Z",
+            "actual_time": "2022-04-12T09:50:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T10:02:00Z",
+            "actual_time": "2022-04-12T10:02:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "platform": "3",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Lugano"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "PASSED"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8505213",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T10:16:00Z",
+            "actual_time": "2022-04-12T10:16:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T10:18:00Z",
+            "actual_time": "2022-04-12T10:18:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "platform": "1",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Bellinzona"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "PASSED"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8505004",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T11:11:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T11:15:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "platform": "5",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Arth-Goldau"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "UPCOMING"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8505000",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T11:41:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T11:54:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "platform": "7",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Luzern"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "UPCOMING"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8500218",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T12:28:00Z"
+          },
+          "departure_times": {
+            "scheduled_time": "2022-04-12T12:30:00Z"
+          },
+          "type": "INTERMEDIATE",
+          "platform": "10",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Olten"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "UPCOMING"
+      },
+      {
+        "calling_point": {
+          "id": {
+            "type": "calling_point",
+            "id": "8500010",
+            "market": "CH"
+          },
+          "arrival_times": {
+            "scheduled_time": "2022-04-12T12:56:00Z"
+          },
+          "departure_times": {},
+          "type": "DESTINATION",
+          "platform": "6",
+          "timezone": "Europe/Zurich"
+        },
+        "display_name": {
+          "values": {
+            "de": "Basel SBB"
+          }
+        },
+        "display_time_zone": "Europe/Zurich",
+        "journey_phase": "UPCOMING"
+      }
+    ],
+    "metadata": {
+      "co2Savings": "59.8",
+      "fuelSavings": "27.1",
+      "journey_type": "EC",
+      "timeSavings": "-85"
+    },
+    "toc": "sbb"
+  },
+  "vehicle_client_version": "1.15.1",
+  "duration_since_last_heartbeat": "23s"
+}
