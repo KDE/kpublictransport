@@ -69,8 +69,6 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterUncreatableType<KPublicTransport::StopoverRequest>("org.kde.kpublictransport", 1, 0, "StopoverRequest", {});
     qmlRegisterUncreatableType<KPublicTransport::VehicleLayoutRequest>("org.kde.kpublictransport", 1, 0, "VehicleLayoutRequery", {});
     qmlRegisterUncreatableType<KPublicTransport::IndividualTransport>("org.kde.kpublictransport", 1, 0, "IndividualTransport", {});
-    // backward compat
-    qmlRegisterUncreatableType<KPublicTransport::StopoverRequest>("org.kde.kpublictransport", 1, 0, "DepartureRequest", {});
 
     qmlRegisterType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager");
     qmlRegisterType<KPublicTransport::JourneyQueryModel>("org.kde.kpublictransport", 1, 0, "JourneyQueryModel");
@@ -80,8 +78,6 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterType<KPublicTransport::StopoverQueryModel>("org.kde.kpublictransport", 1, 0, "StopoverQueryModel");
     qmlRegisterType<KPublicTransport::VehicleLayoutQueryModel>("org.kde.kpublictransport", 1, 0, "VehicleLayoutQueryModel");
     qmlRegisterType<KPublicTransport::PathModel>("org.kde.kpublictransport", 1, 0, "PathModel");
-    // backward compat
-    qmlRegisterType<KPublicTransport::StopoverQueryModel>("org.kde.kpublictransport", 1, 0, "DepartureQueryModel");
 
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMetaData", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::LineMetaDataWrapper());
