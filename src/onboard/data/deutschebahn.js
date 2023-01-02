@@ -13,6 +13,7 @@ function parseICEStatus(response)
     return pos;
 }
 
+/** @see https://github.com/derhuerst/wifi-on-ice-portal-client */
 function parseICETrip(response)
 {
     let section = {};
@@ -39,9 +40,12 @@ function parseICETrip(response)
         stop.expectedDepartureTime = new Date(s.timetable.actualDepartureTime).toISOString();
         stop.scheduledArrivalTime = new Date(s.timetable.scheduledArrivalTime).toISOString();
         stop.expectedArrivalTime = new Date(s.timetable.actualArrivalTime).toISOString();
-
-        // TODO delay reason
-
+        if (s.delayReasons) {
+            stop.notes = [];
+            for (d of s.delayReasons) {
+                stop.notes.push(d.text);
+            }
+        }
         section.intermediateStops.push(stop);
     }
 
