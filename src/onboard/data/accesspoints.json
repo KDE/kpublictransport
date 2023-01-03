@@ -7,5 +7,6 @@
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "FlixBus", "id": "flixbus" },
     { "ssid": "FlixBus Wi-Fi", "id": "flixbus" },
-    { "ssid": "SBB-Free", "id": "sbb" }
+    { "ssid": "SBB-Free", "id": "sbb" },
+    { "ssid": "wififrecceplus2", "id": "icomera-omboard" }
 ]
