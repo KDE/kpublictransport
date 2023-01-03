@@ -5,12 +5,15 @@
 
 function parseICEStatus(response)
 {
-    let pos = {};
-    pos.latitude = response.latitude;
-    pos.longitude = response.longitude;
-    pos.speed = response.speed;
-    pos.timestamp = new Date(response.serverTime).toISOString();
-    return pos;
+    if (response.gpsStatus != 'VALID') {
+        return {};
+    }
+    return {
+        latitude = response.latitude,
+        longitude = response.longitude,
+        speed = response.speed,
+        timestamp = new Date(response.serverTime).toISOString()
+    };
 }
 
 /** @see https://github.com/derhuerst/wifi-on-ice-portal-client */
