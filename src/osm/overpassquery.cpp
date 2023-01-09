@@ -5,7 +5,7 @@
 */
 
 #include "overpassquery.h"
-#include "xmlparser.h"
+#include "io.h"
 
 #include <QNetworkReply>
 
@@ -82,12 +82,16 @@ DataSet&& OverpassQuery::takeResult()
 
 OverpassQuery::Error OverpassQuery::processReply(QNetworkReply *reply)
 {
-    XmlParser p(&m_result);
-    p.parse(reply);
-    if (!p.error().isEmpty()) {
-        qWarning() << "Query error:" << p.error();
+    auto reader = OSM::IO::readerForMimeType(u"application/vnd.openstreetmap.data+xml", &m_result);
+    if (!reader) {
+        qWarning() << "No support for reading OSM XML available!";
+        return QueryError;
+    }
+    reader->read(reply);
+    if (!reader->errorString().isEmpty()) {
+        qWarning() << "Query error:" << reader->errorString();
         qWarning() << "Request:" << reply->request().url();
-        return p.error().contains(QLatin1String("timed out"), Qt::CaseInsensitive) ? QueryTimeout : QueryError;
+        return reader->errorString().contains(QLatin1String("timed out"), Qt::CaseInsensitive) ? QueryTimeout : QueryError;
     }
     qDebug() << "Nodes:" << m_result.nodes.size();
     qDebug() << "Ways:" << m_result.ways.size();

@@ -7,6 +7,8 @@
 #ifndef OSM_XMLPARSER_H
 #define OSM_XMLPARSER_H
 
+#include "abstractreader.h"
+
 #include <QString>
 
 class QIODevice;
@@ -16,15 +18,14 @@ namespace OSM {
 
 class DataSet;
 
-class XmlParser
+class XmlParser : public AbstractReader
 {
 public:
     explicit XmlParser(DataSet *dataSet);
 
-    void parse(QIODevice *io);
-    QString error() const;
-
 private:
+    void readFromIODevice(QIODevice *io) override;
+
     void parseNode(QXmlStreamReader &reader);
     void parseWay(QXmlStreamReader &reader);
     void parseRelation(QXmlStreamReader &reader);
@@ -34,9 +35,6 @@ private:
     void parseTagOrBounds(QXmlStreamReader &reader, T&elem);
     template <typename T>
     void parseBounds(QXmlStreamReader &reader, T &elem);
-
-    DataSet *m_dataSet;
-    QString m_error;
 };
 
 }

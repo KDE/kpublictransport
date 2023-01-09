@@ -7,16 +7,16 @@
 #ifndef OSM_XMLWRITER_H
 #define OSM_XMLWRITER_H
 
-class QIODevice;
+#include "abstractwriter.h"
 
 namespace OSM {
-class DataSet;
 
-/** Serialite a OSM::DataSet into OSM XML. */
-namespace XmlWriter
+/** Serialize a OSM::DataSet into OSM XML. */
+class XmlWriter : public AbstractWriter
 {
-    void write(const OSM::DataSet &dataSet, QIODevice *out);
-}
+private:
+    void writeToIODevice(const OSM::DataSet &dataSet, QIODevice *io) override;
+};
 
 }
 

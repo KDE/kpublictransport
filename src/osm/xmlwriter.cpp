@@ -23,7 +23,7 @@ static void writeTags(QXmlStreamWriter &writer, const T &elem)
     }
 }
 
-void XmlWriter::write(const DataSet &dataSet, QIODevice *out)
+void XmlWriter::writeToIODevice(const DataSet &dataSet, QIODevice *out)
 {
     QXmlStreamWriter writer(out);
     writer.setAutoFormatting(true);

@@ -4,43 +4,31 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "config-kosm.h"
 #include "osmpbfparser.h"
 
-#if HAVE_PROTOBUF
 #include "fileformat.pb.h"
 #include "osmformat.pb.h"
 
 #include <zlib.h>
-#endif
 
 #include <QByteArray>
 #include <QDebug>
 #include <QtEndian>
 
-
 using namespace OSM;
 
 OsmPbfParser::OsmPbfParser(DataSet *dataSet)
-    : m_dataSet(dataSet)
+    : AbstractReader(dataSet)
 {
 }
 
-void OsmPbfParser::parse(const uint8_t *data, std::size_t len)
+void OsmPbfParser::readFromData(const uint8_t *data, std::size_t len)
 {
-#if HAVE_PROTOBUF
     const uint8_t *it = data;
     const uint8_t *end = data + len;
     while (parseBlob(it, end));
-#else
-    Q_UNUSED(data);
-    Q_UNUSED(len);
-    qWarning() << "OSM PBF file format not available!";
-    return;
-#endif
 }
 
-#if HAVE_PROTOBUF
 bool OsmPbfParser::parseBlob(const uint8_t *&it, const uint8_t *end)
 {
     if (std::distance(it, end) < (int)sizeof(int32_t)) {
@@ -154,7 +142,7 @@ void OsmPbfParser::parseDenseNodes(const OSMPBF::PrimitiveBlock &block, const OS
             OSM::setTag(node, std::move(tag));
         }
 
-        m_dataSet->addNode(std::move(node));
+        addNode(std::move(node));
     }
 }
 
@@ -180,7 +168,7 @@ void OsmPbfParser::parseWays(const OSMPBF::PrimitiveBlock &block, const OSMPBF::
             OSM::setTag(way, std::move(tag));
         }
 
-        m_dataSet->addWay(std::move(way));
+        addWay(std::move(way));
     }
 }
 
@@ -217,8 +205,6 @@ void OsmPbfParser::parseRelations(const OSMPBF::PrimitiveBlock &block, const OSM
             OSM::setTag(rel, std::move(tag));
         }
 
-        m_dataSet->addRelation(std::move(rel));
+        addRelation(std::move(rel));
     }
 }
-
-#endif

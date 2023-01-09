@@ -11,15 +11,16 @@
 #include <QIODevice>
 #include <QXmlStreamReader>
 
+#include <cmath>
+
 using namespace OSM;
 
 XmlParser::XmlParser(DataSet* dataSet)
-    : m_dataSet(dataSet)
+    : AbstractReader(dataSet)
 {
-    assert(dataSet);
 }
 
-void XmlParser::parse(QIODevice *io)
+void XmlParser::readFromIODevice(QIODevice *io)
 {
     QXmlStreamReader reader(io);
     while (!reader.atEnd() && !reader.hasError()) {
@@ -30,11 +31,9 @@ void XmlParser::parse(QIODevice *io)
 
         if (reader.name() == QLatin1String("node")) {
             parseNode(reader);
-        }
-        else if (reader.name() == QLatin1String("way")) {
+        } else if (reader.name() == QLatin1String("way")) {
             parseWay(reader);
-        }
-        else if (reader.name() == QLatin1String("relation")) {
+        } else if (reader.name() == QLatin1String("relation")) {
             parseRelation(reader);
         } else if (reader.name() == QLatin1String("remark")) {
             m_error = reader.readElementText();
@@ -43,15 +42,33 @@ void XmlParser::parse(QIODevice *io)
     }
 
     if (reader.hasError()) {
-        qDebug() << reader.errorString();
+        m_error = reader.errorString();
     }
+}
+
+// parse double coordinate value without actually doing floating point computations
+// this avoids any loss in precision we can other get heret
+uint32_t parseCoordinateValue(QStringView s, int offset)
+{
+    const auto idx = s.indexOf(QLatin1Char('.'));
+    if (idx < 0) {
+        return s.toUInt() * 10'000'000;
+    }
+    uint32_t result = (uint32_t)(s.left(idx).toInt() + offset) * 10'000'000;
+    const auto decimals = s.mid(idx + 1);
+    if (decimals.size() >= 7) {
+        result += decimals.left(7).toUInt();
+    } else {
+        result += decimals.toUInt() * std::pow(10, 7 - decimals.size());
+    }
+    return result;
 }
 
 void XmlParser::parseNode(QXmlStreamReader &reader)
 {
     Node node;
     node.id = reader.attributes().value(QLatin1String("id")).toLongLong();
-    node.coordinate = Coordinate(reader.attributes().value(QLatin1String("lat")).toDouble(), reader.attributes().value(QLatin1String("lon")).toDouble());
+    node.coordinate = Coordinate(parseCoordinateValue(reader.attributes().value(QLatin1String("lat")), 90), parseCoordinateValue(reader.attributes().value(QLatin1String("lon")), 180));
 
     while (!reader.atEnd() && reader.readNext() != QXmlStreamReader::EndElement) {
         if (reader.tokenType() != QXmlStreamReader::StartElement) {
@@ -63,7 +80,7 @@ void XmlParser::parseNode(QXmlStreamReader &reader)
         reader.skipCurrentElement();
     }
 
-    m_dataSet->addNode(std::move(node));
+    addNode(std::move(node));
 }
 
 void XmlParser::parseWay(QXmlStreamReader &reader)
@@ -87,7 +104,7 @@ void XmlParser::parseWay(QXmlStreamReader &reader)
         reader.skipCurrentElement();
     }
 
-    m_dataSet->addWay(std::move(way));
+    addWay(std::move(way));
 }
 
 void XmlParser::parseRelation(QXmlStreamReader &reader)
@@ -120,7 +137,7 @@ void XmlParser::parseRelation(QXmlStreamReader &reader)
         reader.skipCurrentElement();
     }
 
-    m_dataSet->addRelation(std::move(rel));
+    addRelation(std::move(rel));
 }
 
 template <typename T>
@@ -150,9 +167,4 @@ void XmlParser::parseBounds(QXmlStreamReader &reader, T &elem)
     // overpass style bounding box
     elem.bbox.min = Coordinate(reader.attributes().value(QLatin1String("minlat")).toDouble(), reader.attributes().value(QLatin1String("minlon")).toDouble());
     elem.bbox.max = Coordinate(reader.attributes().value(QLatin1String("maxlat")).toDouble(), reader.attributes().value(QLatin1String("maxlon")).toDouble());
-}
-
-QString XmlParser::error() const
-{
-    return m_error;
 }

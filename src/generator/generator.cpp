@@ -9,7 +9,7 @@
 
 #include "../lib/datatypes/linecompare_p.h"
 
-#include <osm/o5mparser.h>
+#include <osm/io.h>
 #include <osm/ztile.h>
 
 #include <wikidataquery.h>
@@ -880,8 +880,9 @@ int main(int argc, char **argv)
         QCoreApplication::exit(1);
     }
     OSM::DataSet dataSet;
-    OSM::O5mParser p(&dataSet);
-    p.parse(f.map(0, f.size()), f.size());
+    auto reader = OSM::IO::readerForMimeType(u"vnd.openstreetmap.data+o5m", &dataSet);
+    assert(reader);
+    reader->read(f.map(0, f.size()), f.size());
 
     Generator generator;
     generator.out = &out;

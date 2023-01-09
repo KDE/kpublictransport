@@ -7,6 +7,7 @@
 #ifndef KOSM_OSMPBFPARSER_H
 #define KOSM_OSMPBFPARSER_H
 
+#include "abstractreader.h"
 #include "datatypes.h"
 
 namespace OSMPBF {
@@ -19,24 +20,20 @@ namespace OSM {
 /** Parser of .osm.pbf files.
  *  @see https://wiki.openstreetmap.org/wiki/PBF_Format
  */
-class OsmPbfParser
+class OsmPbfParser : public AbstractReader
 {
 public:
     explicit OsmPbfParser(DataSet *dataSet);
 
-    /** Parse the given binary content.
-     *  Feed this with QFile::map() for example.
-     */
-    void parse(const uint8_t *data, std::size_t len);
-
 private:
+    void readFromData(const uint8_t *data, std::size_t len) override;
+
     bool parseBlob(const uint8_t *&it, const uint8_t *end);
     void parsePrimitiveBlock(const uint8_t *data, std::size_t len);
     void parseDenseNodes(const OSMPBF::PrimitiveBlock &block,  const OSMPBF::PrimitiveGroup &group);
     void parseWays(const OSMPBF::PrimitiveBlock &block, const OSMPBF::PrimitiveGroup &group);
     void parseRelations(const OSMPBF::PrimitiveBlock &block, const OSMPBF::PrimitiveGroup &group);
 
-    DataSet *m_dataSet = nullptr;
     QByteArray m_zlibBuffer;
 };
 

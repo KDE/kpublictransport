@@ -34,7 +34,8 @@ private Q_SLOTS:
         QFETCH(QByteArray, data);
         QFETCH(uint32_t, num);
 
-        OSM::O5mParser p(nullptr);
+        OSM::DataSet dataSet;
+        OSM::O5mParser p(&dataSet);
         const auto beginIt = reinterpret_cast<const uint8_t*>(data.constBegin());
         auto it = beginIt;
         const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
@@ -59,7 +60,8 @@ private Q_SLOTS:
         QFETCH(QByteArray, data);
         QFETCH(int32_t, num);
 
-        OSM::O5mParser p(nullptr);
+        OSM::DataSet dataSet;
+        OSM::O5mParser p(&dataSet);
         const auto beginIt = reinterpret_cast<const uint8_t*>(data.constBegin());
         auto it = beginIt;
         const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
@@ -75,7 +77,8 @@ private Q_SLOTS:
         auto it = beginIt;
         const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
 
-        OSM::O5mParser p(nullptr);
+        OSM::DataSet dataSet;
+        OSM::O5mParser p(&dataSet);
         auto s = p.readString(it, endIt);
         QCOMPARE(s, "1inner");
         QCOMPARE(it, beginIt + 8);
@@ -92,7 +95,8 @@ private Q_SLOTS:
         auto it = beginIt;
         const auto endIt = reinterpret_cast<const uint8_t*>(data.constEnd());
 
-        OSM::O5mParser p(nullptr);
+        OSM::DataSet dataSet;
+        OSM::O5mParser p(&dataSet);
         auto s = p.readStringPair(it, endIt);
         QCOMPARE(s.first, "oneway");
         QCOMPARE(s.second, "yes");

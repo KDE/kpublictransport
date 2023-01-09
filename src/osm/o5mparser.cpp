@@ -39,17 +39,12 @@ enum : uint16_t {
 };
 
 O5mParser::O5mParser(DataSet *dataSet)
-    : m_dataSet(dataSet)
+    : AbstractReader(dataSet)
 {
     m_stringLookupTable.resize(O5M_STRING_TABLE_SIZE);
 }
 
-void O5mParser::setMergeBuffer(DataSetMergeBuffer *buffer)
-{
-    m_mergeBuffer = buffer;
-}
-
-void O5mParser::parse(const uint8_t* data, std::size_t len)
+void O5mParser::readFromData(const uint8_t* data, std::size_t len)
 {
     std::fill(m_stringLookupTable.begin(), m_stringLookupTable.end(), nullptr);
     resetDeltaCodingState();
@@ -224,7 +219,7 @@ void O5mParser::readNode(const uint8_t *begin, const uint8_t *end)
         }
     }
 
-    m_mergeBuffer ? m_mergeBuffer->nodes.push_back(std::move(node)) : m_dataSet->addNode(std::move(node));
+    addNode(std::move(node));
 }
 
 void O5mParser::readWay(const uint8_t *begin, const uint8_t *end)
@@ -248,7 +243,7 @@ void O5mParser::readWay(const uint8_t *begin, const uint8_t *end)
         readTagOrBbox(way, it, end);
     }
 
-    m_mergeBuffer ? m_mergeBuffer->ways.push_back(std::move(way)) : m_dataSet->addWay(std::move(way));
+   addWay(std::move(way));
 }
 
 void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
@@ -293,7 +288,7 @@ void O5mParser::readRelation(const uint8_t *begin, const uint8_t *end)
         readTagOrBbox(rel, it, end);
     }
 
-    m_mergeBuffer ? m_mergeBuffer->relations.push_back(std::move(rel)) : m_dataSet->addRelation(std::move(rel));
+    addRelation(std::move(rel));
 }
 
 void O5mParser::resetDeltaCodingState()
