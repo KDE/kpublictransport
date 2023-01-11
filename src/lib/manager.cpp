@@ -674,11 +674,6 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
     return reply;
 }
 
-StopoverReply* Manager::queryDeparture(const StopoverRequest &req) const
-{
-    return queryStopover(req);
-}
-
 int ManagerPrivate::queryLocationOnBackend(const LocationRequest &req, LocationReply *reply, const Backend &backend)
 {
     auto cache = Cache::lookupLocation(backend.identifier(), req.cacheKey());
