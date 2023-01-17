@@ -203,7 +203,6 @@ ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     HEADER_NAMES
         AbstractQueryModel
         BackendModel
-        DepartureQueryModel
         JourneyQueryModel
         LocationHistoryModel
         LocationQueryModel
