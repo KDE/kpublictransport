@@ -182,7 +182,7 @@ static void processMessageList(const QJsonObject &obj, const std::vector<Message
 template <typename T>
 static void applyMessage(T &elem, const Message &msg)
 {
-    if (msg.content.type() == QVariant::String) {
+    if (msg.content.userType() == QMetaType::QString) {
         elem.addNote(msg.content.toString());
     }
     if (msg.effect == Disruption::NoService) {

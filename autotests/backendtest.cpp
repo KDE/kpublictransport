@@ -119,7 +119,7 @@ private Q_SLOTS:
         for (auto i = 0; i < model.rowCount(); ++i) {
             const auto idx = model.index(i, 0);
             QVERIFY(!idx.data(BackendModel::IdentifierRole).toString().isEmpty());
-            QCOMPARE(idx.data(BackendModel::SecureRole).type(), QVariant::Bool);
+            QCOMPARE(idx.data(BackendModel::SecureRole).userType(), QMetaType::Bool);
             QVERIFY(!idx.data(BackendModel::NameRole).toString().isEmpty());
             QVERIFY(!idx.data(BackendModel::DescriptionRole).toString().isEmpty());
             QCOMPARE(idx.data(BackendModel::SecureRole), idx.data(BackendModel::ItemEnabledRole));
