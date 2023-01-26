@@ -151,8 +151,6 @@ endif()
 
 ecm_generate_headers(KPublicTransport_FORWARDING_HEADERS
     HEADER_NAMES
-        DepartureReply
-        DepartureRequest
         JourneyReply
         JourneyRequest
         LocationReply
