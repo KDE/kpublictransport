@@ -35,6 +35,12 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     SOVERSION 1
 )
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(KF_MAJOR_VERSION "6")
+else()
+    set(KF_MAJOR_VERSION "5")
+endif()
+
 find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Quick)
 
 if (QT_MAJOR_VERSION STREQUAL 6)
@@ -62,14 +68,14 @@ if (NOT WIN32)
 endif()
 
 if (UNIX AND NOT ANDROID)
-    find_package(KF5NetworkManagerQt)
-    set_package_properties(KF5NetworkManagerQt PROPERTIES TYPE OPTIONAL PURPOSE "Onboard status detection.")
+    find_package(KF${KF_MAJOR_VERSION}NetworkManagerQt)
+    set_package_properties(KF${KF_MAJOR_VERSION}NetworkManagerQt PROPERTIES TYPE OPTIONAL PURPOSE "Onboard status detection.")
 endif()
 if (ANDROID)
     find_package(Gradle)
 endif()
 
-find_package(KF5 REQUIRED COMPONENTS I18n)
+find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS I18n)
 
 set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
 

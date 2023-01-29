@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2022 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
-if (TARGET KF5::NetworkManagerQt)
+if (TARGET KF${KF_MAJOR_VERSION}::NetworkManagerQt)
     set(HAVE_NM TRUE)
 endif()
 
@@ -50,10 +50,10 @@ target_link_libraries(KPublicTransportOnboard
     PRIVATE
         Qt::Network
         Qt::Qml
-        KF5::I18nLocaleData
+        KF${KF_MAJOR_VERSION}::I18nLocaleData
 )
 if (HAVE_NM)
-    target_link_libraries(KPublicTransportOnboard PRIVATE KF5::NetworkManagerQt)
+    target_link_libraries(KPublicTransportOnboard PRIVATE KF${KF_MAJOR_VERSION}::NetworkManagerQt)
 endif()
 if (ANDROID AND QT_MAJOR_VERSION EQUAL "5")
     target_link_libraries(KPublicTransportOnboard PRIVATE Qt5::AndroidExtras)
