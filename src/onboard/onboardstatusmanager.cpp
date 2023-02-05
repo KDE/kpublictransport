@@ -265,6 +265,13 @@ void OnboardStatusManager::journeyUpdated(const Journey &jny)
 {
     m_pendingJourneyUpdate = false;
     m_journey = jny;
+
+    // check if the journey is at least remotely plausible
+    // sometimes the onboard systems are stuck on a previous journey...
+    if (jny.expectedArrivalTime().addSecs(60 * 60) < QDateTime::currentDateTime()) {
+        m_journey = {};
+    }
+
     Q_EMIT journeyChanged();
     requestUpdate();
 }
