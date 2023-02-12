@@ -16,6 +16,7 @@
         <file>ceskedrahy.json</file>
         <file>ceskedrahy.js</file>
         <file>deutschebahn-ice.json</file>
+        <file>deutschebahn-zugportal.json</file>
         <file>deutschebahn.js</file>
         <file>flixbus.json</file>
         <file>sbb.json</file>

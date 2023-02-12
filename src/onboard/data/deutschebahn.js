@@ -56,3 +56,41 @@ function parseICETrip(response)
     jny.sections = [section];
     return jny;
 }
+
+function parseZugportalTrip(response)
+{
+    let section = {
+        mode = 'PublicTransport',
+        route = {
+            line = {
+                name = response.name,
+                // TODO complete map from response.type
+                mode = response.type == 'CITY_TRAIN' ? 'RapidTransit' : 'Train'
+            }
+        },
+        intermediateStops = []
+    };
+    for (s of response.stops) {
+        let stop = {
+            stopPoint = {
+                type = 'Stop',
+                name = s.station.name,
+                identifier = { ibnr = s.station.evaNo }
+            },
+            scheduledPlatform = s.track.target,
+            expectedPlatform = s.track.prediction
+        };
+        if (s.departureTime) {
+            stop.scheduledDepartureTime = s.departureTime.target;
+            stop.expectedDepartureTime = s.departureTime.predicted;
+        }
+        if (s.arrivalTime) {
+            stop.scheduledArrivalTime = s.arrivalTime.target;
+            stop.expectedArrivalTime = s.arrivalTime.predicte;
+        }
+        // TODO messages [] - no example whats in there yet, status != "Normal"?
+        section.intermediateStops.push(stop);
+    }
+    // TODO uic, trainNo, hims[]
+    return { sections = [section] };
+}

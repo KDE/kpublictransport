@@ -1,0 +1,8 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "deutschebahn.js",
+        "journeyEndpoint": "https://zugportal.de/@prd/zupo-travel-information/api/public/ri/journey",
+        "journeyFunction": "parseZugportalTrip"
+    }
+}

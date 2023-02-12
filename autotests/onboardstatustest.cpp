@@ -88,6 +88,7 @@ private Q_SLOTS:
 
         QTest::newRow("cd-railjet") << s("ceskedrahy") << s("cd-railjet");
         QTest::newRow("db-ice") << s("deutschebahn-ice") << s("db-ice");
+        QTest::newRow("db-zugportal") << s("deutschebahn-zugportal") << s("db-zugportal");
         QTest::newRow("sncf-inoui") << s("sncf") << s("sncf-inoui");
         QTest::newRow("sbb") << s("sbb") << s("sbb");
     }

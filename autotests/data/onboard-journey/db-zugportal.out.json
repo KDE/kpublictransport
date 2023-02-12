@@ -1,0 +1,407 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 0,
+            "expectedArrivalPlatform": "1",
+            "expectedDeparturePlatform": "2",
+            "expectedDepartureTime": {
+                "timezone": "UTC",
+                "value": "2022-10-07T10:02:00+00:00"
+            },
+            "from": {
+                "identifier": {
+                    "ibnr": "8006698"
+                },
+                "name": "Stuttgart Schwabstr.",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:04:00+00:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:04:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:04:00+00:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8006699"
+                        },
+                        "name": "Stuttgart Feuersee",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:06:00+00:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:05:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:06:00+00:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8006700"
+                        },
+                        "name": "Stuttgart Stadtmitte",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:08:00+00:00"
+                    },
+                    "expectedPlatform": "102",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:07:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:08:00+00:00"
+                    },
+                    "scheduledPlatform": "102",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8098096"
+                        },
+                        "name": "Stuttgart Hbf (tief)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:12:00+00:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:11:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:11:00+00:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8005767"
+                        },
+                        "name": "Stuttgart Nord",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:14:00+00:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:13:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:14:00+00:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8005770"
+                        },
+                        "name": "Stuttgart-Feuerbach",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:17:00+00:00"
+                    },
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:16:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:17:00+00:00"
+                    },
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8005778"
+                        },
+                        "name": "Stuttgart-Zuffenhausen",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:20:00+00:00"
+                    },
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:20:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:20:00+00:00"
+                    },
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003411"
+                        },
+                        "name": "Kornwestheim Pbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:24:00+00:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:23:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:24:00+00:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000235"
+                        },
+                        "name": "Ludwigsburg",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:26:00+00:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:26:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:26:00+00:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8001967"
+                        },
+                        "name": "Favoritepark",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:29:00+00:00"
+                    },
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:29:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:29:00+00:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8002065"
+                        },
+                        "name": "Freiberg(Neckar)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:33:00+00:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:32:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:33:00+00:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000873"
+                        },
+                        "name": "Benningen(Neckar)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:38:00+00:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:35:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:38:00+00:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003853"
+                        },
+                        "name": "Marbach(Neckar)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:41:00+00:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:40:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:40:00+00:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8001827"
+                        },
+                        "name": "Erdmannhausen",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:44:00+00:00"
+                    },
+                    "expectedPlatform": "2",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:43:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:43:00+00:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003266"
+                        },
+                        "name": "Kirchberg(Murr)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:48:00+00:00"
+                    },
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:47:00+00:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "UTC",
+                        "value": "2022-10-07T10:47:00+00:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8001296"
+                        },
+                        "name": "Burgstall(Murr)",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "RapidTransit",
+                    "name": "S 4"
+                }
+            },
+            "scheduledArrivalPlatform": "1",
+            "scheduledArrivalTime": {
+                "timezone": "UTC",
+                "value": "2022-10-07T10:52:00+00:00"
+            },
+            "scheduledDeparturePlatform": "2",
+            "scheduledDepartureTime": {
+                "timezone": "UTC",
+                "value": "2022-10-07T10:02:00+00:00"
+            },
+            "to": {
+                "identifier": {
+                    "ibnr": "8000016"
+                },
+                "name": "Backnang",
+                "type": "Stop"
+            }
+        }
+    ]
+}
