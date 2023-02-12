@@ -31,7 +31,13 @@ namespace Test {
             QProcess proc;
             proc.setProcessChannelMode(QProcess::ForwardedChannels);
             proc.start(QStringLiteral("diff"), {QStringLiteral("-u"), refFile, failFile.fileName()});
-            proc.waitForFinished();
+            if (!proc.waitForFinished()) {
+                // e.g. Windows CI not having diff
+                qDebug() << "Actual:";
+                qDebug().noquote() << output;
+                qDebug() << "Expected:";
+                qDebug().noquote() << ref;
+            }
             return false;
         }
         return true;
