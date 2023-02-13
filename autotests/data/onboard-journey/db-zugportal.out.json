@@ -5,10 +5,7 @@
             "distance": 0,
             "expectedArrivalPlatform": "1",
             "expectedDeparturePlatform": "2",
-            "expectedDepartureTime": {
-                "timezone": "UTC",
-                "value": "2022-10-07T10:02:00+00:00"
-            },
+            "expectedDepartureTime": "2022-10-07T10:02:00Z",
             "from": {
                 "identifier": {
                     "ibnr": "8006698"
@@ -19,19 +16,10 @@
             "intermediateStops": [
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:04:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:04:00Z",
                     "expectedPlatform": "2",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:04:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:04:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:04:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:04:00Z",
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
@@ -43,19 +31,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:06:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:06:00Z",
                     "expectedPlatform": "2",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:05:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:06:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:05:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:06:00Z",
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
@@ -67,19 +46,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:08:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:08:00Z",
                     "expectedPlatform": "102",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:07:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:08:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:07:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:08:00Z",
                     "scheduledPlatform": "102",
                     "stopPoint": {
                         "identifier": {
@@ -91,19 +61,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:12:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:12:00Z",
                     "expectedPlatform": "3",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:11:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:11:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:11:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:11:00Z",
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
@@ -115,19 +76,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:14:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:14:00Z",
                     "expectedPlatform": "2",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:13:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:14:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:13:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:14:00Z",
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
@@ -139,19 +91,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:17:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:17:00Z",
                     "expectedPlatform": "4",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:16:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:17:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:16:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:17:00Z",
                     "scheduledPlatform": "4",
                     "stopPoint": {
                         "identifier": {
@@ -163,19 +106,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:20:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:20:00Z",
                     "expectedPlatform": "4",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:20:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:20:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:20:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:20:00Z",
                     "scheduledPlatform": "4",
                     "stopPoint": {
                         "identifier": {
@@ -187,19 +121,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:24:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:24:00Z",
                     "expectedPlatform": "2",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:23:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:24:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:23:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:24:00Z",
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
@@ -211,19 +136,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:26:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:26:00Z",
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:26:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:26:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:26:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:26:00Z",
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -235,19 +151,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:29:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:29:00Z",
                     "expectedPlatform": "3",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:29:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:29:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:29:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:29:00Z",
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
@@ -259,19 +166,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:33:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:33:00Z",
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:32:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:33:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:32:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:33:00Z",
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -283,19 +181,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:38:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:38:00Z",
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:35:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:38:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:35:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:38:00Z",
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -307,19 +196,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:41:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:41:00Z",
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:40:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:40:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:40:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:40:00Z",
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -331,19 +211,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:44:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:44:00Z",
                     "expectedPlatform": "2",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:43:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:43:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:43:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:43:00Z",
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
@@ -355,19 +226,10 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:48:00+00:00"
-                    },
+                    "expectedDepartureTime": "2022-10-07T10:48:00Z",
                     "expectedPlatform": "1",
-                    "scheduledArrivalTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:47:00+00:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "UTC",
-                        "value": "2022-10-07T10:47:00+00:00"
-                    },
+                    "scheduledArrivalTime": "2022-10-07T10:47:00Z",
+                    "scheduledDepartureTime": "2022-10-07T10:47:00Z",
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
@@ -386,15 +248,9 @@
                 }
             },
             "scheduledArrivalPlatform": "1",
-            "scheduledArrivalTime": {
-                "timezone": "UTC",
-                "value": "2022-10-07T10:52:00+00:00"
-            },
+            "scheduledArrivalTime": "2022-10-07T10:52:00Z",
             "scheduledDeparturePlatform": "2",
-            "scheduledDepartureTime": {
-                "timezone": "UTC",
-                "value": "2022-10-07T10:02:00+00:00"
-            },
+            "scheduledDepartureTime": "2022-10-07T10:02:00Z",
             "to": {
                 "identifier": {
                     "ibnr": "8000016"

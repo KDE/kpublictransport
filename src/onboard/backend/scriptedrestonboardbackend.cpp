@@ -96,7 +96,7 @@ Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response)
         for (auto &stop : stops) {
             QTimeZone tz(stop.stopPoint().timeZone());
 
-            if (!tz.isValid()) {
+            if (!tz.isValid() && stop.stopPoint().hasCoordinate()) {
                 if (const auto tzId = KTimeZone::fromLocation(stop.stopPoint().latitude(), stop.stopPoint().longitude())) {
                     tz = QTimeZone(tzId);
                 }
