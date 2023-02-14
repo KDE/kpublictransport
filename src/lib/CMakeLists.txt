@@ -180,7 +180,6 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Backend
         CoverageArea
         Datatypes
-        Departure
         Disruption
         Equipment
         IndividualTransport
