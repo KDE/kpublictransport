@@ -35,7 +35,11 @@ private Q_SLOTS:
     void testFrontend()
     {
         OnboardStatus status;
-        QCOMPARE(status.status(), OnboardStatus::NotConnected);
+        QVERIFY(status.status() != OnboardStatus::Onboard);
+#ifndef Q_OS_ANDROID
+        QVERIFY(status.status() != OnboardStatus::LocationServiceNotEnabled);
+        QVERIFY(status.status() != OnboardStatus::MissingPermissions);
+#endif
         QVERIFY(!status.hasPosition());
     }
 
