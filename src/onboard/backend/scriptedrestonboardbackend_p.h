@@ -8,12 +8,14 @@
 
 #include "restonboardbackend_p.h"
 
+#include <QThread>
 #include <QUrl>
 
 #include <memory>
 
 class QJSEngine;
 class QJSValue;
+class QTimer;
 
 namespace KPublicTransport {
 
@@ -49,6 +51,9 @@ private:
     QString m_journeyFunction;
 
     mutable std::unique_ptr<QJSEngine> m_engine;
+
+    mutable QThread m_watchdogThread;
+    mutable QTimer *m_watchdogTimer = nullptr;
 };
 
 }

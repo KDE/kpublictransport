@@ -19,6 +19,8 @@
 #include <QJsonValue>
 #include <QJsonObject>
 #include <QNetworkRequest>
+#include <QScopeGuard>
+#include <QTimer>
 #include <QTimeZone>
 
 using namespace KPublicTransport;
@@ -28,7 +30,14 @@ ScriptedRestOnboardBackend::ScriptedRestOnboardBackend(QObject *parent)
 {
 }
 
-ScriptedRestOnboardBackend::~ScriptedRestOnboardBackend() = default;
+ScriptedRestOnboardBackend::~ScriptedRestOnboardBackend()
+{
+    if (m_watchdogTimer) {
+        m_watchdogTimer->deleteLater();
+    }
+    m_watchdogThread.quit();
+    m_watchdogThread.wait();
+}
 
 QNetworkRequest ScriptedRestOnboardBackend::createPositionRequest() const
 {
@@ -43,7 +52,13 @@ QNetworkRequest ScriptedRestOnboardBackend::createJourneyRequest() const
 PositionData ScriptedRestOnboardBackend::parsePositionData(const QJsonValue &response) const
 {
     setupEngine();
-    // TODO start watchdog timer
+
+    // watchdog setup
+    QMetaObject::invokeMethod(m_watchdogTimer, qOverload<>(&QTimer::start));
+    const auto watchdogStop = qScopeGuard([this]() {
+        QMetaObject::invokeMethod(m_watchdogTimer, qOverload<>(&QTimer::stop));
+    });
+    m_engine->setInterrupted(false);
 
     auto func = m_engine->globalObject().property(m_positionFunction);
     if (!func.isCallable()) {
@@ -71,7 +86,13 @@ PositionData ScriptedRestOnboardBackend::parsePositionData(const QJsonValue &res
 Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response) const
 {
     setupEngine();
-    // TODO start watchdog timer
+
+    // watchdog setup
+    QMetaObject::invokeMethod(m_watchdogTimer, qOverload<>(&QTimer::start));
+    const auto watchdogStop = qScopeGuard([this]() {
+        QMetaObject::invokeMethod(m_watchdogTimer, qOverload<>(&QTimer::stop));
+    });
+    m_engine->setInterrupted(false);
 
     auto func = m_engine->globalObject().property(m_journeyFunction);
     if (!func.isCallable()) {
@@ -136,7 +157,12 @@ void ScriptedRestOnboardBackend::setupEngine() const
     m_engine.reset(new QJSEngine);
     m_engine->installExtensions(QJSEngine::ConsoleExtension);
 
-    // TODO watchdog timer
+    m_watchdogThread.start();
+    m_watchdogTimer = new QTimer;
+    m_watchdogTimer->setInterval(std::chrono::milliseconds(500));
+    m_watchdogTimer->setSingleShot(true);
+    m_watchdogTimer->moveToThread(&m_watchdogThread);
+    QObject::connect(m_watchdogTimer, &QTimer::timeout, this, [this]() { m_engine->setInterrupted(true); }, Qt::DirectConnection);
 
     // load script
     QFile f(QLatin1String(":/org.kde.kpublictransport.onboard/") + m_scriptName);
