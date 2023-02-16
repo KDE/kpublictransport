@@ -127,4 +127,9 @@ void OnboardStatus::requestJourney()
     OnboardStatusManager::instance()->requestJourney();
 }
 
+void OnboardStatus::requestPermissions()
+{
+    OnboardStatusManager::instance()->requestPermissions();
+}
+
 #include "moc_onboardstatus.cpp"

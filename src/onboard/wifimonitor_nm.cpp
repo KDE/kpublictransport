@@ -28,6 +28,7 @@ WifiMonitor::WifiMonitor(QObject *parent)
     connect(NetworkManager::notifier(), &NetworkManager::Notifier::activeConnectionAdded, this, getSsid);
     connect(NetworkManager::notifier(), &NetworkManager::Notifier::activeConnectionRemoved, this, getSsid);
     connect(NetworkManager::notifier(), &NetworkManager::Notifier::networkingEnabledChanged, this, &WifiMonitor::statusChanged);
+    connect(NetworkManager::notifier(), &NetworkManager::Notifier::wirelessEnabledChanged, this, &WifiMonitor::statusChanged);
 
     getSsid();
 }
@@ -36,5 +37,13 @@ WifiMonitor::~WifiMonitor() = default;
 
 WifiMonitor::Status WifiMonitor::status() const
 {
-    return NetworkManager::isNetworkingEnabled() ? Available : NotAvailable;
+    if (!NetworkManager::isNetworkingEnabled()) {
+        return NotAvailable;
+    }
+
+    return NetworkManager::isWirelessEnabled() ? Available : WifiNotEnabled;
+}
+
+void WifiMonitor::requestPermissions()
+{
 }

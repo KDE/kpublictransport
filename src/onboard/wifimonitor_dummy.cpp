@@ -18,3 +18,7 @@ WifiMonitor::Status WifiMonitor::status() const
 {
     return NotAvailable;
 }
+
+void WifiMonitor::requestPermissions()
+{
+}

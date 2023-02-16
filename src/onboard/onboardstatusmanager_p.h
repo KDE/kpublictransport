@@ -44,6 +44,8 @@ public:
     void requestPosition();
     void requestJourney();
 
+    void requestPermissions();
+
 Q_SIGNALS:
     void statusChanged();
     void positionChanged();

@@ -13,6 +13,7 @@
 #include <QAndroidJniEnvironment>
 #include <QAndroidJniObject>
 #else
+#include <private/qandroidextras_p.h>
 #include <QCoreApplication>
 #include <QJniEnvironment>
 #include <QJniObject>
@@ -57,9 +58,8 @@ void WifiMonitorBackend::setStatus(int statusCode)
 
 static WifiMonitorBackend *s_backend = nullptr;
 
-static void setSsid(JNIEnv *env, jobject that, jstring ssid)
+static void setSsid(JNIEnv *env, [[maybe_unused]] jobject that, jstring ssid)
 {
-    Q_UNUSED(that);
     if (s_backend) {
         const char *str = env->GetStringUTFChars(ssid, nullptr);
         s_backend->setSsid(QString::fromUtf8(str));
@@ -67,9 +67,8 @@ static void setSsid(JNIEnv *env, jobject that, jstring ssid)
     }
 }
 
-static void setStatus(JNIEnv *env, jobject that, jint statusCode)
+static void setStatus([[maybe_unused]] JNIEnv *env, [[maybe_unused]] jobject that, jint statusCode)
 {
-    Q_UNUSED(that);
     if (s_backend) {
         s_backend->setStatus(statusCode);
     }
@@ -127,4 +126,17 @@ WifiMonitor::~WifiMonitor()
 WifiMonitor::Status WifiMonitor::status() const
 {
     return s_backend->status;
+}
+
+void WifiMonitor::requestPermissions()
+{
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QtAndroid::requestPermissions({QStringLiteral("android.permission.ACCESS_FINE_LOCATION")}, [] (const QtAndroid::PermissionResultMap&) {
+        s_backend->wifiMonitor.callMethod<void>("checkStatus", "()V");
+    });
+#else
+    // TODO make this properly async
+    QtAndroidPrivate::requestPermission(QStringLiteral("android.permission.ACCESS_FINE_LOCATION"));
+    s_backend->wifiMonitor.callMethod<void>("checkStatus", "()V");
+#endif
 }

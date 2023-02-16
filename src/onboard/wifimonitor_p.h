@@ -25,12 +25,14 @@ public:
     enum Status {
         NotAvailable, ///< Wifi monitoring is generally not available on this platform/in this build
         Available, ///< Wifi monitoring is available (!= Wifi is available or even in use/enabled)
-        NotEnabled, ///< Wifi monitoring is not available due to a user-controlled platform setting
+        WifiNotEnabled, ///< Wifi monitoring is not available due to a user-controlled platform setting
+        LocationServiceNotEnabled, ///< Wifi monitoring is not available due to a user-controlled platform setting
         NoPermission, ///< Wifi monitoring is not available due to missing permissions
     };
     Status status() const;
 
     QString ssid() const;
+    void requestPermissions();
 
 Q_SIGNALS:
     void wifiChanged();

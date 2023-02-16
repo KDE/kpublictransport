@@ -116,26 +116,41 @@ void OnboardStatusManager::requestJourney()
 void OnboardStatusManager::wifiChanged()
 {
     qCDebug(Log) << m_wifiMonitor.ssid() << m_wifiMonitor.status();
-    if (m_wifiMonitor.ssid().isEmpty() || m_wifiMonitor.status() != WifiMonitor::Available) {
-        setStatus(OnboardStatus::NotConnected);
-        return;
+    switch (m_wifiMonitor.status()) {
+        case WifiMonitor::NotAvailable:
+            setStatus(OnboardStatus::NotAvailable);
+            break;
+        case WifiMonitor::Available:
+        {
+            if (m_wifiMonitor.ssid().isEmpty()) {
+                setStatus(OnboardStatus::NotConnected);
+                break;
+            }
+            loadAccessPointData();
+            const auto it = std::lower_bound(m_accessPointData.begin(), m_accessPointData.end(), m_wifiMonitor.ssid());
+            if (it == m_accessPointData.end() || (*it).ssid != m_wifiMonitor.ssid()) {
+                setStatus(OnboardStatus::NotConnected);
+                break;
+            }
+            loadBackend((*it).backendId);
+            if (m_backend) {
+                setStatus(OnboardStatus::Onboard);
+            } else {
+                setStatus(OnboardStatus::NotConnected);
+            }
+            requestForceUpdate();
+            break;
+        }
+        case WifiMonitor::NoPermission:
+            setStatus(OnboardStatus::MissingPermissions);
+            break;
+        case WifiMonitor::WifiNotEnabled:
+            setStatus(OnboardStatus::WifiNotEnabled);
+            break;
+        case WifiMonitor::LocationServiceNotEnabled:
+            setStatus(OnboardStatus::LocationServiceNotEnabled);
+            break;
     }
-
-    loadAccessPointData();
-    const auto it = std::lower_bound(m_accessPointData.begin(), m_accessPointData.end(), m_wifiMonitor.ssid());
-    if (it == m_accessPointData.end() || (*it).ssid != m_wifiMonitor.ssid()) {
-        setStatus(OnboardStatus::NotConnected);
-        return;
-    }
-
-    loadBackend((*it).backendId);
-    if (m_backend) {
-        setStatus(OnboardStatus::Onboard);
-    } else {
-        setStatus(OnboardStatus::NotConnected);
-    }
-
-    requestForceUpdate();
 }
 
 void OnboardStatusManager::loadAccessPointData()
@@ -334,4 +349,9 @@ void OnboardStatusManager::scheduleUpdate(bool force)
             m_journeyUpdateTimer.start(std::chrono::seconds(force ? 0 : interval));
         }
     }
+}
+
+void OnboardStatusManager::requestPermissions()
+{
+    m_wifiMonitor.requestPermissions();
 }

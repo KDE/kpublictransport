@@ -55,8 +55,12 @@ target_link_libraries(KPublicTransportOnboard
 if (HAVE_NM)
     target_link_libraries(KPublicTransportOnboard PRIVATE KF${KF_MAJOR_VERSION}::NetworkManagerQt)
 endif()
-if (ANDROID AND QT_MAJOR_VERSION EQUAL "5")
-    target_link_libraries(KPublicTransportOnboard PRIVATE Qt5::AndroidExtras)
+if (ANDROID)
+    if (QT_MAJOR_VERSION EQUAL "5")
+        target_link_libraries(KPublicTransportOnboard PRIVATE Qt5::AndroidExtras)
+    else()
+        target_link_libraries(KPublicTransportOnboard PRIVATE Qt6::CorePrivate)
+    endif()
 endif()
 
 ecm_generate_headers(KPublicTransportOnboard_FORWARDING_HEADERS
