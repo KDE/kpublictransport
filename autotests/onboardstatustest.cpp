@@ -99,6 +99,10 @@ private Q_SLOTS:
         QTest::newRow("db-zugportal") << s("deutschebahn-zugportal") << s("db-zugportal");
         QTest::newRow("sncf-inoui") << s("sncf") << s("sncf-inoui");
         QTest::newRow("sbb") << s("sbb") << s("sbb");
+
+        QTest::newRow("ana") << s("panasonic-inflight-v1") << s("ana");
+        QTest::newRow("united") << s("panasonic-inflight-v1") << s("united");
+        QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("cathay-pacific");
     }
 
     void testScriptedJourneyParsers()

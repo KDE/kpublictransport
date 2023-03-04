@@ -1,0 +1,31 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 810002,
+            "from": {
+                "identifier": {
+                    "iata": "CTS",
+                    "icao": "RJCC"
+                },
+                "latitude": 42.4630012512207,
+                "longitude": 141.41299438476562
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "Air",
+                    "name": "ANA62"
+                }
+            },
+            "to": {
+                "identifier": {
+                    "iata": "HND",
+                    "icao": "RJTT"
+                },
+                "latitude": 35.3390007019043,
+                "longitude": 139.4550018310547
+            }
+        }
+    ]
+}

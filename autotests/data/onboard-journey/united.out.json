@@ -1,0 +1,31 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 9040971,
+            "from": {
+                "identifier": {
+                    "iata": "LHR",
+                    "icao": "EGLL"
+                },
+                "latitude": 51.279998779296875,
+                "longitude": -0.26499998569488525
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "Air",
+                    "name": "VIR601 "
+                }
+            },
+            "to": {
+                "identifier": {
+                    "iata": "JNB",
+                    "icao": "FAOR"
+                },
+                "latitude": -26.082000732421875,
+                "longitude": 28.143999099731445
+            }
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 959336,
+            "expectedArrivalTime": "2023-03-01T21:55:00",
+            "expectedDepartureTime": "2023-03-01T12:27:00Z",
+            "from": {
+                "identifier": {
+                    "iata": "TPE",
+                    "icao": "RCTP"
+                },
+                "latitude": 25.073333740234375,
+                "longitude": 121.2249984741211
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "Air",
+                    "name": "CPA479"
+                }
+            },
+            "to": {
+                "identifier": {
+                    "iata": "VHHH",
+                    "icao": "HKG"
+                },
+                "latitude": 22.303333282470703,
+                "longitude": 113.90499877929688
+            }
+        }
+    ]
+}
