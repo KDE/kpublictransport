@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "panasonic-inflight.js",
+        "positionEndpoint": "http://services.inflightpanasonic.aero/inflight/services/flightdata/v1/flightdata",
+        "positionFunction": "parseCurrentPositionV1",
+        "journeyEndpoint": "http://services.inflightpanasonic.aero/inflight/services/flightdata/v1/flightdata",
+        "journeyFunction": "parseFlightV1"
+    }
+}

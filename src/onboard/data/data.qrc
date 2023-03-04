@@ -11,6 +11,9 @@
         <file>icomera-gomedia.js</file>
         <file>icomera-omboard.json</file>
         <file>icomera-omboard.js</file>
+        <file>panasonic-inflight.js</file>
+        <file>panasonic-inflight-v1.json</file>
+        <file>panasonic-inflight-v2.json</file>
 
         <!-- Operator-specific API backend configurations and scripts -->
         <file>ceskedrahy.json</file>
