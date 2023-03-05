@@ -115,20 +115,33 @@ void OnboardStatusManager::requestJourney()
 
 void OnboardStatusManager::wifiChanged()
 {
-    qCDebug(Log) << m_wifiMonitor.ssid() << m_wifiMonitor.status();
-    switch (m_wifiMonitor.status()) {
+    auto ssid = m_wifiMonitor.ssid();
+    auto status = m_wifiMonitor.status();
+
+    if (Q_UNLIKELY(qEnvironmentVariableIsSet("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"))) {
+        QFile f(qEnvironmentVariable("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"));
+        if (!f.open(QFile::ReadOnly)) {
+            qCWarning(Log) << f.errorString() << f.fileName();
+        }
+        const auto config = QJsonDocument::fromJson(f.readAll()).object();
+        ssid = config.value(QLatin1String("ssid")).toString();
+        status = static_cast<WifiMonitor::Status>(QMetaEnum::fromType<WifiMonitor::Status>().keysToValue(config.value(QLatin1String("wifiStatus")).toString().toUtf8().constData()));
+    }
+
+    qCDebug(Log) << ssid << status;
+    switch (status) {
         case WifiMonitor::NotAvailable:
             setStatus(OnboardStatus::NotAvailable);
             break;
         case WifiMonitor::Available:
         {
-            if (m_wifiMonitor.ssid().isEmpty()) {
+            if (ssid.isEmpty()) {
                 setStatus(OnboardStatus::NotConnected);
                 break;
             }
             loadAccessPointData();
-            const auto it = std::lower_bound(m_accessPointData.begin(), m_accessPointData.end(), m_wifiMonitor.ssid());
-            if (it == m_accessPointData.end() || (*it).ssid != m_wifiMonitor.ssid()) {
+            const auto it = std::lower_bound(m_accessPointData.begin(), m_accessPointData.end(), ssid);
+            if (it == m_accessPointData.end() || (*it).ssid != ssid) {
                 setStatus(OnboardStatus::NotConnected);
                 break;
             }
@@ -281,10 +294,14 @@ void OnboardStatusManager::journeyUpdated(const Journey &jny)
     m_pendingJourneyUpdate = false;
     m_journey = jny;
 
-    // check if the journey is at least remotely plausible
-    // sometimes the onboard systems are stuck on a previous journey...
-    if (jny.expectedArrivalTime().addSecs(60 * 60) < QDateTime::currentDateTime()) {
-        m_journey = {};
+    // don't sanity-check in fake mode, that will likely use outdated data
+    if (Q_LIKELY(qEnvironmentVariableIsEmpty("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"))) {
+
+        // check if the journey is at least remotely plausible
+        // sometimes the onboard systems are stuck on a previous journey...
+        if (jny.expectedArrivalTime().addSecs(60 * 60) < QDateTime::currentDateTime()) {
+            m_journey = {};
+        }
     }
 
     Q_EMIT journeyChanged();

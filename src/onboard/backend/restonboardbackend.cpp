@@ -11,6 +11,8 @@
 
 #include <KPublicTransport/Journey>
 
+#include <QFile>
+#include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkAccessManager>
@@ -25,8 +27,41 @@ RestOnboardBackend::RestOnboardBackend(QObject *parent)
 
 RestOnboardBackend::~RestOnboardBackend() = default;
 
+static QString fakeResponseFile(QLatin1String key)
+{
+    QFile configFile(qEnvironmentVariable("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"));
+    if (!configFile.open(QFile::ReadOnly)) {
+        qCWarning(Log) << configFile.errorString() << configFile.fileName();
+        return {};
+    }
+
+    const auto path = QJsonDocument::fromJson(configFile.readAll()).object().value(key).toString();
+    if (QFileInfo(path).isAbsolute()) {
+        return path;
+    }
+
+    return QFileInfo(configFile.fileName()).absolutePath() + QLatin1Char('/') + path;
+}
+
+static QJsonObject fakeResponse(QLatin1String key)
+{
+    QFile f(fakeResponseFile(key));
+    if (!f.open(QFile::ReadOnly)) {
+        qCWarning(Log) << f.errorString() << f.fileName();
+        return {};
+    }
+
+    const auto doc = QJsonDocument::fromJson(JsonP::decode(f.readAll()));
+    return doc.object();
+}
+
 void RestOnboardBackend::requestPosition(QNetworkAccessManager *nam)
 {
+    if (Q_UNLIKELY(qEnvironmentVariableIsSet("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"))) {
+        Q_EMIT positionReceived(parsePositionData(fakeResponse(QLatin1String("positionResponse"))));
+        return;
+    }
+
     auto reply = nam->get(createPositionRequest());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
@@ -43,6 +78,11 @@ void RestOnboardBackend::requestPosition(QNetworkAccessManager *nam)
 
 void RestOnboardBackend::requestJourney(QNetworkAccessManager *nam)
 {
+    if (Q_UNLIKELY(qEnvironmentVariableIsSet("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"))) {
+        Q_EMIT journeyReceived(parseJourneyData(fakeResponse(QLatin1String("journeyResponse"))));
+        return;
+    }
+
     auto reply = nam->get(createJourneyRequest());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();

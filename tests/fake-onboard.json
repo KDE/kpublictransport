@@ -1,0 +1,6 @@
+{
+    "wifiStatus": "Available",
+    "ssid": "WIFIonICE",
+    "positionResponse": "../autotests/data/onboard-position/db-ice.json",
+    "journeyResponse": "../autotests/data/onboard-journey/db-ice.in.json"
+}

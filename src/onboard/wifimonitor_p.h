@@ -29,6 +29,7 @@ public:
         LocationServiceNotEnabled, ///< Wifi monitoring is not available due to a user-controlled platform setting
         NoPermission, ///< Wifi monitoring is not available due to missing permissions
     };
+    Q_ENUM(Status)
     Status status() const;
 
     QString ssid() const;
