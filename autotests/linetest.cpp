@@ -40,6 +40,8 @@ private Q_SLOTS:
         QTest::newRow("unicode") << QString() << s("〇") << QString() << s("〇");
 
         QTest::newRow("special char") << QString() << s("<6>") << QString() << s("<6>");
+
+        QTest::newRow("TGV INOUI") << QString() << s("TGV INOUI 8501") << QString() << s("TGV 8501");
     }
 
     void testLineCompare()
