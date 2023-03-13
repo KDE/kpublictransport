@@ -59,8 +59,8 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
 
     QUrl url;
     url.setScheme(QStringLiteral("https"));
-    url.setHost(QStringLiteral("www.apps-bahn.de"));
-    url.setPath(QLatin1String("/wr/wagenreihung/1.0/") + trainNum + QLatin1Char('/') + dt.toString(QStringLiteral("yyyyMMddhhmm")));
+    url.setHost(QStringLiteral("ist-wr.noncd.db.de"));
+    url.setPath(QLatin1String("/wagenreihung/1.0/") + trainNum + QLatin1Char('/') + dt.toString(QStringLiteral("yyyyMMddhhmm")));
 
     QNetworkRequest netReq(url);
     logRequest(request, netReq);
