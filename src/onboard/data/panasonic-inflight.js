@@ -52,7 +52,8 @@ function parseFlightV1(response)
                 icao = response.td_id_fltdata_departure_id
             },
             latitude = toDegreeV1(response.td_id_fltdata_departure_latitude),
-            longitude = toDegreeV1(response.td_id_fltdata_departure_longitude)
+            longitude = toDegreeV1(response.td_id_fltdata_departure_longitude),
+            name = response.td_id_fltdata_departure_baggage_id
         },
         to = {
             identifier = {
@@ -60,7 +61,8 @@ function parseFlightV1(response)
                 icao = response.td_id_fltdata_destination_id
             },
             latitude = toDegreeV1(response.td_id_fltdata_destination_latitude),
-            longitude = toDegreeV1(response.td_id_fltdata_destination_longitude)
+            longitude = toDegreeV1(response.td_id_fltdata_destination_longitude),
+            name = response.td_id_fltdata_destination_baggage_id
         },
         distance = (Math.max(response.td_id_fltdata_distance_from_origin, response.td_id_fltdata_distance_traveled) + response.td_id_fltdata_distance_to_destination) * 1852
         // TODO times?
@@ -84,15 +86,17 @@ function parseFlightV2(response)
                 icao = response.departure_icao
             },
             latitude = response.departure_coordinates.latitude,
-            longitude = response.departure_coordinates.longitude
+            longitude = response.departure_coordinates.longitude,
+            name = response.departure_iata
         },
         to = {
             identifier = {
-                iata = response.destination_icao,
-                icao = response.destination_iata
+                iata = response.destination_iata,
+                icao = response.destination_icao
             },
             latitude = response.destination_coordinates.latitude,
-            longitude = response.destination_coordinates.longitude
+            longitude = response.destination_coordinates.longitude,
+            name = response.destination_iata
         },
         distance = (Math.max(response.distance_from_departure_nautical_miles, response.distance_from_departure_nautical_miles) + response.distance_to_destination_nautical_miles) * 1852,
         expectedDepartureTime = response.takeoff_time_utc,
