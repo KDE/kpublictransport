@@ -9,7 +9,8 @@
                     "icao": "RJCC"
                 },
                 "latitude": 42.4630012512207,
-                "longitude": 141.41299438476562
+                "longitude": 141.41299438476562,
+                "name": "CTS"
             },
             "mode": "PublicTransport",
             "route": {
@@ -24,7 +25,8 @@
                     "icao": "RJTT"
                 },
                 "latitude": 35.3390007019043,
-                "longitude": 139.4550018310547
+                "longitude": 139.4550018310547,
+                "name": "HND"
             }
         }
     ]

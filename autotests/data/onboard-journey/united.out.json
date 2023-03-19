@@ -9,7 +9,8 @@
                     "icao": "EGLL"
                 },
                 "latitude": 51.279998779296875,
-                "longitude": -0.26499998569488525
+                "longitude": -0.26499998569488525,
+                "name": "LHR"
             },
             "mode": "PublicTransport",
             "route": {
@@ -24,7 +25,8 @@
                     "icao": "FAOR"
                 },
                 "latitude": -26.082000732421875,
-                "longitude": 28.143999099731445
+                "longitude": 28.143999099731445,
+                "name": "JNB"
             }
         }
     ]
