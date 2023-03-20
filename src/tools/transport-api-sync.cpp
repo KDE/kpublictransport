@@ -129,6 +129,26 @@ static void preProcessCoverage(QJsonObject &obj)
             poly = PolygonSimplifier::offset(poly, 10'000.0);
         }
     }
+
+    // remove polygons fully contained inside another one already (e.g. small enclaves/islands included by the above offset operation now)
+    for (auto it = polys.begin(); it != polys.end();) {
+        auto it2 = polys.begin();
+        for (; it2 != polys.end(); ++it2) {
+            if (it == it2) {
+                continue;
+            }
+            if ((*it).subtracted(*it2).isEmpty()) {
+                break;
+            }
+        }
+        if (it2 != polys.end()) {
+            qDebug() << "dropping fully enclosed polygon" << (*it).size();
+            it = polys.erase(it);
+        } else {
+            ++it;
+        }
+    }
+
     if (!polys.empty()) {
         obj.insert(QLatin1String("area"), GeoJson::writePolygons(polys));
     }
