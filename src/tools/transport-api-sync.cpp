@@ -200,6 +200,16 @@ static void postProcessConfig(QJsonObject &top)
     }
 }
 
+static QByteArray postProcessJson(const QByteArray &data)
+{
+    // fold arrays of scalar values into one line
+    auto s = QString::fromUtf8(data);
+    s = s.replace(QRegularExpression(QStringLiteral("\\[\n +(\"[A-Za-z-]+\"|[\\d\\.-]+)")), QStringLiteral("[\\1"));
+    s = s.replace(QRegularExpression(QStringLiteral(",\n +(\"[A-Za-z-]+\"|[\\d\\.-]+)(?=[,\n])")), QStringLiteral(", \\1"));
+    s = s.replace(QRegularExpression(QStringLiteral("(?<![,\\]}])\n +](\n|,\n)")), QStringLiteral("]\\1"));
+    return s.toUtf8();
+}
+
 static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &apiConfigFile)
 {
     qDebug() << "merging" << apiConfigFile << kptConfigFile;
@@ -231,7 +241,7 @@ static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &api
         std::cerr << qPrintable(outFile.errorString()) << std::endl;
         return false;
     }
-    outFile.write(QJsonDocument(outObj).toJson());
+    outFile.write(postProcessJson(QJsonDocument(outObj).toJson()));
     return true;
 }
 
