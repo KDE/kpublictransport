@@ -41,6 +41,7 @@ private:
     void writeStartServiceRequest(QXmlStreamWriter &w) const;
     void writeEndServiceRequest(QXmlStreamWriter &w) const;
     void writePlaceRef(QXmlStreamWriter &w, const Location &loc) const;
+    void writeRequestTimestamp(QXmlStreamWriter &w) const;
 
     QString ns() const;
 

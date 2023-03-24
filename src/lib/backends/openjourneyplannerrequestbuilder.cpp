@@ -46,6 +46,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildLocationInformationRequest(con
     setupWriter(w);
     writeStartServiceRequest(w);
     w.writeStartElement(ns(), m_useTrias ?  QStringLiteral("LocationInformationRequest") : QStringLiteral("OJPLocationInformationRequest"));
+    writeRequestTimestamp(w);
 
     w.writeStartElement(ns(), QStringLiteral("InitialInput"));
     if (req.hasCoordinate()) {
@@ -81,6 +82,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildStopEventRequest(const Stopove
     setupWriter(w);
     writeStartServiceRequest(w);
     w.writeStartElement(ns(), m_useTrias ? QStringLiteral("StopEventRequest") : QStringLiteral("OJPStopEventRequest"));
+    writeRequestTimestamp(w);
 
     w.writeStartElement(ns(), QStringLiteral("Location"));
     writePlaceRef(w, req.stop());
@@ -117,6 +119,7 @@ QByteArray OpenJourneyPlannerRequestBuilder::buildTripRequest(const JourneyReque
     setupWriter(w);
     writeStartServiceRequest(w);
     w.writeStartElement(ns(), m_useTrias ? QStringLiteral("TripRequest") : QStringLiteral("OJPTripRequest"));
+    writeRequestTimestamp(w);
 
     w.writeStartElement(ns(), QStringLiteral("Origin"));
     writePlaceRef(w, req.from());
@@ -190,6 +193,7 @@ void OpenJourneyPlannerRequestBuilder::writeStartServiceRequest(QXmlStreamWriter
     if (!m_requestorRef.isEmpty()) {
         w.writeTextElement(siriNS(), QStringLiteral("RequestorRef"), m_requestorRef);
     }
+    writeRequestTimestamp(w);
 
     if (m_useTrias) {
         w.writeStartElement(ns(), QStringLiteral("RequestPayload"));
@@ -226,6 +230,15 @@ void OpenJourneyPlannerRequestBuilder::writePlaceRef(QXmlStreamWriter &w, const 
         w.writeEndElement(); // </LocationName>
     }
     w.writeEndElement(); // </PlaceRef>
+}
+
+void OpenJourneyPlannerRequestBuilder::writeRequestTimestamp(QXmlStreamWriter &w) const
+{
+    if (Q_UNLIKELY(m_testMode)) {
+        w.writeTextElement(siriNS(), QStringLiteral("RequestTimestamp"), QDateTime({2023, 3, 24}, {12, 34, 56}, Qt::UTC).toString(Qt::ISODate));
+    } else {
+        w.writeTextElement(siriNS(), QStringLiteral("RequestTimestamp"), QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+    }
 }
 
 QString OpenJourneyPlannerRequestBuilder::ns() const
