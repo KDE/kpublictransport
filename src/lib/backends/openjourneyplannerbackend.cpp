@@ -33,10 +33,7 @@ AbstractBackend::Capabilities OpenJourneyPlannerBackend::capabilities() const
 
 bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
-    if (!loc.identifier(QStringLiteral("uic")).isEmpty()) {// ### TODO configure identifier type
-        return false;
-    }
-    return !loc.hasCoordinate() || type != AbstractBackend::QueryType::Journey;
+    return !loc.hasCoordinate() && loc.identifier(QStringLiteral("uic")).isEmpty(); // ### TODO configure identifier type
 }
 
 bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
