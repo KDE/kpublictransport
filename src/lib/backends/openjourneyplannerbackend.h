@@ -51,7 +51,7 @@ private:
 
     QUrl m_endpoint;
     QString m_authorization;
-    QString m_requestorRef;
+    QString m_requestorRef = QStringLiteral("KPublicTransport");
     bool m_useTrias = false;
     QByteArray m_contentType = "application/xml";
     QString m_uicLocationIdentifierType;
