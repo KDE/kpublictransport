@@ -104,6 +104,8 @@ target_sources(KPublicTransport PRIVATE
     knowledgedb/asset-attributions.qrc
     knowledgedb/linemetadata.cpp
 
+    layout/platformlayout.cpp
+
     models/abstractquerymodel.cpp
     models/backendmodel.cpp
     models/journeyquerymodel.cpp
@@ -196,6 +198,13 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
     REQUIRED_HEADERS KPublicTransport_Datatypes_HEADERS
     RELATIVE datatypes
 )
+ecm_generate_headers(KPublicTransport_Layout_FORWARDING_HEADERS
+    HEADER_NAMES
+        PlatformLayout
+    PREFIX KPublicTransport
+    REQUIRED_HEADERS KPublicTransport_Layout_HEADERS
+    RELATIVE layout
+)
 ecm_generate_headers(KPublicTransport_Models_FORWARDING_HEADERS
     HEADER_NAMES
         AbstractQueryModel
@@ -220,12 +229,14 @@ ecm_qt_install_logging_categories(
 install(FILES
     ${KPublicTransport_FORWARDING_HEADERS}
     ${KPublicTransport_Datatypes_FORWARDING_HEADERS}
+    ${KPublicTransport_Layout_FORWARDING_HEADERS}
     ${KPublicTransport_Models_FORWARDING_HEADERS}
     DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/KPublicTransport
 )
 install(FILES
     ${KPublicTransport_HEADERS}
     ${KPublicTransport_Datatypes_HEADERS}
+    ${KPublicTransport_Layout_HEADERS}
     ${KPublicTransport_Models_HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_export.h
     DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}/kpublictransport
