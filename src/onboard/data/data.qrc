@@ -23,7 +23,8 @@
         <file>deutschebahn.js</file>
         <file>flixbus.json</file>
         <file>sbb.json</file>
-        <file>sncf.json</file>
+        <file>sncf-tgv.json</file>
+        <file>sncf-ic.json</file>
         <file>sncf.js</file>
     </qresource>
 </RCC>

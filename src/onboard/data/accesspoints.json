@@ -1,8 +1,9 @@
 [
     { "ssid": "THALYNET", "id": "icomera-omboard" },
     { "ssid": "SJ", "id": "icomera-omboard" },
-    { "ssid": "_SNCF_WIFI_INOUI", "id": "sncf" },
-    { "ssid": "_WIFI_LYRIA", "id": "sncf" },
+    { "ssid": "_SNCF_WIFI_INOUI", "id": "sncf-tgv" },
+    { "ssid": "_SNCF_WIFI_INTERCITES", "id": "sncf-ic" },
+    { "ssid": "_WIFI_LYRIA", "id": "sncf-tgv" },
     { "ssid": "CDWIFI", "id": "ceskedrahy" },
     { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
