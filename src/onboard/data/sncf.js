@@ -8,7 +8,7 @@ function parseGps(response)
     let pos = {};
     pos.latitude = response.latitude;
     pos.longitude = response.longitude;
-    pos.speed = response.speed;
+    pos.speed = response.speed * 3.6; // m/s -> km/h
     pos.heading = response.heading;
     return pos;
 }
