@@ -1,5 +1,5 @@
 [
-    { "ssid": "THALYNET", "id": "icomera-omboard" },
+    { "ssid": "THALYSNET", "id": "icomera-omboard" },
     { "ssid": "SJ", "id": "icomera-omboard" },
     { "ssid": "_SNCF_WIFI_INOUI", "id": "sncf-tgv" },
     { "ssid": "_SNCF_WIFI_INTERCITES", "id": "sncf-ic" },
