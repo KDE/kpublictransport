@@ -14,7 +14,7 @@ function parsePosition(response)
     return {
         latitude: response.latitude,
         longitude: response.longitude,
-        speed: response.speed,
+        speed: response.speed * 3.6, // provided in m/s
         heading: response.cmg
     };
 }
