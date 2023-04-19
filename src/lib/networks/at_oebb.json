@@ -698,7 +698,9 @@
             },
             "region": ["BE", "CH", "CZ", "DE", "FR", "HU", "IT", "LI", "LU", "SI", "SK"],
             "uicCompanyCodes": [
-                "1155"]
+                "1154",
+                "1155"
+            ]
         }
     },
     "options": {
