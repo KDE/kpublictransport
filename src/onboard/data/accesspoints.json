@@ -4,7 +4,7 @@
     { "ssid": "_SNCF_WIFI_INOUI", "id": "sncf-tgv" },
     { "ssid": "_SNCF_WIFI_INTERCITES", "id": "sncf-ic" },
     { "ssid": "_WIFI_LYRIA", "id": "sncf-tgv" },
-    { "ssid": "CDWIFI", "id": "ceskedrahy" },
+    { "ssid": "CDWiFi", "id": "ceskedrahy" },
     { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "FlixBus", "id": "flixbus" },
