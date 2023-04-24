@@ -49,6 +49,19 @@ QNetworkRequest ScriptedRestOnboardBackend::createJourneyRequest() const
     return QNetworkRequest(m_journeyEndpoint);
 }
 
+static double strictToNumber(const QJSValue &val)
+{
+    if (val.isNumber()) {
+        return val.toNumber();
+    }
+    if (val.isString()) {
+        bool result = false;
+        const auto n = val.toString().toDouble(&result);
+        return result ? n : NAN;
+    }
+    return NAN;
+}
+
 PositionData ScriptedRestOnboardBackend::parsePositionData(const QJsonValue &response) const
 {
     setupEngine();
@@ -76,10 +89,10 @@ PositionData ScriptedRestOnboardBackend::parsePositionData(const QJsonValue &res
     // convert JS result
     PositionData pos;
     pos.timestamp = QDateTime::fromString(result.property(QStringLiteral("timestamp")).toString(), Qt::ISODate);
-    pos.latitude = result.property(QStringLiteral("latitude")).toNumber();
-    pos.longitude = result.property(QStringLiteral("longitude")).toNumber();
-    pos.speed = result.property(QStringLiteral("speed")).toNumber();
-    pos.heading = result.property(QStringLiteral("heading")).toNumber();
+    pos.latitude = strictToNumber(result.property(QStringLiteral("latitude")));
+    pos.longitude = strictToNumber(result.property(QStringLiteral("longitude")));
+    pos.speed = strictToNumber(result.property(QStringLiteral("speed")));
+    pos.heading = strictToNumber(result.property(QStringLiteral("heading")));
     return pos;
 }
 
