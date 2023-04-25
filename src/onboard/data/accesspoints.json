@@ -9,7 +9,9 @@
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "FlixBus", "id": "flixbus" },
     { "ssid": "FlixBus Wi-Fi", "id": "flixbus" },
+    { "ssid": "FlixTrain Wi-Fi", "id": "flixbus" },
     { "ssid": "SBB-Free", "id": "sbb" },
     { "ssid": "wififrecceplus2", "id": "icomera-omboard" },
-    { "ssid": "Cathay Pacific", "id": "panasonic-inflight-v2" }
+    { "ssid": "Cathay Pacific", "id": "panasonic-inflight-v2" },
+    { "ssid": "MAVSTART-WIFI", "id": "mav" }
 ]

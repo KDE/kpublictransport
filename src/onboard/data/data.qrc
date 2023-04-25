@@ -14,14 +14,15 @@
         <file>panasonic-inflight.js</file>
         <file>panasonic-inflight-v1.json</file>
         <file>panasonic-inflight-v2.json</file>
+        <file>passengera.js</file>
 
         <!-- Operator-specific API backend configurations and scripts -->
         <file>ceskedrahy.json</file>
-        <file>ceskedrahy.js</file>
         <file>deutschebahn-ice.json</file>
         <file>deutschebahn-zugportal.json</file>
         <file>deutschebahn.js</file>
         <file>flixbus.json</file>
+        <file>mav.json</file>
         <file>sbb.json</file>
         <file>sncf-tgv.json</file>
         <file>sncf-ic.json</file>

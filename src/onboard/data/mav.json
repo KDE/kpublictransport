@@ -2,9 +2,9 @@
     "backend": "ScriptedRestOnboardBackend",
     "options": {
         "script": "passengera.js",
-        "positionEndpoint": "http://cdwifi.cz/portal/api/vehicle/realtime",
+        "positionEndpoint": "http://portal.mav.hu/portal/api/vehicle/realtime",
         "positionFunction": "parseRealtime",
-        "journeyEndpoint": "http://cdwifi.cz/portal/api/timetable/connexion/current?locale=en_GB",
+        "journeyEndpoint": "http://portal.mav.hu/portal/api/timetable/connexion/current?locale=en_GB",
         "journeyFunction": "parseCurrent"
     }
 }
