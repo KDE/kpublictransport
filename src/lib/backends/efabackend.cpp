@@ -59,7 +59,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
         query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("coord"));
         query.addQueryItem(QStringLiteral("name_sf"), QString::number(request.longitude()) + QLatin1Char(':') + QString::number(request.latitude()) + QLatin1String(":WGS84[DD.ddddd]"));
     } else {
-        query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("stop"));
+        query.addQueryItem(QStringLiteral("type_sf"), QStringLiteral("any"));
         query.addQueryItem(QStringLiteral("name_sf"), request.name());
     }
 
