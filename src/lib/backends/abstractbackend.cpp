@@ -150,6 +150,9 @@ void AbstractBackend::logRequest(const char *typeName, const QJsonObject &reques
     }
 
     QFile httpFile(baseFile + QLatin1String("-2-http-request.txt"));
+
+    qCWarning(Log) << "Logging requests to: " << httpFile.fileName();
+
     if (!httpFile.open(QFile::WriteOnly)) {
         qCWarning(Log) << "could not open" << httpFile.fileName() << httpFile.error();
         return;
