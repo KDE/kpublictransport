@@ -223,13 +223,15 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     }
 
     if (req.hasCoordinate()) {
-        url.setPath(
-            QStringLiteral("/v1/coord/") + QString::number(req.longitude()) + QLatin1Char(';') + QString::number(req.latitude()) +
-            QStringLiteral("/places_nearby")
-        );
+        url.setPath(QStringLiteral("/v1") +
+            (m_coverage.isEmpty() ? QString() : (QStringLiteral("/coverage/") + m_coverage)) +
+            QStringLiteral("/coord/") + QString::number(req.longitude()) + QLatin1Char(';') + QString::number(req.latitude()) +
+            QStringLiteral("/places_nearby"));
         query.addQueryItem(QStringLiteral("distance"), QString::number(std::max(1, req.maximumDistance())));
     } else if (!req.name().isEmpty()) {
-        url.setPath(QStringLiteral("/v1/places"));
+        url.setPath(QStringLiteral("/v1") +
+            (m_coverage.isEmpty() ? QString() : (QStringLiteral("/coverage/") + m_coverage)) +
+            QStringLiteral("/places"));
         query.addQueryItem(QStringLiteral("q"), req.name());
     } else {
         return false;
