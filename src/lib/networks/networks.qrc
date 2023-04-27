@@ -8,6 +8,7 @@
         <file>un_accessibilitycloud.json</file>
         <file>un_gbfs.json</file>
         <file>un_navitia.json</file>
+        <file>au_navitia.json</file>
 
         <!-- national providers -->
         <file>at_oebb.json</file>
