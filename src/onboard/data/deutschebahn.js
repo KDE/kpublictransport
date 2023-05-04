@@ -68,7 +68,8 @@ function parseZugportalTrip(response)
                 mode = response.type == 'CITY_TRAIN' ? 'RapidTransit' : 'Train'
             }
         },
-        intermediateStops = []
+        intermediateStops = [],
+        notes = []
     };
     for (s of response.stops) {
         let stop = {
@@ -91,6 +92,11 @@ function parseZugportalTrip(response)
         // TODO messages [] - no example whats in there yet, status != "Normal"?
         section.intermediateStops.push(stop);
     }
-    // TODO uic, trainNo, hims[]
+
+    for (him of response.hims) {
+        section.notes.push(him.captionHtml || him.caption);
+    }
+
+    // TODO uic, trainNo
     return { sections = [section] };
 }
