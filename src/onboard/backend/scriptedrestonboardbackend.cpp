@@ -39,6 +39,16 @@ ScriptedRestOnboardBackend::~ScriptedRestOnboardBackend()
     m_watchdogThread.wait();
 }
 
+bool ScriptedRestOnboardBackend::supportsPosition() const
+{
+    return m_positionEndpoint.isValid();
+}
+
+bool ScriptedRestOnboardBackend::supportsJourney() const
+{
+    return m_journeyEndpoint.isValid();
+}
+
 QNetworkRequest ScriptedRestOnboardBackend::createPositionRequest() const
 {
     return QNetworkRequest(m_positionEndpoint);

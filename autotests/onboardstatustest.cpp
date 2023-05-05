@@ -127,6 +127,39 @@ private Q_SLOTS:
         const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).object();
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
+
+    void testScriptedSupport_data()
+    {
+        QTest::addColumn<QString>("backendId");
+        QTest::addColumn<bool>("supportsPosition");
+        QTest::addColumn<bool>("supportsJourney");
+
+        QTest::newRow("cd-railjet") << s("ceskedrahy") << true << true;
+        QTest::newRow("db-ice") << s("deutschebahn-ice") << true << true;
+        QTest::newRow("db-zugportal") << s("deutschebahn-zugportal") << false << true;
+        QTest::newRow("sncf-inoui") << s("sncf-tgv") << true << true;
+        QTest::newRow("sbb") << s("sbb") << true << true;
+        QTest::newRow("thalys") << s("icomera-omboard") << true << false;
+
+        QTest::newRow("ana") << s("panasonic-inflight-v1") << true << true;
+        QTest::newRow("united") << s("panasonic-inflight-v1") << true << true;
+        QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << true << true;
+    }
+
+    void testScriptedSupport()
+    {
+        QFETCH(QString, backendId);
+        QFETCH(bool, supportsPosition);
+        QFETCH(bool, supportsJourney);
+
+        auto backend = OnboardStatusManager::createBackend(backendId);
+        QVERIFY(backend);
+        auto restApi = qobject_cast<const RestOnboardBackend*>(backend.get());
+        QVERIFY(restApi);
+
+        QCOMPARE(restApi->supportsPosition(), supportsPosition);
+        QCOMPARE(restApi->supportsJourney(), supportsJourney);
+    }
 };
 
 QTEST_GUILESS_MAIN(OnboardStatusTest)

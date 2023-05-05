@@ -21,6 +21,11 @@ class AbstractOnboardBackend : public QObject
 public:
     ~AbstractOnboardBackend();
 
+    /** Whether the backend supports querying position information. */
+    virtual bool supportsPosition() const = 0;
+    /** Whether the backend supports querying journey information. */
+    virtual bool supportsJourney() const = 0;
+
     /** Get the current position information. */
     virtual void requestPosition(QNetworkAccessManager *nam) = 0;
     /** Get the current journey information. */

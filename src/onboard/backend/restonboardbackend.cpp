@@ -62,6 +62,10 @@ void RestOnboardBackend::requestPosition(QNetworkAccessManager *nam)
         return;
     }
 
+    if (!supportsPosition()) {
+        return;
+    }
+
     auto reply = nam->get(createPositionRequest());
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
@@ -80,6 +84,10 @@ void RestOnboardBackend::requestJourney(QNetworkAccessManager *nam)
 {
     if (Q_UNLIKELY(qEnvironmentVariableIsSet("KPUBLICTRANSPORT_ONBOARD_FAKE_CONFIG"))) {
         Q_EMIT journeyReceived(parseJourneyData(fakeResponse(QLatin1String("journeyResponse"))));
+        return;
+    }
+
+    if (!supportsJourney()) {
         return;
     }
 

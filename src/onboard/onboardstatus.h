@@ -29,7 +29,10 @@ class KPUBLICTRANSPORTONBOARD_EXPORT OnboardStatus : public QObject
     /** Current geographic position, @c NAN if not available. */
     Q_PROPERTY(float latitude READ latitude NOTIFY positionChanged)
     Q_PROPERTY(float longitude READ longitude NOTIFY positionChanged)
+    /** Whether the geographic position is currently available. */
     Q_PROPERTY(bool hasPosition READ hasPosition NOTIFY positionChanged)
+    /** Whether the backend supports querying for the geographic position. */
+    Q_PROPERTY(bool supportsPosition READ supportsPosition NOTIFY supportsPositionChanged)
 
     /** Current speed in km/h. */
     Q_PROPERTY(float speed READ speed NOTIFY positionChanged)
@@ -41,7 +44,10 @@ class KPUBLICTRANSPORTONBOARD_EXPORT OnboardStatus : public QObject
 
     /** The current journey. */
     Q_PROPERTY(KPublicTransport::Journey journey READ journey NOTIFY journeyChanged)
+    /** Whether there is journey information available. */
     Q_PROPERTY(bool hasJourney READ hasJourney NOTIFY journeyChanged)
+    /** Whether the backend supports querying for the journey. */
+    Q_PROPERTY(bool supportsJourney READ supportsJourney NOTIFY supportsJourneyChanged)
 
     /** Update polling intervals in seconds. */
     Q_PROPERTY(int positionUpdateInterval READ positionUpdateInterval WRITE setPositionUpdateInterval NOTIFY updateIntervalChanged)
@@ -65,6 +71,7 @@ public:
     float latitude() const;
     float longitude() const;
     bool hasPosition() const;
+    bool supportsPosition() const;
 
     float speed() const;
     bool hasSpeed() const;
@@ -74,6 +81,7 @@ public:
 
     KPublicTransport::Journey journey() const;
     bool hasJourney() const;
+    bool supportsJourney() const;
 
     int positionUpdateInterval() const;
     void setPositionUpdateInterval(int interval);
@@ -98,7 +106,9 @@ public:
 Q_SIGNALS:
     void statusChanged();
     void positionChanged();
+    void supportsPositionChanged();
     void journeyChanged();
+    void supportsJourneyChanged();
     void updateIntervalChanged();
 
 private:

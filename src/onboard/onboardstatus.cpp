@@ -28,7 +28,9 @@ OnboardStatus::OnboardStatus(QObject *parent)
     auto mgr = OnboardStatusManager::instance();
     connect(mgr, &OnboardStatusManager::statusChanged, this, &OnboardStatus::statusChanged);
     connect(mgr, &OnboardStatusManager::positionChanged, this, &OnboardStatus::positionChanged);
+    connect(mgr, &OnboardStatusManager::supportsPositionChanged, this, &OnboardStatus::supportsPositionChanged);
     connect(mgr, &OnboardStatusManager::journeyChanged, this, &OnboardStatus::journeyChanged);
+    connect(mgr, &OnboardStatusManager::supportsJourneyChanged, this, &OnboardStatus::supportsJourneyChanged);
     OnboardStatusManager::instance()->registerFrontend(this);
 }
 
@@ -55,6 +57,11 @@ float OnboardStatus::longitude() const
 bool OnboardStatus::hasPosition() const
 {
     return OnboardStatusManager::instance()->currentPosition().hasCoordinate();
+}
+
+bool OnboardStatus::supportsPosition() const
+{
+    return OnboardStatusManager::instance()->supportsPosition();
 }
 
 float OnboardStatus::speed() const
@@ -85,6 +92,11 @@ Journey OnboardStatus::journey() const
 bool OnboardStatus::hasJourney() const
 {
     return !OnboardStatusManager::instance()->currentJourney().sections().empty();
+}
+
+bool OnboardStatus::supportsJourney() const
+{
+    return OnboardStatusManager::instance()->supportsJourney();
 }
 
 int OnboardStatus::positionUpdateInterval() const

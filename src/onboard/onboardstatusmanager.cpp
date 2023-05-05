@@ -73,9 +73,19 @@ PositionData OnboardStatusManager::currentPosition() const
     return m_currentPos;
 }
 
+bool OnboardStatusManager::supportsPosition() const
+{
+    return m_backend && m_backend->supportsPosition();
+}
+
 Journey OnboardStatusManager::currentJourney() const
 {
     return m_journey;
+}
+
+bool OnboardStatusManager::supportsJourney() const
+{
+    return m_backend && m_backend->supportsJourney();
 }
 
 void OnboardStatusManager::registerFrontend(const OnboardStatus *status)
@@ -199,6 +209,9 @@ void OnboardStatusManager::loadAccessPointData()
 
 void OnboardStatusManager::loadBackend(const QString &id)
 {
+    const bool oldSupportsPosition = supportsPosition();
+    const bool oldSupportsJourney = supportsJourney();
+
     m_backend = createBackend(id);
     if (!m_backend) {
         return;
@@ -206,6 +219,13 @@ void OnboardStatusManager::loadBackend(const QString &id)
 
     connect(m_backend.get(), &AbstractOnboardBackend::positionReceived, this, &OnboardStatusManager::positionUpdated);
     connect(m_backend.get(), &AbstractOnboardBackend::journeyReceived, this, &OnboardStatusManager::journeyUpdated);
+
+    if (oldSupportsPosition != supportsPosition()) {
+        Q_EMIT supportsPositionChanged();
+    }
+    if (oldSupportsJourney != supportsJourney()) {
+        Q_EMIT supportsJourneyChanged();
+    }
 }
 
 std::unique_ptr<AbstractOnboardBackend> OnboardStatusManager::createBackend(const QString& id)

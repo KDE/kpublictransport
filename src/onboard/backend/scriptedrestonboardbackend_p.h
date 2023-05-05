@@ -33,6 +33,9 @@ public:
     explicit ScriptedRestOnboardBackend(QObject *parent = nullptr);
     ~ScriptedRestOnboardBackend();
 
+    bool supportsPosition() const override final;
+    bool supportsJourney() const override final;
+
     QNetworkRequest createPositionRequest() const override final;
     QNetworkRequest createJourneyRequest() const override final;
 

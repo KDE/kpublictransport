@@ -36,7 +36,9 @@ public:
 
     OnboardStatus::Status status() const;
     PositionData currentPosition() const;
+    bool supportsPosition() const;
     Journey currentJourney() const;
+    bool supportsJourney() const;
 
     void registerFrontend(const OnboardStatus *status);
     void unregisterFrontend(const OnboardStatus *status);
@@ -49,7 +51,9 @@ public:
 Q_SIGNALS:
     void statusChanged();
     void positionChanged();
+    void supportsPositionChanged();
     void journeyChanged();
+    void supportsJourneyChanged();
 
 private:
     friend class ::OnboardStatusTest;
