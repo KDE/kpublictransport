@@ -71,6 +71,7 @@ bool EfaBackend::queryLocation(const LocationRequest& request, LocationReply *re
     applySslConfiguration(netRequest);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -149,6 +150,7 @@ bool EfaBackend::queryStopover(const StopoverRequest &request, StopoverReply *re
     applySslConfiguration(netRequest);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -275,6 +277,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
     applySslConfiguration(netRequest);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();

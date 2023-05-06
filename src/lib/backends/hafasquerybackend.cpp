@@ -102,6 +102,7 @@ bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, Loca
     const QNetworkRequest netRequest(url);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         const auto data = readReplyAsUtf8(netReply);
         logReply(reply, netReply, data);
@@ -141,6 +142,7 @@ bool HafasQueryBackend::queryLocationByCoordinate(const LocationRequest &request
     const QNetworkRequest netRequest(url);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -186,6 +188,7 @@ bool HafasQueryBackend::queryStopover(const StopoverRequest &request, StopoverRe
     const QNetworkRequest netRequest(url);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -259,6 +262,7 @@ bool HafasQueryBackend::queryJourney(const JourneyRequest &request, JourneyReply
     const QNetworkRequest netRequest(url);
     logRequest(request, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();

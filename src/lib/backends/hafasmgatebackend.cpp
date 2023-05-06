@@ -164,6 +164,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
     const auto netRequest = makePostRequest(tripSearch, postData);
     logRequest(request, netRequest, postData);
     auto netReply = nam->post(netRequest, postData);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -230,6 +231,7 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
     const auto netRequest = makePostRequest(stationBoard, postData);
     logRequest(request, netRequest, postData);
     auto netReply = nam->post(netRequest, postData);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, dt, this]() {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -309,6 +311,7 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
     const auto netRequest = makePostRequest(methodObj, postData);
     logRequest(req, netRequest, postData);
     const auto netReply = nam->post(netRequest, postData);
+    netReply->setParent(reply);
 
     QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
         qDebug() << netReply->request().url();

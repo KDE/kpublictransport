@@ -177,9 +177,10 @@ QByteArray KGraphQLReply::rawData() const
 }
 
 
-void KGraphQL::query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback)
+void KGraphQL::query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback, QObject *replyParent)
 {
     auto reply = nam->post(request.networkRequest(), request.rawData());
+    reply->setParent(replyParent);
     QObject::connect(reply, &QNetworkReply::finished, nam, [reply, callback]() {
         callback(KGraphQLReply(reply));
         reply->deleteLater();

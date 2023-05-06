@@ -64,6 +64,7 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
     QNetworkRequest netRequest(url);
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -112,6 +113,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     QNetworkRequest netRequest(url);
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -176,6 +178,7 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     QNetworkRequest netRequest(url);
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();

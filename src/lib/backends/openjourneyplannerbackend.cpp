@@ -46,6 +46,7 @@ bool OpenJourneyPlannerBackend::queryLocation(const LocationRequest &request, Lo
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -75,6 +76,7 @@ bool OpenJourneyPlannerBackend::queryStopover(const StopoverRequest &request, St
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
@@ -104,6 +106,7 @@ bool OpenJourneyPlannerBackend::queryJourney(const JourneyRequest &request, Jour
     const auto netReq = networkRequest();
     logRequest(request, netReq, postData);
     const auto netReply = nam->post(netReq, postData);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();

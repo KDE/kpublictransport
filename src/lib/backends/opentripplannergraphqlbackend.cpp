@@ -94,7 +94,7 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), res, {});
         }
         addResult(reply, std::move(res));
-    });
+    }, reply);
 
     return true;
 }
@@ -129,7 +129,7 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
             OpenTripPlannerParser p(backendId(), m_ifoptPrefix);
             addResult(reply, this, p.parseDepartures(gqlReply.data()));
         }
-    });
+    }, reply);
 
     return true;
 }
@@ -300,7 +300,7 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
                 setPreviousRequestContext(reply, p.m_prevJourneyContext);
             }
         }
-    });
+    }, reply);
 
     return true;
 }
