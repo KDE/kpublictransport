@@ -1,0 +1,329 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 0,
+            "expectedArrivalPlatform": "1",
+            "expectedDeparturePlatform": "1",
+            "expectedDepartureTime": "2023-05-04T15:33:00+02:00",
+            "from": {
+                "identifier": {
+                    "ibnr": "8000016"
+                },
+                "name": "Backnang",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T15:33:00+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T15:41:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T15:33:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003266"
+                        },
+                        "name": "Kirchberg(Murr)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NoService",
+                    "expectedDepartureTime": "2023-05-04T15:38:00+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T15:37:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T15:38:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8001296"
+                        },
+                        "name": "Burgstall(Murr)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NoService",
+                    "expectedDepartureTime": "2023-05-04T15:47:23+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T15:41:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T15:44:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003266"
+                        },
+                        "name": "Kirchberg(Murr)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T15:49:00+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T15:47:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T15:47:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8001827"
+                        },
+                        "name": "Erdmannhausen",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T15:55:00+02:00",
+                    "expectedPlatform": "2",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T15:51:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T15:55:00+02:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003853"
+                        },
+                        "name": "Marbach(Neckar)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T15:58:00+02:00",
+                    "expectedPlatform": "2",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T15:57:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T15:57:00+02:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000873"
+                        },
+                        "name": "Benningen(Neckar)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:02:00+02:00",
+                    "expectedPlatform": "2",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:00:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:01:00+02:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8002065"
+                        },
+                        "name": "Freiberg(Neckar)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:05:00+02:00",
+                    "expectedPlatform": "2",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:03:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:03:00+02:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8001967"
+                        },
+                        "name": "Favoritepark",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:08:00+02:00",
+                    "expectedPlatform": "3",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:06:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:06:00+02:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000235"
+                        },
+                        "name": "Ludwigsburg",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:11:00+02:00",
+                    "expectedPlatform": "3",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:09:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:10:00+02:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8003411"
+                        },
+                        "name": "Kornwestheim Pbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:15:00+02:00",
+                    "expectedPlatform": "2",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:13:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:14:00+02:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8005778"
+                        },
+                        "name": "Stuttgart-Zuffenhausen",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:18:00+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:16:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:16:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8005770"
+                        },
+                        "name": "Stuttgart-Feuerbach",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:20:00+02:00",
+                    "expectedPlatform": "4",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:18:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:19:00+02:00",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8005767"
+                        },
+                        "name": "Stuttgart Nord",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:24:00+02:00",
+                    "expectedPlatform": "101",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:22:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:23:00+02:00",
+                    "scheduledPlatform": "101",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8098096"
+                        },
+                        "name": "Stuttgart Hbf (tief)",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:26:00+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:24:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:25:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8006700"
+                        },
+                        "name": "Stuttgart Stadtmitte",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-05-04T16:28:00+02:00",
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Reparatur an einem Signal"
+                    ],
+                    "scheduledArrivalTime": "2023-05-04T16:26:00+02:00",
+                    "scheduledDepartureTime": "2023-05-04T16:26:00+02:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8006699"
+                        },
+                        "name": "Stuttgart Feuersee",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "notes": [
+                "Erfahrungsgemäß hat dieser Zug eine hohe Auslastung."
+            ],
+            "route": {
+                "line": {
+                    "mode": "RapidTransit",
+                    "name": "S 4"
+                }
+            },
+            "scheduledArrivalPlatform": "1",
+            "scheduledArrivalTime": "2023-05-04T16:28:00+02:00",
+            "scheduledDeparturePlatform": "1",
+            "scheduledDepartureTime": "2023-05-04T15:33:00+02:00",
+            "to": {
+                "identifier": {
+                    "ibnr": "8006698"
+                },
+                "name": "Stuttgart Schwabstr.",
+                "type": "Stop"
+            }
+        }
+    ]
+}
