@@ -90,6 +90,11 @@ function parseZugportalTrip(response)
             stop.expectedArrivalTime = s.arrivalTime.predicte;
         }
         // TODO messages [] - no example whats in there yet, status != "Normal"?
+
+        if (s.status === "Canceled" || s.canceled === true) {
+            stop.disruptionEffect = 'NoService';
+        }
+
         section.intermediateStops.push(stop);
     }
 
