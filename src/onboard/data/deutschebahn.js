@@ -79,7 +79,8 @@ function parseZugportalTrip(response)
                 identifier = { ibnr = s.station.evaNo }
             },
             scheduledPlatform = s.track.target,
-            expectedPlatform = s.track.prediction
+            expectedPlatform = s.track.prediction,
+            notes = []
         };
         if (s.departureTime) {
             stop.scheduledDepartureTime = s.departureTime.target;
@@ -89,10 +90,15 @@ function parseZugportalTrip(response)
             stop.scheduledArrivalTime = s.arrivalTime.target;
             stop.expectedArrivalTime = s.arrivalTime.predicte;
         }
-        // TODO messages [] - no example whats in there yet, status != "Normal"?
 
         if (s.status === "Canceled" || s.canceled === true) {
             stop.disruptionEffect = 'NoService';
+        }
+
+        for (message of s.messages) {
+            if (message.type === "CUSTOMER_REASON") {
+                notes.push(message.textShort || message.text);
+            }
         }
 
         section.intermediateStops.push(stop);
