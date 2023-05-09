@@ -106,6 +106,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     netReq.setRawHeader("Authorization", m_auth.toUtf8());
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply] {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -165,6 +166,7 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
     netReq.setRawHeader("Authorization", m_auth.toUtf8());
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -242,6 +244,7 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     netReq.setRawHeader("Authorization", m_auth.toUtf8());
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);

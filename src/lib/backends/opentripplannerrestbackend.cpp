@@ -65,6 +65,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
         QNetworkRequest netReq(url);
         logRequest(req, netReq);
         auto netReply = nam->get(netReq);
+        netReply->setParent(reply);
         QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
             const auto data = netReply->readAll();
             logReply(reply, netReply, data);
@@ -91,6 +92,7 @@ bool OpenTripPlannerRestBackend::queryLocation(const LocationRequest &req, Locat
         QNetworkRequest netReq(url);
         logRequest(req, netReq);
         auto netReply = nam->get(netReq);
+        netReply->setParent(reply);
         QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
             const auto data = netReply->readAll();
             logReply(reply, netReply, data);
@@ -122,6 +124,7 @@ bool OpenTripPlannerRestBackend::queryStopover(const StopoverRequest &req, Stopo
     QNetworkRequest netReq(url);
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, req, reply] {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -165,6 +168,7 @@ bool OpenTripPlannerRestBackend::queryJourney(const JourneyRequest &req, Journey
     QNetworkRequest netReq(url);
     logRequest(req, netReq);
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);

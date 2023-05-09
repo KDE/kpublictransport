@@ -56,6 +56,7 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
     QNetworkRequest netReq(url);
     logRequest(request, netReq);
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
 
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply] {
         const auto data = netReply->readAll();

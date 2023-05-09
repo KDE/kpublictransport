@@ -51,6 +51,7 @@ bool AccessibilityCloudBackend::queryLocation(const LocationRequest &req, Locati
     logRequest(req, netReq);
 
     auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply] {
         netReply->deleteLater();
         const auto data = netReply->readAll();

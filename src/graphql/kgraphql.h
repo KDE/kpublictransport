@@ -17,6 +17,7 @@ class QJsonValue;
 class QNetworkAccessManager;
 class QNetworkReply;
 class QNetworkRequest;
+class QObject;
 class QUrl;
 
 class KGraphQLRequest;
@@ -26,7 +27,7 @@ class KGraphQLReply;
 namespace KGraphQL
 {
     /** Perform a GraphQL query. */
-    void query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback);
+    void query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback, QObject *replyParent = nullptr);
 }
 
 class KGraphQLRequestPrivate;
@@ -98,7 +99,7 @@ public:
     QByteArray rawData() const;
 
 private:
-    friend void KGraphQL::query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback);
+    friend void KGraphQL::query(const KGraphQLRequest &request, QNetworkAccessManager *nam, const std::function<void(const KGraphQLReply&)> &callback, QObject *replyParent);
     KGraphQLReply(QNetworkReply *reply);
 
     std::unique_ptr<KGraphQLReplyPrivate> d;
