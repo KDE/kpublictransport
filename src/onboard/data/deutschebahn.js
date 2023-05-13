@@ -88,7 +88,7 @@ function parseZugportalTrip(response)
         }
         if (s.arrivalTime) {
             stop.scheduledArrivalTime = s.arrivalTime.target;
-            stop.expectedArrivalTime = s.arrivalTime.predicte;
+            stop.expectedArrivalTime = s.arrivalTime.predicted;
         }
 
         if (s.status === "Canceled" || s.canceled === true) {

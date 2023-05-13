@@ -4,6 +4,7 @@
             "disruptionEffect": "NormalService",
             "distance": 0,
             "expectedArrivalPlatform": "1",
+            "expectedArrivalTime": "2023-05-04T16:29:00+02:00",
             "expectedDeparturePlatform": "1",
             "expectedDepartureTime": "2023-05-04T15:33:00+02:00",
             "from": {
@@ -16,6 +17,7 @@
             "intermediateStops": [
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T15:47:09+02:00",
                     "expectedDepartureTime": "2023-05-04T15:33:00+02:00",
                     "expectedPlatform": "1",
                     "notes": [
@@ -34,6 +36,7 @@
                 },
                 {
                     "disruptionEffect": "NoService",
+                    "expectedArrivalTime": "2023-05-04T15:37:00+02:00",
                     "expectedDepartureTime": "2023-05-04T15:38:00+02:00",
                     "expectedPlatform": "1",
                     "notes": [
@@ -52,6 +55,7 @@
                 },
                 {
                     "disruptionEffect": "NoService",
+                    "expectedArrivalTime": "2023-05-04T15:47:09+02:00",
                     "expectedDepartureTime": "2023-05-04T15:47:23+02:00",
                     "expectedPlatform": "1",
                     "notes": [
@@ -70,6 +74,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T15:49:43+02:00",
                     "expectedDepartureTime": "2023-05-04T15:49:00+02:00",
                     "expectedPlatform": "1",
                     "notes": [
@@ -88,6 +93,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T15:52:37+02:00",
                     "expectedDepartureTime": "2023-05-04T15:55:00+02:00",
                     "expectedPlatform": "2",
                     "notes": [
@@ -106,6 +112,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T15:58:17+02:00",
                     "expectedDepartureTime": "2023-05-04T15:58:00+02:00",
                     "expectedPlatform": "2",
                     "notes": [
@@ -124,6 +131,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:01:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:02:00+02:00",
                     "expectedPlatform": "2",
                     "notes": [
@@ -142,6 +150,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:04:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:05:00+02:00",
                     "expectedPlatform": "2",
                     "notes": [
@@ -160,6 +169,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:07:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:08:00+02:00",
                     "expectedPlatform": "3",
                     "notes": [
@@ -178,6 +188,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:11:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:11:00+02:00",
                     "expectedPlatform": "3",
                     "notes": [
@@ -196,6 +207,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:14:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:15:00+02:00",
                     "expectedPlatform": "2",
                     "notes": [
@@ -214,6 +226,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:17:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:18:00+02:00",
                     "expectedPlatform": "1",
                     "notes": [
@@ -232,6 +245,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:19:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:20:00+02:00",
                     "expectedPlatform": "4",
                     "notes": [
@@ -250,6 +264,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:23:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:24:00+02:00",
                     "expectedPlatform": "101",
                     "notes": [
@@ -268,6 +283,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:26:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:26:00+02:00",
                     "expectedPlatform": "1",
                     "notes": [
@@ -286,6 +302,7 @@
                 },
                 {
                     "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-05-04T16:27:00+02:00",
                     "expectedDepartureTime": "2023-05-04T16:28:00+02:00",
                     "expectedPlatform": "1",
                     "notes": [
