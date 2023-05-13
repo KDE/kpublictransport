@@ -86,7 +86,7 @@ function parseZugportalTrip(response)
         }
         if (s.arrivalTime) {
             stop.scheduledArrivalTime = s.arrivalTime.target;
-            stop.expectedArrivalTime = s.arrivalTime.predicte;
+            stop.expectedArrivalTime = s.arrivalTime.predicted;
         }
         // TODO messages [] - no example whats in there yet, status != "Normal"?
         section.intermediateStops.push(stop);
