@@ -122,6 +122,10 @@ QNetworkAccessManager* ManagerPrivate::nam()
 
 void ManagerPrivate::loadNetworks()
 {
+    if (!m_backends.empty()) {
+        return;
+    }
+
     QDirIterator it(QStringLiteral(":/org.kde.kpublictransport/networks"));
     while (it.hasNext()) {
         QFile f(it.next());
@@ -456,7 +460,6 @@ Manager::Manager(QObject *parent)
     initResources();
     qRegisterMetaType<Disruption::Effect>();
     d->q = this;
-    d->loadNetworks();
 
     if (!AssetRepository::instance()) {
         auto assetRepo = new AssetRepository(this);
@@ -511,6 +514,8 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
         reply->setPendingOps(pendingOps);
         return reply;
     }
+
+    d->loadNetworks();
 
     // first time/direct query
     if (req.contexts().empty()) {
@@ -612,6 +617,8 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
         return reply;
     }
 
+    d->loadNetworks();
+
     // first time/direct query
     if (req.contexts().empty()) {
         QSet<QString> triedBackends;
@@ -710,6 +717,8 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         return reply;
     }
 
+    d->loadNetworks();
+
     QSet<QString> triedBackends;
     bool foundNonGlobalCoverage = false;
     const auto loc = req.location();
@@ -770,6 +779,8 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         return reply;
     }
 
+    d->loadNetworks();
+
     for (const auto &backend : d->m_backends) {
         if (d->shouldSkipBackend(backend, req)) {
             continue;
@@ -808,12 +819,14 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 
 const std::vector<Attribution>& Manager::attributions() const
 {
+    d->loadNetworks();
     d->readCachedAttributions();
     return d->m_attributions;
 }
 
 QVariantList Manager::attributionsVariant() const
 {
+    d->loadNetworks();
     d->readCachedAttributions();
     QVariantList l;
     l.reserve(d->m_attributions.size());
@@ -823,6 +836,7 @@ QVariantList Manager::attributionsVariant() const
 
 const std::vector<Backend>& Manager::backends() const
 {
+    d->loadNetworks();
     return d->m_backends;
 }
 
@@ -906,6 +920,7 @@ void Manager::setBackendsEnabledByDefault(bool byDefault)
 
 QVariantList Manager::backendsVariant() const
 {
+    d->loadNetworks();
     QVariantList l;
     l.reserve(d->m_backends.size());
     std::transform(d->m_backends.begin(), d->m_backends.end(), std::back_inserter(l), [](const auto &b) { return QVariant::fromValue(b); });
