@@ -13,6 +13,7 @@
 #include <QUrl>
 
 #include <deque>
+#include <functional>
 
 class QNetworkAccessManager;
 
@@ -59,12 +60,12 @@ private:
     friend class Manager;
 
     AssetRepository(QObject *parent = nullptr);
-    void setNetworkAccessManager(QNetworkAccessManager *nam);
+    void setNetworkAccessManagerProvider(std::function<QNetworkAccessManager*()> namProvider);
     void downloadNext();
 
     static AssetRepository *s_instance;
     std::deque<QUrl> m_queue;
-    QNetworkAccessManager *m_nam = nullptr;
+    std::function<QNetworkAccessManager*()> m_namProvider;
     mutable std::vector<Attribution> m_attributions;
 };
 

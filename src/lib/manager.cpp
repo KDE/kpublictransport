@@ -463,7 +463,7 @@ Manager::Manager(QObject *parent)
 
     if (!AssetRepository::instance()) {
         auto assetRepo = new AssetRepository(this);
-        assetRepo->setNetworkAccessManager(d->nam());
+        assetRepo->setNetworkAccessManagerProvider(std::bind(&ManagerPrivate::nam, d.get()));
     }
 
     Cache::expire();
@@ -482,10 +482,6 @@ void Manager::setNetworkAccessManager(QNetworkAccessManager *nam)
     }
 
     d->m_nam = nam;
-
-    if (AssetRepository::instance()) {
-        AssetRepository::instance()->setNetworkAccessManager(nam);
-    }
 }
 
 bool Manager::allowInsecureBackends() const

@@ -43,9 +43,9 @@ AssetRepository* AssetRepository::instance()
     return s_instance;
 }
 
-void AssetRepository::setNetworkAccessManager(QNetworkAccessManager *nam)
+void AssetRepository::setNetworkAccessManagerProvider(std::function<QNetworkAccessManager*()> namProvider)
 {
-    m_nam = nam;
+    m_namProvider = namProvider;
 }
 
 static QString cachePath()
@@ -68,7 +68,7 @@ QString AssetRepository::localFile(const QUrl& url)
 
 bool AssetRepository::download(const QUrl &url)
 {
-    if (!url.isValid() || url.scheme() != QLatin1String("https") || url.fileName().isEmpty() || !m_nam) {
+    if (!url.isValid() || url.scheme() != QLatin1String("https") || url.fileName().isEmpty() || !m_namProvider || !m_namProvider()) {
         return false;
     }
 
@@ -100,7 +100,7 @@ void AssetRepository::downloadNext()
     }
 
     QNetworkRequest req(m_queue.front());
-    auto reply = m_nam->get(req);
+    auto reply = m_namProvider()->get(req);
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
         reply->deleteLater();
 
