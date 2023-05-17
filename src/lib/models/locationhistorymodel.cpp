@@ -102,7 +102,7 @@ void LocationHistoryModel::addLocation(const Location &loc)
     }
 
     Data data;
-    data.id = QUuid::createUuid().toString();
+    data.id = QUuid::createUuid().toString(QUuid::WithoutBraces);
     data.loc = loc;
     data.lastUse = QDateTime::currentDateTime();
     data.useCount = 1;
