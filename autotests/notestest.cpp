@@ -65,13 +65,25 @@ private Q_SLOTS:
 
     void testNotesMerge()
     {
-        Stopover dep1;
-        Stopover dep2;
-        dep1.addNote(s("line1"));
-        dep2.addNotes({s("line2"), s("line1")});
+        {
+            Stopover dep1;
+            Stopover dep2;
+            dep1.addNote(s("line1"));
+            dep2.addNotes({s("line2"), s("line1")});
 
-        const auto dep3 = Stopover::merge(dep1, dep2);
-        QCOMPARE(dep3.notes(), QStringList({s("line1"), s("line2")}));
+            const auto dep3 = Stopover::merge(dep1, dep2);
+            QCOMPARE(dep3.notes(), QStringList({s("line1"), s("line2")}));
+        }
+
+        {
+            Stopover dep1;
+            Stopover dep2;
+            dep1.addNote(s("line1 - detail"));
+            dep2.addNotes({s("line2"), s("line1")});
+
+            const auto dep3 = Stopover::merge(dep1, dep2);
+            QCOMPARE(dep3.notes(), QStringList({s("line1 - detail"), s("line2")}));
+        }
     }
 
     void testNormalize_data()
