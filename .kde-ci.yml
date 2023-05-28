@@ -18,3 +18,11 @@ Options:
   - 'src/lib/knowledgedb/linemetadata_data.cpp'
   - 'src/lib/knowledgedb/linemetadata.cpp'
   require-passing-tests-on: [ 'Linux', 'FreeBSD', 'Windows' ]
+  json-validate-ignore:
+  - 'autotests/data/hafas/rem-I-JF-sbb-split-layout-train-formation-input.json'
+  - 'autotests/data/hafas/query-location-response-sbb-broken-json.json'
+  - 'autotests/data/navitia/journey-bss-path-no-instr-start-coord.json'
+  - 'autotests/data/ivvass/journey-vrs-input.json'
+  - 'autotests/data/ivvass/journey-long-distance-vrs-input.json'
+  - 'autotests/data/onboard-journey/db-ice.in.json'
+  - 'autotests/data/otp/de-stadtnavi-bike-parking-journey.in.json'
