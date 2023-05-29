@@ -94,8 +94,9 @@ QStringList NotesUtil::mergeNotes(const QStringList &lhs, const QStringList &rhs
 
     auto res = lhs;
     for (const auto &r : rhs) {
-        if (!res.contains(r)) {
-            res.push_back(r);
+        const auto idx = NotesUtil::needsAdding(res, r);
+        if (idx >= 0) {
+            NotesUtil::performAdd(res, r, idx);
         }
     }
     return res;
