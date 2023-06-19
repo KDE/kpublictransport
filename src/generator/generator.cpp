@@ -188,6 +188,27 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     }
     qDebug() << "lines after bbox merge:" << lines.size();
 
+    // check for uniqueness of Wikidata reference, even with non-intersecting bboxes
+    // can help to fix broken/split routes
+    for (auto lit = lines.begin(); lit != lines.end(); ++lit) {
+        if (!(*lit).wdId.isValid()) {
+            continue;
+        }
+        auto dupIt = std::partition(std::next(lit), lines.end(), [lit](const auto &rhs) {
+            return !isSameLine(*lit, rhs) || (*lit).wdId != rhs.wdId;
+        });
+        if (dupIt == lines.end()) {
+            continue;
+        }
+
+        for (auto it = dupIt; it != lines.end(); ++it) {
+            qDebug() << "  merging:" << *lit << "with" << *it;
+            LineInfo::merge(*lit, *it);
+        }
+        lines.erase(dupIt, lines.end());
+    }
+    qDebug() << "lines after WD reference merge:" << lines.size();
+
     augmentFromWikidata();
 }
 
