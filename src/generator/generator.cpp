@@ -320,12 +320,13 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
             }
 
             // collect possible product types
-            const auto partOfIds = item.values<wd::Q>(wd::P::partOf);
-            for (const auto &id : partOfIds) {
-                wdPartOfIds.insert(id);
-                (*rit).wdProducts.push_back(id);
+            for (const wd::P p : {wd::P(wd::P::partOf), wd::P(16)}) {
+                for (const auto &id : item.values<wd::Q>(p)) {
+                    wdPartOfIds.insert(id);
+                    (*rit).wdProducts.push_back(id);
 
-                mode = std::max(mode, modeFromWikidataType(id));
+                    mode = std::max(mode, modeFromWikidataType(id));
+                }
             }
 
             // merge information
