@@ -880,7 +880,7 @@ int main(int argc, char **argv)
         QCoreApplication::exit(1);
     }
     OSM::DataSet dataSet;
-    auto reader = OSM::IO::readerForMimeType(u"vnd.openstreetmap.data+o5m", &dataSet);
+    auto reader = OSM::IO::readerForMimeType(u"application/vnd.openstreetmap.data+o5m", &dataSet);
     assert(reader);
     reader->read(f.map(0, f.size()), f.size());
 
