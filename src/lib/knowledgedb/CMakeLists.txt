@@ -10,14 +10,14 @@ endif()
 
 # extract all route and route_master relations with types we are interested in
 # this can take ~15min and produces about 100MB of output
-osm_filter(OUTPUT routes.o5m FILTER --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram or route_master=light_rail\")
+osm_filter(OUTPUT routes.o5m FILTER --keep=\"route_master=train or route_master=subway or route_master=tram or route_master=light_rail or route=train or route=subway or route=tram or route=light_rail\")
 
 # augment bounding box information
 osm_convert(INPUT routes.o5m OUTPUT routes-bbox.o5m ADD_BBOX ON)
 
 # drop all depending nodes/ways/relations we wont need
 # this is merely to speed up the code generator, by reducing the resulting XML output to manageable sizes
-osm_filter(INPUT routes-bbox.o5m OUTPUT routes-only.o5m FILTER --keep=\"route_master=train or route_master=subway or route_master=tram or route=train or route=subway or route=tram or route_master=light_rail\" --ignore-dependencies)
+osm_filter(INPUT routes-bbox.o5m OUTPUT routes-only.o5m FILTER --keep=\"route_master=train or route_master=subway or route_master=tram route_master=light_rail or route=train or route=subway or route=tram or route=light_rail\" --ignore-dependencies)
 
 add_custom_command(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/linemetadata_data.cpp
