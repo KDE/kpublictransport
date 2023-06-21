@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
+
 #include <KPublicTransport/Journey>
 
 #include <QFile>
@@ -51,21 +53,15 @@ private Q_SLOTS:
 
         const auto lhs = Journey::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".lhs.json"))).object());
         const auto rhs = Journey::fromJson(QJsonDocument::fromJson(readFile(baseName + QLatin1String(".rhs.json"))).object());
-        const auto expected = QJsonDocument::fromJson(readFile(baseName + QLatin1String(".merged.json")));
+        const auto expected = QJsonDocument::fromJson(readFile(baseName + QLatin1String(".merged.json"))).object();
 
         QVERIFY(Journey::isSame(lhs, rhs));
         QVERIFY(Journey::isSame(rhs, lhs));
 
         const auto mergedL2R = Journey::merge(lhs, rhs);
-        if (Journey::toJson(mergedL2R) != expected.object()) {
-            qDebug().noquote() << QJsonDocument(Journey::toJson(mergedL2R)).toJson();
-        }
-        QCOMPARE(QJsonDocument(Journey::toJson(mergedL2R)), expected);
+        QVERIFY(Test::compareJson(baseName + QLatin1String(".merged.json"), Journey::toJson(mergedL2R), expected));
         const auto mergedR2L = Journey::merge(rhs, lhs);
-        if (Journey::toJson(mergedR2L) != expected.object()) {
-            qDebug().noquote() << QJsonDocument(Journey::toJson(mergedR2L)).toJson();
-        }
-        QCOMPARE(QJsonDocument(Journey::toJson(mergedR2L)), expected);
+        QVERIFY(Test::compareJson(baseName + QLatin1String(".merged.json"), Journey::toJson(mergedR2L), expected));
     }
 };
 
