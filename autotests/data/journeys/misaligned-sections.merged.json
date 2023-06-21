@@ -38,7 +38,7 @@
             "route": {
                 "direction": "Gare de Saint-Rémy les Chevreuse (Saint-Rémy-lès-Chevreuse)",
                 "line": {
-                    "color": "#5092c9",
+                    "color": "#5291ce",
                     "mode": "RapidTransit",
                     "modeString": "RER",
                     "name": "B",
@@ -105,7 +105,7 @@
             "route": {
                 "direction": "Gare de Boissy Saint-Léger (Boissy-Saint-Léger)",
                 "line": {
-                    "color": "#d1302f",
+                    "color": "#e3051c",
                     "mode": "RapidTransit",
                     "modeString": "RER",
                     "name": "A",
