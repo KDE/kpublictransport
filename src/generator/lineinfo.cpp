@@ -26,8 +26,7 @@ bool LineInfo::isUseful(const LineInfo& info)
             return false;
         case LongDistance:
         case LocalTrain:
-            return false;
-            //return !info.lineLogos.empty() || !info.productLogos.empty();
+            return !info.lineLogos.empty();
         case RapidTransit:
         case Tram:
         case Subway:
