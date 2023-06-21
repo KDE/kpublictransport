@@ -737,6 +737,10 @@ static QByteArray modeToString(LineInfo::Mode mode)
             return "LineMetaDataContent::Subway";
         case LineInfo::RapidTransit:
             return "LineMetaDataContent::RapidTransit";
+        case LineInfo::LocalTrain:
+            return "LineMetaDataContent::LocalTrain";
+        case LineInfo::LongDistance:
+            return "LineMetaDataContent::LongDistanceTrain";
         default:
             assert(false);
     }

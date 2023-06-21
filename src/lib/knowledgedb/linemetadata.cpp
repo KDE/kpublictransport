@@ -18,6 +18,11 @@
 
 using namespace KPublicTransport;
 
+// ensure index storage space suffices
+// should this fail more space needs to be allocated in LineMetaDataContent
+static_assert(sizeof(line_name_stringtab) < (1 << 13));
+static_assert(sizeof(line_logo_stringtab) < (1 << 16));
+
 static QString lookupName(uint16_t index)
 {
     return QString::fromUtf8(line_name_stringtab + index);
@@ -74,6 +79,10 @@ Line::Mode LineMetaData::mode() const
             return Line::RapidTransit;
         case LineMetaDataContent::Subway:
             return Line::Metro;
+        case LineMetaDataContent::LocalTrain:
+            return Line::LocalTrain;
+        case LineMetaDataContent::LongDistanceTrain:
+            return Line::LongDistanceTrain;
     };
     return Line::Unknown;
 }

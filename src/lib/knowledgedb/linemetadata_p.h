@@ -45,7 +45,9 @@ struct LineMetaDataContent
     enum Mode : uint16_t {
         Tramway,
         Subway,
-        RapidTransit
+        RapidTransit,
+        LocalTrain,
+        LongDistanceTrain,
     };
 
     constexpr inline LineMetaDataContent(uint16_t _nameIdx, uint16_t _logoIdx, uint16_t _prodLogoIdx, Mode _mode, Color _col)
@@ -56,8 +58,8 @@ struct LineMetaDataContent
         , color(_col)
     {}
 
-    uint16_t nameIdx : 14;
-    Mode mode : 2;
+    uint16_t nameIdx : 13;
+    Mode mode : 3;
     uint16_t logoIdx;
     uint16_t productLogoIdx;
 
