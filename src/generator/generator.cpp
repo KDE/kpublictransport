@@ -510,6 +510,11 @@ void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
         QStringLiteral("cc by-sa 4.0"),
     });
 
+    // things that for whatever reason managed to bypass all generic checks but that we don't want still
+    const QStringList excluded_names({
+        QStringLiteral("S-Bahn München Logo ohne DB (2022).svg"), // cheats around the aspect ratio check, fallback gives us the standard S-Bahn logo
+    });
+
     for (auto &image : images) {
         const auto name = image.name();
         const auto fileSize = image.fileSize();
@@ -533,6 +538,11 @@ void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
         const auto lic = image.license();
         if (!valid_licenses.contains(lic, Qt::CaseInsensitive)) {
             qWarning() << "not using logo" << name << "due to license:" << lic;
+            continue;
+        }
+
+        if (excluded_names.contains(name)) {
+            qWarning() << "dropping logo" << name;
             continue;
         }
 
