@@ -474,7 +474,7 @@ void Manager::setNetworkAccessManager(QNetworkAccessManager *nam)
         return;
     }
 
-    if (d->m_nam->parent() == this) {
+    if (d->m_nam && d->m_nam->parent() == this) {
         delete d->m_nam;
     }
 
