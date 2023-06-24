@@ -24,6 +24,7 @@ bool LineInfo::isUseful(const LineInfo& info)
     switch (info.mode) {
         case Unknown:
             return false;
+        case Train:
         case LongDistance:
         case LocalTrain:
             return !info.lineLogos.empty();

@@ -37,14 +37,24 @@ static constexpr const auto MinTileCoverage = 0.1;
 
 static bool isCompatibleMode(LineInfo::Mode lhs, LineInfo::Mode rhs)
 {
-    if (lhs == LineInfo::Unknown || rhs == LineInfo::Unknown) {
+    if (lhs == rhs || lhs == LineInfo::Unknown || rhs == LineInfo::Unknown) {
         return true;
     }
     if ((lhs == LineInfo::LocalTrain && rhs == LineInfo::RapidTransit) || (lhs == LineInfo::RapidTransit && rhs == LineInfo::LocalTrain)) {
         return true;
     }
+    if (lhs == LineInfo::Train) {
+        return rhs == LineInfo::LocalTrain
+            || rhs == LineInfo::LongDistance
+            || rhs == LineInfo::RapidTransit;
+    }
+    if (rhs == LineInfo::Train) {
+        return lhs == LineInfo::LocalTrain
+            || lhs == LineInfo::LongDistance
+            || lhs == LineInfo::RapidTransit;
+    }
 
-    return lhs == rhs;
+    return false;
 }
 
 static bool isSameLine(const LineInfo &lhs, const LineInfo &rhs)
@@ -247,7 +257,7 @@ static struct {
     LineInfo::Mode mode;
 } const wd_type_to_mode_map[] = {
     { wd::Q(1412403), LineInfo::RapidTransit }, // commuter rail
-    { wd::Q(1192191), LineInfo::RapidTransit }, // airport rail link
+    { wd::Q(1192191), LineInfo::Train }, // airport rail link
     { wd::Q(50331459), LineInfo::RapidTransit }, // S-Bahn line
     { wd::Q(95723), LineInfo::RapidTransit }, // S-Bahn
     { wd::Q(129172), LineInfo::LongDistance }, // ICE
@@ -737,6 +747,7 @@ static QByteArray modeToString(LineInfo::Mode mode)
             return "LineMetaDataContent::Subway";
         case LineInfo::RapidTransit:
             return "LineMetaDataContent::RapidTransit";
+        case LineInfo::Train:
         case LineInfo::LocalTrain:
             return "LineMetaDataContent::LocalTrain";
         case LineInfo::LongDistance:
