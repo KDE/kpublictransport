@@ -41,6 +41,7 @@ public:
 
     std::vector<IndividualTransport> accessModes = { {IndividualTransport::Walk} };
     std::vector<IndividualTransport> egressModes = { {IndividualTransport::Walk} };
+    std::vector<Line::Mode> lineModes;
 };
 }
 
@@ -201,6 +202,33 @@ void JourneyRequest::setEgressModes(const QVariantList &egressModesVariant)
     d->egressModes = IndividualTransport::fromVariant(egressModesVariant);
 }
 
+const std::vector<Line::Mode>& JourneyRequest::lineModes() const
+{
+    return d->lineModes;
+}
+
+void JourneyRequest::setLineModes(std::vector<Line::Mode> &&lineModes)
+{
+    d.detach();
+    d->lineModes = std::move(lineModes);
+    std::sort(d->lineModes.begin(), d->lineModes.end());
+    d->lineModes.erase(std::unique(d->lineModes.begin(), d->lineModes.end()), d->lineModes.end());
+}
+
+QVariantList JourneyRequest::lineModesVariant() const
+{
+    return toVariantList(d->lineModes);
+}
+
+void JourneyRequest::setLineModesVariant(const QVariantList &lineModes)
+{
+    auto l = std::move(d->lineModes);
+    l.clear();
+    l.reserve(lineModes.size());
+    std::transform(lineModes.begin(), lineModes.end(), std::back_inserter(l), [](const auto &mode) { return static_cast<Line::Mode>(mode.toInt()); });
+    setLineModes(std::move(l));
+}
+
 QString JourneyRequest::cacheKey() const
 {
     QCryptographicHash hash(QCryptographicHash::Sha1);
@@ -223,6 +251,11 @@ QString JourneyRequest::cacheKey() const
     for (const auto &it : d->accessModes) {
         hash.addData(QMetaEnum::fromType<IndividualTransport::Mode>().valueToKey(it.mode()));
         hash.addData(QMetaEnum::fromType<IndividualTransport::Qualifier>().valueToKey(it.qualifier()));
+    }
+
+    hash.addData("MODES");
+    for (const auto &mode : d->lineModes) {
+        hash.addData(QMetaEnum::fromType<Line::Mode>().valueToKey(mode));
     }
 
     return QString::fromUtf8(hash.result().toHex());

@@ -10,6 +10,7 @@
 #include "kpublictransport_export.h"
 
 #include <KPublicTransport/Datatypes>
+#include <KPublicTransport/Line>
 
 #include <QMetaType>
 #include <QSharedDataPointer>
@@ -38,6 +39,9 @@ class KPUBLICTRANSPORT_EXPORT StopoverRequest
      *  Default: now
      */
     KPUBLICTRANSPORT_PROPERTY(QDateTime, dateTime, setDateTime)
+
+    /** Line modes. */
+    Q_PROPERTY(QVariantList lineModes READ lineModesVariant WRITE setLineModesVariant)
 
 public:
     /** Query departures or arrivals? */
@@ -82,6 +86,18 @@ public:
      */
     void setBackendIds(const QStringList &backendIds);
 
+    /** Requested line modes.
+     *  That is, the possible types of public transport lines to consider.
+     *  Default: all
+     */
+    const std::vector<Line::Mode>& lineModes() const;
+    /** Sets the requested line modes.
+     *  An empty list is considered as all modes being allowed.
+     *  @note This relies on backends actually supporting this and is thus does not
+     *  provide any guarantee that the results wont contain other modes as well.
+     */
+    void setLineModes(std::vector <Line::Mode> &&modes);
+
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
 
@@ -93,6 +109,10 @@ private:
     friend class StopoverReply;
     friend class StopoverReplyPrivate;
     friend class Manager;
+
+    Q_DECL_HIDDEN QVariantList lineModesVariant() const;
+    Q_DECL_HIDDEN void setLineModesVariant(const QVariantList &modes);
+
     Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);

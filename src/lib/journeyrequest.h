@@ -70,6 +70,9 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     /** Egress modes. */
     Q_PROPERTY(QVariantList egressModes READ egressModesVariant WRITE setEgressModes)
 
+    /** Line modes. */
+    Q_PROPERTY(QVariantList lineModes READ lineModesVariant WRITE setLineModesVariant)
+
 public:
     enum DateTimeMode {
         Arrival, ///< dateTime() represents the desired arriva time.
@@ -128,6 +131,19 @@ public:
     /** Sets the requested egress modes. */
     void setEgressModes(std::vector<IndividualTransport> &&egressModes);
 
+    /** Requested line modes.
+     *  That is, the possible types of public transport lines to consider for public
+     *  transports sections of the journey.
+     *  Default: all
+     */
+    const std::vector<Line::Mode>& lineModes() const;
+    /** Sets the requested line modes.
+     *  An empty list is considered as all modes being allowed.
+     *  @note This relies on backends actually supporting this and is thus does not
+     *  provide any guarantee that the results wont contain other modes as well.
+     */
+    void setLineModes(std::vector <Line::Mode> &&modes);
+
     /** Unique string representation used for caching results. */
     QString cacheKey() const;
 
@@ -145,6 +161,8 @@ private:
     Q_DECL_HIDDEN void setAccessModes(const QVariantList &accessModesVariant);
     Q_DECL_HIDDEN QVariantList egressModesVariant() const;
     Q_DECL_HIDDEN void setEgressModes(const QVariantList &egressModesVariant);
+    Q_DECL_HIDDEN QVariantList lineModesVariant() const;
+    Q_DECL_HIDDEN void setLineModesVariant(const QVariantList &modes);
 
     Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
     Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;

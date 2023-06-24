@@ -12,7 +12,9 @@
 
 #include <KPublicTransport/Location>
 
+#include <QCryptographicHash>
 #include <QDateTime>
+#include <QMetaEnum>
 #include <QSharedData>
 
 using namespace KPublicTransport;
@@ -27,6 +29,7 @@ public:
     StopoverRequest::Mode mode = StopoverRequest::QueryDeparture;
     std::vector<RequestContext> contexts;
     QStringList backendIds;
+    std::vector<Line::Mode> lineModes;
     bool downloadAssets = false;
     int maximumResults = 12;
 };
@@ -61,6 +64,36 @@ void StopoverRequest::setDateTime(const QDateTime &dt)
 {
     d.detach();
     d->dateTime = dt;
+}
+
+const std::vector<Line::Mode>& StopoverRequest::lineModes() const
+{
+    return d->lineModes;
+}
+
+void StopoverRequest::setLineModes(std::vector<Line::Mode> &&lineModes)
+{
+    d.detach();
+    d->lineModes = std::move(lineModes);
+    std::sort(d->lineModes.begin(), d->lineModes.end());
+    d->lineModes.erase(std::unique(d->lineModes.begin(), d->lineModes.end()), d->lineModes.end());
+}
+
+QVariantList StopoverRequest::lineModesVariant() const
+{
+    QVariantList l;
+    l.reserve(d->lineModes.size());
+    std::transform(d->lineModes.begin(), d->lineModes.end(), std::back_inserter(l), &QVariant::fromValue<Line::Mode>);
+    return l;
+}
+
+void StopoverRequest::setLineModesVariant(const QVariantList &lineModes)
+{
+    auto l = std::move(d->lineModes);
+    l.clear();
+    l.reserve(lineModes.size());
+    std::transform(lineModes.begin(), lineModes.end(), std::back_inserter(l), [](const auto &mode) { return static_cast<Line::Mode>(mode.toInt()); });
+    setLineModes(std::move(l));
 }
 
 RequestContext StopoverRequest::context(const AbstractBackend *backend) const
@@ -116,9 +149,17 @@ void StopoverRequest::setBackendIds(const QStringList &backendIds)
 
 QString StopoverRequest::cacheKey() const
 {
-    return QString::number(d->dateTime.toSecsSinceEpoch() / DepartureCacheTimeResolution) + QLatin1Char('_')
-        + LocationUtil::cacheKey(d->stop)
-        + QLatin1Char('_') + (d->mode == StopoverRequest::QueryArrival ? QLatin1Char('A') : QLatin1Char('D'));
+    QCryptographicHash hash(QCryptographicHash::Sha1);
+    hash.addData(QByteArray::number(d->dateTime.toSecsSinceEpoch() / DepartureCacheTimeResolution));
+    hash.addData(LocationUtil::cacheKey(d->stop).toUtf8());
+    hash.addData(d->mode == StopoverRequest::QueryArrival ? "A" : "D");
+
+    hash.addData("MODES");
+    for (const auto &mode : d->lineModes) {
+        hash.addData(QMetaEnum::fromType<Line::Mode>().valueToKey(mode));
+    }
+
+    return QString::fromUtf8(hash.result().toHex());
 }
 
 #include "moc_stopoverrequest.cpp"
