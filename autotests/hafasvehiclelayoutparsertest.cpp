@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
+
 #include "backends/hafasvehiclelayoutparser.cpp"
 
 #include <QFile>
@@ -46,11 +48,8 @@ private Q_SLOTS:
         const auto vehicles = HafasVehicleLayoutParser::parseVehicleLayouts(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto vehicleJson = Vehicle::toJson(vehicles);
         const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).array();
-        if (vehicleJson != vehicleRef) {
-            qDebug().noquote() << QJsonDocument(vehicleJson).toJson();
-        }
         QVERIFY(!vehicleJson.isEmpty());
-        QCOMPARE(vehicleJson, vehicleRef);
+        Test::compareJson(vehicleFileName, vehicleJson, vehicleRef);
     }
 
     void testVehicleLayoutParse_data()
@@ -79,11 +78,8 @@ private Q_SLOTS:
         const auto vehicle = HafasVehicleLayoutParser::parseTrainFormation(readFile(inFileName));
         const auto vehicleJson = Vehicle::toJson(vehicle);
         const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).object();
-        if (vehicleJson != vehicleRef) {
-            qDebug().noquote() << QJsonDocument(vehicleJson).toJson();
-        }
         QVERIFY(!vehicleJson.isEmpty());
-        QCOMPARE(vehicleJson, vehicleRef);
+        Test::compareJson(vehicleFileName, vehicleJson, vehicleRef);
     }
 
     void testPlatformParseXml_data()
@@ -107,11 +103,8 @@ private Q_SLOTS:
         const auto platform = HafasVehicleLayoutParser::parsePlatformSectors(readFile(inFileName));
         const auto platformJson = Platform::toJson(platform);
         const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).object();
-        if (platformJson != platformRef) {
-            qDebug().noquote() << QJsonDocument(platformJson).toJson();
-        }
         QVERIFY(!platformJson.isEmpty());
-        QCOMPARE(platformJson, platformRef);
+        Test::compareJson(platformFileName, platformJson, platformRef);
     }
 
     void testPlatformParse_tcpdL_data()
@@ -132,11 +125,8 @@ private Q_SLOTS:
         const auto platforms = HafasVehicleLayoutParser::parsePlatforms(QJsonDocument::fromJson(readFile(inFileName)).object());
         const auto platformJson = Platform::toJson(platforms);
         const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).array();
-        if (platformJson != platformRef) {
-            qDebug().noquote() << QJsonDocument(platformJson).toJson();
-        }
         QVERIFY(!platformJson.isEmpty());
-        QCOMPARE(platformJson, platformRef);
+        Test::compareJson(platformFileName, platformJson, platformRef);
     }
 };
 
