@@ -101,6 +101,12 @@ static QJsonValue variantToJson(const QVariant &v)
             const auto c = v.value<QColor>();
             return c.isValid() ? v.value<QColor>().name() : QJsonValue();;
         }
+        case QMetaType::Bool:
+            return v.toBool();
+    }
+
+    if (QMetaType mt(v.userType()); mt.metaObject() && (mt.flags() & QMetaType::IsEnumeration)) {
+        return v.toString();
     }
 
     if (v.canConvert<QVariantList>()) {
