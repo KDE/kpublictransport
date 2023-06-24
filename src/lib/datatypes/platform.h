@@ -65,7 +65,7 @@ class KPUBLICTRANSPORT_EXPORT Platform
      *  A platform can have a positive length if proportional section sizes are
      *  known, but the absolute length is unknown.
      */
-    Q_PROPERTY(bool hasAbsoluteLength READ hasAbsoluteLength)
+    Q_PROPERTY(bool hasAbsoluteLength READ hasAbsoluteLength STORED false)
 
 public:
     /** Returns @c true if this object contains no information beyond default values. */

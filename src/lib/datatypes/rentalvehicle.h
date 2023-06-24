@@ -83,7 +83,7 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicleNetwork, network, setNetwork)
 
     /** Not an empty/default constructed object. */
-    Q_PROPERTY(bool isValid READ isValid)
+    Q_PROPERTY(bool isValid READ isValid STORED false)
 
     /** Supported vehicle types at this station. */
     Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes supportedVehicleTypes READ supportedVehicleTypes STORED false)
@@ -130,7 +130,7 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes, vehicleTypes, setVehicleTypes)
 
     /** Not an empty/default constructed object. */
-    Q_PROPERTY(bool isValid READ isValid)
+    Q_PROPERTY(bool isValid READ isValid STORED false)
 
 public:
     bool isValid() const;
