@@ -66,9 +66,9 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     KPUBLICTRANSPORT_PROPERTY(bool, includePaths, setIncludePaths)
 
     /** Access modes. */
-    Q_PROPERTY(QVariantList accessModes READ accessModesVariant WRITE setAccessModes)
+    Q_PROPERTY(QVariantList accessModes READ accessModesVariant WRITE setAccessModesVariant)
     /** Egress modes. */
-    Q_PROPERTY(QVariantList egressModes READ egressModesVariant WRITE setEgressModes)
+    Q_PROPERTY(QVariantList egressModes READ egressModesVariant WRITE setEgressModesVariant)
 
     /** Line modes. */
     Q_PROPERTY(QVariantList lineModes READ lineModesVariant WRITE setLineModesVariant)
@@ -158,9 +158,9 @@ private:
     friend class JourneyRequestTest;
 
     Q_DECL_HIDDEN QVariantList accessModesVariant() const;
-    Q_DECL_HIDDEN void setAccessModes(const QVariantList &accessModesVariant);
+    Q_DECL_HIDDEN void setAccessModesVariant(const QVariantList &accessModesVariant);
     Q_DECL_HIDDEN QVariantList egressModesVariant() const;
-    Q_DECL_HIDDEN void setEgressModes(const QVariantList &egressModesVariant);
+    Q_DECL_HIDDEN void setEgressModesVariant(const QVariantList &egressModesVariant);
     Q_DECL_HIDDEN QVariantList lineModesVariant() const;
     Q_DECL_HIDDEN void setLineModesVariant(const QVariantList &modes);
 

@@ -174,7 +174,7 @@ void JourneyRequest::setAccessModes(std::vector<IndividualTransport> &&accessMod
     d->accessModes = std::move(accessModes);
 }
 
-void JourneyRequest::setAccessModes(const QVariantList &accessModesVariant)
+void JourneyRequest::setAccessModesVariant(const QVariantList &accessModesVariant)
 {
     d.detach();
     d->accessModes = IndividualTransport::fromVariant(accessModesVariant);
@@ -196,7 +196,7 @@ void JourneyRequest::setEgressModes(std::vector<IndividualTransport>&& egressMod
     d->egressModes = std::move(egressModes);
 }
 
-void JourneyRequest::setEgressModes(const QVariantList &egressModesVariant)
+void JourneyRequest::setEgressModesVariant(const QVariantList &egressModesVariant)
 {
     d.detach();
     d->egressModes = IndividualTransport::fromVariant(egressModesVariant);
