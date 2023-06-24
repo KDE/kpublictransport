@@ -29,6 +29,8 @@ private Q_SLOTS:
 
         QTest::newRow("Berlin U1") << 52.52 << 13.40 << s("U1") << Line::Metro << QColor(0xff52b447) << s("Berlin%20transit%20icons%20-%20U1.svg") << s("U-Bahn.svg");
         QTest::newRow("Berlin S7") << 52.52 << 13.40 << s("S7") << Line::RapidTransit << QColor(0xff8070b7) << s("Berlin%20transit%20icons%20-%20S7.svg") << s("S-Bahn-Logo.svg");
+        QTest::newRow("Berlin FEX") << 52.52 << 13.40 << s("FEX") << Line::LocalTrain << QColor() << s("FEX%20VBB%20(2021).png") << QString();
+        QTest::newRow("Berlin RE1") << 52.52 << 13.40 << s("RE1") << Line::LocalTrain << QColor(0xffff0000) << s("RE1%20VBB%20(2021).png") << QString();
         QTest::newRow("Munich S1") << 48.13 << 11.58 << s("S1") << Line::RapidTransit << QColor(0xff36caec) << s("M%C3%BCnchen%20S1.svg") << s("S-Bahn-Logo.svg");
         QTest::newRow("Munich S3") << 48.13 << 11.58 << s("S3") << Line::RapidTransit << QColor(0xff862996) << s("M%C3%BCnchen%20S3.svg") << s("S-Bahn-Logo.svg");
         QTest::newRow("Munich U3") << 48.13 << 11.58 << s("U3") << Line::Metro << QColor(0xffe66432) << s("M%C3%BCnchen%20U3.svg") << s("U-Bahnlogo%20M%C3%BCnchen.svg");
@@ -70,6 +72,7 @@ private Q_SLOTS:
         QTest::newRow("Amsterdam line 54") << 52.37 << 4.9 << s("54") << Line::Metro << QColor(0xfffcfb05) << s("Amsterdam%20unofficial%20metro%20icon%20line%2054.svg") << s("Amsterdam%20metro%20logo.svg");
         QTest::newRow("Thessaloniki metro 2") << 40.64 << 22.93 << s("2") << Line::Metro << QColor(0xff0070ff) << s("Thessaloniki%20Metro%20Line%202.svg") << QString();
         QTest::newRow("Graz S5") <<  47.1 << 15.4 << s("S5") << Line::RapidTransit << QColor(0xff8d1d81) << s("S5%20Steiermark.svg") << s("S-Bahn%20Austria.svg");
+        QTest::newRow("Zurich IC 1") << 47.37 << 8.54 << s("IC 1") << Line::LongDistanceTrain << QColor(0xffe43d2e) << s("IC%201%20logo.svg") << QString();
     }
 
     void testLookup()

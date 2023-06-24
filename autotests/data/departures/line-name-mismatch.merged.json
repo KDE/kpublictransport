@@ -3,7 +3,7 @@
     "route": {
         "direction": "S Erkner Bhf",
         "line": {
-            "color": "#e20613",
+            "color": "#ff0000",
             "mode": "LocalTrain",
             "name": "RE 3111",
             "textColor": "#ffffff"
