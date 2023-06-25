@@ -5145,7 +5145,7 @@
                     4
                 ],
                 "id": "local-train",
-                "mode": "LocalTrain",
+                "mode": "Train",
                 "name": "Local Train (D)"
             },
             {
