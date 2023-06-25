@@ -5,6 +5,7 @@
 */
 
 #include "navitiaparser.h"
+#include "navitiaphysicalmode.h"
 #include "../geo/geojson_p.h"
 
 #include <KPublicTransport/Attribution>
@@ -31,43 +32,6 @@ static QDateTime parseDateTime(const QJsonValue &v, const QTimeZone &tz)
         dt.setTimeZone(tz);
     }
     return dt;
-}
-
-struct {
-    const char *name;
-    Line::Mode mode;
-} static const navitia_physical_modes[] = {
-    { "Air", Line::Air },
-    { "Boat", Line::Boat },
-    { "Bus", Line::Bus },
-    { "BusRapidTransit", Line::BusRapidTransit },
-    { "Coach", Line::Coach },
-    { "Ferry", Line::Ferry },
-    { "Funicular", Line::Funicular },
-    { "LocalTrain", Line::LocalTrain },
-    { "LongDistanceTrain", Line::LongDistanceTrain },
-    { "Metro", Line::Metro },
-    { "RailShuttle", Line::RailShuttle },
-    { "RapidTransit", Line::RapidTransit },
-    { "Shuttle", Line::Shuttle },
-    { "Taxi", Line::Taxi },
-    { "Train", Line::Train },
-    { "Tramway", Line::Tramway }
-};
-
-static Line::Mode parsePhysicalMode(const QString &mode)
-{
-    const auto modeStr = mode.toLatin1();
-    if (!modeStr.startsWith("physical_mode:")) {
-        return Line::Unknown;
-    }
-    for (auto it = std::begin(navitia_physical_modes); it != std::end(navitia_physical_modes); ++it) {
-        if (strcmp(modeStr.constData() + 14, it->name) == 0) {
-            return it->mode;
-        }
-    }
-
-    return Line::Unknown;
 }
 
 static void parseAdminRegion(Location &loc, const QJsonObject &ar)
@@ -267,7 +231,7 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
         const auto link = v.toObject();
         const auto type = link.value(QLatin1String("type")).toString();
         if (type == QLatin1String("physical_mode")) {
-            line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
+            line.setMode(NavitiaPhysicalMode::parsePhysicalMode(link.value(QLatin1String("id")).toString()));
         }
         parseDisruptionLink(section, link);
     }
@@ -411,7 +375,7 @@ Stopover NavitiaParser::parseDeparture(const QJsonObject &obj) const
     for (const auto &v : links) {
         const auto link = v.toObject();
         if (link.value(QLatin1String("type")).toString() == QLatin1String("physical_mode")) {
-            line.setMode(parsePhysicalMode(link.value(QLatin1String("id")).toString()));
+            line.setMode(NavitiaPhysicalMode::parsePhysicalMode(link.value(QLatin1String("id")).toString()));
         }
         parseDisruptionLink(departure, link);
     }

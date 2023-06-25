@@ -42,6 +42,7 @@ target_sources(KPublicTransport PRIVATE
     backends/ivvassparser.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
+    backends/navitiaphysicalmode.cpp
     backends/oebbbackend.cpp
     backends/oebbvehiclelayoutparser.cpp
     backends/openjourneyplannerbackend.cpp
