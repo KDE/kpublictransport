@@ -72,6 +72,7 @@ private:
     void setConGroups(const QJsonArray &conGroups);
     void setPreferLineNumberProducts(const QJsonArray &lineNumberProduducts);
     QJsonObject locationToJson(const Location &loc) const;
+    void addLineModeJourneyFilter(const std::vector<Line::Mode> &lineModes, QJsonArray &jnyFltrL) const;
 
     mutable HafasMgateParser m_parser;
 

@@ -151,6 +151,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
                 jnyFltrL.push_back(jnyFltr);
             }
         }
+        addLineModeJourneyFilter(request.lineModes(), jnyFltrL);
         if (!jnyFltrL.isEmpty()) {
             req.insert(QLatin1String("jnyFltrL"),  jnyFltrL);
         }
@@ -222,6 +223,12 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
         req.insert(QStringLiteral("stbLoc"), stbLoc);
         req.insert(QStringLiteral("time"), dt.toString(QStringLiteral("hhmmss")));
         req.insert(QStringLiteral("type"), request.mode() == StopoverRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
+
+        QJsonArray jnyFltrL;
+        addLineModeJourneyFilter(request.lineModes(), jnyFltrL);
+        if (!jnyFltrL.isEmpty()) {
+            req.insert(QLatin1String("jnyFltrL"),  jnyFltrL);
+        }
 
         stationBoard.insert(QStringLiteral("meth"), QLatin1String("StationBoard"));
         stationBoard.insert(QStringLiteral("req"), req);
@@ -418,4 +425,28 @@ void HafasMgateBackend::setPreferLineNumberProducts(const QJsonArray &lineNumber
         }
     }
     std::sort(m_lineNumberProducts.begin(), m_lineNumberProducts.end());
+}
+
+void HafasMgateBackend::addLineModeJourneyFilter(const std::vector<Line::Mode> &lineModes, QJsonArray &jnyFltrL) const
+{
+    if (lineModes.empty()) {
+        return;
+    }
+
+    int productBitmask = 0;
+    for (const auto mode : lineModes) {
+        for (const auto& [key, value] : m_lineModeMap) {
+            if (value == mode)  {
+                productBitmask |= key;
+            }
+        }
+    }
+
+    if (productBitmask != 0) {
+        jnyFltrL.push_back(QJsonObject({
+            {QLatin1String("type"), QLatin1String("PROD")},
+            {QLatin1String("mode"), QLatin1String("INC")},
+            {QLatin1String("value"), QString::number(productBitmask)}
+        }));
+    }
 }

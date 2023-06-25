@@ -59,6 +59,10 @@ private Q_SLOTS:
         req.setMode(StopoverRequest::QueryArrival);
         QTest::newRow("arrival-max-result") << req << QUrl(s("https://fahrinfo.vbb.de/bin/mgate.exe"))
             << QByteArray(R"({"auth":{"aid":"hafas-vbb-apps","type":"AID"},"client":{"id":"VBB","type":"AND"},"ext":"VBB.4","formatted":false,"lang":"en","svcReqL":[{"meth":"StationBoard","req":{"date":"20230625","maxJny":3,"stbLoc":{"crd":{"x":13000000,"y":52000000},"type":"C"},"time":"113900","type":"ARR"}}],"ver":"1.45"})");
+
+        req.setLineModes({Line::LocalTrain, Line::RapidTransit, Line::Metro});
+        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://fahrinfo.vbb.de/bin/mgate.exe"))
+            << QByteArray(R"({"auth":{"aid":"hafas-vbb-apps","type":"AID"},"client":{"id":"VBB","type":"AND"},"ext":"VBB.4","formatted":false,"lang":"en","svcReqL":[{"meth":"StationBoard","req":{"date":"20230625","jnyFltrL":[{"mode":"INC","type":"PROD","value":"67"}],"maxJny":3,"stbLoc":{"crd":{"x":13000000,"y":52000000},"type":"C"},"time":"113900","type":"ARR"}}],"ver":"1.45"})");
     }
 
     void testStopoverRequest()
@@ -127,6 +131,10 @@ private Q_SLOTS:
         req.setEgressModes({ IndividualTransport::Walk, IndividualTransport::Bike });
         QTest::newRow("arrival-with-access-mode") << req << QUrl(s("https://bvg-apps.hafas.de/bin/mgate.exe"))
             << QByteArray(R"({"auth":{"aid":"YoJ05NartnanEGCj","type":"AID"},"client":{"id":"BVG","type":"AND"},"ext":"BVG.1","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA"},"meth":"TripSearch","req":{"arrLocL":[{"crd":{"x":12000000,"y":48000000},"type":"C"}],"depLocL":[{"crd":{"x":13000000,"y":52000000},"type":"C"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":false,"getPolyline":true,"getSimpleTrainComposition":true,"getTrainComposition":true,"jnyFltrL":[{"mode":"INC","type":"GROUP","value":"BIKE_OEV_BIKE"}],"numF":4,"outDate":"20230624","outFrwd":false,"outTime":"225800"}}],"ver":"1.44"})");
+
+        req.setLineModes({Line::Bus, Line::Ferry});
+        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://bvg-apps.hafas.de/bin/mgate.exe"))
+            << QByteArray(R"({"auth":{"aid":"YoJ05NartnanEGCj","type":"AID"},"client":{"id":"BVG","type":"AND"},"ext":"BVG.1","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA"},"meth":"TripSearch","req":{"arrLocL":[{"crd":{"x":12000000,"y":48000000},"type":"C"}],"depLocL":[{"crd":{"x":13000000,"y":52000000},"type":"C"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":false,"getPolyline":true,"getSimpleTrainComposition":true,"getTrainComposition":true,"jnyFltrL":[{"mode":"INC","type":"GROUP","value":"BIKE_OEV_BIKE"},{"mode":"INC","type":"PROD","value":"24"}],"numF":4,"outDate":"20230624","outFrwd":false,"outTime":"225800"}}],"ver":"1.44"})");
     }
 
     void testJourneyRequest()
