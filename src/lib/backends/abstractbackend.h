@@ -18,6 +18,7 @@
 #include <QJsonObject>
 #include <QPolygonF>
 #include <QSslCertificate>
+#include <QSslKey>
 #include <QTimeZone>
 #include <QVariant>
 
@@ -44,6 +45,8 @@ class KPUBLICTRANSPORT_EXPORT AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QString customCaCertificate WRITE setCustomCaCertificate)
+    /** PKCS#12 client certificate bundle. */
+    Q_PROPERTY(QString pkcs12 WRITE setPkcs12)
 public:
     AbstractBackend();
     virtual ~AbstractBackend();
@@ -201,12 +204,15 @@ private:
     void logRequest(const char *typeName, const QJsonObject &requestData, const QNetworkRequest &netRequest, const QByteArray &postData) const;
     void logReply(const char *typeName, QNetworkReply *netReply, const QByteArray &data) const;
     void setCustomCaCertificate(const QString &caCert);
+    void setPkcs12(const QString &pkcs12Name);
 
     QString m_backendId;
     Attribution m_attribution;
     QTimeZone m_timeZone;
     QStringList m_supportedLanguages;
     QList<QSslCertificate> m_customCaCerts;
+    QSslCertificate m_clientCert;
+    QSslKey m_privateKey;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(AbstractBackend::Capabilities)
