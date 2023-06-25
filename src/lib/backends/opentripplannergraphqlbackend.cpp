@@ -189,6 +189,26 @@ static void addEnturModes(QStringList &modes, const std::vector<IndividualTransp
     }
 }
 
+struct {
+    const char *otpMode;
+    Line::Mode mode;
+} static constexpr const otp_mode_map[] = {
+    { "AIRPLANE", Line::Air },
+    { "BUS", Line::Bus },
+    { "CABLE_CAR", Line::Tramway },
+    { "CARPOOL", Line::RideShare },
+    { "COACH", Line::Coach },
+    { "FERRY", Line::Ferry },
+    { "FUNICULAR", Line::Funicular },
+    { "GONDOLA", Line::Tramway },
+    { "RAIL", Line::LongDistanceTrain },
+    { "RAIL", Line::Train },
+    { "RAIL", Line::LocalTrain },
+    { "RAIL", Line::RapidTransit },
+    { "SUBWAY", Line::Metro },
+    { "TRAM", Line::Tramway },
+};
+
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.from().hasCoordinate() || !req.to().hasCoordinate()) {
@@ -246,8 +266,16 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
         std::vector<Mode> modes;
 
         if (req.modes() & JourneySection::PublicTransport) {
-            for (const auto &mode : m_supportedTransitModes) {
-                modes.push_back({ mode, {} });
+            if (req.lineModes().empty()) {
+                for (const auto &mode : m_supportedTransitModes) {
+                    modes.push_back({ mode, {} });
+                }
+            } else {
+                for (const auto &m : otp_mode_map) {
+                    if (std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
+                        modes.push_back({ QLatin1String(m.otpMode), {} });
+                    }
+                }
             }
         }
         if (req.modes() & JourneySection::RentedVehicle) {
