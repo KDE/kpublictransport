@@ -6,6 +6,7 @@
 #include "ivvassproductmap.h"
 
 #include <QDebug>
+#include <QUrlQuery>
 
 using namespace KPublicTransport;
 
@@ -38,3 +39,20 @@ Line::Mode IvvAssProductMap::parseProduct(QStringView product)
     return Line::Unknown;
 }
 
+void IvvAssProductMap::lineModesToQuery(const std::vector<Line::Mode> &lineModes, QUrlQuery &query)
+{
+    if (lineModes.empty()) {
+        return;
+    }
+
+    QStringList products;
+    for (auto &m : product_mode_map) {
+        // lineModes is guaranteed to be sorted
+        if (std::binary_search(lineModes.begin(), lineModes.end(), m.mode)) {
+            products.push_back(QLatin1String(m.product));
+        }
+    }
+    if (!products.isEmpty()) {
+        query.addQueryItem(QStringLiteral("p"), products.join(QLatin1Char(',')));
+    }
+}

@@ -6,6 +6,7 @@
 
 #include "ivvassbackend.h"
 #include "ivvassparser.h"
+#include "ivvassproductmap.h"
 #include "cache.h"
 #include "ifopt/ifoptutil.h"
 
@@ -101,6 +102,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         query.addQueryItem(QStringLiteral("i"), ifopt);
     }
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
+    IvvAssProductMap::lineModesToQuery(req.lineModes(), query);
 
     auto dt = req.dateTime();
     if (timeZone().isValid()) {
@@ -162,6 +164,7 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     query.addQueryItem(req.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("d") : QStringLiteral("a"), dt.toString(Qt::ISODate));
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
     query.addQueryItem(QStringLiteral("s"), QStringLiteral("t"));
+    IvvAssProductMap::lineModesToQuery(req.lineModes(), query);
 
     QString options;
     options.reserve(4);

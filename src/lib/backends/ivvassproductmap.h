@@ -8,6 +8,8 @@
 
 #include <KPublicTransport/Line>
 
+class QUrlQuery;
+
 namespace KPublicTransport {
 
 /** Product type mappings for IVV ASS. */
@@ -15,6 +17,9 @@ namespace IvvAssProductMap
 {
     /** Convert "physical mode" to Line::Mode */
     Line::Mode parseProduct(QStringView mode);
+
+    /** Convert a set of line modes to a corresponding URL query. */
+    void lineModesToQuery(const std::vector<Line::Mode> &lineModes, QUrlQuery &query);
 }
 
 }
