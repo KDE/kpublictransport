@@ -8,5 +8,6 @@
         <file>digicert-sha2-secure-server-ca.pem</file>
         <file>sectigo-rsa-domain-validation-secure-server-ca.pem</file>
         <file>thawte-rsa-ca-2018.pem</file>
+        <file>vrs-client-cert.pfx</file>
     </qresource>
 </RCC>

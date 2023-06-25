@@ -85,7 +85,8 @@
         }
     },
     "options": {
-        "endpoint": "https://ekapweb.vrs.de/"
+        "endpoint": "https://ekap-app.vrs.de/index.php",
+        "pkcs12": "vrs-client-cert.pfx"
     },
     "timezone": "Europe/Berlin",
     "type": {

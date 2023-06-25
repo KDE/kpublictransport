@@ -11,7 +11,7 @@ Files: src/lib/networks/*.json
 Copyright: none
 License: CC0-1.0
 
-Files: src/lib/networks/certs/*.pem
+Files: src/lib/networks/certs/*.pem src/lib/networks/certs/*.pfx
 Copyright: none
 License: CC0-1.0
 
