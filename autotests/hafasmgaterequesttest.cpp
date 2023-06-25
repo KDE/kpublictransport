@@ -9,6 +9,8 @@
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/StopoverReply>
+#include <KPublicTransport/StopoverRequest>
 
 #include <QFile>
 #include <QSignalSpy>
@@ -29,6 +31,64 @@ private Q_SLOTS:
         qputenv("LANG", "en_US");
 
         m_mgr.setNetworkAccessManager(&m_nam);
+    }
+
+    void testStopoverRequest_data()
+    {
+        QTest::addColumn<StopoverRequest>("request");
+        QTest::addColumn<QUrl>("requestUrl");
+        QTest::addColumn<QByteArray>("postData");
+
+        StopoverRequest req;
+        req.setBackendIds({s("de_db")});
+        Location stop;
+        stop.setIdentifier(QLatin1String("ibnr"), QLatin1String("8012345"));
+        req.setStop(stop);
+        req.setDateTime(QDateTime({2023, 6, 25}, {9, 39}, Qt::UTC));
+        QTest::newRow("id-based-default") << req << QUrl(s("https://reiseauskunft.bahn.de/bin/mgate.exe"))
+            << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R20.12.b","formatted":false,"lang":"en","svcReqL":[{"meth":"StationBoard","req":{"date":"20230625","maxJny":12,"stbFltrEquiv":true,"stbLoc":{"extId":"8012345","type":"S"},"time":"113900","type":"DEP"}}],"ver":"1.18"})");
+
+        stop = {};
+        stop.setCoordinate(52, 13);
+        req.setStop(stop);
+        QTest::newRow("coordinate-based-default") << req << QUrl(s("https://reiseauskunft.bahn.de/bin/mgate.exe"))
+            << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R20.12.b","formatted":false,"lang":"en","svcReqL":[{"meth":"StationBoard","req":{"date":"20230625","maxJny":12,"stbFltrEquiv":true,"stbLoc":{"crd":{"x":13000000,"y":52000000},"type":"C"},"time":"113900","type":"DEP"}}],"ver":"1.18"})");
+
+        req.setBackendIds({s("de_bb_vbb")});
+        req.setMaximumResults(3);
+        req.setMode(StopoverRequest::QueryArrival);
+        QTest::newRow("arrival-max-result") << req << QUrl(s("https://fahrinfo.vbb.de/bin/mgate.exe"))
+            << QByteArray(R"({"auth":{"aid":"hafas-vbb-apps","type":"AID"},"client":{"id":"VBB","type":"AND"},"ext":"VBB.4","formatted":false,"lang":"en","svcReqL":[{"meth":"StationBoard","req":{"date":"20230625","maxJny":3,"stbLoc":{"crd":{"x":13000000,"y":52000000},"type":"C"},"time":"113900","type":"ARR"}}],"ver":"1.45"})");
+    }
+
+    void testStopoverRequest()
+    {
+        QFETCH(StopoverRequest, request);
+        QFETCH(QUrl, requestUrl);
+        QFETCH(QByteArray, postData);
+
+        m_nam.requests.clear();
+        QVERIFY(request.isValid());
+
+        auto reply = m_mgr.queryStopover(request);
+        QSignalSpy finishedSpy(reply, &Reply::finished);
+        QVERIFY(finishedSpy.wait());
+        reply->deleteLater();
+        QCOMPARE(reply->error(), Reply::NetworkError);
+        QCOMPARE(m_nam.requests.size(), 1);
+        QCOMPARE(m_nam.requests[0].op, QNetworkAccessManager::PostOperation);
+
+        auto url = m_nam.requests[0].request.url();
+        QVERIFY(url.isValid());
+        QUrlQuery query(url);
+        query.removeQueryItem(QLatin1String("checksum"));
+        query.removeQueryItem(QLatin1String("mic"));
+        query.removeQueryItem(QLatin1String("mac"));
+        url.setQuery(query);
+        QCOMPARE(url, requestUrl);
+
+        qDebug().noquote() << m_nam.requests[0].data;
+        QCOMPARE(m_nam.requests[0].data, postData);
     }
 
     void testJourneyRequest_data()
