@@ -191,22 +191,23 @@ static void addEnturModes(QStringList &modes, const std::vector<IndividualTransp
 
 struct {
     const char *otpMode;
+    const char *enturMode;
     Line::Mode mode;
 } static constexpr const otp_mode_map[] = {
-    { "AIRPLANE", Line::Air },
-    { "BUS", Line::Bus },
-    { "CABLE_CAR", Line::Tramway },
-    { "CARPOOL", Line::RideShare },
-    { "COACH", Line::Coach },
-    { "FERRY", Line::Ferry },
-    { "FUNICULAR", Line::Funicular },
-    { "GONDOLA", Line::Tramway },
-    { "RAIL", Line::LongDistanceTrain },
-    { "RAIL", Line::Train },
-    { "RAIL", Line::LocalTrain },
-    { "RAIL", Line::RapidTransit },
-    { "SUBWAY", Line::Metro },
-    { "TRAM", Line::Tramway },
+    { "AIRPLANE", "air", Line::Air },
+    { "BUS", "bus", Line::Bus },
+    { "CABLE_CAR", "cableway", Line::Tramway },
+    { "CARPOOL", nullptr, Line::RideShare },
+    { "COACH", "coach", Line::Coach },
+    { "FERRY", "water", Line::Ferry },
+    { "FUNICULAR", "funicular", Line::Funicular },
+    { "GONDOLA", "lift", Line::Tramway },
+    { "RAIL", "rail", Line::LongDistanceTrain },
+    { "RAIL", "rail", Line::Train },
+    { "RAIL", "rail", Line::LocalTrain },
+    { "RAIL", "rail", Line::RapidTransit },
+    { "SUBWAY", "metro", Line::Metro },
+    { "TRAM", "tram", Line::Tramway },
 };
 
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
@@ -246,7 +247,15 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
         QStringList modes;
         modes.push_back(QStringLiteral("foot"));
         if (req.modes() & JourneySection::PublicTransport) {
-            modes.push_back(QStringLiteral("transit"));
+            if (req.lineModes().empty()) {
+                modes.push_back(QStringLiteral("transit"));
+            } else {
+                for (const auto &m : otp_mode_map) {
+                    if (m.enturMode && std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
+                        modes.push_back(QLatin1String(m.enturMode));
+                    }
+                }
+            }
         }
         if (req.modes() & JourneySection::RentedVehicle) {
             modes.push_back(QStringLiteral("bicycle"));
