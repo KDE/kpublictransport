@@ -5,6 +5,7 @@
 */
 
 #include "ivvassparser.h"
+#include "ivvassproductmap.h"
 #include "ifopt/ifoptutil.h"
 
 #include <KPublicTransport/Equipment>
@@ -133,36 +134,11 @@ std::vector<Location> IvvAssParser::parseLocations(const QByteArray &data)
     return locs;
 }
 
-struct {
-    const char *product;
-    Line::Mode mode;
-} static constexpr const product_mode_map[] = {
-    { "Boat", Line::Ferry },
-    { "Bus", Line::Bus },
-    { "CommunityBus", Line::Bus },
-    { "LightRail", Line::Tramway },
-    { "LongDistanceTrains", Line::LongDistanceTrain },
-    { "OnDemandServices", Line::Taxi },
-    { "RailReplacementServices", Line::Bus },
-    { "RegionalTrains", Line::LocalTrain },
-    { "SuburbanTrains", Line::RapidTransit },
-    { "Underground", Line::Metro }
-};
-
 static Route parseRoute(const QJsonObject &lineObj)
 {
     Line line;
     line.setName(lineObj.value(QLatin1String("number")).toString());
-    const auto product = lineObj.value(QLatin1String("product")).toString();
-    for (const auto &m : product_mode_map) {
-        if (product == QLatin1String(m.product)) {
-            line.setMode(m.mode);
-            break;
-        }
-    }
-    if (line.mode() == Line::Unknown) {
-        qWarning() << "Unknown product type:" << product;
-    }
+    line.setMode(IvvAssProductMap::parseProduct(lineObj.value(QLatin1String("product")).toString()));
 
     Route route;
     route.setLine(std::move(line));

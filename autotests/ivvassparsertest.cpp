@@ -7,6 +7,7 @@
 #include "testhelpers.h"
 #include "ifopt/ifoptutil.cpp"
 #include "backends/ivvassparser.cpp"
+#include "backends/ivvassproductmap.cpp"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>

@@ -40,6 +40,7 @@ target_sources(KPublicTransport PRIVATE
     backends/hafasvehiclelayoutparser.cpp
     backends/ivvassbackend.cpp
     backends/ivvassparser.cpp
+    backends/ivvassproductmap.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
     backends/navitiaphysicalmode.cpp
