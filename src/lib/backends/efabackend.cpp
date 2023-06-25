@@ -6,6 +6,7 @@
 
 #include "efabackend.h"
 #include "efacompactparser.h"
+#include "efamodeoftransport.h"
 #include "efaxmlparser.h"
 #include "cache.h"
 #include "logging.h"
@@ -246,6 +247,7 @@ bool EfaBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply
         query.addQueryItem(QStringLiteral("itdTime"), dt.time().toString(QStringLiteral("hhmm")));
         query.addQueryItem(QStringLiteral("itdTripDateTimeDepArr"), request.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("dep") : QStringLiteral("arr"));
 
+        EfaModeOfTransport::lineModesToQuery(request.lineModes(), query);
         query.addQueryItem(QStringLiteral("itOptionsActive"), QStringLiteral("1"));
         addItModeOptions(query, QStringLiteral("trITDepMOT"), request.accessModes());
         addItModeOptions(query, QStringLiteral("trITArrMOT"), request.egressModes());

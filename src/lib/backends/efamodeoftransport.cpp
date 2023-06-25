@@ -39,7 +39,7 @@ static constexpr const Line::Mode mot_map[] = {
 
 Line::Mode EfaModeOfTransport::motTypeToLineMode(int mot)
 {
-    if (mot < std::size(mot_map)) {
+    if (mot < (int)std::size(mot_map)) {
         return mot_map[mot];
     }
     qCDebug(Log) << "Unknown means of transport: " << mot;
@@ -53,7 +53,7 @@ void EfaModeOfTransport::lineModesToQuery(const std::vector<Line::Mode> &lineMod
     }
 
     for (auto mode : lineModes) {
-        for (auto i = 0; i < std::size(mot_map); ++i) {
+        for (std::size_t i = 0; i < std::size(mot_map); ++i) {
             if (mode == mot_map[i]) {
                 const QString key = QLatin1String("inclMOT_") + QString::number(i);
                 if (!query.hasQueryItem(key)) {

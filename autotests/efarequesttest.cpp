@@ -51,6 +51,10 @@ private Q_SLOTS:
         req.setStop(stop);
         req.setMaximumResults(3);
         QTest::newRow("coordinate-based") << req << QUrl(s("https://www2.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=coord&name_dm=9.18:48.78:WGS84[DD.ddddd]&itdDate=20230625&itdTime=0939&useRealtime=1&limit=3&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
+
+        // not supported, so no impact
+        req.setLineModes({Line::LocalTrain, Line::RapidTransit, Line::Metro});
+        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://www2.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=coord&name_dm=9.18:48.78:WGS84[DD.ddddd]&itdDate=20230625&itdTime=0939&useRealtime=1&limit=3&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
     }
 
     void testStopoverRequest()
@@ -104,6 +108,9 @@ private Q_SLOTS:
         req.setAccessModes({ IndividualTransport::Walk, IndividualTransport::Bike });
         req.setEgressModes({ IndividualTransport::Walk, IndividualTransport::Bike });
         QTest::newRow("arrival-with-access-mode") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=arr&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=4&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
+
+        req.setLineModes({Line::Bus, Line::Ferry});
+        QTest::newRow("line-mode-constraints") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=coord&name_origin=9.18:48.78:WGS84[DD.ddddd]&type_destination=coord&name_destination=8.86:48.59:WGS84[DD.ddddd]&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=arr&inclMOT_5=on&inclMOT_6=on&inclMOT_17=on&inclMOT_19=on&inclMOT_9=on&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=4&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
     }
 
     void testJourneyRequest()
