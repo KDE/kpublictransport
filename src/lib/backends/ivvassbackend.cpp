@@ -94,10 +94,11 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     QUrlQuery query;
     query.addQueryItem(QStringLiteral("eID"), QStringLiteral("tx_vrsinfo_ass2_timetable"));
 
-    if (req.stop().hasCoordinate()) {
+    const auto ifopt = req.stop().identifier(IfoptUtil::identifierType());
+    if (ifopt.isEmpty()) {
         query.addQueryItem(QStringLiteral("r"), QString::number(req.stop().latitude()) + QLatin1Char(',') + QString::number(req.stop().longitude()));
     } else {
-        query.addQueryItem(QStringLiteral("i"), req.stop().identifier(IfoptUtil::identifierType()));
+        query.addQueryItem(QStringLiteral("i"), ifopt);
     }
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
 
