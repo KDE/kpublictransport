@@ -16,6 +16,11 @@
 
 namespace KPublicTransport {
 
+struct HafasLineModeMapEntry {
+    int productClass;
+    Line::Mode mode;
+};
+
 /** Base class for Hafas-based backends. */
 class HafasBackend : public AbstractBackend
 {
@@ -35,7 +40,7 @@ protected:
     QString locationIdentifier(const Location &loc) const;
 
     QString m_endpoint;
-    std::unordered_map<int, Line::Mode> m_lineModeMap;
+    std::vector<HafasLineModeMapEntry> m_lineModeMap;
     std::vector<uint8_t> m_uicCountryCodes;
 
 private:

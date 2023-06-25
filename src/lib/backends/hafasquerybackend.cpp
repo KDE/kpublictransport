@@ -35,7 +35,7 @@ HafasQueryBackend::~HafasQueryBackend() = default;
 void HafasQueryBackend::init()
 {
     m_parser.setLocationIdentifierTypes(locationIdentifierType(), standardLocationIdentifierType());
-    m_parser.setLineModeMap(std::move(m_lineModeMap));
+    m_parser.setLineModeMap(m_lineModeMap);
     m_parser.setStandardLocationIdentfierCountries(std::move(m_uicCountryCodes));
 }
 

@@ -7,6 +7,7 @@
 #ifndef KPUBLICTRANSPORT_HAFASPARSER_H
 #define KPUBLICTRANSPORT_HAFASPARSER_H
 
+#include "hafasbackend.h"
 #include "kpublictransport_export.h"
 
 #include <KPublicTransport/Line>
@@ -14,7 +15,8 @@
 
 #include <QString>
 
-#include <unordered_map>
+#include <span>
+#include <vector>
 
 namespace KPublicTransport {
 
@@ -27,7 +29,7 @@ class KPUBLICTRANSPORT_EXPORT HafasParser
 {
 public:
     void setLocationIdentifierTypes(const QString &idType, const QString &standardIdType = {});
-    void setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap);
+    void setLineModeMap(std::span<HafasLineModeMapEntry> modeMap);
     void setStandardLocationIdentfierCountries(std::vector<uint8_t> &&uicCountryCodes);
 
     Reply::Error error() const;
@@ -57,7 +59,7 @@ private:
 
     QString m_locationIdentifierType;
     QString m_standardLocationIdentifierType;
-    std::unordered_map<int, Line::Mode> m_lineModeMap;
+    std::span<HafasLineModeMapEntry> m_lineModeMap;
     std::vector<uint8_t> m_uicCountryCodes;
 };
 

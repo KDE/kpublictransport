@@ -27,9 +27,13 @@ void HafasBackend::setProductsMap(const QJsonArray& array)
             mode = Line::Unknown;
         }
         for (const auto &bit : bitmasks) {
-            m_lineModeMap[bit.toInt()] = mode;
+            m_lineModeMap.push_back({bit.toInt(), mode});
         }
     }
+
+    std::sort(m_lineModeMap.begin(), m_lineModeMap.end(), [](const auto &lhs, const auto &rhs) {
+        return lhs.productClass < rhs.productClass;
+    });
 }
 
 QString HafasBackend::locationIdentifierType() const

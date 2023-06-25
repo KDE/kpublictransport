@@ -5,6 +5,7 @@
 */
 
 #include "hafasparser.h"
+#include "hafasbackend.h"
 #include "logging.h"
 #include "uic/uicstationcode.h"
 
@@ -21,9 +22,9 @@ void HafasParser::setLocationIdentifierTypes(const QString &idType, const QStrin
     m_standardLocationIdentifierType = standardIdType;
 }
 
-void HafasParser::setLineModeMap(std::unordered_map<int, Line::Mode> &&modeMap)
+void HafasParser::setLineModeMap(std::span<HafasLineModeMapEntry> modeMap)
 {
-    m_lineModeMap = std::move(modeMap);
+    m_lineModeMap = modeMap;
 }
 
 Reply::Error HafasParser::error() const
@@ -68,9 +69,9 @@ Line::Mode HafasParser::parseLineMode(const QStringView &modeId) const
 
 Line::Mode HafasParser::parseLineMode(int modeId) const
 {
-    const auto lineModeIt = m_lineModeMap.find(modeId);
-    if (lineModeIt != m_lineModeMap.end()) {
-        return (*lineModeIt).second;
+    const auto lineModeIt = std::lower_bound(m_lineModeMap.begin(), m_lineModeMap.end(), modeId, [](const auto &lhs, int rhs) { return lhs.productClass < rhs; });
+    if (lineModeIt != m_lineModeMap.end() && (*lineModeIt).productClass == modeId) {
+        return (*lineModeIt).mode;
     }
     qCDebug(Log) << "Encountered unknown line type:" << modeId;
     return Line::Unknown;
