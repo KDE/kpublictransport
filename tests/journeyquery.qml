@@ -519,7 +519,21 @@ Kirigami.ApplicationWindow {
                     model: individualTransportModesModel
                     textRole: "name"
                 }
-
+                QQC2.ComboBox {
+                    id: lineModeSelector
+                    Layout.fillWidth: true
+                    model: [ "All", "Only long distance", "Local public transport", "Local trains only", "Rapit transit/metro/tram", "Bus" ]
+                    property var currentMode: {
+                        switch (currentIndex) {
+                            case 1: return [Line.LongDistanceTrain, Line.Train];
+                            case 2: return [Line.LocalTrain, Line.RapidTransit, Line.Metro, Line.Tramway, Line.Funicular, Line.Bus];
+                            case 3: return [Line.LocalTrain];
+                            case 4: return [Line.RapidTransit, Line.Metro, Line.Tramway, Line.Funicular];
+                            case 5: return [Line.Bus];
+                        }
+                        return [];
+                    }
+                }
 
                 RowLayout {
                     function setupRequestCommon()
@@ -535,6 +549,7 @@ Kirigami.ApplicationWindow {
                         journeyModel.request.includePaths = includePaths.checked;
                         journeyModel.request.accessModes = individualTransportModes[accessMode.currentIndex];
                         journeyModel.request.egressModes = individualTransportModes[egressMode.currentIndex];
+                        journeyModel.request.lineModes = lineModeSelector.currentMode;
                     }
 
                     QQC2.Button {
