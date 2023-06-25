@@ -7,6 +7,7 @@
 #include "navitiabackend.h"
 #include "logging.h"
 #include "navitiaparser.h"
+#include "navitiaphysicalmode.h"
 #include "cache.h"
 
 #include <KPublicTransport/Journey>
@@ -91,6 +92,7 @@ bool NavitiaBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
             query.addQueryItem(QStringLiteral("datetime_represents"), req.dateTimeMode() == JourneyRequest::Arrival ? QStringLiteral("arrival") : QStringLiteral("departure"));
         }
         query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
+        NavitiaPhysicalMode::lineModesToQuery(req.lineModes(), query);
         addModeArgument(QStringLiteral("first_section_mode[]"), req.accessModes(), query);
         addModeArgument(QStringLiteral("last_section_mode[]"), req.egressModes(), query);
 
@@ -160,6 +162,7 @@ bool NavitiaBackend::queryStopover(const StopoverRequest &req, StopoverReply *re
     query.addQueryItem(QStringLiteral("disable_geojson"), QStringLiteral("true"));
     query.addQueryItem(QStringLiteral("depth"), QStringLiteral("0"));
     query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
+    NavitiaPhysicalMode::lineModesToQuery(req.lineModes(), query);
     url.setQuery(query);
 
     QNetworkRequest netReq(url);

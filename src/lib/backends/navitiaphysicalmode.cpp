@@ -50,3 +50,18 @@ Line::Mode NavitiaPhysicalMode::parsePhysicalMode(QStringView mode)
 
     return Line::Unknown;
 }
+
+void NavitiaPhysicalMode::lineModesToQuery(const std::vector<Line::Mode> &lineModes, QUrlQuery &query)
+{
+    if (lineModes.empty()) {
+        return;
+    }
+
+    // Navitia wants this as exclusion rathe than inclusion list
+    for (auto &m : navitia_physical_modes) {
+        // lineModes is guaranteed to be sorted
+        if (!std::binary_search(lineModes.begin(), lineModes.end(), m.mode)) {
+            query.addQueryItem(QStringLiteral("forbidden_uris[]"), QLatin1String(pm_prefix) + QLatin1String(m.name));
+        }
+    }
+}
