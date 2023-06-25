@@ -29,6 +29,7 @@ target_sources(KPublicTransport PRIVATE
     backends/efabackend.cpp
     backends/efaparser.cpp
     backends/efacompactparser.cpp
+    backends/efamodeoftransport.cpp
     backends/efaxmlparser.cpp
     backends/hafasbackend.cpp
     backends/hafasparser.cpp

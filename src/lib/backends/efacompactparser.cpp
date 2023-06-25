@@ -5,6 +5,7 @@
 */
 
 #include "efacompactparser.h"
+#include "efamodeoftransport.h"
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
 #include "ifopt/ifoptutil.h"
@@ -156,7 +157,7 @@ Stopover EfaCompactParser::parseCompactDp(ScopedXmlStreamReader &&reader) const
                 } else if (subReader.name() == QLatin1String("n")) {
                     line.setModeString(subReader.readElementText());
                 } else if (subReader.name() == QLatin1String("ty")) {
-                    line.setMode(motTypeToLineMode(subReader.readElementText().toInt()));
+                    line.setMode(EfaModeOfTransport::motTypeToLineMode(subReader.readElementText().toInt()));
                 }
             }
             route.setLine(line);
@@ -291,7 +292,7 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                             break;
                     }
                 } else if (subReader.name() == QLatin1String("co")) {
-                    line.setMode(motTypeToLineMode(subReader.readElementText().toInt()));
+                    line.setMode(EfaModeOfTransport::motTypeToLineMode(subReader.readElementText().toInt()));
                 }
             }
 

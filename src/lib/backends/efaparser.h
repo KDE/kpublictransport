@@ -62,11 +62,6 @@ public:
     EfaRequestContext requestContext() const;
 
 protected:
-    /** Convert "means of transport" type id to Line::Mode
-     * so far this seems to be identical in all installations, if that eventually changes
-     * this needs a similar configuration as Hafas uses.
-     */
-    static Line::Mode motTypeToLineMode(int mot);
     /** Same as the above, for individual transport modes. */
     static IndividualTransport motTypeToIndividualTransportMode(int mot);
 

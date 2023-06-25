@@ -5,6 +5,7 @@
 */
 
 #include "efaxmlparser.h"
+#include "efamodeoftransport.h"
 #include "logging.h"
 #include "scopedxmlstreamreader.h"
 #include "ifopt/ifoptutil.h"
@@ -161,7 +162,7 @@ Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
         if (reader.name() == QLatin1String("itdServingLine")) {
             Line line;
             line.setName(reader.attributes().value(QLatin1String("number")).toString());
-            line.setMode(motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
+            line.setMode(EfaModeOfTransport::motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
             Route route;
             route.setDirection(reader.attributes().value(QLatin1String("direction")).toString());
             route.setLine(line);
@@ -335,7 +336,7 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
                 } else {
                     line.setModeString(prodName.toString());
                 }
-                line.setMode(motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
+                line.setMode(EfaModeOfTransport::motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
                 Route route;
                 route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
                 route.setLine(line);
