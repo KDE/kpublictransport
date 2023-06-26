@@ -234,13 +234,30 @@ void AbstractBackend::setCustomCaCertificate(const QString &caCert)
     m_customCaCerts = QSslCertificate::fromDevice(&f, QSsl::Pem);
 }
 
-void AbstractBackend::applySslConfiguration(QNetworkRequest &request) const
+void AbstractBackend::setPkcs12(const QString &pkcs12Name)
 {
-    if (m_customCaCerts.empty()) {
+    QFile f(QLatin1String(":/org.kde.kpublictransport/network-certificates/") + pkcs12Name);
+    if (!f.open(QFile::ReadOnly)) {
+        qCWarning(Log) << f.fileName() << f.errorString();
         return;
     }
+    const auto r = QSslCertificate::importPkcs12(&f, &m_privateKey, &m_clientCert, &m_customCaCerts, "");
+    if (!r) {
+        qCWarning(Log) << "Failed to load PKCS#12 bundle" << f.fileName();
+    }
+}
 
+void AbstractBackend::applySslConfiguration(QNetworkRequest &request) const
+{
     auto sslConfig = request.sslConfiguration();
-    sslConfig.setCaCertificates(m_customCaCerts);
+    if (!m_customCaCerts.empty()) {
+        sslConfig.setCaCertificates(m_customCaCerts);
+    }
+    if (!m_clientCert.isNull()) {
+        sslConfig.setLocalCertificate(m_clientCert);
+    }
+    if (!m_privateKey.isNull()) {
+        sslConfig.setPrivateKey(m_privateKey);
+    }
     request.setSslConfiguration(std::move(sslConfig));
 }

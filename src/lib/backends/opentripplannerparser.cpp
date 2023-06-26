@@ -243,8 +243,10 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
     const auto type = obj.value(QLatin1String("type"));
     if (type.isString()) {
         line.setMode(Gtfs::Hvt::typeToMode(type.toString()));
-    } else {
+    } else if (type.isDouble()) {
         line.setMode(Gtfs::Hvt::typeToMode(type.toInt(-1)));
+    } else {
+        line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("transportMode")).toString()));
     }
 
     auto presentation = obj.value(QLatin1String("presentation")).toObject();

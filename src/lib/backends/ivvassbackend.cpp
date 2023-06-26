@@ -62,6 +62,7 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
     netReply->setParent(reply);
@@ -111,6 +112,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
     netReply->setParent(reply);
@@ -176,6 +178,7 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     url.setQuery(query);
 
     QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
     netReply->setParent(reply);

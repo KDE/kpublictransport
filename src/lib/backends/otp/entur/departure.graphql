@@ -25,6 +25,7 @@ query departures($lat: Float!, $lon: Float!, $startDateTime: DateTime!) {
               realtime
               trip: serviceJourney {
                 route: line {
+                  transportMode
                   type: transportSubmode
                   shortName: publicCode
                   longName: name
