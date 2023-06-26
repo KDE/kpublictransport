@@ -99,6 +99,27 @@ bool OpenTripPlannerGraphQLBackend::queryLocation(const LocationRequest &req, Lo
     return true;
 }
 
+struct {
+    const char *otpMode;
+    const char *enturMode;
+    Line::Mode mode;
+} static constexpr const otp_mode_map[] = {
+    { "AIRPLANE", "air", Line::Air },
+    { "BUS", "bus", Line::Bus },
+    { "CABLE_CAR", "cableway", Line::Tramway },
+    { "CARPOOL", nullptr, Line::RideShare },
+    { "COACH", "coach", Line::Coach },
+    { "FERRY", "water", Line::Ferry },
+    { "FUNICULAR", "funicular", Line::Funicular },
+    { "GONDOLA", "lift", Line::Tramway },
+    { "RAIL", "rail", Line::LongDistanceTrain },
+    { "RAIL", "rail", Line::Train },
+    { "RAIL", "rail", Line::LocalTrain },
+    { "RAIL", "rail", Line::RapidTransit },
+    { "SUBWAY", "metro", Line::Metro },
+    { "TRAM", "tram", Line::Tramway },
+};
+
 bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
     if (!req.stop().hasCoordinate()) {
@@ -117,6 +138,19 @@ bool OpenTripPlannerGraphQLBackend::queryStopover(const StopoverRequest &req, St
     gqlReq.setVariable(QStringLiteral("startDateTime"), dt.toString(Qt::ISODate));
     gqlReq.setVariable(QStringLiteral("maxResults"), req.maximumResults());
     // TODO arrival/departure selection?
+
+    // for unconstrained searches we need all modes, the "TRANSIT" special mode results in an empty result...
+    const auto isEntur = m_apiVersion == QLatin1String("entur");
+    QStringList modes;
+    for (const auto &m : otp_mode_map) {
+        if ((!isEntur || m.enturMode) && (req.lineModes().empty() || std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode))) {
+            modes.push_back(QLatin1String(isEntur ? m.enturMode : m.otpMode));
+        }
+    }
+    modes.removeDuplicates();
+    QJsonArray modesArray;
+    std::copy(modes.begin(), modes.end(), std::back_inserter(modesArray));
+    gqlReq.setVariable(QStringLiteral("modes"), modesArray);
 
     if (isLoggingEnabled()) {
         logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
@@ -188,27 +222,6 @@ static void addEnturModes(QStringList &modes, const std::vector<IndividualTransp
         }
     }
 }
-
-struct {
-    const char *otpMode;
-    const char *enturMode;
-    Line::Mode mode;
-} static constexpr const otp_mode_map[] = {
-    { "AIRPLANE", "air", Line::Air },
-    { "BUS", "bus", Line::Bus },
-    { "CABLE_CAR", "cableway", Line::Tramway },
-    { "CARPOOL", nullptr, Line::RideShare },
-    { "COACH", "coach", Line::Coach },
-    { "FERRY", "water", Line::Ferry },
-    { "FUNICULAR", "funicular", Line::Funicular },
-    { "GONDOLA", "lift", Line::Tramway },
-    { "RAIL", "rail", Line::LongDistanceTrain },
-    { "RAIL", "rail", Line::Train },
-    { "RAIL", "rail", Line::LocalTrain },
-    { "RAIL", "rail", Line::RapidTransit },
-    { "SUBWAY", "metro", Line::Metro },
-    { "TRAM", "tram", Line::Tramway },
-};
 
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {

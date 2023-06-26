@@ -5,9 +5,16 @@ query departures(
     $lat: Float!,
     $lon: Float!,
     $startTime: Long!,
-    $maxResults: Int!
+    $maxResults: Int!,
+    $modes: [Mode]!
   ) {
-  nearest(lat: $lat, lon: $lon, maxDistance: 500, filterByPlaceTypes: DEPARTURE_ROW) {
+  nearest(
+        lat: $lat,
+        lon: $lon,
+        maxDistance: 500,
+        filterByPlaceTypes: DEPARTURE_ROW,
+        filterByModes: $modes
+    ) {
     edges {
       node {
         place {
