@@ -23,7 +23,7 @@
                         "availableVehicles": 2,
                         "capacity": -1,
                         "network": {
-                            "name": "OpenBike Ulm",
+                            "name": "RegioRad",
                             "vehicleTypes": "Bicycle"
                         }
                     },
@@ -44,7 +44,7 @@
                         "availableVehicles": 2,
                         "capacity": 8,
                         "network": {
-                            "name": "OpenBike Ulm",
+                            "name": "RegioRad",
                             "vehicleTypes": "Bicycle"
                         }
                     },
@@ -53,7 +53,7 @@
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
                     "network": {
-                        "name": "OpenBike Ulm",
+                        "name": "RegioRad",
                         "vehicleTypes": "Bicycle"
                     },
                     "type": "Bicycle"
