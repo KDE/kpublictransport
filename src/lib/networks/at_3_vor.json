@@ -128,7 +128,7 @@
                 "bitmasks": [
                     32
                 ],
-                "mode": "LocalTrain"
+                "mode": "Coach"
             },
             {
                 "bitmasks": [
