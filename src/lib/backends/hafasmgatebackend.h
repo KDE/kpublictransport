@@ -10,11 +10,13 @@
 #include "kpublictransport_export.h"
 
 #include "hafasbackend.h"
+#include "hafasconfiguration.h"
 #include "hafasmgateparser.h"
 
 #include <KPublicTransport/IndividualTransport>
 
 #include <QString>
+#include <QStringList>
 
 class QJsonArray;
 class QJsonObject;
@@ -45,10 +47,17 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
      */
     Q_PROPERTY(QJsonArray conGroups WRITE setConGroups)
 
-    /** Products (as numerical Hafas ids) for which we should prefer the line number over the line name.
-     *  This is useful to strip non-canonical prefixes.
+    /** Custom product name mappings.
+     *  An array of objects with the following values:
+     *  - cls: the numerical product class (from the product bitmask)
+     *  - lineName: a string or array of strings, with JSON key names referring to the
+     *    corresponding entry in the `prodL` product list of the Hafas response. The first
+     *    one resulting in an non-empty value is used for Line::name.
+     *  - routeName: same as above for Route::name. Leaving this empty will not set a route name.
+     *
+     *  If no product name mapping is found for a product class the default ('name'/none) is used.
      */
-    Q_PROPERTY(QJsonArray preferLineNumberProducts WRITE setPreferLineNumberProducts)
+    Q_PROPERTY(QJsonArray productNameMappings WRITE setProductNameMappings)
 
 public:
     HafasMgateBackend();
@@ -70,7 +79,7 @@ private:
     void setMicMacSalt(const QString &salt);
     void setChecksumSalt(const QString &salt);
     void setConGroups(const QJsonArray &conGroups);
-    void setPreferLineNumberProducts(const QJsonArray &lineNumberProduducts);
+    void setProductNameMappings(const QJsonArray &productNameMappings);
     QJsonObject locationToJson(const Location &loc) const;
     void addLineModeJourneyFilter(const std::vector<Line::Mode> &lineModes, QJsonArray &jnyFltrL) const;
 
@@ -89,7 +98,7 @@ private:
         QString group;
     };
     std::vector<ConGroup> m_conGroups;
-    std::vector<int> m_lineNumberProducts;
+    std::vector<HafasMgateProductNameMapping> m_productNameMappings;
 };
 
 }

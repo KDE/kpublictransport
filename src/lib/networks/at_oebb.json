@@ -2390,6 +2390,26 @@
         },
         "endpoint": "https://fahrplan.oebb.at/bin/mgate.exe",
         "locationIdentifierType": "oebb",
+        "productNameMappings": [
+            {
+                "cls": 16,
+                "lineName": ["nameS", "name"],
+                "routeName": "prodCtx.num"
+            },
+            {
+                "cls": 32,
+                "lineName": ["nameS", "name"],
+                "routeName": "prodCtx.num"
+            },
+            {
+                "cls": 64,
+                "lineName": ["number", "nameS", "name"]
+            },
+            {
+                "cls": 512,
+                "lineName": ["number", "nameS", "name"]
+            }
+        ],
         "products": [
             {
                 "bitmasks": [

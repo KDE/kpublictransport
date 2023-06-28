@@ -9,6 +9,7 @@
 
 #include "kpublictransport_export.h"
 #include "hafasparser.h"
+#include "hafasconfiguration.h"
 
 #include <KPublicTransport/Disruption>
 #include <KPublicTransport/Line>
@@ -41,7 +42,7 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateParser : public HafasParser
 public:
     HafasMgateParser();
     ~HafasMgateParser();
-    void setPreferLineNumberProducts(std::vector<int> &&lineNumberProducts);
+    void setProductNameMappings(std::vector<HafasMgateProductNameMapping> &&productNameMappings);
 
     std::vector<Stopover> parseDepartures(const QByteArray &data) const;
     std::vector<Location> parseLocations(const QByteArray &data) const;
@@ -59,7 +60,7 @@ private:
     std::vector<Journey> parseTripSearch(const QJsonObject &obj);
     bool parseError(const QJsonObject &obj) const;
 
-    std::vector<int> m_lineNumberProducts;
+    std::vector<HafasMgateProductNameMapping> m_productNameMappings;
 };
 
 }

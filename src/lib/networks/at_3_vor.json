@@ -99,6 +99,20 @@
         "ext": "VAO.11",
         "locationIdentifierType": "vao",
         "micMacSalt": "6633673735743766726667323938336a",
+        "productNameMappings": [
+            {
+                "cls": 16,
+                "lineName": ["nameS", "name"]
+            },
+            {
+                "cls": 64,
+                "lineName": ["nameS", "name"]
+            },
+            {
+                "cls": 128,
+                "lineName": ["nameS", "name"]
+            }
+        ],
         "products": [
             {
                 "bitmasks": [

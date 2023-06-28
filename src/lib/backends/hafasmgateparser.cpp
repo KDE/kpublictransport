@@ -5,6 +5,7 @@
 */
 
 #include "hafasmgateparser.h"
+#include "hafasconfiguration.h"
 #include "hafasvehiclelayoutparser.h"
 #include "logging.h"
 #include "datatypes/loadutil_p.h"
@@ -266,13 +267,17 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
         Line line;
         line.setMode(parseLineMode(prodCls));
 
-        if (std::binary_search(m_lineNumberProducts.begin(), m_lineNumberProducts.end(), prodCls)) {
-            line.setName(prodObj.value(QLatin1String("line")).toString());
-            if (line.name().isEmpty()) {
-                line.setName(prodObj.value(QLatin1String("nameS")).toString());
+        const auto it = std::find(m_productNameMappings.begin(), m_productNameMappings.end(), prodCls);
+        if (it != m_productNameMappings.end()) {
+            for (const auto &lineName : (*it).lineName) {
+                // TODO support nested JSON field access if we ever need to access prodCtx here
+                line.setName(prodObj.value(lineName).toString());
+                if (!line.name().isEmpty()) {
+                    break;
+                }
             }
-        }
-        if (line.name().isEmpty()) {
+            // TODO same as above for route name once Route support that
+        } else {
             line.setName(prodObj.value(QLatin1String("name")).toString());
         }
 
@@ -836,7 +841,7 @@ QDateTime HafasMgateParser::parseDateTime(const QString &date, const QJsonValue 
     return dt;
 }
 
-void HafasMgateParser::setPreferLineNumberProducts(std::vector<int> &&lineNumberProducts)
+void HafasMgateParser::setProductNameMappings(std::vector<HafasMgateProductNameMapping> &&productNameMappings)
 {
-    m_lineNumberProducts = std::move(lineNumberProducts);
+    m_productNameMappings = std::move(productNameMappings);
 }

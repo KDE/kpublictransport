@@ -58,7 +58,7 @@ void HafasMgateBackend::init()
     m_parser.setLocationIdentifierTypes(locationIdentifierType(), standardLocationIdentifierType());
     m_parser.setLineModeMap(m_lineModeMap);
     m_parser.setStandardLocationIdentfierCountries(std::move(m_uicCountryCodes));
-    m_parser.setPreferLineNumberProducts(std::move(m_lineNumberProducts));
+    m_parser.setProductNameMappings(std::move(m_productNameMappings));
 }
 
 AbstractBackend::Capabilities HafasMgateBackend::capabilities() const
@@ -415,16 +415,32 @@ void HafasMgateBackend::setConGroups(const QJsonArray &conGroups)
     }
 }
 
-void HafasMgateBackend::setPreferLineNumberProducts(const QJsonArray &lineNumberProduducts)
+static QStringList parseProductNameMappingFieldNames(const QJsonValue &val)
 {
-    m_lineNumberProducts.reserve(lineNumberProduducts.size());
-    for (const auto &lineNumV : lineNumberProduducts) {
-        const auto num = lineNumV.toInt();
-        if (num > 0) {
-            m_lineNumberProducts.push_back(num);
-        }
+    if (val.isString()) {
+        return QStringList({val.toString()});
     }
-    std::sort(m_lineNumberProducts.begin(), m_lineNumberProducts.end());
+    if (val.isArray()) {
+        const auto a = val.toArray();
+        QStringList l;
+        l.reserve(a.size());
+        std::transform(a.begin(), a.end(), std::back_inserter(l), [](const auto &v) { return v.toString(); });
+        return l;
+    }
+    return {};
+}
+
+void HafasMgateBackend::setProductNameMappings(const QJsonArray &productNameMappings)
+{
+    m_productNameMappings.reserve(productNameMappings.size());
+    for (const auto &mV : productNameMappings) {
+        const auto mObj = mV.toObject();
+        HafasMgateProductNameMapping m;
+        m.cls = mObj.value(QLatin1String("cls")).toInt(-1);
+        m.lineName = parseProductNameMappingFieldNames(mObj.value(QLatin1String("lineName")));
+        m.routeName = parseProductNameMappingFieldNames(mObj.value(QLatin1String("routeName")));
+        m_productNameMappings.push_back(std::move(m));
+    }
 }
 
 void HafasMgateBackend::addLineModeJourneyFilter(const std::vector<Line::Mode> &lineModes, QJsonArray &jnyFltrL) const

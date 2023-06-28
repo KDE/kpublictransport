@@ -5120,8 +5120,20 @@
         "endpoint": "https://reiseauskunft.bahn.de/bin/mgate.exe",
         "ext": "DB.R20.12.b",
         "locationIdentifierType": "db",
-        "preferLineNumberProducts": [
-            256
+        "productNameMappings": [
+            {
+                "cls": 8,
+                "lineName": ["addName", "name"],
+                "routeName": "name"
+            },
+            {
+                "cls": 32,
+                "lineName": ["nameS", "name"]
+            },
+            {
+                "cls": 256,
+                "lineName": ["nameS", "name"]
+            }
         ],
         "products": [
             {
