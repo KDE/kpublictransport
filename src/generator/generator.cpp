@@ -512,8 +512,10 @@ void Generator::verifyImageMetaData(std::vector<wd::Image> &&images)
 {
     const QStringList valid_licenses({
         QStringLiteral("cc0"),
+        QStringLiteral("copyrighted free use"),
         QStringLiteral("public domain"),
         QStringLiteral("cc by 3.0"),
+        QStringLiteral("cc by 3.0 it"),
         QStringLiteral("cc by-sa 3.0"),
         QStringLiteral("cc by-sa 3.0 de"),
         QStringLiteral("cc-by-sa-3.0"),
