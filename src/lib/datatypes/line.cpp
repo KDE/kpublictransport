@@ -35,6 +35,7 @@ public:
     Line line;
     QString direction;
     Location destination;
+    QString name;
 };
 
 }
@@ -167,6 +168,7 @@ Line Line::fromJson(const QJsonObject &obj)
 KPUBLICTRANSPORT_MAKE_GADGET(Route)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Route, Line, line, setLine)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Route, Location, destination, setDestination)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Route, QString, name, setName)
 
 QString Route::direction() const
 {

@@ -135,6 +135,14 @@ class KPUBLICTRANSPORT_EXPORT Route
      */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Location, destination, setDestination)
 
+    /** Name of the route.
+     *  This is not to be confused with the name of the line, which is the much more commonly used
+     *  value. Use this only if both are in use and you know which one is which, otherwise default
+     *  to the line name.
+     *  @see Line::name.
+     */
+    KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+
 public:
     /** Checks if to instances refer to the same route (which does not necessarily mean they are exactly equal). */
     static bool isSame(const Route &lhs, const Route &rhs);
