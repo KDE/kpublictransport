@@ -256,14 +256,15 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
     return locs;
 }
 
-std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const std::vector<Ico> &icos) const
+std::vector<Route> HafasMgateParser::parseProducts(const QJsonArray &prodL, const std::vector<Ico> &icos) const
 {
-    std::vector<Line> lines;
-    lines.reserve(prodL.size());
+    std::vector<Route> routes;
+    routes.reserve(prodL.size());
     for (const auto &prodV : prodL) {
         const auto prodObj = prodV.toObject();
         const auto prodCls = prodObj.value(QLatin1String("cls")).toInt();
 
+        Route route;
         Line line;
         line.setMode(parseLineMode(prodCls));
 
@@ -276,7 +277,13 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
                     break;
                 }
             }
-            // TODO same as above for route name once Route support that
+            for (const auto &routeName : (*it).routeName) {
+                // TODO support nested JSON field access if we ever need to access prodCtx here
+                route.setName(prodObj.value(routeName).toString());
+                if (!route.name().isEmpty()) {
+                    break;
+                }
+            }
         } else {
             line.setName(prodObj.value(QLatin1String("name")).toString());
         }
@@ -287,10 +294,11 @@ std::vector<Line> HafasMgateParser::parseLines(const QJsonArray &prodL, const st
             line.setTextColor(icos[icoIdx].fg);
         }
 
-        lines.push_back(line);
+        route.setLine(std::move(line));
+        routes.push_back(std::move(route));
     }
 
-    return lines;
+    return routes;
 }
 
 static QString parsePlatform(const QJsonObject &obj, char ad, char rs)
@@ -309,7 +317,7 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
-    const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
+    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
 
@@ -323,11 +331,11 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
 
         Stopover dep;
         Route route;
-        route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
-        const auto lineIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
-        if (lineIdx >= 0 && (unsigned int)lineIdx < lines.size()) {
-            route.setLine(lines[lineIdx]);
+        const auto prodIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
+        if (prodIdx >= 0 && (unsigned int)prodIdx < products.size()) {
+            route = products[prodIdx];
         }
+        route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
 
         const auto dateStr = jnyObj.value(QLatin1String("date")).toString();
         dep.setScheduledDepartureTime(parseDateTime(dateStr, stbStop.value(QLatin1String("dTimeS")), stbStop.value(QLatin1String("dTZOffset"))));
@@ -632,7 +640,7 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
-    const auto lines = parseLines(commonObj.value(QLatin1String("prodL")).toArray(), icos);
+    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
     const auto loadInfos = parseLoadInformation(commonObj.value(QLatin1String("tcocL")).toArray());
@@ -694,11 +702,11 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
 
                 const auto jnyObj = secObj.value(QLatin1String("jny")).toObject();
                 Route route;
-                route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
-                const auto lineIdx = jnyObj.value(QLatin1String("prodX")).toInt();
-                if ((unsigned int)lineIdx < lines.size()) {
-                    route.setLine(lines[lineIdx]);
+                const auto prodIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
+                if (prodIdx >= 0 && (unsigned int)prodIdx < products.size()) {
+                    route = products[prodIdx];
                 }
+                route.setDirection(jnyObj.value(QLatin1String("dirTxt")).toString());
                 section.setRoute(route);
 
                 if (jnyObj.value(QLatin1String("isCncl")).toBool()) {
