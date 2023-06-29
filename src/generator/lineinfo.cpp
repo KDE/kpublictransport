@@ -80,7 +80,7 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
         return info;
     }
 
-    info.name = QString::fromUtf8(OSM::tagValue(rel, "ref"));
+    info.name = QString::fromUtf8(OSM::tagValue(rel, "ref")).trimmed();
     const auto colStr = OSM::tagValue(rel, "colour");
     if (!colStr.isEmpty()) {
         info.color = QColor(QString::fromUtf8(colStr));

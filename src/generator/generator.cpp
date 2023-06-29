@@ -108,7 +108,8 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
     qDebug() << "got" << dataSet.relations.size() << "relations from OSM";
     // expand multi-line relations
     for (auto it = dataSet.relations.begin(); it != dataSet.relations.end();) {
-        const auto ref = OSM::tagValue(*it, "ref");
+        auto ref = OSM::tagValue(*it, "ref");
+        ref.replace(',', ';'); // wrong ref separator syntax, occurs rarely
         if (!ref.contains(';')) {
             ++it;
             continue;
