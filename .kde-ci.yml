@@ -7,10 +7,18 @@ Dependencies:
     'frameworks/extra-cmake-modules': '@stable'
     'frameworks/ki18n': '@stable'
 
+- 'on': ['Linux/Qt5']
+  'require':
+    'frameworks/networkmanager-qt': '@stable'
+
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6', 'Android/Qt6']
   'require':
     'frameworks/extra-cmake-modules': '@latest-kf6'
     'frameworks/ki18n': '@latest-kf6'
+
+- 'on': ['Linux/Qt6']
+  'require':
+    'frameworks/networkmanager-qt': '@latest-kf6'
 
 Options:
   # exlucde large generated files from cppcheck, takes way to long to run
