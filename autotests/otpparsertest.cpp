@@ -158,7 +158,7 @@ private Q_SLOTS:
         QTest::newRow("de-ulm-rentalbike-journey")
             << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.in.json")
             << s(SOURCE_DIR "/data/otp/de-ulm-rentalbike-journey.out.json")
-            << s(SOURCE_DIR "/../src/lib/networks/de_bw_ulm.json");
+            << s(SOURCE_DIR "/../src/lib/networks/de_bw_stadtnavi.json");
         QTest::newRow("de-stadtnavi-carpool-journey")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.in.json")
             << s(SOURCE_DIR "/data/otp/de-stadtnavi-carpool-journey.out.json")

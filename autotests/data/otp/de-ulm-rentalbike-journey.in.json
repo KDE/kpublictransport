@@ -28,7 +28,7 @@
                   "id": "QmlrZVJlbnRhbFN0YXRpb246Nw==",
                   "stationId": "7",
                   "networks": [
-                    "openbike"
+                    "regiorad"
                   ],
                   "bikesAvailable": 2
                 }
@@ -53,7 +53,7 @@
                 "bikeRentalStation": {
                   "id": "QmlrZVJlbnRhbFN0YXRpb246Nw==",
                   "networks": [
-                    "openbike"
+                    "regiorad"
                   ],
                   "bikesAvailable": 2,
                   "spacesAvailable": 8
