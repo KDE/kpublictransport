@@ -243,7 +243,13 @@ Kirigami.ApplicationWindow {
                         text: {
                             switch (modelData.mode) {
                             case JourneySection.PublicTransport:
+                            {
+                                if (modelData.route.name !== "") {
+                                    return modelData.route.line.modeString + " " + modelData.route.line.name + " (" + modelData.route.name
+                                        + ") " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
+                                }
                                 return modelData.route.line.modeString + " " + modelData.route.line.name + " " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
+                            }
                             case JourneySection.Walking:
                                 return "Walk " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
                             case JourneySection.Transfer:

@@ -141,7 +141,14 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     QQC2.Label {
                         Layout.fillWidth: true
-                        text: departure.route.line.modeString + " " + departure.route.line.name + " to <a href=\"#dest\">" + departure.route.direction + "</a>"
+                        text: {
+                            if (departure.route.name !== "") {
+                                return departure.route.line.modeString + " " + departure.route.line.name + " (" + departure.route.name
+                                    + ") to <a href=\"#dest\">" + departure.route.direction + "</a>"
+                            }
+                            return departure.route.line.modeString + " " + departure.route.line.name
+                                + " to <a href=\"#dest\">" + departure.route.direction + "</a>";
+                        }
                         onLinkActivated: {
                             locationDetailsSheet.location = departure.route.destination;
                             locationDetailsSheet.sheetOpen = true;
