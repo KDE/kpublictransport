@@ -4,6 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
+
 #include "backends/deutschebahnvehiclelayoutparser.cpp"
 #include "uic/uicrailwaycoach.cpp"
 
@@ -67,11 +69,8 @@ private Q_SLOTS:
 
         const auto departureJson = Stopover::toJson(parser.stopover);
         const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();
-        if (departureJson != departureRef) {
-            qDebug().noquote() << QJsonDocument(departureJson).toJson();
-        }
         QVERIFY(!departureJson.isEmpty());
-        QCOMPARE(departureJson, departureRef);
+        QVERIFY(Test::compareJson(departureFileName, departureJson, departureRef));
     }
 
     void testVehicleLayoutParseFailure()
