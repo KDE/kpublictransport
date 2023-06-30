@@ -88,14 +88,16 @@ static bool isPointlessSection(const JourneySection &section)
 
 static bool isImplausibleSection(const JourneySection &section)
 {
-    if (section.mode() == JourneySection::Transfer && section.from().hasCoordinate() && section.to().hasCoordinate()) {
+    if ((section.mode() == JourneySection::Transfer || section.mode() == JourneySection::Walking)
+        && section.from().hasCoordinate() && section.to().hasCoordinate())
+    {
         const auto distance = Location::distance(section.from(), section.to());
         if (section.duration() > 0 && (distance / section.duration()) > 30) {
-            qCDebug(Log) << "discarding journey based on insane transfer speed:" << (distance / section.duration()) << "m/s";
+            qCDebug(Log) << "discarding journey based on insane transfer/walking speed:" << (distance / section.duration()) << "m/s";
             return true;
         }
         if (distance > 100000) {
-            qCDebug(Log) << "discarding journey with insane transfer distance:" << distance << "m" << section.from().name() << section.to().name();
+            qCDebug(Log) << "discarding journey with insane transfer/walking distance:" << distance << "m" << section.from().name() << section.to().name();
             return true;
         }
     }
