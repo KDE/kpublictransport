@@ -1,0 +1,116 @@
+{
+    "disruptionEffect": "NormalService",
+    "platformLayout": {
+        "length": 444,
+        "name": "15",
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.1899999976158142,
+                "name": "G"
+            },
+            {
+                "begin": 0.1899999976158142,
+                "end": 0.3100000023841858,
+                "name": "F"
+            },
+            {
+                "begin": 0.3100000023841858,
+                "end": 0.4300000071525574,
+                "name": "E"
+            },
+            {
+                "begin": 0.4300000071525574,
+                "end": 0.5400000214576721,
+                "name": "D"
+            },
+            {
+                "begin": 0.5400000214576721,
+                "end": 0.6600000262260437,
+                "name": "C"
+            },
+            {
+                "begin": 0.6600000262260437,
+                "end": 0.7900000214576721,
+                "name": "B"
+            },
+            {
+                "begin": 0.7900000214576721,
+                "end": 1,
+                "name": "A"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "mode": "LocalTrain",
+            "name": "RE 5"
+        },
+        "name": "RE 4227"
+    },
+    "scheduledDepartureTime": "2023-06-30T17:36:00",
+    "scheduledPlatform": "15",
+    "stopPoint": {
+        "identifier": {
+            "ibnr": "8000096"
+        },
+        "name": "Stuttgart Hbf",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "Backward",
+        "name": "RE 4227",
+        "sections": [
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "name": "",
+                "platformPositionBegin": 0.28999999165534973,
+                "platformPositionEnd": 0.33000001311302185,
+                "type": "Engine"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "AirConditioning",
+                "name": "",
+                "platformPositionBegin": 0.23000000417232513,
+                "platformPositionEnd": 0.28999999165534973,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "AirConditioning",
+                "name": "",
+                "platformPositionBegin": 0.17000000178813934,
+                "platformPositionEnd": 0.23000000417232513,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "AirConditioning|BikeStorage",
+                "name": "",
+                "platformPositionBegin": 0.10999999940395355,
+                "platformPositionEnd": 0.17000000178813934,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "AirConditioning|WheelchairAccessible|BikeStorage",
+                "name": "",
+                "platformPositionBegin": 0.05000000074505806,
+                "platformPositionEnd": 0.10999999940395355,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}

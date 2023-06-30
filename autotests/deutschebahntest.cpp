@@ -54,6 +54,10 @@ private Q_SLOTS:
         QTest::newRow("no-position")
             << s(SOURCE_DIR "/data/deutschebahn/no-position-input.json")
             << s(SOURCE_DIR "/data/deutschebahn/no-position-departure.json");
+
+            QTest::newRow("regionalexpress")
+            << s(SOURCE_DIR "/data/deutschebahn/regionalexpress-input.json")
+            << s(SOURCE_DIR "/data/deutschebahn/regionalexpress-departure.json");
     }
 
     void testVehicleLayoutParse()
