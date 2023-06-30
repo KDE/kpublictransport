@@ -173,7 +173,7 @@ Kirigami.ApplicationWindow {
                         }
                         QQC2.Label {
                             text: "<a href=\"#layout\">vehicle</a>"
-                            visible: departure.route.line.mode == Line.LongDistanceTrain
+                            visible: departure.route.line.mode == Line.LongDistanceTrain || departure.route.name !== ""
                             onLinkActivated: applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": departure });
                             Layout.fillWidth: true
                             horizontalAlignment: Text.Right
