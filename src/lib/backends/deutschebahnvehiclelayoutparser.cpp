@@ -17,6 +17,19 @@
 
 using namespace KPublicTransport;
 
+struct {
+    const char *type;
+    Line::Mode mode;
+} static constexpr const train_type_map[] = {
+    { "ICE", Line::LongDistanceTrain },
+    { "IC",  Line::LongDistanceTrain },
+    { "EC",  Line::LongDistanceTrain },
+    { "RJ",  Line::LongDistanceTrain },
+    { "NJ",  Line::LongDistanceTrain },
+    { "RE",  Line::LocalTrain },
+    { "RB",  Line::LocalTrain },
+};
+
 bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
 {
     const auto doc = QJsonDocument::fromJson(data);
@@ -31,7 +44,8 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     // vehicles
     Vehicle vehicle;
     const auto obj = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("istformation")).toObject();
-    vehicle.setName(obj.value(QLatin1String("zuggattung")).toString() + QLatin1Char(' ') + obj.value(QLatin1String("zugnummer")).toString());
+    const auto trainType = obj.value(QLatin1String("zuggattung")).toString() ;
+    vehicle.setName(trainType + QLatin1Char(' ') + obj.value(QLatin1String("zugnummer")).toString());
 
     // TODO dobule segment ICE trains technically are two Vehicle objects...
     const auto vehiclesArray = obj.value(QLatin1String("allFahrzeuggruppe")).toArray();
@@ -61,9 +75,15 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     stop.setIdentifier(QStringLiteral("ibnr"), halt.value(QLatin1String("evanummer")).toString());
     stop.setType(Location::Stop);
     Line line;
-    line.setMode(Line::LongDistanceTrain);
     line.setName(vehicle.name());
     Route route;
+    line.setMode(Line::Train);
+    for (const auto &m : train_type_map) {
+        if (trainType == QLatin1String(m.type)) {
+            line.setMode(m.mode);
+            break;
+        }
+    }
     route.setLine(line);
     stopover.setRoute(route);
     stopover.setStopPoint(stop);
