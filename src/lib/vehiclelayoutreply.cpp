@@ -91,7 +91,10 @@ void VehicleLayoutReply::addResult(const Stopover &stopover)
             }
 
             // connect control cars in the middle of the train to the correct side
-            if (isOneSidedCar((*(it - 1)).type()) && isOneSidedCar((*it).type())) {
+            // only do that when two cars back isn't a control car either, ie. the preceeding car
+            // actually has a connection to the front. Otherwise trains consisting of e.g. 4 consecutive
+            // control cars get layouted wrongly.
+            if (isOneSidedCar((*(it - 1)).type()) && isOneSidedCar((*it).type()) && ((*(it - 1)).connectedSides() & VehicleSection::Front)) {
                 (*it).setConnectedSides((*it).connectedSides() & ~VehicleSection::Front);
             }
 
