@@ -74,9 +74,9 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     stop.setName(halt.value(QLatin1String("bahnhofsname")).toString());
     stop.setIdentifier(QStringLiteral("ibnr"), halt.value(QLatin1String("evanummer")).toString());
     stop.setType(Location::Stop);
-    Line line;
-    line.setName(vehicle.name());
     Route route;
+    Line line;
+
     line.setMode(Line::Train);
     for (const auto &m : train_type_map) {
         if (trainType == QLatin1String(m.type)) {
@@ -84,7 +84,15 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
             break;
         }
     }
+
+    if (const auto lineNumber = obj.value(QLatin1String("liniebezeichnung")).toString(); !lineNumber.isEmpty() && line.mode() != Line::LongDistanceTrain) {
+        line.setName(trainType + QLatin1Char(' ') + lineNumber);
+        route.setName(vehicle.name());
+    } else {
+        line.setName(vehicle.name());
+    }
     route.setLine(line);
+
     stopover.setRoute(route);
     stopover.setStopPoint(stop);
     stopover.setScheduledArrivalTime(QDateTime::fromString(halt.value(QLatin1String("ankunftszeit")).toString(), Qt::ISODate));
