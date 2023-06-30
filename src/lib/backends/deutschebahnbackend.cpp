@@ -21,14 +21,23 @@
 
 using namespace KPublicTransport;
 
-static QString extractTrainNumber(const Line &line)
+static QString extractTrainNumber(const Route &route)
 {
-    qDebug() << line.modeString() << line.name();
-    QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ)\\s*(\\d+)"));
+    if (!route.name().isEmpty()) {
+        QRegularExpression regex(QStringLiteral("(?:[A-Z]+)?\\s*(\\d+)"));
+        const auto match = regex.match(route.name());
+        if (match.hasMatch()) {
+            return match.captured(1);
+        }
+    }
+
+    const auto line = route.line();
+    QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|NJ)\\s*(\\d+)"));
     const auto match = regex.match(line.modeString() + line.name());
     if (match.hasMatch()) {
         return match.captured(1);
     }
+
     return {};
 }
 
@@ -45,7 +54,7 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
     // note: data is only available withing the upcoming 24h
     // checking this early is useful as the error response from the online service is extremely verbose...
     auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
-    const auto trainNum = extractTrainNumber(request.stopover().route().line());
+    const auto trainNum = extractTrainNumber(request.stopover().route());
     if (!dt.isValid() || trainNum.isEmpty()) {
         return false;
     }
