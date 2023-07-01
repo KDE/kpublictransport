@@ -189,13 +189,16 @@ bool Route::isSame(const Route &lhs, const Route &rhs)
     const auto matchingDirection = (!lhs.destination().isEmpty() && !rhs.destination().isEmpty() && Location::isSame(lhs.destination(), rhs.destination()))
         || Location::isSameName(lhs.direction(), rhs.direction());
 
-    return matchingDirection && Line::isSame(lhs.line(), rhs.line());
+    const auto matchingRouteName = lhs.name().size() < 3 || rhs.name().size() < 3 || lhs.name().endsWith(rhs.name()) || rhs.name().endsWith(lhs.name());
+
+    return matchingDirection && matchingRouteName && Line::isSame(lhs.line(), rhs.line());
 }
 
 Route Route::merge(const Route &lhs, const Route &rhs)
 {
     Route r(lhs);
     r.setLine(Line::merge(lhs.line(), rhs.line()));
+    r.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
     r.setDirection(MergeUtil::mergeString(lhs.direction(), rhs.direction()));
     r.setDestination(Location::merge(lhs.destination(), rhs.destination()));
     return r;
