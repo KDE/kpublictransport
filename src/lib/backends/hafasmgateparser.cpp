@@ -11,6 +11,7 @@
 #include "datatypes/loadutil_p.h"
 #include "geo/polylinedecoder_p.h"
 #include "ifopt/ifoptutil.h"
+#include "json/jsonpointer_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Platform>
@@ -271,15 +272,13 @@ std::vector<Route> HafasMgateParser::parseProducts(const QJsonArray &prodL, cons
         const auto it = std::find(m_productNameMappings.begin(), m_productNameMappings.end(), prodCls);
         if (it != m_productNameMappings.end()) {
             for (const auto &lineName : (*it).lineName) {
-                // TODO support nested JSON field access if we ever need to access prodCtx here
-                line.setName(prodObj.value(lineName).toString());
+                line.setName(JsonPointer::evaluate(prodObj, lineName).toString());
                 if (!line.name().isEmpty()) {
                     break;
                 }
             }
             for (const auto &routeName : (*it).routeName) {
-                // TODO support nested JSON field access if we ever need to access prodCtx here
-                route.setName(prodObj.value(routeName).toString());
+                route.setName(JsonPointer::evaluate(prodObj, routeName).toString());
                 if (!route.name().isEmpty()) {
                     break;
                 }

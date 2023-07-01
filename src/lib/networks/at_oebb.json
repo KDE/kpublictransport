@@ -2394,12 +2394,12 @@
             {
                 "cls": 16,
                 "lineName": ["nameS", "name"],
-                "routeName": "prodCtx.num"
+                "routeName": "prodCtx/num"
             },
             {
                 "cls": 32,
                 "lineName": ["nameS", "name"],
-                "routeName": "prodCtx.num"
+                "routeName": "prodCtx/num"
             },
             {
                 "cls": 64,
