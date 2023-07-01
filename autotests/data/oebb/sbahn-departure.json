@@ -9,7 +9,8 @@
         "line": {
             "mode": "RapidTransit",
             "name": "S 3"
-        }
+        },
+        "name": "29629"
     },
     "scheduledDepartureTime": "2023-07-01T16:00:00",
     "scheduledPlatform": "1",

@@ -187,6 +187,9 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
         }
     }
     Route route;
+    if (line.mode() == Line::LocalTrain || line.mode() == Line::RapidTransit) {
+        route.setName(QString::number(timeTableInfo.value(QLatin1String("trainNr")).toInt()));
+    }
     route.setLine(line);
     stopover.setRoute(route);
     stopover.setStopPoint(stop);
