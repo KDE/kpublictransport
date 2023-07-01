@@ -103,6 +103,7 @@ target_sources(KPublicTransport PRIVATE
     ifopt/ifoptutil.cpp
 
     json/jsonp.cpp
+    json/jsonpointer.cpp
 
     knowledgedb/asset-attributions.qrc
     knowledgedb/linemetadata.cpp
