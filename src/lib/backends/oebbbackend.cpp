@@ -21,8 +21,17 @@
 
 using namespace KPublicTransport;
 
-static QString trainNumber(Line line)
+static QString trainNumber(const Route &route)
 {
+    if (!route.name().isEmpty()) {
+        static QRegularExpression regex(QStringLiteral("[A-Z]*\\s*(\\d+)"));
+        const auto match = regex.match(route.name());
+        if (match.hasMatch()) {
+            return match.captured(1);
+        }
+    }
+
+    const auto line = route.line();
     static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX|NJ)\\s*(\\d+)"));
     const auto match = regex.match(line.modeString() + line.name());
     if (match.hasMatch()) {
@@ -37,7 +46,7 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
     if (!UicStationCode::isValid(ibnr) || UicStationCode::country(ibnr) != QLatin1String("81")) {
         return false;
     }
-    const auto trainNum = trainNumber(request.stopover().route().line());
+    const auto trainNum = trainNumber(request.stopover().route());
     if (trainNum.isEmpty()) {
         return false;
     }
