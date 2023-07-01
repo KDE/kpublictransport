@@ -36,6 +36,18 @@ struct {
     { "isQuietZone", VehicleSection::SilentArea, VehicleSection::UnknownClass },
 };
 
+struct {
+    const char *modeName;
+    Line::Mode mode;
+} static constexpr const line_mode_map[] = {
+    { "RJ", Line::LongDistanceTrain },
+    { "NJ", Line::LongDistanceTrain },
+    { "RE", Line::LocalTrain },
+    { "S",  Line::RapidTransit },
+    { "IC", Line::LongDistanceTrain },
+    { "EC", Line::LongDistanceTrain },
+};
+
 static Vehicle::Direction parseDirection(const QJsonObject &haltepunktObj)
 {
     const auto v = haltepunktObj.value(QLatin1String("departureTowardsFirstSector"));
@@ -166,8 +178,14 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
     stop.setName(timeTableInfo.value(QLatin1String("stationName")).toString());
     stop.setType(Location::Stop);
     Line line;
-    line.setMode(Line::LongDistanceTrain); // TODO is this actually true for ÖBB?
     line.setName(timeTableInfo.value(QLatin1String("trainName")).toString());
+    line.setMode(Line::Train);
+    for (const auto &m : line_mode_map) {
+        if (line.name().startsWith(QLatin1String(m.modeName))) {
+            line.setMode(m.mode);
+            break;
+        }
+    }
     Route route;
     route.setLine(line);
     stopover.setRoute(route);
