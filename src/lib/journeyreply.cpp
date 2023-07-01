@@ -88,14 +88,16 @@ static bool isPointlessSection(const JourneySection &section)
 
 static bool isImplausibleSection(const JourneySection &section)
 {
-    if (section.mode() == JourneySection::Transfer && section.from().hasCoordinate() && section.to().hasCoordinate()) {
+    if ((section.mode() == JourneySection::Transfer || section.mode() == JourneySection::Walking)
+        && section.from().hasCoordinate() && section.to().hasCoordinate())
+    {
         const auto distance = Location::distance(section.from(), section.to());
         if (section.duration() > 0 && (distance / section.duration()) > 30) {
-            qCDebug(Log) << "discarding journey based on insane transfer speed:" << (distance / section.duration()) << "m/s";
+            qCDebug(Log) << "discarding journey based on insane transfer/walking speed:" << (distance / section.duration()) << "m/s";
             return true;
         }
         if (distance > 100000) {
-            qCDebug(Log) << "discarding journey with insane transfer distance:" << distance << "m" << section.from().name() << section.to().name();
+            qCDebug(Log) << "discarding journey with insane transfer/walking distance:" << distance << "m" << section.from().name() << section.to().name();
             return true;
         }
     }
@@ -155,6 +157,21 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
 
         // remove pointless sections such as 0-length walks
         sections.erase(std::remove_if(sections.begin(), sections.end(), isPointlessSection), sections.end());
+
+        // remove implausible paths
+        for (auto &section : sections) {
+            if (!section.from().hasCoordinate() || !section.to().hasCoordinate() || section.path().isEmpty()) {
+                continue;
+            }
+
+            const auto pointDist = Location::distance(section.from(), section.to());
+            const auto pathDist = section.path().distance();
+            if (pathDist > pointDist * 10) {
+                qCDebug(Log) << "Dropping implausibly long path:" << pointDist << pathDist;
+                section.setPath({});
+            }
+        }
+
         journey.setSections(std::move(sections));
     }
 
