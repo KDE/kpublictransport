@@ -44,6 +44,14 @@ private Q_SLOTS:
         QTest::newRow("ic-no-platform-data")
             << s(SOURCE_DIR "/data/oebb/ic-no-platform-data-input.json")
             << s(SOURCE_DIR "/data/oebb/ic-no-platform-data-departure.json");
+
+        QTest::newRow("regionalexpress")
+            << s(SOURCE_DIR "/data/oebb/regional-express-input.json")
+            << s(SOURCE_DIR "/data/oebb/regional-express-departure.json");
+
+        QTest::newRow("sbahn")
+            << s(SOURCE_DIR "/data/oebb/sbahn-input.json")
+            << s(SOURCE_DIR "/data/oebb/sbahn-departure.json");
     }
 
     void testVehicleLayoutParse()

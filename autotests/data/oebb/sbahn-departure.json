@@ -1,0 +1,52 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2023-07-01T16:03:00",
+    "expectedPlatform": "1",
+    "platformLayout": {
+        "length": 75
+    },
+    "route": {
+        "line": {
+            "mode": "RapidTransit",
+            "name": "S 3"
+        }
+    },
+    "scheduledDepartureTime": "2023-07-01T16:00:00",
+    "scheduledPlatform": "1",
+    "stopPoint": {
+        "name": "Wien Quartier Belvedere Bahnhst",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible|BikeStorage",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.32706668972969055,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": 0.32706668972969055,
+                "platformPositionEnd": 0.6750667095184326,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "BikeStorage",
+                "platformPositionBegin": 0.6750667095184326,
+                "platformPositionEnd": 1.0021333694458008,
+                "type": "PassengerCar"
+            }
+        ]
+    }
+}

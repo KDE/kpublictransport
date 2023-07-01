@@ -1,0 +1,79 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2023-07-01T17:36:00",
+    "expectedPlatform": "1",
+    "platformLayout": {
+        "length": 153
+    },
+    "route": {
+        "line": {
+            "mode": "LocalTrain",
+            "name": "REX 3"
+        }
+    },
+    "scheduledDepartureTime": "2023-07-01T17:36:00",
+    "scheduledPlatform": "1",
+    "stopPoint": {
+        "name": "Wien Quartier Belvedere Bahnhst",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "NoSide",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.12601307034492493,
+                "type": "Engine"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "BikeStorage",
+                "platformPositionBegin": 0.12601307034492493,
+                "platformPositionEnd": 0.3011764883995056,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0.3011764883995056,
+                "platformPositionEnd": 0.4763399064540863,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0.4763399064540863,
+                "platformPositionEnd": 0.651503324508667,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 2,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0.651503324508667,
+                "platformPositionEnd": 0.8266667127609253,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "WheelchairAccessible|BikeStorage",
+                "platformPositionBegin": 0.8266667127609253,
+                "platformPositionEnd": 1.0039870738983154,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}
