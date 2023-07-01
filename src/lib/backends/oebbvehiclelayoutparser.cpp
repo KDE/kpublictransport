@@ -114,6 +114,7 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
         const auto uicNum = wagonObj.value(QLatin1String("uicNumber")).toString();
         const auto uicCls = wagonObj.value(QLatin1String("kind")).toString();
         section.setType(UicRailwayCoach::type(uicNum, uicCls));
+        section.setDeckCount(UicRailwayCoach::deckCount(uicNum, uicCls));
 
         if (section.type() == VehicleSection::Engine) {
             section.setConnectedSides(VehicleSection::NoSide);
