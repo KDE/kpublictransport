@@ -47,6 +47,7 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
         RestaurantCar, ///< full-car restaurant
         SleepingCar, ///< sleeping passenger car of an overnight train
         CouchetteCar, ///< couchette passenger car of an overnight train
+        CarTransportCar, ///< car for transporting cars
     };
     Q_ENUM(Type)
     /** Type of this vehicle section. */

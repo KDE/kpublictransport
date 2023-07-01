@@ -43,7 +43,7 @@ struct {
     { "DAB", VehicleSection::FirstClass | VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
     { "DA", VehicleSection::FirstClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
     { "DB", VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 },
-    { "DD", VehicleSection::UnknownClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 2 }, // TODO car transport coach
+    { "DD", VehicleSection::UnknownClass, VehicleSection::NoFeatures, VehicleSection::CarTransportCar, 2 },
     { "WLAB", VehicleSection::FirstClass | VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::SleepingCar, 1 },
     { "WLA", VehicleSection::FirstClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },
     { "WLB", VehicleSection::SecondClass, VehicleSection::NoFeatures, VehicleSection::UnknownType, 1 },

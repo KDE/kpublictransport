@@ -54,6 +54,7 @@ StyledFrameSvgItem {
                 case VehicleSection.ControlCar:
                 case VehicleSection.SleepingCar:
                 case VehicleSection.CouchetteCar:
+                case VehicleSection.CarTransportCar:
                     svgName += "-double-deck";
                     break;
             }
@@ -65,6 +66,7 @@ StyledFrameSvgItem {
         switch (section.type) {
             case VehicleSection.Engine:
             case VehicleSection.PowerCar:
+            case VehicleSection.CarTransportCar:
                 return inaccessibleBackground;
             case VehicleSection.RestaurantCar:
                 return restaurantBackground;

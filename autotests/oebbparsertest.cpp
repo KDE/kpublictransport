@@ -52,6 +52,10 @@ private Q_SLOTS:
         QTest::newRow("sbahn")
             << s(SOURCE_DIR "/data/oebb/sbahn-input.json")
             << s(SOURCE_DIR "/data/oebb/sbahn-departure.json");
+
+        QTest::newRow("nightjet")
+            << s(SOURCE_DIR "/data/oebb/nightjet-input.json")
+            << s(SOURCE_DIR "/data/oebb/nightjet-departure.json");
     }
 
     void testVehicleLayoutParse()
