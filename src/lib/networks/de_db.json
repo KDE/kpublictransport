@@ -5123,16 +5123,25 @@
         "productNameMappings": [
             {
                 "cls": 8,
-                "lineName": ["addName", "name"],
+                "lineName": [
+                    "addName",
+                    "name"
+                ],
                 "routeName": "name"
             },
             {
                 "cls": 32,
-                "lineName": ["nameS", "name"]
+                "lineName": [
+                    "nameS",
+                    "name"
+                ]
             },
             {
                 "cls": 256,
-                "lineName": ["nameS", "name"]
+                "lineName": [
+                    "nameS",
+                    "name"
+                ]
             }
         ],
         "products": [

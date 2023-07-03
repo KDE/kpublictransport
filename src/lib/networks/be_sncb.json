@@ -200,11 +200,17 @@
         "productNameMappings": [
             {
                 "cls": 256,
-                "lineName": ["nameS", "name"]
+                "lineName": [
+                    "nameS",
+                    "name"
+                ]
             },
             {
                 "cls": 1024,
-                "lineName": ["nameS", "name"]
+                "lineName": [
+                    "nameS",
+                    "name"
+                ]
             }
         ],
         "products": [
