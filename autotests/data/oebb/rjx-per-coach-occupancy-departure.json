@@ -1,0 +1,125 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2023-07-09T18:50:00",
+    "platformLayout": {
+        "length": 455,
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.24643956124782562,
+                "name": "A"
+            },
+            {
+                "begin": 0.24643956124782562,
+                "end": 0.49518680572509766,
+                "name": "B"
+            },
+            {
+                "begin": 0.49518680572509766,
+                "end": 0.7416263818740845,
+                "name": "C"
+            },
+            {
+                "begin": 0.7416263818740845,
+                "end": 0.9903956055641174,
+                "name": "D"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "RJX 864"
+        }
+    },
+    "scheduledDepartureTime": "2023-07-09T18:47:00",
+    "scheduledPlatform": "2",
+    "stopPoint": {
+        "name": "Innsbruck Hbf",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "UnknownDirection",
+        "sections": [
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "NoSide",
+                "deckCount": 1,
+                "features": "NoFeatures",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.04237362742424011,
+                "type": "Engine"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning|ToddlerArea|BikeStorage",
+                "name": "31",
+                "platformPositionBegin": 0.04237362742424011,
+                "platformPositionEnd": 0.10061538219451904,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning",
+                "name": "32",
+                "platformPositionBegin": 0.10061538219451904,
+                "platformPositionEnd": 0.15885713696479797,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning|SilentArea",
+                "name": "33",
+                "platformPositionBegin": 0.15885713696479797,
+                "platformPositionEnd": 0.2170988917350769,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning",
+                "name": "34",
+                "platformPositionBegin": 0.2170988917350769,
+                "platformPositionEnd": 0.27534064650535583,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning|Restaurant|WheelchairAccessible",
+                "name": "35",
+                "platformPositionBegin": 0.27534064650535583,
+                "platformPositionEnd": 0.33358240127563477,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning",
+                "name": "36",
+                "platformPositionBegin": 0.33358240127563477,
+                "platformPositionEnd": 0.3918241858482361,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": "AirConditioning|SilentArea",
+                "name": "37",
+                "platformPositionBegin": 0.3918241858482361,
+                "platformPositionEnd": 0.45094504952430725,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}

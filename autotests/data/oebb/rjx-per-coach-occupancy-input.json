@@ -1,0 +1,422 @@
+{
+  "id": "d7ff936f-45a0-4da1-bada-17c14d74ee1a",
+  "timeTableInfo": {
+    "date": "2023-07-09",
+    "trainNr": 864,
+    "trainName": "RJX 864",
+    "stationName": "Innsbruck Hbf",
+    "platform": {
+      "scheduled": 2
+    },
+    "sector": {},
+    "time": {
+      "scheduled": {
+        "days": 0,
+        "hours": 18,
+        "minutes": 47
+      },
+      "reported": {
+        "days": 0,
+        "hours": 18,
+        "minutes": 50
+      }
+    },
+    "portions": [],
+    "stops": [
+      "8100353",
+      "8103000",
+      "8100514",
+      "8100008",
+      "8100013",
+      "8100002",
+      "8100099",
+      "8100102",
+      "8100108",
+      "8100062",
+      "8100063",
+      "8100065",
+      "8100067",
+      "8100197",
+      "8100122",
+      "8100090"
+    ]
+  },
+  "train": {
+    "trainNr": 864,
+    "date": "2023-07-09",
+    "version": 1,
+    "isReported": true,
+    "assemblyStation": "SB",
+    "source": "1_PV-864-01-Sb-AT01114_13227648_20230709_1233_Remis_PTCP_IN_227648.XML",
+    "wagons": [
+      {
+        "uicNumber": "918111162270",
+        "kind": "TFZ",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 0,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 19.28,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738184901275",
+        "kind": "Bmpvz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 31,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 72,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 1,
+        "isBicycleAllowed": true,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": true,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738122902278",
+        "kind": "Bmpz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 32,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738122903276",
+        "kind": "Bmpz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 33,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "quietZoneFrom": "FWS",
+        "quietZoneTo": "BG",
+        "isQuietZone": true,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738122904274",
+        "kind": "Bmpz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 34,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738185905275",
+        "kind": "ARbmpz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 35,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": true,
+        "hasWifi": false,
+        "isInfoPoint": true,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": true,
+        "isQuietZone": false,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738119906274",
+        "kind": "Ampz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 36,
+        "capacityBusinessClass": 0,
+        "capacityFirstClass": 55,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "isQuietZone": false,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.5,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      },
+      {
+        "uicNumber": "738180907276",
+        "kind": "Afmpz",
+        "origin": "FWS",
+        "destination": "BG",
+        "ranking": 37,
+        "capacityBusinessClass": 16,
+        "capacityFirstClass": 11,
+        "capacitySecondClass": 0,
+        "capacityCouchette": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "capacityBicycle": 0,
+        "isBicycleAllowed": false,
+        "isWheelChairAccessible": false,
+        "hasWifi": false,
+        "isInfoPoint": false,
+        "isPlayZone": false,
+        "isChildCinema": false,
+        "isDining": false,
+        "quietZoneFrom": "FWS",
+        "quietZoneTo": "BG",
+        "isQuietZone": true,
+        "isLowFloor": false,
+        "isLocked": false,
+        "destinationName": "Bregenz",
+        "lengthOverBuffers": 26.9,
+        "originTime": "2023-07-09T14:03:00",
+        "destinationTime": "2023-07-09T21:17:00",
+        "seasoning": {
+          "startDate": "2022-12-11",
+          "seasoningString": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        }
+      }
+    ],
+    "stations": [
+      "FWS",
+      "WBF",
+      "MI",
+      "PB",
+      "LZ",
+      "SB",
+      "W",
+      "JB",
+      "I",
+      "IM",
+      "LE",
+      "LAN",
+      "B",
+      "FK",
+      "DO",
+      "BG"
+    ]
+  },
+  "load": {
+    "stats": [
+      {
+        "ranking": 31,
+        "ratio": 0.6805555555555556
+      },
+      {
+        "ranking": 32,
+        "ratio": 0.48999999999999994
+      },
+      {
+        "ranking": 33,
+        "ratio": 0.4375
+      },
+      {
+        "ranking": 34,
+        "ratio": 0.875
+      },
+      {
+        "ranking": 35,
+        "ratio": 0.11666666666666665
+      },
+      {
+        "ranking": 36,
+        "ratio": 0.5345454545454545
+      },
+      {
+        "ranking": 37,
+        "ratio": 0.5185185185185185
+      }
+    ]
+  },
+  "platform": {
+    "length": 455.08,
+    "stoppingPoint": {
+      "distance": 488.36,
+      "position": "Top",
+      "direction": "Back"
+    },
+    "sectors": [
+      {
+        "name": "A",
+        "length": 112.13
+      },
+      {
+        "name": "B",
+        "length": 113.18
+      },
+      {
+        "name": "C",
+        "length": 112.13
+      },
+      {
+        "name": "D",
+        "length": 113.19
+      }
+    ],
+    "egresses": [
+      {
+        "platform": "2",
+        "distance": 113.64,
+        "name": "STIEGENAUFGANG_IB",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "platform": "2",
+        "distance": 146.91,
+        "name": "ROLLTREPPE_IB",
+        "type": "ROLLTREPPE"
+      },
+      {
+        "platform": "2",
+        "distance": 0.6,
+        "name": "TUER_IB",
+        "type": "TUER"
+      },
+      {
+        "platform": "2",
+        "distance": 213.14,
+        "name": "AUFZUG_IB",
+        "type": "AUFZUG"
+      },
+      {
+        "platform": "2",
+        "distance": 188.8,
+        "name": "STIEGENAUFGANG_IB",
+        "type": "STIEGENAUFGANG"
+      }
+    ]
+  }
+}
