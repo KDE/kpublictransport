@@ -13,6 +13,7 @@
 
 #include <QFile>
 #include <QFileInfo>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkAccessManager>
@@ -76,7 +77,11 @@ void RestOnboardBackend::requestPosition(QNetworkAccessManager *nam)
         }
 
         const auto doc = QJsonDocument::fromJson(JsonP::decode(reply->readAll()));
-        Q_EMIT positionReceived(parsePositionData(doc.object()));
+        if (doc.isArray()) {
+            Q_EMIT positionReceived(parsePositionData(doc.array()));
+        } else {
+            Q_EMIT positionReceived(parsePositionData(doc.object()));
+        }
     });
 }
 
@@ -101,6 +106,10 @@ void RestOnboardBackend::requestJourney(QNetworkAccessManager *nam)
         }
 
         const auto doc = QJsonDocument::fromJson(reply->readAll());
-        Q_EMIT journeyReceived(parseJourneyData(doc.object()));
+        if (doc.isArray()) {
+            Q_EMIT journeyReceived(parseJourneyData(doc.array()));
+        } else {
+            Q_EMIT journeyReceived(parseJourneyData(doc.object()));
+        }
     });
 }
