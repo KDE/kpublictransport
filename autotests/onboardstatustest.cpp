@@ -14,6 +14,7 @@
 #include <KPublicTransport/OnboardStatus>
 
 #include <QFile>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkRequest>
@@ -80,9 +81,14 @@ private Q_SLOTS:
 
         QFile f(QLatin1String(SOURCE_DIR) + QLatin1String("/data/onboard-position/") + inputFile);
         QVERIFY(f.open(QFile::ReadOnly));
-        const auto inputObj = QJsonDocument::fromJson(f.readAll()).object();
+        const auto inputDoc = QJsonDocument::fromJson(f.readAll());
 
-        const auto pos = restApi->parsePositionData(inputObj);
+        PositionData pos;
+        if (inputDoc.isArray()) {
+            pos = restApi->parsePositionData(inputDoc.array());
+        } else {
+            pos = restApi->parsePositionData(inputDoc.object());
+        }
         QCOMPARE(pos.latitude, lat);
         QCOMPARE(pos.longitude, lon);
         QCOMPARE(pos.speed, speed);
@@ -119,9 +125,15 @@ private Q_SLOTS:
 
         QFile inputFile(QLatin1String(SOURCE_DIR) + QLatin1String("/data/onboard-journey/") + testFile + QLatin1String(".in.json"));
         QVERIFY(inputFile.open(QFile::ReadOnly));
-        const auto inputObj = QJsonDocument::fromJson(inputFile.readAll()).object();
 
-        const auto jny = restApi->parseJourneyData(inputObj);
+        const auto inputDoc = QJsonDocument::fromJson(inputFile.readAll());
+        Journey jny;
+        if (inputDoc.isArray()) {
+            jny = restApi->parseJourneyData(inputDoc.array());
+        } else {
+            jny = restApi->parseJourneyData(inputDoc.object());
+        }
+
         const auto jsonRes = Journey::toJson(jny);
 
         const QString refFileName = QLatin1String(SOURCE_DIR) + QLatin1String("/data/onboard-journey/") + testFile + QLatin1String(".out.json");
