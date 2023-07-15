@@ -17,6 +17,8 @@
         <file>passengera.js</file>
 
         <!-- Operator-specific API backend configurations and scripts -->
+        <file>aegean.json</file>
+        <file>aegean.js</file>
         <file>ceskedrahy.json</file>
         <file>deutschebahn-ice.json</file>
         <file>deutschebahn-zugportal.json</file>

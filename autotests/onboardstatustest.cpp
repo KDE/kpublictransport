@@ -62,6 +62,7 @@ private Q_SLOTS:
         QTest::newRow("ana") << s("panasonic-inflight-v1") << s("../onboard-journey/ana.in.json") << 39.3520f << 141.077f << 801.916f << 191.0f;
         QTest::newRow("united") << s("panasonic-inflight-v1") << s("../onboard-journey/united.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f;
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("../onboard-journey/cathay-pacific.in.json") << 23.198333f << 118.836667f << 755.616f << 231.0f;
+        QTest::newRow("aegean") << s("aegean") << s("aegean.json") << 47.96723323f << 11.781437752f << 1007.0f << 137.0f;
     }
 
     void testScriptedPositionParsers()
@@ -157,6 +158,7 @@ private Q_SLOTS:
         QTest::newRow("ana") << s("panasonic-inflight-v1") << true << true;
         QTest::newRow("united") << s("panasonic-inflight-v1") << true << true;
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << true << true;
+        QTest::newRow("aegean") << s("aegean") << true << false;
     }
 
     void testScriptedSupport()
