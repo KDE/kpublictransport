@@ -1,0 +1,8 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "aegean.js",
+        "positionEndpoint": "https://api.ife.ugo.aero/navigation/positions",
+        "positionFunction": "parsePositions"
+    }
+}
