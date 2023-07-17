@@ -92,21 +92,10 @@ if (BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
-feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+
 
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KPublicTransport")
-configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/KPublicTransportConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfig.cmake"
-    INSTALL_DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-)
 
-install(FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfig.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfigVersion.cmake"
-    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-    COMPONENT Devel
-)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kpublictransport_version.h DESTINATION ${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR} COMPONENT Devel)
 
 install(EXPORT KPublicTransportTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KPublicTransportTargets.cmake)
@@ -120,3 +109,18 @@ if (BUILD_QCH)
     )
     set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KPublicTransportQchTargets.cmake\")")
 endif()
+
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/KPublicTransportConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfig.cmake"
+    INSTALL_DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+)
+
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/KPublicTransportConfigVersion.cmake"
+    DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+    COMPONENT Devel
+)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
