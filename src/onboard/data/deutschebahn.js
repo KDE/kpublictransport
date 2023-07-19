@@ -82,6 +82,10 @@ function parseZugportalTrip(response)
             expectedPlatform = s.track.prediction,
             notes = []
         };
+        if (s.station.position) {
+            stop.stopPoint.latitude = s.station.position.latitude;
+            stop.stopPoint.longitude = s.station.position.longitude;
+        }
         if (s.departureTime) {
             stop.scheduledDepartureTime = s.departureTime.target;
             stop.expectedDepartureTime = s.departureTime.predicted;

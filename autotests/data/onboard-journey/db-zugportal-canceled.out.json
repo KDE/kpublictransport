@@ -2,319 +2,551 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 0,
+            "distance": 43552,
             "expectedArrivalPlatform": "1",
-            "expectedArrivalTime": "2023-05-04T16:29:00+02:00",
+            "expectedArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-05-04T16:29:00+02:00"
+            },
             "expectedDeparturePlatform": "1",
-            "expectedDepartureTime": "2023-05-04T15:33:00+02:00",
+            "expectedDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-05-04T15:33:00+02:00"
+            },
             "from": {
                 "identifier": {
                     "ibnr": "8000016"
                 },
+                "latitude": 48.94267654418945,
+                "longitude": 9.425989151000977,
                 "name": "Backnang",
                 "type": "Stop"
             },
             "intermediateStops": [
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T15:47:09+02:00",
-                    "expectedDepartureTime": "2023-05-04T15:33:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:47:09+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:33:00+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T15:41:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T15:33:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:41:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:33:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8003266"
                         },
+                        "latitude": 48.93915939331055,
+                        "longitude": 9.329055786132812,
                         "name": "Kirchberg(Murr)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NoService",
-                    "expectedArrivalTime": "2023-05-04T15:37:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T15:38:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:37:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:38:00+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T15:37:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T15:38:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:37:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:38:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8001296"
                         },
+                        "latitude": 48.928646087646484,
+                        "longitude": 9.369932174682617,
                         "name": "Burgstall(Murr)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NoService",
-                    "expectedArrivalTime": "2023-05-04T15:47:09+02:00",
-                    "expectedDepartureTime": "2023-05-04T15:47:23+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:47:09+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:47:23+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T15:41:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T15:44:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:41:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:44:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8003266"
                         },
+                        "latitude": 48.93915939331055,
+                        "longitude": 9.329055786132812,
                         "name": "Kirchberg(Murr)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T15:49:43+02:00",
-                    "expectedDepartureTime": "2023-05-04T15:49:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:49:43+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:49:00+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T15:47:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T15:47:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:47:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:47:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8001827"
                         },
+                        "latitude": 48.9482307434082,
+                        "longitude": 9.299405097961426,
                         "name": "Erdmannhausen",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T15:52:37+02:00",
-                    "expectedDepartureTime": "2023-05-04T15:55:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:52:37+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:55:00+02:00"
+                    },
                     "expectedPlatform": "2",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T15:51:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T15:55:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:51:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:55:00+02:00"
+                    },
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8003853"
                         },
+                        "latitude": 48.94368362426758,
+                        "longitude": 9.26445198059082,
                         "name": "Marbach(Neckar)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T15:58:17+02:00",
-                    "expectedDepartureTime": "2023-05-04T15:58:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:58:17+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:58:00+02:00"
+                    },
                     "expectedPlatform": "2",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T15:57:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T15:57:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:57:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T15:57:00+02:00"
+                    },
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8000873"
                         },
+                        "latitude": 48.9436149597168,
+                        "longitude": 9.24450397491455,
                         "name": "Benningen(Neckar)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:01:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:02:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:01:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:02:00+02:00"
+                    },
                     "expectedPlatform": "2",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:00:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:01:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:00:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:01:00+02:00"
+                    },
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8002065"
                         },
+                        "latitude": 48.93010711669922,
+                        "longitude": 9.197795867919922,
                         "name": "Freiberg(Neckar)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:04:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:05:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:04:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:05:00+02:00"
+                    },
                     "expectedPlatform": "2",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:03:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:03:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:03:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:03:00+02:00"
+                    },
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8001967"
                         },
+                        "latitude": 48.909210205078125,
+                        "longitude": 9.180233001708984,
                         "name": "Favoritepark",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:07:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:08:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:07:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:08:00+02:00"
+                    },
                     "expectedPlatform": "3",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:06:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:06:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:06:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:06:00+02:00"
+                    },
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8000235"
                         },
+                        "latitude": 48.89186096191406,
+                        "longitude": 9.185420036315918,
                         "name": "Ludwigsburg",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:11:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:11:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:11:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:11:00+02:00"
+                    },
                     "expectedPlatform": "3",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:09:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:10:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:09:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:10:00+02:00"
+                    },
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8003411"
                         },
+                        "latitude": 48.862220764160156,
+                        "longitude": 9.179964065551758,
                         "name": "Kornwestheim Pbf",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:14:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:15:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:14:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:15:00+02:00"
+                    },
                     "expectedPlatform": "2",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:13:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:14:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:13:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:14:00+02:00"
+                    },
                     "scheduledPlatform": "2",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8005778"
                         },
+                        "latitude": 48.82941436767578,
+                        "longitude": 9.166739463806152,
                         "name": "Stuttgart-Zuffenhausen",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:17:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:18:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:17:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:18:00+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:16:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:16:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:16:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:16:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8005770"
                         },
+                        "latitude": 48.81367111206055,
+                        "longitude": 9.169382095336914,
                         "name": "Stuttgart-Feuerbach",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:19:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:20:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:19:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:20:00+02:00"
+                    },
                     "expectedPlatform": "4",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:18:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:19:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:18:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:19:00+02:00"
+                    },
                     "scheduledPlatform": "4",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8005767"
                         },
+                        "latitude": 48.803768157958984,
+                        "longitude": 9.188026428222656,
                         "name": "Stuttgart Nord",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:23:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:24:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:23:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:24:00+02:00"
+                    },
                     "expectedPlatform": "101",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:22:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:23:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:22:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:23:00+02:00"
+                    },
                     "scheduledPlatform": "101",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8098096"
                         },
+                        "latitude": 48.782997131347656,
+                        "longitude": 9.179807662963867,
                         "name": "Stuttgart Hbf (tief)",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:26:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:26:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:26:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:26:00+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:24:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:25:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:24:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:25:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8006700"
                         },
+                        "latitude": 48.77622985839844,
+                        "longitude": 9.172924995422363,
                         "name": "Stuttgart Stadtmitte",
                         "type": "Stop"
                     }
                 },
                 {
                     "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": "2023-05-04T16:27:00+02:00",
-                    "expectedDepartureTime": "2023-05-04T16:28:00+02:00",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:27:00+02:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:28:00+02:00"
+                    },
                     "expectedPlatform": "1",
                     "notes": [
                         "Reparatur an einem Signal"
                     ],
-                    "scheduledArrivalTime": "2023-05-04T16:26:00+02:00",
-                    "scheduledDepartureTime": "2023-05-04T16:26:00+02:00",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:26:00+02:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-05-04T16:26:00+02:00"
+                    },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "identifier": {
                             "ibnr": "8006699"
                         },
+                        "latitude": 48.77276611328125,
+                        "longitude": 9.16627311706543,
                         "name": "Stuttgart Feuersee",
                         "type": "Stop"
                     }
@@ -331,13 +563,21 @@
                 }
             },
             "scheduledArrivalPlatform": "1",
-            "scheduledArrivalTime": "2023-05-04T16:28:00+02:00",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-05-04T16:28:00+02:00"
+            },
             "scheduledDeparturePlatform": "1",
-            "scheduledDepartureTime": "2023-05-04T15:33:00+02:00",
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-05-04T15:33:00+02:00"
+            },
             "to": {
                 "identifier": {
                     "ibnr": "8006698"
                 },
+                "latitude": 48.77025604248047,
+                "longitude": 9.15695858001709,
                 "name": "Stuttgart Schwabstr.",
                 "type": "Stop"
             }
