@@ -47,28 +47,27 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qRegisterMetaType<KPublicTransport::RentalVehicleStation>();
     qRegisterMetaType<KPublicTransport::Stopover>();
     qRegisterMetaType<KPublicTransport::IndividualTransport>();
-    // backward compat
-    qRegisterMetaType<KPublicTransport::StopoverRequest>("KPublicTransport::DepartureRequest");
 
-    qmlRegisterUncreatableMetaObject(KPublicTransport::Disruption::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Disruption", {});
-    qmlRegisterUncreatableMetaObject(KPublicTransport::Load::staticMetaObject, "org.kde.kpublictransport", 1, 0, "Load", {});
+#define REGISTER_METAOBJECT(Type) \
+    qmlRegisterUncreatableMetaObject(KPublicTransport::Type::staticMetaObject, "org.kde.kpublictransport", 1, 0, #Type, {});
 
-    qmlRegisterUncreatableType<KPublicTransport::CoverageArea>("org.kde.kpublictransport", 1, 0, "CoverageArea", {});
-    qmlRegisterUncreatableType<KPublicTransport::Line>("org.kde.kpublictransport", 1, 0, "Line", {});
-    qmlRegisterUncreatableType<KPublicTransport::Location>("org.kde.kpublictransport", 1, 0, "Location", {});
-    qmlRegisterUncreatableType<KPublicTransport::JourneySection>("org.kde.kpublictransport", 1, 0, "JourneySection", {});
-    qmlRegisterUncreatableType<KPublicTransport::Vehicle>("org.kde.kpublictransport", 1, 0, "Vehicle", {});
-    qmlRegisterUncreatableType<KPublicTransport::VehicleSection>("org.kde.kpublictransport", 1, 0, "VehicleSection", {});
-    qmlRegisterUncreatableType<KPublicTransport::PathSection>("org.kde.kpublictransport", 1, 0, "PathSection", {});
-    qmlRegisterUncreatableType<KPublicTransport::Platform>("org.kde.kpublictransport", 1, 0, "Platform", {});
-    qmlRegisterUncreatableType<KPublicTransport::RentalVehicle>("org.kde.kpublictransport", 1, 0, "RentalVehicle", {});
-    qmlRegisterUncreatableType<KPublicTransport::Equipment>("org.kde.kpublictransport", 1, 0, "Equipment", {});
-
-    qmlRegisterUncreatableType<KPublicTransport::JourneyRequest>("org.kde.kpublictransport", 1, 0, "JourneyRequest", {});
-    qmlRegisterUncreatableType<KPublicTransport::LocationRequest>("org.kde.kpublictransport", 1, 0, "LocationRequest", {});
-    qmlRegisterUncreatableType<KPublicTransport::StopoverRequest>("org.kde.kpublictransport", 1, 0, "StopoverRequest", {});
-    qmlRegisterUncreatableType<KPublicTransport::VehicleLayoutRequest>("org.kde.kpublictransport", 1, 0, "VehicleLayoutRequery", {});
-    qmlRegisterUncreatableType<KPublicTransport::IndividualTransport>("org.kde.kpublictransport", 1, 0, "IndividualTransport", {});
+    REGISTER_METAOBJECT(CoverageArea)
+    REGISTER_METAOBJECT(Disruption)
+    REGISTER_METAOBJECT(Equipment)
+    REGISTER_METAOBJECT(IndividualTransport)
+    REGISTER_METAOBJECT(JourneyRequest)
+    REGISTER_METAOBJECT(JourneySection)
+    REGISTER_METAOBJECT(Line)
+    REGISTER_METAOBJECT(Load)
+    REGISTER_METAOBJECT(Location)
+    REGISTER_METAOBJECT(LocationRequest)
+    REGISTER_METAOBJECT(PathSection)
+    REGISTER_METAOBJECT(Platform)
+    REGISTER_METAOBJECT(RentalVehicle)
+    REGISTER_METAOBJECT(StopoverRequest)
+    REGISTER_METAOBJECT(Vehicle)
+    REGISTER_METAOBJECT(VehicleLayoutRequest)
+    REGISTER_METAOBJECT(VehicleSection)
 
     qmlRegisterType<KPublicTransport::Manager>("org.kde.kpublictransport", 1, 0, "Manager");
     qmlRegisterType<KPublicTransport::JourneyQueryModel>("org.kde.kpublictransport", 1, 0, "JourneyQueryModel");
