@@ -84,6 +84,16 @@ bool OnboardStatus::hasHeading() const
     return !std::isnan(heading());
 }
 
+float OnboardStatus::altitude() const
+{
+    return OnboardStatusManager::instance()->currentPosition().altitude;
+}
+
+bool OnboardStatus::hasAltitude() const
+{
+    return !std::isnan(altitude());
+}
+
 Journey OnboardStatus::journey() const
 {
     return OnboardStatusManager::instance()->currentJourney();

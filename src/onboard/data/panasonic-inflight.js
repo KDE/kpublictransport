@@ -18,9 +18,9 @@ function parseCurrentPositionV1(response)
         latitude = toDegreeV1(response.td_id_fltdata_present_position_latitude),
         longitude = toDegreeV1(response.td_id_fltdata_present_position_longitude),
         speed = response.td_id_fltdata_ground_speed * 1.852,
-        heading = response.td_id_fltdata_true_heading
+        heading = response.td_id_fltdata_true_heading,
+        altitude = response.td_id_fltdata_altitude * 0.3048
         // TODO timestamp?
-        // TODO altitude?
     };
 }
 
@@ -31,8 +31,8 @@ function parseCurrentPositionV2(response)
         longitude = response.current_coordinates.longitude,
         speed = response.ground_speed_knots * 1.852,
         heading = response.true_heading_degree,
+        altitude = response.altitude_feet * 0.3048,
         timestamp = response.current_utc_date + 'T' + response.current_utc_time + 'Z'
-        // TODO altitude ?
     };
 }
 

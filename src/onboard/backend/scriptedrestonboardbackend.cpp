@@ -103,6 +103,7 @@ PositionData ScriptedRestOnboardBackend::parsePositionData(const QJsonValue &res
     pos.longitude = strictToNumber(result.property(QStringLiteral("longitude")));
     pos.speed = strictToNumber(result.property(QStringLiteral("speed")));
     pos.heading = strictToNumber(result.property(QStringLiteral("heading")));
+    pos.altitude = strictToNumber(result.property(QStringLiteral("altitude")));
     return pos;
 }
 

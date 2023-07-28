@@ -5,11 +5,12 @@
 
 function parseRealtime(response)
 {
-    let pos = {};
-    pos.latitude = response.gpsLat;
-    pos.longitude = response.gpsLng;
-    pos.speed = response.speed;
-    return pos;
+    return {
+        latitude: response.gpsLat,
+        longitude: response.gpsLng,
+        speed: response.speed,
+        altitude: response.altitude
+    };
 }
 
 function parseCurrent(response)

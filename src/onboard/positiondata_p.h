@@ -23,8 +23,9 @@ public:
 
     float latitude = NAN;
     float longitude = NAN;
-    float speed = NAN;
-    float heading = NAN;
+    float speed = NAN; // km/h
+    float heading = NAN; // degree
+    float altitude = NAN; // meter
     QDateTime timestamp;
 
     // further commonly / sometimes available values: altitude, temperature

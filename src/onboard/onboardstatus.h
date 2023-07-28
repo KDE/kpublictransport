@@ -42,6 +42,10 @@ class KPUBLICTRANSPORTONBOARD_EXPORT OnboardStatus : public QObject
     Q_PROPERTY(float heading READ heading NOTIFY positionChanged)
     Q_PROPERTY(bool hasHeading READ hasHeading NOTIFY positionChanged)
 
+    /** Current altitude in meters, NAN if unknown. */
+    Q_PROPERTY(float altitude READ altitude NOTIFY positionChanged)
+    Q_PROPERTY(bool hasAltitude READ hasAltitude NOTIFY positionChanged)
+
     /** The current journey. */
     Q_PROPERTY(KPublicTransport::Journey journey READ journey NOTIFY journeyChanged)
     /** Whether there is journey information available. */
@@ -78,6 +82,9 @@ public:
 
     float heading() const;
     bool hasHeading() const;
+
+    float altitude() const;
+    bool hasAltitude() const;
 
     KPublicTransport::Journey journey() const;
     bool hasJourney() const;

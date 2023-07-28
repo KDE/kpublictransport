@@ -52,17 +52,18 @@ private Q_SLOTS:
         QTest::addColumn<float>("lon");
         QTest::addColumn<float>("speed");
         QTest::addColumn<float>("heading");
+        QTest::addColumn<float>("altitude");
 
-        QTest::newRow("cd-railjet") << s("ceskedrahy") << s("cd-railjet.json") << 52.527308f << 13.367355f << 42.0f << NAN;
-        QTest::newRow("db-ice") << s("deutschebahn-ice") << s("db-ice.json") << 52.3937f << 10.0929f << 199.0f << NAN;
-        QTest::newRow("flixbus") << s("flixbus") << s("flixbus.json") << 53.153505f << 8.274373f << 26.777f << NAN;
-        QTest::newRow("sncf-inoui") << s("sncf-tgv") << s("sncf-inoui.json") << 48.064258333f << 7.33914f << 105.379f << 212.5f;
-        QTest::newRow("thalys") << s("icomera-omboard") << s("thalys.json") << 50.948208f << 6.885135f << 163.512f << 259.72f;
+        QTest::newRow("cd-railjet") << s("ceskedrahy") << s("cd-railjet.json") << 52.527308f << 13.367355f << 42.0f << NAN << 14.4f;
+        QTest::newRow("db-ice") << s("deutschebahn-ice") << s("db-ice.json") << 52.3937f << 10.0929f << 199.0f << NAN << NAN;
+        QTest::newRow("flixbus") << s("flixbus") << s("flixbus.json") << 53.153505f << 8.274373f << 26.777f << NAN << NAN;
+        QTest::newRow("sncf-inoui") << s("sncf-tgv") << s("sncf-inoui.json") << 48.064258333f << 7.33914f << 105.379f << 212.5f << 205.47f;
+        QTest::newRow("thalys") << s("icomera-omboard") << s("thalys.json") << 50.948208f << 6.885135f << 163.512f << 259.72f << 54.7f;
 
-        QTest::newRow("ana") << s("panasonic-inflight-v1") << s("../onboard-journey/ana.in.json") << 39.3520f << 141.077f << 801.916f << 191.0f;
-        QTest::newRow("united") << s("panasonic-inflight-v1") << s("../onboard-journey/united.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f;
-        QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("../onboard-journey/cathay-pacific.in.json") << 23.198333f << 118.836667f << 755.616f << 231.0f;
-        QTest::newRow("aegean") << s("aegean") << s("aegean.json") << 47.96723323f << 11.781437752f << 1007.0f << 137.0f;
+        QTest::newRow("ana") << s("panasonic-inflight-v1") << s("../onboard-journey/ana.in.json") << 39.3520f << 141.077f << 801.916f << 191.0f << 9753.91f;
+        QTest::newRow("united") << s("panasonic-inflight-v1") << s("../onboard-journey/united.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f << 10668.6f;
+        QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("../onboard-journey/cathay-pacific.in.json") << 23.198333f << 118.836667f << 755.616f << 231.0f << 12187.7f;
+        QTest::newRow("aegean") << s("aegean") << s("aegean.json") << 47.96723323f << 11.781437752f << 1007.0f << 137.0f << 7328.0f;
     }
 
     void testScriptedPositionParsers()
@@ -73,6 +74,7 @@ private Q_SLOTS:
         QFETCH(float, lon);
         QFETCH(float, speed);
         QFETCH(float, heading);
+        QFETCH(float, altitude);
 
         auto backend = OnboardStatusManager::createBackend(backendId);
         QVERIFY(backend);
@@ -94,6 +96,7 @@ private Q_SLOTS:
         QCOMPARE(pos.longitude, lon);
         QCOMPARE(pos.speed, speed);
         QCOMPARE(pos.heading, heading);
+        QCOMPARE(pos.altitude, altitude);
     }
 
     void testScriptedJourneyParsers_data()
