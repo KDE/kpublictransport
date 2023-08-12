@@ -32,7 +32,7 @@ static QString trainNumber(const Route &route)
     }
 
     const auto line = route.line();
-    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX|NJ)\\s*(\\d+)"));
+    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX|NJ|CAT|D)\\s*(\\d+)"));
     const auto match = regex.match(line.modeString() + line.name());
     if (match.hasMatch()) {
         return match.captured(1);
