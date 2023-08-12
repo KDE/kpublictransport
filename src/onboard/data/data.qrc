@@ -25,6 +25,8 @@
         <file>deutschebahn.js</file>
         <file>flixbus.json</file>
         <file>mav.json</file>
+        <file>oebb.json</file>
+        <file>oebb.js</file>
         <file>sbb.json</file>
         <file>sncf-tgv.json</file>
         <file>sncf-ic.json</file>

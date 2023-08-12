@@ -1,18 +1,19 @@
 [
-    { "ssid": "THALYSNET", "id": "icomera-omboard" },
-    { "ssid": "SJ", "id": "icomera-omboard" },
     { "ssid": "_SNCF_WIFI_INOUI", "id": "sncf-tgv" },
     { "ssid": "_SNCF_WIFI_INTERCITES", "id": "sncf-ic" },
     { "ssid": "_WIFI_LYRIA", "id": "sncf-tgv" },
+    { "ssid": "AegeanWiFi", "id": "aegean" },
+    { "ssid": "Cathay Pacific", "id": "panasonic-inflight-v2" },
     { "ssid": "CDWiFi", "id": "ceskedrahy" },
-    { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
-    { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "FlixBus", "id": "flixbus" },
     { "ssid": "FlixBus Wi-Fi", "id": "flixbus" },
     { "ssid": "FlixTrain Wi-Fi", "id": "flixbus" },
-    { "ssid": "SBB-Free", "id": "sbb" },
-    { "ssid": "wififrecceplus2", "id": "icomera-omboard" },
-    { "ssid": "Cathay Pacific", "id": "panasonic-inflight-v2" },
     { "ssid": "MAVSTART-WIFI", "id": "mav" },
-    { "ssid": "AegeanWiFi", "id": "aegean" }
+    { "ssid": "OEBB", "id": "oebb" },
+    { "ssid": "SBB-Free", "id": "sbb" },
+    { "ssid": "SJ", "id": "icomera-omboard" },
+    { "ssid": "THALYSNET", "id": "icomera-omboard" },
+    { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
+    { "ssid": "wififrecceplus2", "id": "icomera-omboard" },
+    { "ssid": "WIFIonICE", "id": "deutschebahn-ice" }
 ]

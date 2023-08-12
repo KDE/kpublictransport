@@ -777,38 +777,43 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 
     d->loadNetworks();
 
-    for (const auto &backend : d->m_backends) {
-        if (d->shouldSkipBackend(backend, req)) {
-            continue;
-        }
-        const auto coverage = backend.coverageArea(CoverageArea::Realtime);
-        if (coverage.isEmpty() || !coverage.coversLocation(req.stopover().stopPoint())) {
-            continue;
-        }
-        reply->addAttribution(BackendPrivate::impl(backend)->attribution());
+    for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular }) {
+        for (const auto &backend : d->m_backends) {
+            if (d->shouldSkipBackend(backend, req)) {
+                continue;
+            }
+            const auto coverage = backend.coverageArea(coverageType);
+            if (coverage.isEmpty() || !coverage.coversLocation(req.stopover().stopPoint())) {
+                continue;
+            }
+            reply->addAttribution(BackendPrivate::impl(backend)->attribution());
 
-        auto cache = Cache::lookupVehicleLayout(backend.identifier(), req.cacheKey());
-        switch (cache.type) {
-            case CacheHitType::Negative:
-                qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
-                break;
-            case CacheHitType::Positive:
-                qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
-                if (cache.data.size() == 1) {
-                    reply->addAttributions(std::move(cache.attributions));
-                    reply->addResult(cache.data[0]);
+            auto cache = Cache::lookupVehicleLayout(backend.identifier(), req.cacheKey());
+            switch (cache.type) {
+                case CacheHitType::Negative:
+                    qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
                     break;
-                }
-                Q_FALLTHROUGH();
-            case CacheHitType::Miss:
-                qCDebug(Log) << "Cache miss for backend" << backend.identifier();
-                if (BackendPrivate::impl(backend)->queryVehicleLayout(req, reply, d->nam())) {
-                    ++pendingOps;
-                }
-                break;
+                case CacheHitType::Positive:
+                    qCDebug(Log) << "Positive cache hit for backend" << backend.identifier();
+                    if (cache.data.size() == 1) {
+                        reply->addAttributions(std::move(cache.attributions));
+                        reply->addResult(cache.data[0]);
+                        break;
+                    }
+                    Q_FALLTHROUGH();
+                case CacheHitType::Miss:
+                    qCDebug(Log) << "Cache miss for backend" << backend.identifier();
+                    if (BackendPrivate::impl(backend)->queryVehicleLayout(req, reply, d->nam())) {
+                        ++pendingOps;
+                    }
+                    break;
+            }
         }
-
+        if (pendingOps) {
+            break;
+        }
     }
+
     reply->setPendingOps(pendingOps);
     return reply;
 }

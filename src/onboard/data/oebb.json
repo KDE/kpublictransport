@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "oebb.js",
+        "positionEndpoint": "https://railnet.oebb.at/api/gps",
+        "positionFunction": "parseGps",
+        "journeyEndpoint": "https://railnet.oebb.at/assets/modules/fis/combined.json",
+        "journeyFunction": "parseJourney"
+    }
+}

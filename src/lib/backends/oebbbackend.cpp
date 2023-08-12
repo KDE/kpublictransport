@@ -32,7 +32,7 @@ static QString trainNumber(const Route &route)
     }
 
     const auto line = route.line();
-    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX|NJ)\\s*(\\d+)"));
+    static QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|RJX|NJ|CAT|D)\\s*(\\d+)"));
     const auto match = regex.match(line.modeString() + line.name());
     if (match.hasMatch()) {
         return match.captured(1);
@@ -43,7 +43,7 @@ static QString trainNumber(const Route &route)
 bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
     const auto ibnr = request.stopover().stopPoint().identifier(QStringLiteral("ibnr"));
-    if (!UicStationCode::isValid(ibnr) || UicStationCode::country(ibnr) != QLatin1String("81")) {
+    if (!UicStationCode::isValid(ibnr)) {
         return false;
     }
     const auto trainNum = trainNumber(request.stopover().route());
