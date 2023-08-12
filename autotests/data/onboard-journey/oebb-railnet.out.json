@@ -1,0 +1,104 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 0,
+            "expectedArrivalTime": "2023-08-11T22:21:00",
+            "expectedDepartureTime": "2023-08-11T19:40:00",
+            "from": {
+                "identifier": {
+                    "ibnr": "5500003"
+                },
+                "name": "Budapest-Keleti",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2023-08-11T19:55:00",
+                    "scheduledArrivalTime": "2023-08-11T19:53:00",
+                    "scheduledDepartureTime": "2023-08-11T19:55:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "5500008"
+                        },
+                        "name": "Budapest Kelenföld",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-08-11T20:25:00",
+                    "expectedDepartureTime": "2023-08-11T20:26:00",
+                    "scheduledArrivalTime": "2023-08-11T20:25:00",
+                    "scheduledDepartureTime": "2023-08-11T20:26:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "5500009"
+                        },
+                        "name": "Tatabánya",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-08-11T21:00:00",
+                    "expectedDepartureTime": "2023-08-11T21:02:00",
+                    "scheduledArrivalTime": "2023-08-11T21:00:00",
+                    "scheduledDepartureTime": "2023-08-11T21:02:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "5500080"
+                        },
+                        "name": "Győr",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-08-11T21:19:00",
+                    "expectedDepartureTime": "2023-08-11T21:20:00",
+                    "scheduledArrivalTime": "2023-08-11T21:19:00",
+                    "scheduledDepartureTime": "2023-08-11T21:20:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "5500016"
+                        },
+                        "name": "Mosonmagyaróvár",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2023-08-11T21:29:00",
+                    "expectedDepartureTime": "2023-08-11T21:32:00",
+                    "scheduledArrivalTime": "2023-08-11T21:29:00",
+                    "scheduledDepartureTime": "2023-08-11T21:32:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "5500017"
+                        },
+                        "name": "Hegyeshalom",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "RJX 264"
+                }
+            },
+            "scheduledArrivalTime": "2023-08-11T22:21:00",
+            "scheduledDepartureTime": "2023-08-11T19:40:00",
+            "to": {
+                "identifier": {
+                    "ibnr": "8103000"
+                },
+                "name": "Wien Hbf",
+                "type": "Stop"
+            }
+        }
+    ]
+}
