@@ -43,7 +43,7 @@ static QString trainNumber(const Route &route)
 bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
     const auto ibnr = request.stopover().stopPoint().identifier(QStringLiteral("ibnr"));
-    if (!UicStationCode::isValid(ibnr) || UicStationCode::country(ibnr) != QLatin1String("81")) {
+    if (!UicStationCode::isValid(ibnr)) {
         return false;
     }
     const auto trainNum = trainNumber(request.stopover().route());
