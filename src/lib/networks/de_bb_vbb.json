@@ -55,12 +55,6 @@
         "name": "VBB Verkehrsverbund Berlin-Brandenburg GmbH"
     },
     "coverage": {
-        "anyCoverage": {
-            "region": [
-                "CZ",
-                "PL"
-            ]
-        },
         "realtimeCoverage": {
             "area": {
                 "coordinates": [
@@ -176,11 +170,6 @@
             "region": [
                 "DE-BB",
                 "DE-BE"
-            ]
-        },
-        "regularCoverage": {
-            "region": [
-                "DE"
             ]
         }
     },
