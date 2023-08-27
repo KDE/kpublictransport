@@ -8,8 +8,11 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "location.h"
+#include "logging.h"
 #include "geo/geojson_p.h"
 
+#include <QFile>
+#include <QJsonDocument>
 #include <QJsonObject>
 #include <QPolygonF>
 
@@ -18,13 +21,41 @@ using namespace KPublicTransport;
 namespace KPublicTransport {
 class CoverageAreaPrivate : public QSharedData {
 public:
+    void loadGeometry();
+    void recomputeBoundingBox();
+
     CoverageArea::Type type = CoverageArea::Any;
     QStringList regions;
     QStringList uicCompanyCodes;
     QStringList vdvOrganizationIds;
+    QString areaFile;
     std::vector<QPolygonF> areas;
     QRectF boundingBox;
 };
+}
+
+void CoverageAreaPrivate::loadGeometry()
+{
+    if (areaFile.isEmpty() || !areas.empty()) {
+        return;
+    }
+
+    QFile f(QLatin1String(":/org.kde.kpublictransport/networks/geometry/") + areaFile);
+    if (!f.open(QFile::ReadOnly)) {
+        qCWarning(Log) << "reading coverage area file failed:" << f.fileName() << f.errorString();
+        return;
+    }
+
+    const auto doc = QJsonDocument::fromJson(f.readAll());
+    areas = GeoJson::readOuterPolygons(doc.object());
+    recomputeBoundingBox();
+}
+
+void CoverageAreaPrivate::recomputeBoundingBox()
+{
+    for (const auto &area : areas) {
+        boundingBox |= area.boundingRect();
+    }
 }
 
 KPUBLICTRANSPORT_MAKE_GADGET(CoverageArea)
@@ -54,13 +85,16 @@ static QStringView countryCode(QStringView isoCode)
 
 bool CoverageArea::coversLocation(const Location &loc) const
 {
-    if (loc.hasCoordinate() && !d->areas.empty()) {
-        if (d->boundingBox.contains({loc.longitude(), loc.latitude()})) {
-            return std::any_of(d->areas.begin(), d->areas.end(), [&loc](const auto &area) {
-                return area.containsPoint({loc.longitude(), loc.latitude()}, Qt::WindingFill);
-            });
+    if (loc.hasCoordinate()) {
+        d->loadGeometry();
+        if (!d->areas.empty()) {
+            if (d->boundingBox.contains({loc.longitude(), loc.latitude()})) {
+                return std::any_of(d->areas.begin(), d->areas.end(), [&loc](const auto &area) {
+                    return area.containsPoint({loc.longitude(), loc.latitude()}, Qt::WindingFill);
+                });
+            }
+            return false;
         }
-        return false;
     }
 
     // TODO we could do a more precise check for ISO 3166-2 subdivision codes when available
@@ -89,9 +123,11 @@ CoverageArea CoverageArea::fromJson(const QJsonObject &obj)
     ca.setRegions(Json::toStringList(obj.value(QLatin1String("region"))));
     ca.setUicCompanyCodes(Json::toStringList(obj.value(QLatin1String("uicCompanyCodes"))));
     std::sort(ca.d->regions.begin(), ca.d->regions.end());
-    ca.d->areas = GeoJson::readOuterPolygons(obj.value(QLatin1String("area")).toObject());
-    for (const auto &area : ca.d->areas) {
-        ca.d->boundingBox |= area.boundingRect();
+
+    ca.d->areaFile = obj.value(QLatin1String("areaFile")).toString();
+    if (ca.d->areaFile.isEmpty()) {
+        ca.d->areas = GeoJson::readOuterPolygons(obj.value(QLatin1String("area")).toObject());
+        ca.d->recomputeBoundingBox();
     }
     return ca;
 }

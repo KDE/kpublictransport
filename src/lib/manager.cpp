@@ -126,7 +126,7 @@ void ManagerPrivate::loadNetworks()
         return;
     }
 
-    QDirIterator it(QStringLiteral(":/org.kde.kpublictransport/networks"));
+    QDirIterator it(QStringLiteral(":/org.kde.kpublictransport/networks"), QDir::Files);
     while (it.hasNext()) {
         QFile f(it.next());
         if (!f.open(QFile::ReadOnly)) {
