@@ -109,6 +109,14 @@ static void sortJsonArray(QJsonArray &array)
     std::transform(l.begin(), l.end(), std::back_inserter(array), [](const auto &s) { return QJsonValue(s); });
 }
 
+static QByteArray postProcessJson(const QByteArray &data)
+{
+    // truncate floating point numbers
+    auto s = QString::fromUtf8(data);
+    s = s.replace(QRegularExpression(QStringLiteral(R"((?<=[\[,])(-?\d+.\d{3})\d+(?=[,\]]))")), QStringLiteral("\\1"));
+    return s.toUtf8();
+}
+
 
 class TransportApiMerger
 {
@@ -234,16 +242,6 @@ static void postProcessConfig(QJsonObject &top)
     }
 }
 
-static QByteArray postProcessJson(const QByteArray &data)
-{
-    // fold arrays of scalar values into one line
-    auto s = QString::fromUtf8(data);
-    s = s.replace(QRegularExpression(QStringLiteral("\\[\n +(\"[A-Za-z-]+\"|[\\d\\.-]+)")), QStringLiteral("[\\1"));
-    s = s.replace(QRegularExpression(QStringLiteral(",\n +(\"[A-Za-z-]+\"|[\\d\\.-]+)(?=[,\n])")), QStringLiteral(", \\1"));
-    s = s.replace(QRegularExpression(QStringLiteral("(?<![,\\]}])\n +](\n|,\n)")), QStringLiteral("]\\1"));
-    return s.toUtf8();
-}
-
 bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile) const
 {
     const QString kptConfigFile = m_configPath + QLatin1Char('/') + m_configName + QLatin1String(".json");
@@ -276,7 +274,7 @@ bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile) const
         std::cerr << qPrintable(outFile.errorString()) << std::endl;
         return false;
     }
-    outFile.write(postProcessJson(QJsonDocument(outObj).toJson()));
+    outFile.write(QJsonDocument(outObj).toJson());
     return true;
 }
 
