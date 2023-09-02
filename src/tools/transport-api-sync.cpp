@@ -240,6 +240,17 @@ static void postProcessConfig(QJsonObject &top)
     if (!langs.empty()) {
         top.insert(QLatin1String("supportedLanguages"), langs);
     }
+
+    // remove inline areas from coverage data
+    auto coverage = top.take(QLatin1String("coverage")).toObject();
+    for (auto it = coverage.begin(); it != coverage.end(); ++it) {
+        auto cov = it.value().toObject();
+        if (cov.contains(QLatin1String("areaFile")) && cov.contains(QLatin1String("area"))) {
+            cov.remove(QLatin1String("area"));
+        }
+        it.value() = cov;
+    }
+    top.insert(QLatin1String("coverage"), coverage);
 }
 
 bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile) const
