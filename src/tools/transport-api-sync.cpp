@@ -265,54 +265,6 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    // ### temporary to migrate our format closer to the standard format
-#if 0
-    for (QDirIterator it(parser.value(configPathOpt), QDir::Files); it.hasNext();) {
-        const auto fileName = it.next();
-        QFile f(fileName);
-        if (!f.fileName().endsWith(QLatin1String(".json"))) {
-            continue;
-        }
-        if (!f.open(QFile::ReadOnly)) {
-            qWarning() << "Failed to open" << f.fileName() << f.errorString();
-            continue;
-        }
-
-        const auto doc = QJsonDocument::fromJson(f.readAll());
-        auto topObj = doc.object();
-
-        qDebug() << "Updating" << fileName;
-        auto options = topObj.value(QLatin1String("options")).toObject();
-        auto lineModeMap = options.take(QLatin1String("lineModeMap")).toObject();
-        if (lineModeMap.isEmpty()) {
-            continue;
-        }
-
-        std::vector<QJsonObject> products;
-        for (auto it = lineModeMap.begin(); it != lineModeMap.end(); it++) {
-            QJsonArray bitmasks({ it.key().toInt() });
-            QJsonObject product;
-            product.insert(QLatin1String("bitmasks"), bitmasks);
-            product.insert(QLatin1String("mode"), it.value());
-            products.push_back(std::move(product));
-        }
-        std::sort(products.begin(), products.end(), [](const auto &lhs, const auto &rhs) {
-            return lhs.value(QLatin1String("bitmasks")).toArray().at(0).toInt() < rhs.value(QLatin1String("bitmasks")).toArray().at(0).toInt();
-        });
-
-        QJsonArray productsA;
-        std::copy(products.begin(), products.end(), std::back_inserter(productsA));
-
-        options.insert(QLatin1String("products"), std::move(productsA));
-        topObj.insert(QLatin1String("options"), options);
-
-        f.close();
-        f.open(QFile::WriteOnly | QFile::Truncate);
-        f.write(QJsonDocument(topObj).toJson());
-    }
-#endif
-    // ### end temporary migration code
-
     // match our files and the transport api ones
     struct MatchedConfig {
         QString config;
