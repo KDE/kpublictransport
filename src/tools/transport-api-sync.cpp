@@ -109,7 +109,28 @@ static void sortJsonArray(QJsonArray &array)
     std::transform(l.begin(), l.end(), std::back_inserter(array), [](const auto &s) { return QJsonValue(s); });
 }
 
-static void preProcessCoverage(QJsonObject &obj)
+
+class TransportApiMerger
+{
+public:
+    explicit TransportApiMerger(const QString &configPath, const QString &configName);
+    bool applyUpstreamConfig(const QString &apiConfigFile) const;
+
+private:
+    void preProcessConfig(QJsonObject &top) const;
+    void preProcessCoverage(QJsonObject &obj, const QString &coverageType) const;
+
+    QString m_configPath;
+    QString m_configName;
+};
+
+TransportApiMerger::TransportApiMerger(const QString &configPath, const QString &configName)
+    : m_configPath(configPath)
+    , m_configName(configName)
+{
+}
+
+void TransportApiMerger::preProcessCoverage(QJsonObject &obj, const QString &coverageType) const
 {
     // sort country codes
     auto regions = obj.take(QLatin1String("region")).toArray();
@@ -150,11 +171,24 @@ static void preProcessCoverage(QJsonObject &obj)
     }
 
     if (!polys.empty()) {
-        obj.insert(QLatin1String("area"), GeoJson::writePolygons(polys));
+        // if the polygon is too complex, store it in an external file loaded on demand
+        if (polys.size() > 1 || polys[0].size() > 10) {
+            const QString geoJsonFile = m_configName + QLatin1Char('_') + coverageType.chopped(8) + QLatin1String(".geojson");
+            QFile f(m_configPath + QLatin1String("/geometry/") + geoJsonFile);
+            if (!f.open(QFile::WriteOnly)) {
+                qCritical() << f.errorString() << f.fileName();
+                return;
+            }
+
+            f.write(postProcessJson(QJsonDocument(GeoJson::writePolygons(polys)).toJson(QJsonDocument::Compact)));
+            obj.insert(QLatin1String("areaFile"), geoJsonFile);
+        } else {
+            obj.insert(QLatin1String("area"), GeoJson::writePolygons(polys));
+        }
     }
 }
 
-static void preProcessConfig(QJsonObject &top)
+void TransportApiMerger::preProcessConfig(QJsonObject &top) const
 {
     // move translated keys to the location ki18n expects them
     QJsonObject translatedObj;
@@ -184,7 +218,7 @@ static void preProcessConfig(QJsonObject &top)
     auto coverage = top.take(QLatin1String("coverage")).toObject();
     for (auto it = coverage.begin(); it != coverage.end(); ++it) {
         auto cov = it.value().toObject();
-        preProcessCoverage(cov);
+        preProcessCoverage(cov, it.key());
         it.value() = cov;
     }
     top.insert(QLatin1String("coverage"), coverage);
@@ -210,8 +244,9 @@ static QByteArray postProcessJson(const QByteArray &data)
     return s.toUtf8();
 }
 
-static bool applyUpstreamConfig(const QString &kptConfigFile, const QString &apiConfigFile)
+bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile) const
 {
+    const QString kptConfigFile = m_configPath + QLatin1Char('/') + m_configName + QLatin1String(".json");
     qDebug() << "merging" << apiConfigFile << kptConfigFile;
     QFile inFile(apiConfigFile);
     if (!inFile.open(QFile::ReadOnly)) {
@@ -342,7 +377,8 @@ int main(int argc, char **argv)
             continue;
         }
 
-        if (!applyUpstreamConfig(parser.value(configPathOpt) + QLatin1Char('/') + c.config + QLatin1String(".json"), c.apiConfigs[0])) {
+        TransportApiMerger merger(parser.value(configPathOpt), c.config);
+        if (!merger.applyUpstreamConfig(c.apiConfigs[0])) {
             return -1;
         }
     }
