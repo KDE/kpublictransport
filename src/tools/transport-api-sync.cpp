@@ -122,14 +122,18 @@ class TransportApiMerger
 {
 public:
     explicit TransportApiMerger(const QString &configPath, const QString &configName);
-    bool applyUpstreamConfig(const QString &apiConfigFile) const;
+    bool applyUpstreamConfig(const QString &apiConfigFile);
+    inline QStringList geometryFiles() const {
+        return m_geometryFiles;
+    }
 
 private:
-    void preProcessConfig(QJsonObject &top) const;
-    void preProcessCoverage(QJsonObject &obj, const QString &coverageType) const;
+    void preProcessConfig(QJsonObject &top);
+    void preProcessCoverage(QJsonObject &obj, const QString &coverageType);
 
     QString m_configPath;
     QString m_configName;
+    QStringList m_geometryFiles;
 };
 
 TransportApiMerger::TransportApiMerger(const QString &configPath, const QString &configName)
@@ -138,7 +142,7 @@ TransportApiMerger::TransportApiMerger(const QString &configPath, const QString 
 {
 }
 
-void TransportApiMerger::preProcessCoverage(QJsonObject &obj, const QString &coverageType) const
+void TransportApiMerger::preProcessCoverage(QJsonObject &obj, const QString &coverageType)
 {
     // sort country codes
     auto regions = obj.take(QLatin1String("region")).toArray();
@@ -190,13 +194,14 @@ void TransportApiMerger::preProcessCoverage(QJsonObject &obj, const QString &cov
 
             f.write(postProcessJson(QJsonDocument(GeoJson::writePolygons(polys)).toJson(QJsonDocument::Compact)));
             obj.insert(QLatin1String("areaFile"), geoJsonFile);
+            m_geometryFiles.push_back(geoJsonFile);
         } else {
             obj.insert(QLatin1String("area"), GeoJson::writePolygons(polys));
         }
     }
 }
 
-void TransportApiMerger::preProcessConfig(QJsonObject &top) const
+void TransportApiMerger::preProcessConfig(QJsonObject &top)
 {
     // move translated keys to the location ki18n expects them
     QJsonObject translatedObj;
@@ -253,7 +258,7 @@ static void postProcessConfig(QJsonObject &top)
     top.insert(QLatin1String("coverage"), coverage);
 }
 
-bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile) const
+bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile)
 {
     const QString kptConfigFile = m_configPath + QLatin1Char('/') + m_configName + QLatin1String(".json");
     qDebug() << "merging" << apiConfigFile << kptConfigFile;
@@ -287,6 +292,31 @@ bool TransportApiMerger::applyUpstreamConfig(const QString &apiConfigFile) const
     }
     outFile.write(QJsonDocument(outObj).toJson());
     return true;
+}
+
+static void writeGeometryQrcFile(const QString &configPath, const QStringList &geometryFiles)
+{
+    QFile f(configPath + QLatin1String("/geometry/geometry.qrc"));
+    if (!f.open(QFile::WriteOnly)) {
+        qCritical() << f.errorString() << f.fileName();
+        return;
+    }
+
+    f.write(R"(<!--
+    SPDX-FileCopyrightText: auto-generated
+    SPDX-License-Identifier: CC0-1.0
+-->
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport/networks/geometry/">
+)");
+    for (const auto &g : geometryFiles) {
+        f.write("        <file>");
+        f.write(g.toUtf8());
+        f.write("</file>\n");
+    }
+    f.write(R"(    </qresource>
+</RCC>
+)");
 }
 
 /** Sync network configurations with upstream transport API repository. */
@@ -375,6 +405,7 @@ int main(int argc, char **argv)
         return lhs.config < rhs.config;
     });
 
+    QStringList geometryFiles;
     for (const auto &c : configs) {
         if (c.apiConfigs.empty()) {
             qDebug() << "  " << c.config << "is missing upstream";
@@ -390,5 +421,9 @@ int main(int argc, char **argv)
         if (!merger.applyUpstreamConfig(c.apiConfigs[0])) {
             return -1;
         }
+        geometryFiles.append(merger.geometryFiles());
     }
+
+    std::sort(geometryFiles.begin(), geometryFiles.end());
+    writeGeometryQrcFile(parser.value(configPathOpt), geometryFiles);
 }
