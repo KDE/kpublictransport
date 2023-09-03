@@ -1,0 +1,11 @@
+<!--
+    SPDX-FileCopyrightText: auto-generated
+    SPDX-License-Identifier: CC0-1.0
+-->
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport/networks/geometry/">
+        <file>at_oebb_any.geojson</file>
+        <file>at_oebb_realtime.geojson</file>
+        <file>at_oebb_regular.geojson</file>
+    </qresource>
+</RCC>

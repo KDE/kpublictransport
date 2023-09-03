@@ -121,6 +121,7 @@ target_sources(KPublicTransport PRIVATE
 
     networks/networks.qrc
     networks/certs/network_certs.qrc
+    networks/geometry/geometry.qrc
 
     uic/uicrailwaycoach.cpp
     uic/uicstationcode.cpp
