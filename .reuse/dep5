@@ -7,7 +7,7 @@ Files: autotests/data/departures/* autotests/data/deutschebahn/* autotests/data/
 Copyright: none
 License: CC0-1.0
 
-Files: src/lib/networks/*.json
+Files: src/lib/networks/*.json src/lib/networks/geometry/*.geojson
 Copyright: none
 License: CC0-1.0
 
