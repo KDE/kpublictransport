@@ -445,7 +445,7 @@ QJsonObject Location::toJson(const Location &loc)
 {
     auto obj = Json::toJson(loc);
     if (loc.timeZone().isValid()) {
-        obj.insert(QStringLiteral("timezone"), QString::fromUtf8(loc.timeZone().id()));
+        obj.insert(QLatin1String("timezone"), QString::fromUtf8(loc.timeZone().id()));
     }
 
     if (!loc.d->ids.isEmpty()) {
@@ -453,7 +453,7 @@ QJsonObject Location::toJson(const Location &loc)
         for (auto it = loc.d->ids.constBegin(); it != loc.d->ids.constEnd(); ++it) {
             ids.insert(it.key(), it.value());
         }
-        obj.insert(QStringLiteral("identifier"), ids);
+        obj.insert(QLatin1String("identifier"), ids);
     }
 
     switch (loc.type()) {
@@ -464,13 +464,13 @@ QJsonObject Location::toJson(const Location &loc)
         case CarpoolPickupDropoff:
             break;
         case RentedVehicleStation:
-            obj.insert(QStringLiteral("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
+            obj.insert(QLatin1String("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
             break;
         case RentedVehicle:
-            obj.insert(QStringLiteral("rentalVehicle"), RentalVehicle::toJson(loc.rentalVehicle()));
+            obj.insert(QLatin1String("rentalVehicle"), RentalVehicle::toJson(loc.rentalVehicle()));
             break;
         case Equipment:
-            obj.insert(QStringLiteral("equipment"), Equipment::toJson(loc.equipment()));
+            obj.insert(QLatin1String("equipment"), Equipment::toJson(loc.equipment()));
             break;
     }
 

@@ -171,7 +171,7 @@ QJsonObject RentalVehicleStation::toJson(const RentalVehicleStation &station)
 {
     auto obj = Json::toJson(station);
     if (station.network().isValid()) {
-        obj.insert(QStringLiteral("network"), RentalVehicleNetwork::toJson(station.network()));
+        obj.insert(QLatin1String("network"), RentalVehicleNetwork::toJson(station.network()));
     }
     auto v = typeVectorToJson(station.d->capacities);
     if (v.isObject()) {

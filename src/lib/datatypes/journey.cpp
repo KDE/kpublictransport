@@ -736,7 +736,7 @@ Journey Journey::merge(const Journey &lhs, const Journey &rhs)
 QJsonObject Journey::toJson(const Journey &journey)
 {
     QJsonObject obj;
-    obj.insert(QStringLiteral("sections"), JourneySection::toJson(journey.sections()));
+    obj.insert(QLatin1String("sections"), JourneySection::toJson(journey.sections()));
     return obj;
 }
 

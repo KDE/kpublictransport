@@ -205,7 +205,7 @@ QJsonObject Vehicle::toJson(const Vehicle &vehicle)
 {
     auto obj = Json::toJson(vehicle);
     if (!vehicle.sections().empty()) {
-        obj.insert(QStringLiteral("sections"), VehicleSection::toJson(vehicle.sections()));
+        obj.insert(QLatin1String("sections"), VehicleSection::toJson(vehicle.sections()));
     }
     return obj;
 }

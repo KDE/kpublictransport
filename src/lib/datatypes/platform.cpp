@@ -100,7 +100,7 @@ QJsonObject Platform::toJson(const Platform &platform)
 {
     auto obj = Json::toJson(platform);
     if (!platform.sections().empty()) {
-        obj.insert(QStringLiteral("sections"), PlatformSection::toJson(platform.sections()));
+        obj.insert(QLatin1String("sections"), PlatformSection::toJson(platform.sections()));
     }
     return obj;
 }

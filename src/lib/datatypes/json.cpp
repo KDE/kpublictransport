@@ -75,8 +75,8 @@ static QJsonValue variantToJson(const QVariant &v)
             }
             if (dt.timeSpec() == Qt::TimeZone) {
                 QJsonObject dtObj;
-                dtObj.insert(QStringLiteral("value"), dt.toString(Qt::ISODate));
-                dtObj.insert(QStringLiteral("timezone"), QString::fromUtf8(dt.timeZone().id()));
+                dtObj.insert(QLatin1String("value"), dt.toString(Qt::ISODate));
+                dtObj.insert(QLatin1String("timezone"), QString::fromUtf8(dt.timeZone().id()));
                 return dtObj;
             }
             return v.toDateTime().toString(Qt::ISODate);
@@ -90,10 +90,10 @@ static QJsonValue variantToJson(const QVariant &v)
         {
             const auto r = v.toRectF();
             QJsonObject obj;
-            obj.insert(QStringLiteral("x1"), r.topLeft().x());
-            obj.insert(QStringLiteral("y1"), r.topLeft().y());
-            obj.insert(QStringLiteral("x2"), r.bottomRight().x());
-            obj.insert(QStringLiteral("y2"), r.bottomRight().y());
+            obj.insert(QLatin1String("x1"), r.topLeft().x());
+            obj.insert(QLatin1String("y1"), r.topLeft().y());
+            obj.insert(QLatin1String("x2"), r.bottomRight().x());
+            obj.insert(QLatin1String("y2"), r.bottomRight().y());
             return obj;
         }
         case QMetaType::QColor:

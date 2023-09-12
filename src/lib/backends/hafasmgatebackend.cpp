@@ -79,16 +79,16 @@ QJsonObject HafasMgateBackend::locationToJson(const Location &loc) const
 
     const auto id = locationIdentifier(loc);
     if (!id.isEmpty()) {
-        obj.insert(QStringLiteral("extId"), id);
-        obj.insert(QStringLiteral("type"), QStringLiteral("S")); // 'S' == station
+        obj.insert(QLatin1String("extId"), id);
+        obj.insert(QLatin1String("type"), QLatin1String("S")); // 'S' == station
     }
 
     else if (loc.hasCoordinate()) {
         QJsonObject crd;
-        crd.insert(QStringLiteral("y"), (int)(loc.latitude() * 1000000));
-        crd.insert(QStringLiteral("x"), (int)(loc.longitude() * 1000000));
-        obj.insert(QStringLiteral("crd"), crd);
-        obj.insert(QStringLiteral("type"), QStringLiteral("C")); // 'C' == coordinate
+        crd.insert(QLatin1String("y"), (int)(loc.latitude() * 1000000));
+        crd.insert(QLatin1String("x"), (int)(loc.longitude() * 1000000));
+        obj.insert(QLatin1String("crd"), crd);
+        obj.insert(QLatin1String("type"), QLatin1String("C")); // 'C' == coordinate
     }
 
     return obj;
@@ -103,7 +103,7 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
     QJsonObject tripSearch;
     {
         QJsonObject cfg;
-        cfg.insert(QStringLiteral("polyEnc"), QLatin1String("GPA"));
+        cfg.insert(QLatin1String("polyEnc"), QLatin1String("GPA"));
 
         const auto depLoc = locationToJson(request.from());
         const auto arrLoc = locationToJson(request.to());
@@ -116,27 +116,27 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
         arrLocL.push_back(arrLoc);
 
         QJsonObject req;
-        req.insert(QStringLiteral("arrLocL"), arrLocL);
-        req.insert(QStringLiteral("depLocL"), depLocL);
-        req.insert(QStringLiteral("extChgTime"), -1);
-        req.insert(QStringLiteral("getEco"), false);
-        req.insert(QStringLiteral("getIST"), false);
-        req.insert(QStringLiteral("getPasslist"), request.includeIntermediateStops());
-        req.insert(QStringLiteral("getPolyline"), request.includePaths());
-        req.insert(QStringLiteral("getSimpleTrainComposition"), true);
-        req.insert(QStringLiteral("getTrainComposition"), true);
-        req.insert(QStringLiteral("numF"), request.maximumResults());
+        req.insert(QLatin1String("arrLocL"), arrLocL);
+        req.insert(QLatin1String("depLocL"), depLocL);
+        req.insert(QLatin1String("extChgTime"), -1);
+        req.insert(QLatin1String("getEco"), false);
+        req.insert(QLatin1String("getIST"), false);
+        req.insert(QLatin1String("getPasslist"), request.includeIntermediateStops());
+        req.insert(QLatin1String("getPolyline"), request.includePaths());
+        req.insert(QLatin1String("getSimpleTrainComposition"), true);
+        req.insert(QLatin1String("getTrainComposition"), true);
+        req.insert(QLatin1String("numF"), request.maximumResults());
 
         QDateTime dt = request.dateTime();
         if (timeZone().isValid()) {
             dt = dt.toTimeZone(timeZone());
         }
-        req.insert(QStringLiteral("outDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
-        req.insert(QStringLiteral("outTime"), dt.time().toString(QStringLiteral("hhmmss")));
-        req.insert(QStringLiteral("outFrwd"), request.dateTimeMode() == JourneyRequest::Departure);
+        req.insert(QLatin1String("outDate"), dt.date().toString(QStringLiteral("yyyyMMdd")));
+        req.insert(QLatin1String("outTime"), dt.time().toString(QStringLiteral("hhmmss")));
+        req.insert(QLatin1String("outFrwd"), request.dateTimeMode() == JourneyRequest::Departure);
         const auto ctxSrc = requestContextData(request).toString();
         if (!ctxSrc.isEmpty()) {
-            req.insert(QStringLiteral("ctxScr"), ctxSrc);
+            req.insert(QLatin1String("ctxScr"), ctxSrc);
         }
 
         QJsonArray jnyFltrL;
@@ -156,9 +156,9 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
             req.insert(QLatin1String("jnyFltrL"),  jnyFltrL);
         }
 
-        tripSearch.insert(QStringLiteral("cfg"), cfg);
-        tripSearch.insert(QStringLiteral("meth"), QLatin1String("TripSearch"));
-        tripSearch.insert(QStringLiteral("req"), req);
+        tripSearch.insert(QLatin1String("cfg"), cfg);
+        tripSearch.insert(QLatin1String("meth"), QLatin1String("TripSearch"));
+        tripSearch.insert(QLatin1String("req"), req);
     }
 
     QByteArray postData;
@@ -209,20 +209,20 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
     QJsonObject stationBoard;
     {
         QJsonObject req;
-        req.insert(QStringLiteral("date"), dt.toString(QStringLiteral("yyyyMMdd")));
+        req.insert(QLatin1String("date"), dt.toString(QStringLiteral("yyyyMMdd")));
         if (ctx.duration > 0) {
-            req.insert(QStringLiteral("dur"), QString::number(ctx.duration));
+            req.insert(QLatin1String("dur"), QString::number(ctx.duration));
         } else {
-            req.insert(QStringLiteral("maxJny"), request.maximumResults());
+            req.insert(QLatin1String("maxJny"), request.maximumResults());
         }
         // stbFltrEquiv is no longer allowed above API version 1.20
         if (QVersionNumber::fromString(m_version) < QVersionNumber(1, 20)) {
-            req.insert(QStringLiteral("stbFltrEquiv"), true);
+            req.insert(QLatin1String("stbFltrEquiv"), true);
         }
 
-        req.insert(QStringLiteral("stbLoc"), stbLoc);
-        req.insert(QStringLiteral("time"), dt.toString(QStringLiteral("hhmmss")));
-        req.insert(QStringLiteral("type"), request.mode() == StopoverRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
+        req.insert(QLatin1String("stbLoc"), stbLoc);
+        req.insert(QLatin1String("time"), dt.toString(QStringLiteral("hhmmss")));
+        req.insert(QLatin1String("type"), request.mode() == StopoverRequest::QueryDeparture ? QLatin1String("DEP") : QLatin1String("ARR"));
 
         QJsonArray jnyFltrL;
         addLineModeJourneyFilter(request.lineModes(), jnyFltrL);
@@ -230,8 +230,8 @@ bool HafasMgateBackend::queryStopover(const StopoverRequest &request, StopoverRe
             req.insert(QLatin1String("jnyFltrL"),  jnyFltrL);
         }
 
-        stationBoard.insert(QStringLiteral("meth"), QLatin1String("StationBoard"));
-        stationBoard.insert(QStringLiteral("req"), req);
+        stationBoard.insert(QLatin1String("meth"), QLatin1String("StationBoard"));
+        stationBoard.insert(QLatin1String("req"), req);
     }
 
     QByteArray postData;
@@ -278,37 +278,37 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
     QJsonObject methodObj;
     if (req.hasCoordinate()) {
         QJsonObject coord;
-        coord.insert(QStringLiteral("x"), (int)(req.longitude() * 1000000));
-        coord.insert(QStringLiteral("y"), (int)(req.latitude() * 1000000));
+        coord.insert(QLatin1String("x"), (int)(req.longitude() * 1000000));
+        coord.insert(QLatin1String("y"), (int)(req.latitude() * 1000000));
         QJsonObject ring;
-        ring.insert(QStringLiteral("cCrd"), coord);
-        ring.insert(QStringLiteral("maxDist"), std::max(1, req.maximumDistance()));
+        ring.insert(QLatin1String("cCrd"), coord);
+        ring.insert(QLatin1String("maxDist"), std::max(1, req.maximumDistance()));
 
         QJsonObject reqObj;
-        reqObj.insert(QStringLiteral("ring"), ring);
+        reqObj.insert(QLatin1String("ring"), ring);
         // ### make this configurable in LocationRequest
-        reqObj.insert(QStringLiteral("getStops"), true);
-        reqObj.insert(QStringLiteral("getPOIs"), false);
-        reqObj.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
+        reqObj.insert(QLatin1String("getStops"), true);
+        reqObj.insert(QLatin1String("getPOIs"), false);
+        reqObj.insert(QLatin1String("maxLoc"), std::max(1, req.maximumResults()));
 
-        methodObj.insert(QStringLiteral("meth"), QLatin1String("LocGeoPos"));
-        methodObj.insert(QStringLiteral("req"), reqObj);
+        methodObj.insert(QLatin1String("meth"), QLatin1String("LocGeoPos"));
+        methodObj.insert(QLatin1String("req"), reqObj);
 
     } else if (!req.name().isEmpty()) {
         QJsonObject loc;
-        loc.insert(QStringLiteral("name"), req.name()); // + '?' for auto completion search?
-        loc.insert(QStringLiteral("type"), QLatin1String("S")); // station: S, address: A, POI: P
+        loc.insert(QLatin1String("name"), req.name()); // + '?' for auto completion search?
+        loc.insert(QLatin1String("type"), QLatin1String("S")); // station: S, address: A, POI: P
 
         QJsonObject input;
-        input.insert(QStringLiteral("field"), QLatin1String("S"));
-        input.insert(QStringLiteral("loc"), loc);
-        input.insert(QStringLiteral("maxLoc"), std::max(1, req.maximumResults()));
+        input.insert(QLatin1String("field"), QLatin1String("S"));
+        input.insert(QLatin1String("loc"), loc);
+        input.insert(QLatin1String("maxLoc"), std::max(1, req.maximumResults()));
 
         QJsonObject reqObj;
-        reqObj.insert(QStringLiteral("input"), input);
+        reqObj.insert(QLatin1String("input"), input);
 
-        methodObj.insert(QStringLiteral("meth"), QLatin1String("LocMatch"));
-        methodObj.insert(QStringLiteral("req"), reqObj);
+        methodObj.insert(QLatin1String("meth"), QLatin1String("LocMatch"));
+        methodObj.insert(QLatin1String("req"), reqObj);
 
     } else {
         return false;
@@ -350,18 +350,18 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
 QNetworkRequest HafasMgateBackend::makePostRequest(const QJsonObject &svcReq, QByteArray &postData) const
 {
     QJsonObject top;
-    top.insert(QStringLiteral("auth"), m_auth);
-    top.insert(QStringLiteral("client"), m_client);
+    top.insert(QLatin1String("auth"), m_auth);
+    top.insert(QLatin1String("client"), m_client);
     if (!m_extParam.isEmpty()) {
-        top.insert(QStringLiteral("ext"), m_extParam);
+        top.insert(QLatin1String("ext"), m_extParam);
     }
-    top.insert(QStringLiteral("formatted"), false);
-    top.insert(QStringLiteral("lang"), preferredLanguage());
-    top.insert(QStringLiteral("ver"), m_version);
+    top.insert(QLatin1String("formatted"), false);
+    top.insert(QLatin1String("lang"), preferredLanguage());
+    top.insert(QLatin1String("ver"), m_version);
 
     QJsonArray svcReqs;
     svcReqs.push_back(svcReq);
-    top.insert(QStringLiteral("svcReqL"), svcReqs);
+    top.insert(QLatin1String("svcReqL"), svcReqs);
 
     postData = QJsonDocument(top).toJson(QJsonDocument::Compact);
     QUrl url(m_endpoint);

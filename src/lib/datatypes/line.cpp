@@ -209,10 +209,10 @@ QJsonObject Route::toJson(const Route &r)
     auto obj = Json::toJson(r);
     const auto lineObj = Line::toJson(r.line());
     if (!lineObj.empty()) {
-        obj.insert(QStringLiteral("line"), lineObj);
+        obj.insert(QLatin1String("line"), lineObj);
     }
     if (!r.destination().isEmpty()) {
-        obj.insert(QStringLiteral("destination"), Location::toJson(r.destination()));
+        obj.insert(QLatin1String("destination"), Location::toJson(r.destination()));
     }
     return obj;
 }

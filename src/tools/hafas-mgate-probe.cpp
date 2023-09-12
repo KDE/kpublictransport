@@ -61,8 +61,8 @@ int main(int argc, char **argv)
         QJsonObject req;
         req.insert(QLatin1String("getConGroups"), true);
         QJsonObject serverInfo;
-        serverInfo.insert(QStringLiteral("meth"), QLatin1String("ServerInfo"));
-        serverInfo.insert(QStringLiteral("req"), req);
+        serverInfo.insert(QLatin1String("meth"), QLatin1String("ServerInfo"));
+        serverInfo.insert(QLatin1String("req"), req);
 
         QByteArray postData;
         const auto netReq = impl->makePostRequest(serverInfo, postData);

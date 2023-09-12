@@ -118,7 +118,7 @@ QString LocationRequest::cacheKey() const
 QJsonObject LocationRequest::toJson(const LocationRequest &req)
 {
     auto obj = Json::toJson(req);
-    obj.insert(QStringLiteral("location"), Location::toJson(req.location()));
+    obj.insert(QLatin1String("location"), Location::toJson(req.location()));
     return obj;
 }
 

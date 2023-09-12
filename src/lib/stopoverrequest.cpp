@@ -132,7 +132,7 @@ void StopoverRequest::purgeLoops(const StopoverRequest &baseRequest)
 QJsonObject StopoverRequest::toJson(const StopoverRequest &req)
 {
     auto obj = Json::toJson(req);
-    obj.insert(QStringLiteral("stop"), Location::toJson(req.stop()));
+    obj.insert(QLatin1String("stop"), Location::toJson(req.stop()));
     return obj;
 }
 
