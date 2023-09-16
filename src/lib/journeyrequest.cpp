@@ -154,7 +154,9 @@ static QVariantList toVariantList(const std::vector<T> &v)
 {
     QVariantList l;
     l.reserve(v.size());
-    std::transform(v.begin(), v.end(), std::back_inserter(l), &QVariant::fromValue<T>);
+    std::transform(v.begin(), v.end(), std::back_inserter(l), [](const T &value) {
+        return QVariant::fromValue<T>(value);
+    });
     return l;
 }
 

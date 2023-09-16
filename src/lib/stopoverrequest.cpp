@@ -83,7 +83,9 @@ QVariantList StopoverRequest::lineModesVariant() const
 {
     QVariantList l;
     l.reserve(d->lineModes.size());
-    std::transform(d->lineModes.begin(), d->lineModes.end(), std::back_inserter(l), &QVariant::fromValue<Line::Mode>);
+    std::transform(d->lineModes.begin(), d->lineModes.end(), std::back_inserter(l), [](const Line::Mode &value) {
+        return QVariant::fromValue<Line::Mode>(value);
+    });
     return l;
 }
 
