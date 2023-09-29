@@ -67,7 +67,7 @@ ecm_generate_headers(KPublicTransportOnboard_FORWARDING_HEADERS
     HEADER_NAMES
         OnboardStatus
     PREFIX KPublicTransport
-    REQUIRED_HEADERS KPublicTransportOnbard_HEADERS
+    REQUIRED_HEADERS KPublicTransportOnboard_HEADERS
 )
 install(TARGETS KPublicTransportOnboard EXPORT KPublicTransportTargets ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ecm_qt_install_logging_categories(
