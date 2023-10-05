@@ -216,7 +216,7 @@ bool NavitiaBackend::queryLocation(const LocationRequest &req, LocationReply *re
     query.addQueryItem(QStringLiteral("depth"), QStringLiteral("1")); // 1 so administrative region elements are included
     query.addQueryItem(QStringLiteral("count"), QString::number(std::max(1, req.maximumResults())));
     if (req.types() & Location::Stop) {
-        query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_area"));
+        query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("stop_point"));
     }
     if (req.types() & Location::RentedVehicleStation) {
         query.addQueryItem(QStringLiteral("type[]"), QStringLiteral("poi"));
