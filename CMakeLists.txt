@@ -45,9 +45,6 @@ endif()
 
 find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Quick)
 
-if (QT_MAJOR_VERSION STREQUAL 6)
-    find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Core5Compat)
-endif()
 if (QT_MAJOR_VERSION EQUAL "5" AND ANDROID)
     find_package(Qt5 5.15 REQUIRED COMPONENTS AndroidExtras)
 endif()

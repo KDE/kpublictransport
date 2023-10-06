@@ -152,10 +152,6 @@ target_link_libraries(KPublicTransport
         ZLIB::ZLIB
 )
 
-if (TARGET Qt6::Core5Compat)
-    target_link_libraries(KPublicTransport PRIVATE Qt6::Core5Compat) # QTextCodec
-endif()
-
 ecm_generate_headers(KPublicTransport_FORWARDING_HEADERS
     HEADER_NAMES
         JourneyReply

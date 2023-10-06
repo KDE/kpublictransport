@@ -7,7 +7,11 @@
 #ifndef KPUBLICTRANSPORT_HAFASJOURNEYRESPONSE_P_H
 #define KPUBLICTRANSPORT_HAFASJOURNEYRESPONSE_P_H
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <QTextCodec>
+#else
+#include <QStringDecoder>
+#endif
 
 #include <cstdint>
 
@@ -241,18 +245,30 @@ public:
     explicit inline HafasJourneyResponseStringTable(const QByteArray &data, uint32_t stringTableOffset, uint16_t codecIdx) :
         m_data(data.constData() + stringTableOffset)
     {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         m_codec = QTextCodec::codecForName(QByteArray(m_data + codecIdx));
+#else
+        m_codec = QStringDecoder(QByteArray(m_data + codecIdx).constData());
+#endif
     }
 
     inline QString lookup(uint16_t index)
     {
         // null terminated strings in the given codec
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         return m_codec->toUnicode(m_data + index);
+#else
+        return m_codec.decode(m_data + index);
+#endif
     }
 
 private:
     const char *m_data;
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QTextCodec* m_codec;
+#else
+    QStringDecoder m_codec;
+#endif
 };
 
 namespace HafasJourneyResponse {
