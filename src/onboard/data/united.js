@@ -4,13 +4,12 @@
 */
 
 function parseDateTime(s) {
-    if (!s) { return undefined; }
-    const r = s.match(/(\d+ [A-Z][a-z]+ \d+) (\d+):(\d\d) (AM|PM)/);
+   const r = s.match(/(\d+ [A-Z][a-z]+ \d+) (\d+):(\d\d) (AM|PM)/);
     let dt = new Date(Date.parse(r[1] + ' ' + (r[2].length == 1 ? '0' : '') + r[2] + ':' + r[3]));
     if (r[4] == 'PM') {
         dt.setHours(dt.getHours() + 12);
     }
-    return dt.toJSON().substr(0, 18);
+    return dt.toJSON().substr(0, 19);
 }
 
 function parseJourney(response)
@@ -32,12 +31,11 @@ function parseJourney(response)
             name = response.flifo.destinationCity
         },
         scheduledArrivalTime: parseDateTime(response.flifo.scheduledArrivalTimeLocal),
-        expectedArrivalTime: parseDateTime(response.flifo.expectedArrivalTime), // also: actualArrivalTime
+        expectedArrivalTime: parseDateTime(response.flifo.estimatedArrivalTimeLocal), // also: actualArrivalTime
         scheduledDepartureTime: parseDateTime(response.flifo.scheduledDepartureTimeLocal),
-        expectedDepartureTime: parseDateTime(response.flifo.actualDepartureTimeLocal), // also: expectedDepartureTime
+        expectedDepartureTime: parseDateTime(response.flifo.actualDepartureTimeLocal), // also: estimatedDepartureTime
         schedluedDeparturePlatform: response.flifo.departureGate,
         scheduledArrivalPlatform: response.flifo.arrivalGate
     };
-    console.log(parseDateTime(response.flifo.actualDepartureTimeLocal), response.flifo.actualDepartureTimeLocal);
     return { sections = [section] };
 }
