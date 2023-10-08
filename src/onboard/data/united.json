@@ -1,0 +1,8 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "united.js",
+        "journeyEndpoint": "https://www.unitedwifi.com/portal/r/getAllSessionData",
+        "journeyFunction": "parseJourney"
+    }
+}

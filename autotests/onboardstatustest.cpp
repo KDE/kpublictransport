@@ -63,9 +63,10 @@ private Q_SLOTS:
         QTest::newRow("oebb-railnetregio") << s("oebb") << s("oebb-railnetregio.json") << 48.1459f << 16.4267f << 37.325f  << NAN << NAN;
 
         QTest::newRow("ana") << s("panasonic-inflight-v1") << s("../onboard-journey/ana.in.json") << 39.3520f << 141.077f << 801.916f << 191.0f << 9753.91f;
-        QTest::newRow("united") << s("panasonic-inflight-v1") << s("../onboard-journey/united.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f << 10668.6f;
+        QTest::newRow("united-panasonic") << s("panasonic-inflight-v1") << s("../onboard-journey/united-panasonic.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f << 10668.6f;
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("../onboard-journey/cathay-pacific.in.json") << 23.198333f << 118.836667f << 755.616f << 231.0f << 12187.7f;
         QTest::newRow("aegean") << s("aegean") << s("aegean.json") << 47.96723323f << 11.781437752f << 1007.0f << 137.0f << 7328.0f;
+        QTest::newRow("lufthansa") << s("lufthansa") << s("../onboard-journey/lufthansa.in.json") << 51.9423f << 12.4496f << 718.576f << -120.785f << 6491.63f;
     }
 
     void testScriptedPositionParsers()
@@ -115,8 +116,10 @@ private Q_SLOTS:
         QTest::newRow("oebb-railnet") << s("oebb") << s("oebb-railnet");
 
         QTest::newRow("ana") << s("panasonic-inflight-v1") << s("ana");
-        QTest::newRow("united") << s("panasonic-inflight-v1") << s("united");
+        QTest::newRow("unite-panasonic") << s("panasonic-inflight-v1") << s("united-panasonic");
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("cathay-pacific");
+        QTest::newRow("lufthansa") << s("lufthansa") << s("lufthansa");
+        QTest::newRow("united") << s("united") << s("united");
     }
 
     void testScriptedJourneyParsers()

@@ -8,12 +8,17 @@
     { "ssid": "FlixBus", "id": "flixbus" },
     { "ssid": "FlixBus Wi-Fi", "id": "flixbus" },
     { "ssid": "FlixTrain Wi-Fi", "id": "flixbus" },
+    { "ssid": "FlyNet", "id": "lufthansa" },
     { "ssid": "MAVSTART-WIFI", "id": "mav" },
     { "ssid": "OEBB", "id": "oebb" },
     { "ssid": "SBB-Free", "id": "sbb" },
     { "ssid": "SJ", "id": "icomera-omboard" },
+    { "ssid": "Telekom_FlyNet", "id": "panasonic-inflight-v2" },
     { "ssid": "THALYSNET", "id": "icomera-omboard" },
+    { "ssid": "United_Wi-Fi", "id": "panasonic-inflight-v1" },
+    { "ssid": "Unitedwifi.com", "id": "united" },
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "wififrecceplus2", "id": "icomera-omboard" },
-    { "ssid": "WIFIonICE", "id": "deutschebahn-ice" }
+    { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
+    { "ssid": "[Ana-WiFi-Service]", "id": "panasonic-inflight-v1" }
 ]

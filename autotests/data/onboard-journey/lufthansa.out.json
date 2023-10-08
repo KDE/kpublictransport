@@ -1,0 +1,32 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 430617,
+            "from": {
+                "identifier": {
+                    "iata": "BER"
+                },
+                "latitude": 52.364044189453125,
+                "longitude": 13.50899887084961,
+                "name": "BER"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "Air",
+                    "name": "LH0001"
+                }
+            },
+            "scheduledArrivalTime": "2023-10-07T16:08:00+02:00",
+            "to": {
+                "identifier": {
+                    "iata": "FRA"
+                },
+                "latitude": 50.03333282470703,
+                "longitude": 8.570555686950684,
+                "name": "FRA"
+            }
+        }
+    ]
+}

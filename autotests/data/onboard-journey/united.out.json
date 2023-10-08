@@ -2,31 +2,29 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 9040971,
+            "distance": 0,
+            "expectedDepartureTime": "2023-10-07T19:37:00",
             "from": {
                 "identifier": {
-                    "iata": "LHR",
-                    "icao": "EGLL"
+                    "iata": "FRA"
                 },
-                "latitude": 51.279998779296875,
-                "longitude": -0.26499998569488525,
-                "name": "LHR"
+                "name": "Frankfurt, DE (FRA)"
             },
             "mode": "PublicTransport",
             "route": {
                 "line": {
                     "mode": "Air",
-                    "name": "VIR601 "
+                    "name": "927"
                 }
             },
+            "scheduledArrivalPlatform": "G9",
+            "scheduledArrivalTime": "2023-10-07T20:00:00",
+            "scheduledDepartureTime": "2023-10-07T17:30:00",
             "to": {
                 "identifier": {
-                    "iata": "JNB",
-                    "icao": "FAOR"
+                    "iata": "SFO"
                 },
-                "latitude": -26.082000732421875,
-                "longitude": 28.143999099731445,
-                "name": "JNB"
+                "name": "San Francisco, CA, US (SFO)"
             }
         }
     ]

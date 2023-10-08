@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "lufthansa.js",
+        "positionEndpoint": "https://ww2.lufthansa-flynet.com/fapi/flightData",
+        "positionFunction": "parsePosition",
+        "journeyEndpoint": "https://ww2.lufthansa-flynet.com/fapi/flightData",
+        "journeyFunction": "parseJourney"
+    }
+}
