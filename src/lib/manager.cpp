@@ -801,7 +801,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
                         reply->addResult(cache.data[0]);
                         break;
                     }
-                    Q_FALLTHROUGH();
+                    [[fallthrough]];
                 case CacheHitType::Miss:
                     qCDebug(Log) << "Cache miss for backend" << backend.identifier();
                     if (BackendPrivate::impl(backend)->queryVehicleLayout(req, reply, d->nam())) {
