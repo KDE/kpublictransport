@@ -21,3 +21,4 @@ src/coverage/10m_cultural
 .cache
 .idea
 /cmake-build*
+/build*
