@@ -71,7 +71,7 @@ static Location parseLocation(const QJsonObject &obj)
     if (codes.empty()) {
         codes = obj.value(QLatin1String("stop_area")).toObject().value(QLatin1String("codes")).toArray();
     }
-    for (const auto &codeV : qAsConst(codes)) {
+    for (const auto &codeV : std::as_const(codes)) {
         const auto code = codeV.toObject();
         if (code.value(QLatin1String("type")).toString() == QLatin1String("UIC8")) {
             loc.setIdentifier(QStringLiteral("uic"), code.value(QLatin1String("value")).toString().left(7));

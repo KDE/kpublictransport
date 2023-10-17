@@ -58,7 +58,7 @@ private Q_SLOTS:
         QCOMPARE(sec.notes(), res);
 
         Stopover dep;
-        for (const auto &note : qAsConst(in))
+        for (const auto &note : std::as_const(in))
             dep.addNote(note);
         QCOMPARE(dep.notes(), res);
     }

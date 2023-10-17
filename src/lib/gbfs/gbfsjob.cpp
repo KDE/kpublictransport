@@ -135,7 +135,7 @@ void GBFSJob::processFeeds()
 {
     bool proccedAtLeastOneFeed = false;
     const auto state = m_state; // can change as result of processing
-    for (const auto &feedVal : qAsConst(m_feeds)) {
+    for (const auto &feedVal : std::as_const(m_feeds)) {
         const auto feed = feedVal.toObject();
         const auto name = feed.value(QLatin1String("name")).toString();
         const auto type = GBFS::typeForKeyName(name);
