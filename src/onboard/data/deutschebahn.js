@@ -49,7 +49,7 @@ function parseICETrip(response)
                 stop.notes.push(d.text);
             }
         }
-        if (s.info.status === 1 && s.info.positionStatus === null) {
+        if (s.info.status === 1 && s.info.distanceFromStart === 0) {
             stop.disruptionEffect = 'NoService';
         }
         section.intermediateStops.push(stop);
