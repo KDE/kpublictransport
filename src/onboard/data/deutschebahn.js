@@ -49,6 +49,9 @@ function parseICETrip(response)
                 stop.notes.push(d.text);
             }
         }
+        if (s.info.status === 1 && s.info.positionStatus === null) {
+            stop.disruptionEffect = 'NoService';
+        }
         section.intermediateStops.push(stop);
     }
 

@@ -1,0 +1,386 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 506420,
+            "expectedArrivalPlatform": "3",
+            "expectedArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-11-02T20:45:00+01:00"
+            },
+            "expectedDeparturePlatform": "19",
+            "expectedDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-11-02T15:52:21+01:00"
+            },
+            "from": {
+                "identifier": {
+                    "ibnr": "8000085"
+                },
+                "latitude": 51.21996307373047,
+                "longitude": 6.794319152832031,
+                "name": "Düsseldorf Hbf",
+                "type": "Stop"
+            },
+            "intermediateStops": [
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:00:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:01:00+01:00"
+                    },
+                    "expectedPlatform": "1",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T15:57:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T15:58:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000082"
+                        },
+                        "latitude": 51.29200744628906,
+                        "longitude": 6.78683614730835,
+                        "name": "Düsseldorf Flughafen",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:11:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:14:00+01:00"
+                    },
+                    "expectedPlatform": "12",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:08:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:09:00+01:00"
+                    },
+                    "scheduledPlatform": "13",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000086"
+                        },
+                        "latitude": 51.429786682128906,
+                        "longitude": 6.775903224945068,
+                        "name": "Duisburg Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NoService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:21:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:22:00+01:00"
+                    },
+                    "expectedPlatform": "6",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:21:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:22:00+01:00"
+                    },
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000098"
+                        },
+                        "latitude": 51.45135498046875,
+                        "longitude": 7.0147929191589355,
+                        "name": "Essen Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NoService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:33:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:34:00+01:00"
+                    },
+                    "expectedPlatform": "5",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:33:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:34:00+01:00"
+                    },
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000041"
+                        },
+                        "latitude": 51.478607177734375,
+                        "longitude": 7.223275184631348,
+                        "name": "Bochum Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T17:05:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T17:07:00+01:00"
+                    },
+                    "expectedPlatform": "8",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:45:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T16:47:00+01:00"
+                    },
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000080"
+                        },
+                        "latitude": 51.51789474487305,
+                        "longitude": 7.459290027618408,
+                        "name": "Dortmund Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T17:27:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T17:31:00+01:00"
+                    },
+                    "expectedPlatform": "5",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T17:07:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T17:11:00+01:00"
+                    },
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000149"
+                        },
+                        "latitude": 51.678077697753906,
+                        "longitude": 7.807820796966553,
+                        "name": "Hamm(Westf)Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T18:48:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T18:51:00+01:00"
+                    },
+                    "expectedPlatform": "9",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T18:28:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T18:31:00+01:00"
+                    },
+                    "scheduledPlatform": "9",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8000152"
+                        },
+                        "latitude": 52.37676239013672,
+                        "longitude": 9.741021156311035,
+                        "name": "Hannover Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T19:23:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T19:24:00+01:00"
+                    },
+                    "expectedPlatform": "5",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T19:03:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T19:04:00+01:00"
+                    },
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8006552"
+                        },
+                        "latitude": 52.42949676513672,
+                        "longitude": 10.7877836227417,
+                        "name": "Wolfsburg Hbf",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:18:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:20:00+01:00"
+                    },
+                    "expectedPlatform": "6",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T19:58:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:00:00+01:00"
+                    },
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8010404"
+                        },
+                        "latitude": 52.53464889526367,
+                        "longitude": 13.196897506713867,
+                        "name": "Berlin-Spandau",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:35:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:37:00+01:00"
+                    },
+                    "expectedPlatform": "11",
+                    "notes": [
+                        "Umleitung des Zuges"
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:15:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2023-11-02T20:19:00+01:00"
+                    },
+                    "scheduledPlatform": "11",
+                    "stopPoint": {
+                        "identifier": {
+                            "ibnr": "8011160"
+                        },
+                        "latitude": 52.52559280395508,
+                        "longitude": 13.369544982910156,
+                        "name": "Berlin Hbf",
+                        "type": "Stop"
+                    }
+                }
+            ],
+            "mode": "PublicTransport",
+            "route": {
+                "direction": "Berlin Ostbahnhof",
+                "line": {
+                    "mode": "LongDistanceTrain",
+                    "name": "ICE 943"
+                }
+            },
+            "scheduledArrivalPlatform": "3",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-11-02T20:27:00+01:00"
+            },
+            "scheduledDeparturePlatform": "19",
+            "scheduledDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-11-02T15:49:00+01:00"
+            },
+            "to": {
+                "identifier": {
+                    "ibnr": "8010255"
+                },
+                "latitude": 52.5104866027832,
+                "longitude": 13.434680938720703,
+                "name": "Berlin Ostbahnhof",
+                "type": "Stop"
+            }
+        }
+    ]
+}
