@@ -234,13 +234,9 @@ static QString applyTransliterations(const QString &s)
 
 static bool isCompatibleLocationType(Location::Type lhs, Location::Type rhs)
 {
-    if (lhs == rhs) {
-        return true;
-    }
-    if (rhs != Location::Place) {
-        return false;
-    }
-    return lhs == Location::Stop;
+    return lhs == rhs
+        || (lhs == Location::Place && rhs == Location::Stop)
+        || (rhs == Location::Place && lhs == Location::Stop);
 }
 
 static int isSameDistanceThreshold(Location::Type type)
@@ -267,7 +263,7 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return false;
     }
     // incompatible types are also unmergable
-    if (!isCompatibleLocationType(lhs.type(), rhs.type()) || !isCompatibleLocationType(rhs.type(), lhs.type())) {
+    if (!isCompatibleLocationType(lhs.type(), rhs.type())) {
         return false;
     }
 
