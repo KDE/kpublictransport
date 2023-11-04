@@ -23,7 +23,6 @@
         "Description[sv]": "Kollektivtrafik i och omkring Los Angeles, USA.",
         "Description[tr]": "ABD, Los Angeles içi ve çevresi toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Лос-Анджелесі і околицях, США.",
-        "Description[x-test]": "xxPublic transport in and around Los Angeles, US.xx",
         "Description[zh_CN]": "美国洛杉矶及其周边地区的公共交通。",
         "Name": "Los Angeles Metro",
         "Name[ca@valencia]": "Los Angeles Metro",
@@ -47,8 +46,7 @@
         "Name[sl]": "Los Angeles Metro",
         "Name[sv]": "Los Angeles Metro",
         "Name[tr]": "Los Angeles Metro",
-        "Name[uk]": "Метро Лос-Анджелеса",
-        "Name[x-test]": "xxLos Angeles Metroxx"
+        "Name[uk]": "Метро Лос-Анджелеса"
     },
     "coverage": {
         "anyCoverage": {

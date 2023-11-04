@@ -23,7 +23,6 @@
         "Description[sv]": "Lokal transportoperatör i Rhein-Ruhr-området, Tyskland.",
         "Description[tr]": "Almanya, Rhein-Ruhr bölgesi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у регіоні Рейн-Рур, Німеччина.",
-        "Description[x-test]": "xxLocal transport in the Rhein-Ruhr area, Germany.xx",
         "Description[zh_CN]": "德国莱茵-鲁尔地区的公共交通。",
         "Name": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[ca@valencia]": "Verkehrsverbund Rhein-Ruhr (VRR)",
@@ -48,8 +47,7 @@
         "Name[sl]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[sv]": "Verkehrsverbund Rhein-Ruhr (VRR)",
         "Name[tr]": "Verkehrsverbund Rhein-Ruhr (VRR)",
-        "Name[uk]": "Verkehrsverbund Rhein-Ruhr (VRR)",
-        "Name[x-test]": "xxVerkehrsverbund Rhein-Ruhr (VRR)xx"
+        "Name[uk]": "Verkehrsverbund Rhein-Ruhr (VRR)"
     },
     "coverage": {
         "realtimeCoverage": {

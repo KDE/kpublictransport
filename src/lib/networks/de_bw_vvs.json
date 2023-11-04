@@ -23,7 +23,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Stuttgart, Tyskland.",
         "Description[tr]": "Almanya, Stuttart içi ve çevresi yerel taşıma.",
         "Description[uk]": "Місцевий транспорту Штутгарті і околицях, Німеччина.",
-        "Description[x-test]": "xxLocal transport in and around Stuttgart, Germany.xx",
         "Description[zh_CN]": "德国斯图加特及其周边地区的公共交通。",
         "Name": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[ca@valencia]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
@@ -48,8 +47,7 @@
         "Name[sl]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[sv]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
         "Name[tr]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
-        "Name[uk]": "Verkehrs- und Tarifverbund Stuttgart (VVS)",
-        "Name[x-test]": "xxVerkehrs- und Tarifverbund Stuttgart (VVS)xx"
+        "Name[uk]": "Verkehrs- und Tarifverbund Stuttgart (VVS)"
     },
     "coverage": {
         "realtimeCoverage": {

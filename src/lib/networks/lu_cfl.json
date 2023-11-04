@@ -23,7 +23,6 @@
         "Description[sv]": "Kollektivtrafik i Luxemburg.",
         "Description[tr]": "Lüksemburg içi toplu taşıma.",
         "Description[uk]": "Дані щодо громадського транспорту у Люксембурзі.",
-        "Description[x-test]": "xxPublic transport in Luxembourg.xx",
         "Description[zh_CN]": "卢森堡的公共交通。",
         "Name": "Chemins de Fer Luxembourgeois (CFL)",
         "Name[ca@valencia]": "Chemins de Fer Luxembourgeois (CFL)",
@@ -46,8 +45,7 @@
         "Name[sl]": "Chemins de Fer Luxembourgeois (CFL)",
         "Name[sv]": "Chemins de Fer Luxembourgeois (CFL)",
         "Name[tr]": "Chemins de Fer Luxembourgeois (CFL)",
-        "Name[uk]": "Chemins de Fer Luxembourgeois (CFL)",
-        "Name[x-test]": "xxChemins de Fer Luxembourgeois (CFL)xx"
+        "Name[uk]": "Chemins de Fer Luxembourgeois (CFL)"
     },
     "attribution": {
         "homepage": "https://www.cfl.lu/",

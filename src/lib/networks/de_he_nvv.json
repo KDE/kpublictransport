@@ -23,7 +23,6 @@
         "Description[sv]": "Lokal transportoperatör i norra Hesse, Tyskland.",
         "Description[tr]": "Almanya, kuzey Hesse bölgesi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у північному Гессені, Німеччина.",
-        "Description[x-test]": "xxLocal transport in northern Hesse, Germany.xx",
         "Description[zh_CN]": "德国黑森北部当地的公共交通。",
         "Name": "Nordhessischer Verkehrsverbund (NVV)",
         "Name[ca@valencia]": "Nordhessischer Verkehrsverbund (NVV)",
@@ -46,8 +45,7 @@
         "Name[sl]": "Nordhessischer Verkehrsverbund (NVV)",
         "Name[sv]": "Nordhessischer Verkehrsverbund (NVV)",
         "Name[tr]": "Nordhessischer Verkehrsverbund (NVV)",
-        "Name[uk]": "Nordhessischer Verkehrsverbund (NVV)",
-        "Name[x-test]": "xxNordhessischer Verkehrsverbund (NVV)xx"
+        "Name[uk]": "Nordhessischer Verkehrsverbund (NVV)"
     },
     "attribution": {
         "homepage": "https://www.nvv.de/",

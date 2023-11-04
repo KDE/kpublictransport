@@ -23,7 +23,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Chicago, Illinois, Förenta staterna.",
         "Description[tr]": "ABD, Illinois, Şikago içi ve çevresi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Чикаго і околицях, Іллінойс, США.",
-        "Description[x-test]": "xxLocal transport in and around Chicago, Illinois, United States.xx",
         "Description[zh_CN]": "美国伊利诺伊州芝加哥及其周边地区的公共交通。",
         "Name": "Regional Transport Authority Chicago",
         "Name[ca@valencia]": "Regional Transport Authority Chicago",
@@ -45,8 +44,7 @@
         "Name[sl]": "Regional Transport Authority Chicago",
         "Name[sv]": "Regionala transportmyndigheten Chicago",
         "Name[tr]": "Şikago Bölgesel Taşıma Merci",
-        "Name[uk]": "Регіональна транспортна служба Чикаго",
-        "Name[x-test]": "xxRegional Transport Authority Chicagoxx"
+        "Name[uk]": "Регіональна транспортна служба Чикаго"
     },
     "coverage": {
         "anyCoverage": {

@@ -23,7 +23,6 @@
         "Description[sv]": "Kollektivtrafik i Baden-Württemberg, Tyskland.",
         "Description[tr]": "Almanya, Baden-Württenburg için toplu taşıma.",
         "Description[uk]": "Дані щодо громадського транспорту у землі Баден-Вюртемберґ, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Baden-Württemberg, Germany.xx",
         "Description[zh_CN]": "德国巴登-符腾堡的公共交通。",
         "Name": "bwegt",
         "Name[ca@valencia]": "bwegt",
@@ -46,8 +45,7 @@
         "Name[sl]": "bwegt",
         "Name[sv]": "bwegt",
         "Name[tr]": "bwegt",
-        "Name[uk]": "bwegt",
-        "Name[x-test]": "xxbwegtxx"
+        "Name[uk]": "bwegt"
     },
     "coverage": {
         "realtimeCoverage": {

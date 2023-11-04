@@ -23,7 +23,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Linz, Österrike.",
         "Description[tr]": "Avusturya, Linz bölgesi yerel taşıma",
         "Description[uk]": "Місцевий транспорт у Лінці і околицях, Австрія.",
-        "Description[x-test]": "xxLocal transport in and around Linz, Austria.xx",
         "Description[zh_CN]": "奥地利林茨及其周边地区的公共交通。",
         "Name": "Linz AG",
         "Name[ca@valencia]": "Linz AG",
@@ -47,8 +46,7 @@
         "Name[sl]": "Linz AG",
         "Name[sv]": "Linz AG",
         "Name[tr]": "Linz AG",
-        "Name[uk]": "Linz AG",
-        "Name[x-test]": "xxLinz AGxx"
+        "Name[uk]": "Linz AG"
     },
     "coverage": {
         "realtimeCoverage": {

@@ -23,7 +23,6 @@
         "Description[sv]": "Kollektivtrafik i Niedersachsen, Tyskland.",
         "Description[tr]": "Almanya, Aşağı Saksonya için toplu taşıma.",
         "Description[uk]": "Дані щодо громадського транспорту у Нижній Саксонії, Німеччина.",
-        "Description[x-test]": "xxPublic transport in Lower Saxony, Germany.xx",
         "Description[zh_CN]": "德国下萨克森的公共交通。",
         "Name": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[ca@valencia]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
@@ -47,8 +46,7 @@
         "Name[sl]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[sv]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
         "Name[tr]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
-        "Name[uk]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen",
-        "Name[x-test]": "xxElektronische Fahrplanauskunft für Niedersachsen und Bremenxx"
+        "Name[uk]": "Elektronische Fahrplanauskunft für Niedersachsen und Bremen"
     },
     "coverage": {
         "anyCoverage": {

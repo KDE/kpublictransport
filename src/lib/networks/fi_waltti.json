@@ -23,7 +23,6 @@
         "Description[sv]": "Kollektivtrafik i Waltti områden i Finland.",
         "Description[tr]": "Finlandiya'nın Waitti bölgeleri için toplu taşıma.",
         "Description[uk]": "Громадський транспорт у областях Валтті, Фінляндія.",
-        "Description[x-test]": "xxPublic transport in Waltti regions in Finland.xx",
         "Description[zh_CN]": "芬兰内有 Waltti 覆盖的公共交通。",
         "Name": "Waltti",
         "Name[ca@valencia]": "Waltti",
@@ -47,8 +46,7 @@
         "Name[sl]": "Waltti",
         "Name[sv]": "Waltti",
         "Name[tr]": "Waltti",
-        "Name[uk]": "Waltti",
-        "Name[x-test]": "xxWalttixx"
+        "Name[uk]": "Waltti"
     },
     "coverage": {
         "realtimeCoverage": {

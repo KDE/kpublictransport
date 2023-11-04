@@ -21,7 +21,6 @@
         "Description[sv]": "Världsomspännande leverantör av öppen transportinformation med fri programvara",
         "Description[tr]": "Dünya çapı Özgür yazılım ve Açık Veri taşıma veri sağlayıcısı.",
         "Description[uk]": "Всесвітнє джерело відкритих даних щодо транспорту для вільного програмного забезпечення.",
-        "Description[x-test]": "xxWorld-wide Free Software and Open Data transport data provider.xx",
         "Description[zh_CN]": "全球范围内的自由软件及开放交通数据的提供商。",
         "Name": "Navitia AU",
         "Name[ca@valencia]": "Navitia AU",
@@ -42,8 +41,7 @@
         "Name[sl]": "Navitia AU",
         "Name[sv]": "Navitia AU",
         "Name[tr]": "Navitia AU",
-        "Name[uk]": "Navitia AU",
-        "Name[x-test]": "xxNavitia AUxx"
+        "Name[uk]": "Navitia AU"
     },
     "attribution": {
         "name": "© navitia.io",

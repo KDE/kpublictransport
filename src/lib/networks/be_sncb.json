@@ -23,7 +23,6 @@
         "Description[sv]": "Belgisk statsjärnväg.",
         "Description[tr]": "Belçika ulusal demiryolları.",
         "Description[uk]": "Бельгійська державна залізниця.",
-        "Description[x-test]": "xxBelgian national railway.xx",
         "Description[zh_CN]": "比利时国家铁路。",
         "Name": "National Railway Company of Belgium (NMBS/SNCB)",
         "Name[ca@valencia]": "Companyia Nacional de Ferrocarrils de Bèlgica (NMBS/SNCB)",
@@ -47,8 +46,7 @@
         "Name[sl]": "Nacionalna železniška družba Belgije (NMBS/SNCB)",
         "Name[sv]": "Belgiens statsjärnvägsbolag (NMBS/SNCB)",
         "Name[tr]": "Belçika Ulusal Demiryolları Şirketi (NMBS/SNCB)",
-        "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)",
-        "Name[x-test]": "xxNational Railway Company of Belgium (NMBS/SNCB)xx"
+        "Name[uk]": "Національна залізнична компаній Бельгії (NMBS/SNCB)"
     },
     "attribution": {
         "homepage": "https://www.belgiantrain.be/",

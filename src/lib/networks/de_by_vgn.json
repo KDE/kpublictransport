@@ -23,7 +23,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Nuremberg, Tyskland.",
         "Description[tr]": "Almanya, Nürnberg içi ve çevresi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Нюрнберзі та околицях, Німеччина.",
-        "Description[x-test]": "xxLocal transport in and around Nuremberg, Germany.xx",
         "Description[zh_CN]": "德国纽伦堡及其周边地区的公共交通。",
         "Name": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[ca@valencia]": "Verkehrsverbund Großraum Nürnberg (VGN)",
@@ -48,8 +47,7 @@
         "Name[sl]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[sv]": "Verkehrsverbund Großraum Nürnberg (VGN)",
         "Name[tr]": "Verkehrsverbund Großraum Nürnberg (VGN)",
-        "Name[uk]": "Verkehrsverbund Großraum Nürnberg (VGN)",
-        "Name[x-test]": "xxVerkehrsverbund Großraum Nürnberg (VGN)xx"
+        "Name[uk]": "Verkehrsverbund Großraum Nürnberg (VGN)"
     },
     "coverage": {
         "realtimeCoverage": {

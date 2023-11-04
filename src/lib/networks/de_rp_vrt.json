@@ -22,7 +22,6 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Trier, Tyskland.",
         "Description[tr]": "Almanya, Trier içi ve çevresi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Трірі та околицях, Німеччина.",
-        "Description[x-test]": "xxLocal transport in and around Trier, Germany.xx",
         "Description[zh_CN]": "德国特里尔及其周边地区的公共交通。",
         "Name": "Verkehrsverbund Region Trier (VRT)",
         "Name[ca@valencia]": "Verkehrsverbund Region Trier (VRT)",
@@ -45,8 +44,7 @@
         "Name[sl]": "Verkehrsverbund Region Trier (VRT)",
         "Name[sv]": "Verkehrsverbund Region Trier (VRT)",
         "Name[tr]": "Verkehrsverbund Region Trier (VRT)",
-        "Name[uk]": "Verkehrsverbund Region Trier (VRT)",
-        "Name[x-test]": "xxVerkehrsverbund Region Trier (VRT)xx"
+        "Name[uk]": "Verkehrsverbund Region Trier (VRT)"
     },
     "coverage": {
         "realtimeCoverage": {

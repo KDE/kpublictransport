@@ -23,7 +23,6 @@
         "Description[sv]": "Kollektivtrafik i och omkring Portland, Oregon, USA.",
         "Description[tr]": "ABD, Oregon, Portland içi ve çevresi toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Портленді і околицях, Орегон, США.",
-        "Description[x-test]": "xxPublic transport in and around Portland, Oregon, US.xx",
         "Description[zh_CN]": "美国俄勒冈州波特兰及其周边地区的公共交通。",
         "Name": "TriMet",
         "Name[ca@valencia]": "TriMet",
@@ -47,8 +46,7 @@
         "Name[sl]": "TriMet",
         "Name[sv]": "TriMet",
         "Name[tr]": "TriMet",
-        "Name[uk]": "TriMet",
-        "Name[x-test]": "xxTriMetxx"
+        "Name[uk]": "TriMet"
     },
     "coverage": {
         "anyCoverage": {
