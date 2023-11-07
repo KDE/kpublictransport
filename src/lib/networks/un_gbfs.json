@@ -21,6 +21,7 @@
         "Description[sv]": "Generellt stöd för cykel- eller skoterdelningstjänster som följer GBFS-standarden",
         "Description[tr]": "GBFS standartına uyan bisiklet veya moped paylaşım hizmetleri için genel destek.",
         "Description[uk]": "Загальна підтримка служб спільного використання велосипедів або скутерів за стандартом GBFS.",
+        "Description[x-test]": "xxGeneric support for bike or scooter sharing services following the GBFS standard.xx",
         "Description[zh_CN]": "对遵从 GBFS 标准的共享单车、共享踏板车服务进行通用支持。",
         "Name": "Shared bikes/scooters",
         "Name[ca@valencia]": "Bicicletes/motos compartides",
@@ -44,7 +45,8 @@
         "Name[sl]": "Skupna kolesa/skuterji",
         "Name[sv]": "Delade cyklar eller skotrar",
         "Name[tr]": "Paylaşılan bisikletler/mopedler",
-        "Name[uk]": "Велосипеди і скутери спільного користування"
+        "Name[uk]": "Велосипеди і скутери спільного користування",
+        "Name[x-test]": "xxShared bikes/scootersxx"
     },
     "coverage": {
         "realtimeCoverage": {

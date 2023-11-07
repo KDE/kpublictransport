@@ -23,6 +23,7 @@
         "Description[sv]": "Lokal transportoperatör i Schleswig-Holstein, Tyskland.",
         "Description[tr]": "Almanya, Schlesweig-Holstein için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у землі Шлезвіг-Гольштейн, Німеччина.",
+        "Description[x-test]": "xxLocal transport in Schleswig-Holstein, Germany.xx",
         "Description[zh_CN]": "德国石勒苏益格-荷尔斯泰因当地的公共交通。",
         "Name": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[ca@valencia]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
@@ -47,7 +48,8 @@
         "Name[sl]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[sv]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
         "Name[tr]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
-        "Name[uk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)"
+        "Name[uk]": "Nahverkehrsverbund Schleswig-Holstein (NAH.SH)",
+        "Name[x-test]": "xxNahverkehrsverbund Schleswig-Holstein (NAH.SH)xx"
     },
     "attribution": {
         "homepage": "https://www.nah.sh/",

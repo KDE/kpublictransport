@@ -23,6 +23,7 @@
         "Description[sv]": "Lokal kollektivtrafik i östra Österrike.",
         "Description[tr]": "Doğu Avusturya bölgesel toplu taşıma",
         "Description[uk]": "Місцевий транспорт у східній Австрії.",
+        "Description[x-test]": "xxRegional public transport in eastern Austria.xx",
         "Description[zh_CN]": "奥地利东部地区的公共交通。",
         "Name": "Verkehrsverbund Ostregion (VOR)",
         "Name[ca@valencia]": "Verkehrsverbund Ostregion (VOR)",
@@ -46,7 +47,8 @@
         "Name[sl]": "Verkehrsverbund Ostregion (VOR)",
         "Name[sv]": "Verkehrsverbund Ostregion (VOR)",
         "Name[tr]": "Verkehrsverbund Ostregion (VOR)",
-        "Name[uk]": "Verkehrsverbund Ostregion (VOR)"
+        "Name[uk]": "Verkehrsverbund Ostregion (VOR)",
+        "Name[x-test]": "xxVerkehrsverbund Ostregion (VOR)xx"
     },
     "coverage": {
         "realtimeCoverage": {

@@ -23,6 +23,7 @@
         "Description[sv]": "Polsk statsjärnväg.",
         "Description[tr]": "Polonya ulusal demiryolları.",
         "Description[uk]": "Польська державна залізниця.",
+        "Description[x-test]": "xxPolish national railway.xx",
         "Description[zh_CN]": "波兰国家铁路。",
         "Name": "Polskie Koleje Państwowe (PKP)",
         "Name[ca@valencia]": "Polskie Koleje Państwowe (PKP)",
@@ -47,7 +48,8 @@
         "Name[sl]": "Polskie Koleje Państwowe (PKP)",
         "Name[sv]": "Polskie Koleje Państwowe (PKP)",
         "Name[tr]": "Polskie Koleje Państwowe (PKP)",
-        "Name[uk]": "Polskie Koleje Państwowe (PKP)"
+        "Name[uk]": "Polskie Koleje Państwowe (PKP)",
+        "Name[x-test]": "xxPolskie Koleje Państwowe (PKP)xx"
     },
     "coverage": {
         "realtimeCoverage": {

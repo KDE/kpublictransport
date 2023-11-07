@@ -23,6 +23,7 @@
         "Description[sv]": "Kollektivtrafik i och omkring Austin, Texas, USA.",
         "Description[tr]": "ABD, Texas, Austin içi ve çevresi toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Остіні і околицях, Техас, США.",
+        "Description[x-test]": "xxPublic transport in and around Austin, Texas, US.xx",
         "Description[zh_CN]": "美国德克萨斯州奥斯汀及其周边地区的公共交通。",
         "Name": "Capital Metropolitan Transportation Authority (CMTA)",
         "Name[ca@valencia]": "Capital Metropolitan Transportation Authority (CMTA)",
@@ -45,7 +46,8 @@
         "Name[sl]": "Capital Metropolitan Transportation Authority (CMTA)",
         "Name[sv]": "Capital Metropolitan Transportation Authority (CMTA)",
         "Name[tr]": "Capital Metropolitan Transportation Authority (CMTA)",
-        "Name[uk]": "Столична транспортна адміністрація (CMTA)"
+        "Name[uk]": "Столична транспортна адміністрація (CMTA)",
+        "Name[x-test]": "xxCapital Metropolitan Transportation Authority (CMTA)xx"
     },
     "attribution": {
         "homepage": "https://www.capmetro.org/",

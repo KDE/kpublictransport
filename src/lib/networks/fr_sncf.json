@@ -23,6 +23,7 @@
         "Description[sv]": "Franska statsjärnvägen.",
         "Description[tr]": "Fransa ulusal demiryolları.",
         "Description[uk]": "Французька державна залізниця.",
+        "Description[x-test]": "xxFrench national railway.xx",
         "Description[zh_CN]": "法国国家铁路。",
         "Name": "Société Nationale des Chemins de Fer Français (SNCF)",
         "Name[ca@valencia]": "Société Nationale des Chemins de Fer Français (SNCF)",
@@ -46,7 +47,8 @@
         "Name[sl]": "Société Nationale des Chemins de Fer Français (SNCF)",
         "Name[sv]": "Société Nationale des Chemins de Fer Français (SNCF)",
         "Name[tr]": "Société Nationale des Chemins de Fer Français (SNCF)",
-        "Name[uk]": "Société Nationale des Chemins de Fer Français (SNCF)"
+        "Name[uk]": "Société Nationale des Chemins de Fer Français (SNCF)",
+        "Name[x-test]": "xxSociété Nationale des Chemins de Fer Français (SNCF)xx"
     },
     "coverage": {
         "regularCoverage": {

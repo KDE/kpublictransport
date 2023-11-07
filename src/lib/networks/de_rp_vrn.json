@@ -22,6 +22,7 @@
         "Description[sv]": "Lokal transportoperatör i Rhein-Neckar-området.",
         "Description[tr]": "Rhein-Neckar bölgesi yerel toplu taşıma.",
         "Description[uk]": "Місцевий громадський транспорт у регіоні Рейн-Неккар.",
+        "Description[x-test]": "xxLocal public transport in the Rhein-Neckar area.xx",
         "Description[zh_CN]": "萊茵河-内卡河地区的公共交通。",
         "Name": "Verkehrsverbund Rhein-Neckar (VRN)",
         "Name[ca@valencia]": "Verkehrsverbund Rhein-Neckar (VRN)",
@@ -44,7 +45,8 @@
         "Name[sl]": "Verkehrsverbund Rhein-Neckar (VRN)",
         "Name[sv]": "Verkehrsverbund Rhein-Neckar (VRN)",
         "Name[tr]": "Verkehrsverbund Rhein-Neckar (VRN)",
-        "Name[uk]": "Verkehrsverbund Rhein-Neckar (VRN)"
+        "Name[uk]": "Verkehrsverbund Rhein-Neckar (VRN)",
+        "Name[x-test]": "xxVerkehrsverbund Rhein-Neckar (VRN)xx"
     },
     "attribution": {
         "homepage": "https://www.vrn.de/",

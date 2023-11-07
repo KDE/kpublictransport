@@ -22,6 +22,7 @@
         "Description[sv]": "Kollektivtrafik i Schweiz.",
         "Description[tr]": "İsviçre için toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Швейцарії.",
+        "Description[x-test]": "xxPublic transport in Switzerland.xx",
         "Name": "opentransportdata.swiss",
         "Name[ca@valencia]": "opentransportdata.swiss",
         "Name[ca]": "opentransportdata.swiss",
@@ -43,7 +44,8 @@
         "Name[sl]": "opentransportdata.swiss",
         "Name[sv]": "opentransportdata.swiss",
         "Name[tr]": "açıktaşımaverisi.swiss",
-        "Name[uk]": "opentransportdata.swiss"
+        "Name[uk]": "opentransportdata.swiss",
+        "Name[x-test]": "xxopentransportdata.swissxx"
     },
     "attribution": {
         "homepage": "https://opentransportdata.swiss",

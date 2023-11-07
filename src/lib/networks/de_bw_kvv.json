@@ -23,6 +23,7 @@
         "Description[sv]": "Lokal transportoperatör i och omkring Karlsruhe, Tyskland.",
         "Description[tr]": "Almanya, Karlsruhe içi ve çevresi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Карлсруе і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Karlsruhe, Germany.xx",
         "Description[zh_CN]": "德国卡尔斯鲁厄及其周边地区的公共交通。",
         "Name": "Karlsruher Verkehrsverbund (KVV)",
         "Name[ca@valencia]": "Karlsruher Verkehrsverbund (KVV)",
@@ -47,6 +48,7 @@
         "Name[sv]": "Karlsruher Verkehrsverbund (KVV)",
         "Name[tr]": "Karlsruher Verkehrsverbund (KVV)",
         "Name[uk]": "Karlsruher Verkehrsverbund (KVV)",
+        "Name[x-test]": "xxKarlsruher Verkehrsverbund (KVV)xx",
         "Name[zh_TW]": "Karlsruher Verkehrsverbund (KVV)"
     },
     "coverage": {

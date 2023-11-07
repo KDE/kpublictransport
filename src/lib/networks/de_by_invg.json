@@ -22,6 +22,7 @@
         "Description[sv]": "Lokala transporter i och omkring Ingolstadt, Tyskland.",
         "Description[tr]": "Almanya, Ingolstadt içi ve çevresi yerel taşıma.",
         "Description[uk]": "Місцевий транспорту Інгольштадті і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Ingolstadt, Germany.xx",
         "Description[zh_CN]": "德国英戈尔施塔特及其周边地区的公共交通。",
         "Name": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[ca@valencia]": "Ingolstädter Verkehrsgesellschaft (INVG)",
@@ -44,7 +45,8 @@
         "Name[sl]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[sv]": "Ingolstädter Verkehrsgesellschaft (INVG)",
         "Name[tr]": "Ingolstädter Verkehrsgesellschaft (INVG)",
-        "Name[uk]": "Ingolstädter Verkehrsgesellschaft (INVG)"
+        "Name[uk]": "Ingolstädter Verkehrsgesellschaft (INVG)",
+        "Name[x-test]": "xxIngolstädter Verkehrsgesellschaft (INVG)xx"
     },
     "attribution": {
         "homepage": "https://www.invg.de/",

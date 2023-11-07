@@ -23,6 +23,7 @@
         "Description[sv]": "Dansk statsjärnväg.",
         "Description[tr]": "Danimarka ulusal demiryolları.",
         "Description[uk]": "Данська державна залізниця.",
+        "Description[x-test]": "xxDanish national railway.xx",
         "Description[zh_CN]": "丹麦国家铁路。",
         "Name": "Danske Statsbaner (DSB)",
         "Name[ca@valencia]": "Danske Statsbaner (DSB)",
@@ -47,7 +48,8 @@
         "Name[sl]": "Danske Statsbaner (DSB)",
         "Name[sv]": "Danske Statsbaner (DSB)",
         "Name[tr]": "Danske Statsbaner (DSB)",
-        "Name[uk]": "Danske Statsbaner (DSB)"
+        "Name[uk]": "Danske Statsbaner (DSB)",
+        "Name[x-test]": "xxDanske Statsbaner (DSB)xx"
     },
     "attribution": {
         "homepage": "https://rejseplanen.dk/",

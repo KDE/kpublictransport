@@ -22,6 +22,7 @@
         "Description[sv]": "Lokal transportoperatör i Rhein-Sieg-området, Tyskland.",
         "Description[tr]": "Almanya, Rhein-Sieg bölgesi yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у регіоні Райн-Зіг, Німеччина.",
+        "Description[x-test]": "xxLocal transport in the Rhein-Sieg area, Germany.xx",
         "Description[zh_CN]": "德国莱茵-锡格地区的公共交通。",
         "Name": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[ca@valencia]": "Verkehrsverbund Rhein-Sieg (VRS)",
@@ -44,7 +45,8 @@
         "Name[sl]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[sv]": "Verkehrsverbund Rhein-Sieg (VRS)",
         "Name[tr]": "Verkehrsverbund Rhein-Sieg (VRS)",
-        "Name[uk]": "Verkehrsverbund Rhein-Sieg (VRS)"
+        "Name[uk]": "Verkehrsverbund Rhein-Sieg (VRS)",
+        "Name[x-test]": "xxVerkehrsverbund Rhein-Sieg (VRS)xx"
     },
     "coverage": {
         "realtimeCoverage": {

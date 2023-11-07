@@ -23,6 +23,7 @@
         "Description[sv]": "Holländsk statsjärnväg.",
         "Description[tr]": "Hollanda ulusal demiryolları.",
         "Description[uk]": "Нідерландська державна залізниця.",
+        "Description[x-test]": "xxDutch national railway.xx",
         "Description[zh_CN]": "荷兰国家铁路。",
         "Name": "Nederlandse Spoorwegen (NS)",
         "Name[ca@valencia]": "Nederlandse Spoorwegen (NS)",
@@ -47,7 +48,8 @@
         "Name[sl]": "Nederlandse Spoorwegen (NS)",
         "Name[sv]": "Nederlandse Spoorwegen (NS)",
         "Name[tr]": "Nederlandse Spoorwegen (NS)",
-        "Name[uk]": "Nederlandse Spoorwegen (NS)"
+        "Name[uk]": "Nederlandse Spoorwegen (NS)",
+        "Name[x-test]": "xxNederlandse Spoorwegen (NS)xx"
     },
     "coverage": {
         "realtimeCoverage": {

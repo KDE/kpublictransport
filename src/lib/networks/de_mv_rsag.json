@@ -22,6 +22,7 @@
         "Description[sv]": "Lokala transporter i och omkring Rostock, Tyskland.",
         "Description[tr]": "Almanya, Rostock içi ve çevresi için yerel taşıma.",
         "Description[uk]": "Місцевий транспорт у Ростоці і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Rostock, Germany.xx",
         "Description[zh_CN]": "德国罗斯托克及其周边地区的公共交通。",
         "Name": "Rostocker Straßenbahn (RSAG)",
         "Name[ca@valencia]": "Rostocker Straßenbahn (RSAG)",
@@ -44,7 +45,8 @@
         "Name[sl]": "Rostocker Straßenbahn (RSAG)",
         "Name[sv]": "Rostocker Straßenbahn (RSAG)",
         "Name[tr]": "Rostocker Straßenbahn (RSAG)",
-        "Name[uk]": "Rostocker Straßenbahn (RSAG)"
+        "Name[uk]": "Rostocker Straßenbahn (RSAG)",
+        "Name[x-test]": "xxRostocker Straßenbahn (RSAG)xx"
     },
     "attribution": {
         "homepage": "https://www.rsag-online.de",
