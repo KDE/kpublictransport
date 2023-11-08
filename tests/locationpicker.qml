@@ -124,7 +124,7 @@ Kirigami.ApplicationWindow {
                 id: historyDelegate
                 Kirigami.SwipeListItem {
                     readonly property var sourceModel: ListView.view.model
-                    QQC2.Label {
+                    contentItem: QQC2.Label {
                         text: model.location.name
                     }
                     actions: [
