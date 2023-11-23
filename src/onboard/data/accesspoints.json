@@ -5,6 +5,7 @@
     { "ssid": "AegeanWiFi", "id": "aegean" },
     { "ssid": "Cathay Pacific", "id": "panasonic-inflight-v2" },
     { "ssid": "CDWiFi", "id": "ceskedrahy" },
+    { "ssid": "EurostarTrainsWiFi", "id": "icomera-omboard" },
     { "ssid": "FlixBus", "id": "flixbus" },
     { "ssid": "FlixBus Wi-Fi", "id": "flixbus" },
     { "ssid": "FlixTrain Wi-Fi", "id": "flixbus" },
