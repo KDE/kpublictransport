@@ -3,6 +3,8 @@
         {
             "disruptionEffect": "NormalService",
             "distance": 430617,
+            "expectedArrivalTime": "2023-10-07T14:08:53",
+            "expectedDepartureTime": "2023-10-07T13:22:53",
             "from": {
                 "identifier": {
                     "iata": "BER"

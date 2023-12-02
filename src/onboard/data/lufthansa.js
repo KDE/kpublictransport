@@ -1,5 +1,6 @@
 /*
     SPDX-FileCopyrightText: 2023 Volker Krause <vkrause@kde.org>
+    SPDX-FileCopyrightText: 2023 Kai Uwe Broulik <kde@broulik.de>
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
@@ -13,6 +14,11 @@ function parsePosition(response)
         altitude = response.altitude * 0.3048
         // TODO timestamp, temperature
     };
+}
+
+function stringToMinutes(str) { // turns "HH:mm" into minutes int.
+    const parts = str.split(":");
+    return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
 }
 
 function parseJourney(response)
@@ -37,9 +43,17 @@ function parseJourney(response)
             longitude = response.dest.lon,
             name = response.dest.code
         },
+        distance = Math.round(response.distDest * 1852),
         scheduledArrivalTime: response.dest.localTimeAtArrival
-        // TODO elapsedFlightTime would allow to compute departureTime
-        // TODO eta or timeDest ould allow to compute expectedArrivalTime
     };
+
+    const elapsedMinutes = stringToMinutes(response.elapsedFlightTime);
+    section.expectedDepartureTime = new Date(response.orig.localTime);
+    section.expectedDepartureTime.setMinutes(section.expectedDepartureTime.getMinutes() - elapsedMinutes);
+
+    const remainingMinutes = stringToMinutes(response.timeDest);
+    section.expectedArrivalTime = new Date(response.dest.localTime);
+    section.expectedArrivalTime.setMinutes(section.expectedArrivalTime.getMinutes() + remainingMinutes);
+
     return { sections = [section] };
 }
