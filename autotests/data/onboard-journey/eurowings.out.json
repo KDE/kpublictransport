@@ -1,0 +1,34 @@
+{
+    "sections": [
+        {
+            "disruptionEffect": "NormalService",
+            "distance": 508477,
+            "expectedArrivalTime": "2023-12-01T20:17:59",
+            "expectedDepartureTime": "2023-12-01T19:20:59",
+            "from": {
+                "identifier": {
+                    "iata": "BER"
+                },
+                "latitude": 52.364044189453125,
+                "longitude": 13.50899887084961,
+                "name": "BER"
+            },
+            "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "Air",
+                    "name": "EW2021"
+                }
+            },
+            "scheduledArrivalTime": "2023-12-01T21:17:00+01:00",
+            "to": {
+                "identifier": {
+                    "iata": "STR"
+                },
+                "latitude": 48.68989944458008,
+                "longitude": 9.221960067749023,
+                "name": "STR"
+            }
+        }
+    ]
+}

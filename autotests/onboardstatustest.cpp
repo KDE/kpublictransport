@@ -66,6 +66,7 @@ private Q_SLOTS:
         QTest::newRow("united-panasonic") << s("panasonic-inflight-v1") << s("../onboard-journey/united-panasonic.in.json") << 41.5150f << 2.069f << 872.292f << 169.0f << 10668.6f;
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("../onboard-journey/cathay-pacific.in.json") << 23.198333f << 118.836667f << 755.616f << 231.0f << 12187.7f;
         QTest::newRow("aegean") << s("aegean") << s("aegean.json") << 47.96723323f << 11.781437752f << 1007.0f << 137.0f << 7328.0f;
+        QTest::newRow("eurowings") << s("lufthansa") << s("../onboard-journey/eurowings.in.json") << 51.58527374267578f << 12.357730865478516f << 637.087f << -137.6375f << 9018.42f;
         QTest::newRow("lufthansa") << s("lufthansa") << s("../onboard-journey/lufthansa.in.json") << 51.9423f << 12.4496f << 718.576f << -120.785f << 6491.63f;
     }
 
@@ -119,6 +120,7 @@ private Q_SLOTS:
         QTest::newRow("ana") << s("panasonic-inflight-v1") << s("ana");
         QTest::newRow("unite-panasonic") << s("panasonic-inflight-v1") << s("united-panasonic");
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << s("cathay-pacific");
+        QTest::newRow("eurowings") << s("lufthansa") << s("eurowings");
         QTest::newRow("lufthansa") << s("lufthansa") << s("lufthansa");
         QTest::newRow("united") << s("united") << s("united");
     }
@@ -169,6 +171,7 @@ private Q_SLOTS:
         QTest::newRow("united") << s("panasonic-inflight-v1") << true << true;
         QTest::newRow("cathay-pacific") << s("panasonic-inflight-v2") << true << true;
         QTest::newRow("aegean") << s("aegean") << true << false;
+        QTest::newRow("eurowings") << s("eurowings") << true << true;
     }
 
     void testScriptedSupport()

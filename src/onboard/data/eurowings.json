@@ -1,0 +1,10 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "lufthansa.js",
+        "positionEndpoint": "https://www.wingsconnect.aero/fapi/flightData",
+        "positionFunction": "parsePosition",
+        "journeyEndpoint": "https://www.wingsconnect.aero/fapi/flightData",
+        "journeyFunction": "parseJourney"
+    }
+}

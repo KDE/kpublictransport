@@ -21,5 +21,6 @@
     { "ssid": "WIFI@DB", "id": "deutschebahn-zugportal" },
     { "ssid": "wififrecceplus2", "id": "icomera-omboard" },
     { "ssid": "WIFIonICE", "id": "deutschebahn-ice" },
+    { "ssid": "Wings Connect", "id": "eurowings" },
     { "ssid": "[Ana-WiFi-Service]", "id": "panasonic-inflight-v1" }
 ]
