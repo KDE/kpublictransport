@@ -4,11 +4,11 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import org.kde.kirigami 2.12 as Kirigami
-import org.kde.kpublictransport 1.0 as KPublicTransport
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport as KPublicTransport
 
 Kirigami.ScrollablePage {
     id: root
@@ -22,11 +22,12 @@ Kirigami.ScrollablePage {
 
     Component {
         id: backendDelegate
-        Kirigami.AbstractListItem {
+        QQC2.ItemDelegate {
             highlighted: false
             enabled: model.itemEnabled
+            width: ListView.view.width
 
-            GridLayout {
+            contentItem: GridLayout {
                 columns: 3
                 rows: 2
 
@@ -66,4 +67,3 @@ Kirigami.ScrollablePage {
         delegate: backendDelegate
     }
 }
-

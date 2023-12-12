@@ -4,17 +4,17 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15 as QQC2
-import org.kde.kirigami 2.17 as Kirigami
-import org.kde.kitemmodels 1.0
-import org.kde.i18n.localeData 1.0
-import org.kde.kpublictransport 1.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
+import org.kde.kirigami.delegates as Kirigami
+import org.kde.kitemmodels
+import org.kde.i18n.localeData
+import org.kde.kpublictransport
 
 Kirigami.ApplicationWindow {
     title: "Location Picker Example"
-    reachableModeEnabled: false
 
     width: 540
     height: 720
@@ -28,7 +28,7 @@ Kirigami.ApplicationWindow {
     Component {
         id: locationPickerPage
         Kirigami.ScrollablePage {
-            actions.contextualActions: [
+            actions: [
                 Kirigami.Action {
                     text: "Remove All"
                     onTriggered: locationHistoryModel.clear()
@@ -83,7 +83,7 @@ Kirigami.ApplicationWindow {
                     QQC2.RadioButton {
                         text: "Name"
                         onCheckedChanged: {
-                            historySortModel.sortRole = "locationName";
+                            historySortModel.sortRoleName = "locationName";
                             historySortModel.sortOrder = Qt.AscendingOrder;
                         }
                     }
@@ -91,14 +91,14 @@ Kirigami.ApplicationWindow {
                         checked: true
                         text: "Most Recent"
                         onCheckedChanged: {
-                            historySortModel.sortRole = "lastUsed";
+                            historySortModel.sortRoleName = "lastUsed";
                             historySortModel.sortOrder = Qt.DescendingOrder;
                         }
                     }
                     QQC2.RadioButton {
                         text: "Most Often"
                         onCheckedChanged: {
-                            historySortModel.sortRole = "useCount";
+                            historySortModel.sortRoleName = "useCount";
                             historySortModel.sortOrder = Qt.DescendingOrder;
                         }
                     }
@@ -116,7 +116,7 @@ Kirigami.ApplicationWindow {
             KSortFilterProxyModel {
                 id: historySortModel
                 sourceModel: locationHistoryModel
-                sortRole: "lastUsed"
+                sortRoleName: "lastUsed"
                 sortOrder: Qt.DescendingOrder
             }
 
@@ -129,7 +129,7 @@ Kirigami.ApplicationWindow {
                     }
                     actions: [
                         Kirigami.Action {
-                            iconName: "edit-delete"
+                            icon.name: "edit-delete"
                             text: "Remove history entry"
                             onTriggered: {
                                 sourceModel.removeRows(model.index, 1)
@@ -144,8 +144,11 @@ Kirigami.ApplicationWindow {
 
             Component {
                 id: queryResultDelegate
-                Kirigami.BasicListItem {
-                    text: model.location.name
+                QQC2.ItemDelegate {
+                    width: ListView.view.width
+                    contentItem: Kirigami.TitleSubtitle {
+                        title: model.location.name
+                    }
                     onClicked: {
                         locationHistoryModel.addLocation(model.location);
                         queryTextField.text = "";

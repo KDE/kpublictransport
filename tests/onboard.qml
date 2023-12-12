@@ -3,18 +3,17 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15 as QQC2
-import QtLocation 5.11 as QtLocation
-import QtPositioning 5.11
-import org.kde.kirigami 2.19 as Kirigami
-import org.kde.kpublictransport 1.0
-import org.kde.kpublictransport.onboard 1.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import QtLocation as QtLocation
+import QtPositioning
+import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport
+import org.kde.kpublictransport.onboard
 
 Kirigami.ApplicationWindow {
     title: "Onboard API Demo"
-    reachableModeEnabled: false
 
     width: 540
     height: 720
@@ -59,8 +58,9 @@ Kirigami.ApplicationWindow {
 
                     QtLocation.Plugin {
                         id: mapPlugin
-                        required.mapping: QtLocation.Plugin.AnyMappingFeatures
-                        preferred: ["osm"]
+                        name: "osm"
+                        QtLocation.PluginParameter { name: "osm.useragent"; value: "KPublicTransport Onboard API demo" }
+                        QtLocation.PluginParameter { name: "osm.mapping.providersrepository.address"; value: "https://autoconfig.kde.org/qtlocation/" }
                     }
 
                     QtLocation.Map {
@@ -68,6 +68,44 @@ Kirigami.ApplicationWindow {
                         anchors.fill: parent
                         center: QtPositioning.coordinate(onboardStatus.latitude, onboardStatus.longitude)
                         plugin: mapPlugin
+                        zoomLevel: 14
+
+                        PinchHandler {
+                            id: pinch
+                            target: null
+                            onActiveChanged: if (active) {
+                                map.startCentroid = map.toCoordinate(pinch.centroid.position, false)
+                            }
+                            onScaleChanged: (delta) => {
+                                map.zoomLevel += Math.log2(delta)
+                                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
+                            }
+                            onRotationChanged: (delta) => {
+                                map.bearing -= delta
+                                map.alignCoordinateToPoint(map.startCentroid, pinch.centroid.position)
+                            }
+                            grabPermissions: PointerHandler.TakeOverForbidden
+                        }
+                        WheelHandler {
+                            id: wheel
+                            rotationScale: 1/120
+                            property: "zoomLevel"
+                        }
+                        DragHandler {
+                            id: drag
+                            target: null
+                            onTranslationChanged: (delta) => map.pan(-delta.x, -delta.y)
+                        }
+                        Shortcut {
+                            enabled: map.zoomLevel < map.maximumZoomLevel
+                            sequence: StandardKey.ZoomIn
+                            onActivated: map.zoomLevel = Math.round(map.zoomLevel + 1)
+                        }
+                        Shortcut {
+                            enabled: map.zoomLevel > map.minimumZoomLevel
+                            sequence: StandardKey.ZoomOut
+                            onActivated: map.zoomLevel = Math.round(map.zoomLevel - 1)
+                        }
 
                         QtLocation.MapQuickItem {
                             coordinate: QtPositioning.coordinate(onboardStatus.latitude, onboardStatus.longitude)

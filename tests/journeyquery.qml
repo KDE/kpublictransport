@@ -4,18 +4,17 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import Qt.labs.platform 1.0 as Platform
-import Qt.labs.settings 1.0
-import org.kde.kirigami 2.12 as Kirigami
-import org.kde.kpublictransport 1.0
-import org.kde.example 1.0
+import QtCore
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import QtQuick.Dialogs as Dialogs
+import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport
+import org.kde.example
 
 Kirigami.ApplicationWindow {
     title: "Journey Query"
-    reachableModeEnabled: false
     width: 640
     height: 800
 
@@ -45,40 +44,40 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 text: "Save..."
-                iconName: "document-save"
+                icon.name: "document-save"
                 onTriggered: fileDialog.open();
             },
             Kirigami.Action {
-                iconName: "help-about-symbolic"
+                icon.name: "help-about-symbolic"
                 text: "Current Data Sources"
                 enabled: journeyModel.attributions.length > 0
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return journeyModel.attributions; });
-                    aboutSheet.sheetOpen = true;
+                    aboutSheet.open();
                 }
             },
             Kirigami.Action {
-                iconName: "help-about-symbolic"
+                icon.name: "help-about-symbolic"
                 text: "All Data Sources"
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return ptMgr.attributions; });
-                    aboutSheet.sheetOpen = true;
+                    aboutSheet.open();
                 }
             },
             Kirigami.Action {
-                iconName: "settings-configure"
+                icon.name: "settings-configure"
                 text: "Backends"
                 onTriggered: pageStack.push(backendPage)
             }
         ]
     }
 
-    Platform.FileDialog {
+    Dialogs.FileDialog {
         id: fileDialog
         title: "Save Journey Data"
-        fileMode: Platform.FileDialog.SaveFile
+        fileMode: Dialogs.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
-        onAccepted: ExampleUtil.saveTo(journeyModel, fileDialog.file);
+        onAccepted: ExampleUtil.saveTo(journeyModel, fileDialog.selectedFile);
     }
 
     TestLocationsModel { id: exampleModel }
@@ -127,10 +126,11 @@ Kirigami.ApplicationWindow {
 
     Component {
         id: journeyDelegate
-        Kirigami.AbstractListItem {
+        QQC2.ItemDelegate {
             enabled: modelData.disruptionEffect != Disruption.NoService
             highlighted: false
-            RowLayout {
+            width: ListView.view.width
+            contentItem: RowLayout {
                 id: topLayout
 
                 Kirigami.Icon {
@@ -212,7 +212,7 @@ Kirigami.ApplicationWindow {
                             text: "From: <a href=\"#from\">" + locationName(modelData.from) + "</a> Platform: " + modelData.scheduledDeparturePlatform
                             onLinkActivated: {
                                 locationDetailsSheet.location = modelData.from;
-                                locationDetailsSheet.sheetOpen = true;
+                                locationDetailsSheet.open();
                             }
                         }
                         QQC2.Label {
@@ -268,7 +268,7 @@ Kirigami.ApplicationWindow {
                             text: "To: <a href=\"#to\">" + locationName(modelData.to) + "</a> Platform: " + modelData.scheduledArrivalPlatform
                             onLinkActivated: {
                                 locationDetailsSheet.location = modelData.to;
-                                locationDetailsSheet.sheetOpen = true;
+                                locationDetailsSheet.open();
                             }
                         }
                         QQC2.Label {
@@ -473,7 +473,7 @@ Kirigami.ApplicationWindow {
                     textRole: "label"
                     onCurrentIndexChanged: {
                         var obj = exampleModel.get(currentIndex);
-                        fromName.text = obj.name == undefined ? obj.label : obj.name;
+                        fromName.text = obj.name == "" ? obj.label : obj.name;
                         fromLon.text = obj.lon;
                         fromLat.text = obj.lat;
                         if (toSelector.currentIndex == currentIndex) {
@@ -500,7 +500,7 @@ Kirigami.ApplicationWindow {
                     textRole: "label"
                     onCurrentIndexChanged: {
                         var obj = exampleModel.get(currentIndex);
-                        toName.text = obj.name == undefined ? obj.label : obj.name;
+                        toName.text = obj.name == "" ? obj.label : obj.name;
                         toLon.text = obj.lon;
                         toLat.text = obj.lat;
                         if (fromSelector.currentIndex == currentIndex) {

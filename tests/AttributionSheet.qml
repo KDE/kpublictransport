@@ -4,10 +4,10 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import org.kde.kirigami 2.12 as Kirigami
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
 
 Kirigami.OverlaySheet {
     id: aboutSheet
@@ -19,7 +19,8 @@ Kirigami.OverlaySheet {
 
     ListView {
         model: aboutSheet.attributions
-        delegate: Kirigami.AbstractListItem {
+        delegate: QQC2.ItemDelegate {
+            width: ListView.view.width
             contentItem: ColumnLayout {
                 QQC2.Label {
                     text: "<a href=\"" + modelData.url + "\">" + modelData.name + "</a>"

@@ -4,10 +4,11 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.12
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import org.kde.kirigami 2.12 as Kirigami
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
+import org.kde.kirigami.delegates as Kirigami
 import org.kde.kosmindoormap 1.0
 
 Kirigami.Page {
@@ -25,18 +26,18 @@ Kirigami.Page {
     // TODO in theory we could make this conditional to having panned the map all the way to the right
     Kirigami.ColumnView.preventStealing: true
 
-    actions {
-        left: Kirigami.Action {
-            iconName: "go-down-symbolic"
+   actions: [
+        Kirigami.Action {
+            icon.name: "go-down-symbolic"
             enabled: map.floorLevels.hasFloorLevelBelow(map.view.floorLevel)
             onTriggered: map.view.floorLevel = map.floorLevels.floorLevelBelow(map.view.floorLevel)
-        }
-        right: Kirigami.Action {
-            iconName: "go-up-symbolic"
+        },
+        Kirigami.Action {
+            icon.name: "go-up-symbolic"
             enabled: map.floorLevels.hasFloorLevelAbove(map.view.floorLevel)
             onTriggered: map.view.floorLevel = map.floorLevels.floorLevelAbove(map.view.floorLevel)
         }
-    }
+    ]
 
     OSMElementInformationModel {
         id: infoModel
@@ -126,11 +127,7 @@ Kirigami.Page {
             }
         }
 
-        onSheetOpenChanged: {
-            if (sheetOpen == false) {
-                infoModel.clear()
-            }
-        }
+        onClosed: infoModel.clear()
     }
 
     FloorLevelChangeModel {
@@ -146,12 +143,15 @@ Kirigami.Page {
         }
         ListView {
             model: floorLevelChangeModel
-            delegate: Kirigami.BasicListItem {
+            delegate: QQC2.ItemDelegate {
                 highlighted: false
-                text: model.display
-                bold: model.isCurrentFloor
+                width: ListView.view.width
+                contentItem: Kirigami.TitleSubtitle {
+                    title: model.display
+                    font.bold: model.isCurrentFloor
+                }
                 onClicked: {
-                    elevatorSheet.sheetOpen = false;
+                    elevatorSheet.close();
                     map.view.floorLevel = model.floorLevel;
                 }
             }
@@ -181,13 +181,13 @@ Kirigami.Page {
                 map.view.floorLevel = floorLevelChangeModel.destinationLevel;
                 return;
             } else if (floorLevelChangeModel.hasMultipleLevelChanges) {
-                elevatorSheet.sheetOpen = true;
+                elevatorSheet.open();
                 return;
             }
 
             infoModel.element = element;
             if (infoModel.name != "" || infoModel.debug) {
-                elementDetailsSheet.sheetOpen = true;
+                elementDetailsSheet.open();
             }
         }
     }

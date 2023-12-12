@@ -4,18 +4,17 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import Qt.labs.platform 1.0 as Platform
-import Qt.labs.settings 1.0
-import org.kde.kirigami 2.12 as Kirigami
-import org.kde.kpublictransport 1.0
-import org.kde.example 1.0
+import QtCore
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import QtQuick.Dialogs as Dialogs
+import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport
+import org.kde.example
 
 Kirigami.ApplicationWindow {
     title: "Location Query"
-    reachableModeEnabled: false
 
     width: 540
     height: 720
@@ -47,29 +46,29 @@ Kirigami.ApplicationWindow {
         actions: [
             Kirigami.Action {
                 text: "Save..."
-                iconName: "document-save"
+                icon.name: "document-save"
                 onTriggered: fileDialog.open();
             },
             Kirigami.Action {
-                iconName: "help-about-symbolic"
+                icon.name: "help-about-symbolic"
                 text: "Data Sources"
                 enabled: locationModel.attributions.length > 0
-                onTriggered: aboutSheet.sheetOpen = true;
+                onTriggered: aboutSheet.open();
             },
             Kirigami.Action {
-                iconName: "settings-configure"
+                icon.name: "settings-configure"
                 text: "Backends"
                 onTriggered: pageStack.push(backendPage)
             }
         ]
     }
 
-    Platform.FileDialog {
+    Dialogs.FileDialog {
         id: fileDialog
         title: "Save Departure Data"
-        fileMode: Platform.FileDialog.SaveFile
+        fileMode: Dialogs.FileDialog.SaveFile
         nameFilters: ["JSON files (*.json)"]
-        onAccepted: ExampleUtil.saveTo(locationModel, fileDialog.file);
+        onAccepted: ExampleUtil.saveTo(locationModel, fileDialog.selectedFile);
     }
 
     function vehicleTypeIcon(type)
@@ -93,12 +92,12 @@ Kirigami.ApplicationWindow {
         Kirigami.SwipeListItem {
             actions: [
                 Kirigami.Action {
-                    iconName: "map-globe"
+                    icon.name: "map-globe"
                     text: "View on OSM"
                     onTriggered: Qt.openUrlExternally("https://www.openstreetmap.org/#map=18/" + location.latitude + "/" + location.longitude)
                 },
                 Kirigami.Action {
-                    iconName: "map-symbolic"
+                    icon.name: "map-symbolic"
                     text: "Indoor Map"
                     onTriggered: pageStack.push(indoorMapPage, {coordinate: Qt.point(location.longitude, location.latitude)})
                 }
@@ -262,7 +261,7 @@ Kirigami.ApplicationWindow {
                     textRole: "label"
                     onCurrentIndexChanged: {
                         var obj = exampleModel.get(currentIndex);
-                        nameQuery.text = obj.name == undefined ? obj.label : obj.name;
+                        nameQuery.text = obj.name == "" ? obj.label : obj.name;
                         latQuery.text = obj.lat;
                         lonQuery.text = obj.lon;
                     }

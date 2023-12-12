@@ -4,15 +4,14 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import org.kde.kirigami 2.12 as Kirigami
-import org.kde.kpublictransport 1.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport
 
 Kirigami.ApplicationWindow {
     title: "Pure QML Journey Query Example"
-    reachableModeEnabled: false
     width: 640
     height: 800
 
@@ -30,20 +29,20 @@ Kirigami.ApplicationWindow {
     globalDrawer: Kirigami.GlobalDrawer {
         actions: [
             Kirigami.Action {
-                iconName: "help-about-symbolic"
+                icon.name: "help-about-symbolic"
                 text: "Current Data Sources"
                 enabled: journeyModel.attributions.length > 0
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return journeyModel.attributions; });
-                    aboutSheet.sheetOpen = true;
+                    aboutSheet.open();
                 }
             },
             Kirigami.Action {
-                iconName: "help-about-symbolic"
+                icon.name: "help-about-symbolic"
                 text: "All Data Sources"
                 onTriggered: {
                     aboutSheet.attributions = Qt.binding(function() { return ptMgr.attributions; });
-                    aboutSheet.sheetOpen = true;
+                    aboutSheet.open();
                 }
             }
         ]
@@ -79,8 +78,9 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     model: journeyModel
                     clip: true
-                    delegate: Kirigami.AbstractListItem {
-                        GridLayout {
+                    delegate: QQC2.ItemDelegate {
+                        width: ListView.view.width
+                        contentItem: GridLayout {
                             rows: 2
                             columns: 2
                             QQC2.Label {

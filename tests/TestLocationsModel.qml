@@ -4,7 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQml.Models 2.10
+import QtQml.Models
 
 ListModel {
     ListElement { label: "Paris Charles de Gaulle Airport"; lat: 49.00406; lon: 2.57110 }

@@ -4,11 +4,11 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-import QtQuick 2.5
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 2.1 as QQC2
-import org.kde.kirigami 2.12 as Kirigami
-import org.kde.kpublictransport 1.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls as QQC2
+import org.kde.kirigami as Kirigami
+import org.kde.kpublictransport
 
 Kirigami.Page {
     property var journeySection
@@ -97,7 +97,7 @@ Kirigami.Page {
                     text: "<a href=\"#loc\">" + journeySection.from.name + "</a>"
                     onLinkActivated: {
                         locationDetailsSheet.location = journeySection.from;
-                        locationDetailsSheet.sheetOpen = true;
+                        locationDetailsSheet.open();
                     }
                 }
 
@@ -107,11 +107,12 @@ Kirigami.Page {
                 }
             }
 
-            delegate: Kirigami.AbstractListItem {
+            delegate: QQC2.ItemDelegate {
                 property var stop: modelData
                 enabled: stop.disruptionEffect != Disruption.NoService
                 highlighted: false
-                GridLayout {
+                width: ListView.view.width
+                contentItem: GridLayout {
                     columns: 5
                     rows: 4
                     Rectangle {
@@ -147,7 +148,7 @@ Kirigami.Page {
                         onLinkActivated: {
                             if (link == "#loc") {
                                 locationDetailsSheet.location = stop.stopPoint;
-                                locationDetailsSheet.sheetOpen = true;
+                                locationDetailsSheet.open();
                             } else if (link == "#layout") {
                                 applicationWindow().pageStack.push(vehicleLayoutPage, {"departure": stop });
                             }
@@ -255,7 +256,7 @@ Kirigami.Page {
                     text: "<a href=\"#loc\">" + journeySection.to.name + "</a>"
                     onLinkActivated: {
                         locationDetailsSheet.location = journeySection.to;
-                        locationDetailsSheet.sheetOpen = true;
+                        locationDetailsSheet.open();
                     }
                 }
 
