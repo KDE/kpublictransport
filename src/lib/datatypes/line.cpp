@@ -69,7 +69,7 @@ bool Line::hasTextColor() const
 
 QString Line::logo() const
 {
-    return AssetRepository::localFile(d->metaData.logoUrl());
+    return AssetRepository::localFile(d->metaData.logoUrl()).toString(QUrl::FullyEncoded);
 }
 
 bool Line::hasLogo() const
@@ -79,7 +79,7 @@ bool Line::hasLogo() const
 
 QString Line::modeLogo() const
 {
-    return AssetRepository::localFile(d->metaData.modeLogoUrl());
+    return AssetRepository::localFile(d->metaData.modeLogoUrl()).toString(QUrl::FullyEncoded);
 }
 
 bool Line::hasModeLogo() const

@@ -33,7 +33,7 @@ public:
     /** Returns the locally cached content for @p url
      *  if available, an empty string if none is available.
      */
-    static QString localFile(const QUrl &url);
+    static QUrl localFile(const QUrl &url);
 
     /** Schedules the image at @p url for downloading.
      *  @returns @c true if a download job has been started,

@@ -53,7 +53,7 @@ static QString cachePath()
     return QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/assets/");
 }
 
-QString AssetRepository::localFile(const QUrl& url)
+QUrl AssetRepository::localFile(const QUrl& url)
 {
     if (!url.isValid() || url.fileName().isEmpty()) {
         return {};
@@ -61,7 +61,7 @@ QString AssetRepository::localFile(const QUrl& url)
 
     QFileInfo fi(cachePath() + url.fileName());
     if (fi.exists() && fi.size() > 0) {
-        return fi.absoluteFilePath();
+        return QUrl::fromLocalFile(fi.absoluteFilePath());
     }
     return {};
 }
