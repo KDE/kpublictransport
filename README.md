@@ -62,8 +62,8 @@ application using this are provided globally via KPublicTransport::Manager::attr
 as well as more fine-grained per query reply via KPublicTransport::Reply::attributions().
 
 Besides attributing backend data correctly, this library also contains static data
-retrieved from [Wikidata](https://wikidata.org) under licensed as CC0 as well as data
-from [OpenStreetMap](https://openstreetmap.org) under licensed as ODbL, so those should
+retrieved from [Wikidata](https://wikidata.org) licensed as CC0 as well as data
+from [OpenStreetMap](https://openstreetmap.org) licensed as ODbL, so those should
 be appropriately credited in your application as well.
 
 ## Development
