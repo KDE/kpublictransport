@@ -16,6 +16,7 @@
 #include <QSignalSpy>
 #include <QTest>
 #include <QUrlQuery>
+#include <QTimeZone>
 
 #define s(x) QStringLiteral(x)
 
@@ -44,7 +45,7 @@ private Q_SLOTS:
         Location stop;
         stop.setIdentifier(QLatin1String("ibnr"), QLatin1String("8012345"));
         req.setStop(stop);
-        req.setDateTime(QDateTime({2023, 6, 25}, {9, 39}, Qt::UTC));
+        req.setDateTime(QDateTime({2023, 6, 25}, {9, 39}, QTimeZone::UTC));
         QTest::newRow("id-based-default") << req << QUrl(s("https://reiseauskunft.bahn.de/bin/mgate.exe"))
             << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R20.12.b","formatted":false,"lang":"en","svcReqL":[{"meth":"StationBoard","req":{"date":"20230625","maxJny":12,"stbFltrEquiv":true,"stbLoc":{"extId":"8012345","type":"S"},"time":"113900","type":"DEP"}}],"ver":"1.18"})");
 
@@ -109,7 +110,7 @@ private Q_SLOTS:
         to.setIdentifier(QLatin1String("ibnr"), QLatin1String("8023456"));
         req.setFrom(from);
         req.setTo(to);
-        req.setDateTime(QDateTime({2023, 6, 24}, {20, 58}, Qt::UTC));
+        req.setDateTime(QDateTime({2023, 6, 24}, {20, 58}, QTimeZone::UTC));
         QTest::newRow("id-based-default") << req << QUrl(s("https://reiseauskunft.bahn.de/bin/mgate.exe"))
             << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R20.12.b","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA"},"meth":"TripSearch","req":{"arrLocL":[{"extId":"8023456","type":"S"}],"depLocL":[{"extId":"8012345","type":"S"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":true,"getPolyline":false,"getSimpleTrainComposition":true,"getTrainComposition":true,"numF":12,"outDate":"20230624","outFrwd":true,"outTime":"225800"}}],"ver":"1.18"})");
 

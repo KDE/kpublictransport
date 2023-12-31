@@ -838,7 +838,7 @@ QDateTime HafasMgateParser::parseDateTime(const QString &date, const QJsonValue 
     auto dt = QDateTime::fromString(date + QStringView(timeStr).right(6), QStringLiteral("yyyyMMddhhmmss"));
     dt = dt.addDays(dayOffset);
     if (!tzOffset.isNull() && !tzOffset.isUndefined()) {
-        dt.setOffsetFromUtc(tzOffset.toInt() * 60);
+        dt.setTimeZone(QTimeZone::fromSecondsAheadOfUtc(tzOffset.toInt() * 60));
     }
 
     return dt;

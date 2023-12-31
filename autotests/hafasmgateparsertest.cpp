@@ -86,8 +86,8 @@ private Q_SLOTS:
         QTest::newRow("empty") << QString() << QString() << QJsonValue() << QDateTime();
         QTest::newRow("same day") << s("20190105") << s("142100") << QJsonValue() << QDateTime({2019, 1, 5}, {14, 21});
         QTest::newRow("next day") << s("20190105") << s("01142100") << QJsonValue() << QDateTime({2019, 1, 6}, {14, 21});
-        QTest::newRow("same day offset") << s("20190105") << s("142100") << QJsonValue(120) << QDateTime({2019, 1, 5}, {14, 21}, Qt::OffsetFromUTC, 7200);
-        QTest::newRow("next day offset") << s("20190105") << s("01142100") << QJsonValue(-120) << QDateTime({2019, 1, 6}, {14, 21}, Qt::OffsetFromUTC, -7200);
+        QTest::newRow("same day offset") << s("20190105") << s("142100") << QJsonValue(120) << QDateTime({2019, 1, 5}, {14, 21}, QTimeZone::fromSecondsAheadOfUtc(7200));
+        QTest::newRow("next day offset") << s("20190105") << s("01142100") << QJsonValue(-120) << QDateTime({2019, 1, 6}, {14, 21}, QTimeZone::fromSecondsAheadOfUtc(-7200));
     }
 
     void parseDateTime()

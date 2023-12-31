@@ -8,6 +8,7 @@
 
 #include <QDateTime>
 #include <QTest>
+#include <QTimeZone>
 
 using namespace KPublicTransport;
 
@@ -29,10 +30,10 @@ private Q_SLOTS:
         QTest::newRow("empty") << QDateTime() << QDateTime() << 0;
         QTest::newRow("local vs tz eq") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << 0;
         QTest::newRow("local vs tz diff") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {13, 23}, QTimeZone("Asia/Seoul")) << 3600;
-        QTest::newRow("local vs offset eq") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 7200) << 0;
-        QTest::newRow("local vs offset diff") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {13, 23}, Qt::OffsetFromUTC, 7200) << 3600;
-        QTest::newRow("offset vs tz eq") << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 9 * 3600) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << 0;
-        QTest::newRow("offset vs tz diff") << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 9 * 3600) << QDateTime({1970, 1, 1}, {13, 23}, QTimeZone("Asia/Seoul")) << 3600;
+        QTest::newRow("local vs offset eq") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(7200)) << 0;
+        QTest::newRow("local vs offset diff") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {13, 23}, QTimeZone::fromSecondsAheadOfUtc(7200)) << 3600;
+        QTest::newRow("offset vs tz eq") << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(9 * 3600)) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << 0;
+        QTest::newRow("offset vs tz diff") << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(9 * 3600)) << QDateTime({1970, 1, 1}, {13, 23}, QTimeZone("Asia/Seoul")) << 3600;
     }
 
     void testDateTimeDistance()
@@ -57,8 +58,8 @@ private Q_SLOTS:
         QTest::newRow("empty") << QDateTime() << QDateTime() << QDateTime();
         QTest::newRow("invalid") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime() << QDateTime({1970, 1, 1}, {12, 23});
         QTest::newRow("local vs tz") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul"));
-        QTest::newRow("local vs offset") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 7200) << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 7200);
-        QTest::newRow("offset vs tz") << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 9 * 3600) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul"));
+        QTest::newRow("local vs offset") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(7200)) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(7200));
+        QTest::newRow("offset vs tz") << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(9 * 3600)) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul"));
     }
 
     void testDateTimeMerge()
@@ -82,12 +83,12 @@ private Q_SLOTS:
         QTest::newRow("local vs tz eq") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul"));
         QTest::newRow("local vs tz gt") << QDateTime({1970, 1, 1}, {14, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul"));
         QTest::newRow("local vs tz lt") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul"));
-        QTest::newRow("local vs offset eq") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 7200) << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 7200);
-        QTest::newRow("local vs offset gt") << QDateTime({1970, 1, 1}, {15, 23}) << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 7200) << QDateTime({1970, 1, 1}, {15, 23}, Qt::OffsetFromUTC, 7200);
-        QTest::newRow("local vs offset lt") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {15, 23}, Qt::OffsetFromUTC, 7200) << QDateTime({1970, 1, 1}, {15, 23}, Qt::OffsetFromUTC, 7200);
-        QTest::newRow("offset vs tz eq") << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 9 * 3600) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul"));
-        QTest::newRow("offset vs tz gt") << QDateTime({1970, 1, 1}, {14, 23}, Qt::OffsetFromUTC, 9 * 3600) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul"));
-        QTest::newRow("offset vs tz lt") << QDateTime({1970, 1, 1}, {12, 23}, Qt::OffsetFromUTC, 9 * 3600) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul"));
+        QTest::newRow("local vs offset eq") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(7200)) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(7200));
+        QTest::newRow("local vs offset gt") << QDateTime({1970, 1, 1}, {15, 23}) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(7200)) << QDateTime({1970, 1, 1}, {15, 23}, QTimeZone::fromSecondsAheadOfUtc(7200));
+        QTest::newRow("local vs offset lt") << QDateTime({1970, 1, 1}, {12, 23}) << QDateTime({1970, 1, 1}, {15, 23}, QTimeZone::fromSecondsAheadOfUtc(7200)) << QDateTime({1970, 1, 1}, {15, 23}, QTimeZone::fromSecondsAheadOfUtc(7200));
+        QTest::newRow("offset vs tz eq") << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(9 * 3600)) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul"));
+        QTest::newRow("offset vs tz gt") << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone::fromSecondsAheadOfUtc(9 * 3600)) << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul"));
+        QTest::newRow("offset vs tz lt") << QDateTime({1970, 1, 1}, {12, 23}, QTimeZone::fromSecondsAheadOfUtc(9 * 3600)) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul")) << QDateTime({1970, 1, 1}, {14, 23}, QTimeZone("Asia/Seoul"));
     }
 
     void testDateTimeMax()

@@ -16,6 +16,7 @@
 #include <QSignalSpy>
 #include <QTest>
 #include <QUrlQuery>
+#include <QTimeZone>
 
 #define s(x) QStringLiteral(x)
 
@@ -43,7 +44,7 @@ private Q_SLOTS:
         Location stop;
         stop.setIdentifier(QLatin1String("de_bw_vvs"), QLatin1String("12345"));
         req.setStop(stop);
-        req.setDateTime(QDateTime({2023, 6, 25}, {9, 39}, Qt::UTC));
+        req.setDateTime(QDateTime({2023, 6, 25}, {9, 39}, QTimeZone::UTC));
         QTest::newRow("id-based-default") << req << QUrl(s("https://www2.vvs.de/vvs/XML_DM_REQUEST?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&type_dm=stop&name_dm=12345&itdDate=20230625&itdTime=0939&useRealtime=1&limit=12&mode=direct&ptOptionsActive=1&merge_dep=1&stateless=1&sessionID=0&requestID=0"));
 
         stop = {};
@@ -90,7 +91,7 @@ private Q_SLOTS:
         to.setIdentifier(QLatin1String("de_bw_vvs"), QLatin1String("23456"));
         req.setFrom(from);
         req.setTo(to);
-        req.setDateTime(QDateTime({2023, 6, 24}, {20, 58}, Qt::UTC));
+        req.setDateTime(QDateTime({2023, 6, 24}, {20, 58}, QTimeZone::UTC));
         QTest::newRow("id-based-default") << req << QUrl(s("https://www2.vvs.de/vvs/XML_TRIP_REQUEST2?outputFormat=XML&coordOutputFormat=WGS84[DD.ddddd]&language=en&locationServerActive=1&useRealtime=1&type_origin=stop&name_origin=12345&type_destination=stop&name_destination=23456&itdDate=20230624&itdTime=2058&itdTripDateTimeDepArr=dep&itOptionsActive=1&trITDepMOT=100&trITArrMOT=100&calcNumberOfTrips=12&calcCO2=1&coordListOutputFormat=STRING&stateless=1&sessionID=0&requestID=0"));
 
         from = {};

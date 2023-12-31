@@ -13,6 +13,7 @@
 #include <QByteArray>
 #include <QDateTime>
 #include <QDebug>
+#include <QTimeZone>
 #include <QXmlStreamWriter>
 
 using namespace KPublicTransport;
@@ -235,7 +236,7 @@ void OpenJourneyPlannerRequestBuilder::writePlaceRef(QXmlStreamWriter &w, const 
 void OpenJourneyPlannerRequestBuilder::writeRequestTimestamp(QXmlStreamWriter &w) const
 {
     if (Q_UNLIKELY(m_testMode)) {
-        w.writeTextElement(siriNS(), QStringLiteral("RequestTimestamp"), QDateTime({2023, 3, 24}, {12, 34, 56}, Qt::UTC).toString(Qt::ISODate));
+        w.writeTextElement(siriNS(), QStringLiteral("RequestTimestamp"), QDateTime({2023, 3, 24}, {12, 34, 56}, QTimeZone::UTC).toString(Qt::ISODate));
     } else {
         w.writeTextElement(siriNS(), QStringLiteral("RequestTimestamp"), QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
     }

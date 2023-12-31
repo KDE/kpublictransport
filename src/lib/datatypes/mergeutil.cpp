@@ -23,7 +23,7 @@ static QDateTime applyTimeZone(QDateTime dt, const QDateTime &refDt)
     if (refDt.timeSpec() == Qt::TimeZone) {
         dt.setTimeZone(refDt.timeZone());
     } else if (refDt.timeSpec() == Qt::OffsetFromUTC) {
-        dt.setOffsetFromUtc(refDt.offsetFromUtc());
+        dt.setTimeZone(QTimeZone::fromSecondsAheadOfUtc(refDt.offsetFromUtc()));
     }
 
     return dt;
@@ -88,9 +88,9 @@ QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs
     if (dt.timeSpec() == Qt::OffsetFromUTC) {
         return dt;
     } else if (lhs.timeSpec() == Qt::OffsetFromUTC) {
-        dt.setOffsetFromUtc(lhs.offsetFromUtc());
+        dt.setTimeZone(QTimeZone::fromSecondsAheadOfUtc(lhs.offsetFromUtc()));
     } else if (rhs.timeSpec() == Qt::OffsetFromUTC) {
-        dt.setOffsetFromUtc(rhs.offsetFromUtc());
+        dt.setTimeZone(QTimeZone::fromSecondsAheadOfUtc(rhs.offsetFromUtc()));
     }
 
     return dt;

@@ -31,7 +31,7 @@ AbstractBackend::Capabilities OpenJourneyPlannerBackend::capabilities() const
         (m_endpoint.scheme() == QLatin1String("https") ? AbstractBackend::Secure : AbstractBackend::NoCapability);
 }
 
-bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
+bool OpenJourneyPlannerBackend::needsLocationQuery(const Location &loc, [[maybe_unused]] AbstractBackend::QueryType type) const
 {
     return !loc.hasCoordinate() && loc.identifier(QStringLiteral("uic")).isEmpty(); // ### TODO configure identifier type
 }

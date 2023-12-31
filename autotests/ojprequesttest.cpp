@@ -15,6 +15,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QTest>
+#include <QTimeZone>
 
 #define s(x) QStringLiteral(x)
 
@@ -84,7 +85,7 @@ private Q_SLOTS:
         StopoverRequest req;
         req.setStop(loc);
         req.setMode(StopoverRequest::QueryDeparture);
-        req.setDateTime(QDateTime({2020, 9, 6}, {20, 54}, Qt::UTC));
+        req.setDateTime(QDateTime({2020, 9, 6}, {20, 54}, QTimeZone::UTC));
         req.setMaximumResults(4);
         QTest::newRow("stopover-departure") << req << s(SOURCE_DIR "/data/ojp-request/stopover-departure.xml");
         req.setMode(StopoverRequest::QueryArrival);
@@ -129,7 +130,7 @@ private Q_SLOTS:
         JourneyRequest req;
         req.setFrom(from);
         req.setTo(to);
-        req.setDateTime(QDateTime({2020, 9, 6}, {20, 54}, Qt::UTC));
+        req.setDateTime(QDateTime({2020, 9, 6}, {20, 54}, QTimeZone::UTC));
         req.setDateTimeMode(JourneyRequest::Departure);
         req.setMaximumResults(3);
         req.setIncludeIntermediateStops(true);

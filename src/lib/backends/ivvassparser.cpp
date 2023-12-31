@@ -149,7 +149,6 @@ static Route parseRoute(const QJsonObject &lineObj)
 static void applyTimeZone(QDateTime &dt, const QTimeZone &tz)
 {
     if (dt.timeSpec() == Qt::OffsetFromUTC && tz.offsetFromUtc(dt) == dt.offsetFromUtc()) {
-        dt.setTimeSpec(Qt::TimeZone);
         dt.setTimeZone(tz);
     }
 }

@@ -156,7 +156,7 @@ bool OpenTripPlannerRestBackend::queryJourney(const JourneyRequest &req, Journey
     auto dt = req.dateTime();
     if (timeZone().isValid()) {
         dt = dt.toTimeZone(timeZone());
-        dt.setTimeSpec(Qt::LocalTime); // pretend we have local time, so toString() isn't adding a UTC offset
+        dt.setTimeZone(QTimeZone::LocalTime); // pretend we have local time, so toString() isn't adding a UTC offset
     }
     query.addQueryItem(QStringLiteral("date"), dt.date().toString(Qt::ISODate));
     query.addQueryItem(QStringLiteral("time"), dt.time().toString(Qt::ISODate));

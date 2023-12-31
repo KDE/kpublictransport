@@ -309,7 +309,7 @@ static QDateTime parseDepartureDateTime(uint64_t baseTime, const QJsonValue &val
     if (value.isDouble()) { // encoded as seconds offset to baseTime
         // UNIX timestamp of midnight in local timezone + UNIX timestamp of local time
         auto dt = QDateTime::fromSecsSinceEpoch(baseTime + value.toDouble());
-        dt = dt.toTimeSpec(Qt::UTC);
+        dt = dt.toTimeZone(QTimeZone::UTC);
         return dt;
     }
     return QDateTime::fromString(value.toString(), Qt::ISODate);
@@ -375,7 +375,7 @@ static QDateTime parseJourneyDateTime(const QJsonValue &val)
     if (val.isDouble()) {
         // timestamp, as UTC value
         auto dt = QDateTime::fromMSecsSinceEpoch(val.toDouble()); // ### sic! double to get 64 bit precision...
-        dt = dt.toTimeSpec(Qt::UTC);
+        dt = dt.toTimeZone(QTimeZone::UTC);
         return dt;
     }
     if (val.isString()) {

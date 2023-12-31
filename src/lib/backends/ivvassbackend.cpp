@@ -108,7 +108,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     if (timeZone().isValid()) {
         dt = dt.toTimeZone(timeZone());
     }
-    dt.setTimeSpec(Qt::LocalTime);
+    dt.setTimeZone(QTimeZone::LocalTime);
     query.addQueryItem(QStringLiteral("t"), dt.toString(Qt::ISODate));
 
     QUrl url(m_endpoint);
@@ -160,7 +160,7 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     if (timeZone().isValid()) {
         dt = dt.toTimeZone(timeZone());
     }
-    dt.setTimeSpec(Qt::LocalTime);
+    dt.setTimeZone(QTimeZone::LocalTime);
     query.addQueryItem(req.dateTimeMode() == JourneyRequest::Departure ? QStringLiteral("d") : QStringLiteral("a"), dt.toString(Qt::ISODate));
     query.addQueryItem(QStringLiteral("c"), QString::number(req.maximumResults()));
     query.addQueryItem(QStringLiteral("s"), QStringLiteral("t"));
