@@ -237,7 +237,7 @@ QString JourneyRequest::cacheKey() const
     hash.addData(QByteArray::number(d->dateTime.toSecsSinceEpoch() / JourneyCacheTimeResolution));
     hash.addData(LocationUtil::cacheKey(d->from).toUtf8());
     hash.addData(LocationUtil::cacheKey(d->to).toUtf8());
-    hash.addData(d->dateTimeMode == JourneyRequest::Arrival ? "A" : "D", 1);
+    hash.addData(QByteArrayView(d->dateTimeMode == JourneyRequest::Arrival ? "A" : "D", 1));
     hash.addData(QMetaEnum::fromType<JourneySection::Mode>().valueToKeys(d->modes));
     hash.addData(QByteArray::number(d->maximumResults));
     hash.addData(d->includeIntermediateStops ? "I" : "-");

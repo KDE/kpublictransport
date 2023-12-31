@@ -832,11 +832,7 @@ QDateTime HafasMgateParser::parseDateTime(const QString &date, const QJsonValue 
 
     int dayOffset = 0;
     if (timeStr.size() > 6) {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        dayOffset = timeStr.leftRef(timeStr.size() - 6).toInt();
-#else
         dayOffset = QStringView(timeStr).left(timeStr.size() - 6).toInt();
-#endif
     }
 
     auto dt = QDateTime::fromString(date + QStringView(timeStr).right(6), QStringLiteral("yyyyMMddhhmmss"));

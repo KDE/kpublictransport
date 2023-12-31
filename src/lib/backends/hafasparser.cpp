@@ -53,11 +53,7 @@ Line::Mode HafasParser::parseLineMode(const QString &modeId) const
     return parseLineMode(modeNum);
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-Line::Mode HafasParser::parseLineMode(const QStringRef &modeId) const
-#else
 Line::Mode HafasParser::parseLineMode(const QStringView &modeId) const
-#endif
 {
     bool ok = false;
     const auto modeNum = modeId.toInt(&ok);

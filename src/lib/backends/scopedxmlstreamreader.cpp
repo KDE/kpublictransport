@@ -110,19 +110,11 @@ QXmlStreamAttributes ScopedXmlStreamReader::attributes() const
     return m_reader.attributes();
 }
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-QStringRef ScopedXmlStreamReader::name() const
-{
-    Q_ASSERT_X(!m_subReaderLock, "ScopedXmlStreamReader", "Operations while a sub-reader is active are forbidden!");
-    return m_reader.name();
-}
-#else
 QStringView ScopedXmlStreamReader::name() const
 {
     Q_ASSERT_X(!m_subReaderLock, "ScopedXmlStreamReader", "Operations while a sub-reader is active are forbidden!");
     return m_reader.name();
 }
-#endif
 
 QString ScopedXmlStreamReader::readElementText(QXmlStreamReader::ReadElementTextBehaviour behaviour)
 {

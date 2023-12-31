@@ -10,7 +10,7 @@ set (RELEASE_SERVICE_VERSION_MICRO "85")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(KPublicTransport VERSION ${RELEASE_SERVICE_VERSION})
 
-find_package(ECM 5.91 REQUIRED NO_MODULE)
+find_package(ECM 5.245 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -37,20 +37,10 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KPUBLICTRANSPORT
     SOVERSION 1
 )
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(KF_MAJOR_VERSION "6")
-else()
-    set(KF_MAJOR_VERSION "5")
-endif()
-
-find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Quick)
-
-if (QT_MAJOR_VERSION EQUAL "5" AND ANDROID)
-    find_package(Qt5 5.15 REQUIRED COMPONENTS AndroidExtras)
-endif()
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 
 if (BUILD_TESTING)
-    find_package(Qt${QT_MAJOR_VERSION} 5.15 REQUIRED COMPONENTS Test Widgets)
+    find_package(Qt6 5.15 REQUIRED COMPONENTS Test Widgets)
 endif()
 
 find_package(ZLIB REQUIRED)
@@ -67,20 +57,18 @@ if (NOT WIN32)
 endif()
 
 if (UNIX AND NOT ANDROID)
-    find_package(KF${KF_MAJOR_VERSION}NetworkManagerQt)
-    set_package_properties(KF${KF_MAJOR_VERSION}NetworkManagerQt PROPERTIES TYPE OPTIONAL PURPOSE "Onboard status detection.")
+    find_package(KF6NetworkManagerQt)
+    set_package_properties(KF6NetworkManagerQt PROPERTIES TYPE OPTIONAL PURPOSE "Onboard status detection.")
 endif()
 if (ANDROID)
     find_package(Gradle)
 endif()
 
-find_package(KF${KF_MAJOR_VERSION} REQUIRED COMPONENTS I18n)
+find_package(KF6 REQUIRED COMPONENTS I18n)
 
 set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
 
-ecm_set_disabled_deprecation_versions(QT 5.15.2
-     KF 5.102.0
-    )
+ecm_set_disabled_deprecation_versions(QT 6.5 KF 5.245.0)
 
 add_subdirectory(src)
 

@@ -8,16 +8,10 @@
 
 #include <QSharedData>
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <QtAndroid>
-#include <QAndroidJniEnvironment>
-#include <QAndroidJniObject>
-#else
 #include <private/qandroidextras_p.h>
 #include <QCoreApplication>
 #include <QJniEnvironment>
 #include <QJniObject>
-#endif
 
 using namespace KPublicTransport;
 
@@ -30,11 +24,7 @@ public:
 
     std::vector<WifiMonitor*> frontends;
     WifiMonitor::Status status = WifiMonitor::NotAvailable;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QAndroidJniObject wifiMonitor;
-#else
     QJniObject wifiMonitor;
-#endif
 };
 }
 
@@ -84,11 +74,7 @@ WifiMonitor::WifiMonitor(QObject *parent)
 {
     static bool nativesRegistered = false;
     if (!nativesRegistered) {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        QAndroidJniEnvironment env;
-#else
         QJniEnvironment env;
-#endif
         jclass cls = env->FindClass("org/kde/publictransport/onboard/WifiMonitor");
         if (env->RegisterNatives(cls, methods, sizeof(methods) / sizeof(JNINativeMethod)) < 0) {
             qCWarning(Log) << "Failed to register native functions!";
@@ -98,11 +84,7 @@ WifiMonitor::WifiMonitor(QObject *parent)
 
     if (!s_backend) {
         s_backend = new WifiMonitorBackend;
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        s_backend->wifiMonitor = QAndroidJniObject("org/kde/publictransport/onboard/WifiMonitor", "(Landroid/content/Context;)V", QtAndroid::androidContext().object());
-#else
         s_backend->wifiMonitor = QJniObject("org/kde/publictransport/onboard/WifiMonitor", "(Landroid/content/Context;)V", QNativeInterface::QAndroidApplication::context());
-#endif
     }
 
     s_backend->ref.ref();
@@ -130,13 +112,7 @@ WifiMonitor::Status WifiMonitor::status() const
 
 void WifiMonitor::requestPermissions()
 {
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QtAndroid::requestPermissions({QStringLiteral("android.permission.ACCESS_FINE_LOCATION")}, [] (const QtAndroid::PermissionResultMap&) {
-        s_backend->wifiMonitor.callMethod<void>("checkStatus", "()V");
-    });
-#else
     // TODO make this properly async
     QtAndroidPrivate::requestPermission(QStringLiteral("android.permission.ACCESS_FINE_LOCATION"));
     s_backend->wifiMonitor.callMethod<void>("checkStatus", "()V");
-#endif
 }

@@ -23,11 +23,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <QTextCodec>
-#else
 #include <QStringDecoder>
-#endif
 #include <QUrl>
 #include <QUrlQuery>
 
@@ -82,19 +78,11 @@ static QByteArray readReplyAsUtf8(QNetworkReply *reply)
     if (charsetStart < 0) {
         return data;
     }
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    const auto codec = QTextCodec::codecForName(QStringView(contentType).mid(charsetStart + 8).toUtf8());
-    if (!codec) {
-        return data;
-    }
-    return codec->toUnicode(data).toUtf8();
-#else
     auto codec = QStringDecoder(QStringView(contentType).mid(charsetStart + 8).toUtf8().constData());
     if (!codec.isValid()) {
         return data;
     }
     return QString(codec.decode(data)).toUtf8();
-#endif
 }
 
 bool HafasQueryBackend::queryLocationByName(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const

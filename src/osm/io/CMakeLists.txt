@@ -21,6 +21,11 @@ if (Protobuf_FOUND AND Protobuf_PROTOC_EXECUTABLE)
         PUBLIC KOSM
         PRIVATE ${Protobuf_LIBRARIES} ZLIB::ZLIB
     )
+
+    # workaroud for https://github.com/protocolbuffers/protobuf/issues/10108
+    if (Protobuf_VERSION VERSION_LESS 3.22)
+        target_compile_definitions(KOSM_pbfioplugin PRIVATE -DGOOGLE_PROTOBUF_INTERNAL_DONATE_STEAL_INLINE=0)
+    endif()
 endif()
 
 add_library(KOSM_xmlioplugin STATIC)
