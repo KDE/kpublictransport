@@ -85,6 +85,8 @@
         <file>it_21_piemonte.json</file>
         <file>it_21_torino.json</file>
 
+        <file>lv_pv.json</file>
+
         <file>us_ca_bart.json</file>
         <file>us_ca_la_metro.json</file>
         <file>us_ga_marta.json</file>

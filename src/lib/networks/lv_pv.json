@@ -1,0 +1,46 @@
+{
+    "KPlugin": {
+        "Description": "Operator of trains in Latvia",
+        "Name": "Pasazieru vilciens"
+    },
+    "attribution": {
+        "homepage": "https://pv.lv/",
+        "isProprietary": true,
+        "name": "Pasazieru vilciens"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            19.984, 58.113
+                        ],
+                        [
+                            28.905, 58.344
+                        ],
+                        [
+                            28.773, 55.354
+                        ],
+                        [
+                            20.380, 55.900
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "LV"
+            ]
+        }
+    },
+    "options": {
+    },
+    "supportedLanguages": [
+        "lv"
+    ],
+    "timezone": "Europe/Riga",
+    "type": {
+        "pv": true
+    }
+}
