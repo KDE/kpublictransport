@@ -1,12 +1,16 @@
 # SPDX-FileCopyrightText: 2020 Volker Krause <vkrause@kde.org>
 # SPDX-License-Identifier: BSD-3-Clause
 
-ecm_add_qml_module(kpublictransportquickplugin URI "org.kde.kpublictransport.ui" VERSION 1.0)
+ecm_add_qml_module(kpublictransportquickplugin
+    URI "org.kde.kpublictransport.ui"
+    VERSION 1.0
+    GENERATE_PLUGIN_SOURCE
+    IMPORTS "org.kde.kpublictransport"
+    DEPENDENCIES "QtQuick"
+)
 
 target_sources(kpublictransportquickplugin PRIVATE
-    kpublictransportquickplugin.cpp
     styledframesvgitem.cpp
-    kpublictransportquickplugin.h
     assets/assets.qrc
 )
 

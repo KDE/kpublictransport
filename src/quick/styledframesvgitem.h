@@ -16,6 +16,7 @@ namespace KPublicTransport {
 class StyledFrameSvgItem : public QQuickPaintedItem
 {
     Q_OBJECT
+    QML_ELEMENT
     Q_PROPERTY(double borderTop MEMBER m_borderTop NOTIFY borderTopChanged)
     Q_PROPERTY(double borderBottom MEMBER m_borderBottom NOTIFY borderBottomChanged)
     Q_PROPERTY(double borderLeft MEMBER m_borderLeft NOTIFY borderLeftChanged)
