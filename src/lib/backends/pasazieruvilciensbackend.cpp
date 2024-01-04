@@ -191,6 +191,7 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
             auto trainNr = tripJson[u"trainNr"].toString();
             bool isBus = tripJson[u"bus"].toBool();
             auto routeName = tripJson[u"name"].toString();
+            QString platform = tripJson[u"roadNumber"].toString();
 
             auto detailsReply = nam->get(QNetworkRequest(detailsUrl));
             (*runningRequests)++;
@@ -202,6 +203,7 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
                 JourneySection section;
                 section.setFrom(req.from());
                 section.setTo(req.to());
+                section.setScheduledDeparturePlatform(platform);
 
                 section.setScheduledDepartureTime(departure);
                 section.setScheduledArrivalTime(arrival);
