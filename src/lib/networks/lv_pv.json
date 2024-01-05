@@ -1,7 +1,23 @@
 {
     "KPlugin": {
         "Description": "Operator of trains in Latvia",
-        "Name": "Pasazieru vilciens"
+        "Description[ca]": "Operador de trens a Letònia",
+        "Description[eo]": "Funkciigisto de trajnoj de Latvio",
+        "Description[nl]": "Laat treinen in Letland rijden",
+        "Description[sl]": "Železniški operater v Latviji",
+        "Description[sv]": "Tågoperatör i Lettland",
+        "Description[tr]": "Letonya'da tren operatörü",
+        "Description[uk]": "Залізничний оператор у Латвії",
+        "Description[x-test]": "xxOperator of trains in Latviaxx",
+        "Name": "Pasazieru vilciens",
+        "Name[ca]": "Pasazieru vilciens",
+        "Name[eo]": "Pasazieru vilciens",
+        "Name[nl]": "Pasazieru vilciens",
+        "Name[sl]": "Pasazieru vilciens",
+        "Name[sv]": "Pasazieru vilciens",
+        "Name[tr]": "Pasazieru vilciens",
+        "Name[uk]": "Pasazieru vilciens",
+        "Name[x-test]": "xxPasazieru vilciensxx"
     },
     "attribution": {
         "homepage": "https://pv.lv/",
