@@ -73,8 +73,10 @@ private:
     /// Splits the list of json stops at the transfer point
     std::tuple<std::vector<QJsonObject>, std::vector<QJsonObject>> splitJoinedSections(QJsonArray &&data) const;
 
-    /// Parses a time from "12:30" into a QDateTime, given a date
-    QDateTime parseDateTime(const QString &time, const QDate &date) const;
+    /// Parses a time from "12:30" into a QDateTime, given a date.
+    /// If the resulting QDateTime is smaller than a given known previous date / time,
+    /// it assumes the next day started in the meantime.
+    QDateTime parseDateTime(const QString &time, const QDate &date, const QDateTime &knownPreviousDateTime = {}) const;
 
     std::map<int, PV::Station> m_stations;
     bool m_fetchingStations = false;

@@ -198,7 +198,7 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
             QObject::connect(detailsReply, &QNetworkReply::finished, this, [=, this]() {
                 const auto jsonValue = QJsonDocument::fromJson(detailsReply->readAll());
                 auto stopsJson = prepareStops(jsonValue[u"data"][u"route"].toArray());
-                auto stops = parseStopovers({stopsJson.begin() + 1, stopsJson.end() - 1}, arrival);
+                auto stops = parseStopovers({stopsJson.begin() + 1, stopsJson.end() - 1}, departure);
 
                 JourneySection section;
                 section.setFrom(req.from());
@@ -276,13 +276,13 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const Jo
             auto startTime = parseDateTime(tripJson[u"startTime"].toString(), departure.date());
             auto startTrainNr = tripJson[u"startTrainNumber"].toString();
 
-            auto endStationId = tripJson[u"endStationId"].toString();
-            auto endTime = parseDateTime(tripJson[u"endTime"].toString(), departure.date());
-            auto endTrainNr = tripJson[u"endTrainNumber"].toString();
-
             auto transferStationId = tripJson[u"transferPlaceId"].toString();
-            auto transferArriveTime = parseDateTime(tripJson[u"transferArriveTime"].toString(), departure.date());
-            auto transferLeaveTime = parseDateTime(tripJson[u"transferLeaveTime"].toString(), departure.date());
+            auto transferArriveTime = parseDateTime(tripJson[u"transferArriveTime"].toString(), departure.date(), startTime);
+            auto transferLeaveTime = parseDateTime(tripJson[u"transferLeaveTime"].toString(), departure.date(), transferArriveTime);
+
+            auto endStationId = tripJson[u"endStationId"].toString();
+            auto endTime = parseDateTime(tripJson[u"endTime"].toString(), departure.date(), transferLeaveTime);
+            auto endTrainNr = tripJson[u"endTrainNumber"].toString();
 
             // Filter for requested arrival / departure time frame
             if (!LocalBackendUtils::isInSelectedTimeframe(departure, arrival, req)) {
@@ -312,7 +312,6 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const Jo
                 auto stopovers = jsonValue[u"data"][u"route"].toArray();
 
                 auto [stopOversAJson, stopOversBJson] = splitJoinedSections(std::move(stopovers));
-
 
                 auto stopoversA = parseStopovers(std::move(stopOversAJson), departure);
                 auto stopoversB = parseStopovers(std::move(stopOversBJson), departure);
@@ -392,10 +391,14 @@ Location PasazieruVilciensBackend::lookupStation(int pvint) const
 std::vector<Stopover> PasazieruVilciensBackend::parseStopovers(std::vector<QJsonObject> &&stops, const QDateTime &startTime) const {
     std::vector<Stopover> stopovers;
 
+    // Just to ensure timestamps can't go backwards
+    QDateTime previousArrivalTime;
+
     for (auto &&stopoverJson : stops) {
         Stopover stopover;
 
-        QDateTime arrivalDateTime = parseDateTime(stopoverJson[QStringLiteral("time")].toString(), startTime.date());
+        QDateTime arrivalDateTime = parseDateTime(stopoverJson[QStringLiteral("time")].toString(), startTime.date(), arrivalDateTime);
+        previousArrivalTime = arrivalDateTime;
 
         stopover.setScheduledArrivalTime(arrivalDateTime);
         stopover.setScheduledDepartureTime(arrivalDateTime);
@@ -448,11 +451,17 @@ std::tuple<std::vector<QJsonObject>, std::vector<QJsonObject>> PasazieruVilciens
     return {firstPart, secondPart};
 }
 
-QDateTime PasazieruVilciensBackend::parseDateTime(const QString &timeString, const QDate &date) const
+QDateTime PasazieruVilciensBackend::parseDateTime(const QString &timeString, const QDate &date, const QDateTime &knownPreviousTime) const
 {
     auto time = QTime::fromString(timeString);
-    auto dateTime = date.startOfDay(); // TODO what about multi-day travel?
+
+    auto dateTime = date.startOfDay();
     dateTime.setTime(time);
     dateTime.setTimeZone(QTimeZone("Europe/Riga"));
+
+    if (!knownPreviousTime.isNull() && dateTime < knownPreviousTime) {
+        dateTime.setDate(dateTime.date().addDays(1));
+    }
+
     return dateTime;
 }
