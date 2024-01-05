@@ -124,7 +124,7 @@ void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessM
         for (const auto &stationJson : data) {
             const QString name = stationJson[u"name"].toString();
             m_stations.insert({qint64(stationJson[u"id"].toDouble()),
-                Station {
+                PV::Station {
                     .id = qint64(stationJson[QStringLiteral("id")].toDouble()),
                     .name = name,
                     .searchableName = makeSearchableName(name),
@@ -134,6 +134,8 @@ void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessM
         }
 
         Q_EMIT newStationData();
+
+        netReply->deleteLater();
     });
 }
 
@@ -236,6 +238,8 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
         if (!foundAny) {
             pendingQuery->reportFinished({});
         }
+
+        netReply->deleteLater();
     });
 
     return pendingQuery;
@@ -371,12 +375,14 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const Jo
         if (!foundAny) {
             pendingQuery->reportFinished({});
         }
+
+        netReply->deleteLater();
     });
 
     return pendingQuery;
 }
 
-Location PasazieruVilciensBackend::stationToLocation(const Station &station)
+Location PasazieruVilciensBackend::stationToLocation(const PV::Station &station)
 {
     Location loc;
     loc.setCoordinate(station.latitude, station.longitude);
@@ -402,7 +408,7 @@ std::vector<Stopover> PasazieruVilciensBackend::parseStopovers(std::vector<QJson
 
         stopover.setScheduledArrivalTime(arrivalDateTime);
         stopover.setScheduledDepartureTime(arrivalDateTime);
-        stopover.setStopPoint(stationToLocation(Station(m_stations.at(stopoverJson[QStringLiteral("stationId")].toInt()))));
+        stopover.setStopPoint(stationToLocation(m_stations.at(stopoverJson[QStringLiteral("stationId")].toInt())));
         stopovers.push_back(std::move(stopover));
     }
 

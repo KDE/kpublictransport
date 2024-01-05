@@ -12,6 +12,7 @@
 
 namespace KPublicTransport {
 
+namespace PV {
 struct Station {
     qint64 id;
     QString name;
@@ -19,6 +20,7 @@ struct Station {
     float latitude;
     float longitude;
 };
+}
 
 class PendingQuery : public QObject {
     Q_OBJECT
@@ -58,7 +60,7 @@ private:
     /// trips containing transfers
     std::shared_ptr<PendingQuery> fetchJoinedTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const;
 
-    static Location stationToLocation(const Station &station);
+    static Location stationToLocation(const PV::Station &station);
     Location lookupStation(int pvint) const;
 
     /// parses stopovers from json objects
@@ -77,7 +79,7 @@ private:
     /// Removes all accents from a string, and converts it to lowercase
     static QString makeSearchableName(const QString &name);
 
-    std::map<int, Station> m_stations;
+    std::map<int, PV::Station> m_stations;
 };
 
 }
