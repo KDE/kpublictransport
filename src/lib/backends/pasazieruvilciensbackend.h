@@ -76,9 +76,6 @@ private:
     /// Parses a time from "12:30" into a QDateTime, given a date
     QDateTime parseDateTime(const QString &time, const QDate &date) const;
 
-    /// Removes all accents from a string, and converts it to lowercase
-    static QString makeSearchableName(const QString &name);
-
     std::map<int, PV::Station> m_stations;
 };
 

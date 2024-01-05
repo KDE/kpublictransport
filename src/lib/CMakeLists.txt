@@ -41,6 +41,7 @@ target_sources(KPublicTransport PRIVATE
     backends/ivvassbackend.cpp
     backends/ivvassparser.cpp
     backends/ivvassproductmap.cpp
+    backends/localbackendutils.cpp
     backends/ltglinkbackend.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp

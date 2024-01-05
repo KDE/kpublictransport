@@ -19,6 +19,7 @@
 #include "journeyrequest.h"
 #include "locationrequest.h"
 #include "locationreply.h"
+#include "localbackendutils.h"
 
 using namespace KPublicTransport;
 
@@ -92,7 +93,7 @@ bool PasazieruVilciensBackend::queryLocation(const LocationRequest &req, Locatio
     }
 
     std::vector<Location> locations;
-    QString name = makeSearchableName(req.name());
+    QString name = LocalBackendUtils::makeSearchableName(req.name());
 
     for (auto [id, station] : std::as_const(m_stations)) {
         if (station.searchableName.contains(name)) {
@@ -123,11 +124,11 @@ void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessM
 
         for (const auto &stationJson : data) {
             const QString name = stationJson[u"name"].toString();
-            m_stations.insert({qint64(stationJson[u"id"].toDouble()),
+            m_stations.insert({int(stationJson[u"id"].toDouble()),
                 PV::Station {
-                    .id = qint64(stationJson[QStringLiteral("id")].toDouble()),
+                    .id = int(stationJson[QStringLiteral("id")].toDouble()),
                     .name = name,
-                    .searchableName = makeSearchableName(name),
+                    .searchableName = LocalBackendUtils::makeSearchableName(name),
                     .latitude = static_cast<float>(stationJson[u"latitude"].toDouble()),
                     .longitude = static_cast<float>(stationJson[u"longitude"].toDouble())
                 }});
@@ -170,14 +171,8 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
             auto departure = QDateTime::fromSecsSinceEpoch(qint64(tripJson[QStringLiteral("departure")].toDouble())).toTimeZone(tz);
 
             // Filter for requested arrival / departure time frame
-            if (req.dateTimeMode() == JourneyRequest::Departure) {
-                if (departure < req.dateTime()) {
-                    continue;
-                }
-            } else {
-                if (arrival > req.dateTime()) {
-                    continue;
-                }
+            if (!LocalBackendUtils::isInSelectedTimeframe(departure, arrival, req)) {
+                continue;
             }
 
             foundAny = true;
@@ -286,16 +281,9 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const Jo
             auto transferArriveTime = parseDateTime(tripJson[u"transferArriveTime"].toString(), departure.date());
             auto transferLeaveTime = parseDateTime(tripJson[u"transferLeaveTime"].toString(), departure.date());
 
-
             // Filter for requested arrival / departure time frame
-            if (req.dateTimeMode() == JourneyRequest::Departure) {
-                if (departure < req.dateTime()) {
-                    continue;
-                }
-            } else {
-                if (arrival > req.dateTime()) {
-                    continue;
-                }
+            if (!LocalBackendUtils::isInSelectedTimeframe(departure, arrival, req)) {
+                continue;
             }
 
             foundAny = true;
@@ -464,11 +452,4 @@ QDateTime PasazieruVilciensBackend::parseDateTime(const QString &timeString, con
     dateTime.setTime(time);
     dateTime.setTimeZone(QTimeZone("Europe/Riga"));
     return dateTime;
-}
-
-QString PasazieruVilciensBackend::makeSearchableName(const QString &name)
-{
-    auto normalized = name.normalized(QString::NormalizationForm_D);
-    return normalized.replace(QRegularExpression(QStringLiteral("[^a-zA-Z0-9\\s]")), QString())
-        .toLower();
 }

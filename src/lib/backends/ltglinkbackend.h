@@ -37,7 +37,6 @@ public:
 
 private:
     void downloadStationData(Reply *reply, QNetworkAccessManager *nam);
-    static QString makeSearchableName(const QString &name);
 
     static Location stationToLocation(const LTGLink::Station &station);
     Location lookupStation(int ltglinkint) const;

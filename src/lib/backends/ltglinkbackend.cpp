@@ -20,7 +20,8 @@
 #include "locationrequest.h"
 #include "locationreply.h"
 #include "datatypes/journey.h"
-#include "datatypes/stopover.h"
+
+#include "localbackendutils.h"
 
 using namespace KPublicTransport;
 
@@ -72,7 +73,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 auto originId = sectionJson[u"Origin"][u"Stop"][u"Id"].toInt();
                 auto originTimeZone = QTimeZone(sectionJson[u"Origin"][u"TimeZone"].toString().toUtf8());
 
-                auto actualDepartureTime = QDateTime::fromString(sectionJson[u"Origin"][u"ActualDepartureTime"].toString(), Qt::ISODate);
+                auto actualDepartureTime = QDateTime::fromString(sectionJson[u"Origin"][u"ActualDepartureDateTime"].toString(), Qt::ISODate);
                 actualDepartureTime.setTimeZone(originTimeZone);
                 auto scheduledDepartureTime = QDateTime::fromString(sectionJson[u"Origin"][u"PlannedDepartureDateTime"].toString(), Qt::ISODate);
                 scheduledDepartureTime.setTimeZone(originTimeZone);
@@ -84,6 +85,11 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 actualArrivalTime.setTimeZone(destinationTimeZone);
                 auto scheduledArrivalTime = QDateTime::fromString(sectionJson[u"Destination"][u"PlannedArrivalDateTime"].toString(), Qt::ISODate);
                 scheduledArrivalTime.setTimeZone(destinationTimeZone);
+
+                // Filter out results that don't match the selected time frame
+                if (!LocalBackendUtils::isInSelectedTimeframe(actualDepartureTime, actualArrivalTime, req)) {
+                    continue;
+                }
 
                 auto lineNumber = sectionJson[u"Line"][u"Number"].toString();
                 auto transportationType = sectionJson[u"Line"][u"TransportationType"][u"Id"].toString();
@@ -122,17 +128,6 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
     return true;
 }
 
-QString LTGLinkBackend::makeSearchableName(const QString &name)
-{
-    auto normalized = name.normalized(QString::NormalizationForm_D);
-    return normalized
-        // Remove parts in parantheses, the DB API likes to add the country in parantheses
-        .replace(QRegularExpression(QStringLiteral(R"(\([^)]*\))")), QString())
-        // Remove accents
-        .replace(QRegularExpression(QStringLiteral("[^a-zA-Z0-9\\s]")), QString())
-        .toLower();
-}
-
 bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     if (m_stations.empty()) {
@@ -146,7 +141,7 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
     }
 
     std::vector<Location> locations;
-    QString name = makeSearchableName(req.name());
+    QString name = LocalBackendUtils::makeSearchableName(req.name());
 
     for (auto [id, station] : std::as_const(m_stations)) {
         if (station.searchableName.contains(name)) {
@@ -162,7 +157,12 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
 
 void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
-    auto *netReply = nam->get(QNetworkRequest(QUrl(QStringLiteral("https://cms.ltglink.turnit.com/api/turnit/search?locale=en"))));
+    QUrl url(QStringLiteral("https://cms.ltglink.turnit.com/api/turnit/search"));
+    QUrlQuery urlQuery;
+    urlQuery.addQueryItem(QStringLiteral("locale"), QLocale::languageToCode(QLocale().language()));
+    url.setQuery(urlQuery);
+
+    auto *netReply = nam->get(QNetworkRequest(url));
     QObject::connect(netReply, &QNetworkReply::finished, this, [=, this]() {
         const auto bytes = netReply->readAll();
 
@@ -186,7 +186,7 @@ void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *na
                         LTGLink::Station {
                             .id = station[u"BusStopId"].toInt(),
                             .name = station[u"BusStopName"].toString(),
-                            .searchableName = makeSearchableName(station[u"BusStopName"].toString()),
+                            .searchableName = LocalBackendUtils::makeSearchableName(station[u"BusStopName"].toString()),
                             .latitude = float(station[u"Coordinates"][u"Latitude"].toDouble()),
                             .longitude = float(station[u"Coordinates"][u"Longitude"].toDouble())
                         }
