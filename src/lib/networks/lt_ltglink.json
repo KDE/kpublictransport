@@ -1,0 +1,49 @@
+{
+    "KPlugin": {
+        "Description": "Operator of trains in Lithuania",
+        "Name": "LTG Link"
+    },
+    "attribution": {
+        "homepage": "https://ltglink.lt/",
+        "isProprietary": true,
+        "name": "LTG Link"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            20.083,
+                            57.433
+                        ],
+                        [
+                            27.037,
+                            57.154
+                        ],
+                        [
+                            26.543,
+                            53.455
+                        ],
+                        [
+                            19.600,
+                            53.995
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "LT"
+            ]
+        }
+    },
+    "options": {},
+    "supportedLanguages": [
+        "lt", "en"
+    ],
+    "timezone": "Europe/Vilnius",
+    "type": {
+        "ltglink": true
+    }
+}
