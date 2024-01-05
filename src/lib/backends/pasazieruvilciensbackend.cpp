@@ -41,7 +41,7 @@ bool PasazieruVilciensBackend::needsLocationQuery(const Location &loc, QueryType
 
 bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty()) {
+    if (m_stations.empty() && !m_fetchingStations) {
         QObject::disconnect(this, &PasazieruVilciensBackend::newStationData, nullptr, nullptr);
         QObject::connect(this, &PasazieruVilciensBackend::newStationData, this, [=, this]() {
                 queryJourney(req, reply, nam);
@@ -82,7 +82,7 @@ bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyRe
 
 bool PasazieruVilciensBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty()) {
+    if (m_stations.empty() && !m_fetchingStations) {
         QObject::disconnect(this, &PasazieruVilciensBackend::newStationData, nullptr, nullptr);
         QObject::connect(this, &PasazieruVilciensBackend::newStationData, this, [=, this]() {
             queryLocation(req, reply, nam);
@@ -109,6 +109,8 @@ bool PasazieruVilciensBackend::queryLocation(const LocationRequest &req, Locatio
 
 void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
+    m_fetchingStations = true;
+
     auto *netReply = nam->get(QNetworkRequest(QUrl(QStringLiteral("https://pvapi.pv.lv/api/getallStations/"))));
     QObject::connect(netReply, &QNetworkReply::finished, this, [=, this]() {
         const auto bytes = netReply->readAll();
@@ -136,6 +138,7 @@ void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessM
 
         Q_EMIT newStationData();
 
+        m_fetchingStations = false;
         netReply->deleteLater();
     });
 }

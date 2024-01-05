@@ -77,6 +77,7 @@ private:
     QDateTime parseDateTime(const QString &time, const QDate &date) const;
 
     std::map<int, PV::Station> m_stations;
+    bool m_fetchingStations = false;
 };
 
 }

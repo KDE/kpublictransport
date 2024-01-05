@@ -38,7 +38,7 @@ bool LTGLinkBackend::needsLocationQuery(const Location &loc, QueryType type) con
 
 bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty()) {
+    if (m_stations.empty() && !m_fetchingStations) {
         QObject::disconnect(this, &LTGLinkBackend::newStationData, nullptr, nullptr);
         QObject::connect(this, &LTGLinkBackend::newStationData, this, [=, this]() {
                 queryJourney(req, reply, nam);
@@ -130,7 +130,7 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
 bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty()) {
+    if (m_stations.empty() && !m_fetchingStations) {
         QObject::disconnect(this, &LTGLinkBackend::newStationData, nullptr, nullptr);
         QObject::connect(this, &LTGLinkBackend::newStationData, this, [=, this]() {
                 queryLocation(req, reply, nam);
@@ -157,6 +157,8 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
 
 void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
+    m_fetchingStations = true;
+
     QUrl url(QStringLiteral("https://cms.ltglink.turnit.com/api/turnit/search"));
     QUrlQuery urlQuery;
     urlQuery.addQueryItem(QStringLiteral("locale"), QLocale::languageToCode(QLocale().language()));
@@ -196,6 +198,8 @@ void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *na
         }
 
         Q_EMIT newStationData();
+
+        m_fetchingStations = false;
     });
 }
 

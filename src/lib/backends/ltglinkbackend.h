@@ -41,8 +41,8 @@ private:
     static Location stationToLocation(const LTGLink::Station &station);
     Location lookupStation(int ltglinkint) const;
 
-
     std::map<int, LTGLink::Station> m_stations;
+    bool m_fetchingStations = false;
 };
 
 }
