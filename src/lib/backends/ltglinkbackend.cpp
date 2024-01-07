@@ -215,11 +215,7 @@ void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *na
     QUrlQuery urlQuery;
 
     // The API falls back to lithuanian, so we want to force english most of the time
-    if (QLocale().language() == QLocale::Language::Lithuanian) {
-        urlQuery.addQueryItem(QStringLiteral("locale"), QStringLiteral("lt"));
-    } else {
-        urlQuery.addQueryItem(QStringLiteral("locale"), QStringLiteral("en"));
-    }
+    urlQuery.addQueryItem(QStringLiteral("locale"), preferredLanguage());
 
     url.setQuery(urlQuery);
 
