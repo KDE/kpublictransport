@@ -1,7 +1,25 @@
 {
     "KPlugin": {
         "Description": "Operator of trains in Lithuania",
-        "Name": "LTG Link"
+        "Description[ca@valencia]": "Operador de trens en Lituània",
+        "Description[ca]": "Operador de trens a Lituània",
+        "Description[eo]": "Funkciigisto de trajnoj de Litovio",
+        "Description[es]": "Operador de trenes de Lituania",
+        "Description[nl]": "Laat treinen in Litouwen rijden",
+        "Description[sl]": "Upravljavec vlakov v Litvi",
+        "Description[tr]": "Litvanya'da tren operatörü",
+        "Description[uk]": "Залізничний оператор у Литві",
+        "Description[x-test]": "xxOperator of trains in Lithuaniaxx",
+        "Name": "LTG Link",
+        "Name[ca@valencia]": "LTG Link",
+        "Name[ca]": "LTG Link",
+        "Name[eo]": "LTG Link",
+        "Name[es]": "LTG Link",
+        "Name[nl]": "LTG-koppeling",
+        "Name[sl]": "LTG Link",
+        "Name[tr]": "LTG Link",
+        "Name[uk]": "LTG Link",
+        "Name[x-test]": "xxLTG Linkxx"
     },
     "attribution": {
         "homepage": "https://ltglink.lt/",
