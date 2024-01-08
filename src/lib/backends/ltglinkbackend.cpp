@@ -39,12 +39,16 @@ bool LTGLinkBackend::needsLocationQuery(const Location &loc, QueryType type) con
 
 bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty() && !m_fetchingStations) {
-        QObject::disconnect(this, &LTGLinkBackend::newStationData, nullptr, nullptr);
-        QObject::connect(this, &LTGLinkBackend::newStationData, this, [=, this]() {
-                queryJourney(req, reply, nam);
-            }, Qt::SingleShotConnection);
-        const_cast<LTGLinkBackend *>(this)->downloadStationData(reply, nam);
+    if (m_stations.empty()) {
+        if (!m_stationDataTask) {
+            auto mutThis = const_cast<LTGLinkBackend *>(this);
+            mutThis->m_stationDataTask = mutThis->downloadStationData(reply, nam);
+        }
+
+        connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
+            queryJourney(req, reply, nam);
+            m_stationDataTask->deleteLater();
+        });
 
         return true;
     }
@@ -189,12 +193,16 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
 bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty() && !m_fetchingStations) {
-        QObject::disconnect(this, &LTGLinkBackend::newStationData, nullptr, nullptr);
-        QObject::connect(this, &LTGLinkBackend::newStationData, this, [=, this]() {
-                queryLocation(req, reply, nam);
-            }, Qt::SingleShotConnection);
-        const_cast<LTGLinkBackend *>(this)->downloadStationData(reply, nam);
+    if (m_stations.empty()) {
+        if (!m_stationDataTask) {
+            auto mutThis = const_cast<LTGLinkBackend *>(this);
+            mutThis->m_stationDataTask = mutThis->downloadStationData(reply, nam);
+        }
+
+        connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
+            queryLocation(req, reply, nam);
+            m_stationDataTask->deleteLater();
+        });
 
         return true;
     }
@@ -214,9 +222,9 @@ bool LTGLinkBackend::queryLocation(const LocationRequest &req, LocationReply *re
     return false;
 }
 
-void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
+AsyncTask<void> *LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
-    m_fetchingStations = true;
+    auto task = new AsyncTask<void>(this);
 
     QUrl url(QStringLiteral("https://cms.ltglink.turnit.com/api/turnit/search"));
     QUrlQuery urlQuery;
@@ -259,10 +267,12 @@ void LTGLinkBackend::downloadStationData(Reply *reply, QNetworkAccessManager *na
             }
         }
 
-        Q_EMIT newStationData();
+        task->reportFinished();
 
-        m_fetchingStations = false;
+        netReply->deleteLater();
     });
+
+    return task;
 }
 
 Location LTGLinkBackend::stationToLocation(const LTGLink::Station &station)

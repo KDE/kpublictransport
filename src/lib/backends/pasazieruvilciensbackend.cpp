@@ -10,6 +10,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrlQuery>
+#include <QPointer>
 
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -41,12 +42,16 @@ bool PasazieruVilciensBackend::needsLocationQuery(const Location &loc, QueryType
 
 bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty() && !m_fetchingStations) {
-        QObject::disconnect(this, &PasazieruVilciensBackend::newStationData, nullptr, nullptr);
-        QObject::connect(this, &PasazieruVilciensBackend::newStationData, this, [=, this]() {
-                queryJourney(req, reply, nam);
-            }, Qt::SingleShotConnection);
-        const_cast<PasazieruVilciensBackend *>(this)->downloadStationData(reply, nam);
+    if (m_stations.empty()) {
+        if (!m_stationDataTask) {
+            auto mutThis = const_cast<PasazieruVilciensBackend *>(this);
+            mutThis->m_stationDataTask = mutThis->downloadStationData(reply, nam);
+        }
+
+        connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
+            m_stationDataTask->deleteLater();
+            queryJourney(req, reply, nam);
+        });
 
         return true;
     }
@@ -55,8 +60,8 @@ bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyRe
     auto joinedTripResult = fetchJoinedTrip(req, nam);
 
     auto processResults = [=, this]() {
-        std::vector<Journey> results = *tripResult->results;
-        results.insert(results.end(), joinedTripResult->results->begin(), joinedTripResult->results->end());
+        std::vector<Journey> results = tripResult->result().value();
+        results.insert(results.end(), joinedTripResult->result()->begin(), joinedTripResult->result()->end());
         std::sort(results.begin(), results.end(), [](const Journey &a, const Journey &b) {
             return a.scheduledDepartureTime() < b.scheduledDepartureTime();
         });
@@ -70,7 +75,7 @@ bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyRe
     };
 
     connect(tripResult.get(), &PendingQuery::finished, this, [=, this]() {
-        if (joinedTripResult->results) {
+        if (joinedTripResult->result()) {
             processResults();
         } else {
             connect(joinedTripResult.get(), &PendingQuery::finished, this, processResults);
@@ -82,12 +87,16 @@ bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyRe
 
 bool PasazieruVilciensBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
-    if (m_stations.empty() && !m_fetchingStations) {
-        QObject::disconnect(this, &PasazieruVilciensBackend::newStationData, nullptr, nullptr);
-        QObject::connect(this, &PasazieruVilciensBackend::newStationData, this, [=, this]() {
+    if (m_stations.empty()) {
+        if (!m_stationDataTask) {
+            auto mutThis = const_cast<PasazieruVilciensBackend *>(this);
+            mutThis->m_stationDataTask = mutThis->downloadStationData(reply, nam);
+        }
+
+        connect(m_stationDataTask, &AbstractAsyncTask::finished, reply, [=, this]() {
             queryLocation(req, reply, nam);
-        }, Qt::SingleShotConnection);
-        const_cast<PasazieruVilciensBackend *>(this)->downloadStationData(reply, nam);
+            m_stationDataTask->deleteLater();
+        });
 
         return true;
     }
@@ -107,9 +116,9 @@ bool PasazieruVilciensBackend::queryLocation(const LocationRequest &req, Locatio
     return false;
 }
 
-void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
+AsyncTask<void> *PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
-    m_fetchingStations = true;
+    auto task = new AsyncTask<void>(this);
 
     auto *netReply = nam->get(QNetworkRequest(QUrl(QStringLiteral("https://pvapi.pv.lv/api/getallStations/"))));
     QObject::connect(netReply, &QNetworkReply::finished, this, [=, this]() {
@@ -136,11 +145,12 @@ void PasazieruVilciensBackend::downloadStationData(Reply *reply, QNetworkAccessM
                 }});
         }
 
-        Q_EMIT newStationData();
+        task->reportFinished();
 
-        m_fetchingStations = false;
         netReply->deleteLater();
     });
+
+    return task;
 }
 
 std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const

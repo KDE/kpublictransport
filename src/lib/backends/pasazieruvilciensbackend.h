@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <QPointer>
+
 #include "abstractbackend.h"
 #include "datatypes/stopover.h"
 #include "datatypes/journey.h"
@@ -22,19 +24,7 @@ struct Station {
 };
 }
 
-class PendingQuery : public QObject {
-    Q_OBJECT
-
-public:
-    Q_SIGNAL void finished();
-
-    std::optional<std::vector<Journey>> results;
-
-    void reportFinished(std::vector<Journey> &&journeys) {
-        results = std::move(journeys);
-        Q_EMIT finished();
-    }
-};
+using PendingQuery = AsyncTask<std::vector<Journey>>;
 
 
 class PasazieruVilciensBackend : public QObject, public AbstractBackend {
@@ -49,10 +39,8 @@ public:
     bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
-    Q_SIGNAL void newStationData();
-
 private:
-    void downloadStationData(Reply *reply, QNetworkAccessManager *nam);
+    AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
 
     /// Single-line trips
     std::shared_ptr<PendingQuery> fetchTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const;
@@ -79,7 +67,7 @@ private:
     QDateTime parseDateTime(const QString &time, const QDate &date, const QDateTime &knownPreviousDateTime = {}) const;
 
     std::map<int, PV::Station> m_stations;
-    bool m_fetchingStations = false;
+    QPointer<AsyncTask<void>> m_stationDataTask = nullptr;
 };
 
 }

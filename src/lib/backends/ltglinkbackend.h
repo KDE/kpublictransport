@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <QPointer>
+
 #include "abstractbackend.h"
 
 #include <map>
@@ -33,16 +35,14 @@ public:
     bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
     bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
 
-    Q_SIGNAL void newStationData();
-
 private:
-    void downloadStationData(Reply *reply, QNetworkAccessManager *nam);
+    AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
 
     static Location stationToLocation(const LTGLink::Station &station);
     Location lookupStation(int ltglinkint) const;
 
     std::map<int, LTGLink::Station> m_stations;
-    bool m_fetchingStations = false;
+    QPointer<AsyncTask<void>> m_stationDataTask = nullptr;
 };
 
 }

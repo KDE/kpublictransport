@@ -217,6 +217,48 @@ private:
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(AbstractBackend::Capabilities)
 
+class AbstractAsyncTask : public QObject
+{
+    Q_OBJECT
+
+public:
+    AbstractAsyncTask(QObject *parent = nullptr) : QObject(parent) {}
+
+    Q_SIGNAL void finished();
+};
+
+///
+/// Helper to return a value asynchronously
+///
+template <typename T>
+class AsyncTask : public AbstractAsyncTask
+{
+    std::optional<T> m_result;
+
+public:
+    using AbstractAsyncTask::AbstractAsyncTask;
+
+    void reportFinished(T &&result) {
+        m_result = std::move(result);
+        Q_EMIT finished();
+    }
+
+    const std::optional<T> &result() const {
+        return m_result;
+    }
+};
+
+template <>
+class AsyncTask<void> : public AbstractAsyncTask
+{
+public:
+    using AbstractAsyncTask::AbstractAsyncTask;
+
+    void reportFinished() {
+        Q_EMIT finished();
+    }
+};
+
 }
 
 #endif // KPUBLICTRANSPORT_ABSTRACTBACKEND_H
