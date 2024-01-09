@@ -60,7 +60,10 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
     auto netReply = nam->get(QNetworkRequest(url));
     connect(netReply, &QNetworkReply::finished, this, [=, this]() {
-        auto jsonValue = QJsonDocument::fromJson(netReply->readAll());
+        auto bytes = netReply->readAll();
+        auto jsonValue = QJsonDocument::fromJson(bytes);
+
+        logReply(reply, netReply, bytes);
 
         const auto journeysJson = jsonValue[u"Journeys"].toArray();
 
@@ -77,7 +80,11 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
             (*runningRequests)++;
 
             connect(routeReply, &QNetworkReply::finished, this, [=, this]() {
-                auto route = QJsonDocument::fromJson(routeReply->readAll());
+                auto bytes = routeReply->readAll();
+                auto route = QJsonDocument::fromJson(bytes);
+
+                logReply(reply, netReply, bytes);
+
                 auto sectionStopsJson = route[u"Legs"].toArray();
 
                 std::vector<JourneySection> sections;
