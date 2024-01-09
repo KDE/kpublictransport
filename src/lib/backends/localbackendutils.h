@@ -6,9 +6,11 @@
 
 #pragma once
 
-#include "journeyrequest.h"
 #include <QString>
 #include <QRegularExpression>
+#include <QNetworkReply>
+
+#include "journeyrequest.h"
 
 namespace KPublicTransport {
 

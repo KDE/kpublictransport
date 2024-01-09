@@ -4,8 +4,15 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonArray>
+
 #include "localbackendutils.h"
 #include "journeyrequest.h"
+
+
+using namespace KPublicTransport::LocalBackendUtils;
 
 QString KPublicTransport::LocalBackendUtils::makeSearchableName(QString name)
 {

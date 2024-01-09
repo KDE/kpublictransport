@@ -1,0 +1,66 @@
+/*
+    SPDX-FileCopyrightText: 2024 Jonah Brüchert <jbb@kaidan.im>
+
+    SPDX-License-Identifier: LGPL-2.0-or-later
+*/
+
+#pragma once
+
+#include <QObject>
+#include <QPointer>
+
+#include <map>
+
+#include "backends/abstractbackend.h"
+#include "datatypes/journey.h"
+
+
+namespace KPublicTransport {
+
+namespace ZPCG {
+struct Station {
+    QString name;
+    QString idName;
+
+    float latitude;
+    float longitude;
+};
+}
+
+class ZPCGBackend : public QObject, public AbstractBackend
+{
+    Q_OBJECT
+
+public:
+    static inline constexpr const char* type() { return "zpcg"; }
+
+    Capabilities capabilities() const override;
+
+    bool needsLocationQuery(const Location &loc, QueryType type) const override;
+
+    bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+
+    bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const override;
+
+    QDateTime parseDateTime(const QString &timeString, const QDate &date, const QDateTime &knownPreviousTime = {}) const;
+
+private:
+    std::map<QString, KPublicTransport::ZPCG::Station> loadAuxStationData();
+
+    /// Download the official station data, and use it to filter the local data.
+    AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
+
+    Location stationToLocation(const QString &searchableName) const;
+
+    static QString makeSearchableName(const QString &name);
+
+    static Line::Mode matchTrainType(QStringView trainType);
+
+    QUrl baseUrl() const;
+    QString identifierName() const;
+
+    std::map<QString, ZPCG::Station> m_stations;
+    QPointer<AsyncTask<void>> m_fetchStationsTask = nullptr;
+};
+
+}

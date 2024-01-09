@@ -46,6 +46,7 @@ target_sources(KPublicTransport PRIVATE
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
     backends/navitiaphysicalmode.cpp
+    backends/networkreplycollection.cpp
     backends/oebbbackend.cpp
     backends/oebbvehiclelayoutparser.cpp
     backends/openjourneyplannerbackend.cpp
@@ -57,6 +58,7 @@ target_sources(KPublicTransport PRIVATE
     backends/otp/otp.qrc
     backends/pasazieruvilciensbackend.cpp
     backends/scopedxmlstreamreader.cpp
+    backends/zpcgbackend.cpp
 
     datatypes/attribution.cpp
     datatypes/attributionutil.cpp
@@ -125,6 +127,7 @@ target_sources(KPublicTransport PRIVATE
     networks/networks.qrc
     networks/certs/network_certs.qrc
     networks/geometry/geometry.qrc
+    networks/stations/stations.qrc
 
     uic/uicrailwaycoach.cpp
     uic/uicstationcode.cpp

@@ -2,4 +2,4 @@
 # SPDX-FileCopyrightText: none
 
 src/lib/networks/geometry/*.geojson binary
-
+src/lib/networks/stations/me_zpcg.json binary

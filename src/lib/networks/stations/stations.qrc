@@ -1,0 +1,9 @@
+<!--
+    SPDX-FileCopyrightText: auto-generated
+    SPDX-License-Identifier: CC0-1.0
+-->
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport/networks/stations/">
+        <file>me_zpcg.json</file>
+    </qresource>
+</RCC>

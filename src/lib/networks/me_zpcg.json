@@ -1,0 +1,45 @@
+{
+    "KPlugin": {
+        "Description": "Operator of trains in Montenegro. Covers Montenegro and parts of Serbia.",
+        "Name": "ZPCG"
+    },
+    "attribution": {
+        "homepage": "https://www.zpcg.me/",
+        "isProprietary": true,
+        "name": "ZPCG"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            19.578, 45.476
+                        ],
+                        [
+                            22.917, 44.692
+                        ],
+                        [
+                            19.4623, 41.6195
+                        ],
+                        [
+                            17.666, 42.812
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "ME"
+            ]
+        }
+    },
+    "options": {},
+    "supportedLanguages": [
+        "en", "sr"
+    ],
+    "timezone": "Europe/Podgorica",
+    "type": {
+        "zpcg": true
+    }
+}

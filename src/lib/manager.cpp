@@ -6,6 +6,7 @@
 
 #include "manager.h"
 #include "assetrepository_p.h"
+#include "backends/zpcgbackend.h"
 #include "journeyreply.h"
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
@@ -66,6 +67,7 @@ static inline void initResources() {
     Q_INIT_RESOURCE(networks);
     Q_INIT_RESOURCE(network_certs);
     Q_INIT_RESOURCE(otp);
+    Q_INIT_RESOURCE(stations);
 }
 
 namespace KPublicTransport {
@@ -186,7 +188,8 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         GBFSBackend,
         AccessibilityCloudBackend,
         PasazieruVilciensBackend,
-        LTGLinkBackend
+        LTGLinkBackend,
+        ZPCGBackend
     >(type, obj);
 }
 
