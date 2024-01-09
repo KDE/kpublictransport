@@ -43,10 +43,10 @@ private:
     AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
 
     /// Single-line trips
-    std::shared_ptr<PendingQuery> fetchTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const;
+    std::shared_ptr<PendingQuery> fetchTrip(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const;
 
     /// trips containing transfers
-    std::shared_ptr<PendingQuery> fetchJoinedTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const;
+    std::shared_ptr<PendingQuery> fetchJoinedTrip(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const;
 
     static Location stationToLocation(const PV::Station &station);
     Location lookupStation(int pvint) const;

@@ -183,9 +183,17 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                     addResult(reply, this, std::move(*journeys));
                 }
             });
+
+            connect(routeReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+                addError(reply, Reply::NetworkError, netReply->errorString());
+            });
         };
 
         netReply->deleteLater();
+    });
+
+    connect(netReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+        addError(reply, Reply::NetworkError, netReply->errorString());
     });
 
     return true;

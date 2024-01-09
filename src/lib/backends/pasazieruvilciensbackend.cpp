@@ -56,8 +56,8 @@ bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyRe
         return true;
     }
 
-    auto tripResult = fetchTrip(req, nam);
-    auto joinedTripResult = fetchJoinedTrip(req, nam);
+    auto tripResult = fetchTrip(req, reply, nam);
+    auto joinedTripResult = fetchJoinedTrip(req, reply, nam);
 
     auto processResults = [=, this]() {
         std::vector<Journey> results = tripResult->result().value();
@@ -153,7 +153,7 @@ AsyncTask<void> *PasazieruVilciensBackend::downloadStationData(Reply *reply, QNe
     return task;
 }
 
-std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const
+std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     auto pendingQuery = std::make_shared<PendingQuery>();
 
@@ -241,6 +241,10 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
                     pendingQuery->reportFinished(std::move(*journeys));
                 }
             });
+
+            connect(detailsReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+                addError(reply, Reply::NetworkError, netReply->errorString());
+            });
         }
 
         if (!foundAny) {
@@ -249,11 +253,15 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchTrip(const JourneyR
 
         netReply->deleteLater();
     });
+    connect(netReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+        addError(reply, Reply::NetworkError, netReply->errorString());
+    });
+
 
     return pendingQuery;
 }
 
-std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const JourneyRequest &req, QNetworkAccessManager *nam) const
+std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     auto pendingQuery = std::make_shared<PendingQuery>();
 
@@ -370,6 +378,9 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const Jo
                     pendingQuery->reportFinished(std::move(*journeys));
                 }
             });
+            connect(detailsReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+                addError(reply, Reply::NetworkError, netReply->errorString());
+            });
         }
 
         if (!foundAny) {
@@ -378,6 +389,11 @@ std::shared_ptr<PendingQuery> PasazieruVilciensBackend::fetchJoinedTrip(const Jo
 
         netReply->deleteLater();
     });
+
+    connect(netReply, &QNetworkReply::errorOccurred, reply, [=, this]() {
+        addError(reply, Reply::NetworkError, netReply->errorString());
+    });
+
 
     return pendingQuery;
 }
