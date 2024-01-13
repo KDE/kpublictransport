@@ -52,8 +52,6 @@ private:
 
     Location stationToLocation(const QString &searchableName) const;
 
-    static QString makeSearchableName(const QString &name);
-
     static Line::Mode matchTrainType(QStringView trainType);
 
     QUrl baseUrl() const;

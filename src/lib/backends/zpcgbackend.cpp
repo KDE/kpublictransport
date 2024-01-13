@@ -27,6 +27,8 @@
 #include "networkreplycollection.h"
 #include "logging.h"
 
+using namespace KPublicTransport::LocalBackendUtils;
+
 
 KPublicTransport::AbstractBackend::Capabilities KPublicTransport::ZPCGBackend::capabilities() const
 {
@@ -368,13 +370,6 @@ KPublicTransport::Location KPublicTransport::ZPCGBackend::stationToLocation(cons
     loc.setType(Location::Stop);
 
     return loc;
-}
-
-QString KPublicTransport::ZPCGBackend::makeSearchableName(const QString &name)
-{
-    return LocalBackendUtils::makeSearchableName(name)
-        .replace(QStringLiteral("cargo"), QString())
-        .trimmed();
 }
 
 KPublicTransport::Line::Mode KPublicTransport::ZPCGBackend::matchTrainType(QStringView trainType)
