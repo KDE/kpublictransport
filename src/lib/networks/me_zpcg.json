@@ -1,7 +1,27 @@
 {
     "KPlugin": {
         "Description": "Operator of trains in Montenegro. Covers Montenegro and parts of Serbia.",
-        "Name": "ZPCG"
+        "Description[ca@valencia]": "Operador de trens en Montenegro. Cobrix Montenegro i parts de Serbia.",
+        "Description[ca]": "Operador de trens a Montenegro. Cobreix Montenegro i parts de Serbia.",
+        "Description[eo]": "Funkciigisto de trajnoj en Montenegro. Kovras Montenegron kaj partojn de Serbio.",
+        "Description[ka]": "მონტენეგროს მატარებლების ოპერატორი. ფარავს მონტენეგროს და სერბეთის ნაწილს.",
+        "Description[nl]": "Laat treinen in Montenegro rijden. Dekt Montenegro en delen van Servië.",
+        "Description[pt_BR]": "Operador de trens em Montenegro. Cobre Montenegro e partes da Sérvia.",
+        "Description[sl]": "Upravljavec vlakov v Črni gori. Pokriva Črno goro in dele Srbije.",
+        "Description[tr]": "Karadağ'da tren operatörü. Karadağ'da ve Sırbistan'ın bazı kısımlarında çalışır.",
+        "Description[uk]": "Залізничний оператор у Чорногорії. Працює у Чорногорії та частині Сербії.",
+        "Description[x-test]": "xxOperator of trains in Montenegro. Covers Montenegro and parts of Serbia.xx",
+        "Name": "ZPCG",
+        "Name[ca@valencia]": "ZPCG",
+        "Name[ca]": "ZPCG",
+        "Name[eo]": "ZPCG",
+        "Name[ka]": "ZPCG",
+        "Name[nl]": "ZPCG",
+        "Name[pt_BR]": "ZPCG",
+        "Name[sl]": "ZPCG",
+        "Name[tr]": "ZPCG",
+        "Name[uk]": "ZPCG",
+        "Name[x-test]": "xxZPCGxx"
     },
     "attribution": {
         "homepage": "https://www.zpcg.me/",

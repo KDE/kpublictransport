@@ -24,6 +24,7 @@
         "Description[uk]": "Інтерактивні відомості щодо стану для ліфтів і ескалаторів.",
         "Description[x-test]": "xxRealtime status information for elevators and escalators.xx",
         "Description[zh_CN]": "升降梯和手扶梯的实时状态信息。",
+        "Description[zh_TW]": "電梯與手扶梯的即時狀態資訊。",
         "Name": "Accessibility Cloud",
         "Name[ca@valencia]": "Accessibility Cloud",
         "Name[ca]": "Accessibility Cloud",
@@ -44,7 +45,8 @@
         "Name[sv]": "Accessibility Cloud",
         "Name[tr]": "Erişilebilirlik Bulutu",
         "Name[uk]": "Хмара доступності",
-        "Name[x-test]": "xxAccessibility Cloudxx"
+        "Name[x-test]": "xxAccessibility Cloudxx",
+        "Name[zh_TW]": "無障礙雲端 (Accessibility Cloud)"
     },
     "attribution": {
         "name": "Accessibility Cloud by Sozialhelden e.V.",
