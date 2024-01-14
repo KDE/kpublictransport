@@ -26,6 +26,8 @@ if (Protobuf_FOUND AND Protobuf_PROTOC_EXECUTABLE)
     if (Protobuf_VERSION VERSION_LESS 3.22)
         target_compile_definitions(KOSM_pbfioplugin PRIVATE -DGOOGLE_PROTOBUF_INTERNAL_DONATE_STEAL_INLINE=0)
     endif()
+    # workaround for a similar still unresolved issue with using undefined defines...
+    target_compile_definitions(KOSM_pbfioplugin PRIVATE -DPROTOBUF_ENABLE_DEBUG_LOGGING_MAY_LEAK_PII=0)
 endif()
 
 add_library(KOSM_xmlioplugin STATIC)
