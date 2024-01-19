@@ -4,6 +4,6 @@
 -->
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/networks/stations/">
-        <file>me_zpcg.json</file>
+        <file>me-rs.json</file>
     </qresource>
 </RCC>

@@ -40,4 +40,4 @@ for feature in features:
     stations.append(station)
 
 station_file = open(output_path, "w")
-json.dump(stations, station_file)
+json.dump(stations, station_file, ensure_ascii=False)

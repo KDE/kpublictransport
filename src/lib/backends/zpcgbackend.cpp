@@ -43,6 +43,11 @@ bool KPublicTransport::ZPCGBackend::needsLocationQuery(const Location &loc, Quer
 
 bool KPublicTransport::ZPCGBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    // Ignore requests for which we don't have the needed identifier
+    if (request.from().identifier(identifierName()).isEmpty() || request.to().identifier(identifierName()).isEmpty()) {
+        return false;
+    }
+
     if (m_stations.empty()) {
         if (!m_fetchStationsTask) {
             auto mutThis = const_cast<ZPCGBackend *>(this);
@@ -52,6 +57,8 @@ bool KPublicTransport::ZPCGBackend::queryJourney(const JourneyRequest &request, 
         connect(m_fetchStationsTask, &AbstractAsyncTask::finished, reply, [=, this]() {
             queryJourney(request, reply, nam);
         });
+
+        return true;
     }
 
     QUrl url = baseUrl();
@@ -104,7 +111,7 @@ bool KPublicTransport::ZPCGBackend::queryJourney(const JourneyRequest &request, 
                 auto netReply = nam->get(QNetworkRequest(url));
                 replies.push_back(netReply);
 
-                connect(netReply, &QNetworkReply::finished, this, [=, this]() {
+                connect(netReply, &QNetworkReply::finished, reply, [=, this]() {
                     auto data = netReply->readAll();
                     auto doc = QJsonDocument::fromJson(data);
                     const auto detailsJson = doc.array();
@@ -230,7 +237,7 @@ bool KPublicTransport::ZPCGBackend::queryLocation(const LocationRequest &request
 
     const auto searchableName = makeSearchableName(request.name());
     for (const auto &[name, station] : m_stations) {
-        if (name.contains(searchableName)) {
+        if (name.contains(searchableName) && !station.idName.isEmpty()) {
             auto location = stationToLocation(name);
             locations.push_back(std::move(location));
         }
@@ -258,7 +265,7 @@ QDateTime KPublicTransport::ZPCGBackend::parseDateTime(const QString &timeString
 
 std::map<QString, KPublicTransport::ZPCG::Station> KPublicTransport::ZPCGBackend::loadAuxStationData()
 {
-    QFile file(QStringLiteral(":/org.kde.kpublictransport/networks/stations/me_zpcg.json"));
+    QFile file(QStringLiteral(":/org.kde.kpublictransport/networks/stations/me-rs.json"));
     if (!file.open(QFile::ReadOnly)) {
         qCWarning(Log) << file.errorString();
         qFatal("The bundled station data of KPublicTransport can not be read. This is a bug.");
@@ -295,7 +302,7 @@ std::map<QString, KPublicTransport::ZPCG::Station> KPublicTransport::ZPCGBackend
 
         ZPCG::Station station {
             .name = stationName,
-            .idName = stationName, // Will be replaced with timetable names after http request finishes
+            .idName = QString(), // Will be replaced with timetable names after http request finishes
             .latitude = float(stationJson[u"longitude"].toDouble()),
             .longitude = float(stationJson[u"latitude"].toDouble())
         };
@@ -361,7 +368,9 @@ KPublicTransport::Location KPublicTransport::ZPCGBackend::stationToLocation(cons
         loc.setName(station.name);
         loc.setLatitude(station.latitude);
         loc.setLongitude(station.longitude);
-        loc.setIdentifier(identifierName(), station.idName);
+        if (!station.idName.isEmpty()) {
+            loc.setIdentifier(identifierName(), station.idName);
+        }
     } else {
         loc.setName(name);
         loc.setIdentifier(identifierName(), name);
