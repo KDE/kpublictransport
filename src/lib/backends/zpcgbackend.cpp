@@ -35,13 +35,13 @@ AbstractBackend::Capabilities ZPCGBackend::capabilities() const
     return Secure;
 }
 
-bool KPublicTransport::ZPCGBackend::needsLocationQuery(const Location &loc, QueryType type) const
+bool ZPCGBackend::needsLocationQuery(const Location &loc, QueryType type) const
 {
     Q_UNUSED(type);
     return loc.identifier(identifierName()).isEmpty();
 }
 
-bool KPublicTransport::ZPCGBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
+bool ZPCGBackend::queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     // Ignore requests for which we don't have the needed identifier
     if (request.from().identifier(identifierName()).isEmpty() || request.to().identifier(identifierName()).isEmpty()) {
@@ -218,7 +218,7 @@ bool KPublicTransport::ZPCGBackend::queryJourney(const JourneyRequest &request, 
     return true;
 }
 
-bool KPublicTransport::ZPCGBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
+bool ZPCGBackend::queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const
 {
     if (m_stations.empty()) {
         if (!m_fetchStationsTask) {
@@ -248,7 +248,7 @@ bool KPublicTransport::ZPCGBackend::queryLocation(const LocationRequest &request
     return false;
 }
 
-QDateTime KPublicTransport::ZPCGBackend::parseDateTime(const QString &timeString, const QDate &date, const QDateTime &knownPreviousTime) const
+QDateTime ZPCGBackend::parseDateTime(const QString &timeString, const QDate &date, const QDateTime &knownPreviousTime) const
 {
     auto time = QTime::fromString(timeString);
 
@@ -263,7 +263,7 @@ QDateTime KPublicTransport::ZPCGBackend::parseDateTime(const QString &timeString
     return dateTime;
 }
 
-std::map<QString, std::shared_ptr<ZPCG::Station>> KPublicTransport::ZPCGBackend::loadAuxStationData()
+std::unordered_map<QString, std::shared_ptr<ZPCG::Station>> ZPCGBackend::loadAuxStationData()
 {
     QFile file(QStringLiteral(":/org.kde.kpublictransport/networks/stations/me-rs.json"));
     if (!file.open(QFile::ReadOnly)) {
@@ -272,7 +272,7 @@ std::map<QString, std::shared_ptr<ZPCG::Station>> KPublicTransport::ZPCGBackend:
     }
 
     const auto stationsJson = QJsonDocument::fromJson(file.readAll()).array();
-    std::map<QString, std::shared_ptr<ZPCG::Station>> stations;
+    std::unordered_map<QString, std::shared_ptr<ZPCG::Station>> stations;
     for (const auto &stationJson : stationsJson) {
         auto stationJsonObject = stationJson.toObject();
 
@@ -320,7 +320,7 @@ std::map<QString, std::shared_ptr<ZPCG::Station>> KPublicTransport::ZPCGBackend:
     return stations;
 }
 
-KPublicTransport::AsyncTask<void> *KPublicTransport::ZPCGBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
+AsyncTask<void> *ZPCGBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
     auto task = new AsyncTask<void>(this);
 
@@ -356,7 +356,7 @@ KPublicTransport::AsyncTask<void> *KPublicTransport::ZPCGBackend::downloadStatio
     return task;
 }
 
-KPublicTransport::Location KPublicTransport::ZPCGBackend::stationToLocation(const QString &name) const
+Location ZPCGBackend::stationToLocation(const QString &name) const
 {
     auto searchableName = makeSearchableName(name);
 
@@ -381,7 +381,7 @@ KPublicTransport::Location KPublicTransport::ZPCGBackend::stationToLocation(cons
     return loc;
 }
 
-KPublicTransport::Line::Mode KPublicTransport::ZPCGBackend::matchTrainType(QStringView trainType)
+Line::Mode ZPCGBackend::matchTrainType(QStringView trainType)
 {
     if (trainType == u"fast") {
         return Line::LongDistanceTrain;
@@ -392,12 +392,12 @@ KPublicTransport::Line::Mode KPublicTransport::ZPCGBackend::matchTrainType(QStri
     return Line::Train;
 }
 
-QUrl KPublicTransport::ZPCGBackend::baseUrl() const
+QUrl ZPCGBackend::baseUrl() const
 {
     return QUrl(QStringLiteral("https://zpcg.me/"));
 }
 
-QString KPublicTransport::ZPCGBackend::identifierName() const
+QString ZPCGBackend::identifierName() const
 {
     return QStringLiteral("zpcgname");
 }
