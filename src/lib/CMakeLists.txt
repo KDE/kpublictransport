@@ -58,6 +58,7 @@ target_sources(KPublicTransport PRIVATE
     backends/otp/otp.qrc
     backends/pasazieruvilciensbackend.cpp
     backends/scopedxmlstreamreader.cpp
+    backends/srbijavozbackend.cpp
     backends/zpcgbackend.cpp
 
     datatypes/attribution.cpp

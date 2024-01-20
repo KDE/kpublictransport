@@ -1,246 +1,18 @@
 {
     "KPlugin": {
-        "Description": "Operator of trains in Montenegro. Covers Montenegro and parts of Serbia.",
-        "Description[ca@valencia]": "Operador de trens en Montenegro. Cobrix Montenegro i parts de Serbia.",
-        "Description[ca]": "Operador de trens a Montenegro. Cobreix Montenegro i parts de Serbia.",
-        "Description[eo]": "Funkciigisto de trajnoj en Montenegro. Kovras Montenegron kaj partojn de Serbio.",
-        "Description[es]": "Operador de trenes de Montenegro. Cubre Montenegro y partes de Serbia.",
-        "Description[eu]": "Montenegroko trenen operadorea. Montenegro eta Serbiako zatiak hartzen ditu.",
-        "Description[it]": "Operatore ferroviario in Montenegro. Copre il Montenegro e parte della Serbia.",
-        "Description[ka]": "მონტენეგროს მატარებლების ოპერატორი. ფარავს მონტენეგროს და სერბეთის ნაწილს.",
-        "Description[nl]": "Laat treinen in Montenegro rijden. Dekt Montenegro en delen van Servië.",
-        "Description[pl]": "Operator pociągów w Czarnogórze. Pokrywa Czarnogórę oraz część Serbii.",
-        "Description[pt_BR]": "Operador de trens em Montenegro. Cobre Montenegro e partes da Sérvia.",
-        "Description[sl]": "Upravljavec vlakov v Črni gori. Pokriva Črno goro in dele Srbije.",
-        "Description[tr]": "Karadağ'da tren operatörü. Karadağ'da ve Sırbistan'ın bazı kısımlarında çalışır.",
-        "Description[uk]": "Залізничний оператор у Чорногорії. Працює у Чорногорії та частині Сербії.",
-        "Description[x-test]": "xxOperator of trains in Montenegro. Covers Montenegro and parts of Serbia.xx",
-        "Name": "ZPCG",
-        "Name[ca@valencia]": "ZPCG",
-        "Name[ca]": "ZPCG",
-        "Name[eo]": "ZPCG",
-        "Name[es]": "ZPCG",
-        "Name[eu]": "ZPCG",
-        "Name[it]": "ZPCG",
-        "Name[ka]": "ZPCG",
-        "Name[nl]": "ZPCG",
-        "Name[pl]": "ZPCG",
-        "Name[pt_BR]": "ZPCG",
-        "Name[sl]": "ZPCG",
-        "Name[tr]": "ZPCG",
-        "Name[uk]": "ZPCG",
-        "Name[x-test]": "xxZPCGxx"
+        "Description": "Operator of trains Serbia",
+        "Name": "Srbijavoz"
     },
     "attribution": {
-        "homepage": "https://www.zpcg.me/",
+        "homepage": "https://srbijavoz.rs/",
         "isProprietary": true,
-        "name": "ZPCG"
+        "name": "Srbijavoz"
     },
     "coverage": {
         "regularCoverage": {
             "area": {
                 "type": "MultiPolygon",
                 "coordinates": [
-                    [
-                        [
-                            [
-                                19.37,
-                                41.65
-                            ],
-                            [
-                                19.45,
-                                42.07
-                            ],
-                            [
-                                19.49,
-                                42.12
-                            ],
-                            [
-                                19.37,
-                                42.2
-                            ],
-                            [
-                                19.47,
-                                42.33
-                            ],
-                            [
-                                19.7,
-                                42.56
-                            ],
-                            [
-                                19.76,
-                                42.43
-                            ],
-                            [
-                                19.79,
-                                42.41
-                            ],
-                            [
-                                20.02,
-                                42.45
-                            ],
-                            [
-                                20.04,
-                                42.46
-                            ],
-                            [
-                                20.16,
-                                42.62
-                            ],
-                            [
-                                20.19,
-                                42.65
-                            ],
-                            [
-                                20.15,
-                                42.7
-                            ],
-                            [
-                                20.25,
-                                42.7
-                            ],
-                            [
-                                20.29,
-                                42.7
-                            ],
-                            [
-                                20.42,
-                                42.91
-                            ],
-                            [
-                                20.39,
-                                42.96
-                            ],
-                            [
-                                20.15,
-                                43.02
-                            ],
-                            [
-                                20.02,
-                                43.14
-                            ],
-                            [
-                                20.01,
-                                43.18
-                            ],
-                            [
-                                19.85,
-                                43.16
-                            ],
-                            [
-                                19.67,
-                                43.24
-                            ],
-                            [
-                                19.28,
-                                43.57
-                            ],
-                            [
-                                19.27,
-                                43.6
-                            ],
-                            [
-                                19.07,
-                                43.57
-                            ],
-                            [
-                                19.01,
-                                43.63
-                            ],
-                            [
-                                18.96,
-                                43.61
-                            ],
-                            [
-                                18.88,
-                                43.55
-                            ],
-                            [
-                                18.82,
-                                43.52
-                            ],
-                            [
-                                18.96,
-                                43.35
-                            ],
-                            [
-                                18.86,
-                                43.41
-                            ],
-                            [
-                                18.82,
-                                43.41
-                            ],
-                            [
-                                18.68,
-                                43.32
-                            ],
-                            [
-                                18.63,
-                                43.3
-                            ],
-                            [
-                                18.6,
-                                43.09
-                            ],
-                            [
-                                18.45,
-                                43.05
-                            ],
-                            [
-                                18.43,
-                                43.0
-                            ],
-                            [
-                                18.42,
-                                42.78
-                            ],
-                            [
-                                18.41,
-                                42.74
-                            ],
-                            [
-                                18.48,
-                                42.66
-                            ],
-                            [
-                                18.41,
-                                42.61
-                            ],
-                            [
-                                18.34,
-                                42.6
-                            ],
-                            [
-                                18.47,
-                                42.39
-                            ],
-                            [
-                                18.35,
-                                42.18
-                            ],
-                            [
-                                18.71,
-                                42.01
-                            ],
-                            [
-                                18.91,
-                                41.77
-                            ],
-                            [
-                                18.92,
-                                41.76
-                            ],
-                            [
-                                19.2,
-                                41.62
-                            ],
-                            [
-                                19.37,
-                                41.65
-                            ]
-                        ]
-                    ],
                     [
                         [
                             [
@@ -728,18 +500,17 @@
                 ]
             },
             "region": [
-                "ME",
                 "RS"
             ]
         }
     },
     "options": {},
     "supportedLanguages": [
-        "en",
-        "sr"
+        "sr",
+        "en"
     ],
-    "timezone": "Europe/Podgorica",
+    "timezone": "Europe/Belgrade",
     "type": {
-        "zpcg": true
+        "srbijavoz": true
     }
 }

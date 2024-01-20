@@ -16,7 +16,7 @@ namespace KPublicTransport {
 
 namespace LocalBackendUtils {
 
-QString makeSearchableName(QString name);
+QString makeSearchableName(const QString &name);
 
 bool isInSelectedTimeframe(const QDateTime &departure, const QDateTime &arrival, const JourneyRequest &req);
 

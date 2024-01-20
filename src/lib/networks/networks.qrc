@@ -96,5 +96,7 @@
         <file>us_ma_mbta.json</file>
         <file>us_or_trimet.json</file>
         <file>us_tx_cmta.json</file>
+
+        <file>rs_srbvoz.json</file>
     </qresource>
 </RCC>
