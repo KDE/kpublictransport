@@ -28,9 +28,9 @@
 #include "logging.h"
 
 using namespace KPublicTransport::LocalBackendUtils;
+using namespace KPublicTransport;
 
-
-KPublicTransport::AbstractBackend::Capabilities KPublicTransport::ZPCGBackend::capabilities() const
+AbstractBackend::Capabilities ZPCGBackend::capabilities() const
 {
     return Secure;
 }
@@ -237,7 +237,7 @@ bool KPublicTransport::ZPCGBackend::queryLocation(const LocationRequest &request
 
     const auto searchableName = makeSearchableName(request.name());
     for (const auto &[name, station] : m_stations) {
-        if (name.contains(searchableName) && !station.idName.isEmpty()) {
+        if (name.contains(searchableName) && !station->idName.isEmpty()) {
             auto location = stationToLocation(name);
             locations.push_back(std::move(location));
         }
@@ -263,7 +263,7 @@ QDateTime KPublicTransport::ZPCGBackend::parseDateTime(const QString &timeString
     return dateTime;
 }
 
-std::map<QString, KPublicTransport::ZPCG::Station> KPublicTransport::ZPCGBackend::loadAuxStationData()
+std::map<QString, std::shared_ptr<ZPCG::Station>> KPublicTransport::ZPCGBackend::loadAuxStationData()
 {
     QFile file(QStringLiteral(":/org.kde.kpublictransport/networks/stations/me-rs.json"));
     if (!file.open(QFile::ReadOnly)) {
@@ -272,7 +272,7 @@ std::map<QString, KPublicTransport::ZPCG::Station> KPublicTransport::ZPCGBackend
     }
 
     const auto stationsJson = QJsonDocument::fromJson(file.readAll()).array();
-    std::map<QString, ZPCG::Station> stations;
+    std::map<QString, std::shared_ptr<ZPCG::Station>> stations;
     for (const auto &stationJson : stationsJson) {
         auto stationJsonObject = stationJson.toObject();
 
@@ -307,12 +307,12 @@ std::map<QString, KPublicTransport::ZPCG::Station> KPublicTransport::ZPCGBackend
             .longitude = float(stationJson[u"latitude"].toDouble())
         };
 
+        auto sharedStation = std::make_shared<ZPCG::Station>(std::move(station));
+
         // Add search links for all considered languages
-        // most of the data is implicitly shared already,
-        // making these point to the same object is probably not necessary.
         for (const auto &key : keyPrecedence) {
             if (stationJsonObject.contains(key)) {
-                stations.insert({makeSearchableName(stationJsonObject[key].toString()), station});
+                stations.insert({makeSearchableName(stationJsonObject[key].toString()), sharedStation});
             }
         }
     }
@@ -340,7 +340,7 @@ KPublicTransport::AsyncTask<void> *KPublicTransport::ZPCGBackend::downloadStatio
             const auto searchName = makeSearchableName(nameJson.toString());
 
             if (m_stations.contains(searchName)) {
-                m_stations.at(searchName).idName = nameJson.toString(); // Use the official names
+                m_stations.at(searchName)->idName = nameJson.toString(); // Use the official names
             } else {
                 qCWarning(Log) << "Missing station data for" << searchName << ".";
                 qCWarning(Log) << "To fix this, look for the station on OpenStreetMap,"
@@ -365,11 +365,11 @@ KPublicTransport::Location KPublicTransport::ZPCGBackend::stationToLocation(cons
     if (m_stations.contains(searchableName)) {
         auto station = m_stations.at(searchableName);
 
-        loc.setName(station.name);
-        loc.setLatitude(station.latitude);
-        loc.setLongitude(station.longitude);
-        if (!station.idName.isEmpty()) {
-            loc.setIdentifier(identifierName(), station.idName);
+        loc.setName(station->name);
+        loc.setLatitude(station->latitude);
+        loc.setLongitude(station->longitude);
+        if (!station->idName.isEmpty()) {
+            loc.setIdentifier(identifierName(), station->idName);
         }
     } else {
         loc.setName(name);

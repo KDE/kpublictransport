@@ -45,7 +45,7 @@ public:
     QDateTime parseDateTime(const QString &timeString, const QDate &date, const QDateTime &knownPreviousTime = {}) const;
 
 private:
-    std::map<QString, KPublicTransport::ZPCG::Station> loadAuxStationData();
+    std::map<QString, std::shared_ptr<ZPCG::Station>> loadAuxStationData();
 
     /// Download the official station data, and use it to filter the local data.
     AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
@@ -57,7 +57,7 @@ private:
     QUrl baseUrl() const;
     QString identifierName() const;
 
-    std::map<QString, ZPCG::Station> m_stations;
+    std::map<QString, std::shared_ptr<ZPCG::Station>> m_stations;
     QPointer<AsyncTask<void>> m_fetchStationsTask = nullptr;
 };
 
