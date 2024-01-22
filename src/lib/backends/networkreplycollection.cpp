@@ -10,7 +10,8 @@ NetworkReplyCollection::NetworkReplyCollection(std::vector<QNetworkReply *> repl
     : QObject(parent)
 {
     m_replies = std::move(replies);
-    checkFinished();
+
+    QMetaObject::invokeMethod(this, &NetworkReplyCollection::checkFinished, Qt::QueuedConnection);
 
     for (auto *reply : m_replies) {
         connect(reply, &QNetworkReply::finished, this, &NetworkReplyCollection::checkFinished);
