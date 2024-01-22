@@ -16,6 +16,7 @@
 #include <QFile>
 
 #include <array>
+#include <chrono>
 
 #include "datatypes/location.h"
 #include "datatypes/stopover.h"
@@ -29,6 +30,8 @@
 
 using namespace KPublicTransport::LocalBackendUtils;
 using namespace KPublicTransport;
+
+using namespace std::chrono_literals;
 
 AbstractBackend::Capabilities ZPCGBackend::capabilities() const
 {
@@ -96,6 +99,15 @@ bool ZPCGBackend::queryJourney(const JourneyRequest &request, JourneyReply *repl
 
                 auto departureTime = parseDateTime(something[u"d"].toString(), request.dateTime().date());
                 auto arrivalTime = parseDateTime(something[u"a"].toString(), request.dateTime().date(), departureTime);
+
+                if (departureTime.isNull()
+                    || arrivalTime.isNull()
+                    || (arrivalTime - departureTime) == 0s
+                    || from.isEmpty()
+                    || to.isEmpty()) {
+                    qCDebug(Log) << "zpcg: Skipped one incomplete result";
+                    continue;
+                }
 
                 if (!LocalBackendUtils::isInSelectedTimeframe(departureTime, arrivalTime, request)) {
                     continue;
