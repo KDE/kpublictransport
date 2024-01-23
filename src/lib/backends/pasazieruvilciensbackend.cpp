@@ -66,12 +66,16 @@ bool PasazieruVilciensBackend::queryJourney(const JourneyRequest &req, JourneyRe
             return a.scheduledDepartureTime() < b.scheduledDepartureTime();
         });
 
+        bool isEmpty = results.empty();
+
         addResult(reply, this, std::move(results));
 
-        Attribution attribution;
-        attribution.setName(QStringLiteral("Pasazieru vilciens"));
-        attribution.setUrl(QUrl(QStringLiteral("https://pv.lv")));
-        addAttributions(reply, {attribution});
+        if (!isEmpty) {
+            Attribution attribution;
+            attribution.setName(QStringLiteral("Pasazieru vilciens"));
+            attribution.setUrl(QUrl(QStringLiteral("https://pv.lv")));
+            addAttributions(reply, {attribution});
+        }
     };
 
     connect(tripResult.get(), &PendingQuery::finished, this, [=, this]() {

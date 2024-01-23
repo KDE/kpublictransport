@@ -204,19 +204,22 @@ bool ZPCGBackend::queryJourney(const JourneyRequest &request, JourneyReply *repl
         connect(allReplies, &NetworkReplyCollection::allFinished, reply, [=, this]() {
             allReplies->deleteLater();
 
+            bool isEmpty = journeys->empty();
             addResult(reply, this, std::move(*journeys));
 
-            Attribution osmAttribution;
-            osmAttribution.setLicense(QStringLiteral("ODbL"));
-            osmAttribution.setLicenseUrl(QUrl(QStringLiteral("https://opendatacommons.org/licenses/odbl/")));
-            osmAttribution.setName(QStringLiteral("OpenStreetMap®"));
-            osmAttribution.setUrl(QUrl(QStringLiteral("https://www.openstreetmap.org")));
+            if (!isEmpty) {
+                Attribution osmAttribution;
+                osmAttribution.setLicense(QStringLiteral("ODbL"));
+                osmAttribution.setLicenseUrl(QUrl(QStringLiteral("https://opendatacommons.org/licenses/odbl/")));
+                osmAttribution.setName(QStringLiteral("OpenStreetMap®"));
+                osmAttribution.setUrl(QUrl(QStringLiteral("https://www.openstreetmap.org")));
 
-            Attribution attribution;
-            attribution.setName(QStringLiteral("ŽPCG"));
-            attribution.setUrl(QUrl(QStringLiteral("https://www.zcg-prevoz.me")));
+                Attribution attribution;
+                attribution.setName(QStringLiteral("ŽPCG"));
+                attribution.setUrl(QUrl(QStringLiteral("https://www.zcg-prevoz.me")));
 
-            addAttributions(reply, {attribution, osmAttribution});
+                addAttributions(reply, {attribution, osmAttribution});
+            }
         });
         connect(allReplies, &NetworkReplyCollection::errorOccured, reply, [=, this]() {
             addError(reply, Reply::NetworkError, netReply->errorString());

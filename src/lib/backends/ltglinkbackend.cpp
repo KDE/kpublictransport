@@ -181,10 +181,12 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                 (*runningRequests)--;
 
                 if (*runningRequests == 0) {
-                    Attribution attribution;
-                    attribution.setName(QStringLiteral("LTG Link"));
-                    attribution.setUrl(QUrl(QStringLiteral("https://ltglink.lt")));
-                    addAttributions(reply, {attribution});
+                    if (!journeys->empty()) {
+                        Attribution attribution;
+                        attribution.setName(QStringLiteral("LTG Link"));
+                        attribution.setUrl(QUrl(QStringLiteral("https://ltglink.lt")));
+                        addAttributions(reply, {attribution});
+                    }
 
                     addResult(reply, this, std::move(*journeys));
                 }
