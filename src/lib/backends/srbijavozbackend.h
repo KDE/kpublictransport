@@ -49,11 +49,15 @@ public:
 
 private:
     void loadAuxData();
+    void applyStationQuirks();
+
     AsyncTask<void> *downloadStationData(Reply *reply, QNetworkAccessManager *nam);
 
     QDateTime parseDateTime(const QString &timeString, const QDate &date, const QDateTime &knownPreviousTime = {}) const;
 
     Location stationToLocation(const KPublicTransport::SrbStation &station) const;
+
+    QString makeSearchableName(QString name) const;
 
     QString identifierName() const;
 

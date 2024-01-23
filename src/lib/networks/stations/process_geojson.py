@@ -31,9 +31,10 @@ for feature in features:
 
     if feature["geometry"]["type"] != "Point":
         print("Error: Unsupported geometry, this script only understands Point. Make sure not to use geo in your Overpass Turbo query")
+        sys.exit(1)
 
     properties = feature["properties"]
-    name_keys = filter(lambda k: k.startswith("name") or k.startswith("alt_name"), properties.keys())
+    name_keys = filter(lambda k: k.startswith("name") or k.startswith("alt_name") or k.startswith("int_name"), properties.keys())
     station = {k: properties[k] for k in name_keys}
     station["longitude"] = feature["geometry"]["coordinates"][1]
     station["latitude"] = feature["geometry"]["coordinates"][0]

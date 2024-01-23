@@ -21,7 +21,7 @@ public:
     /// simplify less common characters into simpler multi-character equivalents
     QString latinize(const QString &string) const {
         static std::unordered_map<QChar, QStringView> table {
-            {u'đ', u"dj"}
+            {u'đ', u"dj"}, {u'ć', u"c"}
         };
 
         QString out;
@@ -66,7 +66,7 @@ public:
             {u'Ї', u"Ï"}, {u'ї', u"ï"}, {u'Й', u"J"}, {u'й', u"j"}, {u'Ј', u"J"},
             {u'ј', u"ǰ"}, {u'К', u"K"}, {u'к', u"k"}, {u'Қ', u"Ķ"}, {u'қ', u"ķ"},
             {u'Ҟ', u"K"}, {u'ҟ', u"k"}, {u'Л', u"L"}, {u'л', u"l"}, {u'Љ', u"L"},
-            {u'љ', u"l"}, {u'М', u"M"}, {u'м', u"m"}, {u'Н', u"N"}, {u'н', u"n"},
+            {u'љ', u"l̂"}, {u'М', u"M"}, {u'м', u"m"}, {u'Н', u"N"}, {u'н', u"n"},
             {u'Њ', u"N"}, {u'њ', u"n"}, {u'Ҥ', u"Ṅ"}, {u'ҥ', u"ṅ"}, {u'Ң', u"Ṇ"},
             {u'ң', u"ṇ"}, {u'О', u"O"}, {u'о', u"o"}, {u'Ӧ', u"Ö"}, {u'ӧ', u"ö"},
             {u'Ө', u"Ô"}, {u'ө', u"ô"}, {u'П', u"P"}, {u'п', u"p"}, {u'Ҧ', u"Ṕ"},

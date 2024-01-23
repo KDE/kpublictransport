@@ -206,7 +206,7 @@ bool SrbijavozBackend::queryLocation(const LocationRequest &request, LocationRep
 
     std::vector<Location> locations;
 
-    const auto searchableName = LocalBackendUtils::makeSearchableName(request.name());
+    const auto searchableName = makeSearchableName(request.name());
     for (const auto &[name, station] : m_stationsBySearchName) {
         if (name.contains(searchableName)) {
             auto location = stationToLocation(*station);
@@ -243,6 +243,7 @@ void SrbijavozBackend::loadAuxData()
         // They will be tried from first to last.
         std::vector<QString> keyPrecedence = {
             u"name:" % preferredLanguage(),
+            u"int_name"_s,
             u"name:en"_s,
             u"alt_name:en"_s,
             u"name:sr-Latn"_s,
@@ -277,7 +278,7 @@ void SrbijavozBackend::loadAuxData()
         // Add search links for all considered languages
         for (const auto &key : keyPrecedence) {
             if (stationJsonObject.contains(key)) {
-                stationsBySearchName.insert({LocalBackendUtils::makeSearchableName(stationJsonObject[key].toString()), sharedStation});
+                stationsBySearchName.insert({makeSearchableName(stationJsonObject[key].toString()), sharedStation});
             }
         }
     }
@@ -285,9 +286,48 @@ void SrbijavozBackend::loadAuxData()
     m_stationsBySearchName = std::move(stationsBySearchName);
 }
 
+void SrbijavozBackend::applyStationQuirks()
+{
+    auto addMapping = [&](const QString &from, QString to) {
+        to = makeSearchableName(to);
+        if (!m_stationsBySearchName.contains(to)) {
+            qCWarning(Log) << "srbijavoz: Error in manual mapping from" << from << "to" << to;
+            return;
+        }
+
+        auto station = m_stationsBySearchName.at(to);
+        m_stationsBySearchName.insert({makeSearchableName(from), station});
+    };
+
+    // Stations of which we can't easily normalize the spelling
+    addMapping(u"Kos Mitrovica Sever"_s, u"Kosovska Mitrovica Sever"_s);
+    addMapping(u"Ban.milosevo Polje"_s, u"Banatsko Milosevo"_s);
+    addMapping(u"Subotica Predgrade"_s, u"Subotica predgrađe"_s);
+    addMapping(u"Skenderovo"_s, u"Skenderevo"_s);
+    addMapping(u"Gugalj"_s, u"Гугаљ"_s);
+    addMapping(u"Donje Jerinje"_s, u"Jarinjë"_s);
+    addMapping(u"Jerina"_s, u"Jarinjë"_s);
+    addMapping(u"Brvenik"_s, u"Brevnik"_s);
+    addMapping(u"Palanka"_s, u"Smederevska Palanka"_s);
+    addMapping(u"Petrovac-glozan"_s, u"Bački Petrovac - Gložan"_s);
+    addMapping(u"Osipaonica Stajali."_s, u"Osipaonica staјalište"_s);
+    addMapping(u"Pancevo Gl.stanica"_s, u"Pančevo glavna"_s);
+    addMapping(u"Resnik Kragujev."_s, u"Resnik Kragujevački"_s);
+    addMapping(u"Karlovacki Vinograd"_s, u"Karlovački vinogradi"_s);
+
+    // That one station that I'm not sure enough to add it to OSM
+    m_stationsBySearchName.insert({makeSearchableName(u"Subotica Javna Skl."_s), std::make_shared<SrbStation>(SrbStation {
+        .name = u"Subotica Javna Skladista"_s,
+        .longitude = 19.696104,
+        .latitude = 46.094215,
+        .id = -1
+    })});
+}
+
 AsyncTask<void> *SrbijavozBackend::downloadStationData(Reply *reply, QNetworkAccessManager *nam)
 {
     loadAuxData();
+    applyStationQuirks();
 
     auto *task = new AsyncTask<void>(reply);
 
@@ -301,10 +341,13 @@ AsyncTask<void> *SrbijavozBackend::downloadStationData(Reply *reply, QNetworkAcc
             QString stationName = stationJson[u"naziv"].toString();
             uint32_t stationId = stationJson[u"sifra"].toInt();
 
-            QString searchName = LocalBackendUtils::makeSearchableName(stationName);
+            QString searchName = makeSearchableName(stationName);
             if (!m_stationsBySearchName.contains(searchName)) {
-                qCWarning(Log) << "No OSM data for" << stationName;
-                qCWarning(Log) << "This is currently expected to happen";
+                qCWarning(Log) << "Missing station data for" << stationName << ".";
+                qCWarning(Log) << "To fix this, look for the station on OpenStreetMap,"
+                               << "fix its properties and regenerate the data in lib/networks/stations/";
+                qCWarning(Log) << "Usually, the issue is a name mismatch. If the name used by Srbijavoz can not be added"
+                                  "to OSM, you can add a mapping in the backend.";
 
                 SrbStation station;
                 station.id = int(stationId);
@@ -347,6 +390,25 @@ Location SrbijavozBackend::stationToLocation(const SrbStation &station) const
     }
 
     return loc;
+}
+
+QString SrbijavozBackend::makeSearchableName(QString name) const
+{
+    auto out = LocalBackendUtils::makeSearchableName(
+        name.replace(QRegularExpression(QStringLiteral("station|halt|stajalište|Stajaliste")), QString()));
+
+    auto normalizeEnd = [&](QStringView end, QStringView normalizedEnd) {
+        if (out.endsWith(end)) {
+            out = out.mid(0, out.size() - end.size()) % normalizedEnd;
+        }
+    };
+
+    normalizeEnd(u"ce", u"ca");
+    normalizeEnd(u"ci", u"c");
+    normalizeEnd(u"je", u"ja");
+    normalizeEnd(u".", u"");
+
+    return out;
 }
 
 QString SrbijavozBackend::identifierName() const
