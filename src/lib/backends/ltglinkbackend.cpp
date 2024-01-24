@@ -109,6 +109,8 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                     auto scheduledArrivalTime = QDateTime::fromString(sectionJson[u"Destination"][u"PlannedArrivalDateTime"].toString(), Qt::ISODate);
                     scheduledArrivalTime.setTimeZone(destinationTimeZone);
 
+                    auto note = sectionJson[u"Trip"][u"Name"].toString();
+
                     // Filter out results that don't match the selected time frame
                     if (!LocalBackendUtils::isInSelectedTimeframe(actualDepartureTime, actualArrivalTime, req)) {
                         continue;
@@ -133,6 +135,10 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
                     section.setExpectedArrivalTime(actualArrivalTime);
                     section.setMode(JourneySection::PublicTransport);
                     section.setRoute(route);
+
+                    if (!note.isEmpty()) {
+                        section.setNotes({note});
+                    }
 
                     sections.push_back(std::move(section));
                 }
