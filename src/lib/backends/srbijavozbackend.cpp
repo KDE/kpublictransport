@@ -399,7 +399,7 @@ Location SrbijavozBackend::stationToLocation(const SrbStation &station) const
 QString SrbijavozBackend::makeSearchableName(QString name) const
 {
     auto out = LocalBackendUtils::makeSearchableName(
-        name.replace(QRegularExpression(QStringLiteral("station|halt|stajalište|Stajaliste")), QString()));
+        name.replace(QRegularExpression(QStringLiteral("station|halt")), QString()));
 
     auto normalizeEnd = [&](QStringView end, QStringView normalizedEnd) {
         if (out.endsWith(end)) {
