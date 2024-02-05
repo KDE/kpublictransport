@@ -9,7 +9,7 @@ import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
 import org.kde.kirigami.delegates as Kirigami
-import org.kde.kosmindoormap 1.0
+import org.kde.kosmindoormap
 
 Kirigami.Page {
     title: map.floorLevels.hasName(map.view.floorLevel) ? map.floorLevels.name(map.view.floorLevel) : ("Floor " + map.floorLevels.name(map.view.floorLevel));
