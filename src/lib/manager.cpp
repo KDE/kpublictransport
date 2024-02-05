@@ -38,6 +38,7 @@
 #include "backends/hafasmgatebackend.h"
 #include "backends/hafasquerybackend.h"
 #include "backends/ivvassbackend.h"
+#include "backends/motisbackend.h"
 #include "backends/navitiabackend.h"
 #include "backends/oebbbackend.h"
 #include "backends/openjourneyplannerbackend.h"
@@ -202,6 +203,7 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         EfaBackend,
         IvvAssBackend,
         OpenJourneyPlannerBackend,
+        MotisBackend,
         GBFSBackend,
         AccessibilityCloudBackend,
         PasazieruVilciensBackend,

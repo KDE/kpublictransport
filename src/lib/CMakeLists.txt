@@ -43,6 +43,8 @@ target_sources(KPublicTransport PRIVATE
     backends/ivvassproductmap.cpp
     backends/localbackendutils.cpp
     backends/ltglinkbackend.cpp
+    backends/motisbackend.cpp
+    backends/motisparser.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
     backends/navitiaphysicalmode.cpp
