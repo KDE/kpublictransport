@@ -54,7 +54,6 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
 {
     QJsonObject query;
     if (req.hasCoordinate()) {
-        // TODO reports weird names?
         query = QJsonObject{
             {"destination"_L1, QJsonObject{
                 {"type"_L1, "Module"_L1},
