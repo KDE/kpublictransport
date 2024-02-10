@@ -8,5 +8,10 @@ CH: https://de.wikipedia.org/wiki/Liste_der_Schweizer_Tarifverb%C3%BCnde
 DE: https://de.wikipedia.org/wiki/Liste_deutscher_Tarif-_und_Verkehrsverb%C3%BCnde
 
 
+For easier development and testing, symlink this folder to $XDG_DATA_DIRS/org.kde.kpublictransport/networks,
+then you wont need to recompile for changes to take effect, and development-only and demo configurations
+will also become available.
+
+
 SPDX-FileCopyrightText: none
 SPDX-License-Identifier: CC0-1.0

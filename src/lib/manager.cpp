@@ -59,6 +59,7 @@
 
 #include <functional>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 static inline void initResources() {
@@ -132,34 +133,49 @@ void ManagerPrivate::loadNetworks()
         return;
     }
 
-    QDirIterator it(QStringLiteral(":/org.kde.kpublictransport/networks"), QDir::Files);
-    while (it.hasNext()) {
-        QFile f(it.next());
-        if (!f.open(QFile::ReadOnly)) {
-            qCWarning(Log) << "Failed to open public transport network configuration:" << f.errorString();
-            continue;
-        }
+    QStringList searchDirs;
+#ifndef Q_OS_ANDROID
+    searchDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+#endif
+    searchDirs.push_back(u":/"_s);
 
-        QJsonParseError error;
-        const auto doc = QJsonDocument::fromJson(f.readAll(), &error);
-        if (error.error != QJsonParseError::NoError) {
-            qCWarning(Log) << "Failed to parse public transport network configuration:" << error.errorString() << it.fileName();
-            continue;
-        }
-
-        auto net = loadNetwork(doc.object());
-        if (net) {
-            net->setBackendId(it.fileInfo().baseName());
-            net->init();
-            if (!net->attribution().isEmpty()) {
-                m_attributions.push_back(net->attribution());
+    for (const auto &searchDir : searchDirs) {
+        QDirIterator it(searchDir + "/org.kde.kpublictransport/networks"_L1, {u"*.json"_s}, QDir::Files);
+        while (it.hasNext()) {
+            it.next();
+            const auto id = it.fileInfo().baseName();
+            if (std::any_of(m_backends.begin(), m_backends.end(), [&id](const auto &backend) { return backend.identifier() == id; })) {
+                // already seen in another location
+                continue;
             }
 
-            auto b = BackendPrivate::fromJson(doc.object());
-            BackendPrivate::setImpl(b, std::move(net));
-            m_backends.push_back(std::move(b));
-        } else {
-            qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();
+            QFile f(it.filePath());
+            if (!f.open(QFile::ReadOnly)) {
+                qCWarning(Log) << "Failed to open public transport network configuration:" << f.errorString();
+                continue;
+            }
+
+            QJsonParseError error;
+            const auto doc = QJsonDocument::fromJson(f.readAll(), &error);
+            if (error.error != QJsonParseError::NoError) {
+                qCWarning(Log) << "Failed to parse public transport network configuration:" << error.errorString() << it.fileName();
+                continue;
+            }
+
+            auto net = loadNetwork(doc.object());
+            if (net) {
+                net->setBackendId(id);
+                net->init();
+                if (!net->attribution().isEmpty()) {
+                    m_attributions.push_back(net->attribution());
+                }
+
+                auto b = BackendPrivate::fromJson(doc.object());
+                BackendPrivate::setImpl(b, std::move(net));
+                m_backends.push_back(std::move(b));
+            } else {
+                qCWarning(Log) << "Failed to load public transport network configuration config:" << it.fileName();
+            }
         }
     }
 
