@@ -106,9 +106,28 @@ static void postprocessRoute(Route &route)
         l.setName(l.name().remove(4, 1));
     }
     while (l.mode() == Line::LongDistanceTrain && l.name().startsWith("IC 0"_L1)) {
-        l.setName(l.name().remove(4, 1));
+        l.setName(l.name().remove(3, 1));
     }
     route.setLine(l);
+}
+
+[[nodiscard]] static Route parseRoute(const QJsonObject &obj)
+{
+    Line line;
+    line.setName(obj.value("name"_L1).toString()); // TODO use category_name and line_id instead?
+    const auto clasz = obj.value("clasz"_L1).toInt();
+    if (clasz >= 0 && clasz < (int)std::size(clasz_map)) {
+        line.setMode(clasz_map[clasz]);
+    }
+    Route route;
+    route.setDirection(obj.value("direction"_L1).toString());
+    const auto trainNr = obj.value("train_nr"_L1).toInt();
+    if (trainNr) { // TODO skip is already in line name?
+        route.setName(QString::number(trainNr));
+    }
+    route.setLine(line);
+    postprocessRoute(route);
+    return route;
 }
 
 Journey MotisParser::parseConnection(const QJsonObject &con) const
@@ -188,21 +207,7 @@ Journey MotisParser::parseConnection(const QJsonObject &con) const
         }
 
         if (sec.mode() == JourneySection::PublicTransport) {
-            Line line;
-            line.setName(move.value("name"_L1).toString()); // TODO use category_name and line_id instead?
-            const auto clasz = move.value("clasz"_L1).toInt();
-            if (clasz >= 0 && clasz < (int)std::size(clasz_map)) {
-                line.setMode(clasz_map[clasz]);
-            }
-            Route route;
-            route.setDirection(move.value("direction"_L1).toString());
-            const auto trainNr = move.value("train_nr"_L1).toInt();
-            if (trainNr) { // TODO skip is already in line name?
-                route.setName(QString::number(trainNr));
-            }
-            route.setLine(line);
-            postprocessRoute(route);
-            sec.setRoute(route);
+            sec.setRoute(parseRoute(move));
         }
 
         sections.push_back(std::move(sec));
@@ -211,6 +216,58 @@ Journey MotisParser::parseConnection(const QJsonObject &con) const
     Journey jny;
     jny.setSections(std::move(sections));
     return jny;
+}
+
+std::vector<Stopover> MotisParser::parseEvents(const QByteArray &data)
+{
+    const auto content = parseContent(data);
+    if (hasError()) {
+        return {};
+    }
+
+    const auto stopPoint = parseStation(content.value("station"_L1).toObject());
+
+    const auto events = content.value("events"_L1).toArray();
+    std::vector<Stopover> result;
+    result.reserve(events.size());
+    for (const auto &eventV : events) {
+        const auto event = eventV.toObject();
+
+        Stopover stop;
+        stop.setStopPoint(stopPoint);
+        const auto ev = event.value("event"_L1).toObject();
+        if (!ev.value("valid"_L1).toBool()) {
+            continue;
+        }
+        const auto type = event.value("type"_L1).toString();
+        if (type == "DEP"_L1) {
+            stop.setScheduledDepartureTime(scheduledTime(ev));
+            stop.setExpectedDepartureTime(expectedTime(ev));
+        } else if (type == "ARR"_L1) {
+            stop.setScheduledArrivalTime(scheduledTime(ev));
+            stop.setExpectedArrivalTime(expectedTime(ev));
+        } else {
+            continue;
+        }
+        if (const auto p = ev.value("schedule_track"_L1).toString(); !p.isEmpty()) {
+            stop.setScheduledPlatform(p);
+        }
+        if (const auto p = expectedPlatform(ev); !p.isEmpty()) {
+            stop.setExpectedPlatform(p);
+        }
+
+        const auto trips = event.value("trips"_L1).toArray();
+        if (trips.empty()) {
+            continue;
+        }
+        stop.setRoute(parseRoute(trips.at(0).toObject().value("transport"_L1).toObject()));
+        // TODO what's in the id block next to transport? train_nr and destination stop ids seem relevant?
+
+        result.push_back(std::move(stop));
+    }
+
+    // TODO we need to merge arrival/departure data manually here?
+    return result;
 }
 
 std::vector<Location> MotisParser::parseStations(const QByteArray &data)

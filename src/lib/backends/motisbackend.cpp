@@ -106,21 +106,18 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
 
 bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO does not seem to work at all?
-#if 0
+    // TODO arrival/departure filtering only possible in the result?
     QJsonObject query{
         {"destination"_L1, QJsonObject{
             {"type"_L1, "Module"_L1},
-            {"target"_L1, "/lookup/station_events"_L1}
+            {"target"_L1, "/railviz/get_station"_L1}
         }},
-        {"content_type"_L1, "LookupStationEventsRequest"_L1},
+        {"content_type"_L1, "RailVizStationRequest"_L1},
         {"content"_L1, QJsonObject{
-            {"interval"_L1, QJsonObject{
-                {"begin"_L1, req.dateTime().toSecsSinceEpoch()}, // TODO timezone?
-                {"end"_L1, req.dateTime().toSecsSinceEpoch() + 1800}, // TODO configure this
-            }},
+            {"time"_L1, req.dateTime().toSecsSinceEpoch()}, // TODO timezone?
+            {"direction"_L1, "BOTH"_L1}, // TODO paging?
             {"station_id"_L1, req.stop().identifier(m_locationIdentifierType)},
-            {"type"_L1, req.mode() == StopoverRequest::QueryDeparture ? "ONLY_DEPARTURES"_L1 : "ONLY_ARRIVALS"_L1}
+            {"event_count"_L1, req.maximumResults()},
         }}
     };
 
@@ -135,11 +132,21 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
         // TODO result caching
         qDebug().noquote() << data;
         addError(reply, Reply::NetworkError, netReply->errorString());
+
+        qDebug().noquote() << data << netReply->error();
+        MotisParser p(m_locationIdentifierType);
+        auto result = p.parseEvents(data);
+        if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
+            // TODO caching?
+            addResult(reply, this, std::move(result));
+        } else if (p.hasError()) {
+            addError(reply, Reply::InvalidRequest, p.errorMessage());
+        } else {
+            addError(reply, Reply::NetworkError, netReply->errorString());
+        }
     });
 
     return true;
-#endif
-    return false;
 }
 
 [[nodiscard]] static QJsonArray ivModes(const std::vector<IndividualTransport> &ivs)
