@@ -20,6 +20,10 @@ class MotisBackend : public AbstractBackend
     Q_GADGET
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
+    /** Intermodal journey search is functional on this instance.
+     *  Defaults to @c true.
+     */
+    Q_PROPERTY(bool intermodal MEMBER m_intermodal)
 
 public:
     explicit MotisBackend();
@@ -38,6 +42,7 @@ private:
 
     QUrl m_endpoint;
     QString m_locationIdentifierType;
+    bool m_intermodal = true;
 };
 
 }
