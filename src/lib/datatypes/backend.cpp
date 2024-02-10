@@ -12,6 +12,7 @@
 
 #include <QJsonObject>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 KPUBLICTRANSPORT_MAKE_GADGET(Backend)
@@ -66,6 +67,12 @@ Backend BackendPrivate::fromJson(const QJsonObject &obj)
     const auto jsonMetaData = obj.value(QLatin1String("KPlugin")).toObject();
     b.d->name = Json::translatedValue(jsonMetaData, QStringLiteral("Name"));
     b.d->description = Json::translatedValue(jsonMetaData, QStringLiteral("Description"));
+
+    // untranslated files for development purposes only
+    if (b.d->name.isEmpty() && b.d->description.isEmpty()) [[unlikely]] {
+        b.d->name = obj.value("name"_L1).toString();
+        b.d->description = obj.value("description"_L1).toString();
+    }
 
     const auto coverage = obj.value(QLatin1String("coverage")).toObject();
     for (const auto &c : coverage_area_map) {
