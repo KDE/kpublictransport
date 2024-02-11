@@ -1,0 +1,688 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Frankfurt (Oder), Bahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE10"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:12:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hoyerswerda Bahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE11"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:12:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "S+U Berlin Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 692"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:10:00",
+        "scheduledDepartureTime": "2024-02-11T12:16:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Eisenach",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB20"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:19:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Chemnitz, Hauptbahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE6"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:22:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Dresden Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC 2553"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:21:00",
+        "scheduledDepartureTime": "2024-02-11T12:31:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Frankfurt (Main) Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 1558"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:26:00",
+        "scheduledDepartureTime": "2024-02-11T12:33:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Geithain",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB113"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:34:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Norddeich(Norden) Mole",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC 2036"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:42:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "München Hbf",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 509"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:42:00",
+        "scheduledDepartureTime": "2024-02-11T12:48:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Karlsruhe Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC 2062"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:49:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Saalfeld (Saale)",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB22"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:54:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hof Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB13"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T12:54:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 1211"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:47:00",
+        "scheduledDepartureTime": "2024-02-11T12:58:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Dresden Hauptbahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE50"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T13:00:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Magdeburg Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE13"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T13:04:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Döbeln, Hauptbahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB110"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T13:06:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 508"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:10:00",
+        "scheduledDepartureTime": "2024-02-11T13:16:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Eisenach",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB20"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T13:19:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Chemnitz, Hauptbahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE6"
+            }
+        },
+        "scheduledDepartureTime": "2024-02-11T13:22:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE15"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:08:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB113"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:22:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE6"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:31:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB20"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:39:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE50"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:50:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE13"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T12:56:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB110"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:00:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC 2063"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:04:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB22"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:08:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB13"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:08:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC 2037"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:15:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Magdeburg Hbf",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "IC 2552"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:20:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Leipzig Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB113"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:22:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Dresden Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 1559"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T13:24:00",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:14713:8010205_G"
+            },
+            "latitude": 51.34547424316406,
+            "longitude": 12.382063865661621,
+            "name": "Leipzig Hbf",
+            "type": "Stop"
+        }
+    }
+]

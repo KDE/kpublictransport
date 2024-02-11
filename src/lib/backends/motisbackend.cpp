@@ -106,7 +106,7 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
 
 bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO arrival/departure filtering only possible in the result?
+    // TODO arrival/departure filtering needs to be done on the result
     QJsonObject query{
         {"destination"_L1, QJsonObject{
             {"type"_L1, "Module"_L1},
@@ -126,12 +126,6 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-
-        // TODO result parsing
-        // TODO error handling
-        // TODO result caching
-        qDebug().noquote() << data;
-        addError(reply, Reply::NetworkError, netReply->errorString());
 
         qDebug().noquote() << data << netReply->error();
         MotisParser p(m_locationIdentifierType);

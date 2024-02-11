@@ -1,0 +1,442 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Großhansdorf",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:27:00",
+        "scheduledDepartureTime": "2024-02-11T11:27:00",
+        "scheduledPlatform": "2",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:28:00",
+        "scheduledDepartureTime": "2024-02-11T11:28:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:30:00",
+        "scheduledDepartureTime": "2024-02-11T11:30:00",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:33:00",
+        "scheduledDepartureTime": "2024-02-11T11:33:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Wandsbek-Gartenstadt",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:35:00",
+        "scheduledDepartureTime": "2024-02-11T11:35:00",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Norderstedt Mitte",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:36:00",
+        "scheduledDepartureTime": "2024-02-11T11:36:00",
+        "scheduledPlatform": "1",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Ohlstedt",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:37:00",
+        "scheduledDepartureTime": "2024-02-11T11:37:00",
+        "scheduledPlatform": "2",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:38:00",
+        "scheduledDepartureTime": "2024-02-11T11:38:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:40:00",
+        "scheduledDepartureTime": "2024-02-11T11:40:00",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:43:00",
+        "scheduledDepartureTime": "2024-02-11T11:43:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Wandsbek-Gartenstadt",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:45:00",
+        "scheduledDepartureTime": "2024-02-11T11:45:00",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Norderstedt Mitte",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:46:00",
+        "scheduledDepartureTime": "2024-02-11T11:46:00",
+        "scheduledPlatform": "1",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Großhansdorf",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:47:00",
+        "scheduledDepartureTime": "2024-02-11T11:47:00",
+        "scheduledPlatform": "2",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:48:00",
+        "scheduledDepartureTime": "2024-02-11T11:48:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:50:00",
+        "scheduledDepartureTime": "2024-02-11T11:50:00",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:53:00",
+        "scheduledDepartureTime": "2024-02-11T11:53:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Wandsbek-Gartenstadt",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:55:00",
+        "scheduledDepartureTime": "2024-02-11T11:55:00",
+        "scheduledPlatform": "3",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Norderstedt Mitte",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:56:00",
+        "scheduledDepartureTime": "2024-02-11T11:56:00",
+        "scheduledPlatform": "1",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Ohlstedt",
+            "line": {
+                "mode": "Metro",
+                "name": "U1"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:57:00",
+        "scheduledDepartureTime": "2024-02-11T11:57:00",
+        "scheduledPlatform": "2",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg Barmbek(2)",
+            "line": {
+                "mode": "Metro",
+                "name": "U3"
+            }
+        },
+        "scheduledArrivalTime": "2024-02-11T11:58:00",
+        "scheduledDepartureTime": "2024-02-11T11:58:00",
+        "scheduledPlatform": "4",
+        "stopPoint": {
+            "identifier": {
+                "motis": "de:02000:10906"
+            },
+            "latitude": 53.55203628540039,
+            "longitude": 10.00946044921875,
+            "name": "Hamburg Hauptbahnhof Süd",
+            "type": "Stop"
+        }
+    }
+]

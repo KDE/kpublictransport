@@ -57,6 +57,34 @@ private Q_SLOTS:
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
 
+    void testParseStopovers_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("stopover-non-terminal")
+            << QStringLiteral(SOURCE_DIR "/data/motis/stopovers-non-terminal.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis/stopovers-non-terminal.out.json");
+        QTest::newRow("stopover-terminal")
+            << QStringLiteral(SOURCE_DIR "/data/motis/stopovers-terminal.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis/stopovers-terminal.out.json");
+    }
+
+    void testParseStopovers()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        MotisParser p(u"motis"_s);
+        const auto result = p.parseEvents(Test::readFile(inFileName));
+        QVERIFY(!result.empty());
+        QVERIFY(!p.hasError());
+        const auto resultJson = Stopover::toJson(result);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
+
     void testParseJourneys_data()
     {
         QTest::addColumn<QString>("inFileName");

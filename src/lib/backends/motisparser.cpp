@@ -229,7 +229,7 @@ std::vector<Stopover> MotisParser::parseEvents(const QByteArray &data)
 
     const auto events = content.value("events"_L1).toArray();
     std::vector<Stopover> result;
-    result.reserve(events.size());
+    std::vector<QString> ids;
     for (const auto &eventV : events) {
         const auto event = eventV.toObject();
 
@@ -260,13 +260,20 @@ std::vector<Stopover> MotisParser::parseEvents(const QByteArray &data)
         if (trips.empty()) {
             continue;
         }
-        stop.setRoute(parseRoute(trips.at(0).toObject().value("transport"_L1).toObject()));
+        const auto trip = trips.at(0).toObject();
+        stop.setRoute(parseRoute(trip.value("transport"_L1).toObject()));
         // TODO what's in the id block next to transport? train_nr and destination stop ids seem relevant?
 
-        result.push_back(std::move(stop));
+        // merge disjoint arrival/departure events
+        const auto id = trip.value("id"_L1).toObject().value("id"_L1).toString();
+        if (auto it = std::find(ids.begin(), ids.end(), id); it != ids.end())  {
+            result[std::distance(ids.begin(), it)] = Stopover::merge(result[std::distance(ids.begin(), it)], stop);
+        } else {
+            result.push_back(std::move(stop));
+            ids.push_back(id);
+        }
     }
 
-    // TODO we need to merge arrival/departure data manually here?
     return result;
 }
 
