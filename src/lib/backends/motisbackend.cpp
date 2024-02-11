@@ -208,6 +208,12 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
 
 bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    // backward search for MOTIS is really backward, so we need to swap everything
+    const auto from = req.dateTimeMode() == JourneyRequest::Departure ? req.from() : req.to();
+    const auto to = req.dateTimeMode() == JourneyRequest::Departure ? req.to() : req.from();
+    const auto &startModes = req.dateTimeMode() == JourneyRequest::Departure ? req.accessModes() : req.egressModes();
+    const auto &destModes = req.dateTimeMode() == JourneyRequest::Departure ? req.egressModes() : req.accessModes();
+
     // ### HACK in this request the JSON key order matters!!
     // see https://github.com/motis-project/motis/issues/433
     // thefore the '!' prefix hack and post-processing below...
@@ -220,9 +226,9 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         {"content_type"_L1, "IntermodalRoutingRequest"_L1},
         {"content"_L1, QJsonObject{
             // TODO how can we make the ontrip start options available? OntripTrainStart in particular
-            {"!start_type"_L1, req.from().hasCoordinate() && m_intermodal ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
+            {"!start_type"_L1, from.hasCoordinate() && m_intermodal ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
             {"!start"_L1, QJsonObject{
-                {req.from().hasCoordinate() && m_intermodal ? "position"_L1: "station"_L1, encodeLocation(req.from(), m_locationIdentifierType, m_intermodal)},
+                {from.hasCoordinate() && m_intermodal ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, m_intermodal)},
                 {"interval"_L1, QJsonObject{
                     {"begin"_L1, req.dateTime().toSecsSinceEpoch()}, // TODO timezone?
                     {"end"_L1, req.dateTime().toSecsSinceEpoch() + 1800}, // TODO configure this
@@ -231,10 +237,10 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
                 {"extend_interval_earlier"_L1, true}, // TODO paging support
                 {"extend_interval_later"_L1, true},
             }},
-            {"!start_modes"_L1, ivModes(req.accessModes())},
-            {"destination_type"_L1, req.to().hasCoordinate() && m_intermodal ? "InputPosition"_L1 : "InputStation"_L1},
-            {"destination"_L1, encodeLocation(req.to(), m_locationIdentifierType, m_intermodal)},
-            {"destination_modes"_L1, ivModes(req.egressModes())},
+            {"!start_modes"_L1, ivModes(startModes)},
+            {"destination_type"_L1, to.hasCoordinate() && m_intermodal ? "InputPosition"_L1 : "InputStation"_L1},
+            {"destination"_L1, encodeLocation(to, m_locationIdentifierType, m_intermodal)},
+            {"destination_modes"_L1, ivModes(destModes)},
             {"search_type"_L1, "Default"_L1},
             {"search_dir"_L1, req.dateTimeMode() == JourneyRequest::Departure ? "Forward"_L1 : "Backward"_L1},
             {"router"_L1, ""_L1}
