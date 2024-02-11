@@ -121,11 +121,8 @@ private Q_SLOTS:
 
         const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
 
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
         QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
     void testParseJourneys_data()

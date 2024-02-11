@@ -294,6 +294,10 @@ Kirigami.ApplicationWindow {
                             horizontalAlignment: Text.Right
                         }
                     }
+                    QQC2.Label {
+                        text: modelData.route.line.operatorName
+                        visible: text !== ""
+                    }
                     RowLayout {
                         visible: modelData.loadInformation.length > 0
                         QQC2.Label {

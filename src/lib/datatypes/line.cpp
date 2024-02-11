@@ -28,6 +28,7 @@ public:
     QColor color;
     QColor textColor;
     LineMetaData metaData;
+    QString operatorName;
 };
 
 class RoutePrivate : public QSharedData {
@@ -45,6 +46,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, name, setName)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QColor, textColor, setTextColor)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, Line::Mode, mode, setMode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, modeString, setModeString)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Line, QString, operatorName, setOperatorName)
 
 QColor Line::color() const
 {
@@ -132,6 +134,8 @@ Line Line::merge(const Line &lhs, const Line &rhs)
     if (l.mode() == Unknown || (l.mode() == Train && rhs.mode() != Unknown)) {
         l.setMode(rhs.mode());
     }
+
+    l.setOperatorName(MergeUtil::mergeString(lhs.operatorName(), rhs.operatorName()));
     return l;
 }
 

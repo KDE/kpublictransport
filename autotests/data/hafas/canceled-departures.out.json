@@ -21,6 +21,7 @@
             "line": {
                 "color": "#cd2630",
                 "name": "ICE",
+                "operatorName": "Staatsbahnen",
                 "textColor": "#ffffff"
             }
         },
@@ -59,6 +60,7 @@
             "line": {
                 "color": "#8bba02",
                 "name": "RB26",
+                "operatorName": "TRANS REGIO",
                 "textColor": "#ffffff"
             }
         },
@@ -98,6 +100,7 @@
             "line": {
                 "color": "#8bba02",
                 "name": "RB24",
+                "operatorName": "Staatsbahnen",
                 "textColor": "#ffffff"
             }
         },

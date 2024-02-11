@@ -5,7 +5,8 @@
             "direction": "Frankfurt (Oder), Bahnhof",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE10"
+                "name": "RE10",
+                "operatorName": "DB Regio AG Nordost"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:12:00",
@@ -25,7 +26,8 @@
             "direction": "Hoyerswerda Bahnhof",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE11"
+                "name": "RE11",
+                "operatorName": "DB Regio AG Nordost"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:12:00",
@@ -45,7 +47,8 @@
             "direction": "S+U Berlin Hauptbahnhof",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 692"
+                "name": "ICE 692",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:10:00",
@@ -66,7 +69,8 @@
             "direction": "Eisenach",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB20"
+                "name": "RB20",
+                "operatorName": "Abellio Rail Mitteldeutschland GmbH"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:19:00",
@@ -86,7 +90,8 @@
             "direction": "Chemnitz, Hauptbahnhof",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE6"
+                "name": "RE6",
+                "operatorName": "Mitteldeutsche Regiobahn"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:22:00",
@@ -106,7 +111,8 @@
             "direction": "Dresden Hauptbahnhof",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC 2553"
+                "name": "IC 2553",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:21:00",
@@ -127,7 +133,8 @@
             "direction": "Frankfurt (Main) Hauptbahnhof",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 1558"
+                "name": "ICE 1558",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:26:00",
@@ -148,7 +155,8 @@
             "direction": "Geithain",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB113"
+                "name": "RB113",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:34:00",
@@ -168,7 +176,8 @@
             "direction": "Norddeich(Norden) Mole",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC 2036"
+                "name": "IC 2036",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:42:00",
@@ -188,7 +197,8 @@
             "direction": "München Hbf",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 509"
+                "name": "ICE 509",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:42:00",
@@ -209,7 +219,8 @@
             "direction": "Karlsruhe Hauptbahnhof",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC 2062"
+                "name": "IC 2062",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:49:00",
@@ -229,7 +240,8 @@
             "direction": "Saalfeld (Saale)",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB22"
+                "name": "RB22",
+                "operatorName": "Erfurter Bahn"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:54:00",
@@ -249,7 +261,8 @@
             "direction": "Hof Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB13"
+                "name": "RB13",
+                "operatorName": "Erfurter Bahn"
             }
         },
         "scheduledDepartureTime": "2024-02-11T12:54:00",
@@ -269,7 +282,8 @@
             "direction": "",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 1211"
+                "name": "ICE 1211",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:47:00",
@@ -290,7 +304,8 @@
             "direction": "Dresden Hauptbahnhof",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE50"
+                "name": "RE50",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledDepartureTime": "2024-02-11T13:00:00",
@@ -310,7 +325,8 @@
             "direction": "Magdeburg Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE13"
+                "name": "RE13",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledDepartureTime": "2024-02-11T13:04:00",
@@ -330,7 +346,8 @@
             "direction": "Döbeln, Hauptbahnhof",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB110"
+                "name": "RB110",
+                "operatorName": "Mitteldeutsche Regiobahn"
             }
         },
         "scheduledDepartureTime": "2024-02-11T13:06:00",
@@ -350,7 +367,8 @@
             "direction": "Hamburg-Altona",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 508"
+                "name": "ICE 508",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:10:00",
@@ -371,7 +389,8 @@
             "direction": "Eisenach",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB20"
+                "name": "RB20",
+                "operatorName": "Abellio Rail Mitteldeutschland GmbH"
             }
         },
         "scheduledDepartureTime": "2024-02-11T13:19:00",
@@ -391,7 +410,8 @@
             "direction": "Chemnitz, Hauptbahnhof",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE6"
+                "name": "RE6",
+                "operatorName": "Mitteldeutsche Regiobahn"
             }
         },
         "scheduledDepartureTime": "2024-02-11T13:22:00",
@@ -411,7 +431,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE15"
+                "name": "RE15",
+                "operatorName": "Abellio Rail Mitteldeutschland GmbH"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:08:00",
@@ -431,7 +452,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB113"
+                "name": "RB113",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:22:00",
@@ -451,7 +473,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE6"
+                "name": "RE6",
+                "operatorName": "Mitteldeutsche Regiobahn"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:31:00",
@@ -471,7 +494,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB20"
+                "name": "RB20",
+                "operatorName": "Abellio Rail Mitteldeutschland GmbH"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:39:00",
@@ -491,7 +515,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE50"
+                "name": "RE50",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:50:00",
@@ -511,7 +536,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RE13"
+                "name": "RE13",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledArrivalTime": "2024-02-11T12:56:00",
@@ -531,7 +557,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB110"
+                "name": "RB110",
+                "operatorName": "Mitteldeutsche Regiobahn"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:00:00",
@@ -551,7 +578,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC 2063"
+                "name": "IC 2063",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:04:00",
@@ -571,7 +599,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB22"
+                "name": "RB22",
+                "operatorName": "Erfurter Bahn"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:08:00",
@@ -591,7 +620,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB13"
+                "name": "RB13",
+                "operatorName": "Erfurter Bahn"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:08:00",
@@ -611,7 +641,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC 2037"
+                "name": "IC 2037",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:15:00",
@@ -631,7 +662,8 @@
             "direction": "Magdeburg Hbf",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "IC 2552"
+                "name": "IC 2552",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:20:00",
@@ -651,7 +683,8 @@
             "direction": "Leipzig Hbf",
             "line": {
                 "mode": "LocalTrain",
-                "name": "RB113"
+                "name": "RB113",
+                "operatorName": "DB Regio AG Südost"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:22:00",
@@ -671,7 +704,8 @@
             "direction": "Dresden Hauptbahnhof",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 1559"
+                "name": "ICE 1559",
+                "operatorName": "DB Fernverkehr AG"
             }
         },
         "scheduledArrivalTime": "2024-02-11T13:24:00",

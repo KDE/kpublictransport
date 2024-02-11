@@ -47,6 +47,9 @@ query journeys(
           type: transportSubmode
           shortName: publicCode
           name
+          agency: operator {
+            name
+          }
           alerts: situations {
             alertHeaderTextTranslations: summary {
                 language

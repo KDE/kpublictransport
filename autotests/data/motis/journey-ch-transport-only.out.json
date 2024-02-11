@@ -62,7 +62,8 @@
                     "direction": "Bern",
                     "line": {
                         "mode": "LongDistanceTrain",
-                        "name": "IC1"
+                        "name": "IC1",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-09T22:31:00",
@@ -135,7 +136,8 @@
                     "direction": "Interlaken Ost",
                     "line": {
                         "mode": "LongDistanceTrain",
-                        "name": "IC61"
+                        "name": "IC61",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-09T23:08:00",
@@ -306,7 +308,8 @@
                     "direction": "Brig",
                     "line": {
                         "mode": "LocalTrain",
-                        "name": "RE 4293"
+                        "name": "RE 4293",
+                        "operatorName": "BLS AG (bls)"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T00:23:00",
@@ -449,7 +452,8 @@
                     "direction": "Zermatt",
                     "line": {
                         "mode": "LocalTrain",
-                        "name": "RE42"
+                        "name": "RE42",
+                        "operatorName": "Matterhorn Gotthard Bahn (bvz)"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T05:15:00",
@@ -485,7 +489,8 @@
                     "direction": "Zürich HB",
                     "line": {
                         "mode": "LocalTrain",
-                        "name": "IR75"
+                        "name": "IR75",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-09T21:25:00",
@@ -558,7 +563,8 @@
                     "direction": "Bern",
                     "line": {
                         "mode": "LongDistanceTrain",
-                        "name": "IC1"
+                        "name": "IC1",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-09T22:31:00",
@@ -631,7 +637,8 @@
                     "direction": "Interlaken Ost",
                     "line": {
                         "mode": "LongDistanceTrain",
-                        "name": "IC61"
+                        "name": "IC61",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-09T23:08:00",
@@ -802,7 +809,8 @@
                     "direction": "Brig",
                     "line": {
                         "mode": "LocalTrain",
-                        "name": "RE 4293"
+                        "name": "RE 4293",
+                        "operatorName": "BLS AG (bls)"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T00:23:00",
@@ -945,7 +953,8 @@
                     "direction": "Zermatt",
                     "line": {
                         "mode": "LocalTrain",
-                        "name": "RE42"
+                        "name": "RE42",
+                        "operatorName": "Matterhorn Gotthard Bahn (bvz)"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T05:15:00",
@@ -1011,7 +1020,8 @@
                     "direction": "Bern",
                     "line": {
                         "mode": "LongDistanceTrain",
-                        "name": "IC8"
+                        "name": "IC8",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-09T23:02:00",
@@ -1073,7 +1083,8 @@
                     "direction": "Brig",
                     "line": {
                         "mode": "LongDistanceTrain",
-                        "name": "IC8"
+                        "name": "IC8",
+                        "operatorName": "Schweizerische Bundesbahnen SBB"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T06:02:00",
@@ -1188,7 +1199,8 @@
                     "direction": "Zermatt",
                     "line": {
                         "mode": "LocalTrain",
-                        "name": "RE42"
+                        "name": "RE42",
+                        "operatorName": "Matterhorn Gotthard Bahn (bvz)"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T06:52:00",

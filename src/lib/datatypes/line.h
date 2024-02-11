@@ -84,6 +84,9 @@ public:
     /** @c true if the line has a mode logo. */
     Q_PROPERTY(bool hasModeLogo READ hasModeLogo STORED false)
 
+    /** Name of the operator running this line. */
+    KPUBLICTRANSPORT_PROPERTY(QString, operatorName, setOperatorName)
+
 public:
     bool hasColor() const;
     bool hasTextColor() const;

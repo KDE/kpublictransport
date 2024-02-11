@@ -1504,7 +1504,8 @@
                 "route": {
                     "direction": "München Hbf",
                     "line": {
-                        "name": "ICE 1601"
+                        "name": "ICE 1601",
+                        "operatorName": "DB Fernverkehr AG"
                     }
                 },
                 "scheduledArrivalTime": "2021-02-07T15:42:00+01:00",

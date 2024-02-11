@@ -47,6 +47,9 @@ query journeys(
                         color
                         textColor
                         #bikesAllowed
+                        agency {
+                            name
+                        }
                         alerts {
                             alertHeaderTextTranslations {
                                 language

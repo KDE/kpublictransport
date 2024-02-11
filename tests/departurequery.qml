@@ -199,6 +199,10 @@ Kirigami.ApplicationWindow {
                             color: Kirigami.Theme.negativeTextColor
                         }
                     }
+                    QQC2.Label {
+                        text: departure.route.line.operatorName
+                        visible: text !== ""
+                    }
                     RowLayout {
                         visible: departure.loadInformation.length > 0
                         QQC2.Label {

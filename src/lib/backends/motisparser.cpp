@@ -115,6 +115,9 @@ static void postprocessRoute(Route &route)
 {
     Line line;
     line.setName(obj.value("name"_L1).toString()); // TODO use category_name and line_id instead?
+    if (const auto provider = obj.value("provider"_L1).toString(); !provider.isEmpty() && provider != "UNKNOWN_AGENCY"_L1) {
+        line.setOperatorName(provider);
+    }
     const auto clasz = obj.value("clasz"_L1).toInt();
     if (clasz >= 0 && clasz < (int)std::size(clasz_map)) {
         line.setMode(clasz_map[clasz]);

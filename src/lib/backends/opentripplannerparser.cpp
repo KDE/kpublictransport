@@ -20,6 +20,7 @@
 
 #include <bitset>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 OpenTripPlannerParser::OpenTripPlannerParser(const QString &identifierType, const QString &ifoptPrefix)
@@ -239,6 +240,7 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
     if (line.name().isEmpty()) {
         line.setName(obj.value(QLatin1String("longName")).toString());
     }
+    line.setOperatorName(obj.value("agency"_L1).toObject().value("name"_L1).toString());
 
     const auto type = obj.value(QLatin1String("type"));
     if (type.isString()) {

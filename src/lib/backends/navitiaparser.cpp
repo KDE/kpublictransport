@@ -20,6 +20,7 @@
 #include <QJsonObject>
 #include <QTimeZone>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 NavitiaParser::NavitiaParser() = default;
@@ -226,6 +227,7 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
     line.setColor(QColor(QLatin1Char('#') + displayInfo.value(QLatin1String("color")).toString()));
     line.setTextColor(QColor(QLatin1Char('#') + displayInfo.value(QLatin1String("text_color")).toString()));
     line.setModeString(displayInfo.value(QLatin1String("commercial_mode")).toString());
+    line.setOperatorName(displayInfo.value("network"_L1).toString());
     const auto links = obj.value(QLatin1String("links")).toArray();
     for (const auto &v : links) {
         const auto link = v.toObject();
@@ -371,6 +373,7 @@ Stopover NavitiaParser::parseDeparture(const QJsonObject &obj) const
     line.setColor(QColor(QLatin1Char('#') + displayInfo.value(QLatin1String("color")).toString()));
     line.setTextColor(QColor(QLatin1Char('#') + displayInfo.value(QLatin1String("text_color")).toString()));
     line.setModeString(displayInfo.value(QLatin1String("commercial_mode")).toString());
+    line.setOperatorName(displayInfo.value("network"_L1).toString());
     const auto links = obj.value(QLatin1String("links")).toArray();
     for (const auto &v : links) {
         const auto link = v.toObject();

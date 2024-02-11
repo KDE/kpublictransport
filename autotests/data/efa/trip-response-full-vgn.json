@@ -55,7 +55,8 @@
                     "line": {
                         "mode": "Metro",
                         "modeString": "U-Bahn",
-                        "name": "U2"
+                        "name": "U2",
+                        "operatorName": "VAG"
                     }
                 },
                 "scheduledArrivalPlatform": "",
@@ -159,7 +160,8 @@
                     "line": {
                         "mode": "Metro",
                         "modeString": "U-Bahn",
-                        "name": "U1"
+                        "name": "U1",
+                        "operatorName": "VAG / infra fuerth"
                     }
                 },
                 "scheduledArrivalPlatform": "",

@@ -40,6 +40,9 @@ query departures(
                   type: transportSubmode
                   shortName: publicCode
                   longName: name
+                  agency: operator {
+                      name
+                  }
                   presentation {
                     color: colour
                     textColor: textColour

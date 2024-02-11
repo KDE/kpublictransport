@@ -20,6 +20,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 class NavitiaParserTest : public QObject
@@ -86,6 +87,7 @@ private Q_SLOTS:
             QCOMPARE(departure.route().line().mode(), KPublicTransport::Line::Bus);
             QCOMPARE(departure.route().line().name(), QStringLiteral("65"));
             QCOMPARE(departure.route().line().color(), QColor(0x00, 0x8b, 0x5a));
+            QCOMPARE(departure.route().line().operatorName(), "RATP"_L1);
             QVERIFY(!departure.route().destination().isEmpty());
             QVERIFY(departure.route().destination().hasCoordinate());
             QCOMPARE(departure.route().direction(), departure.route().destination().name());

@@ -18,6 +18,7 @@
 #include <QDebug>
 #include <QXmlStreamReader>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReader &reader) const
@@ -120,6 +121,17 @@ static QDateTime parseDateTime(ScopedXmlStreamReader &&reader)
     return dt;
 }
 
+[[nodiscard]] static QString parseItdOperator(ScopedXmlStreamReader &&reader)
+{
+    QString opName;
+    while (reader.readNextElement()) {
+        if (reader.name() == "name"_L1) {
+            opName = reader.readElementText();
+        }
+    }
+    return opName;
+}
+
 struct {
     const char *name;
     Load::Category category;
@@ -165,6 +177,7 @@ Stopover EfaXmlParser::parseDmDeparture(ScopedXmlStreamReader &&reader) const
             line.setMode(EfaModeOfTransport::motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
             Route route;
             route.setDirection(reader.attributes().value(QLatin1String("direction")).toString());
+            line.setOperatorName(parseItdOperator(reader.subReader()));
             route.setLine(line);
             dep.setRoute(route);
         } else if (reader.name() == QLatin1String("itdDateTime")) {
@@ -339,6 +352,7 @@ std::vector<JourneySection> EfaXmlParser::parseTripPartialRoute(ScopedXmlStreamR
                 line.setMode(EfaModeOfTransport::motTypeToLineMode(reader.attributes().value(QLatin1String("motType")).toInt()));
                 Route route;
                 route.setDirection(reader.attributes().value(QLatin1String("destination")).toString());
+                line.setOperatorName(parseItdOperator(reader.subReader()));
                 route.setLine(line);
                 section.setRoute(route);
                 section.setMode(JourneySection::PublicTransport);

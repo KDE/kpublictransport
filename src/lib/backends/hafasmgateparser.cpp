@@ -26,6 +26,7 @@
 #include <QJsonObject>
 #include <QRegularExpression>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 // REM or HIM elements
@@ -257,7 +258,7 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
     return locs;
 }
 
-std::vector<Route> HafasMgateParser::parseProducts(const QJsonArray &prodL, const std::vector<Ico> &icos) const
+std::vector<Route> HafasMgateParser::parseProducts(const QJsonArray &prodL, const std::vector<Ico> &icos, const std::vector<QString> &ops) const
 {
     std::vector<Route> routes;
     routes.reserve(prodL.size());
@@ -293,11 +294,25 @@ std::vector<Route> HafasMgateParser::parseProducts(const QJsonArray &prodL, cons
             line.setTextColor(icos[icoIdx].fg);
         }
 
+        if (const auto opIdx = prodObj.value("oprX"_L1).toInt(-1); opIdx >= 0 && opIdx < (int)ops.size()) {
+            line.setOperatorName(ops[opIdx]);
+        }
+
         route.setLine(std::move(line));
         routes.push_back(std::move(route));
     }
 
     return routes;
+}
+
+[[nodiscard]] static std::vector<QString> parseOperators(const QJsonArray &opL)
+{
+    std::vector<QString> ops;
+    ops.reserve(opL.size());
+    for (const auto &opV : opL) {
+        ops.push_back(opV.toObject().value("name"_L1).toString());
+    }
+    return ops;
 }
 
 static QString parsePlatform(const QJsonObject &obj, char ad, char rs)
@@ -316,7 +331,8 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
-    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos);
+    const auto ops = parseOperators(commonObj.value("opL"_L1).toArray());
+    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos, ops);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
 
@@ -639,7 +655,8 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
     const auto commonObj = obj.value(QLatin1String("common")).toObject();
     const auto icos = parseIcos(commonObj.value(QLatin1String("icoL")).toArray());
     const auto locs = parseLocations(commonObj.value(QLatin1String("locL")).toArray());
-    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos);
+    const auto ops = parseOperators(commonObj.value("opL"_L1).toArray());
+    const auto products = parseProducts(commonObj.value(QLatin1String("prodL")).toArray(), icos, ops);
     const auto remarks = parseRemarks(commonObj.value(QLatin1String("remL")).toArray());
     const auto warnings = parseWarnings(commonObj.value(QLatin1String("himL")).toArray());
     const auto loadInfos = parseLoadInformation(commonObj.value(QLatin1String("tcocL")).toArray());

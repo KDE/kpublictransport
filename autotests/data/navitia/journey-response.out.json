@@ -137,6 +137,7 @@
                         "mode": "RapidTransit",
                         "modeString": "RER",
                         "name": "B",
+                        "operatorName": "RER",
                         "textColor": "#ffffff"
                     }
                 },
@@ -257,6 +258,7 @@
                         "mode": "RapidTransit",
                         "modeString": "RER",
                         "name": "A",
+                        "operatorName": "RER",
                         "textColor": "#ffffff"
                     }
                 },
@@ -750,6 +752,7 @@
                         "mode": "RapidTransit",
                         "modeString": "RER",
                         "name": "B",
+                        "operatorName": "RER",
                         "textColor": "#ffffff"
                     }
                 },
@@ -1096,6 +1099,7 @@
                         "mode": "Bus",
                         "modeString": "Bus",
                         "name": "65",
+                        "operatorName": "RATP",
                         "textColor": "#ffffff"
                     }
                 },
@@ -1509,6 +1513,7 @@
                         "mode": "RapidTransit",
                         "modeString": "RER",
                         "name": "B",
+                        "operatorName": "RER",
                         "textColor": "#ffffff"
                     }
                 },
@@ -1715,6 +1720,7 @@
                         "mode": "Bus",
                         "modeString": "Bus",
                         "name": "91",
+                        "operatorName": "RATP",
                         "textColor": "#000000"
                     }
                 },
@@ -2074,6 +2080,7 @@
                         "mode": "Bus",
                         "modeString": "Bus",
                         "name": "DIRECT 4",
+                        "operatorName": "LE BUS DIRECT",
                         "textColor": "#ffffff"
                     }
                 },

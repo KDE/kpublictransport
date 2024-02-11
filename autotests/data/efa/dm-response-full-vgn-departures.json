@@ -5,7 +5,8 @@
             "direction": "Nürnberg Röthenbach",
             "line": {
                 "mode": "Metro",
-                "name": "U2"
+                "name": "U2",
+                "operatorName": "VAG"
             }
         },
         "scheduledDepartureTime": "2019-11-11T20:02:00",
@@ -32,7 +33,8 @@
             "direction": "Erlangen Hugenottenpl.",
             "line": {
                 "mode": "Bus",
-                "name": "30"
+                "name": "30",
+                "operatorName": "VAG / ESTW"
             }
         },
         "scheduledDepartureTime": "2019-11-11T20:05:00",
