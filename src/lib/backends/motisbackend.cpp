@@ -254,12 +254,13 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         logReply(reply, netReply, data);
 
         // TODO result caching?
-        // TODO paging support
         qDebug().noquote() << data << netReply->error();
         MotisParser p(m_locationIdentifierType);
         auto result = p.parseConnections(data);
         if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
-            addResult(reply, this, std::move(result));
+            setPreviousRequestContext(reply, result.begin);
+            setNextRequestContext(reply, result.end);
+            addResult(reply, this, std::move(result.journeys));
         } else if (p.hasError()) {
             addError(reply, Reply::InvalidRequest, p.errorMessage());
         } else {

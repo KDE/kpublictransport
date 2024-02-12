@@ -33,7 +33,7 @@ QString MotisParser::errorMessage() const
     return m_errorMsg;
 }
 
-std::vector<Journey> MotisParser::parseConnections(const QByteArray &data)
+MotisConnections MotisParser::parseConnections(const QByteArray &data)
 {
     const auto content = parseContent(data);
     if (hasError()) {
@@ -41,14 +41,16 @@ std::vector<Journey> MotisParser::parseConnections(const QByteArray &data)
     }
     const auto connections = content.value("connections"_L1).toArray();
 
-    std::vector<Journey> journeys;
-    journeys.reserve(connections.size());
+    MotisConnections result;
+    result.journeys.reserve(connections.size());
 
     for (const auto &conV :connections) {
-        journeys.push_back(parseConnection(conV.toObject()));
+        result.journeys.push_back(parseConnection(conV.toObject()));
     }
 
-    return journeys;
+    result.begin = content.value("interval_begin"_L1).toInteger();
+    result.end = content.value("interval_end"_L1).toInteger();
+    return result;
 }
 
 [[nodiscard]] static QDateTime scheduledTime(const QJsonObject &eventInfo)

@@ -102,9 +102,11 @@ private Q_SLOTS:
 
         MotisParser p(u"motis"_s);
         const auto result = p.parseConnections(Test::readFile(inFileName));
-        QVERIFY(!result.empty());
+        QVERIFY(!result.journeys.empty());
+        QVERIFY(result.begin);
+        QVERIFY(result.end);
         QVERIFY(!p.hasError());
-        const auto resultJson = Journey::toJson(result);
+        const auto resultJson = Journey::toJson(result.journeys);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
         QVERIFY(!resultJson.isEmpty());
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));

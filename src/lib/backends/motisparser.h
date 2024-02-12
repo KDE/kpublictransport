@@ -16,13 +16,22 @@ class Location;
 class Journey;
 class Stopover;
 
+struct MotisConnections
+{
+    std::vector<Journey> journeys;
+    quint64 begin = 0;
+    quint64 end = 0;
+
+    [[nodiscard]] inline bool empty() const { return journeys.empty(); }
+};
+
 /** Response parsing for Motis. */
 class MotisParser
 {
 public:
     explicit MotisParser(QString locIdentifierType);
 
-    [[nodiscard]] std::vector<Journey> parseConnections(const QByteArray &data);
+    [[nodiscard]] MotisConnections parseConnections(const QByteArray &data);
     [[nodiscard]] std::vector<Stopover> parseEvents(const QByteArray &data);
     [[nodiscard]] std::vector<Location> parseStations(const QByteArray &data);
 
