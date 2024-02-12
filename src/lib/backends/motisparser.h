@@ -8,6 +8,8 @@
 
 #include <QUrl>
 
+#include <vector>
+
 class QJsonObject;
 
 namespace KPublicTransport {
