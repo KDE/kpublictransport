@@ -42,6 +42,7 @@ class VehicleLayoutRequest;
  *  @internal exported for tooling only
  *
  *  ## Network operations
+ *
  *  - For the built-in SSL workarounds to work, call applySslConfiguration() on network requests.
  *  - Parent QNetworkReply objects to the corresponding KPublicTransport::Reply object. This ensures
  *    cancelation of operations are propagated correctly.
@@ -50,6 +51,23 @@ class VehicleLayoutRequest;
  *  - Complete operations by either calling addResult() or addError(). This must happen for all
  *    query methods that returned @c true under all conditions, otherwise the corresponding operation
  *    is stuck forever.
+ *  - For backends providing dynamic/variable attribution/license information,
+ *    those can be supplied alongside the result using addAttributions().
+ *
+ *  ## Result paging for stopover and journey queries
+ *
+ *  That is, requesting a subsequent or preceeding set of results from a previous query.
+ *
+ *  Backends supporting this natively might need extra context to know how to
+ *  retrieve the earlier/later batch of results. When providing results, context
+ *  information can be set on the reply using setPreviousContext()/setNextContext().
+ *
+ *  For new queries, check for such context data first via requestContext() or requestContextData().
+ *
+ *  There is some limited fallback for backends not supporting this trying to emulate this by
+ *  issuing appropriate new queries instead. For that to work as best as possible, or to prevent
+ *  it from interfering, ensure to override capabilities() and report exactly which
+ *  paging operations are natively supported.
  */
 class KPUBLICTRANSPORT_EXPORT AbstractBackend
 {
@@ -104,7 +122,10 @@ public:
     };
     Q_DECLARE_FLAGS(Capabilities, Capability)
 
-    /** Returns the capabilities of this backend. */
+    /** Returns the capabilities of this backend.
+     *  Reporting the correct values here is important for stopover and journey result paging
+     *  to work correctly.
+     */
     [[nodiscard]] virtual Capabilities capabilities() const;
     /** Checks if this backend has @p capability. */
     [[nodiscard]] inline bool hasCapability(Capability capability) const { return capabilities() & capability; };
@@ -182,10 +203,12 @@ protected:
         return request.context(this).backendData;
     }
 
+    /** Set request context for retrieving the next set of results for a stopover or journey query. */
     template <typename RepT> inline void setNextRequestContext(RepT *reply, const QVariant &data) const
     {
         reply->setNextContext(this, data);
     }
+    /** Set request context for retrieving the previous set of results for a stopover or journey query. */
     template <typename RepT> inline void setPreviousRequestContext(RepT *reply, const QVariant &data) const
     {
         reply->setPreviousContext(this, data);
