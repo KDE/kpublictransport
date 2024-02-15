@@ -276,8 +276,9 @@ template <typename Request>
 QNetworkReply* MotisBackend::makeRequest(const Request &req, Reply *reply, const QJsonObject &query, QNetworkAccessManager *nam) const
 {
     QNetworkRequest netReq(m_endpoint);
+    applySslConfiguration(netReq);
+    applyUserAgent(netReq);
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"_L1);
-    // TODO user agent
     auto postData = QJsonDocument(query).toJson(QJsonDocument::Compact);
     // ### HACK see above
     postData = postData.replace("\"!", "\"");

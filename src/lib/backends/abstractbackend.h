@@ -44,6 +44,8 @@ class VehicleLayoutRequest;
  *  ## Network operations
  *
  *  - For the built-in SSL workarounds to work, call applySslConfiguration() on network requests.
+ *  - Set an appropriate HTTP User-Agent header using applyUserAgent(). This is typically desired for free/open
+ *    backends but can be counterproductive for proprietary ones.
  *  - Parent QNetworkReply objects to the corresponding KPublicTransport::Reply object. This ensures
  *    cancelation of operations are propagated correctly.
  *  - For the backend communication logging to work, call logRequest() on all network requests and the corresponding POST data (if any),
@@ -242,6 +244,12 @@ protected:
 
     /** Apply custom SSL workaround on the given network request. */
     void applySslConfiguration(QNetworkRequest &request) const;
+
+    /** Sets the HTTP User-Agent string on @p request.
+     *  This is typically desired for free/open backends but can be counterproductive
+     *  for proprietary ones.
+     */
+    static void applyUserAgent(QNetworkRequest &request);
 
 private:
     Q_DISABLE_COPY(AbstractBackend)

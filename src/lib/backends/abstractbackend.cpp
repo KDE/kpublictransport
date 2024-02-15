@@ -6,16 +6,19 @@
 
 #include "abstractbackend.h"
 #include "logging.h"
+#include "kpublictransport_version.h"
 
 #include <KPublicTransport/JourneyReply>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/Location>
 
+#include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
 #include <QJsonDocument>
 #include <QNetworkReply>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 AbstractBackend::AbstractBackend() = default;
@@ -260,4 +263,15 @@ void AbstractBackend::applySslConfiguration(QNetworkRequest &request) const
         sslConfig.setPrivateKey(m_privateKey);
     }
     request.setSslConfiguration(std::move(sslConfig));
+}
+
+void AbstractBackend::applyUserAgent(QNetworkRequest &request)
+{
+    if (!QCoreApplication::applicationVersion().isEmpty()) {
+        request.setHeader(QNetworkRequest::UserAgentHeader, ("org.kde.kpublictransport/"_L1 + QCoreApplication::applicationName()
+            + QLatin1Char('/') + QCoreApplication::applicationVersion()).toUtf8());
+    } else {
+        request.setHeader(QNetworkRequest::UserAgentHeader, ("org.kde.kpublictransport/"_L1 + QCoreApplication::applicationName()
+            + QLatin1Char('/') + QLatin1StringView(KPUBLICTRANSPORT_VERSION_STRING)).toUtf8());
+    }
 }

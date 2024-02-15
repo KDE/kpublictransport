@@ -149,7 +149,7 @@ set_target_properties(KPublicTransport PROPERTIES
     SOVERSION ${KPUBLICTRANSPORT_SOVERSION}
     EXPORT_NAME KPublicTransport
 )
-target_include_directories(KPublicTransport PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>")
+target_include_directories(KPublicTransport PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR};${CMAKE_BINARY_DIR}>")
 target_include_directories(KPublicTransport INTERFACE "$<INSTALL_INTERFACE:${KPUBLICTRANSPORT_INSTALL_INCLUDEDIR}>")
 target_link_libraries(KPublicTransport
     PUBLIC
