@@ -114,7 +114,7 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
         }},
         {"content_type"_L1, "RailVizStationRequest"_L1},
         {"content"_L1, QJsonObject{
-            {"time"_L1, req.dateTime().toSecsSinceEpoch()}, // TODO timezone?
+            {"time"_L1, encodeTime(req.dateTime())},
             {"direction"_L1, "BOTH"_L1}, // TODO paging?
             {"station_id"_L1, req.stop().identifier(m_locationIdentifierType)},
             {"event_count"_L1, req.maximumResults()},
@@ -230,8 +230,8 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
             {"!start"_L1, QJsonObject{
                 {from.hasCoordinate() && m_intermodal ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, m_intermodal)},
                 {"interval"_L1, QJsonObject{
-                    {"begin"_L1, req.dateTime().toSecsSinceEpoch()}, // TODO timezone?
-                    {"end"_L1, req.dateTime().toSecsSinceEpoch() + 1800}, // TODO configure this
+                    {"begin"_L1, encodeTime(req.dateTime())},
+                    {"end"_L1, encodeTime(req.dateTime()) + 1800}, // TODO configure this
                 }},
                 {"min_connection_count"_L1, req.maximumResults()},
                 {"extend_interval_earlier"_L1, true}, // TODO paging support
@@ -286,6 +286,12 @@ QNetworkReply* MotisBackend::makeRequest(const Request &req, Reply *reply, const
     auto netReply = nam->post(netReq, postData);
     netReply->setParent(reply);
     return netReply;
+}
+
+qint64 MotisBackend::encodeTime(const QDateTime &dt)
+{
+    // MOTIS uses 0 offset UNIX time stamps
+    return dt.toTimeZone(QTimeZone::fromSecondsAheadOfUtc(0)).toSecsSinceEpoch();
 }
 
 #include "moc_motisbackend.cpp"

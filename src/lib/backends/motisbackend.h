@@ -40,6 +40,9 @@ private:
     template <typename Request>
     QNetworkReply* makeRequest(const Request &req, Reply *reply, const QJsonObject &query, QNetworkAccessManager *nam) const;
 
+    /** Convert QDateTime to the MOTIS time format. */
+    [[nodiscard]] static qint64 encodeTime(const QDateTime &dt);
+
     QUrl m_endpoint;
     QString m_locationIdentifierType;
     bool m_intermodal = true;

@@ -24,11 +24,6 @@ class MotisParserTest : public QObject
 {
     Q_OBJECT
 private Q_SLOTS:
-    void initTestCase()
-    {
-        qputenv("TZ", "UTC");
-    }
-
     void testParseLocation_data()
     {
         QTest::addColumn<QString>("inFileName");

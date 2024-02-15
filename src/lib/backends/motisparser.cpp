@@ -13,6 +13,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QTimeZone>
 #include <QUrl>
 
 using namespace KPublicTransport;
@@ -53,10 +54,15 @@ MotisConnections MotisParser::parseConnections(const QByteArray &data)
     return result;
 }
 
+/** Convert from MOTIS time stamp to QDateTime. */
+[[nodiscard]] static QDateTime parseTime(qint64 timestamp)
+{
+    return timestamp ? QDateTime::fromSecsSinceEpoch(timestamp, QTimeZone::fromSecondsAheadOfUtc(0)) : QDateTime();
+}
+
 [[nodiscard]] static QDateTime scheduledTime(const QJsonObject &eventInfo)
 {
-    const auto ts = eventInfo.value("schedule_time"_L1).toInteger();
-    return ts ? QDateTime::fromSecsSinceEpoch(ts) : QDateTime();
+    return parseTime(eventInfo.value("schedule_time"_L1).toInteger());
 }
 
 [[nodiscard]] static QDateTime expectedTime(const QJsonObject &eventInfo)
@@ -65,8 +71,7 @@ MotisConnections MotisParser::parseConnections(const QByteArray &data)
     if (reason == "SCHEDULE"_L1 || reason == "REPAIR"_L1) {
         return {};
     }
-    const auto ts = eventInfo.value("time"_L1).toInteger();
-    return ts ? QDateTime::fromSecsSinceEpoch(ts) : QDateTime();
+    return parseTime(eventInfo.value("time"_L1).toInteger());
 }
 
 [[nodiscard]] static QString expectedPlatform(const QJsonObject &eventInfo)

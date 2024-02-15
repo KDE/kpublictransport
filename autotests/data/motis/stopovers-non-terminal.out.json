@@ -9,8 +9,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:27:00",
-        "scheduledDepartureTime": "2024-02-11T11:27:00",
+        "scheduledArrivalTime": "2024-02-11T11:27:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:27:00Z",
         "scheduledPlatform": "2",
         "stopPoint": {
             "identifier": {
@@ -32,8 +32,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:28:00",
-        "scheduledDepartureTime": "2024-02-11T11:28:00",
+        "scheduledArrivalTime": "2024-02-11T11:28:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:28:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
@@ -55,8 +55,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:30:00",
-        "scheduledDepartureTime": "2024-02-11T11:30:00",
+        "scheduledArrivalTime": "2024-02-11T11:30:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:30:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
             "identifier": {
@@ -78,8 +78,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:33:00",
-        "scheduledDepartureTime": "2024-02-11T11:33:00",
+        "scheduledArrivalTime": "2024-02-11T11:33:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:33:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
@@ -101,8 +101,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:35:00",
-        "scheduledDepartureTime": "2024-02-11T11:35:00",
+        "scheduledArrivalTime": "2024-02-11T11:35:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:35:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
             "identifier": {
@@ -124,8 +124,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:36:00",
-        "scheduledDepartureTime": "2024-02-11T11:36:00",
+        "scheduledArrivalTime": "2024-02-11T11:36:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:36:00Z",
         "scheduledPlatform": "1",
         "stopPoint": {
             "identifier": {
@@ -147,8 +147,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:37:00",
-        "scheduledDepartureTime": "2024-02-11T11:37:00",
+        "scheduledArrivalTime": "2024-02-11T11:37:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:37:00Z",
         "scheduledPlatform": "2",
         "stopPoint": {
             "identifier": {
@@ -170,8 +170,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:38:00",
-        "scheduledDepartureTime": "2024-02-11T11:38:00",
+        "scheduledArrivalTime": "2024-02-11T11:38:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:38:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
@@ -193,8 +193,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:40:00",
-        "scheduledDepartureTime": "2024-02-11T11:40:00",
+        "scheduledArrivalTime": "2024-02-11T11:40:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:40:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
             "identifier": {
@@ -216,8 +216,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:43:00",
-        "scheduledDepartureTime": "2024-02-11T11:43:00",
+        "scheduledArrivalTime": "2024-02-11T11:43:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:43:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
@@ -239,8 +239,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:45:00",
-        "scheduledDepartureTime": "2024-02-11T11:45:00",
+        "scheduledArrivalTime": "2024-02-11T11:45:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:45:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
             "identifier": {
@@ -262,8 +262,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:46:00",
-        "scheduledDepartureTime": "2024-02-11T11:46:00",
+        "scheduledArrivalTime": "2024-02-11T11:46:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:46:00Z",
         "scheduledPlatform": "1",
         "stopPoint": {
             "identifier": {
@@ -285,8 +285,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:47:00",
-        "scheduledDepartureTime": "2024-02-11T11:47:00",
+        "scheduledArrivalTime": "2024-02-11T11:47:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:47:00Z",
         "scheduledPlatform": "2",
         "stopPoint": {
             "identifier": {
@@ -308,8 +308,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:48:00",
-        "scheduledDepartureTime": "2024-02-11T11:48:00",
+        "scheduledArrivalTime": "2024-02-11T11:48:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:48:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
@@ -331,8 +331,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:50:00",
-        "scheduledDepartureTime": "2024-02-11T11:50:00",
+        "scheduledArrivalTime": "2024-02-11T11:50:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:50:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
             "identifier": {
@@ -354,8 +354,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:53:00",
-        "scheduledDepartureTime": "2024-02-11T11:53:00",
+        "scheduledArrivalTime": "2024-02-11T11:53:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:53:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
@@ -377,8 +377,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:55:00",
-        "scheduledDepartureTime": "2024-02-11T11:55:00",
+        "scheduledArrivalTime": "2024-02-11T11:55:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:55:00Z",
         "scheduledPlatform": "3",
         "stopPoint": {
             "identifier": {
@@ -400,8 +400,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:56:00",
-        "scheduledDepartureTime": "2024-02-11T11:56:00",
+        "scheduledArrivalTime": "2024-02-11T11:56:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:56:00Z",
         "scheduledPlatform": "1",
         "stopPoint": {
             "identifier": {
@@ -423,8 +423,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:57:00",
-        "scheduledDepartureTime": "2024-02-11T11:57:00",
+        "scheduledArrivalTime": "2024-02-11T11:57:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:57:00Z",
         "scheduledPlatform": "2",
         "stopPoint": {
             "identifier": {
@@ -446,8 +446,8 @@
                 "operatorName": "Hochbahn U-Bahn"
             }
         },
-        "scheduledArrivalTime": "2024-02-11T11:58:00",
-        "scheduledDepartureTime": "2024-02-11T11:58:00",
+        "scheduledArrivalTime": "2024-02-11T11:58:00Z",
+        "scheduledDepartureTime": "2024-02-11T11:58:00Z",
         "scheduledPlatform": "4",
         "stopPoint": {
             "identifier": {
