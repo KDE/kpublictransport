@@ -11,7 +11,7 @@
         }
     },
     "options": {
-        "endpoint": "https://api.transitous.jbb.ghsq.de/",
+        "endpoint": "https://routing.spline.de/api/",
         "locationIdentifierType": "transitous",
         "intermodal": false
     },
