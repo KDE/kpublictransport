@@ -34,12 +34,14 @@ MotisBackend::~MotisBackend() = default;
 AbstractBackend::Capabilities MotisBackend::capabilities() const
 {
     // TODO
-    // - CanQueryNextJourney?
-    // - CanQueryPreviousJourney?
     // - CanQueryNextDeparture?
     // - CanQueryPreviousDeparture?
     // - CanQueryArrivals?
-    return (m_endpoint.scheme() == "https"_L1) ? AbstractBackend::Secure : AbstractBackend::NoCapability;
+    auto c = AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney;
+    if (m_endpoint.scheme() == "https"_L1) {
+        c |= AbstractBackend::Secure;
+    }
+    return c;
 }
 
 bool MotisBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
@@ -208,11 +210,46 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
 
 bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+    // see https://motis-project.de/docs/api/endpoint/intermodal.html
+
     // backward search for MOTIS is really backward, so we need to swap everything
     const auto from = req.dateTimeMode() == JourneyRequest::Departure ? req.from() : req.to();
     const auto to = req.dateTimeMode() == JourneyRequest::Departure ? req.to() : req.from();
     const auto &startModes = req.dateTimeMode() == JourneyRequest::Departure ? req.accessModes() : req.egressModes();
     const auto &destModes = req.dateTimeMode() == JourneyRequest::Departure ? req.egressModes() : req.accessModes();
+
+    // determine search time window
+    qint64 beginTime = 0, endTime = 0;
+    bool expandEarlier = false, expandLater = false;
+    constexpr auto SEARCH_TIME_INTERVAL = 1800; // TODO does that make sense?
+    const auto context = requestContext(req);
+    switch (context.type) {
+        case RequestContext::Normal:
+            if (req.dateTimeMode() == JourneyRequest::Departure) {
+                beginTime = encodeTime(req.dateTime());
+                endTime = beginTime + SEARCH_TIME_INTERVAL;
+            } else {
+                endTime = encodeTime(req.dateTime());
+                beginTime = endTime - SEARCH_TIME_INTERVAL;
+            }
+            // ### see https://motis-project.de/docs/api/endpoint/intermodal.html#intermodal-pretrip-start
+            // this says we need to enable expansion in both directiony for min_connection_count to work
+            expandEarlier = true; // req.dateTimeMode() == JourneyRequest::Arrival;
+            expandLater = true; // req.dateTimeMode() == JourneyRequest::Departure;
+            break;
+        case RequestContext::Next:
+            beginTime = context.backendData.toLongLong();
+            endTime = beginTime + SEARCH_TIME_INTERVAL;
+            expandEarlier = false;
+            expandLater = true;
+            break;
+        case RequestContext::Previous:
+            endTime = context.backendData.toLongLong();
+            beginTime = endTime - SEARCH_TIME_INTERVAL;
+            expandEarlier = true;
+            expandLater = false;
+            break;
+    }
 
     // ### HACK in this request the JSON key order matters!!
     // see https://github.com/motis-project/motis/issues/433
@@ -230,12 +267,12 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
             {"!start"_L1, QJsonObject{
                 {from.hasCoordinate() && m_intermodal ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, m_intermodal)},
                 {"interval"_L1, QJsonObject{
-                    {"begin"_L1, encodeTime(req.dateTime())},
-                    {"end"_L1, encodeTime(req.dateTime()) + 1800}, // TODO configure this
+                    {"begin"_L1, beginTime},
+                    {"end"_L1, endTime},
                 }},
                 {"min_connection_count"_L1, req.maximumResults()},
-                {"extend_interval_earlier"_L1, true}, // TODO paging support
-                {"extend_interval_later"_L1, true},
+                {"extend_interval_earlier"_L1, expandEarlier},
+                {"extend_interval_later"_L1, expandLater},
             }},
             {"!start_modes"_L1, ivModes(startModes)},
             {"destination_type"_L1, to.hasCoordinate() && m_intermodal ? "InputPosition"_L1 : "InputStation"_L1},

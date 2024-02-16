@@ -14,7 +14,10 @@ namespace KPublicTransport {
 
 class AbstractBackend;
 
-/** Backend-specific request information. */
+/** Backend-specific request information.
+ *  This holds information a backend can use for follow-up requests
+ *  to a previous query, ie. paging to following/preceeding results.
+ */
 class RequestContext
 {
 public:
@@ -25,15 +28,16 @@ public:
 
     /** Removes all contexts from @p contexts that already exist in @p baseContexts.
      *  Both vectors are assumed to be sorted by backend pointer.
+     *  @internal
      */
     static void purgeLoops(std::vector<RequestContext> &contexts, const std::vector<RequestContext> &baseContexts);
 
     const AbstractBackend *backend = nullptr;
 
     enum RequestType {
-        Normal,
-        Next,
-        Previous
+        Normal, ///< this is the first request of its kind, ie. there is no context
+        Next, ///< this request is for results following those of the previous request
+        Previous, ///< this request is for results preceeding those of the previous request
     };
     RequestType type = Normal;
     // for departure/next this is the time of the last previously found departure time
@@ -41,6 +45,7 @@ public:
     // for arrival/next this is the last previously found arrival time
     // for arrival/previous this is the first previously found arrival time
     QDateTime dateTime;
+    /** Backend-provided custom context data. */
     QVariant backendData;
 };
 
