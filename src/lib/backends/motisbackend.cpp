@@ -36,8 +36,7 @@ AbstractBackend::Capabilities MotisBackend::capabilities() const
     // TODO
     // - CanQueryNextDeparture?
     // - CanQueryPreviousDeparture?
-    // - CanQueryArrivals?
-    auto c = AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney;
+    auto c = AbstractBackend::CanQueryArrivals | AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney;
     if (m_endpoint.scheme() == "https"_L1) {
         c |= AbstractBackend::Secure;
     }
@@ -106,9 +105,19 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
     return true;
 }
 
+[[nodiscard]] static bool filterStopover(StopoverRequest::Mode mode, const Stopover &stop)
+{
+    switch (mode) {
+        case StopoverRequest::QueryDeparture:
+            return !stop.scheduledDepartureTime().isValid();
+        case StopoverRequest::QueryArrival:
+            return !stop.scheduledArrivalTime().isValid();
+    }
+    return false;
+}
+
 bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    // TODO arrival/departure filtering needs to be done on the result
     QJsonObject query{
         {"destination"_L1, QJsonObject{
             {"type"_L1, "Module"_L1},
@@ -133,6 +142,11 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
         MotisParser p(m_locationIdentifierType);
         auto result = p.parseEvents(data);
         if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
+            // we get arrival/departure, arrival-only and departure-only results here
+            // filter out the ones not requested
+            const auto mode = reply->request().mode();
+            result.erase(std::remove_if(result.begin(), result.end(), [mode](const auto &stop) { return filterStopover(mode, stop); }), result.end());
+
             // TODO caching?
             addResult(reply, this, std::move(result));
         } else if (p.hasError()) {
