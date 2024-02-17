@@ -50,7 +50,8 @@ bool OebbBackend::queryVehicleLayout(const VehicleLayoutRequest &request, Vehicl
     if (trainNum.isEmpty()) {
         return false;
     }
-    const auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
+    auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
+    dt = dt.toTimeZone(QTimeZone("Europe/Vienna"));
 
     QUrl url;
     url.setScheme(QStringLiteral("https"));

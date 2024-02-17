@@ -58,6 +58,7 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
     if (!dt.isValid() || trainNum.isEmpty()) {
         return false;
     }
+    dt = dt.toTimeZone(QTimeZone("Europe/Berlin"));
 
     // there are only valid results for a 24h time window, so try to adjust the date accordingly
     const auto now = QDateTime::currentDateTime();
