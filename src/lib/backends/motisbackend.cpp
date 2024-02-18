@@ -33,10 +33,8 @@ MotisBackend::~MotisBackend() = default;
 
 AbstractBackend::Capabilities MotisBackend::capabilities() const
 {
-    // TODO
-    // - CanQueryNextDeparture?
-    // - CanQueryPreviousDeparture?
-    auto c = AbstractBackend::CanQueryArrivals | AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney;
+    auto c = AbstractBackend::CanQueryArrivals | AbstractBackend::CanQueryPreviousDeparture
+        | AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney;
     if (m_endpoint.scheme() == "https"_L1) {
         c |= AbstractBackend::Secure;
     }
@@ -118,6 +116,18 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
 
 bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
+    const auto context = requestContext(req);
+    QDateTime dt;
+    switch (context.type) {
+        case RequestContext::Normal:
+        case RequestContext::Next:
+            dt = req.dateTime();
+            break;
+        case RequestContext::Previous:
+            dt = context.dateTime;
+            break;
+    }
+
     QJsonObject query{
         {"destination"_L1, QJsonObject{
             {"type"_L1, "Module"_L1},
@@ -125,8 +135,8 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
         }},
         {"content_type"_L1, "RailVizStationRequest"_L1},
         {"content"_L1, QJsonObject{
-            {"time"_L1, encodeTime(req.dateTime())},
-            {"direction"_L1, "BOTH"_L1}, // TODO paging?
+            {"time"_L1, encodeTime(dt)},
+            {"direction"_L1, requestContext(req).type == RequestContext::Previous ? "EARLIER"_L1 : "LATER"_L1},
             {"station_id"_L1, req.stop().identifier(m_locationIdentifierType)},
             {"event_count"_L1, req.maximumResults()},
         }}
