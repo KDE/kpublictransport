@@ -44,9 +44,9 @@ AbstractBackend::Capabilities MotisBackend::capabilities() const
 bool MotisBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
     if (type == QueryType::Journey && m_intermodal) {
-        return !loc.hasCoordinate() && loc.identifier(m_locationIdentifierType).isEmpty();
+        return !loc.hasCoordinate() && !loc.hasIdentifier(m_locationIdentifierType);
     }
-    return loc.identifier(m_locationIdentifierType).isEmpty();
+    return !loc.hasIdentifier(m_locationIdentifierType);
 }
 
 bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
@@ -275,6 +275,9 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
             break;
     }
 
+    const auto fromIntermodel = m_intermodal && !from.hasIdentifier(m_locationIdentifierType);
+    const auto toIntermodal = m_intermodal && !to.hasIdentifier(m_locationIdentifierType);
+
     // ### HACK in this request the JSON key order matters!!
     // see https://github.com/motis-project/motis/issues/433
     // thefore the '!' prefix hack and post-processing below...
@@ -287,9 +290,9 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         {"content_type"_L1, "IntermodalRoutingRequest"_L1},
         {"content"_L1, QJsonObject{
             // TODO how can we make the ontrip start options available? OntripTrainStart in particular
-            {"!start_type"_L1, from.hasCoordinate() && m_intermodal ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
+            {"!start_type"_L1, fromIntermodel ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
             {"!start"_L1, QJsonObject{
-                {from.hasCoordinate() && m_intermodal ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, m_intermodal)},
+                {fromIntermodel ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, fromIntermodel)},
                 {"interval"_L1, QJsonObject{
                     {"begin"_L1, beginTime},
                     {"end"_L1, endTime},
@@ -299,8 +302,8 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
                 {"extend_interval_later"_L1, expandLater},
             }},
             {"!start_modes"_L1, ivModes(startModes)},
-            {"destination_type"_L1, to.hasCoordinate() && m_intermodal ? "InputPosition"_L1 : "InputStation"_L1},
-            {"destination"_L1, encodeLocation(to, m_locationIdentifierType, m_intermodal)},
+            {"destination_type"_L1, toIntermodal ? "InputPosition"_L1 : "InputStation"_L1},
+            {"destination"_L1, encodeLocation(to, m_locationIdentifierType, toIntermodal)},
             {"destination_modes"_L1, ivModes(destModes)},
             {"search_type"_L1, "Default"_L1},
             {"search_dir"_L1, req.dateTimeMode() == JourneyRequest::Departure ? "Forward"_L1 : "Backward"_L1},
