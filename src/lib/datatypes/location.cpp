@@ -100,6 +100,11 @@ void Location::setIdentifier(const QString &identifierType, const QString &id)
     d->ids.insert(identifierType, id);
 }
 
+bool Location::hasIdentifier(const QString &identifierType) const
+{
+    return !d->ids.value(identifierType).isEmpty();
+}
+
 RentalVehicleStation Location::rentalVehicleStation() const
 {
     return d->data.value<RentalVehicleStation>();

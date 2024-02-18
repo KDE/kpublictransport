@@ -80,50 +80,51 @@ public:
 
 public:
     void setCoordinate(float latitude, float longitude);
-    bool hasCoordinate() const;
+    [[nodiscard]] bool hasCoordinate() const;
 
     /** Returns @c true if this is an default-constructed location object not specifying any location. */
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     /** The timezone this location is in, if known. */
-    QTimeZone timeZone() const;
+    [[nodiscard]] QTimeZone timeZone() const;
     void setTimeZone(const QTimeZone &tz);
 
     /** Location identifiers. */
-    Q_INVOKABLE QString identifier(const QString &identifierType) const;
+    Q_INVOKABLE [[nodiscard]] QString identifier(const QString &identifierType) const;
     void setIdentifier(const QString &identifierType, const QString &id);
-    QHash<QString, QString> identifiers() const;
+    [[nodiscard]] bool hasIdentifier(const QString &identifierType) const;
+    [[nodiscard]] QHash<QString, QString> identifiers() const;
 
     /** Checks if to instances refer to the same location (which does not necessarily mean they are exactly equal). */
-    static bool isSame(const Location &lhs, const Location &rhs);
+    [[nodiscard]] static bool isSame(const Location &lhs, const Location &rhs);
     /** Checks if two location names refer to the same location. */
-    static bool isSameName(const QString &lhs, const QString &rhs);
+    [[nodiscard]] static bool isSameName(const QString &lhs, const QString &rhs);
 
     /** Merge two departure instances.
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
-    static Location merge(const Location &lhs, const Location &rhs);
+    [[nodiscard]] static Location merge(const Location &lhs, const Location &rhs);
 
     /** Compute the distance between two geo coordinates, in meters. */
-    static float distance(float lat1, float lon1, float lat2, float lon2);
+    [[nodiscard]] static float distance(float lat1, float lon1, float lat2, float lon2);
     /** Computes the distance in meters between two locations.
      *  Returns MAX_INT if one of the arguments has no coordinates set.
      */
-    static float distance(const Location &lhs, const Location &rhs);
+    [[nodiscard]] static float distance(const Location &lhs, const Location &rhs);
 
-    RentalVehicleStation rentalVehicleStation() const;
+    [[nodiscard]] RentalVehicleStation rentalVehicleStation() const;
     [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);
-    RentalVehicle rentalVehicle() const;
-    KPublicTransport::Equipment equipment() const;
+    [[nodiscard]] RentalVehicle rentalVehicle() const;
+    [[nodiscard]] KPublicTransport::Equipment equipment() const;
 
     /** Serializes one Location object to JSON. */
-    static QJsonObject toJson(const Location &loc);
+    [[nodiscard]] static QJsonObject toJson(const Location &loc);
     /** Serializes an array of Location objects to JSON. */
-    static QJsonArray toJson(const std::vector<Location> &locs);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<Location> &locs);
     /** Deserialize a Location object from JSON. */
-    static Location fromJson(const QJsonObject &obj);
+    [[nodiscard]] static Location fromJson(const QJsonObject &obj);
     /** Dezerializes an array Location objects from JSON. */
-    static std::vector<Location> fromJson(const QJsonArray &a);
+    [[nodiscard]] static std::vector<Location> fromJson(const QJsonArray &a);
 
 };
 
