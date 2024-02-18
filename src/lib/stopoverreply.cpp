@@ -110,6 +110,16 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
             context.dateTime = std::max(context.dateTime, dep.scheduledDepartureTime());
         }
         d->nextRequest.setContext(backend, std::move(context));
+
+        if (backend->capabilities() & AbstractBackend::CanQueryPreviousDeparture) {
+            context = d->prevRequest.context(backend);
+            context.type = RequestContext::Previous;
+            context.dateTime = res[0].scheduledDepartureTime();
+            for (const auto &jny : res) {
+                context.dateTime = std::min(context.dateTime, jny.scheduledDepartureTime());
+            }
+            d->prevRequest.setContext(backend, std::move(context));
+        }
     }
 
     // if this is a backend with a static timezone, apply this to the result
