@@ -111,12 +111,30 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
         }
         d->nextRequest.setContext(backend, std::move(context));
 
-        if (backend->capabilities() & AbstractBackend::CanQueryPreviousDeparture) {
+        if (backend->hasCapability(AbstractBackend::CanQueryPreviousDeparture)) {
             context = d->prevRequest.context(backend);
             context.type = RequestContext::Previous;
             context.dateTime = res[0].scheduledDepartureTime();
             for (const auto &jny : res) {
                 context.dateTime = std::min(context.dateTime, jny.scheduledDepartureTime());
+            }
+            d->prevRequest.setContext(backend, std::move(context));
+        }
+    } else if (d->request.mode() == StopoverRequest::QueryArrival && !res.empty()) {
+        // CanQueryArrivals is assumed here, otherwise this request would not have been possible already
+        auto context = d->nextRequest.context(backend);
+        context.type = RequestContext::Next;
+        for (const auto &dep : res) {
+            context.dateTime = std::max(context.dateTime, dep.scheduledArrivalTime());
+        }
+        d->nextRequest.setContext(backend, std::move(context));
+
+        if (backend->hasCapability(AbstractBackend::CanQueryPreviousDeparture)) {
+            context = d->prevRequest.context(backend);
+            context.type = RequestContext::Previous;
+            context.dateTime = res[0].scheduledArrivalTime();
+            for (const auto &jny : res) {
+                context.dateTime = std::min(context.dateTime, jny.scheduledArrivalTime());
             }
             d->prevRequest.setContext(backend, std::move(context));
         }
