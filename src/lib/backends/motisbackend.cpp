@@ -33,7 +33,8 @@ MotisBackend::~MotisBackend() = default;
 
 AbstractBackend::Capabilities MotisBackend::capabilities() const
 {
-    auto c = AbstractBackend::CanQueryArrivals | AbstractBackend::CanQueryPreviousDeparture
+    auto c = AbstractBackend::CanQueryArrivals
+        | AbstractBackend::CanQueryNextDeparture | AbstractBackend::CanQueryPreviousDeparture
         | AbstractBackend::CanQueryNextJourney | AbstractBackend::CanQueryPreviousJourney;
     if (m_endpoint.scheme() == "https"_L1) {
         c |= AbstractBackend::Secure;
@@ -120,9 +121,9 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
     QDateTime dt;
     switch (context.type) {
         case RequestContext::Normal:
-        case RequestContext::Next:
             dt = req.dateTime();
             break;
+        case RequestContext::Next:
         case RequestContext::Previous:
             dt = context.dateTime;
             break;
@@ -171,7 +172,7 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
 
 [[nodiscard]] static QJsonArray ivModes(const std::vector<IndividualTransport> &ivs)
 {
-    // TODO allow external configuration of the durection limits and PPR profiles
+    // TODO allow external configuration of the duration limits and PPR profiles
     QJsonArray modes;
     for (const auto &iv : ivs) {
         if (iv.mode() == IndividualTransport::Walk) {
