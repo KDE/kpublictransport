@@ -687,7 +687,7 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
             }
 
             // backend doesn't support this, let's try to emulate
-            if (context.type == RequestContext::Next && req.mode() == StopoverRequest::QueryDeparture) {
+            if (context.type == RequestContext::Next) {
                 auto r = req;
                 r.setDateTime(context.dateTime);
                 if (d->queryStopover(context.backend, r, reply)) {
