@@ -184,7 +184,11 @@ public:
 
     /** Perform a location query.
      *
-     *  Typically you'll have to handle two cases in here:
+     *  The first step in here is typically to check the type of location that is requested
+     *  (LocationRequest::type), as most backends only support a subset. The probably most
+     *  common case is Location::Stop (public transport stops/stations).
+     *
+     *  For stops typically you'll have to handle two cases:
      *  - request.hasCoordinate() being @c true
      *  - request.name() being set
      *

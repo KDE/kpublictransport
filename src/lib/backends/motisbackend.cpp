@@ -52,6 +52,11 @@ bool MotisBackend::needsLocationQuery(const Location &loc, AbstractBackend::Quer
 
 bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
 {
+    if ((req.types() & Location::Stop) == 0) {
+        // only stop search is supported so far
+        return false;
+    }
+
     QJsonObject query;
     if (req.hasCoordinate()) {
         query = QJsonObject{
