@@ -132,12 +132,12 @@ CacheEntry<Location> Cache::lookupLocation(const QString &backendId, const QStri
     return lookup<Location>(QStringLiteral("location"), backendId, cacheKey);
 }
 
-void Cache::addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
+void Cache::addNegativeStopoverCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl)
 {
     addNegativeCacheEntry(QStringLiteral("departure"), backendId, cacheKey, ttl);
 }
 
-CacheEntry<Stopover> Cache::lookupDeparture(const QString &backendId, const QString &cacheKey)
+CacheEntry<Stopover> Cache::lookupStopover(const QString &backendId, const QString &cacheKey)
 {
     return lookup<Stopover>(QStringLiteral("departure"), backendId, cacheKey);
 }

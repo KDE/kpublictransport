@@ -157,7 +157,7 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
 
     // cache negative hits, positive ones are too short-lived
     if (res.empty()) {
-        Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
+        Cache::addNegativeStopoverCacheEntry(backend->backendId(), request().cacheKey());
     }
 
     if (d->result.empty()) {
@@ -210,7 +210,7 @@ void StopoverReply::setPreviousContext(const AbstractBackend *backend, const QVa
 void StopoverReply::addError(const AbstractBackend *backend, Reply::Error error, const QString &errorMsg)
 {
     if (error == Reply::NotFoundError) {
-        Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
+        Cache::addNegativeStopoverCacheEntry(backend->backendId(), request().cacheKey());
     } else {
         qCDebug(Log) << backend->backendId() << error << errorMsg;
     }

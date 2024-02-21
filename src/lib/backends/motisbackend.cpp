@@ -157,8 +157,6 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
             // filter out the ones not requested
             const auto mode = reply->request().mode();
             result.erase(std::remove_if(result.begin(), result.end(), [mode](const auto &stop) { return filterStopover(mode, stop); }), result.end());
-
-            // TODO caching?
             addResult(reply, this, std::move(result));
         } else if (p.hasError()) {
             addError(reply, Reply::InvalidRequest, p.errorMessage());
@@ -318,7 +316,6 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
-        // TODO result caching?
         qDebug().noquote() << data << netReply->error();
         MotisParser p(m_locationIdentifierType);
         auto result = p.parseConnections(data);

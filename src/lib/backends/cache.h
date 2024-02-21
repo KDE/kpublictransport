@@ -60,9 +60,9 @@ namespace Cache
     KPUBLICTRANSPORT_EXPORT CacheEntry<Location> lookupLocation(const QString &backendId, const QString &cacheKey);
 
     /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
-    void addNegativeDepartureCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
+    void addNegativeStopoverCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));
     /** Perform cache lookup for departure results. */
-    CacheEntry<Stopover> lookupDeparture(const QString &backendId, const QString &cacheKey);
+    CacheEntry<Stopover> lookupStopover(const QString &backendId, const QString &cacheKey);
 
     /** Add negative cache entry for departure queries, ie. remember a result could not be found. */
     void addNegativeJourneyCacheEntry(const QString &backendId, const QString &cacheKey, std::chrono::seconds ttl = chrono::days(30));

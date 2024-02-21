@@ -427,7 +427,7 @@ bool ManagerPrivate::queryJourney(const AbstractBackend* backend, const JourneyR
 
 bool ManagerPrivate::queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply)
 {
-    auto cache = Cache::lookupDeparture(backend->backendId(), req.cacheKey());
+    auto cache = Cache::lookupStopover(backend->backendId(), req.cacheKey());
     switch (cache.type) {
         case CacheHitType::Negative:
             qCDebug(Log) << "Negative cache hit for backend" << backend->backendId();

@@ -70,6 +70,17 @@ class VehicleLayoutRequest;
  *  issuing appropriate new queries instead. For that to work as best as possible, or to prevent
  *  it from interfering, ensure to override capabilities() and report exactly which
  *  paging operations are natively supported.
+ *
+ *  ## Caching results
+ *
+ *  Both positive and negative (not found) results can be cached using the corresponding methods
+ *  in Cache. Whether or not that makes sense (and for how long) depends on the source of the data.
+ *  Caching any result involving realtime data typically doesn't make sense, while caching the a
+ *  static location update or the fact a backend isn't able to provide a result for a specific query
+ *  (negative result) helps quite a bit especially for mobile use.
+ *
+ *  In most cases it is up to specific backend implementations to manage this, a few exceptions exist
+ *  and are noted in the corresponding query methods below.
  */
 class KPUBLICTRANSPORT_EXPORT AbstractBackend
 {
@@ -154,11 +165,19 @@ public:
     [[nodiscard]] virtual bool needsLocationQuery(const Location &loc, QueryType type) const;
 
     /** Perform a journey query.
+     *
+     *  Negative results from journey queries are automatically cached.
+     *
      *  @return @c true if performing an async operation, @c false otherwise.
      */
     [[nodiscard]] virtual bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const;
 
-    /** Perform a departure query.
+    /** Perform a stopover query.
+     *
+     *  That is, listing all departures or arrivals at a specific location.
+     *
+     *  Negative results from journey queries are automatically cached.
+     *
      *  @return @c true if performing an async operation, @c false otherwise.
      */
     [[nodiscard]] virtual bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const;
