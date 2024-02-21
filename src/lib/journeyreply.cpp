@@ -267,7 +267,7 @@ void JourneyReply::addResult(const AbstractBackend *backend, std::vector<Journey
 
     // cache negative hits, positive ones are too short-lived
     if (res.empty()) {
-        Cache::addNegativeDepartureCacheEntry(backend->backendId(), request().cacheKey());
+        Cache::addNegativeJourneyCacheEntry(backend->backendId(), request().cacheKey());
     }
 
     // apply static attributions if @p backend contributed to the results
