@@ -290,6 +290,9 @@ bool ManagerPrivate::shouldSkipBackend(const Backend &backend, const RequestT &r
 // our callers rely on that to not mess up sync/async response handling
 void ManagerPrivate::resolveLocation(LocationRequest &&locReq, const AbstractBackend *backend, const std::function<void(const Location&)> &callback)
 {
+    // apply all changes to locReq *before* we call cacheKey() on it!
+    locReq.setMaximumResults(1);
+
     // check if this location query is cached already
     const auto cacheEntry = Cache::lookupLocation(backend->backendId(), locReq.cacheKey());
     switch (cacheEntry.type) {
@@ -308,7 +311,6 @@ void ManagerPrivate::resolveLocation(LocationRequest &&locReq, const AbstractBac
     }
 
     // actually do the location query
-    locReq.setMaximumResults(1);
     auto locReply = new LocationReply(locReq, q);
     if (backend->queryLocation(locReq, locReply, nam())) {
         locReply->setPendingOps(1);
