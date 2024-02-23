@@ -867,7 +867,9 @@
               "line_id": "RE",
               "name": "RE 4293",
               "provider": "BLS AG (bls)",
-              "direction": "Brig"
+              "direction": "Brig",
+              "route_color": "ff0000",
+              "route_text_color": "ffffff"
             }
           },
           {

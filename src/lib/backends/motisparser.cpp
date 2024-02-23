@@ -9,6 +9,7 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/Stopover>
 
+#include <QColor>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -129,6 +130,9 @@ static void postprocessRoute(Route &route)
     if (clasz >= 0 && clasz < (int)std::size(clasz_map)) {
         line.setMode(clasz_map[clasz]);
     }
+    line.setColor(QColor(QLatin1Char('#') + obj.value("route_color"_L1).toString()));
+    line.setTextColor(QColor(QLatin1Char('#') + obj.value("route_text_color"_L1).toString()));
+
     Route route;
     route.setDirection(obj.value("direction"_L1).toString());
     const auto trainNr = obj.value("train_nr"_L1).toInt();

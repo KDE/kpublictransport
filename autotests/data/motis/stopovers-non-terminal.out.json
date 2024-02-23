@@ -4,9 +4,11 @@
         "route": {
             "direction": "Großhansdorf",
             "line": {
+                "color": "#ffff00",
                 "mode": "Metro",
                 "name": "U1",
-                "operatorName": "Hochbahn U-Bahn"
+                "operatorName": "Hochbahn U-Bahn",
+                "textColor": "#000000"
             }
         },
         "scheduledArrivalTime": "2024-02-11T11:27:00Z",

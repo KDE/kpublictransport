@@ -35,7 +35,9 @@
               "line_id": "U1",
               "name": "U1",
               "provider": "Hochbahn U-Bahn",
-              "direction": "Gro\u00DFhansdorf"
+              "direction": "Gro\u00DFhansdorf",
+              "route_color": "ffff00",
+              "route_text_color": "000000"
             }
           }
         ],

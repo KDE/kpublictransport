@@ -307,9 +307,11 @@
                 "route": {
                     "direction": "Brig",
                     "line": {
+                        "color": "#ff0000",
                         "mode": "LocalTrain",
                         "name": "RE 4293",
-                        "operatorName": "BLS AG (bls)"
+                        "operatorName": "BLS AG (bls)",
+                        "textColor": "#ffffff"
                     }
                 },
                 "scheduledArrivalTime": "2024-02-10T00:23:00Z",
