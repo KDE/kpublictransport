@@ -282,10 +282,6 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
     const auto fromIntermodel = m_intermodal && !from.hasIdentifier(m_locationIdentifierType);
     const auto toIntermodal = m_intermodal && !to.hasIdentifier(m_locationIdentifierType);
 
-    // ### HACK in this request the JSON key order matters!!
-    // see https://github.com/motis-project/motis/issues/433
-    // thefore the '!' prefix hack and post-processing below...
-    // can be removed once the fix hits the Motis demo server
     QJsonObject query{
         {"destination"_L1, QJsonObject{
             {"type"_L1, "Module"_L1},
@@ -294,8 +290,8 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         {"content_type"_L1, "IntermodalRoutingRequest"_L1},
         {"content"_L1, QJsonObject{
             // TODO how can we make the ontrip start options available? OntripTrainStart in particular
-            {"!start_type"_L1, fromIntermodel ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
-            {"!start"_L1, QJsonObject{
+            {"start_type"_L1, fromIntermodel ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
+            {"start"_L1, QJsonObject{
                 {fromIntermodel ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, fromIntermodel)},
                 {"interval"_L1, QJsonObject{
                     {"begin"_L1, beginTime},
@@ -305,7 +301,7 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
                 {"extend_interval_earlier"_L1, expandEarlier},
                 {"extend_interval_later"_L1, expandLater},
             }},
-            {"!start_modes"_L1, ivModes(startModes)},
+            {"start_modes"_L1, ivModes(startModes)},
             {"destination_type"_L1, toIntermodal ? "InputPosition"_L1 : "InputStation"_L1},
             {"destination"_L1, encodeLocation(to, m_locationIdentifierType, toIntermodal)},
             {"destination_modes"_L1, ivModes(destModes)},
@@ -346,9 +342,7 @@ QNetworkReply* MotisBackend::makeRequest(const Request &req, Reply *reply, const
     applySslConfiguration(netReq);
     applyUserAgent(netReq);
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"_L1);
-    auto postData = QJsonDocument(query).toJson(QJsonDocument::Compact);
-    // ### HACK see above
-    postData = postData.replace("\"!", "\"");
+    const auto postData = QJsonDocument(query).toJson(QJsonDocument::Compact);
     logRequest(req, netReq, postData);
     qDebug().noquote() << QJsonDocument(query).toJson();
     auto netReply = nam->post(netReq, postData);
