@@ -236,6 +236,33 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
     });
 }
 
+struct {
+    Line::Mode mode;
+    uint8_t clasz;
+} static constexpr const class_table[] = {
+    { Line::Mode::Air, 0 },
+    { Line::Mode::Boat, 11 },
+    { Line::Mode::Bus, 10 },
+    { Line::Mode::BusRapidTransit, 10 },
+    { Line::Mode::Coach, 3 },
+    { Line::Mode::Ferry, 11 },
+    { Line::Mode::Funicular, 9 },
+    { Line::Mode::Funicular, 6 },
+    { Line::Mode::LocalTrain, 6 },
+    { Line::Mode::LocalTrain, 5 },
+    { Line::Mode::LongDistanceTrain, 1 },
+    { Line::Mode::LongDistanceTrain, 2 },
+    { Line::Mode::LongDistanceTrain, 4 },
+    { Line::Mode::Metro, 8 },
+    { Line::Mode::RailShuttle, 6 },
+    { Line::Mode::RapidTransit, 7 },
+    { Line::Mode::Shuttle, 6 },
+    { Line::Mode::Taxi, 12 },
+    { Line::Mode::Train, 5 },
+    { Line::Mode::Tramway, 9 },
+    { Line::Mode::RideShare, 12 },
+};
+
 bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
     // see https://motis-project.de/docs/api/endpoint/intermodal.html
@@ -282,33 +309,53 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
     const auto fromIntermodel = m_intermodal && !from.hasIdentifier(m_locationIdentifierType);
     const auto toIntermodal = m_intermodal && !to.hasIdentifier(m_locationIdentifierType);
 
+    QJsonObject content{
+        // TODO how can we make the ontrip start options available? OntripTrainStart in particular
+        {"start_type"_L1, fromIntermodel ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
+        {"start"_L1, QJsonObject{
+            {fromIntermodel ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, fromIntermodel)},
+            {"interval"_L1, QJsonObject{
+                {"begin"_L1, beginTime},
+                {"end"_L1, endTime},
+            }},
+            {"min_connection_count"_L1, req.maximumResults()},
+            {"extend_interval_earlier"_L1, expandEarlier},
+            {"extend_interval_later"_L1, expandLater},
+        }},
+        {"start_modes"_L1, ivModes(startModes)},
+        {"destination_type"_L1, toIntermodal ? "InputPosition"_L1 : "InputStation"_L1},
+        {"destination"_L1, encodeLocation(to, m_locationIdentifierType, toIntermodal)},
+        {"destination_modes"_L1, ivModes(destModes)},
+        {"search_type"_L1, "Default"_L1},
+        {"search_dir"_L1, req.dateTimeMode() == JourneyRequest::Departure ? "Forward"_L1 : "Backward"_L1},
+        {"router"_L1, ""_L1}
+    };
+
+    if (const auto &lineModes = req.lineModes(); !lineModes.empty()) {
+        std::vector<uint8_t> classes;
+        classes.reserve(lineModes.size());
+        for (auto lineMode : lineModes) {
+            for (auto m : class_table) {
+                if (m.mode == lineMode) {
+                    classes.push_back(m.clasz);
+                }
+            }
+        }
+
+        std::sort(classes.begin(), classes.end());
+        classes.erase(std::unique(classes.begin(), classes.end()), classes.end());
+        QJsonArray a;
+        std::copy(classes.begin(), classes.end(), std::back_inserter(a));
+        content.insert("allowed_claszes"_L1, a);
+    }
+
     QJsonObject query{
         {"destination"_L1, QJsonObject{
             {"type"_L1, "Module"_L1},
             {"target"_L1, "/intermodal"_L1}
         }},
         {"content_type"_L1, "IntermodalRoutingRequest"_L1},
-        {"content"_L1, QJsonObject{
-            // TODO how can we make the ontrip start options available? OntripTrainStart in particular
-            {"start_type"_L1, fromIntermodel ? "IntermodalPretripStart"_L1 : "PretripStart"_L1},
-            {"start"_L1, QJsonObject{
-                {fromIntermodel ? "position"_L1: "station"_L1, encodeLocation(from, m_locationIdentifierType, fromIntermodel)},
-                {"interval"_L1, QJsonObject{
-                    {"begin"_L1, beginTime},
-                    {"end"_L1, endTime},
-                }},
-                {"min_connection_count"_L1, req.maximumResults()},
-                {"extend_interval_earlier"_L1, expandEarlier},
-                {"extend_interval_later"_L1, expandLater},
-            }},
-            {"start_modes"_L1, ivModes(startModes)},
-            {"destination_type"_L1, toIntermodal ? "InputPosition"_L1 : "InputStation"_L1},
-            {"destination"_L1, encodeLocation(to, m_locationIdentifierType, toIntermodal)},
-            {"destination_modes"_L1, ivModes(destModes)},
-            {"search_type"_L1, "Default"_L1},
-            {"search_dir"_L1, req.dateTimeMode() == JourneyRequest::Departure ? "Forward"_L1 : "Backward"_L1},
-            {"router"_L1, ""_L1}
-        }}
+        {"content"_L1, content}
     };
 
     auto netReply = makeRequest(req, reply, query, nam);
