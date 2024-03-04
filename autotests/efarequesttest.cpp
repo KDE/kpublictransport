@@ -29,7 +29,7 @@ private Q_SLOTS:
     void initTestCase()
     {
         qputenv("TZ", "UTC");
-        qputenv("LANG", "en_US");
+        QLocale::setDefault(QLocale(u"en_US.utf-8"));
 
         m_mgr.setNetworkAccessManager(&m_nam);
     }
