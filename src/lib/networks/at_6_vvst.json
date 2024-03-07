@@ -57,33 +57,7 @@
     },
     "coverage": {
         "regularCoverage": {
-            "area": {
-                "coordinates": [
-                    [
-                        [
-                            13.4446,
-                            47.7198
-                        ],
-                        [
-                            16.1595,
-                            47.8887
-                        ],
-                        [
-                            16.1309,
-                            46.6204
-                        ],
-                        [
-                            13.8844,
-                            46.5981
-                        ],
-                        [
-                            13.4446,
-                            47.7198
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
+            "areaFile": "at_6_vvst_regular.geojson",
             "region": [
                 "AT-6"
             ]

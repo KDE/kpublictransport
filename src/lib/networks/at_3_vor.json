@@ -57,33 +57,7 @@
     },
     "coverage": {
         "realtimeCoverage": {
-            "area": {
-                "coordinates": [
-                    [
-                        [
-                            14.3352,
-                            47.9871
-                        ],
-                        [
-                            16.2767,
-                            46.6744
-                        ],
-                        [
-                            17.574,
-                            48.5545
-                        ],
-                        [
-                            14.9609,
-                            49.2139
-                        ],
-                        [
-                            14.3352,
-                            47.9871
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
+            "areaFile": "at_3_vor_realtime.geojson",
             "region": [
                 "AT-3",
                 "AT-9"

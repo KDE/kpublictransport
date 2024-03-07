@@ -57,33 +57,7 @@
     },
     "coverage": {
         "realtimeCoverage": {
-            "area": {
-                "coordinates": [
-                    [
-                        [
-                            12.6675,
-                            48.0845
-                        ],
-                        [
-                            13.6613,
-                            48.8819
-                        ],
-                        [
-                            15.4156,
-                            48.3973
-                        ],
-                        [
-                            13.9864,
-                            47.1644
-                        ],
-                        [
-                            12.6675,
-                            48.0845
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
+            "areaFile": "at_4_ooevv_realtime.geojson",
             "region": [
                 "AT-4"
             ]

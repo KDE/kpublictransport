@@ -4,6 +4,10 @@
 -->
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/networks/geometry/">
+        <file>at_3_vor_realtime.geojson</file>
+        <file>at_4_ooevv_realtime.geojson</file>
+        <file>at_6_vvst_regular.geojson</file>
+        <file>at_7_vvt_realtime.geojson</file>
         <file>at_oebb_any.geojson</file>
         <file>at_oebb_realtime.geojson</file>
         <file>at_oebb_regular.geojson</file>
