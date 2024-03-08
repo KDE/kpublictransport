@@ -70,6 +70,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/disruption.cpp
     datatypes/equipment.cpp
     datatypes/equipmentutil.cpp
+    datatypes/feature.cpp
     datatypes/individualtransport.cpp
     datatypes/journey.cpp
     datatypes/journeyutil.cpp
@@ -194,6 +195,7 @@ ecm_generate_headers(KPublicTransport_Datatypes_FORWARDING_HEADERS
         Datatypes
         Disruption
         Equipment
+        Feature
         IndividualTransport
         Journey
         Line
