@@ -5232,6 +5232,7 @@
                 "name": "Taxi"
             }
         ],
+        "rtMode": "HYBRID",
         "standardLocationIdentifierCountries": [
             51,
             53,

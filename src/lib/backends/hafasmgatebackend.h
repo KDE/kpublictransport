@@ -37,6 +37,7 @@ class KPUBLICTRANSPORT_EXPORT HafasMgateBackend : public HafasBackend
     Q_PROPERTY(QJsonObject client MEMBER m_client)
     Q_PROPERTY(QString ext MEMBER m_extParam)
     Q_PROPERTY(QString ver MEMBER m_version)
+    Q_PROPERTY(QString rtMode MEMBER m_rtMode)
     /** Salt for request mic/mac parameters, hex-encoded. */
     Q_PROPERTY(QString micMacSalt WRITE setMicMacSalt)
     /** Salt for the request checksum parameter, hex-encoded. */
@@ -91,6 +92,7 @@ private:
     QString m_version;
     QByteArray m_micMacSalt;
     QByteArray m_checksumSalt;
+    QString m_rtMode;
 
     struct ConGroup {
         IndividualTransport access;

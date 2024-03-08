@@ -31,6 +31,8 @@
 #include <QUrlQuery>
 #include <QVersionNumber>
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace KPublicTransport {
 
 class HafasMgateRequestContext
@@ -104,6 +106,9 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
     {
         QJsonObject cfg;
         cfg.insert(QLatin1String("polyEnc"), QLatin1String("GPA"));
+        if (!m_rtMode.isEmpty()) {
+            cfg.insert("rtMode"_L1, m_rtMode);
+        }
 
         const auto depLoc = locationToJson(request.from());
         const auto arrLoc = locationToJson(request.to());

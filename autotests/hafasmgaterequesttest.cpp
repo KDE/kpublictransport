@@ -112,7 +112,7 @@ private Q_SLOTS:
         req.setTo(to);
         req.setDateTime(QDateTime({2023, 6, 24}, {20, 58}, QTimeZone::UTC));
         QTest::newRow("id-based-default") << req << QUrl(s("https://reiseauskunft.bahn.de/bin/mgate.exe"))
-            << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R21.12.a","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA"},"meth":"TripSearch","req":{"arrLocL":[{"extId":"8023456","type":"S"}],"depLocL":[{"extId":"8012345","type":"S"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":true,"getPolyline":false,"getSimpleTrainComposition":true,"getTrainComposition":true,"numF":12,"outDate":"20230624","outFrwd":true,"outTime":"225800"}}],"ver":"1.34"})");
+            << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R21.12.a","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA","rtMode":"HYBRID"},"meth":"TripSearch","req":{"arrLocL":[{"extId":"8023456","type":"S"}],"depLocL":[{"extId":"8012345","type":"S"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":true,"getPolyline":false,"getSimpleTrainComposition":true,"getTrainComposition":true,"numF":12,"outDate":"20230624","outFrwd":true,"outTime":"225800"}}],"ver":"1.34"})");
 
         from = {};
         from.setCoordinate(52, 13);
@@ -121,7 +121,7 @@ private Q_SLOTS:
         req.setFrom(from);
         req.setTo(to);
         QTest::newRow("coordinate-based-default") << req << QUrl(s("https://reiseauskunft.bahn.de/bin/mgate.exe"))
-            << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R21.12.a","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA"},"meth":"TripSearch","req":{"arrLocL":[{"crd":{"x":12000000,"y":48000000},"type":"C"}],"depLocL":[{"crd":{"x":13000000,"y":52000000},"type":"C"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":true,"getPolyline":false,"getSimpleTrainComposition":true,"getTrainComposition":true,"numF":12,"outDate":"20230624","outFrwd":true,"outTime":"225800"}}],"ver":"1.34"})");
+            << QByteArray(R"({"auth":{"aid":"n91dB8Z77MLdoR0K","type":"AID"},"client":{"id":"DB","name":"DB Navigator","type":"AND","v":19040000},"ext":"DB.R21.12.a","formatted":false,"lang":"en","svcReqL":[{"cfg":{"polyEnc":"GPA","rtMode":"HYBRID"},"meth":"TripSearch","req":{"arrLocL":[{"crd":{"x":12000000,"y":48000000},"type":"C"}],"depLocL":[{"crd":{"x":13000000,"y":52000000},"type":"C"}],"extChgTime":-1,"getEco":false,"getIST":false,"getPasslist":true,"getPolyline":false,"getSimpleTrainComposition":true,"getTrainComposition":true,"numF":12,"outDate":"20230624","outFrwd":true,"outTime":"225800"}}],"ver":"1.34"})");
 
         req.setBackendIds({s("de_be_bvg")});
         req.setMaximumResults(4);
