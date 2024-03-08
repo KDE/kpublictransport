@@ -10,6 +10,7 @@
 #include <cstdint>
 #include <vector>
 
+class QString;
 class QStringView;
 
 namespace KPublicTransport {
@@ -25,10 +26,13 @@ namespace UicStationCode
  *  @params allowedCountryCodes if non-empty, only UIC station codes with an UIC country code included
  *  in that list are considered valid. This list has to be sorted.
  */
-bool isValid(QStringView id, const std::vector<uint8_t> &allowedCountryCodes = {});
+[[nodiscard]] bool isValid(QStringView id, const std::vector<uint8_t> &allowedCountryCodes = {});
 
 /** Returns the country code of a given valid UIC station code. */
-QStringView country(QStringView id);
+[[nodiscard]] QStringView country(QStringView id);
+
+/** The identifier type for use in @c Location::identifer for UIC station ids. */
+[[nodiscard]] QString identifierType();
 
 }
 

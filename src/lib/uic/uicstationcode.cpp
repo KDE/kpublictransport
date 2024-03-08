@@ -9,6 +9,7 @@
 #include <QString>
 #include <QStringView>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 bool UicStationCode::isValid(QStringView id, const std::vector<uint8_t> &allowedCountryCodes)
@@ -36,4 +37,9 @@ bool UicStationCode::isValid(QStringView id, const std::vector<uint8_t> &allowed
 QStringView UicStationCode::country(QStringView id)
 {
     return id.mid(0, 2);
+}
+
+QString UicStationCode::identifierType()
+{
+    return u"uic"_s;
 }

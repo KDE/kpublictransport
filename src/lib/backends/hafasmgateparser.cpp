@@ -12,6 +12,7 @@
 #include "geo/polylinedecoder_p.h"
 #include "ifopt/ifoptutil.h"
 #include "json/jsonpointer_p.h"
+#include "uic/uicstationcode.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Platform>
@@ -250,6 +251,9 @@ std::vector<Location> HafasMgateParser::parseLocations(const QJsonArray &locL) c
             // ### is this A× prefix actually standard or do we need to configure that per provider?
             if (gid.startsWith(QStringLiteral("A×")) && IfoptUtil::isValid(QStringView(gid).mid(2))) {
                 loc.setIdentifier(IfoptUtil::identifierType(), gid.mid(2));
+            }
+            if (gid.startsWith(QStringLiteral("U×00")) && UicStationCode::isValid(QStringView(gid).mid(4))) {
+                loc.setIdentifier(UicStationCode::identifierType(), gid.mid(4));
             }
         }
 
