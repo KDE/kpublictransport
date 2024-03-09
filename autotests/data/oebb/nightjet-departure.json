@@ -23,7 +23,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "314",
                 "platformPositionBegin": 0,
                 "platformPositionEnd": 0.14347825944423676,
@@ -33,7 +39,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "313",
                 "platformPositionBegin": 0.14347825944423676,
                 "platformPositionEnd": 0.2869565188884735,
@@ -43,7 +55,23 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|WheelchairAccessible|BikeStorage",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
                 "name": "312",
                 "platformPositionBegin": 0.2869565188884735,
                 "platformPositionEnd": 0.4304347634315491,
@@ -53,7 +81,6 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "NoFeatures",
                 "name": "311",
                 "platformPositionBegin": 0.4304347634315491,
                 "platformPositionEnd": 0.573913037776947,
@@ -63,7 +90,6 @@
                 "classes": "FirstClass|SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "NoFeatures",
                 "name": "310",
                 "platformPositionBegin": 0.573913037776947,
                 "platformPositionEnd": 0.717391312122345,
@@ -73,7 +99,6 @@
                 "classes": "UnknownClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
-                "features": "NoFeatures",
                 "name": "61",
                 "platformPositionBegin": 0.717391312122345,
                 "platformPositionEnd": 0.8608695268630981,
@@ -83,7 +108,6 @@
                 "classes": "UnknownClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
-                "features": "NoFeatures",
                 "name": "62",
                 "platformPositionBegin": 0.8608695268630981,
                 "platformPositionEnd": 1.004347801208496,

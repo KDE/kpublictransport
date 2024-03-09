@@ -10,6 +10,7 @@
 #include "kpublictransport_export.h"
 
 #include "datatypes.h"
+#include "feature.h"
 
 namespace KPublicTransport {
 
@@ -67,7 +68,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Classes, classes, setClasses)
 
-    /** Amenities or other features available in a vehicle section. */
+    /** Amenities or other features available in a vehicle section.
+     *  @deprecated Use KPublicTransport::Feature instead.
+     */
     enum Feature {
         NoFeatures = 0,
         AirConditioning = 1, ///< vehicle section is air conditioned
@@ -76,16 +79,33 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
         WheelchairAccessible = 8, ///< wheelchair access supported
         SilentArea = 16, ///< wishful thinking usually
         BikeStorage = 32, ///< vehicle section contains space for bikes
-        // TODO there's a few more we get from DB
     };
     Q_DECLARE_FLAGS(Features, Feature)
     Q_FLAG(Features)
     /** Features available in this vehicle section.
      *  Can be more than one.
+     *  @deprecated use sectionFeatures instead
      */
-    KPUBLICTRANSPORT_PROPERTY(Features, features, setFeatures)
-    /** Feature flag as a variant list, for consumption in QML. */
+    Q_PROPERTY(Features features READ features WRITE setFeatures STORED false)
+    [[nodiscard]] [[deprecated("use sectionFeatures")]] Features features() const;
+    [[deprecated("use setSectionFeatures")]] void setFeatures(Features features);
+
+    /** Feature flag as a variant list, for consumption in QML.
+     *  @deprecated use sectionFeatures instead
+     */
     Q_PROPERTY(QVariantList featureList READ featureList STORED false)
+
+    /** Features of this section, for consumption by QML. */
+    Q_PROPERTY(std::vector<KPublicTransport::Feature> sectionFeatures READ sectionFeatures STORED false)
+
+    [[nodiscard]] const std::vector<KPublicTransport::Feature>& sectionFeatures() const;
+    [[nodiscard]] std::vector<KPublicTransport::Feature>&& takeSectionFeatures();
+    void setSectionFeatures(std::vector<KPublicTransport::Feature> &&features);
+
+    /** Returns the first feature of type @p type.
+     *  Returns an invalid feature of no feature of that type exists.
+     */
+    Q_INVOKABLE [[nodiscard]] KPublicTransport::Feature feature(KPublicTransport::Feature::Type type) const;
 
     /** Number of decks in this vehicle section. */
     KPUBLICTRANSPORT_PROPERTY(int, deckCount, setDeckCount)
@@ -207,7 +227,7 @@ public:
     [[nodiscard]] static std::vector<Vehicle> fromJson(const QJsonArray &array);
 
 private:
-    [[nodiscard]] QVariantList sectionsVariant() const;
+    [[nodiscard]] [[deprecated("use sectionFeatures instead")]] QVariantList sectionsVariant() const;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Classes)

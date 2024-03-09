@@ -71,6 +71,7 @@ target_sources(KPublicTransport PRIVATE
     datatypes/equipment.cpp
     datatypes/equipmentutil.cpp
     datatypes/feature.cpp
+    datatypes/featureutil.cpp
     datatypes/individualtransport.cpp
     datatypes/journey.cpp
     datatypes/journeyutil.cpp

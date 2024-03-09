@@ -57,7 +57,6 @@
                 "classes": "UnknownClass",
                 "connectedSides": "NoSide",
                 "deckCount": 1,
-                "features": "NoFeatures",
                 "platformPositionBegin": 0.08864744752645493,
                 "platformPositionEnd": 0.13144123554229736,
                 "type": "Engine"
@@ -66,7 +65,23 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|ToddlerArea|BikeStorage",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "ToddlerArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
                 "name": "31",
                 "platformPositionBegin": 0.13144123554229736,
                 "platformPositionEnd": 0.19019955396652222,
@@ -76,7 +91,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "32",
                 "platformPositionBegin": 0.19019955396652222,
                 "platformPositionEnd": 0.24895787239074707,
@@ -86,7 +107,18 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|SilentArea",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
                 "name": "33",
                 "platformPositionBegin": 0.24895787239074707,
                 "platformPositionEnd": 0.3077161908149719,
@@ -96,7 +128,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "34",
                 "platformPositionBegin": 0.3077161908149719,
                 "platformPositionEnd": 0.3664745092391968,
@@ -106,7 +144,23 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|Restaurant|WheelchairAccessible",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    }
+                ],
                 "name": "35",
                 "platformPositionBegin": 0.3664745092391968,
                 "platformPositionEnd": 0.42523282766342163,
@@ -116,7 +170,13 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "36",
                 "platformPositionBegin": 0.42523282766342163,
                 "platformPositionEnd": 0.4839911162853241,
@@ -126,7 +186,18 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|SilentArea",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
                 "name": "37",
                 "platformPositionBegin": 0.4839911162853241,
                 "platformPositionEnd": 0.5436363220214844,
@@ -136,7 +207,6 @@
                 "classes": "UnknownClass",
                 "connectedSides": "NoSide",
                 "deckCount": 1,
-                "features": "NoFeatures",
                 "platformPositionBegin": 0.5436363220214844,
                 "platformPositionEnd": 0.5864301323890686,
                 "type": "Engine"
@@ -145,7 +215,23 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|ToddlerArea|BikeStorage",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "ToddlerArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
                 "name": "21",
                 "platformPositionBegin": 0.5864301323890686,
                 "platformPositionEnd": 0.6451884508132935,
@@ -155,7 +241,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "22",
                 "platformPositionBegin": 0.6451884508132935,
                 "platformPositionEnd": 0.7039467692375183,
@@ -165,7 +257,18 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|SilentArea",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
                 "name": "23",
                 "platformPositionBegin": 0.7039467692375183,
                 "platformPositionEnd": 0.7627050280570984,
@@ -175,7 +278,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "24",
                 "platformPositionBegin": 0.7627050280570984,
                 "platformPositionEnd": 0.8214633464813232,
@@ -185,7 +294,23 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|Restaurant|WheelchairAccessible",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    }
+                ],
                 "name": "25",
                 "platformPositionBegin": 0.8214633464813232,
                 "platformPositionEnd": 0.8802216649055481,
@@ -195,7 +320,13 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
                 "name": "26",
                 "platformPositionBegin": 0.8802216649055481,
                 "platformPositionEnd": 0.938979983329773,
@@ -205,7 +336,18 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
-                "features": "AirConditioning|SilentArea",
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
                 "name": "27",
                 "platformPositionBegin": 0.938979983329773,
                 "platformPositionEnd": 0.9986252188682556,

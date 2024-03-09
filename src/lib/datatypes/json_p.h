@@ -9,6 +9,7 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QMetaEnum>
 #include <QStringList>
 
 #include <vector>
@@ -59,6 +60,13 @@ namespace Json
         res.reserve(a.size());
         std::transform(a.begin(), a.end(), std::back_inserter(res), [](const auto &v) { return T::fromJson(v.toObject()); });
         return res;
+    }
+
+    /** Deserialize an enum string. */
+    template <typename Flags> inline Flags flagsFromJson(const QJsonValue &s)
+    {
+        const auto me = QMetaEnum::fromType<Flags>();
+        return static_cast<Flags>(me.keysToValue(s.toString().toUtf8().constData()));
     }
 }
 

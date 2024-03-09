@@ -7,6 +7,7 @@
 #include "vehicle.h"
 #include "json_p.h"
 #include "datatypes_p.h"
+#include "featureutil_p.h"
 #include "mergeutil_p.h"
 
 #include <QDebug>
@@ -15,6 +16,7 @@
 
 #include <limits>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -27,10 +29,10 @@ public:
     float platformPositionEnd = -1.0;
     VehicleSection::Type type = VehicleSection::UnknownType;
     VehicleSection::Classes classes = VehicleSection::UnknownClass;
-    VehicleSection::Features features = VehicleSection::NoFeatures;
     int deckCount = 1;
     VehicleSection::Sides connectedSides = VehicleSection::Front | VehicleSection::Back;
     QString platformSectionName;
+    std::vector<Feature> sectionFeatures;
 };
 
 class VehiclePrivate : public QSharedData
@@ -49,10 +51,90 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionBegin, set
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, float, platformPositionEnd, setPlatformPositionEnd)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes, setClasses)
-KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Features, features, setFeatures)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, int, deckCount, setDeckCount)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedSides, setConnectedSides)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, setPlatformSectionName)
+
+VehicleSection::Features VehicleSection::features() const
+{
+    struct {
+        KPublicTransport::Feature::Type type;
+        Feature legacyType;
+    } constexpr map[] = {
+        { KPublicTransport::Feature::AirConditioning, AirConditioning },
+        { KPublicTransport::Feature::Restaurant, Restaurant },
+        { KPublicTransport::Feature::ToddlerArea, ToddlerArea },
+        { KPublicTransport::Feature::WheelchairAccessible, WheelchairAccessible },
+        { KPublicTransport::Feature::SilentArea, SilentArea },
+        { KPublicTransport::Feature::BikeStorage, BikeStorage },
+    };
+
+    VehicleSection::Features features;
+    for (const auto &f : d->sectionFeatures) {
+        if (f.availability() == KPublicTransport::Feature::Unavailable) {
+            continue;
+        }
+        const auto it = std::find_if(std::begin(map), std::end(map), [&f](auto m) { return m.type == f.type(); });
+        if (it == std::end(map)) {
+            continue;
+        }
+        features |= (*it).legacyType;
+    }
+
+    return features;
+}
+
+[[nodiscard]] static constexpr KPublicTransport::Feature::Type fromLegacyFeature(int f)
+{
+    constexpr KPublicTransport::Feature::Type map[] = {
+        KPublicTransport::Feature::NoFeature,
+        KPublicTransport::Feature::AirConditioning,
+        KPublicTransport::Feature::Restaurant,
+        KPublicTransport::Feature::ToddlerArea,
+        KPublicTransport::Feature::WheelchairAccessible,
+        KPublicTransport::Feature::SilentArea,
+        KPublicTransport::Feature::BikeStorage,
+    };
+    return map[f];
+}
+
+void VehicleSection::setFeatures(Features features)
+{
+    d.detach();
+    if (features) {
+        std::vector<KPublicTransport::Feature> fs;
+        const auto me = QMetaEnum::fromType<VehicleSection::Features>();
+        for (int i = 0; i < me.keyCount(); ++i) {
+            if (const auto v = static_cast<VehicleSection::Feature>(me.value(i)); features & v) {
+                fs.emplace_back(fromLegacyFeature(i), KPublicTransport::Feature::Available);
+            }
+        }
+        FeatureUtil::set(d->sectionFeatures, std::move(fs));
+    } else {
+        d->sectionFeatures.clear();
+    }
+}
+
+const std::vector<KPublicTransport::Feature>& VehicleSection::sectionFeatures() const
+{
+    return d->sectionFeatures;
+}
+
+std::vector<KPublicTransport::Feature>&& VehicleSection::takeSectionFeatures()
+{
+    return std::move(d->sectionFeatures);
+}
+
+void VehicleSection::setSectionFeatures(std::vector<KPublicTransport::Feature> &&features)
+{
+    d.detach();
+    FeatureUtil::set(d->sectionFeatures, std::move(features));
+}
+
+KPublicTransport::Feature VehicleSection::feature(KPublicTransport::Feature::Type type) const
+{
+    return FeatureUtil::findByType(d->sectionFeatures, type);
+}
 
 VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSection &rhs)
 {
@@ -72,12 +154,17 @@ VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSec
     res.setDeckCount(std::max(lhs.deckCount(), rhs.deckCount()));
     res.setConnectedSides(lhs.connectedSides() & rhs.connectedSides());
     res.setPlatformSectionName(MergeUtil::mergeString(lhs.platformSectionName(), rhs.platformSectionName()));
+    res.setSectionFeatures(FeatureUtil::merge(lhs.sectionFeatures(), rhs.sectionFeatures()));
     return res;
 }
 
 QJsonObject VehicleSection::toJson(const VehicleSection &section)
 {
-    return Json::toJson(section);
+    auto obj = Json::toJson(section);
+    if (!section.d->sectionFeatures.empty()) {
+        obj.insert("features"_L1, KPublicTransport::Feature::toJson(section.d->sectionFeatures));
+    }
+    return obj;
 }
 
 QJsonArray VehicleSection::toJson(const std::vector<VehicleSection> &sections)
@@ -87,7 +174,15 @@ QJsonArray VehicleSection::toJson(const std::vector<VehicleSection> &sections)
 
 VehicleSection VehicleSection::fromJson(const QJsonObject &obj)
 {
-    return Json::fromJson<VehicleSection>(obj);
+    auto v = Json::fromJson<VehicleSection>(obj);
+    const auto fVal = obj.value("features"_L1);
+    if (fVal.isArray()) {
+        v.setSectionFeatures(KPublicTransport::Feature::fromJson(fVal.toArray()));
+    } else if (fVal.isString()) {
+        // backward compat for existing data
+        v.setFeatures(Json::flagsFromJson<Features>(fVal));
+    }
+    return v;
 }
 
 std::vector<VehicleSection> VehicleSection::fromJson(const QJsonArray &array)
@@ -100,8 +195,9 @@ QVariantList VehicleSection::featureList() const
     QVariantList l;
     const auto me = QMetaEnum::fromType<VehicleSection::Features>();
     for (int i = 0; i < me.keyCount(); ++i) {
-        if (features() & static_cast<VehicleSection::Feature>(1 << i))
+        if (features() & static_cast<VehicleSection::Feature>(1 << i)) {
             l.push_back(static_cast<VehicleSection::Feature>(1 << i));
+        }
     }
     return l;
 }
