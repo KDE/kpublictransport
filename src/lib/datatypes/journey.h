@@ -156,17 +156,17 @@ public:
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
 
 public:
-    bool hasExpectedDepartureTime() const;
-    int departureDelay() const;
-    bool hasExpectedArrivalTime() const;
-    int arrivalDelay() const;
+    [[nodiscard]] bool hasExpectedDepartureTime() const;
+    [[nodiscard]] int departureDelay() const;
+    [[nodiscard]] bool hasExpectedArrivalTime() const;
+    [[nodiscard]] int arrivalDelay() const;
 
-    int duration() const;
+    [[nodiscard]] int duration() const;
 
-    bool hasExpectedDeparturePlatform() const;
-    bool departurePlatformChanged() const;
-    bool hasExpectedArrivalPlatform() const;
-    bool arrivalPlatformChanged() const;
+    [[nodiscard]] bool hasExpectedDeparturePlatform() const;
+    [[nodiscard]] bool departurePlatformChanged() const;
+    [[nodiscard]] bool hasExpectedArrivalPlatform() const;
+    [[nodiscard]] bool arrivalPlatformChanged() const;
 
     /** Adds a note. This will check for duplicates and normalize the notes. */
     void addNote(const QString &note);
@@ -175,7 +175,7 @@ public:
     /** Intermediate stop-overs along this journey section.
      *  This does not include the departure and arrival stops, and might be empty on backends not providing this information.
      */
-    const std::vector<Stopover>& intermediateStops() const;
+    [[nodiscard]] const std::vector<Stopover>& intermediateStops() const;
     /** Moves the intermediate stops out of this object. */
     std::vector<Stopover>&& takeIntermediateStops();
     /** Set the intermediate stops. */
@@ -185,7 +185,7 @@ public:
      *  This is the same information as accessible by individual properties,
      *  so this is mainly useful if you have to interface with code expecting a Stopover object.
      */
-    Stopover departure() const;
+    [[nodiscard]] Stopover departure() const;
     /**
      * Sets all departure properties from a given Stopover.
      * This effects location and time, but doesn't modify intermediate stops or paths.
@@ -196,7 +196,7 @@ public:
      *  This is the same information as accessible by individual properties,
      *  so this is mainly useful if you have to interface with code expecting a Stopover object.
      */
-    Stopover arrival() const;
+    [[nodiscard]] Stopover arrival() const;
     /**
      * Sets all arrival properties from a given Stopover.
      * This effects location and time, but doesn't modify intermediate stops or paths.
@@ -204,7 +204,7 @@ public:
     void setArrival(const Stopover &arrival);
 
     /** Vehicle load information for this journey section, if available. */
-    const std::vector<LoadInfo>& loadInformation() const;
+    [[nodiscard]] const std::vector<LoadInfo>& loadInformation() const;
     /** Moves the load information out of this object for modification. */
     std::vector<LoadInfo>&& takeLoadInformation();
     /** Set the vehicle load information for this journey section. */
@@ -216,25 +216,25 @@ public:
     void applyMetaData(bool download);
 
     /** Checks if two instances refer to the same journey section (which does not necessarily mean they are exactly equal). */
-    static bool isSame(const JourneySection &lhs, const JourneySection &rhs);
+    [[nodiscard]] static bool isSame(const JourneySection &lhs, const JourneySection &rhs);
 
     /** Merge two instances.
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
-    static JourneySection merge(const JourneySection &lhs, const JourneySection &rhs);
+    [[nodiscard]] static JourneySection merge(const JourneySection &lhs, const JourneySection &rhs);
 
     /** Serializes one journey section to JSON. */
-    static QJsonObject toJson(const JourneySection &section);
+    [[nodiscard]] static QJsonObject toJson(const JourneySection &section);
     /** Serializes a vector of journey sections to JSON. */
-    static QJsonArray toJson(const std::vector<JourneySection> &sections);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<JourneySection> &sections);
     /** Deserialize an object from JSON. */
-    static JourneySection fromJson(const QJsonObject &obj);
+    [[nodiscard]] static JourneySection fromJson(const QJsonObject &obj);
     /** Deserialize a vector of journey sections from JSON. */
-    static std::vector<JourneySection> fromJson(const QJsonArray &array);
+    [[nodiscard]] static std::vector<JourneySection> fromJson(const QJsonArray &array);
 
 private:
-    QVariantList intermediateStopsVariant() const;
-    QVariantList loadInformationVariant() const;
+    [[nodiscard]] QVariantList intermediateStopsVariant() const;
+    [[nodiscard]] QVariantList loadInformationVariant() const;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(JourneySection::Modes)
@@ -278,25 +278,25 @@ class KPUBLICTRANSPORT_EXPORT Journey
 
 public:
     /** The journey sections. */
-    const std::vector<JourneySection>& sections() const;
+    [[nodiscard]] const std::vector<JourneySection>& sections() const;
     /** Moves the journey sections out of this object. */
-    std::vector<JourneySection>&& takeSections();
+    [[nodiscard]] std::vector<JourneySection>&& takeSections();
     /** Sets the journey sections. */
     void setSections(std::vector<JourneySection> &&sections);
 
-    QDateTime scheduledDepartureTime() const;
-    bool hasExpectedDepartureTime() const;
-    QDateTime expectedDepartureTime() const;
-    int departureDelay() const;
+    [[nodiscard]] QDateTime scheduledDepartureTime() const;
+    [[nodiscard]] bool hasExpectedDepartureTime() const;
+    [[nodiscard]] QDateTime expectedDepartureTime() const;
+    [[nodiscard]] int departureDelay() const;
 
-    QDateTime scheduledArrivalTime() const;
-    bool hasExpectedArrivalTime() const;
-    QDateTime expectedArrivalTime() const;
-    int arrivalDelay() const;
+    [[nodiscard]] QDateTime scheduledArrivalTime() const;
+    [[nodiscard]] bool hasExpectedArrivalTime() const;
+    [[nodiscard]] QDateTime expectedArrivalTime() const;
+    [[nodiscard]] int arrivalDelay() const;
 
-    int duration() const;
-    int numberOfChanges() const;
-    Disruption::Effect disruptionEffect() const;
+    [[nodiscard]] int duration() const;
+    [[nodiscard]] int numberOfChanges() const;
+    [[nodiscard]] Disruption::Effect disruptionEffect() const;
 
     /** Augment line meta data.
      *  @param download if set to @p true, trigger the download of locally missing assets.
@@ -304,24 +304,24 @@ public:
     void applyMetaData(bool download);
 
     /** Checks if two instances refer to the same journey (which does not necessarily mean they are exactly equal). */
-    static bool isSame(const Journey &lhs, const Journey &rhs);
+    [[nodiscard]] static bool isSame(const Journey &lhs, const Journey &rhs);
 
     /** Merge two instances.
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
-    static Journey merge(const Journey &lhs, const Journey &rhs);
+    [[nodiscard]] static Journey merge(const Journey &lhs, const Journey &rhs);
 
     /** Serializes one journey object to JSON. */
-    static QJsonObject toJson(const Journey &journey);
+    [[nodiscard]] static QJsonObject toJson(const Journey &journey);
     /** Serializes a vector of journey objects to JSON. */
-    static QJsonArray toJson(const std::vector<Journey> &journeys);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<Journey> &journeys);
     /** Deserialize an object from JSON. */
-    static Journey fromJson(const QJsonObject &obj);
+    [[nodiscard]] static Journey fromJson(const QJsonObject &obj);
     /** Deserialize a list of journey from JSON. */
-    static std::vector<Journey> fromJson(const QJsonArray &array);
+    [[nodiscard]] static std::vector<Journey> fromJson(const QJsonArray &array);
 
 private:
-    QVariantList sectionsVariant() const;
+    [[nodiscard]] QVariantList sectionsVariant() const;
 };
 
 }

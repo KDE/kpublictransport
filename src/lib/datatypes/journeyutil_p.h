@@ -20,12 +20,12 @@ namespace JourneyUtil
     /** Departure time of the first transport section (overall departure time, if there is none).
      *  Unlike the overall departure time, this guarantees a stable order in the face of merging journeys.
      */
-    QDateTime firstTransportDeparture(const Journey &jny);
+    [[nodiscard]] QDateTime firstTransportDeparture(const Journey &jny);
 
     /** Less than comparison on first transport departure time. */
-    bool firstTransportDepartureLessThan(const Journey &lhs, const Journey &rhs);
+    [[nodiscard]] bool firstTransportDepartureLessThan(const Journey &lhs, const Journey &rhs);
     /** Equal comparison on first transport departure time. */
-    bool firstTransportDepartureEqual(const Journey &lhs, const Journey &rhs);
+    [[nodiscard]] bool firstTransportDepartureEqual(const Journey &lhs, const Journey &rhs);
 
     /** Reinterpret all floating times as times with the given timezone. */
     void applyTimeZone(Journey &jny, const QTimeZone &tz);

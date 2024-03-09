@@ -113,22 +113,22 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     KPUBLICTRANSPORT_PROPERTY(QString, platformSectionName, setPlatformSectionName)
 
     /** Returns @c true if this vehicle section has a valid platform position set. */
-    bool hasPlatformPosition() const;
+    [[nodiscard]] bool hasPlatformPosition() const;
 
     /** Merge two VehicleSection instances. */
-    static VehicleSection merge(const VehicleSection &lhs, const VehicleSection &rhs);
+    [[nodiscard]] static VehicleSection merge(const VehicleSection &lhs, const VehicleSection &rhs);
 
     /** Serializes one vehicle section to JSON. */
-    static QJsonObject toJson(const VehicleSection &section);
+    [[nodiscard]] static QJsonObject toJson(const VehicleSection &section);
     /** Serializes a vector of vehicle sections to JSON. */
-    static QJsonArray toJson(const std::vector<VehicleSection> &sections);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<VehicleSection> &sections);
     /** Deserialize an object from JSON. */
-    static VehicleSection fromJson(const QJsonObject &obj);
+    [[nodiscard]] static VehicleSection fromJson(const QJsonObject &obj);
     /** Deserialize a vector of vehicle sections from JSON. */
-    static std::vector<VehicleSection> fromJson(const QJsonArray &array);
+    [[nodiscard]] static std::vector<VehicleSection> fromJson(const QJsonArray &array);
 
 private:
-    QVariantList featureList() const;
+    [[nodiscard]] QVariantList featureList() const;
 };
 
 class VehiclePrivate;
@@ -170,44 +170,44 @@ class KPUBLICTRANSPORT_EXPORT Vehicle
 
 public:
     /** Returns @c true if this object contains no information beyond the default values. */
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     /** The vehicle sections. */
-    const std::vector<VehicleSection>& sections() const;
+    [[nodiscard]] const std::vector<VehicleSection>& sections() const;
     /** Moves the vehicle sections out of this object. */
-    std::vector<VehicleSection>&& takeSections();
+    [[nodiscard]] std::vector<VehicleSection>&& takeSections();
     /** Sets the vehicle sections. */
     void setSections(std::vector<VehicleSection> &&sections);
     void setSections(const std::vector<VehicleSection> &sections);
 
-    float platformPositionBegin() const;
-    float platformPositionEnd() const;
+    [[nodiscard]] float platformPositionBegin() const;
+    [[nodiscard]] float platformPositionEnd() const;
 
     /** Returns the center position of the vehicle section named @p sectionName
      *  in relative platform coordinates.
      *  Useful for centering a view on a selected section for example.
      */
-    Q_INVOKABLE float platformPositionForSection(const QString &sectionName) const;
+    Q_INVOKABLE [[nodiscard]] float platformPositionForSection(const QString &sectionName) const;
 
     /** Checks whether all vehicle sections have platform positions set. */
-    bool hasPlatformPositions() const;
+    [[nodiscard]] bool hasPlatformPositions() const;
     /** Check whether all vehicle sections have platform section names set. */
-    bool hasPlatformSectionNames() const;
+    [[nodiscard]] bool hasPlatformSectionNames() const;
 
     /** Merge two Vehicle instances. */
-    static Vehicle merge(const Vehicle &lhs, const Vehicle &rhs);
+    [[nodiscard]] static Vehicle merge(const Vehicle &lhs, const Vehicle &rhs);
 
     /** Serializes one vehicle object to JSON. */
-    static QJsonObject toJson(const Vehicle &vehicle);
+    [[nodiscard]] static QJsonObject toJson(const Vehicle &vehicle);
     /** Serializes multiple vehicle objects to JSON. */
-    static QJsonArray toJson(const std::vector<Vehicle> &vehicles);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<Vehicle> &vehicles);
     /** Deserialize an object from JSON. */
-    static Vehicle fromJson(const QJsonObject &obj);
+    [[nodiscard]] static Vehicle fromJson(const QJsonObject &obj);
     /** Deserialize multiple objects from JSON. */
-    static std::vector<Vehicle> fromJson(const QJsonArray &array);
+    [[nodiscard]] static std::vector<Vehicle> fromJson(const QJsonArray &array);
 
 private:
-    QVariantList sectionsVariant() const;
+    [[nodiscard]] QVariantList sectionsVariant() const;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Classes)
