@@ -4,7 +4,7 @@
 add_subdirectory(knowledgedb)
 
 add_library(KPublicTransport)
-
+qt_extract_metatypes(KPublicTransport)
 
 target_sources(KPublicTransport PRIVATE
     assetrepository.cpp
