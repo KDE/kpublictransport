@@ -10,20 +10,6 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 
-#include <KPublicTransport/CoverageArea>
-#include <KPublicTransport/Equipment>
-#include <KPublicTransport/IndividualTransport>
-#include <KPublicTransport/Journey>
-#include <KPublicTransport/JourneyRequest>
-#include <KPublicTransport/Line>
-#include <KPublicTransport/LocationRequest>
-#include <KPublicTransport/Path>
-#include <KPublicTransport/Platform>
-#include <KPublicTransport/RentalVehicle>
-#include <KPublicTransport/StopoverRequest>
-#include <KPublicTransport/Vehicle>
-#include <KPublicTransport/VehicleLayoutRequest>
-
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
     qRegisterMetaType<KPublicTransport::CoverageArea>();
