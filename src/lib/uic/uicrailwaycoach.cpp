@@ -61,16 +61,19 @@ VehicleSection::Classes UicRailwayCoach::coachClass(QStringView coachNumber, QSt
         return (*it).classes;
     }
 
-    const auto cls = classificationDigit(coachNumber);
-    if (!cls.empty()) {
-        switch (cls.at(0).cell()) {
-            case '1':
-                return VehicleSection::FirstClass;
-            case '2':
-            case '5':
-                return VehicleSection::SecondClass;
-            case '3':
-                return VehicleSection::FirstClass | VehicleSection::SecondClass;
+    const auto type = UicRailwayCoach::type(coachNumber, coachClassification);
+    if (type == VehicleSection::PassengerCar || type == VehicleSection::SleepingCar) {
+        const auto cls = classificationDigit(coachNumber);
+        if (!cls.empty()) {
+            switch (cls.at(0).cell()) {
+                case '1':
+                    return VehicleSection::FirstClass;
+                case '2':
+                case '5':
+                    return VehicleSection::SecondClass;
+                case '3':
+                    return VehicleSection::FirstClass | VehicleSection::SecondClass;
+            }
         }
     }
 
