@@ -26,6 +26,7 @@ private Q_SLOTS:
         QCOMPARE(UicRailwayCoach::coachClass(QString(), u"DABpza"), VehicleSection::SecondClass | VehicleSection::FirstClass);
         QCOMPARE(UicRailwayCoach::coachClass(u"505486720019", u"ABfbdmteeo"), VehicleSection::SecondClass | VehicleSection::FirstClass);
         QCOMPARE(UicRailwayCoach::coachClass(u"615485711035", u"ARmpee"), VehicleSection::FirstClass);
+        QCOMPARE(UicRailwayCoach::coachClass(u"938054061834", QString()), VehicleSection::UnknownClass);
     }
 
     void testDeckCount()
