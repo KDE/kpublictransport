@@ -7,6 +7,7 @@
 #include "testhelpers.h"
 
 #include "backends/hafasvehiclelayoutparser.cpp"
+#include "datatypes/featureutil.cpp"
 
 #include <QFile>
 #include <QJsonObject>

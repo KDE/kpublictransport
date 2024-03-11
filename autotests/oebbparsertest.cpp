@@ -6,6 +6,7 @@
 
 #include "testhelpers.h"
 #include "backends/oebbvehiclelayoutparser.cpp"
+#include "datatypes/featureutil.cpp"
 #include "uic/uicrailwaycoach.cpp"
 
 #include <QFile>

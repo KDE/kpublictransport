@@ -110,7 +110,22 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
                         "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessibleToilet"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
                     }
                 ],
                 "name": "9",

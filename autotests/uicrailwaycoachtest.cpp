@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "../src/lib/datatypes/featureutil.cpp"
 #include "../src/lib/uic/uicrailwaycoach.cpp"
 
 #include <QTest>
@@ -11,6 +12,18 @@
 #define s(x) QStringLiteral(x)
 
 using namespace KPublicTransport;
+
+namespace KPublicTransport {
+bool operator==(const Feature &lhs, const Feature &rhs)
+{
+    return lhs.type() == rhs.type()
+        && lhs.availability() == rhs.availability()
+        && lhs.name() == rhs.name()
+        && lhs.description() == rhs.description()
+        && lhs.disruptionEffect() == rhs.disruptionEffect()
+        && lhs.quantity() == rhs.quantity();
+}
+}
 
 class UicRailwayCoachTest: public QObject
 {
@@ -43,18 +56,18 @@ private Q_SLOTS:
 
     void testFeatures()
     {
-        QCOMPARE(UicRailwayCoach::features(QString(), QString()), VehicleSection::NoFeatures);
-        QCOMPARE(UicRailwayCoach::features(u"738029947087", u"Bpmbz"), VehicleSection::AirConditioning | VehicleSection::WheelchairAccessible);
-        QCOMPARE(UicRailwayCoach::features(u"738029947087", QString()), VehicleSection::AirConditioning);
-        QCOMPARE(UicRailwayCoach::features(u"738180907342", u"Afmpz"), VehicleSection::AirConditioning);
-        QCOMPARE(UicRailwayCoach::features(QString(), u"WRmz"), VehicleSection::Restaurant);
-        QCOMPARE(UicRailwayCoach::features(u"938054112686", u"WRmz"), VehicleSection::Restaurant);
-        QCOMPARE(UicRailwayCoach::features(u"508086818566", u"DBpbzfa"), VehicleSection::WheelchairAccessible | VehicleSection::AirConditioning);
-        QCOMPARE(UicRailwayCoach::features(u"738185905341", u"ARbmpz"), VehicleSection::Restaurant | VehicleSection::WheelchairAccessible | VehicleSection::AirConditioning);
-        QCOMPARE(UicRailwayCoach::features(u"508086818566", QString()), VehicleSection::NoFeatures);
-        QCOMPARE(UicRailwayCoach::features(u"918061465699", u"E1465"), VehicleSection::NoFeatures);
-        QCOMPARE(UicRailwayCoach::features(u"505486720019", u"ABfbdmteeo"), VehicleSection::WheelchairAccessible | VehicleSection::BikeStorage);
-        QCOMPARE(UicRailwayCoach::features(u"615485711035", u"ARmpee"), VehicleSection::Restaurant);
+        QCOMPARE(UicRailwayCoach::features(QString(), QString()).size(), 0);
+        QCOMPARE(UicRailwayCoach::features(u"738029947087", u"Bpmbz"), std::vector<Feature>({ Feature{Feature::AirConditioning}, Feature{Feature::WheelchairAccessible}}));
+        QCOMPARE(UicRailwayCoach::features(u"738029947087", QString()), std::vector<Feature>({ Feature{Feature::AirConditioning}}));
+        QCOMPARE(UicRailwayCoach::features(u"738180907342", u"Afmpz"), std::vector<Feature>({ Feature{Feature::AirConditioning}}));
+        QCOMPARE(UicRailwayCoach::features(QString(), u"WRmz"), std::vector<Feature>({ Feature{Feature::Restaurant}}));
+        QCOMPARE(UicRailwayCoach::features(u"938054112686", u"WRmz"), std::vector<Feature>({ Feature{Feature::Restaurant}}));
+        QCOMPARE(UicRailwayCoach::features(u"508086818566", u"DBpbzfa"), std::vector<Feature>({ Feature{Feature::AirConditioning}, Feature{Feature::WheelchairAccessible}}));
+        QCOMPARE(UicRailwayCoach::features(u"738185905341", u"ARbmpz"), std::vector<Feature>({ Feature{Feature::AirConditioning}, Feature{Feature::Restaurant}, Feature{Feature::WheelchairAccessible}}));
+        QCOMPARE(UicRailwayCoach::features(u"508086818566", QString()), std::vector<Feature>());
+        QCOMPARE(UicRailwayCoach::features(u"918061465699", u"E1465"), std::vector<Feature>());
+        QCOMPARE(UicRailwayCoach::features(u"505486720019", u"ABfbdmteeo"), std::vector<Feature>({ Feature{Feature::WheelchairAccessible}, Feature{Feature::BikeStorage}}));
+        QCOMPARE(UicRailwayCoach::features(u"615485711035", u"ARmpee"), std::vector<Feature>({ Feature{Feature::Restaurant}}));
     }
 
     void testType()

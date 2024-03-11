@@ -5,7 +5,13 @@
             "classes": "SecondClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "features": "WheelchairAccessible",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "type": "WheelchairAccessible"
+                }
+            ],
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
             "platformSectionName": "A",
@@ -24,7 +30,13 @@
             "classes": "SecondClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "features": "BikeStorage",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "type": "BikeStorage"
+                }
+            ],
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
             "platformSectionName": "B",
@@ -34,7 +46,13 @@
             "classes": "SecondClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "features": "BikeStorage",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "type": "BikeStorage"
+                }
+            ],
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
             "platformSectionName": "B",
@@ -44,7 +62,13 @@
             "classes": "SecondClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "features": "WheelchairAccessible",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "type": "WheelchairAccessible"
+                }
+            ],
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
             "platformSectionName": "C",
@@ -63,7 +87,13 @@
             "classes": "SecondClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "features": "BikeStorage",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "type": "BikeStorage"
+                }
+            ],
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
             "platformSectionName": "C",
@@ -73,7 +103,13 @@
             "classes": "SecondClass",
             "connectedSides": "Front|Back",
             "deckCount": 1,
-            "features": "BikeStorage",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "type": "BikeStorage"
+                }
+            ],
             "platformPositionBegin": -1,
             "platformPositionEnd": -1,
             "platformSectionName": "C",

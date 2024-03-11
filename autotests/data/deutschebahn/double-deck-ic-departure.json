@@ -178,6 +178,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessibleToilet"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
                     }
                 ],
                 "name": "1",

@@ -5,6 +5,7 @@
 */
 
 #include "deutschebahnvehiclelayoutparser.h"
+#include "datatypes/featureutil_p.h"
 #include "uic/uicrailwaycoach.h"
 
 #include <QDateTime>
@@ -15,6 +16,7 @@
 
 #include <cmath>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 struct {
@@ -106,10 +108,24 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     return true;
 }
 
+struct {
+    const char *name;
+    Feature::Type type;
+} constexpr const feature_map[] = {
+    { "ABTEILKLEINKIND", Feature::ToddlerArea },
+    { "BISTRO", Feature::Restaurant },
+    { "FAMILIE", Feature::FamilyArea },
+    { "INFO", Feature::InformationPoint },
+    { "KLIMA", Feature::AirConditioning },
+    { "PLAETZEFAHRRAD", Feature::BikeStorage },
+    { "PLAETZEROLLSTUHL", Feature::WheelchairAccessible },
+    { "ROLLSTUHLTOILETTE", Feature::WheelchairAccessibleToilet },
+    { "RUHE", Feature::SilentArea },
+};
+
 void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj)
 {
     VehicleSection section;
-    VehicleSection::Features f;
     section.setName(obj.value(QLatin1String("wagenordnungsnummer")).toString());
 
     const auto pos = obj.value(QLatin1String("positionamhalt")).toObject();
@@ -135,30 +151,23 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, cons
     if (const auto type = UicRailwayCoach::type(num, cls); section.type() == VehicleSection::PassengerCar && type != VehicleSection::UnknownType) {
         section.setType(type);
     }
-    f |= UicRailwayCoach::features(num, cls);
+    auto f = UicRailwayCoach::features(num, cls);
 
-    const auto equipmentArray = obj.value(QLatin1String("allFahrzeugausstattung")).toArray();
+    const auto equipmentArray = obj.value("allFahrzeugausstattung"_L1).toArray();
     for (const auto &equipmentV : equipmentArray) {
         const auto equipmentObj = equipmentV.toObject();
-        const auto type = equipmentObj.value(QLatin1String("ausstattungsart")).toString();
+        const auto type = equipmentObj.value("ausstattungsart"_L1).toString();
         // TODO this has a status field, is this ever set?
-        if (type.compare(QLatin1String("KLIMA"), Qt::CaseInsensitive) == 0) {
-            f |= VehicleSection::AirConditioning;
-        } else if (type.compare(QLatin1String("RUHE"), Qt::CaseInsensitive) == 0) {
-            f |= VehicleSection::SilentArea;
-        } else if (type.compare(QLatin1String("BISTRO"), Qt::CaseInsensitive) == 0) {
-            f |= VehicleSection::Restaurant;
-        } else if (type.compare(QLatin1String("ABTEILKLEINKIND"), Qt::CaseInsensitive) == 0) {
-            f |= VehicleSection::ToddlerArea;
-        } else if (type.compare(QLatin1String("PLAETZEROLLSTUHL"), Qt::CaseInsensitive) == 0) {
-            f |= VehicleSection::WheelchairAccessible;
-        } else if (type.compare(QLatin1String("PLAETZEFAHRRAD"), Qt::CaseInsensitive) == 0) {
-            f |= VehicleSection::BikeStorage;
+        const auto it = std::lower_bound(std::begin(feature_map), std::end(feature_map), type, [](const auto &lhs, const auto &rhs) {
+            return QLatin1StringView(lhs.name).compare(rhs, Qt::CaseInsensitive) < 0;
+        });
+        if (it != std::end(feature_map) && type.compare(QLatin1StringView((*it).name), Qt::CaseInsensitive) == 0) {
+            FeatureUtil::add(f, Feature{(*it).type});
         } else {
             qDebug() << "Unhandled vehicle section equipment:" << type;
         }
     }
-    section.setFeatures(f);
+    section.setSectionFeatures(std::move(f));
 
     auto sections = vehicle.takeSections();
     sections.push_back(section);

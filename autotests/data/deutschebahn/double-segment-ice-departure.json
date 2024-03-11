@@ -101,6 +101,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "ToddlerArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
                     }
                 ],
                 "name": "37",
@@ -117,6 +122,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
                     }
                 ],
                 "name": "33",
@@ -143,6 +153,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessibleToilet"
                     }
                 ],
                 "name": "32",
@@ -242,6 +257,11 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
                         "type": "BikeStorage"
                     }
                 ],
@@ -259,6 +279,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
                     }
                 ],
                 "name": "23",
@@ -285,6 +310,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessibleToilet"
                     }
                 ],
                 "name": "22",

@@ -159,6 +159,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
                     }
                 ],
                 "name": "35",
@@ -309,6 +314,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
                     }
                 ],
                 "name": "25",

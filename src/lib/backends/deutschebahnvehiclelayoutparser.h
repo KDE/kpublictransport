@@ -27,9 +27,9 @@ public:
     QString errorMessage;
 
 private:
-    void parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj);
-    void parsePlatformSection(Platform &platform, const QJsonObject &obj);
-    void fillMissingPositions(Vehicle &vehicle, Platform &platform);
+    static void parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj);
+    static void parsePlatformSection(Platform &platform, const QJsonObject &obj);
+    static void fillMissingPositions(Vehicle &vehicle, Platform &platform);
 };
 
 }

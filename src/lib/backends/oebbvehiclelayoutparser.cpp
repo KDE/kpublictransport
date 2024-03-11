@@ -5,6 +5,7 @@
 */
 
 #include "oebbvehiclelayoutparser.h"
+#include "datatypes/featureutil_p.h"
 #include "uic/uicrailwaycoach.h"
 
 #include <QDateTime>
@@ -17,23 +18,23 @@ using namespace KPublicTransport;
 
 struct {
     const char *propName;
-    VehicleSection::Feature feature;
+    Feature::Type feature;
     VehicleSection::Class coachClass;
 } static constexpr const vehicle_section_feature_map[] = {
-    { "capacityBusinessClass", VehicleSection::NoFeatures, VehicleSection::FirstClass },
-    { "capacityFirstClass", VehicleSection::NoFeatures, VehicleSection::FirstClass },
-    { "capacitySecondClass", VehicleSection::NoFeatures, VehicleSection::SecondClass },
-    { "capacityCouchette", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
-    { "capacitySleeper", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
-    { "capacityWheelChair", VehicleSection::WheelchairAccessible, VehicleSection::UnknownClass },
-    { "capacityBicycle", VehicleSection::BikeStorage, VehicleSection::UnknownClass },
-    { "isBicycleAllowed", VehicleSection::BikeStorage, VehicleSection::UnknownClass },
-    { "isWheelChairAccessible", VehicleSection::WheelchairAccessible, VehicleSection::UnknownClass },
-    { "hasWifi", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
-    { "isInfoPoint", VehicleSection::NoFeatures, VehicleSection::UnknownClass }, // TODO
-    { "isChildCinema", VehicleSection::ToddlerArea, VehicleSection::UnknownClass },
-    { "isDining", VehicleSection::Restaurant, VehicleSection::UnknownClass },
-    { "isQuietZone", VehicleSection::SilentArea, VehicleSection::UnknownClass },
+    { "capacityBusinessClass", Feature::NoFeature, VehicleSection::FirstClass },
+    { "capacityFirstClass", Feature::NoFeature, VehicleSection::FirstClass },
+    { "capacitySecondClass", Feature::NoFeature, VehicleSection::SecondClass },
+    { "capacityCouchette", Feature::NoFeature, VehicleSection::UnknownClass }, // TODO
+    { "capacitySleeper", Feature::NoFeature, VehicleSection::UnknownClass }, // TODO
+    { "capacityWheelChair", Feature::WheelchairAccessible, VehicleSection::UnknownClass },
+    { "capacityBicycle", Feature::BikeStorage, VehicleSection::UnknownClass },
+    { "isBicycleAllowed", Feature::BikeStorage, VehicleSection::UnknownClass },
+    { "isWheelChairAccessible", Feature::WheelchairAccessible, VehicleSection::UnknownClass },
+    { "hasWifi", Feature::WiFi, VehicleSection::UnknownClass },
+    { "isInfoPoint", Feature::InformationPoint, VehicleSection::UnknownClass },
+    { "isChildCinema", Feature::ToddlerArea, VehicleSection::UnknownClass },
+    { "isDining", Feature::Restaurant, VehicleSection::UnknownClass },
+    { "isQuietZone", Feature::SilentArea, VehicleSection::UnknownClass },
 };
 
 struct {
@@ -141,11 +142,14 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
                 const auto val = wagonObj.value(QLatin1String(map.propName));
                 if ((val.isBool() && val.toBool()) || (val.isDouble() && val.toInt() > 0)) {
                     cls |= map.coachClass;
-                    features |= map.feature;
+                    if (map.feature != Feature::NoFeature) {
+                        FeatureUtil::add(features, Feature(map.feature, Feature::Available));
+                        // TODO capacity and negative mapping
+                    }
                 }
             }
             section.setClasses(cls);
-            section.setFeatures(features);
+            section.setSectionFeatures(std::move(features));
         }
 
         section.setPlatformPositionBegin(prevVehicleEnd);

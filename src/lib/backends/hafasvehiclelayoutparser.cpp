@@ -5,6 +5,7 @@
 */
 
 #include "hafasvehiclelayoutparser.h"
+#include "datatypes/featureutil_p.h"
 
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/Vehicle>
@@ -17,30 +18,31 @@
 
 using namespace KPublicTransport;
 
-static VehicleSection::Feature attributeCodeToFeature(const QString &code)
+static Feature attributeCodeToFeature(const QString &code)
 {
     struct {
         const char *code;
-        VehicleSection::Feature feature;
+        Feature::Type feature;
+        Feature::Availability availability;
     } static constexpr const code_feature_map[] = {
-        { "AbteilBusiness", VehicleSection::NoFeatures }, // TODO
-        { "AbteilFamilien", VehicleSection::NoFeatures }, // TODO
-        { "AbteilKinderwagen", VehicleSection::NoFeatures }, // TODO
-        { "AbteilRollstuhl", VehicleSection::WheelchairAccessible },
-        { "AbteilVeloPl", VehicleSection::BikeStorage },
-        { "AbteilVeloRes", VehicleSection::BikeStorage },
-        { "FA", VehicleSection::NoFeatures }, // TODO family area
-        { "NiederflurEinstieg", VehicleSection::NoFeatures }, // TODO
+        { "AbteilBusiness", Feature::NoFeature, Feature::Available }, // TODO
+        { "AbteilFamilien", Feature::NoFeature, Feature::Available }, // TODO
+        { "AbteilKinderwagen", Feature::NoFeature, Feature::Available }, // TODO
+        { "AbteilRollstuhl", Feature::WheelchairAccessible, Feature::Available },
+        { "AbteilVeloPl", Feature::BikeStorage, Feature::Available },
+        { "AbteilVeloRes", Feature::BikeStorage, Feature::Conditional },
+        { "FA", Feature::NoFeature, Feature::Available }, // TODO family area
+        { "NiederflurEinstieg", Feature::NoFeature, Feature::Available }, // TODO
     };
 
     for (const auto &map : code_feature_map) {
         if (code == QLatin1String(map.code)) {
-            return map.feature;
+            return Feature(map.feature, map.availability);
         }
     }
 
     qDebug() << "Unknown vehicle section feature code:" << code;
-    return VehicleSection::NoFeatures;
+    return {};
 }
 
 static VehicleSection::Classes typeToClasses(const QString &type)
@@ -78,7 +80,7 @@ std::vector<Vehicle> HafasVehicleLayoutParser::parseVehicleLayouts(const QJsonOb
         const auto stcCarObj = stcCarV.toObject();
 
         VehicleSection car;
-        VehicleSection::Features features = {};
+        std::vector<Feature> features;
         car.setName(stcCarObj.value(QLatin1String("number")).toString());
 
         const auto type = stcCarObj.value(QLatin1String("type")).toInt();
@@ -91,10 +93,10 @@ std::vector<Vehicle> HafasVehicleLayoutParser::parseVehicleLayouts(const QJsonOb
 
         const auto attrL = stcCarObj.value(QLatin1String("attrL")).toArray();
         for (const auto &attrV : attrL) {
-            features |= attributeCodeToFeature(attrV.toObject().value(QLatin1String("c")).toString());
+            FeatureUtil::add(features, attributeCodeToFeature(attrV.toObject().value(QLatin1String("c")).toString()));
         }
 
-        car.setFeatures(features);
+        car.setSectionFeatures(std::move(features));
         cars.push_back(std::move(car));
     }
 
@@ -136,17 +138,17 @@ static void parseTrainFormationCars(std::vector<VehicleSection> &vehicleSections
         // TODO type == FA
 
         // TODO there are also translated names for those features we could use
-        VehicleSection::Features features = {};
+        std::vector<Feature> features;
         const auto attrs = carObj.value(QLatin1String("CarAttributes")).toObject().value(QLatin1String("Attr"));
         if (attrs.isObject()) {
-            features |= attributeCodeToFeature(attrs.toObject().value(QLatin1String("code")).toString());
+            FeatureUtil::add(features, attributeCodeToFeature(attrs.toObject().value(QLatin1String("code")).toString()));
         } else if (attrs.isArray()) {
             const auto attrsA = attrs.toArray();
             for (const auto &attrV : attrsA) {
-                features |= attributeCodeToFeature(attrV.toObject().value(QLatin1String("code")).toString());
+                FeatureUtil::add(features, attributeCodeToFeature(attrV.toObject().value(QLatin1String("code")).toString()));
             }
         }
-        sec.setFeatures(features);
+        sec.setSectionFeatures(std::move(features));
 
         vehicleSections.push_back(sec);
     }

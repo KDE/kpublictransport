@@ -7,6 +7,7 @@
 #include "testhelpers.h"
 
 #include "backends/deutschebahnvehiclelayoutparser.cpp"
+#include "datatypes/featureutil.cpp"
 #include "uic/uicrailwaycoach.cpp"
 
 #include <QFile>

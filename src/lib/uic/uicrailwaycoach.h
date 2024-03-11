@@ -33,7 +33,7 @@ int deckCount(QStringView coachNumber, QStringView coachClassification);
 /** Determine coach features from a UIC @p coachNumber and/or @p coachClassification.
  *  Either one of the arguments can be empty, but the most reliable result is returned with both present.
  */
-VehicleSection::Features features(QStringView coachNumber, QStringView coachClassification);
+std::vector<Feature> features(QStringView coachNumber, QStringView coachClassification);
 
 /** Determine the vehicle type from a UIC @p coachNumber and/or @p coachClassification.
  *  Either one of the arguments can be empty, but the most reliable result is returned with both present.
