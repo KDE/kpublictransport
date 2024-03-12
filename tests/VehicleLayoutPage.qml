@@ -30,6 +30,44 @@ Kirigami.ScrollablePage {
         }
     }
 
+    Component {
+        id: featureDelegate
+        QQC2.Label {
+            text: {
+                let s = "";
+                switch (modelData.type) {
+                    case KPublicTransport.Feature.AirConditioning: s = "❄️"; break;
+                    case KPublicTransport.Feature.Restaurant: s = "🍴"; break;
+                    case KPublicTransport.Feature.ToddlerArea: s = "👶"; break;
+                    case KPublicTransport.Feature.FamilyArea: s = "👪"; break;
+                    case KPublicTransport.Feature.WheelchairAccessible: s = "♿"; break;
+                    case KPublicTransport.Feature.SilentArea: s = "🔇"; break;
+                    case KPublicTransport.Feature.BikeStorage: s = "🚲"; break;
+                    case KPublicTransport.Feature.Toilet: s = "🚽"; break;
+                    case KPublicTransport.Feature.WheelchairAccessibleToilet: s = "♿🚽"; break;
+                    case KPublicTransport.Feature.InformationPoint: s = "ℹ️"; break;
+                    case KPublicTransport.Feature.WiFi: s = "💻"; break;
+                    case KPublicTransport.Feature.Other:
+                    default:
+                        s = "❔"; break;
+                }
+                if (modelData.disruptionEffect === KPublicTransport.Disruption.NoService)
+                    return s + "⚠️";
+                switch (modelData.availability) {
+                    case KPublicTransport.Feature.Unknown: s += "(?)"; break;
+                    case KPublicTransport.Feature.Available: break;
+                    case KPublicTransport.Feature.Unavailable: s += "❌"; break;
+                    case KPublicTransport.Feature.Limited: s += "(limited)"; break;
+                    case KPublicTransport.Feature.Conditional: s += "(conditional)"; break;
+                }
+                if (modelData.quatity > 0) {
+                    s += "(" + modelData.quantity * ")"
+                }
+                return s;
+            }
+        }
+    }
+
     header: Column {
         QQC2.Label {
             text: vehicleModel.stopover.stopPoint.name + " - " + vehicleModel.stopover.route.line.name + " - "
@@ -40,6 +78,14 @@ Kirigami.ScrollablePage {
         QQC2.Label {
             text: "Platform: " + vehicleModel.platform.name
             leftPadding: Kirigami.Units.largeSpacing
+        }
+        RowLayout {
+            x: Kirigami.Units.largeSpacing
+            spacing: Kirigami.Units.largeSpacing
+            Repeater {
+                model: vehicleModel.vehicle.combinedFeatures
+                delegate: featureDelegate
+            }
         }
     }
 
@@ -119,21 +165,10 @@ Kirigami.ScrollablePage {
                     spacing: Kirigami.Units.smallSpacing
 
                     RowLayout {
-                        spacing: Kirigami.Units.smallSpacing
+                        spacing: Kirigami.Units.largeSpacing
                         Repeater {
-                            model: section.featureList
-                            QQC2.Label {
-                                text: {
-                                    switch (modelData) {
-                                        case KPublicTransport.VehicleSection.AirConditioning: return "❄️";
-                                        case KPublicTransport.VehicleSection.Restaurant: return "🍴";
-                                        case KPublicTransport.VehicleSection.ToddlerArea: return "👶";
-                                        case KPublicTransport.VehicleSection.WheelchairAccessible: return "♿";
-                                        case KPublicTransport.VehicleSection.SilentArea: return "🔇";
-                                        case KPublicTransport.VehicleSection.BikeStorage: return "🚲";
-                                    }
-                                }
-                            }
+                            model: section.sectionFeatures
+                            delegate: featureDelegate
                         }
                     }
                     QQC2.Label {
