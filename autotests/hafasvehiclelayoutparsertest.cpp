@@ -49,7 +49,7 @@ private Q_SLOTS:
         const auto vehicleJson = Vehicle::toJson(vehicles);
         const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).array();
         QVERIFY(!vehicleJson.isEmpty());
-        Test::compareJson(vehicleFileName, vehicleJson, vehicleRef);
+        QVERIFY(Test::compareJson(vehicleFileName, vehicleJson, vehicleRef));
     }
 
     void testVehicleLayoutParse_data()
@@ -79,7 +79,7 @@ private Q_SLOTS:
         const auto vehicleJson = Vehicle::toJson(vehicle);
         const auto vehicleRef = QJsonDocument::fromJson(readFile(vehicleFileName)).object();
         QVERIFY(!vehicleJson.isEmpty());
-        Test::compareJson(vehicleFileName, vehicleJson, vehicleRef);
+        QVERIFY(Test::compareJson(vehicleFileName, vehicleJson, vehicleRef));
     }
 
     void testPlatformParseXml_data()
@@ -104,7 +104,7 @@ private Q_SLOTS:
         const auto platformJson = Platform::toJson(platform);
         const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).object();
         QVERIFY(!platformJson.isEmpty());
-        Test::compareJson(platformFileName, platformJson, platformRef);
+        QVERIFY(Test::compareJson(platformFileName, platformJson, platformRef));
     }
 
     void testPlatformParse_tcpdL_data()
@@ -126,7 +126,7 @@ private Q_SLOTS:
         const auto platformJson = Platform::toJson(platforms);
         const auto platformRef = QJsonDocument::fromJson(readFile(platformFileName)).array();
         QVERIFY(!platformJson.isEmpty());
-        Test::compareJson(platformFileName, platformJson, platformRef);
+        QVERIFY(Test::compareJson(platformFileName, platformJson, platformRef));
     }
 };
 
