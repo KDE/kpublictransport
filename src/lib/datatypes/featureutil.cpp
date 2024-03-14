@@ -71,3 +71,27 @@ void FeatureUtil::add(std::vector<Feature> &features, Feature &&feature)
         features.insert(it, std::move(feature));
     }
 }
+
+static Feature aggregate(const Feature &lhs, const Feature &rhs)
+{
+    if (lhs.availability() == Feature::Unavailable && (rhs.availability() != Feature::Unavailable && rhs.availability() != Feature::Unknown)) {
+        return rhs;
+    }
+    if (rhs.availability() == Feature::Unavailable && (lhs.availability() != Feature::Unavailable && lhs.availability() != Feature::Unknown)) {
+        return lhs;
+    }
+
+    auto f = Feature::merge(lhs, rhs);
+    f.setQuantity(lhs.quantity() + rhs.quantity());
+    return f;
+}
+
+void FeatureUtil::aggregate(std::vector<Feature> &features, const Feature &feature)
+{
+   auto it = std::lower_bound(features.begin(), features.end(), feature, lessThanFeature);
+    if (it != features.end() && Feature::isSame(*it, feature)) {
+        *it = ::aggregate(*it, feature);
+    } else {
+        features.insert(it, feature);
+    }
+}

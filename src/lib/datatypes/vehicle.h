@@ -188,6 +188,12 @@ class KPUBLICTRANSPORT_EXPORT Vehicle
      */
     Q_PROPERTY(float platformPositionEnd READ platformPositionEnd STORED false)
 
+    /** Features of this vehicle as a whole, not including the features of individual sections. */
+    Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
+
+    /** Features of the entire vehicle including a union of all features of the individual sections. */
+    Q_PROPERTY(std::vector<KPublicTransport::Feature> combinedFeatures READ combinedFeatures)
+
 public:
     /** Returns @c true if this object contains no information beyond the default values. */
     [[nodiscard]] bool isEmpty() const;
@@ -213,6 +219,14 @@ public:
     [[nodiscard]] bool hasPlatformPositions() const;
     /** Check whether all vehicle sections have platform section names set. */
     [[nodiscard]] bool hasPlatformSectionNames() const;
+
+    /** Vehicle features. */
+    [[nodiscard]] const std::vector<KPublicTransport::Feature>& features() const;
+    [[nodiscard]] std::vector<KPublicTransport::Feature>&& takeFeatures();
+    void setFeatures(std::vector<KPublicTransport::Feature> &&features);
+
+    /** Combined vehicle features. */
+    [[nodiscard]] std::vector<KPublicTransport::Feature> combinedFeatures() const;
 
     /** Merge two Vehicle instances. */
     [[nodiscard]] static Vehicle merge(const Vehicle &lhs, const Vehicle &rhs);

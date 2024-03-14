@@ -41,6 +41,7 @@ public:
     QString name;
     std::vector<VehicleSection> sections;
     Vehicle::Direction direction = Vehicle::UnknownDirection;
+    std::vector<Feature> features;
 };
 
 }
@@ -213,7 +214,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Vehicle, Vehicle::Direction, direction, setDirect
 
 bool Vehicle::isEmpty() const
 {
-    return d->name.isEmpty() && d->sections.empty() && d->direction == Vehicle::UnknownDirection;
+    return d->name.isEmpty() && d->sections.empty() && d->direction == Vehicle::UnknownDirection && d->features.empty();
 }
 
 const std::vector<VehicleSection>& Vehicle::sections() const
@@ -294,6 +295,8 @@ Vehicle Vehicle::merge(const Vehicle &lhs, const Vehicle &rhs)
         res.setSections(lhs.sections().size() < rhs.sections().size() ? rhs.sections() : lhs.sections());
     }
 
+    res.setFeatures(FeatureUtil::merge(lhs.features(), rhs.features()));
+
     return res;
 }
 
@@ -301,7 +304,10 @@ QJsonObject Vehicle::toJson(const Vehicle &vehicle)
 {
     auto obj = Json::toJson(vehicle);
     if (!vehicle.sections().empty()) {
-        obj.insert(QLatin1String("sections"), VehicleSection::toJson(vehicle.sections()));
+        obj.insert("sections"_L1, VehicleSection::toJson(vehicle.sections()));
+    }
+    if (!vehicle.features().empty()) {
+        obj.insert("features"_L1, Feature::toJson(vehicle.features()));
     }
     return obj;
 }
@@ -314,7 +320,8 @@ QJsonArray Vehicle::toJson(const std::vector<Vehicle> &vehicles)
 Vehicle Vehicle::fromJson(const QJsonObject &obj)
 {
     auto v = Json::fromJson<Vehicle>(obj);
-    v.setSections(VehicleSection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    v.setSections(VehicleSection::fromJson(obj.value("sections"_L1).toArray()));
+    v.setFeatures(Feature::fromJson(obj.value("features"_L1).toArray()));
     return v;
 }
 
@@ -331,6 +338,33 @@ bool Vehicle::hasPlatformPositions() const
 bool Vehicle::hasPlatformSectionNames() const
 {
     return std::none_of(d->sections.begin(), d->sections.end(), [](const auto &p) { return p.platformSectionName().isEmpty(); });
+}
+
+const std::vector<KPublicTransport::Feature>& Vehicle::features() const
+{
+    return d->features;
+}
+
+[[nodiscard]] std::vector<KPublicTransport::Feature>&& Vehicle::takeFeatures()
+{
+    return std::move(d->features);
+}
+
+void Vehicle::setFeatures(std::vector<KPublicTransport::Feature> &&features)
+{
+    d.detach();
+    d->features = std::move(features);
+}
+
+std::vector<KPublicTransport::Feature> Vehicle::combinedFeatures() const
+{
+    std::vector<KPublicTransport::Feature> features(d->features);
+    for (const auto &section : d->sections) {
+        for (const auto &feature : section.sectionFeatures()) {
+            FeatureUtil::aggregate(features, feature);
+        }
+    }
+    return features;
 }
 
 #include "moc_vehicle.cpp"

@@ -26,6 +26,12 @@ namespace FeatureUtil
      *  Inserts if not present yet, merges if already present.
      */
     void add(std::vector<Feature> &features, Feature &&feature);
+
+    /** Compute union between a feature set and a feature to add.
+     *  Unlike merging this doesn't assume both features refer to the same thing
+     *  but to parts of the same thing, and thus information gets added rather than overridden.
+     */
+    void aggregate(std::vector<Feature> &features, const Feature &feature);
 }
 
 }
