@@ -1,0 +1,281 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2024-03-15T17:28:00",
+    "platformLayout": {
+        "length": 451,
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.24450109899044037,
+                "name": "A"
+            },
+            {
+                "begin": 0.24450109899044037,
+                "end": 0.41090908646583557,
+                "name": "B"
+            },
+            {
+                "begin": 0.41090908646583557,
+                "end": 0.5772505402565002,
+                "name": "C"
+            },
+            {
+                "begin": 0.5772505402565002,
+                "end": 0.7441462874412537,
+                "name": "D"
+            },
+            {
+                "begin": 0.7441462874412537,
+                "end": 1.0001773834228516,
+                "name": "E"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "RJX 760"
+        }
+    },
+    "scheduledDepartureTime": "2024-03-15T17:28:00",
+    "scheduledPlatform": "8",
+    "stopPoint": {
+        "name": "Wien Hbf",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "Forward",
+        "sections": [
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "27",
+                "platformPositionBegin": 0.04890022426843643,
+                "platformPositionEnd": 0.1085454598069191,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "26",
+                "platformPositionBegin": 0.1085454598069191,
+                "platformPositionEnd": 0.16730377078056335,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
+                    }
+                ],
+                "name": "25",
+                "platformPositionBegin": 0.16730377078056335,
+                "platformPositionEnd": 0.2260620892047882,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "24",
+                "platformPositionBegin": 0.2260620892047882,
+                "platformPositionEnd": 0.28482040762901306,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "23",
+                "platformPositionBegin": 0.28482040762901306,
+                "platformPositionEnd": 0.3435787260532379,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "22",
+                "platformPositionBegin": 0.3435787260532379,
+                "platformPositionEnd": 0.40233704447746277,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "name": "21",
+                "platformPositionBegin": 0.40233704447746277,
+                "platformPositionEnd": 0.4610953629016876,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "platformPositionBegin": 0.4610953629016876,
+                "platformPositionEnd": 0.5038447976112366,
+                "type": "Engine"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "platformPositionBegin": 0.5038447976112366,
+                "platformPositionEnd": 0.5465942621231079,
+                "type": "Engine"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "name": "31",
+                "platformPositionBegin": 0.5465942621231079,
+                "platformPositionEnd": 0.6053525805473328,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "32",
+                "platformPositionBegin": 0.6053525805473328,
+                "platformPositionEnd": 0.6641108989715576,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "33",
+                "platformPositionBegin": 0.6641108989715576,
+                "platformPositionEnd": 0.7228692173957825,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "34",
+                "platformPositionBegin": 0.7228692173957825,
+                "platformPositionEnd": 0.7816275358200073,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
+                    }
+                ],
+                "name": "35",
+                "platformPositionBegin": 0.7816275358200073,
+                "platformPositionEnd": 0.8403858542442322,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "36",
+                "platformPositionBegin": 0.8403858542442322,
+                "platformPositionEnd": 0.8991441130638123,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "37",
+                "platformPositionBegin": 0.8991441130638123,
+                "platformPositionEnd": 0.9587893486022949,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}

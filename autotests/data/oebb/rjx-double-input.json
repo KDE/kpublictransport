@@ -1,0 +1,328 @@
+{
+  "id": "1773b51e-c4f2-4f35-a2d3-08fe742ff66f",
+  "platform": {
+    "egresses": [
+      {
+        "distance": 270.98,
+        "name": "AUFZUG_MI",
+        "platform": "6",
+        "type": "AUFZUG"
+      },
+      {
+        "distance": 243.88,
+        "name": "STIEGENAUFGANG_MI",
+        "platform": "6",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "distance": 6,
+        "name": "AUFZUG_MI",
+        "platform": "6",
+        "type": "AUFZUG"
+      },
+      {
+        "distance": 47.19,
+        "name": "STIEGENAUFGANG_MI",
+        "platform": "6",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "distance": 45.72,
+        "name": "ROLLTREPPE_MI",
+        "platform": "6",
+        "type": "ROLLTREPPE"
+      }
+    ],
+    "length": 465.83,
+    "sectors": [
+      {
+        "length": 74.85,
+        "name": "A"
+      },
+      {
+        "length": 75.01,
+        "name": "B"
+      },
+      {
+        "length": 99.79,
+        "name": "C"
+      },
+      {
+        "length": 74.88,
+        "name": "D"
+      },
+      {
+        "length": 74.87,
+        "name": "E"
+      },
+      {
+        "length": 47.82,
+        "name": "F"
+      }
+    ],
+    "stoppingPoint": {
+      "direction": "Back",
+      "distance": 0,
+      "position": "Back"
+    }
+  },
+  "timeTableInfo": {
+    "date": "2024-03-15",
+    "platform": "6",
+    "renderedTrainName": "RJX 567 / RJX 167",
+    "sector": "",
+    "stationName": "Wien Meidling Bahnhof",
+    "time": "0.20:42 (0.20:27)"
+  },
+  "train": {
+    "displayLoadInfo": true,
+    "wagons": [
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 16,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 11,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 128,
+        "kind": 1,
+        "lengthOverBuffers": 26.9,
+        "numPassengerIcons": 1,
+        "quietZoneFrom": "85ZUE",
+        "quietZoneTo": "56BA",
+        "ranking": 27
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 55,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 26
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 74,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 25
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 24
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 128,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "quietZoneFrom": "85ZUE",
+        "quietZoneTo": "56BA",
+        "ranking": 23
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 22
+      },
+      {
+        "capacityBicycle": 1,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 72,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 33,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 21
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bratislava hl. st.",
+        "features": 0,
+        "kind": 256,
+        "lengthOverBuffers": 19.28,
+        "numPassengerIcons": 0,
+        "ranking": 0
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 6,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 32,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 0,
+        "kind": 1,
+        "lengthOverBuffers": 26.9,
+        "numPassengerIcons": 1,
+        "ranking": 37
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 66,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 36
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 8,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 35
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 34
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 128,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "quietZoneFrom": "SB",
+        "quietZoneTo": "FWS",
+        "ranking": 33
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 32
+      },
+      {
+        "capacityBicycle": 1,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 74,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 33,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 31
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Flughafen Wien",
+        "features": 0,
+        "kind": 256,
+        "lengthOverBuffers": 19.58,
+        "numPassengerIcons": 0,
+        "ranking": 0
+      }
+    ]
+  }
+}

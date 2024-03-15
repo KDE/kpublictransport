@@ -37,7 +37,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "platformPositionBegin": 0.12601307034492493,
@@ -48,6 +54,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "platformPositionBegin": 0.3011764883995056,
                 "platformPositionEnd": 0.4763399064540863,
                 "type": "PassengerCar"
@@ -56,6 +69,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "platformPositionBegin": 0.4763399064540863,
                 "platformPositionEnd": 0.651503324508667,
                 "type": "PassengerCar"
@@ -64,6 +84,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "platformPositionBegin": 0.651503324508667,
                 "platformPositionEnd": 0.8266667127609253,
                 "type": "PassengerCar"
@@ -81,7 +108,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "platformPositionBegin": 0.8266667127609253,

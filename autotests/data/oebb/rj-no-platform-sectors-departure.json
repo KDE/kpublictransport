@@ -1,6 +1,5 @@
 {
     "disruptionEffect": "NormalService",
-    "expectedDepartureTime": "2021-10-12T00:00:00",
     "expectedPlatform": "1 B-E",
     "platformLayout": {
         "length": 561,
@@ -30,6 +29,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "27",
@@ -55,7 +59,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "26",
@@ -72,6 +82,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "25",
@@ -88,6 +103,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "24",
@@ -104,6 +124,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "23",
@@ -120,6 +145,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "22",
@@ -140,12 +170,18 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
-                        "type": "ToddlerArea"
+                        "type": "FamilyArea"
                     },
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "21",

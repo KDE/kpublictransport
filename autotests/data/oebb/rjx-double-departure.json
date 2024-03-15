@@ -1,0 +1,281 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2024-03-15T00:00:00",
+    "platformLayout": {
+        "length": 465,
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.16096773743629456,
+                "name": "A"
+            },
+            {
+                "begin": 0.16096773743629456,
+                "end": 0.32227957248687744,
+                "name": "B"
+            },
+            {
+                "begin": 0.32227957248687744,
+                "end": 0.536881685256958,
+                "name": "C"
+            },
+            {
+                "begin": 0.536881685256958,
+                "end": 0.6979140043258667,
+                "name": "D"
+            },
+            {
+                "begin": 0.6979140043258667,
+                "end": 0.8589247465133667,
+                "name": "E"
+            },
+            {
+                "begin": 0.8589247465133667,
+                "end": 0.9617634415626526,
+                "name": "F"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "RJX 567 / RJX 167"
+        }
+    },
+    "scheduledDepartureTime": "2024-03-15T00:00:00",
+    "scheduledPlatform": "6",
+    "stopPoint": {
+        "name": "Wien Meidling Bahnhof",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "Backward",
+        "sections": [
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "27",
+                "platformPositionBegin": 0,
+                "platformPositionEnd": 0.0578494630753994,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "26",
+                "platformPositionBegin": 0.0578494630753994,
+                "platformPositionEnd": 0.11483871191740036,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
+                    }
+                ],
+                "name": "25",
+                "platformPositionBegin": 0.11483871191740036,
+                "platformPositionEnd": 0.17182795703411102,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "24",
+                "platformPositionBegin": 0.17182795703411102,
+                "platformPositionEnd": 0.22881720960140228,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "23",
+                "platformPositionBegin": 0.22881720960140228,
+                "platformPositionEnd": 0.28580644726753235,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "22",
+                "platformPositionBegin": 0.28580644726753235,
+                "platformPositionEnd": 0.3427956998348236,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "name": "21",
+                "platformPositionBegin": 0.3427956998348236,
+                "platformPositionEnd": 0.3997849225997925,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "platformPositionBegin": 0.3997849225997925,
+                "platformPositionEnd": 0.44124728441238403,
+                "type": "Engine"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "37",
+                "platformPositionBegin": 0.44124728441238403,
+                "platformPositionEnd": 0.49909675121307373,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    }
+                ],
+                "name": "36",
+                "platformPositionBegin": 0.49909675121307373,
+                "platformPositionEnd": 0.556086003780365,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
+                    }
+                ],
+                "name": "35",
+                "platformPositionBegin": 0.556086003780365,
+                "platformPositionEnd": 0.6130752563476562,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "34",
+                "platformPositionBegin": 0.6130752563476562,
+                "platformPositionEnd": 0.6700645089149475,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "33",
+                "platformPositionBegin": 0.6700645089149475,
+                "platformPositionEnd": 0.7270537614822388,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "32",
+                "platformPositionBegin": 0.7270537614822388,
+                "platformPositionEnd": 0.7840429544448853,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "name": "31",
+                "platformPositionBegin": 0.7840429544448853,
+                "platformPositionEnd": 0.8410322070121765,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "platformPositionBegin": 0.8410322070121765,
+                "platformPositionEnd": 0.8831397294998169,
+                "type": "Engine"
+            }
+        ]
+    }
+}

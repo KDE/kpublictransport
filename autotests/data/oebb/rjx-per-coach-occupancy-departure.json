@@ -39,14 +39,14 @@
         "type": "Stop"
     },
     "vehicleLayout": {
-        "direction": "UnknownDirection",
+        "direction": "Backward",
         "sections": [
             {
                 "classes": "UnknownClass",
                 "connectedSides": "NoSide",
                 "deckCount": 1,
-                "platformPositionBegin": 0,
-                "platformPositionEnd": 0.04237362742424011,
+                "platformPositionBegin": 1.030945062637329,
+                "platformPositionEnd": 1.073318600654602,
                 "type": "Engine"
             },
             {
@@ -62,17 +62,23 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
-                        "type": "ToddlerArea"
+                        "type": "FamilyArea"
                     },
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "31",
-                "platformPositionBegin": 0.04237362742424011,
-                "platformPositionEnd": 0.10061538219451904,
+                "platformPositionBegin": 0.9727032780647278,
+                "platformPositionEnd": 1.030945062637329,
                 "type": "PassengerCar"
             },
             {
@@ -84,11 +90,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "32",
-                "platformPositionBegin": 0.10061538219451904,
-                "platformPositionEnd": 0.15885713696479797,
+                "platformPositionBegin": 0.9144614934921265,
+                "platformPositionEnd": 0.9727032780647278,
                 "type": "PassengerCar"
             },
             {
@@ -105,11 +116,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "33",
-                "platformPositionBegin": 0.15885713696479797,
-                "platformPositionEnd": 0.2170988917350769,
+                "platformPositionBegin": 0.8562197685241699,
+                "platformPositionEnd": 0.9144614934921265,
                 "type": "PassengerCar"
             },
             {
@@ -121,11 +137,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "34",
-                "platformPositionBegin": 0.2170988917350769,
-                "platformPositionEnd": 0.27534064650535583,
+                "platformPositionBegin": 0.7979779839515686,
+                "platformPositionEnd": 0.8562197685241699,
                 "type": "PassengerCar"
             },
             {
@@ -152,11 +173,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "InformationPoint"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "35",
-                "platformPositionBegin": 0.27534064650535583,
-                "platformPositionEnd": 0.33358240127563477,
+                "platformPositionBegin": 0.7397362589836121,
+                "platformPositionEnd": 0.7979779839515686,
                 "type": "PassengerCar"
             },
             {
@@ -168,11 +194,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "36",
-                "platformPositionBegin": 0.33358240127563477,
-                "platformPositionEnd": 0.3918241858482361,
+                "platformPositionBegin": 0.6814944744110107,
+                "platformPositionEnd": 0.7397362589836121,
                 "type": "PassengerCar"
             },
             {
@@ -189,11 +220,16 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "37",
-                "platformPositionBegin": 0.3918241858482361,
-                "platformPositionEnd": 0.45094504952430725,
+                "platformPositionBegin": 0.6223735809326172,
+                "platformPositionEnd": 0.6814944744110107,
                 "type": "ControlCar"
             }
         ]

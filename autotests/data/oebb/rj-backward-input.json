@@ -1,0 +1,212 @@
+{
+  "id": "d0991680-9364-4e6b-97ff-262fbadb8e0c",
+  "platform": {
+    "egresses": [
+      {
+        "distance": 347.2,
+        "name": "STIEGENAUFGANG_PB",
+        "platform": "5",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "distance": 303.84,
+        "name": "STIEGENAUFGANG_PB",
+        "platform": "5",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "distance": 304.79,
+        "name": "ROLLTREPPE_PB",
+        "platform": "5",
+        "type": "ROLLTREPPE"
+      },
+      {
+        "distance": 325.77,
+        "name": "AUFZUG_PB",
+        "platform": "5",
+        "type": "AUFZUG"
+      },
+      {
+        "distance": 346.78,
+        "name": "ROLLTREPPE_PB",
+        "platform": "5",
+        "type": "ROLLTREPPE"
+      },
+      {
+        "distance": 102.23,
+        "name": "STIEGENAUFGANG_PB",
+        "platform": "5",
+        "type": "STIEGENAUFGANG"
+      }
+    ],
+    "length": 451.04,
+    "sectors": [
+      {
+        "length": 75.56,
+        "name": "A"
+      },
+      {
+        "length": 75.4,
+        "name": "B"
+      },
+      {
+        "length": 75.34,
+        "name": "C"
+      },
+      {
+        "length": 74.36,
+        "name": "D"
+      },
+      {
+        "length": 75.19,
+        "name": "E"
+      },
+      {
+        "length": 74.53,
+        "name": "F"
+      }
+    ],
+    "stoppingPoint": {
+      "direction": "Back",
+      "distance": 450.38,
+      "position": "Top"
+    }
+  },
+  "timeTableInfo": {
+    "date": "2024-03-15",
+    "platform": "5",
+    "renderedTrainName": "RJ 746",
+    "sector": "",
+    "stationName": "St.Pölten Hbf",
+    "time": "0.19:30"
+  },
+  "train": {
+    "displayLoadInfo": true,
+    "wagons": [
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 256,
+        "lengthOverBuffers": 19.28,
+        "numPassengerIcons": 0,
+        "ranking": 0
+      },
+      {
+        "capacityBicycle": 1,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 72,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 33,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 21
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 22
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 128,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "quietZoneFrom": "FWS",
+        "quietZoneTo": "SB",
+        "ranking": 23
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 24
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 74,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 25
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 55,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 26
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 16,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 11,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 128,
+        "kind": 1,
+        "lengthOverBuffers": 26.9,
+        "numPassengerIcons": 0,
+        "quietZoneFrom": "FWS",
+        "quietZoneTo": "SB",
+        "ranking": 27
+      }
+    ]
+  }
+}

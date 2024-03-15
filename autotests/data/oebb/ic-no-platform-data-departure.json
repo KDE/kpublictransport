@@ -29,6 +29,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "26",
@@ -45,6 +50,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "28",
@@ -61,6 +71,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "29",
@@ -86,7 +101,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 6,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "30",

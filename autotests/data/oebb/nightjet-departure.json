@@ -1,6 +1,5 @@
 {
     "disruptionEffect": "NormalService",
-    "expectedDepartureTime": "2023-07-02T00:00:00",
     "platformLayout": {
         "length": 184
     },
@@ -28,6 +27,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "314",
@@ -44,6 +48,11 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "313",
@@ -64,12 +73,19 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "WheelchairAccessible"
                     },
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "name": "312",
@@ -81,6 +97,13 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "name": "311",
                 "platformPositionBegin": 0.4304347634315491,
                 "platformPositionEnd": 0.573913037776947,
@@ -90,6 +113,13 @@
                 "classes": "FirstClass|SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "name": "310",
                 "platformPositionBegin": 0.573913037776947,
                 "platformPositionEnd": 0.717391312122345,
@@ -99,6 +129,13 @@
                 "classes": "UnknownClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "name": "61",
                 "platformPositionBegin": 0.717391312122345,
                 "platformPositionEnd": 0.8608695268630981,
@@ -108,6 +145,13 @@
                 "classes": "UnknownClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
+                "features": [
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
+                    }
+                ],
                 "name": "62",
                 "platformPositionBegin": 0.8608695268630981,
                 "platformPositionEnd": 1.004347801208496,

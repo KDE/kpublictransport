@@ -1,0 +1,332 @@
+{
+  "id": "41586eba-7cac-4dd6-9b45-9d0b74d89b2f",
+  "platform": {
+    "egresses": [
+      {
+        "distance": 341.43,
+        "name": "STIEGENAUFGANG_WHB_HINTEN",
+        "platform": "8",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "distance": 140.78,
+        "name": "STIEGENAUFGANG_WHB",
+        "platform": "8",
+        "type": "STIEGENAUFGANG"
+      },
+      {
+        "distance": 372.46,
+        "name": "AUFZUG_whb",
+        "platform": "8",
+        "type": "AUFZUG"
+      },
+      {
+        "distance": 109.5,
+        "name": "ROLLTREPPE_WHB",
+        "platform": "8",
+        "type": "ROLLTREPPE"
+      },
+      {
+        "distance": 77.89,
+        "name": "AUFZUG_WHB",
+        "platform": "8",
+        "type": "AUFZUG"
+      },
+      {
+        "distance": 343.9,
+        "name": "ROLLTREPPE_WHB_HINTEN",
+        "platform": "8",
+        "type": "ROLLTREPPE"
+      }
+    ],
+    "length": 451.0799999999999,
+    "sectors": [
+      {
+        "length": 110.27,
+        "name": "A"
+      },
+      {
+        "length": 75.05,
+        "name": "B"
+      },
+      {
+        "length": 75.02,
+        "name": "C"
+      },
+      {
+        "length": 75.27,
+        "name": "D"
+      },
+      {
+        "length": 115.47,
+        "name": "E"
+      }
+    ],
+    "stoppingPoint": {
+      "direction": "Front",
+      "distance": 22.054,
+      "position": "Top"
+    }
+  },
+  "timeTableInfo": {
+    "date": "2024-03-15",
+    "platform": "8",
+    "renderedTrainName": "RJX 760",
+    "sector": "",
+    "stationName": "Wien Hbf",
+    "time": "0.17:28"
+  },
+  "train": {
+    "displayLoadInfo": true,
+    "wagons": [
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 16,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 11,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 128,
+        "kind": 1,
+        "lengthOverBuffers": 26.9,
+        "numPassengerIcons": 2,
+        "quietZoneFrom": "FWS",
+        "quietZoneTo": "BG",
+        "ranking": 27
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 55,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 26
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 74,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 25
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 24
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 128,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "quietZoneFrom": "FWS",
+        "quietZoneTo": "BG",
+        "ranking": 23
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 22
+      },
+      {
+        "capacityBicycle": 1,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 72,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 33,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 2,
+        "ranking": 21
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Bregenz",
+        "features": 0,
+        "kind": 256,
+        "lengthOverBuffers": 19.28,
+        "numPassengerIcons": 0,
+        "ranking": 0
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 256,
+        "lengthOverBuffers": 19.28,
+        "numPassengerIcons": 0,
+        "ranking": 0
+      },
+      {
+        "capacityBicycle": 1,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 72,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 33,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 31
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 32
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 128,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "quietZoneFrom": "WBF",
+        "quietZoneTo": "SB",
+        "ranking": 33
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 0,
+        "capacitySecondClass": 80,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 34
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 10,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 74,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 35
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 0,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 55,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 0,
+        "kind": 0,
+        "lengthOverBuffers": 26.5,
+        "numPassengerIcons": 1,
+        "ranking": 36
+      },
+      {
+        "capacityBicycle": 0,
+        "capacityBusinessClass": 16,
+        "capacityCouchette": 0,
+        "capacityFirstClass": 11,
+        "capacitySecondClass": 0,
+        "capacitySleeper": 0,
+        "capacityWheelChair": 0,
+        "destinationName": "Salzburg Hbf",
+        "features": 128,
+        "kind": 1,
+        "lengthOverBuffers": 26.9,
+        "numPassengerIcons": 1,
+        "quietZoneFrom": "WBF",
+        "quietZoneTo": "SB",
+        "ranking": 37
+      }
+    ]
+  }
+}

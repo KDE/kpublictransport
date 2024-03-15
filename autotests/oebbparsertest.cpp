@@ -61,6 +61,18 @@ private Q_SLOTS:
         QTest::newRow("per-coach-occupancy")
             << s(SOURCE_DIR "/data/oebb/rjx-per-coach-occupancy-input.json")
             << s(SOURCE_DIR "/data/oebb/rjx-per-coach-occupancy-departure.json");
+
+        QTest::newRow("new-feature-format")
+            << s(SOURCE_DIR "/data/oebb/rjx-new-feature-format-input.json")
+            << s(SOURCE_DIR "/data/oebb/rjx-new-feature-format-departure.json");
+
+        QTest::newRow("rj-backward")
+            << s(SOURCE_DIR "/data/oebb/rj-backward-input.json")
+            << s(SOURCE_DIR "/data/oebb/rj-backward-departure.json");
+
+        QTest::newRow("rjx-double")
+            << s(SOURCE_DIR "/data/oebb/rjx-double-input.json")
+            << s(SOURCE_DIR "/data/oebb/rjx-double-departure.json");
     }
 
     void testVehicleLayoutParse()

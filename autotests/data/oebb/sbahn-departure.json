@@ -34,7 +34,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "platformPositionBegin": 0,
@@ -49,7 +55,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "platformPositionBegin": 0.32706668972969055,
@@ -64,7 +76,13 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
+                        "quantity": 1,
                         "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Unavailable",
+                        "disruptionEffect": "NormalService",
+                        "type": "WiFi"
                     }
                 ],
                 "platformPositionBegin": 0.6750667095184326,

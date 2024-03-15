@@ -1,0 +1,171 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedDepartureTime": "2024-03-15T19:30:00",
+    "platformLayout": {
+        "length": 451,
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.16753879189491272,
+                "name": "A"
+            },
+            {
+                "begin": 0.16753879189491272,
+                "end": 0.3347228169441223,
+                "name": "B"
+            },
+            {
+                "begin": 0.3347228169441223,
+                "end": 0.5017738342285156,
+                "name": "C"
+            },
+            {
+                "begin": 0.5017738342285156,
+                "end": 0.6666518449783325,
+                "name": "D"
+            },
+            {
+                "begin": 0.6666518449783325,
+                "end": 0.8333702087402344,
+                "name": "E"
+            },
+            {
+                "begin": 0.8333702087402344,
+                "end": 0.9986252188682556,
+                "name": "F"
+            }
+        ]
+    },
+    "route": {
+        "line": {
+            "mode": "LongDistanceTrain",
+            "name": "RJ 746"
+        }
+    },
+    "scheduledDepartureTime": "2024-03-15T19:30:00",
+    "scheduledPlatform": "5",
+    "stopPoint": {
+        "name": "St.Pölten Hbf",
+        "type": "Stop"
+    },
+    "vehicleLayout": {
+        "direction": "Backward",
+        "sections": [
+            {
+                "classes": "UnknownClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "platformPositionBegin": 0.9558758735656738,
+                "platformPositionEnd": 0.9986252784729004,
+                "type": "Engine"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "FamilyArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "name": "21",
+                "platformPositionBegin": 0.897117555141449,
+                "platformPositionEnd": 0.9558758735656738,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "22",
+                "platformPositionBegin": 0.8383592367172241,
+                "platformPositionEnd": 0.897117555141449,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "23",
+                "platformPositionBegin": 0.7796009182929993,
+                "platformPositionEnd": 0.8383592367172241,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "24",
+                "platformPositionBegin": 0.7208425998687744,
+                "platformPositionEnd": 0.7796009182929993,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "InformationPoint"
+                    }
+                ],
+                "name": "25",
+                "platformPositionBegin": 0.6620842814445496,
+                "platformPositionEnd": 0.7208425998687744,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "name": "26",
+                "platformPositionBegin": 0.6033259630203247,
+                "platformPositionEnd": 0.6620842814445496,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "SilentArea"
+                    }
+                ],
+                "name": "27",
+                "platformPositionBegin": 0.543680727481842,
+                "platformPositionEnd": 0.6033259630203247,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}
