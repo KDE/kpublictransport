@@ -74,6 +74,7 @@ StyledFrameSvgItem {
             case VehicleSection.ControlCar:
             case VehicleSection.SleepingCar:
             case VehicleSection.CouchetteCar:
+            default:
                 if (section.classes == VehicleSection.FirstClass)
                     return firstClassBackground;
                 else if (section.classes & VehicleSection.FirstClass)
