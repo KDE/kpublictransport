@@ -129,7 +129,7 @@ QJsonObject Json::toJson(const QMetaObject *mo, const void *elem)
 
     for (int i = 0; i < mo->propertyCount(); ++i) {
         const auto prop = mo->property(i);
-        if (!prop.isStored()) {
+        if (!prop.isStored() || !prop.isWritable()) {
             continue;
         }
 
@@ -221,7 +221,7 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
         }
 
         const auto prop = mo->property(idx);
-        if (!prop.isStored()) {
+        if (!prop.isStored() || !prop.isWritable()) {
             continue;
         }
 
