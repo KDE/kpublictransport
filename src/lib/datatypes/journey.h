@@ -155,6 +155,12 @@ public:
     /** Individual transport details for sections using your own vehicle. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
 
+    /** Features of the vehicle used on this section.
+     *  This is identical to departureVehicleLayout.features and provided for convenience
+     *  for cases where no more detailed vehicle information are available.
+     */
+    Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
+
 public:
     [[nodiscard]] bool hasExpectedDepartureTime() const;
     [[nodiscard]] int departureDelay() const;
@@ -231,6 +237,14 @@ public:
     [[nodiscard]] static JourneySection fromJson(const QJsonObject &obj);
     /** Deserialize a vector of journey sections from JSON. */
     [[nodiscard]] static std::vector<JourneySection> fromJson(const QJsonArray &array);
+
+    /** Vehicle features.
+     *  This is identical to departureVehicleLayout.features and provided for convenience
+     *  for cases where no more detailed vehicle information are available.
+     */
+    [[nodiscard]] const std::vector<KPublicTransport::Feature>& features() const;
+    [[nodiscard]] std::vector<KPublicTransport::Feature>&& takeFeatures();
+    void setFeatures(std::vector<KPublicTransport::Feature> &&features);
 
 private:
     [[nodiscard]] QVariantList intermediateStopsVariant() const;

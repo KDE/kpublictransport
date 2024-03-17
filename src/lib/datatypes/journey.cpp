@@ -368,6 +368,22 @@ QVariantList JourneySection::loadInformationVariant() const
     return l;
 }
 
+const std::vector<KPublicTransport::Feature>& JourneySection::features() const
+{
+    return d->departureVehicleLayout.features();
+}
+
+[[nodiscard]] std::vector<KPublicTransport::Feature>&& JourneySection::takeFeatures()
+{
+    return d->departureVehicleLayout.takeFeatures();
+}
+
+void JourneySection::setFeatures(std::vector<KPublicTransport::Feature> &&features)
+{
+    d.detach();
+    d->departureVehicleLayout.setFeatures(std::move(features));
+}
+
 void JourneySection::applyMetaData(bool download)
 {
     if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {
