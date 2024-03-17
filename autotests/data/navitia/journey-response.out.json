@@ -56,6 +56,16 @@
             },
             {
                 "co2Emission": 147,
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 23841,
                 "from": {
@@ -220,6 +230,16 @@
             },
             {
                 "co2Emission": 17,
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 2748,
                 "from": {
@@ -573,6 +593,16 @@
             },
             {
                 "co2Emission": 162,
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 26127,
                 "from": {
@@ -835,6 +865,16 @@
             },
             {
                 "co2Emission": 581,
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 4480,
                 "from": {
@@ -1278,6 +1318,16 @@
             },
             {
                 "co2Emission": 191,
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 30929,
                 "from": {
@@ -1596,6 +1646,16 @@
             },
             {
                 "co2Emission": 370,
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 2855,
                 "from": {

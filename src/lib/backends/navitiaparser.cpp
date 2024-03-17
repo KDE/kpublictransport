@@ -7,6 +7,7 @@
 #include "navitiaparser.h"
 #include "navitiaphysicalmode.h"
 #include "../geo/geojson_p.h"
+#include "../datatypes/featureutil_p.h"
 
 #include <KPublicTransport/Attribution>
 #include <KPublicTransport/Journey>
@@ -215,6 +216,14 @@ static Path parsePathFromLength(const QPolygonF &pathLineString, const QJsonArra
     return path;
 }
 
+struct {
+    const char *name;
+    Feature::Type type;
+} static constexpr const feature_map[] = {
+    { "has_wheelchair_accessibility", Feature::WheelchairAccessible },
+    { "has_wheelchair_boarding", Feature::WheelchairAccessible },
+};
+
 JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
 {
     JourneySection section;
@@ -247,6 +256,19 @@ JourneySection NavitiaParser::parseJourneySection(const QJsonObject &obj) const
     route.setDirection(displayInfo.value(QLatin1String("direction")).toString());
     route.setLine(line);
     section.setRoute(route);
+
+    std::vector<Feature> features;
+    const auto equipment = displayInfo.value("equipments"_L1).toArray();
+    for (const auto &equipV :equipment) {
+        const auto equip = equipV.toString();
+        const auto it = std::lower_bound(std::begin(feature_map), std::end(feature_map), equip, [](const auto &lhs, const auto &rhs) {
+            return QLatin1StringView(lhs.name) < rhs;
+        });
+        if (it != std::end(feature_map) && QLatin1StringView((*it).name) == equip) {
+            FeatureUtil::add(features, Feature((*it).type));
+        }
+    }
+    section.setFeatures(std::move(features));
 
     const auto hasRealTime = obj.value(QLatin1String("data_freshness")).toString() != QLatin1String("base_schedule");
     section.setScheduledDepartureTime(parseDateTime(obj.value(QLatin1String("base_departure_date_time")), section.from().timeZone()));
