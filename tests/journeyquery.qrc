@@ -13,5 +13,6 @@
         <file>PathPage.qml</file>
         <file>TestLocationsModel.qml</file>
         <file>VehicleLayoutPage.qml</file>
+        <file>FeatureDelegate.qml</file>
     </qresource>
 </RCC>

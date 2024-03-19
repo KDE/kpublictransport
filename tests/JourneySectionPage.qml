@@ -21,7 +21,7 @@ Kirigami.Page {
             Layout.fillWidth: true
             Layout.margins: Kirigami.Units.largeSpacing
             columns: 3
-            rows: 4
+            rows: 5
 
             Kirigami.Icon {
                 Layout.rowSpan: 4
@@ -66,6 +66,17 @@ Kirigami.Page {
                 Layout.columnSpan: 2
                 text: "CO₂: " + journeySection.co2Emission + "g"
                 visible: journeySection.co2Emission >= 0
+            }
+            RowLayout {
+                Layout.row: 4
+                Layout.column: 1
+                Layout.columnSpan: 2
+                Repeater {
+                    model: journeySection.features
+                    delegate: FeatureDelegate {
+                        feature: modelData
+                    }
+                }
             }
         }
 
