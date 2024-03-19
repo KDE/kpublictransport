@@ -2,6 +2,23 @@
     {
         "sections": [
             {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "barrierefrei",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Limited",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme möglich",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 3438,
                 "expectedArrivalTime": "2021-03-05T16:51:00",
@@ -91,8 +108,6 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "barrierefrei",
-                    "Fahrradmitnahme möglich",
                     "Gemeinsam gegen Corona: Abstand halten und medizinische Maske tragen!\n\nbla bla"
                 ],
                 "route": {

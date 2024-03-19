@@ -2,9 +2,6 @@
     {
         "disruptionEffect": "NoService",
         "notes": [
-            "Komfort Check-in möglich (Infos unter <a href=\"https://bahn.de/kci)\">bahn.de/kci)</a>",
-            "Betreiber: Deutsche Bahn",
-            "Bordrestaurant",
             "ICE: Cancelled"
         ],
         "route": {
@@ -34,6 +31,17 @@
             "longitude": 6.958594799041748,
             "name": "Köln Hbf",
             "type": "Stop"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Bordrestaurant",
+                    "type": "Restaurant"
+                }
+            ]
         }
     },
     {
@@ -41,9 +49,7 @@
         "expectedDepartureTime": "2020-02-09T22:19:00",
         "expectedPlatform": "1",
         "notes": [
-            "Fahrradmitnahme begrenzt möglich",
             "RB26: MittelrheinBahn",
-            "Betreiber: trans regio",
             "Stop cancelled"
         ],
         "route": {
@@ -74,6 +80,17 @@
             "longitude": 6.958594799041748,
             "name": "Köln Hbf",
             "type": "Stop"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Limited",
+                    "disruptionEffect": "NormalService",
+                    "name": "Fahrradmitnahme begrenzt möglich",
+                    "type": "BikeStorage"
+                }
+            ]
         }
     },
     {
@@ -82,8 +99,6 @@
         "expectedPlatform": "8 D-G",
         "notes": [
             "Stop cancelled",
-            "Fahrradmitnahme begrenzt möglich",
-            "Betreiber: Deutsche Bahn",
             "Bad weather - expect disruptions.\nSince 17:20 operations are suspended.\nOperations are suspended since Sunday 09.02. <br/>Operations might resume on Monday 7:00. <br/>Busses are affected too.<br/>You can all us: 08000 12 34 56.<br/>Last update: 09.02.2020, 20:25"
         ],
         "route": {
@@ -114,6 +129,17 @@
             "longitude": 6.958594799041748,
             "name": "Köln Hbf",
             "type": "Stop"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Limited",
+                    "disruptionEffect": "NormalService",
+                    "name": "Fahrradmitnahme begrenzt möglich",
+                    "type": "BikeStorage"
+                }
+            ]
         }
     }
 ]

@@ -2,6 +2,23 @@
     {
         "sections": [
             {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Bordrestaurant",
+                            "type": "Restaurant"
+                        },
+                        {
+                            "availability": "Conditional",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme reservierungspflichtig",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NoService",
                 "distance": 163708,
                 "from": {
@@ -31,11 +48,7 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Sicher + kontaktlos ohne Ticketkontrolle reisen mit Komfort Check-in",
                     "Pflicht zum Tragen einer medizinischen Maske",
-                    "Fahrradmitnahme reservierungspflichtig",
-                    "Fahrradmitnahme begrenzt möglich",
-                    "Bordrestaurant",
                     "Starker Schneefall angekündigt. Es kann zu Verspätungen und Zugausfällen kommen.",
                     "Keine rollstuhlgerechte Einstiegstür in Wagen 22. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 01806-512512 (20 ct/Anruf aus dem dt. Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf).",
                     "Bahnverkehr in weiten Teilen Deutschlands beeinträchtigt. Aufgrund von Unwetterschäden verkehren am heutigen Sonntag, 07.02.2021 nicht alle Fernverkehrszüge der Deutschen Bahn. Bitte überprüfen Sie Ihre Verbindung ca. 1 Stunde vor Abfahrt oder weichen Sie auf einen anderen Reisetag aus. Weitere Informationen erhalten Sie unter <a href=\"https://www.bahn.de/aktuell.\">www.bahn.de/aktuell.</a>",

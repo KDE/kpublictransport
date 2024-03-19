@@ -8,6 +8,7 @@
 #include "hafasconfiguration.h"
 #include "hafasvehiclelayoutparser.h"
 #include "logging.h"
+#include "datatypes/featureutil_p.h"
 #include "datatypes/loadutil_p.h"
 #include "geo/polylinedecoder_p.h"
 #include "ifopt/ifoptutil.h"
@@ -35,6 +36,7 @@ struct Message {
     QVariant content;
     Disruption::Effect effect = Disruption::NormalService;
     LoadInfo loadInfo;
+    QString operatorName;
 };
 
 HafasMgateParser::HafasMgateParser() = default;
@@ -60,6 +62,15 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     return icos;
 }
 
+enum MessageType {
+    UndefinedRemark,
+    IgnoreRemark,
+    FeatureRemark,
+    OperatorRemark,
+    TrainFormationRemark,
+    PlatformSectorsRemark,
+};
+
 static constexpr const Load::Category load_value_map[] = {
     Load::Unknown,
     Load::Low, // 1
@@ -68,23 +79,80 @@ static constexpr const Load::Category load_value_map[] = {
     Load::Full // 4
 };
 
-static const struct {
-    const char *type;
-    const char *code;
-} ignored_remarks[] = {
-    { "A", "1" }, // different name formats for the line, used by SBB
-    { "A", "2" },
-    { "A", "3" },
-    { "A", "4" }, // same as above, containing product, line number and journey number
-    { "A", "OPERATOR" }, // operator information should be a dedicated field if we ever need it
-    { "A", "moreAttr" }, // ZVV: pointless note about checking intermediate stops for more details
-    { "H", "wagenstand_v2" }, // contains a pointless note about checking trip details
-    { "I", "FD" }, // SBB line number?
-    { "I", "RN" }, // SBB: some unknown number for buses
-    { "I", "TC" }, // SBB: some unknown number for buses
-    { "I", "XC" }, // SBB: some XML structure of unknown content, related to train/platform layouts
-    { "I", "XG" }, // SBB: some XML structure of unknown content, related to train/platform layouts
-    { "I", "XT" }, // SBB: some XML structure of unknown content, related to train/platform layouts
+
+struct RemarkData {
+    const char *type = nullptr;
+    const char *code = nullptr;
+    MessageType msg = UndefinedRemark;
+    Feature::Type featureType = Feature::NoFeature;
+    Feature::Availability featureAvailability = Feature::Unknown;
+};
+
+static constexpr const RemarkData remarks_map[] = {
+    // different name formats for the line, used by SBB
+    { "A", "1", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "2", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "3", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // same as above, containing product, line number and journey number
+    { "A", "4", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "BO", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BR", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BT", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "CK", IgnoreRemark, Feature::NoFeature, Feature::Unknown }, // Komfort Check-in advertisment
+    { "A", "EA", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "EF", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "EH", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ER", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "FB", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "FK", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "FR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "FS", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "G ", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    { "A", "HD", FeatureRemark, Feature::SilentArea, Feature::Available },
+    { "A", "HK", FeatureRemark, Feature::ToddlerArea, Feature::Available },
+    { "A", "KG", FeatureRemark, Feature::Restaurant, Feature::Unavailable },
+    { "A", "KK", FeatureRemark, Feature::ToddlerArea, Feature::Available },
+    { "A", "KL", FeatureRemark, Feature::AirConditioning, Feature::Available },
+    { "A", "KN", FeatureRemark, Feature::FamilyArea, Feature::Available },
+    { "A", "LS", FeatureRemark, Feature::PowerSockets, Feature::Available },
+    { "A", "MN", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "NF", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
+    { "A", "OA", FeatureRemark, Feature::WheelchairAccessible, Feature::Conditional },
+    { "A", "OC", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Available },
+    { "A", "OG", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Limited },
+    { "A", "OPERATOR", OperatorRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "QP", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "RG", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "RO", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "SA", FeatureRemark, Feature::ToddlerArea, Feature::Limited },
+    { "A", "SI", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
+    { "A", "SN", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "TO", FeatureRemark, Feature::Toilet, Feature::Available },
+    { "A", "UA", FeatureRemark, Feature::BusinessArea, Feature::Available },
+    { "A", "WI", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "WV", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "bf", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "hz", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ia", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "ic", FeatureRemark, Feature::Restaurant, Feature::Available },
+   // ZVV: pointless note about checking intermediate stops for more details
+    { "A", "moreAttr", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "zd", OperatorRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "zn", OperatorRemark, Feature::NoFeature, Feature::Unknown },
+    // contains a pointless note about checking trip details
+    { "H", "wagenstand_v2", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // SBB line number?
+    { "I", "FD", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "JF", TrainFormationRemark, Feature::NoFeature, Feature::Unknown },
+     // SBB: some unknown number for buses
+    { "I", "RN", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "TC", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // SBB: some XML structure of unknown content, related to train/platform layouts
+    { "I", "XC", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "XG", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "I", "XP", PlatformSectorsRemark, Feature::NoFeature, Feature::Unknown },
+    // SBB: some XML structure of unknown content, related to train/platform layouts
+    { "I", "XT", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
 };
 
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
@@ -94,45 +162,61 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
     for (const auto &remV : remL) {
         const auto remObj = remV.toObject();
 
-        const auto type = remObj.value(QLatin1String("type")).toString();
-        const auto code = remObj.value(QLatin1String("code")).toString();
-        bool skip = false;
-        for (const auto &ignored_remark : ignored_remarks) {
-            if (type == QLatin1String(ignored_remark.type) && code == QLatin1String(ignored_remark.code)) {
-                skip = true;
+        const auto type = remObj.value("type"_L1).toString();
+        const auto code = remObj.value("code"_L1).toString();
+        RemarkData remark;
+        for (const auto &r : remarks_map) {
+            if (type == QLatin1StringView(r.type) && code == QLatin1StringView(r.code)) {
+                remark = r;
                 break;
             }
         }
-        if (skip) {
-            rems.push_back({}); // make sure the indices still match!
-            continue;
-        }
+        qDebug() << type << code << remark.msg <<remObj;
 
         Message m;
-        if (type == QLatin1Char('I') && code == QLatin1String("JF")) {
-            m.content = HafasVehicleLayoutParser::parseTrainFormation(remObj.value(QLatin1String("txtN")).toString().toUtf8());
-        } else if (type == QLatin1Char('I') && code == QLatin1String("XP")) {
-            m.content = HafasVehicleLayoutParser::parsePlatformSectors(remObj.value(QLatin1String("txtN")).toString().toUtf8());
-        } else if (type == QLatin1Char('A') && (code.startsWith(QLatin1String("text.occup.loc.")) || code.startsWith(QLatin1String("text.occup.jny.")))) {
-            static QRegularExpression rx(QStringLiteral("\\.(max|1st|2nd)\\.1([1-4])$"));
-            const auto match = rx.match(code);
-            if (match.hasMatch()) {
-                const auto r = match.captured(2).toInt();
-                if (r >= 0 && r <= 4) {
-                    m.loadInfo.setLoad(load_value_map[r]);
-                }
-                if (match.captured(1) != QLatin1String("max")) {
-                    m.loadInfo.setSeatingClass(match.captured(1).left(1));
-                }
-            } else {
-                m.content = remObj.value(QLatin1String("txtN")).toString();
+        switch (remark.msg) {
+            case IgnoreRemark:
+                // still needs to be inserted into rems to make sure the indices still match!
+                break;
+            case TrainFormationRemark:
+                m.content = HafasVehicleLayoutParser::parseTrainFormation(remObj.value("txtN"_L1).toString().toUtf8());
+                break;
+            case PlatformSectorsRemark:
+                m.content = HafasVehicleLayoutParser::parsePlatformSectors(remObj.value("txtN"_L1).toString().toUtf8());
+                break;
+            case OperatorRemark:
+                m.operatorName = remObj.value("txtN"_L1).toString();
+                break;
+            case FeatureRemark: {
+                Feature f(remark.featureType, remark.featureAvailability);
+                f.setName(remObj.value("txtN"_L1).toString());
+                m.content = f;
+                break;
             }
-        } else {
-            // generic text
-            m.content = remObj.value(QLatin1String("txtN")).toString();
-            if (code == QLatin1String("text.realtime.stop.cancelled") || code == QLatin1String("text.realtime.stop.entry.exit.disabled")) {
-                m.effect = Disruption::NoService;
-            }
+            case UndefinedRemark:
+                if (type == 'A'_L1 && (code.startsWith("text.occup.loc."_L1) || code.startsWith("text.occup.jny."_L1))) {
+                    static const QRegularExpression rx(u"\\.(max|1st|2nd)\\.1([1-4])$"_s);
+                    const auto match = rx.match(code);
+                    if (match.hasMatch()) {
+                        const auto r = match.captured(2).toInt();
+                        if (r >= 0 && r <= 4) {
+                            m.loadInfo.setLoad(load_value_map[r]);
+                        }
+                        if (match.captured(1) != "max"_L1) {
+                            m.loadInfo.setSeatingClass(match.captured(1).left(1));
+                        }
+                    } else {
+                        m.content = remObj.value("txtN"_L1).toString();
+                    }
+                } else {
+                    // generic text
+                    m.content = remObj.value("txtN"_L1).toString();
+                    if (code == "text.realtime.stop.cancelled"_L1 || code == "text.realtime.stop.entry.exit.disabled"_L1
+                    || code == "text.realtime.journey.cancelled"_L1) {
+                        m.effect = Disruption::NoService;
+                    }
+                }
+                break;
         }
         rems.push_back(std::move(m));
     }
@@ -194,6 +278,18 @@ static void applyMessage(T &elem, const Message &msg)
     }
     if (msg.loadInfo.load() != Load::Unknown) {
         elem.setLoadInformation(LoadUtil::merge(elem.loadInformation(), {msg.loadInfo}));
+    }
+    if (msg.content.userType() == qMetaTypeId<Feature>()) {
+        auto features = elem.takeFeatures();
+        FeatureUtil::add(features, msg.content.value<Feature>());
+        elem.setFeatures(std::move(features));
+    }
+    if (!msg.operatorName.isEmpty() && elem.route().line().operatorName().isEmpty()) {
+        auto route = elem.route();
+        auto line = route.line();
+        line.setOperatorName(msg.operatorName);
+        route.setLine(line);
+        elem.setRoute(route);
     }
 }
 
@@ -392,9 +488,9 @@ std::vector<Stopover> HafasMgateParser::parseStationBoardResponse(const QJsonObj
             route.setDestination(locs[destLocX]);
         }
 
+        dep.setRoute(route);
         parseMessageList(dep, jnyObj, remarks, warnings);
         parseMessageList(dep, stbStop, remarks, warnings);
-        dep.setRoute(route);
         res.push_back(dep);
     }
 

@@ -2,6 +2,23 @@
     {
         "sections": [
             {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Limited",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme begrenzt möglich (Hannover Messe/Laatzen)",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
                 "disruptionEffect": "NormalService",
                 "distance": 7561,
                 "expectedArrivalPlatform": "2",
@@ -22,10 +39,7 @@
                 "notes": [
                     "Maskenpflicht nach gesetzl. Regelung; denken Sie an eine FFP2-Maske",
                     "Im Zug gilt bundesweit 3G-Regel: ein gültiger Nachweis ist mitzuführen",
-                    "Fahrradmitnahme begrenzt möglich (Hannover Messe/Laatzen)",
-                    "Fahrradmitnahme begrenzt möglich (Hannover Hbf)",
                     "Konsum alkoholischer Getränke im Zug verboten",
-                    "Fahrzeuggebundene Einstiegshilfe vorhanden",
                     "Corona-Präventionsmaßnahme\n\n3G-Regel im ÖPNV (geimpft, genesen oder getestet). Bitte beachten Sie die Maskenpflicht!"
                 ],
                 "route": {
