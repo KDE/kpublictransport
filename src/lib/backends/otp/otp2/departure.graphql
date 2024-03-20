@@ -50,7 +50,7 @@ query departures(
                   longName
                   color
                   textColor
-                  #bikesAllowed
+                  bikesAllowed
                   agency {
                     name
                   }

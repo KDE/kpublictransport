@@ -40,7 +40,7 @@ query departures($lat: Float!, $lon: Float!, $startTime: Long!) {
                   longName
                   color
                   textColor
-                  #bikesAllowed
+                  bikesAllowed
                   alerts {
                     alertHeaderTextTranslations {
                       language

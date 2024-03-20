@@ -10,6 +10,8 @@
 #include "kpublictransport_export.h"
 #include "opentripplannerrequestcontext.h"
 
+#include <KPublicTransport/Feature>
+#include <KPublicTransport/Line>
 #include <KPublicTransport/Location>
 #include <KPublicTransport/RentalVehicle>
 
@@ -56,10 +58,15 @@ private:
     bool parseLocationFragment(const QJsonObject &obj, Location &loc) const;
     Location parseLocation(const QJsonObject &obj) const;
     void parseAlerts(const QJsonArray &alertsArray) const;
-    Line parseLine(const QJsonObject &obj) const;
-    Route parseRoute(const QJsonObject &obj) const;
-    Route parseInlineRoute(const QJsonObject &obj) const;
-    Route detectAndParseRoute(const QJsonObject &obj) const;
+
+    struct RouteData {
+        Route route;
+        std::vector<Feature> features;
+    };
+    RouteData parseLine(const QJsonObject &obj) const;
+    RouteData parseRoute(const QJsonObject &obj) const;
+    RouteData parseInlineRoute(const QJsonObject &obj) const;
+    RouteData detectAndParseRoute(const QJsonObject &obj) const;
     Stopover parseDeparture(const QJsonObject &obj) const;
     void parseDeparturesForStop(const QJsonObject &obj, std::vector<Stopover> &deps) const;
     JourneySection parseJourneySection(const QJsonObject &obj) const;

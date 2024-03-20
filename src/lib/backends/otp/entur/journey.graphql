@@ -47,6 +47,7 @@ query journeys(
           type: transportSubmode
           shortName: publicCode
           name
+          bikesAllowed
           agency: operator {
             name
           }

@@ -40,6 +40,7 @@ query departures(
                   type: transportSubmode
                   shortName: publicCode
                   longName: name
+                  bikesAllowed
                   agency: operator {
                       name
                   }

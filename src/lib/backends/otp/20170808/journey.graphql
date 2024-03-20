@@ -55,7 +55,7 @@ query journeys(
                         longName
                         color
                         textColor
-                        #bikesAllowed
+                        bikesAllowed
                         alerts {
                             alertHeaderTextTranslations {
                                 language

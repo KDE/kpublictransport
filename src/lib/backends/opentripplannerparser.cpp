@@ -231,7 +231,19 @@ static QColor parseColor(const QJsonValue &value)
     return QColor(QLatin1Char('#') + value.toString());
 }
 
-Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
+struct {
+    const char *name;
+    Feature::Availability availability;
+} static constexpr const bikes_allowed_map[] = {
+    { "ALLOWED", Feature::Available },
+    { "NOT_ALLOWED", Feature::Unavailable },
+    { "NO_INFORMATION", Feature::Unknown },
+    { "allowed", Feature::Available },
+    { "noInformation", Feature::Unknown },
+    { "notAllowed", Feature::Unavailable },
+};
+
+OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
 {
     parseAlerts(obj.value(QLatin1String("alerts")).toArray());
 
@@ -257,24 +269,35 @@ Line OpenTripPlannerParser::parseLine(const QJsonObject &obj) const
     }
     line.setColor(parseColor(presentation.value(QLatin1String("color"))));
     line.setTextColor(parseColor(presentation.value(QLatin1String("textColor"))));
-    return line;
+
+    RouteData data;
+    data.route.setLine(line);
+
+    const auto bikesAllowed = obj.value("bikesAllowed"_L1).toString();
+    const auto it = std::find_if(std::begin(bikes_allowed_map), std::end(bikes_allowed_map), [&bikesAllowed](auto m) {
+        return bikesAllowed == QLatin1StringView(m.name);
+    });
+    if (it != std::end(bikes_allowed_map)) {
+        data.features.emplace_back(Feature::BikeStorage, (*it).availability);
+    }
+    return data;
 }
 
-Route OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
+OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseRoute(const QJsonObject &obj) const
 {
-    auto line = parseLine(obj.value(QLatin1String("route")).toObject());
+    auto data = parseLine(obj.value(QLatin1String("route")).toObject());
+    auto line = data.route.line();
     if (line.name().isEmpty()) {
         line.setName(obj.value(QLatin1String("tripShortName")).toString());
     }
 
-    Route route;
-    route.setLine(line);
-    route.setDirection(obj.value(QLatin1String("tripHeadsign")).toString());
+    data.route.setLine(line);
+    data.route.setDirection(obj.value(QLatin1String("tripHeadsign")).toString());
 
-    return route;
+    return data;
 }
 
-Route OpenTripPlannerParser::parseInlineRoute(const QJsonObject &obj) const
+OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseInlineRoute(const QJsonObject &obj) const
 {
     Line line;
     line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("routeType")).toInt(-1)));
@@ -282,14 +305,14 @@ Route OpenTripPlannerParser::parseInlineRoute(const QJsonObject &obj) const
     line.setColor(parseColor(obj.value(QLatin1String("routeColor"))));
     line.setTextColor(parseColor(obj.value(QLatin1String("routeTextColor"))));
 
-    Route route;
-    route.setDirection(obj.value(QLatin1String("headsign")).toString());
-    route.setLine(line);
+    RouteData data;
+    data.route.setDirection(obj.value(QLatin1String("headsign")).toString());
+    data.route.setLine(line);
 
-    return route;
+    return data;
 }
 
-Route OpenTripPlannerParser::detectAndParseRoute(const QJsonObject &obj) const
+OpenTripPlannerParser::RouteData OpenTripPlannerParser::detectAndParseRoute(const QJsonObject &obj) const
 {
     const auto trip = obj.value(QLatin1String("trip")).toObject();
     if (!trip.isEmpty()) {
@@ -298,9 +321,7 @@ Route OpenTripPlannerParser::detectAndParseRoute(const QJsonObject &obj) const
 
     const auto line = obj.value(QLatin1String("line")).toObject();
     if (!line.isEmpty()) {
-        Route route;
-        route.setLine(parseLine(obj.value(QLatin1String("line")).toObject()));
-        return route;
+        return parseLine(obj.value(QLatin1String("line")).toObject());
     }
 
     return parseInlineRoute(obj);
@@ -328,7 +349,9 @@ Stopover OpenTripPlannerParser::parseDeparture(const QJsonObject &obj) const
         dep.setExpectedDepartureTime(parseDepartureDateTime(baseTime, obj.value(QLatin1String("realtimeDeparture"))));
     }
     dep.setScheduledPlatform(obj.value(QLatin1String("stop")).toObject().value(QLatin1String("platformCode")).toString());
-    dep.setRoute(detectAndParseRoute(obj));
+    auto routeData = detectAndParseRoute(obj);
+    dep.setRoute(routeData.route);
+    dep.setFeatures(std::move(routeData.features));
     dep.addNotes(m_alerts);
     m_alerts.clear();
 
@@ -426,7 +449,9 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
 
     if (obj.value(QLatin1String("transitLeg")).toBool()) {
         section.setMode(JourneySection::PublicTransport);
-        section.setRoute(detectAndParseRoute(obj));
+        auto routeData = detectAndParseRoute(obj);
+        section.setRoute(routeData.route);
+        section.setFeatures(std::move(routeData.features));
     } else {
         const auto mode = obj.value(QLatin1String("mode")).toString();
         const auto isRented = obj.value(QLatin1String("rentedBike")).toBool();
