@@ -204,6 +204,14 @@ Kirigami.ApplicationWindow {
                         visible: text !== ""
                     }
                     RowLayout {
+                        Repeater {
+                            model: departure.features
+                                delegate: FeatureDelegate {
+                                feature: modelData
+                            }
+                        }
+                    }
+                    RowLayout {
                         visible: departure.loadInformation.length > 0
                         QQC2.Label {
                             text: "Load: ";

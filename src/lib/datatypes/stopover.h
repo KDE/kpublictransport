@@ -78,6 +78,12 @@ class KPUBLICTRANSPORT_EXPORT Stopover
     /** Platform layout information. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Platform, platformLayout, setPlatformLayout)
 
+    /** Features of the vehicle used on this section.
+     *  This is identical to departureVehicleLayout.features and provided for convenience
+     *  for cases where no more detailed vehicle information are available.
+     */
+    Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
+
 public:
     bool hasExpectedArrivalTime() const;
     int arrivalDelay() const;
@@ -96,6 +102,14 @@ public:
     std::vector<LoadInfo>&& takeLoadInformation();
     /** Set the expected vehicle load information for departing from this stopover. */
     void setLoadInformation(std::vector<LoadInfo>&& loadInfo);
+
+    /** Vehicle features.
+     *  This is identical to departureVehicleLayout.features and provided for convenience
+     *  for cases where no more detailed vehicle information are available.
+     */
+    [[nodiscard]] const std::vector<KPublicTransport::Feature>& features() const;
+    [[nodiscard]] std::vector<KPublicTransport::Feature>&& takeFeatures();
+    void setFeatures(std::vector<KPublicTransport::Feature> &&features);
 
     /** Augment line meta data.
      *  @param download when set to @c true trigger download of missing assets.

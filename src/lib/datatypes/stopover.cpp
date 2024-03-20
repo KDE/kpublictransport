@@ -149,6 +149,22 @@ QVariantList Stopover::loadInformationVariant() const
     return l;
 }
 
+const std::vector<KPublicTransport::Feature>& Stopover::features() const
+{
+    return d->vehicleLayout.features();
+}
+
+[[nodiscard]] std::vector<KPublicTransport::Feature>&& Stopover::takeFeatures()
+{
+    return d->vehicleLayout.takeFeatures();
+}
+
+void Stopover::setFeatures(std::vector<KPublicTransport::Feature> &&features)
+{
+    d.detach();
+    d->vehicleLayout.setFeatures(std::move(features));
+}
+
 void Stopover::applyMetaData(bool download)
 {
     auto line = d->route.line();
