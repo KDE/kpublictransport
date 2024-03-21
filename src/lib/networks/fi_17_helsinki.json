@@ -27,6 +27,7 @@
         "Description[uk]": "Місцевий громадський транспорт у Гельсінкі і околицях, Фінляндія.",
         "Description[x-test]": "xxLocal public transport in and around Helsinki, Finland.xx",
         "Description[zh_CN]": "芬兰赫尔辛基及其周边地区的公共交通。",
+        "Description[zh_TW]": "芬蘭赫爾辛基與其週遭的區域公共運輸。",
         "Name": "Helsinki",
         "Name[ca@valencia]": "Hèlsinki",
         "Name[ca]": "Hèlsinki",
@@ -52,7 +53,8 @@
         "Name[sv]": "Helsingfors",
         "Name[tr]": "Helsinki",
         "Name[uk]": "Гельсінкі",
-        "Name[x-test]": "xxHelsinkixx"
+        "Name[x-test]": "xxHelsinkixx",
+        "Name[zh_TW]": "赫爾辛基"
     },
     "attribution": {
         "license": "CC-BY-4.0",
