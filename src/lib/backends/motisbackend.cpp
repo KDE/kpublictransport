@@ -145,6 +145,7 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
             {"direction"_L1, requestContext(req).type == RequestContext::Previous ? "EARLIER"_L1 : "LATER"_L1},
             {"station_id"_L1, req.stop().identifier(m_locationIdentifierType)},
             {"event_count"_L1, req.maximumResults()},
+            {"by_schedule_time"_L1, false},
         }}
     };
 
