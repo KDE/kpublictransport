@@ -1,80 +1,64 @@
 {
-    "description": "Transitous",
-    "name": "Transitous",
+    "KPlugin": {
+        "Name": "Transitous",
+        "Description": "Community-run free and open public transport routing service."
+    },
     "coverage": {
         "anyCoverage": {
-            "area": {
-                "coordinates": [
-                    [
-                        [
-                            [
-                                37.8068,
-                                82.97
-                            ],
-                            [
-                                35.3039,
-                                33.9542
-                            ],
-                            [
-                                -14.3375,
-                                34.7885
-                            ],
-                            [
-                                -36.3425,
-                                86.3072
-                            ],
-                            [
-                                37.8068,
-                                82.97
-                            ]
-                        ]
-                    ],
-                    [
-                        [
-                            [
-                                112.502839,
-                                -10.970007
-                            ],
-                            [
-                                133.808399,
-                                -10.113489
-                            ],
-                            [
-                                145.966033,
-                                -10.46417
-                            ],
-                            [
-                                152.56069,
-                                -14.989316
-                            ],
-                            [
-                                155.819102,
-                                -28.157131
-                            ],
-                            [
-                                149.983141,
-                                -44.635057
-                            ],
-                            [
-                                131.01627,
-                                -37.881487
-                            ],
-                            [
-                                111.222637,
-                                -36.290962
-                            ]
-                        ]
-                    ]
-                ],
-                "type": "MultiPolygon"
-            },
-            "region": [ "EU", "AU" ]
+            "areaFile": "un_transitous_any.geojson",
+            "region": [
+                "AT",
+                "AU",
+                "CA",
+                "ES",
+                "FR",
+                "HK",
+                "HR",
+                "IS",
+                "IT",
+                "SI",
+                "SK",
+                "US-CA",
+                "US-CO",
+                "US-GA",
+                "US-IL",
+                "US-MO",
+                "US-OH",
+                "US-OR",
+                "US-RI"
+            ]
+        },
+        "realtimeCoverage": {
+            "areaFile": "un_transitous_realtime.geojson",
+            "region": [
+                "BE",
+                "CH",
+                "NL"
+            ]
+        },
+        "regularCoverage": {
+            "areaFile": "un_transitous_regular.geojson",
+            "region": [
+                "DE",
+                "DK",
+                "EE",
+                "FI",
+                "GB",
+                "HU",
+                "IE",
+                "LT",
+                "LU",
+                "LV",
+                "NO",
+                "PL",
+                "SE"
+            ]
         }
     },
     "options": {
         "endpoint": "https://routing.spline.de/api/",
-        "locationIdentifierType": "transitous",
-        "intermodal": false
+        "intermodal": false,
+        "locationIdentifierType": "transitous"
     },
     "type": {
         "motis": true

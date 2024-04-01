@@ -366,7 +366,7 @@ int main(int argc, char **argv)
             continue;
         }
 
-        QRegularExpression rx(QStringLiteral("/([a-z]{2})/([a-z-]+?)-(hafas-mgate|hafas-query|[^-]+)\\.json"));
+        QRegularExpression rx(QStringLiteral("/([a-z]{2})/([a-z-]+?)(-hafas-mgate|-hafas-query|-[^-]+)?\\.json"));
         const auto match = rx.match(fileName);
         if (!match.hasMatch()) {
             return -1;
