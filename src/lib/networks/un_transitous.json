@@ -1,7 +1,7 @@
 {
     "KPlugin": {
-        "Name": "Transitous",
-        "Description": "Community-run free and open public transport routing service."
+        "Description": "Community-run free and open public transport routing service.",
+        "Name": "Transitous"
     },
     "coverage": {
         "anyCoverage": {
