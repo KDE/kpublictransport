@@ -38,11 +38,13 @@ public:
         FamilyArea, ///< area dedicated for travelers with kids
         WheelchairAccessible, ///< wheelchair access possible
         SilentArea, ///< wishful thinking usually
+        BusinessArea,
         BikeStorage, ///< vehicle contains space for bikes
         Toilet,
         WheelchairAccessibleToilet, ///< wheelchair accessible toilet
         InformationPoint, ///< a place to obtain information from a human
         WiFi, ///< Freely usable Wi-Fi network
+        PowerSockets, ///< Power sockets for passenger use
         Other, ///< none of the above
     };
     Q_ENUM(Type)

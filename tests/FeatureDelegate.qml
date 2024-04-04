@@ -21,11 +21,13 @@ QQC2.Label {
             case KPublicTransport.Feature.FamilyArea: s = "👪"; break;
             case KPublicTransport.Feature.WheelchairAccessible: s = "♿"; break;
             case KPublicTransport.Feature.SilentArea: s = "🔇"; break;
+            case KPublicTransport.Feature.BusinessArea: s = "📱"; break;
             case KPublicTransport.Feature.BikeStorage: s = "🚲"; break;
             case KPublicTransport.Feature.Toilet: s = "🚽"; break;
             case KPublicTransport.Feature.WheelchairAccessibleToilet: s = "♿🚽"; break;
             case KPublicTransport.Feature.InformationPoint: s = "ℹ️"; break;
             case KPublicTransport.Feature.WiFi: s = "💻"; break;
+            case KPublicTransport.Feature.PowerSockets: s = "🔌"; break;
             case KPublicTransport.Feature.Other:
             default:
                 s = "❔"; break;
