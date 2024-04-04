@@ -127,6 +127,11 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Sides, connectedSides, setConnectedSides)
 
+    /** Distruption affecting this coach.
+     *  Disruption::NoService here means the coach is closed.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
+
     /** Name of the platform section(s) this coach is position in.
      *  This is primarily meant as a fallback when exact platform positions aren't available.
      */

@@ -228,6 +228,10 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
                 }
             }
 
+            if (wagonObj.value("isLocked"_L1).toBool()) {
+                section.setDisruptionEffect(Disruption::NoService);
+            }
+
             section.setClasses(cls);
             section.setSectionFeatures(std::move(features));
         }

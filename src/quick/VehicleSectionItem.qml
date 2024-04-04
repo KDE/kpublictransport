@@ -10,6 +10,8 @@ import org.kde.kpublictransport.ui 1.0
 
 /** Displays a single vehicle section. */
 StyledFrameSvgItem {
+    id: root
+
     /** The vehicle section to show. */
     property var section
 
@@ -63,6 +65,9 @@ StyledFrameSvgItem {
     }
 
     backgroundColor: {
+        if (root.section.disruptionEffect === Disruption.NoService)
+            return root.inaccessibleBackground;
+
         switch (section.type) {
             case VehicleSection.Engine:
             case VehicleSection.PowerCar:

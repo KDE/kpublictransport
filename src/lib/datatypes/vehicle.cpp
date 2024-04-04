@@ -33,6 +33,7 @@ public:
     VehicleSection::Sides connectedSides = VehicleSection::Front | VehicleSection::Back;
     QString platformSectionName;
     std::vector<Feature> sectionFeatures;
+    Disruption::Effect disruptionEffect = Disruption::NormalService;
 };
 
 class VehiclePrivate : public QSharedData
@@ -55,6 +56,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Classes, classes,
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, int, deckCount, setDeckCount)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, VehicleSection::Sides, connectedSides, setConnectedSides)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, setPlatformSectionName)
+KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
 
 VehicleSection::Features VehicleSection::features() const
 {
@@ -164,6 +166,9 @@ QJsonObject VehicleSection::toJson(const VehicleSection &section)
     auto obj = Json::toJson(section);
     if (!section.d->sectionFeatures.empty()) {
         obj.insert("features"_L1, KPublicTransport::Feature::toJson(section.d->sectionFeatures));
+    }
+    if (section.disruptionEffect() == Disruption::NormalService) {
+        obj.remove("disruptionEffect"_L1);
     }
     return obj;
 }

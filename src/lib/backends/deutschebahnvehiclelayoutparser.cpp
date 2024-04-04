@@ -169,6 +169,11 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, cons
     }
     section.setSectionFeatures(std::move(f));
 
+    // TODO what is the actual value for closed sections?
+    if (const auto status = obj.value("status"_L1).toString(); !status.isEmpty() && status != "OFFEN"_L1) {
+        section.setDisruptionEffect(Disruption::NoService);
+    }
+
     auto sections = vehicle.takeSections();
     sections.push_back(section);
     vehicle.setSections(std::move(sections));

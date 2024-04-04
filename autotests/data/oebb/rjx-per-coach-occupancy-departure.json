@@ -85,6 +85,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "disruptionEffect": "NoService",
                 "features": [
                     {
                         "availability": "Available",

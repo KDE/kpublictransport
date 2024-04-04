@@ -135,7 +135,7 @@
         "isDining": false,
         "isQuietZone": false,
         "isLowFloor": false,
-        "isLocked": false,
+        "isLocked": true,
         "destinationName": "Bregenz",
         "lengthOverBuffers": 26.5,
         "originTime": "2023-07-09T14:03:00",
