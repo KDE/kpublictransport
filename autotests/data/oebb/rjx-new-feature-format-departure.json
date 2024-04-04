@@ -57,6 +57,7 @@
                         "type": "SilentArea"
                     }
                 ],
+                "load": "Medium",
                 "name": "27",
                 "platformPositionBegin": 0.04890022426843643,
                 "platformPositionEnd": 0.1085454598069191,
@@ -66,6 +67,7 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Medium",
                 "name": "26",
                 "platformPositionBegin": 0.1085454598069191,
                 "platformPositionEnd": 0.16730377078056335,
@@ -92,6 +94,7 @@
                         "type": "InformationPoint"
                     }
                 ],
+                "load": "Low",
                 "name": "25",
                 "platformPositionBegin": 0.16730377078056335,
                 "platformPositionEnd": 0.2260620892047882,
@@ -101,6 +104,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Medium",
                 "name": "24",
                 "platformPositionBegin": 0.2260620892047882,
                 "platformPositionEnd": 0.28482040762901306,
@@ -117,6 +121,7 @@
                         "type": "SilentArea"
                     }
                 ],
+                "load": "Medium",
                 "name": "23",
                 "platformPositionBegin": 0.28482040762901306,
                 "platformPositionEnd": 0.3435787260532379,
@@ -126,6 +131,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Medium",
                 "name": "22",
                 "platformPositionBegin": 0.3435787260532379,
                 "platformPositionEnd": 0.40233704447746277,
@@ -148,6 +154,7 @@
                         "type": "BikeStorage"
                     }
                 ],
+                "load": "Medium",
                 "name": "21",
                 "platformPositionBegin": 0.40233704447746277,
                 "platformPositionEnd": 0.4610953629016876,
@@ -186,6 +193,7 @@
                         "type": "BikeStorage"
                     }
                 ],
+                "load": "Low",
                 "name": "31",
                 "platformPositionBegin": 0.5465942621231079,
                 "platformPositionEnd": 0.6053525805473328,
@@ -195,6 +203,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Low",
                 "name": "32",
                 "platformPositionBegin": 0.6053525805473328,
                 "platformPositionEnd": 0.6641108989715576,
@@ -211,6 +220,7 @@
                         "type": "SilentArea"
                     }
                 ],
+                "load": "Low",
                 "name": "33",
                 "platformPositionBegin": 0.6641108989715576,
                 "platformPositionEnd": 0.7228692173957825,
@@ -220,6 +230,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Low",
                 "name": "34",
                 "platformPositionBegin": 0.7228692173957825,
                 "platformPositionEnd": 0.7816275358200073,
@@ -246,6 +257,7 @@
                         "type": "InformationPoint"
                     }
                 ],
+                "load": "Low",
                 "name": "35",
                 "platformPositionBegin": 0.7816275358200073,
                 "platformPositionEnd": 0.8403858542442322,
@@ -255,6 +267,7 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Low",
                 "name": "36",
                 "platformPositionBegin": 0.8403858542442322,
                 "platformPositionEnd": 0.8991441130638123,
@@ -271,6 +284,7 @@
                         "type": "SilentArea"
                     }
                 ],
+                "load": "Low",
                 "name": "37",
                 "platformPositionBegin": 0.8991441130638123,
                 "platformPositionEnd": 0.9587893486022949,

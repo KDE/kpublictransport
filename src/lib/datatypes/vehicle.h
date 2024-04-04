@@ -11,6 +11,7 @@
 
 #include "datatypes.h"
 #include "feature.h"
+#include "load.h"
 
 namespace KPublicTransport {
 
@@ -131,6 +132,9 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      *  Disruption::NoService here means the coach is closed.
      */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
+
+    /** Occupancy level for this coach. */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Load::Category, load, setLoad)
 
     /** Name of the platform section(s) this coach is position in.
      *  This is primarily meant as a fallback when exact platform positions aren't available.

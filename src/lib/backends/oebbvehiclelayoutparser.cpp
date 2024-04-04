@@ -232,6 +232,11 @@ bool OebbVehicleLayoutParser::parse(const QByteArray &data)
                 section.setDisruptionEffect(Disruption::NoService);
             }
 
+            if (const auto loadVal = wagonObj.value("numPassengerIcons"_L1).toInt(); loadVal >= 0 && loadVal < 5) {
+                constexpr const Load::Category load_map[] = { Load::Unknown, Load::Low, Load::Medium, Load::High, Load::Full };
+                section.setLoad(load_map[loadVal]);
+            }
+
             section.setClasses(cls);
             section.setSectionFeatures(std::move(features));
         }

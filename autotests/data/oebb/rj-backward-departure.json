@@ -76,6 +76,7 @@
                         "type": "BikeStorage"
                     }
                 ],
+                "load": "Low",
                 "name": "21",
                 "platformPositionBegin": 0.897117555141449,
                 "platformPositionEnd": 0.9558758735656738,
@@ -85,6 +86,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Low",
                 "name": "22",
                 "platformPositionBegin": 0.8383592367172241,
                 "platformPositionEnd": 0.897117555141449,
@@ -101,6 +103,7 @@
                         "type": "SilentArea"
                     }
                 ],
+                "load": "Low",
                 "name": "23",
                 "platformPositionBegin": 0.7796009182929993,
                 "platformPositionEnd": 0.8383592367172241,
@@ -110,6 +113,7 @@
                 "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Low",
                 "name": "24",
                 "platformPositionBegin": 0.7208425998687744,
                 "platformPositionEnd": 0.7796009182929993,
@@ -136,6 +140,7 @@
                         "type": "InformationPoint"
                     }
                 ],
+                "load": "Medium",
                 "name": "25",
                 "platformPositionBegin": 0.6620842814445496,
                 "platformPositionEnd": 0.7208425998687744,
@@ -145,6 +150,7 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "load": "Low",
                 "name": "26",
                 "platformPositionBegin": 0.6033259630203247,
                 "platformPositionEnd": 0.6620842814445496,
