@@ -31,6 +31,12 @@
                         "type": "AirConditioning"
                     },
                     {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 6,
+                        "type": "BusinessArea"
+                    },
+                    {
                         "availability": "Unavailable",
                         "disruptionEffect": "NormalService",
                         "type": "WiFi"

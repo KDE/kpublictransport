@@ -165,6 +165,12 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 16,
+                        "type": "BusinessArea"
                     }
                 ],
                 "name": "27",

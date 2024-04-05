@@ -223,6 +223,12 @@
                         "type": "SilentArea"
                     },
                     {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 16,
+                        "type": "BusinessArea"
+                    },
+                    {
                         "availability": "Unavailable",
                         "disruptionEffect": "NormalService",
                         "type": "WiFi"

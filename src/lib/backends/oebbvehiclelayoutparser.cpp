@@ -24,7 +24,7 @@ struct {
     Feature::Availability postitive;
     Feature::Availability negative;
 } static constexpr const vehicle_section_feature_map[] = {
-    { "capacityBusinessClass", Feature::NoFeature, VehicleSection::FirstClass, Feature::Unknown, Feature::Unknown },
+    { "capacityBusinessClass", Feature::BusinessArea, VehicleSection::FirstClass, Feature::Available, Feature::Unknown },
     { "capacityFirstClass", Feature::NoFeature, VehicleSection::FirstClass, Feature::Unknown, Feature::Unknown },
     { "capacitySecondClass", Feature::NoFeature, VehicleSection::SecondClass, Feature::Unknown, Feature::Unknown },
     { "capacityCouchette", Feature::NoFeature, VehicleSection::UnknownClass, Feature::Unknown, Feature::Unknown }, // TODO

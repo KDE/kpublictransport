@@ -60,6 +60,12 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 16,
+                        "type": "BusinessArea"
                     }
                 ],
                 "load": "Low",
@@ -177,6 +183,14 @@
                 "classes": "FirstClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 6,
+                        "type": "BusinessArea"
+                    }
+                ],
                 "load": "Low",
                 "name": "37",
                 "platformPositionBegin": 0.44124728441238403,

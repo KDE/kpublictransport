@@ -55,6 +55,12 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 16,
+                        "type": "BusinessArea"
                     }
                 ],
                 "load": "Medium",
@@ -282,6 +288,12 @@
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
                         "type": "SilentArea"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 16,
+                        "type": "BusinessArea"
                     }
                 ],
                 "load": "Low",
