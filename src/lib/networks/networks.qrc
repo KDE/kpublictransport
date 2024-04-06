@@ -8,10 +8,11 @@
         <file>un_accessibilitycloud.json</file>
         <file>un_gbfs.json</file>
         <file>un_navitia.json</file>
-        <file>au_navitia.json</file>
+        <file>un_transitous.json</file>
 
         <!-- national providers -->
         <file>at_oebb.json</file>
+        <file>au_navitia.json</file>
         <file>ch_opentransportdata.json</file>
         <!--<file>ch_sbb.json</file> endpoint currently unreachable -->
         <file>de_db.json</file>
