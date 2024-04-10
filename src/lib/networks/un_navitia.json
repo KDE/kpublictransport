@@ -61,62 +61,18 @@
     },
     "coverage": {
         "regularCoverage": {
-            "area": {
-                "coordinates": [
-                    [
-                        [
-                            -180.0,
-                            -90.0
-                        ],
-                        [
-                            -180.0,
-                            90.0
-                        ],
-                        [
-                            180.0,
-                            90.0
-                        ],
-                        [
-                            180.0,
-                            -90.0
-                        ],
-                        [
-                            -180.0,
-                            -90.0
-                        ]
-                    ]
-                ],
-                "type": "Polygon"
-            },
+            "areaFile": "un_navitia_regular.geojson",
             "region": [
-                "AT",
-                "AU",
                 "BE",
-                "BR",
-                "CA",
                 "CH",
-                "CZ",
                 "DE",
-                "DK",
-                "EE",
                 "ES",
-                "FI",
                 "FR",
                 "GB",
-                "GH",
-                "HU",
-                "IE",
-                "IL",
                 "IT",
                 "LU",
-                "NI",
                 "NL",
-                "NZ",
-                "PL",
-                "PT",
-                "RU",
-                "SE",
-                "US"
+                "US-MI"
             ]
         }
     },

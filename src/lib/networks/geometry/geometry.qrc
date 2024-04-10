@@ -11,6 +11,7 @@
         <file>at_oebb_any.geojson</file>
         <file>at_oebb_realtime.geojson</file>
         <file>at_oebb_regular.geojson</file>
+        <file>un_navitia_regular.geojson</file>
         <file>un_transitous_any.geojson</file>
         <file>un_transitous_realtime.geojson</file>
         <file>un_transitous_regular.geojson</file>
