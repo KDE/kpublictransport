@@ -44,7 +44,6 @@
 #include "backends/openjourneyplannerbackend.h"
 #include "backends/opentripplannergraphqlbackend.h"
 #include "backends/opentripplannerrestbackend.h"
-#include "backends/pasazieruvilciensbackend.h"
 #include "backends/ltglinkbackend.h"
 #include "gbfs/gbfsbackend.h"
 
@@ -206,7 +205,6 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         MotisBackend,
         GBFSBackend,
         AccessibilityCloudBackend,
-        PasazieruVilciensBackend,
         LTGLinkBackend,
         ZPCGBackend,
         SrbijavozBackend

@@ -58,7 +58,6 @@ target_sources(KPublicTransport PRIVATE
     backends/opentripplannerparser.cpp
     backends/opentripplannerrestbackend.cpp
     backends/otp/otp.qrc
-    backends/pasazieruvilciensbackend.cpp
     backends/scopedxmlstreamreader.cpp
     backends/srbijavozbackend.cpp
     backends/zpcgbackend.cpp
