@@ -44,7 +44,7 @@
         "name": "Srbijavoz"
     },
     "coverage": {
-        "regularCoverage": {
+        "anyCoverage": {
             "area": {
                 "coordinates": [
                     [

@@ -47,7 +47,7 @@
         "name": "ZPCG"
     },
     "coverage": {
-        "regularCoverage": {
+        "anyCoverage": {
             "area": {
                 "coordinates": [
                     [
