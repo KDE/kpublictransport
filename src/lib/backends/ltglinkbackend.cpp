@@ -121,7 +121,12 @@ bool LTGLinkBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply
 
                     Line line;
                     line.setName(lineNumber);
-                    line.setMode(transportationType == u"LINE_TRANSPORTATION_TYPE.TRAIN" ? Line::Mode::Train : Line::Mode::Unknown);
+                    if (transportationType == u"LINE_TRANSPORTATION_TYPE.TRAIN" || transportationType.isNull()) {
+                        line.setMode(Line::Mode::Train);
+                    } else {
+                        qDebug() << "ltglink: Unknown transportation type" << transportationType << ", falling back to train";
+                        line.setMode(Line::Mode::Train);
+                    }
 
                     Route route;
                     route.setLine(line);
