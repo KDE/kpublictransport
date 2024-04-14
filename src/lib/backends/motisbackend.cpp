@@ -44,7 +44,7 @@ AbstractBackend::Capabilities MotisBackend::capabilities() const
 
 bool MotisBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
-    if (type == QueryType::Journey && m_intermodal) {
+    if (type == QueryType::Journey && !m_supportedModes.empty()) {
         return !loc.hasCoordinate() && !loc.hasIdentifier(m_locationIdentifierType);
     }
     return !loc.hasIdentifier(m_locationIdentifierType);
@@ -174,12 +174,12 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
     return true;
 }
 
-[[nodiscard]] static QJsonArray ivModes(const std::vector<IndividualTransport> &ivs)
+QJsonArray MotisBackend::ivModes(const std::vector<IndividualTransport> &ivs) const
 {
     // TODO allow external configuration of the duration limits and PPR profiles
     QJsonArray modes;
     for (const auto &iv : ivs) {
-        if (iv.mode() == IndividualTransport::Walk) {
+        if (iv.mode() == IndividualTransport::Walk && m_supportedModes.contains("FootPPR"_L1)) {
             modes.push_back(QJsonObject{
                 {"mode_type"_L1, "FootPPR"_L1},
                 {"mode"_L1, QJsonObject{
@@ -190,7 +190,7 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
                 }}
             });
         }
-        if (iv.mode() == IndividualTransport::Bike && iv.qualifier() != IndividualTransport::Rent) {
+        if (iv.mode() == IndividualTransport::Bike && iv.qualifier() != IndividualTransport::Rent && m_supportedModes.contains("Bike"_L1)) {
             // TODO neither bike parking nor taking the bike on public transport is explicitly supported
             modes.push_back(QJsonObject{
                 {"mode_type"_L1, "Bike"_L1},
@@ -199,7 +199,7 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
                 }}
             });
         }
-        if (iv.mode() == IndividualTransport::Car && iv.qualifier() != IndividualTransport::Park && iv.qualifier() != IndividualTransport::Rent) {
+        if (iv.mode() == IndividualTransport::Car && iv.qualifier() != IndividualTransport::Park && iv.qualifier() != IndividualTransport::Rent && m_supportedModes.contains("Car"_L1)) {
             modes.push_back(QJsonObject{
                 {"mode_type"_L1, "Car"_L1},
                 {"mode"_L1, QJsonObject{
@@ -207,7 +207,7 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
                 }}
             });
         }
-        if (iv.mode() == IndividualTransport::Car && iv.qualifier() == IndividualTransport::Park) {
+        if (iv.mode() == IndividualTransport::Car && iv.qualifier() == IndividualTransport::Park && m_supportedModes.contains("CarParking"_L1)) {
             modes.push_back(QJsonObject{
                 {"mode_type"_L1, "CarParking"_L1},
                 {"mode"_L1, QJsonObject{
@@ -307,8 +307,8 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
             break;
     }
 
-    const auto fromIntermodel = m_intermodal && !from.hasIdentifier(m_locationIdentifierType);
-    const auto toIntermodal = m_intermodal && !to.hasIdentifier(m_locationIdentifierType);
+    const auto fromIntermodel = !m_supportedModes.empty() && !from.hasIdentifier(m_locationIdentifierType);
+    const auto toIntermodal = !m_supportedModes.empty() && !to.hasIdentifier(m_locationIdentifierType);
 
     QJsonObject content{
         // TODO how can we make the ontrip start options available? OntripTrainStart in particular

@@ -86,8 +86,8 @@
     },
     "options": {
         "endpoint": "https://routing.spline.de/api/",
-        "intermodal": false,
-        "locationIdentifierType": "transitous"
+        "locationIdentifierType": "transitous",
+        "supportedModes": []
     },
     "type": {
         "motis": true

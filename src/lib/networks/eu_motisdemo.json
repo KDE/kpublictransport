@@ -37,7 +37,8 @@
     },
     "options": {
         "endpoint": "https://europe.motis-project.de/",
-        "locationIdentifierType": "motis"
+        "locationIdentifierType": "motis",
+        "supportedModes": [ "FootPPR", "Bike", "Car", "CarParking" ]
     },
     "type": {
         "motis": true

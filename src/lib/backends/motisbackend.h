@@ -14,16 +14,18 @@ class QNetworkRequest;
 
 namespace KPublicTransport {
 
+class IndividualTransport;
+
 /** Backend for Motis-based providers. */
 class MotisBackend : public AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
     Q_PROPERTY(QString locationIdentifierType MEMBER m_locationIdentifierType)
-    /** Intermodal journey search is functional on this instance.
+    /** Intermodal journey modes supported by this instance
      *  Defaults to @c true.
      */
-    Q_PROPERTY(bool intermodal MEMBER m_intermodal)
+    Q_PROPERTY(QStringList supportedModes MEMBER m_supportedModes)
 
 public:
     explicit MotisBackend();
@@ -42,10 +44,12 @@ private:
 
     /** Convert QDateTime to the MOTIS time format. */
     [[nodiscard]] static qint64 encodeTime(const QDateTime &dt);
+    /** Generate intermodal journey request arguments. */
+    [[nodiscard]] QJsonArray ivModes(const std::vector<IndividualTransport> &ivs) const;
 
     QUrl m_endpoint;
     QString m_locationIdentifierType;
-    bool m_intermodal = true;
+    QStringList m_supportedModes;
 };
 
 }
