@@ -71,6 +71,7 @@ Kirigami.Page {
                 Layout.row: 4
                 Layout.column: 1
                 Layout.columnSpan: 2
+                visible: journeySection.features.length > 0
                 Repeater {
                     model: journeySection.features
                     delegate: FeatureDelegate {
