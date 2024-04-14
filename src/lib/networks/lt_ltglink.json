@@ -48,7 +48,7 @@
         "name": "LTG Link"
     },
     "coverage": {
-        "realtimeCoverage": {
+        "anyCoverage": {
             "area": {
                 "coordinates": [
                     [
