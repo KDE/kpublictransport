@@ -32,14 +32,22 @@ for transportApiFile in transportApiFiles:
         name = os.path.splitext(os.path.basename(transportApiFile))[0]
 
     for cov in ['anyCoverage', 'regularCoverage', 'realtimeCoverage']:
-        if not 'coverage' in j or not cov in j['coverage'] or not 'area' in j['coverage'][cov]:
+        if not 'coverage' in j or not cov in j['coverage']:
+            continue
+        area = {}
+        if 'area' in j['coverage'][cov]:
+            area = j['coverage'][cov]['area']
+        elif 'areaFile' in j['coverage'][cov]:
+            areaFile = open(arguments.transport_api + "/geometry/" + j['coverage'][cov]['areaFile'], 'r')
+            area = json.load(areaFile)
+        else:
             continue
         properties = {}
         properties['name'] = name + '-' + cov
         feature = {}
         feature['type'] = 'Feature'
         feature['properties'] = properties
-        feature['geometry'] = j['coverage'][cov]['area']
+        feature['geometry'] = area
         output['features'].append(feature)
 
 print(json.dumps(output))
