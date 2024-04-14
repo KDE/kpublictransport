@@ -249,8 +249,9 @@ static int isSameDistanceThreshold(Location::Type type)
     switch (type) {
         case Location::Place:
         case Location::Stop:
+            return 25; // meter
         case Location::CarpoolPickupDropoff:
-            return 10; // meter
+            return 10;
         case Location::RentedVehicleStation:
             return 5;
         case Location::Equipment:
