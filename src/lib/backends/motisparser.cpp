@@ -326,6 +326,42 @@ Location MotisParser::parseStation(const QJsonObject &station) const
     return loc;
 }
 
+Path MotisParser::parsePPRPath(const QByteArray &data)
+{
+    const auto content = parseContent(data);
+    if (hasError()) {
+        return {};
+    }
+
+    const auto routes1 = content.value("routes"_L1).toArray();
+    if (routes1.isEmpty()) {
+        return {};
+    }
+    const auto routes2 = routes1.at(0).toObject().value("routes"_L1).toArray();
+    if (routes2.isEmpty()) {
+        return {};
+    }
+
+    const auto route = routes2.at(0).toObject();
+    const auto coordinates = route.value("path"_L1).toObject().value("coordinates"_L1).toArray();
+    if (coordinates.isEmpty()) {
+        return {};
+    }
+
+    QPolygonF poly;
+    poly.reserve(coordinates.size() / 2);
+    for (qsizetype i = 0; i <coordinates.size(); i += 2) {
+        poly.push_back({ coordinates.at(i + 1).toDouble(), coordinates.at(i).toDouble() });
+    }
+
+    PathSection section;
+    section.setPath(poly);
+
+    Path path;
+    path.setSections({section});
+    return path;
+}
+
 QJsonObject MotisParser::parseContent(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();

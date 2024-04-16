@@ -8,6 +8,7 @@
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
+#include <KPublicTransport/Path>
 #include <KPublicTransport/Stopover>
 
 #include <QFile>
@@ -123,6 +124,31 @@ private Q_SLOTS:
             QVERIFY(p.hasError());
             QCOMPARE(p.errorMessage(), "access: timestamp not in schedule"_L1);
         }
+    }
+
+    void testParsePPR_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("ppr-walk")
+            << QStringLiteral(SOURCE_DIR "/data/motis/ppr-walk.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis/ppr-walk.out.json");
+    }
+
+    void testParsePPR()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        MotisParser p(u"motis"_s);
+        const auto result = p.parsePPRPath(Test::readFile(inFileName));
+        QVERIFY(!result.isEmpty());
+        QVERIFY(!p.hasError());
+        const auto resultJson = Path::toJson(result);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
 };
 
