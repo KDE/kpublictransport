@@ -38,6 +38,7 @@ public:
     [[nodiscard]] std::vector<Stopover> parseEvents(const QByteArray &data);
     [[nodiscard]] std::vector<Location> parseStations(const QByteArray &data);
     [[nodiscard]] Path parsePPRPath(const QByteArray &data);
+    [[nodiscard]] Path parseOSRMPath(const QByteArray &data);
 
     [[nodiscard]] bool hasError() const;
     [[nodiscard]] QString errorMessage() const;

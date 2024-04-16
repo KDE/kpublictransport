@@ -150,6 +150,31 @@ private Q_SLOTS:
         QVERIFY(!resultJson.isEmpty());
         QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
+
+    void testParseOSRM_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("outFileName");
+
+        QTest::newRow("ppr-walk")
+            << QStringLiteral(SOURCE_DIR "/data/motis/osrm-via-bike.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis/osrm-via-bike.out.json");
+    }
+
+    void testParseOSRM()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, outFileName);
+
+        MotisParser p(u"motis"_s);
+        const auto result = p.parseOSRMPath(Test::readFile(inFileName));
+        QVERIFY(!result.isEmpty());
+        QVERIFY(!p.hasError());
+        const auto resultJson = Path::toJson(result);
+        const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).object();
+        QVERIFY(!resultJson.isEmpty());
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
+    }
 };
 
 QTEST_GUILESS_MAIN(MotisParserTest)

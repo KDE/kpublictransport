@@ -362,6 +362,32 @@ Path MotisParser::parsePPRPath(const QByteArray &data)
     return path;
 }
 
+Path MotisParser::parseOSRMPath(const QByteArray &data)
+{
+    const auto content = parseContent(data);
+    if (hasError()) {
+        return {};
+    }
+
+    const auto coordinates = content.value("polyline"_L1).toObject().value("coordinates"_L1).toArray();
+    if (coordinates.isEmpty()) {
+        return {};
+    }
+
+    QPolygonF poly;
+    poly.reserve(coordinates.size() / 2);
+    for (qsizetype i = 0; i <coordinates.size(); i += 2) {
+        poly.push_back({ coordinates.at(i + 1).toDouble(), coordinates.at(i).toDouble() });
+    }
+
+    PathSection section;
+    section.setPath(poly);
+
+    Path path;
+    path.setSections({section});
+    return path;
+}
+
 QJsonObject MotisParser::parseContent(const QByteArray &data)
 {
     const auto top = QJsonDocument::fromJson(data).object();
