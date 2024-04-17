@@ -84,7 +84,12 @@ WifiMonitor::WifiMonitor(QObject *parent)
 
     if (!s_backend) {
         s_backend = new WifiMonitorBackend;
-        s_backend->wifiMonitor = QJniObject("org/kde/publictransport/onboard/WifiMonitor", "(Landroid/content/Context;)V", QNativeInterface::QAndroidApplication::context());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+        s_backend->wifiMonitor = QJniObject("org/kde/publictransport/onboard/WifiMonitor", QNativeInterface::QAndroidApplication::context());
+#else
+        s_backend->wifiMonitor = QJniObject("org/kde/publictransport/onboard/WifiMonitor", "(Landroid/content/Context;)V",
+                                            QNativeInterface::QAndroidApplication::context());
+#endif
     }
 
     s_backend->ref.ref();
