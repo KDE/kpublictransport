@@ -15,6 +15,7 @@ class QNetworkRequest;
 namespace KPublicTransport {
 
 class IndividualTransport;
+class MotisPathQueryTask;
 
 /** Backend for Motis-based providers. */
 class MotisBackend : public AbstractBackend
@@ -39,8 +40,10 @@ public:
     [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    friend class MotisPathQueryTask;
+
     template <typename Request>
-    QNetworkReply* makeRequest(const Request &req, Reply *reply, const QJsonObject &query, QNetworkAccessManager *nam) const;
+    QNetworkReply* makeRequest(const Request &req, QObject *parent, const QJsonObject &query, QNetworkAccessManager *nam) const;
 
     /** Convert QDateTime to the MOTIS time format. */
     [[nodiscard]] static qint64 encodeTime(const QDateTime &dt);

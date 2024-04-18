@@ -28,6 +28,28 @@
 using namespace KPublicTransport;
 using namespace Qt::Literals::StringLiterals;
 
+/** Resolve intermodal paths for a set of journeys. */
+namespace KPublicTransport {
+class MotisPathQueryTask : public AsyncTask<void>
+{
+public:
+    explicit MotisPathQueryTask(std::vector<Journey> &&journeys, const MotisBackend *backend, QNetworkAccessManager *nam, QObject *parent);
+    void start();
+
+    std::vector<Journey> m_journeys;
+
+private:
+    void queryNext();
+    void applyPath(const Path &path, JourneySection::Mode mode, IndividualTransport::Mode ivMode);
+
+    const MotisBackend *m_backend = nullptr;
+    QNetworkAccessManager *m_nam = nullptr;
+
+    std::size_t m_jnyIdx = 0;
+    std::size_t m_secIdx = 0;
+};
+}
+
 MotisBackend::MotisBackend() = default;
 MotisBackend::~MotisBackend() = default;
 
@@ -360,7 +382,7 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
     };
 
     auto netReply = makeRequest(req, reply, query, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, nam]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
@@ -371,7 +393,16 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
             setPreviousRequestContext(reply, result.begin);
             setNextRequestContext(reply, result.end);
-            addResult(reply, this, std::move(result.journeys));
+            if (!reply->request().includePaths()) {
+                addResult(reply, this, std::move(result.journeys));
+            } else {
+                auto task = new MotisPathQueryTask(std::move(result.journeys), this, nam, reply);
+                QObject::connect(task, &AbstractAsyncTask::finished, reply, [this, reply, task]() {
+                    task->deleteLater();
+                    addResult(reply, this, std::move(task->m_journeys));
+                });
+                task->start();
+            }
         } else if (p.hasError()) {
             addError(reply, Reply::InvalidRequest, p.errorMessage());
         } else {
@@ -384,7 +415,7 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
 }
 
 template <typename Request>
-QNetworkReply* MotisBackend::makeRequest(const Request &req, Reply *reply, const QJsonObject &query, QNetworkAccessManager *nam) const
+QNetworkReply* MotisBackend::makeRequest(const Request &req, QObject *parent, const QJsonObject &query, QNetworkAccessManager *nam) const
 {
     QNetworkRequest netReq(m_endpoint);
     applySslConfiguration(netReq);
@@ -394,7 +425,7 @@ QNetworkReply* MotisBackend::makeRequest(const Request &req, Reply *reply, const
     logRequest(req, netReq, postData);
     qDebug().noquote() << QJsonDocument(query).toJson();
     auto netReply = nam->post(netReq, postData);
-    netReply->setParent(reply);
+    netReply->setParent(parent);
     return netReply;
 }
 
@@ -402,6 +433,151 @@ qint64 MotisBackend::encodeTime(const QDateTime &dt)
 {
     // MOTIS uses 0 offset UNIX time stamps
     return dt.toTimeZone(QTimeZone::fromSecondsAheadOfUtc(0)).toSecsSinceEpoch();
+}
+
+MotisPathQueryTask::MotisPathQueryTask(std::vector<Journey> &&journey, const MotisBackend *backend, QNetworkAccessManager *nam, QObject *parent)
+    : AsyncTask<void>(parent)
+    , m_journeys(std::move(journey))
+    , m_backend(backend)
+    , m_nam(nam)
+{
+}
+
+void MotisPathQueryTask::start()
+{
+    queryNext();
+}
+
+void MotisPathQueryTask::queryNext()
+{
+    for (; m_jnyIdx < m_journeys.size(); ++m_jnyIdx) {
+        for (; m_secIdx < m_journeys[m_jnyIdx].sections().size(); ++m_secIdx) {
+            const auto &section = m_journeys[m_jnyIdx].sections()[m_secIdx];
+            if (!section.path().isEmpty() || section.distance() <= 10) {
+                continue;
+            }
+            if (section.mode() == JourneySection::Walking && m_backend->m_supportedModes.contains("FootPPR"_L1)) {
+                QJsonObject query{
+                    {"destination"_L1, QJsonObject{
+                        {"type"_L1, "Module"_L1},
+                        {"target"_L1, "/ppr/route"_L1}
+                    }},
+                    {"content_type"_L1, "FootRoutingRequest"_L1},
+                    {"content"_L1, QJsonObject{
+                        {"start"_L1, QJsonObject{
+                            {"lat"_L1, section.from().latitude()},
+                            {"lng"_L1, section.from().longitude()},
+                        }},
+                        {"destinations"_L1, QJsonArray{{
+                            QJsonObject{
+                                {"lat"_L1, section.to().latitude()},
+                                {"lng"_L1, section.to().longitude()},
+                            },
+                        }}},
+                        {"include_edges"_L1, true}, // ### this doesn't actually seem to work?
+                        {"include_path"_L1, true},
+                        {"include_steps"_L1, true},
+                        {"search_options"_L1, QJsonObject{
+                            {"duration_limit"_L1, 1800}, // TODO
+                            {"profile"_L1, "default"_L1}, // TODO
+                        }},
+                    }}
+                };
+
+                auto netReply = m_backend->makeRequest(JourneyRequest{}, this, query, m_nam);
+                QObject::connect(netReply, &QNetworkReply::finished, this, [this, netReply]() {
+                    const auto data = netReply->readAll();
+                    m_backend->logReply(this, netReply, data);
+                    MotisParser p(m_backend->m_locationIdentifierType);
+                    const auto path = p.parsePPRPath(data);
+                    if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
+                        applyPath(path, JourneySection::Walking, IndividualTransport::Walk);
+                        queryNext();
+                    } else {
+                        reportFinished();
+                    }
+                });
+                return;
+            }
+            if (section.mode() == JourneySection::IndividualTransport) {
+                const auto iv = section.individualTransport();
+                if ((iv.mode() != IndividualTransport::Bike && iv.mode() != IndividualTransport::Car)
+                 || (iv.mode() == IndividualTransport::Bike && !m_backend->m_supportedModes.contains("Bike"_L1))
+                 || (iv.mode() == IndividualTransport::Car && !m_backend->m_supportedModes.contains("Car"_L1))) {
+                     continue;
+                }
+
+                QJsonObject query{
+                    {"destination"_L1, QJsonObject{
+                        {"type"_L1, "Module"_L1},
+                        {"target"_L1, "/osrm/via"_L1}
+                    }},
+                    {"content_type"_L1, "OSRMViaRouteRequest"_L1},
+                    {"content"_L1, QJsonObject{
+                        {"waypoints"_L1, QJsonArray{{
+                            QJsonObject{
+                                {"lat"_L1, section.from().latitude()},
+                                {"lng"_L1, section.from().longitude()},
+                            },
+                            QJsonObject{
+                                {"lat"_L1, section.to().latitude()},
+                                {"lng"_L1, section.to().longitude()},
+                            },
+                        }}},
+                        {"profile"_L1, iv.mode() == IndividualTransport::Bike ? "bike"_L1 : "car"_L1},
+                    }}
+                };
+
+                auto netReply = m_backend->makeRequest(JourneyRequest{}, this, query, m_nam);
+                QObject::connect(netReply, &QNetworkReply::finished, this, [this, netReply, iv]() {
+                    const auto data = netReply->readAll();
+                    m_backend->logReply(this, netReply, data);
+                    MotisParser p(m_backend->m_locationIdentifierType);
+                    const auto path = p.parseOSRMPath(data);
+                    if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
+                        applyPath(path, JourneySection::IndividualTransport, iv.mode());
+                        queryNext();
+                    } else {
+                        reportFinished();
+                    }
+                });
+                return;
+            }
+        }
+        m_secIdx = 0;
+    }
+
+    reportFinished();
+}
+
+void MotisPathQueryTask::applyPath(const Path &path, JourneySection::Mode mode, IndividualTransport::Mode ivMode)
+{
+    // apply to the current section regardless, so we are guaranteed to progress here
+    {
+        auto &jny = m_journeys[m_jnyIdx];
+        auto sections = std::move(jny.takeSections());
+        auto &section = sections[m_secIdx];
+        section.setPath(path);
+        jny.setSections(std::move(sections));
+        ++m_secIdx;
+    }
+
+    // apply to all exactly matching sections
+    auto j = m_secIdx;
+    for (auto i = m_jnyIdx; i <m_journeys.size(); ++i) {
+        auto &jny = m_journeys[i];
+        for (; j < jny.sections().size(); ++j) {
+            if (jny.sections()[j].mode() == mode && (mode != JourneySection::IndividualTransport || jny.sections()[j].individualTransport().mode() == ivMode)
+             && Location::distance(jny.sections()[j].from().latitude(), jny.sections()[j].from().longitude(), path.startPoint().y(), path.startPoint().x()) < 10
+             && Location::distance(jny.sections()[j].to().latitude(), jny.sections()[j].to().longitude(), path.endPoint().y(), path.endPoint().x()) < 10) {
+                auto sections = std::move(jny.takeSections());
+                auto &section = sections[j];
+                section.setPath(path);
+                jny.setSections(std::move(sections));
+            }
+        }
+        j = 0;
+    }
 }
 
 #include "moc_motisbackend.cpp"
