@@ -12,7 +12,6 @@
         "Description[eu]": "Tokiko garraioa Chicago eta inguruan, Illinois, AEB.",
         "Description[fi]": "Paikallinen liikenne Yhdysvaltain Illinois’n Chicagossa ympäristöineen.",
         "Description[fr]": "Transports régionaux dans la région de Chicago, Illinois, États-Unis.",
-        "Description[he]": "תחבורה ציבורית בתוך ומסביב לשיקגו, אילינוי, ארה״ב.",
         "Description[ia]": "Transporto local in e ubique Chicago. Illinois, Statos Unite.",
         "Description[it]": "Trasporto locale a Chicago, Illinois e dintorni, Stati Uniti.",
         "Description[ka]": "ლოკალური ტრანსპორტი ჩიკაგოში, ილინიოსი, აშშ და მის გარშემო.",
@@ -28,7 +27,6 @@
         "Description[uk]": "Місцевий транспорт у Чикаго і околицях, Іллінойс, США.",
         "Description[x-test]": "xxLocal transport in and around Chicago, Illinois, United States.xx",
         "Description[zh_CN]": "美国伊利诺伊州芝加哥及其周边地区的公共交通。",
-        "Description[zh_TW]": "美國伊利諾州芝加哥及其週邊的區域運輸。",
         "Name": "Regional Transport Authority Chicago",
         "Name[ca@valencia]": "Regional Transport Authority Chicago",
         "Name[ca]": "Regional Transport Authority Chicago",
@@ -52,8 +50,7 @@
         "Name[sv]": "Regionala transportmyndigheten Chicago",
         "Name[tr]": "Şikago Bölgesel Taşıma Merci",
         "Name[uk]": "Регіональна транспортна служба Чикаго",
-        "Name[x-test]": "xxRegional Transport Authority Chicagoxx",
-        "Name[zh_TW]": "芝加哥地區運輸管理局"
+        "Name[x-test]": "xxRegional Transport Authority Chicagoxx"
     },
     "coverage": {
         "anyCoverage": {

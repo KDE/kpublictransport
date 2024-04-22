@@ -11,7 +11,6 @@
         "Description[eu]": "Garraio publikoa Suitzan.",
         "Description[fi]": "Sveitsin julkinen liikenne.",
         "Description[fr]": "Transports publics en Suisse.",
-        "Description[he]": "תחבורה ציבורית בשווייץ.",
         "Description[ia]": "Transporto public in Suissa.",
         "Description[it]": "Trasporto pubblico in Svizzera.",
         "Description[ka]": "საჯარო ტრანსპორტი შვეიცარიაში.",
@@ -26,7 +25,6 @@
         "Description[tr]": "İsviçre için toplu taşıma.",
         "Description[uk]": "Громадський транспорт у Швейцарії.",
         "Description[x-test]": "xxPublic transport in Switzerland.xx",
-        "Description[zh_TW]": "瑞士的公共運輸。",
         "Name": "opentransportdata.swiss",
         "Name[ca@valencia]": "opentransportdata.swiss",
         "Name[ca]": "opentransportdata.swiss",
@@ -51,8 +49,7 @@
         "Name[sv]": "opentransportdata.swiss",
         "Name[tr]": "açıktaşımaverisi.swiss",
         "Name[uk]": "opentransportdata.swiss",
-        "Name[x-test]": "xxopentransportdata.swissxx",
-        "Name[zh_TW]": "opentransportdata.swiss"
+        "Name[x-test]": "xxopentransportdata.swissxx"
     },
     "attribution": {
         "homepage": "https://opentransportdata.swiss",

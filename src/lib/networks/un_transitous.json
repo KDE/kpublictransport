@@ -1,37 +1,7 @@
 {
     "KPlugin": {
         "Description": "Community-run free and open public transport routing service.",
-        "Description[ca@valencia]": "Servei de rutes de transport públic obert i gratuït de gestió comunitària.",
-        "Description[ca]": "Servei de rutes de transport públic obert i gratuït de gestió comunitària.",
-        "Description[eo]": "Komunume prizorgita libera kaj malferma publiktransporta itinerservo",
-        "Description[es]": "Servicio de rutas de transporte público abierto, gratuito y gestionado por la comunidad.",
-        "Description[eu]": "Garraio publikoko bideratze-zerbitzu komunitarioa, askea eta irekia.",
-        "Description[fr]": "Service de routage de transport public, gratuit, ouvert et géré par une communauté.",
-        "Description[he]": "שירות תכנון מסלול תחבורה ציבורית חינם ופתוח בהובלת הקהילה.",
-        "Description[ia]": "Servicio de deroutar de transporto public aperite e gratuite facite per communitate. ",
-        "Description[it]": "Servizio di routing di trasporto pubblico gratuito e aperto gestito dalla comunità.",
-        "Description[ka]": "მოხალისეების მიერ მხარდაჭერილი უფასო და ღია საზოგადოებრივი ტრანსპორტის სერვისი.",
-        "Description[nl]": "Community-run vrije en open openbaar vervoer routeringsservice.",
-        "Description[sl]": "Brezplačna in odprta storitev javnega prevoza, ki jo vodi skupnost.",
-        "Description[tr]": "Topluluk tarafından işletilen, ücretsiz ve açık toplu taşıma yönlendirme hizmeti.",
-        "Description[uk]": "Вільна і відкрита служба маршрутизації транспорту, супровід якої здійснює спільнота користувачів",
-        "Description[x-test]": "xxCommunity-run free and open public transport routing service.xx",
-        "Name": "Transitous",
-        "Name[ca@valencia]": "Transitous",
-        "Name[ca]": "Transitous",
-        "Name[cs]": "Přechody",
-        "Name[eo]": "Transitous",
-        "Name[es]": "Transitous",
-        "Name[eu]": "Transitous",
-        "Name[fr]": "Transitous",
-        "Name[ia]": "Transirori",
-        "Name[it]": "Transitous",
-        "Name[ka]": "Transitous",
-        "Name[nl]": "Transitous",
-        "Name[sl]": "Transitous",
-        "Name[tr]": "Transitous",
-        "Name[uk]": "Transitous",
-        "Name[x-test]": "xxTransitousxx"
+        "Name": "Transitous"
     },
     "coverage": {
         "anyCoverage": {
