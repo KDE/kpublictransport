@@ -111,6 +111,8 @@ target_sources(KPublicTransport PRIVATE
 
     ifopt/ifoptutil.cpp
 
+    images/images.qrc
+
     json/jsonp.cpp
     json/jsonpointer.cpp
 

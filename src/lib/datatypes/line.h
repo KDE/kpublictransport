@@ -87,6 +87,11 @@ public:
     /** Name of the operator running this line. */
     KPUBLICTRANSPORT_PROPERTY(QString, operatorName, setOperatorName)
 
+    /** Generic icon for the line mode.
+     *  @see modeIconName(Line::Mode)
+     */
+    Q_PROPERTY(QString modeIconName READ modeIconName STORED false)
+
 public:
     [[nodiscard]] bool hasColor() const;
     [[nodiscard]] bool hasTextColor() const;
@@ -94,6 +99,12 @@ public:
     [[nodiscard]] bool hasLogo() const;
     [[nodiscard]] QString modeLogo() const;
     [[nodiscard]] bool hasModeLogo() const;
+    [[nodiscard]] QString modeIconName() const;
+
+    /** Name of an icon to represent @p mode.
+     *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
+     */
+    Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::Line::Mode mode);
 
     /** Look up line meta data and apply what is found.
      *  @param location A location on or close to the line.

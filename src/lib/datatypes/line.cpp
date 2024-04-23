@@ -17,6 +17,7 @@
 #include <QDebug>
 #include <QUrl>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -87,6 +88,52 @@ QString Line::modeLogo() const
 bool Line::hasModeLogo() const
 {
     return !modeLogo().isEmpty();
+}
+
+QString Line::modeIconName() const
+{
+    return Line::modeIconName(mode());
+}
+
+QString Line::modeIconName(Line::Mode mode)
+{
+    // see https://invent.kde.org/frameworks/breeze-icons/-/issues/16
+    switch (mode) {
+        case Line::Unknown:
+            break;
+        case Line::Air:
+            return u"qrc:///org.kde.kpublictransport/assets/images/flight.svg"_s;
+        case Line::Boat:
+        case Line::Ferry:
+            return u"qrc:///org.kde.kpublictransport/assets/images/ferry.svg"_s;
+        case Line::Bus:
+            return u"qrc:///org.kde.kpublictransport/assets/images/bus.svg"_s;
+        case Line::BusRapidTransit:
+        case Line::Coach:
+            return u"qrc:///org.kde.kpublictransport/assets/images/coach.svg"_s;
+        case Line::Funicular:
+            return u"qrc:///org.kde.kpublictransport/assets/images/funicular.svg"_s;
+        case Line::LocalTrain:
+        case Line::Train:
+            return u"qrc:///org.kde.kpublictransport/assets/images/train.svg"_s;
+        case Line::LongDistanceTrain:
+            return u"qrc:///org.kde.kpublictransport/assets/images/longdistancetrain.svg"_s;
+        case Line::Metro:
+            return u"qrc:///org.kde.kpublictransport/assets/images/subway.svg"_s;
+        case Line::RailShuttle:
+        case Line::RapidTransit:
+            return u"qrc:///org.kde.kpublictransport/assets/images/rapidtransit.svg"_s;
+        case Line::Shuttle:
+            return u"qrc:///org.kde.kpublictransport/assets/images/shuttle.svg"_s;
+        case Line::Taxi:
+            return u"qrc:///org.kde.kpublictransport/assets/images/taxi.svg"_s;
+        case Line::Tramway:
+            return u"qrc:///org.kde.kpublictransport/assets/images/tramway.svg"_s;
+        case Line::RideShare:
+            return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
+    }
+
+    return u"question"_s;
 }
 
 bool Line::isSame(const Line &lhs, const Line &rhs)

@@ -1,0 +1,21 @@
+<!--
+    SPDX-FileCopyrightText: 2021 Volker Krause <vkrause@kde.org>
+    SPDX-License-Identifier: CC0-1.0
+-->
+<RCC>
+    <qresource prefix="/org.kde.kpublictransport/assets/images">
+        <file>bus.svg</file>
+        <file>car.svg</file>
+        <file>coach.svg</file>
+        <file>ferry.svg</file>
+        <file>flight.svg</file>
+        <file>funicular.svg</file>
+        <file>longdistancetrain.svg</file>
+        <file>rapidtransit.svg</file>
+        <file>shuttle.svg</file>
+        <file>subway.svg</file>
+        <file>taxi.svg</file>
+        <file>train.svg</file>
+        <file>tramway.svg</file>
+    </qresource>
+</RCC>
