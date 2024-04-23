@@ -10,6 +10,7 @@
         "Description[eu]": "GBFS estandarra jarraituz bizikleta edo patinetea partekatzeko zerbitzuen laguntza generikoa.",
         "Description[fi]": "Yleinen polkupyörien tai sähköpostilautojen jakamisen tuki GBFS-standardin mukaisesti.",
         "Description[fr]": "Prise en charge générique des services de partages de motos et scooters suivant le standard « GBFS ».",
+        "Description[he]": "תמיכה גנרית לשירותי שיתוף אופניים או קורקינט לפי תקן GBFS.",
         "Description[ia]": "Supporto generic per servicios de biciclettas e scooter  compartite sequente le standard GBFS.",
         "Description[it]": "Supporto generico per i servizi di condivisione di biciclette o monopattini che seguono lo standard GBFS.",
         "Description[ka]": "მოტოციკლეტისა და სკუტერის გაზიარების სერვისის ზოგადი მხარდაჭერა შედეგი GBFS სტანდარტით.",
@@ -25,6 +26,7 @@
         "Description[uk]": "Загальна підтримка служб спільного використання велосипедів або скутерів за стандартом GBFS.",
         "Description[x-test]": "xxGeneric support for bike or scooter sharing services following the GBFS standard.xx",
         "Description[zh_CN]": "对遵从 GBFS 标准的共享单车、共享踏板车服务进行通用支持。",
+        "Description[zh_TW]": "對於跟隨 GBFS 標準的單車或機車共享服務的通用支援。",
         "Name": "Shared bikes/scooters",
         "Name[ca@valencia]": "Bicicletes/motos compartides",
         "Name[ca]": "Bicicletes/motos compartides",
@@ -50,7 +52,8 @@
         "Name[sv]": "Delade cyklar eller skotrar",
         "Name[tr]": "Paylaşılan bisikletler/mopedler",
         "Name[uk]": "Велосипеди і скутери спільного користування",
-        "Name[x-test]": "xxShared bikes/scootersxx"
+        "Name[x-test]": "xxShared bikes/scootersxx",
+        "Name[zh_TW]": "共享單車/機車"
     },
     "coverage": {
         "realtimeCoverage": {
