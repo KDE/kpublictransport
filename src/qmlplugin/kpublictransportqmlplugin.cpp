@@ -6,6 +6,7 @@
 
 #include "kpublictransportqmlplugin.h"
 #include "linemetadatawrapper.h"
+#include "linemode.h"
 
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -48,5 +49,8 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
 
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMetaData", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::LineMetaDataWrapper());
+    });
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMode", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(KPublicTransport::LineMode());
     });
 }
