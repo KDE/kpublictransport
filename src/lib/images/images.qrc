@@ -4,6 +4,7 @@
 -->
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/assets/images">
+        <file>bike.svg</file>
         <file>bus.svg</file>
         <file>car.svg</file>
         <file>coach.svg</file>
@@ -17,5 +18,6 @@
         <file>taxi.svg</file>
         <file>train.svg</file>
         <file>tramway.svg</file>
+        <file>walk.svg</file>
     </qresource>
 </RCC>

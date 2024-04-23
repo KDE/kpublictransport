@@ -11,6 +11,8 @@
 
 #include <QDebug>
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace KPublicTransport {
 class IndividualTransportPrivate : public QSharedData
 {
@@ -41,6 +43,25 @@ bool IndividualTransport::operator==(const IndividualTransport &other) const
 bool IndividualTransport::operator!=(const IndividualTransport &other) const
 {
     return d->mode != other.mode() || d->qualifier != other.qualifier();
+}
+
+QString IndividualTransport::modeIconName(IndividualTransport::Mode mode)
+{
+    switch (mode) {
+        case IndividualTransport::Bike:
+             return u"qrc:///org.kde.kpublictransport/assets/images/bike.svg"_s;
+        case IndividualTransport::Car:
+            return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
+        case IndividualTransport::Walk:
+            return u"qrc:///org.kde.kpublictransport/assets/images/walk.svg"_s;
+    }
+
+    return u"question"_s;
+}
+
+QString IndividualTransport::modeIconName() const
+{
+    return IndividualTransport::modeIconName(mode());
 }
 
 QJsonObject IndividualTransport::toJson(const IndividualTransport &it)

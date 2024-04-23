@@ -135,7 +135,15 @@ Kirigami.ApplicationWindow {
 
                 Kirigami.Icon {
                     id: icon
-                    source: modelData.mode === JourneySection.PublicTransport ? modelData.route.line.iconName : ""
+                    source: {
+                        switch (modelData.mode) {
+                            case JourneySection.PublicTransport:
+                                return modelData.route.line.iconName;
+                            case JourneySection.IndividualTransport:
+                                return modelData.individualTransport.modeIconName;
+                        }
+                        return "";
+                    }
                     width: height
                     height: Kirigami.Units.iconSizes.large
                     visible: source != ""
@@ -165,14 +173,6 @@ Kirigami.ApplicationWindow {
                                     case RentalVehicle.ElectricMoped: return "🔑🛵";
                                     case RentalVehicle.Car: return "🔑🚗";
                                     default: return "?";
-                                }
-                            }
-                            case JourneySection.IndividualTransport:
-                            {
-                                switch (modelData.individualTransport.mode) {
-                                    case IndividualTransport.Walk: return "🚶";
-                                    case IndividualTransport.Bike: return "🚲";
-                                    case IndividualTransport.Car: return "🚗";
                                 }
                             }
                             default: return "?";

@@ -28,6 +28,12 @@ public:
     Q_ENUM(Mode)
     KPUBLICTRANSPORT_PROPERTY(Mode, mode, setMode)
 
+    /** Name of an icon to represent this transport mode.
+     *  This does not consider the Qualifier value.
+     *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
+     */
+    Q_PROPERTY(QString modeIconName READ modeIconName STORED false)
+
 public:
     /** Qualifier on how the mode of transport is used. */
     enum Qualifier {
@@ -42,21 +48,27 @@ public:
 
 public:
     IndividualTransport(Mode mode, Qualifier qualifier = None);
+    [[nodiscard]] QString modeIconName() const;
 
-    bool operator==(const IndividualTransport &other) const;
-    bool operator!=(const IndividualTransport &other) const;
+    [[nodiscard]] bool operator==(const IndividualTransport &other) const;
+    [[nodiscard]] bool operator!=(const IndividualTransport &other) const;
+
+    /** Name of an icon to represent @p mode.
+     *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
+     */
+    [[nodiscard]] static QString modeIconName(KPublicTransport::IndividualTransport::Mode mode);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const IndividualTransport &it);
+    [[nodiscard]] static QJsonObject toJson(const IndividualTransport &it);
     /** Serializes a vector of objects to JSON. */
-    static QJsonArray toJson(const std::vector<IndividualTransport> &its);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<IndividualTransport> &its);
     /** Deserialize an object from JSON. */
-    static IndividualTransport fromJson(const QJsonObject &obj);
+    [[nodiscard]] static IndividualTransport fromJson(const QJsonObject &obj);
     /** Deserialize a list of journey from JSON. */
-    static std::vector<IndividualTransport> fromJson(const QJsonArray &array);
+    [[nodiscard]] static std::vector<IndividualTransport> fromJson(const QJsonArray &array);
 
     /** @internal for QML bindings only */
-    static std::vector<IndividualTransport> fromVariant(const QVariantList &v);
+    [[nodiscard]] static std::vector<IndividualTransport> fromVariant(const QVariantList &v);
 };
 
 }
