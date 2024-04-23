@@ -26,7 +26,7 @@ Kirigami.Page {
             Kirigami.Icon {
                 Layout.rowSpan: 4
                 id: icon
-                source: journeySection.route.line.hasLogo ? journeySection.route.line.logo : journeySection.route.line.modeLogo
+                source: journeySection.route.line.iconName
                 width: height
                 height: Kirigami.Units.iconSizes.large
                 visible: source != ""

@@ -96,10 +96,9 @@ Kirigami.ApplicationWindow {
 
                 Kirigami.Icon {
                     id: icon
-                    source: departure.route.line.hasLogo ? departure.route.line.logo : departure.route.line.modeLogo
+                    source: departure.route.line.iconName
                     width: height
                     height: Kirigami.Units.iconSizes.large
-                    visible: source != ""
                 }
 
                 Rectangle {
@@ -107,33 +106,6 @@ Kirigami.ApplicationWindow {
                     width: Kirigami.Units.largeSpacing
                     color: departure.route.line.hasColor ? departure.route.line.color : "transparent"
                     Layout.fillHeight: true
-                    visible: icon.source == ""
-                }
-
-                QQC2.Label {
-                    text: {
-                        switch (departure.route.line.mode) {
-                            case Line.Air: return "✈️";
-                            case Line.Boat: return "🛥️";
-                            case Line.Bus: return "🚍";
-                            case Line.BusRapidTransit: return "🚌";
-                            case Line.Coach: return "🚌";
-                            case Line.Ferry: return "⛴️";
-                            case Line.Funicular: return "🚞";
-                            case Line.LocalTrain: return "🚆";
-                            case Line.LongDistanceTrain: return "🚄";
-                            case Line.Metro: return "🚇";
-                            case Line.RailShuttle: return "🚅";
-                            case Line.RapidTransit: return "🚊";
-                            case Line.Shuttle: return "🚐";
-                            case Line.Taxi: return "🚕";
-                            case Line.Train: return "🚆";
-                            case Line.Tramway: return "🚈";
-                            case Line.RideShare: return "🚗";
-                            default: return "?";
-                        }
-                    }
-                    font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
                     visible: icon.source == ""
                 }
 

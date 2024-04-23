@@ -92,6 +92,11 @@ public:
      */
     Q_PROPERTY(QString modeIconName READ modeIconName STORED false)
 
+    /** The best available icon for this line.
+     *  Either the line logo, mode logo or generic mode icon.
+     *  Can be a file: or qrc: URI or a XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
 public:
     [[nodiscard]] bool hasColor() const;
     [[nodiscard]] bool hasTextColor() const;
@@ -100,6 +105,7 @@ public:
     [[nodiscard]] QString modeLogo() const;
     [[nodiscard]] bool hasModeLogo() const;
     [[nodiscard]] QString modeIconName() const;
+    [[nodiscard]] QString iconName() const;
 
     /** Name of an icon to represent @p mode.
      *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.

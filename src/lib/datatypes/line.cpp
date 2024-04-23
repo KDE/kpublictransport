@@ -136,6 +136,17 @@ QString Line::modeIconName(Line::Mode mode)
     return u"question"_s;
 }
 
+QString Line::iconName() const
+{
+    if (hasLogo()) {
+        return logo();
+    }
+    if (hasModeLogo()) {
+        return modeLogo();
+    }
+    return modeIconName();
+}
+
 bool Line::isSame(const Line &lhs, const Line &rhs)
 {
     if (!LineUtil::isCompatibleMode(lhs.mode(), rhs.mode())) {

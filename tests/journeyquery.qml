@@ -135,7 +135,7 @@ Kirigami.ApplicationWindow {
 
                 Kirigami.Icon {
                     id: icon
-                    source: modelData.route.line.hasLogo ? modelData.route.line.logo : modelData.route.line.modeLogo
+                    source: modelData.mode === JourneySection.PublicTransport ? modelData.route.line.iconName : ""
                     width: height
                     height: Kirigami.Units.iconSizes.large
                     visible: source != ""
@@ -152,30 +152,7 @@ Kirigami.ApplicationWindow {
                 QQC2.Label {
                     text: {
                         switch (modelData.mode) {
-                            case JourneySection.PublicTransport:
-                            {
-                                switch (modelData.route.line.mode) {
-                                    case Line.Air: return "✈️";
-                                    case Line.Boat: return "🛥️";
-                                    case Line.Bus: return "🚍";
-                                    case Line.BusRapidTransit: return "🚌";
-                                    case Line.Coach: return "🚌";
-                                    case Line.Ferry: return "⛴️";
-                                    case Line.Funicular: return "🚞";
-                                    case Line.LocalTrain: return "🚆";
-                                    case Line.LongDistanceTrain: return "🚄";
-                                    case Line.Metro: return "🚇";
-                                    case Line.RailShuttle: return "🚅";
-                                    case Line.RapidTransit: return "🚊";
-                                    case Line.Shuttle: return "🚐";
-                                    case Line.Taxi: return "🚕";
-                                    case Line.Train: return "🚆";
-                                    case Line.Tramway: return "🚈";
-                                    case Line.RideShare: return "🚗";
-                                    default: return "?";
-                                }
-                                break;
-                            }
+                            case JourneySection.PublicTransport: return "";
                             case JourneySection.Walking: return "🚶";
                             case JourneySection.Waiting: return "⌛";
                             case JourneySection.Transfer: return "⇄";
