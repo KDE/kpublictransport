@@ -88,12 +88,12 @@ public:
     KPUBLICTRANSPORT_PROPERTY(QString, operatorName, setOperatorName)
 
 public:
-    bool hasColor() const;
-    bool hasTextColor() const;
-    QString logo() const;
-    bool hasLogo() const;
-    QString modeLogo() const;
-    bool hasModeLogo() const;
+    [[nodiscard]] bool hasColor() const;
+    [[nodiscard]] bool hasTextColor() const;
+    [[nodiscard]] QString logo() const;
+    [[nodiscard]] bool hasLogo() const;
+    [[nodiscard]] QString modeLogo() const;
+    [[nodiscard]] bool hasModeLogo() const;
 
     /** Look up line meta data and apply what is found.
      *  @param location A location on or close to the line.
@@ -102,20 +102,20 @@ public:
     void applyMetaData(const Location &location, bool download);
 
     /** Checks if to instances refer to the same line (which does not necessarily mean they are exactly equal). */
-    static bool isSame(const Line &lhs, const Line &rhs);
+    [[nodiscard]] static bool isSame(const Line &lhs, const Line &rhs);
 
     /** Merge two Line instances.
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
-    static Line merge(const Line &lhs, const Line &rhs);
+    [[nodiscard]] static Line merge(const Line &lhs, const Line &rhs);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const Line &l);
+    [[nodiscard]] static QJsonObject toJson(const Line &l);
     /** Deserialize an object from JSON.
      *  @note Line meta data isn't serialized, so you might need to call applyLineMetaData() again
      *  after loading a line.
      */
-    static Line fromJson(const QJsonObject &obj);
+    [[nodiscard]] static Line fromJson(const QJsonObject &obj);
 };
 
 class RoutePrivate;
@@ -148,17 +148,17 @@ class KPUBLICTRANSPORT_EXPORT Route
 
 public:
     /** Checks if to instances refer to the same route (which does not necessarily mean they are exactly equal). */
-    static bool isSame(const Route &lhs, const Route &rhs);
+    [[nodiscard]] static bool isSame(const Route &lhs, const Route &rhs);
 
     /** Merge two Route instances.
      *  This assumes isSame(lhs, rhs) and tries to preserve the most detailed information.
      */
-    static Route merge(const Route &lhs, const Route &rhs);
+    [[nodiscard]] static Route merge(const Route &lhs, const Route &rhs);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const Route &r);
+    [[nodiscard]] static QJsonObject toJson(const Route &r);
     /** Deserialize an object from JSON. */
-    static Route fromJson(const QJsonObject &obj);
+    [[nodiscard]] static Route fromJson(const QJsonObject &obj);
 };
 
 }
