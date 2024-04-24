@@ -6,10 +6,12 @@
 
 #include "rentalvehicle.h"
 #include "datatypes_p.h"
+#include "individualtransport.h"
 #include "json_p.h"
 
 #include <QMetaEnum>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -218,6 +220,29 @@ KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicle::VehicleType, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, int, remainingRange, setRemainingRange)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicleNetwork, network, setNetwork)
+
+QString RentalVehicle::vehicleTypeIconName(VehicleType type)
+{
+    switch (type) {
+        case RentalVehicle::Unknown:
+            break;
+        case RentalVehicle::Bicycle:
+        case RentalVehicle::Pedelec: // TODO
+            return IndividualTransport::modeIconName(IndividualTransport::Bike);
+        case RentalVehicle::ElectricMoped:
+            return u"qrc:///org.kde.kpublictransport/assets/images/motorcycle.svg"_s;
+        case RentalVehicle::ElectricKickScooter:
+            return u"qrc:///org.kde.kpublictransport/assets/images/scooter.svg"_s;
+        case RentalVehicle::Car:
+            return IndividualTransport::modeIconName(IndividualTransport::Car);
+    }
+    return u"question"_s;
+}
+
+QString RentalVehicle::vehicleTypeIconName() const
+{
+    return vehicleTypeIconName(type());
+}
 
 QJsonObject RentalVehicle::toJson(const RentalVehicle &vehicle)
 {

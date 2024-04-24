@@ -141,6 +141,8 @@ Kirigami.ApplicationWindow {
                                 return modelData.route.line.iconName;
                             case JourneySection.IndividualTransport:
                                 return modelData.individualTransport.modeIconName;
+                            case JourneySection.RentedVehicle:
+                                return modelData.rentalVehicle.vehicleTypeIconName;
                         }
                         return "";
                     }
@@ -160,21 +162,9 @@ Kirigami.ApplicationWindow {
                 QQC2.Label {
                     text: {
                         switch (modelData.mode) {
-                            case JourneySection.PublicTransport: return "";
                             case JourneySection.Walking: return "🚶";
                             case JourneySection.Waiting: return "⌛";
                             case JourneySection.Transfer: return "⇄";
-                            case JourneySection.RentedVehicle:
-                            {
-                                switch (modelData.rentalVehicle.type) {
-                                    case RentalVehicle.Bicycle: return "🔑🚲";
-                                    case RentalVehicle.Pedelec: return "🔑🔌🚲";
-                                    case RentalVehicle.ElectricKickScooter: return "🔑🛴";
-                                    case RentalVehicle.ElectricMoped: return "🔑🛵";
-                                    case RentalVehicle.Car: return "🔑🚗";
-                                    default: return "?";
-                                }
-                            }
                             default: return "?";
                         }
                     }

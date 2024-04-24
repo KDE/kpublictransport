@@ -52,7 +52,19 @@ public:
      */
     KPUBLICTRANSPORT_PROPERTY(int, remainingRange, setRemainingRange)
 
+    /** Icon representing the vehicle type.
+     *  Can be a qrc: URL or an XDG icon name.
+     */
+    Q_PROPERTY(QString vehicleTypeIconName READ vehicleTypeIconName)
+
 public:
+    [[nodiscard]] QString vehicleTypeIconName() const;
+
+    /** Icon representing the vehicle type.
+     *  Can be a qrc: URL or an XDG icon name.
+     */
+    Q_INVOKABLE [[nodiscard]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
+
     /** Serializes one object to JSON. */
     static QJsonObject toJson(const RentalVehicle &vehicle);
     /** Deserialize an object from JSON. */
