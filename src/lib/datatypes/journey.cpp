@@ -19,6 +19,7 @@
 #include <QDebug>
 #include <QVariant>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -382,6 +383,28 @@ void JourneySection::setFeatures(std::vector<KPublicTransport::Feature> &&featur
 {
     d.detach();
     d->departureVehicleLayout.setFeatures(std::move(features));
+}
+
+QString JourneySection::iconName() const
+{
+    switch (d->mode) {
+        case JourneySection::Invalid:
+            return {};
+        case JourneySection::PublicTransport:
+            return d->route.line().iconName();
+        case JourneySection::Transfer:
+            return u"qrc:///org.kde.kpublictransport/assets/images/transfer.svg"_s;
+        case JourneySection::Walking:
+            return IndividualTransport::modeIconName(IndividualTransport::Walk);
+        case JourneySection::Waiting:
+            return u"qrc:///org.kde.kpublictransport/assets/images/wait.svg"_s;
+        case JourneySection::RentedVehicle:
+            return d->rentalVehicle.vehicleTypeIconName();
+        case JourneySection::IndividualTransport:
+            return d->individualTransport.modeIconName();
+    }
+
+    return u"question"_s;
 }
 
 void JourneySection::applyMetaData(bool download)

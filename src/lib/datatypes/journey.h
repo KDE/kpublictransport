@@ -161,6 +161,11 @@ public:
      */
     Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
 
+    /** The best available icon to represent this journey section.
+     *  Can be a qrc: or file: URL or an XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+
 public:
     [[nodiscard]] bool hasExpectedDepartureTime() const;
     [[nodiscard]] int departureDelay() const;
@@ -245,6 +250,8 @@ public:
     [[nodiscard]] const std::vector<KPublicTransport::Feature>& features() const;
     [[nodiscard]] std::vector<KPublicTransport::Feature>&& takeFeatures();
     void setFeatures(std::vector<KPublicTransport::Feature> &&features);
+
+    [[nodiscard]] QString iconName() const;
 
 private:
     [[nodiscard]] QVariantList intermediateStopsVariant() const;

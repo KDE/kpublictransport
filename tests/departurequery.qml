@@ -94,19 +94,18 @@ Kirigami.ApplicationWindow {
             contentItem: RowLayout {
                 id: delegateLayout
 
-                Kirigami.Icon {
-                    id: icon
-                    source: departure.route.line.iconName
-                    width: height
-                    height: Kirigami.Units.iconSizes.large
-                }
-
                 Rectangle {
                     id: colorBar
                     width: Kirigami.Units.largeSpacing
                     color: departure.route.line.hasColor ? departure.route.line.color : "transparent"
                     Layout.fillHeight: true
-                    visible: icon.source == ""
+                }
+
+                Kirigami.Icon {
+                    id: icon
+                    source: departure.route.line.iconName
+                    width: height
+                    height: Kirigami.Units.iconSizes.large
                 }
 
                 ColumnLayout {

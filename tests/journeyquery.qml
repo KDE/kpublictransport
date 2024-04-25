@@ -133,43 +133,19 @@ Kirigami.ApplicationWindow {
             contentItem: RowLayout {
                 id: topLayout
 
-                Kirigami.Icon {
-                    id: icon
-                    source: {
-                        switch (modelData.mode) {
-                            case JourneySection.PublicTransport:
-                                return modelData.route.line.iconName;
-                            case JourneySection.IndividualTransport:
-                                return modelData.individualTransport.modeIconName;
-                            case JourneySection.RentedVehicle:
-                                return modelData.rentalVehicle.vehicleTypeIconName;
-                        }
-                        return "";
-                    }
-                    width: height
-                    height: Kirigami.Units.iconSizes.large
-                    visible: source != ""
-                }
-
                 Rectangle {
                     id: colorBar
                     width: Kirigami.Units.largeSpacing
                     color: modelData.route.line.hasColor ? modelData.route.line.color : "transparent"
                     Layout.fillHeight: true
-                    visible: icon.source == ""
                 }
 
-                QQC2.Label {
-                    text: {
-                        switch (modelData.mode) {
-                            case JourneySection.Walking: return "🚶";
-                            case JourneySection.Waiting: return "⌛";
-                            case JourneySection.Transfer: return "⇄";
-                            default: return "?";
-                        }
-                    }
-                    font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
-                    visible: icon.source == ""
+                Kirigami.Icon {
+                    id: icon
+                    source: modelData.iconName
+                    width: height
+                    height: Kirigami.Units.iconSizes.large
+                    visible: source != ""
                 }
 
                 ColumnLayout {
