@@ -95,6 +95,9 @@ public:
     /** The best available icon for this line.
      *  Either the line logo, mode logo or generic mode icon.
      *  Can be a file: or qrc: URI or a XDG icon name.
+     *
+     *  @note Line and product logos are full-color, the generic ones
+     *  are monochrome colorable Breeze SVG icons.
      */
     Q_PROPERTY(QString iconName READ iconName STORED false)
 public:
