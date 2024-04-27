@@ -56,7 +56,7 @@ public:
     /** Name of an icon to represent @p mode.
      *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
      */
-    [[nodiscard]] static QString modeIconName(KPublicTransport::IndividualTransport::Mode mode);
+    Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::IndividualTransport::Mode mode);
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const IndividualTransport &it);
