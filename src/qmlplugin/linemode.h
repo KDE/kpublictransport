@@ -4,7 +4,7 @@
 */
 
 #ifndef KPUBLICTRANSPORT_LINEMODE_H
-#define KPUBLICTRANSPORT_LinEMODE_H
+#define KPUBLICTRANSPORT_LINEMODE_H
 
 #include <KPublicTransport/Line>
 
