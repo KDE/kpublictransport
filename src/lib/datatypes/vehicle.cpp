@@ -141,6 +141,33 @@ KPublicTransport::Feature VehicleSection::feature(KPublicTransport::Feature::Typ
     return FeatureUtil::findByType(d->sectionFeatures, type);
 }
 
+QString VehicleSection::vehicleTypeIconName(VehicleSection::Type type)
+{
+    switch (type) {
+        case VehicleSection::UnknownType:
+        case VehicleSection::Engine:
+        case VehicleSection::PowerCar:
+            break;
+        case VehicleSection::PassengerCar:
+        case VehicleSection::ControlCar:
+            return u"qrc:///org.kde.kpublictransport/assets/images/seat.svg"_s;
+        case VehicleSection::SleepingCar:
+            return u"qrc:///org.kde.kpublictransport/assets/images/sleepingcar.svg"_s;
+        case VehicleSection::CouchetteCar:
+            return u"qrc:///org.kde.kpublictransport/assets/images/couchettecar.svg"_s;
+        case VehicleSection::RestaurantCar:
+            return u"qrc:///org.kde.kpublictransport/assets/images/restaurant.svg"_s;
+        case VehicleSection::CarTransportCar:
+            return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
+    }
+    return {};
+}
+
+QString VehicleSection::iconName() const
+{
+    return vehicleTypeIconName(type());
+}
+
 VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSection &rhs)
 {
     if (lhs.name() != rhs.name()) { // safety check, as we don't properly check for equalness before merging yet

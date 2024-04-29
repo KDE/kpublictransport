@@ -144,6 +144,19 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
     /** Returns @c true if this vehicle section has a valid platform position set. */
     [[nodiscard]] bool hasPlatformPosition() const;
 
+    /** Returns a suitable icon to represent the coach type.
+     *  Can be a qrc: URL, an XDG icon name or empty.
+     *  @since 24.08
+     */
+    Q_INVOKABLE [[nodiscard]] static QString vehicleTypeIconName(KPublicTransport::VehicleSection::Type type);
+
+    /** A suitable icon representing the coach.
+     *  Can be a qrc: URL, an XDG icon name or empty.
+     *  @since 24.08
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+    [[nodiscard]] QString iconName() const;
+
     /** Merge two VehicleSection instances. */
     [[nodiscard]] static VehicleSection merge(const VehicleSection &lhs, const VehicleSection &rhs);
 
