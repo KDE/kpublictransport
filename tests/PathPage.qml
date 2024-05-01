@@ -23,23 +23,13 @@ Kirigami.ScrollablePage {
                 rows: 2
                 columns: 4
 
-                QQC2.Label {
+                Kirigami.Icon {
                     Layout.row: 0
                     Layout.column: 0
                     Layout.rowSpan: 2
-                    text: {
-                        switch (section.maneuver) {
-                            case PathSection.Stairs:
-                                return "🪜";
-                            case PathSection.Elevator:
-                                return "🛗";
-                            case PathSection.Escalator:
-                                return "↗️";
-                            default:
-                                return "🚶";
-                        }
-                    }
-                    font.pixelSize: 32
+                    source: section.iconName
+                    width: 32
+                    height: 32
                 }
 
                 QQC2.Label {

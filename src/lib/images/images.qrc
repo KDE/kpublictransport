@@ -9,6 +9,8 @@
         <file>car.svg</file>
         <file>coach.svg</file>
         <file>couchettecar.svg</file>
+        <file>elevator.svg</file>
+        <file>escalator.svg</file>
         <file>ferry.svg</file>
         <file>flight.svg</file>
         <file>funicular.svg</file>
@@ -20,6 +22,7 @@
         <file>seat.svg</file>
         <file>shuttle.svg</file>
         <file>sleepingcar.svg</file>
+        <file>stairs.svg</file>
         <file>subway.svg</file>
         <file>taxi.svg</file>
         <file>train.svg</file>

@@ -12,6 +12,7 @@
 
 #include <QLineF>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
@@ -62,6 +63,27 @@ QPointF PathSection::startPoint() const
 QPointF PathSection::endPoint() const
 {
     return d->path.empty() ? QPointF() : d->path.constLast();
+}
+
+QString PathSection::maneuverIconName(PathSection::Maneuver maneuver)
+{
+    switch (maneuver) {
+        case PathSection::Move:
+            return u"qrc:///org.kde.kpublictransport/assets/images/walk.svg"_s;
+        case PathSection::Elevator:
+            return u"qrc:///org.kde.kpublictransport/assets/images/elevator.svg"_s;
+        case PathSection::Escalator:
+            return u"qrc:///org.kde.kpublictransport/assets/images/escalator.svg"_s;
+        case PathSection::Stairs:
+            return u"qrc:///org.kde.kpublictransport/assets/images/stairs.svg"_s;
+    }
+
+    return {};
+}
+
+QString PathSection::iconName() const
+{
+    return PathSection::maneuverIconName(maneuver());
 }
 
 QJsonObject PathSection::toJson(const PathSection &section)

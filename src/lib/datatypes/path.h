@@ -53,6 +53,11 @@ public:
     /** Movement maneuver for this path section. */
     KPUBLICTRANSPORT_PROPERTY(Maneuver, maneuver, setManeuver)
 
+    /** An icon representing the maneuver.
+     *  Can be a qrc: URL or XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+
 public:
     /** Length of this path section in meters. */
     [[nodiscard]] int distance() const;
@@ -65,6 +70,13 @@ public:
     [[nodiscard]] QPointF startPoint() const;
     /** Last point on the path of this section. */
     [[nodiscard]] QPointF endPoint() const;
+
+    [[nodiscard]] QString iconName() const;
+
+    /** An icon representing @p maneuver.
+     *  Can be a qrc: URL or XDG icon name.
+     */
+    Q_INVOKABLE [[nodiscard]] static QString maneuverIconName(KPublicTransport::PathSection::Maneuver maneuver);
 
     /** Serializes one path section section to JSON. */
     [[nodiscard]] static QJsonObject toJson(const PathSection &section);
