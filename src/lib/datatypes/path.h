@@ -55,25 +55,25 @@ public:
 
 public:
     /** Length of this path section in meters. */
-    int distance() const;
+    [[nodiscard]] int distance() const;
     /** The overall direction of this section in degree.
      *  @returns 0-359 for valid results, -1 for sections with no direction (e.g. points).
      */
-    int direction() const;
+    [[nodiscard]] int direction() const;
 
     /** First point on the path of this section. */
-    QPointF startPoint() const;
+    [[nodiscard]] QPointF startPoint() const;
     /** Last point on the path of this section. */
-    QPointF endPoint() const;
+    [[nodiscard]] QPointF endPoint() const;
 
     /** Serializes one path section section to JSON. */
-    static QJsonObject toJson(const PathSection &section);
+    [[nodiscard]] static QJsonObject toJson(const PathSection &section);
     /** Serializes a vector of path sections to JSON. */
-    static QJsonArray toJson(const std::vector<PathSection> &sections);
+    [[nodiscard]] static QJsonArray toJson(const std::vector<PathSection> &sections);
     /** Deserialize an object from JSON. */
-    static PathSection fromJson(const QJsonObject &obj);
+    [[nodiscard]] static PathSection fromJson(const QJsonObject &obj);
     /** Deserialize a vector of path sections from JSON. */
-    static std::vector<PathSection> fromJson(const QJsonArray &array);
+    [[nodiscard]] static std::vector<PathSection> fromJson(const QJsonArray &array);
 };
 
 class PathPrivate;
@@ -99,30 +99,30 @@ class KPUBLICTRANSPORT_EXPORT Path
 
 public:
     /** Returns @c true if this is an empty/not-set path. */
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     /** The path sections. */
-    const std::vector<PathSection>& sections() const;
+    [[nodiscard]] const std::vector<PathSection>& sections() const;
     /** Moves the path sections out of this object. */
-    std::vector<PathSection>&& takeSections();
+    [[nodiscard]] std::vector<PathSection>&& takeSections();
     /** Sets the path sections. */
     void setSections(std::vector<PathSection> &&sections);
 
     /** Length of this path in meters. */
-    int distance() const;
+    [[nodiscard]] int distance() const;
 
     /** First point on this path. */
-    QPointF startPoint() const;
+    [[nodiscard]] QPointF startPoint() const;
     /** Last point on this path. */
-    QPointF endPoint() const;
+    [[nodiscard]] QPointF endPoint() const;
 
     /** Serializes one path object to JSON. */
-    static QJsonObject toJson(const Path &path);
+    [[nodiscard]] static QJsonObject toJson(const Path &path);
     /** Deserialize an object from JSON. */
-    static Path fromJson(const QJsonObject &obj);
+    [[nodiscard]] static Path fromJson(const QJsonObject &obj);
 
 private:
-    int sectionCount() const;
+    [[nodiscard]] int sectionCount() const;
 };
 
 }
