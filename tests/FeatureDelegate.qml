@@ -51,6 +51,6 @@ QQC2.Label {
         id: hoverHandler
     }
     QQC2.ToolTip.visible: hoverHandler.hovered
-    QQC2.ToolTip.text: feature.name
+    QQC2.ToolTip.text: feature.displayName
     QQC2.ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
 }

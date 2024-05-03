@@ -22,13 +22,20 @@ class KPUBLICTRANSPORT_EXPORT Feature {
 
     /** A short human-readable label of this feature. */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
+
+    /** A short humand-readable label for this feature.
+     *  Unlike name this returns a default label depending on the type
+     *  of the feature, even if the data source for this didn't provide
+     *  a name.
+     */
+    Q_PROPERTY(QString displayName READ displayName STORED false)
+
     /** An optional longer human-readable description.
      *  Strongly recommended e.g. for features with limited/condicational
      *  availability or with type @c Other.
      */
     KPUBLICTRANSPORT_PROPERTY(QString, description, setDescription)
 
-public:
     /** Type of the feature. */
     enum Type {
         NoFeature, ///< uninitialized/null
@@ -50,7 +57,6 @@ public:
     Q_ENUM(Type)
     KPUBLICTRANSPORT_PROPERTY(Type, type, setType)
 
-public:
     /** Availability of the feature. */
     enum Availability {
         Unknown,
@@ -73,6 +79,11 @@ public:
 public:
     /** Convenience constructor for a Feature of type @p type and availability @p availability. */
     explicit Feature(Type type, Availability availability = Available);
+
+    [[nodiscard]] QString displayName() const;
+
+    /** Generic display name for feature of @p type. */
+    [[nodiscard]] static QString typeDisplayName(KPublicTransport::Feature::Type type);
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const Feature &feature);

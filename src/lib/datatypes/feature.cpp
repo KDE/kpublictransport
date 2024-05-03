@@ -8,6 +8,8 @@
 #include "json_p.h"
 #include "mergeutil_p.h"
 
+#include <KLocalizedString>
+
 using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
@@ -36,6 +38,49 @@ Feature::Feature(Type type, Availability availability)
 {
     d->type = type;
     d->availability = availability;
+}
+
+QString Feature::displayName() const
+{
+    return d->name.isEmpty() ? Feature::typeDisplayName(d->type) : d->name;
+}
+
+QString Feature::typeDisplayName(Feature::Type type)
+{
+    switch (type) {
+        case Feature::AirConditioning:
+            return i18nc("train coach feature", "Air conditioning");
+        case Feature::Restaurant:
+            return i18nc("train coach feature", "Bistro or restaurant");
+        case Feature::ToddlerArea:
+            return i18nc("train coach feature", "Toddler area");
+        case Feature::FamilyArea:
+            return i18nc("train coach feature", "Family area");
+        case Feature::WheelchairAccessible:
+            return i18nc("train coach feature", "Wheelchair accessible");
+        case Feature::SilentArea:
+            return i18nc("train coach feature", "Quiet area");
+        case Feature::BusinessArea:
+            return i18nc("train coach feature", "Business area");
+        case Feature::BikeStorage:
+            return i18nc("train coach feature", "Bike storage");
+        case Feature::Toilet:
+            return i18nc("train coach feature", "Toilet");
+        case Feature::WheelchairAccessibleToilet:
+            return i18nc("train coach feature", "Wheelchair accessible toilet");
+        case Feature::InformationPoint:
+            return i18nc("train coach feature", "Information point");
+        case Feature::WiFi:
+            return i18nc("train coach feature", "Wi-Fi");
+        case Feature::PowerSockets:
+            return i18nc("train coach feature", "Power sockets");
+            break;
+        case Feature::Other:
+        case Feature::NoFeature:
+            break;
+    }
+
+    return {};
 }
 
 QJsonObject Feature::toJson(const Feature &feature)
