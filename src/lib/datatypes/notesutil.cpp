@@ -30,6 +30,9 @@ QString NotesUtil::normalizeNote(const QString &note)
         }
     }
 
+    // fix http: links
+    n.replace("href=\"http:"_L1, "href=\"https:"_L1);
+
     // strip <span> tags
     static const QRegularExpression spanExp(u"</?span[^>]*>"_s);
     n.remove(spanExp);

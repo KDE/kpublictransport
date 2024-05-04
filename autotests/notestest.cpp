@@ -15,6 +15,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
 class NotesTest : public QObject
@@ -44,6 +45,8 @@ private Q_SLOTS:
         QTest::newRow("double") << QStringList({s("line1"), s("line2"), s("line1")}) << QStringList({s("line1"), s("line2")});
         QTest::newRow("substring first") << QStringList({s("note"), s("line2"), s("note - detail")}) << QStringList({s("note - detail"), s("line2")});
         QTest::newRow("substring second") << QStringList({s("note - detail"), s("line2"), s("note")}) << QStringList({s("note - detail"), s("line2")});
+        QTest::newRow("richtext-first") << QStringList{u"Fahrradmitnahme leicht gemacht: <a href=\"http://www.vbb.de/radimregio\">www.vbb.de/radimregio</a>"_s, u"Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"_s} << QStringList{u"Fahrradmitnahme leicht gemacht: <a href=\"https://www.vbb.de/radimregio\">www.vbb.de/radimregio</a>"_s};
+        QTest::newRow("richtext-second") << QStringList{u"Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"_s, u"Fahrradmitnahme leicht gemacht: <a href=\"http://www.vbb.de/radimregio\">www.vbb.de/radimregio</a>"_s} << QStringList{u"Fahrradmitnahme leicht gemacht: <a href=\"https://www.vbb.de/radimregio\">www.vbb.de/radimregio</a>"_s};
     }
 
     void testAddNotes()
@@ -109,8 +112,8 @@ private Q_SLOTS:
         QTest::addColumn<QString>("in");
         QTest::addColumn<QString>("out");
 
-        QTest::newRow("full url") << s("Check-in here: http://www.kde.org") << s("Check-in here: <a href=\"http://www.kde.org\">http://www.kde.org</a>");
-        QTest::newRow("existing link") << s("Check-in here: <a href=\"http://www.kde.org\">http://www.kde.org</a>") << s("Check-in here: <a href=\"http://www.kde.org\">http://www.kde.org</a>");
+        QTest::newRow("full url") << u"Check-in here: http://www.kde.org"_s << u"Check-in here: <a href=\"https://www.kde.org\">http://www.kde.org</a>"_s;
+        QTest::newRow("existing link") << u"Check-in here: <a href=\"http://www.kde.org\">http://www.kde.org</a>"_s << u"Check-in here: <a href=\"https://www.kde.org\">http://www.kde.org</a>"_s;
         QTest::newRow("missing scheme") << s("Check-in here: www.kde.org/donate") << s("Check-in here: <a href=\"https://www.kde.org/donate\">www.kde.org/donate</a>");
         QTest::newRow("too much html") << s("<p><span style=\"color: rgb(37, 48, 59); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px;\"><b>Attention</b></span></p><p><span style=\"color: rgb(37, 48, 59); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px;\">Les lignes de&nbsp;BUS DIRECT ne sont pas accessibles avec un pass Navigo. Un ticket peut être acheté dans toutes les stations Métro-RER, y compris à l'aéroport.</span></p>") << s("<p><b>Attention</b></p><p>Les lignes de BUS DIRECT ne sont pas accessibles avec un pass Navigo. Un ticket peut être acheté dans toutes les stations Métro-RER, y compris à l'aéroport.</p>");
         QTest::newRow("empty p 1") << s("foo <p> </p>bar") << s("foo bar");
