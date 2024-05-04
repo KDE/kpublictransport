@@ -53,7 +53,7 @@ QString NotesUtil::normalizeNote(const QString &note)
     return n.trimmed();
 }
 
-int NotesUtil::needsAdding(const QStringList &notes, const QString &note)
+qsizetype NotesUtil::needsAdding(const QStringList &notes, const QString &note)
 {
     if (note.isEmpty()) {
         return -1;
@@ -71,7 +71,7 @@ int NotesUtil::needsAdding(const QStringList &notes, const QString &note)
     return notes.size();
 }
 
-void NotesUtil::performAdd(QStringList &notes, const QString &note, int index)
+void NotesUtil::performAdd(QStringList &notes, const QString &note, qsizetype index)
 {
     if (index < 0) {
         return;

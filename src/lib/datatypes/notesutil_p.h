@@ -22,9 +22,9 @@ namespace NotesUtil
     QString normalizeNote(const QString &note);
 
     /** Check if a note should be added, or replace an existing entry. */
-    int needsAdding(const QStringList &notes, const QString &note);
+    qsizetype needsAdding(const QStringList &notes, const QString &note);
     /** Add or replace a note. */
-    void performAdd(QStringList &notes, const QString &note, int index);
+    void performAdd(QStringList &notes, const QString &note, qsizetype index);
 
     /** Merge two notes. */
     QStringList mergeNotes(const QStringList &lhs, const QStringList &rhs);}
