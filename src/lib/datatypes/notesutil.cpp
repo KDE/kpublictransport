@@ -10,8 +10,8 @@
 #include <QString>
 #include <QStringList>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
-
 
 QString NotesUtil::normalizeNote(const QString &note)
 {
@@ -20,7 +20,7 @@ QString NotesUtil::normalizeNote(const QString &note)
     n.replace(QLatin1String("  "), QLatin1String(" "));
 
     if (!note.contains(QLatin1String("href"))) { // only mess with rich text if this isn't marked up already
-        static QRegularExpression linkRegExp(QStringLiteral("(?:https?://)?(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:?/[^ \"<>]+)?"));
+        static const QRegularExpression linkRegExp(u"(?:https?://)?(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:?/[^ \"<>]+)?"_s);
         const auto match = linkRegExp.match(n);
         if (match.hasMatch()) {
             n.replace(match.capturedStart(), match.capturedLength(), QLatin1String("<a href=\"")
@@ -31,23 +31,23 @@ QString NotesUtil::normalizeNote(const QString &note)
     }
 
     // strip <span> tags
-    static QRegularExpression spanExp(QStringLiteral("</?span[^>]*>"));
+    static const QRegularExpression spanExp(u"</?span[^>]*>"_s);
     n.remove(spanExp);
-    static QRegularExpression styleAttrExp(QStringLiteral(" style=\"[^>\"]*\""));
+    static const QRegularExpression styleAttrExp(u" style=\"[^>\"]*\""_s);
     n.remove(styleAttrExp);
 
     // clean up extra line breaks and empty paragraphs
-    static QRegularExpression consecutiveBrExp(QStringLiteral("<br[^>]*> *(?:<br[^>]*>|\n)"));
+    static const QRegularExpression consecutiveBrExp(u"<br[^>]*> *(?:<br[^>]*>|\n)"_s);
     while (n.contains(consecutiveBrExp)) {
         n.replace(consecutiveBrExp, QStringLiteral("<br/>"));
     }
-    static QRegularExpression leadinBrExp(QStringLiteral("<p> *<br[^>]*>"));
-    static QRegularExpression trailingBrExp(QStringLiteral("<br[^>]*> *</p>"));
-    static QRegularExpression trailingBrExp2(QStringLiteral("<br[^>]*> *<p>"));
+    static const QRegularExpression leadinBrExp(u"<p> *<br[^>]*>"_s);
+    static const QRegularExpression trailingBrExp(u"<br[^>]*> *</p>"_s);
+    static const QRegularExpression trailingBrExp2(u"<br[^>]*> *<p>"_s);
     n.replace(leadinBrExp, QStringLiteral("<p>"));
     n.replace(trailingBrExp, QStringLiteral("</p>"));
     n.replace(trailingBrExp2, QStringLiteral("<p>"));
-    static QRegularExpression emptyParaExp(QStringLiteral("<p> *</p>"));
+    static const QRegularExpression emptyParaExp(u"<p> *</p>"_s);
     n.remove(emptyParaExp);
 
     return n.trimmed();
