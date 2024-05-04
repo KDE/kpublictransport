@@ -12,5 +12,13 @@
         <file>passengercar.svg</file>
         <file>passengercar-double-deck.svg</file>
         <file>style.css</file>
+
+        <file>family.svg</file>
+        <file>information.svg</file>
+        <file>powersocket.svg</file>
+        <file>toddler.svg</file>
+        <file>toilets.svg</file>
+        <file>wheelchair.svg</file>
+        <file>wheelchair_accessible.svg</file>
     </qresource>
 </RCC>

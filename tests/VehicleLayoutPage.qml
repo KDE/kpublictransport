@@ -46,8 +46,10 @@ Kirigami.ScrollablePage {
             spacing: Kirigami.Units.largeSpacing
             Repeater {
                 model: vehicleModel.vehicle.combinedFeatures
-                delegate: FeatureDelegate {
+                delegate: FeatureIcon {
                     feature: modelData
+                    Layout.preferredHeight: Kirigami.Units.iconSizes.small
+                    Layout.preferredWidth: Kirigami.Units.iconSizes.small
                 }
             }
         }
@@ -132,8 +134,10 @@ Kirigami.ScrollablePage {
                         spacing: Kirigami.Units.largeSpacing
                         Repeater {
                             model: section.sectionFeatures
-                            delegate: FeatureDelegate {
+                            delegate: FeatureIcon {
                                 feature: modelData
+                                Layout.preferredHeight: Kirigami.Units.iconSizes.small
+                                Layout.preferredWidth: Kirigami.Units.iconSizes.small
                             }
                         }
                     }

@@ -9,6 +9,7 @@ import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
 import org.kde.kpublictransport
+import org.kde.kpublictransport.ui
 
 Kirigami.Page {
     property var journeySection
@@ -74,8 +75,10 @@ Kirigami.Page {
                 visible: journeySection.features.length > 0
                 Repeater {
                     model: journeySection.features
-                    delegate: FeatureDelegate {
+                    delegate: FeatureIcon {
                         feature: modelData
+                        Layout.preferredHeight: Kirigami.Units.iconSizes.small
+                        Layout.preferredWidth: Kirigami.Units.iconSizes.small
                     }
                 }
             }
