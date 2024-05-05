@@ -98,4 +98,5 @@ Kirigami.Icon {
         return s;
     }
     QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+    Accessible.name: QQC2.ToolTip.text
 }
