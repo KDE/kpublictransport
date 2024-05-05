@@ -74,14 +74,13 @@
         "realtimeCoverage": {
             "areaFile": "un_transitous_realtime.geojson",
             "region": [
-                "BE",
-                "CH",
-                "NL"
+                "CH"
             ]
         },
         "regularCoverage": {
             "areaFile": "un_transitous_regular.geojson",
             "region": [
+                "BE",
                 "DE",
                 "DK",
                 "EE",
@@ -90,6 +89,7 @@
                 "HU",
                 "IE",
                 "LU",
+                "NL",
                 "NO",
                 "PL",
                 "SE"
