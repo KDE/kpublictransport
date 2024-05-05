@@ -15,6 +15,10 @@
 
         <file>family.svg</file>
         <file>information.svg</file>
+        <file>occupancy-low.svg</file>
+        <file>occupancy-medium.svg</file>
+        <file>occupancy-high.svg</file>
+        <file>occupancy-full.svg</file>
         <file>powersocket.svg</file>
         <file>toddler.svg</file>
         <file>toilets.svg</file>

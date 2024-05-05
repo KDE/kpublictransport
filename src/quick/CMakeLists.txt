@@ -16,6 +16,7 @@ target_sources(kpublictransportquickplugin PRIVATE
 
 ecm_target_qml_sources(kpublictransportquickplugin SOURCES
     FeatureIcon.qml
+    OccupancyIndicator.qml
     VehicleSectionItem.qml
 )
 

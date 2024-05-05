@@ -157,6 +157,11 @@ Kirigami.ScrollablePage {
                         visible: section.type == KPublicTransport.VehicleSection.SleepingCar || section.type == KPublicTransport.VehicleSection.CouchetteCar
                         text: section.type == KPublicTransport.VehicleSection.SleepingCar ? "Sleeping car" : "Couchette car"
                     }
+                    OccupancyIndicator {
+                        occupancy: section.load
+                        Layout.preferredHeight: Kirigami.Units.iconSizes.small
+                        Layout.preferredWidth: Kirigami.Units.iconSizes.small
+                    }
                 }
             }
         }

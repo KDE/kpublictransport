@@ -9,6 +9,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <KLocalizedContext>
+
 #include <QApplication>
 
 using namespace KPublicTransport;
@@ -26,6 +28,7 @@ int main(int argc, char **argv)
     });
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
     engine.load(QStringLiteral("qrc:/departurequery.qml"));
     return app.exec();
 }
