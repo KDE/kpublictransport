@@ -1,0 +1,101 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kpublictransport package.
+#
+# SPDX-FileCopyrightText: 2024 Freek de Kruijf <freekdekruijf@kde.nl>
+msgid ""
+msgstr ""
+"Project-Id-Version: kpublictransport\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-05-05 00:38+0000\n"
+"PO-Revision-Date: 2024-05-04 12:48+0200\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 24.02.2\n"
+
+#: lib/datatypes/feature.cpp:52
+#, kde-format
+msgctxt "train coach feature"
+msgid "Air conditioning"
+msgstr "Airconditioning"
+
+#: lib/datatypes/feature.cpp:54
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bistro or restaurant"
+msgstr "Bistro of restaurant"
+
+#: lib/datatypes/feature.cpp:56
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toddler area"
+msgstr "Peutergebied"
+
+#: lib/datatypes/feature.cpp:58
+#, kde-format
+msgctxt "train coach feature"
+msgid "Family area"
+msgstr "Familiegebied"
+
+#: lib/datatypes/feature.cpp:60
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible"
+msgstr "Toegankelijk voor rolstoelen"
+
+#: lib/datatypes/feature.cpp:62
+#, kde-format
+msgctxt "train coach feature"
+msgid "Quiet area"
+msgstr "Rustig gebied"
+
+#: lib/datatypes/feature.cpp:64
+#, kde-format
+msgctxt "train coach feature"
+msgid "Business area"
+msgstr "Zakengebied"
+
+#: lib/datatypes/feature.cpp:66
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bike storage"
+msgstr "Fietsenstalling"
+
+#: lib/datatypes/feature.cpp:68
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toilet"
+msgstr "Toilet"
+
+#: lib/datatypes/feature.cpp:70
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible toilet"
+msgstr "Toilet toegankelijk voor rolstoelen"
+
+#: lib/datatypes/feature.cpp:72
+#, kde-format
+msgctxt "train coach feature"
+msgid "Information point"
+msgstr "Informatiepunt"
+
+#: lib/datatypes/feature.cpp:74
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: lib/datatypes/feature.cpp:76
+#, kde-format
+msgctxt "train coach feature"
+msgid "Power sockets"
+msgstr "Stopcontacten"
+
+#: quick/FeatureIcon.qml:90
+#, kde-format
+msgid "%1 (not available)"
+msgstr ""
