@@ -191,6 +191,9 @@ private Q_SLOTS:
         QTest::newRow("vrt-trip-alternative-notes")
             << s(SOURCE_DIR "/data/efa/trip-response-full-vrt.xml")
             << s(SOURCE_DIR "/data/efa/trip-response-full-vrt.json");
+        QTest::newRow("bwegt-nbwt-coordinate-system")
+            << s(SOURCE_DIR "/data/efa/trip-response-nbwt.xml")
+            << s(SOURCE_DIR "/data/efa/trip-response-nbwt.json");
     }
 
     void testParseTrips()
