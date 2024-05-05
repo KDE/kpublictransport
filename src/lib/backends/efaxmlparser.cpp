@@ -21,11 +21,17 @@
 using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
+constexpr inline const auto WGS84 = "WGS84[DD.ddddd]"_L1;
+
 void EfaXmlParser::parseLocationCommon(Location &loc, const ScopedXmlStreamReader &reader) const
 {
-    if (reader.attributes().hasAttribute(QLatin1String("x")) && reader.attributes().hasAttribute(QLatin1String("y"))) {
-        loc.setLatitude(reader.attributes().value(QLatin1String("y")).toDouble());
-        loc.setLongitude(reader.attributes().value(QLatin1String("x")).toDouble());
+    if (const auto coordSys = reader.attributes().value("mapName"); coordSys.empty() || coordSys == WGS84) {
+        if (reader.attributes().hasAttribute("x"_L1) && reader.attributes().hasAttribute("y"_L1)) {
+            loc.setLatitude(reader.attributes().value("y"_L1).toDouble());
+            loc.setLongitude(reader.attributes().value("x"_L1).toDouble());
+        }
+    } else {
+        qCWarning(Log) << "Coordinate system not supported!" <<coordSys;
     }
 
     // can be already set on loc, so don't reset it if missing here
@@ -492,9 +498,11 @@ std::vector<EfaXmlParser::PathDescription> EfaXmlParser::parsePathDescriptionLis
             PathDescription desc;
             auto elemReader = reader.subReader();
             while (elemReader.readNextSibling()) {
-                if (elemReader.name() == QLatin1String("itdCoord")) {
-                    desc.point.setX(elemReader.attributes().value(QLatin1String("x")).toDouble());
-                    desc.point.setY(elemReader.attributes().value(QLatin1String("y")).toDouble());
+                if (elemReader.name() == "itdCoord"_L1) {
+                    if (const auto coordSys = elemReader.attributes().value("mapName"); coordSys.empty() || coordSys == WGS84) {
+                        desc.point.setX(elemReader.attributes().value("x"_L1).toDouble());
+                        desc.point.setY(elemReader.attributes().value("y"_L1).toDouble());
+                    }
                 } else if (elemReader.name() == QLatin1String("fromPathCoordIdx")) {
                     desc.fromIndex = elemReader.readElementText().toInt();
                 } else if (elemReader.name() == QLatin1String("toPathCoordIdx")) {

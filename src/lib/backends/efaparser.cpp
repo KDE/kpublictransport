@@ -62,6 +62,10 @@ QPolygonF EfaParser::parsePathCoordinatesElement(ScopedXmlStreamReader &reader)
             poly.push_back({p[0].toDouble(), p[1].toDouble()});
         }
     }
+    if (std::any_of(poly.begin(), poly.end(), [](const auto &p) { return p.x() < -180.0 || p.x() > 180.0 || p.y() < -90.0 || p.y() > 90.0; })) {
+        qCWarning(Log) << "discarding path with invalid coordinates!";
+        return {};
+    }
     return poly;
 }
 
