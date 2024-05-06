@@ -35,6 +35,10 @@
         "Name[uk]": "Transitous",
         "Name[x-test]": "xxTransitousxx"
     },
+    "attribution": {
+        "name": "Transitous",
+        "url": "https://transitous.org/"
+    },
     "coverage": {
         "anyCoverage": {
             "areaFile": "un_transitous_any.geojson",
