@@ -131,6 +131,8 @@ QString Line::modeIconName(Line::Mode mode)
             return u"qrc:///org.kde.kpublictransport/assets/images/tramway.svg"_s;
         case Line::RideShare:
             return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
+        case Line::AerialLift:
+            return u"qrc:///org.kde.kpublictransport/assets/images/aeriallift.svg"_s;
     }
 
     return u"question"_s;

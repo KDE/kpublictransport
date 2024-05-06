@@ -4,6 +4,7 @@
 -->
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/assets/images">
+        <file>aeriallift.svg</file>
         <file>bike.svg</file>
         <file>bus.svg</file>
         <file>car.svg</file>

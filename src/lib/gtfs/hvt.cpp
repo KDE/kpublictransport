@@ -30,6 +30,8 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
             return Line::Metro;
         case 403:
             return Line::RapidTransit;
+        case 405: // monorail
+            return Line::Tramway;
         case 717:
             return Line::Taxi;
         case 1502:
@@ -40,7 +42,6 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
     switch (hvt) {
         case 0:
         case 5: // cable car
-        case 6: // TODO gondola
             return Line::Tramway;
         case 1:
             return Line::Metro;
@@ -50,8 +51,14 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
             return Line::Bus;
         case 4:
             return Line::Ferry;
+        case 6:
+            return Line::AerialLift;
         case 7:
             return Line::Funicular;
+        case 11: // trolleybus
+            return Line::Bus;
+        case 12: // monorail
+            return Line::Tramway;
     }
 
     // type ranges - https://developers.google.com/transit/gtfs/reference/extended-route-types
@@ -80,7 +87,7 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
         return Line::Ferry;
     }
     if (hvt >= 1300 && hvt < 1399) {
-        return Line::Tramway; // TODO gondola/aerial lift
+        return Line::AerialLift;
     }
     if (hvt >= 1400 && hvt < 1499) {
         return Line::Funicular;
@@ -103,10 +110,10 @@ struct {
 } static const coarse_mode_map[] = {
     { "air", Line::Air },
     { "bus", Line::Bus },
-    { "cableway", Line::Tramway }, // TODO
+    { "cableway", Line::AerialLift },
     { "coach", Line::Coach },
     { "funicular", Line::Funicular },
-    { "lift", Line::Tramway }, // ???
+    { "lift", Line::AerialLift },
     { "metro", Line::Metro },
     { "rail", Line::Train },
     { "subway", Line::Metro },
@@ -124,7 +131,7 @@ struct {
     { "airshipservice", Line::Air },
     { "blackcab", Line::Taxi },
     { "canalbarge", Line::Boat },
-    { "cablecar", Line::Tramway }, // TODO
+    { "cablecar", Line::AerialLift },
     { "helicopterservice", Line::Air },
     { "international", Line::LongDistanceTrain },
     { "interregionalrail", Line::Train },
@@ -153,10 +160,10 @@ struct {
     { "flight", Line::Air },
     { "funicular", Line::Funicular },
     { "highspeed", Line::LongDistanceTrain },
-    { "lift", Line::Tramway }, // ???
+    { "lift", Line::AerialLift },
     { "rail", Line::Train },
     { "taxi", Line::Taxi },
-    { "telecabin", Line::Tramway }, // ???
+    { "telecabin", Line::AerialLift },
     { "train", Line::Train },
     { "tram", Line::Tramway },
 };

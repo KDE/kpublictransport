@@ -43,6 +43,7 @@ public:
         Train,
         Tramway,
         RideShare, ///< peer-to-peer ride sharing/car pooling
+        AerialLift, ///< aerial cable cars, gondolas, etc
     };
     Q_ENUM(Mode)
 

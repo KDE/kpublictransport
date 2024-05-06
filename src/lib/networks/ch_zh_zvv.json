@@ -162,7 +162,7 @@
                     128
                 ],
                 "id": "cable-car",
-                "mode": "Tramway",
+                "mode": "AerialLift",
                 "name": "Cable Car"
             },
             {
