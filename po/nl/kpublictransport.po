@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-06 00:37+0000\n"
-"PO-Revision-Date: 2024-05-05 14:47+0200\n"
+"PO-Revision-Date: 2024-05-06 11:02+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -104,22 +104,22 @@ msgstr "%1 (niet beschikbaar)"
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Low occupancy"
-msgstr ""
+msgstr "Lage bezetting"
 
 #: quick/OccupancyIndicator.qml:40
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Medium occupancy"
-msgstr ""
+msgstr "Middelmatige bezetting"
 
 #: quick/OccupancyIndicator.qml:41
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "High occupancy"
-msgstr ""
+msgstr "Hoge bezetting"
 
 #: quick/OccupancyIndicator.qml:42
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr ""
+msgstr "Vol"
