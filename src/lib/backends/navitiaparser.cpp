@@ -47,14 +47,31 @@ static void parseAdminRegion(Location &loc, const QJsonObject &ar)
     }
 }
 
+struct NavitiaCoordinate {
+    double lat = NAN;
+    double lon = NAN;
+};
+
+[[nodiscard]] static NavitiaCoordinate parseCoordinate(const QJsonObject &obj)
+{
+    NavitiaCoordinate coord;
+    bool ok = false;
+    coord.lat = obj.value("lat"_L1).toString().toDouble(&ok);
+    if (!ok) {
+        return {};
+    }
+    coord.lon = obj.value("lon"_L1).toString().toDouble(&ok);
+    return ok ? coord : NavitiaCoordinate{};
+}
+
 static Location parseLocation(const QJsonObject &obj)
 {
     Location loc;
     loc.setName(obj.value(QLatin1String("label")).toString());
     // TODO parse more fields
 
-    const auto coord = obj.value(QLatin1String("coord")).toObject();
-    loc.setCoordinate(coord.value(QLatin1String("lat")).toString().toDouble(), coord.value(QLatin1String("lon")).toString().toDouble());
+    const auto coord = parseCoordinate(obj.value("coord"_L1).toObject());
+    loc.setCoordinate(coord.lat, coord.lon);
 
     auto tz = obj.value(QLatin1String("timezone")).toString();
     if (tz.isEmpty()) {
@@ -139,10 +156,9 @@ static Path parsePathWithInstructionStartCoordinate(const QPolygonF &pathLineStr
         }
 
         if (!isFirstSection) {
-            const auto coordObj = pathObj.value(QLatin1String("instruction_start_coordinate")).toObject();
-            const QPointF coord(coordObj.value(QLatin1String("lon")).toString().toDouble(), coordObj.value(QLatin1String("lat")).toString().toDouble());
+            const auto coord = parseCoordinate(pathObj.value("instruction_start_coordinate"_L1).toObject());
             const auto it = std::min_element(pathLineString.begin() + prevPolyIdx, pathLineString.end(), [coord](QPointF lhs, QPointF rhs) {
-                return Location::distance(lhs.y(), lhs.x(), coord.y(), coord.x()) < Location::distance(rhs.y(), rhs.x(), coord.y(), coord.x());
+                return Location::distance(lhs.y(), lhs.x(), coord.lon, coord.lat) < Location::distance(rhs.y(), rhs.x(), coord.lon, coord.lat);
             });
             int polyIdx = std::distance(pathLineString.begin(), it);
 
