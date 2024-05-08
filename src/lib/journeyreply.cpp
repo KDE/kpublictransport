@@ -108,6 +108,7 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
 {
     // try to fill gaps in timezone data
     for (auto &journey : journeys) {
+        JourneyUtil::propagateTimeZones(journey);
         auto sections = journey.takeSections();
         for (auto &section : sections) {
             if (section.mode() == JourneySection::Walking) {

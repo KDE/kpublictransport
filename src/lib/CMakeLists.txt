@@ -158,6 +158,7 @@ target_link_libraries(KPublicTransport
     PRIVATE
         KGraphQL
         KOSM
+        KF6::I18nLocaleData
         Qt::Network
         ZLIB::ZLIB
 )

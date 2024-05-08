@@ -15,6 +15,8 @@
 #include "rentalvehicleutil_p.h"
 #include "ifopt/ifoptutil.h"
 
+#include <KTimeZone>
+
 #include <QDebug>
 #include <QHash>
 #include <QJsonArray>
@@ -80,7 +82,15 @@ bool Location::isEmpty() const
 
 QTimeZone Location::timeZone() const
 {
-    return d->timeZone;
+    if (d->timeZone.isValid()) {
+        return d->timeZone;
+    }
+    if (hasCoordinate()) {
+        if (const auto tzId = KTimeZone::fromLocation(latitude(), longitude()); tzId) {
+            return QTimeZone(tzId);
+        }
+    }
+    return {};
 }
 
 void Location::setTimeZone(const QTimeZone &tz)
@@ -390,8 +400,8 @@ Location Location::merge(const Location &lhs, const Location &rhs)
 
     l.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
 
-    if (!lhs.timeZone().isValid()) {
-        l.setTimeZone(rhs.timeZone());
+    if (!lhs.d->timeZone.isValid()) {
+        l.setTimeZone(rhs.d->timeZone);
     }
 
     l.setLatitude(mergeCoordinate(lhs.latitude(), rhs.latitude()));
@@ -446,8 +456,8 @@ float Location::distance(const Location &lhs, const Location &rhs)
 QJsonObject Location::toJson(const Location &loc)
 {
     auto obj = Json::toJson(loc);
-    if (loc.timeZone().isValid()) {
-        obj.insert(QLatin1String("timezone"), QString::fromUtf8(loc.timeZone().id()));
+    if (loc.d->timeZone.isValid()) {
+        obj.insert(QLatin1String("timezone"), QString::fromUtf8(loc.d->timeZone.id()));
     }
 
     if (!loc.d->ids.isEmpty()) {

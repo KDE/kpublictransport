@@ -44,7 +44,10 @@
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T22:06:00+01:00"
                 },
-                "scheduledDepartureTime": "2018-12-02T22:04:51",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:04:51+01:00"
+                },
                 "to": {
                     "latitude": 49.00468826293945,
                     "locality": "Le Mesnil-Amelot",
@@ -79,8 +82,14 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:07:00",
-                        "scheduledDepartureTime": "2018-12-02T22:08:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:07:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:08:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 49.0097541809082,
                             "longitude": 2.5612330436706543,
@@ -89,8 +98,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:12:00",
-                        "scheduledDepartureTime": "2018-12-02T22:13:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:12:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:13:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.973426818847656,
                             "longitude": 2.514359951019287,
@@ -99,8 +114,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:37:00",
-                        "scheduledDepartureTime": "2018-12-02T22:38:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:37:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:38:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.880767822265625,
                             "longitude": 2.3571150302886963,
@@ -522,7 +543,10 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2018-12-02T23:00:15",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:00:15+01:00"
+                },
                 "scheduledDepartureTime": {
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T22:51:00+01:00"
@@ -581,7 +605,10 @@
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T21:59:00+01:00"
                 },
-                "scheduledDepartureTime": "2018-12-02T21:57:51",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T21:57:51+01:00"
+                },
                 "to": {
                     "latitude": 49.00468826293945,
                     "locality": "Le Mesnil-Amelot",
@@ -616,8 +643,14 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:01:00",
-                        "scheduledDepartureTime": "2018-12-02T22:02:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:01:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:02:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 49.0097541809082,
                             "longitude": 2.5612330436706543,
@@ -626,8 +659,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:07:00",
-                        "scheduledDepartureTime": "2018-12-02T22:07:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:07:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:07:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.973426818847656,
                             "longitude": 2.514359951019287,
@@ -636,8 +675,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:09:00",
-                        "scheduledDepartureTime": "2018-12-02T22:09:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:09:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:09:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.962711334228516,
                             "longitude": 2.5126450061798096,
@@ -646,8 +691,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:11:00",
-                        "scheduledDepartureTime": "2018-12-02T22:12:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:11:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:12:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.947608947753906,
                             "longitude": 2.5247159004211426,
@@ -656,8 +707,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:15:00",
-                        "scheduledDepartureTime": "2018-12-02T22:16:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:15:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:16:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93211364746094,
                             "longitude": 2.4957549571990967,
@@ -666,8 +723,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:17:00",
-                        "scheduledDepartureTime": "2018-12-02T22:18:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:17:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:18:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93230438232422,
                             "longitude": 2.4756739139556885,
@@ -676,8 +739,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:20:00",
-                        "scheduledDepartureTime": "2018-12-02T22:20:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:20:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:20:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93270492553711,
                             "longitude": 2.454766035079956,
@@ -686,8 +755,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:22:00",
-                        "scheduledDepartureTime": "2018-12-02T22:23:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:22:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:23:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93074035644531,
                             "longitude": 2.425791025161743,
@@ -696,8 +771,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:26:00",
-                        "scheduledDepartureTime": "2018-12-02T22:26:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:26:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:26:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.924354553222656,
                             "longitude": 2.386388063430786,
@@ -706,8 +787,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:28:00",
-                        "scheduledDepartureTime": "2018-12-02T22:29:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:28:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:29:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.918113708496094,
                             "longitude": 2.362665891647339,
@@ -889,8 +976,14 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:45:00",
-                        "scheduledDepartureTime": "2018-12-02T22:45:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:45:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:45:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.87623977661133,
                             "longitude": 2.357016086578369,
@@ -899,8 +992,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:46:00",
-                        "scheduledDepartureTime": "2018-12-02T22:46:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:46:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:46:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.87444305419922,
                             "longitude": 2.358527898788452,
@@ -909,8 +1008,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:48:00",
-                        "scheduledDepartureTime": "2018-12-02T22:48:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:48:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:48:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.871116638183594,
                             "longitude": 2.360502004623413,
@@ -919,8 +1024,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:49:00",
-                        "scheduledDepartureTime": "2018-12-02T22:49:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:49:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:49:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.869014739990234,
                             "longitude": 2.3624489307403564,
@@ -929,8 +1040,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:50:00",
-                        "scheduledDepartureTime": "2018-12-02T22:50:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:50:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:50:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.86714553833008,
                             "longitude": 2.364954948425293,
@@ -939,8 +1056,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:51:00",
-                        "scheduledDepartureTime": "2018-12-02T22:51:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:51:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:51:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.86483383178711,
                             "longitude": 2.365511894226074,
@@ -949,8 +1072,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:51:00",
-                        "scheduledDepartureTime": "2018-12-02T22:51:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:51:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:51:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.86216354370117,
                             "longitude": 2.366805076599121,
@@ -959,8 +1088,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:52:00",
-                        "scheduledDepartureTime": "2018-12-02T22:52:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:52:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:52:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.85987091064453,
                             "longitude": 2.3673489093780518,
@@ -969,8 +1104,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:53:00",
-                        "scheduledDepartureTime": "2018-12-02T22:53:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:53:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:53:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.85728454589844,
                             "longitude": 2.3679869174957275,
@@ -979,8 +1120,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:53:00",
-                        "scheduledDepartureTime": "2018-12-02T22:53:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:53:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:53:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.855369567871094,
                             "longitude": 2.3684349060058594,
@@ -989,8 +1136,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:54:00",
-                        "scheduledDepartureTime": "2018-12-02T22:54:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:54:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:54:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.853858947753906,
                             "longitude": 2.3687610626220703,
@@ -999,8 +1152,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:54:00",
-                        "scheduledDepartureTime": "2018-12-02T22:54:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:54:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:54:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.85281753540039,
                             "longitude": 2.3688149452209473,
@@ -1009,8 +1168,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:56:00",
-                        "scheduledDepartureTime": "2018-12-02T22:56:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:56:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:56:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.84870910644531,
                             "longitude": 2.370950937271118,
@@ -1019,8 +1184,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:58:00",
-                        "scheduledDepartureTime": "2018-12-02T22:58:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:58:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:58:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.84613037109375,
                             "longitude": 2.372066020965576,
@@ -1029,8 +1200,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:59:00",
-                        "scheduledDepartureTime": "2018-12-02T22:59:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:59:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:59:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.84489822387695,
                             "longitude": 2.371546983718872,
@@ -1039,8 +1216,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T23:00:00",
-                        "scheduledDepartureTime": "2018-12-02T23:00:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T23:00:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T23:00:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.843631744384766,
                             "longitude": 2.3734118938446045,
@@ -1247,7 +1430,10 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2018-12-02T23:07:38",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:07:38+01:00"
+                },
                 "scheduledDepartureTime": {
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T23:01:00+01:00"
@@ -1306,7 +1492,10 @@
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T21:59:00+01:00"
                 },
-                "scheduledDepartureTime": "2018-12-02T21:57:51",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T21:57:51+01:00"
+                },
                 "to": {
                     "latitude": 49.00468826293945,
                     "locality": "Le Mesnil-Amelot",
@@ -1341,8 +1530,14 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:01:00",
-                        "scheduledDepartureTime": "2018-12-02T22:02:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:01:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:02:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 49.0097541809082,
                             "longitude": 2.5612330436706543,
@@ -1351,8 +1546,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:07:00",
-                        "scheduledDepartureTime": "2018-12-02T22:07:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:07:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:07:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.973426818847656,
                             "longitude": 2.514359951019287,
@@ -1361,8 +1562,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:09:00",
-                        "scheduledDepartureTime": "2018-12-02T22:09:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:09:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:09:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.962711334228516,
                             "longitude": 2.5126450061798096,
@@ -1371,8 +1578,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:11:00",
-                        "scheduledDepartureTime": "2018-12-02T22:12:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:11:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:12:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.947608947753906,
                             "longitude": 2.5247159004211426,
@@ -1381,8 +1594,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:15:00",
-                        "scheduledDepartureTime": "2018-12-02T22:16:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:15:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:16:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93211364746094,
                             "longitude": 2.4957549571990967,
@@ -1391,8 +1610,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:17:00",
-                        "scheduledDepartureTime": "2018-12-02T22:18:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:17:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:18:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93230438232422,
                             "longitude": 2.4756739139556885,
@@ -1401,8 +1626,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:20:00",
-                        "scheduledDepartureTime": "2018-12-02T22:20:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:20:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:20:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93270492553711,
                             "longitude": 2.454766035079956,
@@ -1411,8 +1642,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:22:00",
-                        "scheduledDepartureTime": "2018-12-02T22:23:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:22:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:23:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.93074035644531,
                             "longitude": 2.425791025161743,
@@ -1421,8 +1658,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:26:00",
-                        "scheduledDepartureTime": "2018-12-02T22:26:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:26:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:26:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.924354553222656,
                             "longitude": 2.386388063430786,
@@ -1431,8 +1674,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:28:00",
-                        "scheduledDepartureTime": "2018-12-02T22:29:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:28:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:29:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.918113708496094,
                             "longitude": 2.362665891647339,
@@ -1441,8 +1690,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:34:00",
-                        "scheduledDepartureTime": "2018-12-02T22:35:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:34:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:35:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.880767822265625,
                             "longitude": 2.3571150302886963,
@@ -1451,8 +1706,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:38:00",
-                        "scheduledDepartureTime": "2018-12-02T22:38:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:38:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:38:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.861820220947266,
                             "longitude": 2.347012996673584,
@@ -1461,8 +1722,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:39:00",
-                        "scheduledDepartureTime": "2018-12-02T22:40:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:39:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:40:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.853336334228516,
                             "longitude": 2.3460350036621094,
@@ -1471,8 +1738,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:41:00",
-                        "scheduledDepartureTime": "2018-12-02T22:42:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:41:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:42:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.845741271972656,
                             "longitude": 2.339927911758423,
@@ -1670,8 +1943,14 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:52:00",
-                        "scheduledDepartureTime": "2018-12-02T22:52:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:52:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:52:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.83744430541992,
                             "longitude": 2.345918893814087,
@@ -1680,8 +1959,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:55:00",
-                        "scheduledDepartureTime": "2018-12-02T22:55:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:55:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:55:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.83692169189453,
                             "longitude": 2.352631092071533,
@@ -1690,8 +1975,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:56:00",
-                        "scheduledDepartureTime": "2018-12-02T22:56:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:56:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:56:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.83816146850586,
                             "longitude": 2.3565120697021484,
@@ -1700,8 +1991,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:58:00",
-                        "scheduledDepartureTime": "2018-12-02T22:58:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:58:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:58:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.83960723876953,
                             "longitude": 2.361046075820923,
@@ -1710,8 +2007,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:59:00",
-                        "scheduledDepartureTime": "2018-12-02T22:59:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:59:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:59:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.84260940551758,
                             "longitude": 2.364016056060791,
@@ -1720,8 +2023,14 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T23:02:00",
-                        "scheduledDepartureTime": "2018-12-02T23:02:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T23:02:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T23:02:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 48.84524154663086,
                             "longitude": 2.3690690994262695,
@@ -1932,7 +2241,10 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2018-12-02T23:09:24",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:09:24+01:00"
+                },
                 "scheduledDepartureTime": {
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T23:04:00+01:00"
@@ -2075,7 +2387,10 @@
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T22:21:00+01:00"
                 },
-                "scheduledDepartureTime": "2018-12-02T22:13:24",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T22:13:24+01:00"
+                },
                 "to": {
                     "latitude": 49.003387451171875,
                     "locality": "Tremblay-en-France",
@@ -2100,8 +2415,14 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledArrivalTime": "2018-12-02T22:30:00",
-                        "scheduledDepartureTime": "2018-12-02T22:30:00",
+                        "scheduledArrivalTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:30:00+01:00"
+                        },
+                        "scheduledDepartureTime": {
+                            "timezone": "Europe/Paris",
+                            "value": "2018-12-02T22:30:00+01:00"
+                        },
                         "stopPoint": {
                             "latitude": 49.014095306396484,
                             "longitude": 2.541106939315796,
@@ -2260,7 +2581,10 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2018-12-02T23:09:59",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2018-12-02T23:09:59+01:00"
+                },
                 "scheduledDepartureTime": {
                     "timezone": "Europe/Paris",
                     "value": "2018-12-02T23:05:00+01:00"

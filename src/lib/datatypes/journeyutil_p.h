@@ -29,6 +29,9 @@ namespace JourneyUtil
 
     /** Reinterpret all floating times as times with the given timezone. */
     void applyTimeZone(Journey &jny, const QTimeZone &tz);
+
+    /** Propagate location-based timezone information from corresponding stop point locations. */
+    void propagateTimeZones(Journey &jny);
 }
 
 }

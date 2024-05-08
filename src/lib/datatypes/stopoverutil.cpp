@@ -46,3 +46,10 @@ void StopoverUtil::applyTimeZone(Stopover &dep, const QTimeZone &tz)
     dep.setScheduledArrivalTime(TimeUtil::applyTimeZone(dep.scheduledArrivalTime(), tz));
     dep.setExpectedArrivalTime(TimeUtil::applyTimeZone(dep.expectedArrivalTime(), tz));
 }
+
+void StopoverUtil::propagateTimeZone(Stopover &stop)
+{
+    if (const auto tz = stop.stopPoint().timeZone(); tz.isValid()) {
+        StopoverUtil::applyTimeZone(stop, tz);
+    }
+}
