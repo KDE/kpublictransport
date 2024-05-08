@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-06 00:37+0000\n"
-"PO-Revision-Date: 2024-05-05 02:03+0200\n"
+"PO-Revision-Date: 2024-05-08 00:11+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -100,28 +100,28 @@ msgstr "Tomas de corriente"
 #: quick/FeatureIcon.qml:90
 #, kde-format
 msgid "%1 (not available)"
-msgstr ""
+msgstr "%1 (no disponible)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Low occupancy"
-msgstr ""
+msgstr "Baja ocupación"
 
 #: quick/OccupancyIndicator.qml:40
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Medium occupancy"
-msgstr ""
+msgstr "Media ocupación"
 
 #: quick/OccupancyIndicator.qml:41
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "High occupancy"
-msgstr ""
+msgstr "Alta ocupación"
 
 #: quick/OccupancyIndicator.qml:42
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr ""
+msgstr "Completo"
