@@ -135,6 +135,7 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "WI", FeatureRemark, Feature::WiFi, Feature::Available },
     { "A", "WV", FeatureRemark, Feature::WiFi, Feature::Available },
     { "A", "bf", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    { "A", "bg", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "hz", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "ia", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "ic", FeatureRemark, Feature::Restaurant, Feature::Available },
