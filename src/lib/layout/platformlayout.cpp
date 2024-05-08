@@ -22,7 +22,8 @@ static void expandPlatformRange(std::vector<QString> &sections, const QString &r
 static void addPlatformSectionsForVehicleSections(std::vector<QString> &sections, const Stopover &stopover, const VehicleSection &coach)
 {
     if (coach.hasPlatformPosition()) {
-        for (const auto &s : stopover.platformLayout().sections()) {
+        const auto platformSections = stopover.platformLayout().sections();
+        for (const auto &s : platformSections) {
             if (s.name().isEmpty() || s.begin() > coach.platformPositionEnd() || s.end() < coach.platformPositionBegin()) {
                 continue;
             }
@@ -69,7 +70,8 @@ static QString mergeSections(std::vector<QString> &&sections)
 QString PlatformLayout::sectionsForVehicle(const Stopover &stopover)
 {
     std::vector<QString> secs;
-    for (const auto &coach : stopover.vehicleLayout().sections()) {
+    const auto coachs = stopover.vehicleLayout().sections();
+    for (const auto &coach : coachs) {
         if (coach.type() == VehicleSection::Engine || coach.type() == VehicleSection::PowerCar) {
             continue;
         }
@@ -81,7 +83,8 @@ QString PlatformLayout::sectionsForVehicle(const Stopover &stopover)
 QString PlatformLayout::sectionsForClass(const Stopover &stopover, VehicleSection::Class cls)
 {
     std::vector<QString> secs;
-    for (const auto &coach : stopover.vehicleLayout().sections()) {
+    const auto coachs = stopover.vehicleLayout().sections();
+    for (const auto &coach : coachs) {
         if (coach.classes() & cls) {
             addPlatformSectionsForVehicleSections(secs, stopover, coach);
         }
@@ -92,7 +95,8 @@ QString PlatformLayout::sectionsForClass(const Stopover &stopover, VehicleSectio
 QString PlatformLayout::sectionsForVehicleSection(const Stopover &stopover, const QString &coachName)
 {
     std::vector<QString> secs;
-    for (const auto &coach : stopover.vehicleLayout().sections()) {
+    const auto coachs = stopover.vehicleLayout().sections();
+    for (const auto &coach : coachs) {
         if (coach.name() == coachName) {
             addPlatformSectionsForVehicleSections(secs, stopover, coach);
         }
