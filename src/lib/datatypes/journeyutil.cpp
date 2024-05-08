@@ -54,3 +54,25 @@ void JourneyUtil::applyTimeZone(Journey &jny, const QTimeZone &tz)
     }
     jny.setSections(std::move(sections));
 }
+
+void JourneyUtil::propagateTimeZones(Journey &jny)
+{
+    auto sections = std::move(jny.takeSections());
+    for (auto &sec : sections) {
+        if (const auto tz = sec.from().timeZone(); tz.isValid()) {
+            sec.setScheduledDepartureTime(TimeUtil::applyTimeZone(sec.scheduledDepartureTime(), tz));
+            sec.setExpectedDepartureTime(TimeUtil::applyTimeZone(sec.expectedDepartureTime(), tz));
+        }
+        if (const auto tz = sec.to().timeZone(); tz.isValid()) {
+            sec.setScheduledArrivalTime(TimeUtil::applyTimeZone(sec.scheduledArrivalTime(), tz));
+            sec.setExpectedArrivalTime(TimeUtil::applyTimeZone(sec.expectedArrivalTime(), tz));
+        }
+
+        auto stops = sec.takeIntermediateStops();
+        for (auto &stop : stops) {
+            StopoverUtil::propagateTimeZone(stop);
+        }
+        sec.setIntermediateStops(std::move(stops));
+    }
+    jny.setSections(std::move(sections));
+}

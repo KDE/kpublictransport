@@ -28,7 +28,10 @@ QDateTime TimeUtil::applyTimeZone(QDateTime dt, const QTimeZone &tz)
                 dt.setTimeZone(tz);
             }
             break;
-        default:
+        case Qt::TimeZone:
+            if ( dt.timeZone() == QTimeZone::utc() && tz != QTimeZone::utc()) {
+                dt = dt.toTimeZone(tz);
+            }
             break;
     }
     return dt;

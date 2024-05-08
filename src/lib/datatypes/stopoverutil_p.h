@@ -27,6 +27,9 @@ namespace StopoverUtil
      *  @internal only exported for KPublicTransportOnboard
      */
     KPUBLICTRANSPORT_EXPORT void applyTimeZone(Stopover &dep, const QTimeZone &tz);
+
+    /** Propagate location-based timezone information to the stopover. */
+    void propagateTimeZone(Stopover &stop);
 }
 
 }

@@ -400,7 +400,10 @@
                     "timezone": "Europe/Paris",
                     "value": "2021-10-21T17:08:00+02:00"
                 },
-                "scheduledDepartureTime": "2021-10-21T17:01:53",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:01:53+02:00"
+                },
                 "to": {
                     "latitude": 43.61016845703125,
                     "locality": "Toulouse",
@@ -635,7 +638,10 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-10-21T17:10:10",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:10:10+02:00"
+                },
                 "scheduledDepartureTime": {
                     "timezone": "Europe/Paris",
                     "value": "2021-10-21T17:09:00+02:00"
@@ -954,8 +960,14 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-10-21T17:03:09",
-                "scheduledDepartureTime": "2021-10-21T17:00:40",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:03:09+02:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:00:40+02:00"
+                },
                 "to": {
                     "latitude": 43.61124038696289,
                     "locality": "Toulouse",
@@ -981,8 +993,14 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-10-21T17:05:29",
-                "scheduledDepartureTime": "2021-10-21T17:03:09",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:05:29+02:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:03:09+02:00"
+                },
                 "to": {
                     "identifier": {
                         "osm": "n890433076"
@@ -1458,8 +1476,14 @@
                 "rentalVehicle": {
                     "type": "Bicycle"
                 },
-                "scheduledArrivalTime": "2021-10-21T17:09:41",
-                "scheduledDepartureTime": "2021-10-21T17:05:29",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:09:41+02:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:05:29+02:00"
+                },
                 "to": {
                     "identifier": {
                         "osm": "n1832846521"
@@ -1510,8 +1534,14 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-10-21T17:10:51",
-                "scheduledDepartureTime": "2021-10-21T17:09:41",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:10:51+02:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:09:41+02:00"
+                },
                 "to": {
                     "latitude": 43.604793548583984,
                     "locality": "Toulouse",
@@ -1614,8 +1644,14 @@
                         }
                     ]
                 },
-                "scheduledArrivalTime": "2021-10-21T17:12:07",
-                "scheduledDepartureTime": "2021-10-21T17:10:51",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:12:07+02:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2021-10-21T17:10:51+02:00"
+                },
                 "to": {
                     "latitude": 43.605159759521484,
                     "locality": "Toulouse",

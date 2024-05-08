@@ -146,6 +146,10 @@ void StopoverReply::addResult(const AbstractBackend *backend, std::vector<Stopov
             StopoverUtil::applyTimeZone(dep, backend->timeZone());
         }
     }
+    // propagate timezone information from the corresponding stop point location
+    for (auto &stop : res) {
+        StopoverUtil::propagateTimeZone(stop);
+    }
 
     // augment line information
     for (auto &dep : res) {

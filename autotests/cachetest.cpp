@@ -45,7 +45,7 @@ private Q_SLOTS:
 
         Location loc;
         loc.setName(QStringLiteral("Randa"));
-        loc.setCoordinate(7.6, 46.1);
+        loc.setCoordinate(46.1, 7.6);
         loc.setIdentifier(QStringLiteral("uic"), QStringLiteral("85xxxxx"));
 
         Attribution attr;
@@ -58,11 +58,11 @@ private Q_SLOTS:
         QCOMPARE(entry.type, CacheHitType::Positive);
         QCOMPARE(entry.data.size(), 1);
         QCOMPARE(entry.data[0].name(), loc.name());
-        QCOMPARE(entry.data[0].latitude(), 7.6f);
-        QCOMPARE(entry.data[0].longitude(), 46.1f);
+        QCOMPARE(entry.data[0].longitude(), 7.6f);
+        QCOMPARE(entry.data[0].latitude(), 46.1f);
         QCOMPARE(entry.data[0].identifiers().size(), 1);
         QCOMPARE(entry.data[0].identifier(QStringLiteral("uic")), QLatin1String("85xxxxx"));
-        QCOMPARE(entry.data[0].timeZone().isValid(), false);
+        QCOMPARE(entry.data[0].timeZone().id(), "Europe/Zurich");
         QCOMPARE(entry.attributions.size(), 1);
         QCOMPARE(entry.attributions[0].name(), QLatin1String("KDE"));
         QCOMPARE(entry.attributions[0].license(), QLatin1String("LGPL"));
