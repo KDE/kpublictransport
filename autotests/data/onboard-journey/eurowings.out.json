@@ -3,8 +3,14 @@
         {
             "disruptionEffect": "NormalService",
             "distance": 508477,
-            "expectedArrivalTime": "2023-12-01T20:17:59",
-            "expectedDepartureTime": "2023-12-01T19:20:59",
+            "expectedArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-12-01T20:17:59+01:00"
+            },
+            "expectedDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-12-01T19:20:59+01:00"
+            },
             "from": {
                 "identifier": {
                     "iata": "BER"
@@ -20,7 +26,10 @@
                     "name": "EW2021"
                 }
             },
-            "scheduledArrivalTime": "2023-12-01T21:17:00+01:00",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-12-01T21:17:00+01:00"
+            },
             "to": {
                 "identifier": {
                     "iata": "STR"

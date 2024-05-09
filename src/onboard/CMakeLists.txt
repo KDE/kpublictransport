@@ -50,7 +50,6 @@ target_link_libraries(KPublicTransportOnboard
     PRIVATE
         Qt::Network
         Qt::Qml
-        KF6::I18nLocaleData
 )
 if (HAVE_NM)
     target_link_libraries(KPublicTransportOnboard PRIVATE KF6::NetworkManagerQt)
