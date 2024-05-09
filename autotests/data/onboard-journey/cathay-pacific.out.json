@@ -3,8 +3,14 @@
         {
             "disruptionEffect": "NormalService",
             "distance": 959336,
-            "expectedArrivalTime": "2023-03-01T21:55:00",
-            "expectedDepartureTime": "2023-03-01T12:27:00Z",
+            "expectedArrivalTime": {
+                "timezone": "Asia/Hong_Kong",
+                "value": "2023-03-01T21:55:00+08:00"
+            },
+            "expectedDepartureTime": {
+                "timezone": "Asia/Taipei",
+                "value": "2023-03-01T20:27:00+08:00"
+            },
             "from": {
                 "identifier": {
                     "iata": "TPE",

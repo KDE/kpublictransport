@@ -7,12 +7,10 @@
 #include "logging.h"
 #include "positiondata_p.h"
 
-#include "../lib/datatypes/stopoverutil_p.h"
+#include "../lib/datatypes/journeyutil_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Stopover>
-
-#include <KTimeZone>
 
 #include <QFile>
 #include <QJSEngine>
@@ -137,21 +135,6 @@ Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response)
 
     for (auto &section : sections) {
         auto stops = section.takeIntermediateStops();
-        // fill in missing titmezones
-        for (auto &stop : stops) {
-            QTimeZone tz(stop.stopPoint().timeZone());
-
-            if (!tz.isValid() && stop.stopPoint().hasCoordinate()) {
-                if (const auto tzId = KTimeZone::fromLocation(stop.stopPoint().latitude(), stop.stopPoint().longitude())) {
-                    tz = QTimeZone(tzId);
-                }
-            }
-
-            if (tz.isValid()) {
-                StopoverUtil::applyTimeZone(stop, tz);
-            }
-        }
-
         // many backends will have the entire trip as intermediate stops, redistribute
         // that for our format
         if (section.from().isEmpty() && !stops.empty()) {
@@ -170,6 +153,7 @@ Journey ScriptedRestOnboardBackend::parseJourneyData(const QJsonValue &response)
     }
 
     jny.setSections(std::move(sections));
+    JourneyUtil::propagateTimeZones(jny);
     return jny;
 }
 

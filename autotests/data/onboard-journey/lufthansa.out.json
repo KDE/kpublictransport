@@ -3,8 +3,14 @@
         {
             "disruptionEffect": "NormalService",
             "distance": 430617,
-            "expectedArrivalTime": "2023-10-07T14:08:53",
-            "expectedDepartureTime": "2023-10-07T13:22:53",
+            "expectedArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-10-07T14:08:53+02:00"
+            },
+            "expectedDepartureTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-10-07T13:22:53+02:00"
+            },
             "from": {
                 "identifier": {
                     "iata": "BER"
@@ -20,7 +26,10 @@
                     "name": "LH0001"
                 }
             },
-            "scheduledArrivalTime": "2023-10-07T16:08:00+02:00",
+            "scheduledArrivalTime": {
+                "timezone": "Europe/Berlin",
+                "value": "2023-10-07T16:08:00+02:00"
+            },
             "to": {
                 "identifier": {
                     "iata": "FRA"

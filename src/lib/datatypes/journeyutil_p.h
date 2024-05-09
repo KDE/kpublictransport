@@ -7,6 +7,8 @@
 #ifndef KPUBLICTRANSPORT_JOURNEYUTIL_P_H
 #define KPUBLICTRANSPORT_JOURNEYUTIL_P_H
 
+#include "kpublictransport_export.h"
+
 class QDateTime;
 class QTimeZone;
 
@@ -30,8 +32,10 @@ namespace JourneyUtil
     /** Reinterpret all floating times as times with the given timezone. */
     void applyTimeZone(Journey &jny, const QTimeZone &tz);
 
-    /** Propagate location-based timezone information from corresponding stop point locations. */
-    void propagateTimeZones(Journey &jny);
+    /** Propagate location-based timezone information from corresponding stop point locations.
+     *  @internal only exported for KPublicTransportOnboard
+     */
+    KPUBLICTRANSPORT_EXPORT void propagateTimeZones(Journey &jny);
 }
 
 }
