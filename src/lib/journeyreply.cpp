@@ -84,12 +84,24 @@ bool JourneyReplyPrivate::needToWaitForAssets() const
     return request.downloadAssets();
 }
 
+[[nodiscard]] bool hasNonTrivialPath(const JourneySection &section)
+{
+    const auto path = section.path();
+    if (path.isEmpty()) {
+        return false;
+    }
+    if (path.sections().size() > 1) {
+        return true;
+    }
+    return !path.sections()[0].description().isEmpty() || path.sections()[0].path().size() > 2;
+}
+
 static bool isPointlessSection(const JourneySection &section)
 {
     if (section.mode() == JourneySection::Waiting) {
         return section.duration() < MINIMUM_WAIT_TIME;
     }
-    if (section.mode() == JourneySection::Walking && section.path().isEmpty()) {
+    if (section.mode() == JourneySection::Walking && !hasNonTrivialPath(section)) {
         return section.duration() < MINIMUM_WALK_TIME || (section.distance() > 0 && section.distance() < MINIMUM_WALK_DISTANCE);
     }
     return false;
