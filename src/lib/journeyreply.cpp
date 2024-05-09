@@ -22,6 +22,15 @@
 using namespace KPublicTransport;
 
 namespace KPublicTransport {
+
+// result filter thresholds
+constexpr inline const auto MINIMUM_WAIT_TIME = 60; // seconds; shorter waiting sections are dropped
+constexpr inline const auto MINIMUM_WALK_TIME = 90; // seconds; shorter walking sections are dropped
+constexpr inline const auto MINIMUM_WALK_DISTANCE = 50; // meters; shorter walking sections are dropped
+
+constexpr inline const auto MAXIMUM_TRANSFER_SPEED = 30; // meter/second; anything above is discarded as nonsensical data
+constexpr inline const auto MAXIMUM_TRANSFER_DISTANCE = 100000; // meters; anything above is discarded as nonsensical data
+
 class JourneyReplyPrivate : public ReplyPrivate {
 public:
     void finalizeResult() override;
@@ -78,10 +87,10 @@ bool JourneyReplyPrivate::needToWaitForAssets() const
 static bool isPointlessSection(const JourneySection &section)
 {
     if (section.mode() == JourneySection::Waiting) {
-        return section.duration() < 60;
+        return section.duration() < MINIMUM_WAIT_TIME;
     }
-    if (section.mode() == JourneySection::Walking) {
-        return section.duration() < 60 && section.path().isEmpty();
+    if (section.mode() == JourneySection::Walking && section.path().isEmpty()) {
+        return section.duration() < MINIMUM_WALK_TIME || (section.distance() > 0 && section.distance() < MINIMUM_WALK_DISTANCE);
     }
     return false;
 }
@@ -92,11 +101,11 @@ static bool isImplausibleSection(const JourneySection &section)
         && section.from().hasCoordinate() && section.to().hasCoordinate())
     {
         const auto distance = Location::distance(section.from(), section.to());
-        if (section.duration() > 0 && (distance / section.duration()) > 30) {
-            qCDebug(Log) << "discarding journey based on insane transfer/walking speed:" << (distance / section.duration()) << "m/s";
+        if (section.duration() > 0 && (distance / (float)section.duration()) > MAXIMUM_TRANSFER_SPEED) {
+            qCDebug(Log) << "discarding journey based on insane transfer/walking speed:" << (distance / (float)section.duration()) << "m/s";
             return true;
         }
-        if (distance > 100000) {
+        if (distance > MAXIMUM_TRANSFER_DISTANCE) {
             qCDebug(Log) << "discarding journey with insane transfer/walking distance:" << distance << "m" << section.from().name() << section.to().name();
             return true;
         }
