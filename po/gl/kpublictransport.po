@@ -1,85 +1,87 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kpublictransport package.
 #
-# SPDX-FileCopyrightText: 2024 Xavier Besnard <xavier.besnard@kde.org>
+# SPDX-FileCopyrightText: 2024 Adrián Chaves (Gallaecio)
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-06 00:37+0000\n"
-"PO-Revision-Date: 2024-05-12 11:05+0200\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
-"Language-Team: French <French <kde-francophone@kde.org>>\n"
-"Language: fr\n"
+"PO-Revision-Date: 2024-05-12 14:24+0200\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
 msgctxt "train coach feature"
 msgid "Air conditioning"
-msgstr "Air conditionné"
+msgstr "Aire acondicionado"
 
 #: lib/datatypes/feature.cpp:54
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bistro or restaurant"
-msgstr "Bistrot ou restaurant"
+msgstr "Bistro ou restaurante"
 
 #: lib/datatypes/feature.cpp:56
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toddler area"
-msgstr "Zone des tout-petits"
+msgstr "Zona de bebés"
 
 #: lib/datatypes/feature.cpp:58
 #, kde-format
 msgctxt "train coach feature"
 msgid "Family area"
-msgstr "Zone pour les familles"
+msgstr "Zona familiar"
 
 #: lib/datatypes/feature.cpp:60
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible"
-msgstr "Accessible en fauteuil roulant"
+msgstr "Acceso para cadeira de rodas"
 
 #: lib/datatypes/feature.cpp:62
 #, kde-format
 msgctxt "train coach feature"
 msgid "Quiet area"
-msgstr "Zone de repos"
+msgstr "Zona silenciosa"
 
 #: lib/datatypes/feature.cpp:64
 #, kde-format
 msgctxt "train coach feature"
 msgid "Business area"
-msgstr "Zone de bureau"
+msgstr "Zona de negocios"
 
 #: lib/datatypes/feature.cpp:66
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bike storage"
-msgstr "Parc à vélos"
+msgstr "Almacenamento de bicicletas"
 
 #: lib/datatypes/feature.cpp:68
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toilet"
-msgstr "Toilettes"
+msgstr "Lavabo"
 
 #: lib/datatypes/feature.cpp:70
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible toilet"
-msgstr "Toilettes accessibles aux fauteuils roulants"
+msgstr "Lavabo para cadeira de rodas"
 
 #: lib/datatypes/feature.cpp:72
 #, kde-format
 msgctxt "train coach feature"
 msgid "Information point"
-msgstr "Point d'informations"
+msgstr "Punto de información"
 
 #: lib/datatypes/feature.cpp:74
 #, kde-format
@@ -91,33 +93,33 @@ msgstr "Wifi"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Power sockets"
-msgstr "Prises de courant"
+msgstr "Tomas de corrente"
 
 #: quick/FeatureIcon.qml:90
 #, kde-format
 msgid "%1 (not available)"
-msgstr "%1 (Indisponible)"
+msgstr "%1 (non dispoñíbel)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Low occupancy"
-msgstr "Faible taux d'occupation"
+msgstr "Baixa ocupación"
 
 #: quick/OccupancyIndicator.qml:40
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Medium occupancy"
-msgstr "Taux d'occupation moyen"
+msgstr "Media ocupación"
 
 #: quick/OccupancyIndicator.qml:41
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "High occupancy"
-msgstr "Taux d'occupation élevé"
+msgstr "Alta ocupación"
 
 #: quick/OccupancyIndicator.qml:42
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr "Plein"
+msgstr "Completa"
