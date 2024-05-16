@@ -1,0 +1,126 @@
+# translation of kpublictransport.pot to Esperanto
+# Copyright (C) 2024 Free Software Foundation, Inc.
+# This file is distributed under the same license as the kpublictransport package.
+# Oliver Kellogg <olivermkellogg@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kpublictransport\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-05-06 00:37+0000\n"
+"PO-Revision-Date: 2024-05-15 10:28+0100\n"
+"Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
+"Language-Team: Esperanto <kde-i18n-eo.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: translate-po (https://github.com/zcribe/translate-po)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: lib/datatypes/feature.cpp:52
+#, kde-format
+msgctxt "train coach feature"
+msgid "Air conditioning"
+msgstr "Klimatizo"
+
+#: lib/datatypes/feature.cpp:54
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bistro or restaurant"
+msgstr "Trinkejeto aŭ restoracio"
+
+#: lib/datatypes/feature.cpp:56
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toddler area"
+msgstr "Infanetejo"
+
+#: lib/datatypes/feature.cpp:58
+#, kde-format
+msgctxt "train coach feature"
+msgid "Family area"
+msgstr "Familiejo"
+
+#: lib/datatypes/feature.cpp:60
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible"
+msgstr "Rulseĝo alirebla"
+
+#: lib/datatypes/feature.cpp:62
+#, kde-format
+msgctxt "train coach feature"
+msgid "Quiet area"
+msgstr "Trankvilejo"
+
+#: lib/datatypes/feature.cpp:64
+#, kde-format
+msgctxt "train coach feature"
+msgid "Business area"
+msgstr "Komercejo"
+
+#: lib/datatypes/feature.cpp:66
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bike storage"
+msgstr "Biciklejo"
+
+#: lib/datatypes/feature.cpp:68
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toilet"
+msgstr "Necesejo"
+
+#: lib/datatypes/feature.cpp:70
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible toilet"
+msgstr "Rulseĝe alirebla necesejo"
+
+#: lib/datatypes/feature.cpp:72
+#, kde-format
+msgctxt "train coach feature"
+msgid "Information point"
+msgstr "Informejo"
+
+#: lib/datatypes/feature.cpp:74
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wi-Fi"
+msgstr "Wifi"
+
+#: lib/datatypes/feature.cpp:76
+#, kde-format
+msgctxt "train coach feature"
+msgid "Power sockets"
+msgstr "Potencingoj"
+
+#: quick/FeatureIcon.qml:90
+#, kde-format
+msgid "%1 (not available)"
+msgstr "%1 (ne disponebla)"
+
+#: quick/OccupancyIndicator.qml:39
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Low occupancy"
+msgstr "Malalta okupado"
+
+#: quick/OccupancyIndicator.qml:40
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Medium occupancy"
+msgstr "Meza okupado"
+
+#: quick/OccupancyIndicator.qml:41
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "High occupancy"
+msgstr "Alta okupado"
+
+#: quick/OccupancyIndicator.qml:42
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Full"
+msgstr "Plena"
