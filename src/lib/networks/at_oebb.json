@@ -61,7 +61,10 @@
         "anyCoverage": {
             "areaFile": "at_oebb_any.geojson",
             "region": [
-                "NL"
+                "BG",
+                "NL",
+                "RO",
+                "TR"
             ]
         },
         "realtimeCoverage": {
@@ -265,7 +268,7 @@
             88
         ],
         "standardLocationIdentifierType": "ibnr",
-        "ver": "1.16"
+        "ver": "1.41"
     },
     "supportedLanguages": [
         "en",
