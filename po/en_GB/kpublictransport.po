@@ -1,0 +1,125 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kpublictransport package.
+#
+# SPDX-FileCopyrightText: 2024 Steve Allewell <steve.allewell@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kpublictransport\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-05-06 00:37+0000\n"
+"PO-Revision-Date: 2024-05-23 19:42+0100\n"
+"Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
+"Language-Team: British English\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 24.02.2\n"
+
+#: lib/datatypes/feature.cpp:52
+#, kde-format
+msgctxt "train coach feature"
+msgid "Air conditioning"
+msgstr "Air conditioning"
+
+#: lib/datatypes/feature.cpp:54
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bistro or restaurant"
+msgstr "Bistro or restaurant"
+
+#: lib/datatypes/feature.cpp:56
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toddler area"
+msgstr "Toddler area"
+
+#: lib/datatypes/feature.cpp:58
+#, kde-format
+msgctxt "train coach feature"
+msgid "Family area"
+msgstr "Family area"
+
+#: lib/datatypes/feature.cpp:60
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible"
+msgstr "Wheelchair accessible"
+
+#: lib/datatypes/feature.cpp:62
+#, kde-format
+msgctxt "train coach feature"
+msgid "Quiet area"
+msgstr "Quiet area"
+
+#: lib/datatypes/feature.cpp:64
+#, kde-format
+msgctxt "train coach feature"
+msgid "Business area"
+msgstr "Business area"
+
+#: lib/datatypes/feature.cpp:66
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bike storage"
+msgstr "Bike storage"
+
+#: lib/datatypes/feature.cpp:68
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toilet"
+msgstr "Toilet"
+
+#: lib/datatypes/feature.cpp:70
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible toilet"
+msgstr "Wheelchair accessible toilet"
+
+#: lib/datatypes/feature.cpp:72
+#, kde-format
+msgctxt "train coach feature"
+msgid "Information point"
+msgstr "Information point"
+
+#: lib/datatypes/feature.cpp:74
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: lib/datatypes/feature.cpp:76
+#, kde-format
+msgctxt "train coach feature"
+msgid "Power sockets"
+msgstr "Power sockets"
+
+#: quick/FeatureIcon.qml:90
+#, kde-format
+msgid "%1 (not available)"
+msgstr "%1 (not available)"
+
+#: quick/OccupancyIndicator.qml:39
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Low occupancy"
+msgstr "Low occupancy"
+
+#: quick/OccupancyIndicator.qml:40
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Medium occupancy"
+msgstr "Medium occupancy"
+
+#: quick/OccupancyIndicator.qml:41
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "High occupancy"
+msgstr "High occupancy"
+
+#: quick/OccupancyIndicator.qml:42
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Full"
+msgstr "Full"
