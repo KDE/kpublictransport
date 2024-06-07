@@ -9,6 +9,7 @@
 #include <QJsonArray>
 #include <QVariant>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace Wikidata;
 
 Item::Item() = default;
@@ -25,23 +26,23 @@ std::vector<QVariant> Item::values(P property) const
     std::vector<QVariant> values;
     std::vector<bool> prefRank;
 
-    auto propA = m_data.value(QLatin1String("claims")).toObject().value(property.toString()).toArray();
+    auto propA = m_data.value("claims"_L1).toObject().value(property.toString()).toArray();
     for (const auto & propV : propA) {
         const auto propObj = propV.toObject();
-        const auto rank = propObj.value(QLatin1String("rank")).toString();
-        if (rank == QLatin1String("deprecated")) {
+        const auto rank = propObj.value("rank"_L1).toString();
+        if (rank == "deprecated"_L1) {
             continue;
         }
-        const auto valueObj = propObj.value(QLatin1String("mainsnak")).toObject().value(QLatin1String("datavalue")).toObject();
-        const auto type = valueObj.value(QLatin1String("type")).toString();
-        if (type == QLatin1String("string")) {
-            values.push_back(valueObj.value(QLatin1String("value")).toString());
-        } else if (type == QLatin1String("wikibase-entityid")) {
-            values.push_back(QVariant::fromValue(Wikidata::Q(valueObj.value(QLatin1String("value")).toObject().value(QLatin1String("id")).toString())));
+        const auto valueObj = propObj.value("mainsnak"_L1).toObject().value("datavalue"_L1).toObject();
+        const auto type = valueObj.value("type"_L1).toString();
+        if (type == "string"_L1) {
+            values.push_back(valueObj.value("value"_L1).toString());
+        } else if (type == "wikibase-entityid"_L1) {
+            values.push_back(QVariant::fromValue(Wikidata::Q(valueObj.value("value"_L1).toObject().value("id"_L1).toString())));
         }
         // TODO other types
 
-        prefRank.push_back(rank == QLatin1String("preferred"));
+        prefRank.push_back(rank == "preferred"_L1);
     }
 
     // if there are preferred rank values, take those, otherwise take all normal ranked ones
@@ -76,38 +77,38 @@ Image::~Image() = default;
 
 QString Image::name() const
 {
-    return m_data.value(QLatin1String("title")).toString().mid(5);
+    return m_data.value("title"_L1).toString().mid(5);
 }
 
 uint64_t Image::fileSize() const
 {
-    return imageInfo().value(QLatin1String("size")).toInt();
+    return imageInfo().value("size"_L1).toInt();
 }
 
 uint32_t Image::width() const
 {
-    return imageInfo().value(QLatin1String("width")).toDouble();
+    return imageInfo().value("width"_L1).toInt();
 }
 
 uint32_t Image::height() const
 {
-    return imageInfo().value(QLatin1String("height")).toDouble();
+    return imageInfo().value("height"_L1).toInt();
 }
 
 QString Image::mimeType() const
 {
-    return imageInfo().value(QLatin1String("mime")).toString();
+    return imageInfo().value("mime"_L1).toString();
 }
 
 QString Image::license() const
 {
-    const auto extmeta = imageInfo().value(QLatin1String("extmetadata")).toObject();
-    return extmeta.value(QLatin1String("LicenseShortName")).toObject().value(QLatin1String("value")).toString();
+    const auto extmeta = imageInfo().value("extmetadata"_L1).toObject();
+    return extmeta.value("LicenseShortName"_L1).toObject().value("value"_L1).toString();
 }
 
 QJsonObject Image::imageInfo() const
 {
-    const auto ii = m_data.value(QLatin1String("imageinfo")).toArray();
+    const auto ii = m_data.value("imageinfo"_L1).toArray();
     if (ii.isEmpty()) {
         return {};
     }

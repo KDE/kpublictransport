@@ -29,18 +29,18 @@ public:
         NoError,
         NetworkError
     };
-    Error error();
+    [[nodiscard]] Error error() const;
 
 Q_SIGNALS:
     void finished();
 
 protected:
-    QUrlQuery commonUrlQuery() const;
+    [[nodiscard]] static QUrlQuery commonUrlQuery();
 
     friend class WikidataQueryManager;
-    virtual QNetworkRequest nextRequest() = 0;
+    [[nodiscard]] virtual QNetworkRequest nextRequest() = 0;
     /** Returns @true if this query is complete, @false if another request is needed. */
-    virtual bool processReply(QNetworkReply *reply) = 0;
+    [[nodiscard]] virtual bool processReply(QNetworkReply *reply) = 0;
 
     Error m_error = NoError;
 };
@@ -54,14 +54,14 @@ public:
     ~WikidataEntitiesQuery() override;
 
     void setItems(std::vector<Wikidata::Q> &&items);
-    std::vector<Wikidata::Item>&& takeResult();
+    [[nodiscard]] std::vector<Wikidata::Item>&& takeResult();
 
 Q_SIGNALS:
     void partialResult(WikidataEntitiesQuery *query);
 
 private:
-    QNetworkRequest nextRequest() override;
-    bool processReply(QNetworkReply *reply) override;
+    [[nodiscard]] QNetworkRequest nextRequest() override;
+    [[nodiscard]] bool processReply(QNetworkReply *reply) override;
 
     std::vector<Wikidata::Q> m_items;
     std::size_t m_nextBatch = 0;
@@ -77,14 +77,14 @@ public:
     ~WikidataImageMetadataQuery() override;
 
     void setImages(std::vector<QString> &&images);
-    std::vector<Wikidata::Image>&& takeResult();
+    [[nodiscard]] std::vector<Wikidata::Image>&& takeResult();
 
 Q_SIGNALS:
     void partialResult(WikidataImageMetadataQuery *query);
 
 private:
-    QNetworkRequest nextRequest() override;
-    bool processReply(QNetworkReply *reply) override;
+    [[nodiscard]] QNetworkRequest nextRequest() override;
+    [[nodiscard]] bool processReply(QNetworkReply *reply) override;
 
     std::vector<QString> m_images;
     std::size_t m_nextBatch = 0;

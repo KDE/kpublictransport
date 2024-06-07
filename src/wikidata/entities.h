@@ -22,30 +22,30 @@ template <typename T, char Prefix>
 class Identifier
 {
 public:
-    explicit inline constexpr Identifier() {}
+    explicit inline constexpr Identifier() = default;
     explicit inline constexpr Identifier(T id) : m_id(id) {}
-    explicit inline Identifier(const QString &id) : m_id(fromString(id).m_id) {}
-    explicit inline Identifier(const QByteArray &id) : m_id(fromString(id).m_id) {}
+    explicit inline Identifier(QStringView id) : m_id(fromString(id).m_id) {}
+    explicit inline Identifier(QByteArrayView id) : m_id(fromString(id).m_id) {}
 
-    inline constexpr bool isValid() const
+    [[nodiscard]] inline constexpr bool isValid() const
     {
         return m_id > 0;
     }
 
-    inline constexpr bool operator<(Identifier other) const
+    [[nodiscard]] inline constexpr bool operator<(Identifier other) const
     {
         return m_id < other.m_id;
     }
-    inline constexpr bool operator==(Identifier other) const
+    [[nodiscard]] inline constexpr bool operator==(Identifier other) const
     {
         return m_id == other.m_id;
     }
-    inline constexpr bool operator!=(Identifier other) const
+    [[nodiscard]] inline constexpr bool operator!=(Identifier other) const
     {
         return m_id != other.m_id;
     }
 
-    inline QString toString() const
+    [[nodiscard]] inline QString toString() const
     {
         return QLatin1Char(Prefix) + QString::number(m_id);
     }
@@ -54,14 +54,14 @@ protected:
     T m_id = 0;
 
 private:
-    static inline Identifier fromString(const QString &id)
+    [[nodiscard]] static inline Identifier fromString(QStringView id)
     {
         if (!id.startsWith(QLatin1Char(Prefix))) {
             return Identifier();
         }
-        return Identifier(QStringView(id).mid(1).toULongLong());
+        return Identifier(id.mid(1).toULongLong());
     }
-    static inline Identifier fromString(const QByteArray &id)
+    [[nodiscard]] static inline Identifier fromString(QByteArrayView id)
     {
         if (!id.startsWith(Prefix)) {
             return Identifier();
@@ -76,8 +76,8 @@ class Q : public Identifier<uint64_t, 'Q'>
 public:
     explicit inline constexpr Q() = default;
     explicit inline constexpr Q(uint64_t id) : Identifier(id) {}
-    explicit inline Q(const QString &id) : Identifier(id) {}
-    explicit inline Q(const QByteArray &id) : Identifier(id) {}
+    explicit inline Q(QStringView id) : Identifier(id) {}
+    explicit inline Q(QByteArrayView id) : Identifier(id) {}
 };
 
 /** Wikidata property identifier. */
@@ -93,7 +93,7 @@ public:
     explicit inline constexpr P() = default;
     /* implicit */ inline constexpr P(Property id) : Identifier(id) {}
     explicit inline constexpr P(uint32_t id) : Identifier(id) {}
-    explicit inline P(const QString &id) : Identifier(id) {}
+    explicit inline P(QStringView id) : Identifier(id) {}
 };
 
 /** Wikidata item. */
@@ -104,17 +104,17 @@ public:
     explicit Item(Q id, const QJsonObject &data);
     ~Item();
 
-    inline constexpr bool isValid() const { return m_id.isValid(); }
-    inline constexpr Q id() const { return m_id; }
+    [[nodiscard]] inline constexpr bool isValid() const { return m_id.isValid(); }
+    [[nodiscard]] inline constexpr Q id() const { return m_id; }
 
     template <typename T>
-    inline T value(P property) const
+    [[nodiscard]] inline T value(P property) const
     {
         return convertValue<T>(value(property));
     }
 
     template <typename T>
-    inline std::vector<T> values(P property) const
+    [[nodiscard]] inline std::vector<T> values(P property) const
     {
         const auto vals = values(property);
         std::vector<T> v;
@@ -124,11 +124,11 @@ public:
     }
 
 private:
-    std::vector<QVariant> values(P property) const;
-    QVariant value(P property) const;
+    [[nodiscard]] std::vector<QVariant> values(P property) const;
+    [[nodiscard]] QVariant value(P property) const;
 
     template <typename T>
-    static inline T convertValue(const QVariant &v)
+    [[nodiscard]] static inline T convertValue(const QVariant &v)
     {
         return v.value<T>();
     }
@@ -155,15 +155,15 @@ public:
     explicit Image(const QJsonObject &obj);
     ~Image();
 
-    QString name() const;
-    uint64_t fileSize() const;
-    uint32_t width() const;
-    uint32_t height() const;
-    QString mimeType() const;
-    QString license() const;
+    [[nodiscard]] QString name() const;
+    [[nodiscard]] uint64_t fileSize() const;
+    [[nodiscard]] uint32_t width() const;
+    [[nodiscard]] uint32_t height() const;
+    [[nodiscard]] QString mimeType() const;
+    [[nodiscard]] QString license() const;
 
 private:
-    QJsonObject imageInfo() const;
+    [[nodiscard]] QJsonObject imageInfo() const;
     QJsonObject m_data;
 };
 
@@ -177,7 +177,7 @@ inline QDebug operator<<(QDebug debug, Wikidata::Identifier<T, Prefix> id)
 {
     QDebugStateSaver saver(debug);
     if (id.isValid()) {
-        debug.noquote().nospace() << QStringLiteral("https://www.wikidata.org/wiki/") + id.toString();
+        debug.noquote().nospace() << QLatin1StringView("https://www.wikidata.org/wiki/") + id.toString();
     }
     return debug;
 }
