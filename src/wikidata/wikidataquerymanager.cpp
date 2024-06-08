@@ -19,15 +19,6 @@ using namespace Wikidata;
 WikidataQueryManager::WikidataQueryManager(QObject *parent)
     : QObject(parent)
 {
-    m_nam = new QNetworkAccessManager(this);
-    m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
-    m_nam->setStrictTransportSecurityEnabled(true);
-    m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/org.kde.wikidata/hsts/"_L1);
-
-    auto diskCache = new QNetworkDiskCache;
-    diskCache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "org.kde.wikidata/http-cache/"_L1);
-    diskCache->setMaximumCacheSize(1'000'000'000); // 1GB
-    m_nam->setCache(diskCache);
 }
 
 WikidataQueryManager::~WikidataQueryManager() = default;
@@ -42,7 +33,7 @@ void WikidataQueryManager::executeNextSubQuery(WikidataQuery *query)
     auto req = query->nextRequest();
     // see https://www.mediawiki.org/wiki/API:Etiquette
     req.setHeader(QNetworkRequest::UserAgentHeader, u"KPublicTransport/KnowledgeDBGenerator (kde-pim@kde.org)"_s);
-    const auto reply = m_nam->get(req);
+    const auto reply = nam()->get(req);
     connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
 }
 
@@ -62,3 +53,24 @@ void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply 
     }
     executeNextSubQuery(query);
 }
+
+QNetworkAccessManager* WikidataQueryManager::nam()
+{
+    if (!m_nam) {
+        m_nam = new QNetworkAccessManager(this);
+        m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+        m_nam->setStrictTransportSecurityEnabled(true);
+        m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/org.kde.wikidata/hsts/"_L1);
+
+        auto diskCache = new QNetworkDiskCache;
+        diskCache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "org.kde.wikidata/http-cache/"_L1);
+#ifndef Q_OS_ANDROID
+        diskCache->setMaximumCacheSize(1'000'000'000); // 1GB, when it's actually a user-wide shared cache
+#endif
+        m_nam->setCache(diskCache);
+    }
+
+    return m_nam;
+}
+
+#include "moc_wikidataquerymanager.cpp"
