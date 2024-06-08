@@ -17,24 +17,24 @@
 using namespace Qt::Literals::StringLiterals;
 using namespace Wikidata;
 
-WikidataQueryManager::WikidataQueryManager(QObject *parent)
+QueryManager::QueryManager(QObject *parent)
     : QObject(parent)
 {
 }
 
-WikidataQueryManager::~WikidataQueryManager() = default;
+QueryManager::~QueryManager() = default;
 
-void WikidataQueryManager::setUserAgentEmailAddress(const QString &email)
+void QueryManager::setUserAgentEmailAddress(const QString &email)
 {
     m_email = email;
 }
 
-void WikidataQueryManager::execute(WikidataQuery *query)
+void QueryManager::execute(Query *query)
 {
     executeNextSubQuery(query);
 }
 
-void WikidataQueryManager::executeNextSubQuery(WikidataQuery *query)
+void QueryManager::executeNextSubQuery(Query *query)
 {
     if (m_email.isEmpty()) {
         qFatal("User-Agent email address not set!");
@@ -47,13 +47,13 @@ void WikidataQueryManager::executeNextSubQuery(WikidataQuery *query)
     connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
 }
 
-void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply *reply)
+void QueryManager::subQueryFinished(Query *query, QNetworkReply *reply)
 {
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
         qCWarning(Log) << reply->errorString();
-        query->m_error = WikidataQuery::NetworkError;
+        query->m_error = Query::NetworkError;
         Q_EMIT query->finished();
         return;
     }
@@ -64,7 +64,7 @@ void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply 
     executeNextSubQuery(query);
 }
 
-QNetworkAccessManager* WikidataQueryManager::nam()
+QNetworkAccessManager* QueryManager::nam()
 {
     if (!m_nam) {
         m_nam = new QNetworkAccessManager(this);

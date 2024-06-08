@@ -86,7 +86,7 @@ public:
 
     QIODevice *out = nullptr;
     std::vector<LineInfo> lines;
-    WikidataQueryManager *m_wdMgr = new WikidataQueryManager(QCoreApplication::instance());
+    Wikidata::QueryManager *m_wdMgr = new Wikidata::QueryManager(QCoreApplication::instance());
     std::set<wd::Q> wdPartOfIds;
     std::map<wd::Q, wd::Item> wdItems;
     std::map<QString, wd::Image> wdImages;
@@ -240,11 +240,11 @@ void Generator::augmentFromWikidata()
     wdIds.erase(std::unique(wdIds.begin(), wdIds.end()), wdIds.end());
     qDebug() << "Retrieving" << wdIds.size() << "items from Wikidata";
 
-    auto query = new WikidataEntitiesQuery(m_wdMgr);
+    auto query = new Wikidata::EntitiesQuery(m_wdMgr);
     query->setItems(std::move(wdIds));
-    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](auto query) { applyWikidataResults(std::move(query->takeResult())); });
-    QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
-        if (query->error() != WikidataQuery::NoError) {
+    QObject::connect(query, &Wikidata::EntitiesQuery::partialResult, [this](auto query) { applyWikidataResults(std::move(query->takeResult())); });
+    QObject::connect(query, &Wikidata::Query::finished, [this, query]() mutable {
+        if (query->error() != Wikidata::Query::NoError) {
             qCritical() << "Wikidata query failed";
             QCoreApplication::exit(1);
             return;
@@ -399,11 +399,11 @@ void Generator::augmentProductsFromWikidata()
     }
     qDebug() << "Retrieving" << wdIds.size() << "product items from Wikidata";
 
-    auto query = new WikidataEntitiesQuery(m_wdMgr);
+    auto query = new Wikidata::EntitiesQuery(m_wdMgr);
     query->setItems(std::move(wdIds));
-    QObject::connect(query, &WikidataEntitiesQuery::partialResult, [this](auto query) { applyWikidataProductResults(std::move(query->takeResult())); });
-    QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
-        if (query->error() != WikidataQuery::NoError) {
+    QObject::connect(query, &Wikidata::EntitiesQuery::partialResult, [this](auto query) { applyWikidataProductResults(std::move(query->takeResult())); });
+    QObject::connect(query, &Wikidata::Query::finished, [this, query]() mutable {
+        if (query->error() != Wikidata::Query::NoError) {
             qCritical() << "Wikidata product query failed";
             QCoreApplication::exit(1);
             return;
@@ -486,11 +486,11 @@ void Generator::verifyImages()
     imageIds.erase(std::remove(imageIds.begin(), imageIds.end(), QString()), imageIds.end());
     qDebug() << "Verifying" << imageIds.size() << "images" << imageIds;
 
-    auto query = new WikidataImageMetadataQuery(m_wdMgr);
+    auto query = new Wikidata::ImageMetadataQuery(m_wdMgr);
     query->setImages(std::move(imageIds));
-    QObject::connect(query, &WikidataImageMetadataQuery::partialResult, [this](auto query) { verifyImageMetaData(std::move(query->takeResult())); });
-    QObject::connect(query, &WikidataQuery::finished, [this, query]() mutable {
-        if (query->error() != WikidataQuery::NoError) {
+    QObject::connect(query, &Wikidata::ImageMetadataQuery::partialResult, [this](auto query) { verifyImageMetaData(std::move(query->takeResult())); });
+    QObject::connect(query, &Wikidata::Query::finished, [this, query]() mutable {
+        if (query->error() != Wikidata::Query::NoError) {
             qCritical() << "Wikidata image metadata query failed";
             QCoreApplication::exit(1);
             return;

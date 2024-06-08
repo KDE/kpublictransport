@@ -14,25 +14,24 @@
 #include <QUrlQuery>
 
 using namespace Qt::Literals::StringLiterals;
-
-namespace wd = Wikidata;
+using namespace Wikidata;
 
 inline constexpr const auto WikidataGetEntitiesMaxCount = 50;
 inline constexpr const auto WikidataQueryMaxCount = 50;
 
-WikidataQuery::WikidataQuery(QObject *parent) :
+Query::Query(QObject *parent) :
     QObject(parent)
 {
 }
 
-WikidataQuery::~WikidataQuery() = default;
+Query::~Query() = default;
 
-WikidataQuery::Error WikidataQuery::error() const
+Query::Error Query::error() const
 {
     return m_error;
 }
 
-QUrlQuery WikidataQuery::commonUrlQuery()
+QUrlQuery Query::commonUrlQuery()
 {
     QUrlQuery query;
     query.addQueryItem(u"format"_s, u"json"_s);
@@ -40,19 +39,19 @@ QUrlQuery WikidataQuery::commonUrlQuery()
 }
 
 
-WikidataEntitiesQuery::WikidataEntitiesQuery(QObject* parent)
-    : WikidataQuery(parent)
+EntitiesQuery::EntitiesQuery(QObject* parent)
+    : Query(parent)
 {
 }
 
-WikidataEntitiesQuery::~WikidataEntitiesQuery() = default;
+EntitiesQuery::~EntitiesQuery() = default;
 
-void WikidataEntitiesQuery::setItems(std::vector<wd::Q> &&items)
+void EntitiesQuery::setItems(std::vector<Wikidata::Q> &&items)
 {
     m_items = std::move(items);
 }
 
-QNetworkRequest WikidataEntitiesQuery::nextRequest()
+QNetworkRequest EntitiesQuery::nextRequest()
 {
     QUrl url(u"https://www.wikidata.org/w/api.php"_s);
     auto query = commonUrlQuery();
@@ -75,18 +74,18 @@ QNetworkRequest WikidataEntitiesQuery::nextRequest()
     return req;
 }
 
-std::vector<Wikidata::Item>&& WikidataEntitiesQuery::takeResult()
+std::vector<Wikidata::Item>&& EntitiesQuery::takeResult()
 {
     return std::move(m_result);
 }
 
-bool WikidataEntitiesQuery::processReply(QNetworkReply *reply)
+bool EntitiesQuery::processReply(QNetworkReply *reply)
 {
     const auto doc = QJsonDocument::fromJson(reply->readAll());
     const auto entities = doc.object().value("entities"_L1).toObject();
     m_result.reserve(entities.size());
     for (auto it = entities.begin(); it != entities.end(); ++it) {
-        m_result.emplace_back(wd::Q(it.key()), it.value().toObject());
+        m_result.emplace_back(Q(it.key()), it.value().toObject());
     }
     Q_EMIT partialResult(this);
 
@@ -99,19 +98,19 @@ bool WikidataEntitiesQuery::processReply(QNetworkReply *reply)
 }
 
 
-WikidataImageMetadataQuery::WikidataImageMetadataQuery(QObject* parent)
-    : WikidataQuery(parent)
+ImageMetadataQuery::ImageMetadataQuery(QObject* parent)
+    : Query(parent)
 {
 }
 
-WikidataImageMetadataQuery::~WikidataImageMetadataQuery() = default;
+ImageMetadataQuery::~ImageMetadataQuery() = default;
 
-void WikidataImageMetadataQuery::setImages(std::vector<QString> &&images)
+void ImageMetadataQuery::setImages(std::vector<QString> &&images)
 {
     m_images = std::move(images);
 }
 
-QNetworkRequest WikidataImageMetadataQuery::nextRequest()
+QNetworkRequest ImageMetadataQuery::nextRequest()
 {
     QUrl url(u"https://commons.wikimedia.org/w/api.php"_s);
     auto query = commonUrlQuery();
@@ -134,12 +133,12 @@ QNetworkRequest WikidataImageMetadataQuery::nextRequest()
     return req;
 }
 
-std::vector<Wikidata::Image>&& WikidataImageMetadataQuery::takeResult()
+std::vector<Wikidata::Image>&& ImageMetadataQuery::takeResult()
 {
     return std::move(m_result);
 }
 
-bool WikidataImageMetadataQuery::processReply(QNetworkReply *reply)
+bool ImageMetadataQuery::processReply(QNetworkReply *reply)
 {
     const auto doc = QJsonDocument::fromJson(reply->readAll());
     const auto images = doc.object().value("query"_L1).toObject().value("pages"_L1).toObject();
@@ -156,3 +155,5 @@ bool WikidataImageMetadataQuery::processReply(QNetworkReply *reply)
     Q_EMIT finished();
     return true;
 }
+
+#include "moc_wikidataquery.cpp"

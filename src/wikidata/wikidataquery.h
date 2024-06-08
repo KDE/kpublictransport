@@ -17,13 +17,16 @@ class QNetworkReply;
 class QNetworkRequest;
 class QUrlQuery;
 
+namespace Wikidata {
+class QueryManager;
+
 /** Base class for Wikidata queries. */
-class WikidataQuery : public QObject
+class Query : public QObject
 {
     Q_OBJECT
 public:
-    explicit WikidataQuery(QObject *parent = nullptr);
-    ~WikidataQuery() override;
+    explicit Query(QObject *parent = nullptr);
+    ~Query() override;
 
     enum Error {
         NoError,
@@ -37,7 +40,7 @@ Q_SIGNALS:
 protected:
     [[nodiscard]] static QUrlQuery commonUrlQuery();
 
-    friend class WikidataQueryManager;
+    friend class QueryManager;
     [[nodiscard]] virtual QNetworkRequest nextRequest() = 0;
     /** Returns @true if this query is complete, @false if another request is needed. */
     [[nodiscard]] virtual bool processReply(QNetworkReply *reply) = 0;
@@ -46,18 +49,18 @@ protected:
 };
 
 /** Wikidata multi-entity retrieval query. */
-class WikidataEntitiesQuery : public WikidataQuery
+class EntitiesQuery : public Query
 {
     Q_OBJECT
 public:
-    explicit WikidataEntitiesQuery(QObject *parent = nullptr);
-    ~WikidataEntitiesQuery() override;
+    explicit EntitiesQuery(QObject *parent = nullptr);
+    ~EntitiesQuery() override;
 
     void setItems(std::vector<Wikidata::Q> &&items);
     [[nodiscard]] std::vector<Wikidata::Item>&& takeResult();
 
 Q_SIGNALS:
-    void partialResult(WikidataEntitiesQuery *query);
+    void partialResult(EntitiesQuery *query);
 
 private:
     [[nodiscard]] QNetworkRequest nextRequest() override;
@@ -69,18 +72,18 @@ private:
 };
 
 /** Wikidata image metadata query. */
-class WikidataImageMetadataQuery : public WikidataQuery
+class ImageMetadataQuery : public Query
 {
     Q_OBJECT
 public:
-    explicit WikidataImageMetadataQuery(QObject *parent = nullptr);
-    ~WikidataImageMetadataQuery() override;
+    explicit ImageMetadataQuery(QObject *parent = nullptr);
+    ~ImageMetadataQuery() override;
 
     void setImages(std::vector<QString> &&images);
     [[nodiscard]] std::vector<Wikidata::Image>&& takeResult();
 
 Q_SIGNALS:
-    void partialResult(WikidataImageMetadataQuery *query);
+    void partialResult(ImageMetadataQuery *query);
 
 private:
     [[nodiscard]] QNetworkRequest nextRequest() override;
@@ -90,5 +93,7 @@ private:
     std::size_t m_nextBatch = 0;
     std::vector<Wikidata::Image> m_result;
 };
+
+}
 
 #endif // WIKIDATAQUERY_H
