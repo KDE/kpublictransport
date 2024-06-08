@@ -23,6 +23,8 @@
 
 #include <set>
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace wd = Wikidata;
 
 enum {
@@ -911,6 +913,7 @@ static inline constexpr uint16_t Bucket(uint16_t index) { return line_data_count
 int main(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
+    QCoreApplication::setApplicationName(u"KPublicTransport/KnowledgeDBGenerator"_s);
     QCommandLineParser parser;
     parser.addHelpOption();
     QCommandLineOption outFileOption({ QStringLiteral("o") }, QStringLiteral("Output file name"), QStringLiteral("out"));
@@ -936,6 +939,7 @@ int main(int argc, char **argv)
     reader->read(f.map(0, f.size()), f.size());
 
     Generator generator;
+    generator.m_wdMgr->setUserAgentEmailAddress(u"kde-pim@kde.org"_s);
     generator.out = &out;
     generator.processOSMData(std::move(dataSet));
 

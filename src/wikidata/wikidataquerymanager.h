@@ -21,6 +21,12 @@ public:
     explicit WikidataQueryManager(QObject *parent = nullptr);
     ~WikidataQueryManager() override;
 
+    /** Set the email address used in the User-Agent header.
+     *  Setting this is mandatory, queries will not be executred without this.
+     */
+    void setUserAgentEmailAddress(const QString &email);
+
+    /** Execute @p query. */
     void execute(WikidataQuery *query);
 
 private:
@@ -29,6 +35,7 @@ private:
     [[nodiscard]] QNetworkAccessManager* nam();
 
     QNetworkAccessManager *m_nam;
+    QString m_email;
 };
 
 #endif // WIKIDATAQUERYMANAGER_H

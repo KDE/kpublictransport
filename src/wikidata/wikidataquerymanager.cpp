@@ -8,6 +8,7 @@
 #include "wikidataquery.h"
 #include "logging.h"
 
+#include <QCoreApplication>
 #include <QNetworkAccessManager>
 #include <QNetworkDiskCache>
 #include <QNetworkReply>
@@ -23,6 +24,11 @@ WikidataQueryManager::WikidataQueryManager(QObject *parent)
 
 WikidataQueryManager::~WikidataQueryManager() = default;
 
+void WikidataQueryManager::setUserAgentEmailAddress(const QString &email)
+{
+    m_email = email;
+}
+
 void WikidataQueryManager::execute(WikidataQuery *query)
 {
     executeNextSubQuery(query);
@@ -30,9 +36,13 @@ void WikidataQueryManager::execute(WikidataQuery *query)
 
 void WikidataQueryManager::executeNextSubQuery(WikidataQuery *query)
 {
+    if (m_email.isEmpty()) {
+        qFatal("User-Agent email address not set!");
+    }
+
     auto req = query->nextRequest();
     // see https://www.mediawiki.org/wiki/API:Etiquette
-    req.setHeader(QNetworkRequest::UserAgentHeader, u"KPublicTransport/KnowledgeDBGenerator (kde-pim@kde.org)"_s);
+    req.setHeader(QNetworkRequest::UserAgentHeader, QString(QCoreApplication::applicationName() + '/'_L1 + QCoreApplication::applicationVersion() + " ("_L1 + m_email + ')'_L1));
     const auto reply = nam()->get(req);
     connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
 }
