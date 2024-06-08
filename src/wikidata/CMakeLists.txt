@@ -15,3 +15,11 @@ target_link_libraries(KWikidata
     PUBLIC Qt::Gui
     PRIVATE Qt::Network
 )
+
+ecm_qt_declare_logging_category(KWikidata
+    HEADER logging.h
+    IDENTIFIER Wikidata::Log
+    CATEGORY_NAME org.kde.wikidata
+    DESCRIPTION "KWikidata"
+    EXPORT KWIKIDATA
+)

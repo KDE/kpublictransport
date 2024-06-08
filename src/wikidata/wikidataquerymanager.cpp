@@ -6,6 +6,7 @@
 
 #include "wikidataquerymanager.h"
 #include "wikidataquery.h"
+#include "logging.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkDiskCache>
@@ -13,6 +14,7 @@
 #include <QStandardPaths>
 
 using namespace Qt::Literals::StringLiterals;
+using namespace Wikidata;
 
 WikidataQueryManager::WikidataQueryManager(QObject *parent)
     : QObject(parent)
@@ -49,7 +51,7 @@ void WikidataQueryManager::subQueryFinished(WikidataQuery *query, QNetworkReply 
     reply->deleteLater();
 
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << reply->errorString();
+        qCWarning(Log) << reply->errorString();
         query->m_error = WikidataQuery::NetworkError;
         Q_EMIT query->finished();
         return;
