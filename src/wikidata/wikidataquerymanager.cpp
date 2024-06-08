@@ -44,6 +44,7 @@ void QueryManager::executeNextSubQuery(Query *query)
     // see https://www.mediawiki.org/wiki/API:Etiquette
     req.setHeader(QNetworkRequest::UserAgentHeader, QString(QCoreApplication::applicationName() + '/'_L1 + QCoreApplication::applicationVersion() + " ("_L1 + m_email + ')'_L1));
     const auto reply = nam()->get(req);
+    reply->setParent(query);
     connect(reply, &QNetworkReply::finished, this, [query, reply, this]() { subQueryFinished(query, reply); });
 }
 
