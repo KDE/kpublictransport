@@ -36,7 +36,7 @@ private:
     void subQueryFinished(Query *query, QNetworkReply *reply);
     [[nodiscard]] QNetworkAccessManager* nam();
 
-    QNetworkAccessManager *m_nam;
+    QNetworkAccessManager *m_nam = nullptr;
     QString m_email;
 };
 
