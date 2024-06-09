@@ -78,6 +78,9 @@ public:
     explicit inline constexpr Q(uint64_t id) : Identifier(id) {}
     explicit inline Q(QStringView id) : Identifier(id) {}
     explicit inline Q(QByteArrayView id) : Identifier(id) {}
+
+private:
+    friend class std::hash<Wikidata::Q>;
 };
 
 /** Wikidata property identifier. */
@@ -100,6 +103,9 @@ public:
     /* implicit */ inline constexpr P(Property id) : Identifier(id) {}
     explicit inline constexpr P(uint32_t id) : Identifier(id) {}
     explicit inline P(QStringView id) : Identifier(id) {}
+
+private:
+    friend class std::hash<Wikidata::P>;
 };
 
 /** Wikidata item. */
@@ -187,5 +193,22 @@ inline QDebug operator<<(QDebug debug, Wikidata::Identifier<T, Prefix> id)
     }
     return debug;
 }
+
+template<>
+struct std::hash<Wikidata::P>
+{
+    std::size_t operator()(Wikidata::P id) const noexcept
+    {
+        return std::hash<uint64_t>{}(id.m_id);
+    }
+};
+template<>
+struct std::hash<Wikidata::Q>
+{
+    std::size_t operator()(Wikidata::Q id) const noexcept
+    {
+        return std::hash<uint64_t>{}(id.m_id);
+    }
+};
 
 #endif // WIKIDATA_ITEM_H
