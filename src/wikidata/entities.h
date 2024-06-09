@@ -85,9 +85,15 @@ class P : public Identifier<uint32_t, 'P'>
 {
 public:
     enum Property : uint32_t {
+        image = 18,
         instanceOf = 31,
         logoImage = 154,
         partOf = 361,
+        nighttimeView = 3451,
+        winterView = 5252,
+        view = 8517,
+        aerialView = 8592,
+        modelImage = 11101,
     };
 
     explicit inline constexpr P() = default;
