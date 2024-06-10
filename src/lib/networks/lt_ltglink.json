@@ -19,6 +19,7 @@
         "Description[pt_BR]": "Operador de trens na Lituânia",
         "Description[ru]": "Оператор поездов в Литве",
         "Description[sl]": "Upravljavec vlakov v Litvi",
+        "Description[sv]": "Tågoperatör i Litauen",
         "Description[tr]": "Litvanya'da tren operatörü",
         "Description[uk]": "Залізничний оператор у Литві",
         "Description[x-test]": "xxOperator of trains in Lithuaniaxx",
@@ -41,6 +42,7 @@
         "Name[pl]": "LTG Link",
         "Name[pt_BR]": "LTG Link",
         "Name[sl]": "LTG Link",
+        "Name[sv]": "LTG Link",
         "Name[tr]": "LTG Link",
         "Name[uk]": "LTG Link",
         "Name[x-test]": "xxLTG Linkxx"
