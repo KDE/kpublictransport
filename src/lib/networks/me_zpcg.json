@@ -19,6 +19,7 @@
         "Description[pt_BR]": "Operador de trens em Montenegro. Cobre Montenegro e partes da Sérvia.",
         "Description[ru]": "Оператор поездов в Черногории. Зона действия — Черногория и часть Сербии.",
         "Description[sl]": "Upravljavec vlakov v Črni gori. Pokriva Črno goro in dele Srbije.",
+        "Description[sv]": "Tågoperatör i Montenegro. Täcker Montenegro och delar av Serbien.",
         "Description[tr]": "Karadağ'da tren operatörü. Karadağ'da ve Sırbistan'ın bazı kısımlarında çalışır.",
         "Description[uk]": "Залізничний оператор у Чорногорії. Працює у Чорногорії та частині Сербії.",
         "Description[x-test]": "xxOperator of trains in Montenegro. Covers Montenegro and parts of Serbia.xx",
@@ -40,6 +41,7 @@
         "Name[pl]": "ZPCG",
         "Name[pt_BR]": "ZPCG",
         "Name[sl]": "ZPCG",
+        "Name[sv]": "ZPCG",
         "Name[tr]": "ZPCG",
         "Name[uk]": "ZPCG",
         "Name[x-test]": "xxZPCGxx"

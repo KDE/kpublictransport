@@ -17,6 +17,7 @@
         "Description[nl]": "Laat treinen in Servië rijden",
         "Description[pl]": "Operator pociągów w Serbii",
         "Description[sl]": "Železniški operater v Srbiji",
+        "Description[sv]": "Tågoperatör i Serbien",
         "Description[tr]": "Sırbistan'da tren operatörü",
         "Description[uk]": "Залізничний оператор у Сербії",
         "Description[x-test]": "xxOperator of trains Serbiaxx",
@@ -37,6 +38,7 @@
         "Name[nl]": "Srbijavoz",
         "Name[pl]": "Srbijavoz",
         "Name[sl]": "Srbijavoz",
+        "Name[sv]": "Srbijavoz",
         "Name[tr]": "Srbijavoz",
         "Name[uk]": "Srbijavoz",
         "Name[x-test]": "xxSrbijavozxx"
