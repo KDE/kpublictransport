@@ -1,0 +1,125 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kpublictransport package.
+#
+# SPDX-FileCopyrightText: 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kpublictransport\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-05-06 00:37+0000\n"
+"PO-Revision-Date: 2024-06-20 22:04+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 23.08.5\n"
+
+#: lib/datatypes/feature.cpp:52
+#, kde-format
+msgctxt "train coach feature"
+msgid "Air conditioning"
+msgstr "Luftkonditionering"
+
+#: lib/datatypes/feature.cpp:54
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bistro or restaurant"
+msgstr "Bistro eller restaurang"
+
+#: lib/datatypes/feature.cpp:56
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toddler area"
+msgstr "Småbarnsområde"
+
+#: lib/datatypes/feature.cpp:58
+#, kde-format
+msgctxt "train coach feature"
+msgid "Family area"
+msgstr "Familjeområde"
+
+#: lib/datatypes/feature.cpp:60
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible"
+msgstr "Rullstolsanpassat"
+
+#: lib/datatypes/feature.cpp:62
+#, kde-format
+msgctxt "train coach feature"
+msgid "Quiet area"
+msgstr "Tyst område"
+
+#: lib/datatypes/feature.cpp:64
+#, kde-format
+msgctxt "train coach feature"
+msgid "Business area"
+msgstr "Affärsområde"
+
+#: lib/datatypes/feature.cpp:66
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bike storage"
+msgstr "Cykelgarage"
+
+#: lib/datatypes/feature.cpp:68
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toilet"
+msgstr "Toalett"
+
+#: lib/datatypes/feature.cpp:70
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible toilet"
+msgstr "Rullstolsanpassad toalett"
+
+#: lib/datatypes/feature.cpp:72
+#, kde-format
+msgctxt "train coach feature"
+msgid "Information point"
+msgstr "Informationspunkt"
+
+#: lib/datatypes/feature.cpp:74
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wi-Fi"
+msgstr "WIFI"
+
+#: lib/datatypes/feature.cpp:76
+#, kde-format
+msgctxt "train coach feature"
+msgid "Power sockets"
+msgstr "Strömuttag"
+
+#: quick/FeatureIcon.qml:90
+#, kde-format
+msgid "%1 (not available)"
+msgstr "%1 (Inte tillgänglig)"
+
+#: quick/OccupancyIndicator.qml:39
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Low occupancy"
+msgstr "Låg beläggning"
+
+#: quick/OccupancyIndicator.qml:40
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Medium occupancy"
+msgstr "Medelstor beläggning"
+
+#: quick/OccupancyIndicator.qml:41
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "High occupancy"
+msgstr "Hög beläggning"
+
+#: quick/OccupancyIndicator.qml:42
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Full"
+msgstr "Fullt"
