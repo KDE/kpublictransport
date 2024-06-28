@@ -90,7 +90,7 @@ LineInfo LineInfo::fromRelation(const OSM::Relation &rel)
 
     info.bbox = rel.bbox;
     if (isUseful(info) && (info.bbox.width() > BoundingBoxSizeWarning || info.bbox.height() > BoundingBoxSizeWarning)) {
-        qWarning() << "Suspicious bbox size:" << info.relId << info.name << info.bbox;
+        qWarning() << "Suspicious bbox size:" << rel.url() << info.name << info.bbox;
     }
 
     return info;
