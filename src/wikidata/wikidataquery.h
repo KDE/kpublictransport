@@ -57,7 +57,7 @@ public:
     ~EntitiesQuery() override;
 
     void setItems(std::vector<Wikidata::Q> &&items);
-    [[nodiscard]] std::vector<Wikidata::Item>&& takeResult();
+    [[nodiscard]] std::vector<Wikidata::Item> takeResult();
 
 Q_SIGNALS:
     void partialResult(EntitiesQuery *query);
@@ -80,7 +80,7 @@ public:
     ~ImageMetadataQuery() override;
 
     void setImages(std::vector<QString> &&images);
-    [[nodiscard]] std::vector<Wikidata::Image>&& takeResult();
+    [[nodiscard]] std::vector<Wikidata::Image> takeResult();
 
 Q_SIGNALS:
     void partialResult(ImageMetadataQuery *query);

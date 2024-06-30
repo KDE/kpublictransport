@@ -74,9 +74,10 @@ QNetworkRequest EntitiesQuery::nextRequest()
     return req;
 }
 
-std::vector<Wikidata::Item>&& EntitiesQuery::takeResult()
+std::vector<Wikidata::Item> EntitiesQuery::takeResult()
 {
-    return std::move(m_result);
+    std::vector<Wikidata::Item> r = std::move(m_result);
+    return r;
 }
 
 bool EntitiesQuery::processReply(QNetworkReply *reply)
@@ -133,9 +134,10 @@ QNetworkRequest ImageMetadataQuery::nextRequest()
     return req;
 }
 
-std::vector<Wikidata::Image>&& ImageMetadataQuery::takeResult()
+std::vector<Wikidata::Image> ImageMetadataQuery::takeResult()
 {
-    return std::move(m_result);
+    std::vector<Wikidata::Image> r = std::move(m_result);
+    return r;
 }
 
 bool ImageMetadataQuery::processReply(QNetworkReply *reply)
