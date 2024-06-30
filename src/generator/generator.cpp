@@ -312,6 +312,7 @@ static const wd::Q wd_product_types[] {
     wd::Q(2140646), // Stadtbahn
     wd::Q(1268865), // light rail
     wd::Q(113455515), // automated rapid transit
+    wd::Q(124130081), // commuter rail network
 };
 
 static bool isWikidataProductType(wd::Q type)
