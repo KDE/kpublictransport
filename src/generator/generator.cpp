@@ -273,6 +273,7 @@ static struct {
     { wd::Q(858485), LineInfo::LongDistance }, // high speed railway line
     { wd::Q(2138247), LineInfo::LocalTrain }, // Regional-Express
     { wd::Q(515449), LineInfo::LocalTrain }, // Regionalbahn
+    { wd::Q(1116067), LineInfo::RapidTransit }, // RER
 };
 
 static LineInfo::Mode modeFromWikidataType(wd::Q type)
