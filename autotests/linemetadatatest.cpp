@@ -109,10 +109,17 @@ private Q_SLOTS:
 
     void testLookupSpecial()
     {
-        const auto l = LineMetaData::find(52.52, 13.40,  QStringLiteral("S 7"), Line::Train);
+        auto l = LineMetaData::find(52.52, 13.40,  QStringLiteral("S 7"), Line::Train);
         QVERIFY(!l.isNull());
         QCOMPARE(l.name(), QLatin1String("S7"));
         QCOMPARE(l.mode(), Line::RapidTransit);
+
+        // Stuttgart U-Bahn has ambiguities on its mode (tram/metro/rapidtransit)
+        l = LineMetaData::find(48.78, 9.18,  QStringLiteral("U 6"), Line::Tramway);
+        QVERIFY(!l.isNull());
+        QCOMPARE(l.name(), QLatin1String("U6"));
+        QVERIFY(l.color().isValid());
+        QVERIFY(!l.logoUrl().isEmpty());
     }
 
     void testNegativeLookup()
@@ -123,7 +130,7 @@ private Q_SLOTS:
         l = LineMetaData::find(52.52f, 13.40f, QStringLiteral("U11"), Line::Metro);
         QVERIFY(l.isNull());
 
-        l = LineMetaData::find(52.52, 13.40, QStringLiteral("U1"), Line::Tramway);
+        l = LineMetaData::find(52.52, 13.40, QStringLiteral("U1"), Line::Bus);
         QVERIFY(l.isNull());
     }
 };

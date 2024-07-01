@@ -108,6 +108,12 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
     static_assert(maxDepth > minDepth, "quad tree depth error");
     static_assert(minDepth > 1, "quad tree depth error");
 
+    const auto isLineMatch = [](const LineMetaDataContent *d, const QString &name, Line::Mode mode) {
+        return LineUtil::isSameLineNameStrict(lookupName(d->nameIdx), name) &&
+            (LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode) ||
+                (LineUtil::isCompatibleBaseMode(LineMetaData(d).mode(), mode) && LineUtil::isHighlyIdentifyingName(name)));
+    };
+
     // walk through the quad tree bottom up, looking for a tile containing the line we are looking for
     OSM::ZTile tile(coord.z() >> (2 * minDepth), minDepth);
     for (uint8_t d = minDepth; d <= maxDepth; ++d, tile = tile.parent()) {
@@ -133,14 +139,14 @@ LineMetaData LineMetaData::find(double latitude, double longitude, const QString
             auto bucketIt = line_data_bucketTable + (*treeIt).lineIdx - line_data_count;
             while ((*bucketIt) != -1) {
                 const auto d = line_data + (*bucketIt);
-                if (LineUtil::isSameLineNameStrict(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
+                if (isLineMatch(d, name, mode)) {
                     return LineMetaData(d);
                 }
                 ++bucketIt;
             }
         } else {
             const auto d = line_data + (*treeIt).lineIdx;
-            if (LineUtil::isSameLineNameStrict(lookupName(d->nameIdx), name) && LineUtil::isCompatibleMode(LineMetaData(d).mode(), mode)) {
+            if (isLineMatch(d, name, mode)) {
                 return LineMetaData(d);
             }
         }

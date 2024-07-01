@@ -6,7 +6,6 @@
 
 #include "lineutil_p.h"
 #include "linecompare_p.h"
-#include "assetrepository_p.h"
 
 #include <knowledgedb/linemetadata.h>
 
@@ -29,6 +28,13 @@ bool LineUtil::isSameLineNameFuzzy(const QString &lhs, const QString &rhs)
     return Internal::isSameLineName(lhs, rhs, Internal::FuzzyCompare);
 }
 
+bool LineUtil::isHighlyIdentifyingName(QStringView s)
+{
+    return s.size() >= 2
+        && std::any_of(s.begin(), s.end(), [](QChar c) { return c.isDigit(); })
+        && std::any_of(s.begin(), s.end(), [](QChar c) { return c.isLetter(); });
+}
+
 bool LineUtil::isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
 {
     if (lhs == rhs || lhs == Line::Unknown || rhs == Line::Unknown) {
@@ -43,4 +49,14 @@ bool LineUtil::isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
     }
 
     return false;
+}
+
+bool LineUtil::isCompatibleBaseMode(Line::Mode lhs, Line::Mode rhs)
+{
+    if ((lhs == Line::RapidTransit || lhs == Line::Metro || lhs == Line::Tramway)
+     && (rhs == Line::RapidTransit || rhs == Line::Metro || rhs == Line::Tramway)) {
+        return true;
+    }
+
+    return isCompatibleMode(lhs, rhs);
 }

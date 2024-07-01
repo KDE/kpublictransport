@@ -16,9 +16,19 @@ namespace KPublicTransport {
 
 namespace LineUtil
 {
-    bool isSameLineNameStrict(const QString &lhs, const QString &rhs);
-    bool isSameLineNameFuzzy(const QString &lhs, const QString &rhs);
-    bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs);
+    [[nodiscard]] bool isSameLineNameStrict(const QString &lhs, const QString &rhs);
+    [[nodiscard]] bool isSameLineNameFuzzy(const QString &lhs, const QString &rhs);
+
+    /** Name has a high identification quality, ie. we can rely more on a name
+     *  match even if e.g. the mode doesn't match that well.
+     */
+    [[nodiscard]] bool isHighlyIdentifyingName(QStringView s);
+
+    [[nodiscard]] bool isCompatibleMode(Line::Mode lhs, Line::Mode rhs);
+    /** Much less strict than the above, just verifies the basic mode of transport is
+     *  the same (rail, road, etc)
+     */
+    [[nodiscard]] bool isCompatibleBaseMode(Line::Mode lhs, Line::Mode rhs);
 }
 
 }
