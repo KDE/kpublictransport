@@ -6,6 +6,8 @@ if (TARGET KF6::NetworkManagerQt)
 endif()
 
 add_library(KPublicTransportOnboard)
+qt_extract_metatypes(KPublicTransportOnboard)
+
 target_sources(KPublicTransportOnboard PRIVATE
     onboardstatus.cpp
     onboardstatusmanager.cpp
