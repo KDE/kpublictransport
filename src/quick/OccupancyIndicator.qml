@@ -13,7 +13,7 @@ Kirigami.Icon {
     id: root
 
     /** Occupancy level to display (KPublicTransport::Load::Category enum). */
-    property var occupancy
+    property int occupancy: KPublicTransport.Load.Unknown
 
     visible: root.occupancy !== KPublicTransport.Load.Unknown
     source: {

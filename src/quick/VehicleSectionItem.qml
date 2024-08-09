@@ -13,7 +13,7 @@ StyledFrameSvgItem {
     id: root
 
     /** The vehicle section to show. */
-    property var section
+    property vehicleSection section
 
     /** Color to use for the outline/text. */
     property color textColor: "black"

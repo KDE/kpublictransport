@@ -13,7 +13,7 @@ Kirigami.Icon {
     id: root
 
     /** The feature to display. */
-    property var feature
+    property KPublicTransport.feature feature
 
     source: {
         switch (root.feature.type) {

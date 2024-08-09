@@ -35,7 +35,6 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     REGISTER_METAOBJECT(IndividualTransport)
     REGISTER_METAOBJECT(JourneyRequest)
     REGISTER_METAOBJECT(JourneySection)
-    REGISTER_METAOBJECT(Feature)
     REGISTER_METAOBJECT(Line)
     REGISTER_METAOBJECT(Location)
     REGISTER_METAOBJECT(LocationRequest)
@@ -43,9 +42,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     REGISTER_METAOBJECT(Platform)
     REGISTER_METAOBJECT(RentalVehicle)
     REGISTER_METAOBJECT(StopoverRequest)
-    REGISTER_METAOBJECT(Vehicle)
     REGISTER_METAOBJECT(VehicleLayoutRequest)
-    REGISTER_METAOBJECT(VehicleSection)
 
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMetaData", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::LineMetaDataWrapper());

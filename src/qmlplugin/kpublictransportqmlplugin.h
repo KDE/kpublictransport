@@ -13,6 +13,7 @@
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/CoverageArea>
 #include <KPublicTransport/Equipment>
+#include <KPublicTransport/Feature>
 #include <KPublicTransport/IndividualTransport>
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyQueryModel>
@@ -31,6 +32,18 @@
 #include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutQueryModel>
 #include <KPublicTransport/VehicleLayoutRequest>
+
+#define FOREIGN_ENUM_GADGET(Class) \
+class Class ## Derived: public KPublicTransport::Class \
+{ \
+    Q_GADGET \
+}; \
+namespace Class ## DerivedForeign \
+{ \
+    Q_NAMESPACE \
+    QML_NAMED_ELEMENT(Class) \
+    QML_FOREIGN_NAMESPACE(Class ## Derived) \
+} \
 
 struct ManagerForeign {
     Q_GADGET
@@ -178,7 +191,9 @@ struct VehicleForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Vehicle)
     QML_VALUE_TYPE(vehicle)
+    QML_UNCREATABLE("only provided from C++ API")
 };
+FOREIGN_ENUM_GADGET(Vehicle)
 
 struct VehicleLayoutRequestForeign {
     Q_GADGET
@@ -190,7 +205,9 @@ struct VehicleSectionForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::VehicleSection)
     QML_VALUE_TYPE(vehicleSection)
+    QML_UNCREATABLE("only provided from C++ API")
 };
+FOREIGN_ENUM_GADGET(VehicleSection)
 
 struct RouteForeign {
     Q_GADGET
@@ -209,6 +226,14 @@ struct JourneyForeign {
     QML_FOREIGN(KPublicTransport::Journey)
     QML_VALUE_TYPE(journey)
 };
+
+struct FeatureForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Feature)
+    QML_VALUE_TYPE(feature)
+    QML_UNCREATABLE("only provided from C++ API")
+};
+FOREIGN_ENUM_GADGET(Feature)
 
 class KPublicTransportQmlPlugin : public QQmlExtensionPlugin
 {
