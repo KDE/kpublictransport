@@ -225,7 +225,7 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
             }
             case UndefinedRemark:
                 if (type == 'A'_L1 && (code.startsWith("text.occup.loc."_L1) || code.startsWith("text.occup.jny."_L1))) {
-                    static const QRegularExpression rx(u"\\.(max|1st|2nd)\\.1([1-4])$"_s);
+                    static const QRegularExpression rx(u"\\.(max|1st|2nd)(?:\\.rt)?\\.1([1-4])$"_s);
                     const auto match = rx.match(code);
                     if (match.hasMatch()) {
                         const auto r = match.captured(2).toInt();

@@ -1,0 +1,279 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 392,
+                "from": {
+                    "latitude": 52.52067947387695,
+                    "longitude": 13.4164400100708,
+                    "name": "52.520680, 13.416440"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2024-08-10T09:34:00",
+                "scheduledDepartureTime": "2024-08-10T09:28:00",
+                "to": {
+                    "identifier": {
+                        "unit-test": "900100003"
+                    },
+                    "latitude": 52.521507263183594,
+                    "longitude": 13.411267280578613,
+                    "name": "S+U Alexanderplatz Bhf (Berlin)",
+                    "type": "Stop"
+                }
+            },
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Limited",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme möglich (S+U Alexanderplatz Bhf (Berlin))",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 2158,
+                "expectedArrivalTime": "2024-08-10T09:39:00",
+                "expectedDepartureTime": "2024-08-10T09:34:00",
+                "from": {
+                    "identifier": {
+                        "unit-test": "900100003"
+                    },
+                    "latitude": 52.521507263183594,
+                    "longitude": 13.411267280578613,
+                    "name": "S+U Alexanderplatz Bhf (Berlin)",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-08-10T09:35:00",
+                        "expectedDepartureTime": "2024-08-10T09:35:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2024-08-10T09:35:00",
+                        "scheduledDepartureTime": "2024-08-10T09:35:00",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900100045"
+                            },
+                            "latitude": 52.51845932006836,
+                            "longitude": 13.407060623168945,
+                            "name": "U Rotes Rathaus (Berlin)",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-08-10T09:37:00",
+                        "expectedDepartureTime": "2024-08-10T09:37:00",
+                        "load": [
+                            {
+                                "load": "Medium",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2024-08-10T09:37:00",
+                        "scheduledDepartureTime": "2024-08-10T09:37:00",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900100537"
+                            },
+                            "latitude": 52.517391204833984,
+                            "longitude": 13.399194717407227,
+                            "name": "U Museumsinsel (Berlin)",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-08-10T09:38:00",
+                        "expectedDepartureTime": "2024-08-10T09:38:00",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2024-08-10T09:38:00",
+                        "scheduledDepartureTime": "2024-08-10T09:38:00",
+                        "scheduledPlatform": "1 (U5)",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900100513"
+                            },
+                            "latitude": 52.51699447631836,
+                            "longitude": 13.388875007629395,
+                            "name": "U Unter den Linden (Berlin)",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Medium",
+                        "seatingClass": "2"
+                    }
+                ],
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "Hauptbahnhof",
+                    "line": {
+                        "color": "#003399",
+                        "name": "U5",
+                        "operatorName": "Berliner Verkehrsbetriebe",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalPlatform": "1",
+                "scheduledArrivalTime": "2024-08-10T09:39:00",
+                "scheduledDeparturePlatform": "1 (U5)",
+                "scheduledDepartureTime": "2024-08-10T09:34:00",
+                "to": {
+                    "identifier": {
+                        "unit-test": "900100025"
+                    },
+                    "latitude": 52.516510009765625,
+                    "longitude": 13.381936073303223,
+                    "name": "S+U Brandenburger Tor (Berlin)",
+                    "type": "Stop"
+                }
+            },
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Limited",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme möglich (S+U Brandenburger Tor (Berlin))",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 4965,
+                "expectedArrivalPlatform": "1",
+                "expectedArrivalTime": "2024-08-10T09:54:00",
+                "expectedDeparturePlatform": "1",
+                "expectedDepartureTime": "2024-08-10T09:45:00",
+                "from": {
+                    "identifier": {
+                        "unit-test": "900100025"
+                    },
+                    "latitude": 52.516510009765625,
+                    "longitude": 13.381936073303223,
+                    "name": "S+U Brandenburger Tor (Berlin)",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-08-10T09:46:00",
+                        "expectedDepartureTime": "2024-08-10T09:47:00",
+                        "expectedPlatform": "11",
+                        "scheduledArrivalTime": "2024-08-10T09:46:00",
+                        "scheduledDepartureTime": "2024-08-10T09:47:00",
+                        "scheduledPlatform": "11",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900100020"
+                            },
+                            "latitude": 52.50935363769531,
+                            "longitude": 13.376550674438477,
+                            "name": "S+U Potsdamer Platz Bhf (Berlin)",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-08-10T09:49:00",
+                        "expectedDepartureTime": "2024-08-10T09:49:00",
+                        "expectedPlatform": "2",
+                        "scheduledArrivalTime": "2024-08-10T09:49:00",
+                        "scheduledDepartureTime": "2024-08-10T09:49:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900012101"
+                            },
+                            "latitude": 52.50453567504883,
+                            "longitude": 13.382080078125,
+                            "name": "S Anhalter Bahnhof (Berlin)",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-08-10T09:51:00",
+                        "expectedDepartureTime": "2024-08-10T09:52:00",
+                        "expectedPlatform": "1",
+                        "scheduledArrivalTime": "2024-08-10T09:51:00",
+                        "scheduledDepartureTime": "2024-08-10T09:52:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "identifier": {
+                                "unit-test": "900058103"
+                            },
+                            "latitude": 52.49235534667969,
+                            "longitude": 13.372208595275879,
+                            "name": "S+U Yorckstr. (Berlin)",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "S Teltow Stadt",
+                    "line": {
+                        "color": "#37874a",
+                        "name": "S25",
+                        "operatorName": "S-Bahn Berlin GmbH",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalPlatform": "1",
+                "scheduledArrivalTime": "2024-08-10T09:54:00",
+                "scheduledDeparturePlatform": "1",
+                "scheduledDepartureTime": "2024-08-10T09:45:00",
+                "to": {
+                    "identifier": {
+                        "unit-test": "900058101"
+                    },
+                    "latitude": 52.475502014160156,
+                    "longitude": 13.365548133850098,
+                    "name": "S Südkreuz Bhf (Berlin)",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 33,
+                "from": {
+                    "identifier": {
+                        "unit-test": "900058101"
+                    },
+                    "latitude": 52.475502014160156,
+                    "longitude": 13.365548133850098,
+                    "name": "S Südkreuz Bhf (Berlin)",
+                    "type": "Stop"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2024-08-10T09:54:00",
+                "scheduledDepartureTime": "2024-08-10T09:54:00",
+                "to": {
+                    "latitude": 52.47576904296875,
+                    "longitude": 13.365349769592285,
+                    "name": "52.475768, 13.365350"
+                }
+            }
+        ]
+    }
+]
