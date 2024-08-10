@@ -76,12 +76,12 @@
     },
     "options": {
         "auth": {
-            "aid": "YoJ05NartnanEGCj",
+            "aid": "dVg4TZbW8anjx9ztPwe2uk4LVRi9wO",
             "type": "AID"
         },
         "client": {
             "id": "BVG",
-            "type": "AND"
+            "type": "WEB"
         },
         "conGroups": [
             {
@@ -176,7 +176,7 @@
                 "name": "RB/RE"
             }
         ],
-        "ver": "1.44"
+        "ver": "1.72"
     },
     "supportedLanguages": [
         "de",
