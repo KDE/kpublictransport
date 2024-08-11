@@ -11,28 +11,19 @@
 #include "datatypes/featureutil.cpp"
 #include "uic/uicrailwaycoach.cpp"
 
-#include <QFile>
+#include <QDirIterator>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonValue>
 #include <QTest>
 #include <QTimeZone>
 
-#define s(x) QStringLiteral(x)
-
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 class DbParserTest : public QObject
 {
     Q_OBJECT
-private:
-    QByteArray readFile(const QString &fn)
-    {
-        QFile f(fn);
-        f.open(QFile::ReadOnly);
-        return f.readAll();
-    }
-
 private Q_SLOTS:
     void initTestCase()
     {
@@ -45,21 +36,13 @@ private Q_SLOTS:
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("departureFileName");
 
-        QTest::newRow("valid-double-segment-ice")
-            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-segment-ice-departure.json");
-
-        QTest::newRow("valid-double-deck-ic")
-            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/double-deck-ic-departure.json");
-
-        QTest::newRow("no-position")
-            << s(SOURCE_DIR "/data/deutschebahn/no-position-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/no-position-departure.json");
-
-            QTest::newRow("regionalexpress")
-            << s(SOURCE_DIR "/data/deutschebahn/regionalexpress-input.json")
-            << s(SOURCE_DIR "/data/deutschebahn/regionalexpress-departure.json");
+        QDirIterator it(QStringLiteral(SOURCE_DIR "/data/deutschebahn/"), {u"*.json"_s});
+        while (it.hasNext()) {
+            it.next();
+            if (it.fileName().endsWith("-input.json"_L1)) {
+                QTest::newRow(it.fileName().toLatin1().constData()) << it.fileName() << it.fileName().left(it.fileName().size() - 10) + "departure.json"_L1;
+            }
+        }
     }
 
     void testVehicleLayoutParse()
@@ -69,14 +52,14 @@ private Q_SLOTS:
 
         KPublicTransport::DeutscheBahnVehicleLayoutParser parser;
 
-        QVERIFY(parser.parse(readFile(inFileName)));
+        QVERIFY(parser.parse(Test::readFile(QLatin1StringView(SOURCE_DIR "/data/deutschebahn/") + inFileName)));
         QCOMPARE(parser.error, Reply::NoError);
         QVERIFY(parser.errorMessage.isEmpty());
 
         const auto departureJson = Stopover::toJson(parser.stopover);
-        const auto departureRef = QJsonDocument::fromJson(readFile(departureFileName)).object();
+        const auto departureRef = QJsonDocument::fromJson(Test::readFile(QLatin1StringView(SOURCE_DIR "/data/deutschebahn/") + departureFileName)).object();
         QVERIFY(!departureJson.isEmpty());
-        QVERIFY(Test::compareJson(departureFileName, departureJson, departureRef));
+        QVERIFY(Test::compareJson(QLatin1StringView(SOURCE_DIR "/data/deutschebahn/") + departureFileName, departureJson, departureRef));
     }
 
     void testVehicleLayoutParseFailure()
