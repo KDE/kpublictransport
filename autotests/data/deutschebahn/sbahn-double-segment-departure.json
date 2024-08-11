@@ -1,58 +1,50 @@
 {
     "disruptionEffect": "NormalService",
-    "expectedPlatform": "4",
+    "expectedPlatform": "3",
     "platformLayout": {
-        "length": 455,
-        "name": "4",
+        "length": 456,
+        "name": "3",
         "sections": [
             {
                 "begin": 0,
-                "end": 0.26725274324417114,
+                "end": 0.26924341917037964,
                 "name": "G"
             },
             {
-                "begin": 0.26725274324417114,
-                "end": 0.37219780683517456,
+                "begin": 0.26924341917037964,
+                "end": 0.3739035129547119,
                 "name": "F"
             },
             {
-                "begin": 0.37219780683517456,
-                "end": 0.48835164308547974,
+                "begin": 0.3739035129547119,
+                "end": 0.48980262875556946,
                 "name": "E"
             },
             {
-                "begin": 0.48835164308547974,
-                "end": 0.6046153903007507,
+                "begin": 0.48980262875556946,
+                "end": 0.605701744556427,
                 "name": "D"
             },
             {
-                "begin": 0.6046153903007507,
-                "end": 0.7396703362464905,
+                "begin": 0.605701744556427,
+                "end": 0.7401863932609558,
                 "name": "C"
             },
             {
-                "begin": 0.7396703362464905,
-                "end": 0.8760989308357239,
+                "begin": 0.7401863932609558,
+                "end": 0.8763706088066101,
                 "name": "B"
             },
             {
-                "begin": 0.8760989308357239,
-                "end": 0.9996703267097473,
+                "begin": 0.8763706088066101,
+                "end": 1,
                 "name": "A"
             }
         ]
     },
-    "route": {
-        "direction": "Freudenstadt Hbf",
-        "line": {
-            "mode": "LocalTrain",
-            "modeString": "RE",
-            "name": "15806"
-        }
-    },
-    "scheduledPlatform": "4",
+    "scheduledPlatform": "3",
     "vehicleLayout": {
-        "direction": "Forward",
+        "direction": "Backward",
         "sections": [
             {
                 "classes": "SecondClass",
@@ -70,49 +62,9 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": 0.3316483497619629,
-                "platformPositionEnd": 0.3761538565158844,
+                "platformPositionBegin": 0.5865570306777954,
+                "platformPositionEnd": 0.6414473652839661,
                 "type": "ControlCar"
-            },
-            {
-                "classes": "SecondClass",
-                "connectedSides": "Front|Back",
-                "deckCount": 1,
-                "features": [
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "AirConditioning"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "BikeStorage"
-                    }
-                ],
-                "platformPositionBegin": 0.3761538565158844,
-                "platformPositionEnd": 0.4121977984905243,
-                "type": "PassengerCar"
-            },
-            {
-                "classes": "SecondClass",
-                "connectedSides": "Front|Back",
-                "deckCount": 1,
-                "features": [
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "AirConditioning"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "BikeStorage"
-                    }
-                ],
-                "platformPositionBegin": 0.4121977984905243,
-                "platformPositionEnd": 0.4482417702674866,
-                "type": "PassengerCar"
             },
             {
                 "classes": "SecondClass",
@@ -140,8 +92,8 @@
                         "type": "WheelchairAccessibleToilet"
                     }
                 ],
-                "platformPositionBegin": 0.4482417702674866,
-                "platformPositionEnd": 0.48428571224212646,
+                "platformPositionBegin": 0.543135941028595,
+                "platformPositionEnd": 0.5865570306777954,
                 "type": "PassengerCar"
             },
             {
@@ -160,8 +112,79 @@
                         "type": "BikeStorage"
                     }
                 ],
-                "platformPositionBegin": 0.48428571224212646,
-                "platformPositionEnd": 0.5287911891937256,
+                "platformPositionBegin": 0.4882456064224243,
+                "platformPositionEnd": 0.543135941028595,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "platformPositionBegin": 0.43335527181625366,
+                "platformPositionEnd": 0.4882456064224243,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 2,
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessibleToilet"
+                    }
+                ],
+                "platformPositionBegin": 0.3899342119693756,
+                "platformPositionEnd": 0.43335527181625366,
+                "type": "PassengerCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "BikeStorage"
+                    }
+                ],
+                "platformPositionBegin": 0.33504384756088257,
+                "platformPositionEnd": 0.3899342119693756,
                 "type": "ControlCar"
             }
         ]

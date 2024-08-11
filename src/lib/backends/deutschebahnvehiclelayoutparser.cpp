@@ -20,29 +20,34 @@
 using namespace Qt::Literals;
 using namespace KPublicTransport;
 
-bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
+Stopover DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
 {
-    const auto doc = QJsonDocument::fromJson(data);
+    Stopover stopover;
 
-    const auto err = doc.object().value(QLatin1String("error")).toObject();
-    if (!err.isEmpty()) {
-        error = err.value(QLatin1String("id")).toInt() == 404 ? Reply::NotFoundError : Reply::UnknownError;
-        errorMessage = err.value(QLatin1String("msg")).toString();
-        return false;
+    const auto doc = QJsonDocument::fromJson(data);
+    const auto obj = doc.object();
+
+    // platform
+    Platform platform;
+    const auto platformObj = obj.value("platform"_L1).toObject();
+    platform.setName(platformObj.value("name"_L1).toString());
+    platform.setLength(std::ceil(platformObj.value("end"_L1).toDouble() - platformObj.value("start"_L1).toDouble()));
+    const auto sectorArray = platformObj.value("sectors"_L1).toArray();
+    for (const auto &sectorV : sectorArray) {
+        parsePlatformSection(platform, sectorV.toObject());
     }
+    stopover.setScheduledPlatform(obj.value("departurePlatformSchedule"_L1).toString());
+    stopover.setExpectedPlatform(obj.value("departurePlatformSchedule"_L1).toString());
 
     // vehicles
     Vehicle vehicle;
-    const auto obj = doc.object().value(QLatin1String("data")).toObject().value(QLatin1String("istformation")).toObject();
-    const auto trainType = obj.value(QLatin1String("zuggattung")).toString() ;
-    vehicle.setName(trainType + QLatin1Char(' ') + obj.value(QLatin1String("zugnummer")).toString());
-
     // TODO dobule segment ICE trains technically are two Vehicle objects...
-    const auto vehiclesArray = obj.value(QLatin1String("allFahrzeuggruppe")).toArray();
+    const auto vehiclesArray = obj.value("groups"_L1).toArray();
     for (const auto &vehicleV : vehiclesArray) {
-        const auto sectionsArray = vehicleV.toObject().value(QLatin1String("allFahrzeug")).toArray();
+        // if only one: read "transport" TODO
+        const auto sectionsArray = vehicleV.toObject().value("vehicles"_L1).toArray();
         for (const auto &sectionV : sectionsArray) {
-            parseVehicleSection(vehicle, sectionV.toObject());
+            parseVehicleSection(vehicle, sectionV.toObject(), platform);
         }
     }
     // direction is implied by section order
@@ -50,112 +55,104 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
         vehicle.setDirection(vehicle.sections()[0].platformPositionBegin() < vehicle.sections()[1].platformPositionBegin() ? Vehicle::Forward : Vehicle::Backward);
     }
 
-    // platform
-    Platform platform;
-    const auto halt = obj.value(QLatin1String("halt")).toObject();
-    platform.setName(halt.value(QLatin1String("gleisbezeichnung")).toString());
-    const auto sectorArray = halt.value(QLatin1String("allSektor")).toArray();
-    for (const auto &sectorV : sectorArray) {
-        parsePlatformSection(platform, sectorV.toObject());
+    // departure information
+    // TODO two-segment trains with the same destination could be handled here already
+    if (vehiclesArray.size() == 1) {
+        const auto transport = vehiclesArray[0].toObject().value("transport"_L1).toObject();
+        Line line;
+        line.setModeString(transport.value("category"_L1).toString());
+        line.setMode(DeutscheBahnProducts::modeType(line.modeString()));
+        if (line.mode() == Line::Unknown) {
+            line.setMode(Line::Train);
+        }
+        if (const auto num = transport.value("number"_L1).toInt(); num > 0) {
+            line.setName(QString::number(num));
+        }
+        Route route;
+        route.setDirection(transport.value("destination"_L1).toObject().value("name"_L1).toString());
+        route.setLine(line);
+        stopover.setRoute(route);
     }
-
-    // departure
-    Location stop;
-    stop.setName(halt.value(QLatin1String("bahnhofsname")).toString());
-    stop.setIdentifier(QStringLiteral("ibnr"), halt.value(QLatin1String("evanummer")).toString());
-    stop.setType(Location::Stop);
-    Route route;
-    Line line;
-
-    line.setMode(DeutscheBahnProducts::modeType(trainType));
-    if (line.mode() == Line::Unknown) {
-        line.setMode(Line::Train);
-    }
-
-    if (const auto lineNumber = obj.value(QLatin1String("liniebezeichnung")).toString(); !lineNumber.isEmpty() && line.mode() != Line::LongDistanceTrain) {
-        line.setName(trainType + QLatin1Char(' ') + lineNumber);
-        route.setName(vehicle.name());
-    } else {
-        line.setName(vehicle.name());
-    }
-    route.setLine(line);
-
-    stopover.setRoute(route);
-    stopover.setStopPoint(stop);
-    stopover.setScheduledArrivalTime(QDateTime::fromString(halt.value(QLatin1String("ankunftszeit")).toString(), Qt::ISODate));
-    stopover.setScheduledDepartureTime(QDateTime::fromString(halt.value(QLatin1String("abfahrtszeit")).toString(), Qt::ISODate));
-    stopover.setScheduledPlatform(platform.name());
 
     fillMissingPositions(vehicle, platform);
     stopover.setVehicleLayout(vehicle);
     stopover.setPlatformLayout(platform);
 
-    return true;
+    return stopover;
 }
 
 struct {
     const char *name;
     Feature::Type type;
 } constexpr const feature_map[] = {
-    { "ABTEILKLEINKIND", Feature::ToddlerArea },
+    { "AIR_CONDITION", Feature::AirConditioning },
+    { "BIKE_SPACE", Feature::BikeStorage },
     { "BISTRO", Feature::Restaurant },
-    { "FAMILIE", Feature::FamilyArea },
+    { "CABIN_INFANT", Feature::ToddlerArea },
     { "INFO", Feature::InformationPoint },
-    { "KLIMA", Feature::AirConditioning },
-    { "PLAETZEFAHRRAD", Feature::BikeStorage },
-    { "PLAETZEROLLSTUHL", Feature::WheelchairAccessible },
-    { "ROLLSTUHLTOILETTE", Feature::WheelchairAccessibleToilet },
-    { "RUHE", Feature::SilentArea },
+    { "TOILET_WHEELCHAIR", Feature::WheelchairAccessibleToilet },
+    { "WHEELCHAIR_SPACE", Feature::WheelchairAccessible },
+    { "ZONE_FAMILY", Feature::FamilyArea },
+    { "ZONE_QUIET", Feature::SilentArea },
 };
 
-void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj)
+void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj, const Platform &platform)
 {
     VehicleSection section;
-    section.setName(obj.value(QLatin1String("wagenordnungsnummer")).toString());
+    if (const auto num = obj.value("wagonIdentificationNumber"_L1).toInt(); num > 0) {
+        section.setName(QString::number(num));
+    }
 
-    const auto pos = obj.value(QLatin1String("positionamhalt")).toObject();
-    section.setPlatformPositionBegin(pos.value(QLatin1String("startprozent")).toString().toDouble() / 100.0);
-    section.setPlatformPositionEnd(pos.value(QLatin1String("endeprozent")).toString().toDouble() / 100.0);
+    const double length = std::max(1, platform.length());
+    const auto pos = obj.value("platformPosition"_L1).toObject();
+    section.setPlatformPositionBegin(pos.value("start"_L1).toDouble() / length);
+    section.setPlatformPositionEnd(pos.value("end"_L1).toDouble() / length);
 
-    const auto cat = obj.value(QLatin1String("kategorie")).toString();
-    if (cat.compare(QLatin1String("LOK"), Qt::CaseInsensitive) == 0) {
+    const auto typeObj = obj.value("type"_L1).toObject();
+    const auto cat = typeObj.value("category"_L1).toString();
+    if (cat.compare("LOCOMOTIVE"_L1, Qt::CaseInsensitive) == 0) {
         section.setType(VehicleSection::Engine);
-    } else if (cat.compare(QLatin1String("TRIEBKOPF"), Qt::CaseInsensitive) == 0) {
+    } else if (cat.compare("POWERCAR"_L1, Qt::CaseInsensitive) == 0) {
         section.setType(VehicleSection::PowerCar);
-    } else if (cat.contains(QLatin1String("STEUERWAGEN"), Qt::CaseInsensitive)) {
+    } else if (cat.contains("CONTROLCAR"_L1, Qt::CaseInsensitive)) {
         section.setType(VehicleSection::ControlCar);
     } else {
         section.setType(VehicleSection::PassengerCar);
     }
 
     // see https://en.wikipedia.org/wiki/UIC_classification_of_railway_coaches
-    const auto num = obj.value(QLatin1String("fahrzeugnummer")).toString();
-    const auto cls = obj.value(QLatin1String("fahrzeugtyp")).toString();
+    const auto num = obj.value("vehicleID"_L1).toString();
+    const auto cls = typeObj.value("constructionType"_L1).toString();
     section.setClasses(UicRailwayCoach::coachClass(num, cls));
     section.setDeckCount(UicRailwayCoach::deckCount(num, cls));
     if (const auto type = UicRailwayCoach::type(num, cls); section.type() == VehicleSection::PassengerCar && type != VehicleSection::UnknownType) {
         section.setType(type);
     }
-    auto f = UicRailwayCoach::features(num, cls);
+    auto features = UicRailwayCoach::features(num, cls);
 
-    const auto equipmentArray = obj.value("allFahrzeugausstattung"_L1).toArray();
+    const auto equipmentArray = obj.value("amenities"_L1).toArray();
     for (const auto &equipmentV : equipmentArray) {
         const auto equipmentObj = equipmentV.toObject();
-        const auto type = equipmentObj.value("ausstattungsart"_L1).toString();
+        const auto type = equipmentObj.value("type"_L1).toString();
         // TODO this has a status field, is this ever set?
         const auto it = std::lower_bound(std::begin(feature_map), std::end(feature_map), type, [](const auto &lhs, const auto &rhs) {
             return QLatin1StringView(lhs.name).compare(rhs, Qt::CaseInsensitive) < 0;
         });
         if (it != std::end(feature_map) && type.compare(QLatin1StringView((*it).name), Qt::CaseInsensitive) == 0) {
-            FeatureUtil::add(f, Feature{(*it).type});
+            Feature f{(*it).type};
+            const auto amount = equipmentObj.value("amount"_L1).toInt();
+            if (amount > 0) {
+                f.setQuantity(amount);
+            }
+            FeatureUtil::add(features, std::move(f));
         } else {
             qDebug() << "Unhandled vehicle section equipment:" << type;
         }
     }
-    section.setSectionFeatures(std::move(f));
+    section.setSectionFeatures(std::move(features));
 
     // TODO what is the actual value for closed sections?
-    if (const auto status = obj.value("status"_L1).toString(); !status.isEmpty() && status != "OFFEN"_L1) {
+    if (const auto status = obj.value("status"_L1).toString(); !status.isEmpty() && status != "OPEN"_L1) {
         section.setDisruptionEffect(Disruption::NoService);
     }
 
@@ -167,20 +164,15 @@ void DeutscheBahnVehicleLayoutParser::parseVehicleSection(Vehicle &vehicle, cons
 void DeutscheBahnVehicleLayoutParser::parsePlatformSection(Platform &platform, const QJsonObject &obj)
 {
     PlatformSection section;
-    section.setName(obj.value(QLatin1String("sektorbezeichnung")).toString());
+    section.setName(obj.value("name"_L1).toString());
 
-    const auto pos = obj.value(QLatin1String("positionamgleis")).toObject();
-    section.setBegin(pos.value(QLatin1String("startprozent")).toString().toDouble() / 100.0);
-    section.setEnd(pos.value(QLatin1String("endeprozent")).toString().toDouble() / 100.0);
+    const double length = std::max(1, platform.length());
+    section.setBegin(obj.value("start"_L1).toDouble() / length);
+    section.setEnd(obj.value("end"_L1).toDouble() / length);
 
     auto sections = platform.takeSections();
     sections.push_back(section);
     platform.setSections(std::move(sections));
-
-    const auto length = std::max(pos.value(QLatin1String("startmeter")).toString().toDouble(), pos.value(QLatin1String("endemeter")).toString().toDouble());
-    if (length > 0) {
-        platform.setLength(std::max(platform.length(), (int)std::ceil(length)));
-    }
 }
 
 void DeutscheBahnVehicleLayoutParser::fillMissingPositions(Vehicle &vehicle, Platform &platform)

@@ -20,14 +20,10 @@ namespace KPublicTransport {
 class DeutscheBahnVehicleLayoutParser
 {
 public:
-    bool parse(const QByteArray &data);
-
-    Stopover stopover;
-    Reply::Error error = Reply::NoError;
-    QString errorMessage;
+    [[nodiscard]] static Stopover parse(const QByteArray &data);
 
 private:
-    static void parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj);
+    static void parseVehicleSection(Vehicle &vehicle, const QJsonObject &obj, const Platform &platform);
     static void parsePlatformSection(Platform &platform, const QJsonObject &obj);
     static void fillMissingPositions(Vehicle &vehicle, Platform &platform);
 };
