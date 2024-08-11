@@ -90,6 +90,10 @@ Kirigami.Icon {
             s = i18nd("kpublictransport", "%1 (not available)", s)
         }
 
+        if (root.feature.quantity > 0) {
+            s = i18ndp("kpublictransport", "%2 (one space)", "%2 (%1 spaces)", root.feature.quantity, s);
+        }
+
         if (root.feature.description !== "") {
             s += '\n' + root.feature.description;
             s = s.trimmed();
