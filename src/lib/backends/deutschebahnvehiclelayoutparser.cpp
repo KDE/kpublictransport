@@ -5,6 +5,7 @@
 */
 
 #include "deutschebahnvehiclelayoutparser.h"
+#include "deutschebahnproducts.h"
 #include "datatypes/featureutil_p.h"
 #include "uic/uicrailwaycoach.h"
 
@@ -16,21 +17,8 @@
 
 #include <cmath>
 
-using namespace Qt::Literals::StringLiterals;
+using namespace Qt::Literals;
 using namespace KPublicTransport;
-
-struct {
-    const char *type;
-    Line::Mode mode;
-} static constexpr const train_type_map[] = {
-    { "ICE", Line::LongDistanceTrain },
-    { "IC",  Line::LongDistanceTrain },
-    { "EC",  Line::LongDistanceTrain },
-    { "RJ",  Line::LongDistanceTrain },
-    { "NJ",  Line::LongDistanceTrain },
-    { "RE",  Line::LocalTrain },
-    { "RB",  Line::LocalTrain },
-};
 
 bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
 {
@@ -79,12 +67,9 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     Route route;
     Line line;
 
-    line.setMode(Line::Train);
-    for (const auto &m : train_type_map) {
-        if (trainType == QLatin1String(m.type)) {
-            line.setMode(m.mode);
-            break;
-        }
+    line.setMode(DeutscheBahnProducts::modeType(trainType));
+    if (line.mode() == Line::Unknown) {
+        line.setMode(Line::Train);
     }
 
     if (const auto lineNumber = obj.value(QLatin1String("liniebezeichnung")).toString(); !lineNumber.isEmpty() && line.mode() != Line::LongDistanceTrain) {
@@ -102,8 +87,8 @@ bool DeutscheBahnVehicleLayoutParser::parse(const QByteArray &data)
     stopover.setScheduledPlatform(platform.name());
 
     fillMissingPositions(vehicle, platform);
-    stopover.setVehicleLayout(std::move(vehicle));
-    stopover.setPlatformLayout(std::move(platform));
+    stopover.setVehicleLayout(vehicle);
+    stopover.setPlatformLayout(platform);
 
     return true;
 }

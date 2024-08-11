@@ -15,8 +15,8 @@ namespace KPublicTransport {
 class DeutscheBahnBackend : public HafasMgateBackend
 {
 public:
-    static inline constexpr const char* type() { return "deutschebahn"; }
-    bool queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] static inline constexpr const char* type() { return "deutschebahn"; }
+    [[nodiscard]] bool queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const override;
 };
 
 }
