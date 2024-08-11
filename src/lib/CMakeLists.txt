@@ -26,6 +26,7 @@ target_sources(KPublicTransport PRIVATE
     backends/cache.cpp
     backends/deutschebahnbackend.cpp
     backends/deutschebahnvehiclelayoutparser.cpp
+    backends/deutschebahnproducts.cpp
     backends/efabackend.cpp
     backends/efaparser.cpp
     backends/efacompactparser.cpp

@@ -6,6 +6,7 @@
 
 #include "deutschebahnbackend.h"
 #include "deutschebahnvehiclelayoutparser.h"
+#include "deutschebahnproducts.h"
 #include "cache.h"
 
 #include <KPublicTransport/Stopover>
@@ -19,26 +20,38 @@
 #include <QRegularExpression>
 #include <QUrl>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
-static QString extractTrainNumber(const Route &route)
+struct TrainNum {
+    QString category;
+    QString number;
+};
+
+static TrainNum extractTrainNumber(const Route &route)
 {
+    TrainNum trainNum;
+    QRegularExpression rx(u"([A-Z]+)?\\s*(\\d+)"_s);
+
     if (!route.name().isEmpty()) {
-        QRegularExpression regex(QStringLiteral("(?:[A-Z]+)?\\s*(\\d+)"));
-        const auto match = regex.match(route.name());
+        const auto match = rx.match(route.name());
         if (match.hasMatch()) {
-            return match.captured(1);
+            trainNum = { match.captured(1), match.captured(2) };
         }
     }
 
     const auto line = route.line();
-    QRegularExpression regex(QStringLiteral("(?:ICE|IC|EC|RJ|NJ)\\s*(\\d+)"));
-    const auto match = regex.match(line.modeString() + line.name());
+    const auto match = rx.match(line.modeString() + line.name());
     if (match.hasMatch()) {
-        return match.captured(1);
+        if (trainNum.category.isEmpty()) {
+            trainNum.category = match.captured(1);
+        }
+        if (trainNum.number.isEmpty()) {
+            trainNum.number = match.captured(2);
+        }
     }
 
-    return {};
+    return trainNum;
 }
 
 bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
@@ -54,8 +67,8 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
     // note: data is only available withing the upcoming 24h
     // checking this early is useful as the error response from the online service is extremely verbose...
     auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
-    const auto trainNum = extractTrainNumber(request.stopover().route());
-    if (!dt.isValid() || trainNum.isEmpty()) {
+    const auto [trainCategory, trainNum] = extractTrainNumber(request.stopover().route());
+    if (!dt.isValid() || trainNum.isEmpty() || !DeutscheBahnProducts::isValid(trainCategory)) {
         return false;
     }
     dt = dt.toTimeZone(QTimeZone("Europe/Berlin"));
