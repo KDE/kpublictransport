@@ -19,6 +19,7 @@
 #include <QNetworkReply>
 #include <QRegularExpression>
 #include <QUrl>
+#include <QUrlQuery>
 
 using namespace Qt::Literals;
 using namespace KPublicTransport;
@@ -63,27 +64,25 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
         return false;
     }
 
-    // we need two parameters for the online API: the train number (numeric only), and the departure time
-    // note: data is only available withing the upcoming 24h
-    // checking this early is useful as the error response from the online service is extremely verbose...
-    auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
+    const auto ibnr = request.stopover().stopPoint().identifier("ibnr"_L1);
+    const auto dt = request.stopover().scheduledDepartureTime().isValid() ? request.stopover().scheduledDepartureTime() : request.stopover().scheduledArrivalTime();
     const auto [trainCategory, trainNum] = extractTrainNumber(request.stopover().route());
-    if (!dt.isValid() || trainNum.isEmpty() || !DeutscheBahnProducts::isValid(trainCategory)) {
+    if (!dt.isValid() || trainNum.isEmpty() || !DeutscheBahnProducts::isValid(trainCategory) || ibnr.isEmpty()) {
         return false;
-    }
-    dt = dt.toTimeZone(QTimeZone("Europe/Berlin"));
-
-    // there are only valid results for a 24h time window, so try to adjust the date accordingly
-    const auto now = QDateTime::currentDateTime();
-    if (dt.daysTo(now) > 1 || dt.daysTo(now) < -1) {
-        qDebug() << "adjusting departure time to today:" << dt;
-        dt.setDate(QDate::currentDate());
     }
 
     QUrl url;
-    url.setScheme(QStringLiteral("https"));
-    url.setHost(QStringLiteral("ist-wr.noncd.db.de"));
-    url.setPath(QLatin1String("/wagenreihung/1.0/") + trainNum + QLatin1Char('/') + dt.toString(QStringLiteral("yyyyMMddhhmm")));
+    url.setScheme(u"https"_s);
+    url.setHost(u"www.bahn.de"_s);
+    url.setPath(u"/web/api/reisebegleitung/wagenreihung/vehicle-sequence"_s);
+    QUrlQuery query;
+    query.addQueryItem(u"category"_s, trainCategory);
+    query.addQueryItem(u"number"_s, trainNum);
+    query.addQueryItem(u"date"_s, dt.date().toString(u"yyyy-MM-dd"));
+    query.addQueryItem(u"time"_s, dt.toUTC().toString(Qt::ISODate));
+    query.addQueryItem(u"evaNumber"_s, ibnr);
+    url.setQuery(query);
+    qDebug() << url;
 
     QNetworkRequest netReq(url);
     logRequest(request, netReq);
@@ -95,18 +94,12 @@ bool DeutscheBahnBackend::queryVehicleLayout(const VehicleLayoutRequest &request
         logReply(reply, netReply, data);
 
         if (netReply->error() == QNetworkReply::NoError) {
-            DeutscheBahnVehicleLayoutParser p;
-            if (p.parse(data)) {
-                Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), p.stopover, {}, std::chrono::minutes(2));
-                addResult(reply, p.stopover);
-            } else {
-                addError(reply, p.error, p.errorMessage);
-                if (p.error == Reply::NotFoundError) {
-                    Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), std::chrono::hours(24));
-                }
-            }
+            auto res = DeutscheBahnVehicleLayoutParser::parse(data);
+            Cache::addVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), res, {}, std::chrono::minutes(2));
+            addResult(reply, res);
         } else {
-            addError(reply, Reply::NetworkError, reply->errorString());
+            addError(reply, Reply::NotFoundError, reply->errorString());
+            Cache::addNegativeVehicleLayoutCacheEntry(backendId(), reply->request().cacheKey(), std::chrono::hours(24));
         }
         netReply->deleteLater();
     });

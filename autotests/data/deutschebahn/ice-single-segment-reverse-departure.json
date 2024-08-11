@@ -1,19 +1,56 @@
 {
     "disruptionEffect": "NormalService",
-    "expectedPlatform": "7",
+    "expectedPlatform": "1",
     "platformLayout": {
-        "length": 357,
-        "name": "7"
+        "length": 431,
+        "name": "1",
+        "sections": [
+            {
+                "begin": 0,
+                "end": 0.2263341099023819,
+                "name": "G"
+            },
+            {
+                "begin": 0.2263341099023819,
+                "end": 0.33747100830078125,
+                "name": "F"
+            },
+            {
+                "begin": 0.33747100830078125,
+                "end": 0.45875871181488037,
+                "name": "E"
+            },
+            {
+                "begin": 0.45875871181488037,
+                "end": 0.579988420009613,
+                "name": "D"
+            },
+            {
+                "begin": 0.579988420009613,
+                "end": 0.7012761235237122,
+                "name": "C"
+            },
+            {
+                "begin": 0.7012761235237122,
+                "end": 0.8225638270378113,
+                "name": "B"
+            },
+            {
+                "begin": 0.8225638270378113,
+                "end": 0.9983758926391602,
+                "name": "A"
+            }
+        ]
     },
     "route": {
-        "direction": "Baden-Baden",
+        "direction": "München Hbf",
         "line": {
             "mode": "LongDistanceTrain",
             "modeString": "ICE",
-            "name": "72"
+            "name": "509"
         }
     },
-    "scheduledPlatform": "7",
+    "scheduledPlatform": "1",
     "vehicleLayout": {
         "direction": "Backward",
         "sections": [
@@ -34,8 +71,8 @@
                     }
                 ],
                 "name": "14",
-                "platformPositionBegin": 0.8907563090324402,
-                "platformPositionEnd": 0.9708683490753174,
+                "platformPositionBegin": 0.9201856255531311,
+                "platformPositionEnd": 0.9865429401397705,
                 "type": "ControlCar"
             },
             {
@@ -50,8 +87,8 @@
                     }
                 ],
                 "name": "12",
-                "platformPositionBegin": 0.8126050233840942,
-                "platformPositionEnd": 0.8907563090324402,
+                "platformPositionBegin": 0.8554524183273315,
+                "platformPositionEnd": 0.9201856255531311,
                 "type": "PassengerCar"
             },
             {
@@ -66,8 +103,8 @@
                     }
                 ],
                 "name": "11",
-                "platformPositionBegin": 0.7344537973403931,
-                "platformPositionEnd": 0.8126050233840942,
+                "platformPositionBegin": 0.7907192707061768,
+                "platformPositionEnd": 0.8554524183273315,
                 "type": "PassengerCar"
             },
             {
@@ -82,8 +119,8 @@
                     }
                 ],
                 "name": "10",
-                "platformPositionBegin": 0.6563025116920471,
-                "platformPositionEnd": 0.7344537973403931,
+                "platformPositionBegin": 0.7259860634803772,
+                "platformPositionEnd": 0.7907192707061768,
                 "type": "PassengerCar"
             },
             {
@@ -124,8 +161,8 @@
                     }
                 ],
                 "name": "9",
-                "platformPositionBegin": 0.578151285648346,
-                "platformPositionEnd": 0.6563025116920471,
+                "platformPositionBegin": 0.6612529158592224,
+                "platformPositionEnd": 0.7259860634803772,
                 "type": "PassengerCar"
             },
             {
@@ -140,8 +177,8 @@
                     }
                 ],
                 "name": "7",
-                "platformPositionBegin": 0.5,
-                "platformPositionEnd": 0.578151285648346,
+                "platformPositionBegin": 0.5965197086334229,
+                "platformPositionEnd": 0.6612529158592224,
                 "type": "PassengerCar"
             },
             {
@@ -156,8 +193,8 @@
                     }
                 ],
                 "name": "6",
-                "platformPositionBegin": 0.42184874415397644,
-                "platformPositionEnd": 0.5,
+                "platformPositionBegin": 0.5317865610122681,
+                "platformPositionEnd": 0.5965197086334229,
                 "type": "PassengerCar"
             },
             {
@@ -172,8 +209,8 @@
                     }
                 ],
                 "name": "5",
-                "platformPositionBegin": 0.3436974883079529,
-                "platformPositionEnd": 0.42184874415397644,
+                "platformPositionBegin": 0.4670533537864685,
+                "platformPositionEnd": 0.5317865610122681,
                 "type": "PassengerCar"
             },
             {
@@ -188,8 +225,8 @@
                     }
                 ],
                 "name": "4",
-                "platformPositionBegin": 0.2655462324619293,
-                "platformPositionEnd": 0.3436974883079529,
+                "platformPositionBegin": 0.40232017636299133,
+                "platformPositionEnd": 0.4670533537864685,
                 "type": "PassengerCar"
             },
             {
@@ -209,8 +246,8 @@
                     }
                 ],
                 "name": "3",
-                "platformPositionBegin": 0.18739496171474457,
-                "platformPositionEnd": 0.2655462324619293,
+                "platformPositionBegin": 0.33758699893951416,
+                "platformPositionEnd": 0.40232017636299133,
                 "type": "PassengerCar"
             },
             {
@@ -230,8 +267,8 @@
                     }
                 ],
                 "name": "2",
-                "platformPositionBegin": 0.10924369841814041,
-                "platformPositionEnd": 0.18739496171474457,
+                "platformPositionBegin": 0.272853821516037,
+                "platformPositionEnd": 0.33758699893951416,
                 "type": "PassengerCar"
             },
             {
@@ -252,8 +289,8 @@
                     }
                 ],
                 "name": "1",
-                "platformPositionBegin": 0.029131652787327766,
-                "platformPositionEnd": 0.10924369841814041,
+                "platformPositionBegin": 0.20649652183055878,
+                "platformPositionEnd": 0.272853821516037,
                 "type": "ControlCar"
             }
         ]

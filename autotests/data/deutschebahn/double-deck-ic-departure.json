@@ -1,77 +1,77 @@
 {
     "disruptionEffect": "NormalService",
+    "expectedPlatform": "7 D - G",
     "platformLayout": {
-        "name": "12",
-        "length": 436,
+        "length": 431,
+        "name": "7 D - G",
         "sections": [
             {
                 "begin": 0,
-                "end": 0.17000000178813934,
-                "name": "A"
+                "end": 0.22627609968185425,
+                "name": "G"
             },
             {
-                "begin": 0.17000000178813934,
-                "end": 0.3199999928474426,
-                "name": "B"
-            },
-            {
-                "begin": 0.3199999928474426,
-                "end": 0.44999998807907104,
-                "name": "C"
-            },
-            {
-                "begin": 0.44999998807907104,
-                "end": 0.5600000023841858,
-                "name": "D"
-            },
-            {
-                "begin": 0.5600000023841858,
-                "end": 0.6800000071525574,
-                "name": "E"
-            },
-            {
-                "begin": 0.6800000071525574,
-                "end": 0.800000011920929,
+                "begin": 0.22627609968185425,
+                "end": 0.3374129831790924,
                 "name": "F"
             },
             {
-                "begin": 0.800000011920929,
-                "end": 1,
-                "name": "G"
+                "begin": 0.3374129831790924,
+                "end": 0.45870068669319153,
+                "name": "E"
+            },
+            {
+                "begin": 0.45870068669319153,
+                "end": 0.579988420009613,
+                "name": "D"
+            },
+            {
+                "begin": 0.579988420009613,
+                "end": 0.7011600732803345,
+                "name": "C"
+            },
+            {
+                "begin": 0.7011600732803345,
+                "end": 0.8224477767944336,
+                "name": "B"
+            },
+            {
+                "begin": 0.8224477767944336,
+                "end": 0.9981438517570496,
+                "name": "A"
             }
         ]
     },
     "route": {
+        "direction": "Warnemünde",
         "line": {
             "mode": "LongDistanceTrain",
-            "name": "IC 2444"
+            "modeString": "IC",
+            "name": "2270"
         }
     },
-    "scheduledArrivalTime": "2019-12-26T16:19:00",
-    "scheduledDepartureTime": "2019-12-26T16:33:00",
-    "scheduledPlatform": "12",
-    "stopPoint": {
-        "identifier": {
-            "ibnr": "8010205"
-        },
-        "name": "Leipzig Hbf",
-        "type": "Stop"
-    },
+    "scheduledPlatform": "7 D - G",
     "vehicleLayout": {
-        "direction": "Backward",
-        "name": "IC 2444",
+        "direction": "Forward",
         "sections": [
             {
-                "classes": "UnknownClass",
+                "classes": "FirstClass|SecondClass",
                 "connectedSides": "Front|Back",
-                "deckCount": 1,
-                "name": "",
-                "platformPositionBegin": 0.36000001430511475,
-                "platformPositionEnd": 0.4000000059604645,
-                "type": "Engine"
+                "deckCount": 2,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "AirConditioning"
+                    }
+                ],
+                "name": "6",
+                "platformPositionBegin": 0.09141531586647034,
+                "platformPositionEnd": 0.1502552181482315,
+                "type": "ControlCar"
             },
             {
-                "classes": "FirstClass",
+                "classes": "SecondClass",
                 "connectedSides": "Front|Back",
                 "deckCount": 2,
                 "features": [
@@ -83,12 +83,18 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
-                        "type": "SilentArea"
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 8,
+                        "type": "BikeStorage"
                     }
                 ],
                 "name": "5",
-                "platformPositionBegin": 0.28999999165534973,
-                "platformPositionEnd": 0.36000001430511475,
+                "platformPositionBegin": 0.1502552181482315,
+                "platformPositionEnd": 0.20909512042999268,
                 "type": "PassengerCar"
             },
             {
@@ -104,54 +110,23 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
-                        "type": "BikeStorage"
+                        "type": "Restaurant"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 2,
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "type": "WheelchairAccessibleToilet"
                     }
                 ],
                 "name": "4",
-                "platformPositionBegin": 0.23000000417232513,
-                "platformPositionEnd": 0.28999999165534973,
-                "type": "PassengerCar"
-            },
-            {
-                "classes": "SecondClass",
-                "connectedSides": "Front|Back",
-                "deckCount": 2,
-                "features": [
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "AirConditioning"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "BikeStorage"
-                    }
-                ],
-                "name": "3",
-                "platformPositionBegin": 0.17000000178813934,
-                "platformPositionEnd": 0.23000000417232513,
-                "type": "PassengerCar"
-            },
-            {
-                "classes": "SecondClass",
-                "connectedSides": "Front|Back",
-                "deckCount": 2,
-                "features": [
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "AirConditioning"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "BikeStorage"
-                    }
-                ],
-                "name": "2",
-                "platformPositionBegin": 0.10999999940395355,
-                "platformPositionEnd": 0.17000000178813934,
+                "platformPositionBegin": 0.20909512042999268,
+                "platformPositionEnd": 0.26668214797973633,
                 "type": "PassengerCar"
             },
             {
@@ -172,27 +147,12 @@
                     {
                         "availability": "Available",
                         "disruptionEffect": "NormalService",
-                        "type": "WheelchairAccessible"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "BikeStorage"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "WheelchairAccessibleToilet"
-                    },
-                    {
-                        "availability": "Available",
-                        "disruptionEffect": "NormalService",
-                        "type": "InformationPoint"
+                        "type": "FamilyArea"
                     }
                 ],
                 "name": "1",
-                "platformPositionBegin": 0.05000000074505806,
-                "platformPositionEnd": 0.10999999940395355,
+                "platformPositionBegin": 0.26668214797973633,
+                "platformPositionEnd": 0.3255220353603363,
                 "type": "ControlCar"
             }
         ]

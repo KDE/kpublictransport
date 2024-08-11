@@ -1,0 +1,96 @@
+{
+    "disruptionEffect": "NormalService",
+    "expectedPlatform": "101",
+    "platformLayout": {
+        "length": 121,
+        "name": "101"
+    },
+    "scheduledPlatform": "101",
+    "vehicleLayout": {
+        "direction": "Backward",
+        "sections": [
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 6,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "platformPositionBegin": 0.691735565662384,
+                "platformPositionEnd": 0.8834710717201233,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 2,
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 18,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "platformPositionBegin": 0.5,
+                "platformPositionEnd": 0.691735565662384,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 4,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "platformPositionBegin": 0.30826446413993835,
+                "platformPositionEnd": 0.5,
+                "type": "ControlCar"
+            },
+            {
+                "classes": "FirstClass|SecondClass",
+                "connectedSides": "Front|Back",
+                "deckCount": 1,
+                "features": [
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 1,
+                        "type": "WheelchairAccessible"
+                    },
+                    {
+                        "availability": "Available",
+                        "disruptionEffect": "NormalService",
+                        "quantity": 4,
+                        "type": "BikeStorage"
+                    }
+                ],
+                "platformPositionBegin": 0.11652892827987671,
+                "platformPositionEnd": 0.30826446413993835,
+                "type": "ControlCar"
+            }
+        ]
+    }
+}
