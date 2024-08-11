@@ -1,0 +1,125 @@
+{
+    "KPlugin": {
+        "Name": "Kölner Verkehrs-Betriebe (KVB)",
+        "Description": "Local transport in and around Cologne, Germany."
+    },
+    "attribution": {
+        "homepage": "https://kvb.koeln/",
+        "isProprietary": true,
+        "name": "Kölner Verkehrs-Betriebe AG"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            7.4028083,
+                            50.9317871
+                        ],
+                        [
+                            6.9130592,
+                            51.1986683
+                        ],
+                        [
+                            6.5537652,
+                            50.9012556
+                        ],
+                        [
+                            6.9787697,
+                            50.6706299
+                        ],
+                        [
+                            7.4028083,
+                            50.9317871
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "DE-NW"
+            ]
+        }
+    },
+    "name": "Kölner Verkehrs-Betriebe (KVB)",
+    "options": {
+        "auth": {
+            "aid": "Rt6foY5zcTTRXMQs",
+            "type": "AID"
+        },
+        "client": {
+            "id": "HAFAS",
+            "type": "WEB"
+        },
+        "endpoint": "https://auskunft.kvb.koeln/gate",
+        "productNameMappings": [
+            {
+                "cls": 512,
+                "lineName": [
+                    "nameS",
+                    "number"
+                ]
+            }
+        ],
+        "products": [
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "stadtbahn",
+                "name": "Stadtbahn",
+                "mode": "Metro"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "bus",
+                "name": "Bus",
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    256
+                ],
+                "id": "taxibus",
+                "name": "Taxibus",
+                "mode": "Taxi"
+            },
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "s-bahn",
+                "name": "S-Bahn",
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    16, 512
+                ],
+                "id": "regionalverkehr",
+                "name": "Regionalverkehr",
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "fernverkehr",
+                "name": "Fernverkehr",
+                "mode": "LongDistanceTrain"
+            }
+        ],
+        "ver": "1.58"
+    },
+    "supportedLanguages": [
+        "de",
+        "en"
+    ],
+    "timezone": "Europe/Berlin",
+    "type": {
+        "hafasMgate": true
+    }
+}
