@@ -1,7 +1,7 @@
 {
     "KPlugin": {
-        "Name": "Kölner Verkehrs-Betriebe (KVB)",
-        "Description": "Local transport in and around Cologne, Germany."
+        "Description": "Local transport in and around Cologne, Germany.",
+        "Name": "Kölner Verkehrs-Betriebe (KVB)"
     },
     "attribution": {
         "homepage": "https://kvb.koeln/",
@@ -68,48 +68,49 @@
                     2
                 ],
                 "id": "stadtbahn",
-                "name": "Stadtbahn",
-                "mode": "Metro"
+                "mode": "Metro",
+                "name": "Stadtbahn"
             },
             {
                 "bitmasks": [
                     8
                 ],
                 "id": "bus",
-                "name": "Bus",
-                "mode": "Bus"
+                "mode": "Bus",
+                "name": "Bus"
             },
             {
                 "bitmasks": [
                     256
                 ],
                 "id": "taxibus",
-                "name": "Taxibus",
-                "mode": "Taxi"
+                "mode": "Taxi",
+                "name": "Taxibus"
             },
             {
                 "bitmasks": [
                     1
                 ],
                 "id": "s-bahn",
-                "name": "S-Bahn",
-                "mode": "RapidTransit"
+                "mode": "RapidTransit",
+                "name": "S-Bahn"
             },
             {
                 "bitmasks": [
-                    16, 512
+                    16,
+                    512
                 ],
                 "id": "regionalverkehr",
-                "name": "Regionalverkehr",
-                "mode": "LocalTrain"
+                "mode": "LocalTrain",
+                "name": "Regionalverkehr"
             },
             {
                 "bitmasks": [
                     32
                 ],
                 "id": "fernverkehr",
-                "name": "Fernverkehr",
-                "mode": "LongDistanceTrain"
+                "mode": "LongDistanceTrain",
+                "name": "Fernverkehr"
             }
         ],
         "ver": "1.58"
