@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-06 00:37+0000\n"
+"POT-Creation-Date: 2024-08-12 00:38+0000\n"
 "PO-Revision-Date: 2024-05-06 10:23+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -99,6 +99,13 @@ msgstr "Prese di corrente"
 #, kde-format
 msgid "%1 (not available)"
 msgstr "%1 (non disponibile)"
+
+#: quick/FeatureIcon.qml:94
+#, kde-format
+msgid "%2 (one space)"
+msgid_plural "%2 (%1 spaces)"
+msgstr[0] ""
+msgstr[1] ""
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
