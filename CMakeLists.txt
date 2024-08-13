@@ -68,7 +68,7 @@ find_package(KF6 REQUIRED COMPONENTS I18n)
 
 set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
 
-ecm_set_disabled_deprecation_versions(QT 6.5 KF 5.245.0)
+ecm_set_disabled_deprecation_versions(QT 6.7 KF 6.5.0)
 
 add_subdirectory(src)
 
