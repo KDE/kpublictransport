@@ -1,7 +1,16 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Cologne, Germany.",
-        "Name": "Kölner Verkehrs-Betriebe (KVB)"
+        "Description[ca]": "Transport local a Colonia i rodalia, Alemanya.",
+        "Description[ka]": "ლოკალური ტრანსპორტი კიოლნში, გერმანია და მის გარშემო.",
+        "Description[nl]": "Openbaar vervoer in en om Keulen, Duitsland.",
+        "Description[sl]": "Lokalni prevoz v Kölnu in okolici, Nemčija.",
+        "Description[sv]": "Lokala transporter i och omkring Köln, Tyskland.",
+        "Description[tr]": "Almanya, Köln içi ve çevresi için yerel taşıma.",
+        "Description[uk]": "Місцевий транспорт у Кельні і околицях, Німеччина.",
+        "Description[x-test]": "xxLocal transport in and around Cologne, Germany.xx",
+        "Name": "Kölner Verkehrs-Betriebe (KVB)",
+        "Name[x-test]": "xxKölner Verkehrs-Betriebe (KVB)xx"
     },
     "attribution": {
         "homepage": "https://kvb.koeln/",
