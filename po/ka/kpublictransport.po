@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-12 00:38+0000\n"
-"PO-Revision-Date: 2024-05-06 05:47+0200\n"
+"PO-Revision-Date: 2024-08-12 05:09+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -105,8 +105,8 @@ msgstr "%1 (ხელმისაწვდომი არაა)"
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%2 (ერთი სივრცე)"
+msgstr[1] "%2 (%1 სივრცე)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
