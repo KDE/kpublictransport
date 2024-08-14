@@ -1,7 +1,7 @@
 # Translation for kpublictransport.po to Euskara/Basque (eu).
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
-# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+# SPDX-FileCopyrightText: 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
 # SPDX-FileCopyrightText: 2024 Iñigo Salvador Azurmendi <xalba@ni.eus>
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-12 00:38+0000\n"
-"PO-Revision-Date: 2024-07-10 21:27+0200\n"
+"PO-Revision-Date: 2024-08-13 18:13+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -107,8 +107,8 @@ msgstr "%1 (ez dago eskuragarri)"
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%2 (leku bat)"
+msgstr[1] "%2 (%1 leku)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
