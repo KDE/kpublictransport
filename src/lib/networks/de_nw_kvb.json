@@ -2,6 +2,8 @@
     "KPlugin": {
         "Description": "Local transport in and around Cologne, Germany.",
         "Description[ca]": "Transport local a Colonia i rodalia, Alemanya.",
+        "Description[es]": "Transporte local de Colonia y alrededores, Alemania.",
+        "Description[eu]": "Tokiko garraioa Kolonia eta inguruan, Alemania.",
         "Description[ka]": "ლოკალური ტრანსპორტი კიოლნში, გერმანია და მის გარშემო.",
         "Description[nl]": "Openbaar vervoer in en om Keulen, Duitsland.",
         "Description[sl]": "Lokalni prevoz v Kölnu in okolici, Nemčija.",
@@ -10,6 +12,7 @@
         "Description[uk]": "Місцевий транспорт у Кельні і околицях, Німеччина.",
         "Description[x-test]": "xxLocal transport in and around Cologne, Germany.xx",
         "Name": "Kölner Verkehrs-Betriebe (KVB)",
+        "Name[eu]": "Kölner Verkehrsbetriebe (KVB / Koloniako garraio publikoko konpainia)",
         "Name[x-test]": "xxKölner Verkehrs-Betriebe (KVB)xx"
     },
     "attribution": {
