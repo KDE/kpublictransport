@@ -99,6 +99,7 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "BR", FeatureRemark, Feature::Restaurant, Feature::Available },
     { "A", "BT", FeatureRemark, Feature::Restaurant, Feature::Available },
     { "A", "BW", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "BZ", FeatureRemark, Feature::BusinessArea, Feature::Available },
     { "A", "CK", IgnoreRemark, Feature::NoFeature, Feature::Unknown }, // Komfort Check-in advertisment
     { "A", "CR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
     { "A", "EA", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
@@ -106,11 +107,14 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "EH", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "ER", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "EXTERNAL_ID", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "FA", FeatureRemark, Feature::FamilyArea, Feature::Available },
     { "A", "FB", FeatureRemark, Feature::BikeStorage, Feature::Limited },
     { "A", "FH", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "FK", FeatureRemark, Feature::BikeStorage, Feature::Limited },
     { "A", "FR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
-    { "A", "FS", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    // observied with different meanings - Conditional bike storage (DE) vs free wifi (CH)
+    // { "A", "FS", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
+    { "A", "FZ", FeatureRemark, Feature::FamilyArea, Feature::Available },
     { "A", "G ", FeatureRemark, Feature::BikeStorage, Feature::Limited },
     { "A", "HD", FeatureRemark, Feature::SilentArea, Feature::Available },
     { "A", "HK", FeatureRemark, Feature::ToddlerArea, Feature::Available },
@@ -123,7 +127,8 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "MN", FeatureRemark, Feature::Restaurant, Feature::Available },
     { "A", "MP", FeatureRemark, Feature::Restaurant, Feature::Available },
     { "A", "NAME", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
-    { "A", "NF", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
+    // observed with different meanings? no bike storage (DE?) vs. low floor vehicle (CH)
+    // { "A", "NF", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
     { "A", "OA", FeatureRemark, Feature::WheelchairAccessible, Feature::Conditional },
     { "A", "OC", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Available },
     { "A", "OG", FeatureRemark, Feature::WheelchairAccessibleToilet, Feature::Limited },
@@ -139,7 +144,10 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "TM", FeatureRemark, Feature::Restaurant, Feature::Limited },
     { "A", "TO", FeatureRemark, Feature::Toilet, Feature::Available },
     { "A", "UA", FeatureRemark, Feature::BusinessArea, Feature::Available },
+    { "A", "VN", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
+    { "A", "VR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
     { "A", "WI", FeatureRemark, Feature::WiFi, Feature::Available },
+    { "A", "WR", FeatureRemark, Feature::Restaurant, Feature::Available },
     { "A", "WV", FeatureRemark, Feature::WiFi, Feature::Available },
     { "A", "ZB", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
     { "A", "ZM", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
@@ -179,6 +187,8 @@ static constexpr const RemarkData remarks_map[] = {
     // SBB line number?
     { "I", "FD", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
     { "I", "JF", TrainFormationRemark, Feature::NoFeature, Feature::Unknown },
+    // Swiss journey id
+    { "I", "JY", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
      // SBB: some unknown number for buses
     { "I", "RN", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
     { "I", "TC", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
@@ -188,6 +198,8 @@ static constexpr const RemarkData remarks_map[] = {
     { "I", "XP", PlatformSectorsRemark, Feature::NoFeature, Feature::Unknown },
     // SBB: some XML structure of unknown content, related to train/platform layouts
     { "I", "XT", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    // Swiss journey id
+    { "I", "sj", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
 };
 
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
