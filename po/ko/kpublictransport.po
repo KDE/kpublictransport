@@ -1,125 +1,125 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
+# SPDX-FileCopyrightText: 2024 Shinjo Park <kde@peremen.name>
 #
-# SPDX-FileCopyrightText: 2024 Adrián Chaves (Gallaecio)
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-06 00:37+0000\n"
-"PO-Revision-Date: 2024-05-12 14:24+0200\n"
-"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
-"Language: gl\n"
+"PO-Revision-Date: 2024-08-19 23:56+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
 msgctxt "train coach feature"
 msgid "Air conditioning"
-msgstr "Aire acondicionado"
+msgstr "냉난방"
 
 #: lib/datatypes/feature.cpp:54
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bistro or restaurant"
-msgstr "Bistro ou restaurante"
+msgstr "(간이) 식당차"
 
 #: lib/datatypes/feature.cpp:56
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toddler area"
-msgstr "Zona de bebés"
+msgstr "유아 구역"
 
 #: lib/datatypes/feature.cpp:58
 #, kde-format
 msgctxt "train coach feature"
 msgid "Family area"
-msgstr "Zona familiar"
+msgstr "가족 구역"
 
 #: lib/datatypes/feature.cpp:60
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible"
-msgstr "Acceso para cadeira de rodas"
+msgstr "휠체어 접근 가능"
 
 #: lib/datatypes/feature.cpp:62
 #, kde-format
 msgctxt "train coach feature"
 msgid "Quiet area"
-msgstr "Zona silenciosa"
+msgstr "정숙 구역"
 
 #: lib/datatypes/feature.cpp:64
 #, kde-format
 msgctxt "train coach feature"
 msgid "Business area"
-msgstr "Zona de negocios"
+msgstr "비즈니스 구역"
 
 #: lib/datatypes/feature.cpp:66
 #, kde-format
 msgctxt "train coach feature"
 msgid "Bike storage"
-msgstr "Almacenamento de bicicletas"
+msgstr "자전거 보관소"
 
 #: lib/datatypes/feature.cpp:68
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toilet"
-msgstr "Lavabo"
+msgstr "화장실"
 
 #: lib/datatypes/feature.cpp:70
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible toilet"
-msgstr "Lavabo para cadeira de rodas"
+msgstr "휠체어 화장실"
 
 #: lib/datatypes/feature.cpp:72
 #, kde-format
 msgctxt "train coach feature"
 msgid "Information point"
-msgstr "Punto de información"
+msgstr "정보 센터"
 
 #: lib/datatypes/feature.cpp:74
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wi-Fi"
-msgstr "Wifi"
+msgstr "Wi-Fi"
 
 #: lib/datatypes/feature.cpp:76
 #, kde-format
 msgctxt "train coach feature"
 msgid "Power sockets"
-msgstr "Tomas de corrente"
+msgstr "전원 콘센트"
 
 #: quick/FeatureIcon.qml:90
 #, kde-format
 msgid "%1 (not available)"
-msgstr "%1 (non dispoñíbel)"
+msgstr "%1(사용할 수 없음)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Low occupancy"
-msgstr "Baixa ocupación"
+msgstr "인원 적음"
 
 #: quick/OccupancyIndicator.qml:40
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Medium occupancy"
-msgstr "Media ocupación"
+msgstr "인원 보통"
 
 #: quick/OccupancyIndicator.qml:41
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "High occupancy"
-msgstr "Alta ocupación"
+msgstr "인원 많음"
 
 #: quick/OccupancyIndicator.qml:42
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr "Completa"
+msgstr "만차"
