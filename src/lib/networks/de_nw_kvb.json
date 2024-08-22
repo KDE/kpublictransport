@@ -1,10 +1,12 @@
 {
     "KPlugin": {
         "Description": "Local transport in and around Cologne, Germany.",
+        "Description[ca@valencia]": "Transport local a Colonia i rodalia, Alemanya.",
         "Description[ca]": "Transport local a Colonia i rodalia, Alemanya.",
         "Description[cs]": "Místní doprava v Kolínu nad Rýnem a okolí, Německo.",
         "Description[es]": "Transporte local de Colonia y alrededores, Alemania.",
         "Description[eu]": "Tokiko garraioa Kolonia eta inguruan, Alemania.",
+        "Description[fr]": "Transports régionaux de la région de Cologne, Allemagne.",
         "Description[gl]": "Transporte local de Colonia (Alemaña) e arredores.",
         "Description[he]": "תחבורה ציבורית בתוך וסביב קלן, גרמניה.",
         "Description[it]": "Trasporto locale a Colonia e dintorni, Germania.",
