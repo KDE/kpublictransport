@@ -117,6 +117,8 @@ static constexpr const RemarkData remarks_map[] = {
     // { "A", "FS", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
     { "A", "FZ", FeatureRemark, Feature::FamilyArea, Feature::Available },
     { "A", "G ", FeatureRemark, Feature::BikeStorage, Feature::Limited },
+    // NASA: GTFS route type
+    { "A", "GT", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
     { "A", "HD", FeatureRemark, Feature::SilentArea, Feature::Available },
     { "A", "HK", FeatureRemark, Feature::ToddlerArea, Feature::Available },
     { "A", "JOURNEYNUMBER", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
@@ -170,6 +172,10 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "de", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "df", FeatureRemark, Feature::WheelchairAccessible, Feature::Unavailable },
     { "A", "dg", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    // NASA: literally just a '.'
+    { "A", "dj", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
+    { "A", "dk", FeatureRemark, Feature::Restaurant, Feature::Available },
+    { "A", "dl", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "ei", FeatureRemark, Feature::BikeStorage, Feature::Available },
     { "A", "ek", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "ga", FeatureRemark, Feature::Restaurant, Feature::Available },
