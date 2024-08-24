@@ -1,0 +1,150 @@
+{
+    "KPlugin": {
+        "Name": "BLS AG",
+        "Description": "Local public transport in and around Bern and Luzern, Switzerland."
+    },
+    "attribution": {
+        "homepage": "https://www.bls.ch/",
+        "isProprietary": true,
+        "name": "BLS AG"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "area": {
+                "coordinates": [
+                    [
+                        [
+                            8.1003457,
+                            46.4993699
+                        ],
+                        [
+                            8.7198792,
+                            47.0291794
+                        ],
+                        [
+                            8.4267663,
+                            47.3325907
+                        ],
+                        [
+                            7.8792131,
+                            47.0872406
+                        ],
+                        [
+                            7.4496199,
+                            47.2551009
+                        ],
+                        [
+                            7.022367,
+                            47.0751353
+                        ],
+                        [
+                            7.5914894,
+                            46.4347118
+                        ],
+                        [
+                            8.1003457,
+                            46.4993699
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "region": [
+                "CH-BE",
+                "CH-LU"
+            ]
+        }
+    },
+    "options": {
+        "auth": {
+            "aid": "3jkAncud78HSoqclmN54812A",
+            "type": "AID"
+        },
+        "client": {
+            "id": "HAFAS",
+            "l": "vs_webapp",
+            "type": "WEB"
+        },
+        "endpoint": "https://bls.hafas.de/gate",
+        "products": [
+            {
+                "bitmasks": [
+                    1
+                ],
+                "id": "ice",
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    2
+                ],
+                "id": "ic-ec",
+                "mode": "LongDistanceTrain"
+            },
+            {
+                "bitmasks": [
+                    4
+                ],
+                "id": "ir",
+                "mode": "Train"
+            },
+            {
+                "bitmasks": [
+                    8
+                ],
+                "id": "local",
+                "mode": "LocalTrain"
+            },
+            {
+                "bitmasks": [
+                    16
+                ],
+                "id": "watercraft",
+                "mode": "Ferry"
+            },
+            {
+                "bitmasks": [
+                    32
+                ],
+                "id": "s-bahn",
+                "mode": "RapidTransit"
+            },
+            {
+                "bitmasks": [
+                    64
+                ],
+                "id": "bus",
+                "mode": "Bus"
+            },
+            {
+                "bitmasks": [
+                    128
+                ],
+                "id": "gondola",
+                "mode": "AerialLift"
+            },
+            {
+                "bitmasks": [
+                    512
+                ],
+                "id": "tram",
+                "mode": "Tramway"
+            },
+            {
+                "bitmasks": [
+                    4096
+                ],
+                "id": "car-shuttle-train",
+                "mode": "Train"
+            }
+        ],
+        "ver": "1.68"
+    },
+    "supportedLanguages": [
+        "de", "en", "fr", "it"
+    ],
+    "timezone": "Europe/Zurich",
+    "type": {
+        "hafasMgate": true
+    }
+}
