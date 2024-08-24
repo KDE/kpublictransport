@@ -139,7 +139,8 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "QP", FeatureRemark, Feature::Restaurant, Feature::Available },
     { "A", "RG", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "RO", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
-    { "A", "RZ", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
+    // observed with different meanings: wheelchair access in DE, quiet zone in CH
+    //{ "A", "RZ", FeatureRemark, Feature::WheelchairAccessible, Feature::Available },
     { "A", "SA", FeatureRemark, Feature::ToddlerArea, Feature::Limited },
     { "A", "SI", FeatureRemark, Feature::WheelchairAccessible, Feature::Limited },
     { "A", "SN", FeatureRemark, Feature::Restaurant, Feature::Available },
@@ -147,6 +148,7 @@ static constexpr const RemarkData remarks_map[] = {
     { "A", "TM", FeatureRemark, Feature::Restaurant, Feature::Limited },
     { "A", "TO", FeatureRemark, Feature::Toilet, Feature::Available },
     { "A", "UA", FeatureRemark, Feature::BusinessArea, Feature::Available },
+    { "A", "VB", FeatureRemark, Feature::BikeStorage, Feature::Limited },
     { "A", "VN", FeatureRemark, Feature::BikeStorage, Feature::Unavailable },
     { "A", "VR", FeatureRemark, Feature::BikeStorage, Feature::Conditional },
     { "A", "WI", FeatureRemark, Feature::WiFi, Feature::Available },
