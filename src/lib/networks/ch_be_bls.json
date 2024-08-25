@@ -1,7 +1,7 @@
 {
     "KPlugin": {
-        "Name": "BLS AG",
-        "Description": "Local public transport in and around Bern and Luzern, Switzerland."
+        "Description": "Local public transport in and around Bern and Luzern, Switzerland.",
+        "Name": "BLS AG"
     },
     "attribution": {
         "homepage": "https://www.bls.ch/",
@@ -141,7 +141,10 @@
         "ver": "1.68"
     },
     "supportedLanguages": [
-        "de", "en", "fr", "it"
+        "de",
+        "en",
+        "fr",
+        "it"
     ],
     "timezone": "Europe/Zurich",
     "type": {
