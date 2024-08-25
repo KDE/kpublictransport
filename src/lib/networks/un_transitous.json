@@ -16,6 +16,7 @@
         "Description[ko]": "커뮤니티에서 관리하는 자유 오픈 대중 교통 길찾기 서비스입니다.",
         "Description[nl]": "Community-run vrije en open openbaar vervoer routeringsservice.",
         "Description[pl]": "Usługa wyznaczania trasy w transporcie publicznym darmowa i utrzymywana przez społeczność",
+        "Description[pt_BR]": "Serviço de roteamento de transporte público gratuito e aberto, administrado pela comunidade.",
         "Description[sl]": "Brezplačna in odprta storitev javnega prevoza, ki jo vodi skupnost.",
         "Description[sv]": "Gemenskapsdriven fri och öppen dirigeringstjänst för kollektivtrafik.",
         "Description[tr]": "Topluluk tarafından işletilen, ücretsiz ve açık toplu taşıma yönlendirme hizmeti.",
@@ -24,6 +25,7 @@
         "Name": "Transitous",
         "Name[cs]": "Přechody",
         "Name[ia]": "Transirori",
+        "Name[pt_BR]": "Transitório",
         "Name[x-test]": "xxTransitousxx"
     },
     "attribution": {
