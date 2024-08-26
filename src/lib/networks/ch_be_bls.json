@@ -1,7 +1,18 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Bern and Luzern, Switzerland.",
-        "Name": "BLS AG"
+        "Description[ca]": "Transport públic local a Berna, Lucerna i rodalia, Suïssa.",
+        "Description[es]": "Transporte público local de Berna, Lucerna y alrededores, Suiza.",
+        "Description[gl]": "Transporte público local Berna, Lucerna e arredores (Suíza).",
+        "Description[ka]": "ლოკალური საჯარო ტრანსპორტი ბერნში და ლუცერნში, შვეიცარია.",
+        "Description[nl]": "Lokaal openbaar vervoer in en om Bern en Luzern, Zwitserland.",
+        "Description[sl]": "Lokalni javni prevoz v in okoli Berna in Luzerna v Švici.",
+        "Description[sv]": "Lokal kollektivtrafik i och omkring Bern och Luzern, Schweiz.",
+        "Description[tr]": "Luzern, İsviçre içi ve çevresi yerel toplu taşıma.",
+        "Description[uk]": "Місцевий транспорт у Берні і Люцерні, Швейцарія.",
+        "Description[x-test]": "xxLocal public transport in and around Bern and Luzern, Switzerland.xx",
+        "Name": "BLS AG",
+        "Name[x-test]": "xxBLS AGxx"
     },
     "attribution": {
         "homepage": "https://www.bls.ch/",
