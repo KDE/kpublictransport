@@ -1,9 +1,12 @@
 {
     "KPlugin": {
         "Description": "Local public transport in and around Bern and Luzern, Switzerland.",
+        "Description[ca@valencia]": "Transport públic local a Berna, Lucerna i rodalia, Suïssa.",
         "Description[ca]": "Transport públic local a Berna, Lucerna i rodalia, Suïssa.",
+        "Description[cs]": "Místní doprava v Bernu, Luzernu a okolí, Švýcarsko.",
         "Description[es]": "Transporte público local de Berna, Lucerna y alrededores, Suiza.",
         "Description[gl]": "Transporte público local Berna, Lucerna e arredores (Suíza).",
+        "Description[it]": "Trasporto pubblico locale a Berna e Lucerna e dintorni, Svizzera.",
         "Description[ka]": "ლოკალური საჯარო ტრანსპორტი ბერნში და ლუცერნში, შვეიცარია.",
         "Description[nl]": "Lokaal openbaar vervoer in en om Bern en Luzern, Zwitserland.",
         "Description[sl]": "Lokalni javni prevoz v in okoli Berna in Luzerna v Švici.",
@@ -12,6 +15,17 @@
         "Description[uk]": "Місцевий транспорт у Берні і Люцерні, Швейцарія.",
         "Description[x-test]": "xxLocal public transport in and around Bern and Luzern, Switzerland.xx",
         "Name": "BLS AG",
+        "Name[ca@valencia]": "BLS AG",
+        "Name[ca]": "BLS AG",
+        "Name[es]": "BLS AG",
+        "Name[gl]": "BLS AG",
+        "Name[it]": "BLS AG",
+        "Name[ka]": "BLS AG",
+        "Name[nl]": "BLS AG",
+        "Name[sl]": "BLS AG",
+        "Name[sv]": "BLS AG",
+        "Name[tr]": "BLS AG",
+        "Name[uk]": "BLS AG",
         "Name[x-test]": "xxBLS AGxx"
     },
     "attribution": {
