@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 #
-# giovanni <g.sora@tiscali.it>, 2024.
+# SPDX-FileCopyrightText: 2024 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-12 00:38+0000\n"
-"PO-Revision-Date: 2024-05-09 11:34+0200\n"
+"PO-Revision-Date: 2024-08-28 16:42+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -104,8 +104,8 @@ msgstr "%1 (Non disponibile)"
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%2 (un spatio)"
+msgstr[1] "%2 (%1 spatios)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
