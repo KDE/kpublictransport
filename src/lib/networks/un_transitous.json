@@ -56,43 +56,45 @@
             "areaFile": "un_transitous_any.geojson",
             "region": [
                 "AT",
-                "AU-NSW",
+                "AU",
+                "BG",
                 "CA",
+                "CY",
                 "CZ",
                 "ES",
+                "ET-AA",
                 "FR",
                 "GR",
                 "HK",
                 "HR",
+                "ID-JK",
                 "IS",
                 "IT",
                 "LT",
                 "LV",
+                "ME",
                 "NZ",
                 "PT",
+                "RO",
                 "RS",
                 "SI",
                 "SK",
-                "US-CA",
-                "US-CO",
-                "US-GA",
-                "US-IL",
-                "US-MO",
-                "US-OH",
-                "US-OR",
-                "US-RI"
+                "TR",
+                "US"
             ]
         },
         "realtimeCoverage": {
             "areaFile": "un_transitous_realtime.geojson",
             "region": [
-                "CH"
+                "BE",
+                "CH",
+                "NL"
             ]
         },
         "regularCoverage": {
             "areaFile": "un_transitous_regular.geojson",
             "region": [
-                "BE",
+                "BM",
                 "DE",
                 "DK",
                 "EE",
@@ -101,10 +103,10 @@
                 "HU",
                 "IE",
                 "LU",
-                "NL",
                 "NO",
                 "PL",
-                "SE"
+                "SE",
+                "SG"
             ]
         }
     },
