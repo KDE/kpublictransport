@@ -96,12 +96,66 @@ QDateTime MergeUtil::mergeDateTimeMax(const QDateTime &lhs, const QDateTime &rhs
     return dt;
 }
 
+static bool containsNonAscii(QStringView s)
+{
+    for (const auto c : s) {
+        if (c.row() != 0 || c.cell() > 127) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+static bool isMixedCase(QStringView s)
+{
+    const auto letterCount = std::count_if(s.begin(), s.end(), [](auto c) { return c.isLetter(); });
+    const auto upperCount = std::count_if(s.begin(), s.end(), [](auto c) { return c.isUpper(); });
+    return upperCount != letterCount && upperCount != 0;
+}
+
+static bool containsParantheses(QStringView s)
+{
+    return s.contains(u'(') && s.contains(u')');
+}
+
+
 QString MergeUtil::mergeString(const QString &lhs, const QString &rhs)
 {
-    // ### this is deterministic, but not necessarily ideal
-    // we could prefer mixed case over all caps, unicode over transliterated, etc
+    // prefer Unicode over ASCII normalization
+    const auto lhsNonAscii = containsNonAscii(lhs);
+    const auto rhsNonAscii = containsNonAscii(rhs);
+    if (lhsNonAscii && !rhsNonAscii) {
+        return lhs;
+    }
+    if (!lhsNonAscii && rhsNonAscii) {
+        return rhs;
+    }
+
+    // prefer better casing
+    const auto lhsMixedCase = isMixedCase(lhs);
+    const auto rhsMixedCase = isMixedCase(rhs);
+    if (lhsMixedCase && !rhsMixedCase) {
+        return lhs;
+    }
+    if (!lhsMixedCase && rhsMixedCase) {
+        return rhs;
+    }
+
     if (lhs.size() == rhs.size()) {
         return lhs < rhs ? lhs : rhs;
     }
+
+    // Prefer strings without parantheses
+    bool lhsParan = containsParantheses(lhs);
+    bool rhsParan = containsParantheses(rhs);
+    if (lhsParan && !rhsParan) {
+        return rhs;
+    }
+    if (rhsParan && !lhsParan) {
+        return lhs;
+    }
+
+    // Prefer longer string
     return lhs.size() < rhs.size() ? rhs : lhs;
 }
