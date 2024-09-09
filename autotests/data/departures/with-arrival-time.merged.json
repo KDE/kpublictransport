@@ -1,7 +1,7 @@
 {
     "disruptionEffect": "NoService",
     "route": {
-        "direction": "BERGAMO (Bergamo)",
+        "direction": "Bergamo",
         "line": {
             "color": "#e40314",
             "mode": "LocalTrain",
@@ -18,6 +18,6 @@
         },
         "latitude": 45.486167907714844,
         "longitude": 9.20389175415039,
-        "name": "MILANO CENTRALE (Milano)"
+        "name": "Milano Centrale"
     }
 }

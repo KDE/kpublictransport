@@ -9,10 +9,10 @@
             },
             "latitude": 52.387489318847656,
             "longitude": 13.396203994750977,
-            "name": "S Lichtenrade (Berlin)",
+            "name": "Berlin-Lichtenrade",
             "timezone": "Europe/Berlin"
         },
-        "direction": "S Lichtenrade (Berlin)",
+        "direction": "Berlin-Lichtenrade",
         "line": {
             "color": "#018a47",
             "mode": "RapidTransit",

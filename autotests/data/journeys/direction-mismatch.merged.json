@@ -16,7 +16,7 @@
                 "latitude": 52.53433609008789,
                 "locality": "Berlin",
                 "longitude": 13.32893180847168,
-                "name": "S Beusselstrasse (Berlin)"
+                "name": "Berlin Beusselstraße"
             },
             "mode": "PublicTransport",
             "route": {
@@ -42,7 +42,7 @@
                 "latitude": 52.52403259277344,
                 "locality": "Berlin",
                 "longitude": 13.46466064453125,
-                "name": "S Storkower Str. (Berlin)"
+                "name": "Berlin Storkower Straße"
             }
         }
     ]

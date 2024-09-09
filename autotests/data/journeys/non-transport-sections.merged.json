@@ -34,7 +34,7 @@
                 },
                 "latitude": 47.45037841796875,
                 "longitude": 8.5623779296875,
-                "name": "Zürich Flughafen (Kloten)",
+                "name": "Zürich Flughafen",
                 "timezone": "Europe/Zurich"
             },
             "mode": "PublicTransport",
@@ -62,7 +62,7 @@
                 },
                 "latitude": 46.29402160644531,
                 "longitude": 7.881446838378906,
-                "name": "Visp (Visp)",
+                "name": "Visp",
                 "timezone": "Europe/Zurich"
             }
         },
@@ -107,12 +107,12 @@
                 },
                 "latitude": 46.29402160644531,
                 "longitude": 7.881446838378906,
-                "name": "Visp (Visp)",
+                "name": "Visp",
                 "timezone": "Europe/Zurich"
             },
             "mode": "PublicTransport",
             "route": {
-                "direction": "Zermatt (Zermatt)",
+                "direction": "Zermatt",
                 "line": {
                     "mode": "LocalTrain",
                     "modeString": "Train",
@@ -134,7 +134,7 @@
                 },
                 "latitude": 46.099632263183594,
                 "longitude": 7.7816925048828125,
-                "name": "Randa (Randa)",
+                "name": "Randa",
                 "timezone": "Europe/Zurich"
             }
         },

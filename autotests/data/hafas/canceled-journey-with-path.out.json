@@ -14,7 +14,7 @@
                         {
                             "availability": "Conditional",
                             "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
+                            "name": "Fahrradmitnahme begrenzt möglich",
                             "type": "BikeStorage"
                         }
                     ]
