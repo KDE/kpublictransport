@@ -7,7 +7,6 @@
 #include "manager.h"
 #include "assetrepository_p.h"
 #include "backends/srbijavozbackend.h"
-#include "backends/zpcgbackend.h"
 #include "journeyreply.h"
 #include "journeyrequest.h"
 #include "requestcontext_p.h"
@@ -207,7 +206,6 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         GBFSBackend,
         AccessibilityCloudBackend,
         LTGLinkBackend,
-        ZPCGBackend,
         SrbijavozBackend
     >(type, obj);
 }
