@@ -53,7 +53,7 @@ QString IndividualTransport::modeIconName(IndividualTransport::Mode mode)
         case IndividualTransport::Car:
             return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
         case IndividualTransport::Walk:
-            return u"qrc:///org.kde.kpublictransport/assets/images/walk.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-walk.svg"_s;
     }
 
     return u"question"_s;

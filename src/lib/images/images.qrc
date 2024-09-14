@@ -29,7 +29,7 @@
         <file>train.svg</file>
         <file>tramway.svg</file>
         <file>transfer.svg</file>
+        <file>transport-mode-walk.svg</file>
         <file>wait.svg</file>
-        <file>walk.svg</file>
     </qresource>
 </RCC>
