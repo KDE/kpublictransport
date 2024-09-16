@@ -14,9 +14,11 @@ NetworkReplyCollection::NetworkReplyCollection(std::vector<QNetworkReply *> repl
     QMetaObject::invokeMethod(this, &NetworkReplyCollection::checkFinished, Qt::QueuedConnection);
 
     for (auto *reply : m_replies) {
-        connect(reply, &QNetworkReply::finished, this, &NetworkReplyCollection::checkFinished);
-        connect(reply, &QNetworkReply::errorOccurred, this, [reply, this](auto error) {
-            Q_EMIT errorOccured(reply, error);
-        });
+        if (reply) {
+            connect(reply, &QNetworkReply::finished, this, &NetworkReplyCollection::checkFinished);
+            connect(reply, &QNetworkReply::errorOccurred, this, [reply, this](auto error) {
+                Q_EMIT errorOccured(reply, error);
+            });
+        }
     }
 }

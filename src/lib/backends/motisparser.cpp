@@ -314,6 +314,25 @@ std::vector<Location> MotisParser::parseStations(const QByteArray &data)
     return result;
 }
 
+std::vector<Location> MotisParser::parseLocations(const QByteArray &data)
+{
+    const auto content = parseContent(data);
+    if (hasError()) {
+        return {};
+    }
+
+    QJsonArray locations = content.value("guesses"_L1).toArray();
+
+    std::vector<Location> result;
+    result.reserve(locations.size());
+
+    for (const auto &locationV : locations) {
+        result.push_back(parseLocation(locationV.toObject()));
+    }
+
+    return result;
+}
+
 Location MotisParser::parseStation(const QJsonObject &station) const
 {
     Location loc;
@@ -323,6 +342,29 @@ Location MotisParser::parseStation(const QJsonObject &station) const
     const auto pos = station.value("pos"_L1).toObject();
     loc.setLatitude((float)pos.value("lat"_L1).toDouble());
     loc.setLongitude((float)pos.value("lng"_L1).toDouble());
+    return loc;
+}
+
+Location MotisParser::parseLocation(const QJsonObject &location) const
+{
+    Location loc;
+    loc.setType(Location::Place);
+    loc.setName(location.value("name"_L1).toString());
+    const auto pos = location.value("pos"_L1).toObject();
+    loc.setLatitude((float)pos.value("lat"_L1).toDouble());
+    loc.setLongitude((float)pos.value("lng"_L1).toDouble());
+
+    const auto regions = location.value("regions"_L1).toArray();
+    for (const auto &regionRef : regions) {
+        auto region = regionRef.toObject();
+        const auto name = region.value("name"_L1).toString();
+        int level = region.value("admin_level"_L1).toInt();
+        if (level <= 8) {
+            loc.setLocality(name);
+            break;
+        }
+    }
+
     return loc;
 }
 

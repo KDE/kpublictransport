@@ -29,7 +29,7 @@ public:
 private:
     void checkFinished() {
         bool finished = std::all_of(m_replies.begin(), m_replies.end(), [](QNetworkReply *reply) {
-            return reply->isFinished();
+            return !reply || reply->isFinished();
         });
         if (finished) {
             Q_EMIT allFinished();

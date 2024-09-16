@@ -29,6 +29,7 @@ class RentalVehicleStation;
 class KPUBLICTRANSPORT_EXPORT Location
 {
     KPUBLICTRANSPORT_GADGET(Location)
+
 public:
     /** Type of location. */
     enum Type {
@@ -38,6 +39,7 @@ public:
         RentedVehicle = 4, ///< a free-floating rental bike/scooter
         Equipment = 8, ///< elevator/escalator
         CarpoolPickupDropoff = 16, ///< a pickup or dropoff location for a carpool trip
+        Address = 32 ///< postal addresses
     };
     Q_ENUM(Type)
     Q_DECLARE_FLAGS(Types, Type)

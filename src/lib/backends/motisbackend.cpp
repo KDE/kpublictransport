@@ -5,6 +5,7 @@
 
 #include "motisbackend.h"
 #include "abstractbackend.h"
+#include "backends/networkreplycollection.h"
 #include "cache.h"
 #include "motisparser.h"
 
@@ -109,15 +110,48 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
         };
     }
 
+    QNetworkReply *adrNetReply = nullptr;
+    qWarning() << req.types();
+    if (req.types() & Location::Address) {
+        QJsonObject adrQuery = {
+            {"destination"_L1, QJsonObject{
+                {"type"_L1, "Module"_L1},
+                {"target"_L1, "/address"_L1}
+            }},
+            {"content_type"_L1, "AddressRequest"_L1},
+            {"content"_L1, QJsonObject{
+                {"input"_L1, req.name()}
+            }}
+        };
+        adrNetReply = makeRequest(req, reply, adrQuery, nam);
+    }
+
     auto netReply = makeRequest(req, reply, query, nam);
-    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+
+    NetworkReplyCollection *replies = new NetworkReplyCollection({netReply, adrNetReply});
+    QObject::connect(replies, &NetworkReplyCollection::allFinished, [this, netReply, adrNetReply, reply, replies]() {
         netReply->deleteLater();
+        replies->deleteLater();
+
+        MotisParser p(m_locationIdentifierType);
+
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-
         qDebug().noquote() << data << netReply->error();
-        MotisParser p(m_locationIdentifierType);
         auto result = p.parseStations(data);
+
+        if (adrNetReply) {
+            adrNetReply->deleteLater();
+
+            const auto adrData = adrNetReply->readAll();
+            logReply(reply, adrNetReply, adrData);
+            qDebug().noquote() << adrData << adrNetReply->error();
+            auto adrResult = p.parseLocations(adrData);
+
+            result.resize(adrResult.size() + result.size());
+            std::copy(adrResult.begin(), adrResult.end(), std::back_inserter(result));
+        }
+
         if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
             Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
             addResult(reply, std::move(result));

@@ -37,6 +37,7 @@ public:
     [[nodiscard]] MotisConnections parseConnections(const QByteArray &data);
     [[nodiscard]] std::vector<Stopover> parseEvents(const QByteArray &data);
     [[nodiscard]] std::vector<Location> parseStations(const QByteArray &data);
+    [[nodiscard]] std::vector<Location> parseLocations(const QByteArray &data);
     [[nodiscard]] Path parsePPRPath(const QByteArray &data);
     [[nodiscard]] Path parseOSRMPath(const QByteArray &data);
 
@@ -46,6 +47,7 @@ public:
 private:
     [[nodiscard]] Journey parseConnection(const QJsonObject &con) const;
     [[nodiscard]] Location parseStation(const QJsonObject &station) const;
+    [[nodiscard]] Location parseLocation(const QJsonObject &location) const;
     [[nodiscard]] QJsonObject parseContent(const QByteArray &data);
 
     QString m_locIdentifierType;
