@@ -107,10 +107,10 @@ QString Line::modeIconName(Line::Mode mode)
         case Line::Ferry:
             return u"qrc:///org.kde.kpublictransport/assets/images/ferry.svg"_s;
         case Line::Bus:
-            return u"qrc:///org.kde.kpublictransport/assets/images/bus.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-bus.svg"_s;
         case Line::BusRapidTransit:
         case Line::Coach:
-            return u"qrc:///org.kde.kpublictransport/assets/images/coach.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-bus-longdistance.svg"_s;
         case Line::Funicular:
             return u"qrc:///org.kde.kpublictransport/assets/images/funicular.svg"_s;
         case Line::LocalTrain:
