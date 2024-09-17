@@ -16,6 +16,8 @@
 #include "ifopt/ifoptutil.h"
 
 #include <KTimeZone>
+#include <KCountry>
+#include <KCountrySubdivision>
 
 #include <QDebug>
 #include <QHash>
@@ -59,8 +61,35 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, longitude, setLongitude)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, streetAddress, setStreetAddress)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, region, setRegion)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, country, setCountry)
+
+void Location::setRegion(const QString &regionCode) {
+    d.detach();
+    d->region = regionCode;
+}
+
+QString Location::region() const {
+    if (d->region.isEmpty() && hasCoordinate()) {
+        auto subdivision = KCountrySubdivision::fromLocation(latitude(), longitude());
+        const_cast<Location *>(this)->setRegion(subdivision.code());
+    }
+
+    return d->region;
+}
+
+void Location::setCountry(const QString &countryCode) {
+    d.detach();
+    d->country = countryCode;
+}
+
+QString Location::country() const {
+    if (d->country.isEmpty() && hasCoordinate()) {
+        auto country = KCountry::fromLocation(latitude(), longitude());
+        const_cast<Location *>(this)->setCountry(country.alpha2());
+    }
+
+    return d->country;
+}
+
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QVariant, data, setData)
 
 void Location::setCoordinate(float latitude, float longitude)
