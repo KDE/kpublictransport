@@ -102,10 +102,10 @@ QString Line::modeIconName(Line::Mode mode)
         case Line::Unknown:
             break;
         case Line::Air:
-            return u"qrc:///org.kde.kpublictransport/assets/images/flight.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-flight.svg"_s;
         case Line::Boat:
         case Line::Ferry:
-            return u"qrc:///org.kde.kpublictransport/assets/images/ferry.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-ferry.svg"_s;
         case Line::Bus:
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-bus.svg"_s;
         case Line::BusRapidTransit:
@@ -130,7 +130,7 @@ QString Line::modeIconName(Line::Mode mode)
         case Line::Tramway:
             return u"qrc:///org.kde.kpublictransport/assets/images/tramway.svg"_s;
         case Line::RideShare:
-            return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
         case Line::AerialLift:
             return u"qrc:///org.kde.kpublictransport/assets/images/aeriallift.svg"_s;
     }

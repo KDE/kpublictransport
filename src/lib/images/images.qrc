@@ -6,12 +6,9 @@
     <qresource prefix="/org.kde.kpublictransport/assets/images">
         <file>aeriallift.svg</file>
         <file>bike.svg</file>
-        <file>car.svg</file>
         <file>couchettecar.svg</file>
         <file>elevator.svg</file>
         <file>escalator.svg</file>
-        <file>ferry.svg</file>
-        <file>flight.svg</file>
         <file>funicular.svg</file>
         <file>longdistancetrain.svg</file>
         <file>motorcycle.svg</file>
@@ -29,6 +26,9 @@
         <file>transfer.svg</file>
         <file>transport-mode-bus.svg</file>
         <file>transport-mode-bus-longdistance.svg</file>
+        <file>transport-mode-car.svg</file>
+        <file>transport-mode-ferry.svg</file>
+        <file>transport-mode-flight.svg</file>
         <file>transport-mode-walk.svg</file>
         <file>wait.svg</file>
     </qresource>

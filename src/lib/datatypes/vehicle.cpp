@@ -158,7 +158,7 @@ QString VehicleSection::vehicleTypeIconName(VehicleSection::Type type)
         case VehicleSection::RestaurantCar:
             return u"qrc:///org.kde.kpublictransport/assets/images/restaurant.svg"_s;
         case VehicleSection::CarTransportCar:
-            return u"qrc:///org.kde.kpublictransport/assets/images/car.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
     }
     return {};
 }
