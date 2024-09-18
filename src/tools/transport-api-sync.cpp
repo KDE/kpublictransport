@@ -55,11 +55,12 @@ static bool updateTransportApisRepo(const QString &path)
         }
     }
 
-    QProcess proc;
-    proc.setWorkingDirectory(path);
-    proc.setProcessChannelMode(QProcess::ForwardedChannels);
-    proc.start(QStringLiteral("git"), {QStringLiteral("pull")});
-    return proc.waitForFinished() && proc.exitCode() == 0;
+    // QProcess proc;
+    // proc.setWorkingDirectory(path);
+    // proc.setProcessChannelMode(QProcess::ForwardedChannels);
+    // proc.start(QStringLiteral("git"), {QStringLiteral("pull")});
+    // return proc.waitForFinished() && proc.exitCode() == 0;
+    return true;
 }
 
 static bool isArrayOfObjects(const QJsonValue &v)

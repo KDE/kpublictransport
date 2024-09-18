@@ -32,7 +32,7 @@ Kirigami.Icon {
             case KPublicTransport.Feature.BusinessArea:
                 return "phone-symbolic";
             case KPublicTransport.Feature.BikeStorage:
-                return "qrc:///org.kde.kpublictransport/assets/images/bike.svg";
+                return "qrc:///org.kde.kpublictransport/assets/images/transport-mode-bike.svg";
             case KPublicTransport.Feature.Toilet:
                 return "qrc:///org.kde.kpublictransport/ui/assets/toilets.svg";
             case KPublicTransport.Feature.WheelchairAccessibleToilet:
