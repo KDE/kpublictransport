@@ -7,19 +7,17 @@
         <file>couchettecar.svg</file>
         <file>elevator.svg</file>
         <file>escalator.svg</file>
-        <file>longdistancetrain.svg</file>
         <file>motorcycle.svg</file>
-        <file>rapidtransit.svg</file>
         <file>restaurant.svg</file>
         <file>scooter.svg</file>
         <file>seat.svg</file>
         <file>shuttle.svg</file>
         <file>sleepingcar.svg</file>
         <file>stairs.svg</file>
-        <file>subway.svg</file>
-        <file>train.svg</file>
-        <file>tramway.svg</file>
-        <file>transfer.svg</file>
+
+        <file>journey-mode-transfer.svg</file>
+        <file>journey-mode-wait.svg</file>
+
         <file>transport-mode-aeriallift.svg</file>
         <file>transport-mode-bike.svg</file>
         <file>transport-mode-bus.svg</file>
@@ -28,8 +26,12 @@
         <file>transport-mode-ferry.svg</file>
         <file>transport-mode-flight.svg</file>
         <file>transport-mode-funicular.svg</file>
+        <file>transport-mode-rapidtransit.svg</file>
+        <file>transport-mode-subway.svg</file>
         <file>transport-mode-taxi.svg</file>
+        <file>transport-mode-train.svg</file>
+        <file>transport-mode-train-longdistance.svg</file>
+        <file>transport-mode-tram.svg</file>
         <file>transport-mode-walk.svg</file>
-        <file>wait.svg</file>
     </qresource>
 </RCC>

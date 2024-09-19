@@ -115,20 +115,20 @@ QString Line::modeIconName(Line::Mode mode)
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-funicular.svg"_s;
         case Line::LocalTrain:
         case Line::Train:
-            return u"qrc:///org.kde.kpublictransport/assets/images/train.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-train.svg"_s;
         case Line::LongDistanceTrain:
-            return u"qrc:///org.kde.kpublictransport/assets/images/longdistancetrain.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-train-longdistance.svg"_s;
         case Line::Metro:
-            return u"qrc:///org.kde.kpublictransport/assets/images/subway.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-subway.svg"_s;
         case Line::RailShuttle:
         case Line::RapidTransit:
-            return u"qrc:///org.kde.kpublictransport/assets/images/rapidtransit.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-rapidtransit.svg"_s;
         case Line::Shuttle:
             return u"qrc:///org.kde.kpublictransport/assets/images/shuttle.svg"_s;
         case Line::Taxi:
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-taxi.svg"_s;
         case Line::Tramway:
-            return u"qrc:///org.kde.kpublictransport/assets/images/tramway.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-tram.svg"_s;
         case Line::RideShare:
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
         case Line::AerialLift:

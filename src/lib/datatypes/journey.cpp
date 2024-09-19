@@ -393,11 +393,11 @@ QString JourneySection::iconName() const
         case JourneySection::PublicTransport:
             return d->route.line().iconName();
         case JourneySection::Transfer:
-            return u"qrc:///org.kde.kpublictransport/assets/images/transfer.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/journey-mode-transfer.svg"_s;
         case JourneySection::Walking:
             return IndividualTransport::modeIconName(IndividualTransport::Walk);
         case JourneySection::Waiting:
-            return u"qrc:///org.kde.kpublictransport/assets/images/wait.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/journey-mode-wait.svg"_s;
         case JourneySection::RentedVehicle:
             return d->rentalVehicle.vehicleTypeIconName();
         case JourneySection::IndividualTransport:
