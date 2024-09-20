@@ -9,6 +9,7 @@
                 "expectedDeparturePlatform": "",
                 "expectedDepartureTime": "2019-11-11T21:36:00",
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:09564:1391:11:2",
                         "testid": "3001391"
@@ -17,6 +18,7 @@
                     "locality": "Nürnberg",
                     "longitude": 11.078630447387695,
                     "name": "Nürnberg Flughafen",
+                    "region": "DE-BY",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -64,6 +66,7 @@
                 "scheduledDeparturePlatform": "",
                 "scheduledDepartureTime": "2019-11-11T21:36:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:09564:510:11:U2",
                         "testid": "3000510"
@@ -72,6 +75,7 @@
                     "locality": "Nürnberg",
                     "longitude": 11.081809997558594,
                     "name": "Nürnberg Hbf",
+                    "region": "DE-BY",
                     "type": "Stop"
                 }
             },
@@ -83,6 +87,7 @@
                 "expectedDeparturePlatform": "",
                 "expectedDepartureTime": "2019-11-11T22:00:00",
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:09564:510:11:U1_2",
                         "testid": "3000510"
@@ -91,6 +96,7 @@
                     "locality": "Nürnberg",
                     "longitude": 11.081809997558594,
                     "name": "Nürnberg Hbf",
+                    "region": "DE-BY",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -99,6 +105,7 @@
                         "scheduledDepartureTime": "2019-11-11T22:05:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "ifopt": "de:09564:561:11:1",
                                 "testid": "3000561"
@@ -107,6 +114,7 @@
                             "locality": "Nürnberg",
                             "longitude": 11.086319923400879,
                             "name": "Nürnberg Frankenstr.",
+                            "region": "DE-BY",
                             "type": "Stop"
                         }
                     },
@@ -115,6 +123,7 @@
                         "scheduledDepartureTime": "2019-11-11T22:06:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "ifopt": "de:09564:1701:11:1",
                                 "testid": "3001701"
@@ -123,6 +132,7 @@
                             "locality": "Nürnberg",
                             "longitude": 11.0897798538208,
                             "name": "Nürnberg Hasenbuck",
+                            "region": "DE-BY",
                             "type": "Stop"
                         }
                     }
@@ -169,6 +179,7 @@
                 "scheduledDeparturePlatform": "",
                 "scheduledDepartureTime": "2019-11-11T22:00:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:09564:1502:11:2",
                         "testid": "3001502"
@@ -177,6 +188,7 @@
                     "locality": "Nürnberg",
                     "longitude": 11.114060401916504,
                     "name": "Nürnberg Messe",
+                    "region": "DE-BY",
                     "type": "Stop"
                 }
             }

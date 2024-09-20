@@ -18,6 +18,7 @@
         "value": "2018-02-10T19:02:00+01:00"
     },
     "stopPoint": {
+        "country": "DE",
         "identifier": {
             "ibnr": "736600",
             "vbb": "900260024"

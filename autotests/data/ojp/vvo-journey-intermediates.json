@@ -5,9 +5,11 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "DE",
                     "latitude": 50.839599609375,
                     "longitude": 12.930700302124023,
-                    "name": "Chemnitz Hbf"
+                    "name": "Chemnitz Hbf",
+                    "region": "DE-SN"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2021-09-11T11:25:00Z",
@@ -159,9 +161,11 @@
                 "scheduledArrivalTime": "2021-09-11T11:48:00Z",
                 "scheduledDepartureTime": "2021-09-11T11:47:00Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 50.849300384521484,
                     "longitude": 13.110199928283691,
-                    "name": "Falkenau Süd"
+                    "name": "Falkenau Süd",
+                    "region": "DE-SN"
                 }
             }
         ]

@@ -6,12 +6,14 @@
         ],
         "route": {
             "destination": {
+                "country": "DE",
                 "identifier": {
                     "unit-test": "641200010"
                 },
                 "latitude": 50.107139587402344,
                 "longitude": 8.663784980773926,
                 "name": "Frankfurt(Main)Hbf",
+                "region": "DE-HE",
                 "type": "Stop"
             },
             "direction": "Frankfurt(Main)Hbf",
@@ -24,12 +26,14 @@
         },
         "scheduledDepartureTime": "2020-02-09T20:18:00",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "unit-test": "4405"
             },
             "latitude": 50.94298553466797,
             "longitude": 6.958594799041748,
             "name": "Köln Hbf",
+            "region": "DE-NW",
             "type": "Stop"
         },
         "vehicleLayout": {
@@ -54,12 +58,14 @@
         ],
         "route": {
             "destination": {
+                "country": "DE",
                 "identifier": {
                     "unit-test": "4410"
                 },
                 "latitude": 50.93975830078125,
                 "longitude": 6.977822780609131,
                 "name": "Köln Messe/Deutz",
+                "region": "DE-NW",
                 "type": "Stop"
             },
             "direction": "Köln Messe/Deutz",
@@ -73,12 +79,14 @@
         "scheduledDepartureTime": "2020-02-09T22:05:00",
         "scheduledPlatform": "1",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "unit-test": "4405"
             },
             "latitude": 50.94298553466797,
             "longitude": 6.958594799041748,
             "name": "Köln Hbf",
+            "region": "DE-NW",
             "type": "Stop"
         },
         "vehicleLayout": {
@@ -103,12 +111,14 @@
         ],
         "route": {
             "destination": {
+                "country": "DE",
                 "identifier": {
                     "unit-test": "723330303"
                 },
                 "latitude": 50.2240104675293,
                 "longitude": 6.660368919372559,
                 "name": "Gerolstein",
+                "region": "DE-RP",
                 "type": "Stop"
             },
             "direction": "Gerolstein",
@@ -122,12 +132,14 @@
         "scheduledDepartureTime": "2020-02-09T22:11:00",
         "scheduledPlatform": "8 D-G",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "unit-test": "4405"
             },
             "latitude": 50.94298553466797,
             "longitude": 6.958594799041748,
             "name": "Köln Hbf",
+            "region": "DE-NW",
             "type": "Stop"
         },
         "vehicleLayout": {

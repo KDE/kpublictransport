@@ -5,8 +5,10 @@
                 "disruptionEffect": "NormalService",
                 "distance": 3,
                 "from": {
+                    "country": "DE",
                     "latitude": 50.94300079345703,
-                    "longitude": 6.9585700035095215
+                    "longitude": 6.9585700035095215,
+                    "region": "DE-NW"
                 },
                 "mode": "Walking",
                 "path": {
@@ -38,6 +40,7 @@
                     "value": "2021-02-27T12:52:30+01:00"
                 },
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:05315:11201:7:77"
                     },
@@ -45,6 +48,7 @@
                     "locality": "Köln",
                     "longitude": 6.9585700035095215,
                     "name": "Köln Hbf",
+                    "region": "DE-NW",
                     "type": "Stop"
                 }
             },
@@ -52,6 +56,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 33759,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:05315:11201:7:77"
                     },
@@ -59,6 +64,7 @@
                     "locality": "Köln",
                     "longitude": 6.9585700035095215,
                     "name": "Köln Hbf",
+                    "region": "DE-NW",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -110,6 +116,7 @@
                     "value": "2021-02-27T12:53:00+01:00"
                 },
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:05314:61101:7:73"
                     },
@@ -117,6 +124,7 @@
                     "locality": "Bonn",
                     "longitude": 7.096799850463867,
                     "name": "Bonn Hbf",
+                    "region": "DE-NW",
                     "type": "Stop"
                 }
             },
@@ -124,6 +132,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 9,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:05314:61101:7:73"
                     },
@@ -131,6 +140,7 @@
                     "locality": "Bonn",
                     "longitude": 7.096799850463867,
                     "name": "Bonn Hbf",
+                    "region": "DE-NW",
                     "type": "Stop"
                 },
                 "mode": "Walking",

@@ -5,9 +5,11 @@
                 "disruptionEffect": "NormalService",
                 "distance": 2889,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.58000183105469,
                     "longitude": 8.859999656677246,
-                    "name": "Origin"
+                    "name": "Origin",
+                    "region": "DE-BW"
                 },
                 "individualTransport": {
                     "mode": "Bike",
@@ -17,29 +19,35 @@
                 "scheduledArrivalTime": "2021-10-06T15:58:06Z",
                 "scheduledDepartureTime": "2021-10-06T15:45:30Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.593624114990234,
                     "longitude": 8.86339282989502,
-                    "name": "Fahrradabstellplatz"
+                    "name": "Fahrradabstellplatz",
+                    "region": "DE-BW"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 115,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.593624114990234,
                     "longitude": 8.86339282989502,
-                    "name": "Fahrradabstellplatz"
+                    "name": "Fahrradabstellplatz",
+                    "region": "DE-BW"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2021-10-06T16:01:00Z",
                 "scheduledDepartureTime": "2021-10-06T15:58:06Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "hbg:de:08115:4512:1:2"
                     },
                     "latitude": 48.593994140625,
                     "longitude": 8.862829208374023,
                     "name": "Herrenberg",
+                    "region": "DE-BW",
                     "type": "Stop"
                 }
             },
@@ -47,12 +55,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 35950,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "hbg:de:08115:4512:1:2"
                     },
                     "latitude": 48.593994140625,
                     "longitude": 8.862829208374023,
                     "name": "Herrenberg",
+                    "region": "DE-BW",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -68,12 +78,14 @@
                 "scheduledArrivalTime": "2021-10-06T16:40:00Z",
                 "scheduledDepartureTime": "2021-10-06T16:01:00Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "hbg:de:08111:6118:1:102"
                     },
                     "latitude": 48.78336715698242,
                     "longitude": 9.180337905883789,
                     "name": "Stuttgart Hauptbahnhof (tief)",
+                    "region": "DE-BW",
                     "type": "Stop"
                 }
             },
@@ -81,21 +93,25 @@
                 "disruptionEffect": "NormalService",
                 "distance": 102,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "hbg:de:08111:6118:1:102"
                     },
                     "latitude": 48.78336715698242,
                     "longitude": 9.180337905883789,
                     "name": "Stuttgart Hauptbahnhof (tief)",
+                    "region": "DE-BW",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2021-10-06T16:43:41Z",
                 "scheduledDepartureTime": "2021-10-06T16:40:00Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.7835693359375,
                     "longitude": 9.1814603805542,
-                    "name": "Destination"
+                    "name": "Destination",
+                    "region": "DE-BW"
                 }
             }
         ]

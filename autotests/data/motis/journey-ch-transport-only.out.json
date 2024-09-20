@@ -5,12 +5,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 113116,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503016:0:3"
                     },
                     "latitude": 47.45038604736328,
                     "longitude": 8.562399864196777,
                     "name": "Zürich Flughafen",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -19,12 +21,14 @@
                         "scheduledArrivalTime": "2024-02-09T21:13:00Z",
                         "scheduledDepartureTime": "2024-02-09T21:14:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8503006:0:3"
                             },
                             "latitude": 47.411529541015625,
                             "longitude": 8.544137001037598,
                             "name": "Zürich Oerlikon",
+                            "region": "CH-ZH",
                             "type": "Stop"
                         }
                     },
@@ -33,12 +37,14 @@
                         "scheduledArrivalTime": "2024-02-09T21:21:00Z",
                         "scheduledDepartureTime": "2024-02-09T21:32:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8503000:0:32"
                             },
                             "latitude": 47.37767791748047,
                             "longitude": 8.539457321166992,
                             "name": "Zürich HB",
+                            "region": "CH-ZH",
                             "type": "Stop"
                         }
                     },
@@ -47,6 +53,7 @@
                         "scheduledArrivalTime": "2024-02-09T22:02:00Z",
                         "scheduledDepartureTime": "2024-02-09T22:04:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8500218:0:8"
                             },
@@ -69,12 +76,14 @@
                 "scheduledArrivalTime": "2024-02-09T22:31:00Z",
                 "scheduledDepartureTime": "2024-02-09T21:08:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -82,24 +91,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-09T22:35:00Z",
                 "scheduledDepartureTime": "2024-02-09T22:31:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -107,12 +120,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 34511,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -121,12 +136,14 @@
                         "scheduledArrivalTime": "2024-02-09T22:57:00Z",
                         "scheduledDepartureTime": "2024-02-09T22:59:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507100:0:1"
                             },
                             "latitude": 46.754852294921875,
                             "longitude": 7.629607200622559,
                             "name": "Thun",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     }
@@ -143,12 +160,14 @@
                 "scheduledArrivalTime": "2024-02-09T23:08:00Z",
                 "scheduledDepartureTime": "2024-02-09T22:39:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -156,24 +175,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-09T23:12:00Z",
                 "scheduledDepartureTime": "2024-02-09T23:08:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -181,12 +204,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 60540,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -195,12 +220,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:20:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:20:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507481:0:1"
                             },
                             "latitude": 46.63802719116211,
                             "longitude": 7.691312789916992,
                             "name": "Mülenen",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -209,12 +236,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:22:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:22:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507480:0:1"
                             },
                             "latitude": 46.625125885009766,
                             "longitude": 7.690063953399658,
                             "name": "Reichenbach im Kandertal",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -223,12 +252,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:26:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:27:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507478:0:3"
                             },
                             "latitude": 46.58890914916992,
                             "longitude": 7.651418209075928,
                             "name": "Frutigen",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -237,12 +268,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:43:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:44:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507475:0:1"
                             },
                             "latitude": 46.49539566040039,
                             "longitude": 7.671414852142334,
                             "name": "Kandersteg",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -251,12 +284,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:57:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:58:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507474:0:2"
                             },
                             "latitude": 46.36771011352539,
                             "longitude": 7.754921913146973,
                             "name": "Goppenstein",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -265,12 +300,14 @@
                         "scheduledArrivalTime": "2024-02-10T00:03:00Z",
                         "scheduledDepartureTime": "2024-02-10T00:03:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507473:0:3"
                             },
                             "latitude": 46.32246017456055,
                             "longitude": 7.764084815979004,
                             "name": "Hohtenn",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -279,12 +316,14 @@
                         "scheduledArrivalTime": "2024-02-10T00:09:00Z",
                         "scheduledDepartureTime": "2024-02-10T00:09:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507472:0:2"
                             },
                             "latitude": 46.312347412109375,
                             "longitude": 7.844170093536377,
                             "name": "Ausserberg",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -293,12 +332,14 @@
                         "scheduledArrivalTime": "2024-02-10T00:13:00Z",
                         "scheduledDepartureTime": "2024-02-10T00:13:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507471:0:2"
                             },
                             "latitude": 46.30654525756836,
                             "longitude": 7.881028175354004,
                             "name": "Eggerberg",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     }
@@ -317,12 +358,14 @@
                 "scheduledArrivalTime": "2024-02-10T00:23:00Z",
                 "scheduledDepartureTime": "2024-02-09T23:15:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
                     "latitude": 46.319427490234375,
                     "longitude": 7.98809814453125,
                     "name": "Brig",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -330,24 +373,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 140,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
                     "latitude": 46.319427490234375,
                     "longitude": 7.98809814453125,
                     "name": "Brig",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-10T00:27:00Z",
                 "scheduledDepartureTime": "2024-02-10T00:23:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
                     "latitude": 46.31899642944336,
                     "longitude": 7.986382007598877,
                     "name": "Brig Bahnhofplatz",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -355,12 +402,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 32480,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
                     "latitude": 46.31899642944336,
                     "longitude": 7.986382007598877,
                     "name": "Brig Bahnhofplatz",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -369,12 +418,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:23:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:23:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501636"
                             },
                             "latitude": 46.296783447265625,
                             "longitude": 7.916305065155029,
                             "name": "Eyholz",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -383,12 +434,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:28:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:30:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501605:0:3"
                             },
                             "latitude": 46.29402542114258,
                             "longitude": 7.881467819213867,
                             "name": "Visp",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -397,12 +450,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:39:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:39:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501683:0:2"
                             },
                             "latitude": 46.231971740722656,
                             "longitude": 7.870759963989258,
                             "name": "Stalden-Saas",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -411,12 +466,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:46:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:46:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501684:0:1"
                             },
                             "latitude": 46.214073181152344,
                             "longitude": 7.836965084075928,
                             "name": "Kalpetran",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -425,12 +482,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:55:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:55:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501685"
                             },
                             "latitude": 46.17734146118164,
                             "longitude": 7.802083969116211,
                             "name": "St. Niklaus VS",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -439,12 +498,14 @@
                         "scheduledArrivalTime": "2024-02-10T05:06:00Z",
                         "scheduledDepartureTime": "2024-02-10T05:07:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501686"
                             },
                             "latitude": 46.132144927978516,
                             "longitude": 7.791635990142822,
                             "name": "Herbriggen",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     }
@@ -461,12 +522,14 @@
                 "scheduledArrivalTime": "2024-02-10T05:15:00Z",
                 "scheduledDepartureTime": "2024-02-10T04:17:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501687"
                     },
                     "latitude": 46.09993362426758,
                     "longitude": 7.781458854675293,
                     "name": "Randa",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             }
@@ -478,12 +541,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 8207,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503016:0:3"
                     },
                     "latitude": 47.45038604736328,
                     "longitude": 8.562399864196777,
                     "name": "Zürich Flughafen",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -498,12 +563,14 @@
                 "scheduledArrivalTime": "2024-02-09T21:25:00Z",
                 "scheduledDepartureTime": "2024-02-09T21:15:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503000:0:12"
                     },
                     "latitude": 47.37826156616211,
                     "longitude": 8.539240837097168,
                     "name": "Zürich HB",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 }
             },
@@ -511,24 +578,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 66,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503000:0:12"
                     },
                     "latitude": 47.37826156616211,
                     "longitude": 8.539240837097168,
                     "name": "Zürich HB",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-09T21:29:00Z",
                 "scheduledDepartureTime": "2024-02-09T21:25:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503000:0:32"
                     },
                     "latitude": 47.37767791748047,
                     "longitude": 8.539457321166992,
                     "name": "Zürich HB",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 }
             },
@@ -536,12 +607,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 104803,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503000:0:32"
                     },
                     "latitude": 47.37767791748047,
                     "longitude": 8.539457321166992,
                     "name": "Zürich HB",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -550,6 +623,7 @@
                         "scheduledArrivalTime": "2024-02-09T22:02:00Z",
                         "scheduledDepartureTime": "2024-02-09T22:04:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8500218:0:8"
                             },
@@ -572,12 +646,14 @@
                 "scheduledArrivalTime": "2024-02-09T22:31:00Z",
                 "scheduledDepartureTime": "2024-02-09T21:32:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -585,24 +661,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-09T22:35:00Z",
                 "scheduledDepartureTime": "2024-02-09T22:31:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -610,12 +690,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 34511,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -624,12 +706,14 @@
                         "scheduledArrivalTime": "2024-02-09T22:57:00Z",
                         "scheduledDepartureTime": "2024-02-09T22:59:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507100:0:1"
                             },
                             "latitude": 46.754852294921875,
                             "longitude": 7.629607200622559,
                             "name": "Thun",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     }
@@ -646,12 +730,14 @@
                 "scheduledArrivalTime": "2024-02-09T23:08:00Z",
                 "scheduledDepartureTime": "2024-02-09T22:39:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -659,24 +745,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-09T23:12:00Z",
                 "scheduledDepartureTime": "2024-02-09T23:08:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -684,12 +774,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 60540,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
                     "latitude": 46.68639373779297,
                     "longitude": 7.6801018714904785,
                     "name": "Spiez",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -698,12 +790,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:20:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:20:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507481:0:1"
                             },
                             "latitude": 46.63802719116211,
                             "longitude": 7.691312789916992,
                             "name": "Mülenen",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -712,12 +806,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:22:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:22:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507480:0:1"
                             },
                             "latitude": 46.625125885009766,
                             "longitude": 7.690063953399658,
                             "name": "Reichenbach im Kandertal",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -726,12 +822,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:26:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:27:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507478:0:3"
                             },
                             "latitude": 46.58890914916992,
                             "longitude": 7.651418209075928,
                             "name": "Frutigen",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -740,12 +838,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:43:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:44:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507475:0:1"
                             },
                             "latitude": 46.49539566040039,
                             "longitude": 7.671414852142334,
                             "name": "Kandersteg",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -754,12 +854,14 @@
                         "scheduledArrivalTime": "2024-02-09T23:57:00Z",
                         "scheduledDepartureTime": "2024-02-09T23:58:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507474:0:2"
                             },
                             "latitude": 46.36771011352539,
                             "longitude": 7.754921913146973,
                             "name": "Goppenstein",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -768,12 +870,14 @@
                         "scheduledArrivalTime": "2024-02-10T00:03:00Z",
                         "scheduledDepartureTime": "2024-02-10T00:03:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507473:0:3"
                             },
                             "latitude": 46.32246017456055,
                             "longitude": 7.764084815979004,
                             "name": "Hohtenn",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -782,12 +886,14 @@
                         "scheduledArrivalTime": "2024-02-10T00:09:00Z",
                         "scheduledDepartureTime": "2024-02-10T00:09:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507472:0:2"
                             },
                             "latitude": 46.312347412109375,
                             "longitude": 7.844170093536377,
                             "name": "Ausserberg",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -796,12 +902,14 @@
                         "scheduledArrivalTime": "2024-02-10T00:13:00Z",
                         "scheduledDepartureTime": "2024-02-10T00:13:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507471:0:2"
                             },
                             "latitude": 46.30654525756836,
                             "longitude": 7.881028175354004,
                             "name": "Eggerberg",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     }
@@ -818,12 +926,14 @@
                 "scheduledArrivalTime": "2024-02-10T00:23:00Z",
                 "scheduledDepartureTime": "2024-02-09T23:15:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
                     "latitude": 46.319427490234375,
                     "longitude": 7.98809814453125,
                     "name": "Brig",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -831,24 +941,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 140,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
                     "latitude": 46.319427490234375,
                     "longitude": 7.98809814453125,
                     "name": "Brig",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-10T00:27:00Z",
                 "scheduledDepartureTime": "2024-02-10T00:23:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
                     "latitude": 46.31899642944336,
                     "longitude": 7.986382007598877,
                     "name": "Brig Bahnhofplatz",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -856,12 +970,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 32480,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
                     "latitude": 46.31899642944336,
                     "longitude": 7.986382007598877,
                     "name": "Brig Bahnhofplatz",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -870,12 +986,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:23:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:23:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501636"
                             },
                             "latitude": 46.296783447265625,
                             "longitude": 7.916305065155029,
                             "name": "Eyholz",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -884,12 +1002,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:28:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:30:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501605:0:3"
                             },
                             "latitude": 46.29402542114258,
                             "longitude": 7.881467819213867,
                             "name": "Visp",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -898,12 +1018,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:39:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:39:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501683:0:2"
                             },
                             "latitude": 46.231971740722656,
                             "longitude": 7.870759963989258,
                             "name": "Stalden-Saas",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -912,12 +1034,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:46:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:46:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501684:0:1"
                             },
                             "latitude": 46.214073181152344,
                             "longitude": 7.836965084075928,
                             "name": "Kalpetran",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -926,12 +1050,14 @@
                         "scheduledArrivalTime": "2024-02-10T04:55:00Z",
                         "scheduledDepartureTime": "2024-02-10T04:55:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501685"
                             },
                             "latitude": 46.17734146118164,
                             "longitude": 7.802083969116211,
                             "name": "St. Niklaus VS",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -940,12 +1066,14 @@
                         "scheduledArrivalTime": "2024-02-10T05:06:00Z",
                         "scheduledDepartureTime": "2024-02-10T05:07:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501686"
                             },
                             "latitude": 46.132144927978516,
                             "longitude": 7.791635990142822,
                             "name": "Herbriggen",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     }
@@ -962,12 +1090,14 @@
                 "scheduledArrivalTime": "2024-02-10T05:15:00Z",
                 "scheduledDepartureTime": "2024-02-10T04:17:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501687"
                     },
                     "latitude": 46.09993362426758,
                     "longitude": 7.781458854675293,
                     "name": "Randa",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             }
@@ -979,12 +1109,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 113075,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503016:0:3"
                     },
                     "latitude": 47.45038604736328,
                     "longitude": 8.562399864196777,
                     "name": "Zürich Flughafen",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -993,12 +1125,14 @@
                         "scheduledArrivalTime": "2024-02-09T21:55:00Z",
                         "scheduledDepartureTime": "2024-02-09T22:02:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8503000:0:31"
                             },
                             "latitude": 47.37759780883789,
                             "longitude": 8.539411544799805,
                             "name": "Zürich HB",
+                            "region": "CH-ZH",
                             "type": "Stop"
                         }
                     },
@@ -1007,6 +1141,7 @@
                         "scheduledArrivalTime": "2024-02-09T22:32:00Z",
                         "scheduledDepartureTime": "2024-02-09T22:35:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8500218:0:8"
                             },
@@ -1029,12 +1164,14 @@
                 "scheduledArrivalTime": "2024-02-09T23:02:00Z",
                 "scheduledDepartureTime": "2024-02-09T21:45:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 }
             },
@@ -1042,12 +1179,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 80783,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
                     "latitude": 46.948829650878906,
                     "longitude": 7.439128875732422,
                     "name": "Bern",
+                    "region": "CH-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -1056,12 +1195,14 @@
                         "scheduledArrivalTime": "2024-02-10T05:25:00Z",
                         "scheduledDepartureTime": "2024-02-10T05:26:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507100:0:2"
                             },
                             "latitude": 46.754852294921875,
                             "longitude": 7.629607200622559,
                             "name": "Thun",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     },
@@ -1070,12 +1211,14 @@
                         "scheduledArrivalTime": "2024-02-10T05:36:00Z",
                         "scheduledDepartureTime": "2024-02-10T05:36:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8507483:0:3"
                             },
                             "latitude": 46.68639373779297,
                             "longitude": 7.6801018714904785,
                             "name": "Spiez",
+                            "region": "CH-BE",
                             "type": "Stop"
                         }
                     }
@@ -1092,12 +1235,14 @@
                 "scheduledArrivalTime": "2024-02-10T06:02:00Z",
                 "scheduledDepartureTime": "2024-02-10T05:07:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501605:0:7"
                     },
                     "latitude": 46.29402542114258,
                     "longitude": 7.881467819213867,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -1105,24 +1250,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501605:0:7"
                     },
                     "latitude": 46.29402542114258,
                     "longitude": 7.881467819213867,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-02-10T06:06:00Z",
                 "scheduledDepartureTime": "2024-02-10T06:02:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501605:0:3"
                     },
                     "latitude": 46.29402542114258,
                     "longitude": 7.881467819213867,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -1130,12 +1279,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 23864,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501605:0:3"
                     },
                     "latitude": 46.29402542114258,
                     "longitude": 7.881467819213867,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -1144,12 +1295,14 @@
                         "scheduledArrivalTime": "2024-02-10T06:17:00Z",
                         "scheduledDepartureTime": "2024-02-10T06:18:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501683:0:2"
                             },
                             "latitude": 46.231971740722656,
                             "longitude": 7.870759963989258,
                             "name": "Stalden-Saas",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -1158,12 +1311,14 @@
                         "scheduledArrivalTime": "2024-02-10T06:25:00Z",
                         "scheduledDepartureTime": "2024-02-10T06:25:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501684:0:1"
                             },
                             "latitude": 46.214073181152344,
                             "longitude": 7.836965084075928,
                             "name": "Kalpetran",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -1172,12 +1327,14 @@
                         "scheduledArrivalTime": "2024-02-10T06:34:00Z",
                         "scheduledDepartureTime": "2024-02-10T06:36:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501685"
                             },
                             "latitude": 46.17734146118164,
                             "longitude": 7.802083969116211,
                             "name": "St. Niklaus VS",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     },
@@ -1186,12 +1343,14 @@
                         "scheduledArrivalTime": "2024-02-10T06:44:00Z",
                         "scheduledDepartureTime": "2024-02-10T06:44:00Z",
                         "stopPoint": {
+                            "country": "CH",
                             "identifier": {
                                 "motis": "swiss_8501686"
                             },
                             "latitude": 46.132144927978516,
                             "longitude": 7.791635990142822,
                             "name": "Herbriggen",
+                            "region": "CH-VS",
                             "type": "Stop"
                         }
                     }
@@ -1208,12 +1367,14 @@
                 "scheduledArrivalTime": "2024-02-10T06:52:00Z",
                 "scheduledDepartureTime": "2024-02-10T06:08:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501687"
                     },
                     "latitude": 46.09993362426758,
                     "longitude": 7.781458854675293,
                     "name": "Randa",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             }

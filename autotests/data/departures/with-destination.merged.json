@@ -3,6 +3,7 @@
     "expectedDepartureTime": "2019-12-12T18:41:00+01:00",
     "route": {
         "destination": {
+            "country": "DE",
             "identifier": {
                 "db": "8089070",
                 "ibnr": "8089070"
@@ -25,12 +26,14 @@
     "scheduledDepartureTime": "2019-12-12T18:39:00+01:00",
     "scheduledPlatform": "1",
     "stopPoint": {
+        "country": "DE",
         "identifier": {
             "db": "8089073",
             "ibnr": "8089073"
         },
         "latitude": 52.475799560546875,
         "longitude": 13.365361213684082,
-        "name": "S Südkreuz Bhf (Berlin)"
+        "name": "S Südkreuz Bhf (Berlin)",
+        "region": "DE-BE"
     }
 }

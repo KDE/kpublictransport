@@ -1,5 +1,6 @@
 [
     {
+        "country": "DE",
         "equipment": {
             "disruptionEffect": "NormalService",
             "type": "Escalator"
@@ -10,9 +11,11 @@
         "latitude": 52.52497482299805,
         "longitude": 13.368995666503906,
         "name": "zu Gleis 13/14",
+        "region": "DE-BE",
         "type": "Equipment"
     },
     {
+        "country": "DE",
         "equipment": {
             "disruptionEffect": "NoService",
             "type": "Escalator"
@@ -23,9 +26,11 @@
         "latitude": 52.52516555786133,
         "longitude": 13.368868827819824,
         "name": "zu Gleis 15/16 (S-Bahn)",
+        "region": "DE-BE",
         "type": "Equipment"
     },
     {
+        "country": "DE",
         "equipment": {
             "disruptionEffect": "NoService",
             "notes": [
@@ -39,9 +44,11 @@
         "latitude": 52.525848388671875,
         "longitude": 13.368924140930176,
         "name": "zwischen OG 2 S-Bahnsteig Gl. 15 und 16 und OG 1 und EG und UG 1 und Tunnelbahnsteig UG 2 Gl. 5 und 6",
+        "region": "DE-BE",
         "type": "Equipment"
     },
     {
+        "country": "DE",
         "equipment": {
             "disruptionEffect": "NormalService",
             "notes": [
@@ -55,6 +62,7 @@
         "latitude": 52.52568435668945,
         "longitude": 13.36989688873291,
         "name": "zwischen Friedrich-List-Ufer / Europaplatz und UG 1 und U-Bahnsteig",
+        "region": "DE-BE",
         "type": "Equipment"
     }
 ]

@@ -17,6 +17,7 @@
         "scheduledDepartureTime": "2019-11-11T19:31:00",
         "scheduledPlatform": "4",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:09663:177:3:4",
                 "testid": "80001152"
@@ -24,6 +25,7 @@
             "latitude": 49.80202865600586,
             "longitude": 9.93593978881836,
             "name": "Würzburg Hbf",
+            "region": "DE-BY",
             "type": "Stop"
         }
     },
@@ -40,6 +42,7 @@
         },
         "scheduledDepartureTime": "2019-11-11T20:22:00",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:09663:75:10:22",
                 "testid": "80029081"
@@ -47,6 +50,7 @@
             "latitude": 49.800758361816406,
             "longitude": 9.934450149536133,
             "name": "Würzburg, Busbahnhof",
+            "region": "DE-BY",
             "type": "Stop"
         }
     },
@@ -62,6 +66,7 @@
         },
         "scheduledDepartureTime": "2019-11-11T20:22:00",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:09663:170:1:02",
                 "testid": "80029079"
@@ -69,6 +74,7 @@
             "latitude": 49.80030059814453,
             "longitude": 9.9364595413208,
             "name": "Würzburg, Hauptbahnhof Ost",
+            "region": "DE-BY",
             "type": "Stop"
         }
     }

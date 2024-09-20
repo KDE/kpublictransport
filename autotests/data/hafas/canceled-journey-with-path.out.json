@@ -22,12 +22,14 @@
                 "disruptionEffect": "NoService",
                 "distance": 163708,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "8011113"
                     },
                     "latitude": 52.47623062133789,
                     "longitude": 13.365862846374512,
                     "name": "Berlin Südkreuz",
+                    "region": "DE-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -36,12 +38,14 @@
                         "scheduledArrivalTime": "2021-02-07T15:10:00+01:00",
                         "scheduledDepartureTime": "2021-02-07T15:12:00+01:00",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "8010222"
                             },
                             "latitude": 51.86758041381836,
                             "longitude": 12.661998748779297,
                             "name": "Lutherstadt Wittenberg Hbf",
+                            "region": "DE-ST",
                             "type": "Stop"
                         }
                     }
@@ -1524,12 +1528,14 @@
                 "scheduledArrivalTime": "2021-02-07T15:42:00+01:00",
                 "scheduledDepartureTime": "2021-02-07T14:37:00+01:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "8010205"
                     },
                     "latitude": 51.3450813293457,
                     "longitude": 12.3811674118042,
                     "name": "Leipzig Hbf",
+                    "region": "DE-SN",
                     "type": "Stop"
                 }
             }

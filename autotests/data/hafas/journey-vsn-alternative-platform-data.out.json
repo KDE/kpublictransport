@@ -26,6 +26,7 @@
                 "expectedDeparturePlatform": "16",
                 "expectedDepartureTime": "2021-12-12T12:30:00",
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:03241:9830",
                         "unit-test": "8003487"
@@ -33,6 +34,7 @@
                     "latitude": 52.31689453125,
                     "longitude": 9.792866706848145,
                     "name": "Hannover Messe/Laatzen",
+                    "region": "DE-NI",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -56,6 +58,7 @@
                 "scheduledDeparturePlatform": "16",
                 "scheduledDepartureTime": "2021-12-12T12:30:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:03241:31",
                         "unit-test": "8000152"
@@ -63,6 +66,7 @@
                     "latitude": 52.377376556396484,
                     "longitude": 9.741988182067871,
                     "name": "Hannover Hbf",
+                    "region": "DE-NI",
                     "type": "Stop"
                 }
             }

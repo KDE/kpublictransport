@@ -4,13 +4,15 @@
             "disruptionEffect": "NormalService",
             "distance": 9040971,
             "from": {
+                "country": "GB",
                 "identifier": {
                     "iata": "LHR",
                     "icao": "EGLL"
                 },
                 "latitude": 51.279998779296875,
                 "longitude": -0.26499998569488525,
-                "name": "LHR"
+                "name": "LHR",
+                "region": "GB-ENG"
             },
             "mode": "PublicTransport",
             "route": {
@@ -20,13 +22,15 @@
                 }
             },
             "to": {
+                "country": "ZA",
                 "identifier": {
                     "iata": "JNB",
                     "icao": "FAOR"
                 },
                 "latitude": -26.082000732421875,
                 "longitude": 28.143999099731445,
-                "name": "JNB"
+                "name": "JNB",
+                "region": "ZA-GP"
             }
         }
     ]

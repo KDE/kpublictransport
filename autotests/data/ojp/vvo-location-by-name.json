@@ -1,5 +1,6 @@
 [
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:14612:28",
             "test_id": "de:14612:28"
@@ -8,9 +9,11 @@
         "locality": "Dresden",
         "longitude": 13.732930183410645,
         "name": "Hauptbahnhof",
+        "region": "DE-SN",
         "type": "Stop"
     },
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:14612:32",
             "test_id": "de:14612:32"
@@ -19,9 +22,11 @@
         "locality": "Dresden",
         "longitude": 13.735090255737305,
         "name": "Hauptbahnhof Nord",
+        "region": "DE-SN",
         "type": "Stop"
     },
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:14612:36",
             "test_id": "de:14612:36"
@@ -30,6 +35,7 @@
         "locality": "Dresden",
         "longitude": 13.734049797058105,
         "name": "Hauptbahnhof (Strehlener Str.)",
+        "region": "DE-SN",
         "type": "Stop"
     }
 ]

@@ -14,6 +14,7 @@
         },
         "scheduledDepartureTime": "2021-09-06T20:27:00Z",
         "stopPoint": {
+            "country": "CH",
             "identifier": {
                 "test_id": "8501687",
                 "uic": "8501687"
@@ -22,6 +23,7 @@
             "locality": "Randa",
             "longitude": 7.781459808349609,
             "name": "Randa",
+            "region": "CH-VS",
             "type": "Stop"
         }
     },
@@ -40,6 +42,7 @@
         },
         "scheduledDepartureTime": "2021-09-06T21:29:00Z",
         "stopPoint": {
+            "country": "CH",
             "identifier": {
                 "test_id": "8501687",
                 "uic": "8501687"
@@ -48,6 +51,7 @@
             "locality": "Randa",
             "longitude": 7.781459808349609,
             "name": "Randa",
+            "region": "CH-VS",
             "type": "Stop"
         }
     }

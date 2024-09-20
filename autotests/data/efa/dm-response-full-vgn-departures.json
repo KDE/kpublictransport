@@ -12,6 +12,7 @@
         "scheduledDepartureTime": "2019-11-11T20:02:00",
         "scheduledPlatform": "",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:09564:1391:11:2",
                 "testid": "3001391"
@@ -20,6 +21,7 @@
             "locality": "Nürnberg",
             "longitude": 11.079079627990723,
             "name": "Nürnberg Flughafen",
+            "region": "DE-BY",
             "type": "Stop"
         }
     },
@@ -40,6 +42,7 @@
         "scheduledDepartureTime": "2019-11-11T20:05:00",
         "scheduledPlatform": "",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:09564:1391:3:6",
                 "testid": "3001391"
@@ -48,6 +51,7 @@
             "locality": "Nürnberg",
             "longitude": 11.078929901123047,
             "name": "Nürnberg Flughafen",
+            "region": "DE-BY",
             "type": "Stop"
         }
     }

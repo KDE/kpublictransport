@@ -4,9 +4,11 @@
             "disruptionEffect": "NormalService",
             "distance": 31,
             "from": {
+                "country": "CH",
                 "latitude": 47.45050048828125,
                 "longitude": 8.562749862670898,
                 "name": "Vorfahrt Abflug (Kloten)",
+                "region": "CH-ZH",
                 "timezone": "Europe/Zurich"
             },
             "mode": "Walking",
@@ -19,9 +21,11 @@
                 "value": "2019-03-02T15:38:30+01:00"
             },
             "to": {
+                "country": "CH",
                 "latitude": 47.45037841796875,
                 "longitude": 8.562378883361816,
                 "name": "Zürich Flughafen (Kloten)",
+                "region": "CH-ZH",
                 "timezone": "Europe/Zurich"
             }
         },
@@ -29,12 +33,14 @@
             "disruptionEffect": "NormalService",
             "distance": 138607,
             "from": {
+                "country": "CH",
                 "identifier": {
                     "ibnr": "8503016"
                 },
                 "latitude": 47.45037841796875,
                 "longitude": 8.5623779296875,
                 "name": "Zürich Flughafen",
+                "region": "CH-ZH",
                 "timezone": "Europe/Zurich"
             },
             "mode": "PublicTransport",
@@ -57,12 +63,14 @@
                 "value": "2019-03-02T15:46:00+01:00"
             },
             "to": {
+                "country": "CH",
                 "identifier": {
                     "ibnr": "8501605"
                 },
                 "latitude": 46.29402160644531,
                 "longitude": 7.881446838378906,
                 "name": "Visp",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             }
         },
@@ -70,9 +78,11 @@
             "disruptionEffect": "NormalService",
             "distance": 0,
             "from": {
+                "country": "CH",
                 "latitude": 46.29402160644531,
                 "longitude": 7.881449222564697,
                 "name": "Visp (Visp)",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             },
             "mode": "Transfer",
@@ -85,9 +95,11 @@
                 "value": "2019-03-02T18:02:00+01:00"
             },
             "to": {
+                "country": "CH",
                 "latitude": 46.29402160644531,
                 "longitude": 7.881449222564697,
                 "name": "Visp (Visp)",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             }
         },
@@ -102,12 +114,14 @@
             "disruptionEffect": "NormalService",
             "distance": 22963,
             "from": {
+                "country": "CH",
                 "identifier": {
                     "ibnr": "8501605"
                 },
                 "latitude": 46.29402160644531,
                 "longitude": 7.881446838378906,
                 "name": "Visp",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             },
             "mode": "PublicTransport",
@@ -129,12 +143,14 @@
                 "value": "2019-03-02T18:08:00+01:00"
             },
             "to": {
+                "country": "CH",
                 "identifier": {
                     "ibnr": "8501687"
                 },
                 "latitude": 46.099632263183594,
                 "longitude": 7.7816925048828125,
                 "name": "Randa",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             }
         },
@@ -142,9 +158,11 @@
             "disruptionEffect": "NormalService",
             "distance": 166,
             "from": {
+                "country": "CH",
                 "latitude": 46.09992980957031,
                 "longitude": 7.781458854675293,
                 "name": "Randa (Randa)",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             },
             "mode": "Walking",
@@ -157,9 +175,11 @@
                 "value": "2019-03-02T18:54:00+01:00"
             },
             "to": {
+                "country": "CH",
                 "latitude": 46.0989990234375,
                 "longitude": 7.7831501960754395,
                 "name": "",
+                "region": "CH-VS",
                 "timezone": "Europe/Zurich"
             }
         }

@@ -5,20 +5,24 @@
                 "disruptionEffect": "NormalService",
                 "distance": 459,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.645301818847656,
                     "longitude": 8.897701263427734,
-                    "name": "Origin"
+                    "name": "Origin",
+                    "region": "DE-BW"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-08-10T02:20:10Z",
                 "scheduledDepartureTime": "2020-08-10T02:13:39Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "mfdz:5007052"
                     },
                     "latitude": 48.64262390136719,
                     "longitude": 8.895047187805176,
                     "name": "Gärtringen, Feuerwehrgerätehaus",
+                    "region": "DE-BW",
                     "type": "Stop"
                 }
             },
@@ -26,12 +30,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 31186,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "mfdz:5007052"
                     },
                     "latitude": 48.64262390136719,
                     "longitude": 8.895047187805176,
                     "name": "Gärtringen, Feuerwehrgerätehaus",
+                    "region": "DE-BW",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -40,12 +46,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:21:19Z",
                         "scheduledDepartureTime": "2020-08-10T02:21:19Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5004727"
                             },
                             "latitude": 48.64186477661133,
                             "longitude": 8.902321815490723,
                             "name": "Gärtringen, Rathaus",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -54,12 +62,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:21:29Z",
                         "scheduledDepartureTime": "2020-08-10T02:21:29Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:tmp-756"
                             },
                             "latitude": 48.64158630371094,
                             "longitude": 8.90291690826416,
                             "name": "71116 Gärtringen",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -68,12 +78,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:25:28Z",
                         "scheduledDepartureTime": "2020-08-10T02:25:28Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5004752"
                             },
                             "latitude": 48.65549850463867,
                             "longitude": 8.94461727142334,
                             "name": "Ehningen, Abzweig (K1077)",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -82,12 +94,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:29:04Z",
                         "scheduledDepartureTime": "2020-08-10T02:29:04Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5004716"
                             },
                             "latitude": 48.6773796081543,
                             "longitude": 8.984813690185547,
                             "name": "Böblingen, Herrenberger Straße",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -96,12 +110,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:29:43Z",
                         "scheduledDepartureTime": "2020-08-10T02:29:43Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5004707"
                             },
                             "latitude": 48.67973709106445,
                             "longitude": 8.992716789245605,
                             "name": "Böblingen, Kremser Straße",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -110,12 +126,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:30:07Z",
                         "scheduledDepartureTime": "2020-08-10T02:30:07Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5003106"
                             },
                             "latitude": 48.681400299072266,
                             "longitude": 8.997306823730469,
                             "name": "Böblingen, Breslauer Straße",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -124,12 +142,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:31:01Z",
                         "scheduledDepartureTime": "2020-08-10T02:31:01Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5004702"
                             },
                             "latitude": 48.681644439697266,
                             "longitude": 9.005658149719238,
                             "name": "Böblingen, Steinbeisstraße",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -138,12 +158,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:31:39Z",
                         "scheduledDepartureTime": "2020-08-10T02:31:39Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:tmp-176"
                             },
                             "latitude": 48.681331634521484,
                             "longitude": 9.008830070495605,
                             "name": "Böblingen",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -152,12 +174,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:32:14Z",
                         "scheduledDepartureTime": "2020-08-10T02:32:14Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5003126"
                             },
                             "latitude": 48.683773040771484,
                             "longitude": 9.008116722106934,
                             "name": "Böblingen, Parkstraße (Landratsamt)",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -166,12 +190,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:32:34Z",
                         "scheduledDepartureTime": "2020-08-10T02:32:34Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5003105"
                             },
                             "latitude": 48.6849365234375,
                             "longitude": 9.010099411010742,
                             "name": "Böblingen, Elbenplatz",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -180,12 +206,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:33:01Z",
                         "scheduledDepartureTime": "2020-08-10T02:33:01Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5003112"
                             },
                             "latitude": 48.68779373168945,
                             "longitude": 9.009027481079102,
                             "name": "Böblingen, Friedrich-List-Platz",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -194,12 +222,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:41:04Z",
                         "scheduledDepartureTime": "2020-08-10T02:41:04Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5002580"
                             },
                             "latitude": 48.739505767822266,
                             "longitude": 9.105403900146484,
                             "name": "Stuttgart, Johannesgraben",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -208,12 +238,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:42:05Z",
                         "scheduledDepartureTime": "2020-08-10T02:42:05Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5002604"
                             },
                             "latitude": 48.74593734741211,
                             "longitude": 9.113358497619629,
                             "name": "Stuttgart, Knappenweg",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -222,12 +254,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:49:56Z",
                         "scheduledDepartureTime": "2020-08-10T02:49:56Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5006020"
                             },
                             "latitude": 48.7706413269043,
                             "longitude": 9.175802230834961,
                             "name": "Stuttgart, Österreichischer Platz",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     },
@@ -236,12 +270,14 @@
                         "scheduledArrivalTime": "2020-08-10T02:50:33Z",
                         "scheduledDepartureTime": "2020-08-10T02:50:33Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "mfdz:5006074"
                             },
                             "latitude": 48.77375793457031,
                             "longitude": 9.17988109588623,
                             "name": "Stuttgart, Rathaus",
+                            "region": "DE-BW",
                             "type": "Stop"
                         }
                     }
@@ -257,12 +293,14 @@
                 "scheduledArrivalTime": "2020-08-10T02:50:51Z",
                 "scheduledDepartureTime": "2020-08-10T02:20:10Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "mfdz:5006023"
                     },
                     "latitude": 48.775238037109375,
                     "longitude": 9.181954383850098,
                     "name": "Stuttgart, Dorotheenstraße",
+                    "region": "DE-BW",
                     "type": "Stop"
                 }
             },
@@ -270,24 +308,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 58,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "mfdz:5006023"
                     },
                     "latitude": 48.775238037109375,
                     "longitude": 9.181954383850098,
                     "name": "Stuttgart, Dorotheenstraße",
+                    "region": "DE-BW",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-08-10T02:52:47Z",
                 "scheduledDepartureTime": "2020-08-10T02:50:51Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
                     },
                     "latitude": 48.77566146850586,
                     "longitude": 9.182080268859863,
                     "name": "Charlottenplatz / Dorotheenstr.",
+                    "region": "DE-BW",
                     "rentalVehicleStation": {
                         "availableVehicles": 12,
                         "capacity": -1,
@@ -303,12 +345,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 1227,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
                     },
                     "latitude": 48.77566146850586,
                     "longitude": 9.182080268859863,
                     "name": "Charlottenplatz / Dorotheenstr.",
+                    "region": "DE-BW",
                     "rentalVehicleStation": {
                         "availableVehicles": 12,
                         "capacity": 99,
@@ -330,18 +374,22 @@
                 "scheduledArrivalTime": "2020-08-10T03:00:15Z",
                 "scheduledDepartureTime": "2020-08-10T02:52:47Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.7825927734375,
                     "longitude": 9.181904792785645,
-                    "name": "corner of path and open area"
+                    "name": "corner of path and open area",
+                    "region": "DE-BW"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
-                    "name": "open area"
+                    "name": "open area",
+                    "region": "DE-BW"
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
@@ -354,12 +402,14 @@
                 "scheduledArrivalTime": "2020-08-10T03:00:20Z",
                 "scheduledDepartureTime": "2020-08-10T03:00:19Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
                     },
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
                     "name": "Königstraße / Arnulf-Klett-Platz",
+                    "region": "DE-BW",
                     "rentalVehicleStation": {
                         "availableVehicles": 23,
                         "capacity": -1,
@@ -375,12 +425,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 158,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
                     },
                     "latitude": 48.78257369995117,
                     "longitude": 9.181889533996582,
                     "name": "Königstraße / Arnulf-Klett-Platz",
+                    "region": "DE-BW",
                     "rentalVehicleStation": {
                         "availableVehicles": 23,
                         "capacity": 99,
@@ -395,9 +447,11 @@
                 "scheduledArrivalTime": "2020-08-10T03:03:29Z",
                 "scheduledDepartureTime": "2020-08-10T03:00:20Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.7835693359375,
                     "longitude": 9.1814603805542,
-                    "name": "Destination"
+                    "name": "Destination",
+                    "region": "DE-BW"
                 }
             }
         ]

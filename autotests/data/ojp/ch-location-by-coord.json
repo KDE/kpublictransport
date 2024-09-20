@@ -1,5 +1,6 @@
 [
     {
+        "country": "CH",
         "identifier": {
             "test_id": "8501687",
             "uic": "8501687"
@@ -8,6 +9,7 @@
         "locality": "Randa",
         "longitude": 7.781459808349609,
         "name": "Randa",
+        "region": "CH-VS",
         "type": "Stop"
     }
 ]

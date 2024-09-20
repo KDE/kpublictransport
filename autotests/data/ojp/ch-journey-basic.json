@@ -8,6 +8,7 @@
                 "expectedDeparturePlatform": "4",
                 "expectedDepartureTime": "2021-09-07T15:46:00Z",
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "test_id": "8503016",
                         "uic": "8503016"
@@ -16,6 +17,7 @@
                     "locality": "Zürich Flughafen",
                     "longitude": 8.562399864196777,
                     "name": "Zürich Flughafen",
+                    "region": "CH-ZH",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -41,6 +43,7 @@
                 "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2021-09-07T15:45:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "test_id": "8501605",
                         "uic": "8501605"
@@ -49,6 +52,7 @@
                     "locality": "Visp",
                     "longitude": 7.881470203399658,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -56,6 +60,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 0,
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "test_id": "8501605",
                         "uic": "8501605"
@@ -64,12 +69,14 @@
                     "locality": "Visp",
                     "longitude": 7.881470203399658,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "mode": "Transfer",
                 "scheduledArrivalTime": "2021-09-07T18:08:00Z",
                 "scheduledDepartureTime": "2021-09-07T18:02:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "test_id": "8501605",
                         "uic": "8501605"
@@ -78,6 +85,7 @@
                     "locality": "Visp",
                     "longitude": 7.881470203399658,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             },
@@ -87,6 +95,7 @@
                 "expectedArrivalTime": "2021-09-07T18:54:00Z",
                 "expectedDepartureTime": "2021-09-07T18:08:00Z",
                 "from": {
+                    "country": "CH",
                     "identifier": {
                         "test_id": "8501605",
                         "uic": "8501605"
@@ -95,6 +104,7 @@
                     "locality": "Visp",
                     "longitude": 7.881470203399658,
                     "name": "Visp",
+                    "region": "CH-VS",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -112,6 +122,7 @@
                 "scheduledDeparturePlatform": "3",
                 "scheduledDepartureTime": "2021-09-07T18:08:00Z",
                 "to": {
+                    "country": "CH",
                     "identifier": {
                         "test_id": "8501687",
                         "uic": "8501687"
@@ -120,6 +131,7 @@
                     "locality": "Randa",
                     "longitude": 7.781459808349609,
                     "name": "Randa",
+                    "region": "CH-VS",
                     "type": "Stop"
                 }
             }

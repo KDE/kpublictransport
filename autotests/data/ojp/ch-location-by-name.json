@@ -1,5 +1,6 @@
 [
     {
+        "country": "CH",
         "identifier": {
             "test_id": "8503016",
             "uic": "8503016"
@@ -8,9 +9,11 @@
         "locality": "Kloten",
         "longitude": 8.562399864196777,
         "name": "Zürich Flughafen",
+        "region": "CH-ZH",
         "type": "Stop"
     },
     {
+        "country": "CH",
         "identifier": {
             "test_id": "8580301",
             "uic": "8580301"
@@ -19,6 +22,7 @@
         "locality": "Kloten",
         "longitude": 8.56566047668457,
         "name": "Zürich Flughafen, OPC",
+        "region": "CH-ZH",
         "type": "Stop"
     }
 ]

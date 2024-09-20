@@ -9,6 +9,7 @@
                 "expectedDeparturePlatform": "",
                 "expectedDepartureTime": "2020-04-27T22:07:00",
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:09564:510:11:U2",
                         "testid": "3000510"
@@ -17,6 +18,7 @@
                     "locality": "Nürnberg",
                     "longitude": 11.081809997558594,
                     "name": "Nürnberg Hauptbahnhof",
+                    "region": "DE-BY",
                     "type": "Stop"
                 },
                 "mode": "Walking",
@@ -360,10 +362,12 @@
                 "scheduledDeparturePlatform": "",
                 "scheduledDepartureTime": "2020-04-27T22:07:00",
                 "to": {
+                    "country": "DE",
                     "latitude": 49.445499420166016,
                     "locality": "Nürnberg",
                     "longitude": 11.082300186157227,
-                    "name": "Nürnberg, Bahnsteig"
+                    "name": "Nürnberg, Bahnsteig",
+                    "region": "DE-BY"
                 }
             }
         ]

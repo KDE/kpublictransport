@@ -1,11 +1,13 @@
 [
     {
+        "country": "DE",
         "identifier": {
             "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N2JkNmQ5Y2ItNTA5Yi00Mzc4LTgzZGItY2ViYjQ0ZWUxZjZm"
         },
         "latitude": 48.59449005126953,
         "longitude": 8.862079620361328,
         "name": "Bhf. Herrenberg / Kalkofenstraße",
+        "region": "DE-BW",
         "rentalVehicleStation": {
             "availableVehicles": 11,
             "capacity": 99,
@@ -17,12 +19,14 @@
         "type": "RentedVehicleStation"
     },
     {
+        "country": "DE",
         "identifier": {
             "gtfs": "QmlrZVJlbnRhbFN0YXRpb246ZmFyZQ"
         },
         "latitude": 48.596160888671875,
         "longitude": 8.870196342468262,
         "name": "E-Lastenrad FaRe",
+        "region": "DE-BW",
         "rentalVehicle": {
             "network": {
                 "name": "cargo-bike",

@@ -42,6 +42,7 @@
                 "scheduledDeparturePlatform": "13 Nord",
                 "scheduledDepartureTime": "2021-06-16T21:31:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:07231:40916:1:3",
                         "testid": "17040916"
@@ -50,6 +51,7 @@
                     "locality": "Wittlich",
                     "longitude": 6.943630218505859,
                     "name": "Wittlich, Hauptbahnhof",
+                    "region": "DE-RP",
                     "type": "Stop"
                 }
             }

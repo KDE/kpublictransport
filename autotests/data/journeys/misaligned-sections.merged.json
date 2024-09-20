@@ -4,9 +4,11 @@
             "disruptionEffect": "NormalService",
             "distance": 93,
             "from": {
+                "country": "FR",
                 "latitude": 49.00423812866211,
                 "longitude": 2.5702035427093506,
                 "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             },
             "mode": "Walking",
@@ -19,9 +21,11 @@
                 "value": "2019-03-03T11:27:03+01:00"
             },
             "to": {
+                "country": "FR",
                 "latitude": 49.004150390625,
                 "longitude": 2.5708179473876953,
                 "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             }
         },
@@ -29,9 +33,11 @@
             "disruptionEffect": "NormalService",
             "distance": 22825,
             "from": {
+                "country": "FR",
                 "latitude": 49.004150390625,
                 "longitude": 2.5708179473876953,
                 "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             },
             "mode": "PublicTransport",
@@ -54,9 +60,11 @@
                 "value": "2019-03-03T11:29:00+01:00"
             },
             "to": {
+                "country": "FR",
                 "latitude": 48.860809326171875,
                 "longitude": 2.347550392150879,
                 "name": "Châtelet les Halles (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             }
         },
@@ -64,9 +72,11 @@
             "disruptionEffect": "NormalService",
             "distance": 0,
             "from": {
+                "country": "FR",
                 "latitude": 48.860809326171875,
                 "longitude": 2.347550392150879,
                 "name": "Châtelet les Halles (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             },
             "mode": "Transfer",
@@ -79,9 +89,11 @@
                 "value": "2019-03-03T12:08:00+01:00"
             },
             "to": {
+                "country": "FR",
                 "latitude": 48.860809326171875,
                 "longitude": 2.347550392150879,
                 "name": "Châtelet les Halles (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             }
         },
@@ -96,9 +108,11 @@
             "disruptionEffect": "NormalService",
             "distance": 2748,
             "from": {
+                "country": "FR",
                 "latitude": 48.860809326171875,
                 "longitude": 2.347550392150879,
                 "name": "Châtelet les Halles (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             },
             "mode": "PublicTransport",
@@ -121,9 +135,11 @@
                 "value": "2019-03-03T12:14:00+01:00"
             },
             "to": {
+                "country": "FR",
                 "latitude": 48.84442901611328,
                 "longitude": 2.37253999710083,
                 "name": "Paris-Gare-de-Lyon RER (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             }
         },
@@ -131,9 +147,11 @@
             "disruptionEffect": "NormalService",
             "distance": 405,
             "from": {
+                "country": "FR",
                 "latitude": 48.84442901611328,
                 "longitude": 2.37253999710083,
                 "name": "Paris-Gare-de-Lyon RER (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             },
             "mode": "Walking",
@@ -146,9 +164,11 @@
                 "value": "2019-03-03T12:15:00+01:00"
             },
             "to": {
+                "country": "FR",
                 "latitude": 48.84407043457031,
                 "longitude": 2.3772740364074707,
                 "name": "20 Rue de Chalon (Paris)",
+                "region": "FR-IDF",
                 "timezone": "Europe/Paris"
             }
         }

@@ -1,5 +1,6 @@
 [
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:09663:177",
             "testid": "80001152"
@@ -8,6 +9,7 @@
         "locality": "Würzburg",
         "longitude": 9.935779571533203,
         "name": "Hauptbahnhof",
+        "region": "DE-BY",
         "type": "Stop"
     }
 ]

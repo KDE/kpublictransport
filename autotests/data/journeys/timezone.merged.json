@@ -4,12 +4,14 @@
             "disruptionEffect": "NormalService",
             "distance": 101547,
             "from": {
+                "country": "CH",
                 "identifier": {
                     "ibnr": "8503016"
                 },
                 "latitude": 47.45037841796875,
                 "longitude": 8.562378883361816,
                 "name": "Zürich Flughafen",
+                "region": "CH-ZH",
                 "timezone": "Europe/Zurich"
             },
             "mode": "PublicTransport",
@@ -32,12 +34,14 @@
                 "value": "2018-09-28T18:18:00+02:00"
             },
             "to": {
+                "country": "CH",
                 "identifier": {
                     "ibnr": "8507000"
                 },
                 "latitude": 46.94881820678711,
                 "longitude": 7.4391188621521,
                 "name": "Bern (Bern)",
+                "region": "CH-BE",
                 "timezone": "Europe/Zurich"
             }
         }

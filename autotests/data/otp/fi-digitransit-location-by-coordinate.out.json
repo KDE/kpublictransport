@@ -1,56 +1,68 @@
 [
     {
+        "country": "FI",
         "identifier": {
             "gtfs": "HSL:2000001"
         },
         "latitude": 60.219234466552734,
         "longitude": 24.813289642333984,
         "name": "Leppävaara",
+        "region": "FI-18",
         "type": "Stop"
     },
     {
+        "country": "FI",
         "identifier": {
             "gtfs": "HSL:2000202"
         },
         "latitude": 60.219425201416016,
         "longitude": 24.8145751953125,
         "name": "Leppävaaran asema",
+        "region": "FI-18",
         "type": "Stop"
     },
     {
+        "country": "FI",
         "identifier": {
             "gtfs": "HSL:2111228"
         },
         "latitude": 60.22132110595703,
         "longitude": 24.81134033203125,
         "name": "Läkkisepänkuja",
+        "region": "FI-18",
         "type": "Stop"
     },
     {
+        "country": "FI",
         "identifier": {
             "gtfs": "HSL:2111229"
         },
         "latitude": 60.220951080322266,
         "longitude": 24.809860229492188,
         "name": "Läkkisepänkuja",
+        "region": "FI-18",
         "type": "Stop"
     },
     {
+        "country": "FI",
         "identifier": {
             "gtfs": "HSL:2111257"
         },
         "latitude": 60.22154998779297,
         "longitude": 24.814233779907227,
         "name": "Konstaapelinkatu",
+        "region": "FI-18",
         "type": "Stop"
     },
     {
+        "country": "FI",
         "identifier": {
             "gtfs": "HSL:2111258"
         },
         "latitude": 60.22170639038086,
         "longitude": 24.814132690429688,
         "name": "Konstaapelinkatu",
+        "region": "FI-18",
         "type": "Stop"
     }
 ]

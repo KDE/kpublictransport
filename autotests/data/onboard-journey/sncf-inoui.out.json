@@ -12,6 +12,7 @@
                 "value": "2022-09-29T06:35:00+02:00"
             },
             "from": {
+                "country": "LU",
                 "identifier": {
                     "sncf": "LULUX"
                 },
@@ -32,12 +33,14 @@
                         "value": "2022-09-29T07:50:00+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRADE"
                         },
                         "latitude": 49.109466552734375,
                         "longitude": 6.177052021026611,
                         "name": "Metz",
+                        "region": "FR-GES",
                         "type": "Stop"
                     }
                 },
@@ -72,12 +75,14 @@
                         "value": "2022-09-29T09:29:30+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRAEJ"
                         },
                         "latitude": 48.07352828979492,
                         "longitude": 7.3477559089660645,
                         "name": "Colmar",
+                        "region": "FR-GES",
                         "type": "Stop"
                     }
                 },
@@ -92,12 +97,14 @@
                         "value": "2022-09-29T09:50:30+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRAEK"
                         },
                         "latitude": 47.74269104003906,
                         "longitude": 7.343160152435303,
                         "name": "Mulhouse",
+                        "region": "FR-GES",
                         "type": "Stop"
                     }
                 },
@@ -112,12 +119,14 @@
                         "value": "2022-09-29T10:23:30+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRTJA"
                         },
                         "latitude": 47.585105895996094,
                         "longitude": 6.897984504699707,
                         "name": "Belfort - Montbéliard TGV",
+                        "region": "FR-BFC",
                         "type": "Stop"
                     }
                 },
@@ -132,12 +141,14 @@
                         "value": "2022-09-29T10:46:30+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRTJB"
                         },
                         "latitude": 47.30721664428711,
                         "longitude": 5.95361328125,
                         "name": "Besançon Franche-Comté TGV",
+                        "region": "FR-BFC",
                         "type": "Stop"
                     }
                 },
@@ -152,12 +163,14 @@
                         "value": "2022-09-29T11:16:00+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRABA"
                         },
                         "latitude": 47.32341003417969,
                         "longitude": 5.027256011962891,
                         "name": "Dijon",
+                        "region": "FR-BFC",
                         "type": "Stop"
                     }
                 },
@@ -172,12 +185,14 @@
                         "value": "2022-09-29T13:04:00+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRLPD"
                         },
                         "latitude": 45.760597229003906,
                         "longitude": 4.859408855438232,
                         "name": "Lyon Part Dieu",
+                        "region": "FR-ARA",
                         "type": "Stop"
                     }
                 },
@@ -192,12 +207,14 @@
                         "value": "2022-09-29T13:47:00+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRVLA"
                         },
                         "latitude": 44.991905212402344,
                         "longitude": 4.978652000427246,
                         "name": "Valence TGV Rhône-Alpes Sud",
+                        "region": "FR-ARA",
                         "type": "Stop"
                     }
                 },
@@ -212,6 +229,7 @@
                         "value": "2022-09-29T14:27:30+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRAVG"
                         },
@@ -232,12 +250,14 @@
                         "value": "2022-09-29T14:50:00+02:00"
                     },
                     "stopPoint": {
+                        "country": "FR",
                         "identifier": {
                             "sncf": "FRAIE"
                         },
                         "latitude": 43.455238342285156,
                         "longitude": 5.31753396987915,
                         "name": "Aix-en-Provence TGV",
+                        "region": "FR-PAC",
                         "type": "Stop"
                     }
                 }
@@ -258,12 +278,14 @@
                 "value": "2022-09-29T06:35:00+02:00"
             },
             "to": {
+                "country": "FR",
                 "identifier": {
                     "sncf": "FRMSC"
                 },
                 "latitude": 43.30266571044922,
                 "longitude": 5.380406856536865,
                 "name": "Marseille Saint-Charles",
+                "region": "FR-PAC",
                 "type": "Stop"
             }
         }

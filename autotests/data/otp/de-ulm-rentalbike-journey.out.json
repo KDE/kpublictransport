@@ -5,6 +5,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 335,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.39952087402344,
                     "longitude": 9.982660293579102,
                     "name": "Origin"
@@ -13,6 +14,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:24:58Z",
                 "scheduledDepartureTime": "2020-08-08T09:18:32Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
                     },
@@ -34,6 +36,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 2,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
                     },
@@ -61,6 +64,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:24:59Z",
                 "scheduledDepartureTime": "2020-08-08T09:24:58Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.40039825439453,
                     "longitude": 9.985642433166504,
                     "name": "path"
@@ -70,6 +74,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 26,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.40039825439453,
                     "longitude": 9.985642433166504,
                     "name": "path"
@@ -78,6 +83,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:25:25Z",
                 "scheduledDepartureTime": "2020-08-08T09:24:59Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.40049743652344,
                     "longitude": 9.985969543457031,
                     "name": "path"
@@ -87,6 +93,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 895,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.40049743652344,
                     "longitude": 9.985969543457031,
                     "name": "path"
@@ -98,6 +105,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:30:10Z",
                 "scheduledDepartureTime": "2020-08-08T09:25:25Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.396400451660156,
                     "longitude": 9.990229606628418,
                     "name": "Destination"
@@ -111,6 +119,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 247,
                 "from": {
+                    "country": "DE",
                     "latitude": 48.39952087402344,
                     "longitude": 9.982660293579102,
                     "name": "Origin"
@@ -119,6 +128,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:28:00Z",
                 "scheduledDepartureTime": "2020-08-08T09:24:02Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "1:de:08421:1008:1:2",
                         "ifopt": "de:08421:1008:1:2"
@@ -133,6 +143,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 1720,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "1:de:08421:1008:1:2",
                         "ifopt": "de:08421:1008:1:2"
@@ -148,6 +159,7 @@
                         "scheduledArrivalTime": "2020-08-08T09:30:00Z",
                         "scheduledDepartureTime": "2020-08-08T09:30:00Z",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "gtfs": "1:de:08421:1001:0:1",
                                 "ifopt": "de:08421:1001:0:1"
@@ -170,6 +182,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:32:00Z",
                 "scheduledDepartureTime": "2020-08-08T09:28:00Z",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "1:de:08421:1002:1:1",
                         "ifopt": "de:08421:1002:1:1"
@@ -184,6 +197,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 235,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "gtfs": "1:de:08421:1002:1:1",
                         "ifopt": "de:08421:1002:1:1"
@@ -197,6 +211,7 @@
                 "scheduledArrivalTime": "2020-08-08T09:35:24Z",
                 "scheduledDepartureTime": "2020-08-08T09:32:00Z",
                 "to": {
+                    "country": "DE",
                     "latitude": 48.396400451660156,
                     "longitude": 9.990229606628418,
                     "name": "Destination"

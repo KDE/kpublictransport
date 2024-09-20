@@ -12,12 +12,14 @@
                 "value": "2023-10-07T13:22:53+02:00"
             },
             "from": {
+                "country": "DE",
                 "identifier": {
                     "iata": "BER"
                 },
                 "latitude": 52.364044189453125,
                 "longitude": 13.50899887084961,
-                "name": "BER"
+                "name": "BER",
+                "region": "DE-BB"
             },
             "mode": "PublicTransport",
             "route": {
@@ -31,12 +33,14 @@
                 "value": "2023-10-07T16:08:00+02:00"
             },
             "to": {
+                "country": "DE",
                 "identifier": {
                     "iata": "FRA"
                 },
                 "latitude": 50.03333282470703,
                 "longitude": 8.570555686950684,
-                "name": "FRA"
+                "name": "FRA",
+                "region": "DE-HE"
             }
         }
     ]

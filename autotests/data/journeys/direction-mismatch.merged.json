@@ -8,6 +8,7 @@
             "expectedDeparturePlatform": "1",
             "expectedDepartureTime": "2019-11-07T17:03:00",
             "from": {
+                "country": "DE",
                 "identifier": {
                     "db": "8089118",
                     "ibnr": "8089118",
@@ -16,7 +17,8 @@
                 "latitude": 52.53433609008789,
                 "locality": "Berlin",
                 "longitude": 13.32893180847168,
-                "name": "Berlin Beusselstraße"
+                "name": "Berlin Beusselstraße",
+                "region": "DE-BE"
             },
             "mode": "PublicTransport",
             "route": {
@@ -34,6 +36,7 @@
             "scheduledDeparturePlatform": "1",
             "scheduledDepartureTime": "2019-11-07T17:03:00+01:00",
             "to": {
+                "country": "DE",
                 "identifier": {
                     "db": "8089041",
                     "ibnr": "8089041",
@@ -42,7 +45,8 @@
                 "latitude": 52.52403259277344,
                 "locality": "Berlin",
                 "longitude": 13.46466064453125,
-                "name": "Berlin Storkower Straße"
+                "name": "Berlin Storkower Straße",
+                "region": "DE-BE"
             }
         }
     ]

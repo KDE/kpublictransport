@@ -14,12 +14,14 @@
                 "value": "2023-05-04T15:33:00+02:00"
             },
             "from": {
+                "country": "DE",
                 "identifier": {
                     "ibnr": "8000016"
                 },
                 "latitude": 48.94267654418945,
                 "longitude": 9.425989151000977,
                 "name": "Backnang",
+                "region": "DE-BW",
                 "type": "Stop"
             },
             "intermediateStops": [
@@ -47,12 +49,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8003266"
                         },
                         "latitude": 48.93915939331055,
                         "longitude": 9.329055786132812,
                         "name": "Kirchberg(Murr)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -80,12 +84,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8001296"
                         },
                         "latitude": 48.928646087646484,
                         "longitude": 9.369932174682617,
                         "name": "Burgstall(Murr)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -113,12 +119,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8003266"
                         },
                         "latitude": 48.93915939331055,
                         "longitude": 9.329055786132812,
                         "name": "Kirchberg(Murr)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -146,12 +154,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8001827"
                         },
                         "latitude": 48.9482307434082,
                         "longitude": 9.299405097961426,
                         "name": "Erdmannhausen",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -179,12 +189,14 @@
                     },
                     "scheduledPlatform": "2",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8003853"
                         },
                         "latitude": 48.94368362426758,
                         "longitude": 9.26445198059082,
                         "name": "Marbach(Neckar)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -212,12 +224,14 @@
                     },
                     "scheduledPlatform": "2",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000873"
                         },
                         "latitude": 48.9436149597168,
                         "longitude": 9.24450397491455,
                         "name": "Benningen(Neckar)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -245,12 +259,14 @@
                     },
                     "scheduledPlatform": "2",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8002065"
                         },
                         "latitude": 48.93010711669922,
                         "longitude": 9.197795867919922,
                         "name": "Freiberg(Neckar)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -278,12 +294,14 @@
                     },
                     "scheduledPlatform": "2",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8001967"
                         },
                         "latitude": 48.909210205078125,
                         "longitude": 9.180233001708984,
                         "name": "Favoritepark",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -311,12 +329,14 @@
                     },
                     "scheduledPlatform": "3",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000235"
                         },
                         "latitude": 48.89186096191406,
                         "longitude": 9.185420036315918,
                         "name": "Ludwigsburg",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -344,12 +364,14 @@
                     },
                     "scheduledPlatform": "3",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8003411"
                         },
                         "latitude": 48.862220764160156,
                         "longitude": 9.179964065551758,
                         "name": "Kornwestheim Pbf",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -377,12 +399,14 @@
                     },
                     "scheduledPlatform": "2",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8005778"
                         },
                         "latitude": 48.82941436767578,
                         "longitude": 9.166739463806152,
                         "name": "Stuttgart-Zuffenhausen",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -410,12 +434,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8005770"
                         },
                         "latitude": 48.81367111206055,
                         "longitude": 9.169382095336914,
                         "name": "Stuttgart-Feuerbach",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -443,12 +469,14 @@
                     },
                     "scheduledPlatform": "4",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8005767"
                         },
                         "latitude": 48.803768157958984,
                         "longitude": 9.188026428222656,
                         "name": "Stuttgart Nord",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -476,12 +504,14 @@
                     },
                     "scheduledPlatform": "101",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8098096"
                         },
                         "latitude": 48.782997131347656,
                         "longitude": 9.179807662963867,
                         "name": "Stuttgart Hbf (tief)",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -509,12 +539,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8006700"
                         },
                         "latitude": 48.77622985839844,
                         "longitude": 9.172924995422363,
                         "name": "Stuttgart Stadtmitte",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
@@ -542,12 +574,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8006699"
                         },
                         "latitude": 48.77276611328125,
                         "longitude": 9.16627311706543,
                         "name": "Stuttgart Feuersee",
+                        "region": "DE-BW",
                         "type": "Stop"
                     }
                 }
@@ -573,12 +607,14 @@
                 "value": "2023-05-04T15:33:00+02:00"
             },
             "to": {
+                "country": "DE",
                 "identifier": {
                     "ibnr": "8006698"
                 },
                 "latitude": 48.77025604248047,
                 "longitude": 9.15695858001709,
                 "name": "Stuttgart Schwabstr.",
+                "region": "DE-BW",
                 "type": "Stop"
             }
         }

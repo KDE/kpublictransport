@@ -14,12 +14,14 @@
                 "value": "2023-11-02T15:52:21+01:00"
             },
             "from": {
+                "country": "DE",
                 "identifier": {
                     "ibnr": "8000085"
                 },
                 "latitude": 51.21996307373047,
                 "longitude": 6.794319152832031,
                 "name": "Düsseldorf Hbf",
+                "region": "DE-NW",
                 "type": "Stop"
             },
             "intermediateStops": [
@@ -47,12 +49,14 @@
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000082"
                         },
                         "latitude": 51.29200744628906,
                         "longitude": 6.78683614730835,
                         "name": "Düsseldorf Flughafen",
+                        "region": "DE-NW",
                         "type": "Stop"
                     }
                 },
@@ -80,12 +84,14 @@
                     },
                     "scheduledPlatform": "13",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000086"
                         },
                         "latitude": 51.429786682128906,
                         "longitude": 6.775903224945068,
                         "name": "Duisburg Hbf",
+                        "region": "DE-NW",
                         "type": "Stop"
                     }
                 },
@@ -113,12 +119,14 @@
                     },
                     "scheduledPlatform": "6",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000098"
                         },
                         "latitude": 51.45135498046875,
                         "longitude": 7.0147929191589355,
                         "name": "Essen Hbf",
+                        "region": "DE-NW",
                         "type": "Stop"
                     }
                 },
@@ -146,12 +154,14 @@
                     },
                     "scheduledPlatform": "5",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000041"
                         },
                         "latitude": 51.478607177734375,
                         "longitude": 7.223275184631348,
                         "name": "Bochum Hbf",
+                        "region": "DE-NW",
                         "type": "Stop"
                     }
                 },
@@ -179,12 +189,14 @@
                     },
                     "scheduledPlatform": "8",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000080"
                         },
                         "latitude": 51.51789474487305,
                         "longitude": 7.459290027618408,
                         "name": "Dortmund Hbf",
+                        "region": "DE-NW",
                         "type": "Stop"
                     }
                 },
@@ -212,12 +224,14 @@
                     },
                     "scheduledPlatform": "5",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000149"
                         },
                         "latitude": 51.678077697753906,
                         "longitude": 7.807820796966553,
                         "name": "Hamm(Westf)Hbf",
+                        "region": "DE-NW",
                         "type": "Stop"
                     }
                 },
@@ -245,12 +259,14 @@
                     },
                     "scheduledPlatform": "9",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8000152"
                         },
                         "latitude": 52.37676239013672,
                         "longitude": 9.741021156311035,
                         "name": "Hannover Hbf",
+                        "region": "DE-NI",
                         "type": "Stop"
                     }
                 },
@@ -278,12 +294,14 @@
                     },
                     "scheduledPlatform": "5",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8006552"
                         },
                         "latitude": 52.42949676513672,
                         "longitude": 10.7877836227417,
                         "name": "Wolfsburg Hbf",
+                        "region": "DE-NI",
                         "type": "Stop"
                     }
                 },
@@ -311,12 +329,14 @@
                     },
                     "scheduledPlatform": "6",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8010404"
                         },
                         "latitude": 52.53464889526367,
                         "longitude": 13.196897506713867,
                         "name": "Berlin-Spandau",
+                        "region": "DE-BE",
                         "type": "Stop"
                     }
                 },
@@ -344,12 +364,14 @@
                     },
                     "scheduledPlatform": "11",
                     "stopPoint": {
+                        "country": "DE",
                         "identifier": {
                             "ibnr": "8011160"
                         },
                         "latitude": 52.52559280395508,
                         "longitude": 13.369544982910156,
                         "name": "Berlin Hbf",
+                        "region": "DE-BE",
                         "type": "Stop"
                     }
                 }
@@ -373,12 +395,14 @@
                 "value": "2023-11-02T15:49:00+01:00"
             },
             "to": {
+                "country": "DE",
                 "identifier": {
                     "ibnr": "8010255"
                 },
                 "latitude": 52.5104866027832,
                 "longitude": 13.434680938720703,
                 "name": "Berlin Ostbahnhof",
+                "region": "DE-BE",
                 "type": "Stop"
             }
         }

@@ -5,9 +5,11 @@
                 "disruptionEffect": "NormalService",
                 "distance": 286,
                 "from": {
+                    "country": "NO",
                     "latitude": 59.911190032958984,
                     "longitude": 10.753250122070312,
-                    "name": "Origin"
+                    "name": "Origin",
+                    "region": "NO-03"
                 },
                 "mode": "Walking",
                 "path": {
@@ -218,12 +220,14 @@
                 "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2021-10-07T17:32:33+02:00",
                 "to": {
+                    "country": "NO",
                     "identifier": {
                         "gtfs": "NSR:Quay:7183"
                     },
                     "latitude": 59.91219711303711,
                     "longitude": 10.751310348510742,
                     "name": "Jernbanetorget",
+                    "region": "NO-03",
                     "timezone": "Europe/Oslo",
                     "type": "Stop"
                 }
@@ -234,12 +238,14 @@
                 "expectedArrivalTime": "2021-10-07T17:49:16+02:00",
                 "expectedDepartureTime": "2021-10-07T17:37:16+02:00",
                 "from": {
+                    "country": "NO",
                     "identifier": {
                         "gtfs": "NSR:Quay:7183"
                     },
                     "latitude": 59.91219711303711,
                     "longitude": 10.751310348510742,
                     "name": "Jernbanetorget",
+                    "region": "NO-03",
                     "timezone": "Europe/Oslo",
                     "type": "Stop"
                 },
@@ -1003,12 +1009,14 @@
                 "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2021-10-07T17:36:00+02:00",
                 "to": {
+                    "country": "NO",
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
                     "name": "Nydalen",
+                    "region": "NO-03",
                     "timezone": "Europe/Oslo",
                     "type": "Stop"
                 }
@@ -1017,12 +1025,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 109,
                 "from": {
+                    "country": "NO",
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
                     "latitude": 59.94953155517578,
                     "longitude": 10.765337944030762,
                     "name": "Nydalen",
+                    "region": "NO-03",
                     "timezone": "Europe/Oslo",
                     "type": "Stop"
                 },
@@ -1150,9 +1160,11 @@
                 "scheduledArrivalTime": "2021-10-07T17:51:13+02:00",
                 "scheduledDepartureTime": "2021-10-07T17:49:16+02:00",
                 "to": {
+                    "country": "NO",
                     "latitude": 59.94956970214844,
                     "longitude": 10.764439582824707,
-                    "name": "Destination"
+                    "name": "Destination",
+                    "region": "NO-03"
                 }
             }
         ]

@@ -1,5 +1,6 @@
 [
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:05315:11201"
         },
@@ -7,9 +8,11 @@
         "locality": "Köln",
         "longitude": 6.9585700035095215,
         "name": "Köln Hbf",
+        "region": "DE-NW",
         "type": "Stop"
     },
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:05315:11211"
         },
@@ -17,9 +20,11 @@
         "locality": "Köln",
         "longitude": 6.957059860229492,
         "name": "Dom/Hbf",
+        "region": "DE-NW",
         "type": "Stop"
     },
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:05315:11212"
         },
@@ -27,6 +32,7 @@
         "locality": "Köln",
         "longitude": 6.959360122680664,
         "name": "Breslauer Platz/Hbf",
+        "region": "DE-NW",
         "type": "Stop"
     }
 ]

@@ -5,20 +5,24 @@
                 "disruptionEffect": "NormalService",
                 "distance": 392,
                 "from": {
+                    "country": "DE",
                     "latitude": 52.52067947387695,
                     "longitude": 13.4164400100708,
-                    "name": "52.520680, 13.416440"
+                    "name": "52.520680, 13.416440",
+                    "region": "DE-BE"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-08-10T09:34:00",
                 "scheduledDepartureTime": "2024-08-10T09:28:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "900100003"
                     },
                     "latitude": 52.521507263183594,
                     "longitude": 13.411267280578613,
                     "name": "S+U Alexanderplatz Bhf (Berlin)",
+                    "region": "DE-BE",
                     "type": "Stop"
                 }
             },
@@ -39,12 +43,14 @@
                 "expectedArrivalTime": "2024-08-10T09:39:00",
                 "expectedDepartureTime": "2024-08-10T09:34:00",
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "900100003"
                     },
                     "latitude": 52.521507263183594,
                     "longitude": 13.411267280578613,
                     "name": "S+U Alexanderplatz Bhf (Berlin)",
+                    "region": "DE-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -61,12 +67,14 @@
                         "scheduledArrivalTime": "2024-08-10T09:35:00",
                         "scheduledDepartureTime": "2024-08-10T09:35:00",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "900100045"
                             },
                             "latitude": 52.51845932006836,
                             "longitude": 13.407060623168945,
                             "name": "U Rotes Rathaus (Berlin)",
+                            "region": "DE-BE",
                             "type": "Stop"
                         }
                     },
@@ -83,12 +91,14 @@
                         "scheduledArrivalTime": "2024-08-10T09:37:00",
                         "scheduledDepartureTime": "2024-08-10T09:37:00",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "900100537"
                             },
                             "latitude": 52.517391204833984,
                             "longitude": 13.399194717407227,
                             "name": "U Museumsinsel (Berlin)",
+                            "region": "DE-BE",
                             "type": "Stop"
                         }
                     },
@@ -106,12 +116,14 @@
                         "scheduledDepartureTime": "2024-08-10T09:38:00",
                         "scheduledPlatform": "1 (U5)",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "900100513"
                             },
                             "latitude": 52.51699447631836,
                             "longitude": 13.388875007629395,
                             "name": "U Unter den Linden (Berlin)",
+                            "region": "DE-BE",
                             "type": "Stop"
                         }
                     }
@@ -137,12 +149,14 @@
                 "scheduledDeparturePlatform": "1 (U5)",
                 "scheduledDepartureTime": "2024-08-10T09:34:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "900100025"
                     },
                     "latitude": 52.516510009765625,
                     "longitude": 13.381936073303223,
                     "name": "S+U Brandenburger Tor (Berlin)",
+                    "region": "DE-BE",
                     "type": "Stop"
                 }
             },
@@ -165,12 +179,14 @@
                 "expectedDeparturePlatform": "1",
                 "expectedDepartureTime": "2024-08-10T09:45:00",
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "900100025"
                     },
                     "latitude": 52.516510009765625,
                     "longitude": 13.381936073303223,
                     "name": "S+U Brandenburger Tor (Berlin)",
+                    "region": "DE-BE",
                     "type": "Stop"
                 },
                 "intermediateStops": [
@@ -183,12 +199,14 @@
                         "scheduledDepartureTime": "2024-08-10T09:47:00",
                         "scheduledPlatform": "11",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "900100020"
                             },
                             "latitude": 52.50935363769531,
                             "longitude": 13.376550674438477,
                             "name": "S+U Potsdamer Platz Bhf (Berlin)",
+                            "region": "DE-BE",
                             "type": "Stop"
                         }
                     },
@@ -201,12 +219,14 @@
                         "scheduledDepartureTime": "2024-08-10T09:49:00",
                         "scheduledPlatform": "2",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "900012101"
                             },
                             "latitude": 52.50453567504883,
                             "longitude": 13.382080078125,
                             "name": "S Anhalter Bahnhof (Berlin)",
+                            "region": "DE-BE",
                             "type": "Stop"
                         }
                     },
@@ -219,12 +239,14 @@
                         "scheduledDepartureTime": "2024-08-10T09:52:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
+                            "country": "DE",
                             "identifier": {
                                 "unit-test": "900058103"
                             },
                             "latitude": 52.49235534667969,
                             "longitude": 13.372208595275879,
                             "name": "S+U Yorckstr. (Berlin)",
+                            "region": "DE-BE",
                             "type": "Stop"
                         }
                     }
@@ -244,12 +266,14 @@
                 "scheduledDeparturePlatform": "1",
                 "scheduledDepartureTime": "2024-08-10T09:45:00",
                 "to": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "900058101"
                     },
                     "latitude": 52.475502014160156,
                     "longitude": 13.365548133850098,
                     "name": "S Südkreuz Bhf (Berlin)",
+                    "region": "DE-BE",
                     "type": "Stop"
                 }
             },
@@ -257,21 +281,25 @@
                 "disruptionEffect": "NormalService",
                 "distance": 33,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "unit-test": "900058101"
                     },
                     "latitude": 52.475502014160156,
                     "longitude": 13.365548133850098,
                     "name": "S Südkreuz Bhf (Berlin)",
+                    "region": "DE-BE",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2024-08-10T09:54:00",
                 "scheduledDepartureTime": "2024-08-10T09:54:00",
                 "to": {
+                    "country": "DE",
                     "latitude": 52.47576904296875,
                     "longitude": 13.365349769592285,
-                    "name": "52.475768, 13.365350"
+                    "name": "52.475768, 13.365350",
+                    "region": "DE-BE"
                 }
             }
         ]

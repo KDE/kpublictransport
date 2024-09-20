@@ -5,6 +5,7 @@
                 "disruptionEffect": "NormalService",
                 "distance": 643,
                 "from": {
+                    "country": "DE",
                     "identifier": {
                         "ifopt": "de:05315:11810:1:11"
                     },
@@ -12,6 +13,7 @@
                     "locality": "Köln",
                     "longitude": 6.959539890289307,
                     "name": "Ebertplatz (U) Gleis 1",
+                    "region": "DE-NW",
                     "type": "Stop"
                 },
                 "mode": "Walking",
@@ -216,8 +218,10 @@
                     "value": "2021-02-27T13:14:00+01:00"
                 },
                 "to": {
+                    "country": "DE",
                     "latitude": 50.94731903076172,
-                    "longitude": 6.962530136108398
+                    "longitude": 6.962530136108398,
+                    "region": "DE-NW"
                 }
             }
         ]

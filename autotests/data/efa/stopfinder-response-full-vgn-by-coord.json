@@ -1,5 +1,6 @@
 [
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:09564:1391",
             "testid": "3001391"
@@ -8,9 +9,11 @@
         "locality": "Nürnberg",
         "longitude": 11.079000473022461,
         "name": "Nürnberg Flughafen",
+        "region": "DE-BY",
         "type": "Stop"
     },
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:09564:1396",
             "testid": "3001396"
@@ -19,9 +22,11 @@
         "locality": "Nürnberg",
         "longitude": 11.083109855651855,
         "name": "Nürnberg Cargo-Zentrum",
+        "region": "DE-BY",
         "type": "Stop"
     },
     {
+        "country": "DE",
         "identifier": {
             "ifopt": "de:09564:1400",
             "testid": "3001400"
@@ -30,6 +35,7 @@
         "locality": "Nürnberg",
         "longitude": 11.071249961853027,
         "name": "Nürnberg Luftamt Nordbayern",
+        "region": "DE-BY",
         "type": "Stop"
     }
 ]

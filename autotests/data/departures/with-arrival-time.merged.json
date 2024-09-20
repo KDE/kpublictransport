@@ -13,11 +13,13 @@
     "scheduledArrivalTime": "2019-05-30T21:05:00",
     "scheduledDepartureTime": "2019-05-30T21:05:00",
     "stopPoint": {
+        "country": "IT",
         "identifier": {
             "ibnr": "8300046"
         },
         "latitude": 45.486167907714844,
         "longitude": 9.20389175415039,
-        "name": "Milano Centrale"
+        "name": "Milano Centrale",
+        "region": "IT-25"
     }
 }

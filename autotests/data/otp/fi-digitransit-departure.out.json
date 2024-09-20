@@ -15,12 +15,14 @@
         "scheduledArrivalTime": "2020-01-09T23:55:00Z",
         "scheduledDepartureTime": "2020-01-10T00:30:00Z",
         "stopPoint": {
+            "country": "FI",
             "identifier": {
                 "gtfs": "MATKA:4_TPE"
             },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
             "name": "TAMPERE",
+            "region": "FI-11",
             "type": "Stop"
         }
     },
@@ -38,12 +40,14 @@
         "scheduledArrivalTime": "2020-01-10T01:05:00Z",
         "scheduledDepartureTime": "2020-01-10T01:45:00Z",
         "stopPoint": {
+            "country": "FI",
             "identifier": {
                 "gtfs": "MATKA:4_TPE"
             },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
             "name": "TAMPERE",
+            "region": "FI-11",
             "type": "Stop"
         }
     },
@@ -59,12 +63,14 @@
         "scheduledArrivalTime": "2020-01-10T03:04:00Z",
         "scheduledDepartureTime": "2020-01-10T03:04:00Z",
         "stopPoint": {
+            "country": "FI",
             "identifier": {
                 "gtfs": "MATKA:4_TPE"
             },
             "latitude": 61.498775482177734,
             "longitude": 23.773019790649414,
             "name": "TAMPERE",
+            "region": "FI-11",
             "type": "Stop"
         }
     }

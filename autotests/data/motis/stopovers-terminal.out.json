@@ -11,12 +11,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:12:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -32,12 +34,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:12:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -54,12 +58,14 @@
         "scheduledArrivalTime": "2024-02-11T12:10:00Z",
         "scheduledDepartureTime": "2024-02-11T12:16:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -75,12 +81,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:19:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -96,12 +104,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:22:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -118,12 +128,14 @@
         "scheduledArrivalTime": "2024-02-11T12:21:00Z",
         "scheduledDepartureTime": "2024-02-11T12:31:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -140,12 +152,14 @@
         "scheduledArrivalTime": "2024-02-11T12:26:00Z",
         "scheduledDepartureTime": "2024-02-11T12:33:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -161,12 +175,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:34:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -182,12 +198,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:42:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -204,12 +222,14 @@
         "scheduledArrivalTime": "2024-02-11T12:42:00Z",
         "scheduledDepartureTime": "2024-02-11T12:48:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -225,12 +245,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:49:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -246,12 +268,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:54:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -267,12 +291,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T12:54:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -289,12 +315,14 @@
         "scheduledArrivalTime": "2024-02-11T12:47:00Z",
         "scheduledDepartureTime": "2024-02-11T12:58:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -310,12 +338,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T13:00:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -331,12 +361,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T13:04:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -352,12 +384,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T13:06:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -374,12 +408,14 @@
         "scheduledArrivalTime": "2024-02-11T13:10:00Z",
         "scheduledDepartureTime": "2024-02-11T13:16:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -395,12 +431,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T13:19:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -416,12 +454,14 @@
         },
         "scheduledDepartureTime": "2024-02-11T13:22:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -437,12 +477,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T12:08:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -458,12 +500,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T12:22:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -479,12 +523,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T12:31:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -500,12 +546,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T12:39:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -521,12 +569,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T12:50:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -542,12 +592,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T12:56:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -563,12 +615,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:00:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -584,12 +638,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:04:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -605,12 +661,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:08:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -626,12 +684,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:08:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -647,12 +707,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:15:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -668,12 +730,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:20:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -689,12 +753,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:22:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     },
@@ -710,12 +776,14 @@
         },
         "scheduledArrivalTime": "2024-02-11T13:24:00Z",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "motis": "de:14713:8010205_G"
             },
             "latitude": 51.34547424316406,
             "longitude": 12.382063865661621,
             "name": "Leipzig Hbf",
+            "region": "DE-SN",
             "type": "Stop"
         }
     }

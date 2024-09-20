@@ -12,13 +12,15 @@
                 "value": "2023-03-01T20:27:00+08:00"
             },
             "from": {
+                "country": "TW",
                 "identifier": {
                     "iata": "TPE",
                     "icao": "RCTP"
                 },
                 "latitude": 25.073333740234375,
                 "longitude": 121.2249984741211,
-                "name": "TPE"
+                "name": "TPE",
+                "region": "TW-TAO"
             },
             "mode": "PublicTransport",
             "route": {
@@ -28,6 +30,7 @@
                 }
             },
             "to": {
+                "country": "HK",
                 "identifier": {
                     "iata": "HKG",
                     "icao": "VHHH"

@@ -5,20 +5,24 @@
                 "disruptionEffect": "NormalService",
                 "distance": 70,
                 "from": {
+                    "country": "FI",
                     "latitude": 60.219459533691406,
                     "longitude": 24.81308937072754,
-                    "name": "Origin"
+                    "name": "Origin",
+                    "region": "FI-18"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-09T17:14:14Z",
                 "scheduledDepartureTime": "2020-01-09T17:13:19Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_LPV"
                     },
                     "latitude": 60.21926498413086,
                     "longitude": 24.814298629760742,
                     "name": "LEPPÄVAARA",
+                    "region": "FI-18",
                     "type": "Stop"
                 }
             },
@@ -28,12 +32,14 @@
                 "expectedArrivalTime": "2020-01-09T17:18:46Z",
                 "expectedDepartureTime": "2020-01-09T17:14:28Z",
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_LPV"
                     },
                     "latitude": 60.21926498413086,
                     "longitude": 24.814298629760742,
                     "name": "LEPPÄVAARA",
+                    "region": "FI-18",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -47,12 +53,14 @@
                 "scheduledArrivalTime": "2020-01-09T17:19:23Z",
                 "scheduledDepartureTime": "2020-01-09T17:14:14Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
                     "name": "PASILA",
+                    "region": "FI-18",
                     "type": "Stop"
                 }
             },
@@ -62,12 +70,14 @@
                 "expectedArrivalTime": "2020-01-09T17:46:02Z",
                 "expectedDepartureTime": "2020-01-09T17:36:58Z",
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
                     "name": "PASILA",
+                    "region": "FI-18",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -81,12 +91,14 @@
                 "scheduledArrivalTime": "2020-01-09T17:40:01Z",
                 "scheduledDepartureTime": "2020-01-09T17:30:59Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_TKL"
                     },
                     "latitude": 60.29220199584961,
                     "longitude": 25.043617248535156,
                     "name": "TIKKURILA",
+                    "region": "FI-18",
                     "type": "Stop"
                 }
             },
@@ -96,12 +108,14 @@
                 "expectedArrivalTime": "2020-01-09T19:38:00Z",
                 "expectedDepartureTime": "2020-01-09T17:46:22Z",
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_TKL"
                     },
                     "latitude": 60.29220199584961,
                     "longitude": 25.043617248535156,
                     "name": "TIKKURILA",
+                    "region": "FI-18",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -115,12 +129,14 @@
                 "scheduledArrivalTime": "2020-01-09T19:38:00Z",
                 "scheduledDepartureTime": "2020-01-09T17:44:41Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
                     "latitude": 61.498775482177734,
                     "longitude": 23.773019790649414,
                     "name": "TAMPERE",
+                    "region": "FI-11",
                     "type": "Stop"
                 }
             },
@@ -128,21 +144,25 @@
                 "disruptionEffect": "NormalService",
                 "distance": 570,
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
                     "latitude": 61.498775482177734,
                     "longitude": 23.773019790649414,
                     "name": "TAMPERE",
+                    "region": "FI-11",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-09T19:45:56Z",
                 "scheduledDepartureTime": "2020-01-09T19:38:00Z",
                 "to": {
+                    "country": "FI",
                     "latitude": 61.49858856201172,
                     "longitude": 23.7739200592041,
-                    "name": "Destination"
+                    "name": "Destination",
+                    "region": "FI-11"
                 }
             }
         ]
@@ -153,21 +173,25 @@
                 "disruptionEffect": "NormalService",
                 "distance": 127,
                 "from": {
+                    "country": "FI",
                     "latitude": 60.219459533691406,
                     "longitude": 24.81308937072754,
-                    "name": "Origin"
+                    "name": "Origin",
+                    "region": "FI-18"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-09T18:06:00Z",
                 "scheduledDeparturePlatform": "2",
                 "scheduledDepartureTime": "2020-01-09T18:03:55Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "HSL:2111552"
                     },
                     "latitude": 60.219478607177734,
                     "longitude": 24.81322479248047,
                     "name": "Leppävaara",
+                    "region": "FI-18",
                     "type": "Stop"
                 }
             },
@@ -177,12 +201,14 @@
                 "expectedArrivalTime": "2020-01-09T18:14:08Z",
                 "expectedDepartureTime": "2020-01-09T18:06:00Z",
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "HSL:2111552"
                     },
                     "latitude": 60.219478607177734,
                     "longitude": 24.81322479248047,
                     "name": "Leppävaara",
+                    "region": "FI-18",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -197,12 +223,14 @@
                 "scheduledDeparturePlatform": "8",
                 "scheduledDepartureTime": "2020-01-09T18:06:00Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "HSL:1174554"
                     },
                     "latitude": 60.1994743347168,
                     "longitude": 24.93265151977539,
                     "name": "Pasila",
+                    "region": "FI-18",
                     "type": "Stop"
                 }
             },
@@ -210,24 +238,28 @@
                 "disruptionEffect": "NormalService",
                 "distance": 201,
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "HSL:1174554"
                     },
                     "latitude": 60.1994743347168,
                     "longitude": 24.93265151977539,
                     "name": "Pasila",
+                    "region": "FI-18",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-09T18:16:10Z",
                 "scheduledDepartureTime": "2020-01-09T18:13:34Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
                     "name": "PASILA",
+                    "region": "FI-18",
                     "type": "Stop"
                 }
             },
@@ -235,12 +267,14 @@
                 "disruptionEffect": "NormalService",
                 "distance": 162792,
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
                     "latitude": 60.198551177978516,
                     "longitude": 24.93345069885254,
                     "name": "PASILA",
+                    "region": "FI-18",
                     "type": "Stop"
                 },
                 "mode": "PublicTransport",
@@ -254,12 +288,14 @@
                 "scheduledArrivalTime": "2020-01-09T19:58:00Z",
                 "scheduledDepartureTime": "2020-01-09T18:30:00Z",
                 "to": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
                     "latitude": 61.498775482177734,
                     "longitude": 23.773019790649414,
                     "name": "TAMPERE",
+                    "region": "FI-11",
                     "type": "Stop"
                 }
             },
@@ -267,21 +303,25 @@
                 "disruptionEffect": "NormalService",
                 "distance": 570,
                 "from": {
+                    "country": "FI",
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
                     "latitude": 61.498775482177734,
                     "longitude": 23.773019790649414,
                     "name": "TAMPERE",
+                    "region": "FI-11",
                     "type": "Stop"
                 },
                 "mode": "Walking",
                 "scheduledArrivalTime": "2020-01-09T20:05:56Z",
                 "scheduledDepartureTime": "2020-01-09T19:58:00Z",
                 "to": {
+                    "country": "FI",
                     "latitude": 61.49858856201172,
                     "longitude": 23.7739200592041,
-                    "name": "Destination"
+                    "name": "Destination",
+                    "region": "FI-11"
                 }
             }
         ]

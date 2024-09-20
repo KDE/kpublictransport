@@ -18,6 +18,7 @@
         },
         "scheduledPlatform": "10",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:05315:11201"
             },
@@ -25,6 +26,7 @@
             "locality": "Köln",
             "longitude": 6.9585700035095215,
             "name": "Köln Hbf",
+            "region": "DE-NW",
             "type": "Stop"
         }
     },
@@ -47,6 +49,7 @@
         },
         "scheduledPlatform": "11",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:05315:11201"
             },
@@ -54,6 +57,7 @@
             "locality": "Köln",
             "longitude": 6.9585700035095215,
             "name": "Köln Hbf",
+            "region": "DE-NW",
             "type": "Stop"
         }
     },
@@ -76,6 +80,7 @@
         },
         "scheduledPlatform": "1",
         "stopPoint": {
+            "country": "DE",
             "identifier": {
                 "ifopt": "de:05315:11201"
             },
@@ -83,6 +88,7 @@
             "locality": "Köln",
             "longitude": 6.9585700035095215,
             "name": "Köln Hbf",
+            "region": "DE-NW",
             "type": "Stop"
         }
     }

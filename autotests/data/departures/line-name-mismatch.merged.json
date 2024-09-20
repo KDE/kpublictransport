@@ -12,12 +12,14 @@
     "scheduledDepartureTime": "2018-01-23T18:51:00",
     "scheduledPlatform": "12",
     "stopPoint": {
+        "country": "DE",
         "identifier": {
             "ibnr": "8011160",
             "vbb": "900003201"
         },
         "latitude": 52.52558898925781,
         "longitude": 13.369548797607422,
-        "name": "S+U Berlin Hauptbahnhof"
+        "name": "S+U Berlin Hauptbahnhof",
+        "region": "DE-BE"
     }
 }
