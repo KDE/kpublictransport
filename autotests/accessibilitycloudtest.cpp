@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include "testhelpers.h"
 #include "geo/geojson.cpp"
 #include "backends/accessibilitycloudparser.cpp"
 
@@ -53,21 +54,11 @@ private Q_SLOTS:
         const auto jsonRes = Location::toJson(p.locations);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
-
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
-        QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
 
         const auto attrRes = Attribution::toJson(p.attributions);
         const auto attrRef = QJsonDocument::fromJson(readFile(attrFileName)).array();
-
-        if (attrRes != attrRef) {
-            qDebug().noquote() << QJsonDocument(attrRes).toJson();
-        }
-        QVERIFY(!attrRes.empty());
-        QCOMPARE(attrRes, attrRef);
+        QVERIFY(Test::compareJson(attrFileName, attrRes, attrRef));
     }
 };
 

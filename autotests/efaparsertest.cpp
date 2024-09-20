@@ -76,11 +76,7 @@ private Q_SLOTS:
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
-
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
     void testParseCompactLocation_data()
@@ -105,11 +101,7 @@ private Q_SLOTS:
         const auto jsonRes = Location::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
-
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
 
     void testParseDepartures_data()
@@ -165,12 +157,7 @@ private Q_SLOTS:
         const auto jsonRes = Stopover::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(readFile(refFileName)).array();
-
-        if (jsonRes != ref) {
-            qDebug().noquote() << QJsonDocument(jsonRes).toJson();
-        }
-        QVERIFY(!jsonRes.empty());
-        QCOMPARE(jsonRes, ref);
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
 
         QVERIFY(!parser.requestContext().isEmpty());
         QCOMPARE(parser.requestContext().sessionId, QLatin1String("123456789"));

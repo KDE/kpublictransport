@@ -52,11 +52,7 @@ private Q_SLOTS:
         QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Location::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
-        if (resultJson != resultRef) {
-            qDebug().noquote() << QJsonDocument(resultJson).toJson();
-        }
-        QVERIFY(!resultJson.isEmpty());
-        QCOMPARE(resultJson, resultRef);
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
 
     void testParseStopovers_data()
@@ -80,11 +76,7 @@ private Q_SLOTS:
         QVERIFY(p.errorMessage.isEmpty());
         const auto resultJson = Stopover::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
-        if (resultJson != resultRef) {
-            qDebug().noquote() << QJsonDocument(resultJson).toJson();
-        }
-        QVERIFY(!resultJson.isEmpty());
-        QCOMPARE(resultJson, resultRef);
+        QVERIFY(Test::compareJson(outFileName, resultJson, resultRef));
     }
 
     void testParseJourneys_data()
