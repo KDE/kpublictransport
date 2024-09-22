@@ -122,7 +122,7 @@ static void postprocessRoute(Route &route)
 [[nodiscard]] static Route parseRoute(const QJsonObject &obj)
 {
     Line line;
-    line.setName(obj.value("name"_L1).toString()); // TODO use category_name and line_id instead?
+    line.setName(obj.value("name"_L1).toString().trimmed()); // TODO use category_name and line_id instead?
     if (const auto provider = obj.value("provider"_L1).toString(); !provider.isEmpty() && provider != "UNKNOWN_AGENCY"_L1) {
         line.setOperatorName(provider);
     }
