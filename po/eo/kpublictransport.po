@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-12 00:38+0000\n"
-"PO-Revision-Date: 2024-05-15 10:28+0100\n"
+"PO-Revision-Date: 2024-09-21 10:41+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
@@ -105,8 +105,8 @@ msgstr "%1 (ne disponebla)"
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%2 (unu liberloko)"
+msgstr[1] "%2 (%1 liberlokoj)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
