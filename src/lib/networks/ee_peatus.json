@@ -97,7 +97,6 @@
         }
     },
     "options": {
-        "customCaCertificate": "sectigo-rsa-domain-validation-secure-server-ca.pem",
         "endpoint": "https://api.peatus.ee/routing/v1/routers/estonia/"
     },
     "timezone": "Europe/Tallinn",
