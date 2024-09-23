@@ -61,7 +61,7 @@
         "Name[x-test]": "xxPeatusxx"
     },
     "coverage": {
-        "anyCoverage": {
+        "regularCoverage": {
             "area": {
                 "coordinates": [
                     [
