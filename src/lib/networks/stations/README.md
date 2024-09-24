@@ -17,9 +17,12 @@ The simplest way to export this data is to export the result of a query like thi
 (
     area["ISO3166-1"="RS"];
     area["ISO3166-1"="ME"];
+    area["ISO3166-1"="BA"];
 );
 (
-    nwr[railway~"station|halt"](area);
+  (
+    nwr[~"disused:railway|construction:railway|railway"~"station|halt|yard"](area);
+  );
 );
-out;
+out center;
 ```
