@@ -58,7 +58,10 @@ public:
     enum Roles {
         JourneyRole = Qt::UserRole,
         ScheduledDepartureTime,
-        ScheduledArrivalTime
+        ScheduledArrivalTime,
+
+        /// Useful for creating sections
+        ScheduledDepartureDate
     };
     Q_ENUM(Roles)
 
