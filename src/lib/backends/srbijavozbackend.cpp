@@ -212,7 +212,7 @@ bool SrbijavozBackend::queryLocation(const LocationRequest &request, LocationRep
 
     const auto searchableName = makeSearchableName(request.name());
     for (const auto &[name, station] : m_stationsBySearchName) {
-        if (name.contains(searchableName)) {
+        if (name == searchableName) {
             auto location = stationToLocation(*station);
 
             // Skip stations that we don't have an identifier for
