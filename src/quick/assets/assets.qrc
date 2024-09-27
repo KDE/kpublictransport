@@ -14,15 +14,19 @@
         <file>style.css</file>
 
         <file>family.svg</file>
-        <file>information.svg</file>
-        <file>occupancy-low.svg</file>
-        <file>occupancy-medium.svg</file>
-        <file>occupancy-high.svg</file>
-        <file>occupancy-full.svg</file>
-        <file>powersocket.svg</file>
         <file>toddler.svg</file>
         <file>toilets.svg</file>
         <file>wheelchair.svg</file>
         <file>wheelchair_accessible.svg</file>
+
+        <file>occupancy-low.svg</file>
+        <file>occupancy-medium.svg</file>
+        <file>occupancy-high.svg</file>
+        <file>occupancy-full.svg</file>
+
+        <file>vehicle-feature-businessarea.svg</file>
+        <file>vehicle-feature-information.svg</file>
+        <file>vehicle-feature-powersocket.svg</file>
+        <file>vehicle-feature-silentarea.svg</file>
     </qresource>
 </RCC>

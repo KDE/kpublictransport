@@ -28,9 +28,9 @@ Kirigami.Icon {
             case KPublicTransport.Feature.WheelchairAccessible:
                 return "qrc:///org.kde.kpublictransport/ui/assets/wheelchair_accessible.svg";
             case KPublicTransport.Feature.SilentArea:
-                return "player-volume-muted";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-silentarea.svg";
             case KPublicTransport.Feature.BusinessArea:
-                return "phone-symbolic";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-businessarea.svg";
             case KPublicTransport.Feature.BikeStorage:
                 return "qrc:///org.kde.kpublictransport/assets/images/transport-mode-bike.svg";
             case KPublicTransport.Feature.Toilet:
@@ -38,11 +38,11 @@ Kirigami.Icon {
             case KPublicTransport.Feature.WheelchairAccessibleToilet:
                 return "qrc:///org.kde.kpublictransport/ui/assets/wheelchair.svg";
             case KPublicTransport.Feature.InformationPoint:
-                return "qrc:///org.kde.kpublictransport/ui/assets/information.svg";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-information.svg";
             case KPublicTransport.Feature.WiFi:
                 return "network-wireless-symbolic";
             case KPublicTransport.Feature.PowerSockets:
-                return "qrc:///org.kde.kpublictransport/ui/assets/powersocket.svg";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-powersocket.svg";
             case KPublicTransport.Feature.Other:
             default:
                 return "documentinfo";
