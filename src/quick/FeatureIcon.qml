@@ -22,7 +22,7 @@ Kirigami.Icon {
             case KPublicTransport.Feature.Restaurant:
                 return "qrc:///org.kde.kpublictransport/assets/images/restaurant.svg"
             case KPublicTransport.Feature.ToddlerArea:
-                return "qrc:///org.kde.kpublictransport/ui/assets/toddler.svg";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-toddlerarea.svg";
             case KPublicTransport.Feature.FamilyArea:
                 return "qrc:///org.kde.kpublictransport/ui/assets/family.svg";
             case KPublicTransport.Feature.WheelchairAccessible:
@@ -34,13 +34,13 @@ Kirigami.Icon {
             case KPublicTransport.Feature.BikeStorage:
                 return "qrc:///org.kde.kpublictransport/assets/images/transport-mode-bike.svg";
             case KPublicTransport.Feature.Toilet:
-                return "qrc:///org.kde.kpublictransport/ui/assets/toilets.svg";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-toilet.svg";
             case KPublicTransport.Feature.WheelchairAccessibleToilet:
-                return "qrc:///org.kde.kpublictransport/ui/assets/wheelchair.svg";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-wheelchair-toilet.svg";
             case KPublicTransport.Feature.InformationPoint:
                 return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-information.svg";
             case KPublicTransport.Feature.WiFi:
-                return "network-wireless-symbolic";
+                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-wifi.svg";
             case KPublicTransport.Feature.PowerSockets:
                 return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-powersocket.svg";
             case KPublicTransport.Feature.Other:

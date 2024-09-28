@@ -14,9 +14,6 @@
         <file>style.css</file>
 
         <file>family.svg</file>
-        <file>toddler.svg</file>
-        <file>toilets.svg</file>
-        <file>wheelchair.svg</file>
         <file>wheelchair_accessible.svg</file>
 
         <file>occupancy-low.svg</file>
@@ -28,5 +25,9 @@
         <file>vehicle-feature-information.svg</file>
         <file>vehicle-feature-powersocket.svg</file>
         <file>vehicle-feature-silentarea.svg</file>
+        <file>vehicle-feature-toddlerarea.svg</file>
+        <file>vehicle-feature-toilet.svg</file>
+        <file>vehicle-feature-wheelchair-toilet.svg</file>
+        <file>vehicle-feature-wifi.svg</file>
     </qresource>
 </RCC>
