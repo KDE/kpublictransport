@@ -71,11 +71,11 @@ QString PathSection::maneuverIconName(PathSection::Maneuver maneuver)
         case PathSection::Move:
             return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-walk.svg"_s;
         case PathSection::Elevator:
-            return u"qrc:///org.kde.kpublictransport/assets/images/elevator.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/path-elevator.svg"_s;
         case PathSection::Escalator:
-            return u"qrc:///org.kde.kpublictransport/assets/images/escalator.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/path-escalator.svg"_s;
         case PathSection::Stairs:
-            return u"qrc:///org.kde.kpublictransport/assets/images/stairs.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/path-stairs.svg"_s;
     }
 
     return {};

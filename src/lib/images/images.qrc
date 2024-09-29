@@ -5,18 +5,19 @@
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/assets/images">
         <file>couchettecar.svg</file>
-        <file>elevator.svg</file>
-        <file>escalator.svg</file>
         <file>motorcycle.svg</file>
         <file>restaurant.svg</file>
         <file>scooter.svg</file>
         <file>seat.svg</file>
         <file>shuttle.svg</file>
         <file>sleepingcar.svg</file>
-        <file>stairs.svg</file>
 
         <file>journey-mode-transfer.svg</file>
         <file>journey-mode-wait.svg</file>
+
+        <file>path-elevator.svg</file>
+        <file>path-escalator.svg</file>
+        <file>path-stairs.svg</file>
 
         <file>transport-mode-aeriallift.svg</file>
         <file>transport-mode-bike.svg</file>
