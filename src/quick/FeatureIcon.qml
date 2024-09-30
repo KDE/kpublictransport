@@ -20,7 +20,7 @@ Kirigami.Icon {
             case KPublicTransport.Feature.AirConditioning:
                 return "temperature-cold";
             case KPublicTransport.Feature.Restaurant:
-                return "qrc:///org.kde.kpublictransport/assets/images/restaurant.svg"
+                return "qrc:///org.kde.kpublictransport/assets/images/train-coach-restaurant.svg"
             case KPublicTransport.Feature.ToddlerArea:
                 return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-toddlerarea.svg";
             case KPublicTransport.Feature.FamilyArea:

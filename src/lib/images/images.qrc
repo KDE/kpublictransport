@@ -6,7 +6,6 @@
     <qresource prefix="/org.kde.kpublictransport/assets/images">
         <file>couchettecar.svg</file>
         <file>motorcycle.svg</file>
-        <file>restaurant.svg</file>
         <file>scooter.svg</file>
         <file>seat.svg</file>
         <file>shuttle.svg</file>
@@ -18,6 +17,9 @@
         <file>path-elevator.svg</file>
         <file>path-escalator.svg</file>
         <file>path-stairs.svg</file>
+
+        <file>train-coach-cartransport.svg</file>
+        <file>train-coach-restaurant.svg</file>
 
         <file>transport-mode-aeriallift.svg</file>
         <file>transport-mode-bike.svg</file>

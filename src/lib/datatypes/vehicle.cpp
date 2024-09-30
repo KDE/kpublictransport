@@ -156,9 +156,9 @@ QString VehicleSection::vehicleTypeIconName(VehicleSection::Type type)
         case VehicleSection::CouchetteCar:
             return u"qrc:///org.kde.kpublictransport/assets/images/couchettecar.svg"_s;
         case VehicleSection::RestaurantCar:
-            return u"qrc:///org.kde.kpublictransport/assets/images/restaurant.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-restaurant.svg"_s;
         case VehicleSection::CarTransportCar:
-            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-cartransport.svg"_s;
     }
     return {};
 }
