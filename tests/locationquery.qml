@@ -196,6 +196,7 @@ Kirigami.ApplicationWindow {
                 property alias includeStops: includeStops.checked
                 property alias includeRentals: includeRentals.checked
                 property alias includeEquipment: includeEquipment.checked
+                property alias includeAddresses: includeAddresses.checked
             }
 
             ColumnLayout {
@@ -252,6 +253,11 @@ Kirigami.ApplicationWindow {
                         checked: true
                         text: "Elevators"
                     }
+                    QQC2.CheckBox {
+                        id: includeAddresses
+                        checked: true
+                        text: "Addresses"
+                    }
                 }
 
                 QQC2.ComboBox {
@@ -284,7 +290,8 @@ Kirigami.ApplicationWindow {
                             locationModel.request.maximumDistance = maxDist.text;
                             locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
                                 | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
-                                | (includeEquipment.checked ? Location.Equipment : Location.Place);
+                                | (includeEquipment.checked ? Location.Equipment : Location.Place)
+                                | (includeAddresses.checked ? Location.Address: Location.Place);
                         }
                     }
                 }
@@ -308,7 +315,8 @@ Kirigami.ApplicationWindow {
                             locationModel.request.maximumDistance = maxDist.text;
                             locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
                                 | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
-                                | (includeEquipment.checked ? Location.Equipment : Location.Place);
+                                | (includeEquipment.checked ? Location.Equipment : Location.Place)
+                                | (includeAddresses.checked ? Location.Address: Location.Place);
                         }
                     }
                 }
