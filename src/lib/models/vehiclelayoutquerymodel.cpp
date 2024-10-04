@@ -76,7 +76,8 @@ void VehicleLayoutQueryModelPrivate::interpolatePlatformPositionsFromSectionName
     const auto startSection = vehicleSections.front().platformSectionName();
     const auto endSection = vehicleSections.back().platformSectionName();
 
-    for (const auto &sec : m_stopover.platformLayout().sections()) {
+    const auto platform = m_stopover.platformLayout();
+    for (const auto &sec : platform.sections()) {
         if (sec.name() == startSection) {
             interpolatePlatformPositionsFromSectionName(vehicleSections.begin(), vehicleSections.end());
             break;
