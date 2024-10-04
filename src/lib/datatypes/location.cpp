@@ -29,6 +29,7 @@
 #include <cmath>
 
 using namespace KPublicTransport;
+using namespace Qt::Literals;
 
 namespace KPublicTransport {
 
@@ -524,6 +525,26 @@ QJsonObject Location::toJson(const Location &loc)
 QJsonArray Location::toJson(const std::vector<Location> &locs)
 {
     return Json::toJson(locs);
+}
+
+QString Location::iconName() const
+{
+    switch (d->type) {
+        case Location::Stop:
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-stop.svg"_s;
+        case Location::RentedVehicleStation:
+            return rentalVehicleStation().iconName();
+        case Location::RentedVehicle:
+            return rentalVehicle().vehicleTypeIconName();
+        case Location::Equipment:
+            return equipment().iconName();
+        case Location::CarpoolPickupDropoff:
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-car.svg"_s;
+        case Location::Address:
+        case Location::Place:
+            break;
+    }
+    return u"map-symbolic"_s;
 }
 
 Location Location::fromJson(const QJsonObject &obj)

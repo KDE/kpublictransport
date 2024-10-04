@@ -102,6 +102,11 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     /** Available vehicle types at this station. */
     Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes availableVehicleTypes READ availableVehicleTypes STORED false)
 
+    /** Icon representing this rental vehicle station.
+     *  Can be a qrc: URL or an XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+
 public:
     [[nodiscard]] bool isValid() const;
     [[nodiscard]] RentalVehicle::VehicleTypes supportedVehicleTypes() const;
@@ -116,6 +121,8 @@ public:
     [[nodiscard]] Q_INVOKABLE int availableVehicles(KPublicTransport::RentalVehicle::VehicleType type) const;
     /** Sets the number of available vehicles for a given vehicle type. */
     void setAvailableVehicles(RentalVehicle::VehicleType type, int count);
+
+    [[nodiscard]] QString iconName() const;
 
     /** Checks if two instances refer to the same station. */
     [[nodiscard]] static bool isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);

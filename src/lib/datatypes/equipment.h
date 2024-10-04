@@ -39,9 +39,16 @@ public:
     /** General human-readable notes on this service, e.g. details about a disruption. */
     KPUBLICTRANSPORT_PROPERTY(QStringList, notes, setNotes)
 
+    /** An icon representing the equipment type.
+     *  Can be a qrc: URL or XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+
 public:
     /** Adds a note. This will check for duplicates and normalize the notes. */
     void addNote(const QString &note);
+
+    [[nodiscard]] QString iconName() const;
 
     /** Serializes one object to JSON. */
     static QJsonObject toJson(const Equipment &equipment);

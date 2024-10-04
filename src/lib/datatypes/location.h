@@ -80,6 +80,11 @@ public:
     /** Equipment information, if applicable for this location. */
     Q_PROPERTY(KPublicTransport::Equipment equipment READ equipment STORED false)
 
+    /** Icon representing the location type.
+     *  Can be a qrc: URL or an XDG icon name.
+     */
+    Q_PROPERTY(QString iconName READ iconName STORED false)
+
 public:
     void setCoordinate(float latitude, float longitude);
     [[nodiscard]] bool hasCoordinate() const;
@@ -118,6 +123,8 @@ public:
     [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);
     [[nodiscard]] RentalVehicle rentalVehicle() const;
     [[nodiscard]] KPublicTransport::Equipment equipment() const;
+
+    [[nodiscard]] QString iconName() const;
 
     /** Serializes one Location object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const Location &loc);

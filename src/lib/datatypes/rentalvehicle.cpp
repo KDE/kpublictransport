@@ -148,6 +148,17 @@ void RentalVehicleStation::setAvailableVehicles(RentalVehicle::VehicleType type,
     }
 }
 
+QString RentalVehicleStation::iconName() const
+{
+    const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
+    for (auto i = 0; i < me.keyCount() && i < (int)d->capacities.size(); ++i) {
+        if (d->capacities[i] >= 0) {
+            return RentalVehicle::vehicleTypeIconName((RentalVehicle::VehicleType)me.value(i));
+        }
+    }
+    return RentalVehicle::vehicleTypeIconName(RentalVehicle::Bicycle);
+}
+
 bool RentalVehicleStation::isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs)
 {
     return RentalVehicleNetwork::isSame(lhs.network(), rhs.network());

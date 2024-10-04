@@ -9,8 +9,10 @@
 #include "datatypes_p.h"
 #include "json_p.h"
 #include "notesutil_p.h"
+#include "path.h"
 
 using namespace KPublicTransport;
+using namespace Qt::Literals;
 
 namespace KPublicTransport {
 
@@ -37,6 +39,20 @@ void Equipment::addNote(const QString& note)
         d.detach();
         NotesUtil::performAdd(d->notes, n, idx);
     }
+}
+
+QString Equipment::iconName() const
+{
+    switch (d->type) {
+        case Elevator:
+            return PathSection::maneuverIconName(PathSection::Elevator);
+        case Escalator:
+            return PathSection::maneuverIconName(PathSection::Escalator);
+        case Unknown:
+            break;
+    }
+
+    return u"map-symbolic"_s;
 }
 
 QJsonObject Equipment::toJson(const Equipment &equipment)

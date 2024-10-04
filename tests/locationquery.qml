@@ -71,22 +71,6 @@ Kirigami.ApplicationWindow {
         onAccepted: ExampleUtil.saveTo(locationModel, fileDialog.selectedFile);
     }
 
-    function vehicleTypeIcon(type)
-    {
-        var s = "";
-        if (type & RentalVehicle.Bicycle)
-            s += "🚲";
-        if (type & RentalVehicle.ElectricKickScooter)
-            s += "🛴";
-        if (type & RentalVehicle.ElectricMoped)
-            s += "🛵";
-        if (type & RentalVehicle.Car)
-            s += "🚗";
-        if (type & RentalVehicle.Pedelec)
-            s += "⚡🚲";
-        return s ? s : "🚲";
-    }
-
     Component {
         id: locationDelegate
         Kirigami.SwipeListItem {
@@ -102,71 +86,59 @@ Kirigami.ApplicationWindow {
                     onTriggered: pageStack.push(indoorMapPage, {coordinate: Qt.point(location.longitude, location.latitude)})
                 }
             ]
-            contentItem: ColumnLayout {
-                id: delegateLayout
-                Layout.fillWidth: true
-                QQC2.Label {
-                    text: {
-                        switch (location.type) {
-                            case Location.Stop: return "🚏 " + location.name;
-                            case Location.RentedVehicleStation:
-                                return '🚏' + vehicleTypeIcon(location.rentalVehicleStation.supportedVehicleTypes) + ' ' + location.name;
-                            case Location.RentedVehicle:
-                                return vehicleTypeIcon(location.rentalVehicle.type) + ' ' + location.name;
-                            case Location.Equipment:
-                                switch (location.equipment.type) {
-                                    case Equipment.Elevator:
-                                        return '🛗 ' + location.name;
-                                    case Equipment.Escalator:
-                                        return '↗ ' + location.name;
-                                    default:
-                                        return '? ' + location.name;
+            contentItem: RowLayout {
+                Kirigami.Icon {
+                    source: location.iconName
+                    Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                    Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                    Layout.alignment: Qt.AlignCenter
+                }
+                ColumnLayout {
+                    id: delegateLayout
+                    Layout.fillWidth: true
+                    QQC2.Label {
+                        text: location.name
+                        color: {
+                            if (location && location.type == Location.Equipment) {
+                                switch (location.equipment.disruptionEffect) {
+                                    case Disruption.NormalService:
+                                        return Kirigami.Theme.positiveTextColor;
+                                    case Disruption.NoService:
+                                        return Kirigami.Theme.negativeTextColor;
                                 }
-                            case Location.CarpoolPickupDropoff:
-                                return '🚘 ' + location.name;
-                            case Location.Place: return location.name;
-                        }
-                    }
-                    color: {
-                        if (location.type == Location.Equipment) {
-                            switch (location.equipment.disruptionEffect) {
-                                case Disruption.NormalService:
-                                    return Kirigami.Theme.positiveTextColor;
-                                case Disruption.NoService:
-                                    return Kirigami.Theme.negativeTextColor;
                             }
+                            return Kirigami.Theme.textColor;
                         }
-                        return Kirigami.Theme.textColor;
                     }
-                }
-                QQC2.Label {
-                    text: location.streetAddress
-                    visible: location.streetAddress.length > 0
-                }
-                QQC2.Label {
-                    text: "ZIP: " + location.postalCode + " City: " + location.locality
-                    visible: location.postalCode.length > 0 || location.locality.length > 0
-                }
-                QQC2.Label {
-                    text: "Region: " + location.region + " Country: " + location.country
-                    visible: location.region.length > 0 || location.country.length > 0
-                }
-                QQC2.Label {
-                    text: "Lat: " + location.latitude + " Lon: " + location.longitude
-                }
-                QQC2.Label {
-                    text: location.rentalVehicleStation.network.name + " (" + location.rentalVehicleStation.availableVehicles
-                        + "/" + location.rentalVehicleStation.capacity + ")"
-                    visible: location.rentalVehicleStation.isValid
-                }
-                QQC2.Label {
-                    text: location.equipment ? location.equipment.notes.join("<br/>") : ''
-                    visible: text != ''
-                    font.italic: true
-                    textFormat: Text.RichText
-                }
-                QQC2.Label {
-                    text: "Identifiers: " + ExampleUtil.locationIds(location)
+                    QQC2.Label {
+                        text: location.streetAddress
+                        visible: location.streetAddress.length > 0
+                    }
+                    QQC2.Label {
+                        text: "ZIP: " + location.postalCode + " City: " + location.locality
+                        visible: location.postalCode.length > 0 || location.locality.length > 0
+                    }
+                    QQC2.Label {
+                        text: "Region: " + location.region + " Country: " + location.country
+                        visible: location.region.length > 0 || location.country.length > 0
+                    }
+                    QQC2.Label {
+                        text: "Lat: " + location.latitude + " Lon: " + location.longitude
+                    }
+                    QQC2.Label {
+                        text: location.rentalVehicleStation.network.name + " (" + location.rentalVehicleStation.availableVehicles
+                            + "/" + location.rentalVehicleStation.capacity + ")"
+                        visible: location.rentalVehicleStation.isValid
+                    }
+                    QQC2.Label {
+                        text: location.equipment ? location.equipment.notes.join("<br/>") : ''
+                        visible: text != ''
+                        font.italic: true
+                        textFormat: Text.RichText
+                    }
+                    QQC2.Label {
+                        text: "Identifiers: " + ExampleUtil.locationIds(location)
+                    }
                 }
             }
         }
