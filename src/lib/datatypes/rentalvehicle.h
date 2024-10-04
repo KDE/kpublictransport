@@ -66,9 +66,9 @@ public:
     Q_INVOKABLE [[nodiscard]] static QString vehicleTypeIconName(KPublicTransport::RentalVehicle::VehicleType type);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const RentalVehicle &vehicle);
+    [[nodiscard]] static QJsonObject toJson(const RentalVehicle &vehicle);
     /** Deserialize an object from JSON. */
-    static RentalVehicle fromJson(const QJsonObject &obj);
+    [[nodiscard]] static RentalVehicle fromJson(const QJsonObject &obj);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(RentalVehicle::VehicleTypes)
@@ -103,27 +103,27 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleStation
     Q_PROPERTY(KPublicTransport::RentalVehicle::VehicleTypes availableVehicleTypes READ availableVehicleTypes STORED false)
 
 public:
-    bool isValid() const;
-    RentalVehicle::VehicleTypes supportedVehicleTypes() const;
-    RentalVehicle::VehicleTypes availableVehicleTypes() const;
+    [[nodiscard]] bool isValid() const;
+    [[nodiscard]] RentalVehicle::VehicleTypes supportedVehicleTypes() const;
+    [[nodiscard]] RentalVehicle::VehicleTypes availableVehicleTypes() const;
 
     /** Capacity for a given vehicle type. */
-    Q_INVOKABLE int capacity(KPublicTransport::RentalVehicle::VehicleType type) const;
+    [[nodiscard]] Q_INVOKABLE int capacity(KPublicTransport::RentalVehicle::VehicleType type) const;
     /** Set the capacity for a specific vehicle type. */
     void setCapacity(RentalVehicle::VehicleType type, int capacity);
 
     /** Available vehicles for a given vehicle type. */
-    Q_INVOKABLE int availableVehicles(KPublicTransport::RentalVehicle::VehicleType type) const;
+    [[nodiscard]] Q_INVOKABLE int availableVehicles(KPublicTransport::RentalVehicle::VehicleType type) const;
     /** Sets the number of available vehicles for a given vehicle type. */
     void setAvailableVehicles(RentalVehicle::VehicleType type, int count);
 
     /** Checks if two instances refer to the same station. */
-    static bool isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
+    [[nodiscard]] static bool isSame(const RentalVehicleStation &lhs, const RentalVehicleStation &rhs);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const RentalVehicleStation &station);
+    [[nodiscard]] static QJsonObject toJson(const RentalVehicleStation &station);
     /** Deserialize an object from JSON. */
-    static RentalVehicleStation fromJson(const QJsonObject &obj);
+    [[nodiscard]] static RentalVehicleStation fromJson(const QJsonObject &obj);
 };
 
 class RentalVehicleNetworkPrivate;
@@ -145,15 +145,15 @@ class KPUBLICTRANSPORT_EXPORT RentalVehicleNetwork
     Q_PROPERTY(bool isValid READ isValid STORED false)
 
 public:
-    bool isValid() const;
+    [[nodiscard]] bool isValid() const;
 
     /** Checks if two instances refer to the same network. */
-    static bool isSame(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
+    [[nodiscard]] static bool isSame(const RentalVehicleNetwork &lhs, const RentalVehicleNetwork &rhs);
 
     /** Serializes one object to JSON. */
-    static QJsonObject toJson(const RentalVehicleNetwork &network);
+    [[nodiscard]] static QJsonObject toJson(const RentalVehicleNetwork &network);
     /** Deserialize an object from JSON. */
-    static RentalVehicleNetwork fromJson(const QJsonObject &obj);
+    [[nodiscard]] static RentalVehicleNetwork fromJson(const QJsonObject &obj);
 };
 }
 

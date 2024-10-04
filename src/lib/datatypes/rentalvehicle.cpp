@@ -88,7 +88,7 @@ RentalVehicle::VehicleTypes RentalVehicleStation::supportedVehicleTypes() const
     return types | availableVehicleTypes();
 }
 
-RentalVehicle::VehicleTypes KPublicTransport::RentalVehicleStation::availableVehicleTypes() const
+RentalVehicle::VehicleTypes RentalVehicleStation::availableVehicleTypes() const
 {
     RentalVehicle::VehicleTypes types = {};
     const auto me = QMetaEnum::fromType<RentalVehicle::VehicleType>();
