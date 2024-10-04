@@ -288,6 +288,7 @@ static int isSameDistanceThreshold(Location::Type type)
     switch (type) {
         case Location::Place:
         case Location::Stop:
+        case Location::Address:
             return 25; // meter
         case Location::CarpoolPickupDropoff:
             return 10;
@@ -446,6 +447,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
         case Place:
         case CarpoolPickupDropoff:
         case Stop:
+        case Address:
             break;
         case RentedVehicleStation:
             l.setData(RentalVehicleUtil::merge(lhs.rentalVehicleStation(), rhs.rentalVehicleStation()));
@@ -501,6 +503,7 @@ QJsonObject Location::toJson(const Location &loc)
         case Place:
             obj.remove(QLatin1String("type"));
             [[fallthrough]];
+        case Address:
         case Stop:
         case CarpoolPickupDropoff:
             break;
@@ -538,6 +541,7 @@ Location Location::fromJson(const QJsonObject &obj)
 
     switch (loc.type()) {
         case Place:
+        case Address:
         case Stop:
         case CarpoolPickupDropoff:
             break;
