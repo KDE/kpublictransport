@@ -56,4 +56,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "IndividualTransportMode", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::IndividualTransport());
     });
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "JourneySectionMode", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(KPublicTransport::JourneySection());
+    });
 }

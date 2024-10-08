@@ -253,6 +253,11 @@ public:
 
     [[nodiscard]] QString iconName() const;
 
+    /** Icon representing the journey section mode @p mode.
+     *  Can be a qrc: or file: URL or an XDG icon name.
+     */
+    Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::JourneySection::Mode mode);
+
 private:
     [[nodiscard]] QVariantList intermediateStopsVariant() const;
     [[nodiscard]] QVariantList loadInformationVariant() const;

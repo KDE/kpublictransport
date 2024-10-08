@@ -392,6 +392,26 @@ QString JourneySection::iconName() const
             return {};
         case JourneySection::PublicTransport:
             return d->route.line().iconName();
+        case JourneySection::RentedVehicle:
+            return d->rentalVehicle.vehicleTypeIconName();
+        case JourneySection::IndividualTransport:
+            return d->individualTransport.modeIconName();
+        case JourneySection::Transfer:
+        case JourneySection::Walking:
+        case JourneySection::Waiting:
+            break;
+    }
+
+    return modeIconName(d->mode);
+}
+
+QString JourneySection::modeIconName(JourneySection::Mode mode)
+{
+    switch (mode) {
+        case JourneySection::Invalid:
+            return {};
+        case JourneySection::PublicTransport:
+            return Line::modeIconName(Line::Train);
         case JourneySection::Transfer:
             return u"qrc:///org.kde.kpublictransport/assets/images/journey-mode-transfer.svg"_s;
         case JourneySection::Walking:
@@ -399,9 +419,9 @@ QString JourneySection::iconName() const
         case JourneySection::Waiting:
             return u"qrc:///org.kde.kpublictransport/assets/images/journey-mode-wait.svg"_s;
         case JourneySection::RentedVehicle:
-            return d->rentalVehicle.vehicleTypeIconName();
+            return RentalVehicle::vehicleTypeIconName(RentalVehicle::ElectricKickScooter);
         case JourneySection::IndividualTransport:
-            return d->individualTransport.modeIconName();
+            return IndividualTransport::modeIconName(IndividualTransport::Bike);
     }
 
     return u"question"_s;
