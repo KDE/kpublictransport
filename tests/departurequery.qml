@@ -318,46 +318,49 @@ Kirigami.ApplicationWindow {
                     QQC2.Button {
                         text: "Query"
                         onClicked: {
-                            var stop = departureModel.request.stop;
-                            stop.latitude = latQuery.text;
-                            stop.longitude = lonQuery.text;
-                            stop.name = nameQuery.text;
-                            departureModel.request.stop = stop;
-                            departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
-                            departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            departureModel.request.downloadAssets = true;
-                            departureModel.request.maximumResults = maxResults.text;
-                            departureModel.request.lineModes = lineModeSelector.currentMode
+                            departureModel.request = {
+                                stop: {
+                                    latitude: latQuery.text,
+                                    longitude: lonQuery.text,
+                                    name: nameQuery.text
+                                },
+                                mode: arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture,
+                                backends: backendBox.checked ? [ backendSelector.currentText ] : [],
+                                downloadAssets: true,
+                                maximumResults: maxResults.text,
+                                lineModes: lineModeSelector.currentMode
+                            }
                         }
                     }
                     QQC2.Button {
                         text: "Query Name"
                         onClicked: {
-                            var stop = departureModel.request.stop;
-                            stop.latitude = NaN;
-                            stop.longitude = NaN;
-                            stop.name = nameQuery.text;
-                            departureModel.request.stop = stop;
-                            departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
-                            departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            departureModel.request.downloadAssets = true;
-                            departureModel.request.lineModes = lineModeSelector.currentMode
-                            departureModel.request.maximumResults = maxResults.text;
+                            departureModel.request = {
+                                stop: {
+                                    name: nameQuery.text
+                                },
+                                mode: arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture,
+                                backends: backendBox.checked ? [ backendSelector.currentText ] : [],
+                                downloadAssets: true,
+                                maximumResults: maxResults.text,
+                                lineModes: lineModeSelector.currentMode
+                            }
                         }
                     }
                     QQC2.Button {
                         text: "Query Coord"
                         onClicked: {
-                            var stop = departureModel.request.stop;
-                            stop.latitude = latQuery.text;
-                            stop.longitude = lonQuery.text;
-                            stop.name = "";
-                            departureModel.request.stop = stop;
-                            departureModel.request.mode = arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture;
-                            departureModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            departureModel.request.downloadAssets = true;
-                            departureModel.request.maximumResults = maxResults.text;
-                            departureModel.request.lineModes = lineModeSelector.currentMode
+                            departureModel.request = {
+                                stop: {
+                                    latitude: latQuery.text,
+                                    longitude: lonQuery.text
+                                },
+                                mode: arrivalBox.checked ? StopoverRequest.QueryArrival : StopoverRequest.QueryDeparture,
+                                backends: backendBox.checked ? [ backendSelector.currentText ] : [],
+                                downloadAssets: true,
+                                maximumResults: maxResults.text,
+                                lineModes: lineModeSelector.currentMode
+                            }
                         }
                     }
                     QQC2.Button {

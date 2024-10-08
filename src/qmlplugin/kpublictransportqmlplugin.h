@@ -131,6 +131,7 @@ struct LocationForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Location)
     QML_VALUE_TYPE(location)
+    QML_STRUCTURED_VALUE
 };
 
 struct IndividualTransportForeign {
@@ -143,6 +144,7 @@ struct JourneyRequestForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::JourneyRequest)
     QML_VALUE_TYPE(journeyRequest)
+    QML_STRUCTURED_VALUE
 };
 
 struct JourneySectionForeign {
@@ -161,6 +163,7 @@ struct LocationRequestForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::LocationRequest)
     QML_VALUE_TYPE(locationRequest)
+    QML_STRUCTURED_VALUE
 };
 
 struct PathSectionForeign {
@@ -185,6 +188,7 @@ struct StopoverRequestForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::StopoverRequest)
     QML_VALUE_TYPE(stopoverRequest)
+    QML_STRUCTURED_VALUE
 };
 
 struct VehicleForeign {
@@ -199,6 +203,7 @@ struct VehicleLayoutRequestForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::VehicleLayoutRequest)
     QML_VALUE_TYPE(vehicleLayoutRequest)
+    QML_STRUCTURED_VALUE
 };
 
 struct VehicleSectionForeign {

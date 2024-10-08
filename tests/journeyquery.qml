@@ -482,66 +482,65 @@ Kirigami.ApplicationWindow {
                 RowLayout {
                     function setupRequestCommon()
                     {
-                        journeyModel.request.dateTimeMode = searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure;
-                        journeyModel.request.dateTime = new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0));
-                        journeyModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                        journeyModel.request.downloadAssets = true
-                        journeyModel.request.modes = (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
-                            | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid);
-                        journeyModel.request.maximumResults = maxResults.text;
-                        journeyModel.request.includeIntermediateStops = intermediateStops.checked;
-                        journeyModel.request.includePaths = includePaths.checked;
-                        journeyModel.request.accessModes = individualTransportModes[accessMode.currentIndex];
-                        journeyModel.request.egressModes = individualTransportModes[egressMode.currentIndex];
-                        journeyModel.request.lineModes = lineModeSelector.currentMode;
+                        return {
+                            dateTimeMode: searchDirection.checked ? JourneyRequest.Arrival : JourneyRequest.Departure,
+                            dateTime: new Date(new Date().getTime() + (searchDirection.checked ? 7200000 : 0)),
+                            backends: backendBox.checked ? [ backendSelector.currentText ] : [],
+                            downloadAssets: true,
+                            modes: (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
+                            | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid),
+                            maximumResults: maxResults.text,
+                            includeIntermediateStops: intermediateStops.checked,
+                            includePaths: includePaths.checked,
+                            accessModes: individualTransportModes[accessMode.currentIndex],
+                            egressModes: individualTransportModes[egressMode.currentIndex],
+                            lineModes: lineModeSelector.currentMode,
+                        };
                     }
 
                     QQC2.Button {
                         text: "Query"
                         onClicked: {
-                            var from = journeyModel.request.from;
-                            from.name = fromName.text;
-                            from.latitude = fromLat.text;
-                            from.longitude = fromLon.text;
-                            journeyModel.request.from = from;
-                            var to = journeyModel.request.to;
-                            to.name = toName.text;
-                            to.latitude = toLat.text;
-                            to.longitude = toLon.text;
-                            journeyModel.request.to = to;
-                            parent.setupRequestCommon();
+                            let r = parent.setupRequestCommon();
+                            r.from = {
+                                name: fromName.text,
+                                latitude: fromLat.text,
+                                longitude: fromLon.text,
+                            };
+                            r.to = {
+                                name: toName.text,
+                                latitude: toLat.text,
+                                longitude: toLon.text,
+                            };
+                            journeyModel.request = r;
                         }
                     }
                     QQC2.Button {
                         text: "Query Name"
                         onClicked: {
-                            var from = journeyModel.request.from;
-                            from.name = fromName.text;
-                            from.latitude = NaN;
-                            from.longitude = NaN;
-                            journeyModel.request.from = from;
-                            var to = journeyModel.request.to;
-                            to.name = toName.text;
-                            to.latitude = NaN;
-                            to.longitude = NaN;
-                            journeyModel.request.to = to;
-                            parent.setupRequestCommon();
+                            let r = parent.setupRequestCommon();
+                            r.from = {
+                                name: fromName.text,
+                            };
+                            r.to = {
+                                name: toName.text,
+                            };
+                            journeyModel.request = r;
                         }
                     }
                     QQC2.Button {
                         text: "Query Coord"
                         onClicked: {
-                            var from = journeyModel.request.from;
-                            from.name = "";
-                            from.latitude = fromLat.text;
-                            from.longitude = fromLon.text;
-                            journeyModel.request.from = from;
-                            var to = journeyModel.request.to;
-                            to.name = "";
-                            to.latitude = toLat.text;
-                            to.longitude = toLon.text;
-                            journeyModel.request.to = to;
-                            parent.setupRequestCommon();
+                            let r = parent.setupRequestCommon();
+                            r.from = {
+                                latitude: fromLat.text,
+                                longitude: fromLon.text,
+                            };
+                            r.to = {
+                                latitude: toLat.text,
+                                longitude: toLon.text,
+                            };
+                            journeyModel.request = r;
                         }
                     }
                     QQC2.Button {

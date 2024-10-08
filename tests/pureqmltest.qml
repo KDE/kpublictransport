@@ -64,12 +64,11 @@ Kirigami.ApplicationWindow {
                 QQC2.Button {
                     text: "Query"
                     onClicked: {
-                        var from = journeyModel.request.from;
-                        from.name = fromName.text;
-                        journeyModel.request.from = from;
-                        var to = journeyModel.request.to;
-                        to.name = toName.text;
-                        journeyModel.request.to = to;
+                        journeyModel.request = {
+                            from: { name: fromName.text },
+                            to: { name: toName.text },
+                            backends: [ "un_transitous" ]
+                        }
                     }
                 }
 

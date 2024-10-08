@@ -69,11 +69,13 @@ Kirigami.ApplicationWindow {
                     Layout.fillWidth: true
                     onAccepted: {
                         if (text !== "") {
-                            var loc = locationQueryModel.request.location;
-                            loc.name = text;
-                            loc.country = countryCombo.currentValue;
-                            locationQueryModel.request.location = loc;
-                            locationQueryModel.request.type = Location.Stop
+                            locationQueryModel.request = {
+                                location: {
+                                    name: text,
+                                    country: countryCombo.currentValue
+                                },
+                                type: Location.Stop
+                            };
                         }
                     }
                 }

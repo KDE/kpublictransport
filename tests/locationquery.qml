@@ -254,16 +254,16 @@ Kirigami.ApplicationWindow {
                     QQC2.Button {
                         text: "Query"
                         onClicked: {
-                            locationModel.request.latitude = NaN;
-                            locationModel.request.longitude = NaN;
-                            locationModel.request.name = nameQuery.text;
-                            locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            locationModel.request.maximumResults = maxResults.text;
-                            locationModel.request.maximumDistance = maxDist.text;
-                            locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
+                            locationModel.request = {
+                                name: nameQuery.text,
+                                backends: backendBox.checked ? [ backendSelector.currentText ] : [],
+                                maximumResults: maxResults.text,
+                                maximumDistance: maxDist.text,
+                                types: (includeStops.checked ?  Location.Stop : Location.Place)
                                 | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
                                 | (includeEquipment.checked ? Location.Equipment : Location.Place)
-                                | (includeAddresses.checked ? Location.Address: Location.Place);
+                                | (includeAddresses.checked ? Location.Address: Location.Place)
+                            }
                         }
                     }
                 }
@@ -279,16 +279,17 @@ Kirigami.ApplicationWindow {
                     QQC2.Button {
                         text: "Query"
                         onClicked: {
-                            locationModel.request.latitude = latQuery.text;
-                            locationModel.request.longitude = lonQuery.text;
-                            locationModel.request.name = "";
-                            locationModel.request.backends = backendBox.checked ? [ backendSelector.currentText ] : [];
-                            locationModel.request.maximumResults = maxResults.text;
-                            locationModel.request.maximumDistance = maxDist.text;
-                            locationModel.request.types = (includeStops.checked ?  Location.Stop : Location.Place)
+                            locationModel.request = {
+                                latitude: latQuery.text,
+                                longitude: lonQuery.text,
+                                backends: backendBox.checked ? [ backendSelector.currentText ] : [],
+                                maximumResults: maxResults.text,
+                                maximumDistance: maxDist.text,
+                                types: (includeStops.checked ?  Location.Stop : Location.Place)
                                 | (includeRentals.checked ? (Location.RentedVehicleStation | Location.RentedVehicle) : Location.Place)
                                 | (includeEquipment.checked ? Location.Equipment : Location.Place)
-                                | (includeAddresses.checked ? Location.Address: Location.Place);
+                                | (includeAddresses.checked ? Location.Address: Location.Place)
+                            }
                         }
                     }
                 }

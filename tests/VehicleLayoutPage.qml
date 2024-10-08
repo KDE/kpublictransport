@@ -16,9 +16,9 @@ Kirigami.ScrollablePage {
     title: "Vehicle Layout"
 
     property alias publicTransportManager: vehicleModel.manager
-    property var departure
+    property KPublicTransport.stopover departure
 
-    onDepartureChanged: vehicleModel.request.stopover = root.departure;
+    onDepartureChanged: vehicleModel.request = { stopover: root.departure }
 
     KPublicTransport.VehicleLayoutQueryModel {
         id: vehicleModel
