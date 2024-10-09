@@ -36,9 +36,9 @@ public:
         LocalTrain,
         LongDistanceTrain,
         Metro,
-        RailShuttle,
+        RailShuttle, ///< rail shuttle service within a complex, as e.g. found at or around airports
         RapidTransit,
-        Shuttle,
+        Shuttle, ///< shuttle bus/coach services, e.g. to/from an airport
         Taxi,
         Train,
         Tramway,

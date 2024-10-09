@@ -23,8 +23,12 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
             return Line::LongDistanceTrain;
         case 106:
             return Line::LocalTrain;
+        case 108:
+            return Line::RailShuttle;
         case 109:
             return Line::RapidTransit;
+        case 203:
+            return Line::Shuttle;
         case 401:
         case 402:
             return Line::Metro;
@@ -32,8 +36,12 @@ Line::Mode Gtfs::Hvt::typeToMode(int hvt)
             return Line::RapidTransit;
         case 405: // monorail
             return Line::Tramway;
+        case 711:
+            return Line::Shuttle;
         case 717:
             return Line::Taxi;
+        case 905:
+            return Line::RailShuttle;
         case 1502:
             return Line::Boat;
     }
