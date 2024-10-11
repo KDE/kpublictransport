@@ -13,21 +13,9 @@
         <file>passengercar-double-deck.svg</file>
         <file>style.css</file>
 
-        <file>family.svg</file>
-        <file>wheelchair_accessible.svg</file>
-
         <file>occupancy-low.svg</file>
         <file>occupancy-medium.svg</file>
         <file>occupancy-high.svg</file>
         <file>occupancy-full.svg</file>
-
-        <file>vehicle-feature-businessarea.svg</file>
-        <file>vehicle-feature-information.svg</file>
-        <file>vehicle-feature-powersocket.svg</file>
-        <file>vehicle-feature-silentarea.svg</file>
-        <file>vehicle-feature-toddlerarea.svg</file>
-        <file>vehicle-feature-toilet.svg</file>
-        <file>vehicle-feature-wheelchair-toilet.svg</file>
-        <file>vehicle-feature-wifi.svg</file>
     </qresource>
 </RCC>

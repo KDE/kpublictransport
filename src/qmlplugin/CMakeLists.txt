@@ -6,7 +6,6 @@ ecm_add_qml_module(kpublictransportqmlplugin URI "org.kde.kpublictransport" VERS
 target_sources(kpublictransportqmlplugin PRIVATE
     kpublictransportqmlplugin.cpp
     linemetadatawrapper.cpp
-    linemode.cpp
 )
 target_link_libraries(kpublictransportqmlplugin PRIVATE Qt::Quick KPublicTransport)
 

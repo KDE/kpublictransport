@@ -6,7 +6,6 @@
 
 #include "kpublictransportqmlplugin.h"
 #include "linemetadatawrapper.h"
-#include "linemode.h"
 
 #include <QQmlEngine>
 #include <QQmlContext>
@@ -48,7 +47,7 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
         return engine->toScriptValue(KPublicTransport::LineMetaDataWrapper());
     });
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMode", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
-        return engine->toScriptValue(KPublicTransport::LineMode());
+        return engine->toScriptValue(LineMode());
     });
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "RentalVehicleType", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::RentalVehicle());
@@ -58,5 +57,8 @@ void KPublicTransportQmlPlugin::registerTypes(const char*)
     });
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "JourneySectionMode", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::JourneySection());
+    });
+    qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "FeatureType", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(FeatureType());
     });
 }

@@ -15,39 +15,7 @@ Kirigami.Icon {
     /** The feature to display. */
     property KPublicTransport.feature feature
 
-    source: {
-        switch (root.feature.type) {
-            case KPublicTransport.Feature.AirConditioning:
-                return "temperature-cold";
-            case KPublicTransport.Feature.Restaurant:
-                return "qrc:///org.kde.kpublictransport/assets/images/train-coach-restaurant.svg"
-            case KPublicTransport.Feature.ToddlerArea:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-toddlerarea.svg";
-            case KPublicTransport.Feature.FamilyArea:
-                return "qrc:///org.kde.kpublictransport/ui/assets/family.svg";
-            case KPublicTransport.Feature.WheelchairAccessible:
-                return "qrc:///org.kde.kpublictransport/ui/assets/wheelchair_accessible.svg";
-            case KPublicTransport.Feature.SilentArea:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-silentarea.svg";
-            case KPublicTransport.Feature.BusinessArea:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-businessarea.svg";
-            case KPublicTransport.Feature.BikeStorage:
-                return "qrc:///org.kde.kpublictransport/assets/images/transport-mode-bike.svg";
-            case KPublicTransport.Feature.Toilet:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-toilet.svg";
-            case KPublicTransport.Feature.WheelchairAccessibleToilet:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-wheelchair-toilet.svg";
-            case KPublicTransport.Feature.InformationPoint:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-information.svg";
-            case KPublicTransport.Feature.WiFi:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-wifi.svg";
-            case KPublicTransport.Feature.PowerSockets:
-                return "qrc:///org.kde.kpublictransport/ui/assets/vehicle-feature-powersocket.svg";
-            case KPublicTransport.Feature.Other:
-            default:
-                return "documentinfo";
-        }
-    }
+    source: root.feature.typeIconName
 
     Kirigami.Icon {
         id: emblem

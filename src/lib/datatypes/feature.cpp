@@ -83,6 +83,49 @@ QString Feature::typeDisplayName(Feature::Type type)
     return {};
 }
 
+QString Feature::typeIconName() const
+{
+    return Feature::typeIconName(d->type);
+}
+
+QString Feature::typeIconName(Feature::Type type)
+{
+    switch (type) {
+        case Feature::NoFeature:
+            return {};
+        case Feature::AirConditioning:
+            return u"temperature-cold"_s;
+        case Feature::Restaurant:
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-restaurant.svg"_s;
+        case Feature::ToddlerArea:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-toddlerarea.svg"_s;
+        case Feature::FamilyArea:
+            return u"qrc:///org.kde.kpublictransport/assets/images/family.svg"_s;
+        case Feature::WheelchairAccessible:
+            return u"qrc:///org.kde.kpublictransport/assets/images/wheelchair_accessible.svg"_s;
+        case Feature::SilentArea:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-silentarea.svg"_s;
+        case Feature::BusinessArea:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-businessarea.svg"_s;
+        case Feature::BikeStorage:
+            return u"qrc:///org.kde.kpublictransport/assets/images/transport-mode-bike.svg"_s;
+        case Feature::Toilet:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-toilet.svg"_s;
+        case Feature::WheelchairAccessibleToilet:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-wheelchair-toilet.svg"_s;
+        case Feature::InformationPoint:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-information.svg"_s;
+        case Feature::WiFi:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-wifi.svg"_s;
+        case Feature::PowerSockets:
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-powersocket.svg"_s;
+        case Feature::Other:
+            break;
+    }
+
+    return u"documentinfo"_s;
+}
+
 QJsonObject Feature::toJson(const Feature &feature)
 {
     auto obj = Json::toJson(feature);

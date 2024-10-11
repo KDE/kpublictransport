@@ -158,6 +158,16 @@ struct LineForeign {
     QML_FOREIGN(KPublicTransport::Line)
     QML_VALUE_TYPE(line)
 };
+struct LineMode
+{
+    Q_GADGET
+    QML_ANONYMOUS
+public:
+    Q_INVOKABLE [[nodiscard]] static QString iconName(KPublicTransport::Line::Mode mode)
+    {
+        return KPublicTransport::Line::modeIconName(mode);
+    }
+};
 
 struct LocationRequestForeign {
     Q_GADGET
@@ -239,6 +249,17 @@ struct FeatureForeign {
     QML_UNCREATABLE("only provided from C++ API")
 };
 FOREIGN_ENUM_GADGET(Feature)
+
+struct FeatureType
+{
+    Q_GADGET
+    QML_ANONYMOUS
+public:
+    Q_INVOKABLE [[nodiscard]] static QString typeIconName(KPublicTransport::Feature::Type type)
+    {
+        return KPublicTransport::Feature::typeIconName(type);
+    }
+};
 
 class KPublicTransportQmlPlugin : public QQmlExtensionPlugin
 {

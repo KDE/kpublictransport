@@ -76,14 +76,24 @@ class KPUBLICTRANSPORT_EXPORT Feature {
      */
     KPUBLICTRANSPORT_PROPERTY(int, quantity, setQuantity)
 
+    /** Icon representing the given feature type @p type.
+     *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
+     */
+    Q_PROPERTY(QString typeIconName READ typeIconName STORED false)
+
 public:
     /** Convenience constructor for a Feature of type @p type and availability @p availability. */
     explicit Feature(Type type, Availability availability = Available);
 
     [[nodiscard]] QString displayName() const;
+    [[nodiscard]] QString typeIconName() const;
 
     /** Generic display name for feature of @p type. */
     [[nodiscard]] static QString typeDisplayName(KPublicTransport::Feature::Type type);
+    /** Icon representing the given feature type @p type.
+     *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
+     */
+    [[nodiscard]] static QString typeIconName(KPublicTransport::Feature::Type type);
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const Feature &feature);
