@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-12 00:38+0000\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2024-09-30 22:17+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -95,12 +95,12 @@ msgctxt "train coach feature"
 msgid "Power sockets"
 msgstr "Elektromos aljzatok"
 
-#: quick/FeatureIcon.qml:90
+#: quick/FeatureIcon.qml:58
 #, kde-format
 msgid "%1 (not available)"
 msgstr "%1 (nem érhető el)"
 
-#: quick/FeatureIcon.qml:94
+#: quick/FeatureIcon.qml:62
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
