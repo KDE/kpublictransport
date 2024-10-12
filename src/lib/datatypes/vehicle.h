@@ -69,33 +69,6 @@ class KPUBLICTRANSPORT_EXPORT VehicleSection
      */
     KPUBLICTRANSPORT_PROPERTY(Classes, classes, setClasses)
 
-    /** Amenities or other features available in a vehicle section.
-     *  @deprecated Use KPublicTransport::Feature instead.
-     */
-    enum Feature {
-        NoFeatures = 0,
-        AirConditioning = 1, ///< vehicle section is air conditioned
-        Restaurant = 2, ///< vehicle has a place to obtain food/drinks (but not necessarily a full-scale RestaurantCar)
-        ToddlerArea = 4, ///< vehicle section contains infrastructure for toddler maintenance
-        WheelchairAccessible = 8, ///< wheelchair access supported
-        SilentArea = 16, ///< wishful thinking usually
-        BikeStorage = 32, ///< vehicle section contains space for bikes
-    };
-    Q_DECLARE_FLAGS(Features, Feature)
-    Q_FLAG(Features)
-    /** Features available in this vehicle section.
-     *  Can be more than one.
-     *  @deprecated use sectionFeatures instead
-     */
-    Q_PROPERTY(Features features READ features WRITE setFeatures STORED false)
-    [[nodiscard]] [[deprecated("use sectionFeatures")]] Features features() const;
-    [[deprecated("use setSectionFeatures")]] void setFeatures(Features features);
-
-    /** Feature flag as a variant list, for consumption in QML.
-     *  @deprecated use sectionFeatures instead
-     */
-    Q_PROPERTY(QVariantList featureList READ featureList STORED false)
-
     /** Features of this section, for consumption by QML. */
     Q_PROPERTY(std::vector<KPublicTransport::Feature> sectionFeatures READ sectionFeatures STORED false)
 
@@ -263,11 +236,10 @@ public:
     [[nodiscard]] static std::vector<Vehicle> fromJson(const QJsonArray &array);
 
 private:
-    [[nodiscard]] [[deprecated("use sectionFeatures instead")]] QVariantList sectionsVariant() const;
+    [[nodiscard]] QVariantList sectionsVariant() const;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Classes)
-Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Features)
 Q_DECLARE_OPERATORS_FOR_FLAGS(VehicleSection::Sides)
 
 }

@@ -60,66 +60,6 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, QString, platformSectionName, set
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(VehicleSection, KPublicTransport::Load::Category, load, setLoad)
 
-VehicleSection::Features VehicleSection::features() const
-{
-    struct {
-        KPublicTransport::Feature::Type type;
-        Feature legacyType;
-    } constexpr map[] = {
-        { KPublicTransport::Feature::AirConditioning, AirConditioning },
-        { KPublicTransport::Feature::Restaurant, Restaurant },
-        { KPublicTransport::Feature::ToddlerArea, ToddlerArea },
-        { KPublicTransport::Feature::WheelchairAccessible, WheelchairAccessible },
-        { KPublicTransport::Feature::SilentArea, SilentArea },
-        { KPublicTransport::Feature::BikeStorage, BikeStorage },
-    };
-
-    VehicleSection::Features features;
-    for (const auto &f : d->sectionFeatures) {
-        if (f.availability() == KPublicTransport::Feature::Unavailable) {
-            continue;
-        }
-        const auto it = std::find_if(std::begin(map), std::end(map), [&f](auto m) { return m.type == f.type(); });
-        if (it == std::end(map)) {
-            continue;
-        }
-        features |= (*it).legacyType;
-    }
-
-    return features;
-}
-
-[[nodiscard]] static constexpr KPublicTransport::Feature::Type fromLegacyFeature(int f)
-{
-    constexpr KPublicTransport::Feature::Type map[] = {
-        KPublicTransport::Feature::NoFeature,
-        KPublicTransport::Feature::AirConditioning,
-        KPublicTransport::Feature::Restaurant,
-        KPublicTransport::Feature::ToddlerArea,
-        KPublicTransport::Feature::WheelchairAccessible,
-        KPublicTransport::Feature::SilentArea,
-        KPublicTransport::Feature::BikeStorage,
-    };
-    return map[f];
-}
-
-void VehicleSection::setFeatures(Features features)
-{
-    d.detach();
-    if (features) {
-        std::vector<KPublicTransport::Feature> fs;
-        const auto me = QMetaEnum::fromType<VehicleSection::Features>();
-        for (int i = 0; i < me.keyCount(); ++i) {
-            if (const auto v = static_cast<VehicleSection::Feature>(me.value(i)); features & v) {
-                fs.emplace_back(fromLegacyFeature(i), KPublicTransport::Feature::Available);
-            }
-        }
-        FeatureUtil::set(d->sectionFeatures, std::move(fs));
-    } else {
-        d->sectionFeatures.clear();
-    }
-}
-
 const std::vector<KPublicTransport::Feature>& VehicleSection::sectionFeatures() const
 {
     return d->sectionFeatures;
@@ -182,7 +122,6 @@ VehicleSection VehicleSection::merge(const VehicleSection &lhs, const VehicleSec
         res.setType(std::min(lhs.type(), rhs.type()));
     }
     res.setClasses(lhs.classes() | rhs.classes());
-    res.setFeatures(lhs.features() | rhs.features());
     res.setDeckCount(std::max(lhs.deckCount(), rhs.deckCount()));
     res.setConnectedSides(lhs.connectedSides() & rhs.connectedSides());
     res.setPlatformSectionName(MergeUtil::mergeString(lhs.platformSectionName(), rhs.platformSectionName()));
@@ -216,9 +155,6 @@ VehicleSection VehicleSection::fromJson(const QJsonObject &obj)
     const auto fVal = obj.value("features"_L1);
     if (fVal.isArray()) {
         v.setSectionFeatures(KPublicTransport::Feature::fromJson(fVal.toArray()));
-    } else if (fVal.isString()) {
-        // backward compat for existing data
-        v.setFeatures(Json::flagsFromJson<Features>(fVal));
     }
     return v;
 }
@@ -226,18 +162,6 @@ VehicleSection VehicleSection::fromJson(const QJsonObject &obj)
 std::vector<VehicleSection> VehicleSection::fromJson(const QJsonArray &array)
 {
     return Json::fromJson<VehicleSection>(array);
-}
-
-QVariantList VehicleSection::featureList() const
-{
-    QVariantList l;
-    const auto me = QMetaEnum::fromType<VehicleSection::Features>();
-    for (int i = 0; i < me.keyCount(); ++i) {
-        if (features() & static_cast<VehicleSection::Feature>(1 << i)) {
-            l.push_back(static_cast<VehicleSection::Feature>(1 << i));
-        }
-    }
-    return l;
 }
 
 bool VehicleSection::hasPlatformPosition() const
