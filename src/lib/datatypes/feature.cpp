@@ -94,15 +94,15 @@ QString Feature::typeIconName(Feature::Type type)
         case Feature::NoFeature:
             return {};
         case Feature::AirConditioning:
-            return u"temperature-cold"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-airconditioning.svg"_s;
         case Feature::Restaurant:
             return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-restaurant.svg"_s;
         case Feature::ToddlerArea:
             return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-toddlerarea.svg"_s;
         case Feature::FamilyArea:
-            return u"qrc:///org.kde.kpublictransport/assets/images/family.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-family.svg"_s;
         case Feature::WheelchairAccessible:
-            return u"qrc:///org.kde.kpublictransport/assets/images/wheelchair_accessible.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-wheelchair-accessible.svg"_s;
         case Feature::SilentArea:
             return u"qrc:///org.kde.kpublictransport/assets/images/vehicle-feature-silentarea.svg"_s;
         case Feature::BusinessArea:

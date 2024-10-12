@@ -37,15 +37,15 @@
         <file>transport-mode-tram.svg</file>
         <file>transport-mode-walk.svg</file>
 
-        <file>family.svg</file>
-        <file>wheelchair_accessible.svg</file>
-
+        <file>vehicle-feature-airconditioning.svg</file>
         <file>vehicle-feature-businessarea.svg</file>
+        <file>vehicle-feature-family.svg</file>
         <file>vehicle-feature-information.svg</file>
         <file>vehicle-feature-powersocket.svg</file>
         <file>vehicle-feature-silentarea.svg</file>
         <file>vehicle-feature-toddlerarea.svg</file>
         <file>vehicle-feature-toilet.svg</file>
+        <file>vehicle-feature-wheelchair-accessible.svg</file>
         <file>vehicle-feature-wheelchair-toilet.svg</file>
         <file>vehicle-feature-wifi.svg</file>
     </qresource>
