@@ -150,11 +150,11 @@ QString VehicleSection::vehicleTypeIconName(VehicleSection::Type type)
             break;
         case VehicleSection::PassengerCar:
         case VehicleSection::ControlCar:
-            return u"qrc:///org.kde.kpublictransport/assets/images/seat.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-passenger.svg"_s;
         case VehicleSection::SleepingCar:
-            return u"qrc:///org.kde.kpublictransport/assets/images/sleepingcar.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-sleeping.svg"_s;
         case VehicleSection::CouchetteCar:
-            return u"qrc:///org.kde.kpublictransport/assets/images/couchettecar.svg"_s;
+            return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-couchette.svg"_s;
         case VehicleSection::RestaurantCar:
             return u"qrc:///org.kde.kpublictransport/assets/images/train-coach-restaurant.svg"_s;
         case VehicleSection::CarTransportCar:

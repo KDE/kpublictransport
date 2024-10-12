@@ -4,11 +4,8 @@
 -->
 <RCC>
     <qresource prefix="/org.kde.kpublictransport/assets/images">
-        <file>couchettecar.svg</file>
         <file>motorcycle.svg</file>
         <file>scooter.svg</file>
-        <file>seat.svg</file>
-        <file>sleepingcar.svg</file>
         <file>transport-stop.svg</file>
 
         <file>journey-mode-transfer.svg</file>
@@ -19,7 +16,10 @@
         <file>path-stairs.svg</file>
 
         <file>train-coach-cartransport.svg</file>
+        <file>train-coach-couchette.svg</file>
+        <file>train-coach-passenger.svg</file>
         <file>train-coach-restaurant.svg</file>
+        <file>train-coach-sleeping.svg</file>
 
         <file>transport-mode-aeriallift.svg</file>
         <file>transport-mode-bike.svg</file>
