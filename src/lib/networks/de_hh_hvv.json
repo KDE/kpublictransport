@@ -194,7 +194,7 @@
                     256
                 ],
                 "id": "express-bus",
-                "mode": "BusRapidTransit",
+                "mode": "Bus",
                 "name": "Schnellbus"
             },
             {

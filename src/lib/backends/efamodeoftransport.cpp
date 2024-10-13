@@ -22,7 +22,7 @@ static constexpr const Line::Mode mot_map[] = {
     Line::Tramway, // 4
     Line::Bus, // 5
     Line::Bus, // 6 "Regional bus"
-    Line::BusRapidTransit, // 7 "Express bus"
+    Line::Bus, // 7 "Express bus"
     Line::Funicular, // 8 "Cable car/Rack railway"
     Line::Ferry, // 9
     Line::Taxi, // 10 "Taxi on demand"
