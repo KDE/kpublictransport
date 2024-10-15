@@ -29,7 +29,6 @@ public:
         Air,
         Boat,
         Bus,
-        BusRapidTransit [[deprecated("unused, will be removed")]],
         Coach,
         Ferry,
         Funicular,

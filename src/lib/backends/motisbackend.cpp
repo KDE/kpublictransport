@@ -300,7 +300,6 @@ struct {
     { Line::Mode::Air, 0 },
     { Line::Mode::Boat, 11 },
     { Line::Mode::Bus, 10 },
-    { Line::Mode::BusRapidTransit, 10 },
     { Line::Mode::Coach, 3 },
     { Line::Mode::Ferry, 11 },
     { Line::Mode::Funicular, 9 },

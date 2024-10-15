@@ -317,7 +317,6 @@ int JourneySection::co2Emission() const
         { Line::Air, 285 },
         { Line::Boat, 245 },
         { Line::Bus, 68 },
-        { Line::BusRapidTransit, 68 },
         { Line::Coach, 68 },
         { Line::Ferry, 245 },
         { Line::LocalTrain, 14 },
