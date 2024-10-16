@@ -1,0 +1,818 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 55,
+                "from": {
+                    "country": "FR",
+                    "identifier": {
+                        "motis": ""
+                    },
+                    "latitude": 49.0041,
+                    "longitude": 2.5711,
+                    "name": "START",
+                    "region": "FR-IDF"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.5711,
+                                        49.0041
+                                    ],
+                                    [
+                                        2.5710955,
+                                        49.0041812
+                                    ],
+                                    [
+                                        2.5710892,
+                                        49.0041811
+                                    ],
+                                    [
+                                        2.5707468,
+                                        49.0041664
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.5707468,
+                                        49.0041664
+                                    ],
+                                    [
+                                        2.5709774,
+                                        49.0041763
+                                    ],
+                                    [
+                                        2.57098,
+                                        49.00415
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2024-10-18T12:41:00Z",
+                "scheduledDepartureTime": "2024-10-18T12:41:00Z",
+                "to": {
+                    "country": "FR",
+                    "identifier": {
+                        "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:473364"
+                    },
+                    "latitude": 49.00415,
+                    "longitude": 2.57098,
+                    "name": "Aéroport CDG - Terminal 2 (Tgv)",
+                    "region": "FR-IDF"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 28430,
+                "from": {
+                    "country": "FR",
+                    "identifier": {
+                        "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:473364"
+                    },
+                    "latitude": 49.00415,
+                    "longitude": 2.57098,
+                    "name": "Aéroport CDG - Terminal 2 (Tgv)",
+                    "region": "FR-IDF"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T12:46:00Z",
+                        "scheduledDepartureTime": "2024-10-18T12:47:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462398"
+                            },
+                            "latitude": 49.00979,
+                            "longitude": 2.56141,
+                            "name": "Aéroport CDG 1 (Terminal 3)",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T12:51:00Z",
+                        "scheduledDepartureTime": "2024-10-18T12:52:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "floorLevel": 1,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:47878"
+                            },
+                            "latitude": 48.97357,
+                            "longitude": 2.51455,
+                            "name": "Parc des Expositions",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T12:53:00Z",
+                        "scheduledDepartureTime": "2024-10-18T12:54:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:58793"
+                            },
+                            "latitude": 48.96257000000001,
+                            "longitude": 2.51278,
+                            "name": "Villepinte",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T12:56:00Z",
+                        "scheduledDepartureTime": "2024-10-18T12:57:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "floorLevel": -1,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43193"
+                            },
+                            "latitude": 48.946999999999996,
+                            "longitude": 2.5247300000000004,
+                            "name": "Sevran Beaudottes",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:00:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:00:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43071"
+                            },
+                            "latitude": 48.93215000000001,
+                            "longitude": 2.4955999999999996,
+                            "name": "Aulnay-Sous-Bois",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:02:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:03:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "floorLevel": -1,
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:46163"
+                            },
+                            "latitude": 48.93231000000001,
+                            "longitude": 2.47539,
+                            "name": "Le Blanc-Mesnil",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:04:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:05:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43122"
+                            },
+                            "latitude": 48.93273000000001,
+                            "longitude": 2.4548799999999997,
+                            "name": "Drancy",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:07:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:08:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43231"
+                            },
+                            "latitude": 48.93074,
+                            "longitude": 2.42583,
+                            "name": "Le Bourget",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:11:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:11:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43140"
+                            },
+                            "latitude": 48.9243,
+                            "longitude": 2.38611,
+                            "name": "La Courneuve - Aubervilliers",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:13:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:14:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43145"
+                            },
+                            "latitude": 48.918079999999996,
+                            "longitude": 2.3624599999999996,
+                            "name": "La Plaine Stade de France",
+                            "region": "FR-IDF"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2024-10-18T13:19:00Z",
+                        "scheduledDepartureTime": "2024-10-18T13:20:00Z",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
+                            },
+                            "latitude": 48.882310000000004,
+                            "longitude": 2.3566899999999995,
+                            "name": "Gare du Nord",
+                            "region": "FR-IDF"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.57098,
+                                        49.00415
+                                    ],
+                                    [
+                                        2.56141,
+                                        49.00979
+                                    ],
+                                    [
+                                        2.51455,
+                                        48.97357
+                                    ],
+                                    [
+                                        2.51278,
+                                        48.96257
+                                    ],
+                                    [
+                                        2.52473,
+                                        48.947
+                                    ],
+                                    [
+                                        2.4956,
+                                        48.93215
+                                    ],
+                                    [
+                                        2.47539,
+                                        48.93231
+                                    ],
+                                    [
+                                        2.45488,
+                                        48.93273
+                                    ],
+                                    [
+                                        2.42583,
+                                        48.93074
+                                    ],
+                                    [
+                                        2.38611,
+                                        48.9243
+                                    ],
+                                    [
+                                        2.36246,
+                                        48.91808
+                                    ],
+                                    [
+                                        2.35669,
+                                        48.88231
+                                    ],
+                                    [
+                                        2.34703,
+                                        48.8618
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "Saint-Rémy-lès-Chevreuse",
+                    "line": {
+                        "color": "#5091cb",
+                        "mode": "LocalTrain",
+                        "name": "B ",
+                        "operatorName": "RER",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": "2024-10-18T13:23:00Z",
+                "scheduledDepartureTime": "2024-10-18T12:44:00Z",
+                "to": {
+                    "country": "FR",
+                    "floorLevel": -4,
+                    "identifier": {
+                        "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                    },
+                    "latitude": 48.861799999999995,
+                    "longitude": 2.34703,
+                    "name": "Châtelet Les Halles",
+                    "region": "FR-IDF"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 7,
+                "from": {
+                    "country": "FR",
+                    "floorLevel": -4,
+                    "identifier": {
+                        "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:45102"
+                    },
+                    "latitude": 48.861799999999995,
+                    "longitude": 2.34703,
+                    "name": "Châtelet Les Halles",
+                    "region": "FR-IDF"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.34703,
+                                        48.8618
+                                    ],
+                                    [
+                                        2.3469765,
+                                        48.861744
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2024-10-18T13:25:00Z",
+                "scheduledDepartureTime": "2024-10-18T13:23:00Z",
+                "to": {
+                    "country": "FR",
+                    "floorLevel": -4,
+                    "identifier": {
+                        "motis": "fr-horaires-des-lignes-transilien-1_IDFM:monomodalStopPlace:45102"
+                    },
+                    "latitude": 48.861743999999995,
+                    "longitude": 2.3469765,
+                    "name": "Châtelet les Halles",
+                    "region": "FR-IDF"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 2964,
+                "from": {
+                    "country": "FR",
+                    "floorLevel": -4,
+                    "identifier": {
+                        "motis": "fr-horaires-des-lignes-transilien-1_IDFM:monomodalStopPlace:45102"
+                    },
+                    "latitude": 48.861743999999995,
+                    "longitude": 2.3469765,
+                    "name": "Châtelet les Halles",
+                    "region": "FR-IDF"
+                },
+                "mode": "PublicTransport",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3469765,
+                                        48.861744
+                                    ],
+                                    [
+                                        2.3763657,
+                                        48.843403
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "route": {
+                    "direction": "ROPO",
+                    "line": {
+                        "color": "#008b5b",
+                        "mode": "LocalTrain",
+                        "name": "D 155438-155439",
+                        "operatorName": "RER",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": "2024-10-18T13:30:00Z",
+                "scheduledDepartureTime": "2024-10-18T13:25:00Z",
+                "to": {
+                    "country": "FR",
+                    "floorLevel": 1,
+                    "identifier": {
+                        "motis": "fr-horaires-des-lignes-transilien-1_IDFM:monomodalStopPlace:470195"
+                    },
+                    "latitude": 48.843402999999995,
+                    "longitude": 2.3763656999999996,
+                    "name": "Gare de Lyon",
+                    "region": "FR-IDF"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 314,
+                "from": {
+                    "country": "FR",
+                    "floorLevel": 1,
+                    "identifier": {
+                        "motis": "fr-horaires-des-lignes-transilien-1_IDFM:monomodalStopPlace:470195"
+                    },
+                    "latitude": 48.843402999999995,
+                    "longitude": 2.3763656999999996,
+                    "name": "Gare de Lyon",
+                    "region": "FR-IDF"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3763657,
+                                        48.843403
+                                    ],
+                                    [
+                                        2.3763757,
+                                        48.8434109
+                                    ],
+                                    [
+                                        2.3761803,
+                                        48.8435178
+                                    ],
+                                    [
+                                        2.376144,
+                                        48.8435183
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.376144,
+                                        48.8435183
+                                    ],
+                                    [
+                                        2.3761609,
+                                        48.843532
+                                    ],
+                                    [
+                                        2.3761438,
+                                        48.8435406
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "floorLevelChange": 1,
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3761438,
+                                        48.8435406
+                                    ],
+                                    [
+                                        2.3760345,
+                                        48.8436011
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3760345,
+                                        48.8436011
+                                    ],
+                                    [
+                                        2.3759857,
+                                        48.8436306
+                                    ],
+                                    [
+                                        2.37594,
+                                        48.8436343
+                                    ],
+                                    [
+                                        2.375813,
+                                        48.8437064
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.375813,
+                                        48.8437064
+                                    ],
+                                    [
+                                        2.3757359,
+                                        48.8437491
+                                    ],
+                                    [
+                                        2.3756796,
+                                        48.8437856
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3756796,
+                                        48.8437856
+                                    ],
+                                    [
+                                        2.3758436,
+                                        48.8439155
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3758436,
+                                        48.8439155
+                                    ],
+                                    [
+                                        2.3758732,
+                                        48.8439389
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3758732,
+                                        48.8439389
+                                    ],
+                                    [
+                                        2.3760905,
+                                        48.844111
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3760905,
+                                        48.844111
+                                    ],
+                                    [
+                                        2.3762743,
+                                        48.8442566
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3762743,
+                                        48.8442566
+                                    ],
+                                    [
+                                        2.3764718,
+                                        48.844413
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3764718,
+                                        48.844413
+                                    ],
+                                    [
+                                        2.3765626,
+                                        48.8444851
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3765626,
+                                        48.8444851
+                                    ],
+                                    [
+                                        2.3767111,
+                                        48.8444025
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3767111,
+                                        48.8444025
+                                    ],
+                                    [
+                                        2.3768467,
+                                        48.8445123
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3768467,
+                                        48.8445123
+                                    ],
+                                    [
+                                        2.3768769,
+                                        48.8444961
+                                    ],
+                                    [
+                                        2.3769487,
+                                        48.8445545
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3769487,
+                                        48.8445545
+                                    ],
+                                    [
+                                        2.3771258,
+                                        48.8444613
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3771258,
+                                        48.8444613
+                                    ],
+                                    [
+                                        2.3771542,
+                                        48.8444458
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3771542,
+                                        48.8444458
+                                    ],
+                                    [
+                                        2.3771616,
+                                        48.8444418
+                                    ],
+                                    [
+                                        2.3771707,
+                                        48.8444368
+                                    ],
+                                    [
+                                        2.3772507,
+                                        48.8443938
+                                    ],
+                                    [
+                                        2.3773597,
+                                        48.8443026
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.3773597,
+                                        48.8443026
+                                    ],
+                                    [
+                                        2.377152,
+                                        48.8441463
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        2.377152,
+                                        48.8441463
+                                    ],
+                                    [
+                                        2.3772935,
+                                        48.8440687
+                                    ],
+                                    [
+                                        2.37708,
+                                        48.8439
+                                    ]
+                                ],
+                                "type": "LineString"
+                            }
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2024-10-18T13:34:00Z",
+                "scheduledDepartureTime": "2024-10-18T13:30:00Z",
+                "to": {
+                    "country": "FR",
+                    "identifier": {
+                        "motis": ""
+                    },
+                    "latitude": 48.8439,
+                    "longitude": 2.37708,
+                    "name": "END",
+                    "region": "FR-IDF"
+                }
+            }
+        ]
+    }
+]

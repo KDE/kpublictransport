@@ -1,0 +1,172 @@
+[
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:34:8"
+        },
+        "latitude": 48.399345000000004,
+        "longitude": 9.982133000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:33:5a"
+        },
+        "latitude": 48.400757,
+        "longitude": 9.982421,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008_G"
+        },
+        "latitude": 48.3994,
+        "longitude": 9.982608,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:32:3"
+        },
+        "latitude": 48.399353000000005,
+        "longitude": 9.982645000000002,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:32:2"
+        },
+        "latitude": 48.399345000000004,
+        "longitude": 9.982816000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:34:7"
+        },
+        "latitude": 48.399345000000004,
+        "longitude": 9.982313,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:31:1"
+        },
+        "latitude": 48.399345000000004,
+        "longitude": 9.982933000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:35:27"
+        },
+        "latitude": 48.39869,
+        "longitude": 9.983256,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:31:25"
+        },
+        "latitude": 48.398678000000004,
+        "longitude": 9.983139000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "de-DELFI_de:08421:1008:35:28"
+        },
+        "latitude": 48.39838,
+        "longitude": 9.983400000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "at-Railway-Current-Reference-Data_de:08421:1008:33:4"
+        },
+        "latitude": 48.399353000000005,
+        "longitude": 9.982547000000002,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "at-Railway-Current-Reference-Data_de:08421:1008:32:3"
+        },
+        "latitude": 48.399353000000005,
+        "longitude": 9.982673,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "at-Railway-Current-Reference-Data_de:08421:1008:32:2"
+        },
+        "latitude": 48.399353000000005,
+        "longitude": 9.982807000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "at-Railway-Current-Reference-Data_de:08421:1008:31:1"
+        },
+        "latitude": 48.399345000000004,
+        "longitude": 9.982933000000001,
+        "name": "Ulm Hauptbahnhof",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "ch-opentransportdataswiss_8029103"
+        },
+        "latitude": 48.399403,
+        "longitude": 9.982610000000001,
+        "name": "Ulm Hbf",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "ch-opentransportdataswiss_8029103:0:7"
+        },
+        "latitude": 48.399437,
+        "longitude": 9.9822235,
+        "name": "Ulm Hbf",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "fr-horaires-des-tgv_StopPoint:OCEICE-80291039"
+        },
+        "latitude": 48.3996,
+        "longitude": 9.982800000000001,
+        "name": "Ulm Hbf",
+        "type": "Stop"
+    }
+]

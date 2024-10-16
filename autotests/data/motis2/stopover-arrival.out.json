@@ -1,0 +1,170 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 700",
+                "operatorName": "DB Fernverkehr AG"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-17T23:16:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB71",
+                "operatorName": "Nordbahn Eisenbahngesellschaft"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T05:04:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:4:255307"
+            },
+            "latitude": 53.552783999999996,
+            "longitude": 9.935080000000001,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB71",
+                "operatorName": "Nordbahn Eisenbahngesellschaft"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T08:04:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE6",
+                "operatorName": "DB Regio AG Nord"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T08:21:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB71",
+                "operatorName": "Nordbahn Eisenbahngesellschaft"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T09:04:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE6",
+                "operatorName": "DB Regio AG Nord"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T09:21:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE6",
+                "operatorName": "DB Regio AG Nord"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T11:21:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Hamburg-Altona",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RB71",
+                "operatorName": "Nordbahn Eisenbahngesellschaft"
+            }
+        },
+        "scheduledArrivalTime": "2024-10-18T12:04:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    }
+]
