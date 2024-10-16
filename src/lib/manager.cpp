@@ -22,8 +22,6 @@
 #include "datatypes/backend_p.h"
 #include "datatypes/disruption.h"
 #include "datatypes/json_p.h"
-#include "datatypes/platform.h"
-#include "datatypes/vehicle.h"
 #include "geo/geojson_p.h"
 
 #include <KPublicTransport/Journey>
@@ -38,6 +36,7 @@
 #include "backends/hafasquerybackend.h"
 #include "backends/ivvassbackend.h"
 #include "backends/motisbackend.h"
+#include "backends/motis2backend.h"
 #include "backends/navitiabackend.h"
 #include "backends/oebbbackend.h"
 #include "backends/openjourneyplannerbackend.h"
@@ -203,6 +202,7 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
         IvvAssBackend,
         OpenJourneyPlannerBackend,
         MotisBackend,
+        Motis2Backend,
         GBFSBackend,
         AccessibilityCloudBackend,
         LTGLinkBackend,

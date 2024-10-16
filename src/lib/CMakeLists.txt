@@ -46,6 +46,8 @@ target_sources(KPublicTransport PRIVATE
     backends/ltglinkbackend.cpp
     backends/motisbackend.cpp
     backends/motisparser.cpp
+    backends/motis2backend.cpp
+    backends/motis2parser.cpp
     backends/navitiabackend.cpp
     backends/navitiaparser.cpp
     backends/navitiaphysicalmode.cpp

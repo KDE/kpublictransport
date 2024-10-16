@@ -3,10 +3,9 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include "motisbackend.h"
-#include "backends/networkreplycollection.h"
+#include "motis2backend.h"
 #include "cache.h"
-#include "motisparser.h"
+#include "motis2parser.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/JourneyReply>
@@ -24,36 +23,15 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QUrlQuery>
 
 using namespace KPublicTransport;
 using namespace Qt::Literals::StringLiterals;
 
-/** Resolve intermodal paths for a set of journeys. */
-namespace KPublicTransport {
-class MotisPathQueryTask : public AsyncTask<void>
-{
-public:
-    explicit MotisPathQueryTask(std::vector<Journey> &&journeys, const MotisBackend *backend, QNetworkAccessManager *nam, QObject *parent);
-    void start();
+Motis2Backend::Motis2Backend() = default;
+Motis2Backend::~Motis2Backend() = default;
 
-    std::vector<Journey> m_journeys;
-
-private:
-    void queryNext();
-    void applyPath(const Path &path, JourneySection::Mode mode, IndividualTransport::Mode ivMode);
-
-    const MotisBackend *m_backend = nullptr;
-    QNetworkAccessManager *m_nam = nullptr;
-
-    std::size_t m_jnyIdx = 0;
-    std::size_t m_secIdx = 0;
-};
-}
-
-MotisBackend::MotisBackend() = default;
-MotisBackend::~MotisBackend() = default;
-
-AbstractBackend::Capabilities MotisBackend::capabilities() const
+AbstractBackend::Capabilities Motis2Backend::capabilities() const
 {
     auto c = AbstractBackend::CanQueryArrivals
         | AbstractBackend::CanQueryNextDeparture | AbstractBackend::CanQueryPreviousDeparture
@@ -64,163 +42,90 @@ AbstractBackend::Capabilities MotisBackend::capabilities() const
     return c;
 }
 
-bool MotisBackend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
+bool Motis2Backend::needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const
 {
-    if (type == QueryType::Journey && !m_supportedModes.empty()) {
+    if (type == QueryType::Journey) {
         return !loc.hasCoordinate() && !loc.hasIdentifier(m_locationIdentifierType);
     }
     return !loc.hasIdentifier(m_locationIdentifierType);
 }
 
-bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
+static void filterLocations(std::vector<Location> &locations, Location::Types types)
 {
-    if ((req.types() & Location::Stop) == 0) {
-        // only stop search is supported so far
+    if ((types & Location::Address) || types == Location::Place) {
+        return;
+    }
+    auto it = std::remove_if(locations.begin(), locations.end(), [types](const auto &loc) {
+        return (loc.type() & types) == 0;
+    });
+    locations.erase(it, locations.end());
+}
+
+bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const
+{
+    if ((req.types() & (Location::Stop|Location::Address)) == 0) {
+        // only stop and address searches are supported
         return false;
     }
 
-    QJsonObject query;
+    QUrlQuery query;
+    QNetworkReply *netReply = nullptr;
+
     if (req.hasCoordinate()) {
-        query = QJsonObject{
-            {"destination"_L1, QJsonObject{
-                {"type"_L1, "Module"_L1},
-                {"target"_L1, "/lookup/geo_station"_L1}
-            }},
-            {"content_type"_L1, "LookupGeoStationRequest"_L1},
-            {"content"_L1, QJsonObject{
-                {"pos"_L1, QJsonObject{
-                    {"lat"_L1, req.latitude()},
-                    {"lng"_L1, req.longitude()},
-                }},
-                {"max_radius"_L1, req.maximumDistance()},
-            }}
-        };
+        query.addQueryItem(u"place"_s, QString::number(req.latitude()) + ','_L1 + QString::number(req.longitude()));
+        netReply = makeRequest(req, reply, "reverse-geocode"_L1, query, nam);
     } else {
-        query = QJsonObject{
-            {"destination"_L1, QJsonObject{
-                {"type"_L1, "Module"_L1},
-                {"target"_L1, "/guesser"_L1}
-            }},
-            {"content_type"_L1, "StationGuesserRequest"_L1},
-            {"content"_L1, QJsonObject{
-                {"input"_L1, req.name()},
-                {"guess_count"_L1, req.maximumResults()}
-            }}
-        };
+        query.addQueryItem(u"text"_s, req.name());
+        query.addQueryItem(u"language"_s, preferredLanguage());
+        netReply = makeRequest(req, reply, "geocode"_L1, query, nam);
     }
 
-    QNetworkReply *adrNetReply = nullptr;
-    qWarning() << req.types();
-    if (req.types() & Location::Address) {
-        QJsonObject adrQuery = {
-            {"destination"_L1, QJsonObject{
-                {"type"_L1, "Module"_L1},
-                {"target"_L1, "/address"_L1}
-            }},
-            {"content_type"_L1, "AddressRequest"_L1},
-            {"content"_L1, QJsonObject{
-                {"input"_L1, req.name()}
-            }}
-        };
-        adrNetReply = makeRequest(req, reply, adrQuery, nam);
-    }
-
-    auto netReply = makeRequest(req, reply, query, nam);
-
-    NetworkReplyCollection *replies = new NetworkReplyCollection({netReply, adrNetReply});
-    QObject::connect(replies, &NetworkReplyCollection::allFinished, [this, netReply, adrNetReply, reply, replies]() {
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
         netReply->deleteLater();
-        replies->deleteLater();
-
-        MotisParser p(m_locationIdentifierType);
-
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
         qDebug().noquote() << data << netReply->error();
-        auto result = p.parseStations(data);
 
-        if (adrNetReply) {
-            adrNetReply->deleteLater();
+        Motis2Parser p(m_locationIdentifierType);
+        auto result = p.parseLocations(data);
+        filterLocations(result, reply->request().types());
 
-            const auto adrData = adrNetReply->readAll();
-            logReply(reply, adrNetReply, adrData);
-            qDebug().noquote() << adrData << adrNetReply->error();
-            auto adrResult = p.parseLocations(adrData);
-
-            result.resize(adrResult.size() + result.size());
-            std::copy(adrResult.begin(), adrResult.end(), std::back_inserter(result));
-        }
-
-        if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
-            Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
+        if (netReply->error() == QNetworkReply::NoError) {
+            // TODO handle result.empty()?
+            // Cache::addLocationCacheEntry(backendId(), reply->request().cacheKey(), result, {});
             addResult(reply, std::move(result));
-        } else if (p.hasError()) {
-            addError(reply, Reply::InvalidRequest, p.errorMessage());
         } else {
             addError(reply, Reply::NetworkError, netReply->errorString());
         }
     });
-
     return true;
 }
 
-[[nodiscard]] static bool filterStopover(StopoverRequest::Mode mode, const Stopover &stop)
+bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
 {
-    switch (mode) {
-        case StopoverRequest::QueryDeparture:
-            return !stop.scheduledDepartureTime().isValid();
-        case StopoverRequest::QueryArrival:
-            return !stop.scheduledArrivalTime().isValid();
-    }
-    return false;
-}
-
-bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const
-{
-    const auto context = requestContext(req);
-    QDateTime dt;
-    switch (context.type) {
-        case RequestContext::Normal:
-            dt = req.dateTime();
-            break;
-        case RequestContext::Next:
-        case RequestContext::Previous:
-            dt = context.dateTime;
-            break;
+    QUrlQuery query;
+    query.addQueryItem(u"date"_s, req.dateTime().toUTC().date().toString(u"MM-dd-yyyy"));
+    query.addQueryItem(u"time"_s, req.dateTime().toUTC().time().toString(u"hh:mm"));
+    query.addQueryItem(u"stopId"_s, req.stop().identifier(m_locationIdentifierType));
+    query.addQueryItem(u"n"_s, QString::number(req.maximumResults()));
+    query.addQueryItem(u"arriveBy"_s, req.mode() == StopoverRequest::QueryArrival ? u"true"_s : u"false"_s);
+    if (const auto pageCursor = requestContextData(req).toString(); !pageCursor.isEmpty()) {
+        query.addQueryItem(u"pageCursor"_s, pageCursor);
     }
 
-    QJsonObject query{
-        {"destination"_L1, QJsonObject{
-            {"type"_L1, "Module"_L1},
-            {"target"_L1, "/railviz/get_station"_L1}
-        }},
-        {"content_type"_L1, "RailVizStationRequest"_L1},
-        {"content"_L1, QJsonObject{
-            {"time"_L1, encodeTime(dt)},
-            {"direction"_L1, requestContext(req).type == RequestContext::Previous ? "EARLIER"_L1 : "LATER"_L1},
-            {"station_id"_L1, req.stop().identifier(m_locationIdentifierType)},
-            {"event_count"_L1, req.maximumResults()},
-            {"by_schedule_time"_L1, false},
-        }}
-    };
-
-    auto netReply = makeRequest(req, reply, query, nam);
+    auto netReply = makeRequest(req, reply, "stoptimes"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
         qDebug().noquote() << data << netReply->error();
-        MotisParser p(m_locationIdentifierType);
-        auto result = p.parseEvents(data);
-        if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
-            // we get arrival/departure, arrival-only and departure-only results here
-            // filter out the ones not requested
-            const auto mode = reply->request().mode();
-            result.erase(std::remove_if(result.begin(), result.end(), [mode](const auto &stop) { return filterStopover(mode, stop); }), result.end());
+        Motis2Parser p(m_locationIdentifierType);
+        auto result = p.parseStopTimes(data);
+        if (netReply->error() == QNetworkReply::NoError) {
+            setNextRequestContext(reply, p.m_nextPageCursor);
+            setPreviousRequestContext(reply, p.m_previousPageCursor);
             addResult(reply, this, std::move(result));
-        } else if (p.hasError()) {
-            addError(reply, Reply::InvalidRequest, p.errorMessage());
         } else {
             addError(reply, Reply::NetworkError, netReply->errorString());
         }
@@ -229,7 +134,8 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
     return true;
 }
 
-QJsonArray MotisBackend::ivModes(const std::vector<IndividualTransport> &ivs) const
+#if 0
+QJsonArray Motis2Backend::ivModes(const std::vector<IndividualTransport> &ivs) const
 {
     // TODO allow external configuration of the duration limits and PPR profiles
     QJsonArray modes;
@@ -277,49 +183,19 @@ QJsonArray MotisBackend::ivModes(const std::vector<IndividualTransport> &ivs) co
     }
     return modes;
 }
+#endif
 
-[[nodiscard]] static QJsonObject encodeLocation(const Location &loc, const QString &locationIdentifierType, bool intermodal)
+[[nodiscard]] static QString encodeLocation(const Location &loc, const QString &locationIdentifierType)
 {
-    if (loc.hasCoordinate() && intermodal) {
-        return QJsonObject({
-            {"lat"_L1, loc.latitude()},
-            {"lng"_L1, loc.longitude()}
-        });
+    if (loc.hasCoordinate()) {
+        return QString::number(loc.latitude()) + ','_L1 + QString::number(loc.longitude()) + ",0"_L1; // TODO level
     }
-    return QJsonObject({
-        {"id"_L1, loc.identifier(locationIdentifierType)},
-        {"name"_L1, loc.name()}
-    });
+    return loc.identifier(locationIdentifierType);
 }
 
-struct {
-    Line::Mode mode;
-    uint8_t clasz;
-} static constexpr const class_table[] = {
-    { Line::Mode::Air, 0 },
-    { Line::Mode::Boat, 11 },
-    { Line::Mode::Bus, 10 },
-    { Line::Mode::Coach, 3 },
-    { Line::Mode::Ferry, 11 },
-    { Line::Mode::Funicular, 9 },
-    { Line::Mode::Funicular, 6 },
-    { Line::Mode::LocalTrain, 6 },
-    { Line::Mode::LocalTrain, 5 },
-    { Line::Mode::LongDistanceTrain, 1 },
-    { Line::Mode::LongDistanceTrain, 2 },
-    { Line::Mode::LongDistanceTrain, 4 },
-    { Line::Mode::Metro, 8 },
-    { Line::Mode::RailShuttle, 6 },
-    { Line::Mode::RapidTransit, 7 },
-    { Line::Mode::Shuttle, 6 },
-    { Line::Mode::Taxi, 12 },
-    { Line::Mode::Train, 5 },
-    { Line::Mode::Tramway, 9 },
-    { Line::Mode::RideShare, 12 },
-};
-
-bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
+bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
+#if 0
     // see https://motis-project.de/docs/api/endpoint/intermodal.html
 
     // backward search for MOTIS is really backward, so we need to swap everything
@@ -412,31 +288,33 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         {"content_type"_L1, "IntermodalRoutingRequest"_L1},
         {"content"_L1, content}
     };
+#endif
 
-    auto netReply = makeRequest(req, reply, query, nam);
+    QUrlQuery query;
+    query.addQueryItem(u"fromPlace"_s, encodeLocation(req.from(), m_locationIdentifierType));
+    query.addQueryItem(u"toPlace"_s, encodeLocation(req.to(), m_locationIdentifierType));
+    query.addQueryItem(u"date"_s, req.dateTime().toUTC().date().toString(u"MM-dd-yyyy"));
+    query.addQueryItem(u"time"_s, req.dateTime().toUTC().time().toString(u"hh:mm"));
+    // TODO mode
+    query.addQueryItem(u"numItineraries"_s, QString::number(req.maximumResults()));
+    if (const auto pageCursor = requestContextData(req).toString(); !pageCursor.isEmpty()) {
+        query.addQueryItem(u"pageCursor"_s, pageCursor);
+    }
+    query.addQueryItem(u"arriveBy"_s, req.dateTimeMode() == JourneyRequest::Arrival ? u"true"_s : u"false"_s);
+
+    auto netReply = makeRequest(req, reply, "plan"_L1, query, nam);
     QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply, nam]() {
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
         qDebug().noquote() << data << netReply->error();
-        MotisParser p(m_locationIdentifierType);
-        auto result = p.parseConnections(data);
-        if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
-            setPreviousRequestContext(reply, result.begin);
-            setNextRequestContext(reply, result.end);
-            if (!reply->request().includePaths()) {
-                addResult(reply, this, std::move(result.journeys));
-            } else {
-                auto task = new MotisPathQueryTask(std::move(result.journeys), this, nam, reply);
-                QObject::connect(task, &AbstractAsyncTask::finished, reply, [this, reply, task]() {
-                    task->deleteLater();
-                    addResult(reply, this, std::move(task->m_journeys));
-                });
-                task->start();
-            }
-        } else if (p.hasError()) {
-            addError(reply, Reply::InvalidRequest, p.errorMessage());
+        Motis2Parser p(m_locationIdentifierType);
+        auto result = p.parseItineraries(data);
+        if (netReply->error() == QNetworkReply::NoError) {
+            setPreviousRequestContext(reply, p.m_previousPageCursor);
+            setNextRequestContext(reply, p.m_nextPageCursor);
+            addResult(reply, this, std::move(result));
         } else {
             addError(reply, Reply::NetworkError, netReply->errorString());
         }
@@ -447,27 +325,29 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
 }
 
 template <typename Request>
-QNetworkReply* MotisBackend::makeRequest(const Request &req, QObject *parent, const QJsonObject &query, QNetworkAccessManager *nam) const
+QNetworkReply* Motis2Backend::makeRequest(const Request &req, QObject *parent, QLatin1StringView command, const QUrlQuery &query, QNetworkAccessManager *nam) const
 {
-    QNetworkRequest netReq(m_endpoint);
+    auto url = m_endpoint;
+    url.setPath("/api/v1/"_L1 + command);
+    url.setQuery(query);
+    QNetworkRequest netReq(url);
     applySslConfiguration(netReq);
     applyUserAgent(netReq);
-    netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"_L1);
-    const auto postData = QJsonDocument(query).toJson(QJsonDocument::Compact);
-    logRequest(req, netReq, postData);
-    qDebug().noquote() << QJsonDocument(query).toJson();
-    auto netReply = nam->post(netReq, postData);
+    logRequest(req, netReq);
+    qDebug() << url;
+    auto netReply = nam->get(netReq);
     netReply->setParent(parent);
     return netReply;
 }
 
-qint64 MotisBackend::encodeTime(const QDateTime &dt)
+#if 0
+qint64 Motis2Backend::encodeTime(const QDateTime &dt)
 {
     // MOTIS uses 0 offset UNIX time stamps
     return dt.toTimeZone(QTimeZone::fromSecondsAheadOfUtc(0)).toSecsSinceEpoch();
 }
 
-MotisPathQueryTask::MotisPathQueryTask(std::vector<Journey> &&journey, const MotisBackend *backend, QNetworkAccessManager *nam, QObject *parent)
+MotisPathQueryTask::MotisPathQueryTask(std::vector<Journey> &&journey, const Motis2Backend *backend, QNetworkAccessManager *nam, QObject *parent)
     : AsyncTask<void>(parent)
     , m_journeys(std::move(journey))
     , m_backend(backend)
@@ -611,5 +491,6 @@ void MotisPathQueryTask::applyPath(const Path &path, JourneySection::Mode mode, 
         j = 0;
     }
 }
+#endif
 
-#include "moc_motisbackend.cpp"
+#include "moc_motis2backend.cpp"
