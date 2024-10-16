@@ -473,7 +473,7 @@ Kirigami.ApplicationWindow {
                             case 2: return [Line.LocalTrain, Line.RapidTransit, Line.Metro, Line.Tramway, Line.Funicular, Line.Bus];
                             case 3: return [Line.LocalTrain];
                             case 4: return [Line.RapidTransit, Line.Metro, Line.Tramway, Line.Funicular];
-                            case 5: return [Line.Bus];
+                            case 5: return [Line.Bus, Line.Coach];
                         }
                         return [];
                     }

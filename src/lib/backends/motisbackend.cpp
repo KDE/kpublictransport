@@ -4,7 +4,6 @@
 */
 
 #include "motisbackend.h"
-#include "abstractbackend.h"
 #include "backends/networkreplycollection.h"
 #include "cache.h"
 #include "motisparser.h"

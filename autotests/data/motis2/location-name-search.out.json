@@ -1,0 +1,120 @@
+[
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "ch-opentransportdataswiss_Parent8014228"
+        },
+        "latitude": 48.993515,
+        "longitude": 8.402185,
+        "name": "Karlsruhe Hbf",
+        "postalCode": "76137",
+        "streetAddress": " ",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "ch-opentransportdataswiss_Parent8014228"
+        },
+        "latitude": 48.993515,
+        "longitude": 8.402185,
+        "name": "Karlsruhe Hbf",
+        "postalCode": "76137",
+        "streetAddress": " ",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "ch-opentransportdataswiss_Parent8014228"
+        },
+        "latitude": 48.993515,
+        "longitude": 8.402185,
+        "name": "Karlsruhe Hbf",
+        "postalCode": "76137",
+        "streetAddress": " ",
+        "type": "Stop"
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "ch-opentransportdataswiss_Parent8014228"
+        },
+        "latitude": 48.993515,
+        "longitude": 8.402185,
+        "name": "Karlsruhe Hbf",
+        "postalCode": "76137",
+        "streetAddress": " ",
+        "type": "Stop"
+    },
+    {
+        "country": "GB",
+        "identifier": {
+            "motis": "way/61739387"
+        },
+        "latitude": 52.945417,
+        "longitude": -1.1485075,
+        "name": "Karlsruhe House",
+        "region": "GB-ENG",
+        "streetAddress": " "
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "node/5876433289"
+        },
+        "latitude": 49.0053102,
+        "longitude": 8.3335171,
+        "name": "Karlsruher Hof",
+        "postalCode": "76189",
+        "streetAddress": " "
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "way/483431081"
+        },
+        "latitude": 52.7029911,
+        "longitude": 13.1329952,
+        "name": "Karlsruher Feld",
+        "postalCode": "16727",
+        "region": "DE-BB",
+        "streetAddress": " "
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "way/137200489"
+        },
+        "latitude": 52.7017056,
+        "longitude": 13.1108933,
+        "name": "Karlsruher Feld",
+        "postalCode": "16727",
+        "region": "DE-BB",
+        "streetAddress": " "
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "way/483431086"
+        },
+        "latitude": 52.7055211,
+        "longitude": 13.1184815,
+        "name": "Karlsruher Feld",
+        "postalCode": "16727",
+        "region": "DE-BB",
+        "streetAddress": " "
+    },
+    {
+        "country": "DE",
+        "identifier": {
+            "motis": "way/483431082"
+        },
+        "latitude": 52.7021982,
+        "longitude": 13.122589,
+        "name": "Karlsruher Feld",
+        "postalCode": "16727",
+        "region": "DE-BB",
+        "streetAddress": " "
+    }
+]
