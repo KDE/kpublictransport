@@ -1,0 +1,135 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kpublictransport package.
+#
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kpublictransport\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
+"PO-Revision-Date: 2024-10-16 10:06+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Generator: Lokalize 24.05.2\n"
+
+#: lib/datatypes/feature.cpp:52
+#, kde-format
+msgctxt "train coach feature"
+msgid "Air conditioning"
+msgstr "מיזוג אוויר"
+
+#: lib/datatypes/feature.cpp:54
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bistro or restaurant"
+msgstr "ביסטרו או מסעדה"
+
+#: lib/datatypes/feature.cpp:56
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toddler area"
+msgstr "אזור לזאטוטים"
+
+#: lib/datatypes/feature.cpp:58
+#, kde-format
+msgctxt "train coach feature"
+msgid "Family area"
+msgstr "אזור למשפחות"
+
+#: lib/datatypes/feature.cpp:60
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible"
+msgstr "גישה לכיסאות גלגלים"
+
+#: lib/datatypes/feature.cpp:62
+#, kde-format
+msgctxt "train coach feature"
+msgid "Quiet area"
+msgstr "אזור שקט"
+
+#: lib/datatypes/feature.cpp:64
+#, kde-format
+msgctxt "train coach feature"
+msgid "Business area"
+msgstr "מתחם עסקים"
+
+#: lib/datatypes/feature.cpp:66
+#, kde-format
+msgctxt "train coach feature"
+msgid "Bike storage"
+msgstr "אחסון אופניים"
+
+#: lib/datatypes/feature.cpp:68
+#, kde-format
+msgctxt "train coach feature"
+msgid "Toilet"
+msgstr "שירותים"
+
+#: lib/datatypes/feature.cpp:70
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wheelchair accessible toilet"
+msgstr "שירותים נגישים לכיסאות גלגלים"
+
+#: lib/datatypes/feature.cpp:72
+#, kde-format
+msgctxt "train coach feature"
+msgid "Information point"
+msgstr "נקודת מידע"
+
+#: lib/datatypes/feature.cpp:74
+#, kde-format
+msgctxt "train coach feature"
+msgid "Wi-Fi"
+msgstr "רשת אלחוטית"
+
+#: lib/datatypes/feature.cpp:76
+#, kde-format
+msgctxt "train coach feature"
+msgid "Power sockets"
+msgstr "שקעי חשמל"
+
+#: quick/FeatureIcon.qml:58
+#, kde-format
+msgid "%1 (not available)"
+msgstr "%1 (לא זמין)"
+
+#: quick/FeatureIcon.qml:62
+#, kde-format
+msgid "%2 (one space)"
+msgid_plural "%2 (%1 spaces)"
+msgstr[0] "%2 (מתחם אחד)"
+msgstr[1] "%2 (שני מתחמים)"
+msgstr[2] "%2 (%1 מתחמים)"
+msgstr[3] "%2 (%1 מתחמים)"
+
+#: quick/OccupancyIndicator.qml:39
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Low occupancy"
+msgstr "תפוסה דלילה"
+
+#: quick/OccupancyIndicator.qml:40
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Medium occupancy"
+msgstr "תפוסה בינונית"
+
+#: quick/OccupancyIndicator.qml:41
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "High occupancy"
+msgstr "תפוסה עמוסה"
+
+#: quick/OccupancyIndicator.qml:42
+#, kde-format
+msgctxt "vehicle occupancy"
+msgid "Full"
+msgstr "מלא"
