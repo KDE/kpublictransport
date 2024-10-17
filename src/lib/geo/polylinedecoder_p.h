@@ -14,7 +14,6 @@
 #include <array>
 #include <cstdint>
 #include <cstring>
-#include <limits>
 
 namespace KPublicTransport {
 
@@ -26,7 +25,7 @@ protected:
         , m_end(end)
     {}
 
-    inline bool canReadMore() const
+    [[nodiscard]] inline bool canReadMore() const
     {
         return m_it != m_end && *m_it;
     }
@@ -42,7 +41,7 @@ protected:
  * Decoder for Google's Polyline format.
  * @see https://developers.google.com/maps/documentation/utilities/polylinealgorithm
  */
-template <int Dim = 2, bool Differential = true>
+template <int Dim = 2, int Precision = 5, bool Differential = true>
 class PolylineDecoder : PolylineDecoderBase
 {
 public:
@@ -61,11 +60,12 @@ public:
 
     ~PolylineDecoder() = default;
 
-    constexpr inline int dimensions() const { return Dim; }
+    [[nodiscard]] constexpr inline int dimensions() const { return Dim; }
+    [[nodiscard]] constexpr inline int precision() const { return Precision; }
 
     using PolylineDecoderBase::canReadMore;
 
-    inline int32_t readNextInt()
+    [[nodiscard]] inline int32_t readNextInt()
     {
         auto n = readNextIntNonDifferential();
         if constexpr(Differential) {
@@ -76,9 +76,9 @@ public:
         return n;
     }
 
-    inline double readNextDouble()
+    [[nodiscard]] inline double readNextDouble()
     {
-        return readNextInt() / 100000.0;
+        return readNextInt() / scaleFactor();
     }
 
     inline void readPolygon(QPolygonF &polygon, int maxEntries = -1)
@@ -96,6 +96,9 @@ public:
     }
 
 private:
+    // TODO constexpr in C++26
+    [[nodiscard]] inline double scaleFactor() const { return std::pow(10.0, precision()); };
+
     int m_nextDim = 0;
     std::array<int32_t, Dim> m_accu;
 };
