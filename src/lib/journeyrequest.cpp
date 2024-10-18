@@ -18,8 +18,6 @@
 #include <QMetaEnum>
 #include <QSharedData>
 
-#include <unordered_map>
-
 using namespace KPublicTransport;
 
 enum { JourneyCacheTimeResolution = 60 }; // in seconds
@@ -33,7 +31,7 @@ public:
     std::vector<RequestContext> contexts;
     QStringList backendIds;
     JourneyRequest::DateTimeMode dateTimeMode = JourneyRequest::Departure;
-    JourneySection::Modes modes = JourneySection::PublicTransport | JourneySection::RentedVehicle;
+    JourneySection::Modes modes = JourneySection::PublicTransport | JourneySection::RentedVehicle | JourneySection::Walking;
     int maximumResults = 12;
     bool downloadAssets = false;
     bool includeIntermediateStops = true;
