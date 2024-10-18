@@ -68,6 +68,11 @@ public:
 
     Q_PROPERTY(bool hasCoordinate READ hasCoordinate STORED false)
 
+    /** OSM floor level of this location.
+     *  0 by default.
+     */
+    KPUBLICTRANSPORT_PROPERTY(int, floorLevel, setFloorLevel)
+
     /** Location type specific data.
      *  Depending on the location type this can be e.g. a RentalVehicleStation or an Equipment instance.
      */

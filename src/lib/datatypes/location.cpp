@@ -49,6 +49,8 @@ public:
     QString region;
     QString country;
 
+    int floorLevel = 0;
+
     QVariant data;
 };
 
@@ -62,6 +64,7 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Location, double, longitude, setLongitude)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, streetAddress, setStreetAddress)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, int, floorLevel, setFloorLevel)
 
 void Location::setRegion(const QString &regionCode) {
     d.detach();
@@ -485,6 +488,8 @@ QJsonObject Location::toJson(const Location &loc)
     if (loc.d->timeZone.isValid()) {
         obj.insert("timezone"_L1, QString::fromUtf8(loc.d->timeZone.id()));
     }
+    if (loc.d->floorLevel == 0) {
+        obj.remove("floorLevel"_L1);
     }
 
     if (!loc.d->ids.isEmpty()) {
