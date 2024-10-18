@@ -70,7 +70,7 @@ void Location::setRegion(const QString &regionCode) {
 
 QString Location::region() const {
     if (d->region.isEmpty() && hasCoordinate()) {
-        auto subdivision = KCountrySubdivision::fromLocation(latitude(), longitude());
+        auto subdivision = KCountrySubdivision::fromLocation((float)latitude(), (float)longitude());
         const_cast<Location *>(this)->setRegion(subdivision.code());
     }
 
@@ -84,7 +84,7 @@ void Location::setCountry(const QString &countryCode) {
 
 QString Location::country() const {
     if (d->country.isEmpty() && hasCoordinate()) {
-        auto country = KCountry::fromLocation(latitude(), longitude());
+        auto country = KCountry::fromLocation((float)latitude(), (float)longitude());
         const_cast<Location *>(this)->setCountry(country.alpha2());
     }
 
@@ -116,7 +116,7 @@ QTimeZone Location::timeZone() const
         return d->timeZone;
     }
     if (hasCoordinate()) {
-        if (const auto tzId = KTimeZone::fromLocation(latitude(), longitude()); tzId) {
+        if (const auto tzId = KTimeZone::fromLocation((float)latitude(), (float)longitude()); tzId) {
             return QTimeZone(tzId);
         }
     }
@@ -148,12 +148,6 @@ bool Location::hasIdentifier(const QString &identifierType) const
 RentalVehicleStation Location::rentalVehicleStation() const
 {
     return d->data.value<RentalVehicleStation>();
-}
-
-void Location::setRentalVehicleStation(const RentalVehicleStation &dock)
-{
-    d.detach();
-    d->data = QVariant::fromValue(dock);
 }
 
 RentalVehicle Location::rentalVehicle() const
@@ -191,7 +185,7 @@ struct {
 
 static QStringList splitAndNormalizeName(const QString &name)
 {
-    static const QRegularExpression splitRegExp(QStringLiteral(R"([, \(\)-/\.\[\]])"));
+    static const QRegularExpression splitRegExp(uR"([, \(\)-/\.\[\]])"_s);
     auto l = name.split(splitRegExp, Qt::SkipEmptyParts);
 
     for (auto it = l.begin(); it != l.end();) {
@@ -489,7 +483,8 @@ QJsonObject Location::toJson(const Location &loc)
 {
     auto obj = Json::toJson(loc);
     if (loc.d->timeZone.isValid()) {
-        obj.insert(QLatin1String("timezone"), QString::fromUtf8(loc.d->timeZone.id()));
+        obj.insert("timezone"_L1, QString::fromUtf8(loc.d->timeZone.id()));
+    }
     }
 
     if (!loc.d->ids.isEmpty()) {
@@ -497,25 +492,25 @@ QJsonObject Location::toJson(const Location &loc)
         for (auto it = loc.d->ids.constBegin(); it != loc.d->ids.constEnd(); ++it) {
             ids.insert(it.key(), it.value());
         }
-        obj.insert(QLatin1String("identifier"), ids);
+        obj.insert("identifier"_L1, ids);
     }
 
     switch (loc.type()) {
         case Place:
-            obj.remove(QLatin1String("type"));
+            obj.remove("type"_L1);
             [[fallthrough]];
         case Address:
         case Stop:
         case CarpoolPickupDropoff:
             break;
         case RentedVehicleStation:
-            obj.insert(QLatin1String("rentalVehicleStation"), RentalVehicleStation::toJson(loc.rentalVehicleStation()));
+            obj.insert("rentalVehicleStation"_L1, RentalVehicleStation::toJson(loc.rentalVehicleStation()));
             break;
         case RentedVehicle:
-            obj.insert(QLatin1String("rentalVehicle"), RentalVehicle::toJson(loc.rentalVehicle()));
+            obj.insert("rentalVehicle"_L1, RentalVehicle::toJson(loc.rentalVehicle()));
             break;
         case Equipment:
-            obj.insert(QLatin1String("equipment"), Equipment::toJson(loc.equipment()));
+            obj.insert("equipment"_L1, Equipment::toJson(loc.equipment()));
             break;
     }
 
@@ -550,12 +545,12 @@ QString Location::iconName() const
 Location Location::fromJson(const QJsonObject &obj)
 {
     auto loc = Json::fromJson<Location>(obj);
-    const auto tz = obj.value(QLatin1String("timezone")).toString();
+    const auto tz = obj.value("timezone"_L1).toString();
     if (!tz.isEmpty()) {
         loc.setTimeZone(QTimeZone(tz.toUtf8()));
     }
 
-    const auto ids = obj.value(QLatin1String("identifier")).toObject();
+    const auto ids = obj.value("identifier"_L1).toObject();
     for (auto it = ids.begin(); it != ids.end(); ++it) {
         loc.setIdentifier(it.key(), it.value().toString());
     }
@@ -567,13 +562,13 @@ Location Location::fromJson(const QJsonObject &obj)
         case CarpoolPickupDropoff:
             break;
         case RentedVehicleStation:
-            loc.setData(RentalVehicleStation::fromJson(obj.value(QLatin1String("rentalVehicleStation")).toObject()));
+            loc.setData(RentalVehicleStation::fromJson(obj.value("rentalVehicleStation"_L1).toObject()));
             break;
         case RentedVehicle:
-            loc.setData(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
+            loc.setData(RentalVehicle::fromJson(obj.value("rentalVehicle"_L1).toObject()));
             break;
         case Equipment:
-            loc.setData(Equipment::fromJson(obj.value(QLatin1String("equipment")).toObject()));
+            loc.setData(Equipment::fromJson(obj.value("equipment"_L1).toObject()));
             break;
     }
 

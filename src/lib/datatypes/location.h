@@ -120,7 +120,6 @@ public:
     [[nodiscard]] static double distance(const Location &lhs, const Location &rhs);
 
     [[nodiscard]] RentalVehicleStation rentalVehicleStation() const;
-    [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);
     [[nodiscard]] RentalVehicle rentalVehicle() const;
     [[nodiscard]] KPublicTransport::Equipment equipment() const;
 
