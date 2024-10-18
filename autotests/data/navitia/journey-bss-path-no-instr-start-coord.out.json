@@ -4,12 +4,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 359,
+                "distance": 362,
                 "from": {
                     "country": "FR",
-                    "latitude": 43.61124801635742,
+                    "latitude": 43.6112489,
                     "locality": "Toulouse",
-                    "longitude": 1.4538755416870117,
+                    "longitude": 1.4538755,
                     "name": "Hall 2 (Toulouse)",
                     "region": "FR-OCC"
                 },
@@ -408,9 +408,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 43.61016845703125,
+                    "latitude": 43.610168,
                     "locality": "Toulouse",
-                    "longitude": 1.4555319547653198,
+                    "longitude": 1.455532,
                     "name": "Marengo-SNCF (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -421,12 +421,12 @@
             {
                 "co2Emission": 2,
                 "disruptionEffect": "NormalService",
-                "distance": 773,
+                "distance": 774,
                 "from": {
                     "country": "FR",
-                    "latitude": 43.61016845703125,
+                    "latitude": 43.610168,
                     "locality": "Toulouse",
-                    "longitude": 1.4555319547653198,
+                    "longitude": 1.455532,
                     "name": "Marengo-SNCF (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -490,9 +490,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 43.60560607910156,
+                    "latitude": 43.605606,
                     "locality": "Toulouse",
-                    "longitude": 1.448518991470337,
+                    "longitude": 1.448519,
                     "name": "Jean Jaurès (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -503,12 +503,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 68,
+                "distance": 72,
                 "from": {
                     "country": "FR",
-                    "latitude": 43.60560607910156,
+                    "latitude": 43.605606,
                     "locality": "Toulouse",
-                    "longitude": 1.448518991470337,
+                    "longitude": 1.448519,
                     "name": "Jean Jaurès (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -658,9 +658,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 43.605159759521484,
+                    "latitude": 43.605159,
                     "locality": "Toulouse",
-                    "longitude": 1.4489469528198242,
+                    "longitude": 1.448947,
                     "name": "81 Boulevard Lazare Carnot (Toulouse)",
                     "region": "FR-OCC"
                 }
@@ -672,12 +672,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 148,
+                "distance": 154,
                 "from": {
                     "country": "FR",
-                    "latitude": 43.61124801635742,
+                    "latitude": 43.6112489,
                     "locality": "Toulouse",
-                    "longitude": 1.4538755416870117,
+                    "longitude": 1.4538755,
                     "name": "Hall 2 (Toulouse)",
                     "region": "FR-OCC"
                 },
@@ -984,9 +984,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 43.61124038696289,
+                    "latitude": 43.61124,
                     "locality": "Toulouse",
-                    "longitude": 1.4524359703063965,
+                    "longitude": 1.452436,
                     "name": " (Toulouse)",
                     "region": "FR-OCC"
                 }
@@ -994,12 +994,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 25,
+                "distance": 26,
                 "from": {
                     "country": "FR",
-                    "latitude": 43.61124038696289,
+                    "latitude": 43.61124,
                     "locality": "Toulouse",
-                    "longitude": 1.4524359703063965,
+                    "longitude": 1.452436,
                     "name": " (Toulouse)",
                     "region": "FR-OCC"
                 },
@@ -1024,9 +1024,9 @@
                     "identifier": {
                         "osm": "n890433076"
                     },
-                    "latitude": 43.61103439331055,
+                    "latitude": 43.6110343,
                     "locality": "Toulouse",
-                    "longitude": 1.4522922039031982,
+                    "longitude": 1.4522922,
                     "name": "Location vélos (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -1040,15 +1040,15 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 967,
+                "distance": 972,
                 "from": {
                     "country": "FR",
                     "identifier": {
                         "osm": "n890433076"
                     },
-                    "latitude": 43.61103439331055,
+                    "latitude": 43.6110343,
                     "locality": "Toulouse",
-                    "longitude": 1.4522922039031982,
+                    "longitude": 1.4522922,
                     "name": "Location vélos (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -1511,8 +1511,8 @@
                     "identifier": {
                         "osm": "n1832846521"
                     },
-                    "latitude": 43.6047477722168,
-                    "longitude": 1.4496145248413086,
+                    "latitude": 43.6047494,
+                    "longitude": 1.4496145,
                     "name": "Carnot - Trois Journées (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -1536,9 +1536,9 @@
                     "identifier": {
                         "osm": "n1832846521"
                     },
-                    "latitude": 43.6047477722168,
+                    "latitude": 43.6047494,
                     "locality": "Toulouse",
-                    "longitude": 1.4496145248413086,
+                    "longitude": 1.4496145,
                     "name": "Carnot - Trois Journées (Toulouse)",
                     "postalCode": "",
                     "region": "FR-OCC",
@@ -1570,9 +1570,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 43.604793548583984,
+                    "latitude": 43.604794,
                     "locality": "Toulouse",
-                    "longitude": 1.4495739936828613,
+                    "longitude": 1.449574,
                     "name": "69 Boulevard Lazare Carnot (Toulouse)",
                     "region": "FR-OCC"
                 }
@@ -1580,12 +1580,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 74,
+                "distance": 76,
                 "from": {
                     "country": "FR",
-                    "latitude": 43.604793548583984,
+                    "latitude": 43.604794,
                     "locality": "Toulouse",
-                    "longitude": 1.4495739936828613,
+                    "longitude": 1.449574,
                     "name": "69 Boulevard Lazare Carnot (Toulouse)",
                     "region": "FR-OCC"
                 },
@@ -1684,9 +1684,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 43.605159759521484,
+                    "latitude": 43.605159,
                     "locality": "Toulouse",
-                    "longitude": 1.4489469528198242,
+                    "longitude": 1.448947,
                     "name": "81 Boulevard Lazare Carnot (Toulouse)",
                     "region": "FR-OCC"
                 }

@@ -2,7 +2,7 @@
     "sections": [
         {
             "disruptionEffect": "NoService",
-            "distance": 9280,
+            "distance": 9281,
             "expectedArrivalPlatform": "1",
             "expectedArrivalTime": "2019-11-07T17:21:00",
             "expectedDeparturePlatform": "1",
@@ -42,7 +42,7 @@
                     "ibnr": "8089041",
                     "vbb": "900110012"
                 },
-                "latitude": 52.52403259277344,
+                "latitude": 52.524030685424805,
                 "locality": "Berlin",
                 "longitude": 13.46466064453125,
                 "name": "Berlin Storkower Straße",

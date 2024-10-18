@@ -2,12 +2,12 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 793043,
+            "distance": 793053,
             "from": {
                 "country": "AT",
-                "latitude": 47.07273483276367,
+                "latitude": 47.072735,
                 "locality": "Graz",
-                "longitude": 15.416484832763672,
+                "longitude": 15.416485,
                 "name": "Graz Hbf",
                 "region": "AT-6",
                 "type": "Stop"
@@ -25,9 +25,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 47.413875579833984,
+                        "latitude": 47.413875,
                         "locality": "Bruck an der Mur",
-                        "longitude": 15.27936840057373,
+                        "longitude": 15.279368,
                         "name": "Bruck/Mur",
                         "region": "AT-6",
                         "type": "Stop"
@@ -45,9 +45,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 47.4452018737793,
+                        "latitude": 47.445203,
                         "locality": "Kapfenberg",
-                        "longitude": 15.29218578338623,
+                        "longitude": 15.292186,
                         "name": "Kapfenberg",
                         "region": "AT-6",
                         "type": "Stop"
@@ -65,9 +65,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 47.60783004760742,
+                        "latitude": 47.60783,
                         "locality": "Mürzzuschlag",
-                        "longitude": 15.677200317382812,
+                        "longitude": 15.6772,
                         "name": "Mürzzuschlag",
                         "type": "Stop"
                     }
@@ -84,9 +84,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 47.63901138305664,
+                        "latitude": 47.639011,
                         "locality": "Semmering",
-                        "longitude": 15.830556869506836,
+                        "longitude": 15.830557,
                         "name": "Semmering",
                         "type": "Stop"
                     }
@@ -103,9 +103,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 47.81055450439453,
+                        "latitude": 47.810555,
                         "locality": "Wiener Neustadt",
-                        "longitude": 16.233055114746094,
+                        "longitude": 16.233055,
                         "name": "Wiener Neustadt Hbf",
                         "type": "Stop"
                     }
@@ -122,9 +122,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 48.17491149902344,
+                        "latitude": 48.17491,
                         "locality": "Wien",
-                        "longitude": 16.335861206054688,
+                        "longitude": 16.335861,
                         "name": "Wien Meidling",
                         "type": "Stop"
                     }
@@ -141,9 +141,9 @@
                     },
                     "stopPoint": {
                         "country": "AT",
-                        "latitude": 48.18503952026367,
+                        "latitude": 48.185038,
                         "locality": "Wien",
-                        "longitude": 16.37833023071289,
+                        "longitude": 16.37833,
                         "name": "Wien Hbf",
                         "type": "Stop"
                     }
@@ -159,9 +159,9 @@
                         "value": "2022-11-23T14:07:00+01:00"
                     },
                     "stopPoint": {
-                        "latitude": 48.75376892089844,
+                        "latitude": 48.753769,
                         "locality": "Břeclav",
-                        "longitude": 16.893024444580078,
+                        "longitude": 16.893025,
                         "name": "Břeclav",
                         "type": "Stop"
                     }
@@ -178,9 +178,9 @@
                     },
                     "stopPoint": {
                         "country": "CZ",
-                        "latitude": 49.19049835205078,
+                        "latitude": 49.190497,
                         "locality": "Brno",
-                        "longitude": 16.61281394958496,
+                        "longitude": 16.612814,
                         "name": "Brno hl.n.",
                         "region": "CZ-64",
                         "type": "Stop"
@@ -198,9 +198,9 @@
                     },
                     "stopPoint": {
                         "country": "CZ",
-                        "latitude": 50.11063766479492,
+                        "latitude": 50.110636,
                         "locality": "Praha",
-                        "longitude": 14.439705848693848,
+                        "longitude": 14.439706,
                         "name": "Praha-Holešovice",
                         "region": "CZ-10",
                         "type": "Stop"
@@ -218,9 +218,9 @@
                     },
                     "stopPoint": {
                         "country": "CZ",
-                        "latitude": 50.65944290161133,
+                        "latitude": 50.659444,
                         "locality": "Ústí nad Labem",
-                        "longitude": 14.044464111328125,
+                        "longitude": 14.044464,
                         "name": "Ústí n.L.hl.n.",
                         "region": "CZ-42",
                         "type": "Stop"
@@ -238,9 +238,9 @@
                     },
                     "stopPoint": {
                         "country": "CZ",
-                        "latitude": 50.77347183227539,
+                        "latitude": 50.773471,
                         "locality": "Děčín",
-                        "longitude": 14.201252937316895,
+                        "longitude": 14.201253,
                         "name": "Děčín hl.n.",
                         "region": "CZ-42",
                         "type": "Stop"
@@ -258,9 +258,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 50.91873550415039,
+                        "latitude": 50.918736,
                         "locality": "Bad Schandau",
-                        "longitude": 14.139717102050781,
+                        "longitude": 14.139717,
                         "name": "Bad Schandau",
                         "region": "DE-SN",
                         "type": "Stop"
@@ -278,9 +278,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 51.040409088134766,
+                        "latitude": 51.04041,
                         "locality": "Dresden",
-                        "longitude": 13.731583595275879,
+                        "longitude": 13.731584,
                         "name": "Dresden Hbf",
                         "region": "DE-SN",
                         "type": "Stop"
@@ -298,9 +298,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 51.06589889526367,
+                        "latitude": 51.065897,
                         "locality": "Dresden",
-                        "longitude": 13.74060344696045,
+                        "longitude": 13.740603,
                         "name": "Dresden-Neustadt",
                         "region": "DE-SN",
                         "type": "Stop"
@@ -318,9 +318,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 51.459224700927734,
+                        "latitude": 51.459223,
                         "locality": "Elsterwerda",
-                        "longitude": 13.51620101928711,
+                        "longitude": 13.516201,
                         "name": "Elsterwerda",
                         "type": "Stop"
                     }
@@ -337,9 +337,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 51.62061309814453,
+                        "latitude": 51.620613,
                         "locality": "Doberlug-Kirchhain",
-                        "longitude": 13.564226150512695,
+                        "longitude": 13.564226,
                         "name": "Doberlug-Kirchhain",
                         "region": "DE-BB",
                         "type": "Stop"
@@ -357,9 +357,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 52.50299835205078,
+                        "latitude": 52.503,
                         "locality": "Berlin",
-                        "longitude": 13.469261169433594,
+                        "longitude": 13.469261,
                         "name": "Berlin Ostkreuz",
                         "region": "DE-BE",
                         "type": "Stop"
@@ -377,9 +377,9 @@
                     },
                     "stopPoint": {
                         "country": "DE",
-                        "latitude": 52.52559280395508,
+                        "latitude": 52.525592,
                         "locality": "Berlin",
-                        "longitude": 13.369544982910156,
+                        "longitude": 13.369545,
                         "name": "Berlin Hbf",
                         "region": "DE-BE",
                         "type": "Stop"
@@ -403,9 +403,9 @@
             },
             "to": {
                 "country": "DE",
-                "latitude": 52.50487518310547,
+                "latitude": 52.504875,
                 "locality": "Berlin",
-                "longitude": 13.303755760192871,
+                "longitude": 13.303756,
                 "name": "Berlin-Charlottenburg",
                 "region": "DE-BE",
                 "type": "Stop"

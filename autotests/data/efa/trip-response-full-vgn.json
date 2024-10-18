@@ -3,7 +3,7 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 5296,
+                "distance": 5297,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2019-11-11T21:49:00",
                 "expectedDeparturePlatform": "",
@@ -14,9 +14,9 @@
                         "ifopt": "de:09564:1391:11:2",
                         "testid": "3001391"
                     },
-                    "latitude": 49.493961334228516,
+                    "latitude": 49.49396,
                     "locality": "Nürnberg",
-                    "longitude": 11.078630447387695,
+                    "longitude": 11.07863,
                     "name": "Nürnberg Flughafen",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -71,9 +71,9 @@
                         "ifopt": "de:09564:510:11:U2",
                         "testid": "3000510"
                     },
-                    "latitude": 49.44636917114258,
+                    "latitude": 49.44637,
                     "locality": "Nürnberg",
-                    "longitude": 11.081809997558594,
+                    "longitude": 11.08181,
                     "name": "Nürnberg Hbf",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -92,9 +92,9 @@
                         "ifopt": "de:09564:510:11:U1_2",
                         "testid": "3000510"
                     },
-                    "latitude": 49.44636917114258,
+                    "latitude": 49.44637,
                     "locality": "Nürnberg",
-                    "longitude": 11.081809997558594,
+                    "longitude": 11.08181,
                     "name": "Nürnberg Hbf",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -110,9 +110,9 @@
                                 "ifopt": "de:09564:561:11:1",
                                 "testid": "3000561"
                             },
-                            "latitude": 49.429298400878906,
+                            "latitude": 49.4293,
                             "locality": "Nürnberg",
-                            "longitude": 11.086319923400879,
+                            "longitude": 11.08632,
                             "name": "Nürnberg Frankenstr.",
                             "region": "DE-BY",
                             "type": "Stop"
@@ -128,9 +128,9 @@
                                 "ifopt": "de:09564:1701:11:1",
                                 "testid": "3001701"
                             },
-                            "latitude": 49.424530029296875,
+                            "latitude": 49.42453,
                             "locality": "Nürnberg",
-                            "longitude": 11.0897798538208,
+                            "longitude": 11.08978,
                             "name": "Nürnberg Hasenbuck",
                             "region": "DE-BY",
                             "type": "Stop"
@@ -184,9 +184,9 @@
                         "ifopt": "de:09564:1502:11:2",
                         "testid": "3001502"
                     },
-                    "latitude": 49.41585922241211,
+                    "latitude": 49.41586,
                     "locality": "Nürnberg",
-                    "longitude": 11.114060401916504,
+                    "longitude": 11.11406,
                     "name": "Nürnberg Messe",
                     "region": "DE-BY",
                     "type": "Stop"

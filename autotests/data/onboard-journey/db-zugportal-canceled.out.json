@@ -2,7 +2,7 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 43552,
+            "distance": 43560,
             "expectedArrivalPlatform": "1",
             "expectedArrivalTime": {
                 "timezone": "Europe/Berlin",
@@ -18,8 +18,8 @@
                 "identifier": {
                     "ibnr": "8000016"
                 },
-                "latitude": 48.94267654418945,
-                "longitude": 9.425989151000977,
+                "latitude": 48.942676,
+                "longitude": 9.425989,
                 "name": "Backnang",
                 "region": "DE-BW",
                 "type": "Stop"
@@ -53,8 +53,8 @@
                         "identifier": {
                             "ibnr": "8003266"
                         },
-                        "latitude": 48.93915939331055,
-                        "longitude": 9.329055786132812,
+                        "latitude": 48.939161,
+                        "longitude": 9.329056,
                         "name": "Kirchberg(Murr)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -88,8 +88,8 @@
                         "identifier": {
                             "ibnr": "8001296"
                         },
-                        "latitude": 48.928646087646484,
-                        "longitude": 9.369932174682617,
+                        "latitude": 48.928647,
+                        "longitude": 9.369932,
                         "name": "Burgstall(Murr)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -123,8 +123,8 @@
                         "identifier": {
                             "ibnr": "8003266"
                         },
-                        "latitude": 48.93915939331055,
-                        "longitude": 9.329055786132812,
+                        "latitude": 48.939161,
+                        "longitude": 9.329056,
                         "name": "Kirchberg(Murr)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -158,8 +158,8 @@
                         "identifier": {
                             "ibnr": "8001827"
                         },
-                        "latitude": 48.9482307434082,
-                        "longitude": 9.299405097961426,
+                        "latitude": 48.948229,
+                        "longitude": 9.299405,
                         "name": "Erdmannhausen",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -193,8 +193,8 @@
                         "identifier": {
                             "ibnr": "8003853"
                         },
-                        "latitude": 48.94368362426758,
-                        "longitude": 9.26445198059082,
+                        "latitude": 48.943685,
+                        "longitude": 9.264452,
                         "name": "Marbach(Neckar)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -228,8 +228,8 @@
                         "identifier": {
                             "ibnr": "8000873"
                         },
-                        "latitude": 48.9436149597168,
-                        "longitude": 9.24450397491455,
+                        "latitude": 48.943614,
+                        "longitude": 9.244504,
                         "name": "Benningen(Neckar)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -263,8 +263,8 @@
                         "identifier": {
                             "ibnr": "8002065"
                         },
-                        "latitude": 48.93010711669922,
-                        "longitude": 9.197795867919922,
+                        "latitude": 48.930107,
+                        "longitude": 9.197796,
                         "name": "Freiberg(Neckar)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -298,8 +298,8 @@
                         "identifier": {
                             "ibnr": "8001967"
                         },
-                        "latitude": 48.909210205078125,
-                        "longitude": 9.180233001708984,
+                        "latitude": 48.909209,
+                        "longitude": 9.180233,
                         "name": "Favoritepark",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -333,8 +333,8 @@
                         "identifier": {
                             "ibnr": "8000235"
                         },
-                        "latitude": 48.89186096191406,
-                        "longitude": 9.185420036315918,
+                        "latitude": 48.891862,
+                        "longitude": 9.18542,
                         "name": "Ludwigsburg",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -368,8 +368,8 @@
                         "identifier": {
                             "ibnr": "8003411"
                         },
-                        "latitude": 48.862220764160156,
-                        "longitude": 9.179964065551758,
+                        "latitude": 48.862219,
+                        "longitude": 9.179964,
                         "name": "Kornwestheim Pbf",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -403,8 +403,8 @@
                         "identifier": {
                             "ibnr": "8005778"
                         },
-                        "latitude": 48.82941436767578,
-                        "longitude": 9.166739463806152,
+                        "latitude": 48.829415,
+                        "longitude": 9.166739,
                         "name": "Stuttgart-Zuffenhausen",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -438,8 +438,8 @@
                         "identifier": {
                             "ibnr": "8005770"
                         },
-                        "latitude": 48.81367111206055,
-                        "longitude": 9.169382095336914,
+                        "latitude": 48.813673,
+                        "longitude": 9.169382,
                         "name": "Stuttgart-Feuerbach",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -473,8 +473,8 @@
                         "identifier": {
                             "ibnr": "8005767"
                         },
-                        "latitude": 48.803768157958984,
-                        "longitude": 9.188026428222656,
+                        "latitude": 48.803769,
+                        "longitude": 9.188026,
                         "name": "Stuttgart Nord",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -508,8 +508,8 @@
                         "identifier": {
                             "ibnr": "8098096"
                         },
-                        "latitude": 48.782997131347656,
-                        "longitude": 9.179807662963867,
+                        "latitude": 48.782999,
+                        "longitude": 9.179808,
                         "name": "Stuttgart Hbf (tief)",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -543,8 +543,8 @@
                         "identifier": {
                             "ibnr": "8006700"
                         },
-                        "latitude": 48.77622985839844,
-                        "longitude": 9.172924995422363,
+                        "latitude": 48.776229,
+                        "longitude": 9.172925,
                         "name": "Stuttgart Stadtmitte",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -578,8 +578,8 @@
                         "identifier": {
                             "ibnr": "8006699"
                         },
-                        "latitude": 48.77276611328125,
-                        "longitude": 9.16627311706543,
+                        "latitude": 48.772768,
+                        "longitude": 9.166273,
                         "name": "Stuttgart Feuersee",
                         "region": "DE-BW",
                         "type": "Stop"
@@ -611,8 +611,8 @@
                 "identifier": {
                     "ibnr": "8006698"
                 },
-                "latitude": 48.77025604248047,
-                "longitude": 9.15695858001709,
+                "latitude": 48.770255,
+                "longitude": 9.156959,
                 "name": "Stuttgart Schwabstr.",
                 "region": "DE-BW",
                 "type": "Stop"

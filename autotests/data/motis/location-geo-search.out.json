@@ -3,8 +3,8 @@
         "identifier": {
             "motis": "avv_000000001008"
         },
-        "latitude": 50.76783752441406,
-        "longitude": 6.091139793395996,
+        "latitude": 50.767837,
+        "longitude": 6.09114,
         "name": "Aachen, Hbf",
         "type": "Stop"
     },
@@ -12,8 +12,8 @@
         "identifier": {
             "motis": "avv_000000001007"
         },
-        "latitude": 50.76874923706055,
-        "longitude": 6.09063196182251,
+        "latitude": 50.768748,
+        "longitude": 6.090632,
         "name": "Aachen, Hauptbahnhof (Bus)",
         "type": "Stop"
     },
@@ -21,8 +21,8 @@
         "identifier": {
             "motis": "avv_000000001179"
         },
-        "latitude": 50.767478942871094,
-        "longitude": 6.0936198234558105,
+        "latitude": 50.767478,
+        "longitude": 6.09362,
         "name": "Aachen, Kapitelstraße",
         "type": "Stop"
     }

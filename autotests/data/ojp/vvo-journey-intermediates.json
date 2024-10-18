@@ -6,8 +6,8 @@
                 "distance": 0,
                 "from": {
                     "country": "DE",
-                    "latitude": 50.839599609375,
-                    "longitude": 12.930700302124023,
+                    "latitude": 50.8396,
+                    "longitude": 12.9307,
                     "name": "Chemnitz Hbf",
                     "region": "DE-SN"
                 },
@@ -162,8 +162,8 @@
                 "scheduledDepartureTime": "2021-09-11T11:47:00Z",
                 "to": {
                     "country": "DE",
-                    "latitude": 50.849300384521484,
-                    "longitude": 13.110199928283691,
+                    "latitude": 50.8493,
+                    "longitude": 13.1102,
                     "name": "Falkenau Süd",
                     "region": "DE-SN"
                 }

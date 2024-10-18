@@ -6,8 +6,8 @@
                 "distance": 3,
                 "from": {
                     "country": "DE",
-                    "latitude": 50.94300079345703,
-                    "longitude": 6.9585700035095215,
+                    "latitude": 50.943,
+                    "longitude": 6.95857,
                     "region": "DE-NW"
                 },
                 "mode": "Walking",
@@ -44,9 +44,9 @@
                     "identifier": {
                         "ifopt": "de:05315:11201:7:76"
                     },
-                    "latitude": 50.942970275878906,
+                    "latitude": 50.94297,
                     "locality": "Köln",
-                    "longitude": 6.9585700035095215,
+                    "longitude": 6.95857,
                     "name": "Köln Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -54,7 +54,7 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 31997,
+                "distance": 32002,
                 "expectedArrivalTime": {
                     "timezone": "Europe/Berlin",
                     "value": "2021-02-26T17:50:00+01:00"
@@ -68,9 +68,9 @@
                     "identifier": {
                         "ifopt": "de:05315:11201:7:76"
                     },
-                    "latitude": 50.942970275878906,
+                    "latitude": 50.94297,
                     "locality": "Köln",
-                    "longitude": 6.9585700035095215,
+                    "longitude": 6.95857,
                     "name": "Köln Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -105,9 +105,9 @@
                             "identifier": {
                                 "ifopt": "de:05315:11701:7:71"
                             },
-                            "latitude": 50.94268035888672,
+                            "latitude": 50.94268,
                             "locality": "Köln",
-                            "longitude": 6.93310022354126,
+                            "longitude": 6.9331,
                             "name": "Köln West",
                             "region": "DE-NW",
                             "type": "Stop"
@@ -142,9 +142,9 @@
                             "identifier": {
                                 "ifopt": "de:05315:11513:7:71"
                             },
-                            "latitude": 50.92839813232422,
+                            "latitude": 50.9284,
                             "locality": "Köln",
-                            "longitude": 6.935989856719971,
+                            "longitude": 6.93599,
                             "name": "Köln Süd",
                             "region": "DE-NW",
                             "type": "Stop"
@@ -175,9 +175,9 @@
                             "identifier": {
                                 "ifopt": "de:05362:83901:7:71"
                             },
-                            "latitude": 50.87593078613281,
+                            "latitude": 50.87593,
                             "locality": "Hürth",
-                            "longitude": 6.910099983215332,
+                            "longitude": 6.9101,
                             "name": "Hürth-Kalscheuren",
                             "region": "DE-NW",
                             "type": "Stop"
@@ -212,9 +212,9 @@
                             "identifier": {
                                 "ifopt": "de:05362:84101:7:74"
                             },
-                            "latitude": 50.82905960083008,
+                            "latitude": 50.82906,
                             "locality": "Brühl",
-                            "longitude": 6.9126200675964355,
+                            "longitude": 6.91262,
                             "name": "Brühl",
                             "region": "DE-NW",
                             "type": "Stop"
@@ -249,9 +249,9 @@
                             "identifier": {
                                 "ifopt": "de:05382:53501:7:71"
                             },
-                            "latitude": 50.79521942138672,
+                            "latitude": 50.79522,
                             "locality": "Bornheim",
-                            "longitude": 6.957930088043213,
+                            "longitude": 6.95793,
                             "name": "Sechtem",
                             "region": "DE-NW",
                             "type": "Stop"
@@ -286,9 +286,9 @@
                             "identifier": {
                                 "ifopt": "de:05382:53101:7:71"
                             },
-                            "latitude": 50.753421783447266,
+                            "latitude": 50.75342,
                             "locality": "Bornheim",
-                            "longitude": 7.015570163726807,
+                            "longitude": 7.01557,
                             "name": "Roisdorf",
                             "region": "DE-NW",
                             "type": "Stop"
@@ -357,9 +357,9 @@
                     "identifier": {
                         "ifopt": "de:05314:61101:7:74"
                     },
-                    "latitude": 50.731910705566406,
+                    "latitude": 50.73191,
                     "locality": "Bonn",
-                    "longitude": 7.096789836883545,
+                    "longitude": 7.09679,
                     "name": "Bonn Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -367,15 +367,15 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 13,
+                "distance": 14,
                 "from": {
                     "country": "DE",
                     "identifier": {
                         "ifopt": "de:05314:61101:7:74"
                     },
-                    "latitude": 50.731910705566406,
+                    "latitude": 50.73191,
                     "locality": "Bonn",
-                    "longitude": 7.096789836883545,
+                    "longitude": 7.09679,
                     "name": "Bonn Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -411,8 +411,8 @@
                 },
                 "to": {
                     "country": "DE",
-                    "latitude": 50.731998443603516,
-                    "longitude": 7.096920013427734,
+                    "latitude": 50.732,
+                    "longitude": 7.09692,
                     "region": "DE-NW"
                 }
             }

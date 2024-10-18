@@ -249,7 +249,7 @@ static Path parseDirections(Path &&fullPath, const QJsonArray &directions)
 
         int nextSecStart = prevSecStart;
         for (; nextSecStart < poly.size(); ++nextSecStart) {
-            if (Location::distance(lat, lon, poly[nextSecStart].y(), poly[nextSecStart].x()) < 1.0f) {
+            if (Location::distance(lat, lon, poly[nextSecStart].y(), poly[nextSecStart].x()) < 1.0) {
                 break;
             }
         }

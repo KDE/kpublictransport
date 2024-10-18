@@ -20,8 +20,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
-                    "latitude": 59.94953155517578,
-                    "longitude": 10.765337944030762,
+                    "latitude": 59.949532,
+                    "longitude": 10.765338,
                     "name": "Nydalen",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -38,8 +38,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
-                    "latitude": 59.94953155517578,
-                    "longitude": 10.765337944030762,
+                    "latitude": 59.949532,
+                    "longitude": 10.765338,
                     "name": "Nydalen",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -62,8 +62,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:7333"
                     },
-                    "latitude": 59.915321350097656,
-                    "longitude": 10.732219696044922,
+                    "latitude": 59.91532,
+                    "longitude": 10.73222,
                     "name": "Nationaltheatret",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -78,8 +78,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:7333"
                     },
-                    "latitude": 59.915321350097656,
-                    "longitude": 10.732219696044922,
+                    "latitude": 59.91532,
+                    "longitude": 10.73222,
                     "name": "Nationaltheatret",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -94,8 +94,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:477"
                     },
-                    "latitude": 59.91536331176758,
-                    "longitude": 10.727551460266113,
+                    "latitude": 59.915362,
+                    "longitude": 10.727551,
                     "name": "Nationaltheatret stasjon",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -112,8 +112,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:477"
                     },
-                    "latitude": 59.91536331176758,
-                    "longitude": 10.727551460266113,
+                    "latitude": 59.915362,
+                    "longitude": 10.727551,
                     "name": "Nationaltheatret stasjon",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -136,8 +136,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:451"
                     },
-                    "latitude": 60.192955017089844,
-                    "longitude": 11.097078323364258,
+                    "latitude": 60.192955,
+                    "longitude": 11.097078,
                     "name": "Oslo Lufthavn stasjon",
                     "region": "NO-30",
                     "timezone": "Europe/Oslo",
@@ -152,8 +152,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:451"
                     },
-                    "latitude": 60.192955017089844,
-                    "longitude": 11.097078323364258,
+                    "latitude": 60.192955,
+                    "longitude": 11.097078,
                     "name": "Oslo Lufthavn stasjon",
                     "region": "NO-30",
                     "timezone": "Europe/Oslo",
@@ -193,8 +193,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
-                    "latitude": 59.94953155517578,
-                    "longitude": 10.765337944030762,
+                    "latitude": 59.949532,
+                    "longitude": 10.765338,
                     "name": "Nydalen",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -211,8 +211,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
-                    "latitude": 59.94953155517578,
-                    "longitude": 10.765337944030762,
+                    "latitude": 59.949532,
+                    "longitude": 10.765338,
                     "name": "Nydalen",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -238,8 +238,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:7333"
                     },
-                    "latitude": 59.915321350097656,
-                    "longitude": 10.732219696044922,
+                    "latitude": 59.91532,
+                    "longitude": 10.73222,
                     "name": "Nationaltheatret",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -254,8 +254,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:7333"
                     },
-                    "latitude": 59.915321350097656,
-                    "longitude": 10.732219696044922,
+                    "latitude": 59.91532,
+                    "longitude": 10.73222,
                     "name": "Nationaltheatret",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -270,8 +270,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:477"
                     },
-                    "latitude": 59.91536331176758,
-                    "longitude": 10.727551460266113,
+                    "latitude": 59.915362,
+                    "longitude": 10.727551,
                     "name": "Nationaltheatret stasjon",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -288,8 +288,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:477"
                     },
-                    "latitude": 59.91536331176758,
-                    "longitude": 10.727551460266113,
+                    "latitude": 59.915362,
+                    "longitude": 10.727551,
                     "name": "Nationaltheatret stasjon",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -312,8 +312,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:447"
                     },
-                    "latitude": 60.19298553466797,
-                    "longitude": 11.096880912780762,
+                    "latitude": 60.192985,
+                    "longitude": 11.096881,
                     "name": "Oslo Lufthavn stasjon",
                     "region": "NO-30",
                     "timezone": "Europe/Oslo",
@@ -322,14 +322,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 22,
+                "distance": 23,
                 "from": {
                     "country": "NO",
                     "identifier": {
                         "gtfs": "NSR:Quay:447"
                     },
-                    "latitude": 60.19298553466797,
-                    "longitude": 11.096880912780762,
+                    "latitude": 60.192985,
+                    "longitude": 11.096881,
                     "name": "Oslo Lufthavn stasjon",
                     "region": "NO-30",
                     "timezone": "Europe/Oslo",

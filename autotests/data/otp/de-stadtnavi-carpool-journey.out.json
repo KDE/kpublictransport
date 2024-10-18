@@ -19,8 +19,8 @@
                     "identifier": {
                         "gtfs": "mfdz:5007052"
                     },
-                    "latitude": 48.64262390136719,
-                    "longitude": 8.895047187805176,
+                    "latitude": 48.6426228711,
+                    "longitude": 8.8950473145,
                     "name": "Gärtringen, Feuerwehrgerätehaus",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -34,8 +34,8 @@
                     "identifier": {
                         "gtfs": "mfdz:5007052"
                     },
-                    "latitude": 48.64262390136719,
-                    "longitude": 8.895047187805176,
+                    "latitude": 48.6426228711,
+                    "longitude": 8.8950473145,
                     "name": "Gärtringen, Feuerwehrgerätehaus",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -50,8 +50,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5004727"
                             },
-                            "latitude": 48.64186477661133,
-                            "longitude": 8.902321815490723,
+                            "latitude": 48.6418648632,
+                            "longitude": 8.9023221048,
                             "name": "Gärtringen, Rathaus",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -66,8 +66,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:tmp-756"
                             },
-                            "latitude": 48.64158630371094,
-                            "longitude": 8.90291690826416,
+                            "latitude": 48.641586,
+                            "longitude": 8.9029165,
                             "name": "71116 Gärtringen",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -82,8 +82,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5004752"
                             },
-                            "latitude": 48.65549850463867,
-                            "longitude": 8.94461727142334,
+                            "latitude": 48.655498508099996,
+                            "longitude": 8.9446168851,
                             "name": "Ehningen, Abzweig (K1077)",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -98,8 +98,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5004716"
                             },
-                            "latitude": 48.6773796081543,
-                            "longitude": 8.984813690185547,
+                            "latitude": 48.677380479199996,
+                            "longitude": 8.9848141153,
                             "name": "Böblingen, Herrenberger Straße",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -114,8 +114,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5004707"
                             },
-                            "latitude": 48.67973709106445,
-                            "longitude": 8.992716789245605,
+                            "latitude": 48.6797372506,
+                            "longitude": 8.9927167728,
                             "name": "Böblingen, Kremser Straße",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -130,8 +130,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5003106"
                             },
-                            "latitude": 48.681400299072266,
-                            "longitude": 8.997306823730469,
+                            "latitude": 48.68140104209999,
+                            "longitude": 8.9973066149,
                             "name": "Böblingen, Breslauer Straße",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -146,8 +146,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5004702"
                             },
-                            "latitude": 48.681644439697266,
-                            "longitude": 9.005658149719238,
+                            "latitude": 48.6816436898,
+                            "longitude": 9.0056583858,
                             "name": "Böblingen, Steinbeisstraße",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -162,8 +162,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:tmp-176"
                             },
-                            "latitude": 48.681331634521484,
-                            "longitude": 9.008830070495605,
+                            "latitude": 48.6813312,
+                            "longitude": 9.0088299,
                             "name": "Böblingen",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -178,8 +178,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5003126"
                             },
-                            "latitude": 48.683773040771484,
-                            "longitude": 9.008116722106934,
+                            "latitude": 48.6837747568,
+                            "longitude": 9.008116757,
                             "name": "Böblingen, Parkstraße (Landratsamt)",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -194,8 +194,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5003105"
                             },
-                            "latitude": 48.6849365234375,
-                            "longitude": 9.010099411010742,
+                            "latitude": 48.6849346242,
+                            "longitude": 9.0100997854,
                             "name": "Böblingen, Elbenplatz",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -210,8 +210,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5003112"
                             },
-                            "latitude": 48.68779373168945,
-                            "longitude": 9.009027481079102,
+                            "latitude": 48.6877943375,
+                            "longitude": 9.0090274297,
                             "name": "Böblingen, Friedrich-List-Platz",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -226,8 +226,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5002580"
                             },
-                            "latitude": 48.739505767822266,
-                            "longitude": 9.105403900146484,
+                            "latitude": 48.73950664149999,
+                            "longitude": 9.105403706699999,
                             "name": "Stuttgart, Johannesgraben",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -242,8 +242,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5002604"
                             },
-                            "latitude": 48.74593734741211,
-                            "longitude": 9.113358497619629,
+                            "latitude": 48.745937626999996,
+                            "longitude": 9.113358141400001,
                             "name": "Stuttgart, Knappenweg",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -258,8 +258,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5006020"
                             },
-                            "latitude": 48.7706413269043,
-                            "longitude": 9.175802230834961,
+                            "latitude": 48.7706420291,
+                            "longitude": 9.175802535599999,
                             "name": "Stuttgart, Österreichischer Platz",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -274,8 +274,8 @@
                             "identifier": {
                                 "gtfs": "mfdz:5006074"
                             },
-                            "latitude": 48.77375793457031,
-                            "longitude": 9.17988109588623,
+                            "latitude": 48.7737560712,
+                            "longitude": 9.1798813295,
                             "name": "Stuttgart, Rathaus",
                             "region": "DE-BW",
                             "type": "Stop"
@@ -297,8 +297,8 @@
                     "identifier": {
                         "gtfs": "mfdz:5006023"
                     },
-                    "latitude": 48.775238037109375,
-                    "longitude": 9.181954383850098,
+                    "latitude": 48.7752365486,
+                    "longitude": 9.1819546518,
                     "name": "Stuttgart, Dorotheenstraße",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -312,8 +312,8 @@
                     "identifier": {
                         "gtfs": "mfdz:5006023"
                     },
-                    "latitude": 48.775238037109375,
-                    "longitude": 9.181954383850098,
+                    "latitude": 48.7752365486,
+                    "longitude": 9.1819546518,
                     "name": "Stuttgart, Dorotheenstraße",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -326,8 +326,8 @@
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
                     },
-                    "latitude": 48.77566146850586,
-                    "longitude": 9.182080268859863,
+                    "latitude": 48.77566,
+                    "longitude": 9.18208,
                     "name": "Charlottenplatz / Dorotheenstr.",
                     "region": "DE-BW",
                     "rentalVehicleStation": {
@@ -349,8 +349,8 @@
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
                     },
-                    "latitude": 48.77566146850586,
-                    "longitude": 9.182080268859863,
+                    "latitude": 48.77566,
+                    "longitude": 9.18208,
                     "name": "Charlottenplatz / Dorotheenstr.",
                     "region": "DE-BW",
                     "rentalVehicleStation": {
@@ -375,8 +375,8 @@
                 "scheduledDepartureTime": "2020-08-10T02:52:47Z",
                 "to": {
                     "country": "DE",
-                    "latitude": 48.7825927734375,
-                    "longitude": 9.181904792785645,
+                    "latitude": 48.782593500000004,
+                    "longitude": 9.181904900000001,
                     "name": "corner of path and open area",
                     "region": "DE-BW"
                 }
@@ -386,8 +386,8 @@
                 "distance": 0,
                 "from": {
                     "country": "DE",
-                    "latitude": 48.78257369995117,
-                    "longitude": 9.181889533996582,
+                    "latitude": 48.78257223002545,
+                    "longitude": 9.181889278625992,
                     "name": "open area",
                     "region": "DE-BW"
                 },
@@ -406,8 +406,8 @@
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
                     },
-                    "latitude": 48.78257369995117,
-                    "longitude": 9.181889533996582,
+                    "latitude": 48.782572,
+                    "longitude": 9.18189,
                     "name": "Königstraße / Arnulf-Klett-Platz",
                     "region": "DE-BW",
                     "rentalVehicleStation": {
@@ -429,8 +429,8 @@
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
                     },
-                    "latitude": 48.78257369995117,
-                    "longitude": 9.181889533996582,
+                    "latitude": 48.782572,
+                    "longitude": 9.18189,
                     "name": "Königstraße / Arnulf-Klett-Platz",
                     "region": "DE-BW",
                     "rentalVehicleStation": {

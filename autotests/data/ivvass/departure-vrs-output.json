@@ -22,9 +22,9 @@
             "identifier": {
                 "ifopt": "de:05315:11201"
             },
-            "latitude": 50.942970275878906,
+            "latitude": 50.94297,
             "locality": "Köln",
-            "longitude": 6.9585700035095215,
+            "longitude": 6.95857,
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"
@@ -53,9 +53,9 @@
             "identifier": {
                 "ifopt": "de:05315:11201"
             },
-            "latitude": 50.942970275878906,
+            "latitude": 50.94297,
             "locality": "Köln",
-            "longitude": 6.9585700035095215,
+            "longitude": 6.95857,
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"
@@ -84,9 +84,9 @@
             "identifier": {
                 "ifopt": "de:05315:11201"
             },
-            "latitude": 50.942970275878906,
+            "latitude": 50.94297,
             "locality": "Köln",
-            "longitude": 6.9585700035095215,
+            "longitude": 6.95857,
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"

@@ -20,14 +20,14 @@
                     ]
                 },
                 "disruptionEffect": "NoService",
-                "distance": 163708,
+                "distance": 163710,
                 "from": {
                     "country": "DE",
                     "identifier": {
                         "unit-test": "8011113"
                     },
-                    "latitude": 52.47623062133789,
-                    "longitude": 13.365862846374512,
+                    "latitude": 52.47623,
+                    "longitude": 13.365863,
                     "name": "Berlin Südkreuz",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -42,8 +42,8 @@
                             "identifier": {
                                 "unit-test": "8010222"
                             },
-                            "latitude": 51.86758041381836,
-                            "longitude": 12.661998748779297,
+                            "latitude": 51.867579,
+                            "longitude": 12.661999,
                             "name": "Lutherstadt Wittenberg Hbf",
                             "region": "DE-ST",
                             "type": "Stop"
@@ -1532,8 +1532,8 @@
                     "identifier": {
                         "unit-test": "8010205"
                     },
-                    "latitude": 51.3450813293457,
-                    "longitude": 12.3811674118042,
+                    "latitude": 51.345081,
+                    "longitude": 12.381167,
                     "name": "Leipzig Hbf",
                     "region": "DE-SN",
                     "type": "Stop"

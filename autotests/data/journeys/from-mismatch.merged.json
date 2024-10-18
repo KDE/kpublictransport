@@ -5,8 +5,8 @@
             "distance": 22825,
             "from": {
                 "country": "FR",
-                "latitude": 49.004150390625,
-                "longitude": 2.5708179473876953,
+                "latitude": 49.004148,
+                "longitude": 2.570818,
                 "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
                 "region": "FR-IDF",
                 "timezone": "Europe/Paris"
@@ -32,8 +32,8 @@
             },
             "to": {
                 "country": "FR",
-                "latitude": 48.860809326171875,
-                "longitude": 2.3475499153137207,
+                "latitude": 48.860807,
+                "longitude": 2.34755,
                 "name": "Châtelet les Halles (Paris)",
                 "region": "FR-IDF",
                 "timezone": "Europe/Paris"

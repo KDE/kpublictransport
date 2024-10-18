@@ -57,29 +57,29 @@ void LocationRequest::setLocation(const Location &location)
     d->location = location;
 }
 
-float LocationRequest::latitude() const
+double LocationRequest::latitude() const
 {
     return d->location.latitude();
 }
 
-void LocationRequest::setLatitude(float lat)
+void LocationRequest::setLatitude(double lat)
 {
     d.detach();
     d->location.setLatitude(lat);
 }
 
-float LocationRequest::longitude() const
+double LocationRequest::longitude() const
 {
     return d->location.longitude();
 }
 
-void LocationRequest::setLongitude(float lon)
+void LocationRequest::setLongitude(double lon)
 {
     d.detach();
     d->location.setLongitude(lon);
 }
 
-void LocationRequest::setCoordinate(float lat, float lon)
+void LocationRequest::setCoordinate(double lat, double lon)
 {
     d.detach();
     d->location.setCoordinate(lat, lon);

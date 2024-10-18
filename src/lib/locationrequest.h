@@ -30,8 +30,8 @@ class KPUBLICTRANSPORT_EXPORT LocationRequest
     /** Location object containing the search parameters. */
     Q_PROPERTY(KPublicTransport::Location location READ location WRITE setLocation)
     // TODO deprecated those?
-    Q_PROPERTY(float latitude READ latitude WRITE setLatitude STORED false)
-    Q_PROPERTY(float longitude READ longitude WRITE setLongitude STORED false)
+    Q_PROPERTY(double latitude READ latitude WRITE setLatitude STORED false)
+    Q_PROPERTY(double longitude READ longitude WRITE setLongitude STORED false)
     Q_PROPERTY(QString name READ name WRITE setName STORED false)
     Q_PROPERTY(QStringList backends READ backendIds WRITE setBackendIds)
 
@@ -64,15 +64,15 @@ public:
     void setLocation(const Location &location);
 
     /** Latitude of the location to search. */
-    float latitude() const;
+    [[nodiscard]] double latitude() const;
     /** Sets the latitude of the location to search. */
-    void setLatitude(float lat);
+    void setLatitude(double lat);
     /** Longitude of the location to search. */
-    float longitude() const;
+    [[nodiscard]] double longitude() const;
     /** Sets the longitude of the location to search. */
-    void setLongitude(float lon);
+    void setLongitude(double lon);
     /** Search by geo coordinate. */
-    void setCoordinate(float lat, float lon);
+    void setCoordinate(double lat, double lon);
     /** Returns true if a valid geo coordinate has been set. */
     bool hasCoordinate() const;
 

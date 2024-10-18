@@ -4,8 +4,8 @@
         "identifier": {
             "gtfs": "fs:ITRP-ST0012729010"
         },
-        "latitude": 45.0609016418457,
-        "longitude": 7.677519798278809,
+        "latitude": 45.0609,
+        "longitude": 7.67752,
         "name": "Stazione TORINO PORTA NUOVA",
         "region": "IT-21"
     },
@@ -14,8 +14,8 @@
         "identifier": {
             "gtfs": "gtt:39"
         },
-        "latitude": 45.06254959106445,
-        "longitude": 7.679100036621094,
+        "latitude": 45.06255,
+        "longitude": 7.6791,
         "name": "PORTA NUOVA",
         "region": "IT-21",
         "timezone": "Europe/Rome"

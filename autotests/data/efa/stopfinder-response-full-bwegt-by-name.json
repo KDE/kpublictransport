@@ -4,8 +4,8 @@
         "identifier": {
             "testid": "5006115"
         },
-        "latitude": 48.784881591796875,
-        "longitude": 9.18278980255127,
+        "latitude": 48.78488,
+        "longitude": 9.18279,
         "name": "Hauptbahnhof",
         "region": "DE-BW",
         "type": "Stop"
@@ -16,9 +16,9 @@
             "ifopt": "de:08111:6115",
             "testid": "5006115"
         },
-        "latitude": 48.784881591796875,
+        "latitude": 48.78488,
         "locality": "Stuttgart",
-        "longitude": 9.18278980255127,
+        "longitude": 9.18279,
         "name": "Stuttgart Hauptbahnhof (oben)",
         "region": "DE-BW",
         "type": "Stop"
@@ -29,9 +29,9 @@
             "ifopt": "de:08111:6118",
             "testid": "5006118"
         },
-        "latitude": 48.783390045166016,
+        "latitude": 48.78339,
         "locality": "Stuttgart",
-        "longitude": 9.180230140686035,
+        "longitude": 9.18023,
         "name": "Stuttgart Hauptbahnhof (tief)",
         "region": "DE-BW",
         "type": "Stop"
@@ -42,9 +42,9 @@
             "ifopt": "de:08111:6112",
             "testid": "5006112"
         },
-        "latitude": 48.78316116333008,
+        "latitude": 48.78316,
         "locality": "Stuttgart",
-        "longitude": 9.181119918823242,
+        "longitude": 9.18112,
         "name": "Stuttgart Hauptbf (Arnulf-Klett-Platz)",
         "region": "DE-BW",
         "type": "Stop"

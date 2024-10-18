@@ -7,9 +7,9 @@
                 "distance": 77,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00423812866211,
+                    "latitude": 49.0042397,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702035427093506,
+                    "longitude": 2.5702036,
                     "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF"
                 },
@@ -52,9 +52,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 49.00468826293945,
+                    "latitude": 49.004687,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589065551758,
+                    "longitude": 2.570589,
                     "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -74,12 +74,12 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 23841,
+                "distance": 23842,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00468826293945,
+                    "latitude": 49.004687,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589065551758,
+                    "longitude": 2.570589,
                     "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -98,8 +98,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 49.0097541809082,
-                            "longitude": 2.5612330436706543,
+                            "latitude": 49.009756,
+                            "longitude": 2.561233,
                             "name": "Aéroport CDG 1 (Tremblay-en-France)",
                             "region": "FR-IDF"
                         }
@@ -116,8 +116,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.973426818847656,
-                            "longitude": 2.514359951019287,
+                            "latitude": 48.973425,
+                            "longitude": 2.51436,
                             "name": "Gare de Parc des Expositions (Villepinte)",
                             "region": "FR-IDF"
                         }
@@ -134,8 +134,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.880767822265625,
-                            "longitude": 2.3571150302886963,
+                            "latitude": 48.880769,
+                            "longitude": 2.357115,
                             "name": "Gare du Nord RER (Paris)",
                             "region": "FR-IDF"
                         }
@@ -194,9 +194,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.861820220947266,
+                    "latitude": 48.861822,
                     "locality": "Paris",
-                    "longitude": 2.347012996673584,
+                    "longitude": 2.347013,
                     "name": "Châtelet les Halles (Paris)",
                     "postalCode": "75001",
                     "region": "FR-IDF",
@@ -210,9 +210,9 @@
                 "distance": 0,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.861820220947266,
+                    "latitude": 48.861822,
                     "locality": "Paris",
-                    "longitude": 2.347012996673584,
+                    "longitude": 2.347013,
                     "name": "Châtelet les Halles (Paris)",
                     "postalCode": "75001",
                     "region": "FR-IDF",
@@ -249,9 +249,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.861820220947266,
+                    "latitude": 48.861822,
                     "locality": "Paris",
-                    "longitude": 2.347012996673584,
+                    "longitude": 2.347013,
                     "name": "Châtelet les Halles (Paris)",
                     "postalCode": "75001",
                     "region": "FR-IDF",
@@ -283,9 +283,9 @@
                 "distance": 2748,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.861820220947266,
+                    "latitude": 48.861822,
                     "locality": "Paris",
-                    "longitude": 2.347012996673584,
+                    "longitude": 2.347013,
                     "name": "Châtelet les Halles (Paris)",
                     "postalCode": "75001",
                     "region": "FR-IDF",
@@ -333,9 +333,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.844139099121094,
+                    "latitude": 48.844139,
                     "locality": "Paris",
-                    "longitude": 2.373260021209717,
+                    "longitude": 2.37326,
                     "name": "Gare de Lyon RER A (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -346,12 +346,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 631,
+                "distance": 635,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.844139099121094,
+                    "latitude": 48.844139,
                     "locality": "Paris",
-                    "longitude": 2.373260021209717,
+                    "longitude": 2.37326,
                     "name": "Gare de Lyon RER A (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -577,9 +577,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.84407043457031,
+                    "latitude": 48.844071,
                     "locality": "Paris",
-                    "longitude": 2.3772740364074707,
+                    "longitude": 2.377274,
                     "name": "20 Rue de Chalon (Paris)",
                     "region": "FR-IDF"
                 }
@@ -594,9 +594,9 @@
                 "distance": 77,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00423812866211,
+                    "latitude": 49.0042397,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702035427093506,
+                    "longitude": 2.5702036,
                     "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF"
                 },
@@ -639,9 +639,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 49.00468826293945,
+                    "latitude": 49.004687,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589065551758,
+                    "longitude": 2.570589,
                     "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -661,12 +661,12 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 26127,
+                "distance": 26128,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00468826293945,
+                    "latitude": 49.004687,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589065551758,
+                    "longitude": 2.570589,
                     "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -685,8 +685,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 49.0097541809082,
-                            "longitude": 2.5612330436706543,
+                            "latitude": 49.009756,
+                            "longitude": 2.561233,
                             "name": "Aéroport CDG 1 (Tremblay-en-France)",
                             "region": "FR-IDF"
                         }
@@ -703,8 +703,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.973426818847656,
-                            "longitude": 2.514359951019287,
+                            "latitude": 48.973425,
+                            "longitude": 2.51436,
                             "name": "Gare de Parc des Expositions (Villepinte)",
                             "region": "FR-IDF"
                         }
@@ -721,8 +721,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.962711334228516,
-                            "longitude": 2.5126450061798096,
+                            "latitude": 48.96271,
+                            "longitude": 2.512645,
                             "name": "Gare de Villepinte (Villepinte)",
                             "region": "FR-IDF"
                         }
@@ -739,8 +739,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.947608947753906,
-                            "longitude": 2.5247159004211426,
+                            "latitude": 48.947608,
+                            "longitude": 2.524716,
                             "name": "Gare de Sevran Beaudottes (Sevran)",
                             "region": "FR-IDF"
                         }
@@ -757,8 +757,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93211364746094,
-                            "longitude": 2.4957549571990967,
+                            "latitude": 48.932114,
+                            "longitude": 2.495755,
                             "name": "Gare d'Aulnay sous Bois (Aulnay-sous-Bois)",
                             "region": "FR-IDF"
                         }
@@ -775,8 +775,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93230438232422,
-                            "longitude": 2.4756739139556885,
+                            "latitude": 48.932305,
+                            "longitude": 2.475674,
                             "name": "Gare de Blanc Mesnil (Le Blanc-Mesnil)",
                             "region": "FR-IDF"
                         }
@@ -793,8 +793,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93270492553711,
-                            "longitude": 2.454766035079956,
+                            "latitude": 48.932706,
+                            "longitude": 2.454766,
                             "name": "Gare de Drancy (Drancy)",
                             "region": "FR-IDF"
                         }
@@ -811,8 +811,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93074035644531,
-                            "longitude": 2.425791025161743,
+                            "latitude": 48.93074,
+                            "longitude": 2.425791,
                             "name": "Gare du Bourget (Le Bourget)",
                             "region": "FR-IDF"
                         }
@@ -829,8 +829,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.924354553222656,
-                            "longitude": 2.386388063430786,
+                            "latitude": 48.924354,
+                            "longitude": 2.386388,
                             "name": "Gare de la Courneuve Aubervilliers (La Courneuve)",
                             "region": "FR-IDF"
                         }
@@ -847,8 +847,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.918113708496094,
-                            "longitude": 2.362665891647339,
+                            "latitude": 48.918114,
+                            "longitude": 2.362666,
                             "name": "Gare de la Plaine Stade de France (Saint-Denis)",
                             "region": "FR-IDF"
                         }
@@ -935,9 +935,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.880767822265625,
+                    "latitude": 48.880769,
                     "locality": "Paris",
-                    "longitude": 2.3571150302886963,
+                    "longitude": 2.357115,
                     "name": "Gare du Nord RER (Paris)",
                     "postalCode": "75010",
                     "region": "FR-IDF",
@@ -948,12 +948,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 175,
+                "distance": 176,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.880767822265625,
+                    "latitude": 48.880769,
                     "locality": "Paris",
-                    "longitude": 2.3571150302886963,
+                    "longitude": 2.357115,
                     "name": "Gare du Nord RER (Paris)",
                     "postalCode": "75010",
                     "region": "FR-IDF",
@@ -990,9 +990,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.87947463989258,
+                    "latitude": 48.879476,
                     "locality": "Paris",
-                    "longitude": 2.3557369709014893,
+                    "longitude": 2.355737,
                     "name": "La Fayette - Dunkerque (Paris)",
                     "postalCode": "75010",
                     "region": "FR-IDF",
@@ -1021,12 +1021,12 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 4480,
+                "distance": 4481,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.87947463989258,
+                    "latitude": 48.879476,
                     "locality": "Paris",
-                    "longitude": 2.3557369709014893,
+                    "longitude": 2.355737,
                     "name": "La Fayette - Dunkerque (Paris)",
                     "postalCode": "75010",
                     "region": "FR-IDF",
@@ -1046,8 +1046,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.87623977661133,
-                            "longitude": 2.357016086578369,
+                            "latitude": 48.87624,
+                            "longitude": 2.357016,
                             "name": "Gare de l'Est (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1064,8 +1064,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.87444305419922,
-                            "longitude": 2.358527898788452,
+                            "latitude": 48.874443,
+                            "longitude": 2.358528,
                             "name": "Magenta - Saint-Martin (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1082,8 +1082,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.871116638183594,
-                            "longitude": 2.360502004623413,
+                            "latitude": 48.871117,
+                            "longitude": 2.360502,
                             "name": "Jacques Bonsergent (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1100,8 +1100,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.869014739990234,
-                            "longitude": 2.3624489307403564,
+                            "latitude": 48.869014,
+                            "longitude": 2.362449,
                             "name": "République - Magenta (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1118,8 +1118,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.86714553833008,
-                            "longitude": 2.364954948425293,
+                            "latitude": 48.867144,
+                            "longitude": 2.364955,
                             "name": "République (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1136,8 +1136,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.86483383178711,
-                            "longitude": 2.365511894226074,
+                            "latitude": 48.864834,
+                            "longitude": 2.365512,
                             "name": "Jean-Pierre Timbaud (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1154,8 +1154,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.86216354370117,
-                            "longitude": 2.366805076599121,
+                            "latitude": 48.862164,
+                            "longitude": 2.366805,
                             "name": "Oberkampf - Filles du Calvaire (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1172,8 +1172,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.85987091064453,
-                            "longitude": 2.3673489093780518,
+                            "latitude": 48.859872,
+                            "longitude": 2.367349,
                             "name": "Saint-Claude (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1190,8 +1190,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.85728454589844,
-                            "longitude": 2.3679869174957275,
+                            "latitude": 48.857284,
+                            "longitude": 2.367987,
                             "name": "Saint-Gilles - Chemin Vert (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1208,8 +1208,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.855369567871094,
-                            "longitude": 2.3684349060058594,
+                            "latitude": 48.855369,
+                            "longitude": 2.368435,
                             "name": "Pasteur - Wagner (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1226,8 +1226,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.853858947753906,
-                            "longitude": 2.3687610626220703,
+                            "latitude": 48.853859,
+                            "longitude": 2.368761,
                             "name": "Bastille - Beaumarchais (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1244,8 +1244,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.85281753540039,
-                            "longitude": 2.3688149452209473,
+                            "latitude": 48.852817,
+                            "longitude": 2.368815,
                             "name": "Bastille (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1262,8 +1262,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.84870910644531,
-                            "longitude": 2.370950937271118,
+                            "latitude": 48.848709,
+                            "longitude": 2.370951,
                             "name": "Lyon - Ledru Rollin (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1280,8 +1280,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.84613037109375,
-                            "longitude": 2.372066020965576,
+                            "latitude": 48.846129,
+                            "longitude": 2.372066,
                             "name": "Gare de Lyon - Diderot (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1298,8 +1298,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.84489822387695,
-                            "longitude": 2.371546983718872,
+                            "latitude": 48.844898,
+                            "longitude": 2.371547,
                             "name": "Gare de Lyon - Van Gogh (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1316,8 +1316,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.843631744384766,
-                            "longitude": 2.3734118938446045,
+                            "latitude": 48.84363,
+                            "longitude": 2.373412,
                             "name": "Gare de Lyon. (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1428,9 +1428,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.842533111572266,
+                    "latitude": 48.842533,
                     "locality": "Paris",
-                    "longitude": 2.375427007675171,
+                    "longitude": 2.375427,
                     "name": "Gare de Lyon (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -1441,12 +1441,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 453,
+                "distance": 455,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.842533111572266,
+                    "latitude": 48.842533,
                     "locality": "Paris",
-                    "longitude": 2.375427007675171,
+                    "longitude": 2.375427,
                     "name": "Gare de Lyon (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -1536,9 +1536,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.84407043457031,
+                    "latitude": 48.844071,
                     "locality": "Paris",
-                    "longitude": 2.3772740364074707,
+                    "longitude": 2.377274,
                     "name": "20 Rue de Chalon (Paris)",
                     "region": "FR-IDF"
                 }
@@ -1553,9 +1553,9 @@
                 "distance": 77,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00423812866211,
+                    "latitude": 49.0042397,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702035427093506,
+                    "longitude": 2.5702036,
                     "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF"
                 },
@@ -1598,9 +1598,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 49.00468826293945,
+                    "latitude": 49.004687,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589065551758,
+                    "longitude": 2.570589,
                     "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -1620,12 +1620,12 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 30929,
+                "distance": 30930,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00468826293945,
+                    "latitude": 49.004687,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589065551758,
+                    "longitude": 2.570589,
                     "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -1644,8 +1644,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 49.0097541809082,
-                            "longitude": 2.5612330436706543,
+                            "latitude": 49.009756,
+                            "longitude": 2.561233,
                             "name": "Aéroport CDG 1 (Tremblay-en-France)",
                             "region": "FR-IDF"
                         }
@@ -1662,8 +1662,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.973426818847656,
-                            "longitude": 2.514359951019287,
+                            "latitude": 48.973425,
+                            "longitude": 2.51436,
                             "name": "Gare de Parc des Expositions (Villepinte)",
                             "region": "FR-IDF"
                         }
@@ -1680,8 +1680,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.962711334228516,
-                            "longitude": 2.5126450061798096,
+                            "latitude": 48.96271,
+                            "longitude": 2.512645,
                             "name": "Gare de Villepinte (Villepinte)",
                             "region": "FR-IDF"
                         }
@@ -1698,8 +1698,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.947608947753906,
-                            "longitude": 2.5247159004211426,
+                            "latitude": 48.947608,
+                            "longitude": 2.524716,
                             "name": "Gare de Sevran Beaudottes (Sevran)",
                             "region": "FR-IDF"
                         }
@@ -1716,8 +1716,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93211364746094,
-                            "longitude": 2.4957549571990967,
+                            "latitude": 48.932114,
+                            "longitude": 2.495755,
                             "name": "Gare d'Aulnay sous Bois (Aulnay-sous-Bois)",
                             "region": "FR-IDF"
                         }
@@ -1734,8 +1734,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93230438232422,
-                            "longitude": 2.4756739139556885,
+                            "latitude": 48.932305,
+                            "longitude": 2.475674,
                             "name": "Gare de Blanc Mesnil (Le Blanc-Mesnil)",
                             "region": "FR-IDF"
                         }
@@ -1752,8 +1752,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93270492553711,
-                            "longitude": 2.454766035079956,
+                            "latitude": 48.932706,
+                            "longitude": 2.454766,
                             "name": "Gare de Drancy (Drancy)",
                             "region": "FR-IDF"
                         }
@@ -1770,8 +1770,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.93074035644531,
-                            "longitude": 2.425791025161743,
+                            "latitude": 48.93074,
+                            "longitude": 2.425791,
                             "name": "Gare du Bourget (Le Bourget)",
                             "region": "FR-IDF"
                         }
@@ -1788,8 +1788,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.924354553222656,
-                            "longitude": 2.386388063430786,
+                            "latitude": 48.924354,
+                            "longitude": 2.386388,
                             "name": "Gare de la Courneuve Aubervilliers (La Courneuve)",
                             "region": "FR-IDF"
                         }
@@ -1806,8 +1806,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.918113708496094,
-                            "longitude": 2.362665891647339,
+                            "latitude": 48.918114,
+                            "longitude": 2.362666,
                             "name": "Gare de la Plaine Stade de France (Saint-Denis)",
                             "region": "FR-IDF"
                         }
@@ -1824,8 +1824,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.880767822265625,
-                            "longitude": 2.3571150302886963,
+                            "latitude": 48.880769,
+                            "longitude": 2.357115,
                             "name": "Gare du Nord RER (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1842,8 +1842,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.861820220947266,
-                            "longitude": 2.347012996673584,
+                            "latitude": 48.861822,
+                            "longitude": 2.347013,
                             "name": "Châtelet les Halles (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1860,8 +1860,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.853336334228516,
-                            "longitude": 2.3460350036621094,
+                            "latitude": 48.853336,
+                            "longitude": 2.346035,
                             "name": "Saint-Michel-Notre-Dame (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1878,8 +1878,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.845741271972656,
-                            "longitude": 2.339927911758423,
+                            "latitude": 48.845743,
+                            "longitude": 2.339928,
                             "name": "Luxembourg (Paris)",
                             "region": "FR-IDF"
                         }
@@ -1982,9 +1982,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.84003448486328,
+                    "latitude": 48.840034,
                     "locality": "Paris",
-                    "longitude": 2.3370959758758545,
+                    "longitude": 2.337096,
                     "name": "Port Royal (Paris)",
                     "postalCode": "",
                     "region": "FR-IDF",
@@ -1995,12 +1995,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 252,
+                "distance": 253,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.84003448486328,
+                    "latitude": 48.840034,
                     "locality": "Paris",
-                    "longitude": 2.3370959758758545,
+                    "longitude": 2.337096,
                     "name": "Port Royal (Paris)",
                     "postalCode": "",
                     "region": "FR-IDF",
@@ -2037,9 +2037,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.83872985839844,
+                    "latitude": 48.838729,
                     "locality": "Paris",
-                    "longitude": 2.339927911758423,
+                    "longitude": 2.339928,
                     "name": "Port Royal - Saint-Jacques (Paris)",
                     "postalCode": "",
                     "region": "FR-IDF",
@@ -2068,12 +2068,12 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2855,
+                "distance": 2856,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.83872985839844,
+                    "latitude": 48.838729,
                     "locality": "Paris",
-                    "longitude": 2.339927911758423,
+                    "longitude": 2.339928,
                     "name": "Port Royal - Saint-Jacques (Paris)",
                     "postalCode": "",
                     "region": "FR-IDF",
@@ -2093,8 +2093,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.83744430541992,
-                            "longitude": 2.345918893814087,
+                            "latitude": 48.837443,
+                            "longitude": 2.345919,
                             "name": "Port Royal - Berthollet (Paris)",
                             "region": "FR-IDF"
                         }
@@ -2111,8 +2111,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.83692169189453,
-                            "longitude": 2.352631092071533,
+                            "latitude": 48.836921,
+                            "longitude": 2.352631,
                             "name": "Les Gobelins (Paris)",
                             "region": "FR-IDF"
                         }
@@ -2129,8 +2129,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.83816146850586,
-                            "longitude": 2.3565120697021484,
+                            "latitude": 48.838161,
+                            "longitude": 2.356512,
                             "name": "Saint-Marcel - Jeanne d'Arc (Paris)",
                             "region": "FR-IDF"
                         }
@@ -2147,8 +2147,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.83960723876953,
-                            "longitude": 2.361046075820923,
+                            "latitude": 48.839607,
+                            "longitude": 2.361046,
                             "name": "Saint-Marcel - la Pitié (Paris)",
                             "region": "FR-IDF"
                         }
@@ -2165,8 +2165,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.84260940551758,
-                            "longitude": 2.364016056060791,
+                            "latitude": 48.842608,
+                            "longitude": 2.364016,
                             "name": "Gare d'Austerlitz (Paris)",
                             "region": "FR-IDF"
                         }
@@ -2183,8 +2183,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 48.84524154663086,
-                            "longitude": 2.3690690994262695,
+                            "latitude": 48.84524,
+                            "longitude": 2.369069,
                             "name": "Pont d'Austerlitz - Quai de la Râpée (Paris)",
                             "region": "FR-IDF"
                         }
@@ -2255,9 +2255,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.845741271972656,
+                    "latitude": 48.845742,
                     "locality": "Paris",
-                    "longitude": 2.3737270832061768,
+                    "longitude": 2.373727,
                     "name": "Gare de Lyon - Diderot (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -2268,12 +2268,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 366,
+                "distance": 369,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.845741271972656,
+                    "latitude": 48.845742,
                     "locality": "Paris",
-                    "longitude": 2.3737270832061768,
+                    "longitude": 2.373727,
                     "name": "Gare de Lyon - Diderot (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -2407,9 +2407,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.84407043457031,
+                    "latitude": 48.844071,
                     "locality": "Paris",
-                    "longitude": 2.3772740364074707,
+                    "longitude": 2.377274,
                     "name": "20 Rue de Chalon (Paris)",
                     "region": "FR-IDF"
                 }
@@ -2421,12 +2421,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 514,
+                "distance": 519,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.00423812866211,
+                    "latitude": 49.0042397,
                     "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702035427093506,
+                    "longitude": 2.5702036,
                     "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
                     "region": "FR-IDF"
                 },
@@ -2553,9 +2553,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 49.003387451171875,
+                    "latitude": 49.003387,
                     "locality": "Tremblay-en-France",
-                    "longitude": 2.564652919769287,
+                    "longitude": 2.564653,
                     "name": "CDG 2A/2C (Tremblay-en-France)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -2568,9 +2568,9 @@
                 "distance": 24446,
                 "from": {
                     "country": "FR",
-                    "latitude": 49.003387451171875,
+                    "latitude": 49.003387,
                     "locality": "Tremblay-en-France",
-                    "longitude": 2.564652919769287,
+                    "longitude": 2.564653,
                     "name": "CDG 2A/2C (Tremblay-en-France)",
                     "region": "FR-IDF",
                     "timezone": "Europe/Paris",
@@ -2589,8 +2589,8 @@
                         },
                         "stopPoint": {
                             "country": "FR",
-                            "latitude": 49.014095306396484,
-                            "longitude": 2.541106939315796,
+                            "latitude": 49.014096,
+                            "longitude": 2.541107,
                             "name": "CDG T1 (Mauregard)",
                             "region": "FR-IDF"
                         }
@@ -2641,9 +2641,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.845794677734375,
+                    "latitude": 48.845796,
                     "locality": "Paris",
-                    "longitude": 2.3736860752105713,
+                    "longitude": 2.373686,
                     "name": "Gare de Lyon (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -2654,12 +2654,12 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 337,
+                "distance": 339,
                 "from": {
                     "country": "FR",
-                    "latitude": 48.845794677734375,
+                    "latitude": 48.845796,
                     "locality": "Paris",
-                    "longitude": 2.3736860752105713,
+                    "longitude": 2.373686,
                     "name": "Gare de Lyon (Paris)",
                     "postalCode": "75012",
                     "region": "FR-IDF",
@@ -2761,9 +2761,9 @@
                 },
                 "to": {
                     "country": "FR",
-                    "latitude": 48.84407043457031,
+                    "latitude": 48.844071,
                     "locality": "Paris",
-                    "longitude": 2.3772740364074707,
+                    "longitude": 2.377274,
                     "name": "20 Rue de Chalon (Paris)",
                     "region": "FR-IDF"
                 }

@@ -24,8 +24,8 @@ static void parseCompactCoordinate(const QString &text, Location &loc)
 {
     const auto coords = text.split(QLatin1Char(','));
     if (coords.size() == 2) {
-        loc.setLatitude(coords[1].toFloat());
-        loc.setLongitude(coords[0].toFloat());
+        loc.setLatitude(coords[1].toDouble());
+        loc.setLongitude(coords[0].toDouble());
     }
 }
 
@@ -348,7 +348,7 @@ JourneySection EfaCompactParser::parseTripSection(ScopedXmlStreamReader &&reader
                     if (coord.size() < 2) {
                         continue;
                     }
-                    loc.setCoordinate(coord[1].toFloat(), coord[0].toFloat());
+                    loc.setCoordinate(coord[1].toDouble(), coord[0].toDouble());
 
                     if (IfoptUtil::isValid(stopParams[13])) {
                         loc.setIdentifier(IfoptUtil::identifierType(), stopParams[13]);

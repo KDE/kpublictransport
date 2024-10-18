@@ -38,7 +38,7 @@
                     "ibnr": "8503016"
                 },
                 "latitude": 47.45037841796875,
-                "longitude": 8.5623779296875,
+                "longitude": 8.562378406524658,
                 "name": "Zürich Flughafen",
                 "region": "CH-ZH",
                 "timezone": "Europe/Zurich"
@@ -67,8 +67,8 @@
                 "identifier": {
                     "ibnr": "8501605"
                 },
-                "latitude": 46.29402160644531,
-                "longitude": 7.881446838378906,
+                "latitude": 46.294023513793945,
+                "longitude": 7.881447076797485,
                 "name": "Visp",
                 "region": "CH-VS",
                 "timezone": "Europe/Zurich"
@@ -112,14 +112,14 @@
         },
         {
             "disruptionEffect": "NormalService",
-            "distance": 22963,
+            "distance": 22964,
             "from": {
                 "country": "CH",
                 "identifier": {
                     "ibnr": "8501605"
                 },
-                "latitude": 46.29402160644531,
-                "longitude": 7.881446838378906,
+                "latitude": 46.294023513793945,
+                "longitude": 7.881447076797485,
                 "name": "Visp",
                 "region": "CH-VS",
                 "timezone": "Europe/Zurich"

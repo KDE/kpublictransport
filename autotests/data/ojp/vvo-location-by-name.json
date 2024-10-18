@@ -5,9 +5,9 @@
             "ifopt": "de:14612:28",
             "test_id": "de:14612:28"
         },
-        "latitude": 51.0399284362793,
+        "latitude": 51.03993,
         "locality": "Dresden",
-        "longitude": 13.732930183410645,
+        "longitude": 13.73293,
         "name": "Hauptbahnhof",
         "region": "DE-SN",
         "type": "Stop"
@@ -18,9 +18,9 @@
             "ifopt": "de:14612:32",
             "test_id": "de:14612:32"
         },
-        "latitude": 51.0413703918457,
+        "latitude": 51.04137,
         "locality": "Dresden",
-        "longitude": 13.735090255737305,
+        "longitude": 13.73509,
         "name": "Hauptbahnhof Nord",
         "region": "DE-SN",
         "type": "Stop"
@@ -31,9 +31,9 @@
             "ifopt": "de:14612:36",
             "test_id": "de:14612:36"
         },
-        "latitude": 51.038719177246094,
+        "latitude": 51.03872,
         "locality": "Dresden",
-        "longitude": 13.734049797058105,
+        "longitude": 13.73405,
         "name": "Hauptbahnhof (Strehlener Str.)",
         "region": "DE-SN",
         "type": "Stop"

@@ -224,8 +224,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:7183"
                     },
-                    "latitude": 59.91219711303711,
-                    "longitude": 10.751310348510742,
+                    "latitude": 59.912197,
+                    "longitude": 10.75131,
                     "name": "Jernbanetorget",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -242,8 +242,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:7183"
                     },
-                    "latitude": 59.91219711303711,
-                    "longitude": 10.751310348510742,
+                    "latitude": 59.912197,
+                    "longitude": 10.75131,
                     "name": "Jernbanetorget",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -1013,8 +1013,8 @@
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
-                    "latitude": 59.94953155517578,
-                    "longitude": 10.765337944030762,
+                    "latitude": 59.949532,
+                    "longitude": 10.765338,
                     "name": "Nydalen",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",
@@ -1023,14 +1023,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 109,
+                "distance": 110,
                 "from": {
                     "country": "NO",
                     "identifier": {
                         "gtfs": "NSR:Quay:11151"
                     },
-                    "latitude": 59.94953155517578,
-                    "longitude": 10.765337944030762,
+                    "latitude": 59.949532,
+                    "longitude": 10.765338,
                     "name": "Nydalen",
                     "region": "NO-03",
                     "timezone": "Europe/Oslo",

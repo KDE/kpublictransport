@@ -16,8 +16,8 @@
                 "identifier": {
                     "iata": "BER"
                 },
-                "latitude": 52.364044189453125,
-                "longitude": 13.50899887084961,
+                "latitude": 52.364044,
+                "longitude": 13.508999,
                 "name": "BER",
                 "region": "DE-BB"
             },
@@ -37,8 +37,8 @@
                 "identifier": {
                     "iata": "STR"
                 },
-                "latitude": 48.68989944458008,
-                "longitude": 9.221960067749023,
+                "latitude": 48.689899,
+                "longitude": 9.22196,
                 "name": "STR",
                 "region": "DE-BW"
             }

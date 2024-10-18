@@ -340,8 +340,8 @@ Location MotisParser::parseStation(const QJsonObject &station) const
     loc.setIdentifier(m_locIdentifierType, station.value("id"_L1).toString());
     loc.setName(station.value("name"_L1).toString());
     const auto pos = station.value("pos"_L1).toObject();
-    loc.setLatitude((float)pos.value("lat"_L1).toDouble());
-    loc.setLongitude((float)pos.value("lng"_L1).toDouble());
+    loc.setLatitude(pos.value("lat"_L1).toDouble());
+    loc.setLongitude(pos.value("lng"_L1).toDouble());
     return loc;
 }
 
@@ -351,8 +351,8 @@ Location MotisParser::parseLocation(const QJsonObject &location) const
     loc.setType(Location::Place);
     loc.setName(location.value("name"_L1).toString());
     const auto pos = location.value("pos"_L1).toObject();
-    loc.setLatitude((float)pos.value("lat"_L1).toDouble());
-    loc.setLongitude((float)pos.value("lng"_L1).toDouble());
+    loc.setLatitude(pos.value("lat"_L1).toDouble());
+    loc.setLongitude(pos.value("lng"_L1).toDouble());
 
     const auto regions = location.value("regions"_L1).toArray();
     for (const auto &regionRef : regions) {

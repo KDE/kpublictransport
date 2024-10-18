@@ -3,7 +3,7 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 7009,
+                "distance": 7013,
                 "expectedArrivalTime": "2019-11-11T21:39:00",
                 "expectedDepartureTime": "2019-11-11T21:26:00",
                 "from": {
@@ -12,9 +12,9 @@
                         "ifopt": "de:09564:1391:11:2",
                         "testid": "3001391"
                     },
-                    "latitude": 49.49388122558594,
+                    "latitude": 49.49388,
                     "locality": "Nürnberg",
-                    "longitude": 11.079079627990723,
+                    "longitude": 11.07908,
                     "name": "Nürnberg Flughafen",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -31,8 +31,8 @@
                                 "ifopt": "de:09564:1320:11:1",
                                 "testid": "3001320"
                             },
-                            "latitude": 49.485328674316406,
-                            "longitude": 11.105039596557617,
+                            "latitude": 49.48533,
+                            "longitude": 11.10504,
                             "name": "Nürnberg Ziegelstein",
                             "region": "DE-BY"
                         }
@@ -48,8 +48,8 @@
                                 "ifopt": "de:09564:1324:11:1",
                                 "testid": "3001324"
                             },
-                            "latitude": 49.47829055786133,
-                            "longitude": 11.109569549560547,
+                            "latitude": 49.47829,
+                            "longitude": 11.10957,
                             "name": "Nürnberg Herrnhütte",
                             "region": "DE-BY"
                         }
@@ -65,8 +65,8 @@
                                 "ifopt": "de:09564:1335:11:1",
                                 "testid": "80003151"
                             },
-                            "latitude": 49.47246170043945,
-                            "longitude": 11.104439735412598,
+                            "latitude": 49.47246,
+                            "longitude": 11.10444,
                             "name": "Nürnberg Nordost",
                             "region": "DE-BY"
                         }
@@ -82,8 +82,8 @@
                                 "ifopt": "de:09564:341:11:1",
                                 "testid": "3000341"
                             },
-                            "latitude": 49.464900970458984,
-                            "longitude": 11.100529670715332,
+                            "latitude": 49.4649,
+                            "longitude": 11.10053,
                             "name": "Nürnberg Schoppershof",
                             "region": "DE-BY"
                         }
@@ -99,8 +99,8 @@
                                 "ifopt": "de:09564:340:11:1",
                                 "testid": "3000340"
                             },
-                            "latitude": 49.460960388183594,
-                            "longitude": 11.093199729919434,
+                            "latitude": 49.46096,
+                            "longitude": 11.0932,
                             "name": "Nürnberg Rennweg",
                             "region": "DE-BY"
                         }
@@ -116,8 +116,8 @@
                                 "ifopt": "de:09564:332:11:1",
                                 "testid": "3000332"
                             },
-                            "latitude": 49.45685958862305,
-                            "longitude": 11.089420318603516,
+                            "latitude": 49.45686,
+                            "longitude": 11.08942,
                             "name": "Nürnberg Rathenauplatz",
                             "region": "DE-BY"
                         }
@@ -133,8 +133,8 @@
                                 "ifopt": "de:09564:333:11:1",
                                 "testid": "3000333"
                             },
-                            "latitude": 49.452579498291016,
-                            "longitude": 11.086830139160156,
+                            "latitude": 49.45258,
+                            "longitude": 11.08683,
                             "name": "Nürnberg Wöhrder Wiese",
                             "region": "DE-BY"
                         }
@@ -189,9 +189,9 @@
                         "ifopt": "de:09564:510:11:U2",
                         "testid": "80001020"
                     },
-                    "latitude": 49.447059631347656,
+                    "latitude": 49.44706,
                     "locality": "Nürnberg",
-                    "longitude": 11.082220077514648,
+                    "longitude": 11.08222,
                     "name": "Nürnberg Hbf",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -206,9 +206,9 @@
                         "ifopt": "de:09564:510:11:U1_2",
                         "testid": "80001020"
                     },
-                    "latitude": 49.446388244628906,
+                    "latitude": 49.44639,
                     "locality": "Nürnberg",
-                    "longitude": 11.081649780273438,
+                    "longitude": 11.08165,
                     "name": "Nürnberg Hbf",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -259,9 +259,9 @@
                         "ifopt": "de:09564:1502:11:2",
                         "testid": "3001502"
                     },
-                    "latitude": 49.41590118408203,
+                    "latitude": 49.4159,
                     "locality": "Nürnberg",
-                    "longitude": 11.114660263061523,
+                    "longitude": 11.11466,
                     "name": "Nürnberg Messe",
                     "region": "DE-BY",
                     "type": "Stop"

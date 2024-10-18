@@ -200,7 +200,7 @@ static Path parsePathFromLength(const QPolygonF &pathLineString, const QJsonArra
 
         int polyIdx = prevPolyIdx + 1;
         const auto length = pathObj.value(QLatin1String("length")).toInt();
-        for (float l = 0.0f, prevDelta = std::numeric_limits<float>::max(); polyIdx < pathLineString.size(); ++polyIdx) {
+        for (double l = 0.0, prevDelta = std::numeric_limits<double>::max(); polyIdx < pathLineString.size(); ++polyIdx) {
             l += Location::distance(pathLineString.at(polyIdx - 1).y(), pathLineString.at(polyIdx - 1).x(), pathLineString.at(polyIdx).y(), pathLineString.at(polyIdx).x());
             auto delta = length - l;
             if (delta <= 0) {

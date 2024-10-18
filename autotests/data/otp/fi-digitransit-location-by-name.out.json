@@ -4,8 +4,8 @@
         "identifier": {
             "gtfs": "HSL:2000001"
         },
-        "latitude": 60.219234466552734,
-        "longitude": 24.813289642333984,
+        "latitude": 60.219235,
+        "longitude": 24.81329,
         "name": "Leppävaara",
         "region": "FI-18"
     },
@@ -14,8 +14,8 @@
         "identifier": {
             "gtfs": "HSL:2000202"
         },
-        "latitude": 60.219425201416016,
-        "longitude": 24.8145751953125,
+        "latitude": 60.219424,
+        "longitude": 24.814576,
         "name": "Leppävaaran asema",
         "region": "FI-18"
     }

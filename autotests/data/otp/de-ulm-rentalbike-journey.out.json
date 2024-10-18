@@ -18,8 +18,8 @@
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
                     },
-                    "latitude": 48.40037536621094,
-                    "longitude": 9.9856595993042,
+                    "latitude": 48.400374,
+                    "longitude": 9.98566,
                     "name": "Bürgerdienste",
                     "rentalVehicleStation": {
                         "availableVehicles": 2,
@@ -34,14 +34,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 2,
+                "distance": 3,
                 "from": {
                     "country": "DE",
                     "identifier": {
                         "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
                     },
-                    "latitude": 48.40037536621094,
-                    "longitude": 9.9856595993042,
+                    "latitude": 48.400374,
+                    "longitude": 9.98566,
                     "name": "Bürgerdienste",
                     "rentalVehicleStation": {
                         "availableVehicles": 2,
@@ -65,18 +65,18 @@
                 "scheduledDepartureTime": "2020-08-08T09:24:58Z",
                 "to": {
                     "country": "DE",
-                    "latitude": 48.40039825439453,
-                    "longitude": 9.985642433166504,
+                    "latitude": 48.400399231901375,
+                    "longitude": 9.985642661495206,
                     "name": "path"
                 }
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 26,
+                "distance": 27,
                 "from": {
                     "country": "DE",
-                    "latitude": 48.40039825439453,
-                    "longitude": 9.985642433166504,
+                    "latitude": 48.400399231901375,
+                    "longitude": 9.985642661495206,
                     "name": "path"
                 },
                 "mode": "Walking",
@@ -84,8 +84,8 @@
                 "scheduledDepartureTime": "2020-08-08T09:24:59Z",
                 "to": {
                     "country": "DE",
-                    "latitude": 48.40049743652344,
-                    "longitude": 9.985969543457031,
+                    "latitude": 48.4004982,
+                    "longitude": 9.9859694,
                     "name": "path"
                 }
             },
@@ -94,8 +94,8 @@
                 "distance": 895,
                 "from": {
                     "country": "DE",
-                    "latitude": 48.40049743652344,
-                    "longitude": 9.985969543457031,
+                    "latitude": 48.4004982,
+                    "longitude": 9.9859694,
                     "name": "path"
                 },
                 "mode": "RentedVehicle",
@@ -133,8 +133,8 @@
                         "gtfs": "1:de:08421:1008:1:2",
                         "ifopt": "de:08421:1008:1:2"
                     },
-                    "latitude": 48.399295806884766,
-                    "longitude": 9.984164237976074,
+                    "latitude": 48.399294,
+                    "longitude": 9.984164,
                     "name": "Ulm Hauptbahnhof",
                     "type": "Stop"
                 }
@@ -148,8 +148,8 @@
                         "gtfs": "1:de:08421:1008:1:2",
                         "ifopt": "de:08421:1008:1:2"
                     },
-                    "latitude": 48.399295806884766,
-                    "longitude": 9.984164237976074,
+                    "latitude": 48.399294,
+                    "longitude": 9.984164,
                     "name": "Ulm Hauptbahnhof",
                     "type": "Stop"
                 },
@@ -164,8 +164,8 @@
                                 "gtfs": "1:de:08421:1001:0:1",
                                 "ifopt": "de:08421:1001:0:1"
                             },
-                            "latitude": 48.397186279296875,
-                            "longitude": 9.987756729125977,
+                            "latitude": 48.397188,
+                            "longitude": 9.987757,
                             "name": "Ulm Steinerne Brücke",
                             "type": "Stop"
                         }
@@ -187,8 +187,8 @@
                         "gtfs": "1:de:08421:1002:1:1",
                         "ifopt": "de:08421:1002:1:1"
                     },
-                    "latitude": 48.397403717041016,
-                    "longitude": 9.992769241333008,
+                    "latitude": 48.397403,
+                    "longitude": 9.992769,
                     "name": "Ulm Rathaus",
                     "type": "Stop"
                 }
@@ -202,8 +202,8 @@
                         "gtfs": "1:de:08421:1002:1:1",
                         "ifopt": "de:08421:1002:1:1"
                     },
-                    "latitude": 48.397403717041016,
-                    "longitude": 9.992769241333008,
+                    "latitude": 48.397403,
+                    "longitude": 9.992769,
                     "name": "Ulm Rathaus",
                     "type": "Stop"
                 },

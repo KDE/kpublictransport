@@ -19,8 +19,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_LPV"
                     },
-                    "latitude": 60.21926498413086,
-                    "longitude": 24.814298629760742,
+                    "latitude": 60.219265,
+                    "longitude": 24.814299,
                     "name": "LEPPÄVAARA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -28,7 +28,7 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 6973,
+                "distance": 6974,
                 "expectedArrivalTime": "2020-01-09T17:18:46Z",
                 "expectedDepartureTime": "2020-01-09T17:14:28Z",
                 "from": {
@@ -36,8 +36,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_LPV"
                     },
-                    "latitude": 60.21926498413086,
-                    "longitude": 24.814298629760742,
+                    "latitude": 60.219265,
+                    "longitude": 24.814299,
                     "name": "LEPPÄVAARA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -57,8 +57,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
-                    "latitude": 60.198551177978516,
-                    "longitude": 24.93345069885254,
+                    "latitude": 60.19855,
+                    "longitude": 24.93345,
                     "name": "PASILA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -74,8 +74,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
-                    "latitude": 60.198551177978516,
-                    "longitude": 24.93345069885254,
+                    "latitude": 60.19855,
+                    "longitude": 24.93345,
                     "name": "PASILA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -95,8 +95,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_TKL"
                     },
-                    "latitude": 60.29220199584961,
-                    "longitude": 25.043617248535156,
+                    "latitude": 60.292201,
+                    "longitude": 25.043618,
                     "name": "TIKKURILA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -112,8 +112,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_TKL"
                     },
-                    "latitude": 60.29220199584961,
-                    "longitude": 25.043617248535156,
+                    "latitude": 60.292201,
+                    "longitude": 25.043618,
                     "name": "TIKKURILA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -133,8 +133,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
-                    "latitude": 61.498775482177734,
-                    "longitude": 23.773019790649414,
+                    "latitude": 61.498776,
+                    "longitude": 23.773019,
                     "name": "TAMPERE",
                     "region": "FI-11",
                     "type": "Stop"
@@ -148,8 +148,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
-                    "latitude": 61.498775482177734,
-                    "longitude": 23.773019790649414,
+                    "latitude": 61.498776,
+                    "longitude": 23.773019,
                     "name": "TAMPERE",
                     "region": "FI-11",
                     "type": "Stop"
@@ -188,8 +188,8 @@
                     "identifier": {
                         "gtfs": "HSL:2111552"
                     },
-                    "latitude": 60.219478607177734,
-                    "longitude": 24.81322479248047,
+                    "latitude": 60.219477,
+                    "longitude": 24.813224,
                     "name": "Leppävaara",
                     "region": "FI-18",
                     "type": "Stop"
@@ -205,8 +205,8 @@
                     "identifier": {
                         "gtfs": "HSL:2111552"
                     },
-                    "latitude": 60.219478607177734,
-                    "longitude": 24.81322479248047,
+                    "latitude": 60.219477,
+                    "longitude": 24.813224,
                     "name": "Leppävaara",
                     "region": "FI-18",
                     "type": "Stop"
@@ -227,8 +227,8 @@
                     "identifier": {
                         "gtfs": "HSL:1174554"
                     },
-                    "latitude": 60.1994743347168,
-                    "longitude": 24.93265151977539,
+                    "latitude": 60.199474,
+                    "longitude": 24.932652,
                     "name": "Pasila",
                     "region": "FI-18",
                     "type": "Stop"
@@ -242,8 +242,8 @@
                     "identifier": {
                         "gtfs": "HSL:1174554"
                     },
-                    "latitude": 60.1994743347168,
-                    "longitude": 24.93265151977539,
+                    "latitude": 60.199474,
+                    "longitude": 24.932652,
                     "name": "Pasila",
                     "region": "FI-18",
                     "type": "Stop"
@@ -256,8 +256,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
-                    "latitude": 60.198551177978516,
-                    "longitude": 24.93345069885254,
+                    "latitude": 60.19855,
+                    "longitude": 24.93345,
                     "name": "PASILA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -271,8 +271,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_PSL"
                     },
-                    "latitude": 60.198551177978516,
-                    "longitude": 24.93345069885254,
+                    "latitude": 60.19855,
+                    "longitude": 24.93345,
                     "name": "PASILA",
                     "region": "FI-18",
                     "type": "Stop"
@@ -292,8 +292,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
-                    "latitude": 61.498775482177734,
-                    "longitude": 23.773019790649414,
+                    "latitude": 61.498776,
+                    "longitude": 23.773019,
                     "name": "TAMPERE",
                     "region": "FI-11",
                     "type": "Stop"
@@ -307,8 +307,8 @@
                     "identifier": {
                         "gtfs": "MATKA:4_TPE"
                     },
-                    "latitude": 61.498775482177734,
-                    "longitude": 23.773019790649414,
+                    "latitude": 61.498776,
+                    "longitude": 23.773019,
                     "name": "TAMPERE",
                     "region": "FI-11",
                     "type": "Stop"

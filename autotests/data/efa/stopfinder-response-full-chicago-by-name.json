@@ -4,8 +4,8 @@
         "identifier": {
             "testid": "10120152"
         },
-        "latitude": 41.98918914794922,
-        "longitude": -87.88291931152344,
+        "latitude": 41.98919,
+        "longitude": -87.88292,
         "name": "O'hare Airport Kiss-N-Fly Chicago",
         "region": "US-IL",
         "type": "Stop"
@@ -15,9 +15,9 @@
         "identifier": {
             "testid": "10120152"
         },
-        "latitude": 41.98918914794922,
+        "latitude": 41.98919,
         "locality": "Chicago",
-        "longitude": -87.88291931152344,
+        "longitude": -87.88292,
         "name": "O'hare Airport Kiss-N-Fly, Chicago",
         "region": "US-IL",
         "type": "Stop"

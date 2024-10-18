@@ -20,7 +20,7 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 3438,
+                "distance": 3439,
                 "expectedArrivalTime": "2021-03-05T16:51:00",
                 "expectedDepartureTime": "2021-03-05T16:45:00",
                 "from": {
@@ -28,8 +28,8 @@
                     "identifier": {
                         "unit-test": "900001201"
                     },
-                    "latitude": 52.53617858886719,
-                    "longitude": 13.343838691711426,
+                    "latitude": 52.536179,
+                    "longitude": 13.343839,
                     "name": "S+U Westhafen (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -52,8 +52,8 @@
                             "identifier": {
                                 "unit-test": "900002201"
                             },
-                            "latitude": 52.532230377197266,
-                            "longitude": 13.341421127319336,
+                            "latitude": 52.532232,
+                            "longitude": 13.341421,
                             "name": "U Birkenstr. (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -76,8 +76,8 @@
                             "identifier": {
                                 "unit-test": "900003104"
                             },
-                            "latitude": 52.52593994140625,
-                            "longitude": 13.341421127319336,
+                            "latitude": 52.52594,
+                            "longitude": 13.341421,
                             "name": "U Turmstr. (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -100,8 +100,8 @@
                             "identifier": {
                                 "unit-test": "900003101"
                             },
-                            "latitude": 52.51810836791992,
-                            "longitude": 13.342166900634766,
+                            "latitude": 52.51811,
+                            "longitude": 13.342167,
                             "name": "U Hansaplatz (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -131,8 +131,8 @@
                     "identifier": {
                         "unit-test": "900023201"
                     },
-                    "latitude": 52.506919860839844,
-                    "longitude": 13.332711219787598,
+                    "latitude": 52.506919,
+                    "longitude": 13.332711,
                     "name": "S+U Zoologischer Garten Bhf (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"

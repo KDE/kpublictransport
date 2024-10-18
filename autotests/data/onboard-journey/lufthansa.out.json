@@ -2,7 +2,7 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 430617,
+            "distance": 430618,
             "expectedArrivalTime": {
                 "timezone": "Europe/Berlin",
                 "value": "2023-10-07T14:08:53+02:00"
@@ -16,8 +16,8 @@
                 "identifier": {
                     "iata": "BER"
                 },
-                "latitude": 52.364044189453125,
-                "longitude": 13.50899887084961,
+                "latitude": 52.364044,
+                "longitude": 13.508999,
                 "name": "BER",
                 "region": "DE-BB"
             },
@@ -37,8 +37,8 @@
                 "identifier": {
                     "iata": "FRA"
                 },
-                "latitude": 50.03333282470703,
-                "longitude": 8.570555686950684,
+                "latitude": 50.033333,
+                "longitude": 8.570556,
                 "name": "FRA",
                 "region": "DE-HE"
             }

@@ -58,8 +58,8 @@ private Q_SLOTS:
         QCOMPARE(entry.type, CacheHitType::Positive);
         QCOMPARE(entry.data.size(), 1);
         QCOMPARE(entry.data[0].name(), loc.name());
-        QCOMPARE(entry.data[0].longitude(), 7.6f);
-        QCOMPARE(entry.data[0].latitude(), 46.1f);
+        QCOMPARE(entry.data[0].longitude(), 7.6);
+        QCOMPARE(entry.data[0].latitude(), 46.1);
         QCOMPARE(entry.data[0].identifiers().size(), 1);
         QCOMPARE(entry.data[0].identifier(QStringLiteral("uic")), QLatin1String("85xxxxx"));
         QCOMPARE(entry.data[0].timeZone().id(), "Europe/Zurich");

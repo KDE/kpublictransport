@@ -6,8 +6,8 @@
                 "distance": 392,
                 "from": {
                     "country": "DE",
-                    "latitude": 52.52067947387695,
-                    "longitude": 13.4164400100708,
+                    "latitude": 52.52068,
+                    "longitude": 13.41644,
                     "name": "52.520680, 13.416440",
                     "region": "DE-BE"
                 },
@@ -19,8 +19,8 @@
                     "identifier": {
                         "unit-test": "900100003"
                     },
-                    "latitude": 52.521507263183594,
-                    "longitude": 13.411267280578613,
+                    "latitude": 52.521508,
+                    "longitude": 13.411267,
                     "name": "S+U Alexanderplatz Bhf (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -39,7 +39,7 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2158,
+                "distance": 2160,
                 "expectedArrivalTime": "2024-08-10T09:39:00",
                 "expectedDepartureTime": "2024-08-10T09:34:00",
                 "from": {
@@ -47,8 +47,8 @@
                     "identifier": {
                         "unit-test": "900100003"
                     },
-                    "latitude": 52.521507263183594,
-                    "longitude": 13.411267280578613,
+                    "latitude": 52.521508,
+                    "longitude": 13.411267,
                     "name": "S+U Alexanderplatz Bhf (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -71,8 +71,8 @@
                             "identifier": {
                                 "unit-test": "900100045"
                             },
-                            "latitude": 52.51845932006836,
-                            "longitude": 13.407060623168945,
+                            "latitude": 52.518461,
+                            "longitude": 13.407061,
                             "name": "U Rotes Rathaus (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -95,8 +95,8 @@
                             "identifier": {
                                 "unit-test": "900100537"
                             },
-                            "latitude": 52.517391204833984,
-                            "longitude": 13.399194717407227,
+                            "latitude": 52.517391,
+                            "longitude": 13.399195,
                             "name": "U Museumsinsel (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -120,8 +120,8 @@
                             "identifier": {
                                 "unit-test": "900100513"
                             },
-                            "latitude": 52.51699447631836,
-                            "longitude": 13.388875007629395,
+                            "latitude": 52.516996,
+                            "longitude": 13.388875,
                             "name": "U Unter den Linden (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -153,8 +153,8 @@
                     "identifier": {
                         "unit-test": "900100025"
                     },
-                    "latitude": 52.516510009765625,
-                    "longitude": 13.381936073303223,
+                    "latitude": 52.51651,
+                    "longitude": 13.381936,
                     "name": "S+U Brandenburger Tor (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -173,7 +173,7 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 4965,
+                "distance": 4967,
                 "expectedArrivalPlatform": "1",
                 "expectedArrivalTime": "2024-08-10T09:54:00",
                 "expectedDeparturePlatform": "1",
@@ -183,8 +183,8 @@
                     "identifier": {
                         "unit-test": "900100025"
                     },
-                    "latitude": 52.516510009765625,
-                    "longitude": 13.381936073303223,
+                    "latitude": 52.51651,
+                    "longitude": 13.381936,
                     "name": "S+U Brandenburger Tor (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -203,8 +203,8 @@
                             "identifier": {
                                 "unit-test": "900100020"
                             },
-                            "latitude": 52.50935363769531,
-                            "longitude": 13.376550674438477,
+                            "latitude": 52.509355,
+                            "longitude": 13.376551,
                             "name": "S+U Potsdamer Platz Bhf (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -223,8 +223,8 @@
                             "identifier": {
                                 "unit-test": "900012101"
                             },
-                            "latitude": 52.50453567504883,
-                            "longitude": 13.382080078125,
+                            "latitude": 52.504537,
+                            "longitude": 13.38208,
                             "name": "S Anhalter Bahnhof (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -243,8 +243,8 @@
                             "identifier": {
                                 "unit-test": "900058103"
                             },
-                            "latitude": 52.49235534667969,
-                            "longitude": 13.372208595275879,
+                            "latitude": 52.492356,
+                            "longitude": 13.372209,
                             "name": "S+U Yorckstr. (Berlin)",
                             "region": "DE-BE",
                             "type": "Stop"
@@ -270,8 +270,8 @@
                     "identifier": {
                         "unit-test": "900058101"
                     },
-                    "latitude": 52.475502014160156,
-                    "longitude": 13.365548133850098,
+                    "latitude": 52.475501,
+                    "longitude": 13.365548,
                     "name": "S Südkreuz Bhf (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -285,8 +285,8 @@
                     "identifier": {
                         "unit-test": "900058101"
                     },
-                    "latitude": 52.475502014160156,
-                    "longitude": 13.365548133850098,
+                    "latitude": 52.475501,
+                    "longitude": 13.365548,
                     "name": "S Südkreuz Bhf (Berlin)",
                     "region": "DE-BE",
                     "type": "Stop"
@@ -296,8 +296,8 @@
                 "scheduledDepartureTime": "2024-08-10T09:54:00",
                 "to": {
                     "country": "DE",
-                    "latitude": 52.47576904296875,
-                    "longitude": 13.365349769592285,
+                    "latitude": 52.475768,
+                    "longitude": 13.36535,
                     "name": "52.475768, 13.365350",
                     "region": "DE-BE"
                 }

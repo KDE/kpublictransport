@@ -31,8 +31,8 @@
                         "ifopt": "de:03241:9830",
                         "unit-test": "8003487"
                     },
-                    "latitude": 52.31689453125,
-                    "longitude": 9.792866706848145,
+                    "latitude": 52.316896,
+                    "longitude": 9.792867,
                     "name": "Hannover Messe/Laatzen",
                     "region": "DE-NI",
                     "type": "Stop"
@@ -63,8 +63,8 @@
                         "ifopt": "de:03241:31",
                         "unit-test": "8000152"
                     },
-                    "latitude": 52.377376556396484,
-                    "longitude": 9.741988182067871,
+                    "latitude": 52.377375,
+                    "longitude": 9.741988,
                     "name": "Hannover Hbf",
                     "region": "DE-NI",
                     "type": "Stop"

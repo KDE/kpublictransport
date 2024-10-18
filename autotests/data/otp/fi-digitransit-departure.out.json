@@ -19,8 +19,8 @@
             "identifier": {
                 "gtfs": "MATKA:4_TPE"
             },
-            "latitude": 61.498775482177734,
-            "longitude": 23.773019790649414,
+            "latitude": 61.498776,
+            "longitude": 23.773019,
             "name": "TAMPERE",
             "region": "FI-11",
             "type": "Stop"
@@ -44,8 +44,8 @@
             "identifier": {
                 "gtfs": "MATKA:4_TPE"
             },
-            "latitude": 61.498775482177734,
-            "longitude": 23.773019790649414,
+            "latitude": 61.498776,
+            "longitude": 23.773019,
             "name": "TAMPERE",
             "region": "FI-11",
             "type": "Stop"
@@ -67,8 +67,8 @@
             "identifier": {
                 "gtfs": "MATKA:4_TPE"
             },
-            "latitude": 61.498775482177734,
-            "longitude": 23.773019790649414,
+            "latitude": 61.498776,
+            "longitude": 23.773019,
             "name": "TAMPERE",
             "region": "FI-11",
             "type": "Stop"

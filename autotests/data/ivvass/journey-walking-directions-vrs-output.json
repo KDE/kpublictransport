@@ -9,9 +9,9 @@
                     "identifier": {
                         "ifopt": "de:05315:11810:1:11"
                     },
-                    "latitude": 50.951011657714844,
+                    "latitude": 50.95101,
                     "locality": "Köln",
-                    "longitude": 6.959539890289307,
+                    "longitude": 6.95954,
                     "name": "Ebertplatz (U) Gleis 1",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -219,8 +219,8 @@
                 },
                 "to": {
                     "country": "DE",
-                    "latitude": 50.94731903076172,
-                    "longitude": 6.962530136108398,
+                    "latitude": 50.94732,
+                    "longitude": 6.96253,
                     "region": "DE-NW"
                 }
             }

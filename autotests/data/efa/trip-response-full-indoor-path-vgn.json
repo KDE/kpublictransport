@@ -3,7 +3,7 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 317,
+                "distance": 324,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2020-04-27T22:13:00",
                 "expectedDeparturePlatform": "",
@@ -14,9 +14,9 @@
                         "ifopt": "de:09564:510:11:U2",
                         "testid": "3000510"
                     },
-                    "latitude": 49.44636917114258,
+                    "latitude": 49.44637,
                     "locality": "Nürnberg",
-                    "longitude": 11.081809997558594,
+                    "longitude": 11.08181,
                     "name": "Nürnberg Hauptbahnhof",
                     "region": "DE-BY",
                     "type": "Stop"
@@ -363,9 +363,9 @@
                 "scheduledDepartureTime": "2020-04-27T22:07:00",
                 "to": {
                     "country": "DE",
-                    "latitude": 49.445499420166016,
+                    "latitude": 49.4455,
                     "locality": "Nürnberg",
-                    "longitude": 11.082300186157227,
+                    "longitude": 11.0823,
                     "name": "Nürnberg, Bahnsteig",
                     "region": "DE-BY"
                 }

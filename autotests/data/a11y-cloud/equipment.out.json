@@ -8,8 +8,8 @@
         "identifier": {
             "a11ycloud": "nwccXsd9WMekvFs3r:10317782"
         },
-        "latitude": 52.52497482299805,
-        "longitude": 13.368995666503906,
+        "latitude": 52.52497575,
+        "longitude": 13.36899555,
         "name": "zu Gleis 13/14",
         "region": "DE-BE",
         "type": "Equipment"
@@ -23,8 +23,8 @@
         "identifier": {
             "a11ycloud": "nwccXsd9WMekvFs3r:10317780"
         },
-        "latitude": 52.52516555786133,
-        "longitude": 13.368868827819824,
+        "latitude": 52.52516555,
+        "longitude": 13.3688684,
         "name": "zu Gleis 15/16 (S-Bahn)",
         "region": "DE-BE",
         "type": "Equipment"
@@ -41,8 +41,8 @@
         "identifier": {
             "a11ycloud": "Wkd92kW7X2rAsbTdH:10315353"
         },
-        "latitude": 52.525848388671875,
-        "longitude": 13.368924140930176,
+        "latitude": 52.525847,
+        "longitude": 13.368924,
         "name": "zwischen OG 2 S-Bahnsteig Gl. 15 und 16 und OG 1 und EG und UG 1 und Tunnelbahnsteig UG 2 Gl. 5 und 6",
         "region": "DE-BE",
         "type": "Equipment"
@@ -59,8 +59,8 @@
         "identifier": {
             "a11ycloud": "Wkd92kW7X2rAsbTdH:5258"
         },
-        "latitude": 52.52568435668945,
-        "longitude": 13.36989688873291,
+        "latitude": 52.525683,
+        "longitude": 13.369897,
         "name": "zwischen Friedrich-List-Ufer / Europaplatz und UG 1 und U-Bahnsteig",
         "region": "DE-BE",
         "type": "Equipment"

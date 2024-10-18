@@ -10,8 +10,8 @@
                 "identifier": {
                     "unit-test": "641200010"
                 },
-                "latitude": 50.107139587402344,
-                "longitude": 8.663784980773926,
+                "latitude": 50.10714,
+                "longitude": 8.663785,
                 "name": "Frankfurt(Main)Hbf",
                 "region": "DE-HE",
                 "type": "Stop"
@@ -30,8 +30,8 @@
             "identifier": {
                 "unit-test": "4405"
             },
-            "latitude": 50.94298553466797,
-            "longitude": 6.958594799041748,
+            "latitude": 50.942984,
+            "longitude": 6.958595,
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"
@@ -62,8 +62,8 @@
                 "identifier": {
                     "unit-test": "4410"
                 },
-                "latitude": 50.93975830078125,
-                "longitude": 6.977822780609131,
+                "latitude": 50.939757,
+                "longitude": 6.977823,
                 "name": "Köln Messe/Deutz",
                 "region": "DE-NW",
                 "type": "Stop"
@@ -83,8 +83,8 @@
             "identifier": {
                 "unit-test": "4405"
             },
-            "latitude": 50.94298553466797,
-            "longitude": 6.958594799041748,
+            "latitude": 50.942984,
+            "longitude": 6.958595,
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"
@@ -115,8 +115,8 @@
                 "identifier": {
                     "unit-test": "723330303"
                 },
-                "latitude": 50.2240104675293,
-                "longitude": 6.660368919372559,
+                "latitude": 50.224009,
+                "longitude": 6.660369,
                 "name": "Gerolstein",
                 "region": "DE-RP",
                 "type": "Stop"
@@ -136,8 +136,8 @@
             "identifier": {
                 "unit-test": "4405"
             },
-            "latitude": 50.94298553466797,
-            "longitude": 6.958594799041748,
+            "latitude": 50.942984,
+            "longitude": 6.958595,
             "name": "Köln Hbf",
             "region": "DE-NW",
             "type": "Stop"

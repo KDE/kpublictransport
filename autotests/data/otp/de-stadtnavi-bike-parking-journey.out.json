@@ -20,8 +20,8 @@
                 "scheduledDepartureTime": "2021-10-06T15:45:30Z",
                 "to": {
                     "country": "DE",
-                    "latitude": 48.593624114990234,
-                    "longitude": 8.86339282989502,
+                    "latitude": 48.5936244,
+                    "longitude": 8.8633925,
                     "name": "Fahrradabstellplatz",
                     "region": "DE-BW"
                 }
@@ -31,8 +31,8 @@
                 "distance": 115,
                 "from": {
                     "country": "DE",
-                    "latitude": 48.593624114990234,
-                    "longitude": 8.86339282989502,
+                    "latitude": 48.5936244,
+                    "longitude": 8.8633925,
                     "name": "Fahrradabstellplatz",
                     "region": "DE-BW"
                 },
@@ -44,8 +44,8 @@
                     "identifier": {
                         "gtfs": "hbg:de:08115:4512:1:2"
                     },
-                    "latitude": 48.593994140625,
-                    "longitude": 8.862829208374023,
+                    "latitude": 48.593994,
+                    "longitude": 8.862829,
                     "name": "Herrenberg",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -59,8 +59,8 @@
                     "identifier": {
                         "gtfs": "hbg:de:08115:4512:1:2"
                     },
-                    "latitude": 48.593994140625,
-                    "longitude": 8.862829208374023,
+                    "latitude": 48.593994,
+                    "longitude": 8.862829,
                     "name": "Herrenberg",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -82,8 +82,8 @@
                     "identifier": {
                         "gtfs": "hbg:de:08111:6118:1:102"
                     },
-                    "latitude": 48.78336715698242,
-                    "longitude": 9.180337905883789,
+                    "latitude": 48.783367,
+                    "longitude": 9.180338,
                     "name": "Stuttgart Hauptbahnhof (tief)",
                     "region": "DE-BW",
                     "type": "Stop"
@@ -97,8 +97,8 @@
                     "identifier": {
                         "gtfs": "hbg:de:08111:6118:1:102"
                     },
-                    "latitude": 48.78336715698242,
-                    "longitude": 9.180337905883789,
+                    "latitude": 48.783367,
+                    "longitude": 9.180338,
                     "name": "Stuttgart Hauptbahnhof (tief)",
                     "region": "DE-BW",
                     "type": "Stop"

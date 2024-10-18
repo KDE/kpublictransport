@@ -19,9 +19,9 @@
                 "test_id": "8501687",
                 "uic": "8501687"
             },
-            "latitude": 46.09992980957031,
+            "latitude": 46.09993,
             "locality": "Randa",
-            "longitude": 7.781459808349609,
+            "longitude": 7.78146,
             "name": "Randa",
             "region": "CH-VS",
             "type": "Stop"
@@ -47,9 +47,9 @@
                 "test_id": "8501687",
                 "uic": "8501687"
             },
-            "latitude": 46.09992980957031,
+            "latitude": 46.09993,
             "locality": "Randa",
-            "longitude": 7.781459808349609,
+            "longitude": 7.78146,
             "name": "Randa",
             "region": "CH-VS",
             "type": "Stop"

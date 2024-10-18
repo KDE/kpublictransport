@@ -51,9 +51,9 @@ public:
     /** Human-readable name of the location. */
     KPUBLICTRANSPORT_PROPERTY(QString, name, setName)
     /** Latitude of the location, in degree, NaN if unknown. */
-    KPUBLICTRANSPORT_PROPERTY(float, latitude, setLatitude)
+    KPUBLICTRANSPORT_PROPERTY(double, latitude, setLatitude)
     /** Longitude of the location, in degree, NaN if unknown. */
-    KPUBLICTRANSPORT_PROPERTY(float, longitude, setLongitude)
+    KPUBLICTRANSPORT_PROPERTY(double, longitude, setLongitude)
 
     /** Street address of the location, if known. */
     KPUBLICTRANSPORT_PROPERTY(QString, streetAddress, setStreetAddress)
@@ -86,7 +86,7 @@ public:
     Q_PROPERTY(QString iconName READ iconName STORED false)
 
 public:
-    void setCoordinate(float latitude, float longitude);
+    void setCoordinate(double latitude, double longitude);
     [[nodiscard]] bool hasCoordinate() const;
 
     /** Returns @c true if this is an default-constructed location object not specifying any location. */
@@ -113,11 +113,11 @@ public:
     [[nodiscard]] static Location merge(const Location &lhs, const Location &rhs);
 
     /** Compute the distance between two geo coordinates, in meters. */
-    [[nodiscard]] static float distance(float lat1, float lon1, float lat2, float lon2);
+    [[nodiscard]] static double distance(double lat1, double lon1, double lat2, double lon2);
     /** Computes the distance in meters between two locations.
-     *  Returns MAX_INT if one of the arguments has no coordinates set.
+     *  Returns NAN if one of the arguments has no coordinates set.
      */
-    [[nodiscard]] static float distance(const Location &lhs, const Location &rhs);
+    [[nodiscard]] static double distance(const Location &lhs, const Location &rhs);
 
     [[nodiscard]] RentalVehicleStation rentalVehicleStation() const;
     [[deprecated("use setData instead")]] void setRentalVehicleStation(const RentalVehicleStation &dock);

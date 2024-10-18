@@ -5,9 +5,9 @@
             "test_id": "8503016",
             "uic": "8503016"
         },
-        "latitude": 47.45038986206055,
+        "latitude": 47.45039,
         "locality": "Kloten",
-        "longitude": 8.562399864196777,
+        "longitude": 8.5624,
         "name": "Zürich Flughafen",
         "region": "CH-ZH",
         "type": "Stop"
@@ -18,9 +18,9 @@
             "test_id": "8580301",
             "uic": "8580301"
         },
-        "latitude": 47.4526481628418,
+        "latitude": 47.45265,
         "locality": "Kloten",
-        "longitude": 8.56566047668457,
+        "longitude": 8.56566,
         "name": "Zürich Flughafen, OPC",
         "region": "CH-ZH",
         "type": "Stop"

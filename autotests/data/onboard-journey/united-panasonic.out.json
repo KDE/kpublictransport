@@ -9,8 +9,8 @@
                     "iata": "LHR",
                     "icao": "EGLL"
                 },
-                "latitude": 51.279998779296875,
-                "longitude": -0.26499998569488525,
+                "latitude": 51.28,
+                "longitude": -0.265,
                 "name": "LHR",
                 "region": "GB-ENG"
             },
@@ -27,8 +27,8 @@
                     "iata": "JNB",
                     "icao": "FAOR"
                 },
-                "latitude": -26.082000732421875,
-                "longitude": 28.143999099731445,
+                "latitude": -26.082,
+                "longitude": 28.144,
                 "name": "JNB",
                 "region": "ZA-GP"
             }

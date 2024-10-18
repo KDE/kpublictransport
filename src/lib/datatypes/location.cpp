@@ -38,8 +38,8 @@ class LocationPrivate : public QSharedData
 public:
     Location::Type type = Location::Place;
     QString name;
-    float latitude = NAN;
-    float longitude = NAN;
+    double latitude = NAN;
+    double longitude = NAN;
     QTimeZone timeZone;
     QHash<QString, QString> ids;
 
@@ -57,8 +57,8 @@ public:
 KPUBLICTRANSPORT_MAKE_GADGET(Location)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, Location::Type, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, name, setName)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, latitude, setLatitude)
-KPUBLICTRANSPORT_MAKE_PROPERTY(Location, float, longitude, setLongitude)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, double, latitude, setLatitude)
+KPUBLICTRANSPORT_MAKE_PROPERTY(Location, double, longitude, setLongitude)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, streetAddress, setStreetAddress)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
@@ -93,7 +93,7 @@ QString Location::country() const {
 
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QVariant, data, setData)
 
-void Location::setCoordinate(float latitude, float longitude)
+void Location::setCoordinate(double latitude, double longitude)
 {
     d.detach();
     d->latitude = latitude;
@@ -396,7 +396,7 @@ bool Location::isSameName(const QString &lhs, const QString &rhs)
     return lhsNormalized == rhsNormalized;
 }
 
-static float mergeCoordinate(float lhs, float rhs)
+static double mergeCoordinate(double lhs, double rhs)
 {
     if (std::isnan(lhs)) {
         return rhs;
@@ -465,7 +465,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
 }
 
 // see https://en.wikipedia.org/wiki/Haversine_formula
-float Location::distance(float lat1, float lon1, float lat2, float lon2)
+double Location::distance(double lat1, double lon1, double lat2, double lon2)
 {
     const auto degToRad = M_PI / 180.0;
     const auto earthRadius = 6371000.0; // in meters
@@ -477,10 +477,10 @@ float Location::distance(float lat1, float lon1, float lat2, float lon2)
     return 2.0 * earthRadius * atan2(sqrt(a), sqrt(1.0 - a));
 }
 
-float Location::distance(const Location &lhs, const Location &rhs)
+double Location::distance(const Location &lhs, const Location &rhs)
 {
     if (!lhs.hasCoordinate() || !rhs.hasCoordinate()) {
-        return std::numeric_limits<float>::max();
+        return NAN;
     }
     return Location::distance(lhs.latitude(), lhs.longitude(), rhs.latitude(), rhs.longitude());
 }

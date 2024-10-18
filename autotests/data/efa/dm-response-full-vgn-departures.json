@@ -17,9 +17,9 @@
                 "ifopt": "de:09564:1391:11:2",
                 "testid": "3001391"
             },
-            "latitude": 49.49388122558594,
+            "latitude": 49.49388,
             "locality": "Nürnberg",
-            "longitude": 11.079079627990723,
+            "longitude": 11.07908,
             "name": "Nürnberg Flughafen",
             "region": "DE-BY",
             "type": "Stop"
@@ -47,9 +47,9 @@
                 "ifopt": "de:09564:1391:3:6",
                 "testid": "3001391"
             },
-            "latitude": 49.493858337402344,
+            "latitude": 49.49386,
             "locality": "Nürnberg",
-            "longitude": 11.078929901123047,
+            "longitude": 11.07893,
             "name": "Nürnberg Flughafen",
             "region": "DE-BY",
             "type": "Stop"

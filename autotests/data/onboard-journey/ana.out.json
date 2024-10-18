@@ -2,15 +2,15 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 810002,
+            "distance": 810003,
             "from": {
                 "country": "JP",
                 "identifier": {
                     "iata": "CTS",
                     "icao": "RJCC"
                 },
-                "latitude": 42.4630012512207,
-                "longitude": 141.41299438476562,
+                "latitude": 42.463,
+                "longitude": 141.413,
                 "name": "CTS",
                 "region": "JP-01"
             },
@@ -27,8 +27,8 @@
                     "iata": "HND",
                     "icao": "RJTT"
                 },
-                "latitude": 35.3390007019043,
-                "longitude": 139.4550018310547,
+                "latitude": 35.339,
+                "longitude": 139.455,
                 "name": "HND",
                 "region": "JP-14"
             }

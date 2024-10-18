@@ -3,14 +3,14 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 113116,
+                "distance": 113119,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503016:0:3"
                     },
-                    "latitude": 47.45038604736328,
-                    "longitude": 8.562399864196777,
+                    "latitude": 47.450387,
+                    "longitude": 8.5624,
                     "name": "Zürich Flughafen",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -25,8 +25,8 @@
                             "identifier": {
                                 "motis": "swiss_8503006:0:3"
                             },
-                            "latitude": 47.411529541015625,
-                            "longitude": 8.544137001037598,
+                            "latitude": 47.411531,
+                            "longitude": 8.544137,
                             "name": "Zürich Oerlikon",
                             "region": "CH-ZH",
                             "type": "Stop"
@@ -41,8 +41,8 @@
                             "identifier": {
                                 "motis": "swiss_8503000:0:32"
                             },
-                            "latitude": 47.37767791748047,
-                            "longitude": 8.539457321166992,
+                            "latitude": 47.377677,
+                            "longitude": 8.539457,
                             "name": "Zürich HB",
                             "region": "CH-ZH",
                             "type": "Stop"
@@ -57,8 +57,8 @@
                             "identifier": {
                                 "motis": "swiss_8500218:0:8"
                             },
-                            "latitude": 47.351932525634766,
-                            "longitude": 7.907699108123779,
+                            "latitude": 47.351934,
+                            "longitude": 7.907699,
                             "name": "Olten",
                             "type": "Stop"
                         }
@@ -80,8 +80,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -95,8 +95,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -109,8 +109,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -118,14 +118,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 34511,
+                "distance": 34512,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -140,8 +140,8 @@
                             "identifier": {
                                 "motis": "swiss_8507100:0:1"
                             },
-                            "latitude": 46.754852294921875,
-                            "longitude": 7.629607200622559,
+                            "latitude": 46.754852,
+                            "longitude": 7.629607,
                             "name": "Thun",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -164,8 +164,8 @@
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -179,8 +179,8 @@
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -193,8 +193,8 @@
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -202,14 +202,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 60540,
+                "distance": 60545,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -224,8 +224,8 @@
                             "identifier": {
                                 "motis": "swiss_8507481:0:1"
                             },
-                            "latitude": 46.63802719116211,
-                            "longitude": 7.691312789916992,
+                            "latitude": 46.638029,
+                            "longitude": 7.691313,
                             "name": "Mülenen",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -240,8 +240,8 @@
                             "identifier": {
                                 "motis": "swiss_8507480:0:1"
                             },
-                            "latitude": 46.625125885009766,
-                            "longitude": 7.690063953399658,
+                            "latitude": 46.625124,
+                            "longitude": 7.690064,
                             "name": "Reichenbach im Kandertal",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -256,8 +256,8 @@
                             "identifier": {
                                 "motis": "swiss_8507478:0:3"
                             },
-                            "latitude": 46.58890914916992,
-                            "longitude": 7.651418209075928,
+                            "latitude": 46.58891,
+                            "longitude": 7.651418,
                             "name": "Frutigen",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -272,8 +272,8 @@
                             "identifier": {
                                 "motis": "swiss_8507475:0:1"
                             },
-                            "latitude": 46.49539566040039,
-                            "longitude": 7.671414852142334,
+                            "latitude": 46.495394,
+                            "longitude": 7.671415,
                             "name": "Kandersteg",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -288,8 +288,8 @@
                             "identifier": {
                                 "motis": "swiss_8507474:0:2"
                             },
-                            "latitude": 46.36771011352539,
-                            "longitude": 7.754921913146973,
+                            "latitude": 46.367709,
+                            "longitude": 7.754922,
                             "name": "Goppenstein",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -304,8 +304,8 @@
                             "identifier": {
                                 "motis": "swiss_8507473:0:3"
                             },
-                            "latitude": 46.32246017456055,
-                            "longitude": 7.764084815979004,
+                            "latitude": 46.322459,
+                            "longitude": 7.764085,
                             "name": "Hohtenn",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -320,8 +320,8 @@
                             "identifier": {
                                 "motis": "swiss_8507472:0:2"
                             },
-                            "latitude": 46.312347412109375,
-                            "longitude": 7.844170093536377,
+                            "latitude": 46.312346,
+                            "longitude": 7.84417,
                             "name": "Ausserberg",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -336,8 +336,8 @@
                             "identifier": {
                                 "motis": "swiss_8507471:0:2"
                             },
-                            "latitude": 46.30654525756836,
-                            "longitude": 7.881028175354004,
+                            "latitude": 46.306544,
+                            "longitude": 7.881028,
                             "name": "Eggerberg",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -362,8 +362,8 @@
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
-                    "latitude": 46.319427490234375,
-                    "longitude": 7.98809814453125,
+                    "latitude": 46.319426,
+                    "longitude": 7.988098,
                     "name": "Brig",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -377,8 +377,8 @@
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
-                    "latitude": 46.319427490234375,
-                    "longitude": 7.98809814453125,
+                    "latitude": 46.319426,
+                    "longitude": 7.988098,
                     "name": "Brig",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -391,8 +391,8 @@
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
-                    "latitude": 46.31899642944336,
-                    "longitude": 7.986382007598877,
+                    "latitude": 46.318998,
+                    "longitude": 7.986382,
                     "name": "Brig Bahnhofplatz",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -400,14 +400,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 32480,
+                "distance": 32484,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
-                    "latitude": 46.31899642944336,
-                    "longitude": 7.986382007598877,
+                    "latitude": 46.318998,
+                    "longitude": 7.986382,
                     "name": "Brig Bahnhofplatz",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -422,8 +422,8 @@
                             "identifier": {
                                 "motis": "swiss_8501636"
                             },
-                            "latitude": 46.296783447265625,
-                            "longitude": 7.916305065155029,
+                            "latitude": 46.296782,
+                            "longitude": 7.916305,
                             "name": "Eyholz",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -438,8 +438,8 @@
                             "identifier": {
                                 "motis": "swiss_8501605:0:3"
                             },
-                            "latitude": 46.29402542114258,
-                            "longitude": 7.881467819213867,
+                            "latitude": 46.294026,
+                            "longitude": 7.881468,
                             "name": "Visp",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -454,8 +454,8 @@
                             "identifier": {
                                 "motis": "swiss_8501683:0:2"
                             },
-                            "latitude": 46.231971740722656,
-                            "longitude": 7.870759963989258,
+                            "latitude": 46.231971,
+                            "longitude": 7.87076,
                             "name": "Stalden-Saas",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -470,8 +470,8 @@
                             "identifier": {
                                 "motis": "swiss_8501684:0:1"
                             },
-                            "latitude": 46.214073181152344,
-                            "longitude": 7.836965084075928,
+                            "latitude": 46.214072,
+                            "longitude": 7.836965,
                             "name": "Kalpetran",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -486,8 +486,8 @@
                             "identifier": {
                                 "motis": "swiss_8501685"
                             },
-                            "latitude": 46.17734146118164,
-                            "longitude": 7.802083969116211,
+                            "latitude": 46.177341,
+                            "longitude": 7.802084,
                             "name": "St. Niklaus VS",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -502,8 +502,8 @@
                             "identifier": {
                                 "motis": "swiss_8501686"
                             },
-                            "latitude": 46.132144927978516,
-                            "longitude": 7.791635990142822,
+                            "latitude": 46.132146,
+                            "longitude": 7.791636,
                             "name": "Herbriggen",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -526,8 +526,8 @@
                     "identifier": {
                         "motis": "swiss_8501687"
                     },
-                    "latitude": 46.09993362426758,
-                    "longitude": 7.781458854675293,
+                    "latitude": 46.099933,
+                    "longitude": 7.781459,
                     "name": "Randa",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -545,8 +545,8 @@
                     "identifier": {
                         "motis": "swiss_8503016:0:3"
                     },
-                    "latitude": 47.45038604736328,
-                    "longitude": 8.562399864196777,
+                    "latitude": 47.450387,
+                    "longitude": 8.5624,
                     "name": "Zürich Flughafen",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -567,8 +567,8 @@
                     "identifier": {
                         "motis": "swiss_8503000:0:12"
                     },
-                    "latitude": 47.37826156616211,
-                    "longitude": 8.539240837097168,
+                    "latitude": 47.378261,
+                    "longitude": 8.539241,
                     "name": "Zürich HB",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -576,14 +576,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 66,
+                "distance": 67,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503000:0:12"
                     },
-                    "latitude": 47.37826156616211,
-                    "longitude": 8.539240837097168,
+                    "latitude": 47.378261,
+                    "longitude": 8.539241,
                     "name": "Zürich HB",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -596,8 +596,8 @@
                     "identifier": {
                         "motis": "swiss_8503000:0:32"
                     },
-                    "latitude": 47.37767791748047,
-                    "longitude": 8.539457321166992,
+                    "latitude": 47.377677,
+                    "longitude": 8.539457,
                     "name": "Zürich HB",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -605,14 +605,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 104803,
+                "distance": 104804,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503000:0:32"
                     },
-                    "latitude": 47.37767791748047,
-                    "longitude": 8.539457321166992,
+                    "latitude": 47.377677,
+                    "longitude": 8.539457,
                     "name": "Zürich HB",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -627,8 +627,8 @@
                             "identifier": {
                                 "motis": "swiss_8500218:0:8"
                             },
-                            "latitude": 47.351932525634766,
-                            "longitude": 7.907699108123779,
+                            "latitude": 47.351934,
+                            "longitude": 7.907699,
                             "name": "Olten",
                             "type": "Stop"
                         }
@@ -650,8 +650,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -665,8 +665,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -679,8 +679,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -688,14 +688,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 34511,
+                "distance": 34512,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:5"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -710,8 +710,8 @@
                             "identifier": {
                                 "motis": "swiss_8507100:0:1"
                             },
-                            "latitude": 46.754852294921875,
-                            "longitude": 7.629607200622559,
+                            "latitude": 46.754852,
+                            "longitude": 7.629607,
                             "name": "Thun",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -734,8 +734,8 @@
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -749,8 +749,8 @@
                     "identifier": {
                         "motis": "swiss_8507483:0:1"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -763,8 +763,8 @@
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -772,14 +772,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 60540,
+                "distance": 60545,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507483:0:4"
                     },
-                    "latitude": 46.68639373779297,
-                    "longitude": 7.6801018714904785,
+                    "latitude": 46.686394,
+                    "longitude": 7.680102,
                     "name": "Spiez",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -794,8 +794,8 @@
                             "identifier": {
                                 "motis": "swiss_8507481:0:1"
                             },
-                            "latitude": 46.63802719116211,
-                            "longitude": 7.691312789916992,
+                            "latitude": 46.638029,
+                            "longitude": 7.691313,
                             "name": "Mülenen",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -810,8 +810,8 @@
                             "identifier": {
                                 "motis": "swiss_8507480:0:1"
                             },
-                            "latitude": 46.625125885009766,
-                            "longitude": 7.690063953399658,
+                            "latitude": 46.625124,
+                            "longitude": 7.690064,
                             "name": "Reichenbach im Kandertal",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -826,8 +826,8 @@
                             "identifier": {
                                 "motis": "swiss_8507478:0:3"
                             },
-                            "latitude": 46.58890914916992,
-                            "longitude": 7.651418209075928,
+                            "latitude": 46.58891,
+                            "longitude": 7.651418,
                             "name": "Frutigen",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -842,8 +842,8 @@
                             "identifier": {
                                 "motis": "swiss_8507475:0:1"
                             },
-                            "latitude": 46.49539566040039,
-                            "longitude": 7.671414852142334,
+                            "latitude": 46.495394,
+                            "longitude": 7.671415,
                             "name": "Kandersteg",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -858,8 +858,8 @@
                             "identifier": {
                                 "motis": "swiss_8507474:0:2"
                             },
-                            "latitude": 46.36771011352539,
-                            "longitude": 7.754921913146973,
+                            "latitude": 46.367709,
+                            "longitude": 7.754922,
                             "name": "Goppenstein",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -874,8 +874,8 @@
                             "identifier": {
                                 "motis": "swiss_8507473:0:3"
                             },
-                            "latitude": 46.32246017456055,
-                            "longitude": 7.764084815979004,
+                            "latitude": 46.322459,
+                            "longitude": 7.764085,
                             "name": "Hohtenn",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -890,8 +890,8 @@
                             "identifier": {
                                 "motis": "swiss_8507472:0:2"
                             },
-                            "latitude": 46.312347412109375,
-                            "longitude": 7.844170093536377,
+                            "latitude": 46.312346,
+                            "longitude": 7.84417,
                             "name": "Ausserberg",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -906,8 +906,8 @@
                             "identifier": {
                                 "motis": "swiss_8507471:0:2"
                             },
-                            "latitude": 46.30654525756836,
-                            "longitude": 7.881028175354004,
+                            "latitude": 46.306544,
+                            "longitude": 7.881028,
                             "name": "Eggerberg",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -930,8 +930,8 @@
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
-                    "latitude": 46.319427490234375,
-                    "longitude": 7.98809814453125,
+                    "latitude": 46.319426,
+                    "longitude": 7.988098,
                     "name": "Brig",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -945,8 +945,8 @@
                     "identifier": {
                         "motis": "swiss_8501609:0:4"
                     },
-                    "latitude": 46.319427490234375,
-                    "longitude": 7.98809814453125,
+                    "latitude": 46.319426,
+                    "longitude": 7.988098,
                     "name": "Brig",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -959,8 +959,8 @@
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
-                    "latitude": 46.31899642944336,
-                    "longitude": 7.986382007598877,
+                    "latitude": 46.318998,
+                    "longitude": 7.986382,
                     "name": "Brig Bahnhofplatz",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -968,14 +968,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 32480,
+                "distance": 32484,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8515296:0:11"
                     },
-                    "latitude": 46.31899642944336,
-                    "longitude": 7.986382007598877,
+                    "latitude": 46.318998,
+                    "longitude": 7.986382,
                     "name": "Brig Bahnhofplatz",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -990,8 +990,8 @@
                             "identifier": {
                                 "motis": "swiss_8501636"
                             },
-                            "latitude": 46.296783447265625,
-                            "longitude": 7.916305065155029,
+                            "latitude": 46.296782,
+                            "longitude": 7.916305,
                             "name": "Eyholz",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1006,8 +1006,8 @@
                             "identifier": {
                                 "motis": "swiss_8501605:0:3"
                             },
-                            "latitude": 46.29402542114258,
-                            "longitude": 7.881467819213867,
+                            "latitude": 46.294026,
+                            "longitude": 7.881468,
                             "name": "Visp",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1022,8 +1022,8 @@
                             "identifier": {
                                 "motis": "swiss_8501683:0:2"
                             },
-                            "latitude": 46.231971740722656,
-                            "longitude": 7.870759963989258,
+                            "latitude": 46.231971,
+                            "longitude": 7.87076,
                             "name": "Stalden-Saas",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1038,8 +1038,8 @@
                             "identifier": {
                                 "motis": "swiss_8501684:0:1"
                             },
-                            "latitude": 46.214073181152344,
-                            "longitude": 7.836965084075928,
+                            "latitude": 46.214072,
+                            "longitude": 7.836965,
                             "name": "Kalpetran",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1054,8 +1054,8 @@
                             "identifier": {
                                 "motis": "swiss_8501685"
                             },
-                            "latitude": 46.17734146118164,
-                            "longitude": 7.802083969116211,
+                            "latitude": 46.177341,
+                            "longitude": 7.802084,
                             "name": "St. Niklaus VS",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1070,8 +1070,8 @@
                             "identifier": {
                                 "motis": "swiss_8501686"
                             },
-                            "latitude": 46.132144927978516,
-                            "longitude": 7.791635990142822,
+                            "latitude": 46.132146,
+                            "longitude": 7.791636,
                             "name": "Herbriggen",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1094,8 +1094,8 @@
                     "identifier": {
                         "motis": "swiss_8501687"
                     },
-                    "latitude": 46.09993362426758,
-                    "longitude": 7.781458854675293,
+                    "latitude": 46.099933,
+                    "longitude": 7.781459,
                     "name": "Randa",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -1107,14 +1107,14 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 113075,
+                "distance": 113077,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8503016:0:3"
                     },
-                    "latitude": 47.45038604736328,
-                    "longitude": 8.562399864196777,
+                    "latitude": 47.450387,
+                    "longitude": 8.5624,
                     "name": "Zürich Flughafen",
                     "region": "CH-ZH",
                     "type": "Stop"
@@ -1129,8 +1129,8 @@
                             "identifier": {
                                 "motis": "swiss_8503000:0:31"
                             },
-                            "latitude": 47.37759780883789,
-                            "longitude": 8.539411544799805,
+                            "latitude": 47.377598,
+                            "longitude": 8.539412,
                             "name": "Zürich HB",
                             "region": "CH-ZH",
                             "type": "Stop"
@@ -1145,8 +1145,8 @@
                             "identifier": {
                                 "motis": "swiss_8500218:0:8"
                             },
-                            "latitude": 47.351932525634766,
-                            "longitude": 7.907699108123779,
+                            "latitude": 47.351934,
+                            "longitude": 7.907699,
                             "name": "Olten",
                             "type": "Stop"
                         }
@@ -1168,8 +1168,8 @@
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -1177,14 +1177,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 80783,
+                "distance": 80784,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8507000:0:6"
                     },
-                    "latitude": 46.948829650878906,
-                    "longitude": 7.439128875732422,
+                    "latitude": 46.948831,
+                    "longitude": 7.439129,
                     "name": "Bern",
                     "region": "CH-BE",
                     "type": "Stop"
@@ -1199,8 +1199,8 @@
                             "identifier": {
                                 "motis": "swiss_8507100:0:2"
                             },
-                            "latitude": 46.754852294921875,
-                            "longitude": 7.629607200622559,
+                            "latitude": 46.754852,
+                            "longitude": 7.629607,
                             "name": "Thun",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -1215,8 +1215,8 @@
                             "identifier": {
                                 "motis": "swiss_8507483:0:3"
                             },
-                            "latitude": 46.68639373779297,
-                            "longitude": 7.6801018714904785,
+                            "latitude": 46.686394,
+                            "longitude": 7.680102,
                             "name": "Spiez",
                             "region": "CH-BE",
                             "type": "Stop"
@@ -1239,8 +1239,8 @@
                     "identifier": {
                         "motis": "swiss_8501605:0:7"
                     },
-                    "latitude": 46.29402542114258,
-                    "longitude": 7.881467819213867,
+                    "latitude": 46.294026,
+                    "longitude": 7.881468,
                     "name": "Visp",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -1254,8 +1254,8 @@
                     "identifier": {
                         "motis": "swiss_8501605:0:7"
                     },
-                    "latitude": 46.29402542114258,
-                    "longitude": 7.881467819213867,
+                    "latitude": 46.294026,
+                    "longitude": 7.881468,
                     "name": "Visp",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -1268,8 +1268,8 @@
                     "identifier": {
                         "motis": "swiss_8501605:0:3"
                     },
-                    "latitude": 46.29402542114258,
-                    "longitude": 7.881467819213867,
+                    "latitude": 46.294026,
+                    "longitude": 7.881468,
                     "name": "Visp",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -1277,14 +1277,14 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 23864,
+                "distance": 23867,
                 "from": {
                     "country": "CH",
                     "identifier": {
                         "motis": "swiss_8501605:0:3"
                     },
-                    "latitude": 46.29402542114258,
-                    "longitude": 7.881467819213867,
+                    "latitude": 46.294026,
+                    "longitude": 7.881468,
                     "name": "Visp",
                     "region": "CH-VS",
                     "type": "Stop"
@@ -1299,8 +1299,8 @@
                             "identifier": {
                                 "motis": "swiss_8501683:0:2"
                             },
-                            "latitude": 46.231971740722656,
-                            "longitude": 7.870759963989258,
+                            "latitude": 46.231971,
+                            "longitude": 7.87076,
                             "name": "Stalden-Saas",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1315,8 +1315,8 @@
                             "identifier": {
                                 "motis": "swiss_8501684:0:1"
                             },
-                            "latitude": 46.214073181152344,
-                            "longitude": 7.836965084075928,
+                            "latitude": 46.214072,
+                            "longitude": 7.836965,
                             "name": "Kalpetran",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1331,8 +1331,8 @@
                             "identifier": {
                                 "motis": "swiss_8501685"
                             },
-                            "latitude": 46.17734146118164,
-                            "longitude": 7.802083969116211,
+                            "latitude": 46.177341,
+                            "longitude": 7.802084,
                             "name": "St. Niklaus VS",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1347,8 +1347,8 @@
                             "identifier": {
                                 "motis": "swiss_8501686"
                             },
-                            "latitude": 46.132144927978516,
-                            "longitude": 7.791635990142822,
+                            "latitude": 46.132146,
+                            "longitude": 7.791636,
                             "name": "Herbriggen",
                             "region": "CH-VS",
                             "type": "Stop"
@@ -1371,8 +1371,8 @@
                     "identifier": {
                         "motis": "swiss_8501687"
                     },
-                    "latitude": 46.09993362426758,
-                    "longitude": 7.781458854675293,
+                    "latitude": 46.099933,
+                    "longitude": 7.781459,
                     "name": "Randa",
                     "region": "CH-VS",
                     "type": "Stop"

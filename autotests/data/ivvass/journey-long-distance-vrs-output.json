@@ -6,8 +6,8 @@
                 "distance": 3,
                 "from": {
                     "country": "DE",
-                    "latitude": 50.94300079345703,
-                    "longitude": 6.9585700035095215,
+                    "latitude": 50.943,
+                    "longitude": 6.95857,
                     "region": "DE-NW"
                 },
                 "mode": "Walking",
@@ -44,9 +44,9 @@
                     "identifier": {
                         "ifopt": "de:05315:11201:7:77"
                     },
-                    "latitude": 50.942970275878906,
+                    "latitude": 50.94297,
                     "locality": "Köln",
-                    "longitude": 6.9585700035095215,
+                    "longitude": 6.95857,
                     "name": "Köln Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -60,9 +60,9 @@
                     "identifier": {
                         "ifopt": "de:05315:11201:7:77"
                     },
-                    "latitude": 50.942970275878906,
+                    "latitude": 50.94297,
                     "locality": "Köln",
-                    "longitude": 6.9585700035095215,
+                    "longitude": 6.95857,
                     "name": "Köln Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -120,9 +120,9 @@
                     "identifier": {
                         "ifopt": "de:05314:61101:7:73"
                     },
-                    "latitude": 50.731998443603516,
+                    "latitude": 50.732,
                     "locality": "Bonn",
-                    "longitude": 7.096799850463867,
+                    "longitude": 7.0968,
                     "name": "Bonn Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -136,9 +136,9 @@
                     "identifier": {
                         "ifopt": "de:05314:61101:7:73"
                     },
-                    "latitude": 50.731998443603516,
+                    "latitude": 50.732,
                     "locality": "Bonn",
-                    "longitude": 7.096799850463867,
+                    "longitude": 7.0968,
                     "name": "Bonn Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
@@ -173,7 +173,7 @@
                     "value": "2021-02-27T13:12:00+01:00"
                 },
                 "to": {
-                    "latitude": 50.731998443603516
+                    "latitude": 50.732
                 }
             }
         ]

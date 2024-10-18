@@ -118,10 +118,10 @@ int JourneySection::distance() const
         return 0;
     }
 
-    int dist = 0;
+    double dist = 0;
     if (d->from.hasCoordinate() && d->to.hasCoordinate()) {
-        float startLat = d->from.latitude();
-        float startLon = d->from.longitude();
+        auto startLat = d->from.latitude();
+        auto  startLon = d->from.longitude();
 
         for (const auto &stop : d->intermediateStops) {
             if (!stop.stopPoint().hasCoordinate()) {
@@ -134,8 +134,8 @@ int JourneySection::distance() const
 
         dist += Location::distance(startLat, startLon, d->to.latitude(), d->to.longitude());
     }
-    dist = std::max(dist, d->path.distance());
-    return std::max(dist, d->distance);
+    dist = std::max<double>(dist, d->path.distance());
+    return std::max((int)std::round(dist), d->distance);
 }
 
 void JourneySection::setDistance(int value)

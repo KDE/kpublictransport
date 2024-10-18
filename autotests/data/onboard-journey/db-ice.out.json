@@ -18,8 +18,8 @@
                 "identifier": {
                     "ibnr": "8010255"
                 },
-                "latitude": 52.5104866027832,
-                "longitude": 13.434680938720703,
+                "latitude": 52.510488,
+                "longitude": 13.434681,
                 "name": "Berlin Ostbahnhof",
                 "region": "DE-BE",
                 "type": "Stop"
@@ -50,8 +50,8 @@
                         "identifier": {
                             "ibnr": "8011160"
                         },
-                        "latitude": 52.52559280395508,
-                        "longitude": 13.369544982910156,
+                        "latitude": 52.525592,
+                        "longitude": 13.369545,
                         "name": "Berlin Hbf",
                         "region": "DE-BE",
                         "type": "Stop"
@@ -82,8 +82,8 @@
                         "identifier": {
                             "ibnr": "8010404"
                         },
-                        "latitude": 52.53464889526367,
-                        "longitude": 13.196898460388184,
+                        "latitude": 52.534648,
+                        "longitude": 13.196898,
                         "name": "Berlin-Spandau",
                         "region": "DE-BE",
                         "type": "Stop"
@@ -114,8 +114,8 @@
                         "identifier": {
                             "ibnr": "8006552"
                         },
-                        "latitude": 52.42949676513672,
-                        "longitude": 10.7877836227417,
+                        "latitude": 52.429498,
+                        "longitude": 10.787784,
                         "name": "Wolfsburg Hbf",
                         "region": "DE-NI",
                         "type": "Stop"
@@ -146,8 +146,8 @@
                         "identifier": {
                             "ibnr": "8000152"
                         },
-                        "latitude": 52.37676239013672,
-                        "longitude": 9.741021156311035,
+                        "latitude": 52.376761,
+                        "longitude": 9.741021,
                         "name": "Hannover Hbf",
                         "region": "DE-NI",
                         "type": "Stop"
@@ -178,8 +178,8 @@
                         "identifier": {
                             "ibnr": "8000036"
                         },
-                        "latitude": 52.02926254272461,
-                        "longitude": 8.532722473144531,
+                        "latitude": 52.029261,
+                        "longitude": 8.532722,
                         "name": "Bielefeld Hbf",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -210,8 +210,8 @@
                         "identifier": {
                             "ibnr": "8000149"
                         },
-                        "latitude": 51.678077697753906,
-                        "longitude": 7.807820796966553,
+                        "latitude": 51.678078,
+                        "longitude": 7.807821,
                         "name": "Hamm (Westf) Hbf",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -242,8 +242,8 @@
                         "identifier": {
                             "ibnr": "8000080"
                         },
-                        "latitude": 51.51789474487305,
-                        "longitude": 7.459290027618408,
+                        "latitude": 51.517896,
+                        "longitude": 7.45929,
                         "name": "Dortmund Hbf",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -274,8 +274,8 @@
                         "identifier": {
                             "ibnr": "8000041"
                         },
-                        "latitude": 51.478607177734375,
-                        "longitude": 7.223275184631348,
+                        "latitude": 51.478609,
+                        "longitude": 7.223275,
                         "name": "Bochum Hbf",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -306,8 +306,8 @@
                         "identifier": {
                             "ibnr": "8000098"
                         },
-                        "latitude": 51.45135498046875,
-                        "longitude": 7.0147929191589355,
+                        "latitude": 51.451355,
+                        "longitude": 7.014793,
                         "name": "Essen Hbf",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -341,8 +341,8 @@
                         "identifier": {
                             "ibnr": "8000086"
                         },
-                        "latitude": 51.429786682128906,
-                        "longitude": 6.775903224945068,
+                        "latitude": 51.429785,
+                        "longitude": 6.775903,
                         "name": "Duisburg Hbf",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -373,8 +373,8 @@
                         "identifier": {
                             "ibnr": "8000082"
                         },
-                        "latitude": 51.29200744628906,
-                        "longitude": 6.78683614730835,
+                        "latitude": 51.292009,
+                        "longitude": 6.786836,
                         "name": "Düsseldorf Flughafen",
                         "region": "DE-NW",
                         "type": "Stop"
@@ -404,8 +404,8 @@
                 "identifier": {
                     "ibnr": "8000085"
                 },
-                "latitude": 51.21996307373047,
-                "longitude": 6.794319152832031,
+                "latitude": 51.219962,
+                "longitude": 6.794319,
                 "name": "Düsseldorf Hbf",
                 "region": "DE-NW",
                 "type": "Stop"

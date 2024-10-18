@@ -13,9 +13,9 @@
                         "ifopt": "de:07211:1318:10:13N",
                         "testid": "17001318"
                     },
-                    "latitude": 49.75804138183594,
+                    "latitude": 49.75804,
                     "locality": "Trier",
-                    "longitude": 6.653649806976318,
+                    "longitude": 6.65365,
                     "name": "Trier, Hauptbahnhof",
                     "type": "Stop"
                 },
@@ -47,9 +47,9 @@
                         "ifopt": "de:07231:40916:1:3",
                         "testid": "17040916"
                     },
-                    "latitude": 49.97304153442383,
+                    "latitude": 49.97304,
                     "locality": "Wittlich",
-                    "longitude": 6.943630218505859,
+                    "longitude": 6.94363,
                     "name": "Wittlich, Hauptbahnhof",
                     "region": "DE-RP",
                     "type": "Stop"

@@ -4,9 +4,9 @@
         "identifier": {
             "ifopt": "de:05315:11201"
         },
-        "latitude": 50.942970275878906,
+        "latitude": 50.94297,
         "locality": "",
-        "longitude": 6.958580017089844,
+        "longitude": 6.95858,
         "name": "Köln Hbf",
         "region": "DE-NW",
         "type": "Stop"
@@ -20,8 +20,8 @@
         "identifier": {
             "ifopt": "de:05315:11201:elevator:3106"
         },
-        "latitude": 50.94306945800781,
-        "longitude": 6.957799911499023,
+        "latitude": 50.94307,
+        "longitude": 6.9578,
         "name": "zu Gleis 1",
         "region": "DE-NW",
         "type": "Equipment"
@@ -35,8 +35,8 @@
         "identifier": {
             "ifopt": "de:05315:11201:elevator:3053"
         },
-        "latitude": 50.943241119384766,
-        "longitude": 6.958079814910889,
+        "latitude": 50.94324,
+        "longitude": 6.95808,
         "name": "zu Gleis 2/3",
         "region": "DE-NW",
         "type": "Equipment"
@@ -50,8 +50,8 @@
         "identifier": {
             "ifopt": "de:05315:11201:elevator:3094"
         },
-        "latitude": 50.94361877441406,
-        "longitude": 6.959000110626221,
+        "latitude": 50.94362,
+        "longitude": 6.959,
         "name": "zu Gleis 10/11 Abschnitt D/E",
         "region": "DE-NW",
         "type": "Equipment"
@@ -65,8 +65,8 @@
         "identifier": {
             "ifopt": "de:05315:11201:escalator:1973"
         },
-        "latitude": 50.94261932373047,
-        "longitude": 6.958370208740234,
+        "latitude": 50.94262,
+        "longitude": 6.95837,
         "name": "zu Gleis 1",
         "region": "DE-NW",
         "type": "Equipment"
@@ -80,8 +80,8 @@
         "identifier": {
             "ifopt": "de:05315:11201:escalator:2239"
         },
-        "latitude": 50.94371032714844,
-        "longitude": 6.958889961242676,
+        "latitude": 50.94371,
+        "longitude": 6.95889,
         "name": "zu Gleis 10/11(S-Bahn) abwärts",
         "region": "DE-NW",
         "type": "Equipment"
@@ -91,8 +91,8 @@
         "identifier": {
             "vrs": "v:kvb-rad:21596"
         },
-        "latitude": 50.9398193359375,
-        "longitude": 6.957879066467285,
+        "latitude": 50.939819,
+        "longitude": 6.957879,
         "name": "KVB-Rad 21596",
         "region": "DE-NW",
         "rentalVehicle": {
@@ -105,8 +105,8 @@
         "identifier": {
             "vrs": "v:kvb-rad:210004"
         },
-        "latitude": 50.93911361694336,
-        "longitude": 6.958240032196045,
+        "latitude": 50.939115,
+        "longitude": 6.95824,
         "name": "KVB-Rad 210004",
         "region": "DE-NW",
         "rentalVehicle": {
