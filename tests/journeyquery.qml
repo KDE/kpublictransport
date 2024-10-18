@@ -124,6 +124,10 @@ Kirigami.ApplicationWindow {
         id: indoorMapPage
         IndoorMapPage {}
     }
+    Component {
+        id: journeyMapPage
+        JourneyMapPage {}
+    }
 
     Component {
         id: journeyDelegate
@@ -595,6 +599,12 @@ Kirigami.ApplicationWindow {
                         text: journeyModel.errorMessage
                         color: Kirigami.Theme.negativeTextColor
                         wrapMode: Text.Wrap
+                    }
+
+                    footer: QQC2.Button {
+                        text: "Map view"
+                        visible: journeySelector.currentIndex >= 0
+                        onClicked: applicationWindow().pageStack.push(journeyMapPage, {journey: journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256)});
                     }
                 }
 
