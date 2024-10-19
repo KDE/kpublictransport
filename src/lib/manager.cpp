@@ -444,6 +444,7 @@ bool ManagerPrivate::queryStopover(const AbstractBackend *backend, const Stopove
         qCDebug(Log) << "Backend needs location query first:" << backend->backendId();
         LocationRequest locReq(req.stop());
         locReq.setTypes(Location::Stop); // Stopover can never refer to other location types
+        locReq.setMaximumDistance(250);
         resolveLocation(std::move(locReq), backend, [reply, req, backend, this](const Location &loc) {
             const auto depLoc = Location::merge(req.stop(), loc);
             auto depRequest = req;
