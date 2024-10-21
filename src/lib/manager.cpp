@@ -22,8 +22,6 @@
 #include "datatypes/backend_p.h"
 #include "datatypes/disruption.h"
 #include "datatypes/json_p.h"
-#include "datatypes/platform.h"
-#include "datatypes/vehicle.h"
 #include "geo/geojson_p.h"
 
 #include <KPublicTransport/Journey>
