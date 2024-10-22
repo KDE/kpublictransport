@@ -52,6 +52,7 @@ QVariant LocationHistoryModel::data(const QModelIndex &index, int role) const
         case LocationNameRole: return m_locations[index.row()].loc.name();
         case LastUsedRole: return m_locations[index.row()].lastUse;
         case UseCountRole: return m_locations[index.row()].useCount;
+        case IsRemovableRole: return m_locations[index.row()].removable;
     }
 
     return {};
@@ -64,6 +65,7 @@ QHash<int, QByteArray> LocationHistoryModel::roleNames() const
     r.insert(LocationNameRole, "locationName");
     r.insert(LastUsedRole, "lastUsed");
     r.insert(UseCountRole, "useCount");
+    r.insert(IsRemovableRole, "removable");
     return r;
 }
 
@@ -114,6 +116,40 @@ void LocationHistoryModel::addLocation(const Location &loc)
     endInsertRows();
 }
 
+void LocationHistoryModel::addPresetLocation(const Location &loc, const QDateTime &lastUse, int useCount)
+{
+    for (auto it = m_locations.begin(); it != m_locations.end(); ++it) {
+        if (Location::isSame((*it).loc, loc)) {
+            (*it).loc = Location::merge((*it).loc, loc);
+            (*it).lastUse = std::max((*it).lastUse, lastUse);
+            (*it).useCount += useCount;
+            (*it).removable = false;
+            const auto idx = index((int)std::distance(m_locations.begin(), it));
+            Q_EMIT dataChanged(idx, idx);
+            return;
+        }
+    }
+
+    Data data;
+    data.loc = loc;
+    data.lastUse = lastUse;
+    data.useCount = useCount;
+    data.removable = false;
+    store(data);
+
+    beginInsertRows({}, (int)m_locations.size(), (int)m_locations.size());
+    m_locations.push_back(std::move(data));
+    endInsertRows();
+}
+
+void LocationHistoryModel::clearPresetLocations()
+{
+    beginResetModel();
+    m_locations.clear();
+    endResetModel();
+    rescan();
+}
+
 void LocationHistoryModel::clear()
 {
     beginResetModel();
@@ -149,6 +185,10 @@ void LocationHistoryModel::rescan()
 
 void LocationHistoryModel::store(const LocationHistoryModel::Data &data)
 {
+    if (data.id.isEmpty()) {
+        return;
+    }
+
     const auto path = basePath();
     QDir().mkpath(path);
 

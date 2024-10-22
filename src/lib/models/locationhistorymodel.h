@@ -32,6 +32,7 @@ public:
         LocationNameRole,
         LastUsedRole,
         UseCountRole,
+        IsRemovableRole,
     };
     Q_ENUM(Role)
 
@@ -47,6 +48,15 @@ public Q_SLOTS:
      */
     void addLocation(const KPublicTransport::Location &loc);
 
+    /** Add a preset location.
+     *  That is, a location that is programmatically determined and isn't actually in
+     *  the history, nor can it be removed.
+     */
+    void addPresetLocation(const KPublicTransport::Location &loc, const QDateTime &lastUse, int useCount);
+
+    /** Remove all preset locations, only keeping the history locations. */
+    void clearPresetLocations();
+
     /** Delete the entire history content. */
     void clear();
 
@@ -56,6 +66,7 @@ private:
         Location loc;
         QDateTime lastUse;
         int useCount = 0;
+        bool removable = true;
     };
 
     void rescan();
