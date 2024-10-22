@@ -13,6 +13,7 @@
 #include <QStandardPaths>
 
 using namespace KPublicTransport;
+using namespace Qt::Literals;
 
 static QString basePath()
 {
@@ -21,7 +22,7 @@ static QString basePath()
 #else
     constexpr auto dataLoc = QStandardPaths::GenericDataLocation;
 #endif
-    return QStandardPaths::writableLocation(dataLoc) + QLatin1String("/org.kde.kpublictransport/location-history/");
+    return QStandardPaths::writableLocation(dataLoc) + "/org.kde.kpublictransport/location-history/"_L1;
 }
 
 LocationHistoryModel::LocationHistoryModel(QObject *parent)
@@ -37,7 +38,7 @@ int LocationHistoryModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid()) {
         return 0;
     }
-    return m_locations.size();
+    return (int)m_locations.size();
 }
 
 QVariant LocationHistoryModel::data(const QModelIndex &index, int role) const
@@ -95,7 +96,7 @@ void LocationHistoryModel::addLocation(const Location &loc)
             (*it).lastUse = QDateTime::currentDateTime();
             (*it).useCount++;
             store(*it);
-            const auto idx = index(std::distance(m_locations.begin(), it));
+            const auto idx = index((int)std::distance(m_locations.begin(), it));
             Q_EMIT dataChanged(idx, idx);
             return;
         }
@@ -108,7 +109,7 @@ void LocationHistoryModel::addLocation(const Location &loc)
     data.useCount = 1;
     store(data);
 
-    beginInsertRows({}, m_locations.size(), m_locations.size());
+    beginInsertRows({}, (int)m_locations.size(), (int)m_locations.size());
     m_locations.push_back(std::move(data));
     endInsertRows();
 }
@@ -138,15 +139,15 @@ void LocationHistoryModel::rescan()
         const auto obj = doc.object();
         Data data;
         data.id = it.fileInfo().baseName();
-        data.loc = Location::fromJson(obj.value(QLatin1String("location")).toObject());
-        data.lastUse = QDateTime::fromString(obj.value(QLatin1String("lastUse")).toString(), Qt::ISODate);
-        data.useCount = obj.value(QLatin1String("useCount")).toInt();
+        data.loc = Location::fromJson(obj.value("location"_L1).toObject());
+        data.lastUse = QDateTime::fromString(obj.value("lastUse"_L1).toString(), Qt::ISODate);
+        data.useCount = obj.value("useCount"_L1).toInt();
         m_locations.push_back(std::move(data));
     }
     endResetModel();
 }
 
-void LocationHistoryModel::store(const LocationHistoryModel::Data &data) const
+void LocationHistoryModel::store(const LocationHistoryModel::Data &data)
 {
     const auto path = basePath();
     QDir().mkpath(path);
@@ -158,8 +159,8 @@ void LocationHistoryModel::store(const LocationHistoryModel::Data &data) const
     }
 
     QJsonObject obj;
-    obj.insert(QLatin1String("location"), Location::toJson(data.loc));
-    obj.insert(QLatin1String("lastUse"), data.lastUse.toString(Qt::ISODate));
-    obj.insert(QLatin1String("useCount"), data.useCount);
+    obj.insert("location"_L1, Location::toJson(data.loc));
+    obj.insert("lastUse"_L1, data.lastUse.toString(Qt::ISODate));
+    obj.insert("useCount"_L1, data.useCount);
     f.write(QJsonDocument(obj).toJson(QJsonDocument::Compact));
 }

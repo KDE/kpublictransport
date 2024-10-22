@@ -35,9 +35,9 @@ public:
     };
     Q_ENUM(Role)
 
-    int rowCount(const QModelIndex &parent = {}) const override;
-    QVariant data(const QModelIndex &index, int role) const override;
-    QHash<int, QByteArray> roleNames() const override;
+    [[nodiscard]] int rowCount(const QModelIndex &parent = {}) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role) const override;
+    [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
     Q_INVOKABLE bool removeRow(int row, const QModelIndex &parent = QModelIndex()); // not exported to QML by default...
     Q_INVOKABLE bool removeRows(int row, int count, const QModelIndex &parent = {}) override;
 
@@ -59,7 +59,7 @@ private:
     };
 
     void rescan();
-    void store(const Data &data) const;
+    static void store(const Data &data);
 
     std::vector<Data> m_locations;
 };
