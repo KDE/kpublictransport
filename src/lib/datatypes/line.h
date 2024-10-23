@@ -115,6 +115,9 @@ public:
      */
     Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::Line::Mode mode);
 
+    /** @c true if @p mode is bounds to rail tracks. */
+    [[nodiscard]] static bool modeIsRailBound(KPublicTransport::Line::Mode mode);
+
     /** Look up line meta data and apply what is found.
      *  @param location A location on or close to the line.
      *  @param download When set to @c true, not yet locally present logo URLs are retrieved.

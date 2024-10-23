@@ -136,6 +136,23 @@ QString Line::modeIconName(Line::Mode mode)
     return u"question"_s;
 }
 
+bool Line::modeIsRailBound(Line::Mode mode)
+{
+    switch (mode) {
+        case Line::Train:
+        case Line::Funicular:
+        case Line::LocalTrain:
+        case Line::LongDistanceTrain:
+        case Line::Metro:
+        case Line::RailShuttle:
+        case Line::RapidTransit:
+        case Line::Tramway:
+            return true;
+        default:
+            return false;
+    }
+}
+
 QString Line::iconName() const
 {
     if (hasLogo()) {

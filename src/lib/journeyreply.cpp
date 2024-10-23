@@ -12,6 +12,7 @@
 #include "backends/abstractbackend.h"
 #include "backends/cache.h"
 #include "datatypes/journeyutil_p.h"
+#include "geo/pathfilter_p.h"
 
 #include <KPublicTransport/Journey>
 #include <KPublicTransport/Location>
@@ -180,17 +181,30 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
         // remove pointless sections such as 0-length walks
         sections.erase(std::remove_if(sections.begin(), sections.end(), isPointlessSection), sections.end());
 
-        // remove implausible paths
         for (auto &section : sections) {
             if (!section.from().hasCoordinate() || !section.to().hasCoordinate() || section.path().isEmpty()) {
                 continue;
             }
 
+            // remove implausible paths
             const auto pointDist = Location::distance(section.from(), section.to());
             const auto pathDist = section.path().distance();
             if (pathDist > pointDist * 10) {
                 qCDebug(Log) << "Dropping implausibly long path:" << pointDist << pathDist;
                 section.setPath({});
+            }
+
+            // filter spikes found in rail paths in nearly all backends and GTFS shapes
+            if (section.mode() == JourneySection::PublicTransport && Line::modeIsRailBound(section.route().line().mode())) {
+                auto path = section.path();
+                auto pathSecs = path.takeSections();
+                for (auto &pathSec : pathSecs) {
+                    QPolygonF p = pathSec.path();
+                    PathFilter::removeSpikes(p, 90.0);
+                    pathSec.setPath(p);
+                }
+                path.setSections(std::move(pathSecs));
+                section.setPath(path);
             }
         }
 

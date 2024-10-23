@@ -107,6 +107,7 @@ target_sources(KPublicTransport PRIVATE
 
     geo/convexhull.cpp
     geo/geojson.cpp
+    geo/pathfilter.cpp
     geo/polylinedecoder.cpp
 
     gtfs/hvt.cpp
