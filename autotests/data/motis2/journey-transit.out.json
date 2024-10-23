@@ -6,6 +6,7 @@
                 "distance": 55,
                 "from": {
                     "country": "FR",
+                    "floorLevel": 0,
                     "identifier": {
                         "motis": ""
                     },
@@ -38,7 +39,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -57,7 +59,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         }
                     ]
                 },
@@ -65,6 +68,7 @@
                 "scheduledDepartureTime": "2024-10-18T12:41:00Z",
                 "to": {
                     "country": "FR",
+                    "floorLevel": 0,
                     "identifier": {
                         "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:473364"
                     },
@@ -79,6 +83,7 @@
                 "distance": 28430,
                 "from": {
                     "country": "FR",
+                    "floorLevel": 0,
                     "identifier": {
                         "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:473364"
                     },
@@ -94,6 +99,7 @@
                         "scheduledDepartureTime": "2024-10-18T12:47:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462398"
                             },
@@ -125,6 +131,7 @@
                         "scheduledDepartureTime": "2024-10-18T12:54:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:58793"
                             },
@@ -156,6 +163,7 @@
                         "scheduledDepartureTime": "2024-10-18T13:00:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43071"
                             },
@@ -187,6 +195,7 @@
                         "scheduledDepartureTime": "2024-10-18T13:05:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43122"
                             },
@@ -202,6 +211,7 @@
                         "scheduledDepartureTime": "2024-10-18T13:08:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43231"
                             },
@@ -217,6 +227,7 @@
                         "scheduledDepartureTime": "2024-10-18T13:11:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43140"
                             },
@@ -232,6 +243,7 @@
                         "scheduledDepartureTime": "2024-10-18T13:14:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:43145"
                             },
@@ -247,6 +259,7 @@
                         "scheduledDepartureTime": "2024-10-18T13:20:00Z",
                         "stopPoint": {
                             "country": "FR",
+                            "floorLevel": 0,
                             "identifier": {
                                 "motis": "fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:monomodalStopPlace:462394"
                             },
@@ -375,7 +388,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": -4
                         }
                     ]
                 },
@@ -489,7 +503,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 1
                         },
                         {
                             "path": {
@@ -508,7 +523,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 1
                         },
                         {
                             "floorLevelChange": 1,
@@ -524,7 +540,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -547,7 +564,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -566,7 +584,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -581,7 +600,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -596,7 +616,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -611,7 +632,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -626,7 +648,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -641,7 +664,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -656,7 +680,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -671,7 +696,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -686,7 +712,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -705,9 +732,11 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
+                            "description": "Gare de Lyon",
                             "path": {
                                 "coordinates": [
                                     [
@@ -720,9 +749,11 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
+                            "description": "Gare de Lyon",
                             "path": {
                                 "coordinates": [
                                     [
@@ -735,9 +766,11 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
+                            "description": "Gare de Lyon",
                             "path": {
                                 "coordinates": [
                                     [
@@ -762,9 +795,11 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
+                            "description": "Gare de Lyon",
                             "path": {
                                 "coordinates": [
                                     [
@@ -777,7 +812,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         },
                         {
                             "path": {
@@ -796,7 +832,8 @@
                                     ]
                                 ],
                                 "type": "LineString"
-                            }
+                            },
+                            "startFloorLevel": 0
                         }
                     ]
                 },
@@ -804,6 +841,7 @@
                 "scheduledDepartureTime": "2024-10-18T13:30:00Z",
                 "to": {
                     "country": "FR",
+                    "floorLevel": 0,
                     "identifier": {
                         "motis": ""
                     },

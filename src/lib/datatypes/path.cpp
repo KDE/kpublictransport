@@ -12,6 +12,8 @@
 
 #include <QLineF>
 
+#include <limits>
+
 using namespace Qt::Literals::StringLiterals;
 using namespace KPublicTransport;
 
@@ -20,6 +22,7 @@ class PathSectionPrivate : public QSharedData {
 public:
     QPolygonF path;
     QString description;
+    int startFloorLevel = std::numeric_limits<int>::lowest();
     int floorLevelChange = 0;
     PathSection::Maneuver maneuver = PathSection::Move;
 };
@@ -28,6 +31,7 @@ public:
 KPUBLICTRANSPORT_MAKE_GADGET(PathSection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QPolygonF, path, setPath)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, QString, description, setDescription)
+KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, int, startFloorLevel, setStartFloorLevel)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, int, floorLevelChange, setFloorLevelChange)
 KPUBLICTRANSPORT_MAKE_PROPERTY(PathSection, PathSection::Maneuver, maneuver, setManeuver)
 
@@ -53,6 +57,11 @@ int PathSection::direction() const
         return -1;
     }
     return static_cast<int>(450 - QLineF(p1.x(), -p1.y(), p2.x(), -p2.y()).angle()) % 360;
+}
+
+bool PathSection::hasStartFloorLevel() const
+{
+    return d->startFloorLevel > std::numeric_limits<int>::lowest() && d->startFloorLevel < std::numeric_limits<int>::max();
 }
 
 QPointF PathSection::startPoint() const
@@ -90,13 +99,16 @@ QJsonObject PathSection::toJson(const PathSection &section)
 {
     auto obj = Json::toJson(section);
     if (!section.path().empty()) {
-        obj.insert(QLatin1String("path"), GeoJson::writeLineString(section.path()));
+        obj.insert("path"_L1, GeoJson::writeLineString(section.path()));
     }
     if (section.maneuver() == PathSection::Move) {
-        obj.remove(QLatin1String("maneuver"));
+        obj.remove("maneuver"_L1);
+    }
+    if (!section.hasStartFloorLevel()) {
+        obj.remove("startFloorLevel"_L1);
     }
     if (section.floorLevelChange() == 0) {
-        obj.remove(QLatin1String("floorLevelChange"));
+        obj.remove("floorLevelChange"_L1);
     }
     return obj;
 }
@@ -109,7 +121,7 @@ QJsonArray PathSection::toJson(const std::vector<PathSection> &sections)
 PathSection PathSection::fromJson(const QJsonObject &obj)
 {
     auto section = Json::fromJson<PathSection>(obj);
-    section.setPath(GeoJson::readLineString(obj.value(QLatin1String("path")).toObject()));
+    section.setPath(GeoJson::readLineString(obj.value("path"_L1).toObject()));
     return section;
 }
 
@@ -168,20 +180,20 @@ QPointF Path::endPoint() const
 QJsonObject Path::toJson(const Path &path)
 {
     auto obj = Json::toJson(path);
-    obj.insert(QLatin1String("sections"), PathSection::toJson(path.sections()));
+    obj.insert("sections"_L1, PathSection::toJson(path.sections()));
     return obj;
 }
 
 Path Path::fromJson(const QJsonObject &obj)
 {
     auto path = Json::fromJson<Path>(obj);
-    path.setSections(PathSection::fromJson(obj.value(QLatin1String("sections")).toArray()));
+    path.setSections(PathSection::fromJson(obj.value("sections"_L1).toArray()));
     return path;
 }
 
 int Path::sectionCount() const
 {
-    return d->sections.size();
+    return (int)d->sections.size();
 }
 
 #include "moc_path.cpp"

@@ -175,7 +175,7 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
 [[nodiscard]] static QString encodeLocation(const Location &loc, const QString &locationIdentifierType)
 {
     if (loc.hasCoordinate()) {
-        return QString::number(loc.latitude()) + ','_L1 + QString::number(loc.longitude()) + ','_L1 + QString::number(loc.floorLevel());
+        return QString::number(loc.latitude()) + ','_L1 + QString::number(loc.longitude()) + ','_L1 + QString::number(loc.hasFloorLevel() ? loc.floorLevel() : 0);
     }
     return loc.identifier(locationIdentifierType);
 }

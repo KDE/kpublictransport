@@ -1,6 +1,7 @@
 [
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "ch-opentransportdataswiss_Parent8023179"
         },
@@ -14,6 +15,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "ch-opentransportdataswiss_Parent8023179"
         },
@@ -27,6 +29,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/3575061420"
         },
@@ -39,6 +42,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/3575061421"
         },
@@ -51,6 +55,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/2202309900"
         },
@@ -63,6 +68,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/6510099866"
         },
@@ -75,6 +81,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/2140362880"
         },
@@ -87,6 +94,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/6510099867"
         },
@@ -99,6 +107,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/2140362881"
         },
@@ -111,6 +120,7 @@
     },
     {
         "country": "DE",
+        "floorLevel": 0,
         "identifier": {
             "motis": "node/6510099869"
         },

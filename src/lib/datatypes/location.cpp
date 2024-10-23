@@ -49,7 +49,7 @@ public:
     QString region;
     QString country;
 
-    int floorLevel = 0;
+    int floorLevel = std::numeric_limits<int>::lowest();
 
     QVariant data;
 };
@@ -66,12 +66,14 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, postalCode, setPostalCode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, QString, locality, setLocality)
 KPUBLICTRANSPORT_MAKE_PROPERTY(Location, int, floorLevel, setFloorLevel)
 
-void Location::setRegion(const QString &regionCode) {
+void Location::setRegion(const QString &regionCode)
+{
     d.detach();
     d->region = regionCode;
 }
 
-QString Location::region() const {
+QString Location::region() const
+{
     if (d->region.isEmpty() && hasCoordinate()) {
         auto subdivision = KCountrySubdivision::fromLocation((float)latitude(), (float)longitude());
         const_cast<Location *>(this)->setRegion(subdivision.code());
@@ -80,12 +82,14 @@ QString Location::region() const {
     return d->region;
 }
 
-void Location::setCountry(const QString &countryCode) {
+void Location::setCountry(const QString &countryCode)
+{
     d.detach();
     d->country = countryCode;
 }
 
-QString Location::country() const {
+QString Location::country() const
+{
     if (d->country.isEmpty() && hasCoordinate()) {
         auto country = KCountry::fromLocation((float)latitude(), (float)longitude());
         const_cast<Location *>(this)->setCountry(country.alpha2());
@@ -106,6 +110,11 @@ void Location::setCoordinate(double latitude, double longitude)
 bool Location::hasCoordinate() const
 {
     return !std::isnan(d->latitude) && !std::isnan(d->longitude) && std::abs(d->latitude) <= 90.0 && std::abs(d->longitude) <= 180.0;
+}
+
+bool Location::hasFloorLevel() const
+{
+    return d->floorLevel > std::numeric_limits<int>::lowest() && d->floorLevel < std::numeric_limits<int>::max();
 }
 
 bool Location::isEmpty() const
@@ -488,7 +497,7 @@ QJsonObject Location::toJson(const Location &loc)
     if (loc.d->timeZone.isValid()) {
         obj.insert("timezone"_L1, QString::fromUtf8(loc.d->timeZone.id()));
     }
-    if (loc.d->floorLevel == 0) {
+    if (!loc.hasFloorLevel()) {
         obj.remove("floorLevel"_L1);
     }
 

@@ -20,6 +20,7 @@
 #include <QUrl>
 
 #include <cmath>
+#include <limits>
 
 using namespace KPublicTransport;
 using namespace Qt::Literals::StringLiterals;
@@ -89,7 +90,7 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     l.setIdentifier(m_locIdentifierType, obj.value("stopId"_L1).toString());
     l.setLatitude(obj.value("lat"_L1).toDouble(NAN));
     l.setLongitude(obj.value("lon"_L1).toDouble(NAN));
-    l.setFloorLevel(obj.value("level"_L1).toInt());
+    l.setFloorLevel(obj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
     const auto type = obj.value("vertexType"_L1).toString();
     for (const auto &m : vertex_map ) {
         if (QLatin1StringView(m.name) == type) {
@@ -195,14 +196,20 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
                 s.setRentalVehicle(rv);
             }
 
-            if (const auto legGeoArray = leg.value("legGeometryWithLevels"_L1).toArray(); !legGeoArray.empty()) {
+            if (const auto legGeoArray = leg.value("steps"_L1).toArray(); !legGeoArray.empty()) {
                 std::vector<PathSection> pathSections;
                 pathSections.reserve(legGeoArray.size());
                 for (const auto &legGeoV : legGeoArray) {
                     const auto legGeoObj = legGeoV.toObject();
                     PathSection pathSec;
-                    pathSec.setFloorLevelChange(legGeoObj.value("toLevel"_L1).toInt() - legGeoObj.value("fromLevel"_L1).toInt());
+                    pathSec.setStartFloorLevel(legGeoObj.value("fromLevel"_L1).toInt(std::numeric_limits<int>::lowest()));
+                    if (pathSec.hasStartFloorLevel()) {
+                        pathSec.setFloorLevelChange(legGeoObj.value("toLevel"_L1).toInt() - pathSec.startFloorLevel());
+                    }
                     pathSec.setPath(parsePolyLine(legGeoObj.value("polyline"_L1).toObject()));
+                    if (const auto streetName = legGeoObj.value("streetName"_L1).toString(); !streetName.isEmpty()) {
+                        pathSec.setDescription(streetName);
+                    }
                     if (!pathSec.path().isEmpty()) {
                         pathSections.push_back(std::move(pathSec));
                     }
@@ -300,7 +307,7 @@ std::vector<Location> Motis2Parser::parseLocations(const QByteArray &data) const
         l.setIdentifier(m_locIdentifierType, locObj.value("id"_L1).toString());
         l.setLatitude(locObj.value("lat"_L1).toDouble());
         l.setLongitude(locObj.value("lon"_L1).toDouble());
-        l.setFloorLevel(locObj.value("level"_L1).toInt());
+        l.setFloorLevel(locObj.value("level"_L1).toInt(std::numeric_limits<int>::lowest()));
         const auto areas = locObj.value("area"_L1).toArray();
         for (const auto &areaV : areas) {
             const auto area = areaV.toObject();

@@ -69,9 +69,11 @@ public:
     Q_PROPERTY(bool hasCoordinate READ hasCoordinate STORED false)
 
     /** OSM floor level of this location.
-     *  0 by default.
+     *  Not set by default.
      */
     KPUBLICTRANSPORT_PROPERTY(int, floorLevel, setFloorLevel)
+    /** Indicates whether the floor level is set. */
+    Q_PROPERTY(bool hasFloorLevel READ hasFloorLevel STORED false)
 
     /** Location type specific data.
      *  Depending on the location type this can be e.g. a RentalVehicleStation or an Equipment instance.
@@ -93,6 +95,7 @@ public:
 public:
     void setCoordinate(double latitude, double longitude);
     [[nodiscard]] bool hasCoordinate() const;
+    [[nodiscard]] bool hasFloorLevel() const;
 
     /** Returns @c true if this is an default-constructed location object not specifying any location. */
     [[nodiscard]] bool isEmpty() const;

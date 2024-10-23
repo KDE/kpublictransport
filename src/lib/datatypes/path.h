@@ -29,12 +29,17 @@ class KPUBLICTRANSPORT_EXPORT PathSection
     /** Human-readable description of this path segment. */
     KPUBLICTRANSPORT_PROPERTY(QString, description, setDescription)
 
-    // TODO add more properties: maneuver instructions, floor level
+    // TODO add more properties: maneuver instructions
 
     /** The length of this path section in meters. */
     Q_PROPERTY(int distance READ distance STORED false)
     /** The overall direction of this section in degree. */
     Q_PROPERTY(int direction READ direction STORED false)
+
+    /** Absolute floor level at the beginning of this path, if known. */
+    KPUBLICTRANSPORT_PROPERTY(int, startFloorLevel, setStartFloorLevel)
+    /** Indicates an absolute start floor level is known. */
+    Q_PROPERTY(bool hasStartFloorLevel READ hasStartFloorLevel STORED false)
 
     /** Floor level change during this path section.
      *  Negative values indicate going down, positive values indicate going up
@@ -65,6 +70,8 @@ public:
      *  @returns 0-359 for valid results, -1 for sections with no direction (e.g. points).
      */
     [[nodiscard]] int direction() const;
+
+    [[nodiscard]] bool hasStartFloorLevel() const;
 
     /** First point on the path of this section. */
     [[nodiscard]] QPointF startPoint() const;
