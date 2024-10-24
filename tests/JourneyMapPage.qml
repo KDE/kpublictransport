@@ -77,6 +77,7 @@ Kirigami.Page {
 
         anchors.fill: parent
 
+        // transport paths
         Repeater {
             model: root.journey.sections.filter((sec) => { return sec.mode != KPublicTransport.JourneySection.Walking || sec.path.sectionCount == 0})
             QtLocation.MapPolyline {
@@ -93,6 +94,7 @@ Kirigami.Page {
                 path: KPublicTransport.MapUtils.polyline(modelData);
             }
         }
+        // walking paths
         Repeater {
             model: root.journey.sections.filter((sec) => { return sec.mode == KPublicTransport.JourneySection.Walking && sec.path.sectionCount > 0})
             Repeater {
@@ -105,6 +107,7 @@ Kirigami.Page {
                 }
             }
         }
+        // departure dots
         Repeater {
             model: root.journey.sections
             QtLocation.MapQuickItem {
@@ -128,6 +131,7 @@ Kirigami.Page {
                 }
             }
         }
+        // intermediate stops
         Repeater {
             model: root.journey.sections
             Repeater {
@@ -153,6 +157,35 @@ Kirigami.Page {
                 }
             }
         }
+        // path maneuvers
+        Repeater {
+            model: root.journey.sections.filter((sec) => { return sec.mode == KPublicTransport.JourneySection.Walking && sec.path.sectionCount > 0})
+            Repeater {
+                model: modelData.path.sections
+                QtLocation.MapQuickItem {
+                    coordinate {
+                        latitude: modelData.startPoint.y
+                        longitude: modelData.startPoint.x
+                    }
+                    anchorPoint.x: sourceItem.width/2
+                    anchorPoint.y: sourceItem.height/2
+                    sourceItem: Rectangle {
+                        width: 16
+                        height: 16
+                        radius: height/2
+
+                        Kirigami.Icon {
+                            anchors.fill: parent
+                            source: modelData.maneuver == KPublicTransport.PathSection.Move ? "go-up" : modelData.iconName
+                            isMask: true
+                            color: "black"
+                            rotation: modelData.maneuver == KPublicTransport.PathSection.Move ? modelData.direction : 0
+                        }
+                    }
+                }
+            }
+        }
+        // arrival dots
         Repeater {
             model: root.journey.sections
             QtLocation.MapQuickItem {

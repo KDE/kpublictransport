@@ -31,6 +31,11 @@ class KPUBLICTRANSPORT_EXPORT PathSection
 
     // TODO add more properties: maneuver instructions
 
+    /** First point on the path of this section. */
+    Q_PROPERTY(QPointF startPoint READ startPoint STORED false)
+    /** Last point on the path of this section. */
+    Q_PROPERTY(QPointF endPoint READ endPoint STORED false)
+
     /** The length of this path section in meters. */
     Q_PROPERTY(int distance READ distance STORED false)
     /** The overall direction of this section in degree. */
