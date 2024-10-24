@@ -210,6 +210,9 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
                     if (const auto streetName = legGeoObj.value("streetName"_L1).toString(); !streetName.isEmpty()) {
                         pathSec.setDescription(streetName);
                     }
+                    if (legGeoObj.value("relativeDirection"_L1).toString() == "ELEVATOR"_L1) {
+                        pathSec.setManeuver(PathSection::Elevator);
+                    }
                     if (!pathSec.path().isEmpty()) {
                         pathSections.push_back(std::move(pathSec));
                     }
