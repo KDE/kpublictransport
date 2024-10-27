@@ -36,5 +36,7 @@
         <file>sncf.js</file>
         <file>united.json</file>
         <file>united.js</file>
+        <file>nstrein.json</file>
+        <file>nstrein.js</file>
     </qresource>
 </RCC>

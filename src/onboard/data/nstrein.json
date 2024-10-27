@@ -1,0 +1,8 @@
+{
+    "backend": "ScriptedRestOnboardBackend",
+    "options": {
+        "script": "nstrein.js",
+        "journeyEndpoint": "http://portal.nstrein.ns.nl/nstrein:main/travelInfo?languageCode=en",
+        "journeyFunction": "parseJourney"
+    }
+}

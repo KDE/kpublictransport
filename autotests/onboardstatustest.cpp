@@ -123,6 +123,7 @@ private Q_SLOTS:
         QTest::newRow("eurowings") << s("lufthansa") << s("eurowings");
         QTest::newRow("lufthansa") << s("lufthansa") << s("lufthansa");
         QTest::newRow("united") << s("united") << s("united");
+        QTest::newRow("nstrein") << s("nstrein") << s("nstrein");
     }
 
     void testScriptedJourneyParsers()
