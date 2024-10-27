@@ -159,7 +159,7 @@ Kirigami.Page {
         }
         // path maneuvers
         Repeater {
-            model: root.journey.sections.filter((sec) => { return sec.mode == KPublicTransport.JourneySection.Walking && sec.path.sectionCount > 0})
+            model: root.journey.sections.filter((sec) => { return (sec.mode == KPublicTransport.JourneySection.Walking || sec.mode == KPublicTransport.JourneySection.RentedVehicle || sec.mode == KPublicTransport.JourneySection.IndividualTransport) && sec.path.sectionCount > 0})
             Repeater {
                 model: modelData.path.sections
                 QtLocation.MapQuickItem {

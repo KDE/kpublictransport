@@ -191,8 +191,15 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
                 iv.setQualifier((*it).ivQualifier);
                 s.setIndividualTransport(iv);
             } else if (s.mode() == JourneySection::RentedVehicle) {
+                const auto rentalObj = leg.value("rental"_L1).toObject();
+                // TODO booking deep links, url
+
+                RentalVehicleNetwork rvNetwork;
+                rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
+
                 RentalVehicle rv;
                 rv.setType((*it).rentalType);
+                rv.setNetwork(rvNetwork);
                 s.setRentalVehicle(rv);
             }
 

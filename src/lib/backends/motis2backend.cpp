@@ -215,7 +215,7 @@ struct {
 } static constexpr const iv_mode_map[] = {
     { IndividualTransport::Walk, IndividualTransport::None, "WALK" },
     { IndividualTransport::Bike, IndividualTransport::Rent, "BIKE_RENTAL" },
-    { IndividualTransport::Bike, IndividualTransport::Rent, "SCOOTER_RENTAL" }, // TODO not modelled correctly
+    // { IndividualTransport::Bike, IndividualTransport::Rent, "SCOOTER_RENTAL" }, // TODO not modelled correctly, not implemented in current MOTISv2 deployment
     { IndividualTransport::Bike, IndividualTransport::Park, "BIKE_TO_PARK" },
     { IndividualTransport::Bike, IndividualTransport::None, "BIKE" },
     { IndividualTransport::Car, IndividualTransport::Rent, "CAR_RENTAL" },

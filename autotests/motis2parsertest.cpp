@@ -116,6 +116,9 @@ private Q_SLOTS:
         QTest::newRow("transit")
             << QStringLiteral(SOURCE_DIR "/data/motis2/journey-transit.in.json")
             << QStringLiteral(SOURCE_DIR "/data/motis2/journey-transit.out.json");
+        QTest::newRow("bike-rental")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-bike-rental.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-bike-rental.out.json");
     }
 
     void testParseJourneys()
