@@ -21,6 +21,12 @@ function parseJourney(response)
 {
     let section = {};
     section.mode = 'PublicTransport';
+    section.route = {
+        line: {
+            name = response.trip.trainTypeFull,
+            mode = 'Train'
+        }
+    };
     section.intermediateStops = [];
     for (s of response.trip.stops) {
         let stop = {};
@@ -39,7 +45,7 @@ function parseJourney(response)
 
         if (s.arrivalDateTime) {
             stop.scheduledArrivalTime = parseDateTime(s.arrivalDateTime, null);
-            stop.expectedArrivalTime = parseDateTime(s.arrivalDateTime, s.fromDelay * 60000);
+            stop.expectedArrivalTime = parseDateTime(s.arrivalDateTime, s.arrivalDelay);
         }
 
         stop.scheduledPlatform = s.platform;

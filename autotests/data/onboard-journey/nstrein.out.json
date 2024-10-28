@@ -123,7 +123,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Amsterdam",
-                        "value": "2024-12-08T02:02:00+01:00"
+                        "value": "2024-10-27T10:02:00+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Amsterdam",
@@ -186,7 +186,7 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Amsterdam",
-                        "value": "2024-12-08T02:46:02+01:00"
+                        "value": "2024-10-27T10:46:02+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Amsterdam",
@@ -279,6 +279,12 @@
                 }
             ],
             "mode": "PublicTransport",
+            "route": {
+                "line": {
+                    "mode": "Train",
+                    "name": "Intercity"
+                }
+            },
             "scheduledArrivalPlatform": "7",
             "scheduledArrivalTime": {
                 "timezone": "Europe/Amsterdam",
