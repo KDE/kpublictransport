@@ -57,6 +57,11 @@ public:
      */
     Q_PROPERTY(QString vehicleTypeIconName READ vehicleTypeIconName)
 
+    /** Deep booking link via a web UI. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, webBookingUrl, setWebBookingUrl)
+    /** Deep booking link via an app. */
+    KPUBLICTRANSPORT_PROPERTY(QUrl, appBookingUrl, setAppBookingUrl)
+
 public:
     [[nodiscard]] QString vehicleTypeIconName() const;
 

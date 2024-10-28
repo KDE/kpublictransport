@@ -192,7 +192,7 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
                 s.setIndividualTransport(iv);
             } else if (s.mode() == JourneySection::RentedVehicle) {
                 const auto rentalObj = leg.value("rental"_L1).toObject();
-                // TODO booking deep links, url
+                // TODO url
 
                 RentalVehicleNetwork rvNetwork;
                 rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
@@ -200,6 +200,13 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
                 RentalVehicle rv;
                 rv.setType((*it).rentalType);
                 rv.setNetwork(rvNetwork);
+                rv.setWebBookingUrl(QUrl(rentalObj.value("rentalUriWeb"_L1).toString()));
+#ifdef Q_OS_ANDROID
+                rv.setAppBookingUrl(QUrl(rentalObj.value("rentalUriAndroid"_L1).toString()));
+#elif defined(Q_OS_IOS)
+                rv.setAppBookingUrl(QUrl(rentalObj.value("rentalUriIOS"_L1).toString()));
+#endif
+
                 s.setRentalVehicle(rv);
             }
 

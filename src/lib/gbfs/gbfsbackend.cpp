@@ -28,6 +28,7 @@
 #include <functional>
 
 using namespace KPublicTransport;
+using namespace Qt::Literals;
 
 GBFSBackend::GBFSBackend()
 {
@@ -206,9 +207,16 @@ static void appendResults(const GBFSService &service, const LocationRequest &req
         const auto bikeId = bike.value(QLatin1String("bike_id")).toString();
         loc.setIdentifier(service.systemId, bikeId);
 
-        // TODO deep rental links
         RentalVehicle vehicle;
         vehicle.setNetwork(network);
+
+        const auto rental_uris = bike.value("rental_uris"_L1).toObject();
+        vehicle.setWebBookingUrl(QUrl(rental_uris.value("web"_L1).toString()));
+#ifdef Q_OS_ANDROID
+        vehicle.setAppBookingUrl(QUrl(rental_uris.value("android"_L1).toString()));
+#elif defined(Q_OS_IOS)
+        vehicle.setAppBookingUrl(QUrl(rental_uris.value("ios"_L1).toString()));
+#endif
 
         auto vehicleTypeId = bike.value(QLatin1String("vehicle_type_id")).toString();
         if (vehicleTypeId.isEmpty()) { // non-compliant format used eg. by Lime

@@ -38,6 +38,8 @@ public:
     RentalVehicle::VehicleType type = RentalVehicle::Unknown;
     int remainingRange = -1;
     KPublicTransport::RentalVehicleNetwork network;
+    QUrl webBookingUrl;
+    QUrl appBookingUrl;
 };
 }
 
@@ -231,6 +233,8 @@ KPUBLICTRANSPORT_MAKE_GADGET(RentalVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicle::VehicleType, type, setType)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, int, remainingRange, setRemainingRange)
 KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, RentalVehicleNetwork, network, setNetwork)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, webBookingUrl, setWebBookingUrl)
+KPUBLICTRANSPORT_MAKE_PROPERTY(RentalVehicle, QUrl, appBookingUrl, setAppBookingUrl)
 
 QString RentalVehicle::vehicleTypeIconName(VehicleType type)
 {
