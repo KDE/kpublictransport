@@ -2,7 +2,7 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 225390,
+            "distance": 225384,
             "expectedArrivalTime": {
                 "timezone": "Europe/Amsterdam",
                 "value": "2024-10-27T12:11:00+01:00"
@@ -12,15 +12,13 @@
                 "value": "2024-10-27T09:13:15+01:00"
             },
             "from": {
-                "country": "NL",
                 "identifier": {
                     "nstrein": "GVC",
                     "uic": "8400282"
                 },
-                "latitude": 52.0802764892578,
-                "longitude": 4.32499980926514,
+                "latitude": 52.08027648925781,
+                "longitude": 4.324999809265137,
                 "name": "Den Haag Centraal",
-                "region": "NL-ZH",
                 "type": "Stop"
             },
             "intermediateStops": [
@@ -44,15 +42,13 @@
                     },
                     "scheduledPlatform": "4",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "LAA",
                             "uic": "8400380"
                         },
-                        "latitude": 52.0786094665527,
-                        "longitude": 4.34277772903442,
+                        "latitude": 52.078609466552734,
+                        "longitude": 4.342777729034424,
                         "name": "Den Haag Laan v NOI",
-                        "region": "NL-ZH",
                         "type": "Stop"
                     }
                 },
@@ -76,15 +72,13 @@
                     },
                     "scheduledPlatform": "4b",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "LEDN",
                             "uic": "8400390"
                         },
-                        "latitude": 52.1661109924316,
-                        "longitude": 4.48166656494141,
+                        "latitude": 52.16611099243164,
+                        "longitude": 4.481666564941406,
                         "name": "Leiden Centraal",
-                        "region": "NL-ZH",
                         "type": "Stop"
                     }
                 },
@@ -108,12 +102,11 @@
                     },
                     "scheduledPlatform": "2",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "SHL",
                             "uic": "8400561"
                         },
-                        "latitude": 52.3094444274902,
+                        "latitude": 52.309444427490234,
                         "longitude": 4.76194429397583,
                         "name": "Schiphol Airport",
                         "type": "Stop"
@@ -139,15 +132,13 @@
                     },
                     "scheduledPlatform": "8a",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "ASD",
                             "uic": "8400058"
                         },
-                        "latitude": 52.3788871765137,
-                        "longitude": 4.90027761459351,
+                        "latitude": 52.37888717651367,
+                        "longitude": 4.900277614593506,
                         "name": "Amsterdam Centraal",
-                        "region": "NL-NH",
                         "type": "Stop"
                     }
                 },
@@ -171,13 +162,12 @@
                     },
                     "scheduledPlatform": "4",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "ALM",
                             "uic": "8400080"
                         },
-                        "latitude": 52.37503,
-                        "longitude": 5.21764,
+                        "latitude": 52.375030517578125,
+                        "longitude": 5.217639923095703,
                         "name": "Almere Centrum",
                         "type": "Stop"
                     }
@@ -202,15 +192,13 @@
                     },
                     "scheduledPlatform": "4",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "LLS",
                             "uic": "8400394"
                         },
-                        "latitude": 52.5077781677246,
-                        "longitude": 5.47277784347534,
+                        "latitude": 52.50777816772461,
+                        "longitude": 5.472777843475342,
                         "name": "Lelystad Centrum",
-                        "region": "NL-FL",
                         "type": "Stop"
                     }
                 },
@@ -234,13 +222,12 @@
                     },
                     "scheduledPlatform": "6",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "ZL",
                             "uic": "8400747"
                         },
-                        "latitude": 52.5047225952148,
-                        "longitude": 6.09194421768188,
+                        "latitude": 52.504722595214844,
+                        "longitude": 6.091944217681885,
                         "name": "Zwolle",
                         "type": "Stop"
                     }
@@ -265,15 +252,13 @@
                     },
                     "scheduledPlatform": "3",
                     "stopPoint": {
-                        "country": "NL",
                         "identifier": {
                             "nstrein": "ASN",
                             "uic": "8400073"
                         },
-                        "latitude": 52.9916648864746,
-                        "longitude": 6.57083320617676,
+                        "latitude": 52.99166488647461,
+                        "longitude": 6.570833206176758,
                         "name": "Assen",
-                        "region": "NL-DR",
                         "type": "Stop"
                     }
                 }
@@ -296,15 +281,13 @@
                 "value": "2024-10-27T09:13:15+01:00"
             },
             "to": {
-                "country": "NL",
                 "identifier": {
                     "nstrein": "GN",
                     "uic": "8400263"
                 },
-                "latitude": 53.2105560302734,
-                "longitude": 6.56472206115723,
+                "latitude": 53.21055603027344,
+                "longitude": 6.564722061157227,
                 "name": "Groningen",
-                "region": "NL-GR",
                 "type": "Stop"
             }
         }
