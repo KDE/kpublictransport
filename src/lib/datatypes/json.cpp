@@ -73,7 +73,7 @@ static QJsonValue variantToJson(const QVariant &v)
             if (!dt.isValid()) {
                 return {};
             }
-            if (dt.timeSpec() == Qt::TimeZone) {
+            if (dt.timeSpec() == Qt::TimeZone && dt.timeZone() != QTimeZone::utc()) {
                 QJsonObject dtObj;
                 dtObj.insert(QLatin1String("value"), dt.toString(Qt::ISODate));
                 dtObj.insert(QLatin1String("timezone"), QString::fromUtf8(dt.timeZone().id()));
