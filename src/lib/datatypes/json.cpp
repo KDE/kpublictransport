@@ -180,8 +180,14 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
             return v.toString();
         case QMetaType::Double:
         case QMetaType::Float:
+            if (v.isString()) {
+                return v.toString().toDouble();
+            }
             return v.toDouble();
         case QMetaType::Int:
+            if (v.isString()) {
+                return v.toString().toInt();
+            }
             return v.toInt();
         case QMetaType::QDateTime:
         {
