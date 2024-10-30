@@ -10,6 +10,7 @@
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
 
+#include <KPublicTransport/Attribution>
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/CoverageArea>
 #include <KPublicTransport/Equipment>
@@ -78,6 +79,13 @@ struct LocationQueryModelForeign {
     QML_ELEMENT
     QML_FOREIGN(KPublicTransport::LocationQueryModel)
     QML_NAMED_ELEMENT(LocationQueryModel)
+};
+
+struct AttributionForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Attribution)
+    QML_VALUE_TYPE(attribution)
+    QML_UNCREATABLE("only provided from C++ API")
 };
 
 struct BackendModelForeign {
