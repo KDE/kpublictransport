@@ -37,6 +37,7 @@ public:
 
 private:
     [[nodiscard]] Stopover parsePlace(const QJsonObject &obj, bool hasRealTime) const;
+    [[nodiscard]] Journey parseItinerary(const QJsonObject &itinerary) const;
     void parseCursors(const QJsonObject &obj);
 
     QString m_locIdentifierType;

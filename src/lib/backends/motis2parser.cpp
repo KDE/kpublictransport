@@ -127,133 +127,141 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
 {
     const auto content = QJsonDocument::fromJson(data).object();
     const auto itineraries = content.value("itineraries"_L1).toArray();
+    const auto directs = content.value("direct"_L1).toArray();
     std::vector<Journey> result;
-    result.reserve(itineraries.size());
-    for (const auto &itineraryV :itineraries) {
-        const auto itinerary = itineraryV.toObject();
-        const auto legs = itinerary.value("legs"_L1).toArray();
-        std::vector<JourneySection> sections;
-        sections.reserve(legs.size());
-
-        for (const auto &legV : legs) {
-            const auto leg = legV.toObject();
-            JourneySection s;
-
-            const auto mode = leg.value("mode"_L1).toString();
-            auto it = std::find_if(std::begin(mode_map), std::end(mode_map), [mode](const auto &m) {
-                return QLatin1StringView(m.name) == mode;
-            });
-            if (it == std::end(mode_map)) {
-                qWarning() << "Unknown mode:" << mode;
-                continue;
-            }
-            s.setMode((*it).jnyMode);
-
-            const auto hasRealTime = leg.value("realTime"_L1).toBool();
-            const auto from = parsePlace(leg.value("from"_L1).toObject(), hasRealTime);
-            s.setDeparture(from);
-            const auto to = parsePlace(leg.value("to"_L1).toObject(), hasRealTime);
-            s.setArrival(to);
-            s.setDistance(leg.value("distance"_L1).toInt());
-
-            s.setScheduledDepartureTime(parseTime(leg.value("startTime"_L1)));
-            s.setScheduledArrivalTime(parseTime(leg.value("endTime"_L1)));
-            if (hasRealTime) {
-                s.setExpectedDepartureTime(s.scheduledDepartureTime().addMSecs(leg.value("departureDelay"_L1).toInteger()));
-                s.setExpectedArrivalTime(s.scheduledArrivalTime().addMSecs(leg.value("arrivalDelay"_L1).toInteger()));
-            }
-
-            if (s.mode() == JourneySection::PublicTransport) {
-                Line line;
-                line.setMode((*it).lineMode);
-                line.setName(leg.value("routeShortName"_L1).toString());
-                line.setOperatorName(leg.value("agencyName"_L1).toString());
-                line.setColor(QColor::fromString('#'_L1 + leg.value("routeColor"_L1).toString()));
-                line.setTextColor(QColor::fromString('#'_L1 + leg.value("routeTextColor"_L1).toString()));
-
-                Route route;
-                route.setDirection(leg.value("headsign"_L1).toString());
-                route.setLine(line);
-
-                s.setRoute(route);
-
-                const auto intermediateStops = leg.value("intermediateStops"_L1).toArray();
-                std::vector<Stopover> stops;
-                stops.reserve(intermediateStops.size());
-                for (const auto &intermediateStopV : intermediateStops) {
-                    const auto intermediateStop = intermediateStopV.toObject();
-                    stops.push_back(parsePlace(intermediateStop, hasRealTime));
-                }
-                s.setIntermediateStops(std::move(stops));
-            } else if (s.mode() == JourneySection::IndividualTransport) {
-                IndividualTransport iv;
-                iv.setMode((*it).ivMode);
-                iv.setQualifier((*it).ivQualifier);
-                s.setIndividualTransport(iv);
-            } else if (s.mode() == JourneySection::RentedVehicle) {
-                const auto rentalObj = leg.value("rental"_L1).toObject();
-                // TODO url
-
-                RentalVehicleNetwork rvNetwork;
-                rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
-
-                RentalVehicle rv;
-                rv.setType((*it).rentalType);
-                rv.setNetwork(rvNetwork);
-                rv.setWebBookingUrl(QUrl(rentalObj.value("rentalUriWeb"_L1).toString()));
-#ifdef Q_OS_ANDROID
-                rv.setAppBookingUrl(QUrl(rentalObj.value("rentalUriAndroid"_L1).toString()));
-#elif defined(Q_OS_IOS)
-                rv.setAppBookingUrl(QUrl(rentalObj.value("rentalUriIOS"_L1).toString()));
-#endif
-
-                s.setRentalVehicle(rv);
-            }
-
-            if (const auto legGeoArray = leg.value("steps"_L1).toArray(); !legGeoArray.empty()) {
-                std::vector<PathSection> pathSections;
-                pathSections.reserve(legGeoArray.size());
-                for (const auto &legGeoV : legGeoArray) {
-                    const auto legGeoObj = legGeoV.toObject();
-                    PathSection pathSec;
-                    pathSec.setStartFloorLevel(legGeoObj.value("fromLevel"_L1).toInt(std::numeric_limits<int>::lowest()));
-                    if (pathSec.hasStartFloorLevel()) {
-                        pathSec.setFloorLevelChange(legGeoObj.value("toLevel"_L1).toInt() - pathSec.startFloorLevel());
-                    }
-                    pathSec.setPath(parsePolyLine(legGeoObj.value("polyline"_L1).toObject()));
-                    if (const auto streetName = legGeoObj.value("streetName"_L1).toString(); !streetName.isEmpty()) {
-                        pathSec.setDescription(streetName);
-                    }
-                    if (!pathSec.path().isEmpty()) {
-                        pathSections.push_back(std::move(pathSec));
-                    }
-                }
-                if (!pathSections.empty()) {
-                    Path path;
-                    path.setSections(std::move(pathSections));
-                    s.setPath(path);
-                }
-            }
-            if (const auto geometryObj = leg.value("legGeometry"_L1).toObject(); !geometryObj.empty() && s.path().isEmpty()) {
-                PathSection pathSec;
-                pathSec.setPath(parsePolyLine(geometryObj));
-                if (!pathSec.path().isEmpty()) {
-                    Path path;
-                    path.setSections({pathSec});
-                    s.setPath(path);
-                }
-            }
-
-            sections.push_back(std::move(s));
-        }
-
-        Journey jny;
-        jny.setSections(std::move(sections));
-        result.push_back(std::move(jny));
+    result.reserve(itineraries.size() + directs.size());
+    for (const auto &itineraryV : itineraries) {
+        result.push_back(parseItinerary(itineraryV.toObject()));
+    }
+    for (const auto &directV : directs) {
+        result.push_back(parseItinerary(directV.toObject()));
     }
 
     parseCursors(content);
     return result;
+}
+
+Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
+{
+    const auto legs = itinerary.value("legs"_L1).toArray();
+    std::vector<JourneySection> sections;
+    sections.reserve(legs.size());
+
+    for (const auto &legV : legs) {
+        const auto leg = legV.toObject();
+        JourneySection s;
+
+        const auto mode = leg.value("mode"_L1).toString();
+        auto it = std::find_if(std::begin(mode_map), std::end(mode_map), [mode](const auto &m) {
+            return QLatin1StringView(m.name) == mode;
+        });
+        if (it == std::end(mode_map)) {
+            qWarning() << "Unknown mode:" << mode;
+            continue;
+        }
+        s.setMode((*it).jnyMode);
+
+        const auto hasRealTime = leg.value("realTime"_L1).toBool();
+        const auto from = parsePlace(leg.value("from"_L1).toObject(), hasRealTime);
+        s.setDeparture(from);
+        const auto to = parsePlace(leg.value("to"_L1).toObject(), hasRealTime);
+        s.setArrival(to);
+        s.setDistance(leg.value("distance"_L1).toInt());
+
+        s.setScheduledDepartureTime(parseTime(leg.value("startTime"_L1)));
+        s.setScheduledArrivalTime(parseTime(leg.value("endTime"_L1)));
+        if (hasRealTime) {
+            s.setExpectedDepartureTime(s.scheduledDepartureTime().addMSecs(leg.value("departureDelay"_L1).toInteger()));
+            s.setExpectedArrivalTime(s.scheduledArrivalTime().addMSecs(leg.value("arrivalDelay"_L1).toInteger()));
+        }
+
+        if (s.mode() == JourneySection::PublicTransport) {
+            Line line;
+            line.setMode((*it).lineMode);
+            line.setName(leg.value("routeShortName"_L1).toString());
+            line.setOperatorName(leg.value("agencyName"_L1).toString());
+            line.setColor(QColor::fromString('#'_L1 + leg.value("routeColor"_L1).toString()));
+            line.setTextColor(QColor::fromString('#'_L1 + leg.value("routeTextColor"_L1).toString()));
+
+            Route route;
+            route.setDirection(leg.value("headsign"_L1).toString());
+            route.setLine(line);
+
+            s.setRoute(route);
+
+            const auto intermediateStops = leg.value("intermediateStops"_L1).toArray();
+            std::vector<Stopover> stops;
+            stops.reserve(intermediateStops.size());
+            for (const auto &intermediateStopV : intermediateStops) {
+                const auto intermediateStop = intermediateStopV.toObject();
+                stops.push_back(parsePlace(intermediateStop, hasRealTime));
+            }
+            s.setIntermediateStops(std::move(stops));
+        } else if (s.mode() == JourneySection::IndividualTransport) {
+            IndividualTransport iv;
+            iv.setMode((*it).ivMode);
+            iv.setQualifier((*it).ivQualifier);
+            s.setIndividualTransport(iv);
+        } else if (s.mode() == JourneySection::RentedVehicle) {
+            const auto rentalObj = leg.value("rental"_L1).toObject();
+            // TODO url
+
+            RentalVehicleNetwork rvNetwork;
+            rvNetwork.setName(rentalObj.value("systemName"_L1).toString());
+
+            RentalVehicle rv;
+            rv.setType((*it).rentalType);
+            rv.setNetwork(rvNetwork);
+            rv.setWebBookingUrl(QUrl(rentalObj.value("rentalUriWeb"_L1).toString()));
+#ifdef Q_OS_ANDROID
+            rv.setAppBookingUrl(QUrl(rentalObj.value("rentalUriAndroid"_L1).toString()));
+#elif defined(Q_OS_IOS)
+            rv.setAppBookingUrl(QUrl(rentalObj.value("rentalUriIOS"_L1).toString()));
+#endif
+
+            s.setRentalVehicle(rv);
+        }
+
+        if (const auto legGeoArray = leg.value("steps"_L1).toArray(); !legGeoArray.empty()) {
+            std::vector<PathSection> pathSections;
+            pathSections.reserve(legGeoArray.size());
+            for (const auto &legGeoV : legGeoArray) {
+                const auto legGeoObj = legGeoV.toObject();
+                PathSection pathSec;
+                pathSec.setStartFloorLevel(legGeoObj.value("fromLevel"_L1).toInt(std::numeric_limits<int>::lowest()));
+                if (pathSec.hasStartFloorLevel()) {
+                    pathSec.setFloorLevelChange(legGeoObj.value("toLevel"_L1).toInt() - pathSec.startFloorLevel());
+                }
+                pathSec.setPath(parsePolyLine(legGeoObj.value("polyline"_L1).toObject()));
+                if (const auto streetName = legGeoObj.value("streetName"_L1).toString(); !streetName.isEmpty()) {
+                    pathSec.setDescription(streetName);
+                }
+                if (!pathSec.path().isEmpty()) {
+                    pathSections.push_back(std::move(pathSec));
+                }
+            }
+            if (!pathSections.empty()) {
+                Path path;
+                path.setSections(std::move(pathSections));
+                s.setPath(path);
+            }
+        }
+        if (const auto geometryObj = leg.value("legGeometry"_L1).toObject(); !geometryObj.empty() && s.path().isEmpty()) {
+            PathSection pathSec;
+            pathSec.setPath(parsePolyLine(geometryObj));
+            if (!pathSec.path().isEmpty()) {
+                Path path;
+                path.setSections({pathSec});
+                s.setPath(path);
+            }
+        }
+
+        sections.push_back(std::move(s));
+    }
+
+    Journey jny;
+    jny.setSections(std::move(sections));
+    return jny;
 }
 
 std::vector<Stopover> Motis2Parser::parseStopTimes(const QByteArray &data)
