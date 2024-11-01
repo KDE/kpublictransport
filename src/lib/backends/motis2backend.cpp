@@ -258,6 +258,9 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
                 }
             }
         }
+        if (req.requiresBikeTransport()) {
+            query.addQueryItem(u"requireBikeTransport"_s, u"true"_s);
+        }
     }
     if (req.modes() & JourneySection::IndividualTransport) {
         mapIndividualTransportModes(req.individualTransportModes(), modes);

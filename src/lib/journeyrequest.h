@@ -135,6 +135,11 @@ public:
     /** Sets the requested egress modes. */
     void setEgressModes(std::vector<IndividualTransport> &&egressModes);
 
+    /** Returns @c true if the specified access/egress modes require bike
+     *  transportation on public transport.
+     */
+    [[nodiscard]] bool requiresBikeTransport() const;
+
     /** Requested line modes.
      *  That is, the possible types of public transport lines to consider for public
      *  transports sections of the journey.

@@ -157,6 +157,9 @@ bool HafasMgateBackend::queryJourney(const JourneyRequest &request, JourneyReply
             }
         }
         addLineModeJourneyFilter(request.lineModes(), jnyFltrL);
+        if (request.requiresBikeTransport()) {
+            jnyFltrL.push_back(QJsonObject{{"type"_L1, "BC"_L1}, {"mode"_L1, "INC"_L1}});
+        }
         if (!jnyFltrL.isEmpty()) {
             req.insert(QLatin1String("jnyFltrL"),  jnyFltrL);
         }

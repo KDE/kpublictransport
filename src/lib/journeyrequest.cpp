@@ -210,6 +210,18 @@ const std::vector<Line::Mode>& JourneyRequest::lineModes() const
     return d->lineModes;
 }
 
+static bool hasTakeBikeMode(const std::vector<IndividualTransport> &modes)
+{
+    return std::any_of(modes.begin(), modes.end(), [](const auto &it) {
+        return it.mode() == IndividualTransport::Bike && it.qualifier() == IndividualTransport::None;
+    });
+}
+
+bool JourneyRequest::requiresBikeTransport() const
+{
+    return hasTakeBikeMode(d->accessModes) && hasTakeBikeMode(d->egressModes);
+}
+
 void JourneyRequest::setLineModes(std::vector<Line::Mode> &&lineModes)
 {
     d.detach();
@@ -290,13 +302,6 @@ QString JourneyRequest::cacheKey() const
     }
 
     return QString::fromUtf8(hash.result().toHex());
-}
-
-static bool hasTakeBikeMode(const std::vector<IndividualTransport> &modes)
-{
-    return std::any_of(modes.begin(), modes.end(), [](const auto &it) {
-        return it.mode() == IndividualTransport::Bike && it.qualifier() == IndividualTransport::None;
-    });
 }
 
 void JourneyRequest::validate() const

@@ -40,6 +40,7 @@ private Q_SLOTS:
         req.validate();
         QCOMPARE(req.egressModes().size(), 2);
         QCOMPARE(req.egressModes()[1], IndividualTransport{IndividualTransport::Bike});
+        QCOMPARE(req.requiresBikeTransport(), true);
 
         // cars can't be taken on a train
         req.setAccessModes(std::vector<IndividualTransport>{{IndividualTransport::Car}});
