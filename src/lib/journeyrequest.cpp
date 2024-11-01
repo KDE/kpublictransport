@@ -18,6 +18,7 @@
 #include <QMetaEnum>
 #include <QSharedData>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 enum { JourneyCacheTimeResolution = 60 }; // in seconds
@@ -129,10 +130,10 @@ void JourneyRequest::purgeLoops(const JourneyRequest &baseRequest)
 QJsonObject JourneyRequest::toJson(const KPublicTransport::JourneyRequest &req)
 {
     auto obj = Json::toJson(req);
-    obj.insert(QLatin1String("from"), Location::toJson(req.from()));
-    obj.insert(QLatin1String("to"), Location::toJson(req.to()));
-    obj.insert(QLatin1String("accessModes"), IndividualTransport::toJson(req.accessModes()));
-    obj.insert(QLatin1String("egressModes"), IndividualTransport::toJson(req.egressModes()));
+    obj.insert("from"_L1, Location::toJson(req.from()));
+    obj.insert("to"_L1, Location::toJson(req.to()));
+    obj.insert("accessModes"_L1, IndividualTransport::toJson(req.accessModes()));
+    obj.insert("egressModes"_L1, IndividualTransport::toJson(req.egressModes()));
     return obj;
 }
 
@@ -285,7 +286,7 @@ void JourneyRequest::validate() const
     const auto hasTakeBikeAccess = hasTakeBikeMode(d->accessModes);
     const auto hasTakeBikeEgress = hasTakeBikeMode(d->egressModes);
     if (hasTakeBikeAccess && !hasTakeBikeEgress) {
-        d->egressModes.push_back({ IndividualTransport::Bike });
+        d->egressModes.emplace_back(IndividualTransport::Bike);
     } else if (!hasTakeBikeAccess && hasTakeBikeEgress) {
         d->egressModes.erase(std::remove_if(d->egressModes.begin(), d->egressModes.end(), [](const auto &it) {
             return it.mode() == IndividualTransport::Bike && it.qualifier() == IndividualTransport::None;

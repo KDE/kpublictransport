@@ -94,7 +94,7 @@ public:
     JourneyRequest(const Location &from, const Location &to);
 
     /** Returns @c true if this is a valid request, that is, it has enough parameters set to perform a query. */
-    bool isValid() const;
+    [[nodiscard]] bool isValid() const;
 
     /** Set the desired departure time.
      *  This is mutually exclusive to setting a desired arrival time.
@@ -108,7 +108,7 @@ public:
     /** Identifiers of the backends that should be queried.
      *  @see setBackendIds()
      */
-    QStringList backendIds() const;
+    [[nodiscard]] QStringList backendIds() const;
     /** Set identifiers of backends that should be queried.
      *  Settings this is only needed when you want explicit control over this, leaving
      *  this empty picks suitable backends automatically.
@@ -119,7 +119,7 @@ public:
      *  That is individual transport modes on the first (access) leg of the journey.
      *  Default: walking
      */
-    const std::vector<IndividualTransport>& accessModes() const;
+    [[nodiscard]] const std::vector<IndividualTransport>& accessModes() const;
     /** Sets the requested access modes. */
     void setAccessModes(std::vector<IndividualTransport> &&accessModes);
 
@@ -127,7 +127,7 @@ public:
      *  That is, individual transport modes for the last (egress) leg of the journey.
      *  Default: walking
      */
-    const std::vector<IndividualTransport>& egressModes() const;
+    [[nodiscard]] const std::vector<IndividualTransport>& egressModes() const;
     /** Sets the requested egress modes. */
     void setEgressModes(std::vector<IndividualTransport> &&egressModes);
 
@@ -136,7 +136,7 @@ public:
      *  transports sections of the journey.
      *  Default: all
      */
-    const std::vector<Line::Mode>& lineModes() const;
+    [[nodiscard]] const std::vector<Line::Mode>& lineModes() const;
     /** Sets the requested line modes.
      *  An empty list is considered as all modes being allowed.
      *  @note This relies on backends actually supporting this and is thus does not
@@ -145,10 +145,10 @@ public:
     void setLineModes(std::vector <Line::Mode> &&modes);
 
     /** Unique string representation used for caching results. */
-    QString cacheKey() const;
+    [[nodiscard]] QString cacheKey() const;
 
     ///@cond internal
-    static QJsonObject toJson(const JourneyRequest &req);
+    [[nodiscard]] static QJsonObject toJson(const JourneyRequest &req);
     ///@endcond
 private:
     friend class AbstractBackend;
@@ -157,15 +157,15 @@ private:
     friend class Manager;
     friend class JourneyRequestTest;
 
-    Q_DECL_HIDDEN QVariantList accessModesVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QVariantList accessModesVariant() const;
     Q_DECL_HIDDEN void setAccessModesVariant(const QVariantList &accessModesVariant);
-    Q_DECL_HIDDEN QVariantList egressModesVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QVariantList egressModesVariant() const;
     Q_DECL_HIDDEN void setEgressModesVariant(const QVariantList &egressModesVariant);
-    Q_DECL_HIDDEN QVariantList lineModesVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QVariantList lineModesVariant() const;
     Q_DECL_HIDDEN void setLineModesVariant(const QVariantList &modes);
 
-    Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
-    Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
+    [[nodiscard]] Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
+    [[nodiscard]] Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;
     Q_DECL_HIDDEN void setContext(const AbstractBackend *backend, RequestContext &&context);
     Q_DECL_HIDDEN void purgeLoops(const JourneyRequest &baseRequest);
 
