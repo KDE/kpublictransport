@@ -40,6 +40,7 @@ public:
 
     std::vector<IndividualTransport> accessModes = { {IndividualTransport::Walk} };
     std::vector<IndividualTransport> egressModes = { {IndividualTransport::Walk} };
+    std::vector<IndividualTransport> individualTransportModes = { {IndividualTransport::Walk} };
     std::vector<Line::Mode> lineModes;
 };
 }
@@ -134,6 +135,7 @@ QJsonObject JourneyRequest::toJson(const KPublicTransport::JourneyRequest &req)
     obj.insert("to"_L1, Location::toJson(req.to()));
     obj.insert("accessModes"_L1, IndividualTransport::toJson(req.accessModes()));
     obj.insert("egressModes"_L1, IndividualTransport::toJson(req.egressModes()));
+    obj.insert("individualTransportModes"_L1, IndividualTransport::toJson(req.individualTransportModes()));
     return obj;
 }
 
@@ -230,6 +232,28 @@ void JourneyRequest::setLineModesVariant(const QVariantList &lineModes)
     setLineModes(std::move(l));
 }
 
+const std::vector<IndividualTransport>& JourneyRequest::individualTransportModes() const
+{
+    return d->individualTransportModes;
+}
+
+void JourneyRequest::setIndividualTransportModes(std::vector<IndividualTransport> &&modes)
+{
+    d.detach();
+    d->individualTransportModes = std::move(modes);
+}
+
+QVariantList JourneyRequest::individualTransportModesVariant() const
+{
+    return toVariantList(d->individualTransportModes);
+}
+
+void JourneyRequest::setIndividualTransportModesVariant(const QVariantList &modes)
+{
+    d.detach();
+    d->individualTransportModes = IndividualTransport::fromVariant(modes);
+}
+
 QString JourneyRequest::cacheKey() const
 {
     QCryptographicHash hash(QCryptographicHash::Sha1);
@@ -257,6 +281,12 @@ QString JourneyRequest::cacheKey() const
     hash.addData("MODES");
     for (const auto &mode : d->lineModes) {
         hash.addData(QMetaEnum::fromType<Line::Mode>().valueToKey(mode));
+    }
+
+    hash.addData("IVMODES");
+    for (const auto &it : d->individualTransportModes) {
+        hash.addData(QMetaEnum::fromType<IndividualTransport::Mode>().valueToKey(it.mode()));
+        hash.addData(QMetaEnum::fromType<IndividualTransport::Qualifier>().valueToKey(it.qualifier()));
     }
 
     return QString::fromUtf8(hash.result().toHex());

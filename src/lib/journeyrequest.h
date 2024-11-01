@@ -73,6 +73,10 @@ class KPUBLICTRANSPORT_EXPORT JourneyRequest
     /** Line modes. */
     Q_PROPERTY(QVariantList lineModes READ lineModesVariant WRITE setLineModesVariant)
 
+    /** Individual transport modes for direct connections.
+     *  Only considered when, modes contains JourneySection::IndividualTransport.
+     */
+    Q_PROPERTY(QVariantList individualTransportModes READ individualTransportModesVariant WRITE setIndividualTransportModesVariant)
 public:
     enum DateTimeMode {
         Arrival, ///< dateTime() represents the desired arriva time.
@@ -144,6 +148,13 @@ public:
      */
     void setLineModes(std::vector <Line::Mode> &&modes);
 
+    /** Requested individual transport modes.
+     *  Individual transport modes for direct journeys.
+     */
+    [[nodiscard]] const std::vector<IndividualTransport>& individualTransportModes() const;
+    /** Sets individual transport modes considered for direct journeys. */
+    void setIndividualTransportModes(std::vector<IndividualTransport> &&modes);
+
     /** Unique string representation used for caching results. */
     [[nodiscard]] QString cacheKey() const;
 
@@ -163,6 +174,8 @@ private:
     Q_DECL_HIDDEN void setEgressModesVariant(const QVariantList &egressModesVariant);
     [[nodiscard]] Q_DECL_HIDDEN QVariantList lineModesVariant() const;
     Q_DECL_HIDDEN void setLineModesVariant(const QVariantList &modes);
+    [[nodiscard]] Q_DECL_HIDDEN QVariantList individualTransportModesVariant() const;
+    Q_DECL_HIDDEN void setIndividualTransportModesVariant(const QVariantList &modes);
 
     [[nodiscard]] Q_DECL_HIDDEN RequestContext context(const AbstractBackend *backend) const;
     [[nodiscard]] Q_DECL_HIDDEN const std::vector<RequestContext>& contexts() const;

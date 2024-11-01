@@ -342,6 +342,11 @@ Kirigami.ApplicationWindow {
                 property alias includePaths: includePaths.checked
                 property alias accessMode: accessMode.currentIndex
                 property alias egressMode: egressMode.currentIndex
+                property alias walkMode: walkMode.checked
+                property alias ptMode: ptMode.checked
+                property alias rentalMode: rentalMode.checked
+                property alias bikeMode: bikeMode.checked
+                property alias carMode: carMode.checked
             }
 
             ColumnLayout {
@@ -375,6 +380,11 @@ Kirigami.ApplicationWindow {
 
                 RowLayout {
                     QQC2.CheckBox {
+                        id: walkMode
+                        checked: true
+                        text: "Walk"
+                    }
+                    QQC2.CheckBox {
                         id: ptMode
                         checked: true
                         text: "Public Transport"
@@ -383,6 +393,16 @@ Kirigami.ApplicationWindow {
                         id: rentalMode
                         checked: true
                         text: "Rental Vehicles"
+                    }
+                    QQC2.CheckBox {
+                        id: bikeMode
+                        checked: false
+                        text: "Bike (direct)"
+                    }
+                    QQC2.CheckBox {
+                        id: carMode
+                        checked: false
+                        text: "Car (direct)"
                     }
                 }
                 RowLayout {
@@ -492,13 +512,25 @@ Kirigami.ApplicationWindow {
                             backends: backendBox.checked ? [ backendSelector.currentText ] : [],
                             downloadAssets: true,
                             modes: (ptMode.checked ?  JourneySection.PublicTransport : JourneySection.Invalid)
-                            | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid),
+                            | (rentalMode.checked ? JourneySection.RentedVehicle : JourneySection.Invalid)
+                            | (walkMode.checked ? JourneySection.Walking : JourneySection.Invalid)
+                            | ((bikeMode.checked || carMode.checked) ? JourneySection.IndividualTransport : JourneySection.Invalid),
                             maximumResults: maxResults.text,
                             includeIntermediateStops: intermediateStops.checked,
                             includePaths: includePaths.checked,
                             accessModes: individualTransportModes[accessMode.currentIndex],
                             egressModes: individualTransportModes[egressMode.currentIndex],
                             lineModes: lineModeSelector.currentMode,
+                            individualTransportModes: (() => {
+                                let modes = [];
+                                if (walkMode.checked)
+                                    modes.push({mode: IndividualTransport.Walk})
+                                if (bikeMode.checked)
+                                    modes.push({mode: IndividualTransport.Bike});
+                                if (carMode.checked)
+                                    modes.push({mode: IndividualTransport.Car});
+                                return modes;
+                            })()
                         };
                     }
 

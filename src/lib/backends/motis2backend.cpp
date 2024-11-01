@@ -221,7 +221,19 @@ struct {
     { IndividualTransport::Car, IndividualTransport::Rent, "CAR_RENTAL" },
     { IndividualTransport::Car, IndividualTransport::Park, "CAR_TO_PARK" },
     { IndividualTransport::Car, IndividualTransport::Pickup, "CAR_PICKUP" },
+    { IndividualTransport::Car, IndividualTransport::None, "CAR" },
 };
+
+static void mapIndividualTransportModes(const std::vector<IndividualTransport> &ivModes, QStringList &modes)
+{
+    for (const auto &iv : ivModes) {
+        for (const auto &m :iv_mode_map) {
+            if (m.mode == iv.mode() && m.qualifier == iv.qualifier()) {
+                modes.push_back(QLatin1StringView(m.name));
+            }
+        }
+    }
+}
 
 bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
 {
@@ -233,7 +245,8 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     QStringList modes;
     if (req.modes() & JourneySection::Walking) {
         modes.push_back(u"WALK"_s);
-    } else if (req.modes() & JourneySection::PublicTransport) {
+    }
+    if (req.modes() & JourneySection::PublicTransport) {
         if (req.lineModes().empty()) {
             modes.push_back(u"TRANSIT"_s);
         } else {
@@ -245,32 +258,19 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
                 }
             }
         }
-    } else if (req.modes() & JourneySection::IndividualTransport) {
-        // TODO we actually lack more detailed qualifiers for this?
-        modes.push_back(u"WALK"_s);
-        modes.push_back(u"BIKE"_s);
-        modes.push_back(u"CAR"_s);
-    } else if (req.modes() & JourneySection::RentedVehicle) {
+    }
+    if (req.modes() & JourneySection::IndividualTransport) {
+        mapIndividualTransportModes(req.individualTransportModes(), modes);
+    }
+    if (req.modes() & JourneySection::RentedVehicle) {
         // TODO we actually lack more detailed qualifiers for this?
         modes.push_back(u"BIKE_RENTAL"_s);
         modes.push_back(u"CAR_RENTAL"_s);
         modes.push_back(u"SCOOTER_RENTAL"_s);
     }
     // MOTIS has no distinction between access and egress modes
-    for (const auto &iv : req.accessModes()) {
-        for (const auto &m :iv_mode_map) {
-            if (m.mode == iv.mode() && m.qualifier == iv.qualifier()) {
-                modes.push_back(QLatin1StringView(m.name));
-            }
-        }
-    }
-    for (const auto &iv : req.egressModes()) {
-        for (const auto &m :iv_mode_map) {
-            if (m.mode == iv.mode() && m.qualifier == iv.qualifier()) {
-                modes.push_back(QLatin1StringView(m.name));
-            }
-        }
-    }
+    mapIndividualTransportModes(req.accessModes(), modes);
+    mapIndividualTransportModes(req.egressModes(), modes);
 
     modes.removeDuplicates();
     query.addQueryItem(u"mode"_s, modes.join(','_L1));
