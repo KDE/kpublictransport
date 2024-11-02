@@ -302,6 +302,15 @@ class KPUBLICTRANSPORT_EXPORT Journey
     /** Worst disruption effect of any of the journey sections. */
     Q_PROPERTY(KPublicTransport::Disruption::Effect disruptionEffect READ disruptionEffect STORED false)
 
+    /** Total travelled distance of the entire journey in meter.
+     *  That is, the sum of the distances of all sections.
+     */
+    Q_PROPERTY(int distance READ distance STORED false)
+    /** Total CO2 emissions for the entire journey in gram.
+     *  That is, the sum of the emissions of all sections.
+     */
+    Q_PROPERTY(int co2Emission READ co2Emission STORED false)
+
 public:
     /** The journey sections. */
     [[nodiscard]] const std::vector<JourneySection>& sections() const;
@@ -323,6 +332,9 @@ public:
     [[nodiscard]] int duration() const;
     [[nodiscard]] int numberOfChanges() const;
     [[nodiscard]] Disruption::Effect disruptionEffect() const;
+
+    [[nodiscard]] int distance() const;
+    [[nodiscard]] int co2Emission() const;
 
     /** Augment line meta data.
      *  @param download if set to @p true, trigger the download of locally missing assets.

@@ -319,13 +319,18 @@ int JourneySection::co2Emission() const
         { Line::Bus, 68 },
         { Line::Coach, 68 },
         { Line::Ferry, 245 },
+        // { Line::Funicular, -1 }, TODO
         { Line::LocalTrain, 14 },
         { Line::LongDistanceTrain, 14 },
         { Line::Metro, 11 },
+        { Line::RailShuttle, 11 }, // assuming tram/rapid transit-like
         { Line::RapidTransit, 11 },
+        { Line::Shuttle, 68 },
         { Line::Taxi, 158 },
         { Line::Train, 14 },
         { Line::Tramway, 11 },
+        { Line::RideShare, 158 },
+        // { Line::AerialLift, -1 }, TODO
     };
 
     const auto mode = route().line().mode();
@@ -713,6 +718,16 @@ Disruption::Effect Journey::disruptionEffect() const
         effect = std::max(effect, sec.disruptionEffect());
     }
     return effect;
+}
+
+int Journey::distance() const
+{
+    return std::accumulate(d->sections.begin(), d->sections.end(), 0, [](auto dist, const auto &jny) { return dist + jny.distance(); });
+}
+
+int Journey::co2Emission() const
+{
+    return std::accumulate(d->sections.begin(), d->sections.end(), 0, [](auto co2, const auto &jny) { return co2 + std::max(0, jny.co2Emission()); });
 }
 
 void Journey::applyMetaData(bool download)
