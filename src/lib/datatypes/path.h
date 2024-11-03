@@ -121,6 +121,11 @@ class KPUBLICTRANSPORT_EXPORT Path
     /** The length of this path in meters. */
     Q_PROPERTY(int distance READ distance STORED false)
 
+    /** First point on this path. */
+    Q_PROPERTY(QPointF startPoint READ startPoint STORED false)
+    /** Last point on this path. */
+    Q_PROPERTY(QPointF endPoint READ endPoint STORED false)
+
 public:
     /** Returns @c true if this is an empty/not-set path. */
     [[nodiscard]] bool isEmpty() const;
