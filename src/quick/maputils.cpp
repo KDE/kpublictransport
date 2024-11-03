@@ -14,10 +14,11 @@ using namespace Qt::Literals;
 
 QJSValue MapUtils::polyline(const KPublicTransport::JourneySection &jny) const
 {
-    QJSValue result = m_engine->newArray();
-    int i = 0;
     const auto path = jny.path();
     if (path.isEmpty()) {
+        QJSValue result = m_engine->newArray();
+        int i = 0;
+
         result.setProperty(i++, coordinate(jny.departure().stopPoint().latitude(), jny.departure().stopPoint().longitude()));
         for (const auto &s : jny.intermediateStops()) {
             if (!s.stopPoint().hasCoordinate()) {
@@ -30,14 +31,7 @@ QJSValue MapUtils::polyline(const KPublicTransport::JourneySection &jny) const
         return result;
     }
 
-    for (const auto &section : path.sections()) {
-        const auto path = section.path();
-        for (const auto &p : path) {
-            result.setProperty(i++, coordinate(p.y(), p.x()));
-        }
-    }
-
-    return result;
+    return polyline(path);
 }
 
 QJSValue MapUtils::polyline(const KPublicTransport::PathSection &pathSection) const
@@ -47,6 +41,19 @@ QJSValue MapUtils::polyline(const KPublicTransport::PathSection &pathSection) co
     int i = 0;
     for (const auto &p : path) {
         result.setProperty(i++, coordinate(p.y(), p.x()));
+    }
+    return result;
+}
+
+QJSValue MapUtils::polyline(const KPublicTransport::Path &path) const
+{
+    QJSValue result = m_engine->newArray();
+    int i = 0;
+    for (const auto &section : path.sections()) {
+        const auto path = section.path();
+        for (const auto &p : path) {
+            result.setProperty(i++, coordinate(p.y(), p.x()));
+        }
     }
     return result;
 }
@@ -67,7 +74,6 @@ QRectF MapUtils::boundingBox(const KPublicTransport::Journey &jny)
 
 QRectF MapUtils::boundingBox(const KPublicTransport::JourneySection &jny)
 {
-
     double minLat = std::numeric_limits<double>::max();
     double minLon = std::numeric_limits<double>::max();
     double maxLat = std::numeric_limits<double>::lowest();
@@ -97,6 +103,29 @@ QRectF MapUtils::boundingBox(const KPublicTransport::JourneySection &jny)
     }
 
     return QRectF(QPointF(minLon, minLat), QPointF(maxLon, maxLat));
+}
+
+QRectF MapUtils::boundingBox(const KPublicTransport::Path &path)
+{
+    double minLat = std::numeric_limits<double>::max();
+    double minLon = std::numeric_limits<double>::max();
+    double maxLat = std::numeric_limits<double>::lowest();
+    double maxLon = std::numeric_limits<double>::lowest();
+
+    for (const auto &pathSec : path.sections()) {
+        const auto bbox = pathSec.path().boundingRect();
+        minLat = std::min(minLat, bbox.bottom());
+        minLon = std::min(minLon, bbox.left());
+        maxLat = std::max(maxLat, bbox.top());
+        maxLon = std::max(maxLon, bbox.right());
+    }
+
+    return QRectF(QPointF(minLon, minLat), QPointF(maxLon, maxLat));
+}
+
+QRectF MapUtils::boundingBox(const KPublicTransport::PathSection &pathSection)
+{
+    return pathSection.path().boundingRect();
 }
 
 QJSValue MapUtils::center(const QRectF &bbox) const
