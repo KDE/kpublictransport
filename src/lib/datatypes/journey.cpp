@@ -9,6 +9,7 @@
 #include "json_p.h"
 #include "datatypes_p.h"
 #include "loadutil_p.h"
+#include "logging.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
 #include "platformutils_p.h"
@@ -303,42 +304,97 @@ void JourneySection::setArrival(const Stopover &arrival)
     setArrivalVehicleLayout(arrival.vehicleLayout());
 }
 
+struct {
+    Line::Mode mode;
+    int gramPerKm;
+} static constexpr const emissionForModeMap[] = {
+    { Line::Air, 285 },
+    { Line::Boat, 245 },
+    { Line::Bus, 68 },
+    { Line::Coach, 68 },
+    { Line::Ferry, 245 },
+    // { Line::Funicular, -1 }, TODO
+    { Line::LocalTrain, 14 },
+    { Line::LongDistanceTrain, 14 },
+    { Line::Metro, 11 },
+    { Line::RailShuttle, 11 }, // assuming tram/rapid transit-like
+    { Line::RapidTransit, 11 },
+    { Line::Shuttle, 68 },
+    { Line::Taxi, 158 },
+    { Line::Train, 14 },
+    { Line::Tramway, 11 },
+    { Line::RideShare, 158 },
+    // { Line::AerialLift, -1 }, TODO
+};
+
+struct {
+    IndividualTransport::Mode mode;
+    int gramPerKm;
+} static constexpr const emissionForIvModeMap[] = {
+    { IndividualTransport::Walk, 0 },
+    { IndividualTransport::Bike, 0 },
+    { IndividualTransport::Car, 158 }
+};
+
+struct {
+    RentalVehicle::VehicleType mode;
+    int gramPerKm;
+} static constexpr const emissionForRvModeMap[] = {
+    { RentalVehicle::Bicycle, 0 },
+    // { RentalVehicle::Pedelec, -1 }, TODO
+    // { RentalVehicle::ElectricKickScooter, -1 }, TODO
+    // { RentalVehicle::ElectricMoped, -1 }, TODO
+    { RentalVehicle::Car, 158 },
+};
+
 int JourneySection::co2Emission() const
 {
-    // TODO handle rental vehicles and ride sharing in here!
     if (d->co2Emission >= 0) {
         return d->co2Emission;
     }
 
-    struct {
-        Line::Mode mode;
-        int gramPerKm;
-    } static const emissionForModeMap[] = {
-        { Line::Air, 285 },
-        { Line::Boat, 245 },
-        { Line::Bus, 68 },
-        { Line::Coach, 68 },
-        { Line::Ferry, 245 },
-        // { Line::Funicular, -1 }, TODO
-        { Line::LocalTrain, 14 },
-        { Line::LongDistanceTrain, 14 },
-        { Line::Metro, 11 },
-        { Line::RailShuttle, 11 }, // assuming tram/rapid transit-like
-        { Line::RapidTransit, 11 },
-        { Line::Shuttle, 68 },
-        { Line::Taxi, 158 },
-        { Line::Train, 14 },
-        { Line::Tramway, 11 },
-        { Line::RideShare, 158 },
-        // { Line::AerialLift, -1 }, TODO
-    };
-
-    const auto mode = route().line().mode();
-    for (const auto &map : emissionForModeMap) {
-        if (map.mode == mode) {
-            return (map.gramPerKm * distance()) / 1000;
+    switch (d->mode) {
+        case JourneySection::Invalid:
+            return -1;
+        case JourneySection::Walking:
+        case JourneySection::Transfer:
+        case JourneySection::Waiting:
+            return 0;
+        case JourneySection::PublicTransport:
+        {
+            const auto mode = route().line().mode();
+            for (const auto &map : emissionForModeMap) {
+                if (map.mode == mode) {
+                    return (map.gramPerKm * distance()) / 1000;
+                }
+            }
+            qCDebug(Log) << "No CO2 emission estimate for mode" << mode;
+            return -1;
+        }
+        case JourneySection::IndividualTransport:
+        {
+            const auto mode = individualTransport().mode();
+            for (const auto &map :emissionForIvModeMap) {
+                if (map.mode == mode) {
+                    return (map.gramPerKm *distance()) / 1000;
+                }
+            }
+            qCDebug(Log) << "No CO2 emission estimate for mode" << mode;
+            return -1;
+        }
+        case JourneySection::RentedVehicle:
+        {
+            const auto mode = rentalVehicle().type();
+            for (const auto &map :emissionForRvModeMap) {
+                if (map.mode == mode) {
+                    return (map.gramPerKm *distance()) / 1000;
+                }
+            }
+            qCDebug(Log) << "No CO2 emission estimate for vehicle type" << mode;
+            return -1;
         }
     }
+
     return -1;
 }
 
