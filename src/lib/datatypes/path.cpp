@@ -174,7 +174,7 @@ QPointF Path::startPoint() const
 
 QPointF Path::endPoint() const
 {
-    return isEmpty() ? QPointF() : d->sections.front().endPoint();
+    return isEmpty() ? QPointF() : d->sections.back().endPoint();
 }
 
 QJsonObject Path::toJson(const Path &path)
