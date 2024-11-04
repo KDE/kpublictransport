@@ -1,0 +1,358 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 351,
+                "from": {
+                    "country": "DE",
+                    "floorLevel": 0,
+                    "identifier": {
+                        "motis": ""
+                    },
+                    "latitude": 52.50602341723939,
+                    "longitude": 13.45152382711484,
+                    "name": "",
+                    "region": "DE-BE"
+                },
+                "mode": "Walking",
+                "path": {
+                    "sections": [
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4515238,
+                                        52.5060234
+                                    ],
+                                    [
+                                        13.4515465,
+                                        52.5060658
+                                    ],
+                                    [
+                                        13.4505682,
+                                        52.50626
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4505682,
+                                        52.50626
+                                    ],
+                                    [
+                                        13.4505558,
+                                        52.5062402
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "floorLevelChange": 1,
+                            "maneuver": "Stairs",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4505558,
+                                        52.5062402
+                                    ],
+                                    [
+                                        13.4502459,
+                                        52.5063048
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4502459,
+                                        52.5063048
+                                    ],
+                                    [
+                                        13.4502786,
+                                        52.5063623
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 1
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4502786,
+                                        52.5063623
+                                    ],
+                                    [
+                                        13.4500053,
+                                        52.5064172
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 1
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4500053,
+                                        52.5064172
+                                    ],
+                                    [
+                                        13.4497378,
+                                        52.5064732
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 1
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4497378,
+                                        52.5064732
+                                    ],
+                                    [
+                                        13.4496706,
+                                        52.5064869
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 1
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4496706,
+                                        52.5064869
+                                    ],
+                                    [
+                                        13.4493211,
+                                        52.5059345
+                                    ],
+                                    [
+                                        13.4490574,
+                                        52.505524
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 1
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4490574,
+                                        52.505524
+                                    ],
+                                    [
+                                        13.4490595,
+                                        52.5054327
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 1
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4490595,
+                                        52.5054327
+                                    ],
+                                    [
+                                        13.4490556,
+                                        52.5053814
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4490556,
+                                        52.5053814
+                                    ],
+                                    [
+                                        13.4490396,
+                                        52.5053405
+                                    ],
+                                    [
+                                        13.4489819,
+                                        52.5051938
+                                    ],
+                                    [
+                                        13.4489106,
+                                        52.5050764
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4489106,
+                                        52.5050764
+                                    ],
+                                    [
+                                        13.4488841,
+                                        52.5050839
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4488841,
+                                        52.5050839
+                                    ],
+                                    [
+                                        13.4488169,
+                                        52.505103
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4488169,
+                                        52.505103
+                                    ],
+                                    [
+                                        13.4487749,
+                                        52.505115
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4487749,
+                                        52.505115
+                                    ],
+                                    [
+                                        13.4487582,
+                                        52.5051198
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4487582,
+                                        52.5051198
+                                    ],
+                                    [
+                                        13.448743,
+                                        52.5050976
+                                    ],
+                                    [
+                                        13.4487246,
+                                        52.5050707
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "description": "S+U Warschauer Straße",
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4487246,
+                                        52.5050707
+                                    ],
+                                    [
+                                        13.4487068,
+                                        52.5050758
+                                    ],
+                                    [
+                                        13.4487036,
+                                        52.5050767
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        },
+                        {
+                            "path": {
+                                "coordinates": [
+                                    [
+                                        13.4487036,
+                                        52.5050767
+                                    ],
+                                    [
+                                        13.4486012,
+                                        52.5049443
+                                    ],
+                                    [
+                                        13.4486144,
+                                        52.5049405
+                                    ]
+                                ],
+                                "type": "LineString"
+                            },
+                            "startFloorLevel": 0
+                        }
+                    ]
+                },
+                "scheduledArrivalTime": "2024-11-03T13:12:00Z",
+                "scheduledDepartureTime": "2024-11-03T13:07:00Z",
+                "to": {
+                    "country": "DE",
+                    "floorLevel": 0,
+                    "identifier": {
+                        "motis": ""
+                    },
+                    "latitude": 52.50494050893889,
+                    "longitude": 13.448614380176252,
+                    "name": "",
+                    "region": "DE-BE"
+                }
+            }
+        ]
+    }
+]

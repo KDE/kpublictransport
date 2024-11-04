@@ -112,25 +112,33 @@ private Q_SLOTS:
     {
         QTest::addColumn<QString>("inFileName");
         QTest::addColumn<QString>("outFileName");
+        QTest::addColumn<bool>("canPage");
 
         QTest::newRow("transit")
             << QStringLiteral(SOURCE_DIR "/data/motis2/journey-transit.in.json")
-            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-transit.out.json");
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-transit.out.json")
+            << true;
         QTest::newRow("bike-rental")
             << QStringLiteral(SOURCE_DIR "/data/motis2/journey-bike-rental.in.json")
-            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-bike-rental.out.json");
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-bike-rental.out.json")
+            << true;
+        QTest::newRow("direct-walk")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-direct-walk.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/motis2/journey-direct-walk.out.json")
+            << false;
     }
 
     void testParseJourneys()
     {
         QFETCH(QString, inFileName);
         QFETCH(QString, outFileName);
+        QFETCH(bool, canPage);
 
         Motis2Parser p(u"motis"_s);
         const auto result = p.parseItineraries(Test::readFile(inFileName));
         QVERIFY(!result.empty());
-        QVERIFY(!p.m_nextPageCursor.isEmpty());
-        QVERIFY(!p.m_previousPageCursor.isEmpty());
+        QVERIFY(!canPage ^ !p.m_nextPageCursor.isEmpty());
+        QVERIFY(!canPage ^ !p.m_previousPageCursor.isEmpty());
         const auto resultJson = Journey::toJson(result);
         const auto resultRef = QJsonDocument::fromJson(Test::readFile(outFileName)).array();
         QVERIFY(!resultJson.isEmpty());

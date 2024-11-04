@@ -141,6 +141,14 @@ std::vector<Journey> Motis2Parser::parseItineraries(const QByteArray &data)
     return result;
 }
 
+struct {
+    const char *direction;
+    PathSection::Maneuver maneuver;
+} static constexpr const path_maneuver_map[] = {
+    { "STAIRS", PathSection::Stairs },
+    { "ELEVATOR", PathSection::Elevator },
+};
+
 Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
 {
     const auto legs = itinerary.value("legs"_L1).toArray();
@@ -228,6 +236,13 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
             for (const auto &legGeoV : legGeoArray) {
                 const auto legGeoObj = legGeoV.toObject();
                 PathSection pathSec;
+                const auto relDir = legGeoObj.value("relativeDirection"_L1).toString();
+                for (const auto &m : path_maneuver_map) {
+                    if (QLatin1StringView(m.direction) == relDir) {
+                        pathSec.setManeuver(m.maneuver);
+                        break;
+                    }
+                }
                 pathSec.setStartFloorLevel(legGeoObj.value("fromLevel"_L1).toInt(std::numeric_limits<int>::lowest()));
                 if (pathSec.hasStartFloorLevel()) {
                     pathSec.setFloorLevelChange(legGeoObj.value("toLevel"_L1).toInt() - pathSec.startFloorLevel());
@@ -236,7 +251,7 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
                 if (const auto streetName = legGeoObj.value("streetName"_L1).toString(); !streetName.isEmpty()) {
                     pathSec.setDescription(streetName);
                 }
-                if (!pathSec.path().isEmpty()) {
+                if (!pathSec.path().isEmpty() || pathSec.maneuver() != PathSection::Move) {
                     pathSections.push_back(std::move(pathSec));
                 }
             }
