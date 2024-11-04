@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-12 00:38+0000\n"
+"POT-Creation-Date: 2024-11-04 00:39+0000\n"
 "PO-Revision-Date: 2024-08-13 18:13+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -103,7 +103,7 @@ msgstr "Elektrizitate harguneak"
 msgid "%1 (not available)"
 msgstr "%1 (ez dago eskuragarri)"
 
-#: quick/FeatureIcon.qml:62
+#: quick/FeatureIcon.qml:60
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
