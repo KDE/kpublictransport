@@ -42,7 +42,7 @@ Kirigami.Icon {
                     return "emblem-important";
                 case KPublicTransport.Feature.Available:
                 default:
-                    break;
+                    return "";
             }
         }
     }
