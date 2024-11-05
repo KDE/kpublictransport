@@ -237,8 +237,13 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
             continue;
         }
         if (prop.isEnumType() && it.value().isString()) { // internal enums in this QMO
-            const auto key = prop.enumerator().keyToValue(it.value().toString().toUtf8().constData());
-            prop.writeOnGadget(elem, key);
+            bool ok = false;
+            const auto key = prop.enumerator().keyToValue(it.value().toString().toUtf8().constData(), &ok);
+            if (ok) {
+                prop.writeOnGadget(elem, key);
+            } else {
+                qCWarning(Log) << "Got invalid enum key:" << it.value().toString() << "for" << prop.typeName();
+            }
             continue;
         }
         if ((QMetaType(prop.userType()).flags() & QMetaType::IsEnumeration) && it.value().isString()) { // external enums
