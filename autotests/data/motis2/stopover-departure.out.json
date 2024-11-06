@@ -2,14 +2,14 @@
     {
         "disruptionEffect": "NormalService",
         "route": {
-            "direction": "München Hbf",
+            "direction": "Nürnberg Hbf",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 1205",
+                "name": "ICE 1021",
                 "operatorName": "DB Fernverkehr AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-18T11:11:00Z",
+        "scheduledDepartureTime": "2024-10-24T13:55:00Z",
         "stopPoint": {
             "country": "DE",
             "floorLevel": 0,
@@ -18,6 +18,184 @@
             },
             "latitude": 53.55281,
             "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Frankfurt (Main) Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 2417",
+                "operatorName": "DB Fernverkehr AG"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T16:29:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "München Hbf",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 699",
+                "operatorName": "DB Fernverkehr AG"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T16:35:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:3:255305"
+            },
+            "latitude": 53.55281,
+            "longitude": 9.934827999999998,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Innsbruck Hauptbahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "D3",
+                "operatorName": "OEBB Personenverkehr AG Kundenservice"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T17:56:00Z",
+        "scheduledPlatform": "9",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "at-Railway-Current-Reference-Data_de:02000:80953:3:9"
+            },
+            "latitude": 53.553073999999995,
+            "longitude": 9.935232000000001,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Wien Hauptbahnhof",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "D3",
+                "operatorName": "OEBB Personenverkehr AG Kundenservice"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T17:56:00Z",
+        "scheduledPlatform": "9",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "at-Railway-Current-Reference-Data_de:02000:80953:3:9"
+            },
+            "latitude": 53.553073999999995,
+            "longitude": 9.935232000000001,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "91 491",
+                "operatorName": "Österreichische Bundesbahnen"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T17:56:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:5:255309"
+            },
+            "latitude": 53.55286399999999,
+            "longitude": 9.93534,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Wien Hauptbahnhof",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "91N 491",
+                "operatorName": "Österreichische Bundesbahnen"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T17:56:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:5:255309"
+            },
+            "latitude": 53.55286399999999,
+            "longitude": 9.93534,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "91 40491",
+                "operatorName": "Österreichische Bundesbahnen"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T17:56:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:5:255309"
+            },
+            "latitude": 53.55286399999999,
+            "longitude": 9.93534,
+            "name": "Hamburg-Altona"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "91N 40491",
+                "operatorName": "Österreichische Bundesbahnen"
+            }
+        },
+        "scheduledDepartureTime": "2024-10-24T17:56:00Z",
+        "stopPoint": {
+            "country": "DE",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "de-DELFI_de:02000:8002553:5:255309"
+            },
+            "latitude": 53.55286399999999,
+            "longitude": 9.93534,
             "name": "Hamburg-Altona"
         }
     },
@@ -27,11 +205,11 @@
             "direction": "Köln Hbf",
             "line": {
                 "mode": "LongDistanceTrain",
-                "name": "ICE 735",
+                "name": "ICE 2419",
                 "operatorName": "DB Fernverkehr AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-18T11:18:00Z",
+        "scheduledDepartureTime": "2024-10-24T18:29:00Z",
         "stopPoint": {
             "country": "DE",
             "floorLevel": 0,
@@ -40,182 +218,6 @@
             },
             "latitude": 53.55281,
             "longitude": 9.934827999999998,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "Elmshorn",
-            "line": {
-                "mode": "LocalTrain",
-                "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T11:21:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:4:255307"
-            },
-            "latitude": 53.552783999999996,
-            "longitude": 9.935080000000001,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "Westerland(Sylt) ZOB/Bahnhof",
-            "line": {
-                "mode": "LocalTrain",
-                "name": "RE6",
-                "operatorName": "DB Regio AG Nord"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T11:36:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:3:255305"
-            },
-            "latitude": 53.55281,
-            "longitude": 9.934827999999998,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "München Hbf",
-            "line": {
-                "mode": "LongDistanceTrain",
-                "name": "ICE 603",
-                "operatorName": "DB Fernverkehr AG"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T11:38:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:3:255305"
-            },
-            "latitude": 53.55281,
-            "longitude": 9.934827999999998,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "Wrist",
-            "line": {
-                "mode": "LocalTrain",
-                "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T11:55:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:3:255306"
-            },
-            "latitude": 53.552773,
-            "longitude": 9.934899999999999,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "München Hbf",
-            "line": {
-                "mode": "LongDistanceTrain",
-                "name": "ICE 801",
-                "operatorName": "DB Fernverkehr AG"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T12:22:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:3:255305"
-            },
-            "latitude": 53.55281,
-            "longitude": 9.934827999999998,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "Westerland(Sylt) ZOB/Bahnhof",
-            "line": {
-                "mode": "LocalTrain",
-                "name": "RE6",
-                "operatorName": "DB Regio AG Nord"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T12:36:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:3:255305"
-            },
-            "latitude": 53.55281,
-            "longitude": 9.934827999999998,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "Wrist",
-            "line": {
-                "mode": "LocalTrain",
-                "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T12:55:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:4:255307"
-            },
-            "latitude": 53.552783999999996,
-            "longitude": 9.935080000000001,
-            "name": "Hamburg-Altona"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "route": {
-            "direction": "Itzehoe",
-            "line": {
-                "mode": "LocalTrain",
-                "name": "RB71",
-                "operatorName": "Nordbahn Eisenbahngesellschaft"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-18T12:55:00Z",
-        "stopPoint": {
-            "country": "DE",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "de-DELFI_de:02000:8002553:4:255307"
-            },
-            "latitude": 53.552783999999996,
-            "longitude": 9.935080000000001,
             "name": "Hamburg-Altona"
         }
     }

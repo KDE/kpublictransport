@@ -102,12 +102,12 @@ Stopover Motis2Parser::parsePlace(const QJsonObject &obj, bool hasRealTime) cons
     Stopover s;
     s.setStopPoint(l);
     s.setScheduledPlatform(obj.value("scheduledTrack"_L1).toString());
-    s.setScheduledDepartureTime(parseTime(obj.value("departure"_L1)));
-    s.setScheduledArrivalTime(parseTime(obj.value("arrival"_L1)));
+    s.setScheduledDepartureTime(parseTime(obj.value("scheduledDeparture"_L1)));
+    s.setScheduledArrivalTime(parseTime(obj.value("scheduledArrival"_L1)));
     if (hasRealTime) {
         s.setExpectedPlatform(obj.value("track"_L1).toString());
-        s.setExpectedDepartureTime(s.scheduledDepartureTime().addMSecs(obj.value("departureDelay"_L1).toInteger()));
-        s.setExpectedArrivalTime(s.scheduledArrivalTime().addMSecs(obj.value("arrivalDelay"_L1).toInteger()));
+        s.setExpectedDepartureTime(parseTime(obj.value("departure"_L1)));
+        s.setExpectedArrivalTime(parseTime(obj.value("arrival"_L1)));
     }
 
     return s;
@@ -176,11 +176,11 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
         s.setArrival(to);
         s.setDistance(leg.value("distance"_L1).toInt());
 
-        s.setScheduledDepartureTime(parseTime(leg.value("startTime"_L1)));
-        s.setScheduledArrivalTime(parseTime(leg.value("endTime"_L1)));
+        s.setScheduledDepartureTime(parseTime(leg.value("scheduledStartTime"_L1)));
+        s.setScheduledArrivalTime(parseTime(leg.value("scheduledEndTime"_L1)));
         if (hasRealTime) {
-            s.setExpectedDepartureTime(s.scheduledDepartureTime().addMSecs(leg.value("departureDelay"_L1).toInteger()));
-            s.setExpectedArrivalTime(s.scheduledArrivalTime().addMSecs(leg.value("arrivalDelay"_L1).toInteger()));
+            s.setExpectedDepartureTime(parseTime(leg.value("startTime"_L1)));
+            s.setExpectedArrivalTime(parseTime(leg.value("endTime"_L1)));
         }
 
         if (s.mode() == JourneySection::PublicTransport) {

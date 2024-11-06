@@ -2,62 +2,14 @@
     {
         "disruptionEffect": "NormalService",
         "route": {
-            "direction": "Saas-Fee, Busterminal",
-            "line": {
-                "mode": "Bus",
-                "name": "Bus 511",
-                "operatorName": "PostAuto AG"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-20T14:45:00Z",
-        "stopPoint": {
-            "country": "CH",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "ch-opentransportdataswiss_8501753:0:A"
-            },
-            "latitude": 46.319064999999995,
-            "longitude": 7.9878373,
-            "name": "Brig, Bahnhof",
-            "region": "CH-VS"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2024-10-20T14:46:00Z",
-        "route": {
-            "direction": "Brig, Biela",
-            "line": {
-                "mode": "Bus",
-                "name": "Bus 3",
-                "operatorName": "PostAuto AG"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-20T14:46:00Z",
-        "stopPoint": {
-            "country": "CH",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "ch-opentransportdataswiss_8501753:0:A"
-            },
-            "latitude": 46.319064999999995,
-            "longitude": 7.9878373,
-            "name": "Brig, Bahnhof",
-            "region": "CH-VS"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2024-10-20T14:47:00Z",
-        "route": {
-            "direction": "Bitsch, Bahnhof",
+            "direction": "Brig, Bahnhof",
             "line": {
                 "mode": "Bus",
                 "name": "Bus 1",
                 "operatorName": "PostAuto AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-20T14:47:00Z",
+        "scheduledArrivalTime": "2024-11-06T15:54:00Z",
         "stopPoint": {
             "country": "CH",
             "floorLevel": 0,
@@ -72,64 +24,15 @@
     },
     {
         "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2024-10-20T14:48:00Z",
         "route": {
-            "direction": "Blatten b. Naters,Luftseilbahn",
-            "line": {
-                "mode": "Bus",
-                "name": "Bus 624",
-                "operatorName": "PostAuto AG"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-20T14:48:00Z",
-        "stopPoint": {
-            "country": "CH",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "ch-opentransportdataswiss_8501753:0:A"
-            },
-            "latitude": 46.319064999999995,
-            "longitude": 7.9878373,
-            "name": "Brig, Bahnhof",
-            "region": "CH-VS"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2024-10-20T14:48:00Z",
-        "route": {
-            "direction": "Glis, Holowistutz",
-            "line": {
-                "mode": "Bus",
-                "name": "Bus 4",
-                "operatorName": "PostAuto AG"
-            }
-        },
-        "scheduledDepartureTime": "2024-10-20T14:48:00Z",
-        "stopPoint": {
-            "country": "CH",
-            "floorLevel": 0,
-            "identifier": {
-                "motis": "ch-opentransportdataswiss_8501753:0:A"
-            },
-            "latitude": 46.319064999999995,
-            "longitude": 7.9878373,
-            "name": "Brig, Bahnhof",
-            "region": "CH-VS"
-        }
-    },
-    {
-        "disruptionEffect": "NormalService",
-        "expectedDepartureTime": "2024-10-20T15:00:00Z",
-        "route": {
-            "direction": "Glis, Holzji",
+            "direction": "Brig, Bahnhof",
             "line": {
                 "mode": "Bus",
                 "name": "Bus 2",
                 "operatorName": "PostAuto AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-20T15:00:00Z",
+        "scheduledArrivalTime": "2024-11-06T15:57:00Z",
         "stopPoint": {
             "country": "CH",
             "floorLevel": 0,
@@ -144,8 +47,75 @@
     },
     {
         "disruptionEffect": "NormalService",
-        "expectedArrivalTime": "2024-10-20T15:09:00Z",
-        "expectedDepartureTime": "2024-10-20T15:09:00Z",
+        "route": {
+            "direction": "Brig, Bahnhof",
+            "line": {
+                "mode": "Bus",
+                "name": "Bus 624",
+                "operatorName": "PostAuto AG"
+            }
+        },
+        "scheduledArrivalTime": "2024-11-06T16:07:00Z",
+        "stopPoint": {
+            "country": "CH",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "ch-opentransportdataswiss_8501753:0:A"
+            },
+            "latitude": 46.319064999999995,
+            "longitude": 7.9878373,
+            "name": "Brig, Bahnhof",
+            "region": "CH-VS"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Brig, Bahnhof",
+            "line": {
+                "mode": "Bus",
+                "name": "Bus 511",
+                "operatorName": "PostAuto AG"
+            }
+        },
+        "scheduledArrivalTime": "2024-11-06T16:09:00Z",
+        "stopPoint": {
+            "country": "CH",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "ch-opentransportdataswiss_8501753:0:A"
+            },
+            "latitude": 46.319064999999995,
+            "longitude": 7.9878373,
+            "name": "Brig, Bahnhof",
+            "region": "CH-VS"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "direction": "Brig, Bahnhof",
+            "line": {
+                "mode": "Bus",
+                "name": "Bus 1",
+                "operatorName": "PostAuto AG"
+            }
+        },
+        "scheduledArrivalTime": "2024-11-06T16:09:00Z",
+        "stopPoint": {
+            "country": "CH",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "ch-opentransportdataswiss_8501753:0:A"
+            },
+            "latitude": 46.319064999999995,
+            "longitude": 7.9878373,
+            "name": "Brig, Bahnhof",
+            "region": "CH-VS"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
         "route": {
             "direction": "Brig, Bahnhof",
             "line": {
@@ -154,8 +124,8 @@
                 "operatorName": "PostAuto AG"
             }
         },
-        "scheduledArrivalTime": "2024-10-20T15:09:00Z",
-        "scheduledDepartureTime": "2024-10-20T15:09:00Z",
+        "scheduledArrivalTime": "2024-11-06T16:09:00Z",
+        "scheduledDepartureTime": "2024-11-06T16:09:00Z",
         "stopPoint": {
             "country": "CH",
             "floorLevel": 0,
@@ -171,14 +141,14 @@
     {
         "disruptionEffect": "NormalService",
         "route": {
-            "direction": "Saas-Fee, Busterminal",
+            "direction": "Brig, Bahnhof",
             "line": {
                 "mode": "Bus",
-                "name": "Bus 511",
+                "name": "Bus 632",
                 "operatorName": "PostAuto AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-20T15:15:00Z",
+        "scheduledArrivalTime": "2024-11-06T16:10:00Z",
         "stopPoint": {
             "country": "CH",
             "floorLevel": 0,
@@ -194,14 +164,14 @@
     {
         "disruptionEffect": "NormalService",
         "route": {
-            "direction": "Brig, Biela",
+            "direction": "Brig, Bahnhof",
             "line": {
                 "mode": "Bus",
                 "name": "Bus 3",
                 "operatorName": "PostAuto AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-20T15:16:00Z",
+        "scheduledArrivalTime": "2024-11-06T16:11:00Z",
         "stopPoint": {
             "country": "CH",
             "floorLevel": 0,
@@ -217,14 +187,38 @@
     {
         "disruptionEffect": "NormalService",
         "route": {
-            "direction": "Bitsch, Bahnhof",
+            "direction": "Brig, Bahnhof",
             "line": {
                 "mode": "Bus",
-                "name": "Bus 1",
+                "name": "Bus 4",
                 "operatorName": "PostAuto AG"
             }
         },
-        "scheduledDepartureTime": "2024-10-20T15:17:00Z",
+        "scheduledArrivalTime": "2024-11-06T16:16:00Z",
+        "stopPoint": {
+            "country": "CH",
+            "floorLevel": 0,
+            "identifier": {
+                "motis": "ch-opentransportdataswiss_8501753:0:A"
+            },
+            "latitude": 46.319064999999995,
+            "longitude": 7.9878373,
+            "name": "Brig, Bahnhof",
+            "region": "CH-VS"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedArrivalTime": "2024-11-06T16:21:00Z",
+        "route": {
+            "direction": "Brig, Bahnhof",
+            "line": {
+                "mode": "Bus",
+                "name": "Bus 621",
+                "operatorName": "PostAuto AG"
+            }
+        },
+        "scheduledArrivalTime": "2024-11-06T16:00:00Z",
         "stopPoint": {
             "country": "CH",
             "floorLevel": 0,

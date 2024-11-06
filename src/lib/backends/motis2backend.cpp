@@ -242,18 +242,18 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     query.addQueryItem(u"toPlace"_s, encodeLocation(req.to(), m_locationIdentifierType));
     query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
 
-    QStringList modes;
+    QStringList transitModes, directModes;
     if (req.modes() & JourneySection::Walking) {
-        modes.push_back(u"WALK"_s);
+        directModes.push_back(u"WALK"_s);
     }
     if (req.modes() & JourneySection::PublicTransport) {
         if (req.lineModes().empty()) {
-            modes.push_back(u"TRANSIT"_s);
+            transitModes.push_back(u"TRANSIT"_s);
         } else {
             for (auto mode : req.lineModes()) {
-                for (const auto &m :transit_mode_map) {
+                for (const auto &m : transit_mode_map) {
                     if (mode == m.mode) {
-                        modes.push_back(QLatin1StringView(m.name));
+                        transitModes.push_back(QLatin1StringView(m.name));
                     }
                 }
             }
@@ -263,20 +263,37 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
         }
     }
     if (req.modes() & JourneySection::IndividualTransport) {
-        mapIndividualTransportModes(req.individualTransportModes(), modes);
+        mapIndividualTransportModes(req.individualTransportModes(), directModes);
     }
     if (req.modes() & JourneySection::RentedVehicle) {
         // TODO we actually lack more detailed qualifiers for this?
-        modes.push_back(u"BIKE_RENTAL"_s);
-        modes.push_back(u"CAR_RENTAL"_s);
-        modes.push_back(u"SCOOTER_RENTAL"_s);
+        directModes.push_back(u"BIKE_RENTAL"_s);
+        directModes.push_back(u"CAR_RENTAL"_s);
+        directModes.push_back(u"SCOOTER_RENTAL"_s);
     }
-    // MOTIS has no distinction between access and egress modes
-    mapIndividualTransportModes(req.accessModes(), modes);
-    mapIndividualTransportModes(req.egressModes(), modes);
 
-    modes.removeDuplicates();
-    query.addQueryItem(u"mode"_s, modes.join(','_L1));
+    transitModes.removeDuplicates();
+    query.addQueryItem(u"transitModes"_s, transitModes.join(','_L1));
+
+    directModes.removeDuplicates();
+    if (!directModes.empty()) {
+        query.addQueryItem(u"directModes"_s, directModes.join(','_L1));
+    }
+
+    {
+        QStringList accessModes;
+        mapIndividualTransportModes(req.accessModes(), accessModes);
+        if (!accessModes.empty()) {
+            query.addQueryItem(u"preTransitModes"_s, accessModes.join(','_L1));
+        }
+    }
+    {
+        QStringList egressModes;
+        mapIndividualTransportModes(req.egressModes(), egressModes);
+        if (!egressModes.empty()) {
+            query.addQueryItem(u"postTransitModes"_s, egressModes.join(','_L1));
+        }
+    }
 
     query.addQueryItem(u"numItineraries"_s, QString::number(req.maximumResults()));
     if (const auto pageCursor = requestContextData(req).toString(); !pageCursor.isEmpty()) {
