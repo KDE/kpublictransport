@@ -11,6 +11,7 @@
 #include <QQmlExtensionPlugin>
 
 #include <KPublicTransport/Attribution>
+#include <KPublicTransport/Backend>
 #include <KPublicTransport/BackendModel>
 #include <KPublicTransport/CoverageArea>
 #include <KPublicTransport/Equipment>
@@ -46,46 +47,18 @@ namespace Class ## DerivedForeign \
     QML_FOREIGN_NAMESPACE(Class ## Derived) \
 } \
 
-struct ManagerForeign {
-    Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::Manager)
-    QML_NAMED_ELEMENT(Manager)
-};
-
-struct StopoverQueryModelForeign {
-    Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::StopoverQueryModel)
-    QML_NAMED_ELEMENT(StopoverQueryModel)
-};
-
-struct JourneyQueryModelForeign {
-    Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::JourneyQueryModel)
-    QML_NAMED_ELEMENT(JourneyQueryModel)
-};
-
-struct LocationHistoryModelForeign {
-    Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::LocationHistoryModel)
-    QML_NAMED_ELEMENT(LocationHistoryModel)
-};
-
-struct LocationQueryModelForeign {
-    Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::LocationQueryModel)
-    QML_NAMED_ELEMENT(LocationQueryModel)
-};
 
 struct AttributionForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Attribution)
     QML_VALUE_TYPE(attribution)
     QML_UNCREATABLE("only provided from C++ API")
+};
+
+struct BackendForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Backend)
+    QML_VALUE_TYPE(backend)
 };
 
 struct BackendModelForeign {
@@ -95,19 +68,12 @@ struct BackendModelForeign {
     QML_NAMED_ELEMENT(BackendModel)
 };
 
-struct VehicleLayoutQueryModelForeign {
+struct CoverageArea {
     Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::VehicleLayoutQueryModel)
-    QML_NAMED_ELEMENT(VehicleLayoutQueryModel)
+    QML_FOREIGN(KPublicTransport::CoverageArea)
+    QML_VALUE_TYPE(coverageArea)
 };
-
-struct PathModelForeign {
-    Q_GADGET
-    QML_ELEMENT
-    QML_FOREIGN(KPublicTransport::PathModel)
-    QML_NAMED_ELEMENT(PathModel)
-};
+FOREIGN_ENUM_GADGET(CoverageArea)
 
 namespace DisruptionForeign
 {
@@ -116,139 +82,12 @@ QML_NAMED_ELEMENT(Disruption)
 QML_FOREIGN_NAMESPACE(KPublicTransport::Disruption)
 };
 
-namespace LoadForeign
-{
-Q_NAMESPACE
-QML_NAMED_ELEMENT(Load)
-QML_FOREIGN_NAMESPACE(KPublicTransport::Load)
-};
-
-struct CoverageArea {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::CoverageArea)
-    QML_VALUE_TYPE(coverageArea)
-};
-
 struct EquipmentForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Equipment)
     QML_VALUE_TYPE(equipment)
 };
-
-struct LocationForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Location)
-    QML_VALUE_TYPE(location)
-    QML_STRUCTURED_VALUE
-};
-
-struct IndividualTransportForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::IndividualTransport)
-    QML_VALUE_TYPE(individualTransport)
-};
-
-struct JourneyRequestForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::JourneyRequest)
-    QML_VALUE_TYPE(journeyRequest)
-    QML_STRUCTURED_VALUE
-};
-
-struct JourneySectionForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::JourneySection)
-    QML_VALUE_TYPE(journeySection)
-};
-
-struct LineForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Line)
-    QML_VALUE_TYPE(line)
-};
-struct LineMode
-{
-    Q_GADGET
-    QML_ANONYMOUS
-public:
-    Q_INVOKABLE [[nodiscard]] static QString iconName(KPublicTransport::Line::Mode mode)
-    {
-        return KPublicTransport::Line::modeIconName(mode);
-    }
-};
-
-struct LocationRequestForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::LocationRequest)
-    QML_VALUE_TYPE(locationRequest)
-    QML_STRUCTURED_VALUE
-};
-
-struct PathSectionForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::PathSection)
-    QML_VALUE_TYPE(pathSection)
-};
-
-struct PlatformForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Platform)
-    QML_VALUE_TYPE(platform)
-};
-
-struct RentalVehicleForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::RentalVehicle)
-    QML_VALUE_TYPE(rentalVehicle)
-};
-
-struct StopoverRequestForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::StopoverRequest)
-    QML_VALUE_TYPE(stopoverRequest)
-    QML_STRUCTURED_VALUE
-};
-
-struct VehicleForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Vehicle)
-    QML_VALUE_TYPE(vehicle)
-    QML_UNCREATABLE("only provided from C++ API")
-};
-FOREIGN_ENUM_GADGET(Vehicle)
-
-struct VehicleLayoutRequestForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::VehicleLayoutRequest)
-    QML_VALUE_TYPE(vehicleLayoutRequest)
-    QML_STRUCTURED_VALUE
-};
-
-struct VehicleSectionForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::VehicleSection)
-    QML_VALUE_TYPE(vehicleSection)
-    QML_UNCREATABLE("only provided from C++ API")
-};
-FOREIGN_ENUM_GADGET(VehicleSection)
-
-struct RouteForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Route)
-    QML_VALUE_TYPE(route)
-};
-
-struct StopoverForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Stopover)
-    QML_VALUE_TYPE(stopover)
-};
-
-struct JourneyForeign {
-    Q_GADGET
-    QML_FOREIGN(KPublicTransport::Journey)
-    QML_VALUE_TYPE(journey)
-};
+FOREIGN_ENUM_GADGET(Equipment)
 
 struct FeatureForeign {
     Q_GADGET
@@ -268,6 +107,195 @@ public:
         return KPublicTransport::Feature::typeIconName(type);
     }
 };
+
+struct IndividualTransportForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::IndividualTransport)
+    QML_VALUE_TYPE(individualTransport)
+};
+FOREIGN_ENUM_GADGET(IndividualTransport)
+
+struct JourneyForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Journey)
+    QML_VALUE_TYPE(journey)
+};
+
+struct JourneyRequestForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::JourneyRequest)
+    QML_VALUE_TYPE(journeyRequest)
+    QML_STRUCTURED_VALUE
+};
+FOREIGN_ENUM_GADGET(JourneyRequest)
+
+struct JourneyQueryModelForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::JourneyQueryModel)
+    QML_NAMED_ELEMENT(JourneyQueryModel)
+};
+
+struct JourneySectionForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::JourneySection)
+    QML_VALUE_TYPE(journeySection)
+};
+FOREIGN_ENUM_GADGET(JourneySection)
+
+struct LineForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Line)
+    QML_VALUE_TYPE(line)
+};
+FOREIGN_ENUM_GADGET(Line)
+struct LineMode
+{
+    Q_GADGET
+    QML_ANONYMOUS
+public:
+    Q_INVOKABLE [[nodiscard]] static QString iconName(KPublicTransport::Line::Mode mode)
+    {
+        return KPublicTransport::Line::modeIconName(mode);
+    }
+};
+
+namespace LoadForeign
+{
+Q_NAMESPACE
+QML_NAMED_ELEMENT(Load)
+QML_FOREIGN_NAMESPACE(KPublicTransport::Load)
+};
+
+struct LocationForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Location)
+    QML_VALUE_TYPE(location)
+    QML_STRUCTURED_VALUE
+};
+FOREIGN_ENUM_GADGET(Location)
+
+struct LocationHistoryModelForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::LocationHistoryModel)
+    QML_NAMED_ELEMENT(LocationHistoryModel)
+};
+
+struct LocationRequestForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::LocationRequest)
+    QML_VALUE_TYPE(locationRequest)
+    QML_STRUCTURED_VALUE
+};
+FOREIGN_ENUM_GADGET(LocationRequest)
+
+struct LocationQueryModelForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::LocationQueryModel)
+    QML_NAMED_ELEMENT(LocationQueryModel)
+};
+
+struct ManagerForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::Manager)
+    QML_NAMED_ELEMENT(Manager)
+};
+
+struct PathForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Path)
+    QML_VALUE_TYPE(path)
+};
+
+struct PathModelForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::PathModel)
+    QML_NAMED_ELEMENT(PathModel)
+};
+
+struct PathSectionForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::PathSection)
+    QML_VALUE_TYPE(pathSection)
+};
+FOREIGN_ENUM_GADGET(PathSection)
+
+struct PlatformForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Platform)
+    QML_VALUE_TYPE(platform)
+};
+FOREIGN_ENUM_GADGET(Platform)
+
+struct RentalVehicleForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::RentalVehicle)
+    QML_VALUE_TYPE(rentalVehicle)
+};
+FOREIGN_ENUM_GADGET(RentalVehicle)
+
+struct RouteForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Route)
+    QML_VALUE_TYPE(route)
+};
+
+struct StopoverForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Stopover)
+    QML_VALUE_TYPE(stopover)
+};
+
+struct StopoverRequestForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::StopoverRequest)
+    QML_VALUE_TYPE(stopoverRequest)
+    QML_STRUCTURED_VALUE
+};
+FOREIGN_ENUM_GADGET(StopoverRequest)
+
+struct StopoverQueryModelForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::StopoverQueryModel)
+    QML_NAMED_ELEMENT(StopoverQueryModel)
+};
+
+struct VehicleForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Vehicle)
+    QML_VALUE_TYPE(vehicle)
+    QML_UNCREATABLE("only provided from C++ API")
+};
+FOREIGN_ENUM_GADGET(Vehicle)
+
+struct VehicleLayoutRequestForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::VehicleLayoutRequest)
+    QML_VALUE_TYPE(vehicleLayoutRequest)
+    QML_STRUCTURED_VALUE
+};
+FOREIGN_ENUM_GADGET(VehicleLayoutRequest)
+
+struct VehicleLayoutQueryModelForeign {
+    Q_GADGET
+    QML_ELEMENT
+    QML_FOREIGN(KPublicTransport::VehicleLayoutQueryModel)
+    QML_NAMED_ELEMENT(VehicleLayoutQueryModel)
+};
+
+struct VehicleSectionForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::VehicleSection)
+    QML_VALUE_TYPE(vehicleSection)
+    QML_UNCREATABLE("only provided from C++ API")
+};
+FOREIGN_ENUM_GADGET(VehicleSection)
+
 
 class KPublicTransportQmlPlugin : public QQmlExtensionPlugin
 {

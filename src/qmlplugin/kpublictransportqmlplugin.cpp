@@ -12,37 +12,6 @@
 
 void KPublicTransportQmlPlugin::registerTypes(const char*)
 {
-    qRegisterMetaType<KPublicTransport::CoverageArea>();
-    qRegisterMetaType<KPublicTransport::CoverageArea::Type>();
-    qRegisterMetaType<KPublicTransport::Equipment>();
-    qRegisterMetaType<KPublicTransport::Journey>();
-    qRegisterMetaType<KPublicTransport::Line>();
-    qRegisterMetaType<KPublicTransport::Line::Mode>();
-    qRegisterMetaType<KPublicTransport::LoadInfo>();
-    qRegisterMetaType<KPublicTransport::Location>();
-    qRegisterMetaType<KPublicTransport::Platform>();
-    qRegisterMetaType<KPublicTransport::RentalVehicle>();
-    qRegisterMetaType<KPublicTransport::RentalVehicleStation>();
-    qRegisterMetaType<KPublicTransport::Stopover>();
-    qRegisterMetaType<KPublicTransport::IndividualTransport>();
-
-#define REGISTER_METAOBJECT(Type) \
-    qmlRegisterUncreatableMetaObject(KPublicTransport::Type::staticMetaObject, "org.kde.kpublictransport", 1, 0, #Type, {});
-
-    REGISTER_METAOBJECT(CoverageArea)
-    REGISTER_METAOBJECT(Equipment)
-    REGISTER_METAOBJECT(IndividualTransport)
-    REGISTER_METAOBJECT(JourneyRequest)
-    REGISTER_METAOBJECT(JourneySection)
-    REGISTER_METAOBJECT(Line)
-    REGISTER_METAOBJECT(Location)
-    REGISTER_METAOBJECT(LocationRequest)
-    REGISTER_METAOBJECT(PathSection)
-    REGISTER_METAOBJECT(Platform)
-    REGISTER_METAOBJECT(RentalVehicle)
-    REGISTER_METAOBJECT(StopoverRequest)
-    REGISTER_METAOBJECT(VehicleLayoutRequest)
-
     qmlRegisterSingletonType("org.kde.kpublictransport", 1, 0, "LineMetaData", [](QQmlEngine*, QJSEngine *engine) -> QJSValue {
         return engine->toScriptValue(KPublicTransport::LineMetaDataWrapper());
     });
