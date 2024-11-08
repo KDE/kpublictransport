@@ -200,7 +200,7 @@ void JourneyReplyPrivate::postProcessJourneys(std::vector<Journey> &journeys)
                 auto pathSecs = path.takeSections();
                 for (auto &pathSec : pathSecs) {
                     QPolygonF p = pathSec.path();
-                    PathFilter::removeSpikes(p, 90.0);
+                    PathFilter::removeSpikes(p, 55.0);
                     pathSec.setPath(p);
                 }
                 path.setSections(std::move(pathSecs));
