@@ -138,13 +138,13 @@ private Q_SLOTS:
             QVERIFY(idx.data(BackendModel::BackendEnabledRole).toBool());
         }
 
-        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_navitia")), true);
-        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_transitous")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("de_db")), true);
         bool navitiaToggled = false;
         bool sncfToggled = false;
         for (auto i = 0; i < model.rowCount(); ++i) {
             const auto idx = model.index(i, 0);
-            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("un_navitia") && !navitiaToggled) {
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("un_transitous") && !navitiaToggled) {
                 model.setData(idx, Qt::Unchecked, Qt::CheckStateRole);
                 model.setData(idx, true, BackendModel::BackendEnabledRole);
                 navitiaToggled = true;
@@ -152,7 +152,7 @@ private Q_SLOTS:
                 QCOMPARE(idx.data(Qt::CheckStateRole).toInt(), Qt::Checked);
                 QCOMPARE(idx.data(BackendModel::BackendEnabledRole).toBool(), true);
             }
-            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("fr_sncf") && !sncfToggled) {
+            if (idx.data(BackendModel::IdentifierRole).toString() == QLatin1String("de_db") && !sncfToggled) {
                 model.setData(idx, false, BackendModel::BackendEnabledRole);
                 sncfToggled = true;
 
@@ -163,19 +163,19 @@ private Q_SLOTS:
         QVERIFY(navitiaToggled);
         QVERIFY(sncfToggled);
         QCOMPARE(dataChangedSpy.size(), 4);
-        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_navitia")), true);
-        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("fr_sncf")), false);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("un_transitous")), true);
+        QCOMPARE(mgr.isBackendEnabled(QStringLiteral("de_db")), false);
 
-        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("un_navitia")));
-        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("fr_sncf")));
-        mgr.setBackendEnabled(QStringLiteral("un_navitia"), true);
-        mgr.setBackendEnabled(QStringLiteral("fr_sncf"), false);
-        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("un_navitia")));
-        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("fr_sncf")));
-        mgr.setBackendEnabled(QStringLiteral("un_navitia"), false);
-        mgr.setBackendEnabled(QStringLiteral("fr_sncf"), true);
-        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("un_navitia")));
-        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("fr_sncf")));
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("un_transitous")));
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("de_db")));
+        mgr.setBackendEnabled(QStringLiteral("un_transitous"), true);
+        mgr.setBackendEnabled(QStringLiteral("de_db"), false);
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("un_transitous")));
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("de_db")));
+        mgr.setBackendEnabled(QStringLiteral("un_transitous"), false);
+        mgr.setBackendEnabled(QStringLiteral("de_db"), true);
+        QCOMPARE(mgr.disabledBackends(), QStringList(QStringLiteral("un_transitous")));
+        QCOMPARE(mgr.enabledBackends(), QStringList(QStringLiteral("de_db")));
     }
 };
 
