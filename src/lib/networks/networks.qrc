@@ -7,7 +7,6 @@
         <!-- global/generic providers -->
         <file>un_accessibilitycloud.json</file>
         <file>un_gbfs.json</file>
-        <file>un_navitia.json</file>
         <file>un_transitous.json</file>
 
         <!-- national providers -->
@@ -21,7 +20,6 @@
         <file>ee_peatus.json</file>
         <file>fi_digitransit.json</file>
         <file>fi_waltti.json</file>
-        <file>fr_sncf.json</file>
         <file>gb_traveline.json</file>
         <file>ie_tfi.json</file>
         <file>lu_cfl.json</file>
