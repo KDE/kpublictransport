@@ -1,18 +1,18 @@
 # translation of kpublictransport.po to Slovak
-# Roman Paholik <wizzardsk@gmail.com>, 2024.
+# SPDX-FileCopyrightText: 2024 Roman Paholik <wizzardsk@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-04 00:39+0000\n"
-"PO-Revision-Date: 2017-11-01 11:06+0100\n"
-"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"PO-Revision-Date: 2024-11-11 17:48+0100\n"
+"Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: lib/datatypes/feature.cpp:52
@@ -43,7 +43,7 @@ msgstr ""
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible"
-msgstr ""
+msgstr "Invalidný vozík prístupný"
 
 #: lib/datatypes/feature.cpp:62
 #, kde-format
@@ -67,7 +67,7 @@ msgstr ""
 #, kde-format
 msgctxt "train coach feature"
 msgid "Toilet"
-msgstr ""
+msgstr "Záchod"
 
 #: lib/datatypes/feature.cpp:70
 #, kde-format
@@ -85,7 +85,7 @@ msgstr ""
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wi-Fi"
-msgstr ""
+msgstr "Wi-Fi"
 
 #: lib/datatypes/feature.cpp:76
 #, kde-format
@@ -96,14 +96,15 @@ msgstr ""
 #: quick/FeatureIcon.qml:58
 #, kde-format
 msgid "%1 (not available)"
-msgstr ""
+msgstr "%1 (nedostupné)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Medzery"
+msgstr[2] "Medzery"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
@@ -127,4 +128,4 @@ msgstr ""
 #, kde-format
 msgctxt "vehicle occupancy"
 msgid "Full"
-msgstr ""
+msgstr "Plné"
