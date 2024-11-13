@@ -54,7 +54,7 @@ class KPUBLICTRANSPORT_EXPORT Manager : public QObject
     Q_PROPERTY(bool backendsEnabledByDefault READ backendsEnabledByDefault WRITE setBackendsEnabledByDefault NOTIFY configurationChanged)
 
     /** QML-compatible access to backends(). */
-    Q_PROPERTY(QVariantList backends READ backendsVariant CONSTANT)
+    Q_PROPERTY(QVariantList backends READ backendsVariant NOTIFY backendsChanged)
 
 public:
     explicit Manager(QObject *parent = nullptr);
@@ -133,6 +133,7 @@ public:
 Q_SIGNALS:
     void attributionsChanged();
     void configurationChanged();
+    void backendsChanged();
 
 private:
     Q_DECL_HIDDEN QVariantList attributionsVariant() const;

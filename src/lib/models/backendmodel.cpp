@@ -173,10 +173,16 @@ void BackendModel::setManager(Manager *mgr)
     if (d->mgr == mgr) {
         return;
     }
+    if (d->mgr) {
+        disconnect(d->mgr, nullptr, this, nullptr);
+    }
 
     d->mgr = mgr;
     connect(mgr, &Manager::configurationChanged, this, [this]() {
         Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0));
+    });
+    connect(mgr, &Manager::backendsChanged, this, [this]() {
+        d->repopulateModel(this);
     });
     d->repopulateModel(this);
     Q_EMIT managerChanged();
