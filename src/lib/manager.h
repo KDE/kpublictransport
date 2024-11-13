@@ -67,37 +67,37 @@ public:
     void setNetworkAccessManager(QNetworkAccessManager *nam);
 
     /** Returns whether access to insecure backends is allowed. */
-    bool allowInsecureBackends() const;
+    [[nodiscard]] bool allowInsecureBackends() const;
     /** Allow usage of insecure backends, that is services not using
      *  transport encryption.
      */
     void setAllowInsecureBackends(bool insecure);
 
     /** Query a journey. */
-    JourneyReply* queryJourney(const JourneyRequest &req) const;
+    [[nodiscard]] JourneyReply* queryJourney(const JourneyRequest &req) const;
 
     /** Query arrivals or departures from a specific station. */
-    StopoverReply* queryStopover(const StopoverRequest &req) const;
+    [[nodiscard]] StopoverReply* queryStopover(const StopoverRequest &req) const;
 
     /** Query location information based on coordinates or (parts of) the name. */
-    LocationReply* queryLocation(const LocationRequest &req) const;
+    [[nodiscard]] LocationReply* queryLocation(const LocationRequest &req) const;
 
     /** Query vehicle and platform layout information.
      *  This is only available for some trains and some operators, so be prepared
      *  for empty results.
      */
-    VehicleLayoutReply* queryVehicleLayout(const VehicleLayoutRequest &req) const;
+    [[nodiscard]] VehicleLayoutReply* queryVehicleLayout(const VehicleLayoutRequest &req) const;
 
     /** Returns all static attribution information, as well as all dynamic ones
      *  found in the cache or accumulated during the lifetime of this instance.
      */
-    const std::vector<Attribution>& attributions() const;
+    [[nodiscard]] const std::vector<Attribution>& attributions() const;
 
     /** Returns information about all available backends. */
-    const std::vector<Backend>& backends() const;
+    [[nodiscard]] const std::vector<Backend>& backends() const;
 
     /** Returns whether the use of the backend with a given identifier is enabled. */
-    Q_INVOKABLE bool isBackendEnabled(const QString &backendId) const;
+    Q_INVOKABLE [[nodiscard]] bool isBackendEnabled(const QString &backendId) const;
     /** Sets whether the backend with the given identifier should be used.
      *  @note If allowInsecureBackends() is @c false, this has precedence.
      */
@@ -106,7 +106,7 @@ public:
     /** Returns the identifiers of explicitly enabled backends.
      *  Use this for persisting the settings, not for checking for enabled backends.
      */
-    QStringList enabledBackends() const;
+    [[nodiscard]] QStringList enabledBackends() const;
     /** Sets the explicitly enabled backends.
      *  Use for restoring persisted settings.
      */
@@ -114,7 +114,7 @@ public:
     /** Returns the identifiers of explicitly disabled backends.
      *  Use this for persisting settings, not for checking for disabled backends.
      */
-    QStringList disabledBackends() const;
+    [[nodiscard]] QStringList disabledBackends() const;
     /** Sets the explicitly disabled backends.
      *  Use for restoring persisted settings.
      */
@@ -123,7 +123,7 @@ public:
      * Returns wheter backends are enabled by default.
      * Defaults to true.
      */
-    bool backendsEnabledByDefault() const;
+    [[nodiscard]] bool backendsEnabledByDefault() const;
     /**
      * Set wheter backends are enabled by default.
      */

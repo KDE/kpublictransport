@@ -74,27 +74,29 @@ static inline void initResources() {
 namespace KPublicTransport {
 class ManagerPrivate {
 public:
-    QNetworkAccessManager* nam();
+    [[nodiscard]] QNetworkAccessManager* nam();
     void loadNetworks();
-    std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
+    [[nodiscard]] std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
     template <typename Backend, typename Backend2, typename ...Backends>
-    static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &backendType, const QJsonObject &obj);
-    template <typename Backend> std::unique_ptr<AbstractBackend>
-    static loadNetwork(const QJsonObject &backendType, const QJsonObject &obj);
+    [[nodiscard]] static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &backendType, const QJsonObject &obj);
+    template <typename Backend>
+    [[nodiscard]] static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &backendType, const QJsonObject &obj);
     template <typename T>
-    static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
+    [[nodiscard]] static std::unique_ptr<AbstractBackend> loadNetwork(const QJsonObject &obj);
 
-    template <typename RequestT> bool shouldSkipBackend(const Backend &backend, const RequestT &req) const;
+    template <typename RequestT>
+    [[nodiscard]] bool shouldSkipBackend(const Backend &backend, const RequestT &req) const;
 
     void resolveLocation(LocationRequest &&locReq, const AbstractBackend *backend, const std::function<void(const Location &loc)> &callback);
-    bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
-    bool queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply);
+    [[nodiscard]] bool queryJourney(const AbstractBackend *backend, const JourneyRequest &req, JourneyReply *reply);
+    [[nodiscard]] bool queryStopover(const AbstractBackend *backend, const StopoverRequest &req, StopoverReply *reply);
 
-    template <typename RepT, typename ReqT> RepT* makeReply(const ReqT &request);
+    template <typename RepT, typename ReqT>
+    [[nodiscard]] RepT* makeReply(const ReqT &request);
 
     void readCachedAttributions();
 
-    int queryLocationOnBackend(const LocationRequest &req, LocationReply *reply, const Backend &backend);
+    [[nodiscard]] int queryLocationOnBackend(const LocationRequest &req, LocationReply *reply, const Backend &backend);
 
     Manager *q = nullptr;
     QNetworkAccessManager *m_nam = nullptr;
@@ -110,7 +112,7 @@ public:
     bool m_backendsEnabledByDefault = true;
 
 private:
-    bool shouldSkipBackend(const Backend &backend) const;
+    [[nodiscard]] bool shouldSkipBackend(const Backend &backend) const;
 };
 }
 
@@ -120,7 +122,7 @@ QNetworkAccessManager* ManagerPrivate::nam()
         m_nam = new QNetworkAccessManager(q);
         m_nam->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
         m_nam->setStrictTransportSecurityEnabled(true);
-        m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/org.kde.kpublictransport/hsts/"));
+        m_nam->enableStrictTransportSecurityStore(true, QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/org.kde.kpublictransport/hsts/"_L1);
     }
     return m_nam;
 }
@@ -188,7 +190,7 @@ void ManagerPrivate::loadNetworks()
 
 std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &obj)
 {
-    const auto type = obj.value(QLatin1String("type")).toObject();
+    const auto type = obj.value("type"_L1).toObject();
     // backends need to be topologically sorted according to their preference/priority here
     return loadNetwork<
         NavitiaBackend,
@@ -231,7 +233,7 @@ std::unique_ptr<AbstractBackend> ManagerPrivate::loadNetwork(const QJsonObject &
 
 static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo, const QJsonObject &obj)
 {
-    const auto opts = obj.value(QLatin1String("options")).toObject();
+    const auto opts = obj.value("options"_L1).toObject();
     for (auto it = opts.begin(); it != opts.end(); ++it) {
         const auto idx = mo->indexOfProperty(it.key().toUtf8().constData());
         if (idx < 0) {
@@ -256,11 +258,11 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         }
     }
 
-    const auto attrObj = obj.value(QLatin1String("attribution")).toObject();
+    const auto attrObj = obj.value("attribution"_L1).toObject();
     const auto attr = Attribution::fromJson(attrObj);
     backend->setAttribution(attr);
 
-    const auto tzId = obj.value(QLatin1String("timezone")).toString();
+    const auto tzId = obj.value("timezone"_L1).toString();
     if (!tzId.isEmpty()) {
         QTimeZone tz(tzId.toUtf8());
         if (tz.isValid()) {
@@ -270,7 +272,7 @@ static void applyBackendOptions(AbstractBackend *backend, const QMetaObject *mo,
         }
     }
 
-    const auto langArray = obj.value(QLatin1String("supportedLanguages")).toArray();
+    const auto langArray = obj.value("supportedLanguages"_L1).toArray();
     QStringList langs;
     langs.reserve(langArray.size());
     std::transform(langArray.begin(), langArray.end(), std::back_inserter(langs), [](const auto &v) { return v.toString(); });
