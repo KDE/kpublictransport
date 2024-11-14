@@ -129,6 +129,12 @@ public:
      */
     void setBackendsEnabledByDefault(bool byDefault);
 
+public Q_SLOTS:
+    /** Reload backend configuration.
+     *  Can be used when on-disk configuration has been changed.
+     *  Automatically called on language changes.
+     */
+    void reload();
 
 Q_SIGNALS:
     void attributionsChanged();
@@ -136,6 +142,7 @@ Q_SIGNALS:
     void backendsChanged();
 
 private:
+    bool eventFilter(QObject *object, QEvent *event) override;
     Q_DECL_HIDDEN QVariantList attributionsVariant() const;
     Q_DECL_HIDDEN QVariantList backendsVariant() const;
 

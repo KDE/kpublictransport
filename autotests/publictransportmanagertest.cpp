@@ -5,6 +5,7 @@
 */
 
 #include <KPublicTransport/Attribution>
+#include <KPublicTransport/Backend>
 #include <KPublicTransport/Manager>
 #include <KPublicTransport/JourneyRequest>
 #include <KPublicTransport/JourneyReply>
@@ -99,6 +100,19 @@ private Q_SLOTS:
         QCOMPARE(spy.size(), 1);
         QCOMPARE(reply->error(), Reply::InvalidRequest);
         delete reply;
+    }
+
+    void testReload()
+    {
+        Manager mgr;
+        const auto backends = mgr.backends();
+        const auto attributions = mgr.attributions();
+        QVERIFY(!backends.empty());
+        QVERIFY(!attributions.empty());
+
+        mgr.reload();
+        QCOMPARE(mgr.backends().size(), backends.size());
+        QCOMPARE(mgr.attributions().size(), attributions.size());
     }
 };
 

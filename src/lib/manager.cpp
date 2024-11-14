@@ -45,6 +45,7 @@
 #include "backends/ltglinkbackend.h"
 #include "gbfs/gbfsbackend.h"
 
+#include <QCoreApplication>
 #include <QDirIterator>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -140,6 +141,7 @@ void ManagerPrivate::loadNetworks()
 #endif
     searchDirs.push_back(u":/"_s);
 
+    std::vector<Attribution> attributions;
     for (const auto &searchDir : searchDirs) {
         QDirIterator it(searchDir + "/org.kde.kpublictransport/networks"_L1, {u"*.json"_s}, QDir::Files);
         while (it.hasNext()) {
@@ -168,7 +170,7 @@ void ManagerPrivate::loadNetworks()
                 net->setBackendId(id);
                 net->init();
                 if (!net->attribution().isEmpty()) {
-                    m_attributions.push_back(net->attribution());
+                    attributions.push_back(net->attribution());
                 }
 
                 auto b = BackendPrivate::fromJson(doc.object());
@@ -184,7 +186,15 @@ void ManagerPrivate::loadNetworks()
         return lhs.identifier() < rhs.identifier();
     });
 
-    AttributionUtil::sort(m_attributions);
+    AttributionUtil::sort(attributions);
+    if (m_attributions.empty()) {
+        // first load
+        m_attributions = std::move(attributions);
+    } else {
+        // reload
+        AttributionUtil::merge(m_attributions, attributions);
+    }
+
     qCDebug(Log) << m_backends.size() << "public transport network configurations loaded";
 }
 
@@ -497,6 +507,8 @@ Manager::Manager(QObject *parent)
     }
 
     Cache::expire();
+
+    QCoreApplication::instance()->installEventFilter(this);
 }
 
 Manager::~Manager() = default;
@@ -848,6 +860,13 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
     return reply;
 }
 
+void Manager::reload()
+{
+    d->m_backends.clear();
+    d->loadNetworks();
+    Q_EMIT backendsChanged();
+}
+
 const std::vector<Attribution>& Manager::attributions() const
 {
     d->loadNetworks();
@@ -956,4 +975,13 @@ QVariantList Manager::backendsVariant() const
     l.reserve(d->m_backends.size());
     std::transform(d->m_backends.begin(), d->m_backends.end(), std::back_inserter(l), [](const auto &b) { return QVariant::fromValue(b); });
     return l;
+}
+
+bool Manager::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange && object == QCoreApplication::instance()) {
+        reload();
+    }
+
+    return QObject::eventFilter(object, event);
 }
