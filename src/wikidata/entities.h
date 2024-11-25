@@ -92,10 +92,12 @@ public:
         instanceOf = 31,
         logoImage = 154,
         partOf = 361,
+        icon = 2910,
         nighttimeView = 3451,
         winterView = 5252,
         view = 8517,
         aerialView = 8592,
+        smallLogoOrIcon = 8972,
         modelImage = 11101,
     };
 

@@ -372,10 +372,12 @@ void Generator::applyWikidataResults(std::vector<wd::Item> &&items)
             } else if (color.isValid()) {
                 (*rit).color = color;
             }
-            const auto logos = item.values<QString>(wd::P::logoImage);
-            for (const auto &logo : logos) {
-                if (!logo.isEmpty() && !(*rit).lineLogos.contains(logo)) {
-                    (*rit).lineLogos.push_back(logo);
+            for (const auto p : { wd::P::logoImage, wd::P::icon, wd::P::smallLogoOrIcon }) {
+                const auto logos = item.values<QString>(p);
+                for (const auto &logo : logos) {
+                    if (!logo.isEmpty() && !(*rit).lineLogos.contains(logo)) {
+                        (*rit).lineLogos.push_back(logo);
+                    }
                 }
             }
             if (!isCompatibleMode((*rit).mode, mode)) {
