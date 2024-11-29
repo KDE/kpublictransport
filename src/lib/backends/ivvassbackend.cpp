@@ -59,11 +59,7 @@ bool IvvAssBackend::queryLocation(const LocationRequest &req, LocationReply *rep
     query.addQueryItem(QStringLiteral("ac"), QStringLiteral("0")); // address count
     query.addQueryItem(QStringLiteral("pc"), QStringLiteral("0")); // poi count
 
-    QUrl url(m_endpoint);
-    url.setQuery(query);
-
-    QNetworkRequest netRequest(url);
-    applySslConfiguration(netRequest);
+    const auto netRequest = makeRequest(std::move(query));
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
     netReply->setParent(reply);
@@ -111,11 +107,7 @@ bool IvvAssBackend::queryStopover(const StopoverRequest &req, StopoverReply *rep
     dt.setTimeZone(QTimeZone::LocalTime);
     query.addQueryItem(QStringLiteral("t"), dt.toString(Qt::ISODate));
 
-    QUrl url(m_endpoint);
-    url.setQuery(query);
-
-    QNetworkRequest netRequest(url);
-    applySslConfiguration(netRequest);
+    const auto netRequest = makeRequest(std::move(query));
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
     netReply->setParent(reply);
@@ -178,11 +170,7 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     options += QLatin1Char('a'); // load/demand
     query.addQueryItem(QStringLiteral("o"), options);
 
-    QUrl url(m_endpoint);
-    url.setQuery(query);
-
-    QNetworkRequest netRequest(url);
-    applySslConfiguration(netRequest);
+    const auto netRequest = makeRequest(std::move(query));
     logRequest(req, netRequest);
     auto netReply = nam->get(netRequest);
     netReply->setParent(reply);
@@ -206,4 +194,18 @@ bool IvvAssBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     });
 
     return true;
+}
+
+QNetworkRequest IvvAssBackend::makeRequest(QUrlQuery &&query) const
+{
+    for (auto it = m_extraArgs.begin(); it != m_extraArgs.end(); ++it) {
+        query.addQueryItem(it.key(), it.value().toString());
+    }
+
+    QUrl url(m_endpoint);
+    url.setQuery(query);
+
+    QNetworkRequest netRequest(url);
+    applySslConfiguration(netRequest);
+    return netRequest;
 }
