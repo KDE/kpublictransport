@@ -244,7 +244,8 @@ void AbstractBackend::setPkcs12(const QString &pkcs12Name)
         qCWarning(Log) << f.fileName() << f.errorString();
         return;
     }
-    const auto r = QSslCertificate::importPkcs12(&f, &m_privateKey, &m_clientCert, &m_customCaCerts, "");
+    QList<QSslCertificate> caCerts;
+    const auto r = QSslCertificate::importPkcs12(&f, &m_privateKey, &m_clientCert, &caCerts, "");
     if (!r) {
         qCWarning(Log) << "Failed to load PKCS#12 bundle" << f.fileName();
     }
