@@ -103,7 +103,7 @@
         "extraArguments": {
             "ta": "vrs"
         },
-        "pkcs12": "vrs-client-cert.pfx"
+        "pkcs12": "vrs-client-cert.p12"
     },
     "timezone": "Europe/Berlin",
     "type": {
