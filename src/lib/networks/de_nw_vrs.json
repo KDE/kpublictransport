@@ -100,6 +100,9 @@
     },
     "options": {
         "endpoint": "https://ekap-app.vrs.de/index.php",
+        "extraArguments": {
+            "ta": "vrs"
+        },
         "pkcs12": "vrs-client-cert.pfx"
     },
     "timezone": "Europe/Berlin",

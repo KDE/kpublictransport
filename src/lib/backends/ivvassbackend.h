@@ -17,18 +17,22 @@ class IvvAssBackend : public AbstractBackend
 {
     Q_GADGET
     Q_PROPERTY(QUrl endpoint MEMBER m_endpoint)
+    Q_PROPERTY(QJsonObject extraArguments MEMBER m_extraArgs)
 
 public:
-    static inline constexpr const char* type() { return "ivvass"; }
+    [[nodiscard]] static inline constexpr const char* type() { return "ivvass"; }
 
-    Capabilities capabilities() const override;
-    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
-    bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
+    QNetworkRequest makeRequest(QUrlQuery &&query) const;
+
     QUrl m_endpoint;
+    QJsonObject m_extraArgs;
 };
 
 }
