@@ -117,7 +117,7 @@ public:
     constexpr inline Element element() const { return m_element; }
     constexpr inline operator Element() const { return m_element; }
 
-    void setTagValue(TagKey key, const QByteArray &value);
+    void setTagValue(TagKey key, QByteArray &&value);
 
 private:
     Element m_element;

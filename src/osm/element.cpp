@@ -232,19 +232,19 @@ UniqueElement::~UniqueElement()
     }
 }
 
-void UniqueElement::setTagValue(TagKey key, const QByteArray &value)
+void UniqueElement::setTagValue(TagKey key, QByteArray &&value)
 {
     switch (m_element.type()) {
         case OSM::Type::Null:
             return;
         case OSM::Type::Node:
-            OSM::setTagValue(*const_cast<Node*>(m_element.node()), key, value);
+            OSM::setTagValue(*const_cast<Node*>(m_element.node()), key, std::move(value));
             break;
         case OSM::Type::Way:
-            OSM::setTagValue(*const_cast<Way*>(m_element.way()), key, value);
+            OSM::setTagValue(*const_cast<Way*>(m_element.way()), key, std::move(value));
             break;
         case OSM::Type::Relation:
-            OSM::setTagValue(*const_cast<Relation*>(m_element.relation()), key, value);
+            OSM::setTagValue(*const_cast<Relation*>(m_element.relation()), key, std::move(value));
             break;
     }
 }

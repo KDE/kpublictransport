@@ -124,7 +124,7 @@ void Generator::processOSMData(OSM::DataSet &&dataSet)
             }
             auto rel = *it;
             const auto tagKey = dataSet.makeTagKey("ref", OSM::DataSet::StringIsPersistent);
-            OSM::setTagValue(rel, tagKey, ref);
+            OSM::setTagValue(rel, tagKey, QByteArray(ref));
             dataSet.relations.push_back(rel);
         }
         it = dataSet.relations.erase(it);
