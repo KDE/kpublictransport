@@ -9,13 +9,13 @@
 using namespace OSM;
 
 DataSet::DataSet() = default;
-DataSet::DataSet(DataSet &&) = default;
+DataSet::DataSet(DataSet &&) noexcept = default;
 DataSet::~DataSet()
 {
     std::for_each(m_stringPool.begin(), m_stringPool.end(), free);
 }
 
-DataSet& DataSet::operator=(DataSet &&) = default;
+DataSet& DataSet::operator=(DataSet &&) noexcept = default;
 
 template<typename T>
 T DataSet::makeStringKey(const char *name, DataSet::StringMemory memOpt, std::vector<T> &registry)
