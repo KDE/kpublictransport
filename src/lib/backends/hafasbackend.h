@@ -11,7 +11,6 @@
 
 #include <KPublicTransport/Line>
 
-#include <unordered_map>
 #include <QJsonArray>
 
 namespace KPublicTransport {

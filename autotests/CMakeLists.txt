@@ -34,6 +34,7 @@ ecm_add_test(platformlayouttest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(featuretest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 
 ecm_add_test(navitiaparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+ecm_add_test(hafasparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport Qt::Network)
 ecm_add_test(hafasmgateparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport Qt::Network)
 ecm_add_test(hafasqueryparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport Qt::Network)
 ecm_add_test(hafasvehiclelayoutparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
