@@ -7,8 +7,9 @@
 #ifndef KPUBLICTRANSPORT_HAFASPARSER_H
 #define KPUBLICTRANSPORT_HAFASPARSER_H
 
-#include "hafasbackend.h"
 #include "kpublictransport_export.h"
+
+#include "hafasbackend.h"
 
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
@@ -35,6 +36,9 @@ public:
     Reply::Error error() const;
     QString errorMessage() const;
 
+    /** Parse Hafas location identifier. */
+    [[nodiscard]] Location fromLocationId(const QString &locId) const;
+
 protected:
     HafasParser();
     ~HafasParser();
@@ -44,6 +48,10 @@ protected:
     Line::Mode parseLineMode(const QStringView &modeId) const;
     Line::Mode parseLineMode(int modeId) const;
 
+    /** Set @p id as identifier on @p loc.
+     *  If @p id is a valid UIC station code according to the configuration
+     *  of the parser, it's also set to the standardLocationIdentifierType.
+     */
     void setLocationIdentifier(Location &loc, const QString &id) const;
 
 protected:

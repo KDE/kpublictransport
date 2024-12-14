@@ -11,6 +11,9 @@
 
 #include <KPublicTransport/Location>
 
+#include <QStringTokenizer>
+
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 HafasParser::HafasParser() = default;
@@ -87,4 +90,35 @@ void HafasParser::setLocationIdentifier(Location &loc, const QString &id) const
 void HafasParser::setStandardLocationIdentfierCountries(std::vector<uint8_t> &&uicCountryCodes)
 {
     m_uicCountryCodes = std::move(uicCountryCodes);
+}
+
+Location HafasParser::fromLocationId(const QString &locId) const
+{
+    Location loc;
+
+    for (auto entry : QStringTokenizer(locId, '@'_L1)) {
+        if (entry.startsWith("O="_L1)) {
+            loc.setName(entry.mid(2).toString());
+        } else if (entry.startsWith("X="_L1)) {
+            loc.setLongitude(entry.mid(2).toInt() / 1000000.0);
+        } else if (entry.startsWith("Y="_L1)) {
+            loc.setLatitude(entry.mid(2).toInt() / 1000000.0);
+        } else if (entry.startsWith("L="_L1)) {
+            setLocationIdentifier(loc, entry.mid(2).toString());
+        } else if (entry.startsWith(u"i=U×00")) {
+            if (const auto uicCode = entry.mid(6); UicStationCode::isValid(uicCode, m_uicCountryCodes)) {
+                loc.setIdentifier(u"uic"_s, uicCode.toString());
+            }
+        } else if (entry.startsWith("A="_L1)) {
+            if (entry.mid(2) == "1"_L1) {
+                loc.setType(Location::Stop);
+            } else if (entry.mid(2) == "2"_L1) {
+                loc.setType(Location::Address);
+            }
+            // A=4 is POI
+        }
+    }
+
+    loc.setIdentifier(u"hafas"_s, locId);
+    return loc;
 }
