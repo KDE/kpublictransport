@@ -286,10 +286,15 @@
         "ver": "1.34"
     },
     "supportedLanguages": [
+        "cz",
         "de",
+        "dk",
         "en",
         "es",
-        "fr"
+        "fr",
+        "it",
+        "nl",
+        "pl"
     ],
     "timezone": "Europe/Berlin",
     "type": {

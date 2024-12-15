@@ -25,6 +25,7 @@ target_sources(KPublicTransport PRIVATE
     backends/accessibilitycloudparser.cpp
     backends/cache.cpp
     backends/deutschebahnbackend.cpp
+    backends/deutschebahnparser.cpp
     backends/deutschebahnvehiclelayoutparser.cpp
     backends/deutschebahnproducts.cpp
     backends/efabackend.cpp

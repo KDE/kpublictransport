@@ -1,0 +1,275 @@
+[
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:57:00",
+        "route": {
+            "direction": "Berlin Westkreuz",
+            "line": {
+                "mode": "RapidTransit",
+                "name": "S 5"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:54:00",
+        "scheduledPlatform": "16",
+        "stopPoint": {
+            "identifier": {
+                "db": "8089021",
+                "ibnr": "8089021"
+            },
+            "name": "Berlin Hbf (S-Bahn)"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:57:00",
+        "route": {
+            "direction": "Moabit, Lüneburger Str.",
+            "line": {
+                "mode": "Tramway",
+                "name": "M5"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:54:00",
+        "stopPoint": {
+            "identifier": {
+                "db": "730749"
+            },
+            "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:57:00",
+        "route": {
+            "direction": "Köln Hbf",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 554"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:56:00",
+        "scheduledPlatform": "13",
+        "stopPoint": {
+            "identifier": {
+                "db": "8011160",
+                "ibnr": "8011160"
+            },
+            "name": "Berlin Hbf"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:57:00",
+        "route": {
+            "direction": "Stendal Hbf",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE 4"
+            },
+            "name": "RE 3157"
+        },
+        "scheduledDepartureTime": "2024-12-14T16:56:00",
+        "scheduledPlatform": "6",
+        "stopPoint": {
+            "identifier": {
+                "db": "8098160",
+                "ibnr": "8098160"
+            },
+            "name": "Berlin Hbf"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:57:00",
+        "route": {
+            "direction": "Erkner (S)",
+            "line": {
+                "mode": "RapidTransit",
+                "name": "S 3"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:56:00",
+        "scheduledPlatform": "15",
+        "stopPoint": {
+            "identifier": {
+                "db": "8089021",
+                "ibnr": "8089021"
+            },
+            "name": "Berlin Hbf (S-Bahn)"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:56:00",
+        "route": {
+            "direction": "S+U Warschauer Str.",
+            "line": {
+                "mode": "Tramway",
+                "name": "M10"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:56:00",
+        "stopPoint": {
+            "identifier": {
+                "db": "730749"
+            },
+            "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:56:00",
+        "route": {
+            "direction": "Moabit, Lüneburger Str.",
+            "line": {
+                "mode": "Tramway",
+                "name": "M8"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:56:00",
+        "stopPoint": {
+            "identifier": {
+                "db": "730749"
+            },
+            "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:58:00",
+        "route": {
+            "direction": "Potsdam Hbf (S)",
+            "line": {
+                "mode": "RapidTransit",
+                "name": "S 7"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:57:00",
+        "scheduledPlatform": "16",
+        "stopPoint": {
+            "identifier": {
+                "db": "8089021",
+                "ibnr": "8089021"
+            },
+            "name": "Berlin Hbf (S-Bahn)"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:59:00",
+        "route": {
+            "direction": "U Leopoldplatz via U Amrumer Str.",
+            "line": {
+                "mode": "Bus",
+                "name": "142"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:57:00",
+        "stopPoint": {
+            "identifier": {
+                "db": "730749"
+            },
+            "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:59:00",
+        "route": {
+            "direction": "Ahrensfelde (S)",
+            "line": {
+                "mode": "RapidTransit",
+                "name": "S 7"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:58:00",
+        "scheduledPlatform": "15",
+        "stopPoint": {
+            "identifier": {
+                "db": "8089021",
+                "ibnr": "8089021"
+            },
+            "name": "Berlin Hbf (S-Bahn)"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:58:00",
+        "route": {
+            "direction": "Frankfurt(Oder)",
+            "line": {
+                "mode": "LocalTrain",
+                "name": "RE 1"
+            },
+            "name": "RE 73736"
+        },
+        "scheduledDepartureTime": "2024-12-14T16:58:00",
+        "scheduledPlatform": "12",
+        "stopPoint": {
+            "identifier": {
+                "db": "8011160",
+                "ibnr": "8011160"
+            },
+            "name": "Berlin Hbf"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T16:58:00",
+        "route": {
+            "direction": "Hönow",
+            "line": {
+                "mode": "Metro",
+                "name": "U 5"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:58:00",
+        "stopPoint": {
+            "identifier": {
+                "db": "730749"
+            },
+            "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T17:06:00",
+        "route": {
+            "direction": "U Leopoldplatz via S+U Wedding",
+            "line": {
+                "mode": "Bus",
+                "name": "147"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T16:58:00",
+        "stopPoint": {
+            "identifier": {
+                "db": "730749"
+            },
+            "name": "Berlin Hauptbahnhof (S+U), Berlin"
+        }
+    },
+    {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2024-12-14T17:26:00",
+        "notes": [
+            "Zug fährt ohne Wagen 8."
+        ],
+        "route": {
+            "direction": "Basel SBB",
+            "line": {
+                "mode": "LongDistanceTrain",
+                "name": "ICE 273"
+            }
+        },
+        "scheduledDepartureTime": "2024-12-14T17:26:00",
+        "scheduledPlatform": "2",
+        "stopPoint": {
+            "identifier": {
+                "db": "8098160",
+                "ibnr": "8098160"
+            },
+            "name": "Berlin Hbf"
+        }
+    }
+]

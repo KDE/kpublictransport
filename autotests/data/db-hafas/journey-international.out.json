@@ -1,0 +1,288 @@
+[
+    {
+        "sections": [
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                            "type": "WheelchairAccessible"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 1012695,
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8011160",
+                        "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=81@L=8011160@i=U×008065969@",
+                        "ibnr": "8011160",
+                        "uic": "8065969"
+                    },
+                    "latitude": 52.525589,
+                    "longitude": 13.369549,
+                    "name": "Berlin Hbf",
+                    "region": "DE-BE",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "notes": [
+                            "Hält nur zum Einsteigen"
+                        ],
+                        "scheduledArrivalTime": "2025-01-02T12:10:00",
+                        "scheduledDepartureTime": "2025-01-02T12:12:00",
+                        "scheduledPlatform": "4",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010404",
+                                "db-hafas": "A=1@O=Berlin-Spandau@X=13196902@Y=52534650@U=81@L=8010404@i=U×008003025@",
+                                "ibnr": "8010404",
+                                "uic": "8003025"
+                            },
+                            "latitude": 52.53465,
+                            "longitude": 13.196902,
+                            "name": "Berlin-Spandau",
+                            "region": "DE-BE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-02T15:55:00",
+                        "scheduledDepartureTime": "2025-01-02T15:57:00",
+                        "scheduledPlatform": "8",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8002041",
+                                "db-hafas": "A=1@O=Frankfurt(Main)Süd@X=8686456@Y=50099365@U=81@L=8002041@i=U×008011065@",
+                                "ibnr": "8002041",
+                                "uic": "8011065"
+                            },
+                            "latitude": 50.099365,
+                            "longitude": 8.686456,
+                            "name": "Frankfurt(Main)Süd",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-02T17:10:00",
+                        "scheduledDepartureTime": "2025-01-02T17:11:00",
+                        "scheduledPlatform": "2",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8000191",
+                                "db-hafas": "A=1@O=Karlsruhe Hbf@X=8402181@Y=48993512@U=81@L=8000191@i=U×008014228@",
+                                "ibnr": "8000191",
+                                "uic": "8014228"
+                            },
+                            "latitude": 48.993512,
+                            "longitude": 8.402181,
+                            "name": "Karlsruhe Hbf",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-02T17:53:00",
+                        "scheduledDepartureTime": "2025-01-02T18:01:00",
+                        "stopPoint": {
+                            "country": "FR",
+                            "identifier": {
+                                "db": "8700023",
+                                "db-hafas": "A=1@O=Strasbourg@X=7734067@Y=48585339@U=81@L=8700023@i=U×008721202@",
+                                "ibnr": "8700023",
+                                "uic": "8721202"
+                            },
+                            "latitude": 48.585339,
+                            "longitude": 7.734067,
+                            "name": "Strasbourg",
+                            "region": "FR-GES",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Reservierungspflicht (Karlsruhe Hbf - Paris Est)",
+                    "Erhöhtes Reisendenaufkommen in der 2. Kl zw. Deutschland und Frankreich erwartet. Wir empfehlen eine Buchung in der 1. Kl."
+                ],
+                "route": {
+                    "direction": "Paris Est",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 9590",
+                        "operatorName": "DB Fernverkehr AG"
+                    }
+                },
+                "scheduledArrivalTime": "2025-01-02T19:59:00",
+                "scheduledDeparturePlatform": "14",
+                "scheduledDepartureTime": "2025-01-02T11:54:00",
+                "to": {
+                    "country": "FR",
+                    "identifier": {
+                        "db": "8700011",
+                        "db-hafas": "A=1@O=Paris Est@X=2359120@Y=48876976@U=81@L=8700011@i=U×008711300@",
+                        "ibnr": "8700011",
+                        "uic": "8711300"
+                    },
+                    "latitude": 48.876976,
+                    "longitude": 2.35912,
+                    "name": "Paris Est",
+                    "region": "FR-IDF",
+                    "type": "Stop"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Imbiss und Getränke beim Schlaf-/Liegewagenbetreuer erhältlich",
+                            "type": "Restaurant"
+                        },
+                        {
+                            "availability": "Conditional",
+                            "disruptionEffect": "NormalService",
+                            "name": "Rollstuhlstellplatz - Voranmeldung unter +43 5 1717",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "rollstuhltaugliches WC",
+                            "type": "WheelchairAccessibleToilet"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 923256,
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8011160",
+                        "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=81@L=8011160@i=U×008065969@",
+                        "ibnr": "8011160",
+                        "uic": "8065969"
+                    },
+                    "latitude": 52.525589,
+                    "longitude": 13.369549,
+                    "name": "Berlin Hbf",
+                    "region": "DE-BE",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-02T21:35:00",
+                        "scheduledDepartureTime": "2025-01-02T21:37:00",
+                        "scheduledPlatform": "10",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8000128",
+                                "db-hafas": "A=1@O=Göttingen@X=9926069@Y=51536812@U=81@L=8000128@i=U×008013051@",
+                                "ibnr": "8000128",
+                                "uic": "8013051"
+                            },
+                            "latitude": 51.536812,
+                            "longitude": 9.926069,
+                            "name": "Göttingen",
+                            "region": "DE-NI",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-02T21:58:00",
+                        "scheduledDepartureTime": "2025-01-02T22:08:00",
+                        "scheduledPlatform": "1",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8003200",
+                                "db-hafas": "A=1@O=Kassel-Wilhelmshöhe@X=9447114@Y=51312558@U=81@L=8003200@i=U×008005365@",
+                                "ibnr": "8003200",
+                                "uic": "8005365"
+                            },
+                            "latitude": 51.312558,
+                            "longitude": 9.447114,
+                            "name": "Kassel-Wilhelmshöhe",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-03T00:22:00",
+                        "scheduledDepartureTime": "2025-01-03T00:26:00",
+                        "scheduledPlatform": "8",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8002041",
+                                "db-hafas": "A=1@O=Frankfurt(Main)Süd@X=8686456@Y=50099365@U=81@L=8002041@i=U×008011065@",
+                                "ibnr": "8002041",
+                                "uic": "8011065"
+                            },
+                            "latitude": 50.099365,
+                            "longitude": 8.686456,
+                            "name": "Frankfurt(Main)Süd",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "Schlafwagen",
+                    "Reservierungspflicht",
+                    "in Sitzwagen nur 2. Klasse",
+                    "ÖBB Nightjet (<a href=\"https://www.nightjet.com\">www.nightjet.com</a>)",
+                    "Globalpreis",
+                    "Liegewagen"
+                ],
+                "route": {
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "NJ 40424",
+                        "operatorName": "Österreichische Bundesbahnen"
+                    }
+                },
+                "scheduledArrivalTime": "2025-01-03T09:38:00",
+                "scheduledDeparturePlatform": "13",
+                "scheduledDepartureTime": "2025-01-02T19:06:00",
+                "to": {
+                    "country": "FR",
+                    "identifier": {
+                        "db": "8700011",
+                        "db-hafas": "A=1@O=Paris Est@X=2359120@Y=48876976@U=81@L=8700011@i=U×008711300@",
+                        "ibnr": "8700011",
+                        "uic": "8711300"
+                    },
+                    "latitude": 48.876976,
+                    "longitude": 2.35912,
+                    "name": "Paris Est",
+                    "region": "FR-IDF",
+                    "type": "Stop"
+                }
+            }
+        ]
+    }
+]

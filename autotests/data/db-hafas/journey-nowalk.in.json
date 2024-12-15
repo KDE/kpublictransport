@@ -1,0 +1,1243 @@
+{
+  "verbindungen": [
+    {
+      "tripId": "c8796179_3",
+      "ctxRecon": "¶HKI¶T$A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8011160@a=128@$A=1@O=Hannover Hbf@X=9741017@Y=52376764@L=8000152@a=128@$202412141645$202412141828$ICE  544$$1$$$$$$§T$A=1@O=Hannover Hbf@X=9741017@Y=52376764@L=8000152@a=128@$A=1@O=Hamburg Hbf@X=10006909@Y=53552733@L=8002549@a=128@$202412141836$202412141955$ICE  786$$1$$$$$$¶KC¶#VE#2#CF#100#CA#0#CM#0#SICT#0#AM#83#AM2#0#RT#7#¶KCC¶I1ZFIzEjRVJHIzg0NTAjSElOIzAjRUNLIzUzNjY4Nnw1MzY2ODZ8NTM2ODYxfDUzNjg3NXwwfDB8NDg1fDUzNjY4Nnw2fDB8MnwwfDB8LTIxNDc0ODM2NDgjR0FNIzE0MTIyNDE2NDUjClojVk4jMSNTVCMxNzMzNzc5MTIyI1BJIzAjWkkjMjI0MzY3I1RBIzAjREEjMTQxMjI0IzFTIzgwMTAyNTUjMVQjMTYzMyNMUyM4MDAwMjA3I0xUIzIxMzMjUFUjODAjUlQjMSNDQSNJQ0UjWkUjNTQ0I1pCI0lDRSAgNTQ0I1BDIzAjRlIjODAxMTE2MCNGVCMxNjQ1I1RPIzgwMDAxNTIjVFQjMTgyOCMKWiNWTiMxI1NUIzE3MzM3NzkxMjIjUEkjMCNaSSMyMjk2MzAjVEEjMCNEQSMxNDEyMjQjMVMjODAwMDI2MSMxVCMxNDIxI0xTIzgwMDI1NDkjTFQjMTk1NSNQVSM4MCNSVCMxI0NBI0lDRSNaRSM3ODYjWkIjSUNFICA3ODYjUEMjMCNGUiM4MDAwMTUyI0ZUIzE4MzYjVE8jODAwMjU0OSNUVCMxOTU1Iw==¶KRCC¶#VE#1#VOLL#IST#¶SC¶1_H4sIAAAAAAACA21S24rbMBT8lSK/ZoOO7jIYvF6TJiW7CU5SWkofHNvZujh26suyIc537Af1x3rs9GGhRSDpjObMjIQu5CWriUtgqg2ZkOy1xSIMpp/DqcW6zn4R90KS9nWTDDTer2b949YB4UiulJHvFqNgXLR0KA7x91BbZwDYCN4xEFoYroRxwGH9Opw7TGvD032aMGn3CpQSgsUxFzRVOj5o1Uch+gFjlIk+GrxBUtrvNg7to42zeFpsMWnZHWfEleMmIC6dkKprw7jNMPXQCQwkGcFtfhxAMIMMQofxkncwIT/L86xo6yVxv11Iez4NtHW0CpF0rNKhWjw9YPESF90oQRkn1+/jsz38eL4Jo3OanZZVcpMp8hSZ9x74Ky/I6iIvP8z3B/+LB5wrK4X1v3qS4ZDG+jvPUH+JEwAo6gfYdfJAcw7aKMX83Nv9fqPUUCWtsj5GadrbFWdjjriu/2s8v38MdtFHdLXWasHFYMql1AD0H5HnrF1XxRmTInaIiyYbsU9VV5fZOai6Mm3eH6zjpinyBj9OW3cIZUm1juv4iKTL9Xr9AwMJaQViAgAA",
+      "verbindungsAbschnitte": [
+        {
+          "risNotizen": [],
+          "himMeldungen": [
+            {
+              "ueberschrift": "Information.",
+              "text": "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb.",
+              "prioritaet": "NIEDRIG",
+              "modDateTime": "2024-12-14T13:14:55"
+            }
+          ],
+          "priorisierteMeldungen": [
+            {
+              "prioritaet": "NIEDRIG",
+              "text": "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb."
+            }
+          ],
+          "externeBahnhofsinfoIdOrigin": "1071",
+          "externeBahnhofsinfoIdDestination": "2545",
+          "abfahrtsZeitpunkt": "2024-12-14T16:45:00",
+          "abfahrtsOrt": "Berlin Hbf",
+          "abfahrtsOrtExtId": "8011160",
+          "abschnittsDauer": 6180,
+          "abschnittsAnteil": 56.59,
+          "ankunftsZeitpunkt": "2024-12-14T18:28:00",
+          "ankunftsOrt": "Hannover Hbf",
+          "ankunftsOrtExtId": "8000152",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 1
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 1
+            }
+          ],
+          "ezAbfahrtsZeitpunkt": "2024-12-14T16:46:00",
+          "ezAbschnittsDauerInSeconds": 6120,
+          "ezAnkunftsZeitpunkt": "2024-12-14T18:28:00",
+          "halte": [
+            {
+              "id": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8011160@i=U×008065969@",
+              "abfahrtsZeitpunkt": "2024-12-14T16:45:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T16:46:00",
+              "gleis": "14",
+              "name": "Berlin Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1071",
+              "extId": "8011160",
+              "himMeldungen": [],
+              "routeIdx": 1,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Berlin-Spandau@X=13196902@Y=52534650@U=80@L=8010404@i=U×008003025@",
+              "abfahrtsZeitpunkt": "2024-12-14T17:00:00",
+              "ankunftsZeitpunkt": "2024-12-14T16:58:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T17:01:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T16:58:00",
+              "gleis": "4",
+              "name": "Berlin-Spandau",
+              "risNotizen": [
+                {
+                  "key": "text.realtime.stop.exit.disabled",
+                  "value": "Hält nur zum Einsteigen"
+                }
+              ],
+              "bahnhofsInfoId": "0561",
+              "extId": "8010404",
+              "routeIdx": 2,
+              "priorisierteMeldungen": [
+                {
+                  "prioritaet": "NIEDRIG",
+                  "text": "Hält nur zum Einsteigen"
+                }
+              ]
+            },
+            {
+              "id": "A=1@O=Wolfsburg Hbf@X=10787784@Y=52429495@U=80@L=8006552@i=U×008013017@",
+              "abfahrtsZeitpunkt": "2024-12-14T17:53:00",
+              "ankunftsZeitpunkt": "2024-12-14T17:52:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T17:53:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T17:52:00",
+              "gleis": "1",
+              "name": "Wolfsburg Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "6859",
+              "extId": "8006552",
+              "routeIdx": 3,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Hannover Hbf@X=9741017@Y=52376764@U=80@L=8000152@i=U×008013552@",
+              "ankunftsZeitpunkt": "2024-12-14T18:28:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAnkunftsZeitpunkt": "2024-12-14T18:28:00",
+              "gleis": "12",
+              "name": "Hannover Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "2545",
+              "extId": "8000152",
+              "himMeldungen": [],
+              "routeIdx": 4,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 0,
+          "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#224367#TA#0#DA#141224#1S#8010255#1T#1633#LS#8000207#LT#2133#PU#80#RT#1#CA#ICE#ZE#544#ZB#ICE  544#PC#0#FR#8010255#FT#1633#TO#8000207#TT#2133#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "ICE",
+            "name": "ICE 544",
+            "nummer": "544",
+            "richtung": "Düsseldorf Hbf",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              },
+              {
+                "kategorie": "BORDBISTRO",
+                "key": "BR",
+                "value": "Bordrestaurant",
+                "teilstreckenHinweis": "(Berlin Hbf - Hannover Hbf)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FR",
+                "value": "Fahrradmitnahme reservierungspflichtig",
+                "teilstreckenHinweis": "(Berlin Hbf - Hannover Hbf)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FB",
+                "value": "Fahrradmitnahme begrenzt möglich",
+                "teilstreckenHinweis": "(Berlin Hbf - Hannover Hbf)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "CK",
+                "value": "Komfort Check-in verfügbar - wenn möglich bitte einchecken",
+                "teilstreckenHinweis": "(Berlin Hbf - Hannover Hbf)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "EH",
+                "value": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                "teilstreckenHinweis": "(Berlin Hbf - Hannover Hbf)"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 544",
+            "langText": "ICE 544"
+          }
+        },
+        {
+          "risNotizen": [],
+          "himMeldungen": [
+            {
+              "ueberschrift": "Information.",
+              "text": "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb.",
+              "prioritaet": "NIEDRIG",
+              "modDateTime": "2024-12-14T13:14:55"
+            }
+          ],
+          "priorisierteMeldungen": [
+            {
+              "prioritaet": "NIEDRIG",
+              "text": "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb."
+            }
+          ],
+          "externeBahnhofsinfoIdOrigin": "2545",
+          "externeBahnhofsinfoIdDestination": "2514",
+          "abfahrtsZeitpunkt": "2024-12-14T18:36:00",
+          "abfahrtsOrt": "Hannover Hbf",
+          "abfahrtsOrtExtId": "8000152",
+          "abschnittsDauer": 4740,
+          "abschnittsAnteil": 43.41,
+          "ankunftsZeitpunkt": "2024-12-14T19:55:00",
+          "ankunftsOrt": "Hamburg Hbf",
+          "ankunftsOrtExtId": "8002549",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 1
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 1
+            }
+          ],
+          "ezAbfahrtsZeitpunkt": "2024-12-14T18:36:00",
+          "ezAbschnittsDauerInSeconds": 4740,
+          "ezAnkunftsZeitpunkt": "2024-12-14T19:55:00",
+          "halte": [
+            {
+              "id": "A=1@O=Hannover Hbf@X=9741017@Y=52376764@U=80@L=8000152@i=U×008013552@",
+              "abfahrtsZeitpunkt": "2024-12-14T18:36:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T18:36:00",
+              "gleis": "7",
+              "name": "Hannover Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "2545",
+              "extId": "8000152",
+              "himMeldungen": [],
+              "routeIdx": 7,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Hamburg-Harburg@X=9991699@Y=53455910@U=80@L=8000147@i=U×008001134@",
+              "abfahrtsZeitpunkt": "2024-12-14T19:43:00",
+              "ankunftsZeitpunkt": "2024-12-14T19:41:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T19:43:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T19:41:00",
+              "gleis": "1",
+              "name": "Hamburg-Harburg",
+              "risNotizen": [
+                {
+                  "key": "text.realtime.stop.entry.disabled",
+                  "value": "Hält nur zum Aussteigen"
+                }
+              ],
+              "bahnhofsInfoId": "2519",
+              "extId": "8000147",
+              "routeIdx": 8,
+              "priorisierteMeldungen": [
+                {
+                  "prioritaet": "NIEDRIG",
+                  "text": "Hält nur zum Aussteigen"
+                }
+              ]
+            },
+            {
+              "id": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
+              "ankunftsZeitpunkt": "2024-12-14T19:55:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAnkunftsZeitpunkt": "2024-12-14T19:55:00",
+              "gleis": "12",
+              "name": "Hamburg Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "2514",
+              "extId": "8002549",
+              "himMeldungen": [],
+              "routeIdx": 9,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 1,
+          "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#229630#TA#0#DA#141224#1S#8000261#1T#1421#LS#8002549#LT#1955#PU#80#RT#1#CA#ICE#ZE#786#ZB#ICE  786#PC#0#FR#8000261#FT#1421#TO#8002549#TT#1955#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "ICE",
+            "name": "ICE 786",
+            "nummer": "786",
+            "richtung": "Hamburg Hbf",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              },
+              {
+                "kategorie": "BORDBISTRO",
+                "key": "BR",
+                "value": "Bordrestaurant",
+                "teilstreckenHinweis": "(Hannover Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FR",
+                "value": "Fahrradmitnahme reservierungspflichtig",
+                "teilstreckenHinweis": "(Hannover Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FB",
+                "value": "Fahrradmitnahme begrenzt möglich",
+                "teilstreckenHinweis": "(Hannover Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "CK",
+                "value": "Komfort Check-in verfügbar - wenn möglich bitte einchecken",
+                "teilstreckenHinweis": "(Hannover Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "EH",
+                "value": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                "teilstreckenHinweis": "(Hannover Hbf - Hamburg Hbf)"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 786",
+            "langText": "ICE 786"
+          }
+        }
+      ],
+      "umstiegsAnzahl": 1,
+      "verbindungsDauerInSeconds": 11400,
+      "ezVerbindungsDauerInSeconds": 11340,
+      "isAlternativeVerbindung": true,
+      "auslastungsmeldungen": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1
+        }
+      ],
+      "auslastungstexte": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        }
+      ],
+      "himMeldungen": [],
+      "risNotizen": [],
+      "priorisierteMeldungen": [],
+      "reservierungsMeldungen": [],
+      "isAngebotseinholungNachgelagert": false,
+      "isAlterseingabeErforderlich": false,
+      "serviceDays": [
+        {
+          "lastDateInPeriod": "2024-12-14",
+          "regular": "nicht täglich",
+          "irregular": "14. Dez 2024",
+          "planningPeriodBegin": "2023-12-10",
+          "planningPeriodEnd": "2025-12-13",
+          "weekdays": [
+            "SA"
+          ]
+        }
+      ],
+      "ereignisZusammenfassung": {
+        "prioritaet": "NIEDRIG"
+      },
+      "angebotsPreis": {
+        "betrag": 109.5,
+        "waehrung": "EUR",
+        "mwst": [
+          {
+            "betrag": 7.16,
+            "brutto": 109.5,
+            "netto": 102.34,
+            "satz": 7,
+            "literal": "D"
+          }
+        ]
+      },
+      "angebotsPreisKlasse": "KLASSE_2",
+      "hasTeilpreis": false,
+      "reiseAngebote": [],
+      "hinRueckPauschalpreis": false,
+      "isReservierungAusserhalbVorverkaufszeitraum": false,
+      "gesamtAngebotsbeziehungList": []
+    },
+    {
+      "tripId": "4fb3f4dc_3",
+      "ctxRecon": "¶HKI¶T$A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8098160@a=128@$A=1@O=Hamburg Hbf@X=10006909@Y=53552733@L=8002549@a=128@$202412141738$202412142011$ICE 2926$$2$$$$$$¶KC¶#VE#2#CF#100#CA#0#CM#0#SICT#0#AM#83#AM2#0#RT#7#¶KCC¶I1ZFIzEjRVJHIzEjSElOIzAjRUNLIzUzNjczOHw1MzY3Mzh8NTM2ODkxfDUzNjg5MXwwfDB8NDg1fDUzNjY4N3w3fDB8MTA1MHwwfDB8LTIxNDc0ODM2NDgjR0FNIzE0MTIyNDE3MzgjClojVk4jMSNTVCMxNzMzNzc5MTIyI1BJIzAjWkkjMTY4NDA0MyNUQSMwI0RBIzE0MTIyNCMxUyM4MDAwMjYxIzFUIzEyNTYjTFMjODAwMjU1MyNMVCMyMDI1I1BVIzgwI1JUIzIjQ0EjSUNFI1pFIzI5MjYjWkIjSUNFIDI5MjYjUEMjMCNGUiM4MDk4MTYwI0ZUIzE3MzgjVE8jODAwMjU0OSNUVCMyMDExIw==¶KRCC¶#VE#1#VOLL#IST#¶SC¶1_H4sIAAAAAAACA21S24rbMBT8lSK/ZoOO7jIYvF6TJiW7CU5SWkofHNvZujh26suyIc537Af1x3rs9GGhRSDpjObMjIQu5CWriUtgqg2ZkOy1xSIMpp/DqcW6zn4R90KS9nWTDDTer2b949YB4UiulJHvFqNgXLR0KA7x91BbZwDYCN4xEFoYroRxwGH9Opw7TGvD032aMGn3CpQSgsUxFzRVOj5o1Uch+gFjlIk+GrxBUtrvNg7to42zeFpsMWnZHWfEleMmIC6dkKprw7jNMPXQCQwkGcFtfhxAMIMMQofxkncwIT/L86xo6yVxv11Iez4NtHW0CpF0rNKhWjw9YPESF90oQRkn1+/jsz38eL4Jo3OanZZVcpMp8hSZ9x74Ky/I6iIvP8z3B/+LB5wrK4X1v3qS4ZDG+jvPUH+JEwAo6gfYdfJAcw7aKMX83Nv9fqPUUCWtsj5GadrbFWdjjriu/2s8v38MdtFHdLXWasHFYMql1AD0H5HnrF1XxRmTInaIiyYbsU9VV5fZOai6Mm3eH6zjpinyBj9OW3cIZUm1juv4iKTL9Xr9AwMJaQViAgAA",
+      "verbindungsAbschnitte": [
+        {
+          "risNotizen": [
+            {
+              "key": "RT",
+              "value": "Ersatzfahrt für ICE  506"
+            }
+          ],
+          "himMeldungen": [
+            {
+              "ueberschrift": "Information.",
+              "text": "Zug fährt mit anderem Fahrzeug. Zug fährt mit verringerter Anzahl an Sitzplätzen. Bordrestaurant/Bordbistro in Wagen 7. Die Ersatzstellplätze für Fahrräder befinden sich in Wagen 1. Rollstuhlgerechte Einrichtung in Wagen 6. Keine fahrzeuggebundene Einstiegshilfe. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
+              "prioritaet": "NIEDRIG",
+              "modDateTime": "2024-12-14T04:15:04"
+            }
+          ],
+          "priorisierteMeldungen": [
+            {
+              "prioritaet": "HOCH",
+              "text": "Ersatzfahrt für ICE  506"
+            },
+            {
+              "prioritaet": "NIEDRIG",
+              "text": "Zug fährt mit anderem Fahrzeug. Zug fährt mit verringerter Anzahl an Sitzplätzen. Bordrestaurant/Bordbistro in Wagen 7. Die Ersatzstellplätze für Fahrräder befinden sich in Wagen 1. Rollstuhlgerechte Einrichtung in Wagen 6. Keine fahrzeuggebundene Einstiegshilfe. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888."
+            }
+          ],
+          "externeBahnhofsinfoIdOrigin": "1071",
+          "externeBahnhofsinfoIdDestination": "2514",
+          "abfahrtsZeitpunkt": "2024-12-14T17:38:00",
+          "abfahrtsOrt": "Berlin Hbf",
+          "abfahrtsOrtExtId": "8098160",
+          "abschnittsDauer": 9180,
+          "abschnittsAnteil": 100,
+          "ankunftsZeitpunkt": "2024-12-14T20:11:00",
+          "ankunftsOrt": "Hamburg Hbf",
+          "ankunftsOrtExtId": "8002549",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 0
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 0
+            }
+          ],
+          "ezAbfahrtsZeitpunkt": "2024-12-14T17:38:00",
+          "ezAbschnittsDauerInSeconds": 9180,
+          "ezAnkunftsZeitpunkt": "2024-12-14T20:11:00",
+          "halte": [
+            {
+              "id": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
+              "abfahrtsZeitpunkt": "2024-12-14T17:38:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T17:38:00",
+              "gleis": "8",
+              "name": "Berlin Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1071",
+              "extId": "8098160",
+              "himMeldungen": [],
+              "routeIdx": 8,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Berlin-Spandau@X=13196902@Y=52534650@U=80@L=8010404@i=U×008003025@",
+              "abfahrtsZeitpunkt": "2024-12-14T17:49:00",
+              "ankunftsZeitpunkt": "2024-12-14T17:46:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T17:49:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T17:46:00",
+              "gleis": "3",
+              "name": "Berlin-Spandau",
+              "risNotizen": [],
+              "bahnhofsInfoId": "0561",
+              "extId": "8010404",
+              "routeIdx": 9,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Stendal Hbf@X=11854408@Y=52594725@U=80@L=8010334@i=U×008024062@",
+              "abfahrtsZeitpunkt": "2024-12-14T18:30:00",
+              "ankunftsZeitpunkt": "2024-12-14T18:29:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T18:30:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T18:29:00",
+              "gleis": "1",
+              "name": "Stendal Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "6010",
+              "extId": "8010334",
+              "routeIdx": 10,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Salzwedel@X=11162032@Y=52858109@U=80@L=8010310@i=U×008024585@",
+              "abfahrtsZeitpunkt": "2024-12-14T19:01:00",
+              "ankunftsZeitpunkt": "2024-12-14T19:00:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T19:01:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T19:00:00",
+              "gleis": "3",
+              "name": "Salzwedel",
+              "risNotizen": [],
+              "bahnhofsInfoId": "5487",
+              "extId": "8010310",
+              "routeIdx": 11,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Uelzen@X=10553057@Y=52969782@U=80@L=8000168@i=U×008013623@",
+              "abfahrtsZeitpunkt": "2024-12-14T19:29:00",
+              "ankunftsZeitpunkt": "2024-12-14T19:27:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T19:29:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T19:27:00",
+              "gleis": "102",
+              "name": "Uelzen",
+              "risNotizen": [],
+              "bahnhofsInfoId": "6310",
+              "extId": "8000168",
+              "routeIdx": 12,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
+              "ankunftsZeitpunkt": "2024-12-14T20:11:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAnkunftsZeitpunkt": "2024-12-14T20:11:00",
+              "gleis": "8",
+              "name": "Hamburg Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "2514",
+              "extId": "8002549",
+              "himMeldungen": [],
+              "routeIdx": 13,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 0,
+          "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1684043#TA#0#DA#141224#1S#8000261#1T#1256#LS#8002553#LT#2025#PU#80#RT#2#CA#ICE#ZE#2926#ZB#ICE 2926#PC#0#FR#8000261#FT#1256#TO#8002553#TT#2025#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "ICE",
+            "name": "ICE 2926",
+            "nummer": "2926",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 2926",
+            "langText": "ICE 2926"
+          }
+        }
+      ],
+      "umstiegsAnzahl": 0,
+      "verbindungsDauerInSeconds": 9180,
+      "ezVerbindungsDauerInSeconds": 9180,
+      "isAlternativeVerbindung": true,
+      "auslastungsmeldungen": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0
+        }
+      ],
+      "auslastungstexte": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        }
+      ],
+      "himMeldungen": [],
+      "risNotizen": [
+        {
+          "key": "text.realtime.connection.cancelled",
+          "value": "Statt ICE 506 fährt heute ICE 2926. Tickets behalten weiterhin ihre Gültigkeit."
+        }
+      ],
+      "priorisierteMeldungen": [
+        {
+          "prioritaet": "HOCH",
+          "text": "Statt ICE 506 fährt heute ICE 2926. Tickets behalten weiterhin ihre Gültigkeit."
+        }
+      ],
+      "reservierungsMeldungen": [],
+      "isAngebotseinholungNachgelagert": false,
+      "isAlterseingabeErforderlich": false,
+      "serviceDays": [
+        {
+          "lastDateInPeriod": "2024-12-14",
+          "regular": "nicht täglich",
+          "irregular": "14. Dez 2024",
+          "planningPeriodBegin": "2023-12-10",
+          "planningPeriodEnd": "2025-12-13",
+          "weekdays": [
+            "SA"
+          ]
+        }
+      ],
+      "ereignisZusammenfassung": {
+        "prioritaet": "SEHR HOCH",
+        "zusammenfassung": "Statt ICE 506 fährt heute ICE 2926. Tickets behalten weiterhin ihre Gültigkeit."
+      },
+      "angebotsPreis": {
+        "betrag": 85.4,
+        "waehrung": "EUR",
+        "mwst": [
+          {
+            "betrag": 5.59,
+            "brutto": 85.4,
+            "netto": 79.81,
+            "satz": 7,
+            "literal": "D"
+          }
+        ]
+      },
+      "angebotsPreisKlasse": "KLASSE_2",
+      "hasTeilpreis": false,
+      "reiseAngebote": [],
+      "hinRueckPauschalpreis": false,
+      "isReservierungAusserhalbVorverkaufszeitraum": false,
+      "gesamtAngebotsbeziehungList": []
+    },
+    {
+      "tripId": "2daf0f37_3",
+      "ctxRecon": "¶HKI¶T$A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8098160@a=128@$A=1@O=Hamburg Hbf@X=10006909@Y=53552733@L=8002549@a=128@$202412141938$202412142209$ICE  504$$1$$$$$$¶KC¶#VE#2#CF#100#CA#0#CM#0#SICT#0#AM#83#AM2#0#RT#7#¶KCC¶I1ZFIzEjRVJHIzEjSElOIzAjRUNLIzUzNjg1OHw1MzY4NTh8NTM3MDA5fDUzNzAwOXwwfDB8NDg1fDUzNjgwNnwxMHwwfDEwNTB8MHwwfC0yMTQ3NDgzNjQ4I0dBTSMxNDEyMjQxOTM4IwpaI1ZOIzEjU1QjMTczMzc3OTEyMiNQSSMwI1pJIzIyMjk3NSNUQSMwI0RBIzE0MTIyNCMxUyM4MDAwMjYxIzFUIzE0NTcjTFMjODAwMjU1MyNMVCMyMjI1I1BVIzgwI1JUIzEjQ0EjSUNFI1pFIzUwNCNaQiNJQ0UgIDUwNCNQQyMwI0ZSIzgwOTgxNjAjRlQjMTkzOCNUTyM4MDAyNTQ5I1RUIzIyMDkj¶KRCC¶#VE#1#¶SC¶1_H4sIAAAAAAACA21S24rbMBT8lSK/ZoOO7jIYvF6TJiW7CU5SWkofHNvZujh26suyIc537Af1x3rs9GGhRSDpjObMjIQu5CWriUtgqg2ZkOy1xSIMpp/DqcW6zn4R90KS9nWTDDTer2b949YB4UiulJHvFqNgXLR0KA7x91BbZwDYCN4xEFoYroRxwGH9Opw7TGvD032aMGn3CpQSgsUxFzRVOj5o1Uch+gFjlIk+GrxBUtrvNg7to42zeFpsMWnZHWfEleMmIC6dkKprw7jNMPXQCQwkGcFtfhxAMIMMQofxkncwIT/L86xo6yVxv11Iez4NtHW0CpF0rNKhWjw9YPESF90oQRkn1+/jsz38eL4Jo3OanZZVcpMp8hSZ9x74Ky/I6iIvP8z3B/+LB5wrK4X1v3qS4ZDG+jvPUH+JEwAo6gfYdfJAcw7aKMX83Nv9fqPUUCWtsj5GadrbFWdjjriu/2s8v38MdtFHdLXWasHFYMql1AD0H5HnrF1XxRmTInaIiyYbsU9VV5fZOai6Mm3eH6zjpinyBj9OW3cIZUm1juv4iKTL9Xr9AwMJaQViAgAA",
+      "verbindungsAbschnitte": [
+        {
+          "risNotizen": [],
+          "himMeldungen": [],
+          "priorisierteMeldungen": [],
+          "externeBahnhofsinfoIdOrigin": "1071",
+          "externeBahnhofsinfoIdDestination": "2514",
+          "abfahrtsZeitpunkt": "2024-12-14T19:38:00",
+          "abfahrtsOrt": "Berlin Hbf",
+          "abfahrtsOrtExtId": "8098160",
+          "abschnittsDauer": 9060,
+          "abschnittsAnteil": 100,
+          "ankunftsZeitpunkt": "2024-12-14T22:09:00",
+          "ankunftsOrt": "Hamburg Hbf",
+          "ankunftsOrtExtId": "8002549",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 1
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 1
+            }
+          ],
+          "ezAbfahrtsZeitpunkt": "2024-12-14T19:38:00",
+          "ezAbschnittsDauerInSeconds": 9060,
+          "ezAnkunftsZeitpunkt": "2024-12-14T22:09:00",
+          "halte": [
+            {
+              "id": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
+              "abfahrtsZeitpunkt": "2024-12-14T19:38:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T19:38:00",
+              "gleis": "8",
+              "name": "Berlin Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1071",
+              "extId": "8098160",
+              "himMeldungen": [],
+              "routeIdx": 8,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Berlin-Spandau@X=13196902@Y=52534650@U=80@L=8010404@i=U×008003025@",
+              "abfahrtsZeitpunkt": "2024-12-14T19:50:00",
+              "ankunftsZeitpunkt": "2024-12-14T19:46:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T19:50:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T19:46:00",
+              "gleis": "4",
+              "name": "Berlin-Spandau",
+              "risNotizen": [],
+              "bahnhofsInfoId": "0561",
+              "extId": "8010404",
+              "routeIdx": 9,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Stendal Hbf@X=11854408@Y=52594725@U=80@L=8010334@i=U×008024062@",
+              "abfahrtsZeitpunkt": "2024-12-14T20:26:00",
+              "ankunftsZeitpunkt": "2024-12-14T20:25:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T20:26:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T20:25:00",
+              "gleis": "1",
+              "name": "Stendal Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "6010",
+              "extId": "8010334",
+              "routeIdx": 10,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Salzwedel@X=11162032@Y=52858109@U=80@L=8010310@i=U×008024585@",
+              "abfahrtsZeitpunkt": "2024-12-14T21:02:00",
+              "ankunftsZeitpunkt": "2024-12-14T21:01:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T21:02:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T21:01:00",
+              "gleis": "3",
+              "name": "Salzwedel",
+              "risNotizen": [],
+              "bahnhofsInfoId": "5487",
+              "extId": "8010310",
+              "routeIdx": 11,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Uelzen@X=10553057@Y=52969782@U=80@L=8000168@i=U×008013623@",
+              "abfahrtsZeitpunkt": "2024-12-14T21:29:00",
+              "ankunftsZeitpunkt": "2024-12-14T21:27:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "ezAbfahrtsZeitpunkt": "2024-12-14T21:29:00",
+              "ezAnkunftsZeitpunkt": "2024-12-14T21:27:00",
+              "gleis": "102",
+              "name": "Uelzen",
+              "risNotizen": [],
+              "bahnhofsInfoId": "6310",
+              "extId": "8000168",
+              "routeIdx": 12,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
+              "ankunftsZeitpunkt": "2024-12-14T22:09:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "ezAnkunftsZeitpunkt": "2024-12-14T22:09:00",
+              "gleis": "13",
+              "name": "Hamburg Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "2514",
+              "extId": "8002549",
+              "himMeldungen": [],
+              "routeIdx": 13,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 0,
+          "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#222975#TA#0#DA#141224#1S#8000261#1T#1457#LS#8002553#LT#2225#PU#80#RT#1#CA#ICE#ZE#504#ZB#ICE  504#PC#0#FR#8000261#FT#1457#TO#8002553#TT#2225#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "ICE",
+            "name": "ICE 504",
+            "nummer": "504",
+            "richtung": "Hamburg-Altona",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              },
+              {
+                "kategorie": "BORDBISTRO",
+                "key": "BR",
+                "value": "Bordrestaurant",
+                "teilstreckenHinweis": "(Berlin Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FR",
+                "value": "Fahrradmitnahme reservierungspflichtig",
+                "teilstreckenHinweis": "(Berlin Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FB",
+                "value": "Fahrradmitnahme begrenzt möglich",
+                "teilstreckenHinweis": "(Berlin Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "CK",
+                "value": "Komfort Check-in verfügbar - wenn möglich bitte einchecken",
+                "teilstreckenHinweis": "(Berlin Hbf - Hamburg Hbf)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "EH",
+                "value": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                "teilstreckenHinweis": "(Berlin Hbf - Hamburg Hbf)"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 504",
+            "langText": "ICE 504"
+          }
+        }
+      ],
+      "umstiegsAnzahl": 0,
+      "verbindungsDauerInSeconds": 9060,
+      "ezVerbindungsDauerInSeconds": 9060,
+      "isAlternativeVerbindung": false,
+      "auslastungsmeldungen": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1
+        }
+      ],
+      "auslastungstexte": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        }
+      ],
+      "himMeldungen": [],
+      "risNotizen": [],
+      "priorisierteMeldungen": [],
+      "reservierungsMeldungen": [],
+      "isAngebotseinholungNachgelagert": false,
+      "isAlterseingabeErforderlich": false,
+      "serviceDays": [
+        {
+          "lastDateInPeriod": "2024-12-14",
+          "regular": "nicht täglich",
+          "irregular": "14. Dez 2024",
+          "planningPeriodBegin": "2023-12-10",
+          "planningPeriodEnd": "2025-12-13",
+          "weekdays": [
+            "SA"
+          ]
+        }
+      ],
+      "angebotsPreis": {
+        "betrag": 69.99,
+        "waehrung": "EUR",
+        "mwst": [
+          {
+            "betrag": 4.58,
+            "brutto": 69.99,
+            "netto": 65.41,
+            "satz": 7,
+            "literal": "D"
+          }
+        ]
+      },
+      "angebotsPreisKlasse": "KLASSE_2",
+      "hasTeilpreis": false,
+      "reiseAngebote": [],
+      "angebotsInformationen": [
+        "Hinweis zum City-Ticket: Das City-Ticket wird im Super Sparpreis und Sparpreis passend zu Ihrer angefragten Verbindung ausgegeben."
+      ],
+      "angebotsInformationenAsObject": [
+        {
+          "code": "MDA-ANGEBOTSINFORMATION-CITYTICKET",
+          "nachrichtKurz": "Hinweis zum City-Ticket: Das City-Ticket wird im Super Sparpreis und Sparpreis passend zu Ihrer angefragten Verbindung ausgegeben.",
+          "nachrichtLang": "Hinweis zum City-Ticket: Das City-Ticket wird im Super Sparpreis und Sparpreis passend zu Ihrer angefragten Verbindung ausgegeben.",
+          "fahrtRichtungKennzeichen": "HINFAHRT"
+        }
+      ],
+      "hinRueckPauschalpreis": false,
+      "isReservierungAusserhalbVorverkaufszeitraum": false,
+      "gesamtAngebotsbeziehungList": []
+    }
+  ],
+  "verbindungReference": {
+    "earlier": "3|OB|MTµ14µ536738µ536738µ536891µ536891µ0µ0µ485µ536686µ6µ0µ1050µ0µ0µ-2147483648µ1µ2|PDHµ27783dbdc259b6166442aa340d67af76|RDµ14122024|RTµ141500|USµ0|RSµINIT",
+    "later": "3|OF|MTµ14µ536858µ536858µ537009µ537009µ0µ0µ485µ536806µ10µ0µ1050µ0µ0µ-2147483648µ1µ2|PDHµ27783dbdc259b6166442aa340d67af76|RDµ14122024|RTµ141500|USµ0|RSµINIT"
+  }
+}

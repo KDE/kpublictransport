@@ -1,0 +1,697 @@
+{
+  "verbindungen": [
+    {
+      "tripId": "dec82b98_3",
+      "ctxRecon": "¶HKI¶T$A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8011160@a=128@$A=1@O=Paris Est@X=2359120@Y=48876976@L=8700011@a=128@$202501021154$202501021959$ICE 9590$$1$$$$$$¶KC¶#VE#2#CF#100#CA#0#CM#0#SICT#0#AM#81#AM2#0#RT#7#¶KCC¶I1ZFIzEjRVJHIzEjSElOIzAjRUNLIzU2Mzc1NHw1NjM3NTR8NTY0MjM5fDU2NDIzOXwwfDB8NXw1NjIzMTV8MnwwfDEwNTB8MHwwfC0yMTQ3NDgzNjQ4I0dBTSMyMDEyNTExNTQjClojVk4jMSNTVCMxNzM0NTUxMTAxI1BJIzEjWkkjMjMwNzE4I1RBIzAjREEjMjAxMjUjMVMjODAxMDI1NSMxVCMxMTQxI0xTIzg3MDAwMTEjTFQjMTk1OSNQVSM4MSNSVCMxI0NBI1JISSNaRSM5NTkwI1pCI0lDRSA5NTkwI1BDIzAjRlIjODAxMTE2MCNGVCMxMTU0I1RPIzg3MDAwMTEjVFQjMTk1OSM=¶KRCC¶#VE#1#¶SC¶1_H4sIAAAAAAACA3WR7WqDMBiFb2XktyuJ1vgBQmpdmaOs0rVjY+yHq2nniKaLsVTE69gF7cb2aqGMfUQInpMTnxPTogNXyEdk5LjIQPyoQUTh6D4aeaAVf0d+i8q6mCHfNvqXEPnYQLLWUao5hE1s2phgggZzlRe9iV0MA6zt8IVLYqC3spkJrebIf2qRbvZ9LIqXV9MVxAqZ9Tq+nYIQchNnR8B0xjmZLBfRz9whFXWvCDYt1D0P7aevu1MF6Jjx/VxuTkCRZ5CcBIQtgpArkZcX1y9b9hAQy6KePfbYY2Cb8Niux9aBi9kcJkIIxSyEXfuAOJZFHJdSk+XB+vMDwxmp7VGPQZVKn37GbOiRKvUnOJks4ztgmhZAXQLIsetSMvboGel4FGPyP9JxoCD+jdxxnUjRwLnA26ai4oN3I2tV8iaUdZlV3xeStKpEXsFta1WDxTcySVVaQKjtuu4Lax7TIxcCAAA=",
+      "verbindungsAbschnitte": [
+        {
+          "risNotizen": [],
+          "himMeldungen": [
+            {
+              "ueberschrift": "Information.",
+              "text": "Erhöhtes Reisendenaufkommen in der 2. Kl zw. Deutschland und Frankreich erwartet. Wir empfehlen eine Buchung in der 1. Kl.",
+              "prioritaet": "NIEDRIG",
+              "modDateTime": "2024-11-22T09:50:53"
+            }
+          ],
+          "priorisierteMeldungen": [
+            {
+              "prioritaet": "NIEDRIG",
+              "text": "Erhöhtes Reisendenaufkommen in der 2. Kl zw. Deutschland und Frankreich erwartet. Wir empfehlen eine Buchung in der 1. Kl."
+            }
+          ],
+          "externeBahnhofsinfoIdOrigin": "1071",
+          "reservierungspflichtigNote": "Reservierungspflicht",
+          "abfahrtsZeitpunkt": "2025-01-02T11:54:00",
+          "abfahrtsOrt": "Berlin Hbf",
+          "abfahrtsOrtExtId": "8011160",
+          "abschnittsDauer": 29100,
+          "abschnittsAnteil": 100,
+          "ankunftsZeitpunkt": "2025-01-02T19:59:00",
+          "ankunftsOrt": "Paris Est",
+          "ankunftsOrtExtId": "8700011",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 0
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 0
+            }
+          ],
+          "halte": [
+            {
+              "id": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=81@L=8011160@i=U×008065969@",
+              "abfahrtsZeitpunkt": "2025-01-02T11:54:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "14",
+              "name": "Berlin Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1071",
+              "extId": "8011160",
+              "himMeldungen": [],
+              "routeIdx": 1,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Berlin-Spandau@X=13196902@Y=52534650@U=81@L=8010404@i=U×008003025@",
+              "abfahrtsZeitpunkt": "2025-01-02T12:12:00",
+              "ankunftsZeitpunkt": "2025-01-02T12:10:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "4",
+              "name": "Berlin-Spandau",
+              "risNotizen": [
+                {
+                  "key": "text.realtime.stop.exit.disabled",
+                  "value": "Hält nur zum Einsteigen"
+                }
+              ],
+              "bahnhofsInfoId": "0561",
+              "extId": "8010404",
+              "routeIdx": 2,
+              "priorisierteMeldungen": [
+                {
+                  "prioritaet": "NIEDRIG",
+                  "text": "Hält nur zum Einsteigen"
+                }
+              ]
+            },
+            {
+              "id": "A=1@O=Frankfurt(Main)Süd@X=8686456@Y=50099365@U=81@L=8002041@i=U×008011065@",
+              "abfahrtsZeitpunkt": "2025-01-02T15:57:00",
+              "ankunftsZeitpunkt": "2025-01-02T15:55:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "8",
+              "name": "Frankfurt(Main)Süd",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1856",
+              "extId": "8002041",
+              "routeIdx": 3,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Karlsruhe Hbf@X=8402181@Y=48993512@U=81@L=8000191@i=U×008014228@",
+              "abfahrtsZeitpunkt": "2025-01-02T17:11:00",
+              "ankunftsZeitpunkt": "2025-01-02T17:10:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "2",
+              "name": "Karlsruhe Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "3107",
+              "extId": "8000191",
+              "routeIdx": 4,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Strasbourg@X=7734067@Y=48585339@U=81@L=8700023@i=U×008721202@",
+              "abfahrtsZeitpunkt": "2025-01-02T18:01:00",
+              "ankunftsZeitpunkt": "2025-01-02T17:53:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Strasbourg",
+              "risNotizen": [],
+              "extId": "8700023",
+              "routeIdx": 6,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Paris Est@X=2359120@Y=48876976@U=81@L=8700011@i=U×008711300@",
+              "ankunftsZeitpunkt": "2025-01-02T19:59:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Paris Est",
+              "risNotizen": [],
+              "extId": "8700011",
+              "himMeldungen": [],
+              "routeIdx": 7,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 0,
+          "journeyId": "2|#VN#1#ST#1734551101#PI#1#ZI#230718#TA#0#DA#20125#1S#8010255#1T#1141#LS#8700011#LT#1959#PU#81#RT#1#CA#RHI#ZE#9590#ZB#ICE 9590#PC#0#FR#8010255#FT#1141#TO#8700011#TT#1959#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "RHI",
+            "name": "ICE 9590",
+            "nummer": "9590",
+            "richtung": "Paris Est",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "RP",
+                "value": "Reservierungspflicht",
+                "teilstreckenHinweis": "(Karlsruhe Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "EH",
+                "value": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 9590",
+            "langText": "ICE 9590"
+          }
+        }
+      ],
+      "umstiegsAnzahl": 0,
+      "verbindungsDauerInSeconds": 29100,
+      "ezVerbindungsDauerInSeconds": 29100,
+      "isAlternativeVerbindung": false,
+      "auslastungsmeldungen": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0
+        }
+      ],
+      "auslastungstexte": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        }
+      ],
+      "himMeldungen": [],
+      "risNotizen": [],
+      "priorisierteMeldungen": [],
+      "reservierungsMeldungen": [],
+      "isAngebotseinholungNachgelagert": false,
+      "isAlterseingabeErforderlich": true,
+      "serviceDays": [
+        {
+          "lastDateInPeriod": "2025-05-04",
+          "regular": "nicht täglich",
+          "irregular": "1. Jan bis 4. Mai 2025; nicht 6., 7., 13., 14. Jan 2025, 31. Jan bis 9. Feb 2025, 26. Apr 2025",
+          "planningPeriodBegin": "2023-12-10",
+          "planningPeriodEnd": "2025-12-13",
+          "weekdays": [
+            "MI",
+            "DO",
+            "FR",
+            "SA",
+            "SO"
+          ]
+        }
+      ],
+      "ereignisZusammenfassung": {
+        "prioritaet": "NIEDRIG"
+      },
+      "angebotsPreis": {
+        "betrag": 139.99,
+        "waehrung": "EUR",
+        "mwst": [
+          {
+            "betrag": 4.68,
+            "brutto": 51.53,
+            "netto": 46.85,
+            "satz": 10
+          },
+          {
+            "betrag": 5.79,
+            "brutto": 88.46,
+            "netto": 82.67,
+            "satz": 7,
+            "literal": "D"
+          }
+        ]
+      },
+      "angebotsPreisKlasse": "KLASSE_2",
+      "hasTeilpreis": false,
+      "reiseAngebote": [],
+      "hinRueckPauschalpreis": false,
+      "isReservierungAusserhalbVorverkaufszeitraum": false,
+      "gesamtAngebotsbeziehungList": []
+    },
+    {
+      "tripId": "0b7d5a75_3",
+      "ctxRecon": "¶HKI¶T$A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8011160@a=128@$A=1@O=Paris Est@X=2359120@Y=48876976@L=8700011@a=128@$202501021906$202501030938$NJ 40424$$1$$$$$$¶KC¶#VE#2#CF#100#CA#0#CM#0#SICT#0#AM#81#AM2#0#RT#7#¶KCC¶I1ZFIzEjRVJHIzEjSElOIzAjRUNLIzU2NDE4Nnw1NjQxODZ8NTY1MDU4fDU2NTA1OHwwfDB8NXw1NjM3NTV8M3wwfDMwOTh8MHwwfC0yMTQ3NDgzNjQ4I0dBTSMyMDEyNTE5MDYjClojVk4jMSNTVCMxNzM0NTUxMTAxI1BJIzEjWkkjMTgzOTc5I1RBIzAjREEjMjAxMjUjMVMjODAxMDI1NSMxVCMxODU2I0xTIzg3MDAwMTEjTFQjMTA5MzgjUFUjODEjUlQjMSNDQSNOSiNaRSM0MDQyNCNaQiNOSiA0MDQyNCNQQyMxI0ZSIzgwMTExNjAjRlQjMTkwNiNUTyM4NzAwMDExI1RUIzEwOTM4Iw==¶KRCC¶#VE#1#¶SC¶1_H4sIAAAAAAACA3WR7WqDMBiFb2XktyuJ1vgBQmpdmaOs0rVjY+yHq2nniKaLsVTE69gF7cb2aqGMfUQInpMTnxPTogNXyEdk5LjIQPyoQUTh6D4aeaAVf0d+i8q6mCHfNvqXEPnYQLLWUao5hE1s2phgggZzlRe9iV0MA6zt8IVLYqC3spkJrebIf2qRbvZ9LIqXV9MVxAqZ9Tq+nYIQchNnR8B0xjmZLBfRz9whFXWvCDYt1D0P7aevu1MF6Jjx/VxuTkCRZ5CcBIQtgpArkZcX1y9b9hAQy6KePfbYY2Cb8Niux9aBi9kcJkIIxSyEXfuAOJZFHJdSk+XB+vMDwxmp7VGPQZVKn37GbOiRKvUnOJks4ztgmhZAXQLIsetSMvboGel4FGPyP9JxoCD+jdxxnUjRwLnA26ai4oN3I2tV8iaUdZlV3xeStKpEXsFta1WDxTcySVVaQKjtuu4Lax7TIxcCAAA=",
+      "verbindungsAbschnitte": [
+        {
+          "risNotizen": [],
+          "himMeldungen": [],
+          "priorisierteMeldungen": [],
+          "externeBahnhofsinfoIdOrigin": "1071",
+          "reservierungspflichtigNote": "Reservierungspflicht",
+          "abfahrtsZeitpunkt": "2025-01-02T19:06:00",
+          "abfahrtsOrt": "Berlin Hbf",
+          "abfahrtsOrtExtId": "8011160",
+          "abschnittsDauer": 52320,
+          "abschnittsAnteil": 100,
+          "ankunftsZeitpunkt": "2025-01-03T09:38:00",
+          "ankunftsOrt": "Paris Est",
+          "ankunftsOrtExtId": "8700011",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 0
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 0
+            }
+          ],
+          "halte": [
+            {
+              "id": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=81@L=8011160@i=U×008065969@",
+              "abfahrtsZeitpunkt": "2025-01-02T19:06:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "13",
+              "name": "Berlin Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1071",
+              "extId": "8011160",
+              "himMeldungen": [],
+              "routeIdx": 1,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Göttingen@X=9926069@Y=51536812@U=81@L=8000128@i=U×008013051@",
+              "abfahrtsZeitpunkt": "2025-01-02T21:37:00",
+              "ankunftsZeitpunkt": "2025-01-02T21:35:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "10",
+              "name": "Göttingen",
+              "risNotizen": [],
+              "bahnhofsInfoId": "2218",
+              "extId": "8000128",
+              "routeIdx": 2,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Kassel-Wilhelmshöhe@X=9447114@Y=51312558@U=81@L=8003200@i=U×008005365@",
+              "abfahrtsZeitpunkt": "2025-01-02T22:08:00",
+              "ankunftsZeitpunkt": "2025-01-02T21:58:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "1",
+              "name": "Kassel-Wilhelmshöhe",
+              "risNotizen": [],
+              "bahnhofsInfoId": "3127",
+              "extId": "8003200",
+              "routeIdx": 3,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Frankfurt(Main)Süd@X=8686456@Y=50099365@U=81@L=8002041@i=U×008011065@",
+              "abfahrtsZeitpunkt": "2025-01-03T00:26:00",
+              "ankunftsZeitpunkt": "2025-01-03T00:22:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "8",
+              "name": "Frankfurt(Main)Süd",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1856",
+              "extId": "8002041",
+              "routeIdx": 4,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Paris Est@X=2359120@Y=48876976@U=81@L=8700011@i=U×008711300@",
+              "ankunftsZeitpunkt": "2025-01-03T09:38:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Paris Est",
+              "risNotizen": [],
+              "extId": "8700011",
+              "himMeldungen": [],
+              "routeIdx": 7,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 0,
+          "journeyId": "2|#VN#1#ST#1734551101#PI#1#ZI#183979#TA#0#DA#20125#1S#8010255#1T#1856#LS#8700011#LT#10938#PU#81#RT#1#CA#NJ#ZE#40424#ZB#NJ 40424#PC#1#FR#8010255#FT#1856#TO#8700011#TT#10938#",
+          "verkehrsmittel": {
+            "produktGattung": "EC_IC",
+            "kategorie": "NJ",
+            "name": "NJ 40424",
+            "nummer": "40424",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "Österreichische Bundesbahnen"
+              },
+              {
+                "kategorie": "SCHLAFWAGEN",
+                "key": "SW",
+                "value": "Schlafwagen",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "RP",
+                "value": "Reservierungspflicht",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "J2",
+                "value": "in Sitzwagen nur 2. Klasse",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "OJ",
+                "value": "ÖBB Nightjet (www.nightjet.com)",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "GP",
+                "value": "Globalpreis",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "LW",
+                "value": "Liegewagen",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "MN",
+                "value": "Imbiss und Getränke beim Schlaf-/Liegewagenbetreuer erhältlich",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "OA",
+                "value": "Rollstuhlstellplatz - Voranmeldung unter +43 5 1717",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "OC",
+                "value": "rollstuhltaugliches WC",
+                "teilstreckenHinweis": "(Berlin Hbf - Paris Est)"
+              }
+            ],
+            "kurzText": "NJ",
+            "mittelText": "NJ 40424",
+            "langText": "NJ 40424"
+          }
+        }
+      ],
+      "umstiegsAnzahl": 0,
+      "verbindungsDauerInSeconds": 52320,
+      "ezVerbindungsDauerInSeconds": 52320,
+      "isAlternativeVerbindung": false,
+      "auslastungsmeldungen": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0
+        }
+      ],
+      "auslastungstexte": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0,
+          "kurzText": "Keine Auslastungsinformation verfügbar"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1,
+          "kurzText": "Geringe Auslastung erwartet"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung.",
+          "kurzText": "Mittlere Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine mittlere Auslastung. Reservieren Sie bereits jetzt Ihren Wunschplatz."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 3,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung.",
+          "kurzText": "Hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine hohe Auslastung. Wir empfehlen eine Sitzplatzreservierung."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 1. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 2. Klasse."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 4,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung in der 2. Klasse. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung oder buchen ein Ticket der 1. Klasse."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 99,
+          "anzeigeText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung.",
+          "kurzText": "Außergewöhnlich hohe Auslastung erwartet",
+          "langText": "Wir erwarten im Verlauf Ihrer Reise eine außergewöhnlich hohe Auslastung. Reisende, die noch keine Fahrkarte gekauft haben, wählen bitte eine andere Verbindung."
+        }
+      ],
+      "himMeldungen": [],
+      "risNotizen": [],
+      "priorisierteMeldungen": [],
+      "reservierungsMeldungen": [],
+      "isAngebotseinholungNachgelagert": false,
+      "isAlterseingabeErforderlich": false,
+      "serviceDays": [
+        {
+          "lastDateInPeriod": "2025-05-29",
+          "regular": "nicht täglich",
+          "irregular": "22. Dez 2024 bis 29. Mai 2025 Di, Do, So; nicht 9. Jan 2025, 2., 13., 23. Feb 2025, 9. Mär 2025, 15. Apr bis 1. Mai 2025",
+          "planningPeriodBegin": "2023-12-10",
+          "planningPeriodEnd": "2025-12-13",
+          "weekdays": [
+            "DI",
+            "DO",
+            "SO"
+          ]
+        }
+      ],
+      "hasTeilpreis": false,
+      "reiseAngebote": [],
+      "hinRueckPauschalpreis": false,
+      "isReservierungAusserhalbVorverkaufszeitraum": false,
+      "mcpLink": "https://www.international-bahn.de/de/request/C=2&PT[1]=E&PC[1]=0&OB=8011160$8700011$202501021906$202501030938$NJ+40424&SECURE_TOKEN=4b7ca81b0cdb0761ee0c0a37ecabae16de2f6f7dbb509f6899dbf2187d5ac709",
+      "gesamtAngebotsbeziehungList": []
+    }
+  ],
+  "verbindungReference": {
+    "earlier": "3|OB|MTµ14µ562314µ562314µ562799µ562799µ0µ0µ5µ562077µ1µ0µ1050µ0µ0µ-2147483648µ1µ2|PDHµ632411119de581c828328448c6a30b82|RDµ1012025|RTµ80000|USµ0|RSµINIT",
+    "later": "3|OF|MTµ14µ566634µ566634µ567119µ567119µ0µ0µ5µ565195µ5µ0µ1050µ0µ0µ-2147483648µ1µ2|PDHµ632411119de581c828328448c6a30b82|RDµ1012025|RTµ80000|USµ0|RSµINIT"
+  }
+}
