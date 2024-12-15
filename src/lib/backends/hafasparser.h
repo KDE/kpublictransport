@@ -52,6 +52,7 @@ protected:
     Line::Mode parseLineMode(const QStringView &modeId) const;
     Line::Mode parseLineMode(int modeId) const;
 
+public:
     /** Set @p id as identifier on @p loc.
      *  If @p id is a valid UIC station code according to the configuration
      *  of the parser, it's also set to the standardLocationIdentifierType.

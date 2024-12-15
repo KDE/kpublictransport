@@ -1,0 +1,476 @@
+[
+    {
+        "sections": [
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Bordrestaurant",
+                            "type": "Restaurant"
+                        },
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Conditional",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme reservierungspflichtig",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 159911,
+                "expectedArrivalTime": "2024-12-19T18:31:00",
+                "expectedDeparturePlatform": "4",
+                "expectedDepartureTime": "2024-12-19T17:28:00",
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000207",
+                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                        "ibnr": "8000207",
+                        "uic": "8015458"
+                    },
+                    "latitude": 50.943029,
+                    "longitude": 6.95873,
+                    "name": "Köln Hbf",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-12-19T18:17:00",
+                        "expectedDepartureTime": "2024-12-19T18:21:00",
+                        "scheduledArrivalTime": "2024-12-19T18:17:00",
+                        "scheduledDepartureTime": "2024-12-19T18:19:00",
+                        "scheduledPlatform": "Fern 4",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8070003",
+                                "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                                "ibnr": "8070003",
+                                "uic": "8061676"
+                            },
+                            "latitude": 50.053169,
+                            "longitude": 8.570181,
+                            "name": "Frankfurt(M) Flughafen Fernbf",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "ICE Sprinter",
+                    "Keine rollstuhlgerechte Einstiegstür im Zug. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888."
+                ],
+                "route": {
+                    "direction": "Frankfurt(Main)Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 127",
+                        "operatorName": "DB Fernverkehr AG"
+                    }
+                },
+                "scheduledArrivalPlatform": "18",
+                "scheduledArrivalTime": "2024-12-19T18:31:00",
+                "scheduledDeparturePlatform": "5",
+                "scheduledDepartureTime": "2024-12-19T17:28:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000105",
+                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                        "ibnr": "8000105",
+                        "uic": "8011068"
+                    },
+                    "latitude": 50.107149,
+                    "longitude": 8.663785,
+                    "name": "Frankfurt(Main)Hbf",
+                    "region": "DE-HE",
+                    "type": "Stop"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Klimaanlage",
+                            "type": "AirConditioning"
+                        },
+                        {
+                            "availability": "Limited",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme begrenzt möglich",
+                            "type": "BikeStorage"
+                        },
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "WLAN verfügbar",
+                            "type": "WiFi"
+                        },
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Laptop-Steckdosen",
+                            "type": "PowerSockets"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NoService",
+                "distance": 1165,
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000207",
+                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                        "ibnr": "8000207",
+                        "uic": "8015458"
+                    },
+                    "latitude": 50.943029,
+                    "longitude": 6.95873,
+                    "name": "Köln Hbf",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "Behindertengerechtes Fahrzeug",
+                    "Rollstuhlstellplatz",
+                    "Aufgrund von Bauarbeiten kommt es zu Einschränkungen im Fahrplan der Linien RE 5 (RRX), RB26 und RB 48. In den Nächten vom 17.12.2024 bis zum 20.12.2024 kommt es zu Baustellenbedingten Einschränkungen. Weitere Informationen finden Sie auf <a href=\"https://Zuginfo.nrw\">Zuginfo.nrw</a>",
+                    "Ausfälle zw. Oberhausen Hbf und Wesel sowie zw. Friedrichsfeld (Niederrhein) und Wesel in diversen Zeiträumen vom 01.11. - 18.05.2026. Ein Ersatzverkehr (SEV) ist eingerichtet. Weitere Informationen finden Sie auf <a href=\"https://www.zuginfo.nrw\">www.zuginfo.nrw</a> - https://zuginfo.nrw?msg=108199."
+                ],
+                "route": {
+                    "direction": "Friedrichsfeld(Niederrhein)",
+                    "line": {
+                        "mode": "LocalTrain",
+                        "name": "RE 5",
+                        "operatorName": "National Express"
+                    },
+                    "name": "RE 28526"
+                },
+                "scheduledArrivalPlatform": "2",
+                "scheduledArrivalTime": "2024-12-19T17:33:00",
+                "scheduledDeparturePlatform": "1 A-C",
+                "scheduledDepartureTime": "2024-12-19T17:31:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8003368",
+                        "db-hafas": "A=1@O=Köln Messe/Deutz@X=6975000@Y=50940872@U=81@L=8003368@i=U×008015561@",
+                        "ibnr": "8003368",
+                        "uic": "8015561"
+                    },
+                    "latitude": 50.940872,
+                    "longitude": 6.975,
+                    "name": "Köln Messe/Deutz",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "from": {
+                    "identifier": {
+                        "db": "8003368",
+                        "ibnr": "8003368"
+                    },
+                    "name": "Köln Messe/Deutz"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2024-12-19T17:40:00",
+                "scheduledDepartureTime": "2024-12-19T17:33:00",
+                "to": {
+                    "identifier": {
+                        "db": "8073368",
+                        "ibnr": "8073368"
+                    },
+                    "name": "Köln Messe/Deutz Gl.11-12"
+                }
+            },
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Bordrestaurant",
+                            "type": "Restaurant"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 158999,
+                "expectedArrivalTime": "2024-12-19T18:53:00",
+                "expectedDepartureTime": "2024-12-19T17:52:00",
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8073368",
+                        "db-hafas": "A=1@O=Köln Messe/Deutz Gl.11-12@X=6974065@Y=50941717@U=81@L=8073368@i=U×008015032@",
+                        "ibnr": "8073368",
+                        "uic": "8015032"
+                    },
+                    "latitude": 50.941717,
+                    "longitude": 6.974065,
+                    "name": "Köln Messe/Deutz Gl.11-12",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-12-19T18:40:00",
+                        "expectedDepartureTime": "2024-12-19T18:43:00",
+                        "scheduledArrivalTime": "2024-12-19T18:33:00",
+                        "scheduledDepartureTime": "2024-12-19T18:35:00",
+                        "scheduledPlatform": "Fern 4",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8070003",
+                                "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                                "ibnr": "8070003",
+                                "uic": "8061676"
+                            },
+                            "latitude": 50.053169,
+                            "longitude": 8.570181,
+                            "name": "Frankfurt(M) Flughafen Fernbf",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "ICE Sprinter"
+                ],
+                "route": {
+                    "direction": "München Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 727",
+                        "operatorName": "DB Fernverkehr AG"
+                    }
+                },
+                "scheduledArrivalPlatform": "6",
+                "scheduledArrivalTime": "2024-12-19T18:48:00",
+                "scheduledDeparturePlatform": "11",
+                "scheduledDepartureTime": "2024-12-19T17:44:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000105",
+                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                        "ibnr": "8000105",
+                        "uic": "8011068"
+                    },
+                    "latitude": 50.107149,
+                    "longitude": 8.663785,
+                    "name": "Frankfurt(Main)Hbf",
+                    "region": "DE-HE",
+                    "type": "Stop"
+                }
+            }
+        ]
+    },
+    {
+        "sections": [
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Limited",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme begrenzt möglich",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 1165,
+                "expectedArrivalTime": "2024-12-19T17:44:00",
+                "expectedDepartureTime": "2024-12-19T17:42:00",
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000207",
+                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                        "ibnr": "8000207",
+                        "uic": "8015458"
+                    },
+                    "latitude": 50.943029,
+                    "longitude": 6.95873,
+                    "name": "Köln Hbf",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                },
+                "mode": "PublicTransport",
+                "notes": [
+                    "nur 2. Klasse",
+                    "Die Folgen einer Zugkollision mit Entgleisung beeinträchtigen den Zugverkehr zwischen Horrem und Düren. RE 1 (RRX),RE 9: Die Züge fahren auf dem Regelweg zwischen Köln Hbf und Aachen Hbf, werden aber über die S-Bahngleise geführt und verkehren in Horrem von Gleis 1 und 2. In der Folge kommt es zu Verspätungen. S 12: Es kommt zu Teil- und kompletten Ausfällen zwischen Hennef (Sieg) und Horrem. S 19: Die S-Bahnen aus Richtung Köln Hbf enden in Horrem. Die Folge sind Teilausfälle zwischen Horrem und Düren bzw. Aachen Hbf. Ein Ersatzverkehr (SEV) mit Bussen ist eingerichtet. Abfahrt des Schienenersatzverkehrs in Horrem ist am Busbahnhof ab Bahnsteig A. Weitere Informationen zum Ersatzverkehr (SEV) finden Sie auf <a href=\"https://www.zuginfo.nrw\">www.zuginfo.nrw</a>. Nutzen Sie gerne den folgenden Link: https://zuginfo.nrw?msg=109605."
+                ],
+                "route": {
+                    "direction": "Blankenberg(Sieg)",
+                    "line": {
+                        "mode": "RapidTransit",
+                        "name": "S 19",
+                        "operatorName": "DB Regio AG NRW"
+                    }
+                },
+                "scheduledArrivalPlatform": "9",
+                "scheduledArrivalTime": "2024-12-19T17:42:00",
+                "scheduledDeparturePlatform": "10 A-B",
+                "scheduledDepartureTime": "2024-12-19T17:41:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8003368",
+                        "db-hafas": "A=1@O=Köln Messe/Deutz@X=6975000@Y=50940872@U=81@L=8003368@i=U×008015561@",
+                        "ibnr": "8003368",
+                        "uic": "8015561"
+                    },
+                    "latitude": 50.940872,
+                    "longitude": 6.975,
+                    "name": "Köln Messe/Deutz",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                }
+            },
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "expectedArrivalTime": "2024-12-19T17:51:00",
+                "expectedDepartureTime": "2024-12-19T17:44:00",
+                "from": {
+                    "identifier": {
+                        "db": "8003368",
+                        "ibnr": "8003368"
+                    },
+                    "name": "Köln Messe/Deutz"
+                },
+                "mode": "Walking",
+                "scheduledArrivalTime": "2024-12-19T17:49:00",
+                "scheduledDepartureTime": "2024-12-19T17:42:00",
+                "to": {
+                    "identifier": {
+                        "db": "8073368",
+                        "ibnr": "8073368"
+                    },
+                    "name": "Köln Messe/Deutz Gl.11-12"
+                }
+            },
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Bordrestaurant",
+                            "type": "Restaurant"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 158999,
+                "expectedArrivalTime": "2024-12-19T18:53:00",
+                "expectedDepartureTime": "2024-12-19T17:52:00",
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8073368",
+                        "db-hafas": "A=1@O=Köln Messe/Deutz Gl.11-12@X=6974065@Y=50941717@U=81@L=8073368@i=U×008015032@",
+                        "ibnr": "8073368",
+                        "uic": "8015032"
+                    },
+                    "latitude": 50.941717,
+                    "longitude": 6.974065,
+                    "name": "Köln Messe/Deutz Gl.11-12",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "expectedArrivalTime": "2024-12-19T18:40:00",
+                        "expectedDepartureTime": "2024-12-19T18:43:00",
+                        "scheduledArrivalTime": "2024-12-19T18:33:00",
+                        "scheduledDepartureTime": "2024-12-19T18:35:00",
+                        "scheduledPlatform": "Fern 4",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8070003",
+                                "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                                "ibnr": "8070003",
+                                "uic": "8061676"
+                            },
+                            "latitude": 50.053169,
+                            "longitude": 8.570181,
+                            "name": "Frankfurt(M) Flughafen Fernbf",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "ICE Sprinter"
+                ],
+                "route": {
+                    "direction": "München Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 727",
+                        "operatorName": "DB Fernverkehr AG"
+                    }
+                },
+                "scheduledArrivalPlatform": "6",
+                "scheduledArrivalTime": "2024-12-19T18:48:00",
+                "scheduledDeparturePlatform": "11",
+                "scheduledDepartureTime": "2024-12-19T17:44:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000105",
+                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                        "ibnr": "8000105",
+                        "uic": "8011068"
+                    },
+                    "latitude": 50.107149,
+                    "longitude": 8.663785,
+                    "name": "Frankfurt(Main)Hbf",
+                    "region": "DE-HE",
+                    "type": "Stop"
+                }
+            }
+        ]
+    }
+]

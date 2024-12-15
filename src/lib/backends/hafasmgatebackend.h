@@ -84,8 +84,10 @@ private:
     QJsonObject locationToJson(const Location &loc) const;
     void addLineModeJourneyFilter(const std::vector<Line::Mode> &lineModes, QJsonArray &jnyFltrL) const;
 
+protected:
     mutable HafasMgateParser m_parser;
 
+private:
     QJsonObject m_auth;
     QJsonObject m_client;
     QString m_extParam;

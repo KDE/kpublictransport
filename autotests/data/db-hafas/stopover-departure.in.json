@@ -1,0 +1,365 @@
+{
+  "entries": [
+    {
+      "bahnhofsId": "8089021",
+      "zeit": "2024-12-14T16:54:00",
+      "ezZeit": "2024-12-14T16:57:00",
+      "gleis": "16",
+      "ueber": [
+        "Berlin Hbf (S-Bahn)",
+        "Berlin Bellevue",
+        "Berlin-Tiergarten",
+        "Berlin Zoologischer Garten (S)",
+        "Berlin Savignyplatz",
+        "Berlin Charlottenburg (S)",
+        "Berlin Westkreuz"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#348663#TA#2#DA#141224#1S#8013064#1T#1549#LS#8089047#LT#1707#PU#80#RT#1#CA#s#ZE#5#ZB#S      5#PC#4#FR#8013064#FT#1549#TO#8089047#TT#1707#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "S 5",
+        "linienNummer": "5",
+        "kurzText": "S",
+        "mittelText": "S 5",
+        "langText": "S 5",
+        "produktGattung": "SBAHN"
+      },
+      "terminus": "Berlin Westkreuz"
+    },
+    {
+      "bahnhofsId": "730749",
+      "zeit": "2024-12-14T16:54:00",
+      "ezZeit": "2024-12-14T16:57:00",
+      "ueber": [
+        "Berlin Hauptbahnhof (S+U), Berlin",
+        "Lesser-Ury-Weg, Berlin",
+        "Lüneburger Str., Berlin"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1202165#TA#41#DA#141224#1S#732994#1T#1559#LS#730759#LT#1657#PU#80#RT#1#CA#STR#ZE#M5#ZB#STR   M5#PC#8#FR#732994#FT#1559#TO#730759#TT#1657#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "STR M5",
+        "linienNummer": "M5",
+        "kurzText": "STR",
+        "mittelText": "STR M5",
+        "langText": "STR M5",
+        "produktGattung": "TRAM"
+      },
+      "terminus": "Moabit, Lüneburger Str."
+    },
+    {
+      "bahnhofsId": "8011160",
+      "zeit": "2024-12-14T16:56:00",
+      "ezZeit": "2024-12-14T16:57:00",
+      "gleis": "13",
+      "ueber": [
+        "Berlin Hbf",
+        "Hannover Hbf",
+        "Hamm(Westf)Hbf",
+        "Dortmund Hbf",
+        "Hagen Hbf",
+        "Wuppertal Hbf",
+        "Köln Hbf"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#224622#TA#0#DA#141224#1S#8010255#1T#1645#LS#8000207#LT#2141#PU#80#RT#1#CA#ICE#ZE#554#ZB#ICE  554#PC#0#FR#8010255#FT#1645#TO#8000207#TT#2141#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "ICE 554",
+        "kurzText": "ICE",
+        "mittelText": "ICE 554",
+        "langText": "ICE 554",
+        "produktGattung": "ICE"
+      },
+      "terminus": "Köln Hbf"
+    },
+    {
+      "bahnhofsId": "8098160",
+      "zeit": "2024-12-14T16:56:00",
+      "ezZeit": "2024-12-14T16:57:00",
+      "gleis": "6",
+      "ueber": [
+        "Berlin Hbf",
+        "Berlin Jungfernheide",
+        "Berlin-Spandau",
+        "Berlin-Staaken",
+        "Dallgow-Döberitz",
+        "Elstal",
+        "Wustermark",
+        "Stendal Hbf"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#237646#TA#0#DA#141224#1S#8010103#1T#1514#LS#8010334#LT#1842#PU#80#RT#1#CA#RE#ZE#3157#ZB#RE  3157#PC#3#FR#8010103#FT#1514#TO#8010334#TT#1842#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "RE 3157",
+        "kurzText": "RE",
+        "mittelText": "RE 4",
+        "langText": "RE 3157",
+        "produktGattung": "REGIONAL"
+      },
+      "terminus": "Stendal Hbf"
+    },
+    {
+      "bahnhofsId": "8089021",
+      "zeit": "2024-12-14T16:56:00",
+      "ezZeit": "2024-12-14T16:57:00",
+      "gleis": "15",
+      "ueber": [
+        "Berlin Hbf (S-Bahn)",
+        "Berlin Friedrichstraße (S)",
+        "Berlin Hackescher Markt",
+        "Berlin Alexanderplatz (S)",
+        "Berlin Jannowitzbrücke",
+        "Berlin Ostbahnhof (S)",
+        "Berlin Warschauer Straße",
+        "Erkner (S)"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#345355#TA#1#DA#141224#1S#8089083#1T#1628#LS#8089181#LT#1741#PU#80#RT#1#CA#s#ZE#3#ZB#S      3#PC#4#FR#8089083#FT#1628#TO#8089181#TT#1741#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "S 3",
+        "linienNummer": "3",
+        "kurzText": "S",
+        "mittelText": "S 3",
+        "langText": "S 3",
+        "produktGattung": "SBAHN"
+      },
+      "terminus": "Erkner (S)"
+    },
+    {
+      "bahnhofsId": "730749",
+      "zeit": "2024-12-14T16:56:00",
+      "ezZeit": "2024-12-14T16:56:00",
+      "ueber": [
+        "Berlin Hauptbahnhof (S+U), Berlin",
+        "Invalidenpark, Berlin",
+        "Naturkundemuseum [Invalidenstr.] (U), Berlin",
+        "Nordbahnhof (S), Berlin",
+        "Gedenkstätte Berliner Mauer, Berlin",
+        "Bernauer Str. (U), Berlin",
+        "Wolliner Str., Berlin",
+        "Warschauer Str. (S+U), Berlin"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1195698#TA#14#DA#141224#1S#730740#1T#1648#LS#732675#LT#1736#PU#80#RT#1#CA#STR#ZE#M10#ZB#STR  M10#PC#8#FR#730740#FT#1648#TO#732675#TT#1736#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "STR M10",
+        "linienNummer": "M10",
+        "kurzText": "STR",
+        "mittelText": "STR M10",
+        "langText": "STR M10",
+        "produktGattung": "TRAM"
+      },
+      "terminus": "S+U Warschauer Str."
+    },
+    {
+      "bahnhofsId": "730749",
+      "zeit": "2024-12-14T16:56:00",
+      "ezZeit": "2024-12-14T16:56:00",
+      "ueber": [
+        "Berlin Hauptbahnhof (S+U), Berlin",
+        "Lesser-Ury-Weg, Berlin",
+        "Lüneburger Str., Berlin"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1203745#TA#36#DA#141224#1S#733140#1T#1558#LS#730759#LT#1659#PU#80#RT#1#CA#STR#ZE#M8#ZB#STR   M8#PC#8#FR#733140#FT#1558#TO#730759#TT#1659#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "STR M8",
+        "linienNummer": "M8",
+        "kurzText": "STR",
+        "mittelText": "STR M8",
+        "langText": "STR M8",
+        "produktGattung": "TRAM"
+      },
+      "terminus": "Moabit, Lüneburger Str."
+    },
+    {
+      "bahnhofsId": "8089021",
+      "zeit": "2024-12-14T16:57:00",
+      "ezZeit": "2024-12-14T16:58:00",
+      "gleis": "16",
+      "ueber": [
+        "Berlin Hbf (S-Bahn)",
+        "Berlin Bellevue",
+        "Berlin-Tiergarten",
+        "Berlin Zoologischer Garten (S)",
+        "Berlin Savignyplatz",
+        "Berlin Charlottenburg (S)",
+        "Berlin Westkreuz",
+        "Potsdam Hbf (S)"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#351407#TA#1#DA#141224#1S#8089188#1T#1621#LS#8089184#LT#1732#PU#80#RT#1#CA#s#ZE#7#ZB#S      7#PC#4#FR#8089188#FT#1621#TO#8089184#TT#1732#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "S 7",
+        "linienNummer": "7",
+        "kurzText": "S",
+        "mittelText": "S 7",
+        "langText": "S 7",
+        "produktGattung": "SBAHN"
+      },
+      "terminus": "Potsdam Hbf (S)"
+    },
+    {
+      "bahnhofsId": "730749",
+      "zeit": "2024-12-14T16:57:00",
+      "ezZeit": "2024-12-14T16:59:00",
+      "ueber": [
+        "Berlin Hauptbahnhof (S+U), Berlin",
+        "Lehrter Str./Invalidenstr., Berlin",
+        "Seydlitzstr., Berlin",
+        "Poststadion, Berlin",
+        "Kruppstr., Berlin",
+        "Perleberger Brücke, Berlin",
+        "Fennbrücke, Berlin",
+        "Leopoldplatz (U), Berlin"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1218766#TA#19#DA#141224#1S#732676#1T#1625#LS#730834#LT#1714#PU#80#RT#1#CA#Bus#ZE#142#ZB#Bus  142#PC#5#FR#732676#FT#1625#TO#730834#TT#1714#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "Bus 142",
+        "linienNummer": "142",
+        "kurzText": "Bus",
+        "mittelText": "Bus 142",
+        "langText": "Bus 142",
+        "produktGattung": "BUS"
+      },
+      "terminus": "U Leopoldplatz via U Amrumer Str."
+    },
+    {
+      "bahnhofsId": "8089021",
+      "zeit": "2024-12-14T16:58:00",
+      "ezZeit": "2024-12-14T16:59:00",
+      "gleis": "15",
+      "ueber": [
+        "Berlin Hbf (S-Bahn)",
+        "Berlin Friedrichstraße (S)",
+        "Berlin Hackescher Markt",
+        "Berlin Alexanderplatz (S)",
+        "Berlin Jannowitzbrücke",
+        "Berlin Ostbahnhof (S)",
+        "Berlin Warschauer Straße",
+        "Ahrensfelde (S)"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#350082#TA#4#DA#141224#1S#8089184#1T#1621#LS#8089188#LT#1734#PU#80#RT#1#CA#s#ZE#7#ZB#S      7#PC#4#FR#8089184#FT#1621#TO#8089188#TT#1734#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "S 7",
+        "linienNummer": "7",
+        "kurzText": "S",
+        "mittelText": "S 7",
+        "langText": "S 7",
+        "produktGattung": "SBAHN"
+      },
+      "terminus": "Ahrensfelde (S)"
+    },
+    {
+      "bahnhofsId": "8011160",
+      "zeit": "2024-12-14T16:58:00",
+      "ezZeit": "2024-12-14T16:58:00",
+      "gleis": "12",
+      "ueber": [
+        "Berlin Hbf",
+        "Berlin Friedrichstraße",
+        "Berlin Alexanderplatz",
+        "Berlin Ostbahnhof",
+        "Berlin Ostkreuz",
+        "Erkner",
+        "Fangschleuse",
+        "Frankfurt(Oder)"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#560396#TA#0#DA#141224#1S#8010224#1T#1512#LS#8010113#LT#1804#PU#80#RT#1#CA#DPN#ZE#73736#ZB#RE 73736#PC#3#FR#8010224#FT#1512#TO#8010113#TT#1804#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "RE 73736",
+        "kurzText": "RE",
+        "mittelText": "RE 1",
+        "langText": "RE 73736",
+        "produktGattung": "REGIONAL"
+      },
+      "terminus": "Frankfurt(Oder)"
+    },
+    {
+      "bahnhofsId": "730749",
+      "zeit": "2024-12-14T16:58:00",
+      "ezZeit": "2024-12-14T16:58:00",
+      "ueber": [
+        "Berlin Hauptbahnhof (S+U), Berlin",
+        "Bundestag (U), Berlin",
+        "Brandenburger Tor (S+U), Berlin",
+        "Unter den Linden (U), Berlin",
+        "Museumsinsel (U), Berlin",
+        "Rotes Rathaus (U), Berlin",
+        "Alexanderplatz Bahnhof (S+U), Berlin",
+        "Hönow (Berlin) (U), Hoppegarten"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1184759#TA#0#DA#141224#1S#730749#1T#1658#LS#733250#LT#1739#PU#80#RT#1#CA#U#ZE#5#ZB#U      5#PC#7#FR#730749#FT#1658#TO#733250#TT#1739#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "U 5",
+        "linienNummer": "5",
+        "kurzText": "U",
+        "mittelText": "U 5",
+        "langText": "U 5",
+        "produktGattung": "UBAHN"
+      },
+      "terminus": "Hönow"
+    },
+    {
+      "bahnhofsId": "730749",
+      "zeit": "2024-12-14T16:58:00",
+      "ezZeit": "2024-12-14T17:06:00",
+      "ueber": [
+        "Berlin Hauptbahnhof (S+U), Berlin",
+        "Lydia-Rabinowitsch-Str., Berlin",
+        "Otto-Weidt-Platz, Berlin",
+        "Friedrich-Krause-Ufer, Berlin",
+        "Am Nordhafen, Berlin",
+        "Reinickendorfer Str. (U), Berlin",
+        "Wedding (S+U), Berlin",
+        "Leopoldplatz (U), Berlin"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#1219601#TA#2#DA#141224#1S#732676#1T#1631#LS#730834#LT#1710#PU#80#RT#1#CA#Bus#ZE#147#ZB#Bus  147#PC#5#FR#732676#FT#1631#TO#730834#TT#1710#",
+      "meldungen": [],
+      "verkehrmittel": {
+        "name": "Bus 147",
+        "linienNummer": "147",
+        "kurzText": "Bus",
+        "mittelText": "Bus 147",
+        "langText": "Bus 147",
+        "produktGattung": "BUS"
+      },
+      "terminus": "U Leopoldplatz via S+U Wedding"
+    },
+    {
+      "bahnhofsId": "8098160",
+      "zeit": "2024-12-14T17:26:00",
+      "ezZeit": "2024-12-14T17:26:00",
+      "gleis": "2",
+      "ueber": [
+        "Berlin Hbf",
+        "Lutherstadt Wittenberg Hbf",
+        "Leipzig Hbf",
+        "Erfurt Hbf",
+        "Eisenach",
+        "Fulda",
+        "Frankfurt(Main)Hbf",
+        "Basel SBB"
+      ],
+      "journeyId": "2|#VN#1#ST#1733779122#PI#0#ZI#222190#TA#0#DA#141224#1S#8098160#1T#1726#LS#8500010#LT#10105#PU#80#RT#1#CA#ICE#ZE#273#ZB#ICE  273#PC#0#FR#8098160#FT#1726#TO#8500010#TT#10105#",
+      "meldungen": [
+        {
+          "prioritaet": "NIEDRIG",
+          "text": "Zug fährt ohne Wagen 8."
+        }
+      ],
+      "verkehrmittel": {
+        "name": "ICE 273",
+        "kurzText": "ICE",
+        "mittelText": "ICE 273",
+        "langText": "ICE 273",
+        "produktGattung": "ICE"
+      },
+      "terminus": "Basel SBB"
+    }
+  ]
+}

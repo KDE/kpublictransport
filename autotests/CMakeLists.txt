@@ -42,6 +42,7 @@ ecm_add_test(hafasmgaterequesttest.cpp mocknetworkaccessmanager.cpp TEST_NAME ha
 ecm_add_test(efaparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(efarequesttest.cpp mocknetworkaccessmanager.cpp TEST_NAME efarequesttest LINK_LIBRARIES Qt::Test KPublicTransport Qt::Network)
 ecm_add_test(deutschebahntest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
+ecm_add_test(deutschebahnparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport Qt::Network)
 ecm_add_test(otpparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(oebbparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)
 ecm_add_test(ivvassparsertest.cpp LINK_LIBRARIES Qt::Test KPublicTransport)

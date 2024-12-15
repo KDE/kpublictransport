@@ -1,0 +1,165 @@
+[
+  {
+    "extId": "8011160",
+    "id": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8011160@B=1@p=1733178662@i=U×008065969@",
+    "lat": 52.524925,
+    "lon": 13.369629,
+    "name": "Berlin Hbf",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS",
+      "UBAHN",
+      "TRAM"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8011201",
+    "id": "A=1@O=BER Berlin Brandenburg Airport@X=13511947@Y=52364808@U=80@L=8011201@B=1@p=1733178662@i=U×008084407@",
+    "lat": 52.364807,
+    "lon": 13.511947,
+    "name": "BER Berlin Brandenburg Airport",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "REGIONAL",
+      "SBAHN",
+      "BUS"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8096003",
+    "id": "A=1@O=BERLIN@X=13386988@Y=52520501@U=80@L=8096003@B=1@p=1733178662@i=U×008062648@",
+    "lat": 52.5205,
+    "lon": 13.386988,
+    "name": "BERLIN",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS",
+      "UBAHN",
+      "TRAM"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8010255",
+    "id": "A=1@O=Berlin Ostbahnhof@X=13434684@Y=52510487@U=80@L=8010255@B=1@p=1733178662@i=U×008003004@",
+    "lat": 52.510426,
+    "lon": 13.4349,
+    "name": "Berlin Ostbahnhof",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8011113",
+    "id": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=80@L=8011113@B=1@p=1733178662@i=U×008065971@",
+    "lat": 52.47623,
+    "lon": 13.365863,
+    "name": "Berlin Südkreuz",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8010404",
+    "id": "A=1@O=Berlin-Spandau@X=13196902@Y=52534650@U=80@L=8010404@B=1@p=1733178662@i=U×008003025@",
+    "lat": 52.533787,
+    "lon": 13.200947,
+    "name": "Berlin-Spandau",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS",
+      "UBAHN"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8011102",
+    "id": "A=1@O=Berlin Gesundbrunnen@X=13388516@Y=52548961@U=80@L=8011102@B=1@p=1733178662@i=U×008007799@",
+    "lat": 52.548656,
+    "lon": 13.39106,
+    "name": "Berlin Gesundbrunnen",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS",
+      "UBAHN"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8010406",
+    "id": "A=1@O=Berlin Zoologischer Garten@X=13332441@Y=52507341@U=81@L=8010406@B=1@p=1733173731@i=U×008003036@",
+    "lat": 52.50724,
+    "lon": 13.332414,
+    "name": "Berlin Zoologischer Garten",
+    "products": [
+      "ICE",
+      "EC_IC",
+      "IR",
+      "REGIONAL",
+      "SBAHN",
+      "BUS",
+      "UBAHN"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8011155",
+    "id": "A=1@O=Berlin Alexanderplatz@X=13410962@Y=52521481@U=81@L=8011155@B=1@p=1733173731@i=U×008003135@",
+    "lat": 52.521526,
+    "lon": 13.411088,
+    "name": "Berlin Alexanderplatz",
+    "products": [
+      "REGIONAL",
+      "SBAHN",
+      "BUS",
+      "UBAHN",
+      "TRAM"
+    ],
+    "type": "ST"
+  },
+  {
+    "extId": "8013470",
+    "id": "A=1@O=Bernau(b Berlin)@X=13592643@Y=52675565@U=80@L=8013470@B=1@p=1733178662@i=U×008003328@",
+    "lat": 52.67598,
+    "lon": 13.59311,
+    "name": "Bernau(b Berlin)",
+    "products": [
+      "ICE",
+      "REGIONAL",
+      "SBAHN",
+      "BUS"
+    ],
+    "type": "ST"
+  }
+]
