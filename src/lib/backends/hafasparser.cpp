@@ -122,3 +122,19 @@ Location HafasParser::fromLocationId(const QString &locId) const
     loc.setIdentifier(u"hafas"_s, locId);
     return loc;
 }
+
+static constexpr const Load::Category load_value_map[] = {
+    Load::Unknown,
+    Load::Low, // 1
+    Load::Medium, // 2
+    Load::High, // 3
+    Load::Full // 4
+};
+
+Load::Category HafasParser::parseLoadLevel(int level)
+{
+    if (level >= 0 && level < (int)std::size(load_value_map)) {
+        return load_value_map[level];
+    }
+    return Load::Unknown;
+}

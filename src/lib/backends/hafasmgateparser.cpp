@@ -71,15 +71,6 @@ enum MessageType {
     PlatformSectorsRemark,
 };
 
-static constexpr const Load::Category load_value_map[] = {
-    Load::Unknown,
-    Load::Low, // 1
-    Load::Medium, // 2
-    Load::High, // 3
-    Load::Full // 4
-};
-
-
 struct RemarkData {
     const char *type = nullptr;
     const char *code = nullptr;
@@ -263,9 +254,7 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
                     const auto match = rx.match(code);
                     if (match.hasMatch()) {
                         const auto r = match.captured(2).toInt();
-                        if (r >= 0 && r <= 4) {
-                            m.loadInfo.setLoad(load_value_map[r]);
-                        }
+                        m.loadInfo.setLoad(HafasParser::parseLoadLevel(r));
                         if (match.captured(1) != "max"_L1) {
                             m.loadInfo.setSeatingClass(match.captured(1).left(1));
                         }
@@ -371,12 +360,12 @@ static std::vector<LoadInfo> parseLoadInformation(const QJsonArray &tcocL)
     loadInfos.reserve(tcocL.size());
     for (const auto &tcocV : tcocL) {
         const auto tcocObj = tcocV.toObject();
-        const auto r = tcocObj.value(QLatin1String("r")).toInt(-1);
-        if (r < 0 || r > 4) {
+        const auto l = HafasParser::parseLoadLevel(tcocObj.value("r"_L1).toInt(-1));
+        if (l == Load::Unknown) {
             continue;
         }
         LoadInfo loadInfo;
-        loadInfo.setLoad(load_value_map[r]);
+        loadInfo.setLoad(l);
         const auto c = tcocObj.value(QLatin1String("c")).toString();
         loadInfo.setSeatingClass(c == QLatin1String("FIRST") ? QStringLiteral("1") : QStringLiteral("2"));
         loadInfos.push_back(std::move(loadInfo));

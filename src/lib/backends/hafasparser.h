@@ -12,6 +12,7 @@
 #include "hafasbackend.h"
 
 #include <KPublicTransport/Line>
+#include <KPublicTransport/Load>
 #include <KPublicTransport/Reply>
 
 #include <QString>
@@ -38,6 +39,9 @@ public:
 
     /** Parse Hafas location identifier. */
     [[nodiscard]] Location fromLocationId(const QString &locId) const;
+
+    /** Convert occupancy level. */
+    [[nodiscard]] static Load::Category parseLoadLevel(int level);
 
 protected:
     HafasParser();

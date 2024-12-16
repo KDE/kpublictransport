@@ -55,6 +55,14 @@ private Q_SLOTS:
         QCOMPARE(loc.hasCoordinate(), true);
         QCOMPARE(loc.identifier(u"ibnr"_s), QString());
     }
+
+    void testParseLoadLevel()
+    {
+        QCOMPARE(HafasParser::parseLoadLevel(-1), Load::Unknown);
+        QCOMPARE(HafasParser::parseLoadLevel(0), Load::Unknown);
+        QCOMPARE(HafasParser::parseLoadLevel(2), Load::Medium);
+        QCOMPARE(HafasParser::parseLoadLevel(5), Load::Unknown);
+    }
 };
 
 QTEST_GUILESS_MAIN(HafasParserTest)
