@@ -16,6 +16,7 @@
 #include <QSignalSpy>
 #include <QTest>
 #include <QUrlQuery>
+#include <QStandardPaths>
 #include <QTimeZone>
 
 #define s(x) QStringLiteral(x)
@@ -30,6 +31,7 @@ private Q_SLOTS:
     {
         qputenv("TZ", "UTC");
         QLocale::setDefault(QLocale(u"en_US.utf-8"));
+        QStandardPaths::setTestModeEnabled(true);
 
         m_mgr.setNetworkAccessManager(&m_nam);
     }
