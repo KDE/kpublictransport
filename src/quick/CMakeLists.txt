@@ -7,25 +7,37 @@ ecm_add_qml_module(kpublictransportquickplugin
     NO_GENERATE_PLUGIN_SOURCE
     CLASS_NAME "KPublicTransportUiQuickPlugin"
     IMPORTS "org.kde.kpublictransport"
-    DEPENDENCIES "QtQuick" "QtQuick.Controls" "org.kde.kirigami"
+    DEPENDENCIES
+        "QtQuick"
+        "QtQuick.Controls"
+        "QtQuick.Layouts"
+        "org.kde.kirigami"
 )
 
 target_sources(kpublictransportquickplugin PRIVATE
     maputils.cpp
+    localizer.cpp
     quickplugin.cpp
     styledframesvgitem.cpp
     assets/assets.qrc
 )
 
 ecm_target_qml_sources(kpublictransportquickplugin SOURCES
+    AbstractJourneySelectionPage.qml
     FeatureIcon.qml
+    JourneySectionStopDelegateLineSegment.qml
+    JourneySummaryDelegate.qml
     OccupancyIndicator.qml
+    TransportNameControl.qml
+    TransportIcon.qml
     VehicleSectionItem.qml
+    VerticalNavigationButton.qml
 )
 
 target_link_libraries(kpublictransportquickplugin
     PRIVATE
         KPublicTransport
+        KF6::I18n
         Qt::Quick
 )
 

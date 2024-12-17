@@ -8,6 +8,7 @@
 #include <QQmlEngine>
 #include <QQmlExtensionPlugin>
 
+#include "localizer_p.h"
 
 class KPublicTransportUiQuickPlugin : public QQmlExtensionPlugin
 {
@@ -21,6 +22,10 @@ class KPublicTransportUiQuickPlugin : public QQmlExtensionPlugin
 
 void KPublicTransportUiQuickPlugin::registerTypes(const char*)
 {
+    qmlRegisterSingletonType("org.kde.kpublictransport.ui", 1, 0, "Localizer", [](QQmlEngine *, QJSEngine *engine) -> QJSValue {
+        return engine->toScriptValue(Localizer());
+    });
+
     qmlRegisterSingletonType("org.kde.kpublictransport.ui", 1, 0, "MapUtils", [](QQmlEngine *qmlEngine, QJSEngine *engine) -> QJSValue {
         KPublicTransport::MapUtils v;
         v.m_engine = qmlEngine;
