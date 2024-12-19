@@ -276,6 +276,9 @@ void JourneySection::setDeparture(const Stopover &departure)
     setExpectedDeparturePlatform(departure.expectedPlatform());
     setDeparturePlatformLayout(departure.platformLayout());
     setDepartureVehicleLayout(departure.vehicleLayout());
+    if (departure.disruptionEffect() == Disruption::NoService) {
+        setDisruptionEffect(departure.disruptionEffect());
+    }
 }
 
 Stopover JourneySection::arrival() const
@@ -302,6 +305,9 @@ void JourneySection::setArrival(const Stopover &arrival)
     setExpectedArrivalPlatform(arrival.expectedPlatform());
     setArrivalPlatformLayout(arrival.platformLayout());
     setArrivalVehicleLayout(arrival.vehicleLayout());
+    if (arrival.disruptionEffect() == Disruption::NoService) {
+        setDisruptionEffect(arrival.disruptionEffect());
+    }
 }
 
 struct {
