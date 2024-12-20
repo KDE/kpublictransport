@@ -62,24 +62,7 @@ static std::vector<Ico> parseIcos(const QJsonArray &icoL)
     return icos;
 }
 
-enum MessageType {
-    UndefinedRemark,
-    IgnoreRemark,
-    FeatureRemark,
-    OperatorRemark,
-    TrainFormationRemark,
-    PlatformSectorsRemark,
-};
-
-struct RemarkData {
-    const char *type = nullptr;
-    const char *code = nullptr;
-    MessageType msg = UndefinedRemark;
-    Feature::Type featureType = Feature::NoFeature;
-    Feature::Availability featureAvailability = Feature::Unknown;
-};
-
-static constexpr const RemarkData remarks_map[] = {
+static constexpr const HafasRemarkData remarks_map[] = {
     // different name formats for the line, used by SBB
     { "A", "1", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
     { "A", "2", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
@@ -210,6 +193,16 @@ static constexpr const RemarkData remarks_map[] = {
     { "I", "sj", IgnoreRemark, Feature::NoFeature, Feature::Unknown },
 };
 
+HafasRemarkData HafasMgateParser::lookupRemarkData(QStringView type, QStringView code)
+{
+    for (const auto &r : remarks_map) {
+        if (type == QLatin1StringView(r.type) && code == QLatin1StringView(r.code)) {
+            return r;
+        }
+    }
+    return {};
+}
+
 static std::vector<Message> parseRemarks(const QJsonArray &remL)
 {
     std::vector<Message> rems;
@@ -219,13 +212,7 @@ static std::vector<Message> parseRemarks(const QJsonArray &remL)
 
         const auto type = remObj.value("type"_L1).toString();
         const auto code = remObj.value("code"_L1).toString();
-        RemarkData remark;
-        for (const auto &r : remarks_map) {
-            if (type == QLatin1StringView(r.type) && code == QLatin1StringView(r.code)) {
-                remark = r;
-                break;
-            }
-        }
+        HafasRemarkData remark = HafasMgateParser::lookupRemarkData(type, code);
         qDebug() << type << code << remark.msg <<remObj;
 
         Message m;
