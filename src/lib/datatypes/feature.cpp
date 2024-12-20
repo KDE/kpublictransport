@@ -172,15 +172,31 @@ bool Feature::isSame(const Feature &lhs, const Feature &rhs)
         return lhs;
     }
 
-    return lhs == Feature::Available ? rhs : lhs;
+    if (lhs == Feature::Available) {
+        return rhs;
+    }
+    if (rhs == Feature::Available) {
+        return lhs;
+    }
+
+    if (lhs == Feature::Unavailable || rhs == Feature::Unavailable) {
+        return Feature::Unavailable;
+    }
+
+    return lhs == Feature::Limited ? rhs : lhs;
 }
 
 Feature Feature::merge(const Feature &lhs, const Feature &rhs)
 {
     Feature res(lhs);
-    res.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
-    res.setDescription(MergeUtil::mergeString(lhs.description(), rhs.description()));
     res.setAvailability(mergeAvailability(lhs.availability(), rhs.availability()));
+    if (lhs.availability() == rhs.availability()) {
+        res.setName(MergeUtil::mergeString(lhs.name(), rhs.name()));
+        res.setDescription(MergeUtil::mergeString(lhs.description(), rhs.description()));
+    } else if (rhs.availability() == res.availability()) {
+        res.setName(rhs.name());
+        res.setDescription(rhs.description());
+    }
     res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
     res.setQuantity(std::max(lhs.quantity(), rhs.quantity()));
     return res;
