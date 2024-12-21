@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-04 00:39+0000\n"
-"PO-Revision-Date: 2024-12-14 01:44+0530\n"
+"PO-Revision-Date: 2024-12-20 12:26+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
@@ -100,14 +100,14 @@ msgstr "पावर सॉकेट"
 #: quick/FeatureIcon.qml:58
 #, kde-format
 msgid "%1 (not available)"
-msgstr "%1 (न उपलब्धम्) २."
+msgstr "%1 (न उपलब्धम्)"
 
 #: quick/FeatureIcon.qml:60
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] "%2 (एकं स्थानं) २."
-msgstr[1] "%2 (%1 रिक्तस्थानानि) २."
+msgstr[0] "%2 (एकं स्थानं)"
+msgstr[1] "%2 (%1 रिक्तस्थानानि)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
