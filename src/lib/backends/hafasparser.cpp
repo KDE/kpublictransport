@@ -119,7 +119,7 @@ Location HafasParser::fromLocationId(const QString &locId) const
         }
     }
 
-    loc.setIdentifier(u"hafas"_s, locId);
+    loc.setIdentifier(m_locationIdentifierType + "-hafas"_L1, locId);
     return loc;
 }
 

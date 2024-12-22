@@ -35,7 +35,7 @@ private Q_SLOTS:
         QCOMPARE(loc.latitude(), 52.525589);
         QCOMPARE(loc.longitude(), 13.369549);
         QCOMPARE(loc.identifier(u"ibnr"_s), "8098160"_L1);
-        QCOMPARE(loc.identifier(u"hafas"_s), "A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8098160@a=128@"_L1);
+        QCOMPARE(loc.identifier(u"test-hafas"_s), "A=1@O=Berlin Hbf@X=13369549@Y=52525589@L=8098160@a=128@"_L1);
 
         loc = p.fromLocationId(u"A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@B=1@p=1733178662@i=U×008001071@"_s);
         QCOMPARE(loc.type(), Location::Stop);
