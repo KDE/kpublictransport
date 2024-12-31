@@ -169,7 +169,7 @@ bool DeutscheBahnBackend::queryStopover(const StopoverRequest &request, Stopover
     }
     query.addQueryItem(u"ortId"_s, stopId);
     query.addQueryItem(u"mitVias"_s, u"true"_s);
-    query.addQueryItem(u"maxVias"_s, u"2"_s); // "1" results in 0 vias, "2" in two...
+    query.addQueryItem(u"maxVias"_s, request.mode() == StopoverRequest::QueryDeparture ? u"2"_s : u"100"_s); // "1" results in 0 vias, "2" in two...
 
     const auto modes = lineModesForRequest(request.lineModes());
     for (const auto &m : modes) {

@@ -111,7 +111,7 @@ std::vector<Stopover> DeutscheBahnParser::parseStopovers(const QJsonArray &stops
         hafasParser.setLocationIdentifier(loc, stopObj.value("bahnhofsId"_L1).toString());
         const auto vias = stopObj.value("ueber"_L1).toArray();
         if (!vias.isEmpty()) {
-            loc.setName(vias.first().toString());
+            loc.setName(isDeparture ? vias.first().toString() : vias.last().toString());
         }
         stop.setStopPoint(loc);
 
