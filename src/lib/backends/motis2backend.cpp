@@ -211,17 +211,18 @@ struct {
 struct {
     IndividualTransport::Mode mode;
     IndividualTransport::Qualifier qualifier;
-    const char *name;
+    const char *modeName;
+    const char *formFactorName;
 } static constexpr const iv_mode_map[] = {
-    { IndividualTransport::Walk, IndividualTransport::None, "WALK" },
-    { IndividualTransport::Bike, IndividualTransport::Rent, "BIKE_RENTAL" },
-    // { IndividualTransport::Bike, IndividualTransport::Rent, "SCOOTER_RENTAL" }, // TODO not modelled correctly, not implemented in current MOTISv2 deployment
-    { IndividualTransport::Bike, IndividualTransport::Park, "BIKE_TO_PARK" },
-    { IndividualTransport::Bike, IndividualTransport::None, "BIKE" },
-    { IndividualTransport::Car, IndividualTransport::Rent, "CAR_RENTAL" },
-    { IndividualTransport::Car, IndividualTransport::Park, "CAR_TO_PARK" },
-    { IndividualTransport::Car, IndividualTransport::Pickup, "CAR_PICKUP" },
-    { IndividualTransport::Car, IndividualTransport::None, "CAR" },
+    { IndividualTransport::Walk, IndividualTransport::None, "WALK", nullptr },
+    { IndividualTransport::Bike, IndividualTransport::Rent, "RENTAL", "BICYCLE" },
+    // { IndividualTransport::Bike, IndividualTransport::Rent, "RENTAL", "SCOOTER_STANDING" }, // TODO not modelled correctly, not implemented in current MOTISv2 deployment
+    { IndividualTransport::Bike, IndividualTransport::Park, "BIKE_TO_PARK", nullptr },
+    { IndividualTransport::Bike, IndividualTransport::None, "BIKE", nullptr },
+    { IndividualTransport::Car, IndividualTransport::Rent, "RENTAL", "CAR" },
+    { IndividualTransport::Car, IndividualTransport::Park, "CAR_TO_PARK", nullptr },
+    { IndividualTransport::Car, IndividualTransport::Pickup, "CAR_PICKUP", nullptr },
+    { IndividualTransport::Car, IndividualTransport::None, "CAR", nullptr },
 };
 
 static void mapIndividualTransportModes(const std::vector<IndividualTransport> &ivModes, QStringList &modes)
@@ -229,7 +230,18 @@ static void mapIndividualTransportModes(const std::vector<IndividualTransport> &
     for (const auto &iv : ivModes) {
         for (const auto &m :iv_mode_map) {
             if (m.mode == iv.mode() && m.qualifier == iv.qualifier()) {
-                modes.push_back(QLatin1StringView(m.name));
+                modes.push_back(QLatin1StringView(m.modeName));
+            }
+        }
+    }
+}
+
+static void mapIndividualTransportFormFactors(const std::vector<IndividualTransport> &ivModes, QStringList &formFactors)
+{
+    for (const auto &iv : ivModes) {
+        for (const auto &m :iv_mode_map) {
+            if (m.mode == iv.mode() && m.qualifier == iv.qualifier() && m.formFactorName) {
+                formFactors.push_back(QLatin1StringView(m.formFactorName));
             }
         }
     }
@@ -243,6 +255,7 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     query.addQueryItem(u"time"_s, req.dateTime().toUTC().toString(Qt::ISODate));
 
     QStringList transitModes, directModes;
+    QStringList directModeFormFactors;
     if (req.modes() & JourneySection::Walking) {
         directModes.push_back(u"WALK"_s);
     }
@@ -264,34 +277,51 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     }
     if (req.modes() & JourneySection::IndividualTransport) {
         mapIndividualTransportModes(req.individualTransportModes(), directModes);
+        mapIndividualTransportFormFactors(req.individualTransportModes(), directModeFormFactors);
     }
     if (req.modes() & JourneySection::RentedVehicle) {
         // TODO we actually lack more detailed qualifiers for this?
-        directModes.push_back(u"BIKE_RENTAL"_s);
-        directModes.push_back(u"CAR_RENTAL"_s);
-        directModes.push_back(u"SCOOTER_RENTAL"_s);
+        directModes.push_back(u"RENTAL"_s);
     }
 
     transitModes.removeDuplicates();
     query.addQueryItem(u"transitModes"_s, transitModes.join(','_L1));
 
     directModes.removeDuplicates();
+    directModeFormFactors.removeDuplicates();
     if (!directModes.empty()) {
         query.addQueryItem(u"directModes"_s, directModes.join(','_L1));
+    }
+    if (!directModeFormFactors.empty()) {
+        query.addQueryItem(u"directRentalFormFactors"_s, directModeFormFactors.join(','_L1));
     }
 
     {
         QStringList accessModes;
+        QStringList accessFormFactors;
         mapIndividualTransportModes(req.accessModes(), accessModes);
+        mapIndividualTransportFormFactors(req.accessModes(), accessFormFactors);
+        accessModes.removeDuplicates();
+        accessFormFactors.removeDuplicates();
         if (!accessModes.empty()) {
             query.addQueryItem(u"preTransitModes"_s, accessModes.join(','_L1));
+        }
+        if (!accessFormFactors.empty()) {
+            query.addQueryItem(u"preTransitRentalFormFactors"_s, accessFormFactors.join(','_L1));
         }
     }
     {
         QStringList egressModes;
+        QStringList egressFormFactors;
         mapIndividualTransportModes(req.egressModes(), egressModes);
+        mapIndividualTransportFormFactors(req.egressModes(), egressFormFactors);
+        egressModes.removeDuplicates();
+        egressFormFactors.removeDuplicates();
         if (!egressModes.empty()) {
             query.addQueryItem(u"postTransitModes"_s, egressModes.join(','_L1));
+        }
+        if (!egressFormFactors.empty()) {
+            query.addQueryItem(u"postTransitRentalFormFactors"_s, egressFormFactors.join(','_L1));
         }
     }
 
