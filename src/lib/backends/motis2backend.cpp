@@ -295,29 +295,25 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
     }
 
     {
-        QStringList accessModes;
+        QStringList accessModes({u"WALK"_s});
         QStringList accessFormFactors;
         mapIndividualTransportModes(req.accessModes(), accessModes);
         mapIndividualTransportFormFactors(req.accessModes(), accessFormFactors);
         accessModes.removeDuplicates();
         accessFormFactors.removeDuplicates();
-        if (!accessModes.empty()) {
-            query.addQueryItem(u"preTransitModes"_s, accessModes.join(','_L1));
-        }
+        query.addQueryItem(u"preTransitModes"_s, accessModes.join(','_L1));
         if (!accessFormFactors.empty()) {
             query.addQueryItem(u"preTransitRentalFormFactors"_s, accessFormFactors.join(','_L1));
         }
     }
     {
-        QStringList egressModes;
+        QStringList egressModes({u"WALK"_s});
         QStringList egressFormFactors;
         mapIndividualTransportModes(req.egressModes(), egressModes);
         mapIndividualTransportFormFactors(req.egressModes(), egressFormFactors);
         egressModes.removeDuplicates();
         egressFormFactors.removeDuplicates();
-        if (!egressModes.empty()) {
-            query.addQueryItem(u"postTransitModes"_s, egressModes.join(','_L1));
-        }
+        query.addQueryItem(u"postTransitModes"_s, egressModes.join(','_L1));
         if (!egressFormFactors.empty()) {
             query.addQueryItem(u"postTransitRentalFormFactors"_s, egressFormFactors.join(','_L1));
         }
