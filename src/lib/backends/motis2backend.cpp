@@ -215,11 +215,11 @@ struct {
     { IndividualTransport::Walk, IndividualTransport::None, "WALK", nullptr },
     { IndividualTransport::Bike, IndividualTransport::Rent, "RENTAL", "BICYCLE" },
     // { IndividualTransport::Bike, IndividualTransport::Rent, "RENTAL", "SCOOTER_STANDING" }, // TODO not modelled correctly, not implemented in current MOTISv2 deployment
-    { IndividualTransport::Bike, IndividualTransport::Park, "BIKE_TO_PARK", nullptr },
+    // { IndividualTransport::Bike, IndividualTransport::Park, "BIKE_TO_PARK", nullptr }, // TODO removed in later v2 versions again
     { IndividualTransport::Bike, IndividualTransport::None, "BIKE", nullptr },
     { IndividualTransport::Car, IndividualTransport::Rent, "RENTAL", "CAR" },
-    { IndividualTransport::Car, IndividualTransport::Park, "CAR_TO_PARK", nullptr },
-    { IndividualTransport::Car, IndividualTransport::Pickup, "CAR_PICKUP", nullptr },
+    { IndividualTransport::Car, IndividualTransport::Park, "CAR_PARKING", nullptr },
+    // { IndividualTransport::Car, IndividualTransport::Pickup, "CAR_PICKUP", nullptr }, // TODO removed in later v2 versions again
     { IndividualTransport::Car, IndividualTransport::None, "CAR", nullptr },
 };
 
