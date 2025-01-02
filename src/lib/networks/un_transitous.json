@@ -117,11 +117,10 @@
         }
     },
     "options": {
-        "endpoint": "https://routing.spline.de/api/",
-        "locationIdentifierType": "transitous",
-        "supportedModes": []
+        "endpoint": "https://api.transitous.org/",
+        "locationIdentifierType": "transitous"
     },
     "type": {
-        "motis": true
+        "motis2": true
     }
 }
