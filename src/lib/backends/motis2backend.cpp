@@ -114,7 +114,6 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
         netReply->deleteLater();
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-        qDebug().noquote() << data << netReply->error();
 
         Motis2Parser p(m_locationIdentifierType);
         auto result = p.parseLocations(data);
@@ -157,7 +156,6 @@ bool Motis2Backend::queryStopover(const StopoverRequest &req, StopoverReply *rep
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
-        qDebug().noquote() << data << netReply->error();
         Motis2Parser p(m_locationIdentifierType);
         auto result = p.parseStopTimes(data);
         if (netReply->error() == QNetworkReply::NoError) {
@@ -337,7 +335,6 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
-        qDebug().noquote() << data << netReply->error();
         Motis2Parser p(m_locationIdentifierType);
         auto result = p.parseItineraries(data);
         if (netReply->error() == QNetworkReply::NoError) {
