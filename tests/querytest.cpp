@@ -18,7 +18,7 @@
 #include <QDir>
 #include <QSignalSpy>
 #include <QStandardPaths>
-#include <QtTest>
+#include <QTest>
 
 using namespace KPublicTransport;
 
