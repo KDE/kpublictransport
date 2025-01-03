@@ -34,6 +34,9 @@ public:
      */
     Q_PROPERTY(QString modeIconName READ modeIconName STORED false)
 
+    /** Label shortly describing this transport for display. */
+    Q_PROPERTY(QString label READ label STORED false)
+
 public:
     /** Qualifier on how the mode of transport is used. */
     enum Qualifier {
@@ -57,6 +60,8 @@ public:
      *  Can be an qrc: URL or a icon name compatbile with QIcon::fromTheme.
      */
     Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::IndividualTransport::Mode mode);
+
+    [[nodiscard]] QString label() const;
 
     /** Serializes one object to JSON. */
     [[nodiscard]] static QJsonObject toJson(const IndividualTransport &it);

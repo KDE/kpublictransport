@@ -9,6 +9,8 @@
 #include "individualtransport.h"
 #include "json_p.h"
 
+#include <KLocalizedString>
+
 #include <QMetaEnum>
 
 using namespace Qt::Literals::StringLiterals;
@@ -257,6 +259,25 @@ QString RentalVehicle::vehicleTypeIconName(VehicleType type)
 QString RentalVehicle::vehicleTypeIconName() const
 {
     return vehicleTypeIconName(type());
+}
+
+QString RentalVehicle::label() const
+{
+    switch (type()) {
+        case RentalVehicle::Unknown:
+            break;
+        case RentalVehicle::Bicycle:
+        case RentalVehicle::Pedelec:
+            return i18nc("rental vehicle type", "Rented bike");
+        case RentalVehicle::ElectricMoped:
+            return i18nc("rental vehicle type", "Rented moped");
+        case RentalVehicle::ElectricKickScooter:
+            return i18nc("rental vehicle type", "Rented kick scooter");
+        case RentalVehicle::Car:
+            return i18nc("rental vehicle type", "Rented car");
+    }
+
+    return {};
 }
 
 QJsonObject RentalVehicle::toJson(const RentalVehicle &vehicle)

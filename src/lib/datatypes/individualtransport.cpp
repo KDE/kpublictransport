@@ -9,6 +9,8 @@
 #include "datatypes_p.h"
 #include "variant_p.h"
 
+#include <KLocalizedString>
+
 #include <QDebug>
 
 using namespace Qt::Literals::StringLiterals;
@@ -62,6 +64,19 @@ QString IndividualTransport::modeIconName(IndividualTransport::Mode mode)
 QString IndividualTransport::modeIconName() const
 {
     return IndividualTransport::modeIconName(mode());
+}
+
+QString IndividualTransport::label() const
+{
+    switch (mode()) {
+        case IndividualTransport::Bike:
+            return i18nc("mode of individual transport", "Bike");
+        case IndividualTransport::Car:
+            return i18nc("mode of individual transport", "Car");
+        case IndividualTransport::Walk:
+            return i18nc("mode of individual transport", "Walk");
+    }
+    return {};
 }
 
 QJsonObject IndividualTransport::toJson(const IndividualTransport &it)

@@ -166,6 +166,9 @@ public:
      */
     Q_PROPERTY(QString iconName READ iconName STORED false)
 
+    /** Label shortly describing this transport for display. */
+    Q_PROPERTY(QString label READ label STORED false)
+
 public:
     [[nodiscard]] bool hasExpectedDepartureTime() const;
     [[nodiscard]] int departureDelay() const;
@@ -257,6 +260,8 @@ public:
      *  Can be a qrc: or file: URL or an XDG icon name.
      */
     Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::JourneySection::Mode mode);
+
+    [[nodiscard]] QString label() const;
 
 private:
     [[nodiscard]] QVariantList intermediateStopsVariant() const;

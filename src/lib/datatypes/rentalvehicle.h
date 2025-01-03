@@ -62,8 +62,12 @@ public:
     /** Deep booking link via an app. */
     KPUBLICTRANSPORT_PROPERTY(QUrl, appBookingUrl, setAppBookingUrl)
 
+    /** Label shortly describing this transport for display. */
+    Q_PROPERTY(QString label READ label STORED false)
+
 public:
     [[nodiscard]] QString vehicleTypeIconName() const;
+    [[nodiscard]] QString label() const;
 
     /** Icon representing the vehicle type.
      *  Can be a qrc: URL or an XDG icon name.

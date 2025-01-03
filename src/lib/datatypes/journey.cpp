@@ -17,6 +17,8 @@
 #include "rentalvehicleutil_p.h"
 #include "stopover.h"
 
+#include <KLocalizedString>
+
 #include <QDebug>
 #include <QVariant>
 
@@ -491,6 +493,28 @@ QString JourneySection::modeIconName(JourneySection::Mode mode)
     }
 
     return u"question"_s;
+}
+
+QString JourneySection::label() const
+{
+    switch (mode()) {
+    case JourneySection::Invalid:
+        break;
+    case JourneySection::PublicTransport:
+        return route().line().name();
+    case JourneySection::Walking:
+        return i18nc("mode of individual transport", "Walk");
+    case JourneySection::Waiting:
+        return i18n("Wait");
+    case JourneySection::Transfer:
+        break; // ?
+    case JourneySection::RentedVehicle:
+        return rentalVehicle().label();
+    case JourneySection::IndividualTransport:
+        return individualTransport().label();
+    }
+
+    return {};
 }
 
 void JourneySection::applyMetaData(bool download)
