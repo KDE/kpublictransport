@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-04 00:39+0000\n"
+"POT-Creation-Date: 2025-01-04 00:40+0000\n"
 "PO-Revision-Date: 2024-08-12 09:22+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -95,6 +95,53 @@ msgstr "Wi-Fi"
 msgctxt "train coach feature"
 msgid "Power sockets"
 msgstr "Розетки"
+
+#: lib/datatypes/individualtransport.cpp:73
+#, kde-format
+msgctxt "mode of individual transport"
+msgid "Bike"
+msgstr ""
+
+#: lib/datatypes/individualtransport.cpp:75
+#, kde-format
+msgctxt "mode of individual transport"
+msgid "Car"
+msgstr ""
+
+#: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:506
+#, kde-format
+msgctxt "mode of individual transport"
+msgid "Walk"
+msgstr ""
+
+#: lib/datatypes/journey.cpp:508
+#, kde-format
+msgid "Wait"
+msgstr ""
+
+#: lib/datatypes/rentalvehicle.cpp:271
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented bike"
+msgstr ""
+
+#: lib/datatypes/rentalvehicle.cpp:273
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented moped"
+msgstr ""
+
+#: lib/datatypes/rentalvehicle.cpp:275
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented kick scooter"
+msgstr ""
+
+#: lib/datatypes/rentalvehicle.cpp:277
+#, kde-format
+msgctxt "rental vehicle type"
+msgid "Rented car"
+msgstr ""
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
