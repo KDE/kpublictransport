@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-04 00:40+0000\n"
-"PO-Revision-Date: 2024-08-12 05:09+0200\n"
+"PO-Revision-Date: 2025-01-04 05:07+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -100,48 +100,48 @@ msgstr "კვების ბუდეები"
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr ""
+msgstr "ველოსიპედი"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr ""
+msgstr "მანქანა"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:506
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr ""
+msgstr "გასეირნება"
 
 #: lib/datatypes/journey.cpp:508
 #, kde-format
 msgid "Wait"
-msgstr ""
+msgstr "მოცდა"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr ""
+msgstr "გაქირავებული ველოსიპედი"
 
 #: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr ""
+msgstr "ნაქირავები მოპედი"
 
 #: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr ""
+msgstr "ნაქირავები წასაკრავი სკუტერი"
 
 #: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr ""
+msgstr "ნაქირავები მანქანა"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format

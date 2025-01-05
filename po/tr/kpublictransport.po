@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 #
-# SPDX-FileCopyrightText: 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2024, 2025 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-04 00:40+0000\n"
-"PO-Revision-Date: 2024-08-12 14:16+0300\n"
+"PO-Revision-Date: 2025-01-04 15:48+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.11.70\n"
+"X-Generator: Lokalize 25.03.70\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
@@ -99,48 +99,48 @@ msgstr "Priz"
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr ""
+msgstr "Bisiklet"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr ""
+msgstr "Araba"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:506
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr ""
+msgstr "Yürüme"
 
 #: lib/datatypes/journey.cpp:508
 #, kde-format
 msgid "Wait"
-msgstr ""
+msgstr "Bekleme"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr ""
+msgstr "Kiralık bisiklet"
 
 #: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr ""
+msgstr "Kiralık moped"
 
 #: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr ""
+msgstr "Kiralık ayaklı kaykay"
 
 #: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr ""
+msgstr "Kiralık araba"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
