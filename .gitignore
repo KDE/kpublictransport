@@ -22,3 +22,4 @@ src/coverage/10m_cultural
 .idea
 /cmake-build*
 /build*
+.qmlls.ini

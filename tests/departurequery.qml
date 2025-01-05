@@ -102,11 +102,10 @@ Kirigami.ApplicationWindow {
                     Layout.fillHeight: true
                 }
 
-                Kirigami.Icon {
+                TransportIcon {
                     id: icon
                     source: departure.route.line.iconName
-                    width: height
-                    height: Kirigami.Units.iconSizes.large
+                    iconHeight: Kirigami.Units.iconSizes.smallMedium
                 }
 
                 ColumnLayout {

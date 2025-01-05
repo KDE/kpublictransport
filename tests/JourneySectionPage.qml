@@ -24,12 +24,11 @@ Kirigami.Page {
             columns: 3
             rows: 5
 
-            Kirigami.Icon {
+            TransportIcon {
                 Layout.rowSpan: 4
                 id: icon
                 source: journeySection.route.line.iconName
-                width: height
-                height: Kirigami.Units.iconSizes.large
+                iconHeight: Kirigami.Units.iconSizes.large
                 visible: source != ""
             }
 
