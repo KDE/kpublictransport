@@ -112,6 +112,7 @@ struct IndividualTransportForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::IndividualTransport)
     QML_VALUE_TYPE(individualTransport)
+    QML_STRUCTURED_VALUE
 };
 FOREIGN_ENUM_GADGET(IndividualTransport)
 
@@ -140,6 +141,7 @@ struct JourneySectionForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::JourneySection)
     QML_VALUE_TYPE(journeySection)
+    QML_STRUCTURED_VALUE
 };
 FOREIGN_ENUM_GADGET(JourneySection)
 
@@ -147,6 +149,7 @@ struct LineForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Line)
     QML_VALUE_TYPE(line)
+    QML_STRUCTURED_VALUE
 };
 FOREIGN_ENUM_GADGET(Line)
 struct LineMode
@@ -235,6 +238,7 @@ struct RentalVehicleForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::RentalVehicle)
     QML_VALUE_TYPE(rentalVehicle)
+    QML_STRUCTURED_VALUE
 };
 FOREIGN_ENUM_GADGET(RentalVehicle)
 
@@ -242,6 +246,7 @@ struct RouteForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Route)
     QML_VALUE_TYPE(route)
+    QML_STRUCTURED_VALUE
 };
 
 struct StopoverForeign {
