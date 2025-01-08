@@ -102,7 +102,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledDepartureTime": "2019-11-11T22:05:00",
+                        "scheduledArrivalTime": "2019-11-11T22:05:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "DE",
@@ -120,7 +120,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "scheduledDepartureTime": "2019-11-11T22:06:00",
+                        "scheduledArrivalTime": "2019-11-11T22:06:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "country": "DE",

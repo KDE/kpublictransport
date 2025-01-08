@@ -147,7 +147,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:08:00",
+                        "scheduledArrivalTime": "2024-05-05T08:05:00",
                         "scheduledDepartureTime": "2024-05-05T08:08:00",
                         "scheduledPlatform": "5",
                         "stopPoint": {
@@ -162,8 +162,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:09:00",
-                        "scheduledDepartureTime": "2024-05-05T08:09:00",
+                        "scheduledArrivalTime": "2024-05-05T08:09:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -177,8 +176,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:10:00",
-                        "scheduledDepartureTime": "2024-05-05T08:10:00",
+                        "scheduledArrivalTime": "2024-05-05T08:10:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -192,8 +190,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:11:00",
-                        "scheduledDepartureTime": "2024-05-05T08:11:00",
+                        "scheduledArrivalTime": "2024-05-05T08:11:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -207,8 +204,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:13:00",
-                        "scheduledDepartureTime": "2024-05-05T08:13:00",
+                        "scheduledArrivalTime": "2024-05-05T08:13:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -222,8 +218,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:14:00",
-                        "scheduledDepartureTime": "2024-05-05T08:14:00",
+                        "scheduledArrivalTime": "2024-05-05T08:14:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -237,8 +232,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:15:00",
-                        "scheduledDepartureTime": "2024-05-05T08:15:00",
+                        "scheduledArrivalTime": "2024-05-05T08:15:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -252,8 +246,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:16:00",
-                        "scheduledDepartureTime": "2024-05-05T08:16:00",
+                        "scheduledArrivalTime": "2024-05-05T08:16:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -267,8 +260,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:17:00",
-                        "scheduledDepartureTime": "2024-05-05T08:17:00",
+                        "scheduledArrivalTime": "2024-05-05T08:17:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -282,8 +274,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:18:00",
-                        "scheduledDepartureTime": "2024-05-05T08:18:00",
+                        "scheduledArrivalTime": "2024-05-05T08:18:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -297,8 +288,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:21:00",
-                        "scheduledDepartureTime": "2024-05-05T08:21:00",
+                        "scheduledArrivalTime": "2024-05-05T08:21:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -312,8 +302,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:23:00",
-                        "scheduledDepartureTime": "2024-05-05T08:23:00",
+                        "scheduledArrivalTime": "2024-05-05T08:23:00",
                         "scheduledPlatform": "2",
                         "stopPoint": {
                             "identifier": {
@@ -327,8 +316,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:25:00",
-                        "scheduledDepartureTime": "2024-05-05T08:25:00",
+                        "scheduledArrivalTime": "2024-05-05T08:25:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -342,8 +330,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:27:00",
-                        "scheduledDepartureTime": "2024-05-05T08:27:00",
+                        "scheduledArrivalTime": "2024-05-05T08:27:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -357,8 +344,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:31:00",
-                        "scheduledDepartureTime": "2024-05-05T08:31:00",
+                        "scheduledArrivalTime": "2024-05-05T08:31:00",
                         "scheduledPlatform": "2",
                         "stopPoint": {
                             "identifier": {
@@ -372,8 +358,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:34:00",
-                        "scheduledDepartureTime": "2024-05-05T08:34:00",
+                        "scheduledArrivalTime": "2024-05-05T08:34:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -387,8 +372,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:37:00",
-                        "scheduledDepartureTime": "2024-05-05T08:37:00",
+                        "scheduledArrivalTime": "2024-05-05T08:37:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -402,7 +386,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:40:00",
+                        "scheduledArrivalTime": "2024-05-05T08:38:00",
                         "scheduledDepartureTime": "2024-05-05T08:40:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
@@ -417,8 +401,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:42:00",
-                        "scheduledDepartureTime": "2024-05-05T08:42:00",
+                        "scheduledArrivalTime": "2024-05-05T08:42:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -432,8 +415,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:44:00",
-                        "scheduledDepartureTime": "2024-05-05T08:44:00",
+                        "scheduledArrivalTime": "2024-05-05T08:44:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -447,8 +429,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T08:45:00",
-                        "scheduledDepartureTime": "2024-05-05T08:45:00",
+                        "scheduledArrivalTime": "2024-05-05T08:45:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -550,8 +531,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:27:00",
-                        "scheduledDepartureTime": "2024-05-05T09:27:00",
+                        "scheduledArrivalTime": "2024-05-05T09:27:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -565,8 +545,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:28:00",
-                        "scheduledDepartureTime": "2024-05-05T09:28:00",
+                        "scheduledArrivalTime": "2024-05-05T09:28:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -580,8 +559,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:30:00",
-                        "scheduledDepartureTime": "2024-05-05T09:30:00",
+                        "scheduledArrivalTime": "2024-05-05T09:30:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -595,8 +573,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:31:00",
-                        "scheduledDepartureTime": "2024-05-05T09:31:00",
+                        "scheduledArrivalTime": "2024-05-05T09:31:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -610,8 +587,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:32:00",
-                        "scheduledDepartureTime": "2024-05-05T09:32:00",
+                        "scheduledArrivalTime": "2024-05-05T09:32:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -625,8 +601,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:34:00",
-                        "scheduledDepartureTime": "2024-05-05T09:34:00",
+                        "scheduledArrivalTime": "2024-05-05T09:34:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -640,8 +615,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:36:00",
-                        "scheduledDepartureTime": "2024-05-05T09:36:00",
+                        "scheduledArrivalTime": "2024-05-05T09:36:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -655,8 +629,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:37:00",
-                        "scheduledDepartureTime": "2024-05-05T09:37:00",
+                        "scheduledArrivalTime": "2024-05-05T09:37:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -670,8 +643,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:38:00",
-                        "scheduledDepartureTime": "2024-05-05T09:38:00",
+                        "scheduledArrivalTime": "2024-05-05T09:38:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -685,8 +657,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:40:00",
-                        "scheduledDepartureTime": "2024-05-05T09:40:00",
+                        "scheduledArrivalTime": "2024-05-05T09:40:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -700,8 +671,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:41:00",
-                        "scheduledDepartureTime": "2024-05-05T09:41:00",
+                        "scheduledArrivalTime": "2024-05-05T09:41:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -715,8 +685,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:42:00",
-                        "scheduledDepartureTime": "2024-05-05T09:42:00",
+                        "scheduledArrivalTime": "2024-05-05T09:42:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -730,8 +699,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:43:00",
-                        "scheduledDepartureTime": "2024-05-05T09:43:00",
+                        "scheduledArrivalTime": "2024-05-05T09:43:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -745,8 +713,7 @@
                     },
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:44:00",
-                        "scheduledDepartureTime": "2024-05-05T09:44:00",
+                        "scheduledArrivalTime": "2024-05-05T09:44:00",
                         "scheduledPlatform": "1",
                         "stopPoint": {
                             "identifier": {
@@ -929,8 +896,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T09:47:00",
-                        "scheduledDepartureTime": "2024-05-05T09:47:00",
+                        "scheduledArrivalTime": "2024-05-05T09:47:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
                             "identifier": {
@@ -1315,8 +1281,7 @@
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
-                        "expectedDepartureTime": "2024-05-05T11:47:00",
-                        "scheduledDepartureTime": "2024-05-05T11:47:00",
+                        "scheduledArrivalTime": "2024-05-05T11:47:00",
                         "scheduledPlatform": "",
                         "stopPoint": {
                             "identifier": {
