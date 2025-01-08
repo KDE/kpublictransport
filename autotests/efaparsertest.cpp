@@ -181,6 +181,9 @@ private Q_SLOTS:
         QTest::newRow("bwegt-nbwt-coordinate-system")
             << s(SOURCE_DIR "/data/efa/trip-response-nbwt.xml")
             << s(SOURCE_DIR "/data/efa/trip-response-nbwt.json");
+        QTest::newRow("gb-phantom-stops")
+            << s(SOURCE_DIR "/data/efa/trip-response-phantom-stops.xml")
+            << s(SOURCE_DIR "/data/efa/trip-response-phantom-stops.json");
     }
 
     void testParseTrips()
