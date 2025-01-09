@@ -82,7 +82,6 @@ bool Motis2Backend::queryLocation(const LocationRequest &req, LocationReply *rep
             netReply->deleteLater();
             const auto data = netReply->readAll();
             logReply(reply, netReply, data);
-            qDebug().noquote() << data << netReply->error();
 
             Motis2Parser p(m_locationIdentifierType);
             auto result = p.parseMapStops(data);

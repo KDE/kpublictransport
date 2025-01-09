@@ -136,7 +136,6 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
 
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
-        qDebug().noquote() << data << netReply->error();
         auto result = p.parseStations(data);
 
         if (adrNetReply) {
@@ -144,7 +143,6 @@ bool MotisBackend::queryLocation(const LocationRequest &req, LocationReply *repl
 
             const auto adrData = adrNetReply->readAll();
             logReply(reply, adrNetReply, adrData);
-            qDebug().noquote() << adrData << adrNetReply->error();
             auto adrResult = p.parseLocations(adrData);
 
             result.resize(adrResult.size() + result.size());
@@ -210,7 +208,6 @@ bool MotisBackend::queryStopover(const StopoverRequest &req, StopoverReply *repl
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
-        qDebug().noquote() << data << netReply->error();
         MotisParser p(m_locationIdentifierType);
         auto result = p.parseEvents(data);
         if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
@@ -419,7 +416,6 @@ bool MotisBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, 
         const auto data = netReply->readAll();
         logReply(reply, netReply, data);
 
-        qDebug().noquote() << data << netReply->error();
         MotisParser p(m_locationIdentifierType);
         auto result = p.parseConnections(data);
         if (netReply->error() == QNetworkReply::NoError && !p.hasError()) {
@@ -455,7 +451,6 @@ QNetworkReply* MotisBackend::makeRequest(const Request &req, QObject *parent, co
     netReq.setHeader(QNetworkRequest::ContentTypeHeader, "application/json"_L1);
     const auto postData = QJsonDocument(query).toJson(QJsonDocument::Compact);
     logRequest(req, netReq, postData);
-    qDebug().noquote() << QJsonDocument(query).toJson();
     auto netReply = nam->post(netReq, postData);
     netReply->setParent(parent);
     return netReply;
