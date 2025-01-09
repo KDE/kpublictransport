@@ -12,7 +12,8 @@ import org.kde.kpublictransport
 import org.kde.kpublictransport.ui
 
 Kirigami.Page {
-    property var journeySection
+    id: root
+    property journeySection journeySection
 
     ColumnLayout {
         anchors.fill: parent
@@ -24,12 +25,10 @@ Kirigami.Page {
             columns: 3
             rows: 5
 
-            TransportIcon {
+            TransportNameControl {
                 Layout.rowSpan: 4
                 id: icon
-                source: journeySection.route.line.iconName
-                iconHeight: Kirigami.Units.iconSizes.large
-                visible: source != ""
+                journeySection: root.journeySection
             }
 
             QQC2.Label {
