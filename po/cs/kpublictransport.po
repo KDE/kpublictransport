@@ -116,7 +116,7 @@ msgstr ""
 #: lib/datatypes/journey.cpp:508
 #, kde-format
 msgid "Wait"
-msgstr ""
+msgstr "Čekejte"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
