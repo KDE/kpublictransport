@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 #
-# SPDX-FileCopyrightText: 2024 giovanni <g.sora@tiscali.it>
+# SPDX-FileCopyrightText: 2024, 2025 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-04 00:40+0000\n"
-"PO-Revision-Date: 2024-08-28 16:42+0200\n"
+"PO-Revision-Date: 2025-01-10 11:58+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -99,48 +99,48 @@ msgstr "Prisas electric"
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr ""
+msgstr "Bicycletta"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr ""
+msgstr "Automobile"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:506
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr ""
+msgstr "Promenada"
 
 #: lib/datatypes/journey.cpp:508
 #, kde-format
 msgid "Wait"
-msgstr ""
+msgstr "Pausa"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr ""
+msgstr "Bicycletta locate"
 
 #: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr ""
+msgstr "Cyclo a motor locate"
 
 #: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr ""
+msgstr "Monopatin locate"
 
 #: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr ""
+msgstr "Auto de location"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
