@@ -67,6 +67,12 @@
         "Name[x-test]": "xxDigitransit Finlandxx",
         "Name[zh_CN]": "Digitransit 芬兰"
     },
+    "attribution": {
+        "homepage": "https://digitransit.fi/",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "Digitransit"
+    },
     "coverage": {
         "realtimeCoverage": {
             "area": {
@@ -829,6 +835,12 @@
     },
     "options": {
         "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/",
+        "extraHttpHeaders": [
+            {
+                "name": "digitransit-subscription-key",
+                "value": "568cff154a2942a1acf84606ceced056"
+            }
+        ],
         "supportedTransitModes": [
             "TRANSIT"
         ]
