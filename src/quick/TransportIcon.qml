@@ -37,6 +37,8 @@ Item {
         source: root.__isIcon ? root.source : ""
         visible: source !== ""
         anchors.fill: parent
+        isMask: true
+        color: Kirigami.Theme.textColor
     }
     Image {
         id: __image

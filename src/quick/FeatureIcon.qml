@@ -16,6 +16,8 @@ Kirigami.Icon {
     property KPublicTransport.feature feature
 
     source: root.feature.typeIconName
+    isMask: true
+    color: Kirigami.Theme.textColor
 
     Kirigami.Icon {
         id: emblem
