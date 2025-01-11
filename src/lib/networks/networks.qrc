@@ -11,7 +11,6 @@
 
         <!-- national providers -->
         <file>at_oebb.json</file>
-        <file>au_navitia.json</file>
         <file>ch_opentransportdata.json</file>
         <!--<file>ch_sbb.json</file> endpoint currently unreachable -->
         <file>de_db.json</file>

@@ -63,8 +63,6 @@ private Q_SLOTS:
 
         // international
         // TODO un_gbfs - this needs special-casing given it cannot do journey and departure searches
-        QTest::newRow("un_navitia") << "un_navitia" << loc("Paris Gare de Lyon", 48.84444, 2.37412) << loc("Paris Aéroport Charles de Gaulle 2 TGV", 49.00423, 2.57215);
-        QTest::newRow("au_navitia") << "au_navitia" << loc("King George Square Station",  -27.468903869, 153.0242799) << loc("Brisbane International Airport", -27.404467, 153.108597);
         QTest::newRow("un_transitous") << "un_transitous" << loc("King George Square Bus Station",  -27.468903869, 153.0242799) << loc("Brisbane International Airport", -27.404467, 153.108597);
 
         // national
