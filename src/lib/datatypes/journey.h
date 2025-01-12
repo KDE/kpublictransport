@@ -129,7 +129,7 @@ public:
     /** Vehicle load information for this journey section.
      *  Contains LoadInfo objects for consumption by QML.
      */
-    Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant STORED false)
+    Q_PROPERTY(QList<KPublicTransport::LoadInfo> loadInformation READ loadInformationList WRITE setLoadInformationList STORED false)
 
     /** Information about a rental vehicle, for sections using one. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::RentalVehicle, rentalVehicle, setRentalVehicle)
@@ -264,8 +264,9 @@ public:
     [[nodiscard]] QString label() const;
 
 private:
-    [[nodiscard]] QVariantList intermediateStopsVariant() const;
-    [[nodiscard]] QVariantList loadInformationVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QVariantList intermediateStopsVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QList<LoadInfo> loadInformationList() const;
+    Q_DECL_HIDDEN void setLoadInformationList(const QList<LoadInfo> &loadInfo);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(JourneySection::Modes)
@@ -277,7 +278,7 @@ class KPUBLICTRANSPORT_EXPORT Journey
 {
     KPUBLICTRANSPORT_GADGET(Journey)
     /** Journey sections for consumption by QML. */
-    Q_PROPERTY(QVariantList sections READ sectionsVariant)
+    Q_PROPERTY(QList<KPublicTransport::JourneySection> sections READ sectionsList WRITE setSectionsList)
     /** Departure time of the journey, according to schedule. */
     Q_PROPERTY(QDateTime scheduledDepartureTime READ scheduledDepartureTime STORED false)
     /** @c true if this has real-time data. */
@@ -364,7 +365,8 @@ public:
     [[nodiscard]] static std::vector<Journey> fromJson(const QJsonArray &array);
 
 private:
-    [[nodiscard]] QVariantList sectionsVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QList<JourneySection> sectionsList() const;
+    Q_DECL_HIDDEN void setSectionsList(const QList<JourneySection> &sections);
 };
 
 }

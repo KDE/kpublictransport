@@ -120,6 +120,7 @@ struct JourneyForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::Journey)
     QML_VALUE_TYPE(journey)
+    QML_STRUCTURED_VALUE
 };
 
 struct JourneyRequestForeign {
@@ -168,6 +169,14 @@ namespace LoadForeign
 Q_NAMESPACE
 QML_NAMED_ELEMENT(Load)
 QML_FOREIGN_NAMESPACE(KPublicTransport::Load)
+};
+
+struct LoadInfoForeign
+{
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::LoadInfo)
+    QML_VALUE_TYPE(loadInfo)
+    QML_STRUCTURED_VALUE
 };
 
 struct LocationForeign {

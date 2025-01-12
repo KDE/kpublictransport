@@ -429,12 +429,19 @@ void JourneySection::setLoadInformation(std::vector<LoadInfo> &&loadInfo)
     d->loadInformation = std::move(loadInfo);
 }
 
-QVariantList JourneySection::loadInformationVariant() const
+QList<LoadInfo> JourneySection::loadInformationList() const
 {
-    QVariantList l;
-    l.reserve(d->loadInformation.size());
-    std::transform(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l), [](const auto &load) { return QVariant::fromValue(load); });
+    QList<LoadInfo> l;
+    l.reserve((qsizetype)d->loadInformation.size());
+    std::copy(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l));
     return l;
+}
+
+void JourneySection::setLoadInformationList(const QList<LoadInfo> &loadInfo)
+{
+    d->loadInformation.clear();
+    d->loadInformation.reserve(loadInfo.size());
+    std::copy(loadInfo.begin(), loadInfo.end(), std::back_inserter(d->loadInformation));
 }
 
 const std::vector<KPublicTransport::Feature>& JourneySection::features() const
@@ -733,12 +740,19 @@ void Journey::setSections(std::vector<JourneySection> &&sections)
     d->sections = std::move(sections);
 }
 
-QVariantList Journey::sectionsVariant() const
+QList<JourneySection> Journey::sectionsList() const
 {
-    QVariantList l;
-    l.reserve(d->sections.size());
-    std::transform(d->sections.begin(), d->sections.end(), std::back_inserter(l), [](const auto &sec) { return QVariant::fromValue(sec); });
+    QList<JourneySection> l;
+    l.reserve((qsizetype)d->sections.size());
+    std::copy(d->sections.begin(), d->sections.end(), std::back_inserter(l));
     return l;
+}
+
+void Journey::setSectionsList(const QList<JourneySection> &sections)
+{
+    d->sections.clear();
+    d->sections.reserve(sections.size());
+    std::copy(sections.begin(), sections.end(), std::back_inserter(d->sections));
 }
 
 QDateTime Journey::scheduledDepartureTime() const
