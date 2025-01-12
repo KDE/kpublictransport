@@ -199,7 +199,8 @@ Kirigami.Page {
                             }
                         },
                         scheduledDepartureTime: "2024-12-13T14:15:00",
-                        scheduledArrivalTime: "2024-12-13T15:00:00"
+                        scheduledArrivalTime: "2024-12-13T15:00:00",
+                        loadInformation: [ { load: KPublicTransport.Load.Full, seatingClass: "2"}, { load: KPublicTransport.Load.Low, seatingClass: "1" } ]
                     }
                 ]
             })

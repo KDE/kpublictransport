@@ -45,9 +45,6 @@ RowLayout {
                 return section.duration > 20 * 60 || section.distance > 1000;
             case KPublicTransport.JourneySection.Waiting:
                 return section.duration > 20 * 60;
-            case KPublicTransport.JourneySection.PublicTransport:
-                // TODO full occupancy
-                return false;
             case KPublicTransport.JourneySection.RentedVehicle:
                 switch (section.rentalVehicle.type) {
                     case KPublicTransport.RentalVehicle.Bicycle:
@@ -85,6 +82,8 @@ RowLayout {
 
             // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
 
+            readonly property bool isFull: delegateRoot.journeySection.loadInformation.some((l) => { return l.load === KPublicTransport.Load.Full; })
+
             Kirigami.Icon  {
                 anchors.right: delegateRoot.right
                 anchors.bottom: delegateRoot.bottom
@@ -97,8 +96,12 @@ RowLayout {
                         return "emblem-error";
                     if (root.warnAboutSection(delegateRoot.journeySection))
                         return "emblem-warning";
+                    if (delegateRoot.isFull)
+                        return "qrc:///org.kde.kpublictransport/ui/assets/occupancy-full.svg";
                     return "";
                 }
+                isMask: delegateRoot.isFull
+                color: delegateRoot.isFull ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
                 visible: source !== "" && delegateRoot.width > width
             }
         }
