@@ -163,5 +163,47 @@ Kirigami.Page {
                 ]
             })
         }
+
+        KPublicTransport.JourneyHorizontalBar {
+            Layout.fillWidth: true
+            journey: ({
+                sections: [
+                    {
+                        mode: KPublicTransport.JourneySection.PublicTransport,
+                        route: {
+                            line: {
+                                mode: KPublicTransport.Line.Metro,
+                                name: "4"
+                            }
+                        },
+                        scheduledDepartureTime: "2024-12-13T02:50:00",
+                        scheduledArrivalTime: "2024-12-13T03:00:00"
+                    },
+                    {
+                        mode: KPublicTransport.JourneySection.PublicTransport,
+                        route: {
+                            line: {
+                                mode: KPublicTransport.Line.Tramway,
+                                name: "1"
+                            }
+                        },
+                        scheduledDepartureTime: "2024-12-13T03:10:00",
+                        scheduledArrivalTime: "2024-12-13T14:00:00"
+                    },
+                    {
+                        mode: KPublicTransport.JourneySection.PublicTransport,
+                        route: {
+                            line: {
+                                mode: KPublicTransport.Line.LongDistanceTrain,
+                                name: "ICE 1234"
+                            }
+                        },
+                        scheduledDepartureTime: "2024-12-13T14:15:00",
+                        scheduledArrivalTime: "2024-12-13T15:00:00"
+                    }
+                ]
+            })
+        }
+
     }
 }
