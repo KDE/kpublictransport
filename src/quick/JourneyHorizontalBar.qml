@@ -42,6 +42,7 @@ RowLayout {
         model: root.journey.sections
         delegate: TransportNameControl {
             id: delegateRoot
+            clip: false
 
             required property KPublicTransport.journeySection modelData
             journeySection: modelData
@@ -53,8 +54,19 @@ RowLayout {
             // when we have the space, size public transport sections based on their duration
             Layout.preferredWidth: implicitWidth + (delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport ? (delegateRoot.journeySection.duration / root.journey.duration) * (root.width - (root.journey.sections.length * root.spacing) - root.__minimumWidth) : 0)
 
-            // TODO cancelation indicators
             // TODO warning indicators for suspicously long segments
+            // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
+
+            Kirigami.Icon  {
+                anchors.right: delegateRoot.right
+                anchors.bottom: delegateRoot.bottom
+                anchors.bottomMargin: -Kirigami.Units.smallSpacing
+                anchors.rightMargin: -Kirigami.Units.smallSpacing
+                width: Kirigami.Units.iconSizes.small
+                height: width
+                source: delegateRoot.journeySection.disruptionEffect === KPublicTransport.Disruption.NoService ? "emblem-error" : ""
+                visible: source !== "" && delegateRoot.width > width
+            }
         }
     }
 }
