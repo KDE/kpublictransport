@@ -117,5 +117,51 @@ Kirigami.Page {
                 })
             }
         }
+
+        KPublicTransport.JourneyHorizontalBar {
+            Layout.fillWidth: true
+            journey: ({
+                sections: [
+                    {
+                        mode: KPublicTransport.JourneySection.IndividualTransport,
+                        individualTransport: { mode: KPublicTransport.IndividualTransport.Walk },
+                        scheduledDepartureTime: "2024-12-13T12:00:00",
+                        scheduledArrivalTime: "2024-12-13T13:00:00"
+                    },
+                    {
+                        mode: KPublicTransport.JourneySection.PublicTransport,
+                        route: {
+                            line: {
+                                mode: KPublicTransport.Line.Bus,
+                                name: "123"
+                            }
+                        },
+                        scheduledDepartureTime: "2024-12-13T13:10:00",
+                        scheduledArrivalTime: "2024-12-13T14:00:00"
+                    },
+                    {
+                        mode: KPublicTransport.JourneySection.Waiting
+                    },
+                    {
+                        mode: KPublicTransport.JourneySection.PublicTransport,
+                        route: {
+                            line: {
+                                mode: KPublicTransport.Line.LongDistanceTrain,
+                                name: "TGV 9876"
+                            }
+                        },
+                        disruptionEffect: KPublicTransport.Disruption.NoService,
+                        scheduledDepartureTime: "2024-12-13T15:00:00",
+                        scheduledArrivalTime: "2024-12-13T22:00:00"
+                    },
+                    {
+                        mode: KPublicTransport.JourneySection.RentedVehicle,
+                        rentalVehicle: { type: KPublicTransport.RentalVehicle.Bicycle },
+                        scheduledDepartureTime: "2024-12-13T22:10:00",
+                        scheduledArrivalTime: "2024-12-13T22:30:00"
+                    }
+                ]
+            })
+        }
     }
 }
