@@ -37,6 +37,35 @@ RowLayout {
         return s;
     }
 
+    // suspiciously long individual transport sections
+    function warnAboutSection(section : KPublicTransport.journeySection): bool {
+        switch (section.mode) {
+            case KPublicTransport.JourneySection.Walking:
+            case KPublicTransport.JourneySection.Transfer:
+                return section.duration > 20 * 60 || section.distance > 1000;
+            case KPublicTransport.JourneySection.Waiting:
+                return section.duration > 20 * 60;
+            case KPublicTransport.JourneySection.PublicTransport:
+                // TODO full occupancy
+                return false;
+            case KPublicTransport.JourneySection.RentedVehicle:
+                switch (section.rentalVehicle.type) {
+                    case KPublicTransport.RentalVehicle.Bicycle:
+                        return section.duration > 60 * 60 || section.distance > 20000;
+                }
+                break;
+            case KPublicTransport.JourneySection.IndividualTransport:
+                switch (section.individualTransport.mode) {
+                    case KPublicTransport.IndividualTransport.Walk:
+                        return section.duration > 20 * 60 || section.distance > 1000;
+                    case KPublicTransport.IndividualTransport.Bike:
+                        return section.duration > 60 * 60 || section.distance > 20000;
+                }
+                break;
+        }
+        return false;
+    }
+
     Repeater {
         id: repeater
         model: root.journey.sections
@@ -54,7 +83,6 @@ RowLayout {
             // when we have the space, size public transport sections based on their duration
             Layout.preferredWidth: implicitWidth + (delegateRoot.modelData.mode === KPublicTransport.JourneySection.PublicTransport ? (delegateRoot.journeySection.duration / root.journey.duration) * (root.width - (root.journey.sections.length * root.spacing) - root.__minimumWidth) : 0)
 
-            // TODO warning indicators for suspicously long segments
             // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
 
             Kirigami.Icon  {
@@ -64,7 +92,13 @@ RowLayout {
                 anchors.rightMargin: -Kirigami.Units.smallSpacing
                 width: Kirigami.Units.iconSizes.small
                 height: width
-                source: delegateRoot.journeySection.disruptionEffect === KPublicTransport.Disruption.NoService ? "emblem-error" : ""
+                source: {
+                    if (delegateRoot.journeySection.disruptionEffect === KPublicTransport.Disruption.NoService)
+                        return "emblem-error";
+                    if (root.warnAboutSection(delegateRoot.journeySection))
+                        return "emblem-warning";
+                    return "";
+                }
                 visible: source !== "" && delegateRoot.width > width
             }
         }
