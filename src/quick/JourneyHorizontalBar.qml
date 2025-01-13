@@ -21,6 +21,14 @@ RowLayout {
     /** The journey to display. */
     property KPublicTransport.journey journey
 
+    /** Thresholds for warning about suspiciously long individual transport sections.
+     *  Units are seconds or meters, respectively.
+     */
+    property int warnWalkTime: 20 * 60
+    property int warnWalkDistance: 1000
+    property int warnBikeTime: 60 * 60
+    property int warnBikeDistance: 20000
+
     spacing: Kirigami.Units.smallSpacing
     Layout.fillWidth: true
 
@@ -42,21 +50,21 @@ RowLayout {
         switch (section.mode) {
             case KPublicTransport.JourneySection.Walking:
             case KPublicTransport.JourneySection.Transfer:
-                return section.duration > 20 * 60 || section.distance > 1000;
+                return section.duration > root.warnWalkTime || section.distance > root.warnWalkDistance;
             case KPublicTransport.JourneySection.Waiting:
-                return section.duration > 20 * 60;
+                return section.duration > root.warnWalkTime;
             case KPublicTransport.JourneySection.RentedVehicle:
                 switch (section.rentalVehicle.type) {
                     case KPublicTransport.RentalVehicle.Bicycle:
-                        return section.duration > 60 * 60 || section.distance > 20000;
+                        return section.duration > warnBikeTime || section.distance > root.warnBikeDistance;
                 }
                 break;
             case KPublicTransport.JourneySection.IndividualTransport:
                 switch (section.individualTransport.mode) {
                     case KPublicTransport.IndividualTransport.Walk:
-                        return section.duration > 20 * 60 || section.distance > 1000;
+                        return section.duration > root.warnWalkTime || section.distance > root.warnWalkDistance;
                     case KPublicTransport.IndividualTransport.Bike:
-                        return section.duration > 60 * 60 || section.distance > 20000;
+                        return section.duration > warnBikeTime || section.distance > root.warnBikeDistance;
                 }
                 break;
         }
