@@ -114,6 +114,8 @@ public:
     [[nodiscard]] std::vector<KPublicTransport::Feature>&& takeFeatures();
     void setFeatures(std::vector<KPublicTransport::Feature> &&features);
 
+    [[nodiscard]] Load::Category maximumOccupancy() const;
+
     /** Augment line meta data.
      *  @param download when set to @c true trigger download of missing assets.
      */

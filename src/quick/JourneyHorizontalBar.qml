@@ -90,7 +90,7 @@ RowLayout {
 
             // ### enabled: false for cancelled sections? needs the below icon moved out of the hierarchy though
 
-            readonly property bool isFull: delegateRoot.journeySection.loadInformation.some((l) => { return l.load === KPublicTransport.Load.Full; })
+            readonly property bool isFull: delegateRoot.journeySection.maximumOccupancy == KPublicTransport.Load.Full;
 
             Kirigami.Icon  {
                 anchors.right: delegateRoot.right

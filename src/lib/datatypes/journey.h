@@ -169,6 +169,9 @@ public:
     /** Label shortly describing this transport for display. */
     Q_PROPERTY(QString label READ label STORED false)
 
+    /** Maximum occpancy over all classes. */
+    Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
+
 public:
     [[nodiscard]] bool hasExpectedDepartureTime() const;
     [[nodiscard]] int departureDelay() const;
@@ -262,6 +265,7 @@ public:
     Q_INVOKABLE [[nodiscard]] static QString modeIconName(KPublicTransport::JourneySection::Mode mode);
 
     [[nodiscard]] QString label() const;
+    [[nodiscard]] Load::Category maximumOccupancy() const;
 
 private:
     [[nodiscard]] Q_DECL_HIDDEN QVariantList intermediateStopsVariant() const;
@@ -317,6 +321,9 @@ class KPUBLICTRANSPORT_EXPORT Journey
      */
     Q_PROPERTY(int co2Emission READ co2Emission STORED false)
 
+    /** Maximum occpancy in all journey sections, over all classes. */
+    Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
+
 public:
     /** The journey sections. */
     [[nodiscard]] const std::vector<JourneySection>& sections() const;
@@ -341,6 +348,7 @@ public:
 
     [[nodiscard]] int distance() const;
     [[nodiscard]] int co2Emission() const;
+    [[nodiscard]] Load::Category maximumOccupancy() const;
 
     /** Augment line meta data.
      *  @param download if set to @p true, trigger the download of locally missing assets.

@@ -260,14 +260,16 @@ Kirigami.ApplicationWindow {
                         Repeater {
                             model: modelData.loadInformation
                             RowLayout {
+                                id: loadDelegateRoot
+                                required property loadInfo modelData
                                 OccupancyIndicator {
-                                    occupancy: modelData.load
+                                    occupancy: loadDelegateRoot.modelData.load
                                     Layout.preferredHeight: Kirigami.Units.iconSizes.small
                                     Layout.preferredWidth: Kirigami.Units.iconSizes.small
                                 }
                                 QQC2.Label {
-                                    text: "(class " + modelData.seatingClass + ")"
-                                    visible: modelData.seatingClass != ""
+                                    text: "(class " + loadDelegateRoot.modelData.seatingClass + ")"
+                                    visible: loadDelegateRoot.modelData.seatingClass != ""
                                 }
                             }
                         }

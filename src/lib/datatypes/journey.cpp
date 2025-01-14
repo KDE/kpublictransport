@@ -524,6 +524,13 @@ QString JourneySection::label() const
     return {};
 }
 
+Load::Category JourneySection::maximumOccupancy() const
+{
+    return std::accumulate(d->loadInformation.begin(), d->loadInformation.end(), Load::Unknown, [](auto l, const auto &info) {
+        return std::max(l, info.load());
+    });
+}
+
 void JourneySection::applyMetaData(bool download)
 {
     if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {
@@ -828,6 +835,13 @@ int Journey::distance() const
 int Journey::co2Emission() const
 {
     return std::accumulate(d->sections.begin(), d->sections.end(), 0, [](auto co2, const auto &jny) { return co2 + std::max(0, jny.co2Emission()); });
+}
+
+Load::Category Journey::maximumOccupancy() const
+{
+    return std::accumulate(d->sections.begin(), d->sections.end(), Load::Unknown, [](auto l, const auto &jny) {
+        return std::max(l, jny.maximumOccupancy());
+    });
 }
 
 void Journey::applyMetaData(bool download)

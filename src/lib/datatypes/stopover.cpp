@@ -165,6 +165,13 @@ void Stopover::setFeatures(std::vector<KPublicTransport::Feature> &&features)
     d->vehicleLayout.setFeatures(std::move(features));
 }
 
+Load::Category Stopover::maximumOccupancy() const
+{
+    return std::accumulate(d->loadInformation.begin(), d->loadInformation.end(), Load::Unknown, [](auto l, const auto &info) {
+        return std::max(l, info.load());
+    });
+}
+
 void Stopover::applyMetaData(bool download)
 {
     auto line = d->route.line();
