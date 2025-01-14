@@ -71,7 +71,7 @@ class KPUBLICTRANSPORT_EXPORT Stopover
     /** Vehicle load information for departure from this stopover
      *  Contains LoadInfo objects for consumption by QML.
      */
-    Q_PROPERTY(QVariantList loadInformation READ loadInformationVariant STORED false)
+    Q_PROPERTY(QList<KPublicTransport::LoadInfo> loadInformation READ loadInformationList STORED false)
 
     /** Vehicle coach layout information at this stopover. */
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Vehicle, vehicleLayout, setVehicleLayout)
@@ -84,20 +84,23 @@ class KPUBLICTRANSPORT_EXPORT Stopover
      */
     Q_PROPERTY(std::vector<KPublicTransport::Feature> features READ features)
 
+    /** Maximum occpancy leaving this stop, over all classes. */
+    Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
+
 public:
-    bool hasExpectedArrivalTime() const;
-    int arrivalDelay() const;
-    bool hasExpectedDepartureTime() const;
-    int departureDelay() const;
-    bool hasExpectedPlatform() const;
-    bool platformChanged() const;
+    [[nodiscard]] bool hasExpectedArrivalTime() const;
+    [[nodiscard]] int arrivalDelay() const;
+    [[nodiscard]] bool hasExpectedDepartureTime() const;
+    [[nodiscard]] int departureDelay() const;
+    [[nodiscard]] bool hasExpectedPlatform() const;
+    [[nodiscard]] bool platformChanged() const;
 
     /** Adds a note. This will check for duplicates and normalize the notes. */
     void addNote(const QString &note);
     void addNotes(const QStringList &notes);
 
     /** Expected vehicle load for departing from this stopover. */
-    const std::vector<LoadInfo>& loadInformation() const;
+    [[nodiscard]] const std::vector<LoadInfo>& loadInformation() const;
     /** Moves the load information out of this object for modification. */
     std::vector<LoadInfo>&& takeLoadInformation();
     /** Set the expected vehicle load information for departing from this stopover. */
@@ -134,7 +137,7 @@ public:
     static std::vector<Stopover> fromJson(const QJsonArray &array);
 
 private:
-    QVariantList loadInformationVariant() const;
+    [[nodiscard]] Q_DECL_HIDDEN QList<LoadInfo> loadInformationList() const;
 };
 
 }

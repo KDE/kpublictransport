@@ -141,11 +141,11 @@ void Stopover::setLoadInformation(std::vector<LoadInfo> &&loadInfo)
     d->loadInformation = std::move(loadInfo);
 }
 
-QVariantList Stopover::loadInformationVariant() const
+QList<LoadInfo> Stopover::loadInformationList() const
 {
-    QVariantList l;
-    l.reserve(d->loadInformation.size());
-    std::transform(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l), [](const auto &load) { return QVariant::fromValue(load); });
+    QList<LoadInfo> l;
+    l.reserve((qsizetype)d->loadInformation.size());
+    std::copy(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l));
     return l;
 }
 
