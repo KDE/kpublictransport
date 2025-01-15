@@ -68,6 +68,16 @@
                         }
                     }
                 ],
+                "load": [
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "ICE Sprinter",
@@ -260,6 +270,16 @@
                         }
                     }
                 ],
+                "load": [
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "ICE Sprinter"
@@ -438,6 +458,16 @@
                             "region": "DE-HE",
                             "type": "Stop"
                         }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
                     }
                 ],
                 "mode": "PublicTransport",

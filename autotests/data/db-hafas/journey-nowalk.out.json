@@ -112,6 +112,16 @@
                         }
                     }
                 ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb."
@@ -209,6 +219,16 @@
                             "name": "Hamburg-Harburg",
                             "type": "Stop"
                         }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_2"
                     }
                 ],
                 "mode": "PublicTransport",
@@ -558,6 +578,16 @@
                             "region": "DE-NI",
                             "type": "Stop"
                         }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_2"
                     }
                 ],
                 "mode": "PublicTransport",
