@@ -140,6 +140,25 @@ static void applyRisNotes(T &obj, const QJsonArray &risNotesArray)
     }
 }
 
+static std::vector<LoadInfo> parseOccupancyInformation(const QJsonObject &obj)
+{
+    const auto occupancyArray = obj.value("auslastungsmeldungen"_L1).toArray();
+    std::vector<LoadInfo> occupancies;
+    occupancies.reserve(occupancyArray.size());
+    for (const auto &occupancyV : occupancyArray) {
+        const auto occupancyObj = occupancyV.toObject();
+        const auto level = HafasParser::parseLoadLevel(occupancyObj.value("stufe"_L1).toInt(-1));
+        if (level == Load::Unknown) {
+            continue;
+        }
+        LoadInfo load;
+        load.setLoad(level);
+        load.setSeatingClass(occupancyObj.value("klasse"_L1).toString());
+        occupancies.push_back(std::move(load));
+    }
+    return occupancies;
+}
+
 std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journeysArray, const HafasMgateParser &hafasParser)
 {
     std::vector<Journey> journeys;
@@ -175,6 +194,7 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
                 section.setMode(JourneySection::Walking);
             } else {
                 section.setMode(JourneySection::PublicTransport);
+                section.setLoadInformation(parseOccupancyInformation(sectionObj));
             }
 
             std::vector<Stopover> intermediateStops;
@@ -200,21 +220,7 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
                 applyNotes(stop, stopObj.value("priorisierteMeldungen"_L1).toArray());
                 applyRisNotes(stop, stopObj.value("risNotizen"_L1).toArray());
 
-                const auto occupancyArray = stopObj.value("auslastungsmeldungen"_L1).toArray();
-                std::vector<LoadInfo> occupancies;
-                occupancies.reserve(occupancyArray.size());
-                for (const auto &occupancyV : occupancyArray) {
-                    const auto occupancyObj = occupancyV.toObject();
-                    const auto level = HafasParser::parseLoadLevel(occupancyObj.value("stufe"_L1).toInt(-1));
-                    if (level == Load::Unknown) {
-                        continue;
-                    }
-                    LoadInfo load;
-                    load.setLoad(level);
-                    load.setSeatingClass(occupancyObj.value("klasse"_L1).toString());
-                    occupancies.push_back(std::move(load));
-                }
-                stop.setLoadInformation(std::move(occupancies));
+                stop.setLoadInformation(parseOccupancyInformation(stopObj));
 
                 intermediateStops.push_back(std::move(stop));
             }

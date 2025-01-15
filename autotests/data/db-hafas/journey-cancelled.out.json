@@ -319,6 +319,12 @@
                         }
                     }
                 ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "route": {
                     "direction": "Duisburg Hbf",
@@ -1001,6 +1007,16 @@
                         }
                     }
                 ],
+                "load": [
+                    {
+                        "load": "High",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "ICE Sprinter",
@@ -1193,6 +1209,12 @@
                             "region": "DE-HE",
                             "type": "Stop"
                         }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "High",
+                        "seatingClass": "KLASSE_2"
                     }
                 ],
                 "mode": "PublicTransport",
@@ -1585,6 +1607,16 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "route": {
                     "direction": "Basel SBB",
@@ -2034,6 +2066,16 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
                 "mode": "PublicTransport",
                 "route": {
                     "direction": "Basel SBB",
@@ -2219,6 +2261,12 @@
                             "region": "DE-HE",
                             "type": "Stop"
                         }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "High",
+                        "seatingClass": "KLASSE_2"
                     }
                 ],
                 "mode": "PublicTransport",
