@@ -16,7 +16,6 @@ namespace KPublicTransport {
 class Coordinate
 {
     Q_GADGET
-    QML_ELEMENT
     QML_ANONYMOUS
     Q_PROPERTY(double latitude MEMBER latitude)
     Q_PROPERTY(double longitude MEMBER longitude)

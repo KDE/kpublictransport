@@ -63,7 +63,6 @@ struct BackendForeign {
 
 struct BackendModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::BackendModel)
     QML_NAMED_ELEMENT(BackendModel)
 };
@@ -133,7 +132,6 @@ FOREIGN_ENUM_GADGET(JourneyRequest)
 
 struct JourneyQueryModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::JourneyQueryModel)
     QML_NAMED_ELEMENT(JourneyQueryModel)
 };
@@ -189,7 +187,6 @@ FOREIGN_ENUM_GADGET(Location)
 
 struct LocationHistoryModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::LocationHistoryModel)
     QML_NAMED_ELEMENT(LocationHistoryModel)
 };
@@ -204,14 +201,12 @@ FOREIGN_ENUM_GADGET(LocationRequest)
 
 struct LocationQueryModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::LocationQueryModel)
     QML_NAMED_ELEMENT(LocationQueryModel)
 };
 
 struct ManagerForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::Manager)
     QML_NAMED_ELEMENT(Manager)
 };
@@ -224,7 +219,6 @@ struct PathForeign {
 
 struct PathModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::PathModel)
     QML_NAMED_ELEMENT(PathModel)
 };
@@ -274,7 +268,6 @@ FOREIGN_ENUM_GADGET(StopoverRequest)
 
 struct StopoverQueryModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::StopoverQueryModel)
     QML_NAMED_ELEMENT(StopoverQueryModel)
 };
@@ -297,7 +290,6 @@ FOREIGN_ENUM_GADGET(VehicleLayoutRequest)
 
 struct VehicleLayoutQueryModelForeign {
     Q_GADGET
-    QML_ELEMENT
     QML_FOREIGN(KPublicTransport::VehicleLayoutQueryModel)
     QML_NAMED_ELEMENT(VehicleLayoutQueryModel)
 };
