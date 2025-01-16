@@ -862,6 +862,9 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 
 void Manager::reload()
 {
+    if (d->m_backends.empty()) { // not loaded yet, nothing to do
+        return;
+    }
     d->m_backends.clear();
     d->loadNetworks();
     Q_EMIT backendsChanged();
@@ -979,7 +982,7 @@ QVariantList Manager::backendsVariant() const
 
 bool Manager::eventFilter(QObject *object, QEvent *event)
 {
-    if (event->type() == QEvent::LanguageChange && object == QCoreApplication::instance()) {
+    if (event->type() == QEvent::LanguageChange && object == QCoreApplication::instance() && !QCoreApplication::closingDown()) {
         reload();
     }
 
