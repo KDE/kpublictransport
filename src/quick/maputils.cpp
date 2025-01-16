@@ -19,7 +19,7 @@ QJSValue MapUtils::polyline(const KPublicTransport::JourneySection &jny) const
         QJSValue result = m_engine->newArray();
         int i = 0;
 
-        result.setProperty(i++, coordinate(jny.departure().stopPoint().latitude(), jny.departure().stopPoint().longitude()));
+        result.setProperty(i++, coordinate(jny.from().latitude(), jny.from().longitude()));
         for (const auto &s : jny.intermediateStops()) {
             if (!s.stopPoint().hasCoordinate()) {
                 continue;
@@ -27,7 +27,7 @@ QJSValue MapUtils::polyline(const KPublicTransport::JourneySection &jny) const
 
             result.setProperty(i++, coordinate(s.stopPoint().latitude(), s.stopPoint().longitude()));
         }
-        result.setProperty(i++, coordinate(jny.arrival().stopPoint().latitude(), jny.arrival().stopPoint().longitude()));
+        result.setProperty(i++, coordinate(jny.to().latitude(), jny.to().longitude()));
         return result;
     }
 
