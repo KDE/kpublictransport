@@ -43,20 +43,6 @@ public:
             f.write(QJsonDocument(Location::toJson(qobject_cast<LocationQueryModel*>(model)->locations())).toJson());
         }
     }
-
-    Q_INVOKABLE QString locationIds(const QVariant &v)
-    {
-        using namespace KPublicTransport;
-
-        const auto loc = v.value<Location>();
-        const auto ids = loc.identifiers();
-        QStringList l;
-        l.reserve(ids.size());
-        for (auto it = ids.begin(); it != ids.end(); ++it) {
-            l.push_back(it.key() + QLatin1String(": ") + it.value());
-        }
-        return l.join(QLatin1String(", "));
-    }
 };
 
 #endif // EXAMPLEUTIL_H

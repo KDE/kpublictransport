@@ -92,6 +92,9 @@ public:
      */
     Q_PROPERTY(QString iconName READ iconName STORED false)
 
+    /** Identifier types set on this location. */
+    Q_PROPERTY(QStringList identifierTypes READ identifierTypes STORED false)
+
 public:
     void setCoordinate(double latitude, double longitude);
     [[nodiscard]] bool hasCoordinate() const;
@@ -108,7 +111,7 @@ public:
     Q_INVOKABLE [[nodiscard]] QString identifier(const QString &identifierType) const;
     void setIdentifier(const QString &identifierType, const QString &id);
     [[nodiscard]] bool hasIdentifier(const QString &identifierType) const;
-    [[nodiscard]] QHash<QString, QString> identifiers() const;
+    [[nodiscard]] QStringList identifierTypes() const;
 
     /** Checks if to instances refer to the same location (which does not necessarily mean they are exactly equal). */
     [[nodiscard]] static bool isSame(const Location &lhs, const Location &rhs);

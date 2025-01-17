@@ -157,6 +157,11 @@ bool Location::hasIdentifier(const QString &identifierType) const
     return !d->ids.value(identifierType).isEmpty();
 }
 
+QStringList Location::identifierTypes() const
+{
+    return d->ids.keys();
+}
+
 RentalVehicleStation Location::rentalVehicleStation() const
 {
     return d->data.value<RentalVehicleStation>();
@@ -170,11 +175,6 @@ RentalVehicle Location::rentalVehicle() const
 KPublicTransport::Equipment Location::equipment() const
 {
     return d->data.value<KPublicTransport::Equipment>();
-}
-
-QHash<QString, QString> Location::identifiers() const
-{
-    return d->ids;
 }
 
 // keep this sorted by key
@@ -327,7 +327,7 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return IfoptUtil::isSameStopPlace(lhsIfopt, rhsIfopt);
     }
 
-    const auto lhsIds = lhs.identifiers();
+    const auto lhsIds = lhs.d->ids;
     bool foundEqualId = false;
     for (auto it = lhsIds.constBegin(); it != lhsIds.constEnd(); ++it) {
         const auto rhsId = rhs.identifier(it.key());
@@ -420,7 +420,7 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     l.setType(std::max(lhs.type(), rhs.type()));
 
     // merge identifiers
-    const auto rhsIds = rhs.identifiers();
+    const auto rhsIds = rhs.d->ids;
     for (auto it = rhsIds.constBegin(); it != rhsIds.constEnd(); ++it) {
         if (it.key() == IfoptUtil::identifierType()) {
             l.setIdentifier(IfoptUtil::identifierType(), IfoptUtil::merge(l.identifier(IfoptUtil::identifierType()), it.value()).toString());

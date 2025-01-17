@@ -4,15 +4,17 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
-import org.kde.example
+import org.kde.kpublictransport as KPublicTransport
 
 Kirigami.OverlaySheet {
     id: locationDetailsSheet
-    property var location
+    property KPublicTransport.location location
 
     header: Kirigami.Heading {
         text: "Location Details"
@@ -43,8 +45,13 @@ Kirigami.OverlaySheet {
         QQC2.Label {
             text: "Lon: " + locationDetailsSheet.location.longitude
         }
-        QQC2.Label {
-            text: "Identifiers: " + ExampleUtil.locationIds(locationDetailsSheet.location)
+        Repeater {
+            model: locationDetailsSheet.location.identifierTypes
+            QQC2.Label {
+                required property string modelData
+                text: "Identifiers (" + modelData + "): " + locationDetailsSheet.location.identifier(modelData)
+            }
+
         }
         QQC2.ToolButton {
             icon.name: "map-symbolic"
