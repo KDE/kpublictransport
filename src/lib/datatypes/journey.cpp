@@ -5,6 +5,8 @@
 */
 
 #include "journey.h"
+
+#include "identifier_p.h"
 #include "journeyutil_p.h"
 #include "json_p.h"
 #include "datatypes_p.h"
@@ -55,6 +57,7 @@ public:
     Vehicle arrivalVehicleLayout;
     Platform arrivalPlatformLayout;
     IndividualTransport individualTransport;
+    IdentifierSet ids;
 };
 
 class JourneyPrivate : public QSharedData
@@ -531,6 +534,22 @@ Load::Category JourneySection::maximumOccupancy() const
     });
 }
 
+QString JourneySection::identifier(QAnyStringView identifierType) const
+{
+    return d->ids.identifier(identifierType);
+}
+
+bool JourneySection::hasIdentifier(QAnyStringView identifierType) const
+{
+    return d->ids.hasIdentifier(identifierType);
+}
+
+void JourneySection::setIdentifier(const QString &identifierType, const QString &id)
+{
+    d.detach();
+    d->ids.setIdentifier(identifierType, id);
+}
+
 void JourneySection::applyMetaData(bool download)
 {
     if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {
@@ -554,6 +573,12 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
 
     if (lhs.d->mode == JourneySection::IndividualTransport && lhs.d->individualTransport != rhs.d->individualTransport) {
         return false;
+    }
+
+    switch (lhs.d->ids.compare(rhs.d->ids)) {
+        case IdentifierSet::NotEqual: return false;
+        case IdentifierSet::Equal: return true;
+        case IdentifierSet::NoIntersection: break;
     }
 
     // we have N criteria to compare here, with 3 possible results:
@@ -594,6 +619,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 {
     using namespace MergeUtil;
     auto res = lhs;
+    res.d->ids.merge(rhs.d->ids);
     res.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
     res.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
     res.setScheduledArrivalTime(mergeDateTimeMax(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
@@ -642,6 +668,9 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 QJsonObject JourneySection::toJson(const JourneySection &section)
 {
     auto obj = Json::toJson(section);
+    if (!section.d->ids.isEmpty()) {
+        obj.insert("identifiers"_L1, section.d->ids.toJson());
+    }
     if (section.mode() != Waiting) {
         const auto fromObj = Location::toJson(section.from());
         if (!fromObj.empty()) {
@@ -706,6 +735,7 @@ QJsonArray JourneySection::toJson(const std::vector<JourneySection> &sections)
 JourneySection JourneySection::fromJson(const QJsonObject &obj)
 {
     auto section = Json::fromJson<JourneySection>(obj);
+    section.d->ids.fromJson(obj.value("identifiers"_L1).toObject());
     section.setFrom(Location::fromJson(obj.value(QLatin1String("from")).toObject()));
     section.setTo(Location::fromJson(obj.value(QLatin1String("to")).toObject()));
     section.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));

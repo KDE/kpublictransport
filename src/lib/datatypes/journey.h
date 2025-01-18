@@ -267,6 +267,11 @@ public:
     [[nodiscard]] QString label() const;
     [[nodiscard]] Load::Category maximumOccupancy() const;
 
+    /** Backend-specific journey section identifiers. */
+    [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
+    [[nodiscard]] bool hasIdentifier(QAnyStringView identifierType) const;
+    void setIdentifier(const QString &identifierType, const QString &id);
+
 private:
     [[nodiscard]] Q_DECL_HIDDEN QVariantList intermediateStopsVariant() const;
     [[nodiscard]] Q_DECL_HIDDEN QList<LoadInfo> loadInformationList() const;
