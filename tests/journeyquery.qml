@@ -9,6 +9,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import QtQuick.Dialogs as Dialogs
+import org.kde.coreaddons as KCoreAddons
 import org.kde.kirigami as Kirigami
 import org.kde.kpublictransport
 import org.kde.kpublictransport.ui
@@ -84,15 +85,6 @@ Kirigami.ApplicationWindow {
     TestLocationsModel { id: exampleModel }
     AttributionSheet { id: aboutSheet }
     LocationDetailsSheet { id:locationDetailsSheet }
-
-    function displayDuration(dur)
-    {
-        if (dur < 60)
-            return "<1min";
-        if (dur < 3600)
-            return Math.floor(dur/60) + "min";
-        return Math.floor(dur/3600) + ":" + Math.floor((dur % 3600)/60)
-    }
 
     function displayDistance(dist)
     {
@@ -193,20 +185,20 @@ Kirigami.ApplicationWindow {
                             {
                                 if (modelData.route.name !== "") {
                                     return modelData.route.line.modeString + " " + modelData.route.line.name + " (" + modelData.route.name
-                                        + ") " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
+                                        + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
                                 }
-                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
+                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
                             }
                             case JourneySection.Walking:
-                                return "Walk " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
+                                return "Walk " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
                             case JourneySection.Transfer:
-                                return "Transfer " + displayDuration(modelData.duration)  + " / " + displayDistance(modelData.distance)
+                                return "Transfer " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)  + " / " + displayDistance(modelData.distance)
                             case JourneySection.Waiting:
-                                return "Wait " + displayDuration(modelData.duration)
+                                return "Wait " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)
                             case JourneySection.RentedVehicle:
-                                return "Drive (" + modelData.rentalVehicle.network.name + ") " + displayDuration(modelData.duration)  + " / " + displayDistance(modelData.distance);
+                                return "Drive (" + modelData.rentalVehicle.network.name + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance);
                             case JourneySection.IndividualTransport:
-                                return "Drive " + displayDuration(modelData.duration) + " / " + displayDistance(modelData.distance)
+                                return "Drive " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
                             return "???";
                         }}
                     }
