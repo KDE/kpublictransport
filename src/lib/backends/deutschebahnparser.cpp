@@ -192,6 +192,8 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             const auto type = routeObj.value("typ"_L1).toString();
             if (type == "WALK"_L1) {
                 section.setMode(JourneySection::Walking);
+            } else if (type == "TRANSFER"_L1) {
+                section.setMode(JourneySection::Transfer);
             } else {
                 section.setMode(JourneySection::PublicTransport);
                 section.setLoadInformation(parseOccupancyInformation(sectionObj));

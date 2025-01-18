@@ -1,0 +1,708 @@
+{
+  "verbindungen": [
+    {
+      "tripId": "3aec9dc8_3",
+      "ctxRecon": "¶HKI¶TF$A=1@O=Bruxelles-Midi Eurostar@X=4335318@Y=50835896@L=8898004@a=128@$A=1@O=Bruxelles Midi@X=4335695@Y=50835375@L=8800004@a=128@$202501181408$202501181425$$$1$$$$$$§T$A=1@O=Bruxelles Midi@X=4335695@Y=50835375@L=8800004@a=128@$A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@L=8000105@a=128@$202501181425$202501181731$ICE   17$$3$$$$$$§T$A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@L=8000105@a=128@$A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@L=8011113@a=128@$202501181814$202501182225$ICE  594$$1$$$$$$¶KC¶#VE#2#CF#100#CA#0#CM#0#SICT#0#AM#81#AM2#0#RT#7#¶KCC¶I1ZFIzEjRVJHIzMjSElOIzAjRUNLIzU4NjkyOHw1ODY5Mjh8NTg3NDI1fDU4NzQyNXwwfDB8NjYxMDF8NTg2ODgwfDJ8MHwxOHwwfDB8LTIxNDc0ODM2NDgjR0FNIzE4MDEyNTE0MDgjCkYjVk4jMCNTVCMxNzMzNzc5MTIyI1BJIzAjUFUjODAjWkkjMzM1NTc3MDI4MSNEQSMxODAxMjUjRlIjODg5ODAwNCNUTyM4ODAwMDA0I0ZUIzE0MDgjVFQjMTQyNSNUUyMwI0ZGIyNGViMwI1NUIzE3MzY5Njk1MzIjUEkjMSNQVSM4MSMKWiNWTiMxI1NUIzE3MzY5Njk1MzIjUEkjMSNaSSMxMjUzMTY3I1RBIzAjREEjMTgwMTI1IzFTIzg4MDAwMDQjMVQjMTQyNSNMUyM4MDAwMTA1I0xUIzE3MzEjUFUjODEjUlQjMyNDQSNJWEIjWkUjMTcjWkIjSUNFICAgMTcjUEMjMCNGUiM4ODAwMDA0I0ZUIzE0MjUjVE8jODAwMDEwNSNUVCMxNzMxIwpaI1ZOIzEjU1QjMTczNjk2OTUzMiNQSSMxI1pJIzIwNzkwMCNUQSMwI0RBIzE4MDEyNSMxUyM4MDAwMjYxIzFUIzE0NDYjTFMjODA5ODE2MCNMVCMyMjMyI1BVIzgxI1JUIzEjQ0EjSUNFI1pFIzU5NCNaQiNJQ0UgIDU5NCNQQyMwI0ZSIzgwMDAxMDUjRlQjMTgxNCNUTyM4MDExMTEzI1RUIzIyMjUj¶KRCC¶#VE#1#¶SC¶1_H4sIAAAAAAACA22R0UrDMBSGX2Wc626cNM2WFgq11l3IxIFOFPEirNksZq2mjWyWPocv491ezNMKQ9C7nO+c838JaeFdW4iATWYSPND7hoosndxlk5Bqq98gaqF0uzlEwusPKUToQeWaTDWahn30BTLWbxO8LXY9ZNzniIQ2Q8KYDdHnz9ufPgXk+nVRrRcQPbZgipx2zmKWXMepdXttjK7HV0VejC6crepG2eQ+DjgXnMnkIRYouZDhNFnFEpNFLGUoEYOkiFfHT0QpWYDoJ6Sn1eGSc+iePFDW/u/U1hTl6Ob4lb9Y7T5Ixjifkk30Nj+YCQz4yUavZYyfbDgV4Yz9tW11s6zMgZKJbZSp9cAuK2dLfUgrV+b178ZS1bUpavqAxjpCel0tlVU7Gmq7rvsGXb9YtKoBAAA=",
+      "verbindungsAbschnitte": [
+        {
+          "risNotizen": [],
+          "himMeldungen": [],
+          "transferNotes": [],
+          "priorisierteMeldungen": [],
+          "abfahrtsZeitpunkt": "2025-01-18T14:08:00",
+          "abfahrtsOrt": "Bruxelles-Midi Eurostar",
+          "abfahrtsOrtExtId": "8898004",
+          "abschnittsDauer": 1020,
+          "abschnittsAnteil": 3.74,
+          "ankunftsZeitpunkt": "2025-01-18T14:25:00",
+          "ankunftsOrt": "Bruxelles Midi",
+          "ankunftsOrtExtId": "8800004",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 0
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 0
+            }
+          ],
+          "distanz": 63,
+          "halte": [],
+          "idx": 0,
+          "verkehrsmittel": {
+            "name": "Transfer",
+            "typ": "TRANSFER",
+            "zugattribute": []
+          }
+        },
+        {
+          "risNotizen": [],
+          "himMeldungen": [
+            {
+              "ueberschrift": "Information.",
+              "text": "There are border controls after the stop in Aachen Hbf. Please have your passport or identity card ready for inspection.",
+              "prioritaet": "HOCH",
+              "modDateTime": "2025-01-02T13:59:53"
+            },
+            {
+              "ueberschrift": "Information.",
+              "text": "Train has no WC for disabled passengers. If a change in booking is required for travellers with reduced mobility, our Mobility Service Centre can be reached at +49 (0) 30 65212888.",
+              "prioritaet": "NIEDRIG",
+              "modDateTime": "2025-01-18T03:39:36"
+            },
+            {
+              "ueberschrift": "Information.",
+              "text": "Aufgrund von Bauarbeiten im Raum Bruxelles-Midi kommt es zu früheren Abfahrtszeiten. Bitte prüfen Sie Ihre Reiseverbindung vor der Abfahrt des Zuges noch einmal.",
+              "prioritaet": "NIEDRIG",
+              "modDateTime": "2025-01-18T09:00:37"
+            }
+          ],
+          "priorisierteMeldungen": [
+            {
+              "prioritaet": "HOCH",
+              "text": "There are border controls after the stop in Aachen Hbf. Please have your passport or identity card ready for inspection."
+            },
+            {
+              "prioritaet": "NIEDRIG",
+              "text": "Train has no WC for disabled passengers. If a change in booking is required for travellers with reduced mobility, our Mobility Service Centre can be reached at +49 (0) 30 65212888."
+            },
+            {
+              "prioritaet": "NIEDRIG",
+              "text": "Aufgrund von Bauarbeiten im Raum Bruxelles-Midi kommt es zu früheren Abfahrtszeiten. Bitte prüfen Sie Ihre Reiseverbindung vor der Abfahrt des Zuges noch einmal."
+            }
+          ],
+          "externeBahnhofsinfoIdDestination": "1866",
+          "abfahrtsZeitpunkt": "2025-01-18T14:25:00",
+          "abfahrtsOrt": "Bruxelles Midi",
+          "abfahrtsOrtExtId": "8800004",
+          "abschnittsDauer": 11160,
+          "abschnittsAnteil": 40.97,
+          "ankunftsZeitpunkt": "2025-01-18T17:31:00",
+          "ankunftsOrt": "Frankfurt(Main)Hbf",
+          "ankunftsOrtExtId": "8000105",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 1
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 2
+            }
+          ],
+          "halte": [
+            {
+              "id": "A=1@O=Bruxelles Midi@X=4335695@Y=50835375@U=81@L=8800004@i=U×008814001@",
+              "abfahrtsZeitpunkt": "2025-01-18T14:25:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Bruxelles Midi",
+              "risNotizen": [],
+              "extId": "8800004",
+              "himMeldungen": [],
+              "routeIdx": 0,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Bruxelles-Nord@X=4361458@Y=50860239@U=81@L=8800002@i=U×008812005@",
+              "abfahrtsZeitpunkt": "2025-01-18T14:34:00",
+              "ankunftsZeitpunkt": "2025-01-18T14:32:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Bruxelles-Nord",
+              "risNotizen": [],
+              "extId": "8800002",
+              "routeIdx": 1,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Liège-Guillemins@X=5566480@Y=50624362@U=81@L=8800012@i=U×008841004@",
+              "abfahrtsZeitpunkt": "2025-01-18T15:14:00",
+              "ankunftsZeitpunkt": "2025-01-18T15:12:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Liège-Guillemins",
+              "risNotizen": [
+                {
+                  "key": "text.realtime.stop.cancelled",
+                  "value": "Stop cancelled"
+                }
+              ],
+              "extId": "8800012",
+              "routeIdx": 2,
+              "priorisierteMeldungen": [
+                {
+                  "prioritaet": "HOCH",
+                  "text": "Stop cancelled",
+                  "type": "HALT_AUSFALL"
+                }
+              ]
+            },
+            {
+              "id": "A=1@O=Angleur@X=5599525@Y=50612883@U=81@L=8800033@i=U×008842002@",
+              "abfahrtsZeitpunkt": "2025-01-18T15:20:00",
+              "ankunftsZeitpunkt": "2025-01-18T15:18:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "name": "Angleur",
+              "risNotizen": [
+                {
+                  "key": "text.realtime.stop.additional",
+                  "value": "Additional stop"
+                }
+              ],
+              "extId": "8800033",
+              "routeIdx": 3,
+              "priorisierteMeldungen": [
+                {
+                  "prioritaet": "HOCH",
+                  "text": "Additional stop"
+                }
+              ]
+            },
+            {
+              "id": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
+              "abfahrtsZeitpunkt": "2025-01-18T15:39:00",
+              "ankunftsZeitpunkt": "2025-01-18T15:36:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 2
+                }
+              ],
+              "gleis": "9",
+              "name": "Aachen Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "0001",
+              "extId": "8000001",
+              "routeIdx": 5,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+              "abfahrtsZeitpunkt": "2025-01-18T16:20:00",
+              "ankunftsZeitpunkt": "2025-01-18T16:15:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 2
+                }
+              ],
+              "gleis": "5 A-C",
+              "name": "Köln Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "3320",
+              "extId": "8000207",
+              "routeIdx": 6,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+              "abfahrtsZeitpunkt": "2025-01-18T17:19:00",
+              "ankunftsZeitpunkt": "2025-01-18T17:17:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "Fern 4",
+              "name": "Frankfurt(M) Flughafen Fernbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "7982",
+              "extId": "8070003",
+              "routeIdx": 7,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+              "ankunftsZeitpunkt": "2025-01-18T17:31:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "19",
+              "name": "Frankfurt(Main)Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1866",
+              "extId": "8000105",
+              "himMeldungen": [],
+              "routeIdx": 8,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 1,
+          "journeyId": "2|#VN#1#ST#1736969532#PI#1#ZI#1253167#TA#0#DA#180125#1S#8800004#1T#1425#LS#8000105#LT#1731#PU#81#RT#3#CA#IXB#ZE#17#ZB#ICE   17#PC#0#FR#8800004#FT#1425#TO#8000105#TT#1731#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "IXB",
+            "name": "ICE 17",
+            "nummer": "17",
+            "richtung": "Frankfurt(Main)Hbf",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              },
+              {
+                "kategorie": "BORDBISTRO",
+                "key": "BR",
+                "value": "Bordrestaurant"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FR",
+                "value": "Fahrradmitnahme reservierungspflichtig"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FB",
+                "value": "Fahrradmitnahme begrenzt möglich"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "CK",
+                "value": "Komfort Check-in verfügbar - wenn möglich bitte einchecken"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "FH",
+                "value": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 17",
+            "langText": "ICE 17"
+          }
+        },
+        {
+          "risNotizen": [],
+          "himMeldungen": [],
+          "priorisierteMeldungen": [],
+          "externeBahnhofsinfoIdOrigin": "1866",
+          "externeBahnhofsinfoIdDestination": "4859",
+          "abfahrtsZeitpunkt": "2025-01-18T18:14:00",
+          "abfahrtsOrt": "Frankfurt(Main)Hbf",
+          "abfahrtsOrtExtId": "8000105",
+          "abschnittsDauer": 15060,
+          "abschnittsAnteil": 55.29,
+          "ankunftsZeitpunkt": "2025-01-18T22:25:00",
+          "ankunftsOrt": "Berlin Südkreuz",
+          "ankunftsOrtExtId": "8011113",
+          "auslastungsmeldungen": [
+            {
+              "klasse": "KLASSE_1",
+              "stufe": 1
+            },
+            {
+              "klasse": "KLASSE_2",
+              "stufe": 1
+            }
+          ],
+          "halte": [
+            {
+              "id": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+              "abfahrtsZeitpunkt": "2025-01-18T18:14:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "gleis": "8",
+              "name": "Frankfurt(Main)Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1866",
+              "extId": "8000105",
+              "himMeldungen": [],
+              "routeIdx": 6,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Fulda@X=9684169@Y=50554902@U=81@L=8000115@i=U×008005637@",
+              "abfahrtsZeitpunkt": "2025-01-18T19:11:00",
+              "ankunftsZeitpunkt": "2025-01-18T19:09:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "gleis": "7",
+              "name": "Fulda",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1973",
+              "extId": "8000115",
+              "routeIdx": 7,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Eisenach Hbf@X=10331986@Y=50976919@U=81@L=8010097@i=U×008016077@",
+              "abfahrtsZeitpunkt": "2025-01-18T20:01:00",
+              "ankunftsZeitpunkt": "2025-01-18T20:00:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "gleis": "4",
+              "name": "Eisenach Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1528",
+              "extId": "8010097",
+              "routeIdx": 8,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Erfurt Hbf@X=11037989@Y=50972352@U=81@L=8010101@i=U×008016043@",
+              "abfahrtsZeitpunkt": "2025-01-18T20:28:00",
+              "ankunftsZeitpunkt": "2025-01-18T20:26:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "gleis": "10",
+              "name": "Erfurt Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "1634",
+              "extId": "8010101",
+              "routeIdx": 9,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Leipzig Hbf@X=12382066@Y=51345467@U=81@L=8010205@i=U×008023179@",
+              "abfahrtsZeitpunkt": "2025-01-18T21:16:00",
+              "ankunftsZeitpunkt": "2025-01-18T21:10:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "gleis": "11",
+              "name": "Leipzig Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "3631",
+              "extId": "8010205",
+              "routeIdx": 10,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Lutherstadt Wittenberg Hbf@X=12662286@Y=51867813@U=81@L=8010222@i=U×008023141@",
+              "abfahrtsZeitpunkt": "2025-01-18T21:48:00",
+              "ankunftsZeitpunkt": "2025-01-18T21:46:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 1
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 1
+                }
+              ],
+              "gleis": "3",
+              "name": "Lutherstadt Wittenberg Hbf",
+              "risNotizen": [],
+              "bahnhofsInfoId": "3863",
+              "extId": "8010222",
+              "routeIdx": 11,
+              "priorisierteMeldungen": []
+            },
+            {
+              "id": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=81@L=8011113@i=U×008065971@",
+              "ankunftsZeitpunkt": "2025-01-18T22:25:00",
+              "auslastungsmeldungen": [
+                {
+                  "klasse": "KLASSE_1",
+                  "stufe": 0
+                },
+                {
+                  "klasse": "KLASSE_2",
+                  "stufe": 0
+                }
+              ],
+              "gleis": "8",
+              "name": "Berlin Südkreuz",
+              "risNotizen": [],
+              "bahnhofsInfoId": "4859",
+              "extId": "8011113",
+              "himMeldungen": [],
+              "routeIdx": 12,
+              "priorisierteMeldungen": []
+            }
+          ],
+          "idx": 2,
+          "journeyId": "2|#VN#1#ST#1736969532#PI#1#ZI#207900#TA#0#DA#180125#1S#8000261#1T#1446#LS#8098160#LT#2232#PU#81#RT#1#CA#ICE#ZE#594#ZB#ICE  594#PC#0#FR#8000261#FT#1446#TO#8098160#TT#2232#",
+          "verkehrsmittel": {
+            "produktGattung": "ICE",
+            "kategorie": "ICE",
+            "name": "ICE 594",
+            "nummer": "594",
+            "richtung": "Berlin Hbf",
+            "typ": "PUBLICTRANSPORT",
+            "zugattribute": [
+              {
+                "kategorie": "BEFÖRDERER",
+                "key": "BEF",
+                "value": "DB Fernverkehr AG"
+              },
+              {
+                "kategorie": "BORDBISTRO",
+                "key": "BR",
+                "value": "Bordrestaurant",
+                "teilstreckenHinweis": "(Frankfurt(Main)Hbf - Berlin Südkreuz)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FR",
+                "value": "Fahrradmitnahme reservierungspflichtig",
+                "teilstreckenHinweis": "(Frankfurt(Main)Hbf - Berlin Südkreuz)"
+              },
+              {
+                "kategorie": "FAHRRADMITNAHME",
+                "key": "FB",
+                "value": "Fahrradmitnahme begrenzt möglich",
+                "teilstreckenHinweis": "(Frankfurt(Main)Hbf - Berlin Südkreuz)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "CK",
+                "value": "Komfort Check-in verfügbar - wenn möglich bitte einchecken",
+                "teilstreckenHinweis": "(Frankfurt(Main)Hbf - Berlin Südkreuz)"
+              },
+              {
+                "kategorie": "INFORMATION",
+                "key": "EH",
+                "value": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                "teilstreckenHinweis": "(Frankfurt(Main)Hbf - Berlin Südkreuz)"
+              }
+            ],
+            "kurzText": "ICE",
+            "mittelText": "ICE 594",
+            "langText": "ICE 594"
+          }
+        }
+      ],
+      "umstiegsAnzahl": 1,
+      "verbindungsDauerInSeconds": 29820,
+      "ezVerbindungsDauerInSeconds": 29820,
+      "isAlternativeVerbindung": false,
+      "auslastungsmeldungen": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2
+        }
+      ],
+      "auslastungstexte": [
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 0,
+          "kurzText": "No occupancy information available"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 0,
+          "kurzText": "No occupancy information available"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 1,
+          "kurzText": "Low demand expected"
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 1,
+          "kurzText": "Low demand expected"
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 2,
+          "anzeigeText": "We expect medium demand for your journey. Reserve the seat of your choice now.",
+          "kurzText": "Medium demand expected",
+          "langText": "We expect medium demand for your journey. Reserve the seat of your choice now."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 2,
+          "anzeigeText": "We expect medium demand for your journey. Reserve the seat of your choice now.",
+          "kurzText": "Medium demand expected",
+          "langText": "We expect medium demand for your journey. Reserve the seat of your choice now."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 3,
+          "anzeigeText": "We expect high demand for your journey. We recommend reserving a seat.",
+          "kurzText": "High demand expected",
+          "langText": "We expect high demand for your journey. We recommend reserving a seat."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 3,
+          "anzeigeText": "We expect high demand for your journey. We recommend reserving a seat.",
+          "kurzText": "High demand expected",
+          "langText": "We expect high demand for your journey. We recommend reserving a seat."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 4,
+          "anzeigeText": "We expect an exceptionally high occupancy in the course of your trip in 1st class. Passengers who have not yet purchased a ticket should choose a different connection or book a 2nd.",
+          "kurzText": "Exceptionally high demand expected",
+          "langText": "We expect an exceptionally high occupancy in the course of your trip in 1st class. Passengers who have not yet purchased a ticket should choose a different connection or book a 2nd."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 4,
+          "anzeigeText": "We expect an exceptionally high occupancy in the course of your trip in 2nd class. Passengers who have not yet purchased a ticket should choose a different connection or book a 1st.",
+          "kurzText": "Exceptionally high demand expected",
+          "langText": "We expect an exceptionally high occupancy in the course of your trip in 2nd class. Passengers who have not yet purchased a ticket should choose a different connection or book a 1st."
+        },
+        {
+          "klasse": "KLASSE_1",
+          "stufe": 99,
+          "anzeigeText": "We expect exceptionally high demand for your journey.",
+          "kurzText": "Exceptionally high demand expected",
+          "langText": "We expect exceptionally high demand for your journey. Passengers who have not yet purchased a ticket should choose another connection."
+        },
+        {
+          "klasse": "KLASSE_2",
+          "stufe": 99,
+          "anzeigeText": "We expect exceptionally high demand for your journey.",
+          "kurzText": "Exceptionally high demand expected",
+          "langText": "We expect exceptionally high demand for your journey. Passengers who have not yet purchased a ticket should choose another connection."
+        }
+      ],
+      "himMeldungen": [],
+      "risNotizen": [],
+      "priorisierteMeldungen": [],
+      "reservierungsMeldungen": [],
+      "isAngebotseinholungNachgelagert": false,
+      "isAlterseingabeErforderlich": true,
+      "serviceDays": [
+        {
+          "lastDateInPeriod": "2025-12-13",
+          "regular": "Sa",
+          "irregular": "not 8., 22. Feb 2025; also 18., 20. Apr 2025, 8. Jun 2025, 3. Oct 2025",
+          "planningPeriodBegin": "2023-12-10",
+          "planningPeriodEnd": "2025-12-13",
+          "weekdays": [
+            "SA"
+          ]
+        }
+      ],
+      "ereignisZusammenfassung": {
+        "prioritaet": "HOCH"
+      },
+      "angebotsPreis": {
+        "betrag": 141.99,
+        "waehrung": "EUR",
+        "mwst": [
+          {
+            "betrag": 7.95,
+            "brutto": 121.63,
+            "netto": 113.68,
+            "literal": "D",
+            "satz": 7
+          },
+          {
+            "betrag": 1.15,
+            "brutto": 20.36,
+            "netto": 19.21,
+            "literal": "TVA:B",
+            "satz": 6
+          }
+        ]
+      },
+      "angebotsPreisKlasse": "KLASSE_2",
+      "hasTeilpreis": false,
+      "reiseAngebote": [],
+      "hinRueckPauschalpreis": false,
+      "isReservierungAusserhalbVorverkaufszeitraum": false,
+      "gesamtAngebotsbeziehungList": []
+    }
+  ],
+  "verbindungReference": {
+    "earlier": "3|OB|MTµ14µ586928µ586896µ587425µ587432µ0µ0µ565µ586880µ1µ0µ8µ0µ0µ-2147483648µ1µ2|PDHµ7000152781614d901755392d1e4c088a|RDµ18012025|RTµ132300|USµ0|RSµINIT",
+    "later": "3|OF|MTµ14µ586988µ586988µ587500µ587501µ0µ0µ885µ586929µ5µ0µ2µ0µ0µ-2147483648µ1µ2|PDHµ7000152781614d901755392d1e4c088a|RDµ18012025|RTµ132300|USµ0|RSµINIT"
+  }
+}
