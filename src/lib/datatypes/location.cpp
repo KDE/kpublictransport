@@ -9,6 +9,7 @@
 #include "datatypes_p.h"
 #include "equipment.h"
 #include "equipmentutil.h"
+#include "identifier_p.h"
 #include "json_p.h"
 #include "mergeutil_p.h"
 #include "rentalvehicle.h"
@@ -41,7 +42,7 @@ public:
     double latitude = NAN;
     double longitude = NAN;
     QTimeZone timeZone;
-    QHash<QString, QString> ids;
+    IdentifierSet ids;
 
     QString streetAddress;
     QString postalCode;
@@ -141,25 +142,25 @@ void Location::setTimeZone(const QTimeZone &tz)
     d->timeZone = tz;
 }
 
-QString Location::identifier(const QString &identifierType) const
+QString Location::identifier(QAnyStringView identifierType) const
 {
-    return d->ids.value(identifierType);
+    return d->ids.identifier(identifierType);
 }
 
 void Location::setIdentifier(const QString &identifierType, const QString &id)
 {
     d.detach();
-    d->ids.insert(identifierType, id);
+    d->ids.setIdentifier(identifierType, id);
 }
 
-bool Location::hasIdentifier(const QString &identifierType) const
+bool Location::hasIdentifier(QAnyStringView identifierType) const
 {
-    return !d->ids.value(identifierType).isEmpty();
+    return d->ids.hasIdentifier(identifierType);
 }
 
 QStringList Location::identifierTypes() const
 {
-    return d->ids.keys();
+    return d->ids.identifierTypes();
 }
 
 RentalVehicleStation Location::rentalVehicleStation() const
@@ -327,21 +328,10 @@ bool Location::isSame(const Location &lhs, const Location &rhs)
         return IfoptUtil::isSameStopPlace(lhsIfopt, rhsIfopt);
     }
 
-    const auto lhsIds = lhs.d->ids;
-    bool foundEqualId = false;
-    for (auto it = lhsIds.constBegin(); it != lhsIds.constEnd(); ++it) {
-        const auto rhsId = rhs.identifier(it.key());
-        if (it.value().isEmpty() || rhsId.isEmpty()) {
-            continue;
-        }
-        if (it.value() != rhsId) {
-            return false;
-        } else if (it.value() == rhsId) {
-            foundEqualId = true;
-        }
-    }
-    if (foundEqualId) {
-        return true;
+    switch (lhs.d->ids.compare(rhs.d->ids)) {
+        case IdentifierSet::NotEqual: return false;
+        case IdentifierSet::Equal: return true;
+        case IdentifierSet::NoIntersection: break;
     }
 
     if (lhs.rentalVehicleStation().isValid() && rhs.rentalVehicleStation().isValid()
@@ -420,15 +410,9 @@ Location Location::merge(const Location &lhs, const Location &rhs)
     l.setType(std::max(lhs.type(), rhs.type()));
 
     // merge identifiers
-    const auto rhsIds = rhs.d->ids;
-    for (auto it = rhsIds.constBegin(); it != rhsIds.constEnd(); ++it) {
-        if (it.key() == IfoptUtil::identifierType()) {
-            l.setIdentifier(IfoptUtil::identifierType(), IfoptUtil::merge(l.identifier(IfoptUtil::identifierType()), it.value()).toString());
-            continue;
-        }
-        if (lhs.identifier(it.key()).isEmpty()) {
-            l.setIdentifier(it.key(), it.value());
-        }
+    l.d->ids.merge(rhs.d->ids);
+    if (const auto ifoptId = IfoptUtil::merge(lhs.identifier(IfoptUtil::identifierType()), rhs.identifier(IfoptUtil::identifierType())); !ifoptId.isEmpty()) {
+        l.setIdentifier(IfoptUtil::identifierType(), ifoptId.toString());
     }
 
     if (!lhs.hasCoordinate()) {
@@ -502,11 +486,7 @@ QJsonObject Location::toJson(const Location &loc)
     }
 
     if (!loc.d->ids.isEmpty()) {
-        QJsonObject ids;
-        for (auto it = loc.d->ids.constBegin(); it != loc.d->ids.constEnd(); ++it) {
-            ids.insert(it.key(), it.value());
-        }
-        obj.insert("identifier"_L1, ids);
+        obj.insert("identifier"_L1, loc.d->ids.toJson());
     }
 
     switch (loc.type()) {
@@ -564,10 +544,7 @@ Location Location::fromJson(const QJsonObject &obj)
         loc.setTimeZone(QTimeZone(tz.toUtf8()));
     }
 
-    const auto ids = obj.value("identifier"_L1).toObject();
-    for (auto it = ids.begin(); it != ids.end(); ++it) {
-        loc.setIdentifier(it.key(), it.value().toString());
-    }
+    loc.d->ids.fromJson(obj.value("identifier"_L1).toObject());
 
     switch (loc.type()) {
         case Place:

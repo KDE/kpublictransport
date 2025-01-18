@@ -108,9 +108,11 @@ public:
     void setTimeZone(const QTimeZone &tz);
 
     /** Location identifiers. */
-    Q_INVOKABLE [[nodiscard]] QString identifier(const QString &identifierType) const;
+    [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
+    Q_INVOKABLE [[nodiscard]] inline QString identifier(const QString &identifierType) const { return identifier(QAnyStringView(identifierType)); }
+    [[nodiscard]] inline QString identifier(QLatin1StringView identifierType) const { return identifier(QAnyStringView(identifierType)); }
     void setIdentifier(const QString &identifierType, const QString &id);
-    [[nodiscard]] bool hasIdentifier(const QString &identifierType) const;
+    [[nodiscard]] bool hasIdentifier(QAnyStringView identifierType) const;
     [[nodiscard]] QStringList identifierTypes() const;
 
     /** Checks if to instances refer to the same location (which does not necessarily mean they are exactly equal). */
