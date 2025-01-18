@@ -37,6 +37,9 @@
                     "region": "DE-NI",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "unit-test": "1|235190|6|80|12122021"
+                },
                 "mode": "PublicTransport",
                 "notes": [
                     "Maskenpflicht nach gesetzl. Regelung; denken Sie an eine FFP2-Maske",

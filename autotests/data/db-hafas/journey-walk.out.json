@@ -44,6 +44,9 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734378327#PI#1#ZI#217214#TA#0#DA#191224#1S#8400058#1T#1438#LS#8000105#LT#1831#PU#81#RT#1#CA#ICE#ZE#127#ZB#ICE  127#PC#0#FR#8400058#FT#1438#TO#8000105#TT#1831#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -160,6 +163,9 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734378327#PI#1#ZI#204533#TA#11#DA#191224#1S#8000206#1T#1616#LS#8002109#LT#1846#PU#81#RT#1#CA#DPN#ZE#28526#ZB#RE 28526#PC#3#FR#8000206#FT#1616#TO#8002109#TT#1846#"
+                },
                 "mode": "PublicTransport",
                 "notes": [
                     "Behindertengerechtes Fahrzeug",
@@ -245,6 +251,9 @@
                     "name": "Köln Messe/Deutz Gl.11-12",
                     "region": "DE-NW",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734378327#PI#1#ZI#183307#TA#0#DA#191224#1S#8000098#1T#1654#LS#8000261#LT#2210#PU#81#RT#1#CA#ICE#ZE#727#ZB#ICE  727#PC#0#FR#8000098#FT#1654#TO#8000261#TT#2210#"
                 },
                 "intermediateStops": [
                     {
@@ -351,6 +360,9 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734378327#PI#1#ZI#189992#TA#2#DA#191224#1S#8000178#1T#1719#LS#8001006#LT#1822#PU#81#RT#1#CA#s#ZE#19#ZB#S     19#PC#4#FR#8000178#FT#1719#TO#8001006#TT#1822#"
+                },
                 "mode": "PublicTransport",
                 "notes": [
                     "nur 2. Klasse",
@@ -435,6 +447,9 @@
                     "name": "Köln Messe/Deutz Gl.11-12",
                     "region": "DE-NW",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734378327#PI#1#ZI#183307#TA#0#DA#191224#1S#8000098#1T#1654#LS#8000261#LT#2210#PU#81#RT#1#CA#ICE#ZE#727#ZB#ICE  727#PC#0#FR#8000098#FT#1654#TO#8000261#TT#2210#"
                 },
                 "intermediateStops": [
                     {

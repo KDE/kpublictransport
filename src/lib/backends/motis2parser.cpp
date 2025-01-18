@@ -184,6 +184,8 @@ Journey Motis2Parser::parseItinerary(const QJsonObject &itinerary) const
         }
 
         if (s.mode() == JourneySection::PublicTransport) {
+            s.setIdentifier(m_locIdentifierType, leg.value("tripId"_L1).toString());
+
             Line line;
             line.setMode((*it).lineMode);
             line.setName(leg.value("routeShortName"_L1).toString());

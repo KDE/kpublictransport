@@ -514,6 +514,9 @@
                     "name": "Stadtmitte",
                     "region": "DE-BW"
                 },
+                "identifiers": {
+                    "motis": "20241106_17:42_de-DELFI_2647595173"
+                },
                 "mode": "PublicTransport",
                 "path": {
                     "sections": [

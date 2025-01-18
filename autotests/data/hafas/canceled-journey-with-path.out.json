@@ -32,6 +32,9 @@
                     "region": "DE-BE",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "unit-test": "1|171375|0|80|7022021"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NoService",

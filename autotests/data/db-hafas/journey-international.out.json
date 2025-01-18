@@ -29,6 +29,9 @@
                     "region": "DE-BE",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734551101#PI#1#ZI#230718#TA#0#DA#20125#1S#8010255#1T#1141#LS#8700011#LT#1959#PU#81#RT#1#CA#RHI#ZE#9590#ZB#ICE 9590#PC#0#FR#8010255#FT#1141#TO#8700011#TT#1959#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -186,6 +189,9 @@
                     "name": "Berlin Hbf",
                     "region": "DE-BE",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1734551101#PI#1#ZI#183979#TA#0#DA#20125#1S#8010255#1T#1856#LS#8700011#LT#10938#PU#81#RT#1#CA#NJ#ZE#40424#ZB#NJ 40424#PC#1#FR#8010255#FT#1856#TO#8700011#TT#10938#"
                 },
                 "intermediateStops": [
                     {

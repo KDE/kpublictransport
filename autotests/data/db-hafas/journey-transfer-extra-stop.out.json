@@ -61,6 +61,9 @@
                     "name": "Bruxelles Midi",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736969532#PI#1#ZI#1253167#TA#0#DA#180125#1S#8800004#1T#1425#LS#8000105#LT#1731#PU#81#RT#3#CA#IXB#ZE#17#ZB#ICE   17#PC#0#FR#8800004#FT#1425#TO#8000105#TT#1731#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -284,6 +287,9 @@
                     "name": "Frankfurt(Main)Hbf",
                     "region": "DE-HE",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736969532#PI#1#ZI#207900#TA#0#DA#180125#1S#8000261#1T#1446#LS#8098160#LT#2232#PU#81#RT#1#CA#ICE#ZE#594#ZB#ICE  594#PC#0#FR#8000261#FT#1446#TO#8098160#TT#2232#"
                 },
                 "intermediateStops": [
                     {

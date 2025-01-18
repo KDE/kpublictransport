@@ -200,6 +200,9 @@
                     "name": "Aéroport CDG - Terminal 2 (Tgv)",
                     "region": "FR-IDF"
                 },
+                "identifiers": {
+                    "motis": "20241106_17:36_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:c95cf5ae-6456-4386-a15a-a7956aea728c"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -528,6 +531,9 @@
                     "longitude": 2.34703,
                     "name": "Châtelet Les Halles",
                     "region": "FR-IDF"
+                },
+                "identifiers": {
+                    "motis": "20241106_17:52_fr-reseau-urbain-et-interurbain-dile-de-france-mobilites_IDFM:TN:SNCF:dfa27f16-27e9-4173-b3cb-89046f5a98f9"
                 },
                 "mode": "PublicTransport",
                 "path": {

@@ -197,6 +197,7 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             } else {
                 section.setMode(JourneySection::PublicTransport);
                 section.setLoadInformation(parseOccupancyInformation(sectionObj));
+                section.setIdentifier(hafasParser.locationIdentifierType(), sectionObj.value("journeyId"_L1).toString());
             }
 
             std::vector<Stopover> intermediateStops;

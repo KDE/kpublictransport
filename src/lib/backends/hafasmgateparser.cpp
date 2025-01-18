@@ -855,8 +855,9 @@ std::vector<Journey> HafasMgateParser::parseTripSearch(const QJsonObject &obj)
             const auto typeStr = secObj.value(QLatin1String("type")).toString();
             if (typeStr == QLatin1String("JNY")) {
                 section.setMode(JourneySection::PublicTransport);
+                const auto jnyObj = secObj.value("jny"_L1).toObject();
+                section.setIdentifier(locationIdentifierType(), jnyObj.value("jid"_L1).toString());
 
-                const auto jnyObj = secObj.value(QLatin1String("jny")).toObject();
                 Route route;
                 const auto prodIdx = jnyObj.value(QLatin1String("prodX")).toInt(-1);
                 if (prodIdx >= 0 && (unsigned int)prodIdx < products.size()) {

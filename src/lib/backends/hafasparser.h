@@ -30,6 +30,7 @@ class Location;
 class KPUBLICTRANSPORT_EXPORT HafasParser
 {
 public:
+    [[nodiscard]] inline QString locationIdentifierType() const { return m_locationIdentifierType; }
     void setLocationIdentifierTypes(const QString &idType, const QString &standardIdType = {});
     void setLineModeMap(std::span<HafasLineModeMapEntry> modeMap);
     void setStandardLocationIdentfierCountries(std::vector<uint8_t> &&uicCountryCodes);

@@ -39,6 +39,9 @@
                     "name": "Aachen West",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#210744#TA#1#DA#110125#1S#8000001#1T#737#LS#8000086#LT#928#PU#81#RT#1#CA#RB#ZE#10314#ZB#RB 10314#PC#3#FR#8000001#FT#737#TO#8000086#TT#928#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -400,6 +403,9 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#254215#TA#1#DA#110125#1S#8400644#1T#805#LS#8000142#LT#955#PU#81#RT#1#CA#DPN#ZE#20071#ZB#RE 20071#PC#3#FR#8400644#FT#805#TO#8000142#TT#955#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -507,6 +513,9 @@
                     "name": "Düsseldorf Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#249062#TA#0#DA#110125#1S#8000080#1T#835#LS#8103000#LT#1847#PU#81#RT#1#CA#ICE#ZE#27#ZB#ICE   27#PC#0#FR#8000080#FT#835#TO#8103000#TT#1847#"
                 },
                 "intermediateStops": [
                     {
@@ -655,6 +664,9 @@
                     "longitude": 6.070712,
                     "name": "Aachen West",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#229994#TA#1#DA#110125#1S#8000001#1T#921#LS#8000080#LT#1151#PU#81#RT#1#CA#DPN#ZE#26413#ZB#RE 26413#PC#3#FR#8000001#FT#921#TO#8000080#TT#1151#"
                 },
                 "intermediateStops": [
                     {
@@ -941,6 +953,9 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#248337#TA#0#DA#110125#1S#8400621#1T#900#LS#8000261#LT#1527#PU#81#RT#1#CA#ICE#ZE#225#ZB#ICE  225#PC#0#FR#8400621#FT#900#TO#8000261#TT#1527#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -1125,6 +1140,9 @@
                     "region": "DE-HE",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#228329#TA#7#DA#110125#1S#8000250#1T#1148#LS#8004645#LT#1302#PU#81#RT#1#CA#s#ZE#8#ZB#S      8#PC#4#FR#8000250#FT#1148#TO#8004645#TT#1302#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -1302,6 +1320,9 @@
                     "name": "Aachen West",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#247347#TA#0#DA#110125#1S#8800012#1T#808#LS#8000001#LT#942#PU#81#RT#1#CA#RE#ZE#18921#ZB#RE 18921#PC#3#FR#8800012#FT#808#TO#8000001#TT#942#"
+                },
                 "mode": "PublicTransport",
                 "route": {
                     "direction": "Aachen Hbf",
@@ -1374,6 +1395,9 @@
                     "longitude": 6.091495,
                     "name": "Aachen Hbf",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#230198#TA#1#DA#110125#1S#8000001#1T#951#LS#8000149#LT#1239#PU#81#RT#1#CA#DPN#ZE#26815#ZB#RE 26815#PC#3#FR#8000001#FT#951#TO#8000149#TT#1239#"
                 },
                 "intermediateStops": [
                     {
@@ -1607,6 +1631,9 @@
                     "region": "DE-NW",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#200479#TA#0#DA#110125#1S#8002553#1T#629#LS#8500010#LT#1448#PU#81#RT#1#CA#ICE#ZE#105#ZB#ICE  105#PC#0#FR#8002553#FT#629#TO#8500010#TT#1448#"
+                },
                 "load": [
                     {
                         "load": "Low",
@@ -1678,6 +1705,9 @@
                     "name": "Frankfurt(M) Flughafen Fernbf",
                     "region": "DE-HE",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#249062#TA#0#DA#110125#1S#8000080#1T#835#LS#8103000#LT#1847#PU#81#RT#1#CA#ICE#ZE#27#ZB#ICE   27#PC#0#FR#8000080#FT#835#TO#8103000#TT#1847#"
                 },
                 "mode": "PublicTransport",
                 "route": {
@@ -1761,6 +1791,9 @@
                     "name": "Aachen West",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#247347#TA#0#DA#110125#1S#8800012#1T#808#LS#8000001#LT#942#PU#81#RT#1#CA#RE#ZE#18921#ZB#RE 18921#PC#3#FR#8800012#FT#808#TO#8000001#TT#942#"
+                },
                 "mode": "PublicTransport",
                 "route": {
                     "direction": "Aachen Hbf",
@@ -1833,6 +1866,9 @@
                     "longitude": 6.091495,
                     "name": "Aachen Hbf",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#230198#TA#1#DA#110125#1S#8000001#1T#951#LS#8000149#LT#1239#PU#81#RT#1#CA#DPN#ZE#26815#ZB#RE 26815#PC#3#FR#8000001#FT#951#TO#8000149#TT#1239#"
                 },
                 "intermediateStops": [
                     {
@@ -2065,6 +2101,9 @@
                     "name": "Köln Hbf",
                     "region": "DE-NW",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#200479#TA#0#DA#110125#1S#8002553#1T#629#LS#8500010#LT#1448#PU#81#RT#1#CA#ICE#ZE#105#ZB#ICE  105#PC#0#FR#8002553#FT#629#TO#8500010#TT#1448#"
                 },
                 "load": [
                     {
@@ -2176,6 +2215,9 @@
                     "name": "Frankfurt(M) Flughafen Regionalbf",
                     "region": "DE-HE",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1736364871#PI#1#ZI#228329#TA#6#DA#110125#1S#8000250#1T#1118#LS#8004645#LT#1232#PU#81#RT#1#CA#s#ZE#8#ZB#S      8#PC#4#FR#8000250#FT#1118#TO#8004645#TT#1232#"
                 },
                 "intermediateStops": [
                     {

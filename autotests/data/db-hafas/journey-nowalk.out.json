@@ -43,6 +43,9 @@
                     "region": "DE-BE",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1733779122#PI#0#ZI#224367#TA#0#DA#141224#1S#8010255#1T#1633#LS#8000207#LT#2133#PU#80#RT#1#CA#ICE#ZE#544#ZB#ICE  544#PC#0#FR#8010255#FT#1633#TO#8000207#TT#2133#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -195,6 +198,9 @@
                     "region": "DE-NI",
                     "type": "Stop"
                 },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1733779122#PI#0#ZI#229630#TA#0#DA#141224#1S#8000261#1T#1421#LS#8002549#LT#1955#PU#80#RT#1#CA#ICE#ZE#786#ZB#ICE  786#PC#0#FR#8000261#FT#1421#TO#8002549#TT#1955#"
+                },
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -283,6 +289,9 @@
                     "name": "Berlin Hbf",
                     "region": "DE-BE",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1684043#TA#0#DA#141224#1S#8000261#1T#1256#LS#8002553#LT#2025#PU#80#RT#2#CA#ICE#ZE#2926#ZB#ICE 2926#PC#0#FR#8000261#FT#1256#TO#8002553#TT#2025#"
                 },
                 "intermediateStops": [
                     {
@@ -449,6 +458,9 @@
                     "name": "Berlin Hbf",
                     "region": "DE-BE",
                     "type": "Stop"
+                },
+                "identifiers": {
+                    "db": "2|#VN#1#ST#1733779122#PI#0#ZI#222975#TA#0#DA#141224#1S#8000261#1T#1457#LS#8002553#LT#2225#PU#80#RT#1#CA#ICE#ZE#504#ZB#ICE  504#PC#0#FR#8000261#FT#1457#TO#8002553#TT#2225#"
                 },
                 "intermediateStops": [
                     {
