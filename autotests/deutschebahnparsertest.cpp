@@ -90,6 +90,7 @@ private Q_SLOTS:
         QTest::newRow("walk") << u"" SOURCE_DIR "/data/db-hafas/journey-walk.in.json"_s << u"" SOURCE_DIR "/data/db-hafas/journey-walk.out.json"_s;
         QTest::newRow("international") << u"" SOURCE_DIR "/data/db-hafas/journey-international.in.json"_s << u"" SOURCE_DIR "/data/db-hafas/journey-international.out.json"_s;
         QTest::newRow("cancelled") << u"" SOURCE_DIR "/data/db-hafas/journey-cancelled.in.json"_s << u"" SOURCE_DIR "/data/db-hafas/journey-cancelled.out.json"_s;
+        QTest::newRow("extra-stop") << u"" SOURCE_DIR "/data/db-hafas/journey-transfer-extra-stop.in.json"_s << u"" SOURCE_DIR "/data/db-hafas/journey-transfer-extra-stop.out.json"_s;
     }
 
     void testJourneyParser()

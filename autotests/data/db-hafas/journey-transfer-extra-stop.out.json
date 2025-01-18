@@ -1,0 +1,480 @@
+[
+    {
+        "sections": [
+            {
+                "disruptionEffect": "NormalService",
+                "distance": 0,
+                "from": {
+                    "identifier": {
+                        "db": "8898004",
+                        "ibnr": "8898004"
+                    },
+                    "name": "Bruxelles-Midi Eurostar"
+                },
+                "mode": "Transfer",
+                "scheduledArrivalTime": "2025-01-18T14:25:00",
+                "scheduledDepartureTime": "2025-01-18T14:08:00",
+                "to": {
+                    "identifier": {
+                        "db": "8800004",
+                        "ibnr": "8800004"
+                    },
+                    "name": "Bruxelles Midi"
+                }
+            },
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Bordrestaurant",
+                            "type": "Restaurant"
+                        },
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Conditional",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme reservierungspflichtig",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 357246,
+                "from": {
+                    "country": "BE",
+                    "identifier": {
+                        "db": "8800004",
+                        "db-hafas": "A=1@O=Bruxelles Midi@X=4335695@Y=50835375@U=81@L=8800004@i=U×008814001@",
+                        "ibnr": "8800004",
+                        "uic": "8814001"
+                    },
+                    "latitude": 50.835375,
+                    "longitude": 4.335695,
+                    "name": "Bruxelles Midi",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-18T14:32:00",
+                        "scheduledDepartureTime": "2025-01-18T14:34:00",
+                        "stopPoint": {
+                            "country": "BE",
+                            "identifier": {
+                                "db": "8800002",
+                                "db-hafas": "A=1@O=Bruxelles-Nord@X=4361458@Y=50860239@U=81@L=8800002@i=U×008812005@",
+                                "ibnr": "8800002",
+                                "uic": "8812005"
+                            },
+                            "latitude": 50.860239,
+                            "longitude": 4.361458,
+                            "name": "Bruxelles-Nord",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NoService",
+                        "notes": [
+                            "Stop cancelled"
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T15:12:00",
+                        "scheduledDepartureTime": "2025-01-18T15:14:00",
+                        "stopPoint": {
+                            "country": "BE",
+                            "identifier": {
+                                "db": "8800012",
+                                "db-hafas": "A=1@O=Liège-Guillemins@X=5566480@Y=50624362@U=81@L=8800012@i=U×008841004@",
+                                "ibnr": "8800012",
+                                "uic": "8841004"
+                            },
+                            "latitude": 50.624362,
+                            "longitude": 5.56648,
+                            "name": "Liège-Guillemins",
+                            "region": "BE-WAL",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "notes": [
+                            "Additional stop"
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T15:18:00",
+                        "scheduledDepartureTime": "2025-01-18T15:20:00",
+                        "stopPoint": {
+                            "country": "BE",
+                            "identifier": {
+                                "db": "8800033",
+                                "db-hafas": "A=1@O=Angleur@X=5599525@Y=50612883@U=81@L=8800033@i=U×008842002@",
+                                "ibnr": "8800033",
+                                "uic": "8842002"
+                            },
+                            "latitude": 50.612883,
+                            "longitude": 5.599525,
+                            "name": "Angleur",
+                            "region": "BE-WAL",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Medium",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T15:36:00",
+                        "scheduledDepartureTime": "2025-01-18T15:39:00",
+                        "scheduledPlatform": "9",
+                        "stopPoint": {
+                            "identifier": {
+                                "db": "8000001",
+                                "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
+                                "ibnr": "8000001",
+                                "uic": "8015345"
+                            },
+                            "latitude": 50.767803,
+                            "longitude": 6.091495,
+                            "name": "Aachen Hbf",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Medium",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T16:15:00",
+                        "scheduledDepartureTime": "2025-01-18T16:20:00",
+                        "scheduledPlatform": "5 A-C",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8000207",
+                                "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                                "ibnr": "8000207",
+                                "uic": "8015458"
+                            },
+                            "latitude": 50.943029,
+                            "longitude": 6.95873,
+                            "name": "Köln Hbf",
+                            "region": "DE-NW",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "scheduledArrivalTime": "2025-01-18T17:17:00",
+                        "scheduledDepartureTime": "2025-01-18T17:19:00",
+                        "scheduledPlatform": "Fern 4",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8070003",
+                                "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                                "ibnr": "8070003",
+                                "uic": "8061676"
+                            },
+                            "latitude": 50.053169,
+                            "longitude": 8.570181,
+                            "name": "Frankfurt(M) Flughafen Fernbf",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Medium",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
+                "mode": "PublicTransport",
+                "notes": [
+                    "There are border controls after the stop in Aachen Hbf. Please have your passport or identity card ready for inspection.",
+                    "Train has no WC for disabled passengers. If a change in booking is required for travellers with reduced mobility, our Mobility Service Centre can be reached at +49 (0) 30 65212888.",
+                    "Aufgrund von Bauarbeiten im Raum Bruxelles-Midi kommt es zu früheren Abfahrtszeiten. Bitte prüfen Sie Ihre Reiseverbindung vor der Abfahrt des Zuges noch einmal."
+                ],
+                "route": {
+                    "direction": "Frankfurt(Main)Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 17",
+                        "operatorName": "DB Fernverkehr AG"
+                    }
+                },
+                "scheduledArrivalPlatform": "19",
+                "scheduledArrivalTime": "2025-01-18T17:31:00",
+                "scheduledDepartureTime": "2025-01-18T14:25:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000105",
+                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                        "ibnr": "8000105",
+                        "uic": "8011068"
+                    },
+                    "latitude": 50.107149,
+                    "longitude": 8.663785,
+                    "name": "Frankfurt(Main)Hbf",
+                    "region": "DE-HE",
+                    "type": "Stop"
+                }
+            },
+            {
+                "departureVehicleLayout": {
+                    "direction": "UnknownDirection",
+                    "features": [
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Bordrestaurant",
+                            "type": "Restaurant"
+                        },
+                        {
+                            "availability": "Available",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                            "type": "WheelchairAccessible"
+                        },
+                        {
+                            "availability": "Conditional",
+                            "disruptionEffect": "NormalService",
+                            "name": "Fahrradmitnahme reservierungspflichtig",
+                            "type": "BikeStorage"
+                        }
+                    ]
+                },
+                "disruptionEffect": "NormalService",
+                "distance": 449260,
+                "from": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8000105",
+                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                        "ibnr": "8000105",
+                        "uic": "8011068"
+                    },
+                    "latitude": 50.107149,
+                    "longitude": 8.663785,
+                    "name": "Frankfurt(Main)Hbf",
+                    "region": "DE-HE",
+                    "type": "Stop"
+                },
+                "intermediateStops": [
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T19:09:00",
+                        "scheduledDepartureTime": "2025-01-18T19:11:00",
+                        "scheduledPlatform": "7",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8000115",
+                                "db-hafas": "A=1@O=Fulda@X=9684169@Y=50554902@U=81@L=8000115@i=U×008005637@",
+                                "ibnr": "8000115",
+                                "uic": "8005637"
+                            },
+                            "latitude": 50.554902,
+                            "longitude": 9.684169,
+                            "name": "Fulda",
+                            "region": "DE-HE",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T20:00:00",
+                        "scheduledDepartureTime": "2025-01-18T20:01:00",
+                        "scheduledPlatform": "4",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010097",
+                                "db-hafas": "A=1@O=Eisenach Hbf@X=10331986@Y=50976919@U=81@L=8010097@i=U×008016077@",
+                                "ibnr": "8010097",
+                                "uic": "8016077"
+                            },
+                            "latitude": 50.976919,
+                            "longitude": 10.331986,
+                            "name": "Eisenach Hbf",
+                            "region": "DE-TH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T20:26:00",
+                        "scheduledDepartureTime": "2025-01-18T20:28:00",
+                        "scheduledPlatform": "10",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010101",
+                                "db-hafas": "A=1@O=Erfurt Hbf@X=11037989@Y=50972352@U=81@L=8010101@i=U×008016043@",
+                                "ibnr": "8010101",
+                                "uic": "8016043"
+                            },
+                            "latitude": 50.972352,
+                            "longitude": 11.037989,
+                            "name": "Erfurt Hbf",
+                            "region": "DE-TH",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T21:10:00",
+                        "scheduledDepartureTime": "2025-01-18T21:16:00",
+                        "scheduledPlatform": "11",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010205",
+                                "db-hafas": "A=1@O=Leipzig Hbf@X=12382066@Y=51345467@U=81@L=8010205@i=U×008023179@",
+                                "ibnr": "8010205",
+                                "uic": "8023179"
+                            },
+                            "latitude": 51.345467,
+                            "longitude": 12.382066,
+                            "name": "Leipzig Hbf",
+                            "region": "DE-SN",
+                            "type": "Stop"
+                        }
+                    },
+                    {
+                        "disruptionEffect": "NormalService",
+                        "load": [
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_1"
+                            },
+                            {
+                                "load": "Low",
+                                "seatingClass": "KLASSE_2"
+                            }
+                        ],
+                        "scheduledArrivalTime": "2025-01-18T21:46:00",
+                        "scheduledDepartureTime": "2025-01-18T21:48:00",
+                        "scheduledPlatform": "3",
+                        "stopPoint": {
+                            "country": "DE",
+                            "identifier": {
+                                "db": "8010222",
+                                "db-hafas": "A=1@O=Lutherstadt Wittenberg Hbf@X=12662286@Y=51867813@U=81@L=8010222@i=U×008023141@",
+                                "ibnr": "8010222",
+                                "uic": "8023141"
+                            },
+                            "latitude": 51.867813,
+                            "longitude": 12.662286,
+                            "name": "Lutherstadt Wittenberg Hbf",
+                            "region": "DE-ST",
+                            "type": "Stop"
+                        }
+                    }
+                ],
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_1"
+                    },
+                    {
+                        "load": "Low",
+                        "seatingClass": "KLASSE_2"
+                    }
+                ],
+                "mode": "PublicTransport",
+                "route": {
+                    "direction": "Berlin Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 594",
+                        "operatorName": "DB Fernverkehr AG"
+                    }
+                },
+                "scheduledArrivalPlatform": "8",
+                "scheduledArrivalTime": "2025-01-18T22:25:00",
+                "scheduledDeparturePlatform": "8",
+                "scheduledDepartureTime": "2025-01-18T18:14:00",
+                "to": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8011113",
+                        "db-hafas": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=81@L=8011113@i=U×008065971@",
+                        "ibnr": "8011113",
+                        "uic": "8065971"
+                    },
+                    "latitude": 52.475043,
+                    "longitude": 13.365315,
+                    "name": "Berlin Südkreuz",
+                    "region": "DE-BE",
+                    "type": "Stop"
+                }
+            }
+        ]
+    }
+]
