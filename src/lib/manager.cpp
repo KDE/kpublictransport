@@ -15,6 +15,8 @@
 #include "logging.h"
 #include "stopoverreply.h"
 #include "stopoverrequest.h"
+#include "tripreply.h"
+#include "triprequest.h"
 #include "vehiclelayoutrequest.h"
 #include "vehiclelayoutreply.h"
 #include "datatypes/attributionutil_p.h"
@@ -817,6 +819,114 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     //    reply->addError(Reply::NoBackend, u"No viable backend found."_s);
     //}
     reply->setPendingOps(pendingOps);
+    return reply;
+}
+
+TripReply* Manager::queryTrip(const TripRequest &req) const
+{
+    auto reply = d->makeReply<TripReply>(req);
+    int pendingOps = 0;
+
+    // validate input
+    if (!req.isValid()) {
+        reply->addError(Reply::InvalidRequest, {});
+        reply->setPendingOps(pendingOps);
+        return reply;
+    }
+
+    d->loadNetworks();
+
+    // try to find a viable backend that can do a trip query directly
+    QSet<QString> triedBackends;
+    for (const auto coverageType : { CoverageArea::Realtime, CoverageArea::Regular, CoverageArea::Any }) {
+        const auto checkBackend = [&](const Backend &backend, bool bothLocationMatch) {
+            if (triedBackends.contains(backend.identifier()) || d->shouldSkipBackend(backend, req)) {
+                return;
+            }
+            const auto coverage = backend.coverageArea(coverageType);
+            if (coverage.isEmpty()) {
+                return;
+            }
+
+            if (bothLocationMatch) {
+                if (!coverage.coversLocation(req.journeySection().from()) || !coverage.coversLocation(req.journeySection().to())) {
+                    return;
+                }
+            } else {
+                if (!coverage.coversLocation(req.journeySection().from()) && !coverage.coversLocation(req.journeySection().to())) {
+                    return;
+                }
+            }
+
+            triedBackends.insert(backend.identifier());
+
+            if (BackendPrivate::impl(backend)->queryTrip(req, reply, d->nam())) {
+                ++pendingOps;
+            }
+        };
+
+        // look for coverage areas which contain both locations first
+        for (const auto &backend: d->m_backends) {
+            checkBackend(backend, true);
+        }
+        if (pendingOps) {
+            break;
+        }
+
+        // if we didn't find one, try with just a single one
+        for (const auto &backend: d->m_backends) {
+            checkBackend(backend, false);
+        }
+        if (pendingOps) {
+            break;
+        }
+    }
+
+    // emulate a trip query via a journey query
+    if (pendingOps == 0) {
+        JourneyRequest jnyReq(req.journeySection().from(), req.journeySection().to());
+        // start searching slightly earlier, so leading walking section because our coordinates
+        // aren't exactly at the right spot wont make the routing service consider the train we
+        // are looking for as impossible to reach on time
+        jnyReq.setDateTime(req.journeySection().scheduledDepartureTime().addSecs(-600));
+        jnyReq.setDateTimeMode(JourneyRequest::Departure);
+        jnyReq.setIncludeIntermediateStops(true);
+        jnyReq.setIncludePaths(true);
+        jnyReq.setModes(JourneySection::PublicTransport);
+        jnyReq.setBackendIds(req.backendIds());
+        auto jnyReply = queryJourney(jnyReq);
+        jnyReply->setParent(reply);
+        connect(jnyReply, &Reply::finished, reply, [jnyReply, reply]() {
+            jnyReply->deleteLater();
+            if (jnyReply->error() != Reply::NoError) {
+                reply->addError(jnyReply->error(), jnyReply->errorString());
+                return;
+            }
+            for (const auto &journey : jnyReply->result()) {
+                if (std::ranges::count_if(journey.sections(), [](const auto &sec) { return sec.mode() == JourneySection::PublicTransport; }) != 1) {
+                    continue;
+                }
+                const auto it = std::ranges::find_if(journey.sections(), [](const auto &sec) {
+                    return sec.mode() == JourneySection::PublicTransport;
+                });
+                assert(it != journey.sections().end());
+                qCDebug(Log) << "Got journey information:" << (*it).route().line().name() << (*it).scheduledDepartureTime();
+                if (JourneySection::isSame(reply->request().journeySection(), *it)) {
+                    qCDebug(Log) << "Found journey information:" << (*it).route().line().name() << (*it).expectedDeparturePlatform() << (*it).expectedDepartureTime();
+                    reply->addAttributions(jnyReply->attributions());
+                    reply->addResult(nullptr, JourneySection(*it));
+                    return;
+                }
+            }
+
+            reply->addError(Reply::NotFoundError, u"Not found."_s);
+        });
+
+        reply->setPendingOps(1);
+    } else {
+        reply->setPendingOps(pendingOps);
+    }
+
     return reply;
 }
 

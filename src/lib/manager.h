@@ -29,6 +29,8 @@ class LocationRequest;
 class ManagerPrivate;
 class StopoverReply;
 class StopoverRequest;
+class TripReply;
+class TripRequest;
 class VehicleLayoutReply;
 class VehicleLayoutRequest;
 
@@ -81,6 +83,17 @@ public:
 
     /** Query location information based on coordinates or (parts of) the name. */
     [[nodiscard]] LocationReply* queryLocation(const LocationRequest &req) const;
+
+    /** Query trip information.
+     *  That is a specific run of a vehicle on a route.
+     *  When there's a backend supporting trip queries this returns the full trip.
+     *  For backends not supporting this, this internally falls back to a journey
+     *  query and thus might return only a subset of the trip, based on the JourneySection
+     *  used in the request.
+     *
+     *  @since 25.04
+     */
+    Q_INVOKABLE [[nodiscard]] KPublicTransport::TripReply* queryTrip(const TripRequest &req) const;
 
     /** Query vehicle and platform layout information.
      *  This is only available for some trains and some operators, so be prepared

@@ -35,6 +35,8 @@ class LocationReply;
 class LocationRequest;
 class StopoverReply;
 class StopoverRequest;
+class TripReply;
+class TripRequest;
 class VehicleLayoutReply;
 class VehicleLayoutRequest;
 
@@ -195,6 +197,16 @@ public:
      *  @return @c true if performing an async operation, @c false otherwise.
      */
     [[nodiscard]] virtual bool queryLocation(const LocationRequest &request, LocationReply *reply, QNetworkAccessManager *nam) const;
+
+    /** Perform a trip query.
+     *
+     *  A typical implementation would check whether the request has a trip/journey id for itself,
+     *  usually one provided by a preceeding journey query, and then perform the corresponding
+     *  online query using that id. Otherwise @c false is returned.
+     *
+     *  @return @c true if performing an async operation, @c false otherwise.
+     */
+    [[nodiscard]] virtual bool queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const;
 
     /** Perform a vehicle layout query.
      *  @return @c true if performing an async operation, @c false otherwise.

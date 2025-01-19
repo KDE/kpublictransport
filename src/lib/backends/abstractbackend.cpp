@@ -219,6 +219,11 @@ void AbstractBackend::logReply(const char *typeName, QNetworkReply *netReply, co
     }
 }
 
+bool AbstractBackend::queryTrip([[maybe_unused]] const TripRequest &request, [[maybe_unused]] TripReply *reply, [[maybe_unused]] QNetworkAccessManager *nam) const
+{
+    return false;
+}
+
 bool AbstractBackend::queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const
 {
     Q_UNUSED(request);

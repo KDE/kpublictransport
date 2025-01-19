@@ -28,6 +28,7 @@ ie. anything that has a geo coordinate associated with it).
 * Stopover (arrival/departure) queries: retrieve base schedule and if available realtime information
   about upcoming arrivals and departures at a stop.
 * Journey queries: obtain ways to get from A to B.
+* Trip queries: obtain one specific the full vehicle run on a route.
 * Vehicle and platform layout queries: information about where coaches stop on a platform,
 and how a platform is structured.
 

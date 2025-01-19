@@ -17,6 +17,8 @@ target_sources(KPublicTransport PRIVATE
     requestcontext.cpp
     stopoverreply.cpp
     stopoverrequest.cpp
+    tripreply.cpp
+    triprequest.cpp
     vehiclelayoutreply.cpp
     vehiclelayoutrequest.cpp
 
@@ -181,6 +183,8 @@ ecm_generate_headers(KPublicTransport_FORWARDING_HEADERS
         Reply
         StopoverReply
         StopoverRequest
+        TripReply
+        TripRequest
         VehicleLayoutReply
         VehicleLayoutRequest
     PREFIX KPublicTransport
