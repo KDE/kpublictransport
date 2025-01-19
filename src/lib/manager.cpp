@@ -639,6 +639,10 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
     if (req.downloadAssets()) {
         reply->addAttributions(AssetRepository::instance()->attributions());
     }
+
+    if (pendingOps == 0) {
+        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
+    }
     reply->setPendingOps(pendingOps);
     return reply;
 }
@@ -714,6 +718,10 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
 
     if (req.downloadAssets()) {
         reply->addAttributions(AssetRepository::instance()->attributions());
+    }
+
+    if (pendingOps == 0) {
+        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
     }
     reply->setPendingOps(pendingOps);
     return reply;
@@ -801,6 +809,10 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
             break;
         }
     }
+
+    if (pendingOps == 0) {
+        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
+    }
     reply->setPendingOps(pendingOps);
     return reply;
 }
@@ -856,6 +868,9 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         }
     }
 
+    if (pendingOps == 0) {
+        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
+    }
     reply->setPendingOps(pendingOps);
     return reply;
 }

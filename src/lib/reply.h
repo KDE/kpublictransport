@@ -33,6 +33,7 @@ public:
         NetworkError, ///< Error during network operations.
         NotFoundError, ///< The requested journey/departure/place could not be found.
         InvalidRequest, ///< Incomplete or otherwise invalid request.
+        NoBackend, ///< No backend was found to satisfy this request, e.g. due to no backend covering the requested area.
         UnknownError ///< Anything else.
     };
 

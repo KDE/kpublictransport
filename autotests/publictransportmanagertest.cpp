@@ -114,6 +114,22 @@ private Q_SLOTS:
         QCOMPARE(mgr.backends().size(), backends.size());
         QCOMPARE(mgr.attributions().size(), attributions.size());
     }
+
+    void testNoBackendError()
+    {
+        Manager mgr;
+        Location loc;
+        loc.setCoordinate(-89.5, 0.0);
+        LocationRequest req(loc);
+        req.setTypes(Location::Stop);
+        auto reply = mgr.queryLocation(req);
+        QVERIFY(reply);
+        QSignalSpy spy(reply, &Reply::finished);
+        QVERIFY(spy.wait(10));
+        QCOMPARE(spy.size(), 1);
+        QCOMPARE(reply->error(), Reply::NoBackend);
+        delete reply;
+    }
 };
 
 QTEST_GUILESS_MAIN(PublicTransportManagerTest)
