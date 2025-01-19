@@ -14,6 +14,8 @@
 #include <KPublicTransport/Location>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripReply>
+#include <KPublicTransport/TripRequest>
 #include <KPublicTransport/VehicleLayoutRequest>
 #include <KPublicTransport/VehicleLayoutReply>
 
@@ -123,6 +125,27 @@ private Q_SLOTS:
         LocationRequest req(loc);
         req.setTypes(Location::Stop);
         auto reply = mgr.queryLocation(req);
+        QVERIFY(reply);
+        QSignalSpy spy(reply, &Reply::finished);
+        QVERIFY(spy.wait(10));
+        QCOMPARE(spy.size(), 1);
+        QCOMPARE(reply->error(), Reply::NoBackend);
+        delete reply;
+    }
+
+    void testTripRequestOutOfCoverage()
+    {
+        Manager mgr;
+        Location loc1;
+        loc1.setCoordinate(-89.5, 0.0);
+        Location loc2;
+        loc2.setCoordinate(+89.5, 0.0);
+        JourneySection jny;
+        jny.setFrom(loc1);
+        jny.setTo(loc2);
+        jny.setMode(JourneySection::PublicTransport);
+        TripRequest req(jny);
+        auto reply = mgr.queryTrip(req);
         QVERIFY(reply);
         QSignalSpy spy(reply, &Reply::finished);
         QVERIFY(spy.wait(10));

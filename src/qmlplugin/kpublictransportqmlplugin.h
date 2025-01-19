@@ -32,6 +32,7 @@
 #include <KPublicTransport/Reply>
 #include <KPublicTransport/StopoverQueryModel>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripRequest>
 #include <KPublicTransport/Vehicle>
 #include <KPublicTransport/VehicleLayoutQueryModel>
 #include <KPublicTransport/VehicleLayoutRequest>
@@ -278,6 +279,13 @@ struct StopoverQueryModelForeign {
     Q_GADGET
     QML_FOREIGN(KPublicTransport::StopoverQueryModel)
     QML_NAMED_ELEMENT(StopoverQueryModel)
+};
+
+struct TripRequestForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::TripRequest)
+    QML_VALUE_TYPE(tripRequest)
+    QML_STRUCTURED_VALUE
 };
 
 struct VehicleForeign {

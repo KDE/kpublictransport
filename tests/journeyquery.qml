@@ -120,10 +120,16 @@ Kirigami.ApplicationWindow {
         id: journeyMapPage
         JourneyMapPage {}
     }
+    Component {
+        id: tripPage
+        TripPage {}
+    }
 
     Component {
         id: journeyDelegate
         QQC2.ItemDelegate {
+            id: delegateRoot
+
             enabled: modelData.disruptionEffect != Disruption.NoService
             highlighted: false
             width: ListView.view.width
@@ -185,9 +191,9 @@ Kirigami.ApplicationWindow {
                             {
                                 if (modelData.route.name !== "") {
                                     return modelData.route.line.modeString + " " + modelData.route.line.name + " (" + modelData.route.name
-                                        + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
+                                        + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
                                 }
-                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
+                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
                             }
                             case JourneySection.Walking:
                                 return "Walk " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
@@ -201,6 +207,7 @@ Kirigami.ApplicationWindow {
                                 return "Drive " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
                             return "???";
                         }}
+                        onLinkActivated: (link) => { delegateRoot.ListView.view.showTrip(modelData); }
                     }
                     RowLayout {
                         QQC2.Label {
@@ -612,6 +619,14 @@ Kirigami.ApplicationWindow {
                     model: journeyModel.data(journeyModel.index(journeySelector.currentIndex, 0), 256).sections
                     clip: true
                     delegate: journeyDelegate
+
+                    function showTrip(jnySec: journeySection) {
+                        applicationWindow().pageStack.push(tripPage, {
+                            requestedJourneySection: jnySec,
+                            backendIds: backendBox.checked ? [ backendSelector.currentText ] : [],
+                            ptMgr: ptMgr
+                        });
+                    }
 
                     QQC2.BusyIndicator {
                         anchors.centerIn: parent
