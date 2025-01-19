@@ -29,6 +29,7 @@
 #include <KPublicTransport/PathModel>
 #include <KPublicTransport/Platform>
 #include <KPublicTransport/RentalVehicle>
+#include <KPublicTransport/Reply>
 #include <KPublicTransport/StopoverQueryModel>
 #include <KPublicTransport/StopoverRequest>
 #include <KPublicTransport/Vehicle>
@@ -244,6 +245,13 @@ struct RentalVehicleForeign {
     QML_STRUCTURED_VALUE
 };
 FOREIGN_ENUM_GADGET(RentalVehicle)
+
+struct ReplyForeign {
+    Q_GADGET
+    QML_FOREIGN(KPublicTransport::Reply)
+    QML_NAMED_ELEMENT(Reply)
+    QML_UNCREATABLE("")
+};
 
 struct RouteForeign {
     Q_GADGET

@@ -24,6 +24,8 @@ class ReplyPrivate;
 class KPUBLICTRANSPORT_EXPORT Reply : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(KPublicTransport::Reply::Error error READ error NOTIFY finished)
+    Q_PROPERTY(QString errorString READ errorString NOTIFY finished)
 public:
     ~Reply() override;
 
@@ -36,14 +38,15 @@ public:
         NoBackend, ///< No backend was found to satisfy this request, e.g. due to no backend covering the requested area.
         UnknownError ///< Anything else.
     };
+    Q_ENUM(Error)
 
     /** Error code. */
-    Error error() const;
+    [[nodiscard]] Error error() const;
     /** Textual error message. */
-    QString errorString() const;
+    [[nodiscard]] QString errorString() const;
 
     /** Returns the attributions for the provided data. */
-    const std::vector<Attribution>& attributions() const;
+    [[nodiscard]] const std::vector<Attribution>& attributions() const;
     /** Returns the attributions for the provided data for moving them elsewhere. */
     std::vector<Attribution>&& takeAttributions();
 
