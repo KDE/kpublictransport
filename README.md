@@ -40,7 +40,7 @@ Onboard API access is available via the KPublicTransport::OnboardStatus class.
 
 All data is retrieved from online backend services, this library is not offline capable.
 The following Free Software/Open Data backend types are supported:
-* [Navitia](https://navitia.io).
+* [MOTIS](https://motis-project.de), e.g. used by [Transitous](https://transitous.org).
 * [OpenTripPlanner](http://opentripplanner.org), in the REST, Digitransit and Entur variants.
 * [GBFS](https://github.com/NABSA/gbfs/) feeds for rental vehicles, such as provided by
 the [OpenBike](https://github.com/stadtulm/OpenBike/) bike rental system.
@@ -55,7 +55,7 @@ format.
 ## License Compliance and Attribution
 
 When using the data retrieved by this library you need to comply with the license
-terms of the backends this is coming from, in particular https://www.navitia.io/api-term-of-use.
+terms of the backends this is coming from.
 
 Attribution information that need to be displayed in an appropriate place in the
 application using this are provided globally via KPublicTransport::Manager::attributions()
