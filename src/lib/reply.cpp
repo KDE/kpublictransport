@@ -105,3 +105,5 @@ void Reply::addAttributions(const std::vector<Attribution> &attributions)
 {
     AttributionUtil::merge(d_ptr->attributions, attributions);
 }
+
+#include "moc_reply.cpp"

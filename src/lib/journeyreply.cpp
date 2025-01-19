@@ -350,3 +350,5 @@ void JourneyReply::addError(const AbstractBackend *backend, Reply::Error error, 
     }
     Reply::addError(error, errorMsg);
 }
+
+#include "moc_journeyreply.cpp"

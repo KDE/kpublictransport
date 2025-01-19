@@ -291,3 +291,5 @@ QHash<int, QByteArray> BackendModel::roleNames() const
     names.insert(CountryCodeRole, "countryCode");
     return names;
 }
+
+#include "moc_backendmodel.cpp"

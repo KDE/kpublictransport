@@ -204,3 +204,5 @@ void LocationHistoryModel::store(const LocationHistoryModel::Data &data)
     obj.insert("useCount"_L1, data.useCount);
     f.write(QJsonDocument(obj).toJson(QJsonDocument::Compact));
 }
+
+#include "moc_locationhistorymodel.cpp"

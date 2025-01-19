@@ -64,3 +64,5 @@ QHash<int, QByteArray> PathModel::roleNames() const
     r.insert(TurnDirectionRole, "turnDirection");
     return r;
 }
+
+#include "moc_pathmodel.cpp"

@@ -220,3 +220,5 @@ void StopoverReply::addError(const AbstractBackend *backend, Reply::Error error,
     }
     Reply::addError(error, errorMsg);
 }
+
+#include "moc_stopoverreply.cpp"

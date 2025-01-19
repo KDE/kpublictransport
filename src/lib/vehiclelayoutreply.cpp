@@ -124,3 +124,5 @@ void VehicleLayoutReply::addError(const AbstractBackend *backend, Reply::Error e
     }
     Reply::addError(error, errorMsg);
 }
+
+#include "moc_vehiclelayoutreply.cpp"

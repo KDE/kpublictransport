@@ -116,3 +116,5 @@ void LocationReply::addError(const AbstractBackend *backend, Reply::Error error,
     }
     Reply::addError(error, errorMsg);
 }
+
+#include "moc_locationreply.cpp"
