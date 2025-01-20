@@ -159,6 +159,85 @@ static std::vector<LoadInfo> parseOccupancyInformation(const QJsonObject &obj)
     return occupancies;
 }
 
+[[nodiscard]] static JourneySection parseJourneySection(const QJsonObject &sectionObj)
+{
+    JourneySection section;
+
+    section.setScheduledDepartureTime(QDateTime::fromString(sectionObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+    section.setExpectedDepartureTime(QDateTime::fromString(sectionObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+    section.setScheduledArrivalTime(QDateTime::fromString(sectionObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    section.setExpectedArrivalTime(QDateTime::fromString(sectionObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+
+    applyNotes(section, sectionObj.value("himMeldungen"_L1).toArray());
+    applyNotes(section, sectionObj.value("priorisierteMeldungen"_L1).toArray());
+    applyRisNotes(section, sectionObj.value("risNotizen"_L1).toArray());
+
+    return section;
+}
+
+[[nodiscard]] static Stopover parseIntermediateStop(const QJsonObject &stopObj, const HafasMgateParser &hafasParser)
+{
+    Stopover stop;
+    stop.setScheduledDepartureTime(QDateTime::fromString(stopObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+    stop.setExpectedDepartureTime(QDateTime::fromString(stopObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
+    stop.setScheduledArrivalTime(QDateTime::fromString(stopObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    stop.setExpectedArrivalTime(QDateTime::fromString(stopObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+    stop.setScheduledPlatform(stopObj.value("gleis"_L1).toString());
+    stop.setExpectedPlatform(stopObj.value("ezGleis"_L1).toString());
+
+    Location stopPoint = hafasParser.fromLocationId(stopObj.value("id"_L1).toString());
+    stopPoint.setName(stopObj.value("name"_L1).toString());
+    hafasParser.setLocationIdentifier(stopPoint, stopObj.value("extId"_L1).toString());
+    stop.setStopPoint(stopPoint);
+
+    applyNotes(stop, stopObj.value("himMeldungen"_L1).toArray());
+    applyNotes(stop, stopObj.value("priorisierteMeldungen"_L1).toArray());
+    applyRisNotes(stop, stopObj.value("risNotizen"_L1).toArray());
+
+    stop.setLoadInformation(parseOccupancyInformation(stopObj));
+    return stop;
+}
+
+static void parseVehicleFeatures(const QJsonArray &trainAttributes, JourneySection &section, Line &line)
+{
+    std::vector<Feature> features;
+    for (const auto &trainAttrV : trainAttributes) {
+        const auto trainAttrObj = trainAttrV.toObject();
+        const auto key = trainAttrObj.value("key"_L1).toString();
+        if (key == "BEF"_L1) {
+            line.setOperatorName(trainAttrObj.value("value"_L1).toString());
+            continue;
+        }
+
+        auto value = trainAttrObj.value("value"_L1).toString();
+        const auto affectedSegment = trainAttrObj.value("teilstreckenHinweis"_L1).toString();
+        if (!affectedSegment.isEmpty() && affectedSegment != '('_L1 + section.from().name() + " - "_L1 + section.to().name() + ')'_L1) {
+            value += ' '_L1 + affectedSegment;
+        }
+
+        const auto type = trainAttrObj.value("kategorie"_L1).toString();
+        if (type == "INFORMATION"_L1 || type == "FAHRRADMITNAHME"_L1 || type == "BORDBISTRO"_L1) {
+            const auto remarkData = HafasMgateParser::lookupRemarkData(u"A", key);
+            if (remarkData.msg == FeatureRemark) {
+                Feature f(remarkData.featureType, remarkData.featureAvailability);
+                f.setName(value);
+                FeatureUtil::add(features, std::move(f));
+                continue;
+            }
+            if (remarkData.msg == IgnoreRemark) {
+                continue;
+            }
+            if (remarkData.msg == UndefinedRemark) {
+                qDebug() << "unknown vehicle attribute" << type << key << value;
+            }
+        }
+
+        section.addNote(value);
+    }
+    section.setFeatures(std::move(features));
+
+}
+
 std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journeysArray, const HafasMgateParser &hafasParser)
 {
     std::vector<Journey> journeys;
@@ -171,12 +250,7 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
         const auto sectionArray = journeyObj.value("verbindungsAbschnitte"_L1).toArray();
         for (const auto &sectionV : sectionArray) {
             const auto sectionObj = sectionV.toObject();
-            JourneySection section;
-
-            section.setScheduledDepartureTime(QDateTime::fromString(sectionObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-            section.setExpectedDepartureTime(QDateTime::fromString(sectionObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-            section.setScheduledArrivalTime(QDateTime::fromString(sectionObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
-            section.setExpectedArrivalTime(QDateTime::fromString(sectionObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
+            auto section = parseJourneySection(sectionObj);
 
             Location from;
             from.setName(sectionObj.value("abfahrtsOrt"_L1).toString());
@@ -205,26 +279,7 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             intermediateStops.reserve(stopsArray.size());
             for (const auto &stopV :stopsArray) {
                 const auto stopObj = stopV.toObject();
-                Stopover stop;
-
-                stop.setScheduledDepartureTime(QDateTime::fromString(stopObj.value("abfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-                stop.setExpectedDepartureTime(QDateTime::fromString(stopObj.value("ezAbfahrtsZeitpunkt"_L1).toString(), Qt::ISODate));
-                stop.setScheduledArrivalTime(QDateTime::fromString(stopObj.value("ankunftsZeitpunkt"_L1).toString(), Qt::ISODate));
-                stop.setExpectedArrivalTime(QDateTime::fromString(stopObj.value("ezAnkunftsZeitpunkt"_L1).toString(), Qt::ISODate));
-                stop.setScheduledPlatform(stopObj.value("gleis"_L1).toString());
-                stop.setExpectedPlatform(stopObj.value("ezGleis"_L1).toString());
-
-                Location stopPoint = hafasParser.fromLocationId(stopObj.value("id"_L1).toString());
-                stopPoint.setName(stopObj.value("name"_L1).toString());
-                hafasParser.setLocationIdentifier(stopPoint, stopObj.value("extId"_L1).toString());
-                stop.setStopPoint(stopPoint);
-
-                applyNotes(stop, stopObj.value("himMeldungen"_L1).toArray());
-                applyNotes(stop, stopObj.value("priorisierteMeldungen"_L1).toArray());
-                applyRisNotes(stop, stopObj.value("risNotizen"_L1).toArray());
-
-                stop.setLoadInformation(parseOccupancyInformation(stopObj));
-
+                auto stop = parseIntermediateStop(stopObj, hafasParser);
                 intermediateStops.push_back(std::move(stop));
             }
 
@@ -240,49 +295,10 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
             route.setDirection(routeObj.value("richtung"_L1).toString());
             auto line = route.line();
 
-            std::vector<Feature> features;
-            const auto trainAttributes = routeObj.value("zugattribute"_L1).toArray();
-            for (const auto &trainAttrV : trainAttributes) {
-                const auto trainAttrObj = trainAttrV.toObject();
-                const auto key = trainAttrObj.value("key"_L1).toString();
-                if (key == "BEF"_L1) {
-                    line.setOperatorName(trainAttrObj.value("value"_L1).toString());
-                    continue;
-                }
-
-                auto value = trainAttrObj.value("value"_L1).toString();
-                const auto affectedSegment = trainAttrObj.value("teilstreckenHinweis"_L1).toString();
-                if (!affectedSegment.isEmpty() && affectedSegment != '('_L1 + section.from().name() + " - "_L1 + section.to().name() + ')'_L1) {
-                    value += ' '_L1 + affectedSegment;
-                }
-
-                const auto type = trainAttrObj.value("kategorie"_L1).toString();
-                if (type == "INFORMATION"_L1 || type == "FAHRRADMITNAHME"_L1 || type == "BORDBISTRO"_L1) {
-                    const auto remarkData = HafasMgateParser::lookupRemarkData(u"A", key);
-                    if (remarkData.msg == FeatureRemark) {
-                        Feature f(remarkData.featureType, remarkData.featureAvailability);
-                        f.setName(value);
-                        FeatureUtil::add(features, std::move(f));
-                        continue;
-                    }
-                    if (remarkData.msg == IgnoreRemark) {
-                        continue;
-                    }
-                    if (remarkData.msg == UndefinedRemark) {
-                        qDebug() << "unknown vehicle attribute" << type << key << value;
-                    }
-                }
-
-                section.addNote(value);
-            }
-            section.setFeatures(std::move(features));
+            parseVehicleFeatures(routeObj.value("zugattribute"_L1).toArray(), section, line);
 
             route.setLine(line);
             section.setRoute(route);
-
-            applyNotes(section, sectionObj.value("himMeldungen"_L1).toArray());
-            applyNotes(section, sectionObj.value("priorisierteMeldungen"_L1).toArray());
-            applyRisNotes(section, sectionObj.value("risNotizen"_L1).toArray());
             sections.push_back(std::move(section));
         }
 
@@ -291,4 +307,59 @@ std::vector<Journey> DeutscheBahnParser::parseJourneys(const QJsonArray &journey
     }
 
     return journeys;
+}
+
+JourneySection DeutscheBahnParser::parseTrip(const QJsonObject &sectionObj, const HafasMgateParser &hafasParser)
+{
+    auto section = parseJourneySection(sectionObj);
+    section.setMode(JourneySection::PublicTransport);
+    if (sectionObj.value("cancelled"_L1).toBool(false)) {
+        section.setDisruptionEffect(Disruption::NoService);
+    }
+
+    std::vector<Stopover> intermediateStops;
+    const auto stopsArray = sectionObj.value("halte"_L1).toArray();
+    intermediateStops.reserve(stopsArray.size());
+    for (const auto &stopV : stopsArray) {
+        const auto stopObj = stopV.toObject();
+        auto stop = parseIntermediateStop(stopObj, hafasParser);
+        intermediateStops.push_back(std::move(stop));
+    }
+
+    Route route;
+    if (intermediateStops.size() >= 2) {
+        section.setDeparture(intermediateStops.front());
+        section.setArrival(intermediateStops.back());
+        route.setDestination(section.to());
+        intermediateStops.pop_back();
+        intermediateStops.erase(intermediateStops.begin(), std::next(intermediateStops.begin()));
+    }
+    section.setIntermediateStops(std::move(intermediateStops));
+
+    Line line;
+    line.setName(sectionObj.value("zugName"_L1).toString());
+    parseVehicleFeatures(sectionObj.value("zugattribute"_L1).toArray(), section, line);
+    route.setLine(line);
+    section.setRoute(route);
+
+    const auto polyArray = sectionObj.value("polylineGroup"_L1).toObject().value("polylineDescriptions"_L1).toArray();
+    std::vector<PathSection> pathSecs;
+    pathSecs.reserve(polyArray.size());
+    for (const auto &polyV : polyArray) {
+        const auto coordinates = polyV.toObject().value("coordinates"_L1).toArray();
+        QPolygonF p;
+        p.reserve(coordinates.size());
+        for (const auto &coordV : coordinates) {
+            const auto coordObj = coordV.toObject();
+            p.emplace_back(coordObj.value("lng"_L1).toDouble(), coordObj.value("lat"_L1).toDouble());
+        }
+        PathSection pathSec;
+        pathSec.setPath(p);
+        pathSecs.push_back(std::move(pathSec));
+    }
+    Path path;
+    path.setSections(std::move(pathSecs));
+    section.setPath(path);
+
+    return section;
 }

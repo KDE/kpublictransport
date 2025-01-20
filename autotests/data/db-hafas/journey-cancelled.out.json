@@ -1034,10 +1034,10 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "ICE Sprinter",
                     "Keine fahrzeuggebundene Einstiegshilfe in einem oder mehreren Wagen. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
                     "Verspätung eines vorausfahrenden Zuges",
-                    "Der Anschluss kann voraussichtlich nicht erreicht werden."
+                    "Der Anschluss kann voraussichtlich nicht erreicht werden.",
+                    "ICE Sprinter"
                 ],
                 "route": {
                     "direction": "München Hbf",
@@ -1556,10 +1556,10 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
+                    "Information: Mehrere Wagen fehlen",
                     "Behindertengerechtes Fahrzeug",
                     "Rollstuhlstellplatz",
-                    "\"$IZN\"",
-                    "Information: Mehrere Wagen fehlen"
+                    "\"$IZN\""
                 ],
                 "route": {
                     "direction": "Hamm(Westf)Hbf",
@@ -2027,10 +2027,10 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
+                    "Information: Mehrere Wagen fehlen",
                     "Behindertengerechtes Fahrzeug",
                     "Rollstuhlstellplatz",
-                    "\"$IZN\"",
-                    "Information: Mehrere Wagen fehlen"
+                    "\"$IZN\""
                 ],
                 "route": {
                     "direction": "Hamm(Westf)Hbf",

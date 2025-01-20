@@ -8,7 +8,6 @@
 #define KPUBLICTRANSPORT_DEUTSCHEBAHNBACKEND_H
 
 #include "hafasmgatebackend.h"
-#include "deutschebahnparser.h"
 
 namespace KPublicTransport {
 
@@ -25,7 +24,7 @@ public:
     [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryStopover(const StopoverRequest &request, StopoverReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryJourney(const JourneyRequest &request, JourneyReply *reply, QNetworkAccessManager *nam) const override;
-
+    [[nodiscard]] bool queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryVehicleLayout(const VehicleLayoutRequest &request, VehicleLayoutReply *reply, QNetworkAccessManager *nam) const override;
 
 private:

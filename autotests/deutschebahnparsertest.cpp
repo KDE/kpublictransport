@@ -109,6 +109,31 @@ private Q_SLOTS:
         const auto refJson = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
         QVERIFY(Test::compareJson(refFileName, resJson, refJson));
     }
+
+    void testTripParser_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("international") << u"" SOURCE_DIR "/data/db-hafas/trip-international.in.json"_s << u"" SOURCE_DIR "/data/db-hafas/trip-international.out.json"_s;
+    }
+
+    void testTripParser()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        HafasMgateParser p;
+        p.setLocationIdentifierTypes(u"db"_s, u"ibnr"_s);
+
+        const auto data = Test::readFile(inFileName);
+        const auto inJson = QJsonDocument::fromJson(data).object();
+        const auto result = DeutscheBahnParser::parseTrip(inJson, p);
+        const auto resJson = KPublicTransport::JourneySection::toJson(result);
+
+        const auto refJson = QJsonDocument::fromJson(Test::readFile(refFileName)).object();
+        QVERIFY(Test::compareJson(refFileName, resJson, refJson));
+    }
 };
 
 QTEST_GUILESS_MAIN(DeutscheBahnParserTest)

@@ -117,8 +117,8 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "Reservierungspflicht (Karlsruhe Hbf - Paris Est)",
-                    "Erhöhtes Reisendenaufkommen in der 2. Kl zw. Deutschland und Frankreich erwartet. Wir empfehlen eine Buchung in der 1. Kl."
+                    "Erhöhtes Reisendenaufkommen in der 2. Kl zw. Deutschland und Frankreich erwartet. Wir empfehlen eine Buchung in der 1. Kl.",
+                    "Reservierungspflicht (Karlsruhe Hbf - Paris Est)"
                 ],
                 "route": {
                     "direction": "Paris Est",
