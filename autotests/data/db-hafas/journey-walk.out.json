@@ -83,8 +83,8 @@
                 ],
                 "mode": "PublicTransport",
                 "notes": [
-                    "ICE Sprinter",
-                    "Keine rollstuhlgerechte Einstiegstür im Zug. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888."
+                    "Keine rollstuhlgerechte Einstiegstür im Zug. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
+                    "ICE Sprinter"
                 ],
                 "route": {
                     "direction": "Frankfurt(Main)Hbf",
@@ -168,10 +168,10 @@
                 },
                 "mode": "PublicTransport",
                 "notes": [
-                    "Behindertengerechtes Fahrzeug",
-                    "Rollstuhlstellplatz",
                     "Aufgrund von Bauarbeiten kommt es zu Einschränkungen im Fahrplan der Linien RE 5 (RRX), RB26 und RB 48. In den Nächten vom 17.12.2024 bis zum 20.12.2024 kommt es zu Baustellenbedingten Einschränkungen. Weitere Informationen finden Sie auf <a href=\"https://Zuginfo.nrw\">Zuginfo.nrw</a>",
-                    "Ausfälle zw. Oberhausen Hbf und Wesel sowie zw. Friedrichsfeld (Niederrhein) und Wesel in diversen Zeiträumen vom 01.11. - 18.05.2026. Ein Ersatzverkehr (SEV) ist eingerichtet. Weitere Informationen finden Sie auf <a href=\"https://www.zuginfo.nrw\">www.zuginfo.nrw</a> - https://zuginfo.nrw?msg=108199."
+                    "Ausfälle zw. Oberhausen Hbf und Wesel sowie zw. Friedrichsfeld (Niederrhein) und Wesel in diversen Zeiträumen vom 01.11. - 18.05.2026. Ein Ersatzverkehr (SEV) ist eingerichtet. Weitere Informationen finden Sie auf <a href=\"https://www.zuginfo.nrw\">www.zuginfo.nrw</a> - https://zuginfo.nrw?msg=108199.",
+                    "Behindertengerechtes Fahrzeug",
+                    "Rollstuhlstellplatz"
                 ],
                 "route": {
                     "direction": "Friedrichsfeld(Niederrhein)",
@@ -365,8 +365,8 @@
                 },
                 "mode": "PublicTransport",
                 "notes": [
-                    "nur 2. Klasse",
-                    "Die Folgen einer Zugkollision mit Entgleisung beeinträchtigen den Zugverkehr zwischen Horrem und Düren. RE 1 (RRX),RE 9: Die Züge fahren auf dem Regelweg zwischen Köln Hbf und Aachen Hbf, werden aber über die S-Bahngleise geführt und verkehren in Horrem von Gleis 1 und 2. In der Folge kommt es zu Verspätungen. S 12: Es kommt zu Teil- und kompletten Ausfällen zwischen Hennef (Sieg) und Horrem. S 19: Die S-Bahnen aus Richtung Köln Hbf enden in Horrem. Die Folge sind Teilausfälle zwischen Horrem und Düren bzw. Aachen Hbf. Ein Ersatzverkehr (SEV) mit Bussen ist eingerichtet. Abfahrt des Schienenersatzverkehrs in Horrem ist am Busbahnhof ab Bahnsteig A. Weitere Informationen zum Ersatzverkehr (SEV) finden Sie auf <a href=\"https://www.zuginfo.nrw\">www.zuginfo.nrw</a>. Nutzen Sie gerne den folgenden Link: https://zuginfo.nrw?msg=109605."
+                    "Die Folgen einer Zugkollision mit Entgleisung beeinträchtigen den Zugverkehr zwischen Horrem und Düren. RE 1 (RRX),RE 9: Die Züge fahren auf dem Regelweg zwischen Köln Hbf und Aachen Hbf, werden aber über die S-Bahngleise geführt und verkehren in Horrem von Gleis 1 und 2. In der Folge kommt es zu Verspätungen. S 12: Es kommt zu Teil- und kompletten Ausfällen zwischen Hennef (Sieg) und Horrem. S 19: Die S-Bahnen aus Richtung Köln Hbf enden in Horrem. Die Folge sind Teilausfälle zwischen Horrem und Düren bzw. Aachen Hbf. Ein Ersatzverkehr (SEV) mit Bussen ist eingerichtet. Abfahrt des Schienenersatzverkehrs in Horrem ist am Busbahnhof ab Bahnsteig A. Weitere Informationen zum Ersatzverkehr (SEV) finden Sie auf <a href=\"https://www.zuginfo.nrw\">www.zuginfo.nrw</a>. Nutzen Sie gerne den folgenden Link: https://zuginfo.nrw?msg=109605.",
+                    "nur 2. Klasse"
                 ],
                 "route": {
                     "direction": "Blankenberg(Sieg)",

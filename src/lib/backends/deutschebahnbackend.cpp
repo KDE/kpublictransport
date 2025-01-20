@@ -5,8 +5,9 @@
 */
 
 #include "deutschebahnbackend.h"
-#include "deutschebahnvehiclelayoutparser.h"
+#include "deutschebahnparser.h"
 #include "deutschebahnproducts.h"
+#include "deutschebahnvehiclelayoutparser.h"
 #include "cache.h"
 #include "logging.h"
 
@@ -17,6 +18,8 @@
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripReply>
+#include <KPublicTransport/TripRequest>
 #include <KPublicTransport/VehicleLayoutReply>
 #include <KPublicTransport/VehicleLayoutRequest>
 
@@ -271,6 +274,46 @@ bool DeutscheBahnBackend::queryJourney(const JourneyRequest &request, JourneyRep
         const auto journeysArray = responseObj.value("verbindungen"_L1).toArray();
         std::vector<Journey> journeys = DeutscheBahnParser::parseJourneys(journeysArray, m_parser);
         addResult(reply, this, std::move(journeys));
+    });
+
+    return true;
+}
+
+bool DeutscheBahnBackend::queryTrip(const TripRequest &request, TripReply *reply, QNetworkAccessManager *nam) const
+{
+    if (m_bypassDbApi) {
+        return HafasMgateBackend::queryTrip(request, reply, nam);
+    }
+
+    const auto tripId = request.journeySection().identifier(locationIdentifierType());
+    if (tripId.isEmpty()) {
+        return false;
+    }
+
+    QUrl url(u"https://www.bahn.de/web/api/reiseloesung/fahrt"_s);
+    QUrlQuery query;
+    query.addQueryItem(u"journeyId"_s, tripId);
+    query.addQueryItem(u"poly"_s, u"true"_s);
+    url.setQuery(query);
+    qCDebug(Log) << url;
+
+    const auto netReq = makeHafasProxyRequest(url);
+    logRequest(request, netReq);
+    auto netReply = nam->get(netReq);
+    netReply->setParent(reply);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, reply, netReply]() {
+        netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, reply->errorString());
+            return;
+        }
+
+        const auto responseObj = QJsonDocument::fromJson(data).object();
+        auto jny = DeutscheBahnParser::parseTrip(responseObj, m_parser);
+        addResult(reply, this, std::move(jny));
     });
 
     return true;

@@ -25,6 +25,7 @@ public:
     [[nodiscard]] static std::vector<Location> parseLocations(const QByteArray &data, const HafasMgateParser &parser);
     [[nodiscard]] static std::vector<Stopover> parseStopovers(const QJsonArray &stopsArray, bool isDeparture, const HafasMgateParser &parser);
     [[nodiscard]] static std::vector<Journey> parseJourneys(const QJsonArray &journeysArray, const HafasMgateParser &parser);
+    [[nodiscard]] static JourneySection parseTrip(const QJsonObject &sectionObj, const HafasMgateParser &parser);
 };
 
 }
