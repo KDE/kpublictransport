@@ -15,6 +15,11 @@ Kirigami.Page {
     id: root
     property journeySection journeySection
 
+    Component {
+        id: sectionMapPage
+        JourneySectionMapPage {}
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: Kirigami.Units.largeSpacing
@@ -50,7 +55,8 @@ Kirigami.Page {
                 Layout.row: 1
                 Layout.column: 1
                 Layout.columnSpan: 2
-                text: "Direction: " + journeySection.route.direction
+                text: "Direction: " + root.journeySection.route.direction + " <a href=\"#layout\">map</a>"
+                onLinkActivated: (link) => { applicationWindow().pageStack.push(sectionMapPage, {journey: root.journeySection}); }
             }
 
             QQC2.Label {
