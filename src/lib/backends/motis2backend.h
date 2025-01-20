@@ -37,6 +37,7 @@ public:
     [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
     [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
     template <typename Request>

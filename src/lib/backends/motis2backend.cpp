@@ -16,6 +16,8 @@
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripReply>
+#include <KPublicTransport/TripRequest>
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -342,6 +344,37 @@ bool Motis2Backend::queryJourney(const JourneyRequest &req, JourneyReply *reply,
 
     });
 
+    return true;
+}
+
+bool Motis2Backend::queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const
+{
+    const auto tripId = req.journeySection().identifier(m_locationIdentifierType);
+    if (tripId.isEmpty()) {
+        return false;
+    }
+
+    QUrlQuery query;
+    query.addQueryItem(u"tripId"_s, tripId);
+    auto netReply = makeRequest(req, reply, "trip"_L1, query, nam);
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [this, netReply, reply]() {
+        netReply->deleteLater();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        if (netReply->error() != QNetworkReply::NoError) {
+            addError(reply, Reply::NetworkError, netReply->errorString() + ' '_L1 + QString::fromUtf8(data));
+            return;
+        }
+
+        Motis2Parser p(m_locationIdentifierType);
+        auto result = p.parseItinerary(QJsonDocument::fromJson(data).object());
+        if (result.sections().size() != 1 || result.sections()[0].mode() != JourneySection::PublicTransport) {
+            addError(reply, Reply::NotFoundError, {});
+        } else {
+            addResult(reply, this, JourneySection(result.sections()[0]));
+        }
+    });
     return true;
 }
 
