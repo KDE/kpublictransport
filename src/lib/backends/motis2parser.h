@@ -28,6 +28,7 @@ public:
     explicit Motis2Parser(QString locIdentifierType);
 
     [[nodiscard]] std::vector<Journey> parseItineraries(const QByteArray &data);
+    [[nodiscard]] Journey parseItinerary(const QJsonObject &itinerary) const;
     [[nodiscard]] std::vector<Stopover> parseStopTimes(const QByteArray &data);
     [[nodiscard]] std::vector<Location> parseLocations(const QByteArray &data) const;
     [[nodiscard]] std::vector<Location> parseMapStops(const QByteArray &data) const;
@@ -37,7 +38,6 @@ public:
 
 private:
     [[nodiscard]] Stopover parsePlace(const QJsonObject &obj, bool hasRealTime) const;
-    [[nodiscard]] Journey parseItinerary(const QJsonObject &itinerary) const;
     void parseCursors(const QJsonObject &obj);
 
     QString m_locIdentifierType;
