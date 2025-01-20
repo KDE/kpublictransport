@@ -577,7 +577,7 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
 
     switch (lhs.d->ids.compare(rhs.d->ids)) {
         case IdentifierSet::NotEqual: return false;
-        case IdentifierSet::Equal: return true;
+        case IdentifierSet::Equal: // same trip id can still mean diffierent departure/arrival stops
         case IdentifierSet::NoIntersection: break;
     }
 
