@@ -15,6 +15,7 @@ class QTimeZone;
 namespace KPublicTransport {
 
 class Journey;
+class JourneySection;
 
 /** Internal utility functions for dealing with journeys. */
 namespace JourneyUtil
@@ -36,6 +37,10 @@ namespace JourneyUtil
      *  @internal only exported for KPublicTransportOnboard
      */
     KPUBLICTRANSPORT_EXPORT void propagateTimeZones(Journey &jny);
+    void propagateTimeZones(JourneySection &sec);
+
+    /** Fix common nonsense found in journey section paths reported from backends. */
+    void postProcessPath(JourneySection &section);
 }
 
 }
