@@ -16,7 +16,6 @@
 #include <KPublicTransport/Line>
 #include <KPublicTransport/Reply>
 
-#include <unordered_map>
 #include <vector>
 
 #include <QColor>
@@ -27,6 +26,7 @@ class QJsonValue;
 namespace KPublicTransport {
 
 class Journey;
+class JourneySection;
 class Location;
 class Stopover;
 
@@ -52,6 +52,8 @@ struct HafasRemarkData {
     Feature::Availability featureAvailability = Feature::Unknown;
 };
 
+struct HafasMgateParserContext;
+
 /** Hafas response parser.
  *  @internal exported for unit tests only
  */
@@ -65,6 +67,7 @@ public:
     std::vector<Stopover> parseDepartures(const QByteArray &data) const;
     std::vector<Location> parseLocations(const QByteArray &data) const;
     std::vector<Journey> parseJourneys(const QByteArray &data);
+    [[nodiscard]] JourneySection parseTrip(const QByteArray &data) const;
 
     static QDateTime parseDateTime(const QString &date, const QJsonValue &time, const QJsonValue &tzOffset);
     static HafasRemarkData lookupRemarkData(QStringView type, QStringView code);
@@ -77,6 +80,10 @@ private:
     std::vector<Route> parseProducts(const QJsonArray &prodL, const std::vector<Ico> &icos, const std::vector<QString> &ops) const;
     std::vector<Location> parseLocations(const QJsonArray &locL) const;
     std::vector<Journey> parseTripSearch(const QJsonObject &obj);
+    JourneySection parseJourneyDetails(const QJsonObject &obj) const;
+
+    HafasMgateParserContext parseCommon(const QJsonObject &obj) const;
+    void parsePublicTransportSection(const HafasMgateParserContext &common, const QJsonObject &jnyObj, int fromIdx, int toIdx, const QString &dateStr, JourneySection &section) const;
     bool parseError(const QJsonObject &obj) const;
 
     std::vector<HafasMgateProductNameMapping> m_productNameMappings;

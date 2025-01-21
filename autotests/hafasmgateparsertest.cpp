@@ -159,6 +159,32 @@ private Q_SLOTS:
         QVERIFY(!jsonRes.empty());
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
     }
+
+    void testParseTrips_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("de-bvg-realtime")
+            << s(SOURCE_DIR "/data/hafas/trip-realtime.in.json")
+            << s(SOURCE_DIR "/data/hafas/trip-realtime.out.json");
+    }
+
+    void testParseTrips()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        HafasMgateParser p;
+        p.setLocationIdentifierTypes(QStringLiteral("unit-test"));
+        const auto res = p.parseTrip(Test::readFile(inFileName));
+        const auto jsonRes = JourneySection::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).object();
+
+        QVERIFY(!jsonRes.empty());
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
+    }
 };
 
 QTEST_GUILESS_MAIN(HafasMgateParserTest)

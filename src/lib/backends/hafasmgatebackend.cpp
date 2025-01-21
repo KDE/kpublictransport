@@ -17,6 +17,8 @@
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripReply>
+#include <KPublicTransport/TripRequest>
 
 #include <QCryptographicHash>
 #include <QDateTime>
@@ -351,6 +353,57 @@ bool HafasMgateBackend::queryLocation(const LocationRequest &req, LocationReply 
         }
         netReply->deleteLater();
     });
+
+    return true;
+}
+
+bool HafasMgateBackend::queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const
+{
+    const auto tripId = req.journeySection().identifier(locationIdentifierType());
+    if (tripId.isEmpty()) {
+        return false;
+    }
+
+    QJsonObject methodObj({
+        {"meth"_L1, "JourneyDetails"_L1},
+        {"cfg"_L1, QJsonObject({
+            {"polyEnc"_L1, "GPA"_L1}
+        })},
+        {"req"_L1, QJsonObject({
+            {"jid"_L1, tripId},
+            {"getPolyline"_L1, true},
+        })},
+    });
+
+    QByteArray postData;
+    const auto netRequest = makePostRequest(methodObj, postData);
+    logRequest(req, netRequest, postData);
+    const auto netReply = nam->post(netRequest, postData);
+    netReply->setParent(reply);
+
+    QObject::connect(netReply, &QNetworkReply::finished, reply, [netReply, reply, this]() {
+        netReply->deleteLater();
+        qDebug() << netReply->request().url();
+        const auto data = netReply->readAll();
+        logReply(reply, netReply, data);
+
+        switch (netReply->error()) {
+            case QNetworkReply::NoError:
+            {
+                auto res = m_parser.parseTrip(data);
+                if (m_parser.error() == Reply::NoError) {
+                    addResult(reply, this, std::move(res));
+                } else {
+                    addError(reply, m_parser.error(), m_parser.errorMessage());
+                }
+                break;
+            }
+            default:
+                addError(reply, Reply::NetworkError, netReply->errorString());
+                break;
+        }
+    });
+
 
     return true;
 }

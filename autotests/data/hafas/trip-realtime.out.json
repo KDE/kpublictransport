@@ -1,0 +1,1213 @@
+{
+    "departureVehicleLayout": {
+        "direction": "UnknownDirection",
+        "features": [
+            {
+                "availability": "Limited",
+                "disruptionEffect": "NormalService",
+                "name": "Fahrradmitnahme möglich",
+                "type": "BikeStorage"
+            }
+        ]
+    },
+    "disruptionEffect": "NormalService",
+    "distance": 32726,
+    "expectedArrivalTime": "2025-01-21T17:13:00",
+    "expectedDeparturePlatform": "2",
+    "expectedDepartureTime": "2025-01-21T16:21:00",
+    "from": {
+        "country": "DE",
+        "identifier": {
+            "unit-test": "900074201"
+        },
+        "latitude": 52.387164,
+        "longitude": 13.396408,
+        "name": "S Lichtenrade (Berlin)",
+        "type": "Stop"
+    },
+    "identifiers": {
+        "unit-test": "1|804|25|86|21012025"
+    },
+    "intermediateStops": [
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:23:00",
+            "expectedDepartureTime": "2025-01-21T16:23:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:23:00",
+            "scheduledDepartureTime": "2025-01-21T16:23:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900074202"
+                },
+                "latitude": 52.398563,
+                "longitude": 13.389433,
+                "name": "S Schichauweg (Berlin)",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:25:00",
+            "expectedDepartureTime": "2025-01-21T16:26:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:25:00",
+            "scheduledDepartureTime": "2025-01-21T16:25:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900072101"
+                },
+                "latitude": 52.411031,
+                "longitude": 13.382466,
+                "name": "S Buckower Chaussee (Berlin)",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:27:00",
+            "expectedDepartureTime": "2025-01-21T16:28:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:27:00",
+            "scheduledDepartureTime": "2025-01-21T16:28:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900073101"
+                },
+                "latitude": 52.423813,
+                "longitude": 13.375023,
+                "name": "S Marienfelde (Berlin)",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:31:00",
+            "expectedDepartureTime": "2025-01-21T16:31:00",
+            "expectedPlatform": "1",
+            "scheduledArrivalTime": "2025-01-21T16:31:00",
+            "scheduledDepartureTime": "2025-01-21T16:31:00",
+            "scheduledPlatform": "1",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900068301"
+                },
+                "latitude": 52.447302,
+                "longitude": 13.36118,
+                "name": "S Attilastr. (Berlin)",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:33:00",
+            "expectedDepartureTime": "2025-01-21T16:34:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:33:00",
+            "scheduledDepartureTime": "2025-01-21T16:34:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900058102"
+                },
+                "latitude": 52.45924,
+                "longitude": 13.356029,
+                "name": "S Priesterweg (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:36:00",
+            "expectedDepartureTime": "2025-01-21T16:36:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:36:00",
+            "scheduledDepartureTime": "2025-01-21T16:36:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900058101"
+                },
+                "latitude": 52.475501,
+                "longitude": 13.365548,
+                "name": "S Südkreuz Bhf (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:39:00",
+            "expectedDepartureTime": "2025-01-21T16:39:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:39:00",
+            "scheduledDepartureTime": "2025-01-21T16:39:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900058103"
+                },
+                "latitude": 52.492356,
+                "longitude": 13.372209,
+                "name": "S+U Yorckstr. (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:41:00",
+            "expectedDepartureTime": "2025-01-21T16:42:00",
+            "expectedPlatform": "4",
+            "scheduledArrivalTime": "2025-01-21T16:41:00",
+            "scheduledDepartureTime": "2025-01-21T16:42:00",
+            "scheduledPlatform": "4",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900012101"
+                },
+                "latitude": 52.504537,
+                "longitude": 13.38208,
+                "name": "S Anhalter Bahnhof (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:43:00",
+            "expectedDepartureTime": "2025-01-21T16:44:00",
+            "expectedPlatform": "14",
+            "scheduledArrivalTime": "2025-01-21T16:43:00",
+            "scheduledDepartureTime": "2025-01-21T16:44:00",
+            "scheduledPlatform": "14",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900100020"
+                },
+                "latitude": 52.509355,
+                "longitude": 13.376551,
+                "name": "S+U Potsdamer Platz Bhf (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:45:00",
+            "expectedDepartureTime": "2025-01-21T16:46:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:45:00",
+            "scheduledDepartureTime": "2025-01-21T16:46:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900100025"
+                },
+                "latitude": 52.51651,
+                "longitude": 13.381936,
+                "name": "S+U Brandenburger Tor (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:47:00",
+            "expectedDepartureTime": "2025-01-21T16:48:00",
+            "expectedPlatform": "12",
+            "scheduledArrivalTime": "2025-01-21T16:47:00",
+            "scheduledDepartureTime": "2025-01-21T16:48:00",
+            "scheduledPlatform": "12",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900100001"
+                },
+                "latitude": 52.520519,
+                "longitude": 13.386448,
+                "name": "S+U Friedrichstr. Bhf (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:49:00",
+            "expectedDepartureTime": "2025-01-21T16:50:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:49:00",
+            "scheduledDepartureTime": "2025-01-21T16:50:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900100007"
+                },
+                "latitude": 52.525158,
+                "longitude": 13.393064,
+                "name": "S Oranienburger Str. (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:51:00",
+            "expectedDepartureTime": "2025-01-21T16:52:00",
+            "expectedPlatform": "4",
+            "scheduledArrivalTime": "2025-01-21T16:51:00",
+            "scheduledDepartureTime": "2025-01-21T16:52:00",
+            "scheduledPlatform": "4",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900007104"
+                },
+                "latitude": 52.531675,
+                "longitude": 13.388794,
+                "name": "S Nordbahnhof (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:54:00",
+            "expectedDepartureTime": "2025-01-21T16:54:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T16:54:00",
+            "scheduledDepartureTime": "2025-01-21T16:54:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900008101"
+                },
+                "latitude": 52.544736,
+                "longitude": 13.378727,
+                "name": "S Humboldthain (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:56:00",
+            "expectedDepartureTime": "2025-01-21T16:56:00",
+            "expectedPlatform": "4",
+            "scheduledArrivalTime": "2025-01-21T16:56:00",
+            "scheduledDepartureTime": "2025-01-21T16:56:00",
+            "scheduledPlatform": "4",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900007102"
+                },
+                "latitude": 52.548638,
+                "longitude": 13.388372,
+                "name": "S+U Gesundbrunnen Bhf (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T16:58:00",
+            "expectedDepartureTime": "2025-01-21T16:58:00",
+            "expectedPlatform": "3",
+            "scheduledArrivalTime": "2025-01-21T16:58:00",
+            "scheduledDepartureTime": "2025-01-21T16:58:00",
+            "scheduledPlatform": "3",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900110011"
+                },
+                "latitude": 52.554759,
+                "longitude": 13.397838,
+                "name": "S Bornholmer Str. (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T17:00:00",
+            "expectedDepartureTime": "2025-01-21T17:01:00",
+            "expectedPlatform": "1",
+            "scheduledArrivalTime": "2025-01-21T17:00:00",
+            "scheduledDepartureTime": "2025-01-21T17:01:00",
+            "scheduledPlatform": "1",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900130002"
+                },
+                "latitude": 52.567281,
+                "longitude": 13.412283,
+                "name": "S+U Pankow (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T17:03:00",
+            "expectedDepartureTime": "2025-01-21T17:03:00",
+            "expectedPlatform": "2",
+            "scheduledArrivalTime": "2025-01-21T17:03:00",
+            "scheduledDepartureTime": "2025-01-21T17:03:00",
+            "scheduledPlatform": "2",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900130001"
+                },
+                "latitude": 52.577601,
+                "longitude": 13.429093,
+                "name": "S Pankow-Heinersdorf (Berlin)",
+                "region": "DE-BE",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T17:05:00",
+            "expectedDepartureTime": "2025-01-21T17:06:00",
+            "expectedPlatform": "4",
+            "scheduledArrivalTime": "2025-01-21T17:05:00",
+            "scheduledDepartureTime": "2025-01-21T17:06:00",
+            "scheduledPlatform": "4",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900142001"
+                },
+                "latitude": 52.591067,
+                "longitude": 13.442972,
+                "name": "S Blankenburg (Berlin)",
+                "type": "Stop"
+            }
+        },
+        {
+            "disruptionEffect": "NormalService",
+            "expectedArrivalTime": "2025-01-21T17:09:00",
+            "expectedDepartureTime": "2025-01-21T17:10:00",
+            "expectedPlatform": "1",
+            "scheduledArrivalTime": "2025-01-21T17:09:00",
+            "scheduledDepartureTime": "2025-01-21T17:10:00",
+            "scheduledPlatform": "1",
+            "stopPoint": {
+                "country": "DE",
+                "identifier": {
+                    "unit-test": "900143001"
+                },
+                "latitude": 52.615751,
+                "longitude": 13.470084,
+                "name": "S Karow Bhf (Berlin)",
+                "type": "Stop"
+            }
+        }
+    ],
+    "mode": "PublicTransport",
+    "notes": [
+        "Störung.\n\nNach unbefugte Personen auf der Strecke im Bereich Nordbahnhof bitte auf den Linien S1, S2, S25, S26 mit Verspätungen und eventuellen Zugausfällen rechnen. Dauer unbakannt."
+    ],
+    "path": {
+        "sections": [
+            {
+                "description": "S Schichauweg (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.39641,
+                            52.38717
+                        ],
+                        [
+                            13.39489,
+                            52.39
+                        ],
+                        [
+                            13.38943,
+                            52.39857
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Buckower Chaussee (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.38943,
+                            52.39857
+                        ],
+                        [
+                            13.38943,
+                            52.39857
+                        ],
+                        [
+                            13.38527,
+                            52.40586
+                        ],
+                        [
+                            13.3831,
+                            52.41001
+                        ],
+                        [
+                            13.38247,
+                            52.41103
+                        ],
+                        [
+                            13.37502,
+                            52.42382
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Marienfelde (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.37502,
+                            52.42382
+                        ],
+                        [
+                            13.37502,
+                            52.42382
+                        ],
+                        [
+                            13.36284,
+                            52.44419
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Attilastr. (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.36284,
+                            52.44419
+                        ],
+                        [
+                            13.36118,
+                            52.4473
+                        ],
+                        [
+                            13.36118,
+                            52.4473
+                        ],
+                        [
+                            13.36042,
+                            52.44886
+                        ],
+                        [
+                            13.35781,
+                            52.45288
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Priesterweg (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.35781,
+                            52.45288
+                        ],
+                        [
+                            13.35676,
+                            52.45477
+                        ],
+                        [
+                            13.35625,
+                            52.45733
+                        ],
+                        [
+                            13.35615,
+                            52.45904
+                        ],
+                        [
+                            13.35628,
+                            52.45993
+                        ],
+                        [
+                            13.35628,
+                            52.45993
+                        ],
+                        [
+                            13.35704,
+                            52.46161
+                        ],
+                        [
+                            13.36366,
+                            52.47327
+                        ],
+                        [
+                            13.36503,
+                            52.47615
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Südkreuz Bhf (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.36503,
+                            52.47615
+                        ],
+                        [
+                            13.36503,
+                            52.47615
+                        ],
+                        [
+                            13.37127,
+                            52.48663
+                        ],
+                        [
+                            13.37199,
+                            52.48883
+                        ],
+                        [
+                            13.37223,
+                            52.49239
+                        ],
+                        [
+                            13.37223,
+                            52.49239
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S+U Yorckstr. (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.37223,
+                            52.49239
+                        ],
+                        [
+                            13.37242,
+                            52.49503
+                        ],
+                        [
+                            13.3736,
+                            52.49702
+                        ],
+                        [
+                            13.37575,
+                            52.49839
+                        ],
+                        [
+                            13.37807,
+                            52.49933
+                        ],
+                        [
+                            13.3792,
+                            52.50025
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Anhalter Bahnhof (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.3792,
+                            52.50025
+                        ],
+                        [
+                            13.38134,
+                            52.50358
+                        ],
+                        [
+                            13.38134,
+                            52.50358
+                        ],
+                        [
+                            13.3817,
+                            52.5041
+                        ],
+                        [
+                            13.38171,
+                            52.50494
+                        ],
+                        [
+                            13.37786,
+                            52.50793
+                        ],
+                        [
+                            13.37671,
+                            52.5086
+                        ],
+                        [
+                            13.37653,
+                            52.50885
+                        ],
+                        [
+                            13.37655,
+                            52.50936
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S+U Potsdamer Platz Bhf (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.37655,
+                            52.50936
+                        ],
+                        [
+                            13.37655,
+                            52.50936
+                        ],
+                        [
+                            13.37719,
+                            52.51455
+                        ],
+                        [
+                            13.37743,
+                            52.51551
+                        ],
+                        [
+                            13.37798,
+                            52.51595
+                        ],
+                        [
+                            13.37879,
+                            52.51624
+                        ],
+                        [
+                            13.38194,
+                            52.51651
+                        ],
+                        [
+                            13.38194,
+                            52.51651
+                        ],
+                        [
+                            13.38357,
+                            52.5166
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S+U Brandenburger Tor (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.38357,
+                            52.5166
+                        ],
+                        [
+                            13.38468,
+                            52.51681
+                        ],
+                        [
+                            13.38524,
+                            52.51718
+                        ],
+                        [
+                            13.38561,
+                            52.51778
+                        ],
+                        [
+                            13.38549,
+                            52.51934
+                        ],
+                        [
+                            13.38561,
+                            52.51968
+                        ],
+                        [
+                            13.38645,
+                            52.52052
+                        ],
+                        [
+                            13.38645,
+                            52.52052
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S+U Friedrichstr. Bhf (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.38645,
+                            52.52052
+                        ],
+                        [
+                            13.38771,
+                            52.52159
+                        ],
+                        [
+                            13.38858,
+                            52.52198
+                        ],
+                        [
+                            13.3904,
+                            52.52202
+                        ],
+                        [
+                            13.3912,
+                            52.52228
+                        ],
+                        [
+                            13.39177,
+                            52.52277
+                        ],
+                        [
+                            13.39306,
+                            52.52516
+                        ],
+                        [
+                            13.39306,
+                            52.52516
+                        ],
+                        [
+                            13.39349,
+                            52.52602
+                        ],
+                        [
+                            13.39351,
+                            52.5265
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Oranienburger Str. (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.39351,
+                            52.5265
+                        ],
+                        [
+                            13.3922,
+                            52.52871
+                        ],
+                        [
+                            13.3908,
+                            52.53012
+                        ],
+                        [
+                            13.38931,
+                            52.53138
+                        ],
+                        [
+                            13.38879,
+                            52.53168
+                        ],
+                        [
+                            13.38879,
+                            52.53168
+                        ],
+                        [
+                            13.38634,
+                            52.53339
+                        ],
+                        [
+                            13.38223,
+                            52.53573
+                        ],
+                        [
+                            13.38128,
+                            52.53648
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Nordbahnhof (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.38128,
+                            52.53648
+                        ],
+                        [
+                            13.38091,
+                            52.53692
+                        ],
+                        [
+                            13.38052,
+                            52.53752
+                        ],
+                        [
+                            13.37988,
+                            52.53916
+                        ],
+                        [
+                            13.37902,
+                            52.54289
+                        ],
+                        [
+                            13.37899,
+                            52.544
+                        ],
+                        [
+                            13.37935,
+                            52.54482
+                        ],
+                        [
+                            13.37935,
+                            52.54482
+                        ],
+                        [
+                            13.3802,
+                            52.54577
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Humboldthain (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.3802,
+                            52.54577
+                        ],
+                        [
+                            13.38248,
+                            52.54751
+                        ],
+                        [
+                            13.38329,
+                            52.54796
+                        ],
+                        [
+                            13.38469,
+                            52.54851
+                        ],
+                        [
+                            13.38802,
+                            52.54907
+                        ],
+                        [
+                            13.38802,
+                            52.54907
+                        ],
+                        [
+                            13.394,
+                            52.54939
+                        ],
+                        [
+                            13.39528,
+                            52.54958
+                        ],
+                        [
+                            13.39626,
+                            52.54985
+                        ],
+                        [
+                            13.39718,
+                            52.55032
+                        ],
+                        [
+                            13.39808,
+                            52.55119
+                        ],
+                        [
+                            13.39842,
+                            52.55209
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S+U Gesundbrunnen Bhf (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.39842,
+                            52.55209
+                        ],
+                        [
+                            13.39814,
+                            52.55358
+                        ],
+                        [
+                            13.39784,
+                            52.55476
+                        ],
+                        [
+                            13.39784,
+                            52.55476
+                        ],
+                        [
+                            13.3976,
+                            52.55582
+                        ],
+                        [
+                            13.39764,
+                            52.55731
+                        ],
+                        [
+                            13.39805,
+                            52.55836
+                        ],
+                        [
+                            13.39844,
+                            52.55892
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Bornholmer Str. (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.39844,
+                            52.55892
+                        ],
+                        [
+                            13.39956,
+                            52.55994
+                        ],
+                        [
+                            13.40853,
+                            52.56524
+                        ],
+                        [
+                            13.41016,
+                            52.5662
+                        ],
+                        [
+                            13.41035,
+                            52.56622
+                        ],
+                        [
+                            13.41035,
+                            52.56622
+                        ],
+                        [
+                            13.41448,
+                            52.56861
+                        ],
+                        [
+                            13.42594,
+                            52.57539
+                        ],
+                        [
+                            13.42843,
+                            52.57709
+                        ],
+                        [
+                            13.42956,
+                            52.57804
+                        ],
+                        [
+                            13.42956,
+                            52.57804
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S+U Pankow (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.42956,
+                            52.57804
+                        ],
+                        [
+                            13.43137,
+                            52.58001
+                        ],
+                        [
+                            13.44336,
+                            52.59136
+                        ],
+                        [
+                            13.44336,
+                            52.59136
+                        ],
+                        [
+                            13.44307,
+                            52.5912
+                        ],
+                        [
+                            13.44822,
+                            52.59582
+                        ],
+                        [
+                            13.45435,
+                            52.60144
+                        ],
+                        [
+                            13.45909,
+                            52.60591
+                        ],
+                        [
+                            13.46051,
+                            52.60731
+                        ],
+                        [
+                            13.46195,
+                            52.60918
+                        ],
+                        [
+                            13.46272,
+                            52.60977
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Pankow-Heinersdorf (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.46272,
+                            52.60977
+                        ],
+                        [
+                            13.46416,
+                            52.61058
+                        ],
+                        [
+                            13.4689,
+                            52.61457
+                        ],
+                        [
+                            13.47008,
+                            52.61575
+                        ],
+                        [
+                            13.47008,
+                            52.61575
+                        ],
+                        [
+                            13.47643,
+                            52.6216
+                        ],
+                        [
+                            13.47812,
+                            52.62351
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Blankenburg (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.47812,
+                            52.62351
+                        ],
+                        [
+                            13.48063,
+                            52.62549
+                        ],
+                        [
+                            13.49115,
+                            52.63534
+                        ],
+                        [
+                            13.49237,
+                            52.6363
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Karow Bhf (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.49237,
+                            52.6363
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            },
+            {
+                "description": "S Buch (Berlin)",
+                "path": {
+                    "coordinates": [
+                        [
+                            13.49237,
+                            52.6363
+                        ]
+                    ],
+                    "type": "LineString"
+                }
+            }
+        ]
+    },
+    "route": {
+        "direction": "S Buch (Berlin)",
+        "line": {
+            "color": "#37874a",
+            "name": "S2",
+            "operatorName": "S-Bahn Berlin GmbH",
+            "textColor": "#ffffff"
+        }
+    },
+    "scheduledArrivalTime": "2025-01-21T17:13:00",
+    "scheduledDeparturePlatform": "2",
+    "scheduledDepartureTime": "2025-01-21T16:21:00",
+    "to": {
+        "country": "DE",
+        "identifier": {
+            "unit-test": "900135001"
+        },
+        "latitude": 52.6363,
+        "longitude": 13.492368,
+        "name": "S Buch (Berlin)",
+        "type": "Stop"
+    }
+}
