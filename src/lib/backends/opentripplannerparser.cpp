@@ -450,6 +450,7 @@ JourneySection OpenTripPlannerParser::parseJourneySection(const QJsonObject &obj
 
     if (obj.value(QLatin1String("transitLeg")).toBool()) {
         section.setMode(JourneySection::PublicTransport);
+        section.setIdentifier(m_identifierType, obj.value("trip"_L1).toObject().value("id"_L1).toString());
         auto routeData = detectAndParseRoute(obj);
         section.setRoute(routeData.route);
         section.setFeatures(std::move(routeData.features));
@@ -595,4 +596,67 @@ std::vector<Journey> OpenTripPlannerParser::parseJourneys(const QJsonObject& obj
     m_nextJourneyContext.searchWindow = m_prevJourneyContext.searchWindow = plan.value(QLatin1String("searchWindowUsed")).toInt();
 
     return journeys;
+}
+
+JourneySection OpenTripPlannerParser::parseTrip(const QJsonObject &obj) const
+{
+    const auto tripObj = obj.value("trip"_L1).toObject();
+    JourneySection section;
+    section.setMode(JourneySection::PublicTransport);
+    section.setIdentifier(m_identifierType, tripObj.value("id"_L1).toString());
+
+    auto routeData = parseRoute(tripObj);
+    section.setRoute(routeData.route);
+    // TODO bikesAllowed, wheelcharAccessible
+
+    const auto stoptimesA = tripObj.value("stoptimes"_L1).toArray();
+    std::vector<Stopover> stops;
+    stops.reserve(stoptimesA.size());
+    for (const auto &stoptimeV :stoptimesA) {
+        const auto stopObj = stoptimeV.toObject();
+
+        Stopover stop;
+        stop.setStopPoint(parseLocation(stopObj));
+        const auto serviceDay = stopObj.value("serviceDay"_L1).toInteger();
+        stop.setScheduledDepartureTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledDeparture"_L1).toInteger()));
+        stop.setScheduledArrivalTime(QDateTime::fromSecsSinceEpoch(serviceDay + stopObj.value("scheduledArrival"_L1).toInteger()));
+        if (stopObj.value("realtime"_L1).toBool()) {
+            stop.setExpectedDepartureTime(stop.scheduledDepartureTime().addSecs(stopObj.value("departureDelay"_L1).toInteger()));
+            stop.setExpectedArrivalTime(stop.scheduledArrivalTime().addSecs(stopObj.value("arrivalDelay"_L1).toInteger()));
+        }
+
+        stops.push_back(std::move(stop));
+    }
+
+    // split off departure/arrival
+    if (stops.size() >= 2) {
+        section.setDeparture(stops.front());
+        section.setArrival(stops.back());
+        stops.pop_back();
+        stops.erase(stops.begin(), std::next(stops.begin()));
+    }
+    section.setIntermediateStops(std::move(stops));
+
+    const auto geometryObj = tripObj.value("tripGeometry"_L1).toObject();
+    if (!geometryObj.empty()) {
+        QPolygonF poly;
+        poly.reserve(geometryObj.value("length"_L1).toInt());
+        const auto points = geometryObj.value("points"_L1).toString().toUtf8();
+        PolylineDecoder<2> decoder(points.constData());
+        decoder.readPolygon(poly);
+
+        if (!poly.isEmpty()) {
+            PathSection pathSec;
+            pathSec.setPath(poly);
+            Path path;
+            path.setSections({std::move(pathSec)});
+            section.setPath(path);
+        }
+    }
+
+    parseAlerts(obj.value("alerts"_L1).toArray());
+    section.addNotes(m_alerts);
+    m_alerts.clear();
+
+    return section;
 }

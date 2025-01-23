@@ -49,6 +49,7 @@ public:
     std::vector<Stopover> parseDepartures(const QJsonObject &obj) const;
     std::vector<Stopover> parseDeparturesArray(const QJsonArray &array) const;
     std::vector<Journey> parseJourneys(const QJsonObject &obj);
+    [[nodiscard]] JourneySection parseTrip(const QJsonObject &obj) const;
 
     OpenTripPlannerRequestContext m_nextJourneyContext;
     OpenTripPlannerRequestContext m_prevJourneyContext;

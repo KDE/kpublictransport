@@ -18,6 +18,8 @@
 #include <KPublicTransport/Stopover>
 #include <KPublicTransport/StopoverReply>
 #include <KPublicTransport/StopoverRequest>
+#include <KPublicTransport/TripReply>
+#include <KPublicTransport/TripRequest>
 
 #include <kgraphql.h>
 
@@ -366,6 +368,39 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     return true;
 }
 
+bool OpenTripPlannerGraphQLBackend::queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const
+{
+    const auto tripId = req.journeySection().identifier(backendId());
+    if (tripId.isEmpty()) {
+        return false;
+    }
+
+    auto gqlReq = graphQLRequest();
+    if (const auto &f = graphQLPath(u"trip.graphql"_s); !f.isEmpty()) {
+        gqlReq.setQueryFromFile(f);
+    } else {
+        // Not supported by this API flavor
+        return false;
+    }
+    gqlReq.setVariable(u"id"_s, tripId);
+    gqlReq.setVariable(u"serviceDate"_s, req.journeySection().scheduledDepartureTime().date().toString("yyyyMMdd"_L1));
+    if (isLoggingEnabled()) {
+        logRequest(req, gqlReq.networkRequest(), gqlReq.rawData());
+    }
+
+    KGraphQL::query(gqlReq, nam, [this, reply](const KGraphQLReply &gqlReply) {
+        logReply(reply, gqlReply.networkReply(), gqlReply.rawData());
+        if (gqlReply.error() != KGraphQLReply::NoError) {
+            addError(reply, Reply::NetworkError, gqlReply.errorString());
+        } else {
+            OpenTripPlannerParser p(backendId(), m_ifoptPrefix);
+            addResult(reply, this, p.parseTrip(gqlReply.data()));
+        }
+    }, reply);
+
+    return true;
+}
+
 KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
 {
     KGraphQLRequest req(graphQLEndpoint());
@@ -384,20 +419,19 @@ QUrl OpenTripPlannerGraphQLBackend::graphQLEndpoint() const
     return QUrl(m_endpoint + QLatin1String("index/graphql"));
 }
 
-static QString graphQLBasePath()
-{
-    return QStringLiteral(":/org.kde.kpublictransport/otp/");
-}
+constexpr inline auto GRAPHQL_BASE_PATH = ":/org.kde.kpublictransport/otp/"_L1;
 
 QString OpenTripPlannerGraphQLBackend::graphQLPath(const QString &fileName) const
 {
     if (!m_apiVersion.isEmpty()) {
-        const QString versionedPath = graphQLBasePath() + m_apiVersion + QLatin1Char('/') + fileName;
+        const QString versionedPath = GRAPHQL_BASE_PATH + m_apiVersion + QLatin1Char('/') + fileName;
         if (QFile::exists(versionedPath)) {
             return versionedPath;
         }
     }
-    return graphQLBasePath() + fileName;
+
+    const QString path = GRAPHQL_BASE_PATH + fileName;
+    return QFile::exists(path) ? path : QString();
 }
 
 void OpenTripPlannerGraphQLBackend::setExtraHttpHeaders(const QJsonValue &v)

@@ -22,5 +22,6 @@
       <file>otp2/journey.graphql</file>
       <file>otp2/stationByCoordinate.graphql</file>
       <file>otp2/stationByName.graphql</file>
+      <file>otp2/trip.graphql</file>
     </qresource>
 </RCC>

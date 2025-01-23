@@ -35,17 +35,18 @@ public:
     OpenTripPlannerGraphQLBackend();
     ~OpenTripPlannerGraphQLBackend() override;
 
-    static inline constexpr const char* type() { return "otpGraphQl"; }
-    Capabilities capabilities() const override;
-    bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
-    bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
-    bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] static inline constexpr const char* type() { return "otpGraphQl"; }
+    [[nodiscard]] Capabilities capabilities() const override;
+    [[nodiscard]] bool needsLocationQuery(const Location &loc, AbstractBackend::QueryType type) const override;
+    [[nodiscard]] bool queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryStopover(const StopoverRequest &req, StopoverReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryLocation(const LocationRequest &req, LocationReply *reply, QNetworkAccessManager *nam) const override;
+    [[nodiscard]] bool queryTrip(const TripRequest &req, TripReply *reply, QNetworkAccessManager *nam) const override;
 
 private:
-    KGraphQLRequest graphQLRequest() const;
-    QUrl graphQLEndpoint() const;
-    QString graphQLPath(const QString &fileName) const;
+    [[nodiscard]] KGraphQLRequest graphQLRequest() const;
+    [[nodiscard]] QUrl graphQLEndpoint() const;
+    [[nodiscard]] QString graphQLPath(const QString &fileName) const;
 
     void setExtraHttpHeaders(const QJsonValue &v);
     void setRentalVehicleNetworks(const QJsonObject &obj);

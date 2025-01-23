@@ -22,6 +22,7 @@
 
 #define s(x) QStringLiteral(x)
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 using RentalVehicleNetworkMap = QHash<QString, RentalVehicleNetwork>;
@@ -178,6 +179,31 @@ private Q_SLOTS:
         const auto jsonRes = Journey::toJson(res);
 
         const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).array();
+
+        QVERIFY(!jsonRes.empty());
+        QVERIFY(Test::compareJson(refFileName, jsonRes, ref));
+    }
+
+    void testParseTrip_data()
+    {
+        QTest::addColumn<QString>("inFileName");
+        QTest::addColumn<QString>("refFileName");
+
+        QTest::newRow("de-stadtnavi-trip")
+            << QStringLiteral(SOURCE_DIR "/data/otp/de-stadtnavi-trip.in.json")
+            << QStringLiteral(SOURCE_DIR "/data/otp/de-stadtnavi-trip.out.json");
+    }
+
+    void testParseTrip()
+    {
+        QFETCH(QString, inFileName);
+        QFETCH(QString, refFileName);
+
+        OpenTripPlannerParser p(s("gtfs"), s("1"));
+        const auto res = p.parseTrip(QJsonDocument::fromJson(Test::readFile(inFileName)).object());
+        const auto jsonRes = JourneySection::toJson(res);
+
+        const auto ref = QJsonDocument::fromJson(Test::readFile(refFileName)).object();
 
         QVERIFY(!jsonRes.empty());
         QVERIFY(Test::compareJson(refFileName, jsonRes, ref));

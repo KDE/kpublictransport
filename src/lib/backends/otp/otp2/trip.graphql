@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: 2025 Volker Krause <vkrause@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
+query trip(
+    $id: String!
+    $serviceDate: String!
+) {
+    trip(id: $id) {
+        id: gtfsId
+        route {
+            type
+            shortName
+            longName
+            color
+            textColor
+            agency {
+                name
+            }
+        }
+        tripHeadsign
+        tripShortName
+        bikesAllowed
+        wheelchairAccessible
+        stoptimes: stoptimesForDate(serviceDate: $serviceDate) {
+            stop {
+                id: gtfsId
+                name
+                lat
+                lon
+                platformCode
+                # TODO wheelchairBoarding!
+            }
+            scheduledArrival
+            arrivalDelay
+            scheduledDeparture
+            departureDelay
+            realtime
+            serviceDay
+        }
+        tripGeometry {
+            length
+            points
+        }
+        alerts {
+            alertHeaderTextTranslations {
+                language
+                text
+            }
+            alertDescriptionTextTranslations {
+                language
+                text
+            }
+            alertEffect
+            alertCause
+            alertSeverityLevel
+        }
+    }
+}

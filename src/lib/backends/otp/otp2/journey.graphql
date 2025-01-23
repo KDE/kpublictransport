@@ -39,6 +39,7 @@ query journeys(
                 from { ...locationFragment }
                 to { ...locationFragment }
                 trip {
+                    id: gtfsId
                     route {
                         type
                         desc
