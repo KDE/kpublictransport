@@ -7,9 +7,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 52.50602341723939,
                     "longitude": 13.45152382711484,
                     "name": "",
@@ -344,9 +341,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 52.50494050893889,
                     "longitude": 13.448614380176252,
                     "name": "",

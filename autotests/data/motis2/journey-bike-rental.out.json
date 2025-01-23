@@ -7,9 +7,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.77376011971705,
                     "longitude": 9.170308904682798,
                     "name": "START",
@@ -181,9 +178,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.774812,
                     "longitude": 9.171956,
                     "name": "RegioRad Stuttgart",
@@ -201,9 +195,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.774812,
                     "longitude": 9.171956,
                     "name": "RegioRad Stuttgart",
@@ -407,9 +398,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7761378,
                     "longitude": 9.1731457,
                     "name": "RegioRad Stuttgart",
@@ -427,9 +415,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7761378,
                     "longitude": 9.1731457,
                     "name": "RegioRad Stuttgart",
@@ -680,9 +665,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7829,
                     "longitude": 9.17978,
                     "name": "RegioRad Stuttgart",
@@ -700,9 +682,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7829,
                     "longitude": 9.17978,
                     "name": "RegioRad Stuttgart",
@@ -1500,9 +1479,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7858947,
                     "longitude": 9.1896744,
                     "name": "RegioRad Stuttgart",
@@ -1520,9 +1496,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7858947,
                     "longitude": 9.1896744,
                     "name": "RegioRad Stuttgart",
@@ -1587,9 +1560,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.78503407036962,
                     "longitude": 9.18924475102054,
                     "name": "END",
@@ -1606,9 +1576,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.77376011971705,
                     "longitude": 9.170308904682798,
                     "name": "",
@@ -1692,9 +1659,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.77359771728515,
                     "longitude": 9.169612884521484,
                     "name": "Bolt Technology OÜ",
@@ -1712,9 +1676,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.77359771728515,
                     "longitude": 9.169612884521484,
                     "name": "Bolt Technology OÜ",
@@ -3425,9 +3386,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7858947,
                     "longitude": 9.1896744,
                     "name": "Bolt Technology OÜ",
@@ -3445,9 +3403,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7858947,
                     "longitude": 9.1896744,
                     "name": "Bolt Technology OÜ",
@@ -3512,9 +3467,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.78503407036962,
                     "longitude": 9.18924475102054,
                     "name": "",
@@ -3531,9 +3483,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.77376011971705,
                     "longitude": 9.170308904682798,
                     "name": "",
@@ -3705,9 +3654,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.774812,
                     "longitude": 9.171956,
                     "name": "RegioRad Stuttgart",
@@ -3725,9 +3671,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.774812,
                     "longitude": 9.171956,
                     "name": "RegioRad Stuttgart",
@@ -5307,9 +5250,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7858947,
                     "longitude": 9.1896744,
                     "name": "RegioRad Stuttgart",
@@ -5327,9 +5267,6 @@
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.7858947,
                     "longitude": 9.1896744,
                     "name": "RegioRad Stuttgart",
@@ -5394,9 +5331,6 @@
                 "to": {
                     "country": "DE",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.78503407036962,
                     "longitude": 9.18924475102054,
                     "name": "",

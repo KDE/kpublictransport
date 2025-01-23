@@ -7,9 +7,6 @@
                 "from": {
                     "country": "FR",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 49.0041,
                     "longitude": 2.5711,
                     "name": "START",
@@ -957,9 +954,6 @@
                 "to": {
                     "country": "FR",
                     "floorLevel": 0,
-                    "identifier": {
-                        "motis": ""
-                    },
                     "latitude": 48.8439,
                     "longitude": 2.37708,
                     "name": "END",

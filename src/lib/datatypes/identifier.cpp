@@ -34,9 +34,15 @@ void IdentifierSet::setIdentifier(const QString &type, const QString &value)
         return id.type == type;
     });
     if (it == m_identifiers.end()) {
-        m_identifiers.emplace_back(type, value);
+        if (!value.isEmpty()) {
+            m_identifiers.emplace_back(type, value);
+        }
     } else {
-        (*it).value = value;
+        if (value.isEmpty()) {
+            m_identifiers.erase(it);
+        } else {
+            (*it).value = value;
+        }
     }
 }
 
