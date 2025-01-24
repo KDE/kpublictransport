@@ -259,7 +259,8 @@ OpenTripPlannerParser::RouteData OpenTripPlannerParser::parseLine(const QJsonObj
         line.setMode(Gtfs::Hvt::typeToMode(type.toString()));
     } else if (type.isDouble()) {
         line.setMode(Gtfs::Hvt::typeToMode(type.toInt(-1)));
-    } else {
+    }
+    if (line.mode() == Line::Unknown) {
         line.setMode(Gtfs::Hvt::typeToMode(obj.value(QLatin1String("transportMode")).toString()));
     }
 
