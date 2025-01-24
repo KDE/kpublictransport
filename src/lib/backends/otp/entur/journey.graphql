@@ -13,7 +13,7 @@ query journeys(
   $withIntermediateStops: Boolean!,
   $withPaths: Boolean!
   $allowBikeRental: Boolean!
-  $modes: [Mode]!
+  $modes: Modes!
 ) {
   plan: trip (
         from: { coordinates: { latitude: $fromLat, longitude: $fromLon } }
@@ -22,7 +22,7 @@ query journeys(
         arriveBy: $arriveBy
         numTripPatterns: $maxResults
         locale: $lang
-        allowBikeRental: $allowBikeRental
+        useBikeRentalAvailabilityInformation: $allowBikeRental
         modes: $modes
     ) {
     itineraries: tripPatterns {
@@ -69,7 +69,7 @@ query journeys(
             platformCode: publicCode
             lat: latitude
             lon: longitude
-            timezone
+            timezone: timeZone
           }
           scheduledArrivalTime: aimedArrivalTime
           expectedArrivalTime: actualArrivalTime
@@ -83,7 +83,7 @@ query journeys(
         steps @include(if: $withPaths) {
             lat: latitude
             lon: longitude
-            legStepText(locale: $lang)
+            legStepText: streetName
         }
       }
     }
@@ -97,7 +97,7 @@ fragment locationFragment on Place {
     stop: quay {
         platformCode: publicCode
         id
-        timezone
+        timezone: timeZone
     }
     bikeRentalStation {
         id

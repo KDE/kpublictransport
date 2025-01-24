@@ -27,6 +27,7 @@
 #include <QNetworkRequest>
 #include <QUrl>
 
+using namespace Qt::Literals;
 using namespace KPublicTransport;
 
 OpenTripPlannerGraphQLBackend::OpenTripPlannerGraphQLBackend() = default;
@@ -190,37 +191,48 @@ static QString qualifierName(IndividualTransport::Qualifier qualifier)
     return {};
 }
 
-static void addEnturModes(QStringList &modes, const std::vector<IndividualTransport> &its)
+// ### Entur v3 only supports a single access/egress/direct mode
+[[nodiscard]] static QLatin1StringView enturMode(std::vector<IndividualTransport> its)
 {
-    for (const auto &it : its) {
+    // walking is always implied for all other modes
+    its.erase(std::remove_if(its.begin(), its.end(), [](const auto &it) { return it.mode() == IndividualTransport::Walk; }), its.end());
+
+    if (its.size() == 1) {
+        const auto it = its[0];
+        // TODO scooter_rental
         switch (it.mode()) {
             case IndividualTransport::Bike:
-                // TODO park/rent variants only supported by Entur v3
-                modes.push_back(QStringLiteral("bicycle"));
+                switch (it.qualifier()) {
+                    case IndividualTransport::None:
+                        return "bicycle"_L1;
+                    case IndividualTransport::Park:
+                        return "bike_park"_L1;
+                    case IndividualTransport::Pickup:
+                    case IndividualTransport::Dropoff:
+                        break; // not applicable to bikes
+                    case IndividualTransport::Rent:
+                        return "bike_rental"_L1;
+                }
                 break;
             case IndividualTransport::Car:
                 switch (it.qualifier()) {
                     case IndividualTransport::None:
-                        modes.push_back(QStringLiteral("car"));
-                        break;
+                        return "car"_L1;
                     case IndividualTransport::Park:
-                        modes.push_back(QStringLiteral("car_park"));
-                        break;
+                        return "car_park"_L1;
                     case IndividualTransport::Pickup:
-                        modes.push_back(QStringLiteral("car_pickup"));
-                        break;
                     case IndividualTransport::Dropoff:
-                        modes.push_back(QStringLiteral("car_dropoff"));
-                        break;
-                    case IndividualTransport::Rent: // not supported
-                        break;
+                        return "car_pickup"_L1;
+                    case IndividualTransport::Rent:
+                        return "car_rental"_L1;
                 }
                 break;
             case IndividualTransport::Walk:
-                modes.push_back(QStringLiteral("foot"));
                 break;
         }
     }
+
+    return "foot"_L1;
 }
 
 bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, JourneyReply *reply, QNetworkAccessManager *nam) const
@@ -255,31 +267,30 @@ bool OpenTripPlannerGraphQLBackend::queryJourney(const JourneyRequest &req, Jour
     gqlReq.setVariable(QStringLiteral("withPaths"), req.includePaths());
     // TODO set context.searchWindow?
 
-    if (m_apiVersion == QLatin1String("entur")) {
-        gqlReq.setVariable(QStringLiteral("allowBikeRental"), (req.modes() & JourneySection::RentedVehicle) != 0);
-        QStringList modes;
-        modes.push_back(QStringLiteral("foot"));
-        if (req.modes() & JourneySection::PublicTransport) {
-            if (req.lineModes().empty()) {
-                modes.push_back(QStringLiteral("transit"));
-            } else {
-                for (const auto &m : otp_mode_map) {
-                    if (m.enturMode && std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
-                        modes.push_back(QLatin1String(m.enturMode));
-                    }
+    if (m_apiVersion == "entur"_L1) {
+        gqlReq.setVariable(u"allowBikeRental"_s, (req.modes() & JourneySection::RentedVehicle) != 0);
+
+        QJsonObject modesObj;
+        modesObj.insert("accessMode"_L1, enturMode(req.accessModes()));
+        modesObj.insert("egressMode"_L1, enturMode(req.egressModes()));
+        if (!req.individualTransportModes().empty()) {
+            modesObj.insert("directMode"_L1, enturMode(req.individualTransportModes()));
+        }
+
+        if ((req.modes() & JourneySection::PublicTransport) && !req.lineModes().empty()) {
+            QStringList modes;
+            for (const auto &m : otp_mode_map) {
+                if (m.enturMode && std::binary_search(req.lineModes().begin(), req.lineModes().end(), m.mode)) {
+                    modes.push_back(QLatin1StringView(m.enturMode));
                 }
             }
+            modes.removeDuplicates();
+            QJsonArray modesArray;
+            std::ranges::transform(modes, std::back_inserter(modesArray), [](const auto &mode){ return QJsonObject({{"transportMode"_L1, mode}}); });
+            modesObj.insert("transportModes"_L1, modesArray);
         }
-        if (req.modes() & JourneySection::RentedVehicle) {
-            modes.push_back(QStringLiteral("bicycle"));
-        }
-        addEnturModes(modes, req.accessModes());
-        addEnturModes(modes, req.egressModes());
 
-        modes.removeDuplicates();
-        QJsonArray modesArray;
-        std::copy(modes.begin(), modes.end(), std::back_inserter(modesArray));
-        gqlReq.setVariable(QStringLiteral("modes"), modesArray);
+        gqlReq.setVariable(u"modes"_s, modesObj);
     } else {
         struct Mode {
             QString mode;
