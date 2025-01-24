@@ -7,13 +7,12 @@ query stationsByName($name: String!) {
     name
     lat: latitude
     lon: longitude
-    timezone
+    timezone: timeZone
     parentStation: stopPlace {
       id
       lat: latitude
       lon: longitude
-      timezone
+      timezone: timeZone
     }
-    timezone
   }
 }

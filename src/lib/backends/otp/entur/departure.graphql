@@ -5,7 +5,7 @@ query departures(
     $lat: Float!,
     $lon: Float!,
     $startDateTime: DateTime!,
-    $modes: [Mode]!
+    $modes: [TransportMode]!
   ) {
   nearest(
         latitude: $lat,
@@ -23,7 +23,7 @@ query departures(
               name
               lat: latitude
               lon: longitude
-              timezone
+              timezone: timeZone
             }
             stoptimes: estimatedCalls(startTime: $startDateTime, numberOfDepartures: 12) {
               stop: quay {

@@ -4,7 +4,7 @@
 query stopsByCoordinate(
     $lat: Float!
     $lon: Float!
-    $radius: Int!
+    $radius: Float!
     $maxResults: Int!
     $placeType: [FilterPlaceType]!
 ) {
