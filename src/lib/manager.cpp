@@ -640,9 +640,10 @@ JourneyReply* Manager::queryJourney(const JourneyRequest &req) const
         reply->addAttributions(AssetRepository::instance()->attributions());
     }
 
-    if (pendingOps == 0) {
-        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
-    }
+    // FIXME this is not correct for negative cache hits!
+    //if (pendingOps == 0) {
+    //    reply->addError(Reply::NoBackend, u"No viable backend found."_s);
+    //}
     reply->setPendingOps(pendingOps);
     return reply;
 }
@@ -720,9 +721,10 @@ StopoverReply* Manager::queryStopover(const StopoverRequest &req) const
         reply->addAttributions(AssetRepository::instance()->attributions());
     }
 
-    if (pendingOps == 0) {
-        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
-    }
+    // FIXME this is not correct for negative cache hits!
+    //if (pendingOps == 0) {
+    //    reply->addError(Reply::NoBackend, u"No viable backend found."_s);
+    //}
     reply->setPendingOps(pendingOps);
     return reply;
 }
@@ -810,9 +812,10 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
         }
     }
 
-    if (pendingOps == 0) {
-        reply->addError(Reply::NoBackend, u"No viable backend found."_s);
-    }
+    // FIXME this is not correct for negative cache hits!
+    //if (pendingOps == 0) {
+    //    reply->addError(Reply::NoBackend, u"No viable backend found."_s);
+    //}
     reply->setPendingOps(pendingOps);
     return reply;
 }
@@ -821,6 +824,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
 {
     auto reply = d->makeReply<VehicleLayoutReply>(req);
     int pendingOps = 0;
+    int negativeCacheHit = 0;
 
     // validate input
     if (!req.isValid()) {
@@ -845,6 +849,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
             auto cache = Cache::lookupVehicleLayout(backend.identifier(), req.cacheKey());
             switch (cache.type) {
                 case CacheHitType::Negative:
+                    ++negativeCacheHit;
                     qCDebug(Log) << "Negative cache hit for backend" << backend.identifier();
                     break;
                 case CacheHitType::Positive:
@@ -868,7 +873,7 @@ VehicleLayoutReply* Manager::queryVehicleLayout(const VehicleLayoutRequest &req)
         }
     }
 
-    if (pendingOps == 0) {
+    if (pendingOps == 0 && negativeCacheHit == 0) {
         reply->addError(Reply::NoBackend, u"No viable backend found."_s);
     }
     reply->setPendingOps(pendingOps);
