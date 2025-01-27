@@ -141,7 +141,7 @@
         }
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/",
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql",
         "extraHttpHeaders": [
             {
                 "name": "digitransit-subscription-key",

@@ -101,7 +101,7 @@
         }
     },
     "options": {
-        "endpoint": "https://api.peatus.ee/routing/v1/routers/estonia/"
+        "endpoint": "https://api.peatus.ee/routing/v1/routers/estonia/index/graphql"
     },
     "timezone": "Europe/Tallinn",
     "type": {

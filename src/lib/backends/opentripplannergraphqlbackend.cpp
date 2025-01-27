@@ -413,10 +413,7 @@ KGraphQLRequest OpenTripPlannerGraphQLBackend::graphQLRequest() const
 
 QUrl OpenTripPlannerGraphQLBackend::graphQLEndpoint() const
 {
-    if (m_apiVersion == QLatin1String("entur")) {
-        return QUrl(m_endpoint);
-    }
-    return QUrl(m_endpoint + QLatin1String("index/graphql"));
+    return QUrl(m_endpoint);
 }
 
 constexpr inline auto GRAPHQL_BASE_PATH = ":/org.kde.kpublictransport/otp/"_L1;

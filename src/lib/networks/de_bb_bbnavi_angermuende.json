@@ -111,7 +111,7 @@
     },
     "options": {
         "apiVersion": "otp2",
-        "endpoint": "https://api.angermuende.bbnavi.de/otp/routers/default/",
+        "endpoint": "https://api.angermuende.bbnavi.de/otp/routers/default/index/graphql",
         "supportedTransitModes": [
             "TRANSIT"
         ]

@@ -161,7 +161,7 @@
         }
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/",
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/waltti/index/graphql",
         "extraHttpHeaders": [
             {
                 "name": "digitransit-subscription-key",

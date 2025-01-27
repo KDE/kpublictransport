@@ -834,7 +834,7 @@
         }
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/",
+        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/index/graphql",
         "extraHttpHeaders": [
             {
                 "name": "digitransit-subscription-key",

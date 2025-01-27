@@ -108,7 +108,7 @@
     },
     "options": {
         "apiVersion": "otp2",
-        "endpoint": "https://api.stadtnavi.de/routing/v1/router/",
+        "endpoint": "https://api.stadtnavi.de/routing/v1/router/index/graphql",
         "ifoptPrefix": "hbg",
         "rentalVehicleNetworks": {
             "car-sharing": {},
