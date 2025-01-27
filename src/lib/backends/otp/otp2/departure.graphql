@@ -45,7 +45,6 @@ query departures(
                 tripHeadsign
                 route {
                   type
-                  desc
                   shortName
                   longName
                   color
