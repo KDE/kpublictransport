@@ -834,7 +834,8 @@
         }
     },
     "options": {
-        "endpoint": "https://api.digitransit.fi/routing/v1/routers/finland/index/graphql",
+        "apiVersion": "otp2",
+        "endpoint": "https://api.digitransit.fi/routing/v2/finland/gtfs/v1",
         "extraHttpHeaders": [
             {
                 "name": "digitransit-subscription-key",
