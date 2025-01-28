@@ -22,6 +22,8 @@
 #include <cmath>
 #include <iostream>
 
+using namespace Qt::Literals;
+
 class OtpProbeJob : public QObject
 {
     Q_OBJECT
@@ -44,6 +46,7 @@ private:
     QUrl m_endpointUrl;
     QPolygonF m_boundingPolygon;
     QList<QSslCertificate> m_caCerts;
+    std::vector<std::pair<QByteArray, QByteArray>> m_extraHeaders;
 };
 
 OtpProbeJob::OtpProbeJob(const QString &fileName, const QJsonDocument &doc, QNetworkAccessManager *nam, QObject *parent)
@@ -59,7 +62,11 @@ void OtpProbeJob::applySslConfig(QNetworkRequest &req)
     if (!m_caCerts.empty()) {
         auto sslConfig = req.sslConfiguration();
         sslConfig.setCaCertificates(m_caCerts);
-        req.setSslConfiguration(std::move(sslConfig));
+        req.setSslConfiguration(sslConfig);
+    }
+
+    for (const auto &header : m_extraHeaders) {
+        req.setRawHeader(header.first, header.second);
     }
 }
 
@@ -67,7 +74,24 @@ void OtpProbeJob::start()
 {
     const auto options = m_configDoc.object().value(QLatin1String("options")).toObject();
     m_endpointUrl = QUrl(options.value(QLatin1String("endpoint")).toString());
+    if (m_endpointUrl.path().endsWith("index/graphql"_L1)) {
+        m_endpointUrl.setPath(m_endpointUrl.path().chopped(13));
+    }
+
     m_caCerts = QSslCertificate::fromPath(QFileInfo(m_configFileName).path() + QStringLiteral("/certs/") + options.value(QLatin1String("customCaCertificate")).toString());
+
+    const auto headers = options.value("extraHttpHeaders"_L1).toArray();
+    m_extraHeaders.reserve(headers.size());
+    for (const auto &header : headers) {
+        const auto headerObj = header.toObject();
+        const auto name = headerObj.value("name"_L1).toString().toUtf8();
+        const auto val = headerObj.value("value"_L1).toString().toUtf8();
+        if (name.isEmpty() || val.isEmpty()) {
+            continue;
+        }
+        m_extraHeaders.push_back(std::make_pair(name, val));
+    }
+
     auto req = QNetworkRequest(m_endpointUrl);
     applySslConfig(req);
     auto reply = m_nam->get(req);
