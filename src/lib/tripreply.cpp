@@ -14,6 +14,7 @@
 #include "datatypes/journeyutil_p.h"
 
 #include <KPublicTransport/Journey>
+#include <KPublicTransport/Stopover>
 
 namespace KPublicTransport {
 class TripReplyPrivate: public ReplyPrivate {
@@ -32,7 +33,6 @@ TripReply::TripReply(const TripRequest &req, QObject *parent)
 {
     Q_D(TripReply);
     d->request = req;
-    // TODO full vs. partial trip
     d->trip = req.journeySection();
 }
 
@@ -48,6 +48,47 @@ JourneySection TripReply::trip() const
 {
     Q_D(const TripReply);
     return d->trip;
+}
+
+JourneySection TripReply::journeySection() const
+{
+    Q_D(const TripReply);
+    auto partialTrip = d->request.journeySection();
+
+    // do we have enough to go on to cut out a partial trip? is that even needed?
+    if (partialTrip.from().name().isEmpty() || partialTrip.to().name().isEmpty() || JourneySection::isSame(partialTrip, d->trip) || d->trip.intermediateStops().empty()) {
+        return d->trip;
+    }
+
+    const auto &stopovers = d->trip.intermediateStops();
+    auto it = stopovers.begin();
+    if (!Stopover::isSame(partialTrip.departure(), d->trip.departure())) {
+        for (; it != stopovers.end(); ++it) {
+            if (Stopover::isSame(partialTrip.departure(), *it)) {
+                partialTrip.setDeparture(*it);
+                break;
+            }
+        }
+        if (it == stopovers.end()) {
+            return d->trip;
+        }
+        ++it;
+    }
+
+    auto it2 = it;
+    for (; it2 != stopovers.end(); ++it2) {
+        if (Stopover::isSame(partialTrip.arrival(), *it2)) {
+            partialTrip.setArrival(*it2);
+            break;
+        }
+    }
+    if (it2 == stopovers.end() && !Stopover::isSame(partialTrip.arrival(), d->trip.arrival())) {
+        return d->trip;
+    }
+
+    partialTrip.setIntermediateStops({it, it2});
+    partialTrip.setRoute(d->trip.route());
+    return partialTrip;
 }
 
 void TripReply::addResult(const AbstractBackend *backend, JourneySection &&journeySection)
