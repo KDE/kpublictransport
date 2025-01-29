@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 #
-# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
+# SPDX-FileCopyrightText: 2024, 2025 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-19 00:40+0000\n"
-"PO-Revision-Date: 2024-09-09 14:53+0300\n"
+"PO-Revision-Date: 2025-01-27 17:58+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 24.08.0\n"
+"X-Generator: Lokalize 24.12.1\n"
 
 #: lib/datatypes/feature.cpp:52
 #, kde-format
 msgctxt "train coach feature"
 msgid "Air conditioning"
-msgstr "Gaisa kondicionešana"
+msgstr "Gaisa kondicionēšana"
 
 #: lib/datatypes/feature.cpp:54
 #, kde-format
@@ -46,7 +46,7 @@ msgstr "Ģimeņu zona"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible"
-msgstr "Ratiņkrēsla pieejamība"
+msgstr "Piekļūstams ratiņkrēslā"
 
 #: lib/datatypes/feature.cpp:62
 #, kde-format
@@ -76,7 +76,7 @@ msgstr "Labierīcības"
 #, kde-format
 msgctxt "train coach feature"
 msgid "Wheelchair accessible toilet"
-msgstr "Ar ratiņkrēslu pieejamas labierīcības"
+msgstr "Ar ratiņkrēslu piekļūstamas labierīcības"
 
 #: lib/datatypes/feature.cpp:72
 #, kde-format
@@ -100,48 +100,48 @@ msgstr "Elektrības kontaktligzdas"
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Bike"
-msgstr ""
+msgstr "Divritenis"
 
 #: lib/datatypes/individualtransport.cpp:75
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Car"
-msgstr ""
+msgstr "Automobilis"
 
 #: lib/datatypes/individualtransport.cpp:77 lib/datatypes/journey.cpp:516
 #, kde-format
 msgctxt "mode of individual transport"
 msgid "Walk"
-msgstr ""
+msgstr "Iet"
 
 #: lib/datatypes/journey.cpp:518
 #, kde-format
 msgid "Wait"
-msgstr ""
+msgstr "Gaidīt"
 
 #: lib/datatypes/rentalvehicle.cpp:271
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented bike"
-msgstr ""
+msgstr "Nomāts divritenis"
 
 #: lib/datatypes/rentalvehicle.cpp:273
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented moped"
-msgstr ""
+msgstr "Nomāts mopēds"
 
 #: lib/datatypes/rentalvehicle.cpp:275
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented kick scooter"
-msgstr ""
+msgstr "Nomāts skūteris"
 
 #: lib/datatypes/rentalvehicle.cpp:277
 #, kde-format
 msgctxt "rental vehicle type"
 msgid "Rented car"
-msgstr ""
+msgstr "Nomāts automobilis"
 
 #: quick/FeatureIcon.qml:58
 #, kde-format
