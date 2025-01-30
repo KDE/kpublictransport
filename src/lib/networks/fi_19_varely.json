@@ -1,0 +1,44 @@
+{
+    "KPlugin": {
+        "Description": "Public transport in Southwest Finland.",
+        "Name": "Varsinais-Suomen ELY"
+    },
+    "attribution": {
+        "homepage": "https://digitransit.fi/",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "Digitransit"
+    },
+    "coverage": {
+        "realtimeCoverage": {
+            "areaFile": "fi_19_varely_realtime.geojson",
+            "region": [
+                "FI-19"
+            ]
+        }
+    },
+    "options": {
+        "apiVersion": "otp2",
+        "endpoint": "https://api.digitransit.fi/routing/v2/varely/gtfs/v1",
+        "extraHttpHeaders": [
+            {
+                "name": "digitransit-subscription-key",
+                "value": "568cff154a2942a1acf84606ceced056"
+            }
+        ],
+        "supportedTransitModes": [
+            "TRANSIT"
+        ]
+    },
+    "supportedLanguages": [
+        "de",
+        "en",
+        "fi",
+        "fr",
+        "sv"
+    ],
+    "timezone": "Europe/Helsinki",
+    "type": {
+        "otpGraphQl": true
+    }
+}

@@ -14,6 +14,9 @@
         <file>de_db_any.geojson</file>
         <file>de_db_realtime.geojson</file>
         <file>de_db_regular.geojson</file>
+        <file>fi_19_varely_realtime.geojson</file>
+        <file>fi_digitransit_realtime.geojson</file>
+        <file>fi_digitransit_regular.geojson</file>
         <file>un_transitous_any.geojson</file>
         <file>un_transitous_realtime.geojson</file>
         <file>un_transitous_regular.geojson</file>
