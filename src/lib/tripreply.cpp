@@ -88,6 +88,40 @@ JourneySection TripReply::journeySection() const
 
     partialTrip.setIntermediateStops({it, it2});
     partialTrip.setRoute(d->trip.route());
+
+    auto path = d->trip.path();
+    auto pathSections = path.takeSections();
+    bool foundStart = false, foundEnd = false;
+    for (auto secIt = pathSections.begin(); secIt != pathSections.end();) {
+        auto poly = (*secIt).path();
+        auto polyItBegin = poly.begin();
+        auto polyItEnd = poly.end();
+        bool foundEndNow = false;
+        for (auto polyIt = polyItBegin; polyIt != poly.end() && !foundEnd; ++polyIt) {
+            if (!foundStart && Location::distance((*polyIt).y(), (*polyIt).x(), partialTrip.from().latitude(), partialTrip.from().longitude()) < 50) {
+                polyItBegin = polyIt;
+                foundStart = true;
+            }
+            if (foundStart && !foundEnd && Location::distance((*polyIt).y(), (*polyIt).x(), partialTrip.to().latitude(), partialTrip.to().longitude()) < 50) {
+                polyItEnd = std::next(polyIt);
+                foundEndNow = true;
+                break;
+            }
+        }
+
+        if (!foundStart || foundEnd) {
+            secIt = pathSections.erase(secIt);
+        } else {
+            (*secIt).setPath({polyItBegin, polyItEnd});
+            ++secIt;
+            if (foundEndNow) {
+                foundEnd = true;
+            }
+        }
+    }
+    path.setSections(std::move(pathSections));
+    partialTrip.setPath(path);
+
     return partialTrip;
 }
 

@@ -54,6 +54,11 @@ private Q_SLOTS:
         QVERIFY(JourneySection::isSame(reply.journeySection(), partialTrip));
         QVERIFY(Route::isSame(fullTrip.route(), reply.journeySection().route()));
         QCOMPARE(reply.journeySection().intermediateStops().size(), end - begin - 1);
+
+        QCOMPARE(reply.trip().path().sections().size(), 1);
+        QCOMPARE(reply.trip().path().sections()[0].path().isEmpty(), false);
+        QCOMPARE(reply.journeySection().path().sections().size(), 1);
+        QCOMPARE(reply.journeySection().path().sections()[0].path().isEmpty(), false);
     }
 };
 
