@@ -550,6 +550,11 @@ void JourneySection::setIdentifier(const QString &identifierType, const QString 
     d->ids.setIdentifier(identifierType, id);
 }
 
+bool JourneySection::hasIdentifiers() const
+{
+    return !d->ids.isEmpty();
+}
+
 void JourneySection::applyMetaData(bool download)
 {
     if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {

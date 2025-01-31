@@ -271,6 +271,10 @@ public:
     [[nodiscard]] QString identifier(QAnyStringView identifierType) const;
     [[nodiscard]] bool hasIdentifier(QAnyStringView identifierType) const;
     void setIdentifier(const QString &identifierType, const QString &id);
+    /** Returns @c true if there is any identifier set at all.
+     *  This is usually a prerequisite for efficient trip queries.
+     */
+    [[nodiscard]] bool hasIdentifiers() const;
 
 private:
     [[nodiscard]] Q_DECL_HIDDEN QVariantList intermediateStopsVariant() const;
