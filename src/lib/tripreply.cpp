@@ -91,36 +91,45 @@ JourneySection TripReply::journeySection() const
 
     auto path = d->trip.path();
     auto pathSections = path.takeSections();
-    bool foundStart = false, foundEnd = false;
-    for (auto secIt = pathSections.begin(); secIt != pathSections.end();) {
-        auto poly = (*secIt).path();
-        auto polyItBegin = poly.begin();
-        auto polyItEnd = poly.end();
-        bool foundEndNow = false;
-        for (auto polyIt = polyItBegin; polyIt != poly.end() && !foundEnd; ++polyIt) {
-            if (!foundStart && Location::distance((*polyIt).y(), (*polyIt).x(), partialTrip.from().latitude(), partialTrip.from().longitude()) < 50) {
-                polyItBegin = polyIt;
-                foundStart = true;
-            }
-            if (foundStart && !foundEnd && Location::distance((*polyIt).y(), (*polyIt).x(), partialTrip.to().latitude(), partialTrip.to().longitude()) < 50) {
-                polyItEnd = std::next(polyIt);
-                foundEndNow = true;
-                break;
-            }
-        }
 
-        if (!foundStart || foundEnd) {
-            secIt = pathSections.erase(secIt);
-        } else {
-            (*secIt).setPath({polyItBegin, polyItEnd});
-            ++secIt;
-            if (foundEndNow) {
-                foundEnd = true;
+    // find the closest points on the path to the departure/arrival locations
+    // we have to expect aribitrarly broken/imprecise data here...
+    qsizetype beginSection = -1, beginPoint = -1, endSection = -1, endPoint = -1;
+    double beginMinDist = std::numeric_limits<double>::max(), endMinDist = std::numeric_limits<double>::max();
+    for (std::size_t i = 0; i < pathSections.size(); ++i) {
+        const auto poly = pathSections[i].path();
+        for (qsizetype j = 0; j < poly.size(); ++j) {
+            const auto p = poly[j];
+            if (const auto d = Location::distance(p.y(), p.x(), partialTrip.from().latitude(), partialTrip.from().longitude()); d <beginMinDist) {
+                beginSection = (qsizetype)i;
+                beginPoint = j;
+                beginMinDist = d;
+            }
+            if (const auto d = Location::distance(p.y(), p.x(), partialTrip.to().latitude(), partialTrip.to().longitude()); d <endMinDist) {
+                endSection = (qsizetype)i;
+                endPoint = j;
+                endMinDist = d;
             }
         }
     }
-    path.setSections(std::move(pathSections));
-    partialTrip.setPath(path);
+
+    // if we found something, truncate path accordingly
+    if (std::tie(beginSection, beginPoint) < std::tie(endSection, endPoint)) {
+        // start cutting from the end, as otherwise the end indices become invalid!
+        pathSections.erase(pathSections.begin() + endSection + 1, pathSections.end());
+        pathSections.erase(pathSections.begin(), pathSections.begin() + beginSection);
+
+        auto poly = pathSections.back().path();
+        poly.erase(poly.begin() + endPoint + 1, poly.end());
+        pathSections.back().setPath(poly);
+
+        poly = pathSections.front().path();
+        poly.erase(poly.begin(), poly.begin() + beginPoint);
+        pathSections.front().setPath(poly);
+
+        path.setSections(std::move(pathSections));
+        partialTrip.setPath(path);
+    }
 
     return partialTrip;
 }

@@ -59,6 +59,9 @@ private Q_SLOTS:
         QCOMPARE(reply.trip().path().sections()[0].path().isEmpty(), false);
         QCOMPARE(reply.journeySection().path().sections().size(), 1);
         QCOMPARE(reply.journeySection().path().sections()[0].path().isEmpty(), false);
+
+        const auto path = reply.journeySection().path().sections()[0].path();
+        QVERIFY(std::ranges::all_of(path, [](const auto &p) { return p.x() > 0 && p.y() > 0; }));
     }
 };
 
