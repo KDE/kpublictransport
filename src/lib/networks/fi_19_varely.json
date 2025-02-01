@@ -1,7 +1,24 @@
 {
     "KPlugin": {
         "Description": "Public transport in Southwest Finland.",
-        "Name": "Varsinais-Suomen ELY"
+        "Description[ca]": "Transport públic al Sud-oest de Finlàndia.",
+        "Description[he]": "תחבורה ציבורית בדרום מערב פינלנד.",
+        "Description[ia]": "Transporto public in Finlandia de Sud West",
+        "Description[ka]": "საჯარო ტრანსპორტი სამხრეთ-დასავლეთ ფინეთში.",
+        "Description[nl]": "Openbaar vervoer in Zuid-West Finland.",
+        "Description[sv]": "Kollektivtrafik i sydvästra Finland.",
+        "Description[tr]": "Güneybatı Finlandiya’da toplu taşıma.",
+        "Description[uk]": "Громадський транспорт у південно-західній Фінляндії.",
+        "Description[x-test]": "xxPublic transport in Southwest Finland.xx",
+        "Name": "Varsinais-Suomen ELY",
+        "Name[ca]": "Varsinais-Suomen ELY",
+        "Name[ia]": "Varsinais-Suomen ELY",
+        "Name[ka]": "Varsinais-Suomen ELY",
+        "Name[nl]": "Varsinais-Suomen ELY",
+        "Name[sv]": "Varsinais-Suomen ELY",
+        "Name[tr]": "Varsinais-Suomen ELY",
+        "Name[uk]": "Varsinais-Suomen ELY",
+        "Name[x-test]": "xxVarsinais-Suomen ELYxx"
     },
     "attribution": {
         "homepage": "https://digitransit.fi/",
