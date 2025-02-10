@@ -48,6 +48,20 @@ bool LineUtil::isCompatibleMode(Line::Mode lhs, Line::Mode rhs)
         return lhs == Line::LocalTrain || lhs == Line::LongDistanceTrain || lhs == Line::RapidTransit;
     }
 
+    if (lhs == Line::Bus) {
+        return rhs == Line::Coach || rhs == Line::Shuttle;
+    }
+    if (rhs == Line::Bus) {
+        return lhs == Line::Coach || lhs == Line::Shuttle;
+    }
+
+    if (lhs == Line::Boat) {
+        return rhs == Line::Ferry;
+    }
+    if (rhs == Line::Boat) {
+        return lhs == Line::Ferry;
+    }
+
     return false;
 }
 
