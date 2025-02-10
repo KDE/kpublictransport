@@ -654,6 +654,10 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
             stops[i].setRoute(res.route());
         }
         res.setIntermediateStops(std::move(stops));
+    } else if (lhs.intermediateStops().empty() && !rhs.intermediateStops().empty()) {
+        res.setIntermediateStops(std::vector<Stopover>(rhs.intermediateStops()));
+    } else if (!lhs.intermediateStops().empty() && rhs.intermediateStops().empty()) {
+        res.setIntermediateStops(std::vector<Stopover>(lhs.intermediateStops()));
     }
 
     res.d->co2Emission = std::max(lhs.d->co2Emission, rhs.d->co2Emission);
