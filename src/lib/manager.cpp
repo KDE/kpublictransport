@@ -822,6 +822,22 @@ LocationReply* Manager::queryLocation(const LocationRequest &req) const
     return reply;
 }
 
+// Check whether a given JourneySection matches a trip request in fallback journey query mode
+// This is essentially the same as JourneySection::isSame, with one special case for accepting
+// all specialized modes for an requested generic mode. Line::isSame takes care of most of this
+// on its own already, we just need to handle all rail-based modes explicitly here.
+[[nodiscard]] static bool isSameTrip(KPublicTransport::JourneySection req, const KPublicTransport::JourneySection &res)
+{
+    if (req.route().line().mode() == Line::Train && Line::modeIsRailBound(res.route().line().mode())) {
+        auto route = req.route();
+        auto line = route.line();
+        line.setMode(res.route().line().mode());
+        route.setLine(line);
+        req.setRoute(route);
+    }
+    return JourneySection::isSame(req, res);
+}
+
 TripReply* Manager::queryTrip(const TripRequest &req) const
 {
     auto reply = d->makeReply<TripReply>(req);
@@ -911,7 +927,7 @@ TripReply* Manager::queryTrip(const TripRequest &req) const
                 });
                 assert(it != journey.sections().end());
                 qCDebug(Log) << "Got journey information:" << (*it).route().line().name() << (*it).scheduledDepartureTime();
-                if (JourneySection::isSame(reply->request().journeySection(), *it)) {
+                if (isSameTrip(reply->request().journeySection(), *it)) {
                     qCDebug(Log) << "Found journey information:" << (*it).route().line().name() << (*it).expectedDeparturePlatform() << (*it).expectedDepartureTime();
                     reply->addAttributions(jnyReply->attributions());
                     reply->addResult(nullptr, JourneySection(*it));
