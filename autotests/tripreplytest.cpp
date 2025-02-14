@@ -67,6 +67,9 @@ private Q_SLOTS:
         const auto stops = reply.journeySection().intermediateStops();
         QVERIFY(std::ranges::none_of(stops, [partialTrip](const auto &s) { return Stopover::isSame(s, partialTrip.departure()); }));
         QVERIFY(std::ranges::none_of(stops, [partialTrip](const auto &s) { return Stopover::isSame(s, partialTrip.arrival()); }));
+
+        QCOMPARE(reply.journeySectionBegin(), begin + 1);
+        QCOMPARE(reply.journeySectionEnd(), end + 1);
     }
 };
 

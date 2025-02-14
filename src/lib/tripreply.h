@@ -42,6 +42,11 @@ public:
      */
     [[nodiscard]] JourneySection journeySection() const;
 
+    /** Index at which journeySection() begins in trip(). */
+    [[nodiscard]] qsizetype journeySectionBegin() const;
+    /** Index at which journeySection() ends in trip(). */
+    [[nodiscard]] qsizetype journeySectionEnd() const;
+
 private:
     friend class Manager;
     friend class ManagerPrivate;

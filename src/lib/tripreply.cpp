@@ -23,6 +23,8 @@ public:
 
     TripRequest request;
     JourneySection trip;
+    qsizetype beginIdx = -1;
+    qsizetype endIdx = -1;
 };
 }
 
@@ -34,6 +36,8 @@ TripReply::TripReply(const TripRequest &req, QObject *parent)
     Q_D(TripReply);
     d->request = req;
     d->trip = req.journeySection();
+    d->beginIdx = 0;
+    d->endIdx = (qsizetype)d->trip.intermediateStops().size() + 1;
 }
 
 TripReply::~TripReply() = default;
@@ -60,14 +64,24 @@ JourneySection TripReply::journeySection() const
         return d->trip;
     }
 
-    const auto beginIdx = d->trip.indexOfStopover(partialTrip.departure());
-    const auto endIdx = d->trip.indexOfStopover(partialTrip.arrival());
-    if (beginIdx < 0 || endIdx < 0) {
+    if (d->beginIdx < 0 || d->endIdx < 0) {
         return d->trip;
     }
-    partialTrip = d->trip.subsection(beginIdx, endIdx);
+    partialTrip = d->trip.subsection(d->beginIdx, d->endIdx);
     partialTrip.setRoute(d->trip.route());
     return partialTrip;
+}
+
+qsizetype TripReply::journeySectionBegin() const
+{
+    Q_D(const TripReply);
+    return d->beginIdx;
+}
+
+qsizetype TripReply::journeySectionEnd() const
+{
+    Q_D(const TripReply);
+    return d->endIdx;
 }
 
 void TripReply::addResult(const AbstractBackend *backend, JourneySection &&journeySection)
@@ -82,6 +96,8 @@ void TripReply::addResult(const AbstractBackend *backend, JourneySection &&journ
         d->trip = journeySection;
         d->trip.setRoute(route);
     }
+    d->beginIdx = d->trip.indexOfStopover(d->request.journeySection().departure());
+    d->endIdx = d->trip.indexOfStopover(d->request.journeySection().arrival());
 
     JourneyUtil::postProcessPath(d->trip);
     d->trip.applyMetaData(request().downloadAssets());
