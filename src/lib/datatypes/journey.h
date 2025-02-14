@@ -27,7 +27,14 @@ class JourneySectionPrivate;
 class RentalVehicle;
 class Stopover;
 
-/** A segment of a journey plan. */
+/** A segment of a journey plan.
+ *
+ *  Also used for trips, ie. a single full vehicle run along a route.
+ *
+ *  This consists of a departure and an arrival stopover as well as zero or more intermediate stopovers.
+ *  For extracting sub-journeys those can be addresses by a numeric index. Index 0 refers to the departure,
+ *  1 to N refer to the n-th intermediate stopover and N + 1 refers to the arrival, for N intermediate stops.
+ */
 class KPUBLICTRANSPORT_EXPORT JourneySection
 {
     KPUBLICTRANSPORT_GADGET(JourneySection)
@@ -275,6 +282,27 @@ public:
      *  This is usually a prerequisite for efficient trip queries.
      */
     [[nodiscard]] bool hasIdentifiers() const;
+
+    /** Retrieve stopover at index @p idx. */
+    [[nodiscard]] Stopover stopover(qsizetype idx) const;
+    /** Set the stopover at index @p idx.
+     *  If @p idx is not a valid index nothing is done.
+     */
+    void setStopovver(qsizetype idx, const Stopover &stop);
+
+    /** Returns the index of @p stop in this journey section.
+     *  @returns -1 if @p stop isn't found.
+     */
+    [[nodiscard]] qsizetype indexOfStopover(const Stopover &stop) const;
+
+    /** Returns the sub-journey starting from index @p begin until
+     *  @p end (inclusive).
+     *
+     *  Both @p begin and @p end have to be valid indices and @p end has to
+     *  be strictly larger than @p begin, otherwise an invalid journey section
+     *  is returned.
+     */
+    [[nodiscard]] JourneySection subsection(qsizetype begin, qsizetype end) const;
 
 private:
     [[nodiscard]] Q_DECL_HIDDEN QVariantList intermediateStopsVariant() const;

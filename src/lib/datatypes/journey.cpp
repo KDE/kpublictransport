@@ -32,6 +32,8 @@ namespace KPublicTransport {
 class JourneySectionPrivate : public QSharedData
 {
 public:
+    [[nodiscard]] bool isValidIndex(qsizetype idx) const;
+
     JourneySection::Mode mode = JourneySection::Invalid;
     QDateTime scheduledDepartureTime;
     QDateTime expectedDepartureTime;
@@ -86,6 +88,11 @@ KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, departurePlatformLayout
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
+
+bool JourneySectionPrivate::isValidIndex(qsizetype idx) const
+{
+    return idx >= 0 && idx <= (qsizetype)(intermediateStops.size()) + 1;
+}
 
 bool JourneySection::hasExpectedDepartureTime() const
 {
@@ -553,6 +560,114 @@ void JourneySection::setIdentifier(const QString &identifierType, const QString 
 bool JourneySection::hasIdentifiers() const
 {
     return !d->ids.isEmpty();
+}
+
+Stopover JourneySection::stopover(qsizetype idx) const
+{
+    if (!d->isValidIndex(idx)) {
+        return {};
+    }
+
+    if (idx == 0) {
+        return departure();
+    }
+    if (idx <= (qsizetype)d->intermediateStops.size()) {
+        return d->intermediateStops[idx - 1];
+    }
+    return arrival();
+}
+
+void JourneySection::setStopovver(qsizetype idx, const Stopover &stop)
+{
+    if (!d->isValidIndex(idx)) {
+        return;
+    }
+
+    if (idx == 0) {
+        setDeparture(stop);
+    } else if (idx <= (qsizetype)d->intermediateStops.size()) {
+        d.detach();
+        d->intermediateStops[idx - 1] = stop;
+    } else {
+        setArrival(stop);
+    }
+}
+
+qsizetype JourneySection::indexOfStopover(const Stopover &stop) const
+{
+    if (Stopover::isSame(departure(), stop)) {
+        return 0;
+    }
+    if (const auto it = std::ranges::find_if(d->intermediateStops, [&stop](const auto &s) { return Stopover::isSame(s, stop); }); it != d->intermediateStops.end()) {
+        return std::distance(d->intermediateStops.begin(), it) + 1;
+    }
+    if (Stopover::isSame(arrival(), stop)) {
+        return (qsizetype)d->intermediateStops.size() + 1;
+    }
+    return -1;
+}
+
+JourneySection JourneySection::subsection(qsizetype begin, qsizetype end) const
+{
+    if (!d->isValidIndex(begin) || !d->isValidIndex(end) || end <= begin) {
+        return {};
+    }
+
+    auto partialTrip = *this;
+    if (begin > 0) {
+        partialTrip.setDeparture(stopover(begin));
+    }
+    if (end <= (qsizetype)d->intermediateStops.size()) {
+        partialTrip.setArrival(stopover(end));
+    }
+
+    const auto beginIt = d->intermediateStops.begin() + std::max<qsizetype>(0, begin);
+    const auto endIt = beginIt + std::max<qsizetype>(0, end - begin - 1);
+    partialTrip.setIntermediateStops({beginIt, endIt});
+
+    auto path = d->path;
+    auto pathSections = path.takeSections();
+
+    // find the closest points on the path to the departure/arrival locations
+    // we have to expect aribitrarly broken/imprecise data here...
+    qsizetype beginSection = -1, beginPoint = -1, endSection = -1, endPoint = -1;
+    double beginMinDist = std::numeric_limits<double>::max(), endMinDist = std::numeric_limits<double>::max();
+    for (std::size_t i = 0; i < pathSections.size(); ++i) {
+        const auto poly = pathSections[i].path();
+        for (qsizetype j = 0; j < poly.size(); ++j) {
+            const auto p = poly[j];
+            if (const auto d = Location::distance(p.y(), p.x(), partialTrip.from().latitude(), partialTrip.from().longitude()); d <beginMinDist) {
+                beginSection = (qsizetype)i;
+                beginPoint = j;
+                beginMinDist = d;
+            }
+            if (const auto d = Location::distance(p.y(), p.x(), partialTrip.to().latitude(), partialTrip.to().longitude()); d <endMinDist) {
+                endSection = (qsizetype)i;
+                endPoint = j;
+                endMinDist = d;
+            }
+        }
+    }
+
+    // if we found something, truncate path accordingly
+    if (std::tie(beginSection, beginPoint) < std::tie(endSection, endPoint)) {
+        // start cutting from the end, as otherwise the end indices become invalid!
+        pathSections.erase(pathSections.begin() + endSection + 1, pathSections.end());
+        pathSections.erase(pathSections.begin(), pathSections.begin() + beginSection);
+
+        auto poly = pathSections.back().path();
+        poly.erase(poly.begin() + endPoint + 1, poly.end());
+        pathSections.back().setPath(poly);
+
+        poly = pathSections.front().path();
+        poly.erase(poly.begin(), poly.begin() + beginPoint);
+        pathSections.front().setPath(poly);
+
+        path.setSections(std::move(pathSections));
+        partialTrip.setPath(path);
+    }
+
+    return partialTrip;
 }
 
 void JourneySection::applyMetaData(bool download)
