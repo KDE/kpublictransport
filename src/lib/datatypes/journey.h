@@ -229,8 +229,6 @@ public:
 
     /** Vehicle load information for this journey section, if available. */
     [[nodiscard]] const std::vector<LoadInfo>& loadInformation() const;
-    /** Moves the load information out of this object for modification. */
-    std::vector<LoadInfo>&& takeLoadInformation();
     /** Set the vehicle load information for this journey section. */
     void setLoadInformation(std::vector<LoadInfo>&& loadInfo);
 

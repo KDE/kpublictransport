@@ -10,7 +10,6 @@
 #include "journeyutil_p.h"
 #include "json_p.h"
 #include "datatypes_p.h"
-#include "loadutil_p.h"
 #include "logging.h"
 #include "mergeutil_p.h"
 #include "notesutil_p.h"
@@ -35,29 +34,15 @@ public:
     [[nodiscard]] bool isValidIndex(qsizetype idx) const;
 
     JourneySection::Mode mode = JourneySection::Invalid;
-    QDateTime scheduledDepartureTime;
-    QDateTime expectedDepartureTime;
-    QDateTime scheduledArrivalTime;
-    QDateTime expectedArrivalTime;
-    Location from;
-    Location to;
-    Route route;
-    QString scheduledDeparturePlatform;
-    QString expectedDeparturePlatform;
-    QString scheduledArrivalPlatform;
-    QString expectedArrivalPlatform;
+    Stopover departure;
+    Stopover arrival;
     int distance = 0;
     Disruption::Effect disruptionEffect = Disruption::NormalService;
     QStringList notes;
     std::vector<Stopover> intermediateStops;
     int co2Emission = -1;
-    std::vector<LoadInfo> loadInformation;
     RentalVehicle rentalVehicle;
     Path path;
-    Vehicle departureVehicleLayout;
-    Platform departurePlatformLayout;
-    Vehicle arrivalVehicleLayout;
-    Platform arrivalPlatformLayout;
     IndividualTransport individualTransport;
     IdentifierSet ids;
 };
@@ -72,21 +57,9 @@ public:
 
 KPUBLICTRANSPORT_MAKE_GADGET(JourneySection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, JourneySection::Mode, mode, setMode)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, expectedDepartureTime, setExpectedDepartureTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QDateTime, expectedArrivalTime, setExpectedArrivalTime)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, from, setFrom)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Location, to, setTo)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Route, route, setRoute)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Disruption::Effect, disruptionEffect, setDisruptionEffect)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, RentalVehicle, rentalVehicle, setRentalVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Path, path, setPath)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, departureVehicleLayout, setDepartureVehicleLayout)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, departurePlatformLayout, setDeparturePlatformLayout)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Vehicle, arrivalVehicleLayout, setArrivalVehicleLayout)
-KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Platform, arrivalPlatformLayout, setArrivalPlatformLayout)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
 
 bool JourneySectionPrivate::isValidIndex(qsizetype idx) const
@@ -94,35 +67,95 @@ bool JourneySectionPrivate::isValidIndex(qsizetype idx) const
     return idx >= 0 && idx <= (qsizetype)(intermediateStops.size()) + 1;
 }
 
+QDateTime JourneySection::scheduledDepartureTime() const
+{
+    return d->departure.scheduledDepartureTime();
+}
+
+void JourneySection::setScheduledDepartureTime(const QDateTime &value)
+{
+    d.detach();
+    d->departure.setScheduledDepartureTime(value);
+}
+
+QDateTime JourneySection::expectedDepartureTime() const
+{
+    return d->departure.expectedDepartureTime();
+}
+
+void JourneySection::setExpectedDepartureTime(const QDateTime &value)
+{
+    d.detach();
+    d->departure.setExpectedDepartureTime(value);
+}
+
 bool JourneySection::hasExpectedDepartureTime() const
 {
-    return d->expectedDepartureTime.isValid();
+    return d->departure.hasExpectedDepartureTime();
 }
 
 int JourneySection::departureDelay() const
 {
-    if (hasExpectedDepartureTime()) {
-        return d->scheduledDepartureTime.secsTo(d->expectedDepartureTime) / 60;
-    }
-    return 0;
+    return d->departure.departureDelay();
+}
+
+QDateTime JourneySection::scheduledArrivalTime() const
+{
+    return d->arrival.scheduledArrivalTime();
+}
+
+void JourneySection::setScheduledArrivalTime(const QDateTime &value)
+{
+    d.detach();
+    d->arrival.setScheduledArrivalTime(value);
+}
+
+QDateTime JourneySection::expectedArrivalTime() const
+{
+    return d->arrival.expectedArrivalTime();
+}
+
+void JourneySection::setExpectedArrivalTime(const QDateTime &value)
+{
+    d.detach();
+    d->arrival.setExpectedArrivalTime(value);
 }
 
 bool JourneySection::hasExpectedArrivalTime() const
 {
-    return d->expectedArrivalTime.isValid();
+    return d->arrival.hasExpectedArrivalTime();
 }
 
 int JourneySection::arrivalDelay() const
 {
-    if (hasExpectedArrivalTime()) {
-        return d->scheduledArrivalTime.secsTo(d->expectedArrivalTime) / 60;
-    }
-    return 0;
+    return d->arrival.arrivalDelay();
 }
 
 int JourneySection::duration() const
 {
-    return d->scheduledDepartureTime.secsTo(d->scheduledArrivalTime);
+    return d->departure.scheduledDepartureTime().secsTo(d->arrival.scheduledArrivalTime());
+}
+
+Location JourneySection::from() const
+{
+    return d->departure.stopPoint();
+}
+
+void JourneySection::setFrom(const Location &value)
+{
+    d.detach();
+    d->departure.setStopPoint(value);
+}
+
+Location JourneySection::to() const
+{
+    return d->arrival.stopPoint();
+}
+
+void JourneySection::setTo(const Location &value)
+{
+    d.detach();
+    d->arrival.setStopPoint(value);
 }
 
 int JourneySection::distance() const
@@ -132,9 +165,9 @@ int JourneySection::distance() const
     }
 
     double dist = 0;
-    if (d->from.hasCoordinate() && d->to.hasCoordinate()) {
-        auto startLat = d->from.latitude();
-        auto  startLon = d->from.longitude();
+    if (d->departure.stopPoint().hasCoordinate() && d->arrival.stopPoint().hasCoordinate()) {
+        auto startLat = d->departure.stopPoint().latitude();
+        auto  startLon = d->departure.stopPoint().longitude();
 
         for (const auto &stop : d->intermediateStops) {
             if (!stop.stopPoint().hasCoordinate()) {
@@ -145,7 +178,7 @@ int JourneySection::distance() const
             startLon = stop.stopPoint().longitude();
         }
 
-        dist += Location::distance(startLat, startLon, d->to.latitude(), d->to.longitude());
+        dist += Location::distance(startLat, startLon, d->arrival.stopPoint().latitude(), d->arrival.stopPoint().longitude());
     }
     dist = std::max<double>(dist, d->path.distance());
     return std::max((int)std::round(dist), d->distance);
@@ -157,68 +190,90 @@ void JourneySection::setDistance(int value)
     d->distance = value;
 }
 
+Route JourneySection::route() const
+{
+    return d->departure.route();
+}
+
+void JourneySection::setRoute(const Route &value)
+{
+    d.detach();
+    d->departure.setRoute(value);
+}
+
 QString JourneySection::scheduledDeparturePlatform() const
 {
-    return d->scheduledDeparturePlatform;
+    return d->departure.scheduledPlatform();
 }
 
 void JourneySection::setScheduledDeparturePlatform(const QString &platform)
 {
     d.detach();
-    d->scheduledDeparturePlatform = PlatformUtils::normalizePlatform(platform);
+    d->departure.setScheduledPlatform(platform);
 }
 
 QString JourneySection::expectedDeparturePlatform() const
 {
-    return d->expectedDeparturePlatform;
+    return d->departure.expectedPlatform();
 }
 
 void JourneySection::setExpectedDeparturePlatform(const QString &platform)
 {
     d.detach();
-    d->expectedDeparturePlatform = PlatformUtils::normalizePlatform(platform);
+    d->departure.setExpectedPlatform(platform);
 }
 
 bool JourneySection::hasExpectedDeparturePlatform() const
 {
-    return !d->expectedDeparturePlatform.isEmpty();
+    return d->departure.hasExpectedPlatform();
 }
 
 bool JourneySection::departurePlatformChanged() const
 {
-    return PlatformUtils::platformChanged(d->scheduledDeparturePlatform, d->expectedDeparturePlatform);
+    return d->departure.platformChanged();
 }
 
 QString JourneySection::scheduledArrivalPlatform() const
 {
-    return d->scheduledArrivalPlatform;
+    return d->arrival.scheduledPlatform();
 }
 
 void JourneySection::setScheduledArrivalPlatform(const QString &platform)
 {
     d.detach();
-    d->scheduledArrivalPlatform = PlatformUtils::normalizePlatform(platform);
+    d->arrival.setScheduledPlatform(platform);
 }
 
 QString JourneySection::expectedArrivalPlatform() const
 {
-    return d->expectedArrivalPlatform;
+    return d->arrival.expectedPlatform();
 }
 
 void JourneySection::setExpectedArrivalPlatform(const QString &platform)
 {
     d.detach();
-    d->expectedArrivalPlatform = PlatformUtils::normalizePlatform(platform);
+    d->arrival.setExpectedPlatform(platform);
 }
 
 bool JourneySection::hasExpectedArrivalPlatform() const
 {
-    return !d->expectedArrivalPlatform.isEmpty();
+    return d->arrival.hasExpectedPlatform();
 }
 
 bool JourneySection::arrivalPlatformChanged() const
 {
-    return PlatformUtils::platformChanged(d->scheduledArrivalPlatform, d->expectedArrivalPlatform);
+    return d->arrival.platformChanged();
+}
+
+Disruption::Effect JourneySection::disruptionEffect() const
+{
+    return std::max(d->disruptionEffect, std::max(d->departure.disruptionEffect(), d->arrival.disruptionEffect()));
+}
+
+void JourneySection::setDisruptionEffect(Disruption::Effect value)
+{
+    d.detach();
+    d->disruptionEffect = value;
 }
 
 void JourneySection::addNote(const QString &note)
@@ -265,65 +320,31 @@ QVariantList JourneySection::intermediateStopsVariant() const
 
 Stopover JourneySection::departure() const
 {
-    Stopover dep;
-    dep.setStopPoint(from());
-    dep.setRoute(route());
-    dep.setScheduledDepartureTime(scheduledDepartureTime());
-    dep.setExpectedDepartureTime(expectedDepartureTime());
-    dep.setScheduledPlatform(scheduledDeparturePlatform());
-    dep.setExpectedPlatform(expectedDeparturePlatform());
-    dep.addNotes(notes());
-    dep.setDisruptionEffect(disruptionEffect());
-    dep.setVehicleLayout(departureVehicleLayout());
-    dep.setPlatformLayout(departurePlatformLayout());
-    dep.setLoadInformation(std::vector<LoadInfo>(loadInformation()));
-    return dep;
+    return d->departure;
 }
 
 void JourneySection::setDeparture(const Stopover &departure)
 {
-    setFrom(departure.stopPoint());
-    setScheduledDepartureTime(departure.scheduledDepartureTime());
-    setExpectedDepartureTime(departure.expectedDepartureTime());
-    setScheduledDeparturePlatform(departure.scheduledPlatform());
-    setExpectedDeparturePlatform(departure.expectedPlatform());
-    setDeparturePlatformLayout(departure.platformLayout());
-    setDepartureVehicleLayout(departure.vehicleLayout());
-    if (!departure.loadInformation().empty()) {
-        setLoadInformation(std::vector<LoadInfo>(departure.loadInformation()));
+    d.detach();
+    auto dep = departure;
+    if (departure.route().line().mode() == Line::Unknown) {
+        dep.setRoute(route());
     }
-    if (departure.disruptionEffect() == Disruption::NoService) {
-        setDisruptionEffect(departure.disruptionEffect());
+    if (departure.loadInformation().empty()) {
+        dep.setLoadInformation(d->departure.takeLoadInformation());
     }
+    d->departure = dep;
 }
 
 Stopover JourneySection::arrival() const
 {
-    Stopover arr;
-    arr.setStopPoint(to());
-    arr.setRoute(route());
-    arr.setScheduledArrivalTime(scheduledArrivalTime());
-    arr.setExpectedArrivalTime(expectedArrivalTime());
-    arr.setScheduledPlatform(scheduledArrivalPlatform());
-    arr.setExpectedPlatform(expectedArrivalPlatform());
-    arr.setDisruptionEffect(disruptionEffect());
-    arr.setVehicleLayout(arrivalVehicleLayout());
-    arr.setPlatformLayout(arrivalPlatformLayout());
-    return arr;
+    return d->arrival;
 }
 
 void JourneySection::setArrival(const Stopover &arrival)
 {
-    setTo(arrival.stopPoint());
-    setScheduledArrivalTime(arrival.scheduledArrivalTime());
-    setExpectedArrivalTime(arrival.expectedArrivalTime());
-    setScheduledArrivalPlatform(arrival.scheduledPlatform());
-    setExpectedArrivalPlatform(arrival.expectedPlatform());
-    setArrivalPlatformLayout(arrival.platformLayout());
-    setArrivalVehicleLayout(arrival.vehicleLayout());
-    if (arrival.disruptionEffect() == Disruption::NoService) {
-        setDisruptionEffect(arrival.disruptionEffect());
-    }
+    d.detach();
+    d->arrival = arrival;
 }
 
 struct {
@@ -428,50 +449,94 @@ void JourneySection::setCo2Emission(int value)
 
 const std::vector<LoadInfo>& JourneySection::loadInformation() const
 {
-    return d->loadInformation;
-}
-
-std::vector<LoadInfo>&& JourneySection::takeLoadInformation()
-{
-    d.detach();
-    return std::move(d->loadInformation);
+    return d->departure.loadInformation();
 }
 
 void JourneySection::setLoadInformation(std::vector<LoadInfo> &&loadInfo)
 {
     d.detach();
-    d->loadInformation = std::move(loadInfo);
+    d->departure.setLoadInformation(std::move(loadInfo));
 }
 
 QList<LoadInfo> JourneySection::loadInformationList() const
 {
     QList<LoadInfo> l;
-    l.reserve((qsizetype)d->loadInformation.size());
-    std::copy(d->loadInformation.begin(), d->loadInformation.end(), std::back_inserter(l));
+    l.reserve((qsizetype)d->departure.loadInformation().size());
+    std::ranges::copy(d->departure.loadInformation(), std::back_inserter(l));
     return l;
 }
 
 void JourneySection::setLoadInformationList(const QList<LoadInfo> &loadInfo)
 {
-    d->loadInformation.clear();
-    d->loadInformation.reserve(loadInfo.size());
-    std::copy(loadInfo.begin(), loadInfo.end(), std::back_inserter(d->loadInformation));
+    d.detach();
+    std::vector<LoadInfo> l;
+    l.reserve(loadInfo.size());
+    std::ranges::copy(loadInfo, std::back_inserter(l));
+    d->departure.setLoadInformation(std::move(l));
+}
+
+Vehicle JourneySection::departureVehicleLayout() const
+{
+    return d->departure.vehicleLayout();
+}
+
+void JourneySection::setDepartureVehicleLayout(const Vehicle &value)
+{
+    d.detach();
+    d->departure.setVehicleLayout(value);
+}
+
+Platform JourneySection::departurePlatformLayout() const
+{
+    return d->departure.platformLayout();
+}
+
+void JourneySection::setDeparturePlatformLayout(const Platform &value)
+{
+    d.detach();
+    d->departure.setPlatformLayout(value);
+}
+
+Vehicle JourneySection::arrivalVehicleLayout() const
+{
+    return d->arrival.vehicleLayout();
+}
+
+void JourneySection::setArrivalVehicleLayout(const Vehicle &value)
+{
+    d.detach();
+    d->arrival.setVehicleLayout(value);
+}
+
+Platform JourneySection::arrivalPlatformLayout() const
+{
+    return d->arrival.platformLayout();
+}
+
+void JourneySection::setArrivalPlatformLayout(const Platform &value)
+{
+    d.detach();
+    d->arrival.setPlatformLayout(value);
 }
 
 const std::vector<KPublicTransport::Feature>& JourneySection::features() const
 {
-    return d->departureVehicleLayout.features();
+    return d->departure.vehicleLayout().features();
 }
 
-[[nodiscard]] std::vector<KPublicTransport::Feature>&& JourneySection::takeFeatures()
+std::vector<KPublicTransport::Feature>&& JourneySection::takeFeatures()
 {
-    return d->departureVehicleLayout.takeFeatures();
+    d.detach();
+    // TODO does this actually work?
+    return d->departure.vehicleLayout().takeFeatures();
 }
 
 void JourneySection::setFeatures(std::vector<KPublicTransport::Feature> &&features)
 {
     d.detach();
-    d->departureVehicleLayout.setFeatures(std::move(features));
+    auto l = d->departure.vehicleLayout();
+    l.setFeatures(std::move(features));
+    d->departure.setVehicleLayout(l);
 }
 
 QString JourneySection::iconName() const
@@ -480,7 +545,7 @@ QString JourneySection::iconName() const
         case JourneySection::Invalid:
             return {};
         case JourneySection::PublicTransport:
-            return d->route.line().iconName();
+            return d->departure.route().line().iconName();
         case JourneySection::RentedVehicle:
             return d->rentalVehicle.vehicleTypeIconName();
         case JourneySection::IndividualTransport:
@@ -540,7 +605,7 @@ QString JourneySection::label() const
 
 Load::Category JourneySection::maximumOccupancy() const
 {
-    return std::accumulate(d->loadInformation.begin(), d->loadInformation.end(), Load::Unknown, [](auto l, const auto &info) {
+    return std::accumulate(d->departure.loadInformation().begin(), d->departure.loadInformation().end(), Load::Unknown, [](auto l, const auto &info) {
         return std::max(l, info.load());
     });
 }
@@ -679,13 +744,15 @@ void JourneySection::applyMetaData(bool download)
     if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {
         return;
     }
-    auto line = d->route.line();
+    auto r = route();
+    auto line = d->departure.route().line();
     line.applyMetaData(from(), download);
-    d->route.setLine(line);
+    r.setLine(line);
+    setRoute(r);
 
     // propagate to intermediate stops
     for (auto &stop : d->intermediateStops) {
-        stop.setRoute(d->route);
+        stop.setRoute(r);
     }
 }
 
@@ -714,22 +781,22 @@ bool JourneySection::isSame(const JourneySection &lhs, const JourneySection &rhs
     enum { Equal = 1, Compatible = 0, Conflict = -1000 };
     int result = 0;
 
-    const auto depTimeDist = MergeUtil::distance(lhs.d->scheduledDepartureTime, rhs.d->scheduledDepartureTime);
+    const auto depTimeDist = MergeUtil::distance(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime());
     result += depTimeDist < 60 ? Equal : depTimeDist <= 60 ? Compatible : Conflict;
-    const auto arrTimeDist = MergeUtil::distance(lhs.d->scheduledArrivalTime, rhs.d->scheduledArrivalTime);
+    const auto arrTimeDist = MergeUtil::distance(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime());
     result += arrTimeDist < 60 ? Equal : depTimeDist <= 60 ? Compatible : Conflict;
 
-    const auto sameFrom = Location::isSame(lhs.d->from, rhs.d->from);
+    const auto sameFrom = Location::isSame(lhs.from(), rhs.from());
     const auto fromDist = Location::distance(lhs.from(), rhs.from());
     result += sameFrom ? Equal : fromDist < 200 ? Compatible : Conflict;
 
-    const auto sameTo = Location::isSame(lhs.d->to, rhs.d->to);
+    const auto sameTo = Location::isSame(lhs.to(), rhs.to());
     const auto toDist = Location::distance(lhs.to(), rhs.to());
     result += sameTo ? Equal : toDist < 200 ? Compatible : Conflict;
 
-    const auto sameRoute = Route::isSame(lhs.d->route, rhs.d->route);
-    const auto sameDir = Location::isSameName(lhs.d->route.direction(), rhs.d->route.direction());
-    const auto sameLine = Line::isSame(lhs.d->route.line(), rhs.d->route.line());
+    const auto sameRoute = Route::isSame(lhs.route(), rhs.route());
+    const auto sameDir = Location::isSameName(lhs.route().direction(), rhs.route().direction());
+    const auto sameLine = Line::isSame(lhs.route().line(), rhs.route().line());
     result += sameRoute ? Equal : (sameDir || sameLine) ? Compatible : Conflict;
 
     if (!lhs.scheduledDeparturePlatform().isEmpty() && !rhs.scheduledDeparturePlatform().isEmpty()) {
@@ -743,24 +810,10 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 {
     using namespace MergeUtil;
     auto res = lhs;
+    res.d.detach();
     res.d->ids.merge(rhs.d->ids);
-    res.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
-    res.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
-    res.setScheduledArrivalTime(mergeDateTimeMax(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
-    res.setExpectedArrivalTime(mergeDateTimeMax(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
-
-    if (res.expectedDeparturePlatform().isEmpty()) {
-        res.setExpectedDeparturePlatform(rhs.expectedDeparturePlatform());
-    }
-    if (res.expectedArrivalPlatform().isEmpty()) {
-        res.setExpectedArrivalPlatform(rhs.expectedArrivalPlatform());
-    }
-    res.setFrom(Location::merge(lhs.from(), rhs.from()));
-    res.setTo(Location::merge(lhs.to(), rhs.to()));
-    res.setRoute(Route::merge(lhs.route(), rhs.route()));
-
-    res.setScheduledDeparturePlatform(mergeString(lhs.scheduledDeparturePlatform(), rhs.scheduledDeparturePlatform()));
-    res.setScheduledArrivalPlatform(mergeString(lhs.scheduledArrivalPlatform(), rhs.scheduledArrivalPlatform()));
+    res.d->departure = Stopover::merge(lhs.d->departure, rhs.d->departure);
+    res.d->arrival = Stopover::merge(lhs.d->arrival, rhs.d->arrival);
 
     res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
     res.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
@@ -780,15 +833,9 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
     }
 
     res.d->co2Emission = std::max(lhs.d->co2Emission, rhs.d->co2Emission);
-    res.d->loadInformation = LoadUtil::merge(lhs.d->loadInformation, rhs.d->loadInformation);
     res.d->rentalVehicle = RentalVehicleUtil::merge(lhs.d->rentalVehicle, rhs.d->rentalVehicle);
 
     res.d->path = lhs.d->path.sections().size() < rhs.d->path.sections().size() ? rhs.d->path : lhs.d->path;
-
-    res.d->departureVehicleLayout = Vehicle::merge(lhs.d->departureVehicleLayout, rhs.d->departureVehicleLayout);
-    res.d->departurePlatformLayout = Platform::merge(lhs.d->departurePlatformLayout, rhs.d->departurePlatformLayout);
-    res.d->arrivalVehicleLayout = Vehicle::merge(lhs.d->arrivalVehicleLayout, rhs.d->arrivalVehicleLayout);
-    res.d->arrivalPlatformLayout = Platform::merge(lhs.d->arrivalPlatformLayout, rhs.d->arrivalPlatformLayout);
 
     return res;
 }
@@ -918,6 +965,7 @@ QList<JourneySection> Journey::sectionsList() const
 
 void Journey::setSectionsList(const QList<JourneySection> &sections)
 {
+    d.detach();
     d->sections.clear();
     d->sections.reserve(sections.size());
     std::copy(sections.begin(), sections.end(), std::back_inserter(d->sections));
