@@ -60,77 +60,13 @@ JourneySection TripReply::journeySection() const
         return d->trip;
     }
 
-    const auto &stopovers = d->trip.intermediateStops();
-    auto it = stopovers.begin();
-    if (!Stopover::isSame(partialTrip.departure(), d->trip.departure())) {
-        for (; it != stopovers.end(); ++it) {
-            if (Stopover::isSame(partialTrip.departure(), *it)) {
-                partialTrip.setDeparture(*it);
-                break;
-            }
-        }
-        if (it == stopovers.end()) {
-            return d->trip;
-        }
-        ++it;
-    }
-
-    auto it2 = it;
-    for (; it2 != stopovers.end(); ++it2) {
-        if (Stopover::isSame(partialTrip.arrival(), *it2)) {
-            partialTrip.setArrival(*it2);
-            break;
-        }
-    }
-    if (it2 == stopovers.end() && !Stopover::isSame(partialTrip.arrival(), d->trip.arrival())) {
+    const auto beginIdx = d->trip.indexOfStopover(partialTrip.departure());
+    const auto endIdx = d->trip.indexOfStopover(partialTrip.arrival());
+    if (beginIdx < 0 || endIdx < 0) {
         return d->trip;
     }
-
-    partialTrip.setIntermediateStops({it, it2});
+    partialTrip = d->trip.subsection(beginIdx, endIdx);
     partialTrip.setRoute(d->trip.route());
-
-    auto path = d->trip.path();
-    auto pathSections = path.takeSections();
-
-    // find the closest points on the path to the departure/arrival locations
-    // we have to expect aribitrarly broken/imprecise data here...
-    qsizetype beginSection = -1, beginPoint = -1, endSection = -1, endPoint = -1;
-    double beginMinDist = std::numeric_limits<double>::max(), endMinDist = std::numeric_limits<double>::max();
-    for (std::size_t i = 0; i < pathSections.size(); ++i) {
-        const auto poly = pathSections[i].path();
-        for (qsizetype j = 0; j < poly.size(); ++j) {
-            const auto p = poly[j];
-            if (const auto d = Location::distance(p.y(), p.x(), partialTrip.from().latitude(), partialTrip.from().longitude()); d <beginMinDist) {
-                beginSection = (qsizetype)i;
-                beginPoint = j;
-                beginMinDist = d;
-            }
-            if (const auto d = Location::distance(p.y(), p.x(), partialTrip.to().latitude(), partialTrip.to().longitude()); d <endMinDist) {
-                endSection = (qsizetype)i;
-                endPoint = j;
-                endMinDist = d;
-            }
-        }
-    }
-
-    // if we found something, truncate path accordingly
-    if (std::tie(beginSection, beginPoint) < std::tie(endSection, endPoint)) {
-        // start cutting from the end, as otherwise the end indices become invalid!
-        pathSections.erase(pathSections.begin() + endSection + 1, pathSections.end());
-        pathSections.erase(pathSections.begin(), pathSections.begin() + beginSection);
-
-        auto poly = pathSections.back().path();
-        poly.erase(poly.begin() + endPoint + 1, poly.end());
-        pathSections.back().setPath(poly);
-
-        poly = pathSections.front().path();
-        poly.erase(poly.begin(), poly.begin() + beginPoint);
-        pathSections.front().setPath(poly);
-
-        path.setSections(std::move(pathSections));
-        partialTrip.setPath(path);
-    }
-
     return partialTrip;
 }
 

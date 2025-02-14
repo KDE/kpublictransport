@@ -44,6 +44,7 @@ private Q_SLOTS:
         JourneySection partialTrip;
         partialTrip.setDeparture(begin >= 0 ? fullTrip.intermediateStops()[begin] : fullTrip.departure());
         partialTrip.setArrival(end < (int)fullTrip.intermediateStops().size() ? fullTrip.intermediateStops()[end] : fullTrip.arrival());
+        partialTrip.setMode(JourneySection::PublicTransport);
 
         TripRequest req(partialTrip);;
 
@@ -62,6 +63,10 @@ private Q_SLOTS:
 
         const auto path = reply.journeySection().path().sections()[0].path();
         QVERIFY(std::ranges::all_of(path, [](const auto &p) { return p.x() > 0 && p.y() > 0; }));
+
+        const auto stops = reply.journeySection().intermediateStops();
+        QVERIFY(std::ranges::none_of(stops, [partialTrip](const auto &s) { return Stopover::isSame(s, partialTrip.departure()); }));
+        QVERIFY(std::ranges::none_of(stops, [partialTrip](const auto &s) { return Stopover::isSame(s, partialTrip.arrival()); }));
     }
 };
 
