@@ -20,6 +20,9 @@
     <ojp:Destination>
      <ojp:PlaceRef>
       <ojp:StopPlaceRef>8500010</ojp:StopPlaceRef>
+      <ojp:LocationName>
+       <ojp:Text> </ojp:Text>
+      </ojp:LocationName>
      </ojp:PlaceRef>
      <ojp:DepArrTime>2020-09-06T20:54:00Z</ojp:DepArrTime>
     </ojp:Destination>

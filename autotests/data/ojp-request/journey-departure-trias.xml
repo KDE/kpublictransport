@@ -21,6 +21,9 @@
     <trias:Destination>
      <trias:LocationRef>
       <trias:StopPointRef>8500010</trias:StopPointRef>
+      <trias:LocationName>
+       <trias:Text> </trias:Text>
+      </trias:LocationName>
      </trias:LocationRef>
     </trias:Destination>
     <trias:Params>
