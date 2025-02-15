@@ -9,6 +9,9 @@
     <trias:Location>
      <trias:LocationRef>
       <trias:StopPointRef>8501687</trias:StopPointRef>
+      <trias:LocationName>
+       <trias:Text> </trias:Text>
+      </trias:LocationName>
      </trias:LocationRef>
      <trias:DepArrTime>2020-09-06T20:54:00Z</trias:DepArrTime>
     </trias:Location>

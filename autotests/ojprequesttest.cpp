@@ -102,20 +102,13 @@ private Q_SLOTS:
         builder.setTestMode(true);
         auto res = builder.buildStopEventRequest(request);
         auto ref = Test::readFile(refFileName);
-        if (res != ref) {
-            qDebug().noquote() << res;
-        }
-        QVERIFY(!res.isEmpty());
-        QCOMPARE(res, ref);
+        QVERIFY(Test::compareXml(refFileName, res, ref));
 
         builder.setUseTrias(true);
         res = builder.buildStopEventRequest(request);
-        ref = Test::readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
-        if (res != ref) {
-            qDebug().noquote() << res;
-        }
-        QVERIFY(!res.isEmpty());
-        QCOMPARE(res, ref);
+        refFileName = refFileName.insert(refFileName.size() -4, u"-trias");
+        ref = Test::readFile(refFileName);
+        QVERIFY(Test::compareXml(refFileName, res, ref));
     }
 
     void testJourneyRequest_data()
@@ -141,7 +134,7 @@ private Q_SLOTS:
         req.setIncludeIntermediateStops(false);
         req.setIncludePaths(true);
         req.setDateTimeMode(JourneyRequest::Arrival);
-        QTest::newRow("stopover-arrival") << req << s(SOURCE_DIR "/data/ojp-request/journey-arrival.xml");
+        QTest::newRow("journey-arrival") << req << s(SOURCE_DIR "/data/ojp-request/journey-arrival.xml");
     }
 
     void testJourneyRequest()
@@ -154,21 +147,13 @@ private Q_SLOTS:
         builder.setTestMode(true);
         auto res = builder.buildTripRequest(request);
         auto ref = Test::readFile(refFileName);
-        if (res != ref) {
-            qDebug().noquote() << res;
-        }
-        QVERIFY(!res.isEmpty());
-        QCOMPARE(res, ref);
+        QVERIFY(Test::compareXml(refFileName, res, ref));
 
         builder.setUseTrias(true);
         res = builder.buildTripRequest(request);
-        ref = Test::readFile(refFileName.insert(refFileName.size() -4, u"-trias"));
-
-        if (res != ref) {
-            qDebug().noquote() << res;
-        }
-        QVERIFY(!res.isEmpty());
-        QCOMPARE(res, ref);
+        refFileName = refFileName.insert(refFileName.size() -4, u"-trias");
+        ref = Test::readFile(refFileName);
+        QVERIFY(Test::compareXml(refFileName, res, ref));
     }
 };
 
