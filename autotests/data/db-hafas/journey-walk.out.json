@@ -26,7 +26,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 159911,
                 "expectedArrivalTime": "2024-12-19T18:31:00",
                 "expectedDeparturePlatform": "4",
                 "expectedDepartureTime": "2024-12-19T17:28:00",
@@ -148,7 +147,6 @@
                     ]
                 },
                 "disruptionEffect": "NoService",
-                "distance": 1165,
                 "from": {
                     "country": "DE",
                     "identifier": {
@@ -203,7 +201,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "identifier": {
                         "db": "8003368",
@@ -235,7 +232,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 158999,
                 "expectedArrivalTime": "2024-12-19T18:53:00",
                 "expectedDepartureTime": "2024-12-19T17:52:00",
                 "from": {
@@ -343,7 +339,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 1165,
                 "expectedArrivalTime": "2024-12-19T17:44:00",
                 "expectedDepartureTime": "2024-12-19T17:42:00",
                 "from": {
@@ -397,7 +392,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalTime": "2024-12-19T17:51:00",
                 "expectedDepartureTime": "2024-12-19T17:44:00",
                 "from": {
@@ -431,7 +425,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 158999,
                 "expectedArrivalTime": "2024-12-19T18:53:00",
                 "expectedDepartureTime": "2024-12-19T17:52:00",
                 "from": {

@@ -421,7 +421,6 @@
             {
                 "co2Emission": 2,
                 "disruptionEffect": "NormalService",
-                "distance": 774,
                 "from": {
                     "country": "FR",
                     "latitude": 43.610168,
@@ -994,7 +993,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 26,
                 "from": {
                     "country": "FR",
                     "latitude": 43.61124,
@@ -1530,7 +1528,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 6,
                 "from": {
                     "country": "FR",
                     "identifier": {

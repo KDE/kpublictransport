@@ -74,7 +74,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 23842,
                 "from": {
                     "country": "FR",
                     "latitude": 49.004687,
@@ -207,7 +206,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "FR",
                     "latitude": 48.861822,
@@ -262,7 +260,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "mode": "Waiting",
                 "scheduledArrivalTime": "2018-12-02T22:49:00",
                 "scheduledDepartureTime": "2018-12-02T22:44:03"
@@ -280,7 +277,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2748,
                 "from": {
                     "country": "FR",
                     "latitude": 48.861822,
@@ -661,7 +657,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 26128,
                 "from": {
                     "country": "FR",
                     "latitude": 49.004687,
@@ -948,7 +943,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 176,
                 "from": {
                     "country": "FR",
                     "latitude": 48.880769,
@@ -1003,7 +997,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "mode": "Waiting",
                 "scheduledArrivalTime": "2018-12-02T22:43:00",
                 "scheduledDepartureTime": "2018-12-02T22:39:36"
@@ -1021,7 +1014,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 4481,
                 "from": {
                     "country": "FR",
                     "latitude": 48.879476,
@@ -1620,7 +1612,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 30930,
                 "from": {
                     "country": "FR",
                     "latitude": 49.004687,
@@ -1995,7 +1986,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 253,
                 "from": {
                     "country": "FR",
                     "latitude": 48.840034,
@@ -2050,7 +2040,6 @@
             {
                 "co2Emission": 0,
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "mode": "Waiting",
                 "scheduledArrivalTime": "2018-12-02T22:51:00",
                 "scheduledDepartureTime": "2018-12-02T22:48:36"
@@ -2068,7 +2057,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2856,
                 "from": {
                     "country": "FR",
                     "latitude": 48.838729,
@@ -2565,7 +2553,6 @@
             {
                 "co2Emission": 3171,
                 "disruptionEffect": "NormalService",
-                "distance": 24446,
                 "from": {
                     "country": "FR",
                     "latitude": 49.003387,

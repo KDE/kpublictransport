@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 202,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T12:31:00",
                 "expectedDeparturePlatform": "",
@@ -280,7 +279,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 28722,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T12:58:00",
                 "expectedDeparturePlatform": "",
@@ -956,7 +954,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 55370,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T13:23:00",
                 "expectedDeparturePlatform": "",
@@ -5779,7 +5776,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 490,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T13:30:00",
                 "expectedDeparturePlatform": "",
@@ -6137,7 +6133,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 202,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T13:01:00",
                 "expectedDeparturePlatform": "",
@@ -6414,7 +6409,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 77444,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T14:02:00",
                 "expectedDeparturePlatform": "",
@@ -10112,7 +10106,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 490,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T14:09:00",
                 "expectedDeparturePlatform": "",
@@ -10470,7 +10463,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 96,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T13:18:00",
                 "expectedDeparturePlatform": "",
@@ -10617,7 +10609,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 8853,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T13:28:00",
                 "expectedDeparturePlatform": "",
@@ -10818,7 +10809,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 17,
                 "from": {
                     "country": "GB",
                     "latitude": 51.26844,
@@ -10880,7 +10870,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 90486,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T14:21:00",
                 "expectedDeparturePlatform": "",
@@ -16030,7 +16019,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 490,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2025-01-08T14:28:00",
                 "expectedDeparturePlatform": "",

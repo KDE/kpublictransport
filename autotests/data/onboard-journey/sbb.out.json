@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 0,
             "expectedDepartureTime": {
                 "timezone": "Europe/Zurich",
                 "value": "2022-04-12T10:05:00+02:00"

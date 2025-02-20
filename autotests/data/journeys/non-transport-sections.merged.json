@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 31,
             "from": {
                 "country": "CH",
                 "latitude": 47.45050048828125,
@@ -31,7 +30,6 @@
         },
         {
             "disruptionEffect": "NormalService",
-            "distance": 138607,
             "from": {
                 "country": "CH",
                 "identifier": {
@@ -76,7 +74,6 @@
         },
         {
             "disruptionEffect": "NormalService",
-            "distance": 0,
             "from": {
                 "country": "CH",
                 "latitude": 46.29402160644531,
@@ -105,14 +102,12 @@
         },
         {
             "disruptionEffect": "NormalService",
-            "distance": 0,
             "mode": "Waiting",
             "scheduledArrivalTime": "2019-03-02T18:08:00",
             "scheduledDepartureTime": "2019-03-02T18:02:00"
         },
         {
             "disruptionEffect": "NormalService",
-            "distance": 22964,
             "from": {
                 "country": "CH",
                 "identifier": {
@@ -156,7 +151,6 @@
         },
         {
             "disruptionEffect": "NormalService",
-            "distance": 166,
             "from": {
                 "country": "CH",
                 "latitude": 46.09992980957031,

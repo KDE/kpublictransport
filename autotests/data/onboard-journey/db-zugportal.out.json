@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 0,
             "expectedArrivalPlatform": "1",
             "expectedArrivalTime": "2022-10-07T10:52:00Z",
             "expectedDeparturePlatform": "2",

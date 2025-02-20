@@ -26,7 +26,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 246529,
                 "expectedArrivalTime": "2024-12-14T18:28:00",
                 "expectedDepartureTime": "2024-12-14T16:46:00",
                 "from": {
@@ -181,7 +180,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 131980,
                 "expectedArrivalTime": "2024-12-14T19:55:00",
                 "expectedDepartureTime": "2024-12-14T18:36:00",
                 "from": {
@@ -273,7 +271,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 274753,
                 "expectedArrivalTime": "2024-12-14T20:11:00",
                 "expectedDepartureTime": "2024-12-14T17:38:00",
                 "from": {
@@ -442,7 +439,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 274753,
                 "expectedArrivalTime": "2024-12-14T22:09:00",
                 "expectedDepartureTime": "2024-12-14T19:38:00",
                 "from": {

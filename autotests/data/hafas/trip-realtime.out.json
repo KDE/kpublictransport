@@ -11,7 +11,6 @@
         ]
     },
     "disruptionEffect": "NormalService",
-    "distance": 32726,
     "expectedArrivalTime": "2025-01-21T17:13:00",
     "expectedDeparturePlatform": "2",
     "expectedDepartureTime": "2025-01-21T16:21:00",

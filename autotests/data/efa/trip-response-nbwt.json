@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T08:00:00",
                 "expectedDeparturePlatform": "",
@@ -29,7 +28,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "HAFKAT1",
                 "expectedArrivalTime": "2024-05-05T08:52:00",
                 "expectedDeparturePlatform": "",
@@ -74,7 +72,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T08:59:00",
                 "expectedDeparturePlatform": "HAFKAT1",
@@ -104,7 +101,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "4",
                 "expectedArrivalTime": "2024-05-05T08:02:00",
                 "expectedDeparturePlatform": "",
@@ -130,7 +126,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T08:48:00",
                 "expectedDeparturePlatform": "4",
@@ -471,7 +466,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:15:00",
                 "expectedDeparturePlatform": "",
@@ -514,7 +508,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:46:00",
                 "expectedDeparturePlatform": "",
@@ -752,7 +745,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:48:00",
                 "expectedDeparturePlatform": "",
@@ -782,7 +774,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "Anlegesteg Fähre",
                 "expectedArrivalTime": "2024-05-05T08:20:00",
                 "expectedDeparturePlatform": "",
@@ -808,7 +799,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:04:00",
                 "expectedDeparturePlatform": "Anlegesteg Fähre",
@@ -848,7 +838,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "5",
                 "expectedArrivalTime": "2024-05-05T09:33:00",
                 "expectedDeparturePlatform": "",
@@ -879,7 +868,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:49:00",
                 "expectedDeparturePlatform": "5",
@@ -935,7 +923,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:51:00",
                 "expectedDeparturePlatform": "",
@@ -965,7 +952,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:00:00",
                 "expectedDeparturePlatform": "",
@@ -991,7 +977,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "HAFKAT1",
                 "expectedArrivalTime": "2024-05-05T09:52:00",
                 "expectedDeparturePlatform": "",
@@ -1036,7 +1021,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T09:59:00",
                 "expectedDeparturePlatform": "HAFKAT1",
@@ -1066,7 +1050,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T10:00:00",
                 "expectedDeparturePlatform": "",
@@ -1092,7 +1075,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "HAFKAT1",
                 "expectedArrivalTime": "2024-05-05T10:52:00",
                 "expectedDeparturePlatform": "",
@@ -1137,7 +1119,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T10:59:00",
                 "expectedDeparturePlatform": "HAFKAT1",
@@ -1167,7 +1148,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "Anlegesteg Fähre",
                 "expectedArrivalTime": "2024-05-05T10:20:00",
                 "expectedDeparturePlatform": "",
@@ -1193,7 +1173,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T11:04:00",
                 "expectedDeparturePlatform": "Anlegesteg Fähre",
@@ -1233,7 +1212,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "5",
                 "expectedArrivalTime": "2024-05-05T11:33:00",
                 "expectedDeparturePlatform": "",
@@ -1264,7 +1242,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T11:49:00",
                 "expectedDeparturePlatform": "5",
@@ -1320,7 +1297,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2024-05-05T11:51:00",
                 "expectedDeparturePlatform": "",

@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 138607,
                 "expectedArrivalTime": "2021-09-07T18:02:00Z",
                 "expectedDeparturePlatform": "4",
                 "expectedDepartureTime": "2021-09-07T15:46:00Z",
@@ -58,7 +57,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -91,7 +89,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 22914,
                 "expectedArrivalTime": "2021-09-07T18:54:00Z",
                 "expectedDepartureTime": "2021-09-07T18:08:00Z",
                 "from": {

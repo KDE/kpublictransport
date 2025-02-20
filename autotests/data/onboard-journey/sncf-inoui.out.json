@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 933146,
             "expectedArrivalTime": {
                 "timezone": "Europe/Paris",
                 "value": "2022-09-29T15:06:00+02:00"

@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 113119,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -89,7 +88,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -118,7 +116,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 34512,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -173,7 +170,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -202,7 +198,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 60545,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -371,7 +366,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 140,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -400,7 +394,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 32484,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -539,7 +532,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 8207,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -576,7 +568,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 67,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -605,7 +596,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 104804,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -659,7 +649,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -688,7 +677,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 34512,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -743,7 +731,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -772,7 +759,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 60545,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -939,7 +925,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 140,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -968,7 +953,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 32484,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -1107,7 +1091,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 113077,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -1177,7 +1160,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 80784,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -1248,7 +1230,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "CH",
                     "identifier": {
@@ -1277,7 +1258,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 23867,
                 "from": {
                     "country": "CH",
                     "identifier": {

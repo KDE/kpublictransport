@@ -760,7 +760,7 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
     res.setDisruptionEffect(std::max(lhs.disruptionEffect(), rhs.disruptionEffect()));
     res.setNotes(NotesUtil::mergeNotes(lhs.notes(), rhs.notes()));
-    res.setDistance(std::max(lhs.distance(), rhs.distance()));
+    res.setDistance(std::max(lhs.d->distance, rhs.d->distance));
 
     if (lhs.intermediateStops().size() == rhs.intermediateStops().size()) {
         auto stops = res.takeIntermediateStops();
@@ -817,6 +817,9 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
             obj.insert(QLatin1String("load"), LoadInfo::toJson(section.loadInformation()));
         }
     }
+    if (section.d->distance <= 0) {
+        obj.remove("distance"_L1);
+    }
     if (section.d->co2Emission < 0) {
         obj.remove(QLatin1String("co2Emission"));
     }
@@ -845,7 +848,7 @@ QJsonObject JourneySection::toJson(const JourneySection &section)
         obj.insert(QLatin1String("individualTransport"), IndividualTransport::toJson(section.individualTransport()));
     }
 
-    if (obj.size() <= 3) { // only the disruption and mode enums and distance, ie. this is an empty object
+    if (obj.size() <= 2) { // only the disruption and mode enums, ie. this is an empty object
         return {};
     }
     return obj;

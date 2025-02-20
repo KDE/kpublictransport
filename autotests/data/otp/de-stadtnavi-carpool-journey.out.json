@@ -383,7 +383,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "DE",
                     "latitude": 48.78257223002545,

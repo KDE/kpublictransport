@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 43560,
             "expectedArrivalPlatform": "1",
             "expectedArrivalTime": {
                 "timezone": "Europe/Berlin",

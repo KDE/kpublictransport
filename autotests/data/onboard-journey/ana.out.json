@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 810003,
             "from": {
                 "country": "JP",
                 "identifier": {

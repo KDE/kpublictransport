@@ -487,7 +487,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 979,
                 "from": {
                     "country": "DE",
                     "floorLevel": 0,

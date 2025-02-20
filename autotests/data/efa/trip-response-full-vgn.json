@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 5297,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2019-11-11T21:49:00",
                 "expectedDeparturePlatform": "",
@@ -81,7 +80,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 17667,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2019-11-11T22:09:00",
                 "expectedDeparturePlatform": "",

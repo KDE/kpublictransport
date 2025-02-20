@@ -185,7 +185,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 28430,
                 "from": {
                     "country": "FR",
                     "floorLevel": 0,
@@ -468,7 +467,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "FR",
                     "floorLevel": -4,
@@ -517,7 +515,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 2966,
                 "from": {
                     "country": "FR",
                     "floorLevel": -4,

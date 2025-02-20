@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NoService",
-            "distance": 9281,
             "expectedArrivalPlatform": "1",
             "expectedArrivalTime": "2019-11-07T17:21:00",
             "expectedDeparturePlatform": "1",

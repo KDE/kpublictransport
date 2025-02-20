@@ -20,7 +20,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 3439,
                 "expectedArrivalTime": "2021-03-05T16:51:00",
                 "expectedDepartureTime": "2021-03-05T16:45:00",
                 "from": {

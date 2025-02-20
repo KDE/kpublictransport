@@ -39,7 +39,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2160,
                 "expectedArrivalTime": "2024-08-10T09:39:00",
                 "expectedDepartureTime": "2024-08-10T09:34:00",
                 "from": {
@@ -176,7 +175,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 4967,
                 "expectedArrivalPlatform": "1",
                 "expectedArrivalTime": "2024-08-10T09:54:00",
                 "expectedDeparturePlatform": "1",

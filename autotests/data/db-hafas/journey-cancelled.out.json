@@ -26,7 +26,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 56321,
                 "from": {
                     "identifier": {
                         "db": "8000404",
@@ -388,7 +387,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 24854,
                 "from": {
                     "country": "DE",
                     "identifier": {
@@ -499,7 +497,6 @@
                     ]
                 },
                 "disruptionEffect": "NoService",
-                "distance": 205143,
                 "from": {
                     "country": "DE",
                     "identifier": {
@@ -650,7 +647,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 80979,
                 "expectedArrivalTime": "2025-01-11T10:43:00",
                 "expectedDepartureTime": "2025-01-11T09:28:00",
                 "from": {
@@ -936,7 +932,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 183512,
                 "expectedArrivalTime": "2025-01-11T12:26:00",
                 "expectedDepartureTime": "2025-01-11T11:16:00",
                 "from": {
@@ -1068,7 +1063,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalTime": "2025-01-11T12:41:00",
                 "expectedDepartureTime": "2025-01-11T12:26:00",
                 "from": {
@@ -1123,7 +1117,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 9780,
                 "expectedArrivalTime": "2025-01-11T12:43:00",
                 "expectedDepartureTime": "2025-01-11T12:31:00",
                 "from": {
@@ -1307,7 +1300,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2021,
                 "from": {
                     "identifier": {
                         "db": "8000404",
@@ -1381,7 +1373,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 66809,
                 "expectedArrivalTime": "2025-01-11T10:44:00",
                 "expectedDepartureTime": "2025-01-11T09:52:00",
                 "from": {
@@ -1614,7 +1605,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 150931,
                 "expectedArrivalTime": "2025-01-11T11:49:00",
                 "expectedDepartureTime": "2025-01-11T10:57:00",
                 "from": {
@@ -1691,7 +1681,6 @@
                     ]
                 },
                 "disruptionEffect": "NoService",
-                "distance": 8980,
                 "from": {
                     "country": "DE",
                     "identifier": {
@@ -1778,7 +1767,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 2021,
                 "from": {
                     "identifier": {
                         "db": "8000404",
@@ -1852,7 +1840,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 66809,
                 "expectedArrivalTime": "2025-01-11T10:44:00",
                 "expectedDepartureTime": "2025-01-11T09:52:00",
                 "from": {
@@ -2085,7 +2072,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 150931,
                 "expectedArrivalTime": "2025-01-11T11:49:00",
                 "expectedDepartureTime": "2025-01-11T10:57:00",
                 "from": {
@@ -2145,7 +2131,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "identifier": {
                         "db": "8070003",
@@ -2198,7 +2183,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 9780,
                 "expectedArrivalTime": "2025-01-11T12:17:00",
                 "expectedDeparturePlatform": "Regio 1",
                 "expectedDepartureTime": "2025-01-11T12:06:00",

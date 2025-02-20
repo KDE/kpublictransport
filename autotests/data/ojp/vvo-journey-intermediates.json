@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "country": "DE",
                     "latitude": 50.8396,
@@ -24,7 +23,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "identifier": {
                         "ifopt": "de:14511:30062",
@@ -45,7 +43,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "expectedArrivalTime": "2021-09-11T11:46:00Z",
                 "expectedDepartureTime": "2021-09-11T11:30:00Z",
                 "from": {
@@ -128,7 +125,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "identifier": {
                         "ifopt": "de:14522:51529:2:2",
@@ -149,7 +145,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "identifier": {
                         "ifopt": "de:14522:51529",

@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 324,
                 "expectedArrivalPlatform": "",
                 "expectedArrivalTime": "2020-04-27T22:13:00",
                 "expectedDeparturePlatform": "",

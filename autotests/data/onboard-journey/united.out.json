@@ -2,7 +2,6 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "distance": 0,
             "expectedArrivalTime": "2023-10-07T22:03:00",
             "expectedDepartureTime": "2023-10-07T19:37:00",
             "from": {

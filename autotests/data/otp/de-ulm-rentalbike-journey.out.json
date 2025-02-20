@@ -34,7 +34,6 @@
             },
             {
                 "disruptionEffect": "NormalService",
-                "distance": 3,
                 "from": {
                     "country": "DE",
                     "identifier": {

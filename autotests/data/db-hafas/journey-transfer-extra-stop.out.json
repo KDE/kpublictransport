@@ -3,7 +3,6 @@
         "sections": [
             {
                 "disruptionEffect": "NormalService",
-                "distance": 0,
                 "from": {
                     "identifier": {
                         "db": "8898004",
@@ -47,7 +46,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 357246,
                 "from": {
                     "country": "BE",
                     "identifier": {
@@ -273,7 +271,6 @@
                     ]
                 },
                 "disruptionEffect": "NormalService",
-                "distance": 449260,
                 "from": {
                     "country": "DE",
                     "identifier": {
