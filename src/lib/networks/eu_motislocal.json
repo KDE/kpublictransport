@@ -40,6 +40,6 @@
         "locationIdentifierType": "motis_local"
     },
     "type": {
-        "motis": true
+        "motis2": true
     }
 }
