@@ -216,7 +216,7 @@ Stopover Stopover::merge(const Stopover &lhs, const Stopover &rhs)
     using namespace MergeUtil;
     stopover.setScheduledDepartureTime(mergeDateTimeEqual(lhs.scheduledDepartureTime(), rhs.scheduledDepartureTime()));
     stopover.setExpectedDepartureTime(mergeDateTimeMax(lhs.expectedDepartureTime(), rhs.expectedDepartureTime()));
-    stopover.setScheduledArrivalTime(mergeDateTimeEqual(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
+    stopover.setScheduledArrivalTime(mergeDateTimeMax(lhs.scheduledArrivalTime(), rhs.scheduledArrivalTime()));
     stopover.setExpectedArrivalTime(mergeDateTimeMax(lhs.expectedArrivalTime(), rhs.expectedArrivalTime()));
 
     if (stopover.scheduledPlatform().isEmpty() && !rhs.scheduledPlatform().isEmpty()) {
