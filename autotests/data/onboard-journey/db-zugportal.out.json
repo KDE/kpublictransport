@@ -259,7 +259,8 @@
             "route": {
                 "line": {
                     "mode": "RapidTransit",
-                    "name": "S 4"
+                    "name": "S 4",
+                    "operatorName": "DB Regio, S-Bahn Stuttgart"
                 }
             },
             "scheduledArrivalPlatform": "1",

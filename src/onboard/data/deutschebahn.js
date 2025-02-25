@@ -63,16 +63,17 @@ function parseICETrip(response)
 function parseZugportalTrip(response)
 {
     let section = {
-        mode = 'PublicTransport',
-        route = {
-            line = {
-                name = response.name,
+        mode: 'PublicTransport',
+        route: {
+            line: {
+                name: response.name,
                 // TODO complete map from response.type
-                mode = response.type == 'CITY_TRAIN' ? 'RapidTransit' : 'Train'
+                mode: response.type == 'CITY_TRAIN' ? 'RapidTransit' : 'Train',
+                operatorName: response.operatorName
             }
         },
-        intermediateStops = [],
-        notes = []
+        intermediateStops: [],
+        notes: []
     };
     for (s of response.stops) {
         let stop = {
@@ -106,6 +107,10 @@ function parseZugportalTrip(response)
             if (message.type === "CUSTOMER_REASON") {
                 notes.push(message.textShort || message.text);
             }
+        }
+
+        if (s.occupancy && s.occupancy.economyClass) {
+            stop.load = [{ seatingClass: "2", load: s.occupancy.economyClass }]
         }
 
         section.intermediateStops.push(stop);

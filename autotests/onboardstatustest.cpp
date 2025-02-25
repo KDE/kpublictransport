@@ -113,6 +113,7 @@ private Q_SLOTS:
         QTest::newRow("db-ice-canceled-stops") << s("deutschebahn-ice") << s("db-ice-canceled-stops");
         QTest::newRow("db-zugportal") << s("deutschebahn-zugportal") << s("db-zugportal");
         QTest::newRow("db-zugportal-canceled") << s("deutschebahn-zugportal") << s("db-zugportal-canceled");
+        QTest::newRow("db-zugportal-occupancy") << s("deutschebahn-zugportal") << s("db-zugportal-occupancy");
         QTest::newRow("sncf-inoui") << s("sncf-tgv") << s("sncf-inoui");
         QTest::newRow("sbb") << s("sbb") << s("sbb");
         QTest::newRow("oebb-railnet") << s("oebb") << s("oebb-railnet");

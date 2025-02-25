@@ -2,15 +2,15 @@
     "sections": [
         {
             "disruptionEffect": "NormalService",
-            "expectedArrivalPlatform": "1",
+            "expectedArrivalPlatform": "2",
             "expectedArrivalTime": {
                 "timezone": "Europe/Berlin",
-                "value": "2023-05-04T16:29:00+02:00"
+                "value": "2025-02-22T11:59:00+01:00"
             },
-            "expectedDeparturePlatform": "1",
+            "expectedDeparturePlatform": "5",
             "expectedDepartureTime": {
                 "timezone": "Europe/Berlin",
-                "value": "2023-05-04T15:33:00+02:00"
+                "value": "2025-02-22T11:11:30+01:00"
             },
             "from": {
                 "country": "DE",
@@ -28,103 +28,74 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:47:09+02:00"
+                        "value": "2025-02-22T11:14:01+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:33:00+02:00"
+                        "value": "2025-02-22T11:14:00+01:00"
                     },
                     "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:41:00+02:00"
+                        "value": "2025-02-22T11:13:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:33:00+02:00"
+                        "value": "2025-02-22T11:14:00+01:00"
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "DE",
                         "identifier": {
-                            "ibnr": "8003266"
+                            "ibnr": "8003913"
                         },
-                        "latitude": 48.939161,
-                        "longitude": 9.329056,
-                        "name": "Kirchberg(Murr)",
+                        "latitude": 48.9262178,
+                        "longitude": 9.41953987,
+                        "name": "Maubach",
                         "region": "DE-BW",
                         "type": "Stop"
                     }
                 },
                 {
-                    "disruptionEffect": "NoService",
+                    "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:37:00+02:00"
+                        "value": "2025-02-22T11:16:37+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:38:00+02:00"
+                        "value": "2025-02-22T11:16:00+01:00"
                     },
                     "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:37:00+02:00"
+                        "value": "2025-02-22T11:16:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:38:00+02:00"
+                        "value": "2025-02-22T11:16:00+01:00"
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "DE",
                         "identifier": {
-                            "ibnr": "8001296"
+                            "ibnr": "8004233"
                         },
-                        "latitude": 48.928647,
-                        "longitude": 9.369932,
-                        "name": "Burgstall(Murr)",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NoService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:47:09+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:47:23+02:00"
-                    },
-                    "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:41:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:44:00+02:00"
-                    },
-                    "scheduledPlatform": "1",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8003266"
-                        },
-                        "latitude": 48.939161,
-                        "longitude": 9.329056,
-                        "name": "Kirchberg(Murr)",
+                        "latitude": 48.903368,
+                        "longitude": 9.415401,
+                        "name": "Nellmersbach",
                         "region": "DE-BW",
                         "type": "Stop"
                     }
@@ -133,208 +104,36 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:49:43+02:00"
+                        "value": "2025-02-22T11:19:46+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:49:00+02:00"
-                    },
-                    "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:47:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:47:00+02:00"
-                    },
-                    "scheduledPlatform": "1",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8001827"
-                        },
-                        "latitude": 48.948229,
-                        "longitude": 9.299405,
-                        "name": "Erdmannhausen",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:52:37+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:55:00+02:00"
-                    },
-                    "expectedPlatform": "2",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:51:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:55:00+02:00"
-                    },
-                    "scheduledPlatform": "2",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8003853"
-                        },
-                        "latitude": 48.943685,
-                        "longitude": 9.264452,
-                        "name": "Marbach(Neckar)",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:58:17+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:58:00+02:00"
-                    },
-                    "expectedPlatform": "2",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:57:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T15:57:00+02:00"
-                    },
-                    "scheduledPlatform": "2",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8000873"
-                        },
-                        "latitude": 48.943614,
-                        "longitude": 9.244504,
-                        "name": "Benningen(Neckar)",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:01:00+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:02:00+02:00"
-                    },
-                    "expectedPlatform": "2",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:00:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:01:00+02:00"
-                    },
-                    "scheduledPlatform": "2",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8002065"
-                        },
-                        "latitude": 48.930107,
-                        "longitude": 9.197796,
-                        "name": "Freiberg(Neckar)",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:04:00+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:05:00+02:00"
-                    },
-                    "expectedPlatform": "2",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:03:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:03:00+02:00"
-                    },
-                    "scheduledPlatform": "2",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8001967"
-                        },
-                        "latitude": 48.909209,
-                        "longitude": 9.180233,
-                        "name": "Favoritepark",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:07:00+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:08:00+02:00"
+                        "value": "2025-02-22T11:20:37+01:00"
                     },
                     "expectedPlatform": "3",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:06:00+02:00"
+                        "value": "2025-02-22T11:19:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:06:00+02:00"
+                        "value": "2025-02-22T11:20:00+01:00"
                     },
                     "scheduledPlatform": "3",
                     "stopPoint": {
                         "country": "DE",
                         "identifier": {
-                            "ibnr": "8000235"
+                            "ibnr": "8006479"
                         },
-                        "latitude": 48.891862,
-                        "longitude": 9.18542,
-                        "name": "Ludwigsburg",
+                        "latitude": 48.879583,
+                        "longitude": 9.39229,
+                        "name": "Winnenden",
                         "region": "DE-BW",
                         "type": "Stop"
                     }
@@ -343,103 +142,36 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:11:00+02:00"
+                        "value": "2025-02-22T11:22:57+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:11:00+02:00"
-                    },
-                    "expectedPlatform": "3",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:09:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:10:00+02:00"
-                    },
-                    "scheduledPlatform": "3",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8003411"
-                        },
-                        "latitude": 48.862219,
-                        "longitude": 9.179964,
-                        "name": "Kornwestheim Pbf",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:14:00+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:15:00+02:00"
-                    },
-                    "expectedPlatform": "2",
-                    "notes": [
-                        "Reparatur an einem Signal"
-                    ],
-                    "scheduledArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:13:00+02:00"
-                    },
-                    "scheduledDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:14:00+02:00"
-                    },
-                    "scheduledPlatform": "2",
-                    "stopPoint": {
-                        "country": "DE",
-                        "identifier": {
-                            "ibnr": "8005778"
-                        },
-                        "latitude": 48.829415,
-                        "longitude": 9.166739,
-                        "name": "Stuttgart-Zuffenhausen",
-                        "region": "DE-BW",
-                        "type": "Stop"
-                    }
-                },
-                {
-                    "disruptionEffect": "NormalService",
-                    "expectedArrivalTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:17:00+02:00"
-                    },
-                    "expectedDepartureTime": {
-                        "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:18:00+02:00"
+                        "value": "2025-02-22T11:23:35+01:00"
                     },
                     "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:16:00+02:00"
+                        "value": "2025-02-22T11:22:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:16:00+02:00"
+                        "value": "2025-02-22T11:23:00+01:00"
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
                         "country": "DE",
                         "identifier": {
-                            "ibnr": "8005770"
+                            "ibnr": "8005454"
                         },
-                        "latitude": 48.813673,
-                        "longitude": 9.169382,
-                        "name": "Stuttgart-Feuerbach",
+                        "latitude": 48.86834,
+                        "longitude": 9.354943,
+                        "name": "Schwaikheim",
                         "region": "DE-BW",
                         "type": "Stop"
                     }
@@ -448,33 +180,112 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:19:00+02:00"
+                        "value": "2025-02-22T11:25:43+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:20:00+02:00"
+                        "value": "2025-02-22T11:25:00+01:00"
+                    },
+                    "expectedPlatform": "2",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:25:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:25:00+01:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8004333"
+                        },
+                        "latitude": 48.859312,
+                        "longitude": 9.324715,
+                        "name": "Neustadt-Hohenacker",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:29:52+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:30:46+01:00"
+                    },
+                    "expectedPlatform": "1",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:29:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:30:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8000180"
+                        },
+                        "latitude": 48.826124,
+                        "longitude": 9.299882,
+                        "name": "Waiblingen",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:33:02+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:33:00+01:00"
                     },
                     "expectedPlatform": "4",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:18:00+02:00"
+                        "value": "2025-02-22T11:32:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:19:00+02:00"
+                        "value": "2025-02-22T11:33:00+01:00"
                     },
                     "scheduledPlatform": "4",
                     "stopPoint": {
                         "country": "DE",
                         "identifier": {
-                            "ibnr": "8005767"
+                            "ibnr": "8001974"
                         },
-                        "latitude": 48.803769,
-                        "longitude": 9.188026,
-                        "name": "Stuttgart Nord",
+                        "latitude": 48.820049,
+                        "longitude": 9.269978,
+                        "name": "Fellbach",
                         "region": "DE-BW",
                         "type": "Stop"
                     }
@@ -483,23 +294,140 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:23:00+02:00"
+                        "value": "2025-02-22T11:35:22+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:24:00+02:00"
+                        "value": "2025-02-22T11:36:02+01:00"
                     },
-                    "expectedPlatform": "101",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "expectedPlatform": "1",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:22:00+02:00"
+                        "value": "2025-02-22T11:35:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:23:00+02:00"
+                        "value": "2025-02-22T11:35:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8005774"
+                        },
+                        "latitude": 48.81527,
+                        "longitude": 9.248327,
+                        "name": "Stuttgart-Sommerrain",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:37:42+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:38:30+01:00"
+                    },
+                    "expectedPlatform": "1",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:37:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:38:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8004357"
+                        },
+                        "latitude": 48.806423,
+                        "longitude": 9.234858,
+                        "name": "Stuttgart N..rnberger Str.",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:41:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:41:52+01:00"
+                    },
+                    "expectedPlatform": "2",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:40:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:41:00+01:00"
+                    },
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8005769"
+                        },
+                        "latitude": 48.801377,
+                        "longitude": 9.217531,
+                        "name": "Stuttgart-Bad Cannstatt",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:45:17+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:46:14+01:00"
+                    },
+                    "expectedPlatform": "101",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:45:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:45:00+01:00"
                     },
                     "scheduledPlatform": "101",
                     "stopPoint": {
@@ -518,23 +446,26 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:26:00+02:00"
+                        "value": "2025-02-22T11:47:23+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:26:00+02:00"
+                        "value": "2025-02-22T11:47:54+01:00"
                     },
                     "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:24:00+02:00"
+                        "value": "2025-02-22T11:47:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:25:00+02:00"
+                        "value": "2025-02-22T11:47:00+01:00"
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
@@ -553,23 +484,26 @@
                     "disruptionEffect": "NormalService",
                     "expectedArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:27:00+02:00"
+                        "value": "2025-02-22T11:48:55+01:00"
                     },
                     "expectedDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:28:00+02:00"
+                        "value": "2025-02-22T11:49:00+01:00"
                     },
                     "expectedPlatform": "1",
-                    "notes": [
-                        "Reparatur an einem Signal"
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
                     ],
                     "scheduledArrivalTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:26:00+02:00"
+                        "value": "2025-02-22T11:48:00+01:00"
                     },
                     "scheduledDepartureTime": {
                         "timezone": "Europe/Berlin",
-                        "value": "2023-05-04T16:26:00+02:00"
+                        "value": "2025-02-22T11:49:00+01:00"
                     },
                     "scheduledPlatform": "1",
                     "stopPoint": {
@@ -583,37 +517,148 @@
                         "region": "DE-BW",
                         "type": "Stop"
                     }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:50:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:50:00+01:00"
+                    },
+                    "expectedPlatform": "1",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:50:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:50:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8006698"
+                        },
+                        "latitude": 48.770255,
+                        "longitude": 9.156959,
+                        "name": "Stuttgart Schwabstr.",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:55:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:55:00+01:00"
+                    },
+                    "expectedPlatform": "1",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:55:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:55:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8006513"
+                        },
+                        "latitude": 48.745837,
+                        "longitude": 9.105398,
+                        "name": "Stuttgart Universit..t",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:57:00+01:00"
+                    },
+                    "expectedDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:57:00+01:00"
+                    },
+                    "expectedPlatform": "1",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:57:00+01:00"
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2025-02-22T11:57:00+01:00"
+                    },
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ibnr": "8005779"
+                        },
+                        "latitude": 48.737651,
+                        "longitude": 9.116774,
+                        "name": "Stuttgart-..sterfeld",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
                 }
             ],
             "mode": "PublicTransport",
-            "notes": [
-                "Erfahrungsgemäß hat dieser Zug eine hohe Auslastung."
-            ],
             "route": {
                 "line": {
                     "mode": "RapidTransit",
-                    "name": "S 4",
+                    "name": "S 3",
                     "operatorName": "DB Regio, S-Bahn Stuttgart"
                 }
             },
-            "scheduledArrivalPlatform": "1",
+            "scheduledArrivalPlatform": "2",
             "scheduledArrivalTime": {
                 "timezone": "Europe/Berlin",
-                "value": "2023-05-04T16:28:00+02:00"
+                "value": "2025-02-22T11:59:00+01:00"
             },
-            "scheduledDeparturePlatform": "1",
+            "scheduledDeparturePlatform": "5",
             "scheduledDepartureTime": {
                 "timezone": "Europe/Berlin",
-                "value": "2023-05-04T15:33:00+02:00"
+                "value": "2025-02-22T11:11:00+01:00"
             },
             "to": {
                 "country": "DE",
                 "identifier": {
-                    "ibnr": "8006698"
+                    "ibnr": "8005776"
                 },
-                "latitude": 48.770255,
-                "longitude": 9.156959,
-                "name": "Stuttgart Schwabstr.",
+                "latitude": 48.726279,
+                "longitude": 9.113226,
+                "name": "Stuttgart-Vaihingen",
                 "region": "DE-BW",
                 "type": "Stop"
             }
