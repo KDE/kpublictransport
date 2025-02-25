@@ -218,6 +218,27 @@ static QVariant variantFromJson(const QJsonValue &v, int mt)
     return {};
 }
 
+[[nodiscard]] static std::optional<int> enumKeyToValue(const QMetaEnum &me, const QString &key)
+{
+    bool ok = false;
+    const auto value = me.keyToValue(key.toUtf8().constData(), &ok);
+    if (ok) {
+        return value;
+    }
+
+    // try harder by case-insensitive search
+    // shouldn't happen under normal circumstances, but since we also run through here for
+    // data from onboard API scripts this adds some extra robustness
+    for (int i = 0; i < me.keyCount(); ++i) {
+        if (QString::compare(key, QLatin1StringView(me.key(i)), Qt::CaseInsensitive) == 0) {
+            return me.value(i);
+        }
+    }
+
+    qCWarning(Log) << "Got invalid enum key:" << key << "for" << me.enumName();
+    return {};
+}
+
 void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
 {
     for (auto it = obj.begin(); it != obj.end(); ++it) {
@@ -237,12 +258,9 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
             continue;
         }
         if (prop.isEnumType() && it.value().isString()) { // internal enums in this QMO
-            bool ok = false;
-            const auto key = prop.enumerator().keyToValue(it.value().toString().toUtf8().constData(), &ok);
-            if (ok) {
-                prop.writeOnGadget(elem, key);
-            } else {
-                qCWarning(Log) << "Got invalid enum key:" << it.value().toString() << "for" << prop.typeName();
+            const auto value = enumKeyToValue(prop.enumerator(), it.value().toString());
+            if (value) {
+                prop.writeOnGadget(elem, *value);
             }
             continue;
         }
@@ -259,16 +277,13 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
                 continue;
             }
             const auto me = mo->enumerator(enumIdx);
-            bool success = false;
-            const auto numValue = me.keyToValue(it.value().toString().toUtf8().constData(), &success);
-            if (!success) {
-                qCWarning(Log) << "Unknown enum value" << it.value().toString() << "for" << prop.typeName();
-                continue;
+            const auto numValue = enumKeyToValue(me, it.value().toString());
+            if (numValue) {
+                auto valueData = mt.create();
+                *reinterpret_cast<int*>(valueData) = *numValue;
+                QVariant value(prop.metaType(), valueData);
+                prop.writeOnGadget(elem, value);
             }
-            auto valueData = mt.create();
-            *reinterpret_cast<int*>(valueData) = numValue;
-            QVariant value(prop.metaType(), valueData);
-            prop.writeOnGadget(elem, value);
             continue;
         }
 
