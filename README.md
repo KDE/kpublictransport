@@ -43,8 +43,8 @@ All data is retrieved from online backend services, this library is not offline 
 The following Free Software/Open Data backend types are supported:
 * [MOTIS](https://motis-project.de), e.g. used by [Transitous](https://transitous.org).
 * [OpenTripPlanner](http://opentripplanner.org), in the REST, Digitransit and Entur variants.
-* [GBFS](https://github.com/NABSA/gbfs/) feeds for rental vehicles, such as provided by
-the [OpenBike](https://github.com/stadtulm/OpenBike/) bike rental system.
+* [GBFS](https://github.com/MobilityData/gbfs) feeds for rental vehicles, such as provided by
+the [OpenBike](https://github.com/transportkollektiv/openbike) bike rental system.
 * [accessibility.cloud](https://accessibility.cloud/) for realtime elevator/escalator status information.
 
 Additionally, a few proprietary/vendor-specific backends are supported too though.
