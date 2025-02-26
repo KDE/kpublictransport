@@ -276,6 +276,7 @@ Stopover JourneySection::departure() const
     dep.setDisruptionEffect(disruptionEffect());
     dep.setVehicleLayout(departureVehicleLayout());
     dep.setPlatformLayout(departurePlatformLayout());
+    dep.setLoadInformation(std::vector<LoadInfo>(loadInformation()));
     return dep;
 }
 
@@ -288,6 +289,9 @@ void JourneySection::setDeparture(const Stopover &departure)
     setExpectedDeparturePlatform(departure.expectedPlatform());
     setDeparturePlatformLayout(departure.platformLayout());
     setDepartureVehicleLayout(departure.vehicleLayout());
+    if (!departure.loadInformation().empty()) {
+        setLoadInformation(std::vector<LoadInfo>(departure.loadInformation()));
+    }
     if (departure.disruptionEffect() == Disruption::NoService) {
         setDisruptionEffect(departure.disruptionEffect());
     }

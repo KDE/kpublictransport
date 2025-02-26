@@ -633,6 +633,12 @@
                     }
                 }
             ],
+            "load": [
+                {
+                    "load": "Low",
+                    "seatingClass": "2"
+                }
+            ],
             "mode": "PublicTransport",
             "route": {
                 "line": {
