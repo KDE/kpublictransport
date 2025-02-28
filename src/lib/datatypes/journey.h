@@ -119,10 +119,16 @@ public:
     /** Intermediate stops for consumption by QML. */
     Q_PROPERTY(QVariantList intermediateStops READ intermediateStopsVariant)
 
-    /** All departure information represented as Stopover object. */
-    Q_PROPERTY(KPublicTransport::Stopover departure READ departure STORED false)
-    /** All arrival information represented as Stopover object. */
-    Q_PROPERTY(KPublicTransport::Stopover arrival READ arrival STORED false)
+    /** The departure stopover of this journey section.
+     *  Several properties of this are forwarded as properties on the journey section object
+     *  for convenience.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, departure, setDeparture)
+    /** The arrival stopover of this jouney section.
+     *  Several properties of this are forwarded as properties on the journey section object
+     *  for convenience.
+     */
+    KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Stopover, arrival, setArrival)
 
     /** CO₂ emission during this journey section, in gram.
      *  In case the backend doesn't provide this value, it is estimated based on the
@@ -204,28 +210,6 @@ public:
     std::vector<Stopover>&& takeIntermediateStops();
     /** Set the intermediate stops. */
     void setIntermediateStops(std::vector<Stopover> &&stops);
-
-    /** Returns the departure stopover of this journey section.
-     *  This is the same information as accessible by individual properties,
-     *  so this is mainly useful if you have to interface with code expecting a Stopover object.
-     */
-    [[nodiscard]] Stopover departure() const;
-    /**
-     * Sets all departure properties from a given Stopover.
-     * This effects location and time, but doesn't modify intermediate stops or paths.
-     */
-    void setDeparture(const Stopover &departure);
-
-    /** Returns the arrival stopover of this journey section.
-     *  This is the same information as accessible by individual properties,
-     *  so this is mainly useful if you have to interface with code expecting a Stopover object.
-     */
-    [[nodiscard]] Stopover arrival() const;
-    /**
-     * Sets all arrival properties from a given Stopover.
-     * This effects location and time, but doesn't modify intermediate stops or paths.
-     */
-    void setArrival(const Stopover &arrival);
 
     /** Vehicle load information for this journey section, if available. */
     [[nodiscard]] const std::vector<LoadInfo>& loadInformation() const;

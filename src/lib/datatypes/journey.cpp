@@ -58,6 +58,7 @@ public:
 KPUBLICTRANSPORT_MAKE_GADGET(JourneySection)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, JourneySection::Mode, mode, setMode)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, QStringList, notes, setNotes)
+KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Stopover, arrival, setArrival)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, RentalVehicle, rentalVehicle, setRentalVehicle)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, Path, path, setPath)
 KPUBLICTRANSPORT_MAKE_PROPERTY(JourneySection, KPublicTransport::IndividualTransport, individualTransport, setIndividualTransport)
@@ -334,17 +335,6 @@ void JourneySection::setDeparture(const Stopover &departure)
         dep.setLoadInformation(d->departure.takeLoadInformation());
     }
     d->departure = dep;
-}
-
-Stopover JourneySection::arrival() const
-{
-    return d->arrival;
-}
-
-void JourneySection::setArrival(const Stopover &arrival)
-{
-    d.detach();
-    d->arrival = arrival;
 }
 
 struct {
