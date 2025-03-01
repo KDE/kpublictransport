@@ -248,7 +248,7 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
         }
 
         const auto prop = mo->property(idx);
-        if (!prop.isStored() || !prop.isWritable()) {
+        if (!prop.isWritable()) { // we accept !isStored() here, for deserializing legacy data
             continue;
         }
 
@@ -288,6 +288,8 @@ void Json::fromJson(const QMetaObject *mo, const QJsonObject &obj, void *elem)
         }
 
         const auto v = variantFromJson(it.value(), prop.userType());
-        prop.writeOnGadget(elem, v);
+        if (!v.isNull()) {
+            prop.writeOnGadget(elem, v);
+        }
     }
 }

@@ -2,55 +2,73 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 335,
-                "from": {
-                    "country": "DE",
-                    "latitude": 48.39952087402344,
-                    "longitude": 9.982660293579102,
-                    "name": "Origin"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:24:58Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
+                        },
+                        "latitude": 48.400374,
+                        "longitude": 9.98566,
+                        "name": "Bürgerdienste",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 2,
+                            "capacity": -1,
+                            "network": {
+                                "name": "RegioRad",
+                                "vehicleTypes": "Bicycle"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-08T09:24:58Z",
-                "scheduledDepartureTime": "2020-08-08T09:18:32Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
-                    },
-                    "latitude": 48.400374,
-                    "longitude": 9.98566,
-                    "name": "Bürgerdienste",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 2,
-                        "capacity": -1,
-                        "network": {
-                            "name": "RegioRad",
-                            "vehicleTypes": "Bicycle"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-08T09:18:32Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.39952087402344,
+                        "longitude": 9.982660293579102,
+                        "name": "Origin"
+                    }
+                },
+                "distance": 335,
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
-                    },
-                    "latitude": 48.400374,
-                    "longitude": 9.98566,
-                    "name": "Bürgerdienste",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 2,
-                        "capacity": 8,
-                        "network": {
-                            "name": "RegioRad",
-                            "vehicleTypes": "Bicycle"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:24:59Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.400399231901375,
+                        "longitude": 9.985642661495206,
+                        "name": "path"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-08T09:24:58Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "QmlrZVJlbnRhbFN0YXRpb246Nw=="
+                        },
+                        "latitude": 48.400374,
+                        "longitude": 9.98566,
+                        "name": "Bürgerdienste",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 2,
+                            "capacity": 8,
+                            "network": {
+                                "name": "RegioRad",
+                                "vehicleTypes": "Bicycle"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
@@ -59,55 +77,57 @@
                         "vehicleTypes": "Bicycle"
                     },
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2020-08-08T09:24:59Z",
-                "scheduledDepartureTime": "2020-08-08T09:24:58Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 48.400399231901375,
-                    "longitude": 9.985642661495206,
-                    "name": "path"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:25:25Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.4004982,
+                        "longitude": 9.9859694,
+                        "name": "path"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-08T09:24:59Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.400399231901375,
+                        "longitude": 9.985642661495206,
+                        "name": "path"
+                    }
+                },
                 "distance": 27,
-                "from": {
-                    "country": "DE",
-                    "latitude": 48.400399231901375,
-                    "longitude": 9.985642661495206,
-                    "name": "path"
-                },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-08T09:25:25Z",
-                "scheduledDepartureTime": "2020-08-08T09:24:59Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 48.4004982,
-                    "longitude": 9.9859694,
-                    "name": "path"
-                }
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 895,
-                "from": {
-                    "country": "DE",
-                    "latitude": 48.4004982,
-                    "longitude": 9.9859694,
-                    "name": "path"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:30:10Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.396400451660156,
+                        "longitude": 9.990229606628418,
+                        "name": "Destination"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-08T09:25:25Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.4004982,
+                        "longitude": 9.9859694,
+                        "name": "path"
+                    }
+                },
+                "distance": 895,
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2020-08-08T09:30:10Z",
-                "scheduledDepartureTime": "2020-08-08T09:25:25Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 48.396400451660156,
-                    "longitude": 9.990229606628418,
-                    "name": "Destination"
                 }
             }
         ]
@@ -115,43 +135,73 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 247,
-                "from": {
-                    "country": "DE",
-                    "latitude": 48.39952087402344,
-                    "longitude": 9.982660293579102,
-                    "name": "Origin"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:28:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "1:de:08421:1008:1:2",
+                            "ifopt": "de:08421:1008:1:2"
+                        },
+                        "latitude": 48.399294,
+                        "longitude": 9.984164,
+                        "name": "Ulm Hauptbahnhof",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-08T09:28:00Z",
-                "scheduledDepartureTime": "2020-08-08T09:24:02Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "1:de:08421:1008:1:2",
-                        "ifopt": "de:08421:1008:1:2"
-                    },
-                    "latitude": 48.399294,
-                    "longitude": 9.984164,
-                    "name": "Ulm Hauptbahnhof",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-08T09:24:02Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.39952087402344,
+                        "longitude": 9.982660293579102,
+                        "name": "Origin"
+                    }
+                },
+                "distance": 247,
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 1720,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "1:de:08421:1008:1:2",
-                        "ifopt": "de:08421:1008:1:2"
-                    },
-                    "latitude": 48.399294,
-                    "longitude": 9.984164,
-                    "name": "Ulm Hauptbahnhof",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:32:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "1:de:08421:1002:1:1",
+                            "ifopt": "de:08421:1002:1:1"
+                        },
+                        "latitude": 48.397403,
+                        "longitude": 9.992769,
+                        "name": "Ulm Rathaus",
+                        "type": "Stop"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Wissenschaftsstadt - Wiley / Ludwigsfeld",
+                        "line": {
+                            "mode": "Bus",
+                            "name": "5"
+                        }
+                    },
+                    "scheduledDepartureTime": "2020-08-08T09:28:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "1:de:08421:1008:1:2",
+                            "ifopt": "de:08421:1008:1:2"
+                        },
+                        "latitude": 48.399294,
+                        "longitude": 9.984164,
+                        "name": "Ulm Hauptbahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 1720,
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -170,51 +220,36 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Wissenschaftsstadt - Wiley / Ludwigsfeld",
-                    "line": {
-                        "mode": "Bus",
-                        "name": "5"
-                    }
-                },
-                "scheduledArrivalTime": "2020-08-08T09:32:00Z",
-                "scheduledDepartureTime": "2020-08-08T09:28:00Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "1:de:08421:1002:1:1",
-                        "ifopt": "de:08421:1002:1:1"
-                    },
-                    "latitude": 48.397403,
-                    "longitude": 9.992769,
-                    "name": "Ulm Rathaus",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 235,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "1:de:08421:1002:1:1",
-                        "ifopt": "de:08421:1002:1:1"
-                    },
-                    "latitude": 48.397403,
-                    "longitude": 9.992769,
-                    "name": "Ulm Rathaus",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-08T09:35:24Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.396400451660156,
+                        "longitude": 9.990229606628418,
+                        "name": "Destination"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-08T09:35:24Z",
-                "scheduledDepartureTime": "2020-08-08T09:32:00Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 48.396400451660156,
-                    "longitude": 9.990229606628418,
-                    "name": "Destination"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-08T09:32:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "1:de:08421:1002:1:1",
+                            "ifopt": "de:08421:1002:1:1"
+                        },
+                        "latitude": 48.397403,
+                        "longitude": 9.992769,
+                        "name": "Ulm Rathaus",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 235,
+                "mode": "Walking"
             }
         ]
     }

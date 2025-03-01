@@ -1,36 +1,47 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "JP",
-                "identifier": {
-                    "iata": "CTS",
-                    "icao": "RJCC"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "ANA62"
+                    }
                 },
-                "latitude": 42.463,
-                "longitude": 141.413,
-                "name": "CTS",
-                "region": "JP-01"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Air",
-                    "name": "ANA62"
+                "stopPoint": {
+                    "country": "JP",
+                    "identifier": {
+                        "iata": "HND",
+                        "icao": "RJTT"
+                    },
+                    "latitude": 35.339,
+                    "longitude": 139.455,
+                    "name": "HND",
+                    "region": "JP-14"
                 }
             },
-            "to": {
-                "country": "JP",
-                "identifier": {
-                    "iata": "HND",
-                    "icao": "RJTT"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "ANA62"
+                    }
                 },
-                "latitude": 35.339,
-                "longitude": 139.455,
-                "name": "HND",
-                "region": "JP-14"
-            }
+                "stopPoint": {
+                    "country": "JP",
+                    "identifier": {
+                        "iata": "CTS",
+                        "icao": "RJCC"
+                    },
+                    "latitude": 42.463,
+                    "longitude": 141.413,
+                    "name": "CTS",
+                    "region": "JP-01"
+                }
+            },
+            "mode": "PublicTransport"
         }
     ]
 }

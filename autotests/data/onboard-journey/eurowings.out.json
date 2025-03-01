@@ -1,47 +1,58 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "distance": 508477,
-            "expectedArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-12-01T20:17:59+01:00"
-            },
-            "expectedDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-12-01T19:20:59+01:00"
-            },
-            "from": {
-                "country": "DE",
-                "identifier": {
-                    "iata": "BER"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-12-01T20:17:59+01:00"
                 },
-                "latitude": 52.364044,
-                "longitude": 13.508999,
-                "name": "BER",
-                "region": "DE-BB"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Air",
-                    "name": "EW2021"
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "EW2021"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-12-01T21:17:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "iata": "STR"
+                    },
+                    "latitude": 48.689899,
+                    "longitude": 9.22196,
+                    "name": "STR",
+                    "region": "DE-BW"
                 }
             },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-12-01T21:17:00+01:00"
-            },
-            "to": {
-                "country": "DE",
-                "identifier": {
-                    "iata": "STR"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-12-01T19:20:59+01:00"
                 },
-                "latitude": 48.689899,
-                "longitude": 9.22196,
-                "name": "STR",
-                "region": "DE-BW"
-            }
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "EW2021"
+                    }
+                },
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "iata": "BER"
+                    },
+                    "latitude": 52.364044,
+                    "longitude": 13.508999,
+                    "name": "BER",
+                    "region": "DE-BB"
+                }
+            },
+            "distance": 508477,
+            "mode": "PublicTransport"
         }
     ]
 }

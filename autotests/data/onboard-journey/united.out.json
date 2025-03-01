@@ -1,31 +1,36 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedArrivalTime": "2023-10-07T22:03:00",
-            "expectedDepartureTime": "2023-10-07T19:37:00",
-            "from": {
-                "identifier": {
-                    "iata": "FRA"
-                },
-                "name": "Frankfurt, DE (FRA)"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Air",
-                    "name": "927"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": "2023-10-07T22:03:00",
+                "scheduledArrivalTime": "2023-10-07T20:00:00",
+                "scheduledPlatform": "G9",
+                "stopPoint": {
+                    "identifier": {
+                        "iata": "SFO"
+                    },
+                    "name": "San Francisco, CA, US (SFO)"
                 }
             },
-            "scheduledArrivalPlatform": "G9",
-            "scheduledArrivalTime": "2023-10-07T20:00:00",
-            "scheduledDepartureTime": "2023-10-07T17:30:00",
-            "to": {
-                "identifier": {
-                    "iata": "SFO"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": "2023-10-07T19:37:00",
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "927"
+                    }
                 },
-                "name": "San Francisco, CA, US (SFO)"
-            }
+                "scheduledDepartureTime": "2023-10-07T17:30:00",
+                "stopPoint": {
+                    "identifier": {
+                        "iata": "FRA"
+                    },
+                    "name": "Frankfurt, DE (FRA)"
+                }
+            },
+            "mode": "PublicTransport"
         }
     ]
 }

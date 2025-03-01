@@ -2,55 +2,95 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 392,
-                "from": {
-                    "country": "DE",
-                    "latitude": 52.52068,
-                    "longitude": 13.41644,
-                    "name": "52.520680, 13.416440",
-                    "region": "DE-BE"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-08-10T09:34:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "900100003"
+                        },
+                        "latitude": 52.521508,
+                        "longitude": 13.411267,
+                        "name": "S+U Alexanderplatz Bhf (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2024-08-10T09:34:00",
-                "scheduledDepartureTime": "2024-08-10T09:28:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "900100003"
-                    },
-                    "latitude": 52.521508,
-                    "longitude": 13.411267,
-                    "name": "S+U Alexanderplatz Bhf (Berlin)",
-                    "region": "DE-BE",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-08-10T09:28:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 52.52068,
+                        "longitude": 13.41644,
+                        "name": "52.520680, 13.416440",
+                        "region": "DE-BE"
+                    }
+                },
+                "distance": 392,
+                "mode": "Walking"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme möglich (S+U Alexanderplatz Bhf (Berlin))",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-08-10T09:39:00",
+                    "scheduledArrivalTime": "2024-08-10T09:39:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "900100025"
+                        },
+                        "latitude": 52.51651,
+                        "longitude": 13.381936,
+                        "name": "S+U Brandenburger Tor (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2024-08-10T09:39:00",
-                "expectedDepartureTime": "2024-08-10T09:34:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "900100003"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-08-10T09:34:00",
+                    "load": [
+                        {
+                            "load": "Medium",
+                            "seatingClass": "2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Hauptbahnhof",
+                        "line": {
+                            "color": "#003399",
+                            "name": "U5",
+                            "operatorName": "Berliner Verkehrsbetriebe",
+                            "textColor": "#ffffff"
+                        }
                     },
-                    "latitude": 52.521508,
-                    "longitude": 13.411267,
-                    "name": "S+U Alexanderplatz Bhf (Berlin)",
-                    "region": "DE-BE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-08-10T09:34:00",
+                    "scheduledPlatform": "1 (U5)",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "900100003"
+                        },
+                        "latitude": 52.521508,
+                        "longitude": 13.411267,
+                        "name": "S+U Alexanderplatz Bhf (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme möglich (S+U Alexanderplatz Bhf (Berlin))",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "unit-test": "1|69922|5|86|10082024"
@@ -130,65 +170,64 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Medium",
-                        "seatingClass": "2"
-                    }
-                ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Hauptbahnhof",
-                    "line": {
-                        "color": "#003399",
-                        "name": "U5",
-                        "operatorName": "Berliner Verkehrsbetriebe",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalPlatform": "1",
-                "scheduledArrivalTime": "2024-08-10T09:39:00",
-                "scheduledDeparturePlatform": "1 (U5)",
-                "scheduledDepartureTime": "2024-08-10T09:34:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "900100025"
-                    },
-                    "latitude": 52.51651,
-                    "longitude": 13.381936,
-                    "name": "S+U Brandenburger Tor (Berlin)",
-                    "region": "DE-BE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme möglich (S+U Brandenburger Tor (Berlin))",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-08-10T09:54:00",
+                    "expectedPlatform": "1",
+                    "scheduledArrivalTime": "2024-08-10T09:54:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "900058101"
+                        },
+                        "latitude": 52.475501,
+                        "longitude": 13.365548,
+                        "name": "S Südkreuz Bhf (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "1",
-                "expectedArrivalTime": "2024-08-10T09:54:00",
-                "expectedDeparturePlatform": "1",
-                "expectedDepartureTime": "2024-08-10T09:45:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "900100025"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-08-10T09:45:00",
+                    "expectedPlatform": "1",
+                    "route": {
+                        "direction": "S Teltow Stadt",
+                        "line": {
+                            "color": "#37874a",
+                            "name": "S25",
+                            "operatorName": "S-Bahn Berlin GmbH",
+                            "textColor": "#ffffff"
+                        }
                     },
-                    "latitude": 52.51651,
-                    "longitude": 13.381936,
-                    "name": "S+U Brandenburger Tor (Berlin)",
-                    "region": "DE-BE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-08-10T09:45:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "900100025"
+                        },
+                        "latitude": 52.51651,
+                        "longitude": 13.381936,
+                        "name": "S+U Brandenburger Tor (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme möglich (S+U Brandenburger Tor (Berlin))",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "unit-test": "1|1170|3|86|10082024"
@@ -255,56 +294,37 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "S Teltow Stadt",
-                    "line": {
-                        "color": "#37874a",
-                        "name": "S25",
-                        "operatorName": "S-Bahn Berlin GmbH",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalPlatform": "1",
-                "scheduledArrivalTime": "2024-08-10T09:54:00",
-                "scheduledDeparturePlatform": "1",
-                "scheduledDepartureTime": "2024-08-10T09:45:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "900058101"
-                    },
-                    "latitude": 52.475501,
-                    "longitude": 13.365548,
-                    "name": "S Südkreuz Bhf (Berlin)",
-                    "region": "DE-BE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 33,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "900058101"
-                    },
-                    "latitude": 52.475501,
-                    "longitude": 13.365548,
-                    "name": "S Südkreuz Bhf (Berlin)",
-                    "region": "DE-BE",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-08-10T09:54:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 52.475768,
+                        "longitude": 13.36535,
+                        "name": "52.475768, 13.365350",
+                        "region": "DE-BE"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2024-08-10T09:54:00",
-                "scheduledDepartureTime": "2024-08-10T09:54:00",
-                "to": {
-                    "country": "DE",
-                    "latitude": 52.475768,
-                    "longitude": 13.36535,
-                    "name": "52.475768, 13.365350",
-                    "region": "DE-BE"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-08-10T09:54:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "900058101"
+                        },
+                        "latitude": 52.475501,
+                        "longitude": 13.365548,
+                        "name": "S Südkreuz Bhf (Berlin)",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 33,
+                "mode": "Walking"
             }
         ]
     }

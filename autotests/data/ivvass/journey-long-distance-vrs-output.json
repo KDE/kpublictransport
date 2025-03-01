@@ -2,14 +2,40 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 3,
-                "from": {
-                    "country": "DE",
-                    "latitude": 50.943,
-                    "longitude": 6.95857,
-                    "region": "DE-NW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T12:53:00+01:00"
+                    },
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:05315:11201:7:77"
+                        },
+                        "latitude": 50.94297,
+                        "locality": "Köln",
+                        "longitude": 6.95857,
+                        "name": "Köln Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T12:52:30+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 50.943,
+                        "longitude": 6.95857,
+                        "region": "DE-NW"
+                    }
+                },
+                "distance": 3,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -29,44 +55,57 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "7",
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T12:53:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T12:52:30+01:00"
-                },
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:05315:11201:7:77"
-                    },
-                    "latitude": 50.94297,
-                    "locality": "Köln",
-                    "longitude": 6.95857,
-                    "name": "Köln Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 33759,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:05315:11201:7:77"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T13:12:00+01:00"
                     },
-                    "latitude": 50.94297,
-                    "locality": "Köln",
-                    "longitude": 6.95857,
-                    "name": "Köln Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:05314:61101:7:73"
+                        },
+                        "latitude": 50.732,
+                        "locality": "Bonn",
+                        "longitude": 7.0968,
+                        "name": "Bonn Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Stuttgart Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "IC"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T12:53:00+01:00"
+                    },
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:05315:11201:7:77"
+                        },
+                        "latitude": 50.94297,
+                        "locality": "Köln",
+                        "longitude": 6.95857,
+                        "name": "Köln Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 33759,
                 "mode": "PublicTransport",
                 "notes": [
                     "Fahrradmitnahme begrenzt möglich"
@@ -97,52 +136,43 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Stuttgart Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "IC"
-                    }
-                },
-                "scheduledArrivalPlatform": "3",
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T13:12:00+01:00"
-                },
-                "scheduledDeparturePlatform": "7",
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T12:53:00+01:00"
-                },
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:05314:61101:7:73"
-                    },
-                    "latitude": 50.732,
-                    "locality": "Bonn",
-                    "longitude": 7.0968,
-                    "name": "Bonn Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 9,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:05314:61101:7:73"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T13:12:30+01:00"
                     },
-                    "latitude": 50.732,
-                    "locality": "Bonn",
-                    "longitude": 7.0968,
-                    "name": "Bonn Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 50.732,
+                        "longitude": 7.09692,
+                        "region": "DE-NW"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T13:12:00+01:00"
+                    },
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:05314:61101:7:73"
+                        },
+                        "latitude": 50.732,
+                        "locality": "Bonn",
+                        "longitude": 7.0968,
+                        "name": "Bonn Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 9,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -162,18 +192,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T13:12:30+01:00"
-                },
-                "scheduledDeparturePlatform": "3",
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T13:12:00+01:00"
-                },
-                "to": {
-                    "latitude": 50.732
                 }
             }
         ]

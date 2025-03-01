@@ -2,17 +2,41 @@
     {
         "sections": [
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 362,
-                "from": {
-                    "country": "FR",
-                    "latitude": 43.6112489,
-                    "locality": "Toulouse",
-                    "longitude": 1.4538755,
-                    "name": "Hall 2 (Toulouse)",
-                    "region": "FR-OCC"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:08:00+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.610168,
+                        "locality": "Toulouse",
+                        "longitude": 1.455532,
+                        "name": "Marengo-SNCF (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:01:53+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.6112489,
+                        "locality": "Toulouse",
+                        "longitude": 1.4538755,
+                        "name": "Hall 2 (Toulouse)",
+                        "region": "FR-OCC"
+                    }
+                },
+                "distance": 362,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -397,40 +421,56 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:08:00+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:01:53+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 43.610168,
-                    "locality": "Toulouse",
-                    "longitude": 1.455532,
-                    "name": "Marengo-SNCF (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:09:00+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.605606,
+                        "locality": "Toulouse",
+                        "longitude": 1.448519,
+                        "name": "Jean Jaurès (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
                 "co2Emission": 2,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 43.610168,
-                    "locality": "Toulouse",
-                    "longitude": 1.455532,
-                    "name": "Marengo-SNCF (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Basso Cambo (Toulouse)",
+                        "line": {
+                            "color": "#db001b",
+                            "mode": "Metro",
+                            "modeString": "Metro",
+                            "name": "A",
+                            "operatorName": "Tisséo",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:08:00+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.610168,
+                        "locality": "Toulouse",
+                        "longitude": 1.455532,
+                        "name": "Marengo-SNCF (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "path": {
@@ -467,53 +507,44 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Basso Cambo (Toulouse)",
-                    "line": {
-                        "color": "#db001b",
-                        "mode": "Metro",
-                        "modeString": "Metro",
-                        "name": "A",
-                        "operatorName": "Tisséo",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:09:00+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:08:00+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 43.605606,
-                    "locality": "Toulouse",
-                    "longitude": 1.448519,
-                    "name": "Jean Jaurès (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 72,
-                "from": {
-                    "country": "FR",
-                    "latitude": 43.605606,
-                    "locality": "Toulouse",
-                    "longitude": 1.448519,
-                    "name": "Jean Jaurès (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:10:10+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.605159,
+                        "locality": "Toulouse",
+                        "longitude": 1.448947,
+                        "name": "81 Boulevard Lazare Carnot (Toulouse)",
+                        "region": "FR-OCC"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:09:00+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.605606,
+                        "locality": "Toulouse",
+                        "longitude": 1.448519,
+                        "name": "Jean Jaurès (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 72,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -646,22 +677,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:10:10+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:09:00+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 43.605159,
-                    "locality": "Toulouse",
-                    "longitude": 1.448947,
-                    "name": "81 Boulevard Lazare Carnot (Toulouse)",
-                    "region": "FR-OCC"
                 }
             }
         ]
@@ -669,17 +684,38 @@
     {
         "sections": [
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 154,
-                "from": {
-                    "country": "FR",
-                    "latitude": 43.6112489,
-                    "locality": "Toulouse",
-                    "longitude": 1.4538755,
-                    "name": "Hall 2 (Toulouse)",
-                    "region": "FR-OCC"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:03:09+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.61124,
+                        "locality": "Toulouse",
+                        "longitude": 1.452436,
+                        "name": " (Toulouse)",
+                        "region": "FR-OCC"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:00:40+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.6112489,
+                        "locality": "Toulouse",
+                        "longitude": 1.4538755,
+                        "name": "Hall 2 (Toulouse)",
+                        "region": "FR-OCC"
+                    }
+                },
+                "distance": 154,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -972,34 +1008,48 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:03:09+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:00:40+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 43.61124,
-                    "locality": "Toulouse",
-                    "longitude": 1.452436,
-                    "name": " (Toulouse)",
-                    "region": "FR-OCC"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:05:29+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "identifier": {
+                            "osm": "n890433076"
+                        },
+                        "latitude": 43.6110343,
+                        "locality": "Toulouse",
+                        "longitude": 1.4522922,
+                        "name": "Location vélos (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 43.61124,
-                    "locality": "Toulouse",
-                    "longitude": 1.452436,
-                    "name": " (Toulouse)",
-                    "region": "FR-OCC"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:03:09+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.61124,
+                        "locality": "Toulouse",
+                        "longitude": 1.452436,
+                        "name": " (Toulouse)",
+                        "region": "FR-OCC"
+                    }
                 },
                 "mode": "Transfer",
                 "path": {
@@ -1008,54 +1058,62 @@
                             "description": "Boulevard de Bonrepos"
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:05:29+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:03:09+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "identifier": {
-                        "osm": "n890433076"
-                    },
-                    "latitude": 43.6110343,
-                    "locality": "Toulouse",
-                    "longitude": 1.4522922,
-                    "name": "Location vélos (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 972,
-                "from": {
-                    "country": "FR",
-                    "identifier": {
-                        "osm": "n890433076"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:09:41+02:00"
                     },
-                    "latitude": 43.6110343,
-                    "locality": "Toulouse",
-                    "longitude": 1.4522922,
-                    "name": "Location vélos (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                    "stopPoint": {
+                        "country": "FR",
+                        "identifier": {
+                            "osm": "n1832846521"
+                        },
+                        "latitude": 43.6047494,
+                        "longitude": 1.4496145,
+                        "name": "Carnot - Trois Journées (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 7,
+                            "capacity": 26,
+                            "network": {
+                                "name": "VélôToulouse",
+                                "vehicleTypes": "Unknown"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:05:29+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "identifier": {
+                            "osm": "n890433076"
+                        },
+                        "latitude": 43.6110343,
+                        "locality": "Toulouse",
+                        "longitude": 1.4522922,
+                        "name": "Location vélos (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 972,
                 "mode": "RentedVehicle",
                 "path": {
                     "sections": [
@@ -1495,59 +1553,52 @@
                 },
                 "rentalVehicle": {
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:09:41+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:05:29+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "identifier": {
-                        "osm": "n1832846521"
-                    },
-                    "latitude": 43.6047494,
-                    "longitude": 1.4496145,
-                    "name": "Carnot - Trois Journées (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 7,
-                        "capacity": 26,
-                        "network": {
-                            "name": "VélôToulouse",
-                            "vehicleTypes": "Unknown"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:10:51+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.604794,
+                        "locality": "Toulouse",
+                        "longitude": 1.449574,
+                        "name": "69 Boulevard Lazare Carnot (Toulouse)",
+                        "region": "FR-OCC"
+                    }
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "identifier": {
-                        "osm": "n1832846521"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:09:41+02:00"
                     },
-                    "latitude": 43.6047494,
-                    "locality": "Toulouse",
-                    "longitude": 1.4496145,
-                    "name": "Carnot - Trois Journées (Toulouse)",
-                    "postalCode": "",
-                    "region": "FR-OCC",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 7,
-                        "capacity": 26,
-                        "network": {
-                            "name": "VélôToulouse",
-                            "vehicleTypes": "Unknown"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
+                    "stopPoint": {
+                        "country": "FR",
+                        "identifier": {
+                            "osm": "n1832846521"
+                        },
+                        "latitude": 43.6047494,
+                        "locality": "Toulouse",
+                        "longitude": 1.4496145,
+                        "name": "Carnot - Trois Journées (Toulouse)",
+                        "postalCode": "",
+                        "region": "FR-OCC",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 7,
+                            "capacity": 26,
+                            "network": {
+                                "name": "VélôToulouse",
+                                "vehicleTypes": "Unknown"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
                 "mode": "Transfer",
                 "path": {
@@ -1556,36 +1607,41 @@
                             "description": "Boulevard Lazare Carnot"
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:10:51+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:09:41+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 43.604794,
-                    "locality": "Toulouse",
-                    "longitude": 1.449574,
-                    "name": "69 Boulevard Lazare Carnot (Toulouse)",
-                    "region": "FR-OCC"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 76,
-                "from": {
-                    "country": "FR",
-                    "latitude": 43.604794,
-                    "locality": "Toulouse",
-                    "longitude": 1.449574,
-                    "name": "69 Boulevard Lazare Carnot (Toulouse)",
-                    "region": "FR-OCC"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:12:07+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.605159,
+                        "locality": "Toulouse",
+                        "longitude": 1.448947,
+                        "name": "81 Boulevard Lazare Carnot (Toulouse)",
+                        "region": "FR-OCC"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2021-10-21T17:10:51+02:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 43.604794,
+                        "locality": "Toulouse",
+                        "longitude": 1.449574,
+                        "name": "69 Boulevard Lazare Carnot (Toulouse)",
+                        "region": "FR-OCC"
+                    }
+                },
+                "distance": 76,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -1670,22 +1726,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:12:07+02:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2021-10-21T17:10:51+02:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 43.605159,
-                    "locality": "Toulouse",
-                    "longitude": 1.448947,
-                    "name": "81 Boulevard Lazare Carnot (Toulouse)",
-                    "region": "FR-OCC"
                 }
             }
         ]

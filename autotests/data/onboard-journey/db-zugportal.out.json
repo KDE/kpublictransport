@@ -1,17 +1,40 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedArrivalPlatform": "1",
-            "expectedArrivalTime": "2022-10-07T10:52:00Z",
-            "expectedDeparturePlatform": "2",
-            "expectedDepartureTime": "2022-10-07T10:02:00Z",
-            "from": {
-                "identifier": {
-                    "ibnr": "8006698"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": "2022-10-07T10:52:00Z",
+                "expectedPlatform": "1",
+                "scheduledArrivalTime": "2022-10-07T10:52:00Z",
+                "scheduledPlatform": "1",
+                "stopPoint": {
+                    "identifier": {
+                        "ibnr": "8000016"
+                    },
+                    "name": "Backnang",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": "2022-10-07T10:02:00Z",
+                "expectedPlatform": "2",
+                "route": {
+                    "line": {
+                        "mode": "RapidTransit",
+                        "name": "S 4",
+                        "operatorName": "DB Regio, S-Bahn Stuttgart"
+                    }
                 },
-                "name": "Stuttgart Schwabstr.",
-                "type": "Stop"
+                "scheduledDepartureTime": "2022-10-07T10:02:00Z",
+                "scheduledPlatform": "2",
+                "stopPoint": {
+                    "identifier": {
+                        "ibnr": "8006698"
+                    },
+                    "name": "Stuttgart Schwabstr.",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -255,25 +278,7 @@
                     }
                 }
             ],
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "RapidTransit",
-                    "name": "S 4",
-                    "operatorName": "DB Regio, S-Bahn Stuttgart"
-                }
-            },
-            "scheduledArrivalPlatform": "1",
-            "scheduledArrivalTime": "2022-10-07T10:52:00Z",
-            "scheduledDeparturePlatform": "2",
-            "scheduledDepartureTime": "2022-10-07T10:02:00Z",
-            "to": {
-                "identifier": {
-                    "ibnr": "8000016"
-                },
-                "name": "Backnang",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

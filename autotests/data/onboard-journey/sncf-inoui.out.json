@@ -1,24 +1,56 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedArrivalTime": {
-                "timezone": "Europe/Paris",
-                "value": "2022-09-29T15:06:00+02:00"
-            },
-            "expectedDepartureTime": {
-                "timezone": "Europe/Luxembourg",
-                "value": "2022-09-29T06:35:00+02:00"
-            },
-            "from": {
-                "country": "LU",
-                "identifier": {
-                    "sncf": "LULUX"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2022-09-29T15:06:00+02:00"
                 },
-                "latitude": 49.599722,
-                "longitude": 6.134722,
-                "name": "Luxembourg",
-                "type": "Stop"
+                "expectedDepartureTime": "2022-09-29T13:06:00Z",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2022-09-29T15:06:00+02:00"
+                },
+                "scheduledDepartureTime": "2022-09-29T13:06:00Z",
+                "stopPoint": {
+                    "country": "FR",
+                    "identifier": {
+                        "sncf": "FRMSC"
+                    },
+                    "latitude": 43.302666,
+                    "longitude": 5.380407,
+                    "name": "Marseille Saint-Charles",
+                    "region": "FR-PAC",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Luxembourg",
+                    "value": "2022-09-29T06:35:00+02:00"
+                },
+                "route": {
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "INOUI 9877"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Luxembourg",
+                    "value": "2022-09-29T06:35:00+02:00"
+                },
+                "stopPoint": {
+                    "country": "LU",
+                    "identifier": {
+                        "sncf": "LULUX"
+                    },
+                    "latitude": 49.599722,
+                    "longitude": 6.134722,
+                    "name": "Luxembourg",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -261,32 +293,7 @@
                     }
                 }
             ],
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "LongDistanceTrain",
-                    "name": "INOUI 9877"
-                }
-            },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Paris",
-                "value": "2022-09-29T15:06:00+02:00"
-            },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Luxembourg",
-                "value": "2022-09-29T06:35:00+02:00"
-            },
-            "to": {
-                "country": "FR",
-                "identifier": {
-                    "sncf": "FRMSC"
-                },
-                "latitude": 43.302666,
-                "longitude": 5.380407,
-                "name": "Marseille Saint-Charles",
-                "region": "FR-PAC",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

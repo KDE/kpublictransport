@@ -1,48 +1,62 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "CH",
-                "identifier": {
-                    "ibnr": "8503016"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Genève-Aéroport",
+                    "line": {
+                        "color": "#ff0000",
+                        "mode": "LongDistanceTrain",
+                        "name": "IC 722",
+                        "textColor": "#f2f2f2"
+                    }
                 },
-                "latitude": 47.45037841796875,
-                "longitude": 8.562378883361816,
-                "name": "Zürich Flughafen",
-                "region": "CH-ZH",
-                "timezone": "Europe/Zurich"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Genève-Aéroport",
-                "line": {
-                    "color": "#ff0000",
-                    "mode": "LongDistanceTrain",
-                    "name": "IC 722",
-                    "textColor": "#f2f2f2"
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2018-09-28T19:28:00+02:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "identifier": {
+                        "ibnr": "8507000"
+                    },
+                    "latitude": 46.94881820678711,
+                    "longitude": 7.4391188621521,
+                    "name": "Bern (Bern)",
+                    "region": "CH-BE",
+                    "timezone": "Europe/Zurich"
                 }
             },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2018-09-28T19:28:00+02:00"
-            },
-            "scheduledDeparturePlatform": "4",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2018-09-28T18:18:00+02:00"
-            },
-            "to": {
-                "country": "CH",
-                "identifier": {
-                    "ibnr": "8507000"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Genève-Aéroport",
+                    "line": {
+                        "color": "#ff0000",
+                        "mode": "LongDistanceTrain",
+                        "name": "IC 722",
+                        "textColor": "#f2f2f2"
+                    }
                 },
-                "latitude": 46.94881820678711,
-                "longitude": 7.4391188621521,
-                "name": "Bern (Bern)",
-                "region": "CH-BE",
-                "timezone": "Europe/Zurich"
-            }
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2018-09-28T18:18:00+02:00"
+                },
+                "scheduledPlatform": "4",
+                "stopPoint": {
+                    "country": "CH",
+                    "identifier": {
+                        "ibnr": "8503016"
+                    },
+                    "latitude": 47.45037841796875,
+                    "longitude": 8.562378883361816,
+                    "name": "Zürich Flughafen",
+                    "region": "CH-ZH",
+                    "timezone": "Europe/Zurich"
+                }
+            },
+            "mode": "PublicTransport"
         }
     ]
 }

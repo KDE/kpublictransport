@@ -2,62 +2,107 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "db": "8898004",
-                        "ibnr": "8898004"
-                    },
-                    "name": "Bruxelles-Midi Eurostar"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-18T14:25:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8800004",
+                            "ibnr": "8800004"
+                        },
+                        "name": "Bruxelles Midi"
+                    }
                 },
-                "mode": "Transfer",
-                "scheduledArrivalTime": "2025-01-18T14:25:00",
-                "scheduledDepartureTime": "2025-01-18T14:08:00",
-                "to": {
-                    "identifier": {
-                        "db": "8800004",
-                        "ibnr": "8800004"
-                    },
-                    "name": "Bruxelles Midi"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2025-01-18T14:08:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8898004",
+                            "ibnr": "8898004"
+                        },
+                        "name": "Bruxelles-Midi Eurostar"
+                    }
+                },
+                "mode": "Transfer"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-18T17:31:00",
+                    "scheduledPlatform": "19",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000105",
+                            "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                            "ibnr": "8000105",
+                            "uic": "8011068"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 50.107149,
+                        "longitude": 8.663785,
+                        "name": "Frankfurt(Main)Hbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "BE",
-                    "identifier": {
-                        "db": "8800004",
-                        "db-hafas": "A=1@O=Bruxelles Midi@X=4335695@Y=50835375@U=81@L=8800004@i=U×008814001@",
-                        "ibnr": "8800004",
-                        "uic": "8814001"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Medium",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Frankfurt(Main)Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 17",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 50.835375,
-                    "longitude": 4.335695,
-                    "name": "Bruxelles Midi",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-18T14:25:00",
+                    "stopPoint": {
+                        "country": "BE",
+                        "identifier": {
+                            "db": "8800004",
+                            "db-hafas": "A=1@O=Bruxelles Midi@X=4335695@Y=50835375@U=81@L=8800004@i=U×008814001@",
+                            "ibnr": "8800004",
+                            "uic": "8814001"
+                        },
+                        "latitude": 50.835375,
+                        "longitude": 4.335695,
+                        "name": "Bruxelles Midi",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736969532#PI#1#ZI#1253167#TA#0#DA#180125#1S#8800004#1T#1425#LS#8000105#LT#1731#PU#81#RT#3#CA#IXB#ZE#17#ZB#ICE   17#PC#0#FR#8800004#FT#1425#TO#8000105#TT#1731#"
@@ -204,86 +249,92 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Medium",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "There are border controls after the stop in Aachen Hbf. Please have your passport or identity card ready for inspection.",
                     "Train has no WC for disabled passengers. If a change in booking is required for travellers with reduced mobility, our Mobility Service Centre can be reached at +49 (0) 30 65212888.",
                     "Aufgrund von Bauarbeiten im Raum Bruxelles-Midi kommt es zu früheren Abfahrtszeiten. Bitte prüfen Sie Ihre Reiseverbindung vor der Abfahrt des Zuges noch einmal."
-                ],
-                "route": {
-                    "direction": "Frankfurt(Main)Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 17",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "19",
-                "scheduledArrivalTime": "2025-01-18T17:31:00",
-                "scheduledDepartureTime": "2025-01-18T14:25:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000105",
-                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
-                        "ibnr": "8000105",
-                        "uic": "8011068"
-                    },
-                    "latitude": 50.107149,
-                    "longitude": 8.663785,
-                    "name": "Frankfurt(Main)Hbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-18T22:25:00",
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8011113",
+                            "db-hafas": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=81@L=8011113@i=U×008065971@",
+                            "ibnr": "8011113",
+                            "uic": "8065971"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 52.475043,
+                        "longitude": 13.365315,
+                        "name": "Berlin Südkreuz",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000105",
-                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
-                        "ibnr": "8000105",
-                        "uic": "8011068"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Berlin Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 594",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 50.107149,
-                    "longitude": 8.663785,
-                    "name": "Frankfurt(Main)Hbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-18T18:14:00",
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000105",
+                            "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                            "ibnr": "8000105",
+                            "uic": "8011068"
+                        },
+                        "latitude": 50.107149,
+                        "longitude": 8.663785,
+                        "name": "Frankfurt(Main)Hbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736969532#PI#1#ZI#207900#TA#0#DA#180125#1S#8000261#1T#1446#LS#8098160#LT#2232#PU#81#RT#1#CA#ICE#ZE#594#ZB#ICE  594#PC#0#FR#8000261#FT#1446#TO#8098160#TT#2232#"
@@ -440,43 +491,7 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Berlin Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 594",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "8",
-                "scheduledArrivalTime": "2025-01-18T22:25:00",
-                "scheduledDeparturePlatform": "8",
-                "scheduledDepartureTime": "2025-01-18T18:14:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8011113",
-                        "db-hafas": "A=1@O=Berlin Südkreuz@X=13365315@Y=52475043@U=81@L=8011113@i=U×008065971@",
-                        "ibnr": "8011113",
-                        "uic": "8065971"
-                    },
-                    "latitude": 52.475043,
-                    "longitude": 13.365315,
-                    "name": "Berlin Südkreuz",
-                    "region": "DE-BE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             }
         ]
     }

@@ -2,142 +2,189 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T08:00:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T07:58:00",
-                "from": {
-                    "locality": "Friedrichshafen (Friedrichshafen)",
-                    "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T08:00:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T08:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:4:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T08:00:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T07:58:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:4:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T07:58:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T07:58:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Friedrichshafen (Friedrichshafen)",
+                        "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                    }
+                },
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "HAFKAT1",
-                "expectedArrivalTime": "2024-05-05T08:52:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T08:00:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:4",
-                        "testid": "7744001"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T08:52:00",
+                    "expectedPlatform": "HAFKAT1",
+                    "scheduledArrivalTime": "2024-05-05T08:52:00",
+                    "scheduledPlatform": "HAFKAT1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11301:91:1",
+                            "testid": "8711301"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Hafen",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:00:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Konstanz Hafen",
+                        "line": {
+                            "mode": "Ferry",
+                            "modeString": "Der",
+                            "name": "Katamaran",
+                            "operatorName": "DB AG"
+                        }
                     },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T08:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:4",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "notes": [
                     "DB-Fahrscheine gelten nicht",
                     "Bordbistro",
                     "Der Katamaran - Gruppenanmeldung 07531-3639320"
-                ],
-                "route": {
-                    "direction": "Konstanz Hafen",
-                    "line": {
-                        "mode": "Ferry",
-                        "modeString": "Der",
-                        "name": "Katamaran",
-                        "operatorName": "DB AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "HAFKAT1",
-                "scheduledArrivalTime": "2024-05-05T08:52:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T08:00:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:11301:91:1",
-                        "testid": "8711301"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Hafen",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T08:59:00",
-                "expectedDeparturePlatform": "HAFKAT1",
-                "expectedDepartureTime": "2024-05-05T08:52:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:11301:91:1",
-                        "testid": "8711301"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Hafen",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T08:59:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T08:59:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Altstadt (Konstanz)",
+                        "name": "Altstadt (Konstanz), Weg im Gebäude"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T08:59:00",
-                "scheduledDeparturePlatform": "HAFKAT1",
-                "scheduledDepartureTime": "2024-05-05T08:52:00",
-                "to": {
-                    "locality": "Altstadt (Konstanz)",
-                    "name": "Altstadt (Konstanz), Weg im Gebäude"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:52:00",
+                    "expectedPlatform": "HAFKAT1",
+                    "scheduledDepartureTime": "2024-05-05T08:52:00",
+                    "scheduledPlatform": "HAFKAT1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11301:91:1",
+                            "testid": "8711301"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Hafen",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
             }
         ]
     },
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "4",
-                "expectedArrivalTime": "2024-05-05T08:02:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T08:00:00",
-                "from": {
-                    "locality": "Friedrichshafen (Friedrichshafen)",
-                    "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T08:02:00",
+                    "expectedPlatform": "4",
+                    "scheduledArrivalTime": "2024-05-05T08:02:00",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:3:4",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "4",
-                "scheduledArrivalTime": "2024-05-05T08:02:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T08:00:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:3:4",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:00:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T08:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Friedrichshafen (Friedrichshafen)",
+                        "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                    }
+                },
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T08:48:00",
-                "expectedDeparturePlatform": "4",
-                "expectedDepartureTime": "2024-05-05T08:02:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:3:4",
-                        "testid": "7744001"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T08:48:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T08:48:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:4702:3:1",
+                            "testid": "7704702"
+                        },
+                        "locality": "Meersburg",
+                        "name": "Meersburg, Fähre",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:02:00",
+                    "expectedPlatform": "4",
+                    "route": {
+                        "direction": "Bahnhof Überlingen",
+                        "line": {
+                            "mode": "Bus",
+                            "modeString": "ECHTBODENSEEBUS",
+                            "name": "100",
+                            "operatorName": "RAB"
+                        }
                     },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T08:02:00",
+                    "scheduledPlatform": "4",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:3:4",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -440,86 +487,96 @@
                 "mode": "PublicTransport",
                 "notes": [
                     "Behindertengerecht"
-                ],
-                "route": {
-                    "direction": "Bahnhof Überlingen",
-                    "line": {
-                        "mode": "Bus",
-                        "modeString": "ECHTBODENSEEBUS",
-                        "name": "100",
-                        "operatorName": "RAB"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T08:48:00",
-                "scheduledDeparturePlatform": "4",
-                "scheduledDepartureTime": "2024-05-05T08:02:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:4702:3:1",
-                        "testid": "7704702"
-                    },
-                    "locality": "Meersburg",
-                    "name": "Meersburg, Fähre",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:15:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:00:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:4702:1",
-                        "testid": "7704702"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:15:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:15:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11351:2:1",
+                            "testid": "8711351"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Staad/Autofähre",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:00:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Konstanz Staad/Autofähre",
+                        "line": {
+                            "mode": "Ferry",
+                            "modeString": "Fähre",
+                            "name": "Fähre",
+                            "operatorName": "Stadtwerke Konstanz"
+                        }
                     },
-                    "locality": "Meersburg",
-                    "name": "Meersburg, Fähre",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T09:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:4702:1",
+                            "testid": "7704702"
+                        },
+                        "locality": "Meersburg",
+                        "name": "Meersburg, Fähre",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "notes": [
                     "Besonderer Fahrpreis - Fahrkarten für die Buslinien 700 und 7394 werden anerkannt"
-                ],
-                "route": {
-                    "direction": "Konstanz Staad/Autofähre",
-                    "line": {
-                        "mode": "Ferry",
-                        "modeString": "Fähre",
-                        "name": "Fähre",
-                        "operatorName": "Stadtwerke Konstanz"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:15:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:00:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:11351:2:1",
-                        "testid": "8711351"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Staad/Autofähre",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:46:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:25:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:11351:1:1",
-                        "testid": "8711351"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:46:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:46:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:6554:10:2",
+                            "testid": "8706554"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:25:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Konstanz Staad/Autofähre",
+                        "line": {
+                            "mode": "Bus",
+                            "modeString": "Stadtbus",
+                            "name": "1",
+                            "operatorName": "SWK_B"
+                        }
                     },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Staad/Autofähre",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T09:25:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11351:1:1",
+                            "testid": "8711351"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Staad/Autofähre",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -719,167 +776,192 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Konstanz Staad/Autofähre",
-                    "line": {
-                        "mode": "Bus",
-                        "modeString": "Stadtbus",
-                        "name": "1",
-                        "operatorName": "SWK_B"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:46:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:25:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:6554:10:2",
-                        "testid": "8706554"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Bahnhof",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:48:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:46:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:6554:10:2",
-                        "testid": "8706554"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Bahnhof",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:48:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:48:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Altstadt (Konstanz)",
+                        "name": "Altstadt (Konstanz), Weg im Gebäude"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:48:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:46:00",
-                "to": {
-                    "locality": "Altstadt (Konstanz)",
-                    "name": "Altstadt (Konstanz), Weg im Gebäude"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:46:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T09:46:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:6554:10:2",
+                            "testid": "8706554"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
             }
         ]
     },
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "Anlegesteg Fähre",
-                "expectedArrivalTime": "2024-05-05T08:20:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T08:17:00",
-                "from": {
-                    "locality": "Friedrichshafen (Friedrichshafen)",
-                    "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
-                },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "Anlegesteg Fähre",
-                "scheduledArrivalTime": "2024-05-05T08:20:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T08:17:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:2:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:04:00",
-                "expectedDeparturePlatform": "Anlegesteg Fähre",
-                "expectedDepartureTime": "2024-05-05T08:20:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:2:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                },
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Romanshorn, Autoquai",
-                    "line": {
-                        "mode": "Ferry",
-                        "modeString": "Fähre",
-                        "name": "",
-                        "operatorName": "Schweizerische Bodensee-Schifffahrt AG"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T08:20:00",
+                    "expectedPlatform": "Anlegesteg Fähre",
+                    "scheduledArrivalTime": "2024-05-05T08:20:00",
+                    "scheduledPlatform": "Anlegesteg Fähre",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:2:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
                     }
                 },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:04:00",
-                "scheduledDeparturePlatform": "Anlegesteg Fähre",
-                "scheduledDepartureTime": "2024-05-05T08:20:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20541",
-                        "testid": "53020541"
-                    },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Autoquai",
-                    "type": "Stop"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "5",
-                "expectedArrivalTime": "2024-05-05T09:33:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:28:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20541",
-                        "testid": "53020541"
-                    },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Autoquai",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:17:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T08:17:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Friedrichshafen (Friedrichshafen)",
+                        "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "5",
-                "scheduledArrivalTime": "2024-05-05T09:33:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:28:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20539:90",
-                        "testid": "53020539"
-                    },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Bahnhof",
-                    "type": "Stop"
-                }
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:49:00",
-                "expectedDeparturePlatform": "5",
-                "expectedDepartureTime": "2024-05-05T09:33:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20539:90",
-                        "testid": "53020539"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:04:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:04:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20541",
+                            "testid": "53020541"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Autoquai",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:20:00",
+                    "expectedPlatform": "Anlegesteg Fähre",
+                    "route": {
+                        "direction": "Romanshorn, Autoquai",
+                        "line": {
+                            "mode": "Ferry",
+                            "modeString": "Fähre",
+                            "name": "",
+                            "operatorName": "Schweizerische Bodensee-Schifffahrt AG"
+                        }
                     },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Bahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T08:20:00",
+                    "scheduledPlatform": "Anlegesteg Fähre",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:2:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:33:00",
+                    "expectedPlatform": "5",
+                    "scheduledArrivalTime": "2024-05-05T09:33:00",
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20539:90",
+                            "testid": "53020539"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:28:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T09:28:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20541",
+                            "testid": "53020541"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Autoquai",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:49:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:49:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:6554:1",
+                            "testid": "8706554"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:33:00",
+                    "expectedPlatform": "5",
+                    "route": {
+                        "direction": "Konstanz",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "InterRegio",
+                            "name": "1",
+                            "operatorName": "THURBO"
+                        }
+                    },
+                    "scheduledDepartureTime": "2024-05-05T09:33:00",
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20539:90",
+                            "testid": "53020539"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Bahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -897,363 +979,418 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Konstanz",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "InterRegio",
-                        "name": "1",
-                        "operatorName": "THURBO"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:49:00",
-                "scheduledDeparturePlatform": "5",
-                "scheduledDepartureTime": "2024-05-05T09:33:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:6554:1",
-                        "testid": "8706554"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Bahnhof",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:51:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:49:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:6554:1",
-                        "testid": "8706554"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Bahnhof",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:51:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:51:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Altstadt (Konstanz)",
+                        "name": "Altstadt (Konstanz), Weg im Gebäude"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:51:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:49:00",
-                "to": {
-                    "locality": "Altstadt (Konstanz)",
-                    "name": "Altstadt (Konstanz), Weg im Gebäude"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:49:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T09:49:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:6554:1",
+                            "testid": "8706554"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
             }
         ]
     },
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:00:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T08:58:00",
-                "from": {
-                    "locality": "Friedrichshafen (Friedrichshafen)",
-                    "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:00:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:4:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:00:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T08:58:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:4:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T08:58:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T08:58:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Friedrichshafen (Friedrichshafen)",
+                        "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                    }
+                },
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "HAFKAT1",
-                "expectedArrivalTime": "2024-05-05T09:52:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:00:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:4",
-                        "testid": "7744001"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:52:00",
+                    "expectedPlatform": "HAFKAT1",
+                    "scheduledArrivalTime": "2024-05-05T09:52:00",
+                    "scheduledPlatform": "HAFKAT1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11301:91:1",
+                            "testid": "8711301"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Hafen",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:00:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Konstanz Hafen",
+                        "line": {
+                            "mode": "Ferry",
+                            "modeString": "Der",
+                            "name": "Katamaran",
+                            "operatorName": "DB AG"
+                        }
                     },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T09:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:4",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "notes": [
                     "DB-Fahrscheine gelten nicht",
                     "Bordbistro",
                     "Der Katamaran - Gruppenanmeldung 07531-3639320"
-                ],
-                "route": {
-                    "direction": "Konstanz Hafen",
-                    "line": {
-                        "mode": "Ferry",
-                        "modeString": "Der",
-                        "name": "Katamaran",
-                        "operatorName": "DB AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "HAFKAT1",
-                "scheduledArrivalTime": "2024-05-05T09:52:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:00:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:11301:91:1",
-                        "testid": "8711301"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Hafen",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T09:59:00",
-                "expectedDeparturePlatform": "HAFKAT1",
-                "expectedDepartureTime": "2024-05-05T09:52:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:11301:91:1",
-                        "testid": "8711301"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Hafen",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T09:59:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T09:59:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Altstadt (Konstanz)",
+                        "name": "Altstadt (Konstanz), Weg im Gebäude"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T09:59:00",
-                "scheduledDeparturePlatform": "HAFKAT1",
-                "scheduledDepartureTime": "2024-05-05T09:52:00",
-                "to": {
-                    "locality": "Altstadt (Konstanz)",
-                    "name": "Altstadt (Konstanz), Weg im Gebäude"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:52:00",
+                    "expectedPlatform": "HAFKAT1",
+                    "scheduledDepartureTime": "2024-05-05T09:52:00",
+                    "scheduledPlatform": "HAFKAT1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11301:91:1",
+                            "testid": "8711301"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Hafen",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
             }
         ]
     },
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T10:00:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T09:58:00",
-                "from": {
-                    "locality": "Friedrichshafen (Friedrichshafen)",
-                    "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T10:00:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T10:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:4:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T10:00:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T09:58:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:4:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T09:58:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T09:58:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Friedrichshafen (Friedrichshafen)",
+                        "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                    }
+                },
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "HAFKAT1",
-                "expectedArrivalTime": "2024-05-05T10:52:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T10:00:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:4",
-                        "testid": "7744001"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T10:52:00",
+                    "expectedPlatform": "HAFKAT1",
+                    "scheduledArrivalTime": "2024-05-05T10:52:00",
+                    "scheduledPlatform": "HAFKAT1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11301:91:1",
+                            "testid": "8711301"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Hafen",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T10:00:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Konstanz Hafen",
+                        "line": {
+                            "mode": "Ferry",
+                            "modeString": "Der",
+                            "name": "Katamaran",
+                            "operatorName": "DB AG"
+                        }
                     },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T10:00:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:4",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "notes": [
                     "DB-Fahrscheine gelten nicht",
                     "Bordbistro",
                     "Der Katamaran - Gruppenanmeldung 07531-3639320"
-                ],
-                "route": {
-                    "direction": "Konstanz Hafen",
-                    "line": {
-                        "mode": "Ferry",
-                        "modeString": "Der",
-                        "name": "Katamaran",
-                        "operatorName": "DB AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "HAFKAT1",
-                "scheduledArrivalTime": "2024-05-05T10:52:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T10:00:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:11301:91:1",
-                        "testid": "8711301"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Hafen",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T10:59:00",
-                "expectedDeparturePlatform": "HAFKAT1",
-                "expectedDepartureTime": "2024-05-05T10:52:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:11301:91:1",
-                        "testid": "8711301"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Hafen",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T10:59:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T10:59:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Altstadt (Konstanz)",
+                        "name": "Altstadt (Konstanz), Weg im Gebäude"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T10:59:00",
-                "scheduledDeparturePlatform": "HAFKAT1",
-                "scheduledDepartureTime": "2024-05-05T10:52:00",
-                "to": {
-                    "locality": "Altstadt (Konstanz)",
-                    "name": "Altstadt (Konstanz), Weg im Gebäude"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T10:52:00",
+                    "expectedPlatform": "HAFKAT1",
+                    "scheduledDepartureTime": "2024-05-05T10:52:00",
+                    "scheduledPlatform": "HAFKAT1",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:11301:91:1",
+                            "testid": "8711301"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Hafen",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
             }
         ]
     },
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "Anlegesteg Fähre",
-                "expectedArrivalTime": "2024-05-05T10:20:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T10:17:00",
-                "from": {
-                    "locality": "Friedrichshafen (Friedrichshafen)",
-                    "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
-                },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "Anlegesteg Fähre",
-                "scheduledArrivalTime": "2024-05-05T10:20:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T10:17:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:2:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T11:04:00",
-                "expectedDeparturePlatform": "Anlegesteg Fähre",
-                "expectedDepartureTime": "2024-05-05T10:20:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08435:44001:2:1",
-                        "testid": "7744001"
-                    },
-                    "locality": "Friedrichshafen",
-                    "name": "Friedrichshafen Hafenbahnhof",
-                    "type": "Stop"
-                },
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Romanshorn, Autoquai",
-                    "line": {
-                        "mode": "Ferry",
-                        "modeString": "Fähre",
-                        "name": "",
-                        "operatorName": "Schweizerische Bodensee-Schifffahrt AG"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T10:20:00",
+                    "expectedPlatform": "Anlegesteg Fähre",
+                    "scheduledArrivalTime": "2024-05-05T10:20:00",
+                    "scheduledPlatform": "Anlegesteg Fähre",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:2:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
                     }
                 },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T11:04:00",
-                "scheduledDeparturePlatform": "Anlegesteg Fähre",
-                "scheduledDepartureTime": "2024-05-05T10:20:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20541",
-                        "testid": "53020541"
-                    },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Autoquai",
-                    "type": "Stop"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "5",
-                "expectedArrivalTime": "2024-05-05T11:33:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T11:28:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20541",
-                        "testid": "53020541"
-                    },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Autoquai",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T10:17:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T10:17:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Friedrichshafen (Friedrichshafen)",
+                        "name": "Friedrichshafen (Friedrichshafen), Buchhornplatz 6"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "5",
-                "scheduledArrivalTime": "2024-05-05T11:33:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T11:28:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20539:90",
-                        "testid": "53020539"
-                    },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Bahnhof",
-                    "type": "Stop"
-                }
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T11:49:00",
-                "expectedDeparturePlatform": "5",
-                "expectedDepartureTime": "2024-05-05T11:33:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "ch:23021:20539:90",
-                        "testid": "53020539"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T11:04:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T11:04:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20541",
+                            "testid": "53020541"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Autoquai",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T10:20:00",
+                    "expectedPlatform": "Anlegesteg Fähre",
+                    "route": {
+                        "direction": "Romanshorn, Autoquai",
+                        "line": {
+                            "mode": "Ferry",
+                            "modeString": "Fähre",
+                            "name": "",
+                            "operatorName": "Schweizerische Bodensee-Schifffahrt AG"
+                        }
                     },
-                    "locality": "Romanshorn",
-                    "name": "Romanshorn, Bahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-05-05T10:20:00",
+                    "scheduledPlatform": "Anlegesteg Fähre",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08435:44001:2:1",
+                            "testid": "7744001"
+                        },
+                        "locality": "Friedrichshafen",
+                        "name": "Friedrichshafen Hafenbahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T11:33:00",
+                    "expectedPlatform": "5",
+                    "scheduledArrivalTime": "2024-05-05T11:33:00",
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20539:90",
+                            "testid": "53020539"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T11:28:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T11:28:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20541",
+                            "testid": "53020541"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Autoquai",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T11:49:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T11:49:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:6554:1",
+                            "testid": "8706554"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T11:33:00",
+                    "expectedPlatform": "5",
+                    "route": {
+                        "direction": "Konstanz",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "InterRegio",
+                            "name": "1",
+                            "operatorName": "THURBO"
+                        }
+                    },
+                    "scheduledDepartureTime": "2024-05-05T11:33:00",
+                    "scheduledPlatform": "5",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "ch:23021:20539:90",
+                            "testid": "53020539"
+                        },
+                        "locality": "Romanshorn",
+                        "name": "Romanshorn, Bahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -1271,54 +1408,37 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Konstanz",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "InterRegio",
-                        "name": "1",
-                        "operatorName": "THURBO"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T11:49:00",
-                "scheduledDeparturePlatform": "5",
-                "scheduledDepartureTime": "2024-05-05T11:33:00",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:08335:6554:1",
-                        "testid": "8706554"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Bahnhof",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2024-05-05T11:51:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2024-05-05T11:49:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:08335:6554:1",
-                        "testid": "8706554"
-                    },
-                    "locality": "Konstanz",
-                    "name": "Konstanz Bahnhof",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-05-05T11:51:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2024-05-05T11:51:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "locality": "Altstadt (Konstanz)",
+                        "name": "Altstadt (Konstanz), Weg im Gebäude"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2024-05-05T11:51:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2024-05-05T11:49:00",
-                "to": {
-                    "locality": "Altstadt (Konstanz)",
-                    "name": "Altstadt (Konstanz), Weg im Gebäude"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-05-05T11:49:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2024-05-05T11:49:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:08335:6554:1",
+                            "testid": "8706554"
+                        },
+                        "locality": "Konstanz",
+                        "name": "Konstanz Bahnhof",
+                        "type": "Stop"
+                    }
+                },
+                "mode": "Walking"
             }
         ]
     }

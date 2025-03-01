@@ -1,36 +1,47 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "GB",
-                "identifier": {
-                    "iata": "LHR",
-                    "icao": "EGLL"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "VIR601 "
+                    }
                 },
-                "latitude": 51.28,
-                "longitude": -0.265,
-                "name": "LHR",
-                "region": "GB-ENG"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Air",
-                    "name": "VIR601 "
+                "stopPoint": {
+                    "country": "ZA",
+                    "identifier": {
+                        "iata": "JNB",
+                        "icao": "FAOR"
+                    },
+                    "latitude": -26.082,
+                    "longitude": 28.144,
+                    "name": "JNB",
+                    "region": "ZA-GP"
                 }
             },
-            "to": {
-                "country": "ZA",
-                "identifier": {
-                    "iata": "JNB",
-                    "icao": "FAOR"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "VIR601 "
+                    }
                 },
-                "latitude": -26.082,
-                "longitude": 28.144,
-                "name": "JNB",
-                "region": "ZA-GP"
-            }
+                "stopPoint": {
+                    "country": "GB",
+                    "identifier": {
+                        "iata": "LHR",
+                        "icao": "EGLL"
+                    },
+                    "latitude": 51.28,
+                    "longitude": -0.265,
+                    "name": "LHR",
+                    "region": "GB-ENG"
+                }
+            },
+            "mode": "PublicTransport"
         }
     ]
 }

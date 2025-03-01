@@ -2,44 +2,74 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 459,
-                "from": {
-                    "country": "DE",
-                    "latitude": 48.645301818847656,
-                    "longitude": 8.897701263427734,
-                    "name": "Origin",
-                    "region": "DE-BW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-10T02:20:10Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "mfdz:5007052"
+                        },
+                        "latitude": 48.6426228711,
+                        "longitude": 8.8950473145,
+                        "name": "Gärtringen, Feuerwehrgerätehaus",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-10T02:20:10Z",
-                "scheduledDepartureTime": "2020-08-10T02:13:39Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "mfdz:5007052"
-                    },
-                    "latitude": 48.6426228711,
-                    "longitude": 8.8950473145,
-                    "name": "Gärtringen, Feuerwehrgerätehaus",
-                    "region": "DE-BW",
-                    "type": "Stop"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-10T02:13:39Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.645301818847656,
+                        "longitude": 8.897701263427734,
+                        "name": "Origin",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 459,
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 31186,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "mfdz:5007052"
-                    },
-                    "latitude": 48.6426228711,
-                    "longitude": 8.8950473145,
-                    "name": "Gärtringen, Feuerwehrgerätehaus",
-                    "region": "DE-BW",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-10T02:50:51Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "mfdz:5006023"
+                        },
+                        "latitude": 48.7752365486,
+                        "longitude": 9.1819546518,
+                        "name": "Stuttgart, Dorotheenstraße",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Winnenden",
+                        "line": {
+                            "mode": "RideShare",
+                            "name": "Deckenpfronn nach 71364 Winnenden"
+                        }
+                    },
+                    "scheduledDepartureTime": "2020-08-10T02:20:10Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "mfdz:5007052"
+                        },
+                        "latitude": 48.6426228711,
+                        "longitude": 8.8950473145,
+                        "name": "Gärtringen, Feuerwehrgerätehaus",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 31186,
                 "intermediateStops": [
                     {
                         "disruptionEffect": "NormalService",
@@ -282,86 +312,129 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Winnenden",
-                    "line": {
-                        "mode": "RideShare",
-                        "name": "Deckenpfronn nach 71364 Winnenden"
+                "mode": "PublicTransport"
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-10T02:52:47Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
+                        },
+                        "latitude": 48.77566,
+                        "longitude": 9.18208,
+                        "name": "Charlottenplatz / Dorotheenstr.",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 12,
+                            "capacity": -1,
+                            "network": {
+                                "name": "RegioRad",
+                                "vehicleTypes": "Bicycle"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
                     }
                 },
-                "scheduledArrivalTime": "2020-08-10T02:50:51Z",
-                "scheduledDepartureTime": "2020-08-10T02:20:10Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "mfdz:5006023"
-                    },
-                    "latitude": 48.7752365486,
-                    "longitude": 9.1819546518,
-                    "name": "Stuttgart, Dorotheenstraße",
-                    "region": "DE-BW",
-                    "type": "Stop"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-10T02:50:51Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "mfdz:5006023"
+                        },
+                        "latitude": 48.7752365486,
+                        "longitude": 9.1819546518,
+                        "name": "Stuttgart, Dorotheenstraße",
+                        "region": "DE-BW",
+                        "type": "Stop"
+                    }
+                },
                 "distance": 58,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "mfdz:5006023"
-                    },
-                    "latitude": 48.7752365486,
-                    "longitude": 9.1819546518,
-                    "name": "Stuttgart, Dorotheenstraße",
-                    "region": "DE-BW",
-                    "type": "Stop"
-                },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-10T02:52:47Z",
-                "scheduledDepartureTime": "2020-08-10T02:50:51Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
-                    },
-                    "latitude": 48.77566,
-                    "longitude": 9.18208,
-                    "name": "Charlottenplatz / Dorotheenstr.",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 12,
-                        "capacity": -1,
-                        "network": {
-                            "name": "RegioRad",
-                            "vehicleTypes": "Bicycle"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
-                }
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-10T03:00:15Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.782593500000004,
+                        "longitude": 9.181904900000001,
+                        "name": "corner of path and open area",
+                        "region": "DE-BW"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-10T02:52:47Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
+                        },
+                        "latitude": 48.77566,
+                        "longitude": 9.18208,
+                        "name": "Charlottenplatz / Dorotheenstr.",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 12,
+                            "capacity": 99,
+                            "network": {
+                                "name": "RegioRad",
+                                "vehicleTypes": "Bicycle"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
                 "distance": 1227,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246MUE5MDZGNzNDNUM2MTQyRjY4RUYwQjREMDRGN0Q1OUY2OTI2MEREOQ=="
+                "mode": "RentedVehicle",
+                "rentalVehicle": {
+                    "network": {
+                        "name": "RegioRad",
+                        "vehicleTypes": "Bicycle"
                     },
-                    "latitude": 48.77566,
-                    "longitude": 9.18208,
-                    "name": "Charlottenplatz / Dorotheenstr.",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 12,
-                        "capacity": 99,
-                        "network": {
-                            "name": "RegioRad",
-                            "vehicleTypes": "Bicycle"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
+                    "type": "Bicycle"
+                }
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-10T03:00:20Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
+                        },
+                        "latitude": 48.782572,
+                        "longitude": 9.18189,
+                        "name": "Königstraße / Arnulf-Klett-Platz",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 23,
+                            "capacity": -1,
+                            "network": {
+                                "name": "RegioRad",
+                                "vehicleTypes": "Bicycle"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-10T03:00:19Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.78257223002545,
+                        "longitude": 9.181889278625992,
+                        "name": "open area",
+                        "region": "DE-BW"
+                    }
                 },
                 "mode": "RentedVehicle",
                 "rentalVehicle": {
@@ -370,88 +443,45 @@
                         "vehicleTypes": "Bicycle"
                     },
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2020-08-10T03:00:15Z",
-                "scheduledDepartureTime": "2020-08-10T02:52:47Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 48.782593500000004,
-                    "longitude": 9.181904900000001,
-                    "name": "corner of path and open area",
-                    "region": "DE-BW"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "latitude": 48.78257223002545,
-                    "longitude": 9.181889278625992,
-                    "name": "open area",
-                    "region": "DE-BW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2020-08-10T03:03:29Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 48.7835693359375,
+                        "longitude": 9.1814603805542,
+                        "name": "Destination",
+                        "region": "DE-BW"
+                    }
                 },
-                "mode": "RentedVehicle",
-                "rentalVehicle": {
-                    "network": {
-                        "name": "RegioRad",
-                        "vehicleTypes": "Bicycle"
-                    },
-                    "type": "Bicycle"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2020-08-10T03:00:20Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
+                        },
+                        "latitude": 48.782572,
+                        "longitude": 9.18189,
+                        "name": "Königstraße / Arnulf-Klett-Platz",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": 23,
+                            "capacity": 99,
+                            "network": {
+                                "name": "RegioRad",
+                                "vehicleTypes": "Bicycle"
+                            }
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
-                "scheduledArrivalTime": "2020-08-10T03:00:20Z",
-                "scheduledDepartureTime": "2020-08-10T03:00:19Z",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
-                    },
-                    "latitude": 48.782572,
-                    "longitude": 9.18189,
-                    "name": "Königstraße / Arnulf-Klett-Platz",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 23,
-                        "capacity": -1,
-                        "network": {
-                            "name": "RegioRad",
-                            "vehicleTypes": "Bicycle"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
                 "distance": 158,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "gtfs": "QmlrZVJlbnRhbFN0YXRpb246N0VCQjU4NzVERTNGMTY0MzdGQzYyQTM3RTM4NjA3NDI1RDg3QTNDRQ=="
-                    },
-                    "latitude": 48.782572,
-                    "longitude": 9.18189,
-                    "name": "Königstraße / Arnulf-Klett-Platz",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": 23,
-                        "capacity": 99,
-                        "network": {
-                            "name": "RegioRad",
-                            "vehicleTypes": "Bicycle"
-                        }
-                    },
-                    "type": "RentedVehicleStation"
-                },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2020-08-10T03:03:29Z",
-                "scheduledDepartureTime": "2020-08-10T03:00:20Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 48.7835693359375,
-                    "longitude": 9.1814603805542,
-                    "name": "Destination",
-                    "region": "DE-BW"
-                }
+                "mode": "Walking"
             }
         ]
     }

@@ -2,41 +2,79 @@
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-11T08:37:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000253",
+                            "db-hafas": "A=1@O=Mönchengladbach Hbf@X=6446111@Y=51196579@U=81@L=8000253@i=U×008015165@",
+                            "ibnr": "8000253",
+                            "uic": "8015165"
                         },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "rollstuhltaugliches WC",
-                            "type": "WheelchairAccessibleToilet"
-                        }
-                    ]
+                        "latitude": 51.196579,
+                        "longitude": 6.446111,
+                        "name": "Mönchengladbach Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "db": "8000404",
-                        "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
-                        "ibnr": "8000404",
-                        "uic": "8015199"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Duisburg Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RB 33",
+                            "operatorName": "DB Regio AG NRW"
+                        },
+                        "name": "RB 10314"
                     },
-                    "latitude": 50.780361,
-                    "longitude": 6.070712,
-                    "name": "Aachen West",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T07:43:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000404",
+                            "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
+                            "ibnr": "8000404",
+                            "uic": "8015199"
+                        },
+                        "latitude": 50.780361,
+                        "longitude": 6.070712,
+                        "name": "Aachen West",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "rollstuhltaugliches WC",
+                                "type": "WheelchairAccessibleToilet"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#210744#TA#1#DA#110125#1S#8000001#1T#737#LS#8000086#LT#928#PU#81#RT#1#CA#RB#ZE#10314#ZB#RB 10314#PC#3#FR#8000001#FT#737#TO#8000086#TT#928#"
@@ -321,85 +359,84 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Duisburg Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RB 33",
-                        "operatorName": "DB Regio AG NRW"
-                    },
-                    "name": "RB 10314"
-                },
-                "scheduledArrivalPlatform": "3",
-                "scheduledArrivalTime": "2025-01-11T08:37:00",
-                "scheduledDeparturePlatform": "2",
-                "scheduledDepartureTime": "2025-01-11T07:43:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000253",
-                        "db-hafas": "A=1@O=Mönchengladbach Hbf@X=6446111@Y=51196579@U=81@L=8000253@i=U×008015165@",
-                        "ibnr": "8000253",
-                        "uic": "8015165"
-                    },
-                    "latitude": 51.196579,
-                    "longitude": 6.446111,
-                    "name": "Mönchengladbach Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Klimaanlage",
-                            "type": "AirConditioning"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-11T09:10:00",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000085",
+                            "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
+                            "ibnr": "8000085",
+                            "uic": "8008094"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Laptop-Steckdosen",
-                            "type": "PowerSockets"
-                        }
-                    ]
+                        "latitude": 51.21996,
+                        "longitude": 6.794317,
+                        "name": "Düsseldorf Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000253",
-                        "db-hafas": "A=1@O=Mönchengladbach Hbf@X=6446111@Y=51196579@U=81@L=8000253@i=U×008015165@",
-                        "ibnr": "8000253",
-                        "uic": "8015165"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Hagen Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE 13",
+                            "operatorName": "eurobahn"
+                        },
+                        "name": "RE 20071"
                     },
-                    "latitude": 51.196579,
-                    "longitude": 6.446111,
-                    "name": "Mönchengladbach Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T08:45:00",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000253",
+                            "db-hafas": "A=1@O=Mönchengladbach Hbf@X=6446111@Y=51196579@U=81@L=8000253@i=U×008015165@",
+                            "ibnr": "8000253",
+                            "uic": "8015165"
+                        },
+                        "latitude": 51.196579,
+                        "longitude": 6.446111,
+                        "name": "Mönchengladbach Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Klimaanlage",
+                                "type": "AirConditioning"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Laptop-Steckdosen",
+                                "type": "PowerSockets"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#254215#TA#1#DA#110125#1S#8400644#1T#805#LS#8000142#LT#955#PU#81#RT#1#CA#DPN#ZE#20071#ZB#RE 20071#PC#3#FR#8400644#FT#805#TO#8000142#TT#955#"
@@ -449,67 +486,77 @@
                 "mode": "PublicTransport",
                 "notes": [
                     "Behindertengerechte Ausstattung"
-                ],
-                "route": {
-                    "direction": "Hagen Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RE 13",
-                        "operatorName": "eurobahn"
-                    },
-                    "name": "RE 20071"
-                },
-                "scheduledArrivalPlatform": "7",
-                "scheduledArrivalTime": "2025-01-11T09:10:00",
-                "scheduledDeparturePlatform": "7",
-                "scheduledDepartureTime": "2025-01-11T08:45:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000085",
-                        "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
-                        "ibnr": "8000085",
-                        "uic": "8008094"
-                    },
-                    "latitude": 51.21996,
-                    "longitude": 6.794317,
-                    "name": "Düsseldorf Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NoService",
+                    "notes": [
+                        "Halt entfällt"
+                    ],
+                    "scheduledArrivalTime": "2025-01-11T12:12:00",
+                    "scheduledPlatform": "9",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000105",
+                            "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                            "ibnr": "8000105",
+                            "uic": "8011068"
                         },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 50.107149,
+                        "longitude": 8.663785,
+                        "name": "Frankfurt(Main)Hbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NoService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000085",
-                        "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
-                        "ibnr": "8000085",
-                        "uic": "8008094"
+                "departure": {
+                    "disruptionEffect": "NoService",
+                    "notes": [
+                        "Halt entfällt"
+                    ],
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 27",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 51.21996,
-                    "longitude": 6.794317,
-                    "name": "Düsseldorf Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T09:27:00",
+                    "scheduledPlatform": "15",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000085",
+                            "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
+                            "ibnr": "8000085",
+                            "uic": "8008094"
+                        },
+                        "latitude": 51.21996,
+                        "longitude": 6.794317,
+                        "name": "Düsseldorf Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#249062#TA#0#DA#110125#1S#8000080#1T#835#LS#8103000#LT#1847#PU#81#RT#1#CA#ICE#ZE#27#ZB#ICE   27#PC#0#FR#8000080#FT#835#TO#8103000#TT#1847#"
@@ -584,82 +631,88 @@
                         }
                     }
                 ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Wien Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 27",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "9",
-                "scheduledArrivalTime": "2025-01-11T12:12:00",
-                "scheduledDeparturePlatform": "15",
-                "scheduledDepartureTime": "2025-01-11T09:27:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000105",
-                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
-                        "ibnr": "8000105",
-                        "uic": "8011068"
-                    },
-                    "latitude": 50.107149,
-                    "longitude": 8.663785,
-                    "name": "Frankfurt(Main)Hbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             }
         ]
     },
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Klimaanlage",
-                            "type": "AirConditioning"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T10:43:00",
+                    "scheduledArrivalTime": "2025-01-11T10:39:00",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000085",
+                            "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
+                            "ibnr": "8000085",
+                            "uic": "8008094"
                         },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Laptop-Steckdosen",
-                            "type": "PowerSockets"
-                        }
-                    ]
+                        "latitude": 51.21996,
+                        "longitude": 6.794317,
+                        "name": "Düsseldorf Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T10:43:00",
-                "expectedDepartureTime": "2025-01-11T09:28:00",
-                "from": {
-                    "identifier": {
-                        "db": "8000404",
-                        "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
-                        "ibnr": "8000404",
-                        "uic": "8015199"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T09:28:00",
+                    "route": {
+                        "direction": "Dortmund Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE 4",
+                            "operatorName": "National Express"
+                        },
+                        "name": "RE 26413"
                     },
-                    "latitude": 50.780361,
-                    "longitude": 6.070712,
-                    "name": "Aachen West",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T09:26:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000404",
+                            "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
+                            "ibnr": "8000404",
+                            "uic": "8015199"
+                        },
+                        "latitude": 50.780361,
+                        "longitude": 6.070712,
+                        "name": "Aachen West",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Klimaanlage",
+                                "type": "AirConditioning"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Laptop-Steckdosen",
+                                "type": "PowerSockets"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#229994#TA#1#DA#110125#1S#8000001#1T#921#LS#8000080#LT#1151#PU#81#RT#1#CA#DPN#ZE#26413#ZB#RE 26413#PC#3#FR#8000001#FT#921#TO#8000080#TT#1151#"
@@ -884,69 +937,83 @@
                 "notes": [
                     "Behindertengerechtes Fahrzeug",
                     "Rollstuhlstellplatz"
-                ],
-                "route": {
-                    "direction": "Dortmund Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RE 4",
-                        "operatorName": "National Express"
-                    },
-                    "name": "RE 26413"
-                },
-                "scheduledArrivalPlatform": "7",
-                "scheduledArrivalTime": "2025-01-11T10:39:00",
-                "scheduledDeparturePlatform": "2",
-                "scheduledDepartureTime": "2025-01-11T09:26:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000085",
-                        "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
-                        "ibnr": "8000085",
-                        "uic": "8008094"
-                    },
-                    "latitude": 51.21996,
-                    "longitude": 6.794317,
-                    "name": "Düsseldorf Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T12:26:00",
+                    "scheduledArrivalTime": "2025-01-11T12:06:00",
+                    "scheduledPlatform": "Fern 5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070003",
+                            "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                            "ibnr": "8070003",
+                            "uic": "8061676"
+                        },
+                        "latitude": 50.053169,
+                        "longitude": 8.570181,
+                        "name": "Frankfurt(M) Flughafen Fernbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T11:16:00",
+                    "load": [
                         {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
-                            "type": "WheelchairAccessible"
+                            "load": "High",
+                            "seatingClass": "KLASSE_1"
                         },
                         {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
+                            "load": "Medium",
+                            "seatingClass": "KLASSE_2"
                         }
-                    ]
-                },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T12:26:00",
-                "expectedDepartureTime": "2025-01-11T11:16:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000085",
-                        "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
-                        "ibnr": "8000085",
-                        "uic": "8008094"
+                    ],
+                    "route": {
+                        "direction": "München Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 225",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 51.21996,
-                    "longitude": 6.794317,
-                    "name": "Düsseldorf Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T10:53:00",
+                    "scheduledPlatform": "16",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000085",
+                            "db-hafas": "A=1@O=Düsseldorf Hbf@X=6794317@Y=51219960@U=81@L=8000085@i=U×008008094@",
+                            "ibnr": "8000085",
+                            "uic": "8008094"
+                        },
+                        "latitude": 51.21996,
+                        "longitude": 6.794317,
+                        "name": "Düsseldorf Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#248337#TA#0#DA#110125#1S#8400621#1T#900#LS#8000261#LT#1527#PU#81#RT#1#CA#ICE#ZE#225#ZB#ICE  225#PC#0#FR#8400621#FT#900#TO#8000261#TT#1527#"
@@ -1017,121 +1084,127 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "High",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Medium",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "Keine fahrzeuggebundene Einstiegshilfe in einem oder mehreren Wagen. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
                     "Verspätung eines vorausfahrenden Zuges",
                     "Der Anschluss kann voraussichtlich nicht erreicht werden.",
                     "ICE Sprinter"
-                ],
-                "route": {
-                    "direction": "München Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 225",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "Fern 5",
-                "scheduledArrivalTime": "2025-01-11T12:06:00",
-                "scheduledDeparturePlatform": "16",
-                "scheduledDepartureTime": "2025-01-11T10:53:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8070003",
-                        "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
-                        "ibnr": "8070003",
-                        "uic": "8061676"
-                    },
-                    "latitude": 50.053169,
-                    "longitude": 8.570181,
-                    "name": "Frankfurt(M) Flughafen Fernbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T12:41:00",
-                "expectedDepartureTime": "2025-01-11T12:26:00",
-                "from": {
-                    "identifier": {
-                        "db": "8070003",
-                        "ibnr": "8070003"
-                    },
-                    "name": "Frankfurt(M) Flughafen Fernbf"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T12:41:00",
+                    "scheduledArrivalTime": "2025-01-11T12:21:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8070004",
+                            "ibnr": "8070004"
+                        },
+                        "name": "Frankfurt(M) Flughafen Regionalbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T12:26:00",
+                    "scheduledDepartureTime": "2025-01-11T12:06:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8070003",
+                            "ibnr": "8070003"
+                        },
+                        "name": "Frankfurt(M) Flughafen Fernbf"
+                    }
                 },
                 "mode": "Walking",
                 "notes": [
                     "Weg 300 m"
-                ],
-                "scheduledArrivalTime": "2025-01-11T12:21:00",
-                "scheduledDepartureTime": "2025-01-11T12:06:00",
-                "to": {
-                    "identifier": {
-                        "db": "8070004",
-                        "ibnr": "8070004"
-                    },
-                    "name": "Frankfurt(M) Flughafen Regionalbf"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Klimaanlage",
-                            "type": "AirConditioning"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T12:43:00",
+                    "scheduledArrivalTime": "2025-01-11T12:43:00",
+                    "scheduledPlatform": "102",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8098105",
+                            "db-hafas": "A=1@O=Frankfurt Hbf (tief)@X=8664136@Y=50107410@U=81@L=8098105@i=U×008067016@",
+                            "ibnr": "8098105",
+                            "uic": "8067016"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        }
-                    ]
+                        "latitude": 50.10741,
+                        "longitude": 8.664136,
+                        "name": "Frankfurt Hbf (tief)",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T12:43:00",
-                "expectedDepartureTime": "2025-01-11T12:31:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8070004",
-                        "db-hafas": "A=1@O=Frankfurt(M) Flughafen Regionalbf@X=8571250@Y=50051219@U=81@L=8070004@i=U×008011090@",
-                        "ibnr": "8070004",
-                        "uic": "8011090"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T12:31:00",
+                    "load": [
+                        {
+                            "load": "High",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Offenbach(Main)Ost",
+                        "line": {
+                            "mode": "RapidTransit",
+                            "name": "S 8",
+                            "operatorName": "DB Regio AG S-Bahn Rhein-Main"
+                        }
                     },
-                    "latitude": 50.051219,
-                    "longitude": 8.57125,
-                    "name": "Frankfurt(M) Flughafen Regionalbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T12:30:00",
+                    "scheduledPlatform": "Regio 2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070004",
+                            "db-hafas": "A=1@O=Frankfurt(M) Flughafen Regionalbf@X=8571250@Y=50051219@U=81@L=8070004@i=U×008011090@",
+                            "ibnr": "8070004",
+                            "uic": "8011090"
+                        },
+                        "latitude": 50.051219,
+                        "longitude": 8.57125,
+                        "name": "Frankfurt(M) Flughafen Regionalbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Klimaanlage",
+                                "type": "AirConditioning"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#228329#TA#7#DA#110125#1S#8000250#1T#1148#LS#8004645#LT#1302#PU#81#RT#1#CA#s#ZE#8#ZB#S      8#PC#4#FR#8000250#FT#1148#TO#8004645#TT#1302#"
@@ -1222,170 +1295,175 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "High",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "Aufgrund von Arbeiten für das Elektronische Stellwerk Flörsheim sowie weiteren Instandhaltungsarbeiten kommt es bei Zügen der Linien S8 und S9 von Samstag, den 14. Dezember 2024, 4 Uhr, bis Freitag, den 17. Januar 2025, 4 Uhr, zu Zugausfällen und Zugumleitungen. Ersatzverkehr mit Bussen ist eingerichtet. Die Mitnahme von Fahrrädern im Bus ist ausgeschlossen. Bitte auf die Beschilderung zur Ersatzverkehrs-Haltestelle achten. Informieren Sie sich bitte frühzeitig über Ihre geplanten Verbindungen und wählen Sie gegebenenfalls eine frühere Zugverbindung, um Ihre Anschlüsse an Ihren Umsteigebahnhöfen erreichen zu können. Die Fahrplanänderungen zu dieser Baumaßnahme sind in die Online - Fahrplanauskünfte eingearbeitet."
-                ],
-                "route": {
-                    "direction": "Offenbach(Main)Ost",
-                    "line": {
-                        "mode": "RapidTransit",
-                        "name": "S 8",
-                        "operatorName": "DB Regio AG S-Bahn Rhein-Main"
-                    }
-                },
-                "scheduledArrivalPlatform": "102",
-                "scheduledArrivalTime": "2025-01-11T12:43:00",
-                "scheduledDeparturePlatform": "Regio 2",
-                "scheduledDepartureTime": "2025-01-11T12:30:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8098105",
-                        "db-hafas": "A=1@O=Frankfurt Hbf (tief)@X=8664136@Y=50107410@U=81@L=8098105@i=U×008067016@",
-                        "ibnr": "8098105",
-                        "uic": "8067016"
-                    },
-                    "latitude": 50.10741,
-                    "longitude": 8.664136,
-                    "name": "Frankfurt Hbf (tief)",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                ]
             }
         ]
     },
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-11T09:42:00",
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000001",
+                            "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
+                            "ibnr": "8000001",
+                            "uic": "8015345"
                         },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Toilette an Bord",
-                            "type": "Toilet"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "rollstuhltaugliches WC",
-                            "type": "WheelchairAccessibleToilet"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        }
-                    ]
+                        "latitude": 50.767803,
+                        "longitude": 6.091495,
+                        "name": "Aachen Hbf",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "db": "8000404",
-                        "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
-                        "ibnr": "8000404",
-                        "uic": "8015199"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Aachen Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE 18",
+                            "operatorName": "DB Arriva"
+                        },
+                        "name": "RE 18921"
                     },
-                    "latitude": 50.780361,
-                    "longitude": 6.070712,
-                    "name": "Aachen West",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T09:38:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000404",
+                            "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
+                            "ibnr": "8000404",
+                            "uic": "8015199"
+                        },
+                        "latitude": 50.780361,
+                        "longitude": 6.070712,
+                        "name": "Aachen West",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Toilette an Bord",
+                                "type": "Toilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "rollstuhltaugliches WC",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#247347#TA#0#DA#110125#1S#8800012#1T#808#LS#8000001#LT#942#PU#81#RT#1#CA#RE#ZE#18921#ZB#RE 18921#PC#3#FR#8800012#FT#808#TO#8000001#TT#942#"
                 },
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Aachen Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RE 18",
-                        "operatorName": "DB Arriva"
-                    },
-                    "name": "RE 18921"
-                },
-                "scheduledArrivalPlatform": "6",
-                "scheduledArrivalTime": "2025-01-11T09:42:00",
-                "scheduledDeparturePlatform": "1",
-                "scheduledDepartureTime": "2025-01-11T09:38:00",
-                "to": {
-                    "identifier": {
-                        "db": "8000001",
-                        "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
-                        "ibnr": "8000001",
-                        "uic": "8015345"
-                    },
-                    "latitude": 50.767803,
-                    "longitude": 6.091495,
-                    "name": "Aachen Hbf",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Klimaanlage",
-                            "type": "AirConditioning"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T10:44:00",
+                    "scheduledArrivalTime": "2025-01-11T10:44:00",
+                    "scheduledPlatform": "4 A-C",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000207",
+                            "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                            "ibnr": "8000207",
+                            "uic": "8015458"
                         },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Laptop-Steckdosen",
-                            "type": "PowerSockets"
-                        }
-                    ]
+                        "latitude": 50.943029,
+                        "longitude": 6.95873,
+                        "name": "Köln Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T10:44:00",
-                "expectedDepartureTime": "2025-01-11T09:52:00",
-                "from": {
-                    "identifier": {
-                        "db": "8000001",
-                        "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
-                        "ibnr": "8000001",
-                        "uic": "8015345"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T09:52:00",
+                    "route": {
+                        "direction": "Hamm(Westf)Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE 1",
+                            "operatorName": "National Express"
+                        },
+                        "name": "RE 26815"
                     },
-                    "latitude": 50.767803,
-                    "longitude": 6.091495,
-                    "name": "Aachen Hbf",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T09:51:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000001",
+                            "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
+                            "ibnr": "8000001",
+                            "uic": "8015345"
+                        },
+                        "latitude": 50.767803,
+                        "longitude": 6.091495,
+                        "name": "Aachen Hbf",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Klimaanlage",
+                                "type": "AirConditioning"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Laptop-Steckdosen",
+                                "type": "PowerSockets"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#230198#TA#1#DA#110125#1S#8000001#1T#951#LS#8000149#LT#1239#PU#81#RT#1#CA#DPN#ZE#26815#ZB#RE 26815#PC#3#FR#8000001#FT#951#TO#8000149#TT#1239#"
@@ -1551,308 +1629,334 @@
                     "Behindertengerechtes Fahrzeug",
                     "Rollstuhlstellplatz",
                     "\"$IZN\""
-                ],
-                "route": {
-                    "direction": "Hamm(Westf)Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RE 1",
-                        "operatorName": "National Express"
-                    },
-                    "name": "RE 26815"
-                },
-                "scheduledArrivalPlatform": "4 A-C",
-                "scheduledArrivalTime": "2025-01-11T10:44:00",
-                "scheduledDeparturePlatform": "2",
-                "scheduledDepartureTime": "2025-01-11T09:51:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000207",
-                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
-                        "ibnr": "8000207",
-                        "uic": "8015458"
-                    },
-                    "latitude": 50.943029,
-                    "longitude": 6.95873,
-                    "name": "Köln Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T11:49:00",
+                    "scheduledArrivalTime": "2025-01-11T11:49:00",
+                    "scheduledPlatform": "Fern 5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070003",
+                            "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                            "ibnr": "8070003",
+                            "uic": "8061676"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 50.053169,
+                        "longitude": 8.570181,
+                        "name": "Frankfurt(M) Flughafen Fernbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T11:49:00",
-                "expectedDepartureTime": "2025-01-11T10:57:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000207",
-                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
-                        "ibnr": "8000207",
-                        "uic": "8015458"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T10:57:00",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Medium",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Basel SBB",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 105",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 50.943029,
-                    "longitude": 6.95873,
-                    "name": "Köln Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T10:55:00",
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000207",
+                            "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                            "ibnr": "8000207",
+                            "uic": "8015458"
+                        },
+                        "latitude": 50.943029,
+                        "longitude": 6.95873,
+                        "name": "Köln Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#200479#TA#0#DA#110125#1S#8002553#1T#629#LS#8500010#LT#1448#PU#81#RT#1#CA#ICE#ZE#105#ZB#ICE  105#PC#0#FR#8002553#FT#629#TO#8500010#TT#1448#"
                 },
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Medium",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Basel SBB",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 105",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "Fern 5",
-                "scheduledArrivalTime": "2025-01-11T11:49:00",
-                "scheduledDeparturePlatform": "6",
-                "scheduledDepartureTime": "2025-01-11T10:55:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8070003",
-                        "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
-                        "ibnr": "8070003",
-                        "uic": "8061676"
-                    },
-                    "latitude": 50.053169,
-                    "longitude": 8.570181,
-                    "name": "Frankfurt(M) Flughafen Fernbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NoService",
+                    "notes": [
+                        "Halt entfällt"
+                    ],
+                    "scheduledArrivalTime": "2025-01-11T12:12:00",
+                    "scheduledPlatform": "9",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000105",
+                            "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                            "ibnr": "8000105",
+                            "uic": "8011068"
                         },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 50.107149,
+                        "longitude": 8.663785,
+                        "name": "Frankfurt(Main)Hbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NoService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8070003",
-                        "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
-                        "ibnr": "8070003",
-                        "uic": "8061676"
+                "departure": {
+                    "disruptionEffect": "NoService",
+                    "notes": [
+                        "Halt entfällt"
+                    ],
+                    "route": {
+                        "direction": "Wien Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 27",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 50.053169,
-                    "longitude": 8.570181,
-                    "name": "Frankfurt(M) Flughafen Fernbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T12:01:00",
+                    "scheduledPlatform": "Fern 5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070003",
+                            "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                            "ibnr": "8070003",
+                            "uic": "8061676"
+                        },
+                        "latitude": 50.053169,
+                        "longitude": 8.570181,
+                        "name": "Frankfurt(M) Flughafen Fernbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#249062#TA#0#DA#110125#1S#8000080#1T#835#LS#8103000#LT#1847#PU#81#RT#1#CA#ICE#ZE#27#ZB#ICE   27#PC#0#FR#8000080#FT#835#TO#8103000#TT#1847#"
                 },
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Wien Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 27",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "9",
-                "scheduledArrivalTime": "2025-01-11T12:12:00",
-                "scheduledDeparturePlatform": "Fern 5",
-                "scheduledDepartureTime": "2025-01-11T12:01:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000105",
-                        "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
-                        "ibnr": "8000105",
-                        "uic": "8011068"
-                    },
-                    "latitude": 50.107149,
-                    "longitude": 8.663785,
-                    "name": "Frankfurt(Main)Hbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             }
         ]
     },
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-11T09:42:00",
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000001",
+                            "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
+                            "ibnr": "8000001",
+                            "uic": "8015345"
                         },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Toilette an Bord",
-                            "type": "Toilet"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "rollstuhltaugliches WC",
-                            "type": "WheelchairAccessibleToilet"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        }
-                    ]
+                        "latitude": 50.767803,
+                        "longitude": 6.091495,
+                        "name": "Aachen Hbf",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "db": "8000404",
-                        "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
-                        "ibnr": "8000404",
-                        "uic": "8015199"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Aachen Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE 18",
+                            "operatorName": "DB Arriva"
+                        },
+                        "name": "RE 18921"
                     },
-                    "latitude": 50.780361,
-                    "longitude": 6.070712,
-                    "name": "Aachen West",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T09:38:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000404",
+                            "db-hafas": "A=1@O=Aachen West@X=6070712@Y=50780361@U=81@L=8000404@i=U×008015199@",
+                            "ibnr": "8000404",
+                            "uic": "8015199"
+                        },
+                        "latitude": 50.780361,
+                        "longitude": 6.070712,
+                        "name": "Aachen West",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Toilette an Bord",
+                                "type": "Toilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "rollstuhltaugliches WC",
+                                "type": "WheelchairAccessibleToilet"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#247347#TA#0#DA#110125#1S#8800012#1T#808#LS#8000001#LT#942#PU#81#RT#1#CA#RE#ZE#18921#ZB#RE 18921#PC#3#FR#8800012#FT#808#TO#8000001#TT#942#"
                 },
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Aachen Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RE 18",
-                        "operatorName": "DB Arriva"
-                    },
-                    "name": "RE 18921"
-                },
-                "scheduledArrivalPlatform": "6",
-                "scheduledArrivalTime": "2025-01-11T09:42:00",
-                "scheduledDeparturePlatform": "1",
-                "scheduledDepartureTime": "2025-01-11T09:38:00",
-                "to": {
-                    "identifier": {
-                        "db": "8000001",
-                        "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
-                        "ibnr": "8000001",
-                        "uic": "8015345"
-                    },
-                    "latitude": 50.767803,
-                    "longitude": 6.091495,
-                    "name": "Aachen Hbf",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Klimaanlage",
-                            "type": "AirConditioning"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T10:44:00",
+                    "scheduledArrivalTime": "2025-01-11T10:44:00",
+                    "scheduledPlatform": "4 A-C",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000207",
+                            "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                            "ibnr": "8000207",
+                            "uic": "8015458"
                         },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Laptop-Steckdosen",
-                            "type": "PowerSockets"
-                        }
-                    ]
+                        "latitude": 50.943029,
+                        "longitude": 6.95873,
+                        "name": "Köln Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T10:44:00",
-                "expectedDepartureTime": "2025-01-11T09:52:00",
-                "from": {
-                    "identifier": {
-                        "db": "8000001",
-                        "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
-                        "ibnr": "8000001",
-                        "uic": "8015345"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T09:52:00",
+                    "route": {
+                        "direction": "Hamm(Westf)Hbf",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RE 1",
+                            "operatorName": "National Express"
+                        },
+                        "name": "RE 26815"
                     },
-                    "latitude": 50.767803,
-                    "longitude": 6.091495,
-                    "name": "Aachen Hbf",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T09:51:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8000001",
+                            "db-hafas": "A=1@O=Aachen Hbf@X=6091495@Y=50767803@U=81@L=8000001@i=U×008015345@",
+                            "ibnr": "8000001",
+                            "uic": "8015345"
+                        },
+                        "latitude": 50.767803,
+                        "longitude": 6.091495,
+                        "name": "Aachen Hbf",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Klimaanlage",
+                                "type": "AirConditioning"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Laptop-Steckdosen",
+                                "type": "PowerSockets"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#230198#TA#1#DA#110125#1S#8000001#1T#951#LS#8000149#LT#1239#PU#81#RT#1#CA#DPN#ZE#26815#ZB#RE 26815#PC#3#FR#8000001#FT#951#TO#8000149#TT#1239#"
@@ -2018,187 +2122,207 @@
                     "Behindertengerechtes Fahrzeug",
                     "Rollstuhlstellplatz",
                     "\"$IZN\""
-                ],
-                "route": {
-                    "direction": "Hamm(Westf)Hbf",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RE 1",
-                        "operatorName": "National Express"
-                    },
-                    "name": "RE 26815"
-                },
-                "scheduledArrivalPlatform": "4 A-C",
-                "scheduledArrivalTime": "2025-01-11T10:44:00",
-                "scheduledDeparturePlatform": "2",
-                "scheduledDepartureTime": "2025-01-11T09:51:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000207",
-                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
-                        "ibnr": "8000207",
-                        "uic": "8015458"
-                    },
-                    "latitude": 50.943029,
-                    "longitude": 6.95873,
-                    "name": "Köln Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T11:49:00",
+                    "scheduledArrivalTime": "2025-01-11T11:49:00",
+                    "scheduledPlatform": "Fern 5",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070003",
+                            "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
+                            "ibnr": "8070003",
+                            "uic": "8061676"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 50.053169,
+                        "longitude": 8.570181,
+                        "name": "Frankfurt(M) Flughafen Fernbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T11:49:00",
-                "expectedDepartureTime": "2025-01-11T10:57:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000207",
-                        "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
-                        "ibnr": "8000207",
-                        "uic": "8015458"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T10:57:00",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Medium",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Basel SBB",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 105",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 50.943029,
-                    "longitude": 6.95873,
-                    "name": "Köln Hbf",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T10:55:00",
+                    "scheduledPlatform": "6",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000207",
+                            "db-hafas": "A=1@O=Köln Hbf@X=6958730@Y=50943029@U=81@L=8000207@i=U×008015458@",
+                            "ibnr": "8000207",
+                            "uic": "8015458"
+                        },
+                        "latitude": 50.943029,
+                        "longitude": 6.95873,
+                        "name": "Köln Hbf",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#200479#TA#0#DA#110125#1S#8002553#1T#629#LS#8500010#LT#1448#PU#81#RT#1#CA#ICE#ZE#105#ZB#ICE  105#PC#0#FR#8002553#FT#629#TO#8500010#TT#1448#"
                 },
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Medium",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Basel SBB",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 105",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "Fern 5",
-                "scheduledArrivalTime": "2025-01-11T11:49:00",
-                "scheduledDeparturePlatform": "6",
-                "scheduledDepartureTime": "2025-01-11T10:55:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8070003",
-                        "db-hafas": "A=1@O=Frankfurt(M) Flughafen Fernbf@X=8570181@Y=50053169@U=81@L=8070003@i=U×008061676@",
-                        "ibnr": "8070003",
-                        "uic": "8061676"
-                    },
-                    "latitude": 50.053169,
-                    "longitude": 8.570181,
-                    "name": "Frankfurt(M) Flughafen Fernbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "db": "8070003",
-                        "ibnr": "8070003"
-                    },
-                    "name": "Frankfurt(M) Flughafen Fernbf"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-11T12:04:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8070004",
+                            "ibnr": "8070004"
+                        },
+                        "name": "Frankfurt(M) Flughafen Regionalbf"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2025-01-11T11:49:00",
+                    "stopPoint": {
+                        "identifier": {
+                            "db": "8070003",
+                            "ibnr": "8070003"
+                        },
+                        "name": "Frankfurt(M) Flughafen Fernbf"
+                    }
                 },
                 "mode": "Walking",
                 "notes": [
                     "Weg 300 m"
-                ],
-                "scheduledArrivalTime": "2025-01-11T12:04:00",
-                "scheduledDepartureTime": "2025-01-11T11:49:00",
-                "to": {
-                    "identifier": {
-                        "db": "8070004",
-                        "ibnr": "8070004"
-                    },
-                    "name": "Frankfurt(M) Flughafen Regionalbf"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Klimaanlage",
-                            "type": "AirConditioning"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-11T12:17:00",
+                    "scheduledArrivalTime": "2025-01-11T12:13:00",
+                    "scheduledPlatform": "102",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8098105",
+                            "db-hafas": "A=1@O=Frankfurt Hbf (tief)@X=8664136@Y=50107410@U=81@L=8098105@i=U×008067016@",
+                            "ibnr": "8098105",
+                            "uic": "8067016"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Limited",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme begrenzt möglich",
-                            "type": "BikeStorage"
-                        },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "WLAN verfügbar",
-                            "type": "WiFi"
-                        }
-                    ]
+                        "latitude": 50.10741,
+                        "longitude": 8.664136,
+                        "name": "Frankfurt Hbf (tief)",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2025-01-11T12:17:00",
-                "expectedDeparturePlatform": "Regio 1",
-                "expectedDepartureTime": "2025-01-11T12:06:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8070004",
-                        "db-hafas": "A=1@O=Frankfurt(M) Flughafen Regionalbf@X=8571250@Y=50051219@U=81@L=8070004@i=U×008011090@",
-                        "ibnr": "8070004",
-                        "uic": "8011090"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-11T12:06:00",
+                    "expectedPlatform": "Regio 1",
+                    "load": [
+                        {
+                            "load": "High",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Offenbach(Main)Ost",
+                        "line": {
+                            "mode": "RapidTransit",
+                            "name": "S 8",
+                            "operatorName": "DB Regio AG S-Bahn Rhein-Main"
+                        }
                     },
-                    "latitude": 50.051219,
-                    "longitude": 8.57125,
-                    "name": "Frankfurt(M) Flughafen Regionalbf",
-                    "region": "DE-HE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-11T12:00:00",
+                    "scheduledPlatform": "Regio 2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8070004",
+                            "db-hafas": "A=1@O=Frankfurt(M) Flughafen Regionalbf@X=8571250@Y=50051219@U=81@L=8070004@i=U×008011090@",
+                            "ibnr": "8070004",
+                            "uic": "8011090"
+                        },
+                        "latitude": 50.051219,
+                        "longitude": 8.57125,
+                        "name": "Frankfurt(M) Flughafen Regionalbf",
+                        "region": "DE-HE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Klimaanlage",
+                                "type": "AirConditioning"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Limited",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme begrenzt möglich",
+                                "type": "BikeStorage"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "WLAN verfügbar",
+                                "type": "WiFi"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1736364871#PI#1#ZI#228329#TA#6#DA#110125#1S#8000250#1T#1118#LS#8004645#LT#1232#PU#81#RT#1#CA#s#ZE#8#ZB#S      8#PC#4#FR#8000250#FT#1118#TO#8004645#TT#1232#"
@@ -2289,43 +2413,11 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "High",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "Aufgrund von Arbeiten für das Elektronische Stellwerk Flörsheim sowie weiteren Instandhaltungsarbeiten kommt es bei Zügen der Linien S8 und S9 von Samstag, den 14. Dezember 2024, 4 Uhr, bis Freitag, den 17. Januar 2025, 4 Uhr, zu Zugausfällen und Zugumleitungen. Ersatzverkehr mit Bussen ist eingerichtet. Die Mitnahme von Fahrrädern im Bus ist ausgeschlossen. Bitte auf die Beschilderung zur Ersatzverkehrs-Haltestelle achten. Informieren Sie sich bitte frühzeitig über Ihre geplanten Verbindungen und wählen Sie gegebenenfalls eine frühere Zugverbindung, um Ihre Anschlüsse an Ihren Umsteigebahnhöfen erreichen zu können. Die Fahrplanänderungen zu dieser Baumaßnahme sind in die Online - Fahrplanauskünfte eingearbeitet.",
                     "Verspätung eines vorausfahrenden Zuges"
-                ],
-                "route": {
-                    "direction": "Offenbach(Main)Ost",
-                    "line": {
-                        "mode": "RapidTransit",
-                        "name": "S 8",
-                        "operatorName": "DB Regio AG S-Bahn Rhein-Main"
-                    }
-                },
-                "scheduledArrivalPlatform": "102",
-                "scheduledArrivalTime": "2025-01-11T12:13:00",
-                "scheduledDeparturePlatform": "Regio 2",
-                "scheduledDepartureTime": "2025-01-11T12:00:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8098105",
-                        "db-hafas": "A=1@O=Frankfurt Hbf (tief)@X=8664136@Y=50107410@U=81@L=8098105@i=U×008067016@",
-                        "ibnr": "8098105",
-                        "uic": "8067016"
-                    },
-                    "latitude": 50.10741,
-                    "longitude": 8.664136,
-                    "name": "Frankfurt Hbf (tief)",
-                    "region": "DE-HE",
-                    "type": "Stop"
-                }
+                ]
             }
         ]
     }

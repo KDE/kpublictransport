@@ -2,18 +2,39 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T12:31:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T12:29:00",
-                "from": {
-                    "country": "GB",
-                    "latitude": 51.27996,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96164,
-                    "name": "platform, Hook (NE Hants)",
-                    "region": "GB-ENG"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T12:31:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T12:31:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000467"
+                        },
+                        "latitude": 51.27997,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96155,
+                        "name": "Hook Rail Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T12:29:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2025-01-08T12:29:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.27996,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96164,
+                        "name": "platform, Hook (NE Hants)",
+                        "region": "GB-ENG"
+                    }
                 },
                 "mode": "Walking",
                 "path": {
@@ -259,41 +280,55 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T12:31:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T12:29:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000467"
-                    },
-                    "latitude": 51.27997,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96155,
-                    "name": "Hook Rail Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T12:58:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T12:31:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000467"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T12:58:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T12:58:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "60000870"
+                        },
+                        "latitude": 51.31881,
+                        "locality": "Woking",
+                        "longitude": -0.5566,
+                        "name": "Woking, EB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T12:31:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "London Waterloo Rail Station",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "Train",
+                            "name": "3420626",
+                            "operatorName": "South Western Railway"
+                        }
                     },
-                    "latitude": 51.27997,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96155,
-                    "name": "Hook (Fleet), EB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-08T12:31:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000467"
+                        },
+                        "latitude": 51.27997,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96155,
+                        "name": "Hook (Fleet), EB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -925,50 +960,55 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "London Waterloo Rail Station",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "Train",
-                        "name": "3420626",
-                        "operatorName": "South Western Railway"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T12:58:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T12:31:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "60000870"
-                    },
-                    "latitude": 51.31881,
-                    "locality": "Woking",
-                    "longitude": -0.5566,
-                    "name": "Woking, EB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T13:23:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T12:58:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "60000870"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T13:23:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T13:23:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "1000254"
+                        },
+                        "latitude": 51.50235,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11437,
+                        "name": "London Waterloo Rail Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T12:58:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "London Waterloo Rail Station",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "Train",
+                            "name": "3419702",
+                            "operatorName": "South Western Railway"
+                        }
                     },
-                    "latitude": 51.31881,
-                    "locality": "Woking",
-                    "longitude": -0.5566,
-                    "name": "Woking, EB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-08T12:58:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "60000870"
+                        },
+                        "latitude": 51.31881,
+                        "locality": "Woking",
+                        "longitude": -0.5566,
+                        "name": "Woking, EB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -5747,50 +5787,42 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "London Waterloo Rail Station",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "Train",
-                        "name": "3419702",
-                        "operatorName": "South Western Railway"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T13:23:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T12:58:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "1000254"
-                    },
-                    "latitude": 51.50235,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11437,
-                    "name": "London Waterloo Rail Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T13:30:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T13:23:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "1000254"
-                    },
-                    "latitude": 51.50235,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11437,
-                    "name": "Waterloo Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T13:30:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T13:30:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.50308,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11313,
+                        "name": "Platforms 15;16, Waterloo (London)",
+                        "region": "GB-ENG"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T13:23:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2025-01-08T13:23:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "1000254"
+                        },
+                        "latitude": 51.50235,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11437,
+                        "name": "Waterloo Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "Walking",
                 "path": {
@@ -6113,18 +6145,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T13:30:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T13:23:00",
-                "to": {
-                    "country": "GB",
-                    "latitude": 51.50308,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11313,
-                    "name": "Platforms 15;16, Waterloo (London)",
-                    "region": "GB-ENG"
                 }
             }
         ]
@@ -6132,18 +6152,39 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T13:01:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T12:59:00",
-                "from": {
-                    "country": "GB",
-                    "latitude": 51.27996,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96164,
-                    "name": "platform, Hook (NE Hants)",
-                    "region": "GB-ENG"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T13:01:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T13:01:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000467"
+                        },
+                        "latitude": 51.27997,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96155,
+                        "name": "Hook Rail Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T12:59:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2025-01-08T12:59:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.27996,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96164,
+                        "name": "platform, Hook (NE Hants)",
+                        "region": "GB-ENG"
+                    }
                 },
                 "mode": "Walking",
                 "path": {
@@ -6389,41 +6430,55 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T13:01:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T12:59:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000467"
-                    },
-                    "latitude": 51.27997,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96155,
-                    "name": "Hook Rail Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T14:02:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T13:01:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000467"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T14:02:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T14:02:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "1000254"
+                        },
+                        "latitude": 51.50235,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11437,
+                        "name": "London Waterloo Rail Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T13:01:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "London Waterloo Rail Station",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "Train",
+                            "name": "3418910",
+                            "operatorName": "South Western Railway"
+                        }
                     },
-                    "latitude": 51.27997,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96155,
-                    "name": "Hook (Fleet), EB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-08T13:01:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000467"
+                        },
+                        "latitude": 51.27997,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96155,
+                        "name": "Hook (Fleet), EB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -10077,50 +10132,42 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "London Waterloo Rail Station",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "Train",
-                        "name": "3418910",
-                        "operatorName": "South Western Railway"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T14:02:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T13:01:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "1000254"
-                    },
-                    "latitude": 51.50235,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11437,
-                    "name": "London Waterloo Rail Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T14:09:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T14:02:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "1000254"
-                    },
-                    "latitude": 51.50235,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11437,
-                    "name": "Waterloo Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T14:09:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T14:09:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.50308,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11313,
+                        "name": "Platforms 15;16, Waterloo (London)",
+                        "region": "GB-ENG"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T14:02:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2025-01-08T14:02:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "1000254"
+                        },
+                        "latitude": 51.50235,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11437,
+                        "name": "Waterloo Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "Walking",
                 "path": {
@@ -10443,18 +10490,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T14:09:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T14:02:00",
-                "to": {
-                    "country": "GB",
-                    "latitude": 51.50308,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11313,
-                    "name": "Platforms 15;16, Waterloo (London)",
-                    "region": "GB-ENG"
                 }
             }
         ]
@@ -10462,18 +10497,39 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T13:18:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T13:16:00",
-                "from": {
-                    "country": "GB",
-                    "latitude": 51.27996,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96164,
-                    "name": "platform, Hook (NE Hants)",
-                    "region": "GB-ENG"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T13:18:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T13:18:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000467"
+                        },
+                        "latitude": 51.27978,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96155,
+                        "name": "Hook Rail Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T13:16:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2025-01-08T13:16:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.27996,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96164,
+                        "name": "platform, Hook (NE Hants)",
+                        "region": "GB-ENG"
+                    }
                 },
                 "mode": "Walking",
                 "path": {
@@ -10589,41 +10645,55 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T13:18:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T13:16:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000467"
-                    },
-                    "latitude": 51.27978,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96155,
-                    "name": "Hook Rail Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T13:28:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T13:18:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000467"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T13:28:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T13:28:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000327"
+                        },
+                        "latitude": 51.26845,
+                        "locality": "Basingstoke",
+                        "longitude": -1.08746,
+                        "name": "Basingstoke, WB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T13:18:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "Basingstoke Rail Station",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "Train",
+                            "name": "3418937",
+                            "operatorName": "South Western Railway"
+                        }
                     },
-                    "latitude": 51.27978,
-                    "locality": "Hook (NE Hants)",
-                    "longitude": -0.96155,
-                    "name": "Hook (Fleet), WB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-08T13:18:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000467"
+                        },
+                        "latitude": 51.27978,
+                        "locality": "Hook (NE Hants)",
+                        "longitude": -0.96155,
+                        "name": "Hook (Fleet), WB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "path": {
@@ -10780,40 +10850,28 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Basingstoke Rail Station",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "Train",
-                        "name": "3418937",
-                        "operatorName": "South Western Railway"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T13:28:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T13:18:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000327"
-                    },
-                    "latitude": 51.26845,
-                    "locality": "Basingstoke",
-                    "longitude": -1.08746,
-                    "name": "Basingstoke, WB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "GB",
-                    "latitude": 51.26844,
-                    "longitude": -1.08746,
-                    "region": "GB-ENG"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2025-01-08T13:28:13",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.26859,
+                        "longitude": -1.0875,
+                        "region": "GB-ENG"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2025-01-08T13:28:00",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.26844,
+                        "longitude": -1.08746,
+                        "region": "GB-ENG"
+                    }
                 },
                 "mode": "Transfer",
                 "path": {
@@ -10858,33 +10916,55 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2025-01-08T13:28:13",
-                "scheduledDepartureTime": "2025-01-08T13:28:00",
-                "to": {
-                    "country": "GB",
-                    "latitude": 51.26859,
-                    "longitude": -1.0875,
-                    "region": "GB-ENG"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T14:21:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T13:35:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "30000327"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T14:21:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T14:21:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "1000254"
+                        },
+                        "latitude": 51.50235,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11437,
+                        "name": "London Waterloo Rail Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T13:35:00",
+                    "expectedPlatform": "",
+                    "route": {
+                        "direction": "London Waterloo Rail Station",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "Train",
+                            "name": "3416542",
+                            "operatorName": "South Western Railway"
+                        }
                     },
-                    "latitude": 51.26859,
-                    "locality": "Basingstoke",
-                    "longitude": -1.08753,
-                    "name": "Basingstoke, EB",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2025-01-08T13:35:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "30000327"
+                        },
+                        "latitude": 51.26859,
+                        "locality": "Basingstoke",
+                        "longitude": -1.08753,
+                        "name": "Basingstoke, EB",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -15990,50 +16070,42 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "London Waterloo Rail Station",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "Train",
-                        "name": "3416542",
-                        "operatorName": "South Western Railway"
-                    }
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T14:21:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T13:35:00",
-                "to": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "1000254"
-                    },
-                    "latitude": 51.50235,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11437,
-                    "name": "London Waterloo Rail Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "",
-                "expectedArrivalTime": "2025-01-08T14:28:00",
-                "expectedDeparturePlatform": "",
-                "expectedDepartureTime": "2025-01-08T14:21:00",
-                "from": {
-                    "country": "GB",
-                    "identifier": {
-                        "testid": "1000254"
-                    },
-                    "latitude": 51.50235,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11437,
-                    "name": "Waterloo Station",
-                    "region": "GB-ENG",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2025-01-08T14:28:00",
+                    "expectedPlatform": "",
+                    "scheduledArrivalTime": "2025-01-08T14:28:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "latitude": 51.50308,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11313,
+                        "name": "Platforms 15;16, Waterloo (London)",
+                        "region": "GB-ENG"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2025-01-08T14:21:00",
+                    "expectedPlatform": "",
+                    "scheduledDepartureTime": "2025-01-08T14:21:00",
+                    "scheduledPlatform": "",
+                    "stopPoint": {
+                        "country": "GB",
+                        "identifier": {
+                            "testid": "1000254"
+                        },
+                        "latitude": 51.50235,
+                        "locality": "Waterloo (London)",
+                        "longitude": -0.11437,
+                        "name": "Waterloo Station",
+                        "region": "GB-ENG",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "Walking",
                 "path": {
@@ -16356,18 +16428,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "",
-                "scheduledArrivalTime": "2025-01-08T14:28:00",
-                "scheduledDeparturePlatform": "",
-                "scheduledDepartureTime": "2025-01-08T14:21:00",
-                "to": {
-                    "country": "GB",
-                    "latitude": 51.50308,
-                    "locality": "Waterloo (London)",
-                    "longitude": -0.11313,
-                    "name": "Platforms 15;16, Waterloo (London)",
-                    "region": "GB-ENG"
                 }
             }
         ]

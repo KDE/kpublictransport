@@ -1,28 +1,55 @@
 {
-    "departureVehicleLayout": {
-        "direction": "UnknownDirection",
-        "features": [
-            {
-                "availability": "Limited",
-                "disruptionEffect": "NormalService",
-                "name": "Fahrradmitnahme möglich",
-                "type": "BikeStorage"
-            }
-        ]
+    "arrival": {
+        "disruptionEffect": "NormalService",
+        "expectedArrivalTime": "2025-01-21T17:13:00",
+        "scheduledArrivalTime": "2025-01-21T17:13:00",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "unit-test": "900135001"
+            },
+            "latitude": 52.6363,
+            "longitude": 13.492368,
+            "name": "S Buch (Berlin)",
+            "type": "Stop"
+        }
     },
-    "disruptionEffect": "NormalService",
-    "expectedArrivalTime": "2025-01-21T17:13:00",
-    "expectedDeparturePlatform": "2",
-    "expectedDepartureTime": "2025-01-21T16:21:00",
-    "from": {
-        "country": "DE",
-        "identifier": {
-            "unit-test": "900074201"
+    "departure": {
+        "disruptionEffect": "NormalService",
+        "expectedDepartureTime": "2025-01-21T16:21:00",
+        "expectedPlatform": "2",
+        "route": {
+            "direction": "S Buch (Berlin)",
+            "line": {
+                "color": "#37874a",
+                "name": "S2",
+                "operatorName": "S-Bahn Berlin GmbH",
+                "textColor": "#ffffff"
+            }
         },
-        "latitude": 52.387164,
-        "longitude": 13.396408,
-        "name": "S Lichtenrade (Berlin)",
-        "type": "Stop"
+        "scheduledDepartureTime": "2025-01-21T16:21:00",
+        "scheduledPlatform": "2",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "unit-test": "900074201"
+            },
+            "latitude": 52.387164,
+            "longitude": 13.396408,
+            "name": "S Lichtenrade (Berlin)",
+            "type": "Stop"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Limited",
+                    "disruptionEffect": "NormalService",
+                    "name": "Fahrradmitnahme möglich",
+                    "type": "BikeStorage"
+                }
+            ]
+        }
     },
     "identifiers": {
         "unit-test": "1|804|25|86|21012025"
@@ -1186,27 +1213,5 @@
                 }
             }
         ]
-    },
-    "route": {
-        "direction": "S Buch (Berlin)",
-        "line": {
-            "color": "#37874a",
-            "name": "S2",
-            "operatorName": "S-Bahn Berlin GmbH",
-            "textColor": "#ffffff"
-        }
-    },
-    "scheduledArrivalTime": "2025-01-21T17:13:00",
-    "scheduledDeparturePlatform": "2",
-    "scheduledDepartureTime": "2025-01-21T16:21:00",
-    "to": {
-        "country": "DE",
-        "identifier": {
-            "unit-test": "900135001"
-        },
-        "latitude": 52.6363,
-        "longitude": 13.492368,
-        "name": "S Buch (Berlin)",
-        "type": "Stop"
     }
 }

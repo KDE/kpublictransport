@@ -2,21 +2,51 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2019-11-11T21:39:00",
-                "expectedDepartureTime": "2019-11-11T21:26:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:09564:1391:11:2",
-                        "testid": "3001391"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2019-11-11T21:39:00",
+                    "scheduledArrivalTime": "2019-11-11T21:39:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:09564:510:11:U2",
+                            "testid": "80001020"
+                        },
+                        "latitude": 49.44706,
+                        "locality": "Nürnberg",
+                        "longitude": 11.08222,
+                        "name": "Nürnberg Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2019-11-11T21:26:00",
+                    "route": {
+                        "direction": "Röthenbach",
+                        "line": {
+                            "mode": "Metro",
+                            "modeString": "U-Bahn",
+                            "name": "U2"
+                        }
                     },
-                    "latitude": 49.49388,
-                    "locality": "Nürnberg",
-                    "longitude": 11.07908,
-                    "name": "Nürnberg Flughafen",
-                    "region": "DE-BY",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2019-11-11T21:26:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:09564:1391:11:2",
+                            "testid": "3001391"
+                        },
+                        "latitude": 49.49388,
+                        "locality": "Nürnberg",
+                        "longitude": 11.07908,
+                        "name": "Nürnberg Flughafen",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -169,47 +199,52 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Röthenbach",
-                    "line": {
-                        "mode": "Metro",
-                        "modeString": "U-Bahn",
-                        "name": "U2"
-                    }
-                },
-                "scheduledArrivalPlatform": "1",
-                "scheduledArrivalTime": "2019-11-11T21:39:00",
-                "scheduledDeparturePlatform": "2",
-                "scheduledDepartureTime": "2019-11-11T21:26:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:09564:510:11:U2",
-                        "testid": "80001020"
-                    },
-                    "latitude": 49.44706,
-                    "locality": "Nürnberg",
-                    "longitude": 11.08222,
-                    "name": "Nürnberg Hbf",
-                    "region": "DE-BY",
-                    "type": "Stop"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:09564:510:11:U1_2",
-                        "testid": "80001020"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2019-11-11T21:59:00",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:09564:1502:11:2",
+                            "testid": "3001502"
+                        },
+                        "latitude": 49.4159,
+                        "locality": "Nürnberg",
+                        "longitude": 11.11466,
+                        "name": "Nürnberg Messe",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Langwasser Süd",
+                        "line": {
+                            "mode": "Metro",
+                            "modeString": "U-Bahn",
+                            "name": "U1"
+                        }
                     },
-                    "latitude": 49.44639,
-                    "locality": "Nürnberg",
-                    "longitude": 11.08165,
-                    "name": "Nürnberg Hbf",
-                    "region": "DE-BY",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2019-11-11T21:50:00",
+                    "scheduledPlatform": "1",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:09564:510:11:U1_2",
+                            "testid": "80001020"
+                        },
+                        "latitude": 49.44639,
+                        "locality": "Nürnberg",
+                        "longitude": 11.08165,
+                        "name": "Nürnberg Hbf",
+                        "region": "DE-BY",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "path": {
@@ -238,31 +273,6 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Langwasser Süd",
-                    "line": {
-                        "mode": "Metro",
-                        "modeString": "U-Bahn",
-                        "name": "U1"
-                    }
-                },
-                "scheduledArrivalPlatform": "2",
-                "scheduledArrivalTime": "2019-11-11T21:59:00",
-                "scheduledDeparturePlatform": "1",
-                "scheduledDepartureTime": "2019-11-11T21:50:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:09564:1502:11:2",
-                        "testid": "3001502"
-                    },
-                    "latitude": 49.4159,
-                    "locality": "Nürnberg",
-                    "longitude": 11.11466,
-                    "name": "Nürnberg Messe",
-                    "region": "DE-BY",
-                    "type": "Stop"
                 }
             }
         ]

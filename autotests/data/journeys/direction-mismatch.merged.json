@@ -1,52 +1,68 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NoService",
-            "expectedArrivalPlatform": "1",
-            "expectedArrivalTime": "2019-11-07T17:21:00",
-            "expectedDeparturePlatform": "1",
-            "expectedDepartureTime": "2019-11-07T17:03:00",
-            "from": {
-                "country": "DE",
-                "identifier": {
-                    "db": "8089118",
-                    "ibnr": "8089118",
-                    "vbb": "900020202"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": "2019-11-07T17:21:00",
+                "expectedPlatform": "1",
+                "route": {
+                    "direction": "Berlin Südkreuz (S)",
+                    "line": {
+                        "color": "#9f4c37",
+                        "mode": "RapidTransit",
+                        "modeString": "S-Bahn",
+                        "name": "S 41",
+                        "textColor": "#ffffff"
+                    }
                 },
-                "latitude": 52.53433609008789,
-                "locality": "Berlin",
-                "longitude": 13.32893180847168,
-                "name": "Berlin Beusselstraße",
-                "region": "DE-BE"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Berlin Südkreuz (S)",
-                "line": {
-                    "color": "#9f4c37",
-                    "mode": "RapidTransit",
-                    "modeString": "S-Bahn",
-                    "name": "S 41",
-                    "textColor": "#ffffff"
+                "scheduledArrivalTime": "2019-11-07T17:21:00+01:00",
+                "scheduledPlatform": "1",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8089041",
+                        "ibnr": "8089041",
+                        "vbb": "900110012"
+                    },
+                    "latitude": 52.524030685424805,
+                    "locality": "Berlin",
+                    "longitude": 13.46466064453125,
+                    "name": "Berlin Storkower Straße",
+                    "region": "DE-BE"
                 }
             },
-            "scheduledArrivalPlatform": "1",
-            "scheduledArrivalTime": "2019-11-07T17:21:00+01:00",
-            "scheduledDeparturePlatform": "1",
-            "scheduledDepartureTime": "2019-11-07T17:03:00+01:00",
-            "to": {
-                "country": "DE",
-                "identifier": {
-                    "db": "8089041",
-                    "ibnr": "8089041",
-                    "vbb": "900110012"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": "2019-11-07T17:03:00",
+                "expectedPlatform": "1",
+                "route": {
+                    "direction": "Berlin Südkreuz (S)",
+                    "line": {
+                        "color": "#9f4c37",
+                        "mode": "RapidTransit",
+                        "modeString": "S-Bahn",
+                        "name": "S 41",
+                        "textColor": "#ffffff"
+                    }
                 },
-                "latitude": 52.524030685424805,
-                "locality": "Berlin",
-                "longitude": 13.46466064453125,
-                "name": "Berlin Storkower Straße",
-                "region": "DE-BE"
-            }
+                "scheduledDepartureTime": "2019-11-07T17:03:00+01:00",
+                "scheduledPlatform": "1",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "db": "8089118",
+                        "ibnr": "8089118",
+                        "vbb": "900020202"
+                    },
+                    "latitude": 52.53433609008789,
+                    "locality": "Berlin",
+                    "longitude": 13.32893180847168,
+                    "name": "Berlin Beusselstraße",
+                    "region": "DE-BE"
+                }
+            },
+            "disruptionEffect": "NoService",
+            "mode": "PublicTransport"
         }
     ]
 }

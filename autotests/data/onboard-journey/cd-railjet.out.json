@@ -1,15 +1,43 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "AT",
-                "latitude": 47.072735,
-                "locality": "Graz",
-                "longitude": 15.416485,
-                "name": "Graz Hbf",
-                "region": "AT-6",
-                "type": "Stop"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2022-11-23T22:10:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "DE",
+                    "latitude": 52.504875,
+                    "locality": "Berlin",
+                    "longitude": 13.303756,
+                    "name": "Berlin-Charlottenburg",
+                    "region": "DE-BE",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "rj 258 Vindobona"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Vienna",
+                    "value": "2022-11-23T10:26:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "AT",
+                    "latitude": 47.072735,
+                    "locality": "Graz",
+                    "longitude": 15.416485,
+                    "name": "Graz Hbf",
+                    "region": "AT-6",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -385,30 +413,7 @@
                     }
                 }
             ],
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "LongDistanceTrain",
-                    "name": "rj 258 Vindobona"
-                }
-            },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2022-11-23T22:10:00+01:00"
-            },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Vienna",
-                "value": "2022-11-23T10:26:00+01:00"
-            },
-            "to": {
-                "country": "DE",
-                "latitude": 52.504875,
-                "locality": "Berlin",
-                "longitude": 13.303756,
-                "name": "Berlin-Charlottenburg",
-                "region": "DE-BE",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

@@ -1,17 +1,49 @@
 {
-    "disruptionEffect": "NormalService",
-    "expectedArrivalTime": "2025-01-25T13:09:00",
-    "expectedDepartureTime": "2025-01-25T11:46:00",
-    "from": {
-        "country": "DE",
-        "identifier": {
-            "gtfs": "hbg:de:08115:4512:1:2"
+    "arrival": {
+        "disruptionEffect": "NormalService",
+        "expectedArrivalTime": "2025-01-25T13:09:00",
+        "expectedDepartureTime": "2025-01-25T13:09:00",
+        "scheduledArrivalTime": "2025-01-25T13:09:00",
+        "scheduledDepartureTime": "2025-01-25T13:09:00",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "gtfs": "hbg:de:08116:4211:1:2"
+            },
+            "latitude": 48.644268,
+            "longitude": 9.443806,
+            "name": "Kirchheim (T)",
+            "region": "DE-BW",
+            "type": "Stop"
+        }
+    },
+    "departure": {
+        "disruptionEffect": "NormalService",
+        "expectedArrivalTime": "2025-01-25T11:46:00",
+        "expectedDepartureTime": "2025-01-25T11:46:00",
+        "route": {
+            "direction": "Kirchheim (T)",
+            "line": {
+                "color": "#83b23b",
+                "mode": "RapidTransit",
+                "name": "S1",
+                "operatorName": "VVS",
+                "textColor": "#ffffff"
+            }
         },
-        "latitude": 48.593994,
-        "longitude": 8.862829,
-        "name": "Herrenberg",
-        "region": "DE-BW",
-        "type": "Stop"
+        "scheduledArrivalTime": "2025-01-25T11:46:00",
+        "scheduledDepartureTime": "2025-01-25T11:46:00",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "gtfs": "hbg:de:08115:4512:1:2"
+            },
+            "latitude": 48.593994,
+            "longitude": 8.862829,
+            "name": "Herrenberg",
+            "region": "DE-BW",
+            "type": "Stop"
+        }
     },
     "identifiers": {
         "gtfs": "hbg:de:vvs:10001_::15-T2-81-j25"
@@ -2283,28 +2315,5 @@
                 }
             }
         ]
-    },
-    "route": {
-        "direction": "Kirchheim (T)",
-        "line": {
-            "color": "#83b23b",
-            "mode": "RapidTransit",
-            "name": "S1",
-            "operatorName": "VVS",
-            "textColor": "#ffffff"
-        }
-    },
-    "scheduledArrivalTime": "2025-01-25T13:09:00",
-    "scheduledDepartureTime": "2025-01-25T11:46:00",
-    "to": {
-        "country": "DE",
-        "identifier": {
-            "gtfs": "hbg:de:08116:4211:1:2"
-        },
-        "latitude": 48.644268,
-        "longitude": 9.443806,
-        "name": "Kirchheim (T)",
-        "region": "DE-BW",
-        "type": "Stop"
     }
 }

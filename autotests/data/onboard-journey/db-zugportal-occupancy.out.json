@@ -1,27 +1,66 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedArrivalPlatform": "2",
-            "expectedArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2025-02-22T11:59:00+01:00"
-            },
-            "expectedDeparturePlatform": "5",
-            "expectedDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2025-02-22T11:11:30+01:00"
-            },
-            "from": {
-                "country": "DE",
-                "identifier": {
-                    "ibnr": "8000016"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2025-02-22T11:59:00+01:00"
                 },
-                "latitude": 48.942676,
-                "longitude": 9.425989,
-                "name": "Backnang",
-                "region": "DE-BW",
-                "type": "Stop"
+                "expectedPlatform": "2",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2025-02-22T11:59:00+01:00"
+                },
+                "scheduledPlatform": "2",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8005776"
+                    },
+                    "latitude": 48.726279,
+                    "longitude": 9.113226,
+                    "name": "Stuttgart-Vaihingen",
+                    "region": "DE-BW",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2025-02-22T11:11:30+01:00"
+                },
+                "expectedPlatform": "5",
+                "load": [
+                    {
+                        "load": "Low",
+                        "seatingClass": "2"
+                    }
+                ],
+                "route": {
+                    "line": {
+                        "mode": "RapidTransit",
+                        "name": "S 3",
+                        "operatorName": "DB Regio, S-Bahn Stuttgart"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2025-02-22T11:11:00+01:00"
+                },
+                "scheduledPlatform": "5",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8000016"
+                    },
+                    "latitude": 48.942676,
+                    "longitude": 9.425989,
+                    "name": "Backnang",
+                    "region": "DE-BW",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -633,41 +672,7 @@
                     }
                 }
             ],
-            "load": [
-                {
-                    "load": "Low",
-                    "seatingClass": "2"
-                }
-            ],
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "RapidTransit",
-                    "name": "S 3",
-                    "operatorName": "DB Regio, S-Bahn Stuttgart"
-                }
-            },
-            "scheduledArrivalPlatform": "2",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2025-02-22T11:59:00+01:00"
-            },
-            "scheduledDeparturePlatform": "5",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2025-02-22T11:11:00+01:00"
-            },
-            "to": {
-                "country": "DE",
-                "identifier": {
-                    "ibnr": "8005776"
-                },
-                "latitude": 48.726279,
-                "longitude": 9.113226,
-                "name": "Stuttgart-Vaihingen",
-                "region": "DE-BW",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

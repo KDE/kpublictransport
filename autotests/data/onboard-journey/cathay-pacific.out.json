@@ -1,44 +1,55 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "distance": 959336,
-            "expectedArrivalTime": {
-                "timezone": "Asia/Hong_Kong",
-                "value": "2023-03-01T21:55:00+08:00"
-            },
-            "expectedDepartureTime": {
-                "timezone": "Asia/Taipei",
-                "value": "2023-03-01T20:27:00+08:00"
-            },
-            "from": {
-                "country": "TW",
-                "identifier": {
-                    "iata": "TPE",
-                    "icao": "RCTP"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Asia/Hong_Kong",
+                    "value": "2023-03-01T21:55:00+08:00"
                 },
-                "latitude": 25.073333,
-                "longitude": 121.225,
-                "name": "TPE",
-                "region": "TW-TAO"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Air",
-                    "name": "CPA479"
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "CPA479"
+                    }
+                },
+                "stopPoint": {
+                    "country": "HK",
+                    "identifier": {
+                        "iata": "HKG",
+                        "icao": "VHHH"
+                    },
+                    "latitude": 22.303333,
+                    "longitude": 113.905,
+                    "name": "HKG"
                 }
             },
-            "to": {
-                "country": "HK",
-                "identifier": {
-                    "iata": "HKG",
-                    "icao": "VHHH"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Asia/Taipei",
+                    "value": "2023-03-01T20:27:00+08:00"
                 },
-                "latitude": 22.303333,
-                "longitude": 113.905,
-                "name": "HKG"
-            }
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "CPA479"
+                    }
+                },
+                "stopPoint": {
+                    "country": "TW",
+                    "identifier": {
+                        "iata": "TPE",
+                        "icao": "RCTP"
+                    },
+                    "latitude": 25.073333,
+                    "longitude": 121.225,
+                    "name": "TPE",
+                    "region": "TW-TAO"
+                }
+            },
+            "distance": 959336,
+            "mode": "PublicTransport"
         }
     ]
 }

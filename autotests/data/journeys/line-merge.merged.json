@@ -1,24 +1,30 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NoService",
-            "from": {
-                "name": "Zürich Flughafen"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Genève-Aéroport",
-                "line": {
-                    "mode": "LongDistanceTrain",
-                    "name": "IC 722"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": "2018-09-28T19:28:00",
+                "stopPoint": {
+                    "name": "Bern"
                 }
             },
-            "scheduledArrivalTime": "2018-09-28T19:28:00",
-            "scheduledDeparturePlatform": "4",
-            "scheduledDepartureTime": "2018-09-28T18:18:00",
-            "to": {
-                "name": "Bern"
-            }
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Genève-Aéroport",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "IC 722"
+                    }
+                },
+                "scheduledDepartureTime": "2018-09-28T18:18:00",
+                "scheduledPlatform": "4",
+                "stopPoint": {
+                    "name": "Zürich Flughafen"
+                }
+            },
+            "disruptionEffect": "NoService",
+            "mode": "PublicTransport"
         }
     ]
 }

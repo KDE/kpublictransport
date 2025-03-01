@@ -1,29 +1,66 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "distance": 507330,
-            "expectedArrivalPlatform": "15",
-            "expectedArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2021-12-21T12:10:00+01:00"
-            },
-            "expectedDeparturePlatform": "6",
-            "expectedDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2021-12-21T07:36:00+01:00"
-            },
-            "from": {
-                "country": "DE",
-                "identifier": {
-                    "ibnr": "8010255"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-12-21T12:10:00+01:00"
                 },
-                "latitude": 52.510488,
-                "longitude": 13.434681,
-                "name": "Berlin Ostbahnhof",
-                "region": "DE-BE",
-                "type": "Stop"
+                "expectedDepartureTime": "1970-01-01T00:00:00Z",
+                "expectedPlatform": "15",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-12-21T12:07:00+01:00"
+                },
+                "scheduledDepartureTime": "1970-01-01T00:00:00Z",
+                "scheduledPlatform": "15",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8000085"
+                    },
+                    "latitude": 51.219962,
+                    "longitude": 6.794319,
+                    "name": "Düsseldorf Hbf",
+                    "region": "DE-NW",
+                    "type": "Stop"
+                }
             },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": "1970-01-01T00:00:00Z",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-12-21T07:36:00+01:00"
+                },
+                "expectedPlatform": "6",
+                "route": {
+                    "direction": "Düsseldorf Hbf",
+                    "line": {
+                        "mode": "LongDistanceTrain",
+                        "name": "ICE 944"
+                    }
+                },
+                "scheduledArrivalTime": "1970-01-01T00:00:00Z",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2021-12-21T07:35:00+01:00"
+                },
+                "scheduledPlatform": "6",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8010255"
+                    },
+                    "latitude": 52.510488,
+                    "longitude": 13.434681,
+                    "name": "Berlin Ostbahnhof",
+                    "region": "DE-BE",
+                    "type": "Stop"
+                }
+            },
+            "distance": 507330,
             "intermediateStops": [
                 {
                     "disruptionEffect": "NormalService",
@@ -381,35 +418,7 @@
                     }
                 }
             ],
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Düsseldorf Hbf",
-                "line": {
-                    "mode": "LongDistanceTrain",
-                    "name": "ICE 944"
-                }
-            },
-            "scheduledArrivalPlatform": "15",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2021-12-21T12:07:00+01:00"
-            },
-            "scheduledDeparturePlatform": "6",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2021-12-21T07:35:00+01:00"
-            },
-            "to": {
-                "country": "DE",
-                "identifier": {
-                    "ibnr": "8000085"
-                },
-                "latitude": 51.219962,
-                "longitude": 6.794319,
-                "name": "Düsseldorf Hbf",
-                "region": "DE-NW",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

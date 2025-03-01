@@ -2,35 +2,61 @@
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2021-02-07T15:42:00+01:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "8010205"
                         },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
+                        "latitude": 51.345081,
+                        "longitude": 12.381167,
+                        "name": "Leipzig Hbf",
+                        "region": "DE-SN",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "München Hbf",
+                        "line": {
+                            "name": "ICE 1601",
+                            "operatorName": "DB Fernverkehr AG"
                         }
-                    ]
+                    },
+                    "scheduledDepartureTime": "2021-02-07T14:37:00+01:00",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "unit-test": "8011113"
+                        },
+                        "latitude": 52.47623,
+                        "longitude": 13.365863,
+                        "name": "Berlin Südkreuz",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "disruptionEffect": "NoService",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "8011113"
-                    },
-                    "latitude": 52.47623,
-                    "longitude": 13.365863,
-                    "name": "Berlin Südkreuz",
-                    "region": "DE-BE",
-                    "type": "Stop"
-                },
                 "identifiers": {
                     "unit-test": "1|171375|0|80|7022021"
                 },
@@ -1519,26 +1545,6 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "München Hbf",
-                    "line": {
-                        "name": "ICE 1601",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalTime": "2021-02-07T15:42:00+01:00",
-                "scheduledDepartureTime": "2021-02-07T14:37:00+01:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "unit-test": "8010205"
-                    },
-                    "latitude": 51.345081,
-                    "longitude": 12.381167,
-                    "name": "Leipzig Hbf",
-                    "region": "DE-SN",
-                    "type": "Stop"
                 }
             }
         ]

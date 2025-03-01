@@ -2,16 +2,31 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 351,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 52.50602341723939,
-                    "longitude": 13.45152382711484,
-                    "name": "",
-                    "region": "DE-BE"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:33:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 52.50494050893889,
+                        "longitude": 13.448614380176252,
+                        "name": "",
+                        "region": "DE-BE"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:28:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 52.50602341723939,
+                        "longitude": 13.45152382711484,
+                        "name": "",
+                        "region": "DE-BE"
+                    }
+                },
+                "distance": 351,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -335,16 +350,6 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:33:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:28:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 52.50494050893889,
-                    "longitude": 13.448614380176252,
-                    "name": "",
-                    "region": "DE-BE"
                 }
             }
         ]

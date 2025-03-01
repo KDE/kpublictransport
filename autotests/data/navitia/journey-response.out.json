@@ -2,17 +2,40 @@
     {
         "sections": [
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 77,
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.0042397,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702036,
-                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:06:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.004687,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.570589,
+                        "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:04:51+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.0042397,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.5702036,
+                        "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF"
+                    }
+                },
+                "distance": 77,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -41,48 +64,65 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:06:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:04:51+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 49.004687,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589,
-                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 147,
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "type": "WheelchairAccessible"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:41:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.861822,
+                        "locality": "Paris",
+                        "longitude": 2.347013,
+                        "name": "Châtelet les Halles (Paris)",
+                        "postalCode": "75001",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.004687,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589,
-                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "co2Emission": 147,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Denfert Rochereau (Paris)",
+                        "line": {
+                            "color": "#7ba3dc",
+                            "mode": "RapidTransit",
+                            "modeString": "RER",
+                            "name": "B",
+                            "operatorName": "RER",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:06:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.004687,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.570589,
+                        "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -171,51 +211,45 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Denfert Rochereau (Paris)",
-                    "line": {
-                        "color": "#7ba3dc",
-                        "mode": "RapidTransit",
-                        "modeString": "RER",
-                        "name": "B",
-                        "operatorName": "RER",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:41:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:06:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.861822,
-                    "locality": "Paris",
-                    "longitude": 2.347013,
-                    "name": "Châtelet les Halles (Paris)",
-                    "postalCode": "75001",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:44:03+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.861822,
+                        "locality": "Paris",
+                        "longitude": 2.347013,
+                        "name": "Châtelet les Halles (Paris)",
+                        "postalCode": "75001",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.861822,
-                    "locality": "Paris",
-                    "longitude": 2.347013,
-                    "name": "Châtelet les Halles (Paris)",
-                    "postalCode": "75001",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:41:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.861822,
+                        "locality": "Paris",
+                        "longitude": 2.347013,
+                        "name": "Châtelet les Halles (Paris)",
+                        "postalCode": "75001",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "Transfer",
                 "path": {
@@ -236,57 +270,78 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:44:03+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:41:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.861822,
-                    "locality": "Paris",
-                    "longitude": 2.347013,
-                    "name": "Châtelet les Halles (Paris)",
-                    "postalCode": "75001",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2018-12-02T22:49:00"
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "mode": "Waiting",
-                "scheduledArrivalTime": "2018-12-02T22:49:00",
-                "scheduledDepartureTime": "2018-12-02T22:44:03"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2018-12-02T22:44:03"
+                },
+                "mode": "Waiting"
             },
             {
-                "co2Emission": 17,
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "type": "WheelchairAccessible"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:51:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.844139,
+                        "locality": "Paris",
+                        "longitude": 2.37326,
+                        "name": "Gare de Lyon RER A (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.861822,
-                    "locality": "Paris",
-                    "longitude": 2.347013,
-                    "name": "Châtelet les Halles (Paris)",
-                    "postalCode": "75001",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "co2Emission": 17,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Gare de Torcy (Torcy)",
+                        "line": {
+                            "color": "#d1302f",
+                            "mode": "RapidTransit",
+                            "modeString": "RER",
+                            "name": "A",
+                            "operatorName": "RER",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:49:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.861822,
+                        "locality": "Paris",
+                        "longitude": 2.347013,
+                        "name": "Châtelet les Halles (Paris)",
+                        "postalCode": "75001",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
                 },
                 "mode": "PublicTransport",
                 "path": {
@@ -307,53 +362,44 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Gare de Torcy (Torcy)",
-                    "line": {
-                        "color": "#d1302f",
-                        "mode": "RapidTransit",
-                        "modeString": "RER",
-                        "name": "A",
-                        "operatorName": "RER",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:51:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:49:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.844139,
-                    "locality": "Paris",
-                    "longitude": 2.37326,
-                    "name": "Gare de Lyon RER A (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 635,
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.844139,
-                    "locality": "Paris",
-                    "longitude": 2.37326,
-                    "name": "Gare de Lyon RER A (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:00:15+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.844071,
+                        "locality": "Paris",
+                        "longitude": 2.377274,
+                        "name": "20 Rue de Chalon (Paris)",
+                        "region": "FR-IDF"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:51:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.844139,
+                        "locality": "Paris",
+                        "longitude": 2.37326,
+                        "name": "Gare de Lyon RER A (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 635,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -562,22 +608,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:00:15+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:51:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.844071,
-                    "locality": "Paris",
-                    "longitude": 2.377274,
-                    "name": "20 Rue de Chalon (Paris)",
-                    "region": "FR-IDF"
                 }
             }
         ]
@@ -585,17 +615,40 @@
     {
         "sections": [
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 77,
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.0042397,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702036,
-                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T21:59:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.004687,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.570589,
+                        "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T21:57:51+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.0042397,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.5702036,
+                        "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF"
+                    }
+                },
+                "distance": 77,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -624,48 +677,65 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T21:59:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T21:57:51+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 49.004687,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589,
-                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 162,
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "type": "WheelchairAccessible"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:34:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.880769,
+                        "locality": "Paris",
+                        "longitude": 2.357115,
+                        "name": "Gare du Nord RER (Paris)",
+                        "postalCode": "75010",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.004687,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589,
-                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "co2Emission": 162,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Gare de Massy Palaiseau RER B (Massy)",
+                        "line": {
+                            "color": "#7ba3dc",
+                            "mode": "RapidTransit",
+                            "modeString": "RER",
+                            "name": "B",
+                            "operatorName": "RER",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T21:59:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.004687,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.570589,
+                        "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -908,51 +978,45 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Gare de Massy Palaiseau RER B (Massy)",
-                    "line": {
-                        "color": "#7ba3dc",
-                        "mode": "RapidTransit",
-                        "modeString": "RER",
-                        "name": "B",
-                        "operatorName": "RER",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:34:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T21:59:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.880769,
-                    "locality": "Paris",
-                    "longitude": 2.357115,
-                    "name": "Gare du Nord RER (Paris)",
-                    "postalCode": "75010",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:39:36+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.879476,
+                        "locality": "Paris",
+                        "longitude": 2.355737,
+                        "name": "La Fayette - Dunkerque (Paris)",
+                        "postalCode": "75010",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.880769,
-                    "locality": "Paris",
-                    "longitude": 2.357115,
-                    "name": "Gare du Nord RER (Paris)",
-                    "postalCode": "75010",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:34:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.880769,
+                        "locality": "Paris",
+                        "longitude": 2.357115,
+                        "name": "Gare du Nord RER (Paris)",
+                        "postalCode": "75010",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "Transfer",
                 "path": {
@@ -973,57 +1037,78 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:39:36+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:34:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.879476,
-                    "locality": "Paris",
-                    "longitude": 2.355737,
-                    "name": "La Fayette - Dunkerque (Paris)",
-                    "postalCode": "75010",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2018-12-02T22:43:00"
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "mode": "Waiting",
-                "scheduledArrivalTime": "2018-12-02T22:43:00",
-                "scheduledDepartureTime": "2018-12-02T22:39:36"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2018-12-02T22:39:36"
+                },
+                "mode": "Waiting"
             },
             {
-                "co2Emission": 581,
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "type": "WheelchairAccessible"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:01:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.842533,
+                        "locality": "Paris",
+                        "longitude": 2.375427,
+                        "name": "Gare de Lyon (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.879476,
-                    "locality": "Paris",
-                    "longitude": 2.355737,
-                    "name": "La Fayette - Dunkerque (Paris)",
-                    "postalCode": "75010",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "co2Emission": 581,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Gare de Lyon (Paris)",
+                        "line": {
+                            "color": "#008b5a",
+                            "mode": "Bus",
+                            "modeString": "Bus",
+                            "name": "65",
+                            "operatorName": "RATP",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:43:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.879476,
+                        "locality": "Paris",
+                        "longitude": 2.355737,
+                        "name": "La Fayette - Dunkerque (Paris)",
+                        "postalCode": "75010",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -1398,53 +1483,44 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Gare de Lyon (Paris)",
-                    "line": {
-                        "color": "#008b5a",
-                        "mode": "Bus",
-                        "modeString": "Bus",
-                        "name": "65",
-                        "operatorName": "RATP",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:01:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:43:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.842533,
-                    "locality": "Paris",
-                    "longitude": 2.375427,
-                    "name": "Gare de Lyon (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 455,
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.842533,
-                    "locality": "Paris",
-                    "longitude": 2.375427,
-                    "name": "Gare de Lyon (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:07:38+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.844071,
+                        "locality": "Paris",
+                        "longitude": 2.377274,
+                        "name": "20 Rue de Chalon (Paris)",
+                        "region": "FR-IDF"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:01:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.842533,
+                        "locality": "Paris",
+                        "longitude": 2.375427,
+                        "name": "Gare de Lyon (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 455,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -1517,22 +1593,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:07:38+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:01:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.844071,
-                    "locality": "Paris",
-                    "longitude": 2.377274,
-                    "name": "20 Rue de Chalon (Paris)",
-                    "region": "FR-IDF"
                 }
             }
         ]
@@ -1540,17 +1600,40 @@
     {
         "sections": [
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 77,
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.0042397,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702036,
-                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T21:59:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.004687,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.570589,
+                        "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T21:57:51+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.0042397,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.5702036,
+                        "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF"
+                    }
+                },
+                "distance": 77,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -1579,48 +1662,65 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T21:59:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T21:57:51+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 49.004687,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589,
-                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 191,
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "type": "WheelchairAccessible"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:43:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.840034,
+                        "locality": "Paris",
+                        "longitude": 2.337096,
+                        "name": "Port Royal (Paris)",
+                        "postalCode": "",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.004687,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.570589,
-                    "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "co2Emission": 191,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Gare de Massy Palaiseau RER B (Massy)",
+                        "line": {
+                            "color": "#7ba3dc",
+                            "mode": "RapidTransit",
+                            "modeString": "RER",
+                            "name": "B",
+                            "operatorName": "RER",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T21:59:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.004687,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.570589,
+                        "name": "Aéroport CDG 2 TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -1951,51 +2051,45 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Gare de Massy Palaiseau RER B (Massy)",
-                    "line": {
-                        "color": "#7ba3dc",
-                        "mode": "RapidTransit",
-                        "modeString": "RER",
-                        "name": "B",
-                        "operatorName": "RER",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:43:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T21:59:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.840034,
-                    "locality": "Paris",
-                    "longitude": 2.337096,
-                    "name": "Port Royal (Paris)",
-                    "postalCode": "",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:48:36+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.838729,
+                        "locality": "Paris",
+                        "longitude": 2.339928,
+                        "name": "Port Royal - Saint-Jacques (Paris)",
+                        "postalCode": "",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.840034,
-                    "locality": "Paris",
-                    "longitude": 2.337096,
-                    "name": "Port Royal (Paris)",
-                    "postalCode": "",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:43:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.840034,
+                        "locality": "Paris",
+                        "longitude": 2.337096,
+                        "name": "Port Royal (Paris)",
+                        "postalCode": "",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "Transfer",
                 "path": {
@@ -2016,57 +2110,78 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:48:36+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:43:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.838729,
-                    "locality": "Paris",
-                    "longitude": 2.339928,
-                    "name": "Port Royal - Saint-Jacques (Paris)",
-                    "postalCode": "",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2018-12-02T22:51:00"
+                },
                 "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "mode": "Waiting",
-                "scheduledArrivalTime": "2018-12-02T22:51:00",
-                "scheduledDepartureTime": "2018-12-02T22:48:36"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2018-12-02T22:48:36"
+                },
+                "mode": "Waiting"
             },
             {
-                "co2Emission": 370,
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "type": "WheelchairAccessible"
-                        }
-                    ]
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:04:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.845742,
+                        "locality": "Paris",
+                        "longitude": 2.373727,
+                        "name": "Gare de Lyon - Diderot (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.838729,
-                    "locality": "Paris",
-                    "longitude": 2.339928,
-                    "name": "Port Royal - Saint-Jacques (Paris)",
-                    "postalCode": "",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "co2Emission": 370,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Bastille (Paris)",
+                        "line": {
+                            "color": "#dfb03a",
+                            "mode": "Bus",
+                            "modeString": "Bus",
+                            "name": "91",
+                            "operatorName": "RATP",
+                            "textColor": "#000000"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:51:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.838729,
+                        "locality": "Paris",
+                        "longitude": 2.339928,
+                        "name": "Port Royal - Saint-Jacques (Paris)",
+                        "postalCode": "",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "type": "WheelchairAccessible"
+                            }
+                        ]
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -2221,53 +2336,44 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Bastille (Paris)",
-                    "line": {
-                        "color": "#dfb03a",
-                        "mode": "Bus",
-                        "modeString": "Bus",
-                        "name": "91",
-                        "operatorName": "RATP",
-                        "textColor": "#000000"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:04:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:51:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.845742,
-                    "locality": "Paris",
-                    "longitude": 2.373727,
-                    "name": "Gare de Lyon - Diderot (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 369,
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.845742,
-                    "locality": "Paris",
-                    "longitude": 2.373727,
-                    "name": "Gare de Lyon - Diderot (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:09:24+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.844071,
+                        "locality": "Paris",
+                        "longitude": 2.377274,
+                        "name": "20 Rue de Chalon (Paris)",
+                        "region": "FR-IDF"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:04:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.845742,
+                        "locality": "Paris",
+                        "longitude": 2.373727,
+                        "name": "Gare de Lyon - Diderot (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 369,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -2384,22 +2490,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:09:24+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:04:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.844071,
-                    "locality": "Paris",
-                    "longitude": 2.377274,
-                    "name": "20 Rue de Chalon (Paris)",
-                    "region": "FR-IDF"
                 }
             }
         ]
@@ -2407,17 +2497,40 @@
     {
         "sections": [
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 519,
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.0042397,
-                    "locality": "Le Mesnil-Amelot",
-                    "longitude": 2.5702036,
-                    "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
-                    "region": "FR-IDF"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:21:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.003387,
+                        "locality": "Tremblay-en-France",
+                        "longitude": 2.564653,
+                        "name": "CDG 2A/2C (Tremblay-en-France)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:13:24+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.0042397,
+                        "locality": "Le Mesnil-Amelot",
+                        "longitude": 2.5702036,
+                        "name": "Dépose Gare TGV (Le Mesnil-Amelot)",
+                        "region": "FR-IDF"
+                    }
+                },
+                "distance": 519,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -2530,38 +2643,55 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:21:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:13:24+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 49.003387,
-                    "locality": "Tremblay-en-France",
-                    "longitude": 2.564653,
-                    "name": "CDG 2A/2C (Tremblay-en-France)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:05:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.845796,
+                        "locality": "Paris",
+                        "longitude": 2.373686,
+                        "name": "Gare de Lyon (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
                 "co2Emission": 3171,
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "FR",
-                    "latitude": 49.003387,
-                    "locality": "Tremblay-en-France",
-                    "longitude": 2.564653,
-                    "name": "CDG 2A/2C (Tremblay-en-France)",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Gare Montparnasse (Paris)",
+                        "line": {
+                            "color": "#000000",
+                            "mode": "Bus",
+                            "modeString": "Bus",
+                            "name": "DIRECT 4",
+                            "operatorName": "LE BUS DIRECT",
+                            "textColor": "#ffffff"
+                        }
+                    },
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T22:21:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 49.003387,
+                        "locality": "Tremblay-en-France",
+                        "longitude": 2.564653,
+                        "name": "CDG 2A/2C (Tremblay-en-France)",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -2606,53 +2736,44 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Gare Montparnasse (Paris)",
-                    "line": {
-                        "color": "#000000",
-                        "mode": "Bus",
-                        "modeString": "Bus",
-                        "name": "DIRECT 4",
-                        "operatorName": "LE BUS DIRECT",
-                        "textColor": "#ffffff"
-                    }
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:05:00+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T22:21:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.845796,
-                    "locality": "Paris",
-                    "longitude": 2.373686,
-                    "name": "Gare de Lyon (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
                 }
             },
             {
-                "co2Emission": 0,
-                "disruptionEffect": "NormalService",
-                "distance": 339,
-                "from": {
-                    "country": "FR",
-                    "latitude": 48.845796,
-                    "locality": "Paris",
-                    "longitude": 2.373686,
-                    "name": "Gare de Lyon (Paris)",
-                    "postalCode": "75012",
-                    "region": "FR-IDF",
-                    "timezone": "Europe/Paris",
-                    "type": "Stop"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:09:59+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.844071,
+                        "locality": "Paris",
+                        "longitude": 2.377274,
+                        "name": "20 Rue de Chalon (Paris)",
+                        "region": "FR-IDF"
+                    }
                 },
+                "co2Emission": 0,
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Paris",
+                        "value": "2018-12-02T23:05:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "FR",
+                        "latitude": 48.845796,
+                        "locality": "Paris",
+                        "longitude": 2.373686,
+                        "name": "Gare de Lyon (Paris)",
+                        "postalCode": "75012",
+                        "region": "FR-IDF",
+                        "timezone": "Europe/Paris",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 339,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -2737,22 +2858,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:09:59+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Paris",
-                    "value": "2018-12-02T23:05:00+01:00"
-                },
-                "to": {
-                    "country": "FR",
-                    "latitude": 48.844071,
-                    "locality": "Paris",
-                    "longitude": 2.377274,
-                    "name": "20 Rue de Chalon (Paris)",
-                    "region": "FR-IDF"
                 }
             }
         ]

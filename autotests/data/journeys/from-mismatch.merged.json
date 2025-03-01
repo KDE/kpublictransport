@@ -1,42 +1,57 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "FR",
-                "latitude": 49.004148,
-                "longitude": 2.570818,
-                "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
-                "region": "FR-IDF",
-                "timezone": "Europe/Paris"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Gare de Saint-Rémy les Chevreuse (Saint-Rémy-lès-Chevreuse)",
-                "line": {
-                    "color": "#5291ce",
-                    "mode": "RapidTransit",
-                    "modeString": "RER",
-                    "name": "B",
-                    "textColor": "#ffffff"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Gare de Saint-Rémy les Chevreuse (Saint-Rémy-lès-Chevreuse)",
+                    "line": {
+                        "color": "#5291ce",
+                        "mode": "RapidTransit",
+                        "modeString": "RER",
+                        "name": "B",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2019-03-03T12:08:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "FR",
+                    "latitude": 48.860807,
+                    "longitude": 2.34755,
+                    "name": "Châtelet les Halles (Paris)",
+                    "region": "FR-IDF",
+                    "timezone": "Europe/Paris"
                 }
             },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Paris",
-                "value": "2019-03-03T12:08:00+01:00"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Gare de Saint-Rémy les Chevreuse (Saint-Rémy-lès-Chevreuse)",
+                    "line": {
+                        "color": "#5291ce",
+                        "mode": "RapidTransit",
+                        "modeString": "RER",
+                        "name": "B",
+                        "textColor": "#ffffff"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Paris",
+                    "value": "2019-03-03T11:29:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "FR",
+                    "latitude": 49.004148,
+                    "longitude": 2.570818,
+                    "name": "Aérop-C-de-Gaulle-2-TGV (Tremblay-en-France)",
+                    "region": "FR-IDF",
+                    "timezone": "Europe/Paris"
+                }
             },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Paris",
-                "value": "2019-03-03T11:29:00+01:00"
-            },
-            "to": {
-                "country": "FR",
-                "latitude": 48.860807,
-                "longitude": 2.34755,
-                "name": "Châtelet les Halles (Paris)",
-                "region": "FR-IDF",
-                "timezone": "Europe/Paris"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

@@ -1,27 +1,66 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedArrivalPlatform": "1",
-            "expectedArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-05-04T16:29:00+02:00"
-            },
-            "expectedDeparturePlatform": "1",
-            "expectedDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-05-04T15:33:00+02:00"
-            },
-            "from": {
-                "country": "DE",
-                "identifier": {
-                    "ibnr": "8000016"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-05-04T16:29:00+02:00"
                 },
-                "latitude": 48.942676,
-                "longitude": 9.425989,
-                "name": "Backnang",
-                "region": "DE-BW",
-                "type": "Stop"
+                "expectedPlatform": "1",
+                "notes": [
+                    "Reparatur an einem Signal"
+                ],
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-05-04T16:28:00+02:00"
+                },
+                "scheduledPlatform": "1",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8006698"
+                    },
+                    "latitude": 48.770255,
+                    "longitude": 9.156959,
+                    "name": "Stuttgart Schwabstr.",
+                    "region": "DE-BW",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-05-04T15:33:00+02:00"
+                },
+                "expectedPlatform": "1",
+                "notes": [
+                    "Reparatur an einem Signal"
+                ],
+                "route": {
+                    "line": {
+                        "mode": "RapidTransit",
+                        "name": "S 4",
+                        "operatorName": "DB Regio, S-Bahn Stuttgart"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-05-04T15:33:00+02:00"
+                },
+                "scheduledPlatform": "1",
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "ibnr": "8000016"
+                    },
+                    "latitude": 48.942676,
+                    "longitude": 9.425989,
+                    "name": "Backnang",
+                    "region": "DE-BW",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -588,35 +627,7 @@
             "mode": "PublicTransport",
             "notes": [
                 "Erfahrungsgemäß hat dieser Zug eine hohe Auslastung."
-            ],
-            "route": {
-                "line": {
-                    "mode": "RapidTransit",
-                    "name": "S 4",
-                    "operatorName": "DB Regio, S-Bahn Stuttgart"
-                }
-            },
-            "scheduledArrivalPlatform": "1",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-05-04T16:28:00+02:00"
-            },
-            "scheduledDeparturePlatform": "1",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-05-04T15:33:00+02:00"
-            },
-            "to": {
-                "country": "DE",
-                "identifier": {
-                    "ibnr": "8006698"
-                },
-                "latitude": 48.770255,
-                "longitude": 9.156959,
-                "name": "Stuttgart Schwabstr.",
-                "region": "DE-BW",
-                "type": "Stop"
-            }
+            ]
         }
     ]
 }

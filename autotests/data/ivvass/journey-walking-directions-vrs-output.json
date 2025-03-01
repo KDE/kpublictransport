@@ -2,20 +2,39 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 643,
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:05315:11810:1:11"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T13:23:38+01:00"
                     },
-                    "latitude": 50.95101,
-                    "locality": "Köln",
-                    "longitude": 6.95954,
-                    "name": "Ebertplatz (U) Gleis 1",
-                    "region": "DE-NW",
-                    "type": "Stop"
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 50.94732,
+                        "longitude": 6.96253,
+                        "region": "DE-NW"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": {
+                        "timezone": "Europe/Berlin",
+                        "value": "2021-02-27T13:14:00+01:00"
+                    },
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:05315:11810:1:11"
+                        },
+                        "latitude": 50.95101,
+                        "locality": "Köln",
+                        "longitude": 6.95954,
+                        "name": "Ebertplatz (U) Gleis 1",
+                        "region": "DE-NW",
+                        "type": "Stop"
+                    }
+                },
+                "distance": 643,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -208,20 +227,6 @@
                             }
                         }
                     ]
-                },
-                "scheduledArrivalTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T13:23:38+01:00"
-                },
-                "scheduledDepartureTime": {
-                    "timezone": "Europe/Berlin",
-                    "value": "2021-02-27T13:14:00+01:00"
-                },
-                "to": {
-                    "country": "DE",
-                    "latitude": 50.94732,
-                    "longitude": 6.96253,
-                    "region": "DE-NW"
                 }
             }
         ]

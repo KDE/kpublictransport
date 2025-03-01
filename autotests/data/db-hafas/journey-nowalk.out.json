@@ -2,45 +2,86 @@
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-12-14T18:28:00",
+                    "scheduledArrivalTime": "2024-12-14T18:28:00",
+                    "scheduledPlatform": "12",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000152",
+                            "db-hafas": "A=1@O=Hannover Hbf@X=9741017@Y=52376764@U=80@L=8000152@i=U×008013552@",
+                            "ibnr": "8000152",
+                            "uic": "8013552"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 52.376764,
+                        "longitude": 9.741017,
+                        "name": "Hannover Hbf",
+                        "region": "DE-NI",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2024-12-14T18:28:00",
-                "expectedDepartureTime": "2024-12-14T16:46:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8011160",
-                        "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8011160@i=U×008065969@",
-                        "ibnr": "8011160",
-                        "uic": "8065969"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-12-14T16:46:00",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Düsseldorf Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 544",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 52.525589,
-                    "longitude": 13.369549,
-                    "name": "Berlin Hbf",
-                    "region": "DE-BE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-12-14T16:45:00",
+                    "scheduledPlatform": "14",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8011160",
+                            "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8011160@i=U×008065969@",
+                            "ibnr": "8011160",
+                            "uic": "8065969"
+                        },
+                        "latitude": 52.525589,
+                        "longitude": 13.369549,
+                        "name": "Berlin Hbf",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1733779122#PI#0#ZI#224367#TA#0#DA#141224#1S#8010255#1T#1633#LS#8000207#LT#2133#PU#80#RT#1#CA#ICE#ZE#544#ZB#ICE  544#PC#0#FR#8010255#FT#1633#TO#8000207#TT#2133#"
@@ -114,87 +155,91 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb."
-                ],
-                "route": {
-                    "direction": "Düsseldorf Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 544",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "12",
-                "scheduledArrivalTime": "2024-12-14T18:28:00",
-                "scheduledDeparturePlatform": "14",
-                "scheduledDepartureTime": "2024-12-14T16:45:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000152",
-                        "db-hafas": "A=1@O=Hannover Hbf@X=9741017@Y=52376764@U=80@L=8000152@i=U×008013552@",
-                        "ibnr": "8000152",
-                        "uic": "8013552"
-                    },
-                    "latitude": 52.376764,
-                    "longitude": 9.741017,
-                    "name": "Hannover Hbf",
-                    "region": "DE-NI",
-                    "type": "Stop"
-                }
+                ]
             },
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-12-14T19:55:00",
+                    "scheduledArrivalTime": "2024-12-14T19:55:00",
+                    "scheduledPlatform": "12",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8002549",
+                            "db-hafas": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
+                            "ibnr": "8002549",
+                            "uic": "8001071"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 53.552733,
+                        "longitude": 10.006909,
+                        "name": "Hamburg Hbf",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2024-12-14T19:55:00",
-                "expectedDepartureTime": "2024-12-14T18:36:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8000152",
-                        "db-hafas": "A=1@O=Hannover Hbf@X=9741017@Y=52376764@U=80@L=8000152@i=U×008013552@",
-                        "ibnr": "8000152",
-                        "uic": "8013552"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-12-14T18:36:00",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Hamburg Hbf",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 786",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 52.376764,
-                    "longitude": 9.741017,
-                    "name": "Hannover Hbf",
-                    "region": "DE-NI",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-12-14T18:36:00",
+                    "scheduledPlatform": "7",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8000152",
+                            "db-hafas": "A=1@O=Hannover Hbf@X=9741017@Y=52376764@U=80@L=8000152@i=U×008013552@",
+                            "ibnr": "8000152",
+                            "uic": "8013552"
+                        },
+                        "latitude": 52.376764,
+                        "longitude": 9.741017,
+                        "name": "Hannover Hbf",
+                        "region": "DE-NI",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1733779122#PI#0#ZI#229630#TA#0#DA#141224#1S#8000261#1T#1421#LS#8002549#LT#1955#PU#80#RT#1#CA#ICE#ZE#786#ZB#ICE  786#PC#0#FR#8000261#FT#1421#TO#8002549#TT#1955#"
@@ -225,67 +270,61 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
                 "mode": "PublicTransport",
                 "notes": [
                     "Aufzug in Hannover Hbf Gl. 9/10 außer Betrieb."
-                ],
-                "route": {
-                    "direction": "Hamburg Hbf",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 786",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "12",
-                "scheduledArrivalTime": "2024-12-14T19:55:00",
-                "scheduledDeparturePlatform": "7",
-                "scheduledDepartureTime": "2024-12-14T18:36:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8002549",
-                        "db-hafas": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
-                        "ibnr": "8002549",
-                        "uic": "8001071"
-                    },
-                    "latitude": 53.552733,
-                    "longitude": 10.006909,
-                    "name": "Hamburg Hbf",
-                    "type": "Stop"
-                }
+                ]
             }
         ]
     },
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2024-12-14T20:11:00",
-                "expectedDepartureTime": "2024-12-14T17:38:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8098160",
-                        "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
-                        "ibnr": "8098160",
-                        "uic": "8031922"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-12-14T20:11:00",
+                    "scheduledArrivalTime": "2024-12-14T20:11:00",
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8002549",
+                            "db-hafas": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
+                            "ibnr": "8002549",
+                            "uic": "8001071"
+                        },
+                        "latitude": 53.552733,
+                        "longitude": 10.006909,
+                        "name": "Hamburg Hbf",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-12-14T17:38:00",
+                    "route": {
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 2926",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 52.525589,
-                    "longitude": 13.369549,
-                    "name": "Berlin Hbf",
-                    "region": "DE-BE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-12-14T17:38:00",
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8098160",
+                            "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
+                            "ibnr": "8098160",
+                            "uic": "8031922"
+                        },
+                        "latitude": 52.525589,
+                        "longitude": 13.369549,
+                        "name": "Berlin Hbf",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1733779122#PI#0#ZI#1684043#TA#0#DA#141224#1S#8000261#1T#1256#LS#8002553#LT#2025#PU#80#RT#2#CA#ICE#ZE#2926#ZB#ICE 2926#PC#0#FR#8000261#FT#1256#TO#8002553#TT#2025#"
@@ -384,76 +423,92 @@
                 "notes": [
                     "Zug fährt mit anderem Fahrzeug. Zug fährt mit verringerter Anzahl an Sitzplätzen. Bordrestaurant/Bordbistro in Wagen 7. Die Ersatzstellplätze für Fahrräder befinden sich in Wagen 1. Rollstuhlgerechte Einrichtung in Wagen 6. Keine fahrzeuggebundene Einstiegshilfe. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 030 65212888.",
                     "Ersatzfahrt für ICE 506"
-                ],
-                "route": {
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 2926",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "8",
-                "scheduledArrivalTime": "2024-12-14T20:11:00",
-                "scheduledDeparturePlatform": "8",
-                "scheduledDepartureTime": "2024-12-14T17:38:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8002549",
-                        "db-hafas": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
-                        "ibnr": "8002549",
-                        "uic": "8001071"
-                    },
-                    "latitude": 53.552733,
-                    "longitude": 10.006909,
-                    "name": "Hamburg Hbf",
-                    "type": "Stop"
-                }
+                ]
             }
         ]
     },
     {
         "sections": [
             {
-                "departureVehicleLayout": {
-                    "direction": "UnknownDirection",
-                    "features": [
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Bordrestaurant",
-                            "type": "Restaurant"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2024-12-14T22:09:00",
+                    "scheduledArrivalTime": "2024-12-14T22:09:00",
+                    "scheduledPlatform": "13",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8002549",
+                            "db-hafas": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
+                            "ibnr": "8002549",
+                            "uic": "8001071"
                         },
-                        {
-                            "availability": "Available",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
-                            "type": "WheelchairAccessible"
-                        },
-                        {
-                            "availability": "Conditional",
-                            "disruptionEffect": "NormalService",
-                            "name": "Fahrradmitnahme reservierungspflichtig",
-                            "type": "BikeStorage"
-                        }
-                    ]
+                        "latitude": 53.552733,
+                        "longitude": 10.006909,
+                        "name": "Hamburg Hbf",
+                        "type": "Stop"
+                    }
                 },
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2024-12-14T22:09:00",
-                "expectedDepartureTime": "2024-12-14T19:38:00",
-                "from": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8098160",
-                        "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
-                        "ibnr": "8098160",
-                        "uic": "8031922"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2024-12-14T19:38:00",
+                    "load": [
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_1"
+                        },
+                        {
+                            "load": "Low",
+                            "seatingClass": "KLASSE_2"
+                        }
+                    ],
+                    "route": {
+                        "direction": "Hamburg-Altona",
+                        "line": {
+                            "mode": "LongDistanceTrain",
+                            "name": "ICE 504",
+                            "operatorName": "DB Fernverkehr AG"
+                        }
                     },
-                    "latitude": 52.525589,
-                    "longitude": 13.369549,
-                    "name": "Berlin Hbf",
-                    "region": "DE-BE",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2024-12-14T19:38:00",
+                    "scheduledPlatform": "8",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "db": "8098160",
+                            "db-hafas": "A=1@O=Berlin Hbf@X=13369549@Y=52525589@U=80@L=8098160@i=U×008031922@",
+                            "ibnr": "8098160",
+                            "uic": "8031922"
+                        },
+                        "latitude": 52.525589,
+                        "longitude": 13.369549,
+                        "name": "Berlin Hbf",
+                        "region": "DE-BE",
+                        "type": "Stop"
+                    },
+                    "vehicleLayout": {
+                        "direction": "UnknownDirection",
+                        "features": [
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Bordrestaurant",
+                                "type": "Restaurant"
+                            },
+                            {
+                                "availability": "Available",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrzeuggebundene Einstiegshilfe vorhanden",
+                                "type": "WheelchairAccessible"
+                            },
+                            {
+                                "availability": "Conditional",
+                                "disruptionEffect": "NormalService",
+                                "name": "Fahrradmitnahme reservierungspflichtig",
+                                "type": "BikeStorage"
+                            }
+                        ]
+                    }
                 },
                 "identifiers": {
                     "db": "2|#VN#1#ST#1733779122#PI#0#ZI#222975#TA#0#DA#141224#1S#8000261#1T#1457#LS#8002553#LT#2225#PU#80#RT#1#CA#ICE#ZE#504#ZB#ICE  504#PC#0#FR#8000261#FT#1457#TO#8002553#TT#2225#"
@@ -588,42 +643,7 @@
                         }
                     }
                 ],
-                "load": [
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_1"
-                    },
-                    {
-                        "load": "Low",
-                        "seatingClass": "KLASSE_2"
-                    }
-                ],
-                "mode": "PublicTransport",
-                "route": {
-                    "direction": "Hamburg-Altona",
-                    "line": {
-                        "mode": "LongDistanceTrain",
-                        "name": "ICE 504",
-                        "operatorName": "DB Fernverkehr AG"
-                    }
-                },
-                "scheduledArrivalPlatform": "13",
-                "scheduledArrivalTime": "2024-12-14T22:09:00",
-                "scheduledDeparturePlatform": "8",
-                "scheduledDepartureTime": "2024-12-14T19:38:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "db": "8002549",
-                        "db-hafas": "A=1@O=Hamburg Hbf@X=10006909@Y=53552733@U=80@L=8002549@i=U×008001071@",
-                        "ibnr": "8002549",
-                        "uic": "8001071"
-                    },
-                    "latitude": 53.552733,
-                    "longitude": 10.006909,
-                    "name": "Hamburg Hbf",
-                    "type": "Stop"
-                }
+                "mode": "PublicTransport"
             }
         ]
     }

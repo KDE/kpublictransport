@@ -1,18 +1,40 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2022-04-12T10:05:00+02:00"
-            },
-            "from": {
-                "identifier": {
-                    "uic": "8301645"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2022-04-12T14:56:00+02:00"
                 },
-                "name": "Milano Porta Garibaldi",
-                "timezone": "Europe/Zurich",
-                "type": "Stop"
+                "scheduledPlatform": "6",
+                "stopPoint": {
+                    "identifier": {
+                        "uic": "8500010"
+                    },
+                    "name": "Basel SBB",
+                    "timezone": "Europe/Zurich",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2022-04-12T10:05:00+02:00"
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2022-04-12T10:05:00+02:00"
+                },
+                "stopPoint": {
+                    "identifier": {
+                        "uic": "8301645"
+                    },
+                    "name": "Milano Porta Garibaldi",
+                    "timezone": "Europe/Zurich",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -214,24 +236,7 @@
                     }
                 }
             ],
-            "mode": "PublicTransport",
-            "scheduledArrivalPlatform": "6",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2022-04-12T14:56:00+02:00"
-            },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2022-04-12T10:05:00+02:00"
-            },
-            "to": {
-                "identifier": {
-                    "uic": "8500010"
-                },
-                "name": "Basel SBB",
-                "timezone": "Europe/Zurich",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

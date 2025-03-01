@@ -40,6 +40,8 @@ private Q_SLOTS:
         QFETCH(int, end);
 
         const auto fullTrip = JourneySection::fromJson(QJsonDocument::fromJson(Test::readFile(QStringLiteral(SOURCE_DIR "/data/otp/de-stadtnavi-trip.out.json"))).object());
+        QCOMPARE(fullTrip.intermediateStops().size(), 27);
+        QCOMPARE(fullTrip.departure().stopPoint().name().isEmpty(), false);
 
         JourneySection partialTrip;
         partialTrip.setDeparture(begin >= 0 ? fullTrip.intermediateStops()[begin] : fullTrip.departure());

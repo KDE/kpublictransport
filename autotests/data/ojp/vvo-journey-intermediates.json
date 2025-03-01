@@ -2,55 +2,88 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "latitude": 50.8396,
-                    "longitude": 12.9307,
-                    "name": "Chemnitz Hbf",
-                    "region": "DE-SN"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2021-09-11T11:25:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14511:30062",
+                            "test_id": "de:14511:30062"
+                        },
+                        "name": "Chemnitz, Hauptbahnhof"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2021-09-11T11:25:00Z",
-                "scheduledDepartureTime": "2021-09-11T11:22:00Z",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:14511:30062",
-                        "test_id": "de:14511:30062"
-                    },
-                    "name": "Chemnitz, Hauptbahnhof"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2021-09-11T11:22:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 50.8396,
+                        "longitude": 12.9307,
+                        "name": "Chemnitz Hbf",
+                        "region": "DE-SN"
+                    }
+                },
+                "mode": "Walking"
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:14511:30062",
-                        "test_id": "de:14511:30062"
-                    },
-                    "name": "Chemnitz, Hauptbahnhof"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2021-09-11T11:30:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14511:30062:7:12",
+                            "test_id": "de:14511:30062:7:12"
+                        },
+                        "name": "Chemnitz, Hauptbahnhof"
+                    }
                 },
-                "mode": "Transfer",
-                "scheduledArrivalTime": "2021-09-11T11:30:00Z",
-                "scheduledDepartureTime": "2021-09-11T11:25:00Z",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:14511:30062:7:12",
-                        "test_id": "de:14511:30062:7:12"
-                    },
-                    "name": "Chemnitz, Hauptbahnhof"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2021-09-11T11:25:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14511:30062",
+                            "test_id": "de:14511:30062"
+                        },
+                        "name": "Chemnitz, Hauptbahnhof"
+                    }
+                },
+                "mode": "Transfer"
             },
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalTime": "2021-09-11T11:46:00Z",
-                "expectedDepartureTime": "2021-09-11T11:30:00Z",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:14511:30062:7:12",
-                        "test_id": "de:14511:30062:7:12"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-09-11T11:46:00Z",
+                    "scheduledArrivalTime": "2021-09-11T11:45:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14522:51529:2:2",
+                            "test_id": "de:14522:51529:2:2"
+                        },
+                        "name": "Falkenau (Sachs), Süd"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2021-09-11T11:30:00Z",
+                    "route": {
+                        "direction": "Dresden Hauptbahnhof",
+                        "line": {
+                            "mode": "LocalTrain",
+                            "name": "RB30"
+                        }
                     },
-                    "name": "Chemnitz, Hauptbahnhof"
+                    "scheduledDepartureTime": "2021-09-11T11:30:00Z",
+                    "scheduledPlatform": "12",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14511:30062:7:12",
+                            "test_id": "de:14511:30062:7:12"
+                        },
+                        "name": "Chemnitz, Hauptbahnhof"
+                    }
                 },
                 "intermediateStops": [
                     {
@@ -103,65 +136,57 @@
                 "notes": [
                     "Fahrradmitnahme begrenzt möglich",
                     "Linienaenderung: Fahrplanabweichungen und Schienenersatzverkehr"
-                ],
-                "route": {
-                    "direction": "Dresden Hauptbahnhof",
-                    "line": {
-                        "mode": "LocalTrain",
-                        "name": "RB30"
+                ]
+            },
+            {
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2021-09-11T11:47:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14522:51529",
+                            "test_id": "de:14522:51529"
+                        },
+                        "name": "Falkenau (Sachs), Süd"
                     }
                 },
-                "scheduledArrivalPlatform": "2",
-                "scheduledArrivalTime": "2021-09-11T11:45:00Z",
-                "scheduledDeparturePlatform": "12",
-                "scheduledDepartureTime": "2021-09-11T11:30:00Z",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:14522:51529:2:2",
-                        "test_id": "de:14522:51529:2:2"
-                    },
-                    "name": "Falkenau (Sachs), Süd"
-                }
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2021-09-11T11:46:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14522:51529:2:2",
+                            "test_id": "de:14522:51529:2:2"
+                        },
+                        "name": "Falkenau (Sachs), Süd"
+                    }
+                },
+                "mode": "Transfer"
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:14522:51529:2:2",
-                        "test_id": "de:14522:51529:2:2"
-                    },
-                    "name": "Falkenau (Sachs), Süd"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2021-09-11T11:48:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "latitude": 50.8493,
+                        "longitude": 13.1102,
+                        "name": "Falkenau Süd",
+                        "region": "DE-SN"
+                    }
                 },
-                "mode": "Transfer",
-                "scheduledArrivalTime": "2021-09-11T11:47:00Z",
-                "scheduledDepartureTime": "2021-09-11T11:46:00Z",
-                "to": {
-                    "identifier": {
-                        "ifopt": "de:14522:51529",
-                        "test_id": "de:14522:51529"
-                    },
-                    "name": "Falkenau (Sachs), Süd"
-                }
-            },
-            {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:14522:51529",
-                        "test_id": "de:14522:51529"
-                    },
-                    "name": "Falkenau (Sachs), Süd"
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2021-09-11T11:47:00Z",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:14522:51529",
+                            "test_id": "de:14522:51529"
+                        },
+                        "name": "Falkenau (Sachs), Süd"
+                    }
                 },
-                "mode": "Walking",
-                "scheduledArrivalTime": "2021-09-11T11:48:00Z",
-                "scheduledDepartureTime": "2021-09-11T11:47:00Z",
-                "to": {
-                    "country": "DE",
-                    "latitude": 50.8493,
-                    "longitude": 13.1102,
-                    "name": "Falkenau Süd",
-                    "region": "DE-SN"
-                }
+                "mode": "Walking"
             }
         ]
     }

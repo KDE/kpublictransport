@@ -60,22 +60,22 @@ public:
     KPUBLICTRANSPORT_PROPERTY(Mode, mode, setMode)
 
     /** Planned departure time. */
-    KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledDepartureTime, setScheduledDepartureTime)
+    Q_PROPERTY(QDateTime scheduledDepartureTime READ scheduledDepartureTime WRITE setScheduledDepartureTime STORED false)
     /** Actual departure time, if available.
      *  Set to invalid to indicate real-time data is not available.
      */
-    KPUBLICTRANSPORT_PROPERTY(QDateTime, expectedDepartureTime, setExpectedDepartureTime)
+    Q_PROPERTY(QDateTime expectedDepartureTime READ expectedDepartureTime WRITE setExpectedDepartureTime STORED false)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedDepartureTime READ hasExpectedDepartureTime STORED false)
     /** Difference to schedule in minutes. */
     Q_PROPERTY(int departureDelay READ departureDelay STORED false)
 
     /** Planned arrival time. */
-    KPUBLICTRANSPORT_PROPERTY(QDateTime, scheduledArrivalTime, setScheduledArrivalTime)
+    Q_PROPERTY(QDateTime scheduledArrivalTime READ scheduledArrivalTime WRITE setScheduledArrivalTime STORED false)
     /** Actual arrival time, if available.
      *  Set to invalid to indicate real-time data is not available.
      */
-    KPUBLICTRANSPORT_PROPERTY(QDateTime, expectedArrivalTime, setExpectedArrivalTime)
+    Q_PROPERTY(QDateTime expectedArrivalTime READ expectedArrivalTime WRITE setExpectedArrivalTime STORED false)
     /** @c true if this has real-time data. */
     Q_PROPERTY(bool hasExpectedArrivalTime READ hasExpectedArrivalTime STORED false)
     /** Difference to schedule in minutes. */
@@ -94,18 +94,18 @@ public:
     KPUBLICTRANSPORT_PROPERTY(KPublicTransport::Route, route, setRoute)
 
     /** Planned departure platform. */
-    KPUBLICTRANSPORT_PROPERTY(QString, scheduledDeparturePlatform, setScheduledDeparturePlatform)
+    Q_PROPERTY(QString scheduledDeparturePlatform READ scheduledDeparturePlatform WRITE setScheduledDeparturePlatform STORED false)
     /** Actual departure platform, in case real-time information are available. */
-    KPUBLICTRANSPORT_PROPERTY(QString, expectedDeparturePlatform, setExpectedDeparturePlatform)
+    Q_PROPERTY(QString expectedDeparturePlatform READ expectedDeparturePlatform WRITE setExpectedDeparturePlatform STORED false)
     /** @c true if real-time platform information are available. */
     Q_PROPERTY(bool hasExpectedDeparturePlatform READ hasExpectedDeparturePlatform STORED false)
     /** @c true if we have real-time platform information and the platform changed. */
     Q_PROPERTY(bool departurePlatformChanged READ departurePlatformChanged STORED false)
 
     /** Planned arrival platform. */
-    KPUBLICTRANSPORT_PROPERTY(QString, scheduledArrivalPlatform, setScheduledArrivalPlatform)
+    Q_PROPERTY(QString scheduledArrivalPlatform READ scheduledArrivalPlatform WRITE setScheduledArrivalPlatform STORED false)
     /** Actual arrival platform, in case real-time information are available. */
-    KPUBLICTRANSPORT_PROPERTY(QString, expectedArrivalPlatform, setExpectedArrivalPlatform)
+    Q_PROPERTY(QString expectedArrivalPlatform READ expectedArrivalPlatform WRITE setExpectedArrivalPlatform STORED false)
     /** @c true if real-time platform information are available. */
     Q_PROPERTY(bool hasExpectedArrivalPlatform READ hasExpectedArrivalPlatform STORED false)
     /** @c true if we have real-time platform information and the platform changed. */
@@ -186,15 +186,31 @@ public:
     Q_PROPERTY(KPublicTransport::Load::Category maximumOccupancy READ maximumOccupancy STORED false)
 
 public:
+    [[nodiscard]] QDateTime scheduledDepartureTime() const;
+    void setScheduledDepartureTime(const QDateTime &value);
+    [[nodiscard]] QDateTime expectedDepartureTime() const;
+    void setExpectedDepartureTime(const QDateTime &value);
     [[nodiscard]] bool hasExpectedDepartureTime() const;
     [[nodiscard]] int departureDelay() const;
+    [[nodiscard]] QDateTime scheduledArrivalTime() const;
+    void setScheduledArrivalTime(const QDateTime &value);
+    [[nodiscard]] QDateTime expectedArrivalTime() const;
+    void setExpectedArrivalTime(const QDateTime &value);
     [[nodiscard]] bool hasExpectedArrivalTime() const;
     [[nodiscard]] int arrivalDelay() const;
 
     [[nodiscard]] int duration() const;
 
+    [[nodiscard]] QString scheduledDeparturePlatform() const;
+    void setScheduledDeparturePlatform(const QString &platform);
+    [[nodiscard]] QString expectedDeparturePlatform() const;
+    void setExpectedDeparturePlatform(const QString &platform);
     [[nodiscard]] bool hasExpectedDeparturePlatform() const;
     [[nodiscard]] bool departurePlatformChanged() const;
+    [[nodiscard]] QString scheduledArrivalPlatform() const;
+    void setScheduledArrivalPlatform(const QString &platform);
+    [[nodiscard]] QString expectedArrivalPlatform() const;
+    void setExpectedArrivalPlatform(const QString &platform);
     [[nodiscard]] bool hasExpectedArrivalPlatform() const;
     [[nodiscard]] bool arrivalPlatformChanged() const;
 

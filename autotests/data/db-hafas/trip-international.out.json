@@ -1,40 +1,82 @@
 {
-    "departureVehicleLayout": {
-        "direction": "UnknownDirection",
-        "features": [
-            {
-                "availability": "Available",
-                "disruptionEffect": "NormalService",
-                "name": "Bordrestaurant",
-                "type": "Restaurant"
+    "arrival": {
+        "disruptionEffect": "NormalService",
+        "scheduledArrivalTime": "2025-02-02T21:31:00",
+        "scheduledPlatform": "19",
+        "stopPoint": {
+            "country": "DE",
+            "identifier": {
+                "db": "8000105",
+                "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                "ibnr": "8000105",
+                "uic": "8011068"
             },
-            {
-                "availability": "Available",
-                "disruptionEffect": "NormalService",
-                "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
-                "type": "WheelchairAccessible"
-            },
-            {
-                "availability": "Conditional",
-                "disruptionEffect": "NormalService",
-                "name": "Fahrradmitnahme reservierungspflichtig",
-                "type": "BikeStorage"
-            }
-        ]
+            "latitude": 50.107149,
+            "longitude": 8.663785,
+            "name": "Frankfurt(Main)Hbf",
+            "region": "DE-HE",
+            "type": "Stop"
+        }
     },
-    "disruptionEffect": "NormalService",
-    "from": {
-        "country": "BE",
-        "identifier": {
-            "db": "8800004",
-            "db-hafas": "A=1@O=Bruxelles Midi@X=4335695@Y=50835375@U=81@L=8800004@i=U×008814001@",
-            "ibnr": "8800004",
-            "uic": "8814001"
+    "departure": {
+        "disruptionEffect": "NormalService",
+        "route": {
+            "destination": {
+                "country": "DE",
+                "identifier": {
+                    "db": "8000105",
+                    "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
+                    "ibnr": "8000105",
+                    "uic": "8011068"
+                },
+                "latitude": 50.107149,
+                "longitude": 8.663785,
+                "name": "Frankfurt(Main)Hbf",
+                "region": "DE-HE",
+                "type": "Stop"
+            },
+            "direction": "Frankfurt(Main)Hbf",
+            "line": {
+                "name": "ICE 19"
+            }
         },
-        "latitude": 50.835375,
-        "longitude": 4.335695,
-        "name": "Bruxelles Midi",
-        "type": "Stop"
+        "scheduledDepartureTime": "2025-02-02T18:25:00",
+        "stopPoint": {
+            "country": "BE",
+            "identifier": {
+                "db": "8800004",
+                "db-hafas": "A=1@O=Bruxelles Midi@X=4335695@Y=50835375@U=81@L=8800004@i=U×008814001@",
+                "ibnr": "8800004",
+                "uic": "8814001"
+            },
+            "latitude": 50.835375,
+            "longitude": 4.335695,
+            "name": "Bruxelles Midi",
+            "type": "Stop"
+        },
+        "vehicleLayout": {
+            "direction": "UnknownDirection",
+            "features": [
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Bordrestaurant",
+                    "type": "Restaurant"
+                },
+                {
+                    "availability": "Available",
+                    "disruptionEffect": "NormalService",
+                    "name": "Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe",
+                    "type": "WheelchairAccessible"
+                },
+                {
+                    "availability": "Conditional",
+                    "disruptionEffect": "NormalService",
+                    "name": "Fahrradmitnahme reservierungspflichtig",
+                    "type": "BikeStorage"
+                }
+            ]
+        }
     },
     "intermediateStops": [
         {
@@ -3059,42 +3101,5 @@
                 }
             }
         ]
-    },
-    "route": {
-        "destination": {
-            "country": "DE",
-            "identifier": {
-                "db": "8000105",
-                "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
-                "ibnr": "8000105",
-                "uic": "8011068"
-            },
-            "latitude": 50.107149,
-            "longitude": 8.663785,
-            "name": "Frankfurt(Main)Hbf",
-            "region": "DE-HE",
-            "type": "Stop"
-        },
-        "direction": "Frankfurt(Main)Hbf",
-        "line": {
-            "name": "ICE 19"
-        }
-    },
-    "scheduledArrivalPlatform": "19",
-    "scheduledArrivalTime": "2025-02-02T21:31:00",
-    "scheduledDepartureTime": "2025-02-02T18:25:00",
-    "to": {
-        "country": "DE",
-        "identifier": {
-            "db": "8000105",
-            "db-hafas": "A=1@O=Frankfurt(Main)Hbf@X=8663785@Y=50107149@U=81@L=8000105@i=U×008011068@",
-            "ibnr": "8000105",
-            "uic": "8011068"
-        },
-        "latitude": 50.107149,
-        "longitude": 8.663785,
-        "name": "Frankfurt(Main)Hbf",
-        "region": "DE-HE",
-        "type": "Stop"
     }
 }

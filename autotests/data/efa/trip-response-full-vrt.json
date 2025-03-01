@@ -2,21 +2,51 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "expectedArrivalPlatform": "3",
-                "expectedArrivalTime": "2021-06-16T21:58:00",
-                "expectedDeparturePlatform": "13 Nord",
-                "expectedDepartureTime": "2021-06-16T21:33:00",
-                "from": {
-                    "identifier": {
-                        "ifopt": "de:07211:1318:10:13N",
-                        "testid": "17001318"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "expectedArrivalTime": "2021-06-16T21:58:00",
+                    "expectedPlatform": "3",
+                    "scheduledArrivalTime": "2021-06-16T21:56:00",
+                    "scheduledPlatform": "3",
+                    "stopPoint": {
+                        "country": "DE",
+                        "identifier": {
+                            "ifopt": "de:07231:40916:1:3",
+                            "testid": "17040916"
+                        },
+                        "latitude": 49.97304,
+                        "locality": "Wittlich",
+                        "longitude": 6.94363,
+                        "name": "Wittlich, Hauptbahnhof",
+                        "region": "DE-RP",
+                        "type": "Stop"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "expectedDepartureTime": "2021-06-16T21:33:00",
+                    "expectedPlatform": "13 Nord",
+                    "route": {
+                        "direction": "Koblenz Hauptbahnhof",
+                        "line": {
+                            "mode": "Train",
+                            "modeString": "R-Bahn",
+                            "name": "RE1"
+                        }
                     },
-                    "latitude": 49.75804,
-                    "locality": "Trier",
-                    "longitude": 6.65365,
-                    "name": "Trier, Hauptbahnhof",
-                    "type": "Stop"
+                    "scheduledDepartureTime": "2021-06-16T21:31:00",
+                    "scheduledPlatform": "13 Nord",
+                    "stopPoint": {
+                        "identifier": {
+                            "ifopt": "de:07211:1318:10:13N",
+                            "testid": "17001318"
+                        },
+                        "latitude": 49.75804,
+                        "locality": "Trier",
+                        "longitude": 6.65365,
+                        "name": "Trier, Hauptbahnhof",
+                        "type": "Stop"
+                    }
                 },
                 "mode": "PublicTransport",
                 "notes": [
@@ -27,32 +57,7 @@
                     "Linie RE1: Fahrzeuggebundene Einstiegshilfe vorhanden",
                     "Linie RE1: Laptop-Steckdosen",
                     "Linie RE1: Klimaanlage"
-                ],
-                "route": {
-                    "direction": "Koblenz Hauptbahnhof",
-                    "line": {
-                        "mode": "Train",
-                        "modeString": "R-Bahn",
-                        "name": "RE1"
-                    }
-                },
-                "scheduledArrivalPlatform": "3",
-                "scheduledArrivalTime": "2021-06-16T21:56:00",
-                "scheduledDeparturePlatform": "13 Nord",
-                "scheduledDepartureTime": "2021-06-16T21:31:00",
-                "to": {
-                    "country": "DE",
-                    "identifier": {
-                        "ifopt": "de:07231:40916:1:3",
-                        "testid": "17040916"
-                    },
-                    "latitude": 49.97304,
-                    "locality": "Wittlich",
-                    "longitude": 6.94363,
-                    "name": "Wittlich, Hauptbahnhof",
-                    "region": "DE-RP",
-                    "type": "Stop"
-                }
+                ]
             }
         ]
     }

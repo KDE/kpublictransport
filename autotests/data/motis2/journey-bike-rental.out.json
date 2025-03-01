@@ -2,16 +2,36 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 186,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.77376011971705,
-                    "longitude": 9.170308904682798,
-                    "name": "START",
-                    "region": "DE-BW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:42:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.774812,
+                        "longitude": 9.171956,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:40:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.77376011971705,
+                        "longitude": 9.170308904682798,
+                        "name": "START",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 186,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -172,39 +192,44 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:42:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:40:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.774812,
-                    "longitude": 9.171956,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 197,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.774812,
-                    "longitude": 9.171956,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:44:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7761378,
+                        "longitude": 9.1731457,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:42:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.774812,
+                        "longitude": 9.171956,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 197,
                 "mode": "RentedVehicle",
                 "path": {
                     "sections": [
@@ -392,39 +417,43 @@
                 },
                 "rentalVehicle": {
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2024-11-06T16:44:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:42:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7761378,
-                    "longitude": 9.1731457,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 35,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7761378,
-                    "longitude": 9.1731457,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:45:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:08111:6056:1:2"
+                        },
+                        "latitude": 48.776276,
+                        "longitude": 9.173138,
+                        "name": "Stadtmitte",
+                        "region": "DE-BW"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:44:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7761378,
+                        "longitude": 9.1731457,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 35,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -469,34 +498,48 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalPlatform": "2",
-                "scheduledArrivalTime": "2024-11-06T16:45:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:44:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "identifier": {
-                        "motis": "de-DELFI_de:08111:6056:1:2"
-                    },
-                    "latitude": 48.776276,
-                    "longitude": 9.173138,
-                    "name": "Stadtmitte",
-                    "region": "DE-BW"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "identifier": {
-                        "motis": "de-DELFI_de:08111:6056:1:2"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:47:00Z",
+                    "scheduledPlatform": "102",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": -3,
+                        "identifier": {
+                            "motis": "de-DELFI_de:08111:6118:1:102"
+                        },
+                        "latitude": 48.783367,
+                        "longitude": 9.180342,
+                        "name": "Hauptbahnhof (tief)",
+                        "region": "DE-BW"
+                    }
+                },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "route": {
+                        "direction": "Weil der Stadt",
+                        "line": {
+                            "mode": "RapidTransit",
+                            "name": "S6",
+                            "operatorName": "DB Regio AG Baden-Württemberg"
+                        }
                     },
-                    "latitude": 48.776276,
-                    "longitude": 9.173138,
-                    "name": "Stadtmitte",
-                    "region": "DE-BW"
+                    "scheduledDepartureTime": "2024-11-06T16:46:00Z",
+                    "scheduledPlatform": "2",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "identifier": {
+                            "motis": "de-DELFI_de:08111:6056:1:2"
+                        },
+                        "latitude": 48.776276,
+                        "longitude": 9.173138,
+                        "name": "Stadtmitte",
+                        "region": "DE-BW"
+                    }
                 },
                 "identifiers": {
                     "motis": "20241106_17:42_de-DELFI_2647595173"
@@ -528,45 +571,44 @@
                             }
                         }
                     ]
-                },
-                "route": {
-                    "direction": "Weil der Stadt",
-                    "line": {
-                        "mode": "RapidTransit",
-                        "name": "S6",
-                        "operatorName": "DB Regio AG Baden-Württemberg"
-                    }
-                },
-                "scheduledArrivalPlatform": "102",
-                "scheduledArrivalTime": "2024-11-06T16:47:00Z",
-                "scheduledDeparturePlatform": "2",
-                "scheduledDepartureTime": "2024-11-06T16:46:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": -3,
-                    "identifier": {
-                        "motis": "de-DELFI_de:08111:6118:1:102"
-                    },
-                    "latitude": 48.783367,
-                    "longitude": 9.180342,
-                    "name": "Hauptbahnhof (tief)",
-                    "region": "DE-BW"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 72,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": -3,
-                    "identifier": {
-                        "motis": "de-DELFI_de:08111:6118:1:102"
-                    },
-                    "latitude": 48.783367,
-                    "longitude": 9.180342,
-                    "name": "Hauptbahnhof (tief)",
-                    "region": "DE-BW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:48:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7829,
+                        "longitude": 9.17978,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:47:00Z",
+                    "scheduledDepartureTime": "2024-11-06T16:47:00Z",
+                    "scheduledPlatform": "102",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": -3,
+                        "identifier": {
+                            "motis": "de-DELFI_de:08111:6118:1:102"
+                        },
+                        "latitude": 48.783367,
+                        "longitude": 9.180342,
+                        "name": "Hauptbahnhof (tief)",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 72,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -657,40 +699,44 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:48:00Z",
-                "scheduledDeparturePlatform": "102",
-                "scheduledDepartureTime": "2024-11-06T16:47:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7829,
-                    "longitude": 9.17978,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 1065,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7829,
-                    "longitude": 9.17978,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:54:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7858947,
+                        "longitude": 9.1896744,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:48:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7829,
+                        "longitude": 9.17978,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 1065,
                 "mode": "RentedVehicle",
                 "path": {
                     "sections": [
@@ -1472,39 +1518,39 @@
                 },
                 "rentalVehicle": {
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2024-11-06T16:54:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:48:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7858947,
-                    "longitude": 9.1896744,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 107,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7858947,
-                    "longitude": 9.1896744,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:55:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.78503407036962,
+                        "longitude": 9.18924475102054,
+                        "name": "END",
+                        "region": "DE-BW"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:54:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7858947,
+                        "longitude": 9.1896744,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 107,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -1553,16 +1599,6 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:55:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:54:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.78503407036962,
-                    "longitude": 9.18924475102054,
-                    "name": "END",
-                    "region": "DE-BW"
                 }
             }
         ]
@@ -1570,16 +1606,36 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 57,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.77376011971705,
-                    "longitude": 9.170308904682798,
-                    "name": "",
-                    "region": "DE-BW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:38:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.77359771728515,
+                        "longitude": 9.169612884521484,
+                        "name": "Bolt Technology OÜ",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:38:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.77376011971705,
+                        "longitude": 9.170308904682798,
+                        "name": "",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 57,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -1652,39 +1708,44 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:38:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:38:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.77359771728515,
-                    "longitude": 9.169612884521484,
-                    "name": "Bolt Technology OÜ",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 2363,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.77359771728515,
-                    "longitude": 9.169612884521484,
-                    "name": "Bolt Technology OÜ",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:53:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7858947,
+                        "longitude": 9.1896744,
+                        "name": "Bolt Technology OÜ",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:38:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.77359771728515,
+                        "longitude": 9.169612884521484,
+                        "name": "Bolt Technology OÜ",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 2363,
                 "mode": "RentedVehicle",
                 "path": {
                     "sections": [
@@ -3379,39 +3440,39 @@
                 },
                 "rentalVehicle": {
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2024-11-06T16:53:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:38:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7858947,
-                    "longitude": 9.1896744,
-                    "name": "Bolt Technology OÜ",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 107,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7858947,
-                    "longitude": 9.1896744,
-                    "name": "Bolt Technology OÜ",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:55:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.78503407036962,
+                        "longitude": 9.18924475102054,
+                        "name": "",
+                        "region": "DE-BW"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:53:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7858947,
+                        "longitude": 9.1896744,
+                        "name": "Bolt Technology OÜ",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 107,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -3460,16 +3521,6 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:55:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:53:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.78503407036962,
-                    "longitude": 9.18924475102054,
-                    "name": "",
-                    "region": "DE-BW"
                 }
             }
         ]
@@ -3477,16 +3528,36 @@
     {
         "sections": [
             {
-                "disruptionEffect": "NormalService",
-                "distance": 186,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.77376011971705,
-                    "longitude": 9.170308904682798,
-                    "name": "",
-                    "region": "DE-BW"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:40:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.774812,
+                        "longitude": 9.171956,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:38:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.77376011971705,
+                        "longitude": 9.170308904682798,
+                        "name": "",
+                        "region": "DE-BW"
+                    }
+                },
+                "distance": 186,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -3647,39 +3718,44 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:40:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:38:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.774812,
-                    "longitude": 9.171956,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 2166,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.774812,
-                    "longitude": 9.171956,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:54:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7858947,
+                        "longitude": 9.1896744,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:40:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.774812,
+                        "longitude": 9.171956,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 2166,
                 "mode": "RentedVehicle",
                 "path": {
                     "sections": [
@@ -5243,39 +5319,39 @@
                 },
                 "rentalVehicle": {
                     "type": "Bicycle"
-                },
-                "scheduledArrivalTime": "2024-11-06T16:54:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:40:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7858947,
-                    "longitude": 9.1896744,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
                 }
             },
             {
-                "disruptionEffect": "NormalService",
-                "distance": 107,
-                "from": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.7858947,
-                    "longitude": 9.1896744,
-                    "name": "RegioRad Stuttgart",
-                    "region": "DE-BW",
-                    "rentalVehicleStation": {
-                        "availableVehicles": -1,
-                        "capacity": -1
-                    },
-                    "type": "RentedVehicleStation"
+                "arrival": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledArrivalTime": "2024-11-06T16:56:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.78503407036962,
+                        "longitude": 9.18924475102054,
+                        "name": "",
+                        "region": "DE-BW"
+                    }
                 },
+                "departure": {
+                    "disruptionEffect": "NormalService",
+                    "scheduledDepartureTime": "2024-11-06T16:54:00Z",
+                    "stopPoint": {
+                        "country": "DE",
+                        "floorLevel": 0,
+                        "latitude": 48.7858947,
+                        "longitude": 9.1896744,
+                        "name": "RegioRad Stuttgart",
+                        "region": "DE-BW",
+                        "rentalVehicleStation": {
+                            "availableVehicles": -1,
+                            "capacity": -1
+                        },
+                        "type": "RentedVehicleStation"
+                    }
+                },
+                "distance": 107,
                 "mode": "Walking",
                 "path": {
                     "sections": [
@@ -5324,16 +5400,6 @@
                             "startFloorLevel": 0
                         }
                     ]
-                },
-                "scheduledArrivalTime": "2024-11-06T16:56:00Z",
-                "scheduledDepartureTime": "2024-11-06T16:54:00Z",
-                "to": {
-                    "country": "DE",
-                    "floorLevel": 0,
-                    "latitude": 48.78503407036962,
-                    "longitude": 9.18924475102054,
-                    "name": "",
-                    "region": "DE-BW"
                 }
             }
         ]

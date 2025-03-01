@@ -1,181 +1,236 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "CH",
-                "latitude": 47.45050048828125,
-                "longitude": 8.562749862670898,
-                "name": "Vorfahrt Abflug (Kloten)",
-                "region": "CH-ZH",
-                "timezone": "Europe/Zurich"
-            },
-            "mode": "Walking",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T15:46:00+01:00"
-            },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T15:38:30+01:00"
-            },
-            "to": {
-                "country": "CH",
-                "latitude": 47.45037841796875,
-                "longitude": 8.562378883361816,
-                "name": "Zürich Flughafen (Kloten)",
-                "region": "CH-ZH",
-                "timezone": "Europe/Zurich"
-            }
-        },
-        {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "CH",
-                "identifier": {
-                    "ibnr": "8503016"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T15:46:00+01:00"
                 },
-                "latitude": 47.45037841796875,
-                "longitude": 8.562378406524658,
-                "name": "Zürich Flughafen",
-                "region": "CH-ZH",
-                "timezone": "Europe/Zurich"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Brig",
-                "line": {
-                    "color": "#ff0000",
-                    "mode": "LongDistanceTrain",
-                    "name": "IC 824",
-                    "textColor": "#f2f2f2"
+                "stopPoint": {
+                    "country": "CH",
+                    "latitude": 47.45037841796875,
+                    "longitude": 8.562378883361816,
+                    "name": "Zürich Flughafen (Kloten)",
+                    "region": "CH-ZH",
+                    "timezone": "Europe/Zurich"
                 }
             },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:02:00+01:00"
-            },
-            "scheduledDeparturePlatform": "3",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T15:46:00+01:00"
-            },
-            "to": {
-                "country": "CH",
-                "identifier": {
-                    "ibnr": "8501605"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T15:38:30+01:00"
                 },
-                "latitude": 46.294023513793945,
-                "longitude": 7.881447076797485,
-                "name": "Visp",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
-            }
-        },
-        {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "CH",
-                "latitude": 46.29402160644531,
-                "longitude": 7.881449222564697,
-                "name": "Visp (Visp)",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
-            },
-            "mode": "Transfer",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:02:00+01:00"
-            },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:02:00+01:00"
-            },
-            "to": {
-                "country": "CH",
-                "latitude": 46.29402160644531,
-                "longitude": 7.881449222564697,
-                "name": "Visp (Visp)",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
-            }
-        },
-        {
-            "disruptionEffect": "NormalService",
-            "mode": "Waiting",
-            "scheduledArrivalTime": "2019-03-02T18:08:00",
-            "scheduledDepartureTime": "2019-03-02T18:02:00"
-        },
-        {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "CH",
-                "identifier": {
-                    "ibnr": "8501605"
-                },
-                "latitude": 46.294023513793945,
-                "longitude": 7.881447076797485,
-                "name": "Visp",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "direction": "Zermatt",
-                "line": {
-                    "mode": "LocalTrain",
-                    "modeString": "Train",
-                    "name": "R 257"
+                "stopPoint": {
+                    "country": "CH",
+                    "latitude": 47.45050048828125,
+                    "longitude": 8.562749862670898,
+                    "name": "Vorfahrt Abflug (Kloten)",
+                    "region": "CH-ZH",
+                    "timezone": "Europe/Zurich"
                 }
             },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:54:00+01:00"
-            },
-            "scheduledDeparturePlatform": "3",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:08:00+01:00"
-            },
-            "to": {
-                "country": "CH",
-                "identifier": {
-                    "ibnr": "8501687"
-                },
-                "latitude": 46.099632263183594,
-                "longitude": 7.7816925048828125,
-                "name": "Randa",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
-            }
+            "mode": "Walking"
         },
         {
-            "disruptionEffect": "NormalService",
-            "from": {
-                "country": "CH",
-                "latitude": 46.09992980957031,
-                "longitude": 7.781458854675293,
-                "name": "Randa (Randa)",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Brig",
+                    "line": {
+                        "color": "#ff0000",
+                        "mode": "LongDistanceTrain",
+                        "name": "IC 824",
+                        "textColor": "#f2f2f2"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:02:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "identifier": {
+                        "ibnr": "8501605"
+                    },
+                    "latitude": 46.294023513793945,
+                    "longitude": 7.881447076797485,
+                    "name": "Visp",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
             },
-            "mode": "Walking",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:56:45+01:00"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Brig",
+                    "line": {
+                        "color": "#ff0000",
+                        "mode": "LongDistanceTrain",
+                        "name": "IC 824",
+                        "textColor": "#f2f2f2"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T15:46:00+01:00"
+                },
+                "scheduledPlatform": "3",
+                "stopPoint": {
+                    "country": "CH",
+                    "identifier": {
+                        "ibnr": "8503016"
+                    },
+                    "latitude": 47.45037841796875,
+                    "longitude": 8.562378406524658,
+                    "name": "Zürich Flughafen",
+                    "region": "CH-ZH",
+                    "timezone": "Europe/Zurich"
+                }
             },
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Zurich",
-                "value": "2019-03-02T18:54:00+01:00"
+            "mode": "PublicTransport"
+        },
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:02:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "latitude": 46.29402160644531,
+                    "longitude": 7.881449222564697,
+                    "name": "Visp (Visp)",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
             },
-            "to": {
-                "country": "CH",
-                "latitude": 46.0989990234375,
-                "longitude": 7.7831501960754395,
-                "name": "",
-                "region": "CH-VS",
-                "timezone": "Europe/Zurich"
-            }
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:02:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "latitude": 46.29402160644531,
+                    "longitude": 7.881449222564697,
+                    "name": "Visp (Visp)",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
+            },
+            "mode": "Transfer"
+        },
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": "2019-03-02T18:08:00",
+                "stopPoint": {
+                    "latitude": 0,
+                    "longitude": 0
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "scheduledDepartureTime": "2019-03-02T18:02:00",
+                "stopPoint": {
+                    "latitude": 0,
+                    "longitude": 0
+                }
+            },
+            "mode": "Waiting"
+        },
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Zermatt",
+                    "line": {
+                        "mode": "LocalTrain",
+                        "modeString": "Train",
+                        "name": "R 257"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:54:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "identifier": {
+                        "ibnr": "8501687"
+                    },
+                    "latitude": 46.099632263183594,
+                    "longitude": 7.7816925048828125,
+                    "name": "Randa",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "route": {
+                    "direction": "Zermatt",
+                    "line": {
+                        "mode": "LocalTrain",
+                        "modeString": "Train",
+                        "name": "R 257"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:08:00+01:00"
+                },
+                "scheduledPlatform": "3",
+                "stopPoint": {
+                    "country": "CH",
+                    "identifier": {
+                        "ibnr": "8501605"
+                    },
+                    "latitude": 46.294023513793945,
+                    "longitude": 7.881447076797485,
+                    "name": "Visp",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
+            },
+            "mode": "PublicTransport"
+        },
+        {
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:56:45+01:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "latitude": 46.0989990234375,
+                    "longitude": 7.7831501960754395,
+                    "name": "",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Zurich",
+                    "value": "2019-03-02T18:54:00+01:00"
+                },
+                "stopPoint": {
+                    "country": "CH",
+                    "latitude": 46.09992980957031,
+                    "longitude": 7.781458854675293,
+                    "name": "Randa (Randa)",
+                    "region": "CH-VS",
+                    "timezone": "Europe/Zurich"
+                }
+            },
+            "mode": "Walking"
         }
     ]
 }

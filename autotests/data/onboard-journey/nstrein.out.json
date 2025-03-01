@@ -1,26 +1,59 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "expectedArrivalTime": {
-                "timezone": "Europe/Amsterdam",
-                "value": "2024-10-27T12:11:00+01:00"
-            },
-            "expectedDepartureTime": {
-                "timezone": "Europe/Amsterdam",
-                "value": "2024-10-27T09:13:15+01:00"
-            },
-            "from": {
-                "country": "NL",
-                "identifier": {
-                    "nstrein": "GVC",
-                    "uic": "8400282"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Amsterdam",
+                    "value": "2024-10-27T12:11:00+01:00"
                 },
-                "latitude": 52.0802764892578,
-                "longitude": 4.32499980926514,
-                "name": "Den Haag Centraal",
-                "region": "NL-ZH",
-                "type": "Stop"
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Amsterdam",
+                    "value": "2024-10-27T12:11:00+01:00"
+                },
+                "scheduledPlatform": "7",
+                "stopPoint": {
+                    "country": "NL",
+                    "identifier": {
+                        "nstrein": "GN",
+                        "uic": "8400263"
+                    },
+                    "latitude": 53.2105560302734,
+                    "longitude": 6.56472206115723,
+                    "name": "Groningen",
+                    "region": "NL-GR",
+                    "type": "Stop"
+                }
+            },
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Amsterdam",
+                    "value": "2024-10-27T09:13:15+01:00"
+                },
+                "route": {
+                    "line": {
+                        "mode": "Train",
+                        "name": "Intercity"
+                    }
+                },
+                "scheduledDepartureTime": {
+                    "timezone": "Europe/Amsterdam",
+                    "value": "2024-10-27T09:13:15+01:00"
+                },
+                "scheduledPlatform": "10",
+                "stopPoint": {
+                    "country": "NL",
+                    "identifier": {
+                        "nstrein": "GVC",
+                        "uic": "8400282"
+                    },
+                    "latitude": 52.0802764892578,
+                    "longitude": 4.32499980926514,
+                    "name": "Den Haag Centraal",
+                    "region": "NL-ZH",
+                    "type": "Stop"
+                }
             },
             "intermediateStops": [
                 {
@@ -277,35 +310,7 @@
                     }
                 }
             ],
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Train",
-                    "name": "Intercity"
-                }
-            },
-            "scheduledArrivalPlatform": "7",
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Amsterdam",
-                "value": "2024-10-27T12:11:00+01:00"
-            },
-            "scheduledDeparturePlatform": "10",
-            "scheduledDepartureTime": {
-                "timezone": "Europe/Amsterdam",
-                "value": "2024-10-27T09:13:15+01:00"
-            },
-            "to": {
-                "country": "NL",
-                "identifier": {
-                    "nstrein": "GN",
-                    "uic": "8400263"
-                },
-                "latitude": 53.2105560302734,
-                "longitude": 6.56472206115723,
-                "name": "Groningen",
-                "region": "NL-GR",
-                "type": "Stop"
-            }
+            "mode": "PublicTransport"
         }
     ]
 }

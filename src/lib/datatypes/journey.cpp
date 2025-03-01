@@ -731,14 +731,15 @@ JourneySection JourneySection::subsection(qsizetype begin, qsizetype end) const
 
 void JourneySection::applyMetaData(bool download)
 {
-    if (!from().hasCoordinate() || mode() != JourneySection::PublicTransport) {
+    if (!d->departure.stopPoint().hasCoordinate() || mode() != JourneySection::PublicTransport) {
         return;
     }
     auto r = route();
     auto line = d->departure.route().line();
-    line.applyMetaData(from(), download);
+    line.applyMetaData(d->departure.stopPoint(), download);
     r.setLine(line);
-    setRoute(r);
+    d->departure.setRoute(r);
+    d->arrival.setRoute(r);
 
     // propagate to intermediate stops
     for (auto &stop : d->intermediateStops) {
@@ -832,64 +833,43 @@ JourneySection JourneySection::merge(const JourneySection &lhs, const JourneySec
 
 QJsonObject JourneySection::toJson(const JourneySection &section)
 {
+    if (section.mode() == Invalid) {
+        return {};
+    }
+
     auto obj = Json::toJson(section);
     if (!section.d->ids.isEmpty()) {
         obj.insert("identifiers"_L1, section.d->ids.toJson());
     }
-    if (section.mode() != Waiting) {
-        const auto fromObj = Location::toJson(section.from());
-        if (!fromObj.empty()) {
-            obj.insert(QLatin1String("from"), fromObj);
-        }
-        const auto toObj = Location::toJson(section.to());
-        if (!toObj.empty()) {
-            obj.insert(QLatin1String("to"), toObj);
-        }
-    }
+    obj.insert("departure"_L1, Stopover::toJson(section.d->departure));
+    obj.insert("arrival"_L1, Stopover::toJson(section.d->arrival));
     if (section.mode() == PublicTransport) {
-        const auto routeObj = Route::toJson(section.route());
-        if (!routeObj.empty()) {
-            obj.insert(QLatin1String("route"), routeObj);
-        }
         if (!section.intermediateStops().empty()) {
-            obj.insert(QLatin1String("intermediateStops"), Stopover::toJson(section.intermediateStops()));
-        }
-        if (!section.loadInformation().empty()) {
-            obj.insert(QLatin1String("load"), LoadInfo::toJson(section.loadInformation()));
+            obj.insert("intermediateStops"_L1, Stopover::toJson(section.intermediateStops()));
         }
     }
     if (section.d->distance <= 0) {
         obj.remove("distance"_L1);
     }
     if (section.d->co2Emission < 0) {
-        obj.remove(QLatin1String("co2Emission"));
+        obj.remove("co2Emission"_L1);
+    }
+    if (section.d->disruptionEffect == Disruption::NormalService) {
+        obj.remove("disruptionEffect"_L1);
     }
     if (section.rentalVehicle().type() != RentalVehicle::Unknown) {
-        obj.insert(QLatin1String("rentalVehicle"), RentalVehicle::toJson(section.rentalVehicle()));
+        obj.insert("rentalVehicle"_L1, RentalVehicle::toJson(section.rentalVehicle()));
     }
 
     if (!section.path().isEmpty()) {
-        obj.insert(QLatin1String("path"), Path::toJson(section.path()));
-    }
-
-    if (!section.departureVehicleLayout().isEmpty()) {
-        obj.insert(QLatin1String("departureVehicleLayout"), Vehicle::toJson(section.departureVehicleLayout()));
-    }
-    if (!section.departurePlatformLayout().isEmpty()) {
-        obj.insert(QLatin1String("departurePlatformLayout"), Platform::toJson(section.departurePlatformLayout()));
-    }
-    if (!section.arrivalVehicleLayout().isEmpty()) {
-        obj.insert(QLatin1String("arrivalVehicleLayout"), Vehicle::toJson(section.arrivalVehicleLayout()));
-    }
-    if (!section.arrivalPlatformLayout().isEmpty()) {
-        obj.insert(QLatin1String("arrivalPlatformLayout"), Platform::toJson(section.arrivalPlatformLayout()));
+        obj.insert("path"_L1, Path::toJson(section.path()));
     }
 
     if (section.mode() == JourneySection::IndividualTransport) {
-        obj.insert(QLatin1String("individualTransport"), IndividualTransport::toJson(section.individualTransport()));
+        obj.insert("individualTransport"_L1, IndividualTransport::toJson(section.individualTransport()));
     }
 
-    if (obj.size() <= 2) { // only the disruption and mode enums, ie. this is an empty object
+    if (obj.size() <= 1) { // only the mode enums, ie. this is an empty object
         return {};
     }
     return obj;
@@ -902,20 +882,43 @@ QJsonArray JourneySection::toJson(const std::vector<JourneySection> &sections)
 
 JourneySection JourneySection::fromJson(const QJsonObject &obj)
 {
-    auto section = Json::fromJson<JourneySection>(obj);
+    JourneySection section;
     section.d->ids.fromJson(obj.value("identifiers"_L1).toObject());
-    section.setFrom(Location::fromJson(obj.value(QLatin1String("from")).toObject()));
-    section.setTo(Location::fromJson(obj.value(QLatin1String("to")).toObject()));
-    section.setRoute(Route::fromJson(obj.value(QLatin1String("route")).toObject()));
-    section.setIntermediateStops(Stopover::fromJson(obj.value(QLatin1String("intermediateStops")).toArray()));
-    section.setLoadInformation(LoadInfo::fromJson(obj.value(QLatin1String("load")).toArray()));
-    section.setRentalVehicle(RentalVehicle::fromJson(obj.value(QLatin1String("rentalVehicle")).toObject()));
-    section.setPath(Path::fromJson(obj.value(QLatin1String("path")).toObject()));
-    section.setDepartureVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("departureVehicleLayout")).toObject()));
-    section.setDeparturePlatformLayout(Platform::fromJson(obj.value(QLatin1String("departurePlatformLayout")).toObject()));
-    section.setArrivalVehicleLayout(Vehicle::fromJson(obj.value(QLatin1String("arrivalVehicleLayout")).toObject()));
-    section.setArrivalPlatformLayout(Platform::fromJson(obj.value(QLatin1String("arrivalPlatformLayout")).toObject()));
-    section.setIndividualTransport(IndividualTransport::fromJson(obj.value(QLatin1String("individualTransport")).toObject()));
+    section.d->departure = Stopover::fromJson(obj.value("departure"_L1).toObject());
+    section.d->arrival = Stopover::fromJson(obj.value("arrival"_L1).toObject());
+    // apply legacy properties after setting departure/arrival, otherwise we overwrite those above
+    Json::fromJson(&JourneySection::staticMetaObject, obj, &section);
+    section.setIntermediateStops(Stopover::fromJson(obj.value("intermediateStops"_L1).toArray()));
+    section.setRentalVehicle(RentalVehicle::fromJson(obj.value("rentalVehicle"_L1).toObject()));
+    section.setPath(Path::fromJson(obj.value("path"_L1).toObject()));
+    section.setIndividualTransport(IndividualTransport::fromJson(obj.value("individualTransport"_L1).toObject()));
+
+    // legacy format
+    if (auto it = obj.find("from"_L1); it != obj.end()) {
+        section.setFrom(Location::fromJson((*it).toObject()));
+    }
+    if (auto it = obj.find("to"_L1); it != obj.end()) {
+        section.setTo(Location::fromJson((*it).toObject()));
+    }
+    if (auto it = obj.find("route"_L1); it != obj.end()) {
+        section.setRoute(Route::fromJson((*it).toObject()));
+    }
+    if (auto it = obj.find("load"_L1); it != obj.end()) {
+        section.setLoadInformation(LoadInfo::fromJson((*it).toArray()));
+    }
+    if (auto it = obj.find("departureVehicleLayout"_L1); it != obj.end()) {
+        section.setDepartureVehicleLayout(Vehicle::fromJson((*it).toObject()));
+    }
+    if (auto it = obj.find("departurePlatformLayout"_L1); it != obj.end()) {
+        section.setDeparturePlatformLayout(Platform::fromJson((*it).toObject()));
+    }
+    if (auto it = obj.find("arrivalVehicleLayout"_L1); it != obj.end()) {
+        section.setArrivalVehicleLayout(Vehicle::fromJson((*it).toObject()));
+    }
+    if (auto it = obj.find("arrivalPlatformLayout"_L1); it != obj.end()) {
+        section.setArrivalPlatformLayout(Platform::fromJson((*it).toObject()));
+    }
+
     section.applyMetaData(false);
     return section;
 }

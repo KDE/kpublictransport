@@ -1,47 +1,58 @@
 {
     "sections": [
         {
-            "disruptionEffect": "NormalService",
-            "distance": 430618,
-            "expectedArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-10-07T14:08:53+02:00"
-            },
-            "expectedDepartureTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-10-07T13:22:53+02:00"
-            },
-            "from": {
-                "country": "DE",
-                "identifier": {
-                    "iata": "BER"
+            "arrival": {
+                "disruptionEffect": "NormalService",
+                "expectedArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-10-07T14:08:53+02:00"
                 },
-                "latitude": 52.364044,
-                "longitude": 13.508999,
-                "name": "BER",
-                "region": "DE-BB"
-            },
-            "mode": "PublicTransport",
-            "route": {
-                "line": {
-                    "mode": "Air",
-                    "name": "LH0001"
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "LH0001"
+                    }
+                },
+                "scheduledArrivalTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-10-07T16:08:00+02:00"
+                },
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "iata": "FRA"
+                    },
+                    "latitude": 50.033333,
+                    "longitude": 8.570556,
+                    "name": "FRA",
+                    "region": "DE-HE"
                 }
             },
-            "scheduledArrivalTime": {
-                "timezone": "Europe/Berlin",
-                "value": "2023-10-07T16:08:00+02:00"
-            },
-            "to": {
-                "country": "DE",
-                "identifier": {
-                    "iata": "FRA"
+            "departure": {
+                "disruptionEffect": "NormalService",
+                "expectedDepartureTime": {
+                    "timezone": "Europe/Berlin",
+                    "value": "2023-10-07T13:22:53+02:00"
                 },
-                "latitude": 50.033333,
-                "longitude": 8.570556,
-                "name": "FRA",
-                "region": "DE-HE"
-            }
+                "route": {
+                    "line": {
+                        "mode": "Air",
+                        "name": "LH0001"
+                    }
+                },
+                "stopPoint": {
+                    "country": "DE",
+                    "identifier": {
+                        "iata": "BER"
+                    },
+                    "latitude": 52.364044,
+                    "longitude": 13.508999,
+                    "name": "BER",
+                    "region": "DE-BB"
+                }
+            },
+            "distance": 430618,
+            "mode": "PublicTransport"
         }
     ]
 }
