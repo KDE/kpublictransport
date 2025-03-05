@@ -8,6 +8,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
+import org.kde.coreaddons as KCoreAddons
 import org.kde.kpublictransport
 import org.kde.kpublictransport.ui
 
@@ -63,7 +64,7 @@ Kirigami.Page {
                 Layout.row: 2
                 Layout.column: 1
                 Layout.columnSpan: 2
-                text: "Distance: " + journeySection.distance / 1000.0 + "km"
+                text: "Distance: " + KCoreAddons.Format.formatDistance(root.journeySection.distance)
             }
             QQC2.Label {
                 Layout.row: 3

@@ -9,7 +9,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include <KLocalizedContext>
+#include <KLocalizedQmlContext>
 
 #include <QApplication>
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     });
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+    KLocalization::setupLocalizedContext(&engine);
     engine.load(QStringLiteral("qrc:/departurequery.qml"));
     return app.exec();
 }

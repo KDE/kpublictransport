@@ -14,7 +14,7 @@
 #include <QIdentityProxyModel>
 #include <QLocale>
 
-#include <KLocalizedContext>
+#include <KLocalizedQmlContext>
 
 using namespace KPublicTransport;
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     });
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+    KLocalization::setupLocalizedContext(&engine);
     engine.load(QStringLiteral("qrc:/journeyquery.qml"));
     return app.exec();
 }

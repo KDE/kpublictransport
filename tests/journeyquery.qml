@@ -86,15 +86,6 @@ Kirigami.ApplicationWindow {
     AttributionSheet { id: aboutSheet }
     LocationDetailsSheet { id:locationDetailsSheet }
 
-    function displayDistance(dist)
-    {
-        if (dist == 0)
-            return "";
-        if (dist < 1000)
-            return dist + "m";
-        return Math.floor(dist/1000) + "km";
-    }
-
     function locationName(loc)
     {
         switch(loc.type) {
@@ -191,20 +182,20 @@ Kirigami.ApplicationWindow {
                             {
                                 if (modelData.route.name !== "") {
                                     return modelData.route.line.modeString + " " + modelData.route.line.name + " (" + modelData.route.name
-                                        + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
+                                        + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
                                 }
-                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
+                                return modelData.route.line.modeString + " " + modelData.route.line.name + " " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance) + " <a href=\"#trip\">trip</a>";
                             }
                             case JourneySection.Walking:
-                                return "Walk " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
+                                return "Walk " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
                             case JourneySection.Transfer:
-                                return "Transfer " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)  + " / " + displayDistance(modelData.distance)
+                                return "Transfer " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)  + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
                             case JourneySection.Waiting:
                                 return "Wait " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds)
                             case JourneySection.RentedVehicle:
-                                return "Drive (" + modelData.rentalVehicle.network.name + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance);
+                                return "Drive (" + modelData.rentalVehicle.network.name + ") " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance);
                             case JourneySection.IndividualTransport:
-                                return "Drive " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + displayDistance(modelData.distance)
+                                return "Drive " + KCoreAddons.Format.formatDuration(modelData.duration * 1000, KCoreAddons.FormatTypes.HideSeconds) + " / " + KCoreAddons.Format.formatDistance(modelData.distance)
                             return "???";
                         }}
                         onLinkActivated: (link) => { delegateRoot.ListView.view.showTrip(modelData); }

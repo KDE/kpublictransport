@@ -6,10 +6,10 @@ target_link_libraries(querytest Qt::Test KPublicTransport)
 add_custom_target(run-querytest COMMAND querytest)
 
 add_executable(departurequery departurequery.cpp departurequery.qrc)
-target_link_libraries(departurequery KPublicTransport Qt::Quick Qt::Widgets KF6::I18n)
+target_link_libraries(departurequery KPublicTransport Qt::Quick Qt::Widgets KF6::I18nQml)
 
 add_executable(journeyquery journeyquery.cpp journeyquery.qrc)
-target_link_libraries(journeyquery KPublicTransport Qt::Quick Qt::Widgets KF6::I18n)
+target_link_libraries(journeyquery KPublicTransport Qt::Quick Qt::Widgets KF6::I18nQml)
 
 add_executable(locationquery locationquery.cpp locationquery.qrc)
 target_link_libraries(locationquery KPublicTransport Qt::Quick Qt::Widgets)

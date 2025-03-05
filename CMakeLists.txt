@@ -10,7 +10,7 @@ set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(KPublicTransport VERSION ${RELEASE_SERVICE_VERSION})
 
-find_package(ECM 5.245 REQUIRED NO_MODULE)
+find_package(ECM 6.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -64,11 +64,11 @@ if (ANDROID)
     find_package(Gradle)
 endif()
 
-find_package(KF6 REQUIRED COMPONENTS I18n)
+find_package(KF6 6.11 REQUIRED COMPONENTS I18n)
 
 set(KPUBLICTRANSPORT_INSTALL_INCLUDEDIR ${KDE_INSTALL_INCLUDEDIR}/KPublicTransport)
 
-ecm_set_disabled_deprecation_versions(QT 6.7 KF 6.5.0)
+ecm_set_disabled_deprecation_versions(QT 6.7 KF 6.11.0)
 
 add_subdirectory(src)
 
