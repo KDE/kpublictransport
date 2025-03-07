@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kpublictransport package.
 #
-# SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
+# SPDX-FileCopyrightText: 2024, 2025 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: kpublictransport\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-04 00:39+0000\n"
-"PO-Revision-Date: 2024-10-16 14:55+0300\n"
+"PO-Revision-Date: 2025-03-06 11:46+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
@@ -105,9 +105,10 @@ msgstr "%1 (недоступно)"
 #, kde-format
 msgid "%2 (one space)"
 msgid_plural "%2 (%1 spaces)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%2 (%1 место)"
+msgstr[1] "%2 (%1 места)"
+msgstr[2] "%2 (%1 мест)"
+msgstr[3] "%2 (одно место)"
 
 #: quick/OccupancyIndicator.qml:39
 #, kde-format
